@@ -20,6 +20,9 @@ Domain-specific needs become Field Presets or Blocks.
 | Page | Component | Variants | Properties |
 |---|---|---|---|
 | Icons | `Icon/<name>` | - | Lucide, 24 px, one `Vector` layer bound to `foreground/default`. Rescale to 16 (UI) or 12 (badge) |
+| Tour | `Coachmark` | Side: bottom, top, right, left | Title, Description, Step, Show media (Media slot), Show close, Show back. Arrow points at the target |
+| Tour | `Hotspot` | - | 24 px beacon that opens a Coachmark |
+| Video | `Video Player` | State: poster, playing, buffering | Duration, Time, Show subtitles. `video/*` tokens, dark in both modes |
 | AI Chat | `Prompt Input` | State: default, focus, streaming, disabled | Placeholder, Value, Show attachments, Show tools, Show voice; Attachments, Tools (native slots). Send becomes Stop while streaming |
 | AI Chat | `Attachment` | Type: file, image. State: default, uploading, error | Name, Meta, Show remove |
 | AI Chat | `User Message` | - | Text, Show actions (copy, edit). Bubble hugs, max 576 |
@@ -192,7 +195,8 @@ loader-circle, mail, trash-2, ellipsis, pencil, copy, archive, user, users, sett
 calendar, clock, trending-up, trending-down, map-pin, phone, building, inbox, house, file-text,
 chart-column, panel-left, bell, menu, upload, heart, shopping-bag, bold, italic, underline,
 list, text-quote, link, heading, sparkles, thumbs-up, thumbs-down, refresh-cw, square, arrow-up,
-paperclip, globe, wrench, mic, message-square, square-pen (62).
+paperclip, globe, wrench, mic, message-square, square-pen, play, pause, volume-2, maximize,
+captions, lightbulb (68).
 
 ## Conventions used
 - Variant values use the shadcn prop values (`Variant=outline`, `Size=sm`), so Figma maps 1:1 to code.
@@ -260,7 +264,9 @@ which screen: `skills/build-ui/index.md`):
   `build-ui/patterns/mobile.md`.
 
 ## Pages
-Two sections, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
+The file opens with Cover (1920 x 1080 thumbnail), Intro (getting started, credits, changelog),
+Foundations (tokens shown as swatches, type, spacing, radius, elevation, motion) and Brand.
+Then two sections, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
 categories and Page Shells). Block pages have no prefix. `Navigation` exists in both sections:
 the first holds the components (Breadcrumb, Top Bar), the second the Navbar and Footer blocks.
 Keep new pages in A-Z order inside their section.
@@ -285,10 +291,9 @@ textarea in field, combobox open, record page (App shell + record blocks), activ
 mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
 filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions, inbox (split
 view), cart sheet, checkout page, docs page, date picker open, date range, table footer with pagination, color
-field, AI chat app.
+field, AI chat app, product tour.
 
 ## Not built yet
-Tour / coachmarks, video player, more charts (full roadmap in the README). Icons: the 62 Lucide
-icons stay; the team may switch to Phosphor (flatten each icon to one `Vector` layer so swaps
-keep their color).
+More charts (pie, donut, heatmap). Icons: the 68 Lucide icons stay; the team may switch to
+Phosphor (flatten each icon to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.

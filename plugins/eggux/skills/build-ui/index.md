@@ -44,6 +44,8 @@ component guides it names. Names are Figma components; inventory in
 | Pick a color | (none) | color-picker |
 | Browse images or related items | (none) | carousel |
 | Ask AI, let AI act | ai-chat | ai-chat |
+| Introduce a feature or a workflow | (none) | tour, popover |
+| Show a video (tutorial, demo) | (none) | video-player |
 
 ## Component guides and what they cover
 
@@ -85,3 +87,5 @@ component guides it names. Names are Figma components; inventory in
 | tabs | Tabs, Toggle Group |
 | toast | Toast |
 | tooltip | Tooltip |
+| tour | Coachmark, Hotspot, spotlight |
+| video-player | Video Player |

@@ -94,6 +94,16 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   like 672 come from `layout/container/*`). `N(x) || N(y)` does not fall back: N throws.
 - FLOAT and STRING tokens without a Figma use (motion) get `scopes = []` and a WEB code syntax.
 
+## Unsupported here
+- `figma.loadAllPagesAsync()` and `figma.setFileThumbnailNodeAsync()` are not available in
+  `use_figma`. Load pages one by one with `page.loadAsync()`; set the thumbnail by hand
+  (right click the Cover frame, Set as thumbnail).
+- `rescale()` scales text sizes and detaches text styles: use it only for artwork (the Cover).
+- Switching a frame from a wrapping HORIZONTAL layout to VERTICAL leaves it broken (texts
+  collapse to 0 width). Create the frame with the final direction.
+- Children of a boolean operation keep their own fills; clear them, the boolean's fill is what
+  shows.
+
 ## Safety
 - A failed `use_figma` call is rolled back as a whole; fix and rerun. Wrap multi-node builds in
   try/catch that removes what the call created.
