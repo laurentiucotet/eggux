@@ -21,7 +21,8 @@ Prefer undo over confirmation when the system can support it.
 - **Focus:** initial focus on Cancel. Escape closes the dialog.
 
 ## After
-- Success: toast naming what was deleted. Return focus to a logical place in the list.
+- Success: feedback as in `action-feedback.md`: toast naming what was deleted (with Undo when
+  restorable). Return focus to a logical place in the list.
 - Failure: keep the dialog open with the error, so the user can retry.
 
 ## shadcn / Figma

@@ -23,7 +23,8 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/project-files.md`. Output goes to `eggux/
 3. **Actors:** each role with goals, permissions (which CTAs) and constraints.
 4. **Workflows:** sequences an actor follows to reach a goal. Every step names the object, the
    CTA and the pattern it uses (`${CLAUDE_PLUGIN_ROOT}/skills/build-ui/patterns/`). Include
-   failure paths.
+   failure paths. When a workflow matches a flow in `patterns/common-flows.md` (create, edit,
+   delete, invite, share, import, approve…), write "Based on: <flow>" and only the differences.
 5. **Open questions:** list everything the material does not answer, at the end of each file
    under `## Open questions`. Do not invent answers. These become the agenda for the next call.
 6. **Write the files.** Merge into existing content: keep what is there, add, and mark changes.

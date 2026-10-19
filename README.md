@@ -117,6 +117,8 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
    [`CHANGELOG.md`](CHANGELOG.md).
 3i. Done: block pages in Figma sections by family; 19 marketing and content blocks (contact,
    map, testimonials, CTA, blog, news, banner, features, hero, footer) and a Map component.
+3j. Done: generic patterns (action feedback, bulk actions, permissions, errors and recovery,
+   notifications, sharing, writing) and 14 common flows reused by discovery.
 4. Next: more blocks per family (pricing, FAQ, stats, team, careers, gallery, footer variants),
    gauge and treemap charts, Gantt timeline, Code Connect once a component codebase exists.
 5. System: documentation site.

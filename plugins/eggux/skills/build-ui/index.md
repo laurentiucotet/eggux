@@ -41,6 +41,14 @@ component guides it names. Names are Figma components; inventory in
 
 | Need | Pattern | Component guides |
 |---|---|---|
+| Feedback after any action (create, save, delete, send, copy, export) | action-feedback | toast, button |
+| Act on many items | bulk-actions | table |
+| Someone cannot do or see something | permissions-and-access | tooltip, badge |
+| Session expired, offline, conflicting edit, undo, trash | errors-and-recovery | alert, dialog, toast |
+| Tell people about events | notifications | badge, toast |
+| Invite people, share an object | sharing-and-invites | dialog, avatar |
+| Write labels, messages, dates, numbers | writing | |
+| Map a client workflow quickly | common-flows | |
 | Confirm a destructive action | delete-confirmation | dialog |
 | Tell the user something happened | feedback-messages | toast, alert, indicators |
 | Wait for data or an operation | loading-states | skeleton, indicators, progress-and-slider |

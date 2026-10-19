@@ -8,6 +8,7 @@ updated: "{{date}}"
 ## (Workflow name)
 - **Actor:** (from actors.md)
 - **Goal:** what the actor wants to achieve
+- **Based on:** a flow from the plugin's `patterns/common-flows.md`, or "custom"
 - **Trigger:** what starts it
 - **Steps:**
   1. Step → object + CTA involved → pattern used

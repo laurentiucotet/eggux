@@ -3,6 +3,17 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.26.0
+- Generic patterns: action-feedback (when a toast, when the visible change is enough, per action),
+  bulk-actions, permissions-and-access, errors-and-recovery (sessions, offline, conflicts,
+  undo, trash, history), notifications, sharing-and-invites, writing (labels, messages,
+  dates, numbers).
+- `common-flows.md`: 14 reusable flows (create, edit, delete, bulk, find, invite, share,
+  onboard, sign in, approve, import, export, change plan, act on a notification); discovery
+  and the workflows template refer to them ("Based on").
+- ux-rules: feedback rule rewritten, new Safety and recovery section, writing rule; review
+  checks action feedback and access, offline and error states.
+
 ## 0.25.0
 - Block pages organized in Figma sections: `Blocks` with one sub-section per family, `Examples`
   next to it; add-component places new blocks in their family.
