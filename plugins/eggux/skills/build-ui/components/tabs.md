@@ -15,3 +15,9 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Do not hide something the actor needs to complete the main task behind a non-default tab.
 - Keyboard: arrow keys move between tabs, Tab moves into the content.
 - On mobile, tabs scroll horizontally; never wrap to two lines.
+
+## Figma
+- `Tabs` (pill, shadcn) and `Tabs Line` hold `Tab` instances in a native slot. Exactly one `active`.
+- In pill tabs, inactive text is `foreground/default`, not muted: muted text on the muted list
+  fails contrast. The active tab is marked by its background and shadow.
+- Use `Tabs Line` for page-level sections, pill tabs for switching views inside a card or panel.

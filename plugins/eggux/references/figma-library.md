@@ -20,9 +20,27 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Nested Input is exposed |
 | Alert | `Alert` | Variant: default, destructive, success, warning, info | Title, Description, Show description |
 | Card | `Card` | - | Title, Description, Show description, Show action, Show footer. Content (native slot). Nested buttons exposed |
+| Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
+| Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
+| Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
+| Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
+| Tooltip | `Tooltip` | Side: top, bottom, left, right (where it sits relative to the trigger) | Label |
+| Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
+| Menu | `Menu Label`, `Menu Separator` | - | Label |
+| Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
+| Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
+| Tabs | `Tab` | Style: pill, line. State: default, active, focus, disabled | Label |
+| Tabs | `Tabs`, `Tabs Line` | - | Tabs (native slot of Tab instances) |
+| Toast | `Toast` | Type: default, success, error, warning, info, loading | Show description, Action (nested Button exposed). Text edited per instance |
+| Dialog | `Dialog` | - | Title, Description, Show description, Show footer, Show close. Content (native slot) |
+| Dialog | `Alert Dialog` | - | Title, Description. Footer buttons exposed |
+| Table | `Table Cell` | Type: header, body. Align: left, right | Text |
+| Table | `Table Cell Slot` | - | Content (native slot, default: Badge) |
+| Table | `Table Row` | Type: header, body. State: default, hover, selected | Cells (native slot) |
 
-Icons available: plus, chevron-down, chevron-right, search, check, x, info, circle-alert,
-triangle-alert, circle-check, loader-circle, mail, trash-2, ellipsis. Add more on the Icons page
+Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
+chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
+loader-circle, mail, trash-2, ellipsis, pencil, copy, archive, user, settings, log-out, calendar. Add more on the Icons page
 as Lucide components with the same structure.
 
 ## Conventions used
@@ -41,12 +59,17 @@ any layers or instances inside.
 - Through the Plugin API (build-ui): `inst.findOne(n => n.type === 'SLOT')`, remove its
   placeholder, `appendChild` the content, then set `layoutSizingHorizontal = 'FILL'` on each child.
 - Creating a slot in a library component: `component.createSlot()` adds the node and a `SLOT`
-  property. Rename the property with `editComponentProperty(key, { name, description })`, give the
+  property. In a component set, create the slot in every variant before `combineAsVariants`:
+  slots with the same name merge into one property. Rename the property with `editComponentProperty(key, { name, description })`, give the
   slot auto layout and token-bound padding, and add a placeholder as default content.
 - Use a slot when the content varies per use (card body, dialog body, table cell content). Use
   boolean or TEXT properties when the variation is fixed (show footer, title text).
 
+## Examples on the pages
+Some pages hold example frames (not components) that show composition: list row loading
+(Skeleton), icon button with tooltip, open select, dialog over page, invoices table. Copy them
+as a starting point.
+
 ## Not built yet
-Dialog, Select, Checkbox, Radio, Switch, Tabs, Table, Toast, Tooltip, Dropdown menu, Skeleton.
-Their usage guides exist in `skills/build-ui/components/`. Until they exist in Figma, compose
-from tokens and text styles and flag it.
+Combobox, Textarea, Popover, Sheet, Drawer, Date picker, Pagination, Breadcrumb, Avatar, Sidebar.
+Until they exist, compose from the components above, tokens and text styles, and flag it.

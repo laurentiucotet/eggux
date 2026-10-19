@@ -25,3 +25,9 @@ Usage guidelines only. Visual specs live in the Figma component.
 - `Switch` applies immediately and shows the result. Inside a form that saves on submit, use `Checkbox`.
 - A single checkbox for consent states what the user agrees to, not "I agree".
 - Indeterminate checkbox only for "select all" over a partial selection.
+
+## Figma
+- `Select` is the trigger. For the open state, place a `Menu` under it and set `Checked` on the
+  selected `Menu Item`. See the "select open" example.
+- `Checkbox`, `Radio`, `Switch` include their label (`Show label` to hide it). Error state marks
+  the control; the message comes from `Field` or text under the group.

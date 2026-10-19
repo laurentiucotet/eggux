@@ -12,3 +12,6 @@ Usage guidelines only. Visual specs live in the Figma component. When to use eac
 - No skeleton for less than ~300 ms of loading: it flashes. Delay showing it.
 - Uses `background/muted`; animation is subtle and respects `prefers-reduced-motion`.
 - Mark the loading region `aria-busy="true"` and announce completion when it matters.
+
+## Figma
+`Skeleton` shapes: text, circle, block. Resize instances; see the "list row loading" example.

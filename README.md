@@ -62,8 +62,10 @@ express: when to use what, behavior, rules.
 
 ## Figma library status
 
-EGG UI v2 has foundations (variables, text and effect styles) and these components: Button,
-Button Icon, Badge, Input, Field, Alert, Card (with a native content slot) and 14 Lucide icons. Inventory and
+EGG UI v2 has foundations (variables, text and effect styles), 26 Lucide icons and these
+components: Button, Button Icon, Badge, Input, Field, Alert, Card, Checkbox, Radio, Switch,
+Skeleton, Tooltip, Menu (Item, Label, Separator), Select, Tabs, Toast, Dialog, Alert Dialog and
+Table (Row, Cell). Content areas use Figma native slots. Inventory and
 conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
 
 ## What the pack covers

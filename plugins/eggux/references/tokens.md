@@ -90,6 +90,9 @@ Current tokens:
 | `button/primary-hover` | `background/primary` at `opacity/90` | shadcn `hover:bg-primary/90` |
 | `button/secondary-hover` | `background/secondary` at `opacity/80` | shadcn `hover:bg-secondary/80` |
 | `button/destructive-hover` | Light `color/red/700`, Dark `background/destructive` at `opacity/90` | 90% opacity failed 4.5:1 in Light |
+| `dialog/overlay` | `color/black` at `opacity/50` | shadcn `bg-black/50` behind Dialog and Alert Dialog |
+| `table/row-hover` | `background/muted` at `opacity/50` | shadcn `hover:bg-muted/50` |
+| `switch/thumb-unchecked` | Light `background/default`, Dark `foreground/default` | Thumb stays visible on the dark track |
 
 Naming: `<component>/<property>`,
 for example `button/radius`, `card/padding`. CSS: `--<component>-<property>`.

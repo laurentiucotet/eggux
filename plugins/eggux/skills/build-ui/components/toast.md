@@ -17,3 +17,7 @@ and inline messages: `patterns/feedback-messages.md`.
 - Never put information in a toast that the user cannot find again elsewhere.
 - Position stays the same across the product (default bottom right, top center on mobile).
 - Announce to screen readers (`aria-live="polite"`, `assertive` for errors).
+
+## Figma
+`Toast` types: default, success, error, warning, info, loading. Edit title and description in the
+instance; turn on `Action` for Undo or View (the nested Button is exposed).

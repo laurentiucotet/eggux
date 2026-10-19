@@ -20,3 +20,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Long content scrolls inside the body; the title and the action bar stay fixed.
 - On mobile, a `Dialog` with a form becomes a full-screen `Drawer` or `Sheet`.
 - Destructive confirmations follow `patterns/delete-confirmation.md`.
+
+## Figma
+- `Dialog`: Title, Description, Content (native slot), footer with Cancel + primary (exposed), close X.
+- `Alert Dialog`: no close button and no slot; footer with Cancel + destructive action.
+- Overlay behind both: `dialog/overlay`. See the "dialog over page" example on the Dialog page.

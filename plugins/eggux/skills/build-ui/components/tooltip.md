@@ -16,3 +16,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Do not hide information the user needs to complete the task in a tooltip; put it on the page.
 - Touch devices have no hover: anything in a tooltip must also be reachable another way.
 - A Popover closes on Escape and outside click and returns focus to its trigger.
+
+## Figma
+`Tooltip` with `Side` = where it sits relative to the trigger (the arrow points at the trigger).
+See the "icon button with tooltip" example.

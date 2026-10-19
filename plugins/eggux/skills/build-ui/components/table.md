@@ -25,3 +25,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Loading: skeleton rows matching the column layout (`patterns/loading-states.md`).
 - Empty: `patterns/empty-state.md`, inside the table area, keeping the header when filters are active.
 - Wide tables scroll horizontally with the first column sticky. On mobile, switch to a list.
+
+## Figma
+Compose from `Table Row` (native slot `Cells`) with `Table Cell` for text and `Table Cell Slot` for
+badges, avatars or a `Button Icon` with the row actions menu. Keep column widths equal across rows.
+Start from the "invoices table" example on the Table page.

@@ -15,3 +15,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Shortcuts shown on the right when they exist.
 - Trigger: ghost icon button with an accessible label that names the object ("Actions for Invoice #1042").
 - Keyboard: arrows move, Enter selects, Escape closes and returns focus to the trigger.
+
+## Figma
+`Menu` holds `Menu Item`, `Menu Label` and `Menu Separator` instances in its native slot `Items`.
+A highlighted destructive item uses a filled `background/destructive` row with white text, because
+red text on a light red tint fails contrast.
