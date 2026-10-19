@@ -35,7 +35,13 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Cloned variants lose `componentPropertyReferences`: re-wire every property after cloning.
 - Swapping an instance renames its layer to the component name; do not look nested instances
   up by their original layer name after a swap.
-- Hidden children of instances may be skipped by `findAll` / `children` in `use_figma`.
+- Hidden children of instances are skipped by `findAll` / `children` unless
+  `figma.skipInvisibleInstanceChildren = false`; hidden icons then look empty.
+- After `editComponentProperty` renames a slot property, the slot node in the main component
+  takes the property name too; find slots by type and position, not by the original layer name.
+- An instance can be exposed only if it has properties or exposed children (`isExposedInstance`
+  fails on a Navbar or Footer without properties).
+- Swapping instances to a rebuilt set drops overrides of properties whose key changed; re-apply them.
 
 ## Icons
 - Swaps keep stroke overrides only on layers that match by position. Keep every icon a single

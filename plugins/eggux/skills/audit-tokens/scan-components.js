@@ -3,6 +3,9 @@
 // or leave it empty to scan every component and component set on the current page.
 const ROOTS = [];
 
+// Load hidden instance children too, or hidden icons look empty.
+figma.skipInvisibleInstanceChildren = false;
+
 const ok = p => p.type !== 'SOLID' || (p.boundVariables && p.boundVariables.color);
 let roots = [];
 if (ROOTS.length) for (const id of ROOTS) { const n = await figma.getNodeByIdAsync(id); if (n) roots.push(n); }
