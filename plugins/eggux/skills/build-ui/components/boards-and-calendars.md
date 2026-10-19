@@ -24,4 +24,12 @@ Usage guidelines only. Visual specs live in the Figma components (Kanban, Schedu
 - Time zone visible when users or attendees can be in different zones.
 - Mobile: day view with a week strip.
 - Figma: `Calendar Event` (Size × Category) on the Scheduler page, `Block / Scheduler Week` on the
-  App page. Month view: `Calendar` with event dots, or a grid of days with up to 3 events + "+2 more".
+  App page.
+
+## Month view
+- For planning and an overview of busy days. Up to 3 events per day (compact `Calendar Event`),
+  then "+N more" that opens the day in a Popover.
+- Today marked, days of other months muted, weekends muted when the product works on weekdays.
+- Click a day to open the day view or create an event; drag events between days.
+- Mobile: a small `Calendar` with event dots and the list of the selected day under it.
+- Figma: `Block / Scheduler Month` on the App page.

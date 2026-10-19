@@ -74,6 +74,15 @@ Domain-specific needs become Field Presets or Blocks.
 | Chart | `Chart Tooltip` | - | Title; Rows (native slot) |
 | Chart | `Chart Card` | - | Title, Description, Insight, Note, Show legend, Show footer; Actions, Chart (native slots); Legend exposed |
 | Code Block | `Code Block` | - | Language, Code, Show header; Copy button |
+| Editor | `Rich Text Editor` | State: default, focus | Toolbar (heading, bold, italic, underline, lists, quote, link); Content (native slot), Show footer (hint + counter) |
+| Chat | `Comment` | Type: comment, reply. State: default, resolved | Name, Time, Text, Show actions; Avatar exposed |
+| Chat | `Comment Composer` | - | Avatar, Textarea, attach, ⌘↵ hint, Comment button |
+| Chat | `Chat Message` | Direction: incoming, outgoing | Text, Time, Show meta (time + delivery status) |
+| Chat | `Typing Indicator` | - | Three dots + "… is typing" |
+| Chat | `Chat Composer` | - | Attach, message field, Send |
+| Rating | `Rating` | Size: sm, default. Value: 0-5 | Show value, Show count, Count. Value text edited per instance |
+| Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); previous / next outline Button Icons, dots |
+| Color Picker | `Color Picker` | - | Saturation area, hue slider, hex Input Group with opacity; Swatches (native slot) |
 | Kanban | `Kanban Card` | State: default, hover, dragging | Title, Due date, Show labels, Show meta; assignee exposed |
 | Kanban | `Kanban Column` | - | Title, Cards (native slot); count exposed |
 | Scheduler | `Calendar Event` | Size: default, compact. Category: 1-4 | Title, Time |
@@ -153,6 +162,8 @@ Domain-specific needs become Field Presets or Blocks.
 | App | `Block / Team Members`, `/ Billing`, `/ Onboarding Checklist`, `/ Profile`, `/ API Keys`, `/ Notification Preferences` | - | Settings and admin cards, 768 wide |
 | App | `Block / Integrations` | - | Search + grid of integration cards, 1136 wide |
 | App | `Block / Kanban Board`, `/ Scheduler Week` | - | Board with columns and a dragged card; week view with toolbar, events, now line |
+| App | `Block / Scheduler Month` | - | Month grid, up to 3 events per day + "+N more", today marked |
+| App | `Block / Comments`, `/ Conversation` | - | Comment thread with replies, resolved comment and composer; chat with header, day separator, grouped messages, typing, composer |
 | Content | `Block / Blog List`, `/ Article` | - | Featured + grid of Post Cards + pagination; reading column with prose and TOC |
 | Sections (blocks) | `Block / Logo Cloud`, `/ Team`, `/ Contact`, `/ Newsletter`, `/ Comparison Table` | - | Marketing sections, 1440 wide, 1152 container |
 | Navigation (blocks) | `Block / Navbar Mobile` | - | Logo + menu button, 390 wide. Opens the full-screen "mobile nav open" panel |
@@ -167,7 +178,8 @@ Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevro
 chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
 loader-circle, mail, trash-2, ellipsis, pencil, copy, archive, user, users, settings, log-out,
 calendar, clock, trending-up, trending-down, map-pin, phone, building, inbox, house, file-text,
-chart-column, panel-left, bell.
+chart-column, panel-left, bell, menu, upload, heart, shopping-bag, bold, italic, underline,
+list, text-quote, link, heading (50).
 
 ## Conventions used
 - Variant values use the shadcn prop values (`Variant=outline`, `Size=sm`), so Figma maps 1:1 to code.
@@ -259,9 +271,11 @@ stats + table), sheet over list, bottom drawer with filters,
 textarea in field, combobox open, record page (App shell + record blocks), activity timeline, mobile list, mobile menu open,
 mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
 filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions, inbox (split
-view), cart sheet, checkout page, docs page, date picker open, date range, table footer with pagination.
+view), cart sheet, checkout page, docs page, date picker open, date range, table footer with pagination, color
+field.
 
 ## Not built yet
-Rich text editor, color picker (full roadmap in the README). Icons: the 43 Lucide icons stay; the team may switch to Phosphor (flatten each icon
-to one `Vector` layer so swaps keep their color).
+AI chat (prompt input, assistant message, sources), video player, tour / coachmarks (full
+roadmap in the README). Icons: the 50 Lucide icons stay; the team may switch to Phosphor
+(flatten each icon to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.
