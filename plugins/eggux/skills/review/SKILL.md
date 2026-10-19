@@ -19,6 +19,9 @@ they exist: the review checks the design against the actor's workflow, not in a 
    (`bg-blue-600`) instead of semantic ones; text not using a text style. When the theme itself
    is in question, run `/eggux:audit-tokens`.
 6. **Accessibility:** contrast, focus visibility, target size, labels, color-only meaning.
+7. **Library use (Figma):** detached instances where a slot or property would do; plain Inputs
+   where a Field Preset exists (email, phone, card, address); layouts rebuilt by hand where a
+   Block or Page Shell exists. `scan-components.js` from `/eggux:audit-tokens` finds raw values.
 
 ## Output
 A table, most severe first:

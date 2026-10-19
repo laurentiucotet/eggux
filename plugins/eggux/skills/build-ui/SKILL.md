@@ -21,9 +21,10 @@ If a client file is missing, say which skill creates it and continue with base r
   If the user asks for a screen that matches no workflow, ask what the actor is trying to do.
 - **Objects drive layout.** Cards, list rows and detail pages show the attributes marked in
   objects.md; CTAs are only those the actor is permitted.
-- **Compose from the library.** In Figma, search the design system and use instances of
-  existing components and blocks. In code, use shadcn components already in the project. Build
-  something new only when nothing fits, and say so.
+- **Compose from the library, top down.** Start from a Page Shell (app, marketing, auth), then
+  Blocks, then Field Presets, then components. Use instances; fill slots, never detach. In code,
+  use shadcn components already in the project. Build something new only when nothing fits,
+  say so, and suggest `/eggux:add-component` if it will repeat.
 - **Tokens only.** Bind fills, strokes, radius, spacing and text styles to variables and styles.
   A raw value is a defect unless no token exists, in which case flag it.
 - **Copy:** use the client's terminology and voice. Real-looking content, never lorem ipsum.
@@ -34,13 +35,16 @@ If a client file is missing, say which skill creates it and continue with base r
 ## Figma
 Use the Figma MCP skills (`figma-use`, `figma-generate-design`) for every write. Build in the
 client's file, never in the master library unless the user explicitly asks to change the library.
-Components with variable content (Card) have native slots: fill the slot in the instance, never
-detach. See "Slots" in `${CLAUDE_PLUGIN_ROOT}/references/figma-library.md`.
+Components with variable content (Card, Dialog, Field, shells) have native slots: fill the slot
+in the instance, never detach. See "Slots" in `${CLAUDE_PLUGIN_ROOT}/references/figma-library.md`
+and the API pitfalls in `${CLAUDE_PLUGIN_ROOT}/references/figma-api-notes.md` before any write.
+Tables are GRID frames copied from the Table page template, not components.
 
 ## Code
 Follow the project's existing structure. Use semantic Tailwind classes that map to tokens
 (`bg-primary`, `text-muted-foreground`, `border-border`), never palette classes (`bg-blue-600`).
 
 ## Before finishing
-Run the checks in the `review` skill on what you built, fix what fails, then report what was
+Run `${CLAUDE_PLUGIN_ROOT}/skills/audit-tokens/scan-components.js` on the frames you built (set
+ROOTS to their ids), then the checks in the `review` skill. Fix what fails, then report what was
 built and any rule you could not follow.

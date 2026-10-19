@@ -27,7 +27,8 @@ The skills that touch Figma need the Figma MCP server connected.
 | `/eggux:build-ui` | Designs and builds screens from the library, following client files |
 | `/eggux:decision-log` | Records decisions and terminology, propagates them to Figma and code |
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
-| `/eggux:audit-tokens` | Checks Figma variables: aliases, code syntax, scopes, contrast in Light and Dark |
+| `/eggux:audit-tokens` | Checks Figma variables (aliases, code syntax, scopes, contrast) and scans components for raw values |
+| `/eggux:add-component` | Adds a component, preset, block or page shell to the library the EGG way, with QA and docs |
 
 ## How it is organized
 
@@ -35,7 +36,7 @@ The plugin holds the method; each client project holds its answers.
 
 ```
 plugins/eggux/
-├── references/          token architecture, Figma inventory, client file convention
+├── references/          tokens, Figma inventory, Figma API notes, client file convention
 └── skills/
     ├── init/templates/  brand, objects, actors, workflows, decisions
     ├── discovery/       OOUX method
@@ -43,7 +44,8 @@ plugins/eggux/
     ├── build-ui/        ux-rules.md, patterns/, components/
     ├── decision-log/
     ├── review/          Nielsen heuristics
-    └── audit-tokens/    audit.js, run through Figma MCP
+    ├── audit-tokens/    audit.js, scan-components.js, run through Figma MCP
+    └── add-component/   workflow for extending the library
 
 client-project/
 └── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md
