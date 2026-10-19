@@ -26,12 +26,15 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Required fields are marked consistently; mark optional ones instead when most are required.
 - Never clear what the user typed after an error.
 - Email, password, phone, card and address fields use the presets. See `patterns/form-presets.md`.
+- Long forms with an order are split into steps. See `patterns/multi-step-form.md`.
 
 ## Content
 - Use the client's terminology from `decisions.md`. A "Don't use" term is a defect.
 - Every list and table has an empty state. See `patterns/empty-state.md`.
 - Search, filters and sort are visible, clearable and kept in the URL. See `patterns/search-and-filter.md`.
 - Dates, numbers and currency follow the client's locale.
+- A single object has a record page (header, details, activity). See `patterns/record-page.md`.
+- Picking a day and a time follows `patterns/booking.md`.
 
 ## Accessibility
 - Text contrast at least 4.5:1. Icons, input borders, focus rings and other boundaries that
