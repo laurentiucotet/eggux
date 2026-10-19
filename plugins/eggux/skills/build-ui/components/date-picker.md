@@ -37,3 +37,13 @@ shadcn `Calendar` (react-day-picker, `weekStartsOn={1}`, `locale={ro}`) and the 
   `patterns/booking.md` (calendar + slots).
 - Figma: `Time Picker` (State × Content, clock icon) on the Calendar page. Open state: Time Picker
   (focus) + Menu with times, Checked on the selected one. Examples "time picker open", "date and time".
+
+## Date Range Picker
+- For filters and reports: presets first (Today, Last 7 / 14 / 30 days, This month, Last month,
+  This year, Custom), then two months (previous + current), summary with the number of days,
+  Cancel / Apply.
+- The trigger shows the preset name and the dates ("Last 14 days: 6 - 19 Oct").
+- Future dates disabled for reports on past data; past dates disabled for bookings.
+- Mobile: one month in a full-height Drawer, presets as chips above.
+- Figma: `Date Range Picker` (Presets slot, Summary, Show presets) on the Calendar page. Example
+  "date range filter".

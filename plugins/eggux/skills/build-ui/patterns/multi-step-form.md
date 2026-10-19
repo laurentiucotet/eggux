@@ -15,3 +15,8 @@ in the card footer. 768 wide.
 - Continue names the next step ("Continue to confirm"); the last button names the outcome
   ("Book appointment").
 - Mobile: "Step 2 of 3 · Appointment" + progress bar instead of the full Stepper.
+
+## Shell
+Long or blocking flows (onboarding, setup, checkout, import) use `Page Shell / Wizard`: no sidebar,
+step counter, "Save and exit", progress bar, sticky Back / Continue, content 672 wide. Short flows
+inside the app keep the App shell and use `Block / Multi-step Form` with a Stepper.

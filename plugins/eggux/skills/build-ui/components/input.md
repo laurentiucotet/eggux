@@ -29,3 +29,13 @@ Label (`ui/label`) → input → hint or error (`ui/caption`). The label is alwa
 - Wrong code: error state on all boxes, message under them, keep the digits for editing.
 - Figma: `OTP Slot` Position (first, middle, last) × State (empty, filled, active, error);
   `Input OTP` Length 4 or 6. Example "verify phone" on the Input OTP page.
+
+## Input Group and Number Input
+- Input Group when a fixed prefix or suffix is part of the value: https://, .com, lei, kg, %, @.
+  The addon is not editable and not part of what the user types; a Select (currency, country
+  code) or a Button (Copy, Generate) can sit in the Start/End slots.
+- Icons inside the field stay on `Input` (Leading icon, Trailing slot).
+- Number Input for small integers (guests, seats, quantity): − / + plus typing; min/max disable
+  the buttons. Money, decimals and large numbers: Input Group with a unit, right-aligned in tables.
+- Figma: `Input Addon` (start, end), `Input Group` (State; Start/End slots; Show start/end),
+  `Number Input` (State). Example "input groups" on the Input page.

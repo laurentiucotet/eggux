@@ -11,6 +11,13 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - A new frame clips by default and is 100 x 100. A GRID frame needs a width or FILL from its
   parent, or columns are cut off.
 
+- Resizing a frame inside an instance (not an instance itself) is ignored. For proportional fills
+  (Progress indicator) use a non-auto-layout parent and `constraints.horizontal = 'SCALE'`.
+- Every `resize()` on a hug component turns it FIXED again: set `primaryAxisSizingMode = 'AUTO'`
+  after the last resize (Tag, Input Addon and Split Button were built fixed by mistake).
+- A text appended to a slot and set to FILL before it has content can collapse to width 0: set
+  `characters` and `textAutoResize = 'HEIGHT'` first, then FILL.
+
 ## Slots
 - `component.createSlot()` creates a SLOT node and a `SLOT` property; the key is in
   `slot.componentPropertyReferences.slotContentId`. Rename with `editComponentProperty`.

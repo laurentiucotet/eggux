@@ -20,6 +20,9 @@ example content varies across domains. Domain-specific needs become Field Preset
 | Icons | `Icon/<name>` | - | Lucide, 24 px, one `Vector` layer bound to `foreground/default`. Rescale to 16 (UI) or 12 (badge) |
 | Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link. Size: sm, default, lg. State: default, hover, focus, disabled | Label; Leading icon, Trailing icon (boolean + swap) |
 | Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. State: as Button | Icon (swap) |
+| Button | `Button Group Item` | Position: first, middle, last. State: default, hover, focus, disabled | Label, Show label, Icon + Icon type |
+| Button | `Button Group` | - | Items (native slot) |
+| Button | `Split Button` | Variant: default, outline | Label; chevron opens a Menu |
 | Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info. Shape: rounded, pill | Label; Icon (boolean + swap); Dot; Count + Count value |
 | Badge | `Badge Count` | Variant: default, secondary, destructive, outline | Count (numeric bubble for nav items and icon buttons) |
 | Badge | `Status Dot` | Status: success, warning, error, info, neutral | Label, Show label |
@@ -31,6 +34,9 @@ example content varies across domains. Domain-specific needs become Field Preset
 | Input | `Password Strength` | Strength: empty, weak, fair, good, strong | Meter + message under a new-password field |
 | Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Control (native slot, default Input) |
 | Input | `Textarea` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Min height 64, grows with content; put it in a Field |
+| Input | `Input Addon` | Position: start, end | Text |
+| Input | `Input Group` | State: default, focus, error, disabled | Value, Show start, Show end; Start, End (native slots) |
+| Input | `Number Input` | State: default, focus, error, disabled | Value; − / + steppers |
 | Input OTP | `OTP Slot` | Position: first, middle, last. State: empty, filled, active, error | Digit |
 | Input OTP | `Input OTP` | Length: 4, 6 | Groups of OTP Slots (3 + 3 with separator) |
 | Kbd | `Kbd` | - | Key |
@@ -48,10 +54,14 @@ example content varies across domains. Domain-specific needs become Field Preset
 | Popover | `Popover` | - | Content (native slot). 288 wide, popover tokens, shadow/md |
 | Popover | `Command Input` | - | Value. Search field with bottom divider |
 | Popover | `Command` | - | Command Input (exposed), Items (native slot), Empty, Show items. Base for Combobox and ⌘K |
+| Popover | `Tag` | State: default, disabled | Label, Remove |
+| Popover | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Chevron |
+| Popover | `Hover Card` | - | Content (native slot), 320 wide |
 | Calendar | `Calendar Day` | State: default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end | Day |
 | Calendar | `Calendar` | - | Month. Monday-first month grid, prev/next ghost Button Icons |
 | Calendar | `Date Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Calendar icon; opens Calendar in a popover |
 | Calendar | `Time Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Clock icon; opens a Menu of times |
+| Calendar | `Date Range Picker` | - | Presets (native slot), Summary, Show presets; two Calendars; Cancel / Apply |
 | Chart | `Bar Chart` | Type: single, grouped, stacked | Bars ≤ 24, 4 px data-end radius, 2 px gaps; y axis, grid, x labels |
 | Chart | `Line Chart` | Type: line, area | 2 px lines, end dots with surface ring, area at opacity/10 |
 | Chart | `Sparkline` | Trend: up, down | 120 x 32, no axes |
@@ -115,6 +125,7 @@ example content varies across domains. Domain-specific needs become Field Preset
 | Sections (blocks) | `Section Header` | Align: center, left | Overline, Title (heading/h2), Description |
 | Page Shells | `Page Shell / App`, `/ Marketing`, `/ Auth` | - | Page (native slot); Sidebar and Top Bar exposed in App |
 | Page Shells | `Page Shell / Mobile` | - | 390 x 844. Mobile Header + Page (native slot) + Bottom Nav (exposed, `Bottom nav` boolean) |
+| Page Shells | `Page Shell / Wizard` | - | Logo, Step text, Save and exit, Progress, Page (native slot, 672), Back / Continue |
 | Brand | `Logo Mark` | - | The one place to put the client symbol; used by Logo and Sidebar Workspace |
 | Brand | `Logo` | Type: mark, wordmark, full | Name |
 | Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed |
@@ -127,6 +138,8 @@ example content varies across domains. Domain-specific needs become Field Preset
 | App | `Block / Analytics` | - | 4 Stat Cards + 2 Chart Cards (grouped bars, area) |
 | Navigation (blocks) | `Block / Navbar Mobile` | - | Logo + menu button, 390 wide. Opens the full-screen "mobile nav open" panel |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
+| Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
+| Results | `Block / Result` | Type: not-found, server-error, no-access, maintenance, success | Show code; Actions (native slot) |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
@@ -206,7 +219,7 @@ Keep new pages in A-Z order inside their section.
 2. Field Presets: a component with a purpose (email, phone, card number) built from layer 1.
 3. Blocks: whole compositions (navigation, hero, sections, forms, app sections) built from
    layers 1 and 2, one page per category under the BLOCKS divider (App, Forms, Hero,
-   Navigation, Sections).
+   Navigation, Results, Sections).
 4. Page Shells: full pages with a Page slot where blocks go.
 A change in layer 1 flows up. Add a preset or block only when the same composition appears in
 two or more projects; otherwise build it in the client file.
@@ -218,7 +231,8 @@ chips, cards (list, profile, form, empty state), stat cards row, invoices table 
 and column resize, permissions tree, navigation tree, view switch, app shell (Sidebar + header +
 stats + table), sheet over list, bottom drawer with filters,
 textarea in field, combobox open, patient screen (App shell + record blocks), activity timeline, mobile patients, mobile menu open,
-mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, date picker open, date range, table footer with pagination.
+mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
+filter, 404 in app, onboarding step, date picker open, date range, table footer with pagination.
 
 ## Not built yet
 Rich text editor, color picker (full roadmap in the README). Icons: the 41 Lucide icons stay; the team may switch to Phosphor (flatten each icon
