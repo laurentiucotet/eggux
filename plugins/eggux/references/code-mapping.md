@@ -75,3 +75,6 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Video Player` | native `video` or Vidstack | |
 | `Kanban` parts | dnd-kit + custom | |
 | `Calendar Event`, scheduler blocks | custom grid, or FullCalendar themed with tokens | |
+| Help center and docs blocks | page sections composed from `Input`, `Card`, `Breadcrumb`, `Button` | Search: shadcn `Command` (⌘K) or Algolia DocSearch; docs content: MDX (Nextra, Fumadocs) |
+| `Block / Status Page` uptime bars | custom flex of 90 spans with `title` and an uptime % in text | Data from your status provider (Instatus, Better Stack, Atlassian Statuspage) |
+| `Block / Navbar Mega Menu` | shadcn `NavigationMenu` with `NavigationMenuContent` | |

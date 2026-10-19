@@ -24,12 +24,13 @@ component guides it names. Names are Figma components; inventory in
 | Create / edit form | App, or Sheet / Dialog over a list | Forms blocks, Field Presets | form-validation, form-presets, unsaved-changes | input, select, date-picker, file-upload, dialog, drawer |
 | Long or blocking flow (onboarding, setup, import) | Wizard | Multi-step Form, Onboarding Checklist | multi-step-form | stepper, progress-and-slider |
 | Sign in, sign up, reset, 2FA, invite | Auth | Sign In, Sign Up, Forgot Password, Check Email, Reset Password, Two-Factor, Accept Invite | auth, form-presets | input (OTP) |
-| Marketing page | Marketing | Announcement Banner, Navbar, Navbar Mobile, Hero (Centered, Split, with Screenshot), Logo Cloud, Features (grid, Split, Bento), Stats, Testimonials (Single, Grid, Split, Carousel), Pricing, Comparison Table, FAQ, CTA (band, Split, Card), Newsletter, Team, Contact (Cards, with Map, Offices, Map Section), Footer (Simple) | marketing-pages, mobile | navigation (mega menu), card, accordion, carousel |
+| Marketing page | Marketing | Announcement Banner, Navbar, Navbar Mobile, Hero (Centered, Split, with Screenshot), Logo Cloud, Features (grid, Split, Bento), Stats, Testimonials (Single, Grid, Split, Carousel), Pricing, Comparison Table, FAQ, CTA (band, Split, Card), Newsletter, Team, Contact (Cards, with Map, Offices, Map Section), Navbar (Centered, Search, Mega Menu), Footer (Simple, Newsletter, Corporate, Centered) | marketing-pages, mobile | navigation (mega menu), card, accordion, carousel |
 | Blog, article, newsroom | Marketing | Blog Grid, Blog Featured, Blog List, Blog Post Header, Article, News List | content-and-docs | content (Post Card, Code Block, Table of Contents) |
 | Careers, jobs | Marketing | Careers List, Careers Benefits, Job Header, Article | marketing-pages | badge, chip |
 | Project plan with dates and dependencies | App | Gantt | (none) | boards-and-calendars |
 | Contact, locations | Marketing | Contact Cards, Contact with Map, Offices, Map Section | marketing-pages | input, image (Map) |
-| Documentation, help center | Docs | (example "docs page") | content-and-docs | content, navigation |
+| Documentation, help center | Docs, Marketing | Navbar Search, Help Hero, Help Categories, Help Popular Articles, Help Article List, Support Options, Docs Page Footer (examples "docs page", "Help center") | content-and-docs | content, navigation |
+| Changelog, status page | Marketing | Changelog, Status Page | content-and-docs | badge, alert |
 | Board (stages) | App | Kanban Board | search-and-filter | boards-and-calendars |
 | Calendar, schedule | App | Scheduler Week, Scheduler Month, Booking | booking | boards-and-calendars, date-picker |
 | Shop: product, cart, checkout | Marketing | Product Card, Product Detail, Order Summary, Address, Payment | commerce, form-presets | select (multi), input (number, group), drawer, carousel, rating |

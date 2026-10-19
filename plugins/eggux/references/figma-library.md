@@ -208,6 +208,10 @@ Domain-specific needs become Field Presets or Blocks.
 | Sections (blocks) | `Block / Gallery Grid`, `/ Gallery Mosaic` | - | Gallery family: three-column masonry with captions; one large image and four small with Show all |
 | Sections (blocks) | `Block / Logo Cloud`, `/ Team`, `/ Contact`, `/ Newsletter`, `/ Comparison Table` | - | Marketing sections, 1440 wide, 1152 container |
 | Navigation (blocks) | `Block / Navbar Mobile` | - | Logo + menu button, 390 wide. Opens the full-screen "mobile nav open" panel |
+| Navigation (blocks) | `Block / Navbar Centered`, `/ Navbar Search`, `/ Navbar Mega Menu` | - | Navbar family: logo centered with split links; docs and help navbar with search and ⌘K; open mega menu with grouped Navigation Menu Links and a featured item |
+| Navigation (blocks) | `Block / Footer Newsletter`, `/ Footer Corporate`, `/ Footer Centered` | - | Footer family: newsletter + three columns; corporate footer with company details, certifications, five columns, status, language; minimal centered |
+| Content | `Block / Help Hero`, `/ Help Categories`, `/ Help Popular Articles`, `/ Help Article List` | - | Help center family: search hero with popular searches; topic cards with counts; popular articles; category page with topic nav, breadcrumb, dated articles |
+| Content | `Block / Support Options`, `/ Docs Page Footer`, `/ Changelog`, `/ Status Page` | - | Help center family: channels with hours and reply times; helpful vote, edit link, previous / next; dated releases with New / Improved / Fixed; status with 90-day uptime bars and incidents |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
 | Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
 | Results | `Block / Result` | Type: not-found, server-error, no-access, maintenance, success | Show code; Actions (native slot) |
