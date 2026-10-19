@@ -45,6 +45,9 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
 | Menu | `Menu Label` | - | Label |
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
+| Mobile | `Mobile Header` | Type: app, detail | Title; Leading, Trailing (native slots) |
+| Mobile | `Bottom Nav Item` | State: default, active | Label, Icon (swap) |
+| Mobile | `Bottom Nav` | - | Items (native slot), 3-5 items, safe-area padding |
 | Tabs | `Tab` | Style: pill, line. State: default, active, focus, disabled | Label |
 | Tabs | `Tabs`, `Tabs Line` | - | Tabs (native slot of Tab instances) |
 | Toggle Group | `Toggle Group Item` | State: off, hover, on, focus, disabled | Label, Show label, Icon + Icon type |
@@ -87,6 +90,7 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Image | `Image Placeholder` | Ratio: 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance |
 | Sections (blocks) | `Section Header` | Align: center, left | Overline, Title (heading/h2), Description |
 | Page Shells | `Page Shell / App`, `/ Marketing`, `/ Auth` | - | Page (native slot); Sidebar and Top Bar exposed in App |
+| Page Shells | `Page Shell / Mobile` | - | 390 x 844. Mobile Header + Page (native slot) + Bottom Nav (exposed, `Bottom nav` boolean) |
 | Brand | `Logo Mark` | - | The one place to put the client symbol; used by Logo and Sidebar Workspace |
 | Brand | `Logo` | Type: mark, wordmark, full | Name |
 | Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed |
@@ -96,6 +100,7 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Sections | `Block / Features`, `/ Stats`, `/ CTA`, `/ Pricing`, `/ Testimonials`, `/ FAQ` | - | Section Header + Cards, grid, Toggle Group, Accordion |
 | App | `Block / Settings Section`, `/ Empty Page`, `/ Filtered List` | - | Settings row, first-use page, filter panel + list |
 | App | `Block / Record Header`, `/ Record Detail`, `/ Notifications`, `/ Booking` | - | Record page header with tabs; details + activity; notifications popover; calendar + time slots |
+| Navigation (blocks) | `Block / Navbar Mobile` | - | Logo + menu button, 390 wide. Opens the full-screen "mobile nav open" panel |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
@@ -161,6 +166,9 @@ Start every screen from a shell on the Page Shells page and fill its `Page` slot
 - Marketing: Navbar + Page (stack Blocks from Hero and Sections) + Footer. Width 1440, content
   container `layout/container/6xl` (1152).
 - Auth: logo + one centered card (Sign In, Sign Up) on `background/muted`.
+- Mobile (< 768): Mobile Header + Page + Bottom Nav. The App Sidebar opens from the menu button
+  as a left Sheet ("mobile menu open"); marketing pages use `Block / Navbar Mobile`. See
+  `build-ui/patterns/mobile.md`.
 
 ## Pages
 Two sections, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
@@ -184,9 +192,10 @@ list row loading (Skeleton), icon button with tooltip, open select, dialog over 
 chips, cards (list, profile, form, empty state), stat cards row, invoices table (grid), inline edit
 and column resize, permissions tree, navigation tree, view switch, app shell (Sidebar + header +
 stats + table), sheet over list, bottom drawer with filters,
-textarea in field, combobox open, patient screen (App shell + record blocks), activity timeline, date picker open, date range, table footer with pagination.
+textarea in field, combobox open, patient screen (App shell + record blocks), activity timeline, mobile patients, mobile menu open,
+mobile nav open, date picker open, date range, table footer with pagination.
 
 ## Not built yet
-Mobile navbar, time picker, file upload, slider, progress bar. Icons: the 39 Lucide icons stay; the team may switch to Phosphor (flatten each icon
+Time picker, file upload, slider, progress bar, data charts. Icons: the 40 Lucide icons stay; the team may switch to Phosphor (flatten each icon
 to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.
