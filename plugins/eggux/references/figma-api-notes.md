@@ -38,6 +38,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   The scan reports this as `brokenSlot`.
 - `clone()` of a variant turns its SLOT into a FRAME named after the property. Clone first, then
   create slots; or delete that frame and create a fresh slot.
+- `findOne(n => n.name === 'value')` can hit a TEXT layer with the same name inside a nested
+  component. Filter by type (`n.type === 'INSTANCE'`) when looking for nested instances.
+- The plugin sandbox has no `Intl`: `toLocaleString` ignores locales and grouping. Format
+  numbers by hand.
 - `component.findAll(n => n.type === 'SLOT')` also returns slots inside nested instances (an
   Input Group's Start slot). Take the component's own slot from `component.children` or check
   `slot.parent`.
@@ -93,6 +97,13 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   `spacing/4_5`, `spacing/5_5`, `spacing/18` or `spacing/160`; half steps stop at 3_5; widths
   like 672 come from `layout/container/*`). `N(x) || N(y)` does not fall back: N throws.
 - FLOAT and STRING tokens without a Figma use (motion) get `scopes = []` and a WEB code syntax.
+
+## Grid frames
+- Assigning `gridRowSizes` / `gridColumnSizes` with a new array can be ignored. Set the
+  columns at creation, then make rows hug by mutating the live objects:
+  `for (const s of g.gridRowSizes) s.type = 'HUG'`, and set `layoutSizingVertical = 'HUG'`.
+- Place cells with `cell.setGridChildPosition(row, col)`; span with `cell.gridColumnSpan`.
+- `rescale()` breaks GRID frames (rows overlap); place grids 1:1 and crop instead.
 
 ## Unsupported here
 - `figma.loadAllPagesAsync()` and `figma.setFileThumbnailNodeAsync()` are not available in

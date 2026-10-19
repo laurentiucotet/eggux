@@ -18,5 +18,11 @@ The page of one object: customer, order, invoice, project. Built from the App sh
 - Tablet: side column moves under the main column. Mobile: tabs scroll horizontally, primary
   action in a sticky bottom bar.
 
+## Editing a long record
+More than ~8 fields or several groups: `Block / Record Form` (Enterprise page). Section nav on
+the left with scroll spy, one card per section, two-column fields for short values, hints for
+rules ("Validated with VIES"), danger zone last, `Save Bar` while there are changes. Show who
+changed the record last.
+
 ## Figma
-Example "record page" on the App blocks page.
+Example "record page" on the App blocks page; `Block / Record Form` on the Enterprise page.

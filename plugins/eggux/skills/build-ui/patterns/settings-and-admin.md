@@ -13,5 +13,8 @@ full 1136 (integrations). Navigation between settings sections: Sidebar group or
 | Integrations | Search; cards with logo, benefit, status; Connect (OAuth) or Settings + on/off |
 | Onboarding Checklist | 3-6 steps to first value, progress, one highlighted next step, dismissible; steps complete automatically |
 
+| Roles & Permissions | Roles list with member counts; permission matrix grouped by resource (rows) × roles (columns); Owner column locked; edited role highlighted; Save Bar; changes logged |
+| Org Switcher | In the Sidebar Workspace: current org with a check, role and plan, search over 5 orgs, create and manage at the bottom; switching keeps the user on the same kind of page |
+
 Destructive settings (delete workspace, transfer ownership) live in a separate "Danger zone" card
 at the bottom, with typed confirmation (`delete-confirmation.md`).

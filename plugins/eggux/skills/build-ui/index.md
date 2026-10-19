@@ -9,6 +9,12 @@ component guides it names. Names are Figma components; inventory in
 | Screen | Shell | Blocks | Patterns | Component guides |
 |---|---|---|---|---|
 | List / table of objects | App | Filtered List, Empty Page | search-and-filter, empty-state, loading-states | table, pagination, badge, list-and-tree |
+| Large list people work in (invoices, orders, tickets) | App, Corporate + Compact | Template / data grid (enterprise), Filter Builder (example "enterprise invoices") | enterprise-apps, search-and-filter | table |
+| Request that needs sign-off | App | Approval Request | approvals, enterprise-apps | description-list, file-upload |
+| Who changed what | App (admin) | Audit Log | audit-log | table |
+| Roles and access | App (admin) | Roles & Permissions | settings-and-admin, unsaved-changes | table, select |
+| Periodic numbers for decisions | App | Report | reports | charts, card, table |
+| Edit a long record | App | Record Form | record-page, unsaved-changes, form-validation | input, select |
 | One object (detail) | App | Record Header, Record Detail | record-page | description-list, tabs, navigation |
 | Dashboard | App | Analytics | loading-states, empty-state | charts, card, indicators |
 | Settings, admin | App | Profile, Team Members, Billing, Notification Preferences, API Keys, Integrations, Settings Section | settings-and-admin, unsaved-changes, delete-confirmation | input, select, card |
@@ -42,6 +48,8 @@ component guides it names. Names are Figma components; inventory in
 | Write formatted text | unsaved-changes | rich-text-editor |
 | Rate or review | (none) | rating |
 | Pick a color | (none) | color-picker |
+| Keep or discard edits on a long page | unsaved-changes | (Save Bar) |
+| Switch organization or tenant | settings-and-admin | sidebar |
 | Browse images or related items | (none) | carousel |
 | Ask AI, let AI act | ai-chat | ai-chat |
 | Introduce a feature or a workflow | (none) | tour, popover |

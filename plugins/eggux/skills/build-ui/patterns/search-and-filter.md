@@ -19,6 +19,16 @@ looks the way it does.
 - Filters apply immediately in a toolbar; in a filter panel with many fields, apply on a button.
 - Show the result count ("24 orders") and keep it updated.
 
+## Advanced filters
+For large lists where people need precise subsets (finance, operations, CRM):
+- Filter Builder in a popover from the Filters button: conditions (field, operator, value),
+  joined by and / or, at most one nested group.
+- Operators follow the field type: text (contains, is, is empty), number and money (=, >, <,
+  between), date (before, after, in the last N days), sets (is any of, is none of).
+- Live result count; Apply in the footer; "Save as view" turns the result into a saved view.
+- Active conditions show as chips under the toolbar; editing a chip opens the builder.
+- Figma: `Filter Condition`, `Filter Group` (Filter Builder page), `Block / Filter Builder`.
+
 ## State
 - Search, filters, sort and page live in the URL, so back, refresh and shared links keep them.
 - Returning to the list from a detail page restores the exact state and scroll position.

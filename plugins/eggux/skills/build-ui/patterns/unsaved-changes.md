@@ -25,4 +25,5 @@ Do not mix both in the same form.
 - Failed saves keep the local value and retry; never silently drop input.
 
 ## shadcn / Figma
-`AlertDialog` for the discard prompt, `Button` in a sticky footer. See `components/dialog.md`.
+`AlertDialog` for the discard prompt. Long forms and settings: `Save Bar` (default, saving,
+error) sticky at the bottom while there are changes, with a count ("3 unsaved changes"). See `components/dialog.md`.

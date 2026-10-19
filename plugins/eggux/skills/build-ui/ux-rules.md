@@ -41,6 +41,12 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Data-dense desktop screens may use Density Compact (`references/tokens.md` § Density), never mobile.
 - Motion uses the `motion/*` tokens; exits faster than entries; respect reduced motion.
 
+## Enterprise
+- Lists people work in all day use the data grid: saved views, filters with counts, bulk
+  actions, export of the current view. See `patterns/enterprise-apps.md`.
+- Approvals, permission changes, exports and deletions are logged and visible in an audit log.
+- Records and reports show who changed them last and when the data was updated.
+
 ## AI features
 - The assistant shows what it can do, what data it uses, and when it is working; Stop is always there.
 - Facts get sources; actions that change data, contact people or spend money wait for approval.
