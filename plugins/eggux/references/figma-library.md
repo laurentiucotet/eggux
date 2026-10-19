@@ -73,6 +73,10 @@ Domain-specific needs become Field Presets or Blocks.
 | Chart | `Chart Tooltip Row` | Series: 1-8 | Label, Value |
 | Chart | `Chart Tooltip` | - | Title; Rows (native slot) |
 | Chart | `Chart Card` | - | Title, Description, Insight, Note, Show legend, Show footer; Actions, Chart (native slots); Legend exposed |
+| Code Block | `Code Block` | - | Language, Code, Show header; Copy button |
+| Kanban | `Kanban Card` | State: default, hover, dragging | Title, Due date, Show labels, Show meta; assignee exposed |
+| Kanban | `Kanban Column` | - | Title, Cards (native slot); count exposed |
+| Scheduler | `Calendar Event` | Size: default, compact. Category: 1-4 | Title, Time |
 | Pagination | `Pagination Item` | Type: page, previous, next, ellipsis. State: default, hover, active, focus, disabled | Label (page) |
 | Pagination | `Pagination` | - | Items (native slot) |
 | Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Connector |
@@ -106,6 +110,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Card | `Card` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer |
 | Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Footnote, Show footer. Change badge and trend line edited per instance |
 | Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
+| Card | `Post Card` | Layout: vertical, horizontal | Title, Excerpt, Date, Author, Show author, Show excerpt; category Badge exposed |
 | Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
 | Table | `Table Header Label` | Sort: off, sortable, ascending, descending. Align: left, right | Label |
 | Table | `Table Cell Text` | Style: default, strong, muted. Align: left, right | Text |
@@ -124,6 +129,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Navigation | `Nav Link` | State: default, hover, active | Label, Chevron (marketing navbar) |
 | Navigation | `Navigation Menu Link` | State: default, hover | Title, Description, Show icon, Icon (swap) |
 | Navigation | `Navigation Menu Panel` | - | Links, Featured (native slots), Show featured |
+| Navigation | `TOC Item` | Level: 1, 2. State: default, hover, active | Label |
+| Navigation | `Table of Contents` | - | Items (native slot) |
 | Accordion | `Accordion Item` | Density: default, compact. State: collapsed, expanded | Title, Leading icon + type, Show meta; Meta, Content (native slots) |
 | Accordion | `Accordion` | - | Items (native slot) |
 | Image | `Image Placeholder` | Ratio: 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance |
@@ -132,6 +139,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Page Shells | `Page Shell / Mobile` | - | 390 x 844. Mobile Header + Page (native slot) + Bottom Nav (exposed, `Bottom nav` boolean) |
 | Page Shells | `Page Shell / Wizard` | - | Logo, Step text, Save and exit, Progress, Page (native slot, 672), Back / Continue |
 | Page Shells | `Page Shell / Split View` | - | Sidebar + Top Bar; List (384) and Detail (native slots); resize handle |
+| Page Shells | `Page Shell / Docs` | - | Header with search; Nav and Content (native slots); Table of Contents exposed |
 | Brand | `Logo Mark` | - | The one place to put the client symbol; used by Logo and Sidebar Workspace |
 | Brand | `Logo` | Type: mark, wordmark, full | Name |
 | Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed |
@@ -144,6 +152,9 @@ Domain-specific needs become Field Presets or Blocks.
 | App | `Block / Analytics` | - | 4 Stat Cards + 2 Chart Cards (grouped bars, area) |
 | App | `Block / Team Members`, `/ Billing`, `/ Onboarding Checklist`, `/ Profile`, `/ API Keys`, `/ Notification Preferences` | - | Settings and admin cards, 768 wide |
 | App | `Block / Integrations` | - | Search + grid of integration cards, 1136 wide |
+| App | `Block / Kanban Board`, `/ Scheduler Week` | - | Board with columns and a dragged card; week view with toolbar, events, now line |
+| Content | `Block / Blog List`, `/ Article` | - | Featured + grid of Post Cards + pagination; reading column with prose and TOC |
+| Sections (blocks) | `Block / Logo Cloud`, `/ Team`, `/ Contact`, `/ Newsletter`, `/ Comparison Table` | - | Marketing sections, 1440 wide, 1152 container |
 | Navigation (blocks) | `Block / Navbar Mobile` | - | Logo + menu button, 390 wide. Opens the full-screen "mobile nav open" panel |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
 | Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
@@ -217,6 +228,7 @@ which screen: `skills/build-ui/index.md`):
   container `layout/container/6xl` (1152).
 - Auth: logo + one centered card (Sign In, Sign Up) on `background/muted`.
 - Split View: App shell with List (384, resizable) and Detail slots for mail, chat, tickets, files.
+- Docs: header with search, left navigation, reading column, table of contents.
 - Wizard: focused flow without sidebar: step counter, Save and exit, progress, sticky Back / Continue.
 - Mobile (< 768): Mobile Header + Page + Bottom Nav. The App Sidebar opens from the menu button
   as a left Sheet ("mobile menu open"); marketing pages use `Block / Navbar Mobile`. See
@@ -232,8 +244,8 @@ Keep new pages in A-Z order inside their section.
 1. Primitives and components (Button, Input, Field, Card...): no business meaning.
 2. Field Presets: a component with a purpose (email, phone, card number) built from layer 1.
 3. Blocks: whole compositions (navigation, hero, sections, forms, app sections) built from
-   layers 1 and 2, one page per category under the BLOCKS divider (App, Commerce, Forms,
-   Hero, Navigation, Results, Sections).
+   layers 1 and 2, one page per category under the BLOCKS divider (App, Commerce, Content,
+   Forms, Hero, Navigation, Results, Sections).
 4. Page Shells: full pages with a Page slot where blocks go.
 A change in layer 1 flows up. Add a preset or block only when the same composition appears in
 two or more projects; otherwise build it in the client file.
@@ -247,7 +259,7 @@ stats + table), sheet over list, bottom drawer with filters,
 textarea in field, combobox open, record page (App shell + record blocks), activity timeline, mobile list, mobile menu open,
 mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
 filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions, inbox (split
-view), cart sheet, checkout page, date picker open, date range, table footer with pagination.
+view), cart sheet, checkout page, docs page, date picker open, date range, table footer with pagination.
 
 ## Not built yet
 Rich text editor, color picker (full roadmap in the README). Icons: the 43 Lucide icons stay; the team may switch to Phosphor (flatten each icon

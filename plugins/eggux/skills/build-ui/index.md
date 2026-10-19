@@ -16,7 +16,11 @@ component guides it names. Names are Figma components; inventory in
 | Create / edit form | App, or Sheet / Dialog over a list | Forms blocks, Field Presets | form-validation, form-presets, unsaved-changes | input, select, date-picker, file-upload, dialog, drawer |
 | Long or blocking flow (onboarding, setup, import) | Wizard | Multi-step Form, Onboarding Checklist | multi-step-form | stepper, progress-and-slider |
 | Sign in, sign up, reset, 2FA, invite | Auth | Sign In, Sign Up, Forgot Password, Check Email, Reset Password, Two-Factor, Accept Invite | auth, form-presets | input (OTP) |
-| Marketing page | Marketing | Navbar, Navbar Mobile, Hero, Sections (Features, Stats, Pricing, Testimonials, FAQ, CTA), Footer | mobile | navigation (mega menu), card, accordion |
+| Marketing page | Marketing | Navbar, Navbar Mobile, Hero, Logo Cloud, Features, Stats, Testimonials, Pricing, Comparison Table, FAQ, CTA, Newsletter, Team, Contact, Footer | marketing-pages, mobile | navigation (mega menu), card, accordion |
+| Blog, article | Marketing | Blog List, Article | content-and-docs | content (Post Card, Code Block, Table of Contents) |
+| Documentation, help center | Docs | (example "docs page") | content-and-docs | content, navigation |
+| Board (stages) | App | Kanban Board | search-and-filter | boards-and-calendars |
+| Calendar, schedule | App | Scheduler Week, Booking | booking | boards-and-calendars, date-picker |
 | Shop: product, cart, checkout | Marketing | Product Card, Product Detail, Order Summary, Address, Payment | commerce, form-presets | select (multi), input (number, group), drawer |
 | Pick a date and time | App or Marketing | Booking | booking | date-picker |
 | Error, empty, success page | the current shell | Result | result-pages, empty-state | |
@@ -42,8 +46,10 @@ component guides it names. Names are Figma components; inventory in
 | avatar | Avatar, Avatar Group |
 | badge | Badge, Badge Count, Chip, Status Dot (see indicators) |
 | button | Button, Button Icon, Button Group, Split Button |
-| card | Card, Stat Card, Option Card |
+| boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week view |
+| card | Card, Stat Card, Option Card, Post Card |
 | charts | Bar, Line, Sparkline, Chart Card, legend, tooltip |
+| content | Post Card, Code Block, TOC Item, Table of Contents |
 | date-picker | Calendar, Date Picker, Time Picker, Date Range Picker |
 | description-list | Description List, Timeline |
 | dialog | Dialog, Alert Dialog |

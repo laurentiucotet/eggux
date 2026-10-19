@@ -84,8 +84,9 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3. Done: Navigation Menu, Command Palette, search suggestions, Split View shell, SaaS admin blocks
    (team, billing, profile, onboarding, API keys, notifications, integrations), commerce blocks;
    default content made domain-neutral.
-3b. Next: content blocks (blog list, article, docs shell with table of contents), logo cloud,
-   team, contact, newsletter, comparison table, Kanban, Scheduler.
+3b. Done: content (Post Card, Code Block, Table of Contents, Blog List, Article, Docs shell),
+   marketing sections (Logo Cloud, Team, Contact, Newsletter, Comparison Table), Kanban, Scheduler.
+3c. Next: rich text editor, comments thread, chat, carousel, rating, color picker, month view.
 4. Later: Table of Contents, Tour, Docs shell, Rating, Color Picker, more charts.
 5. Blocks per vertical: SaaS admin (onboarding, billing, team, profile, integrations, API keys),
    commerce (product, cart, checkout, orders), content (blog, article, docs), auth (reset, 2FA,
