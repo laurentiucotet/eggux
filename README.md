@@ -23,6 +23,15 @@ Update later with `claude plugin marketplace update eggux`.
 
 The skills that touch Figma need the Figma MCP server connected.
 
+### Client decisions
+Each client project keeps `eggux/decisions.md`. Write a request in its Inbox, one line with date,
+time and who asked (`- 2026-10-21 09:15 · Andrei: cards with 12 px padding instead of 24`), then
+run `/eggux:decision-log`: Claude makes it exact (tokens, scope), checks conflicts and
+accessibility, applies it once at the source in Figma and code, and verifies the work
+(statuses proposed → approved → applied → verified). A SessionStart hook reminds Claude of the
+file and of new Inbox lines at the start of every session; build-ui reads it first and review
+checks every applied decision.
+
 ## Skills
 
 | Skill | What it does |
@@ -31,7 +40,7 @@ The skills that touch Figma need the Figma MCP server connected.
 | `/eggux:discovery` | Interview notes → objects (OOUX), actors, workflows |
 | `/eggux:brand-intake` | Brand assets → `brand.md` + Semantic variables in the client's Figma file |
 | `/eggux:build-ui` | Designs and builds screens from the library, following client files |
-| `/eggux:decision-log` | Records decisions and terminology, propagates them to Figma and code |
+| `/eggux:decision-log` | Turns Inbox requests into decisions, applies them in Figma and code, verifies the work |
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
 | `/eggux:audit-tokens` | Checks Figma variables (aliases, code syntax, scopes, contrast) and scans components for raw values |
 | `/eggux:add-component` | Adds a component, preset, block or page shell to the library the EGG way, with QA and docs |
@@ -42,7 +51,8 @@ The plugin holds the method; each client project holds its answers.
 
 ```
 plugins/eggux/
-├── references/          tokens (incl. density, motion, chart palette), Figma inventory, Figma API notes, client file convention
+├── hooks/               SessionStart reminder of the client's decisions.md and its Inbox
+├── references/          tokens (incl. density, motion, chart palette), Figma inventory, Figma API notes, code mapping, client file convention
 └── skills/
     ├── init/templates/  brand, objects, actors, workflows, decisions
     ├── discovery/       OOUX method

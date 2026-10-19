@@ -150,8 +150,9 @@ Rules:
   `color/blue/*` and `color/red/*` arms with `color/neutral/200` (Dark `neutral/700`) in the middle.
 - Text never takes the series color; grid `border/default`, baseline `border/input`, axis text
   `foreground/muted`, area wash = series at `opacity/10`.
-- A client brand that changes the palette re-runs the validator (dataviz skill
-  `validate_palette.js`) in both modes before shipping.
+- A client brand that changes the palette re-runs `/eggux:audit-tokens` (every `chart/N` at 3:1
+  on page and card, in every mode) and checks that neighbours stay distinguishable for color
+  blindness before shipping.
 
 ## Motion
 

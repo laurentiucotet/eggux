@@ -3,6 +3,16 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.24.0
+- Decisions workflow: `decisions.md` with Inbox, numbered decisions (type, scope,
+  implementation, verify, status); `decision-log` records, applies design decisions at the
+  source (Components or Semantic tokens, code component) and verifies the work.
+- SessionStart hook (`plugins/eggux/hooks/`) reminds Claude of the decisions file and new
+  Inbox lines; build-ui reads decisions first and verifies them before finishing; review
+  checks every applied decision; brand-intake records brand changes as decisions.
+- Skill audit fixes: external validator reference replaced by `/eggux:audit-tokens`;
+  add-component updates code-mapping and the changelog.
+
 ## 0.23.0
 - Charts: Donut Chart (donut, pie), Bar Chart Horizontal, Heatmap.
 - Enterprise: Import Mapping block and import rules.
