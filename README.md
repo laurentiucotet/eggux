@@ -115,7 +115,10 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3h. Done: Donut / Pie, Bar Chart Horizontal, Heatmap; Import Mapping; Figma → code mapping
    ([`references/code-mapping.md`](plugins/eggux/references/code-mapping.md)) and
    [`CHANGELOG.md`](CHANGELOG.md).
-4. Next: gauge and treemap charts, Gantt timeline, Code Connect once a component codebase exists.
+3i. Done: block pages in Figma sections by family; 19 marketing and content blocks (contact,
+   map, testimonials, CTA, blog, news, banner, features, hero, footer) and a Map component.
+4. Next: more blocks per family (pricing, FAQ, stats, team, careers, gallery, footer variants),
+   gauge and treemap charts, Gantt timeline, Code Connect once a component codebase exists.
 5. System: documentation site.
 
 ## What the pack covers

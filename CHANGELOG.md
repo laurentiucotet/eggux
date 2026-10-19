@@ -3,6 +3,14 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.25.0
+- Block pages organized in Figma sections: `Blocks` with one sub-section per family, `Examples`
+  next to it; add-component places new blocks in their family.
+- 19 new blocks: Contact Cards, Contact with Map, Offices, Map Section; Testimonial Single,
+  Grid, Split, Carousel; CTA Split, CTA Card; Features Split, Bento Grid; Hero with Screenshot;
+  Blog Grid, Blog Featured, Blog Post Header, News List; Announcement Banner, Footer Simple.
+- `Map` component; marketing and content patterns list which block fits which need.
+
 ## 0.24.0
 - Decisions workflow: `decisions.md` with Inbox, numbered decisions (type, scope,
   implementation, verify, status); `decision-log` records, applies design decisions at the
