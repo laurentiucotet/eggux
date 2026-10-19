@@ -35,7 +35,7 @@ steps again before every new Community version.
 
 **Name:** EGG UI: design system for product and enterprise teams
 
-**Tagline:** 151 components, 61 blocks and 7 page shells. Default and Corporate themes in
+**Tagline:** 154 components, 62 blocks and 7 page shells. Default and Corporate themes in
 Light and Dark, data grid, approvals, audit and AI chat. Variables, native slots, shadcn/ui names.
 
 **Description:**
@@ -48,10 +48,10 @@ What is inside
 - Enterprise pack: data grid with saved views, groups, totals and bulk actions; filter
   builder; approval chain; audit log with field changes; roles and permissions matrix; report;
   long record form with save bar; organization switcher.
-- 151 components with 662 variants: forms, selection, overlays, navigation, feedback, tables
-  on auto layout grid, charts, dates and scheduling, files, rich text editor, comments and
+- 154 components with 666 variants: forms, selection, overlays, navigation, feedback, tables
+  on auto layout grid, charts (bar, line, donut, heatmap), dates and scheduling, files, rich text editor, comments and
   chat, commerce, AI chat, tour and video.
-- 61 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero, Navigation,
+- 62 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero, Navigation,
   Results, Sections) and 7 page shells (App, Marketing, Auth, Mobile, Wizard, Split View, Docs).
 - 537 variables in four collections: Primitives, Semantic (Light, Dark), Components and
   Density (Comfortable, Compact). 14 text styles, shadows and motion tokens.

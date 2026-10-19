@@ -80,6 +80,9 @@ Domain-specific needs become Field Presets or Blocks.
 | Calendar | `Date Range Picker` | - | Presets (native slot), Summary, Show presets; two Calendars; Cancel / Apply |
 | Chart | `Bar Chart` | Type: single, grouped, stacked | Bars ≤ 24, 4 px data-end radius, 2 px gaps; y axis, grid, x labels |
 | Chart | `Line Chart` | Type: line, area | 2 px lines, end dots with surface ring, area at opacity/10 |
+| Chart | `Donut Chart` | Type: donut, pie | Total, Total label; 4 segments (arcData) and legend with values |
+| Chart | `Bar Chart Horizontal` | - | Ranked rows: label, bar (share of track), value |
+| Chart | `Heatmap` | - | 7 × 12 grid, 5 opacity steps of chart/1, legend Fewer → More |
 | Chart | `Sparkline` | Trend: up, down | 120 x 32, no axes |
 | Chart | `Chart Legend Item` | Key: swatch, line. Series: 1-8 | Label |
 | Chart | `Chart Legend` | - | Items (native slot) |
@@ -196,6 +199,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Commerce | `Block / Order Summary` | - | Lines, discount code, totals, pay button, trust line |
 | Enterprise | `Block / Filter Builder`, `/ Approval Request`, `/ Audit Log` | - | Advanced filters popover; request with details and approval chain; read-only event log with field changes |
 | Enterprise | `Block / Roles & Permissions`, `/ Report`, `/ Record Form` | - | Role matrix with Save Bar; report with KPIs, chart, breakdown; long edit form with section nav |
+| Enterprise | `Block / Import Mapping` | - | Import stepper, file column → field mapping with samples and status, problems alert, save as template |
 | AI | `Block / AI Chat Empty`, `/ AI Conversation` | - | Welcome with input and starter prompts; conversation with reasoning, tool calls, citations, sources, approval, input |
 | AI | `Block / AI Assistant Panel`, `/ Inline AI` | - | 400-wide copilot panel with context; inline popover with actions and a result to accept |
 
@@ -306,6 +310,6 @@ field, AI chat app, product tour, enterprise invoices, theme comparison, data gr
 (enterprise) template.
 
 ## Not built yet
-More charts (pie, donut, heatmap). Icons: the 68 Lucide icons stay; the team may switch to
-Phosphor (flatten each icon to one `Vector` layer so swaps keep their color).
+Gauge and treemap charts, Gantt timeline. Icons: the 78 Lucide icons stay; the team may switch
+to Phosphor (flatten each icon to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.

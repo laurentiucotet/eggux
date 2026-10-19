@@ -102,8 +102,11 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
    Report, Record Form, Save Bar, Org Switcher; dense examples and a theme comparison.
 3f. Done: Community preparation: Cover, Intro, Foundations pages, neutral content audit,
    listing copy in [`references/community-release.md`](plugins/eggux/references/community-release.md).
-4. Later: more charts (pie, donut, heatmap).
-5. System: CHANGELOG, Code Connect, documentation site.
+3h. Done: Donut / Pie, Bar Chart Horizontal, Heatmap; Import Mapping; Figma → code mapping
+   ([`references/code-mapping.md`](plugins/eggux/references/code-mapping.md)) and
+   [`CHANGELOG.md`](CHANGELOG.md).
+4. Next: gauge and treemap charts, Gantt timeline, Code Connect once a component codebase exists.
+5. System: documentation site.
 
 ## What the pack covers
 

@@ -15,6 +15,7 @@ component guides it names. Names are Figma components; inventory in
 | Roles and access | App (admin) | Roles & Permissions | settings-and-admin, unsaved-changes | table, select |
 | Periodic numbers for decisions | App | Report | reports | charts, card, table |
 | Edit a long record | App | Record Form | record-page, unsaved-changes, form-validation | input, select |
+| Import data (CSV, XLSX) | Wizard or App | Import Mapping | enterprise-apps (§ Import), multi-step-form | file-upload, stepper, table |
 | One object (detail) | App | Record Header, Record Detail | record-page | description-list, tabs, navigation |
 | Dashboard | App | Analytics | loading-states, empty-state | charts, card, indicators |
 | Settings, admin | App | Profile, Team Members, Billing, Notification Preferences, API Keys, Integrations, Settings Section | settings-and-admin, unsaved-changes, delete-confirmation | input, select, card |
@@ -68,7 +69,7 @@ component guides it names. Names are Figma components; inventory in
 | boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view |
 | card | Card, Stat Card, Option Card, Post Card |
 | carousel | Carousel |
-| charts | Bar, Line, Sparkline, Chart Card, legend, tooltip |
+| charts | Bar, Bar Horizontal, Line, Donut / Pie, Heatmap, Sparkline, Chart Card, legend, tooltip |
 | color-picker | Color Picker, swatches, color field |
 | comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer |
 | content | Post Card, Code Block, TOC Item, Table of Contents |
