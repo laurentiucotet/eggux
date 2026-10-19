@@ -9,7 +9,7 @@ dialog in a third, so users miss important ones and get interrupted by trivial o
 |---|---|
 | Error in a field | Inline under the field (`form-validation.md`) |
 | Error that blocks the action (server, permission) | Inline near the action or at the top of the form; keep input |
-| Confirmation of an action the user just took | Toast |
+| Confirmation of an action the user just took | The visible change, or a toast when the result is out of view (`action-feedback.md`) |
 | Reversible action | Toast with "Undo" |
 | Persistent state of a page or section (read-only, trial ending, sync failed) | Alert above that content |
 | Decision required before continuing | AlertDialog |

@@ -14,11 +14,23 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Leaving a form with unsaved changes asks first. See `patterns/unsaved-changes.md`.
 
 ## Feedback
-- Every user action gets visible feedback within 100 ms (state change, spinner or toast).
+- Every user action gets visible feedback within 100 ms. When the result is visible where the
+  user is, the change is the feedback; a toast only when the result is out of view or can be
+  undone. See `patterns/action-feedback.md`.
 - Operations over 1 s show progress or a loading state.
 - Success after a meaningful action is confirmed; errors explain what happened and what to do.
 - Each kind of message has one channel (inline, toast, alert, dialog). See `patterns/feedback-messages.md`.
 - Loading indicators match the wait and the scope. See `patterns/loading-states.md`.
+
+- Bulk actions report counts and failures, never only "Done". See `patterns/bulk-actions.md`.
+- Notify people only about what involves them, on the channel that fits. See `patterns/notifications.md`.
+
+## Safety and recovery
+- Never lose the user's input: expired sessions re-authenticate in place, offline work is kept,
+  conflicting edits are shown, not overwritten. See `patterns/errors-and-recovery.md`.
+- Prefer Undo or Trash to confirmation for restorable actions.
+- Hide what a role can never do; disable with a reason what is temporarily unavailable; a
+  forbidden page offers Request access. See `patterns/permissions-and-access.md`.
 
 ## Forms
 - Labels are always visible. Placeholders are examples, never labels.
@@ -29,6 +41,8 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Long forms with an order are split into steps. See `patterns/multi-step-form.md`.
 
 ## Content
+- Labels, messages, dates and numbers follow `patterns/writing.md`: verb + object buttons,
+  sentence case, locale formats, relative dates only for recent events.
 - Use the client's terminology from `decisions.md`. A "Don't use" term is a defect.
 - Every list and table has an empty state. See `patterns/empty-state.md`.
 - Every error page gives a next step; no dead ends. See `patterns/result-pages.md`.

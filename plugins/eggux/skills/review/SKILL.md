@@ -14,6 +14,9 @@ they exist: the review checks the design against the actor's workflow, not in a 
    complete the step? Are there CTAs they are not permitted, or missing CTAs they need?
 2. **Nielsen heuristics:** go through `references/heuristics.md` one by one.
 3. **EGG UX rules:** `${CLAUDE_PLUGIN_ROOT}/skills/build-ui/ux-rules.md` and the patterns used.
+   For every action on the screen, check its feedback against `patterns/action-feedback.md`,
+   and the states for no access, offline and errors (`permissions-and-access.md`,
+   `errors-and-recovery.md`).
 4. **Decisions:** every entry in `eggux/decisions.md` that is approved, applied or verified and
    whose scope covers the screen: terminology ("Don't use" terms), design values (the decided
    token, no overrides), component and behavior choices. Each violation is a finding that cites
