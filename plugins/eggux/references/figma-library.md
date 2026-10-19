@@ -6,7 +6,9 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 
 EGG UI is a generalist design system: complete enough for any product (SaaS, e-commerce, fintech,
 booking, content, internal tools). Component names, descriptions and props stay domain-neutral;
-example content varies across domains. Domain-specific needs become Field Presets or Blocks.
+example content varies across domains. Default texts in components and blocks use a neutral
+product ("Acme": projects, customers, invoices); domain content lives in examples only.
+Domain-specific needs become Field Presets or Blocks.
 
 ## Foundations
 - Variables: `Primitives` (Value), `Semantic` (Light, Dark), `Components` (Light, Dark), `Density`
@@ -57,6 +59,7 @@ example content varies across domains. Domain-specific needs become Field Preset
 | Popover | `Tag` | State: default, disabled | Label, Remove |
 | Popover | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Chevron |
 | Popover | `Hover Card` | - | Content (native slot), 320 wide |
+| Popover | `Command Dialog` | - | Command Input (exposed), Items (native slot), footer with key hints. 560 wide |
 | Calendar | `Calendar Day` | State: default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end | Day |
 | Calendar | `Calendar` | - | Month. Monday-first month grid, prev/next ghost Button Icons |
 | Calendar | `Date Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Calendar icon; opens Calendar in a popover |
@@ -119,6 +122,8 @@ example content varies across domains. Domain-specific needs become Field Preset
 | Navigation | `Top Bar` | - | Sidebar trigger; Breadcrumb, Actions (native slots) |
 | Navigation | `Page Header` | - | Title (heading/h3), Description, Show description; Actions (native slot) |
 | Navigation | `Nav Link` | State: default, hover, active | Label, Chevron (marketing navbar) |
+| Navigation | `Navigation Menu Link` | State: default, hover | Title, Description, Show icon, Icon (swap) |
+| Navigation | `Navigation Menu Panel` | - | Links, Featured (native slots), Show featured |
 | Accordion | `Accordion Item` | Density: default, compact. State: collapsed, expanded | Title, Leading icon + type, Show meta; Meta, Content (native slots) |
 | Accordion | `Accordion` | - | Items (native slot) |
 | Image | `Image Placeholder` | Ratio: 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance |
@@ -126,6 +131,7 @@ example content varies across domains. Domain-specific needs become Field Preset
 | Page Shells | `Page Shell / App`, `/ Marketing`, `/ Auth` | - | Page (native slot); Sidebar and Top Bar exposed in App |
 | Page Shells | `Page Shell / Mobile` | - | 390 x 844. Mobile Header + Page (native slot) + Bottom Nav (exposed, `Bottom nav` boolean) |
 | Page Shells | `Page Shell / Wizard` | - | Logo, Step text, Save and exit, Progress, Page (native slot, 672), Back / Continue |
+| Page Shells | `Page Shell / Split View` | - | Sidebar + Top Bar; List (384) and Detail (native slots); resize handle |
 | Brand | `Logo Mark` | - | The one place to put the client symbol; used by Logo and Sidebar Workspace |
 | Brand | `Logo` | Type: mark, wordmark, full | Name |
 | Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed |
@@ -136,10 +142,15 @@ example content varies across domains. Domain-specific needs become Field Preset
 | App | `Block / Settings Section`, `/ Empty Page`, `/ Filtered List` | - | Settings row, first-use page, filter panel + list |
 | App | `Block / Record Header`, `/ Record Detail`, `/ Notifications`, `/ Booking` | - | Record page header with tabs; details + activity; notifications popover; calendar + time slots |
 | App | `Block / Analytics` | - | 4 Stat Cards + 2 Chart Cards (grouped bars, area) |
+| App | `Block / Team Members`, `/ Billing`, `/ Onboarding Checklist`, `/ Profile`, `/ API Keys`, `/ Notification Preferences` | - | Settings and admin cards, 768 wide |
+| App | `Block / Integrations` | - | Search + grid of integration cards, 1136 wide |
 | Navigation (blocks) | `Block / Navbar Mobile` | - | Logo + menu button, 390 wide. Opens the full-screen "mobile nav open" panel |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
 | Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
 | Results | `Block / Result` | Type: not-found, server-error, no-access, maintenance, success | Show code; Actions (native slot) |
+| Commerce | `Product Card` | State: default, sale, sold-out | Name, Variant text, Show action, Show wishlist |
+| Commerce | `Block / Product Detail` | - | Gallery, options (Toggle Group), quantity, add to cart, details accordion |
+| Commerce | `Block / Order Summary` | - | Lines, discount code, totals, pay button, trust line |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
@@ -218,8 +229,8 @@ Keep new pages in A-Z order inside their section.
 1. Primitives and components (Button, Input, Field, Card...): no business meaning.
 2. Field Presets: a component with a purpose (email, phone, card number) built from layer 1.
 3. Blocks: whole compositions (navigation, hero, sections, forms, app sections) built from
-   layers 1 and 2, one page per category under the BLOCKS divider (App, Forms, Hero,
-   Navigation, Results, Sections).
+   layers 1 and 2, one page per category under the BLOCKS divider (App, Commerce, Forms,
+   Hero, Navigation, Results, Sections).
 4. Page Shells: full pages with a Page slot where blocks go.
 A change in layer 1 flows up. Add a preset or block only when the same composition appears in
 two or more projects; otherwise build it in the client file.
@@ -232,9 +243,10 @@ and column resize, permissions tree, navigation tree, view switch, app shell (Si
 stats + table), sheet over list, bottom drawer with filters,
 textarea in field, combobox open, patient screen (App shell + record blocks), activity timeline, mobile patients, mobile menu open,
 mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
-filter, 404 in app, onboarding step, date picker open, date range, table footer with pagination.
+filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions, inbox (split
+view), cart sheet, checkout page, date picker open, date range, table footer with pagination.
 
 ## Not built yet
-Rich text editor, color picker (full roadmap in the README). Icons: the 41 Lucide icons stay; the team may switch to Phosphor (flatten each icon
+Rich text editor, color picker (full roadmap in the README). Icons: the 43 Lucide icons stay; the team may switch to Phosphor (flatten each icon
 to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.

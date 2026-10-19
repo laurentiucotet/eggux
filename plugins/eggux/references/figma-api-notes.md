@@ -11,6 +11,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - A new frame clips by default and is 100 x 100. A GRID frame needs a width or FILL from its
   parent, or columns are cut off.
 
+- Changing a text or property inside a nested instance can re-create sibling nodes: when editing
+  many texts in one component, re-query after each change instead of looping over a stale list.
+- An instance whose main component has a bound `width` ignores FILL until the binding is removed;
+  blocks should let their inner Card FILL so they stretch.
 - Resizing a frame inside an instance (not an instance itself) is ignored. For proportional fills
   (Progress indicator) use a non-auto-layout parent and `constraints.horizontal = 'SCALE'`.
 - Every `resize()` on a hug component turns it FIXED again: set `primaryAxisSizingMode = 'AUTO'`
