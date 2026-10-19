@@ -63,7 +63,7 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 has foundations (variables, text and effect styles) and these components: Button,
-Button Icon, Badge, Input, Field, Alert, Card, Slot and 14 Lucide icons. Inventory and
+Button Icon, Badge, Input, Field, Alert, Card (with a native content slot) and 14 Lucide icons. Inventory and
 conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
 
 ## What the pack covers

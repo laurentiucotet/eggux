@@ -34,6 +34,8 @@ If a client file is missing, say which skill creates it and continue with base r
 ## Figma
 Use the Figma MCP skills (`figma-use`, `figma-generate-design`) for every write. Build in the
 client's file, never in the master library unless the user explicitly asks to change the library.
+Components with variable content (Card) have native slots: fill the slot in the instance, never
+detach. See "Slots" in `${CLAUDE_PLUGIN_ROOT}/references/figma-library.md`.
 
 ## Code
 Follow the project's existing structure. Use semantic Tailwind classes that map to tokens

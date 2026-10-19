@@ -19,3 +19,7 @@ Header (title `heading/h4`, optional description `body/small` muted, optional ac
 - Footer actions follow button rules: one primary at most, usually none in a grid of cards.
 - Metric cards: label (`ui/caption`), value (`heading/h2`), change with direction in text or
   icon, not color alone.
+
+## Figma
+`Card` has a native slot `Content` between header and footer. Put the content directly in the
+slot of the instance and delete the placeholder. Do not detach the card to change its content.

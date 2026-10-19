@@ -19,8 +19,7 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Input | `Input` | State: default, focus, error, disabled. Content: placeholder, filled | Value; Leading icon (boolean + swap) |
 | Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Nested Input is exposed |
 | Alert | `Alert` | Variant: default, destructive, success, warning, info | Title, Description, Show description |
-| Card | `Card` | - | Title, Description, Show description, Show action, Show footer, Content (swap). Nested buttons exposed |
-| Card | `Slot` | - | Placeholder for swappable content. Build the content as a local component and swap it in |
+| Card | `Card` | - | Title, Description, Show description, Show action, Show footer. Content (native slot). Nested buttons exposed |
 
 Icons available: plus, chevron-down, chevron-right, search, check, x, info, circle-alert,
 triangle-alert, circle-check, loader-circle, mail, trash-2, ellipsis. Add more on the Icons page
@@ -32,6 +31,20 @@ as Lucide components with the same structure.
 - Disabled is the variant at `opacity/50`.
 - Text inside a variant is bound to a TEXT property, so text styling is shared by all variants.
   Per-variant decoration (like the link hover underline) is drawn with a frame stroke instead.
+
+## Slots
+Content areas use Figma native slots (component property type `SLOT`), never instance-swap
+placeholders. A slot holds a dashed placeholder by default; in an instance, delete it and put
+any layers or instances inside.
+
+- In Figma: select the slot in the instance and add content to it. "Reset slot" brings back the default.
+- Through the Plugin API (build-ui): `inst.findOne(n => n.type === 'SLOT')`, remove its
+  placeholder, `appendChild` the content, then set `layoutSizingHorizontal = 'FILL'` on each child.
+- Creating a slot in a library component: `component.createSlot()` adds the node and a `SLOT`
+  property. Rename the property with `editComponentProperty(key, { name, description })`, give the
+  slot auto layout and token-bound padding, and add a placeholder as default content.
+- Use a slot when the content varies per use (card body, dialog body, table cell content). Use
+  boolean or TEXT properties when the variation is fixed (show footer, title text).
 
 ## Not built yet
 Dialog, Select, Checkbox, Radio, Switch, Tabs, Table, Toast, Tooltip, Dropdown menu, Skeleton.
