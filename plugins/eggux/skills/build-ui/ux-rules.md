@@ -40,6 +40,6 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Text contrast at least 4.5:1. Icons, input borders, focus rings and other boundaries that
   identify a control at least 3:1. Decorative dividers are exempt.
 - Every interactive element is reachable and visible with keyboard focus (`border/ring`).
-- Touch targets at least 44 x 44 px on mobile.
+- Touch targets at least 44 x 44 px on mobile. Mobile layouts follow `patterns/mobile.md`.
 - Icons without text have an accessible label.
 - Color is never the only carrier of meaning (add icon or text to status colors).
