@@ -15,6 +15,11 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   (Progress indicator) use a non-auto-layout parent and `constraints.horizontal = 'SCALE'`.
 - An instance whose main component has a bound `width` ignores FILL until the binding is
   removed. Blocks let their inner Card FILL so they stretch.
+- Adding FILL children to an auto-layout row resizes the earlier ones each time; fill
+  non-auto-layout columns (grids, calendars) only after all columns exist, or their children's
+  constraints distort them.
+- `maxLines` only sticks when `textTruncation = 'ENDING'` is set first; without it, wrapping
+  text stays on one line.
 - Constraint enums are `MIN | CENTER | MAX | STRETCH | SCALE` (not TOP/BOTTOM/LEFT/RIGHT).
 
 ## Slots

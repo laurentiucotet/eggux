@@ -19,7 +19,7 @@ library; otherwise work in the client's file.
 |---|---|---|
 | Component | A reusable UI part with no business meaning (Breadcrumb, Accordion) | its own page |
 | Field Preset | A field with a purpose seen in 2+ projects (IBAN, CNP) | Form Presets |
-| Block | A composed section seen in 2+ projects (hero, pricing, sign in) | its category page under BLOCKS (App, Commerce, Forms, Hero, Navigation, Results, Sections) |
+| Block | A composed section seen in 2+ projects (hero, pricing, sign in) | its category page under BLOCKS (App, Commerce, Content, Forms, Hero, Navigation, Results, Sections) |
 | Page Shell | A full page frame with a replaceable content slot | Page Shells |
 
 Check `figma-library.md` and search the file first: extend an existing component (new variant,
