@@ -17,18 +17,20 @@ they exist: the review checks the design against the actor's workflow, not in a 
    For every action on the screen, check its feedback against `patterns/action-feedback.md`,
    and the states for no access, offline and errors (`permissions-and-access.md`,
    `errors-and-recovery.md`).
-4. **Decisions:** every entry in `eggux/decisions.md` that is approved, applied or verified and
+4. **Feature spec:** when the screen belongs to `eggux/features/<feature>.md`, every acceptance
+   criterion, state and edge case in it; a missing one is a finding.
+5. **Decisions:** every entry in `eggux/decisions.md` that is approved, applied or verified and
    whose scope covers the screen: terminology ("Don't use" terms), design values (the decided
    token, no overrides), component and behavior choices. Each violation is a finding that cites
    the decision ID. Unprocessed Inbox lines are listed as "not yet decided", not as findings.
-5. **Tokens (Figma or code):** raw hex, px or font values where a token exists; palette classes
+6. **Tokens (Figma or code):** raw hex, px or font values where a token exists; palette classes
    (`bg-blue-600`) instead of semantic ones; text not using a text style. When the theme itself
    is in question, run `/eggux:audit-tokens`.
-6. **Accessibility:** contrast, focus visibility, target size, labels, color-only meaning.
+7. **Accessibility:** contrast, focus visibility, target size, labels, color-only meaning.
    Charts: legend for 2+ series, table view, no dual axis (`components/charts.md`).
-7. **Responsive and density:** the screen at the widths the actor uses (`patterns/mobile.md`);
+8. **Responsive and density:** the screen at the widths the actor uses (`patterns/mobile.md`);
    Density Compact never on touch screens.
-8. **Library use (Figma):** detached instances where a slot or property would do; plain Inputs
+9. **Library use (Figma):** detached instances where a slot or property would do; plain Inputs
    where a Field Preset exists (email, phone, card, address); layouts rebuilt by hand where a
    Block or Page Shell exists (`build-ui/index.md` maps screens to shells and blocks); library
    default copy ("Acme", "Website redesign") left in a client design. `scan-components.js`
