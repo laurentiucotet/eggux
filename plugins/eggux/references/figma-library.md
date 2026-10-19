@@ -4,8 +4,13 @@ Inventory of the master library (`BufvaVkSh9vMWPye117Ucd`). Client files start a
 so the same names exist there. Use instances of these; build something new only when nothing
 fits, and say so. When this list and the file disagree, the file wins: update this list.
 
+EGG UI is a generalist design system: complete enough for any product (SaaS, e-commerce, fintech,
+booking, content, internal tools). Component names, descriptions and props stay domain-neutral;
+example content varies across domains. Domain-specific needs become Field Presets or Blocks.
+
 ## Foundations
-- Variables: `Primitives` (Value), `Semantic` (Light, Dark), `Components` (Light, Dark). See `tokens.md`.
+- Variables: `Primitives` (Value), `Semantic` (Light, Dark), `Components` (Light, Dark), `Density`
+  (Comfortable, Compact). Chart palette `chart/1..8`, motion `motion/*`. See `tokens.md`.
 - Text styles: see `tokens.md`. Effect styles: `shadow/*`, `blur/*`, `backdrop-blur/*`.
 
 ## Components
@@ -17,6 +22,7 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. State: as Button | Icon (swap) |
 | Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info. Shape: rounded, pill | Label; Icon (boolean + swap); Dot; Count + Count value |
 | Badge | `Badge Count` | Variant: default, secondary, destructive, outline | Count (numeric bubble for nav items and icon buttons) |
+| Badge | `Status Dot` | Status: success, warning, error, info, neutral | Label, Show label |
 | Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Leading icon, Remove |
 | Avatar | `Avatar` | Type: initials, image. Size: sm 24, default 32, lg 40, xl 48 | Initials, Status (online dot). Photo = image fill on the `image` layer |
 | Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar |
@@ -27,6 +33,9 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Input | `Textarea` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Min height 64, grows with content; put it in a Field |
 | Input OTP | `OTP Slot` | Position: first, middle, last. State: empty, filled, active, error | Digit |
 | Input OTP | `Input OTP` | Length: 4, 6 | Groups of OTP Slots (3 + 3 with separator) |
+| Kbd | `Kbd` | - | Key |
+| Kbd | `Kbd Group` | - | Keys (native slot) |
+| Spinner | `Spinner` | Size: sm 16, default 20, lg 32. Tone: muted, default | Loader icon; rotate in code |
 | File Upload | `File Dropzone` | State: default, drag-over, error, disabled | Hint; Browse button exposed |
 | File Upload | `File Item` | State: uploading, complete, error | File name; Progress, cancel/remove, Retry |
 | Progress | `Progress` | Value: 0, 25, 50, 75, 100 | Resize the indicator for other values |
@@ -43,6 +52,14 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Calendar | `Calendar` | - | Month. Monday-first month grid, prev/next ghost Button Icons |
 | Calendar | `Date Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Calendar icon; opens Calendar in a popover |
 | Calendar | `Time Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Clock icon; opens a Menu of times |
+| Chart | `Bar Chart` | Type: single, grouped, stacked | Bars ≤ 24, 4 px data-end radius, 2 px gaps; y axis, grid, x labels |
+| Chart | `Line Chart` | Type: line, area | 2 px lines, end dots with surface ring, area at opacity/10 |
+| Chart | `Sparkline` | Trend: up, down | 120 x 32, no axes |
+| Chart | `Chart Legend Item` | Key: swatch, line. Series: 1-8 | Label |
+| Chart | `Chart Legend` | - | Items (native slot) |
+| Chart | `Chart Tooltip Row` | Series: 1-8 | Label, Value |
+| Chart | `Chart Tooltip` | - | Title; Rows (native slot) |
+| Chart | `Chart Card` | - | Title, Description, Insight, Note, Show legend, Show footer; Actions, Chart (native slots); Legend exposed |
 | Pagination | `Pagination Item` | Type: page, previous, next, ellipsis. State: default, hover, active, focus, disabled | Label (page) |
 | Pagination | `Pagination` | - | Items (native slot) |
 | Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Connector |
@@ -107,6 +124,7 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Sections | `Block / Features`, `/ Stats`, `/ CTA`, `/ Pricing`, `/ Testimonials`, `/ FAQ` | - | Section Header + Cards, grid, Toggle Group, Accordion |
 | App | `Block / Settings Section`, `/ Empty Page`, `/ Filtered List` | - | Settings row, first-use page, filter panel + list |
 | App | `Block / Record Header`, `/ Record Detail`, `/ Notifications`, `/ Booking` | - | Record page header with tabs; details + activity; notifications popover; calendar + time slots |
+| App | `Block / Analytics` | - | 4 Stat Cards + 2 Chart Cards (grouped bars, area) |
 | Navigation (blocks) | `Block / Navbar Mobile` | - | Logo + menu button, 390 wide. Opens the full-screen "mobile nav open" panel |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
 
@@ -200,9 +218,9 @@ chips, cards (list, profile, form, empty state), stat cards row, invoices table 
 and column resize, permissions tree, navigation tree, view switch, app shell (Sidebar + header +
 stats + table), sheet over list, bottom drawer with filters,
 textarea in field, combobox open, patient screen (App shell + record blocks), activity timeline, mobile patients, mobile menu open,
-mobile nav open, price range, verify phone, time picker open, date and time, upload documents, date picker open, date range, table footer with pagination.
+mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, date picker open, date range, table footer with pagination.
 
 ## Not built yet
-Data charts, rich text editor, color picker. Icons: the 41 Lucide icons stay; the team may switch to Phosphor (flatten each icon
+Rich text editor, color picker (full roadmap in the README). Icons: the 41 Lucide icons stay; the team may switch to Phosphor (flatten each icon
 to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.

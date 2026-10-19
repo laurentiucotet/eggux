@@ -3,6 +3,10 @@
 A Claude Code plugin for running client UI projects on a shadcn-based design system:
 discovery, brand intake into Figma, building UI from the library, a decision log and UX review.
 
+EGG UI is a generalist design system, aiming to be complete for any product (SaaS, e-commerce,
+fintech, booking, content, internal tools), with domain-neutral components and a validated
+chart palette, motion and density tokens.
+
 Figma master library: [EGG UI v2](https://www.figma.com/design/BufvaVkSh9vMWPye117Ucd/EGG-UI---v2)
 
 ## Install
@@ -66,11 +70,25 @@ express: when to use what, behavior, rules.
 
 EGG UI v2 has foundations (variables, text and effect styles), 41 Lucide icons and components
 for buttons, badges, chips, avatars, separators, forms (Input, Field, Select, Checkbox, Radio,
-Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, sheets and drawers, popovers, combobox, calendar and date picker, pagination, stepper, description list, timeline, time picker, input OTP, file upload, progress, slider, cards, tables on auto-layout
+Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, sheets and drawers, popovers, combobox, calendar and date picker, pagination, stepper, description list, timeline, time picker, input OTP, file upload, progress, slider, charts (bar, line, area, sparkline, chart card), spinner, kbd, status dot, cards, tables on auto-layout
 grid and the sidebar, plus Field Presets (email, password, phone, card, address) and Blocks
 organized by category (navigation, hero, sections, forms, app: record page, booking, notifications, multi-step form), Page Shells (app, marketing, auth, mobile),
 and a Brand page with the logo and a theme preview. Content areas use Figma native slots.
 Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
+
+## Roadmap
+
+1. Done: foundations (chart palette, motion, density), charts, spinner, kbd, status dot.
+2. Inputs: Input Group, Number Input, Multi-select / Tag Input, Date Range Picker, Search with
+   suggestions, Rating, Color Picker.
+3. Navigation and overlays: Button Group, Split Button, Hover Card, Navigation Menu (mega menu),
+   Command Palette, Table of Contents, Tour.
+4. Shells: Wizard, Split View, Docs; result pages (404, 500, success, maintenance).
+5. Blocks per vertical: SaaS admin (onboarding, billing, team, profile, integrations, API keys),
+   commerce (product, cart, checkout, orders), content (blog, article, docs), auth (reset, 2FA,
+   invite), communication (inbox, chat, comments).
+6. Advanced display: Scheduler, Kanban, Carousel, Rich Text Editor, Code Block, Prose.
+7. System: CHANGELOG, Code Connect, documentation site.
 
 ## What the pack covers
 

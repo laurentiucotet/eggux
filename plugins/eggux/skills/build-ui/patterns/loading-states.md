@@ -24,3 +24,5 @@
 
 ## shadcn / Figma
 `Skeleton`, `Progress`, spinner icon inside `Button`. See `components/skeleton.md`.
+
+Spinner, Progress and Skeleton components: `components/indicators.md`, `components/progress-and-slider.md`.

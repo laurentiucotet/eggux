@@ -86,7 +86,7 @@ Current tokens:
 | Token | Value | Why |
 |---|---|---|
 | `sidebar/*` | From shadcn | Sidebar surfaces |
-| `chart/1..5` | From shadcn | Chart series |
+| `chart/1..8` | Tailwind steps, same in Light and Dark (see Data visualization) | Chart series, fixed order |
 | `button/primary-hover` | `background/primary` at `opacity/90` | shadcn `hover:bg-primary/90` |
 | `button/secondary-hover` | `background/secondary` at `opacity/80` | shadcn `hover:bg-secondary/80` |
 | `button/destructive-hover` | Light `color/red/700`, Dark `background/destructive` at `opacity/90` | 90% opacity failed 4.5:1 in Light |
@@ -103,6 +103,74 @@ When a component needs a token:
 2. Bind the component in Figma to the new token.
 3. In code, replace the Tailwind class with the variable (`rounded-md` → `rounded-[var(--button-radius)]`).
 4. Note the deviation in the client's `eggux/brand.md` overrides if it is client-specific.
+
+## Data visualization
+
+`chart/1..8` (CSS `--chart-1..8`), assigned in this order and never cycled:
+
+| Slot | Primitive | Hex |
+|---|---|---|
+| 1 | `color/blue/600` | `#2563eb` |
+| 2 | `color/orange/700` | `#c2410c` |
+| 3 | `color/cyan/600` | `#0891b2` |
+| 4 | `color/amber/700` | `#b45309` |
+| 5 | `color/fuchsia/500` | `#d946ef` |
+| 6 | `color/green/600` | `#16a34a` |
+| 7 | `color/violet/500` | `#8b5cf6` |
+| 8 | `color/rose/500` | `#f43f5e` |
+
+Validated (OKLCH lightness band, chroma floor, CVD ΔE under protanopia/deuteranopia, normal-vision
+ΔE, contrast) on `background/default` and `background/card` in Light and Dark: worst adjacent
+CVD ΔE 20.0, normal-vision 26.1, every slot ≥ 3:1. The first 3 slots also pass all-pairs (ΔE 14.7),
+so scatter plots and maps use at most 3 series. The shadcn defaults it replaced failed (two
+adjacent ambers, ΔE 8.0).
+
+Rules:
+- Color follows the entity, never its rank; filtering must not repaint the remaining series.
+- More than 8 series: fold into "Other" (`foreground/muted`) or use small multiples.
+- Status in charts (good / bad) uses `background/success`, `warning`, `destructive` with an icon
+  and a label, never a chart slot.
+- Sequential (magnitude): one Tailwind ramp light to dark (`color/blue/100..900`). Diverging:
+  `color/blue/*` and `color/red/*` arms with `color/neutral/200` (Dark `neutral/700`) in the middle.
+- Text never takes the series color; grid `border/default`, baseline `border/input`, axis text
+  `foreground/muted`, area wash = series at `opacity/10`.
+- A client brand that changes the palette re-runs the validator (dataviz skill
+  `validate_palette.js`) in both modes before shipping.
+
+## Motion
+
+Primitives `duration/0..1000` (ms) and `ease/linear|in|out|in-out` (Tailwind). Semantic:
+
+| Token | Value | Use |
+|---|---|---|
+| `motion/duration/instant` | 75 ms | Hover, press, focus color changes |
+| `motion/duration/fast` | 150 ms | Tooltips, menus, switches, checkboxes; exits |
+| `motion/duration/normal` | 200 ms | Popovers, accordions, tabs, toasts |
+| `motion/duration/slow` | 300 ms | Dialogs, sheets, drawers entering |
+| `motion/duration/deliberate` | 500 ms | Large layout changes; rarely |
+| `motion/ease/enter` | ease-out | Elements appearing |
+| `motion/ease/exit` | ease-in | Elements leaving |
+| `motion/ease/standard` | ease-in-out | Moving or resizing on screen |
+| `motion/ease/linear` | linear | Spinners, progress, opacity loops |
+
+Exits are faster than entries. Respect `prefers-reduced-motion`: replace movement with opacity or
+no animation. Figma prototypes use the same durations; the tokens have no Figma scope (code only).
+
+## Density
+
+Collection `Density`, modes `Comfortable` (default) and `Compact`. Set the mode on a frame to
+tighten a whole screen (data tables, admin tools, power users).
+
+| Token | Comfortable | Compact | Bound to |
+|---|---|---|---|
+| `density/control-height` | 36 | 32 | Button (default size), Button Icon, Input, Select, Combobox, Date/Time Picker, Toggle Group Item |
+| `density/table-header-height` | 40 | 32 | Table Cell header |
+| `density/cell-padding-y` | 8 | 4 | Table Cell body |
+| `density/list-padding-y` | 8 | 4 | List Item |
+| `density/menu-padding-y` | 6 | 4 | Menu Item |
+
+Compact keeps touch targets ≥ 44 only on desktop: never use Compact on mobile.
+Code: `[data-density="compact"]` sets the CSS variables.
 
 ## Text styles
 
