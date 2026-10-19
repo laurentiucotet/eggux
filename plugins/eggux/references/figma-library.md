@@ -11,8 +11,8 @@ product ("Acme": projects, customers, invoices); domain content lives in example
 Domain-specific needs become Field Presets or Blocks.
 
 ## Foundations
-- Variables: `Primitives` (Value), `Semantic` (Light, Dark), `Components` (Light, Dark), `Density`
-  (Comfortable, Compact). Chart palette `chart/1..8`, motion `motion/*`. See `tokens.md`.
+- Variables: `Primitives` (Value), `Semantic` and `Components` (Light, Dark, Corporate Light,
+  Corporate Dark), `Density` (Comfortable, Compact). Chart palette `chart/1..8`, motion `motion/*`. See `tokens.md`.
 - Text styles: see `tokens.md`. Effect styles: `shadow/*`, `blur/*`, `backdrop-blur/*`.
 
 ## Components
@@ -139,6 +139,14 @@ Domain-specific needs become Field Presets or Blocks.
 | Table | `Table Cell Stack` | - | Title, Description |
 | Table | `Table Cell User` | - | Name, Email, Show email. Avatar exposed |
 | Table | `Table Toolbar` | - | Selection ("2 selected"), Actions (native slot) |
+| Table | `Data Grid Toolbar` | - | Start, End (native slots): saved view, search, filters with count, columns, group by, export |
+| Table | `Table Group Row` | - | Label, Subtotal, Show subtotal; count exposed. Goes in a Table Cell Type=expanded spanning all columns |
+| Filter Builder | `Filter Condition` | Position: first, next | Field, operator (Selects), value (Tag Input by default), remove |
+| Filter Builder | `Filter Group` | - | Conditions (native slot), Add condition; muted nested group |
+| Approvals | `Approval Step` | Status: approved, current, rejected, upcoming | Name, Role, Time, Comment, Show comment, Connector |
+| Audit | `Change Item` | - | Field, Old, New |
+| Save Bar | `Save Bar` | State: default, saving, error | Sticky bar with message, Discard, Save changes |
+| Sidebar | `Org Switcher` | - | Organization list with role and plan, search, create, manage |
 | Sidebar | `Sidebar Item` | Mode: expanded, collapsed. State: default, hover, active, disabled | Label, Icon (swap), Badge (Badge Count, exposed), Chevron |
 | Sidebar | `Sidebar Group Label` | - | Label |
 | Sidebar | `Sidebar Group` | Mode: expanded, collapsed | Items (native slot), Show label |
@@ -186,6 +194,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Commerce | `Product Card` | State: default, sale, sold-out | Name, Variant text, Show action, Show wishlist |
 | Commerce | `Block / Product Detail` | - | Gallery, options (Toggle Group), quantity, add to cart, details accordion |
 | Commerce | `Block / Order Summary` | - | Lines, discount code, totals, pay button, trust line |
+| Enterprise | `Block / Filter Builder`, `/ Approval Request`, `/ Audit Log` | - | Advanced filters popover; request with details and approval chain; read-only event log with field changes |
+| Enterprise | `Block / Roles & Permissions`, `/ Report`, `/ Record Form` | - | Role matrix with Save Bar; report with KPIs, chart, breakdown; long edit form with section nav |
 | AI | `Block / AI Chat Empty`, `/ AI Conversation` | - | Welcome with input and starter prompts; conversation with reasoning, tool calls, citations, sources, approval, input |
 | AI | `Block / AI Assistant Panel`, `/ Inline AI` | - | 400-wide copilot panel with context; inline popover with actions and a result to accept |
 
@@ -196,7 +206,8 @@ calendar, clock, trending-up, trending-down, map-pin, phone, building, inbox, ho
 chart-column, panel-left, bell, menu, upload, heart, shopping-bag, bold, italic, underline,
 list, text-quote, link, heading, sparkles, thumbs-up, thumbs-down, refresh-cw, square, arrow-up,
 paperclip, globe, wrench, mic, message-square, square-pen, play, pause, volume-2, maximize,
-captions, lightbulb (68).
+captions, lightbulb, list-filter, columns-3, download, shield-check, history, lock, eye, pin,
+arrow-right, user-check (78).
 
 ## Conventions used
 - Variant values use the shadcn prop values (`Variant=outline`, `Size=sm`), so Figma maps 1:1 to code.
@@ -266,7 +277,7 @@ which screen: `skills/build-ui/index.md`):
 ## Pages
 The file opens with Cover (1920 x 1080 thumbnail), Intro (getting started, credits, changelog),
 Foundations (tokens shown as swatches, type, spacing, radius, elevation, motion) and Brand.
-Then two sections, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
+Brand has a second Theme preview in Corporate Light. Then two sections, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
 categories and Page Shells). Block pages have no prefix. `Navigation` exists in both sections:
 the first holds the components (Breadcrumb, Top Bar), the second the Navbar and Footer blocks.
 Keep new pages in A-Z order inside their section.
@@ -276,7 +287,7 @@ Keep new pages in A-Z order inside their section.
 2. Field Presets: a component with a purpose (email, phone, card number) built from layer 1.
 3. Blocks: whole compositions (navigation, hero, sections, forms, app sections) built from
    layers 1 and 2, one page per category under the BLOCKS divider (AI, App, Commerce, Content,
-   Forms, Hero, Navigation, Results, Sections).
+   Enterprise, Forms, Hero, Navigation, Results, Sections).
 4. Page Shells: full pages with a Page slot where blocks go.
 A change in layer 1 flows up. Add a preset or block only when the same composition appears in
 two or more projects; otherwise build it in the client file.
@@ -291,7 +302,8 @@ textarea in field, combobox open, record page (App shell + record blocks), activ
 mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
 filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions, inbox (split
 view), cart sheet, checkout page, docs page, date picker open, date range, table footer with pagination, color
-field, AI chat app, product tour.
+field, AI chat app, product tour, enterprise invoices, theme comparison, data grid
+(enterprise) template.
 
 ## Not built yet
 More charts (pie, donut, heatmap). Icons: the 68 Lucide icons stay; the team may switch to

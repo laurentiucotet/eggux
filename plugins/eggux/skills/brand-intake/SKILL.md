@@ -14,6 +14,9 @@ provided; list what is missing instead of inventing it.
 
 ## Steps
 
+0. **Pick the base theme.** Enterprise, internal tools, finance or regulated clients start from
+   the `Corporate Light` / `Corporate Dark` modes; consumer and marketing products from
+   `Light` / `Dark`. Re-alias only the modes the client uses; tell the user which ones.
 1. **Extract** primary and secondary colors, neutrals, fonts, roundness and shadow style.
    From a website, read the real CSS values, not approximations from screenshots.
 2. **Build the brand ramp.** If the brand color is not in the Tailwind palette, generate a

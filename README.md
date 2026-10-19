@@ -3,9 +3,11 @@
 A Claude Code plugin for running client UI projects on a shadcn-based design system:
 discovery, brand intake into Figma, building UI from the library, a decision log and UX review.
 
-EGG UI is a generalist design system, aiming to be complete for any product (SaaS, e-commerce,
-fintech, booking, content, internal tools), with domain-neutral components and a validated
-chart palette, motion and density tokens.
+EGG UI is a generalist design system, complete enough for any product (SaaS, e-commerce,
+fintech, booking, content, internal tools, back office), with domain-neutral components, two
+themes (Default and Corporate, each Light and Dark), an enterprise pack (data grid, filter
+builder, approvals, audit log, roles and permissions, reports) and a validated chart palette,
+motion and density tokens.
 
 Figma master library: [EGG UI v2](https://www.figma.com/design/BufvaVkSh9vMWPye117Ucd/EGG-UI---v2)
 
@@ -69,7 +71,7 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 has foundations (variables, text and effect styles, density, motion, chart palette),
-68 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
+78 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
 (comments, chat), AI chat, commerce, Kanban, Rating, Carousel, Color Picker, tour and video. On top: Field Presets,
@@ -95,6 +97,9 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
    with approval, Sources, Citation, Suggestion) and AI blocks (empty chat, conversation,
    assistant panel, inline AI), with the `ai-chat` pattern.
 3e. Done: tour (Coachmark, Hotspot, spotlight example), Video Player with `video/*` tokens.
+3g. Done: Corporate theme (Corporate Light / Dark modes) and enterprise pack: data grid with
+   saved views, groups and totals, Filter Builder, Approvals, Audit Log, Roles & Permissions,
+   Report, Record Form, Save Bar, Org Switcher; dense examples and a theme comparison.
 3f. Done: Community preparation: Cover, Intro, Foundations pages, neutral content audit,
    listing copy in [`references/community-release.md`](plugins/eggux/references/community-release.md).
 4. Later: more charts (pie, donut, heatmap).

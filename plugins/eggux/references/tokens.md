@@ -69,6 +69,18 @@ Status roles (`destructive`, `success`, `warning`, `info`) work two ways:
 
 Both uses must pass 4.5:1. Run `/eggux:audit-tokens` to check all pairs.
 
+### Themes (Semantic and Components modes)
+| Mode | Look | Use |
+|---|---|---|
+| `Light`, `Dark` | shadcn neutral, primary near black, 8 px radius | Consumer, marketing, startup SaaS |
+| `Corporate Light`, `Corporate Dark` | `color/blue/700` primary (`blue/600` in Dark), slate neutrals, `radius/base` 4 px, `border/input` slate/500, `foreground/muted` slate/600 | Enterprise, internal tools, finance, regulated industries |
+
+Set Semantic and Components to the same mode on a frame. Corporate also sets the sidebar
+(`sidebar/*`) and `button/destructive-hover`. Pair Corporate with Density `Compact` for
+data-heavy screens. Corporate passes 4.5:1 for muted text on muted surfaces and 3:1 for input
+borders, so the base exceptions below do not apply to it (warning as text stays an exception).
+A client brand re-aliases the same tokens in the mode it starts from (`/eggux:brand-intake`).
+
 ### Known contrast exceptions in the base theme
 The master library keeps these shadcn defaults on purpose. Build around them; a client can
 fix them in its own file.

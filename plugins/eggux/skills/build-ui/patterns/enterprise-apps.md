@@ -1,0 +1,45 @@
+# Pattern: enterprise and corporate apps
+
+**Problem:** internal tools, back office and B2B products look and behave like a startup
+landing page: too much air, too few rows, no audit trail, no way to share a filtered view.
+**Heuristic:** efficiency of use, consistency and standards, user control, error prevention.
+
+## Start here
+- Theme: `Corporate Light` (or `Corporate Dark`) on Semantic and Components, `Compact` on
+  Density, for the whole app shell. Default theme stays for marketing and consumer flows.
+- Shell: App shell; Sidebar with Org Switcher when users belong to several entities.
+- Lists over ~50 rows use the data grid (`components/table.md` § Data grid), not cards.
+
+## What enterprise users expect
+| Need | Use | Guide |
+|---|---|---|
+| Work with large lists | Data Grid Toolbar + grid with saved views, groups, totals, bulk actions, export | `components/table.md` |
+| Find a precise subset | Filter Builder (conditions, and / or, one nested group), Save as view | `search-and-filter.md` |
+| Changes need sign-off | Approval Request with an approval chain | `approvals.md` |
+| Know who changed what | Audit Log, Change Item; every approval, permission and export is logged | `audit-log.md` |
+| Control access | Roles & Permissions matrix, Owner locked | `settings-and-admin.md` |
+| Several companies or tenants | Org Switcher in the Sidebar Workspace | `settings-and-admin.md` |
+| Recurring numbers | Report: period, comparison, KPIs, chart, breakdown, export, schedule | `reports.md` |
+| Long records | Record Form: section nav, two-column fields, Save Bar, danger zone | `record-page.md` |
+
+## Rules
+- Density: Compact rows (`density/*`), but touch targets stay 44 px on mobile and text never
+  goes below `body/small`.
+- Show provenance: who changed it last and when, on every record header and report.
+- Nothing destructive or financial happens without confirmation, and nothing important
+  without a log entry.
+- Keyboard first: search with `/`, command palette `⌘K`, Enter to open a row, Space to select,
+  Escape to close. Shortcuts listed in a Help menu.
+- Export what you show: CSV / XLSX of the current view (columns, filters, sort), with a row
+  count before export and a limit message for large exports.
+- Long operations (imports, bulk updates) run in the background with progress and a
+  notification when done; never block the page.
+- Dates, numbers and currency follow the user's locale; amounts show their currency.
+- Every screen has a permission-aware empty state: "You do not have access to invoices.
+  Ask an admin" instead of a blank page.
+
+## Figma
+Blocks on the Enterprise page (BLOCKS): Filter Builder, Approval Request, Audit Log,
+Roles & Permissions, Report, Record Form. Examples: "enterprise invoices" (App shell,
+Corporate + Compact) and "theme comparison" (Default vs Corporate). Template:
+`Template / data grid (enterprise)` on the Table page.

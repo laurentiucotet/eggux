@@ -29,7 +29,8 @@ changes variables.
 Translucent values are composited over `background/default` of the same mode before measuring.
 
 The base theme has 4 known failures, kept on purpose and documented in `tokens.md` § Known
-contrast exceptions (warning as text, muted on muted, `border/input` in both modes). Report them
+contrast exceptions (warning as text, muted on muted, `border/input` in Light and Dark; only
+warning as text in Corporate Light and Corporate Dark). Report them
 as known, not as new findings; any other failure is real.
 
 ## Report
