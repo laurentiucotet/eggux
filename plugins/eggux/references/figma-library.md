@@ -83,6 +83,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Chart | `Donut Chart` | Type: donut, pie | Total, Total label; 4 segments (arcData) and legend with values |
 | Chart | `Bar Chart Horizontal` | - | Ranked rows: label, bar (share of track), value |
 | Chart | `Heatmap` | - | 7 × 12 grid, 5 opacity steps of chart/1, legend Fewer → More |
+| Chart | `Gauge` | Status: on track, at risk, off track | Label; arc with value, target tick, written status |
+| Chart | `Treemap` | - | Six tinted cells with colored edge, labels inside when they fit |
 | Chart | `Sparkline` | Trend: up, down | 120 x 32, no axes |
 | Chart | `Chart Legend Item` | Key: swatch, line. Series: 1-8 | Label |
 | Chart | `Chart Legend` | - | Items (native slot) |
@@ -101,6 +103,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Color Picker | `Color Picker` | - | Saturation area, hue slider, hex Input Group with opacity; Swatches (native slot) |
 | Kanban | `Kanban Card` | State: default, hover, dragging | Title, Due date, Show labels, Show meta; assignee exposed |
 | Kanban | `Kanban Column` | - | Title, Cards (native slot); count exposed |
+| Scheduler | `Gantt Bar` | Status: planned, in progress, done, blocked | Label; tinted bar, colored edge, progress line, status icon |
+| Scheduler | `Gantt Milestone` | - | Label; diamond on the date |
 | Scheduler | `Calendar Event` | Size: default, compact. Category: 1-4 | Title, Time |
 | Pagination | `Pagination Item` | Type: page, previous, next, ellipsis. State: default, hover, active, focus, disabled | Label (page) |
 | Pagination | `Pagination` | - | Items (native slot) |
@@ -186,6 +190,7 @@ Domain-specific needs become Field Presets or Blocks.
 | App | `Block / Analytics` | - | 4 Stat Cards + 2 Chart Cards (grouped bars, area) |
 | App | `Block / Team Members`, `/ Billing`, `/ Onboarding Checklist`, `/ Profile`, `/ API Keys`, `/ Notification Preferences` | - | Settings and admin cards, 768 wide |
 | App | `Block / Integrations` | - | Search + grid of integration cards, 1136 wide |
+| App | `Block / Gantt` | - | Project timeline: task list by phase with owners, weeks, Gantt Bars, milestones, dependencies, today line, zoom |
 | App | `Block / Kanban Board`, `/ Scheduler Week` | - | Board with columns and a dragged card; week view with toolbar, events, now line |
 | App | `Block / Scheduler Month` | - | Month grid, up to 3 events per day + "+N more", today marked |
 | App | `Block / Comments`, `/ Conversation` | - | Comment thread with replies, resolved comment and composer; chat with header, day separator, grouped messages, typing, composer |
@@ -196,6 +201,11 @@ Domain-specific needs become Field Presets or Blocks.
 | Content | `Block / Blog Grid`, `/ Blog Featured`, `/ Blog Post Header`, `/ News List` | - | Blog family: latest three; featured + list; article top; dated news list |
 | Hero | `Block / Hero with Screenshot` | - | Headline, CTAs and the real product (Block / Analytics) in a browser frame |
 | Navigation (blocks) | `Block / Announcement Banner`, `/ Footer Simple` | - | Banner family: one-line message on primary, dismissible; compact footer |
+| Sections (blocks) | `Block / Pricing Single`, `/ Pricing Calculator` | - | Pricing family: one plan with what is included; seat slider with tiers and live total |
+| Sections (blocks) | `Block / FAQ Grid`, `/ FAQ Centered`, `/ Stats Cards`, `/ Stats Split` | - | FAQ family: two columns of short answers; centered accordion with a contact card. Stats family: proof numbers as cards; numbers next to the story and source |
+| Sections (blocks) | `Block / Team Grid`, `/ Team List` | - | Team family: photo grid of eight; leadership list with one-line bios |
+| Sections (blocks) | `Block / Careers List`, `/ Careers Benefits`, `/ Job Header` | - | Careers family: open roles by department with filters; benefits as icon cards; top of a job page |
+| Sections (blocks) | `Block / Gallery Grid`, `/ Gallery Mosaic` | - | Gallery family: three-column masonry with captions; one large image and four small with Show all |
 | Sections (blocks) | `Block / Logo Cloud`, `/ Team`, `/ Contact`, `/ Newsletter`, `/ Comparison Table` | - | Marketing sections, 1440 wide, 1152 container |
 | Navigation (blocks) | `Block / Navbar Mobile` | - | Logo + menu button, 390 wide. Opens the full-screen "mobile nav open" panel |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
@@ -323,6 +333,6 @@ field, AI chat app, product tour, enterprise invoices, theme comparison, data gr
 (enterprise) template.
 
 ## Not built yet
-Gauge and treemap charts, Gantt timeline. Icons: the 78 Lucide icons stay; the team may switch
-to Phosphor (flatten each icon to one `Vector` layer so swaps keep their color).
-Until they exist, compose from the components above, tokens and text styles, and flag it.
+Nothing from the current roadmap. Icons: the 78 Lucide icons stay; the team may switch to Phosphor
+(flatten each icon to one `Vector` layer so swaps keep their color). When something is missing,
+compose from the components above, tokens and text styles, and flag it.

@@ -26,6 +26,20 @@ Usage guidelines only. Visual specs live in the Figma components (Kanban, Schedu
 - Figma: `Calendar Event` (Size × Category) on the Scheduler page, `Block / Scheduler Week` on the
   App page.
 
+## Gantt (project timeline)
+- For projects with dependencies and dates (launches, implementations, construction). For
+  stages without dates use Kanban; for appointments use the Scheduler.
+- Task list on the left (grouped by phase, owner), timeline on the right; both scroll together.
+- Bars from start to end date with progress; milestones as diamonds; finish-to-start
+  dependencies as arrows that never point backwards; a today line.
+- Status is written in the list and shown on the bar with an icon (done, blocked), never color
+  alone; blocked tasks are counted in the header.
+- Zoom: Week, Month, Quarter; Today scrolls to now.
+- Drag to move, drag edges to resize, with a tooltip showing the new dates; moving a task with
+  dependents asks whether to move them too.
+- Mobile: list view grouped by phase with dates; the timeline is desktop only.
+- Figma: `Gantt Bar` (Status), `Gantt Milestone` on the Scheduler page; `Block / Gantt` on the App page.
+
 ## Month view
 - For planning and an overview of busy days. Up to 3 events per day (compact `Calendar Event`),
   then "+N more" that opens the day in a Popover.

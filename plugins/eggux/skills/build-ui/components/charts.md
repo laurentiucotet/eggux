@@ -11,6 +11,8 @@ validation: `references/tokens.md` § Data visualization.
 | Compare categories | Bar (horizontal when labels are long) |
 | Rank items (top customers, reasons) | Bar Chart Horizontal, sorted |
 | Intensity over two dimensions (day × hour, team × week) | Heatmap |
+| One number against a target (quota, budget, SLA) | Gauge, or Progress in tables and dense dashboards |
+| Part of a whole with many parts or a hierarchy | Treemap (6+ parts); fewer parts read better as Bar Chart Horizontal |
 | Part of a whole over categories | Stacked bar (≤ 4 segments) |
 | Trend next to a number | Sparkline |
 | Two measures with different units | Two charts, never two y axes |
@@ -38,7 +40,9 @@ the legend showing values and percentages; to compare parts, use Bar Chart Horiz
 `Bar Chart` (single, grouped, stacked), `Bar Chart Horizontal`, `Line Chart` (line, area),
 `Donut Chart` (donut, pie; segments with `arcData`, 2 px surface separators), `Heatmap` (one
 hue in 5 opacity steps + muted for zero), `Sparkline`, `Chart Legend`, `Chart Tooltip`,
-`Chart Card` (Actions and Chart slots). Edit bar heights and line points for real
+`Chart Card` (Actions and Chart slots), `Gauge` (on track, at risk, off track: status written,
+not only colored; target tick), `Treemap` (tinted cells with a colored edge so labels stay
+readable in every mode). Edit bar heights and line points for real
 data. Block: `Block / Analytics` on the App page.
 
 ## Code

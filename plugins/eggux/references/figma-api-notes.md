@@ -115,6 +115,12 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Children of a boolean operation keep their own fills; clear them, the boolean's fill is what
   shows.
 
+## Vectors and pages
+- `figma.createVector()` starts with a default black stroke: set `strokes = []` (or a token) on
+  every vector you fill, or the scan reports a raw stroke.
+- Two pages can share a name (`Navigation` in COMPONENTS and in BLOCKS). Find block pages by
+  searching after the BLOCKS divider.
+
 ## Safety
 - A failed `use_figma` call is rolled back as a whole; fix and rerun. Wrap multi-node builds in
   try/catch that removes what the call created.

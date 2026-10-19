@@ -6,8 +6,9 @@ steps again before every new Community version.
 ## Done in the file
 - [x] Cover page with a 1920 x 1080 `Thumbnail` frame (artwork, the only frame allowed to
       have detached styles).
-- [ ] Intro page: deleted from the file on 2026-10-21 (getting started, conventions, credits
-      and license, changelog). Rebuild it before publishing; Community needs the credits.
+- [ ] Intro page: the page exists again (2026-10-21) but is empty. Add getting started,
+      conventions, credits and license (Inter, Roboto Mono, Lucide, CC BY 4.0) and the changelog
+      before publishing.
 - [x] Foundations page: color roles in pairs, chart palette, type scale, spacing, radius,
       elevation, motion, modes; everything bound to variables and styles.
 - [x] Page order: Cover, Intro, Foundations, Brand, COMPONENTS (A-Z), BLOCKS (A-Z).
@@ -35,7 +36,7 @@ steps again before every new Community version.
 
 **Name:** EGG UI: design system for product and enterprise teams
 
-**Tagline:** 155 components, 81 blocks and 7 page shells. Default and Corporate themes in
+**Tagline:** 159 components, 95 blocks and 7 page shells. Default and Corporate themes in
 Light and Dark, data grid, approvals, audit and AI chat. Variables, native slots, shadcn/ui names.
 
 **Description:**
@@ -48,10 +49,10 @@ What is inside
 - Enterprise pack: data grid with saved views, groups, totals and bulk actions; filter
   builder; approval chain; audit log with field changes; roles and permissions matrix; report;
   long record form with save bar; organization switcher.
-- 155 components with 667 variants: forms, selection, overlays, navigation, feedback, tables
+- 159 components with 673 variants: forms, selection, overlays, navigation, feedback, tables
   on auto layout grid, charts (bar, line, donut, heatmap), dates and scheduling, files, rich text editor, comments and
   chat, commerce, AI chat, tour and video.
-- 81 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero, Navigation,
+- 95 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero, Navigation,
   Results, Sections) and 7 page shells (App, Marketing, Auth, Mobile, Wizard, Split View, Docs).
 - 537 variables in four collections: Primitives, Semantic (Light, Dark), Components and
   Density (Comfortable, Compact). 14 text styles, shadows and motion tokens.

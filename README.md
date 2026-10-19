@@ -122,8 +122,8 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
    notifications, sharing, writing) and 14 common flows reused by discovery.
 3k. Done: `/eggux:new-feature` interview and feature spec template.
 3l. Done: `/eggux:new-component` with proposal, stress test, approval and component docs.
-4. Next: more blocks per family (pricing, FAQ, stats, team, careers, gallery, footer variants),
-   gauge and treemap charts, Gantt timeline, Code Connect once a component codebase exists.
+3m. Done: pricing, FAQ, stats, team, careers and gallery variants; Gauge, Treemap; Gantt.
+4. Next: footer and navbar variants, blocks for docs and help centers, Code Connect once a component codebase exists.
 5. System: documentation site.
 
 ## What the pack covers

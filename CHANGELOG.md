@@ -3,6 +3,15 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.29.0
+- 13 blocks: Pricing Single, Pricing Calculator; FAQ Grid, FAQ Centered; Stats Cards, Stats
+  Split; Team Grid, Team List; Careers List, Careers Benefits, Job Header; Gallery Grid,
+  Gallery Mosaic. New families Careers and Gallery.
+- Charts: Gauge (on track, at risk, off track), Treemap.
+- Gantt: `Gantt Bar`, `Gantt Milestone`, `Block / Gantt` with dependencies and a today line.
+- Guides: chart picks, Gantt rules, marketing block families; code mapping; API notes on vector
+  strokes and duplicate page names.
+
 ## 0.28.0
 - `add-component` becomes `new-component`: from a screenshot or description, reuse map,
   proposal, build, stress test, review, approval; after approval the component doc

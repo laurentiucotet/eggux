@@ -13,6 +13,12 @@ grouped by family inside each page's `Blocks` section.
 | CTA | CTA, CTA Split, CTA Card | Card (primary color) once per page near the end; split with a product image mid-page |
 | Contact | Contact, Contact Cards, Contact with Map, Offices, Map Section | Cards for channels; map variants only when people visit; always the written address next to a map |
 | Blog (Content page) | Blog Grid, Blog Featured, Blog Post Header, News List, Blog List, Article | Grid on the homepage; featured for a blog index; news list for corporate newsrooms |
+| Pricing | Pricing, Pricing Single, Pricing Calculator, Comparison Table | One plan: Single; usage-based: Calculator with the exact math; several plans: Pricing then Comparison |
+| FAQ | FAQ, FAQ Grid, FAQ Centered | Grid when answers are 1-2 sentences; accordion for longer answers; end with a contact option |
+| Stats | Stats, Stats Cards, Stats Split | Real numbers with their period and source; Split when the method matters |
+| Team | Team, Team Grid, Team List | Grid with photos for the company page; List with bios for leadership and investors |
+| Careers | Careers List, Careers Benefits, Job Header | List grouped by department with counts; benefits as facts; job page header with salary range |
+| Gallery | Gallery Grid, Gallery Mosaic | Grid for places and events; Mosaic for a property, product or venue detail page |
 | Footer | Footer, Footer Simple | Simple for few pages; columns for large sites |
 
 ## Typical order (landing page)
