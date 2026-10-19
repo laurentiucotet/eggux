@@ -64,9 +64,9 @@ express: when to use what, behavior, rules.
 
 ## Figma library status
 
-EGG UI v2 has foundations (variables, text and effect styles), 40 Lucide icons and components
+EGG UI v2 has foundations (variables, text and effect styles), 41 Lucide icons and components
 for buttons, badges, chips, avatars, separators, forms (Input, Field, Select, Checkbox, Radio,
-Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, sheets and drawers, popovers, combobox, calendar and date picker, pagination, stepper, description list, timeline, cards, tables on auto-layout
+Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, sheets and drawers, popovers, combobox, calendar and date picker, pagination, stepper, description list, timeline, time picker, input OTP, file upload, progress, slider, cards, tables on auto-layout
 grid and the sidebar, plus Field Presets (email, password, phone, card, address) and Blocks
 organized by category (navigation, hero, sections, forms, app: record page, booking, notifications, multi-step form), Page Shells (app, marketing, auth, mobile),
 and a Brand page with the logo and a theme preview. Content areas use Figma native slots.

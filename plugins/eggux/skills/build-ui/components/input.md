@@ -20,3 +20,12 @@ Label (`ui/label`) → input → hint or error (`ui/caption`). The label is alwa
 - A limit is shown as a counter in the Field hint ("86/500"), turning to error past the limit.
 - Figma: `Textarea` (State × Content, like Input) inside a `Field` Control slot. Example
   "textarea in field" on the Input page.
+
+## Input OTP (one-time codes)
+- For verification codes sent by SMS or email: 6 digits as 3 + 3, or 4.
+- `autocomplete="one-time-code"`, `inputmode="numeric"`; paste fills all boxes; auto-submit when
+  the last digit is entered, or enable the Verify button then.
+- Say where the code was sent (masked number) and offer "Resend code" after a countdown.
+- Wrong code: error state on all boxes, message under them, keep the digits for editing.
+- Figma: `OTP Slot` Position (first, middle, last) × State (empty, filled, active, error);
+  `Input OTP` Length 4 or 6. Example "verify phone" on the Input OTP page.
