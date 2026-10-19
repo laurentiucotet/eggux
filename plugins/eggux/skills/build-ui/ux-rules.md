@@ -33,6 +33,9 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Every list and table has an empty state. See `patterns/empty-state.md`.
 - Search, filters and sort are visible, clearable and kept in the URL. See `patterns/search-and-filter.md`.
 - Dates, numbers and currency follow the client's locale.
+- Charts follow `components/charts.md`; data-dense desktop screens may use Density Compact
+  (`references/tokens.md` § Density), never on mobile.
+- Motion uses the `motion/*` tokens; exits faster than entries; respect reduced motion.
 - A single object has a record page (header, details, activity). See `patterns/record-page.md`.
 - Picking a day and a time follows `patterns/booking.md`.
 
