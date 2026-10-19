@@ -22,7 +22,7 @@ changes variables.
 | Code syntax | Every Semantic and Components variable has a WEB code syntax |
 | Scopes | No variable uses `ALL_SCOPES` |
 | Pairing | Every `background/X` has a `foreground/X` |
-| Text contrast 4.5:1 | `foreground/X` on `background/X`; `foreground/muted` on page and card; status colors used as text on the page |
+| Text contrast 4.5:1 | `foreground/X` on `background/X`; `foreground/muted` on page and card; status colors used as text on the page; `foreground/X` on Components state tokens (`button/X-hover`) |
 | UI contrast 3:1 | `border/input` and `border/ring` on the page |
 | Info only | `border/default` (decorative dividers are exempt from 3:1) |
 

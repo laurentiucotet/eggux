@@ -9,7 +9,9 @@ and inline messages: `patterns/feedback-messages.md`.
 - Not for confirming an action that just happened (use a toast).
 
 ## Rules
-- Variant matches the meaning: `info`, `success`, `warning`, `destructive`. Always with an icon.
+- Variant matches the meaning: `default`, `info`, `success`, `warning`, `destructive`. Always with an icon.
+- `warning` is a filled banner (`background/warning` + `foreground/warning`) because amber fails
+  contrast as text on white. The others are outlined cards with colored icon and title.
 - Title states the situation in a few words; description says what to do about it.
 - At most one action, as a link or small button, that resolves the situation.
 - Place it above the content it concerns, not at the top of the page when it concerns one section.

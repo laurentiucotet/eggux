@@ -15,7 +15,7 @@ it everywhere. The same status never appears in two colors.
 |---|---|
 | Neutral, draft, inactive | `secondary` or `outline` |
 | Positive, done, paid | `success` |
-| Needs attention, pending | `warning` |
+| Needs attention, pending | `warning` (filled, dark text) |
 | Failed, overdue, blocked | `destructive` |
 | Informational, new | `info` |
 

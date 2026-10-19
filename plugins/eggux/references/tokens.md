@@ -69,9 +69,29 @@ Status roles (`destructive`, `success`, `warning`, `info`) work two ways:
 
 Both uses must pass 4.5:1. Run `/eggux:audit-tokens` to check all pairs.
 
+### Known contrast exceptions in the base theme
+The master library keeps these shadcn defaults on purpose. Build around them; a client can
+fix them in its own file.
+
+| Pair | Ratio | How to work with it |
+|---|---|---|
+| `background/warning` as text on the page (Light) | 2.15 | Never use warning as text color. Warning messages use the filled style (`background/warning` + `foreground/warning`) |
+| `foreground/muted` on `background/muted` (Light) | 4.35 | Do not put muted text on muted surfaces; use `foreground/default` there |
+| `border/input` on the page (Light 1.26, Dark 1.77) | below 3:1 | The input is still identified by its label and shadow. Clients with strict WCAG 1.4.11 needs re-alias it to `color/neutral/400`+ |
+
 ## Components (`Components`)
 
-Current tokens: `sidebar/*` (from shadcn) and `chart/1..5`. Naming: `<component>/<property>`,
+Current tokens:
+
+| Token | Value | Why |
+|---|---|---|
+| `sidebar/*` | From shadcn | Sidebar surfaces |
+| `chart/1..5` | From shadcn | Chart series |
+| `button/primary-hover` | `background/primary` at `opacity/90` | shadcn `hover:bg-primary/90` |
+| `button/secondary-hover` | `background/secondary` at `opacity/80` | shadcn `hover:bg-secondary/80` |
+| `button/destructive-hover` | Light `color/red/700`, Dark `background/destructive` at `opacity/90` | 90% opacity failed 4.5:1 in Light |
+
+Naming: `<component>/<property>`,
 for example `button/radius`, `card/padding`. CSS: `--<component>-<property>`.
 
 When a component needs a token:
@@ -93,6 +113,7 @@ Contextual, bound to `font/*` and type primitives. Use these, never raw size/wei
 | `body/default` | Paragraphs |
 | `body/small` | Secondary text, table cells |
 | `ui/label` | Form labels, buttons, tabs |
+| `ui/label-small` | Badges, compact labels (12/16 Medium) |
 | `ui/caption` | Hints, metadata, timestamps |
 | `ui/overline` | Uppercase eyebrow above a title |
 | `code` | Inline code, IDs, technical values |

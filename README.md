@@ -35,7 +35,7 @@ The plugin holds the method; each client project holds its answers.
 
 ```
 plugins/eggux/
-├── references/          token architecture, client file convention
+├── references/          token architecture, Figma inventory, client file convention
 └── skills/
     ├── init/templates/  brand, objects, actors, workflows, decisions
     ├── discovery/       OOUX method
@@ -59,6 +59,12 @@ express: when to use what, behavior, rules.
 `Primitives` (raw scales, hidden colors) → `Semantic` (brand layer, Light/Dark, shadcn CSS names)
 → `Components` (only when a component must deviate). Details in
 [`plugins/eggux/references/tokens.md`](plugins/eggux/references/tokens.md).
+
+## Figma library status
+
+EGG UI v2 has foundations (variables, text and effect styles) and these components: Button,
+Button Icon, Badge, Input, Field, Alert, Card, Slot and 14 Lucide icons. Inventory and
+conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
 
 ## What the pack covers
 

@@ -76,11 +76,20 @@ checks.push(['border/input', 'background/default', MIN_UI, 'input boundary']);
 checks.push(['border/ring', 'background/default', MIN_UI, 'focus ring']);
 checks.push(['border/default', 'background/default', 0, 'decorative divider, info only']);
 
+// Component state tokens like button/primary-hover carry the text of their Semantic role.
+const compCol = col('Components');
+const compVars = compCol ? vars.filter(v => v.variableCollectionId === compCol.id) : [];
+const anyVar = n => S(n) || compVars.find(v => v.name === n);
+for (const v of compVars) {
+  const m = v.name.match(/^[^/]+\/([a-z]+)-(hover|active|pressed)$/);
+  if (m && S('foreground/' + m[1])) checks.push([`foreground/${m[1]}`, v.name, MIN_TEXT, `text on ${m[2]} state`]);
+}
+
 const contrast = [];
 if (sem) for (const m of sem.modes) {
   const page = resolve(S('background/default'), m.name);
   for (const [f, b, min, note] of checks) {
-    const fv = resolve(S(f), m.name), bv = resolve(S(b), m.name);
+    const fv = resolve(anyVar(f), m.name), bv = resolve(anyVar(b), m.name);
     if (!fv || !bv || fv.r === undefined || bv.r === undefined) { contrast.push({ mode: m.name, pair: `${f} on ${b}`, result: 'unresolved' }); continue; }
     const bg = over(bv, page);
     const r = ratio(over(fv, bg), bg);

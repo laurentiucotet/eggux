@@ -8,6 +8,7 @@ description: Design or build screens, flows, components and blocks for a client 
 ## Read before building, in this order
 1. `ux-rules.md` (next to this file): universal rules. Always.
 2. `${CLAUDE_PLUGIN_ROOT}/references/tokens.md`: token names and text styles.
+   `${CLAUDE_PLUGIN_ROOT}/references/figma-library.md`: which components exist in Figma.
 3. Client files in `eggux/`: `decisions.md` (terminology wins), `brand.md` (overrides win over
    base rules), then `objects.md`, `actors.md`, `workflows.md` as relevant to the screen.
 4. `patterns/<name>.md` for every pattern the screen uses.

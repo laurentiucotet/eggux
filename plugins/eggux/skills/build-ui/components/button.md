@@ -22,6 +22,11 @@ its variables; read them through Figma MCP, do not copy them here.
 - Loading: keep the width, show a spinner, block repeat clicks.
 - Disabled only when the action is truly unavailable, with a reason nearby. Never as form validation.
 
+## Figma
+- `Button`: `Variant` × `Size` (sm, default, lg) × `State` (default, hover, focus, disabled).
+  Properties: `Label`, `Leading icon`, `Trailing icon` (boolean + swap).
+- `Button Icon`: icon-only, 36 × 36, `Variant` × `State`, `Icon` swap. Pair it with a tooltip.
+
 ## Client overrides
 Check `eggux/brand.md` → Overrides (for example "buttons never show icons"). In Figma, the icon
 is a boolean property; turn it off in the client file rather than detaching instances.
