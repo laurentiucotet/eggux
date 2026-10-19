@@ -94,6 +94,10 @@ Current tokens:
 | `table/row-hover` | `background/muted` at `opacity/50` | shadcn `hover:bg-muted/50` |
 | `table/row-expanded` | `background/muted` at `opacity/30` | Detail row under an expanded table row |
 | `switch/thumb-unchecked` | Light `background/default`, Dark `foreground/default` | Thumb stays visible on the dark track |
+| `video/background` | `color/black`, same in Light and Dark | Video Player surface behind the frame |
+| `video/foreground` | `color/white` | Icons, time and subtitles over video |
+| `video/track` | `color/white` at `opacity/30` | Unplayed part of the progress bar |
+| `video/scrim` | `color/black` at `opacity/60` | Play button, duration and subtitle backgrounds |
 
 Naming: `<component>/<property>`,
 for example `button/radius`, `card/padding`. CSS: `--<component>-<property>`.

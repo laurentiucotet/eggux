@@ -69,10 +69,10 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 has foundations (variables, text and effect styles, density, motion, chart palette),
-62 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
+68 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
-(comments, chat), AI chat, commerce, Kanban, Rating, Carousel and Color Picker. On top: Field Presets,
+(comments, chat), AI chat, commerce, Kanban, Rating, Carousel, Color Picker, tour and video. On top: Field Presets,
 Blocks by category (AI, app, commerce, content, forms, hero, navigation, results, sections) and 7
 Page Shells (app, marketing, auth, mobile, wizard, split view, docs), plus a Brand page with the
 logo and a theme preview. Content areas use Figma native slots.
@@ -94,7 +94,9 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3d. Done: AI chat (Prompt Input, Attachment, User and Assistant Message, Reasoning, Tool Call
    with approval, Sources, Citation, Suggestion) and AI blocks (empty chat, conversation,
    assistant panel, inline AI), with the `ai-chat` pattern.
-3e. Next: tour / coachmarks, video player.
+3e. Done: tour (Coachmark, Hotspot, spotlight example), Video Player with `video/*` tokens.
+3f. Done: Community preparation: Cover, Intro, Foundations pages, neutral content audit,
+   listing copy in [`references/community-release.md`](plugins/eggux/references/community-release.md).
 4. Later: more charts (pie, donut, heatmap).
 5. System: CHANGELOG, Code Connect, documentation site.
 
