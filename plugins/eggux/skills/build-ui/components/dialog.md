@@ -25,7 +25,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Built from three pieces, like shadcn: `Dialog Header` (title, description, close X),
   `Dialog Footer` (Actions slot) and `Dialog` with native slots Header, Content and Footer.
 - `Alert Dialog`: same pieces, Header with Close off, no Content, footer Cancel + destructive.
-- Reuse `Dialog Header` and `Dialog Footer` for Sheet and Drawer.
+- `Sheet` and `Drawer` reuse `Dialog Header` and `Dialog Footer`; see `drawer.md`.
 - Overlay behind both: `dialog/overlay`. See the "dialog over page" example on the Dialog page.
 
 ## Alert Dialog types

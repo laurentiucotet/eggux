@@ -19,7 +19,7 @@ library; otherwise work in the client's file.
 |---|---|---|
 | Component | A reusable UI part with no business meaning (Breadcrumb, Accordion) | its own page |
 | Field Preset | A field with a purpose seen in 2+ projects (IBAN, CNP) | Form Presets |
-| Block | A composed section seen in 2+ projects (hero, pricing, sign in) | `Blocks / <category>` |
+| Block | A composed section seen in 2+ projects (hero, pricing, sign in) | its category page under BLOCKS (App, Forms, Hero, Navigation, Sections) |
 | Page Shell | A full page frame with a replaceable content slot | Page Shells |
 
 Check `figma-library.md` and search the file first: extend an existing component (new variant,
@@ -35,6 +35,7 @@ slot or property) before creating a new one.
 - Content that varies per use is a native slot (clipsContent off, sensible default content).
   Fixed variation is a boolean or TEXT property.
 - Layers 2-4 are built only from instances of layer 1, never redrawn.
+- New pages go in A-Z order inside their section (COMPONENTS or BLOCKS), names without prefix.
 - Lay variants out in a grid on a dashed `background/default` frame; write the component
   description (when to use, rules) and a documentation link.
 
