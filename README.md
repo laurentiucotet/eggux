@@ -68,7 +68,7 @@ express: when to use what, behavior, rules.
 
 ## Figma library status
 
-EGG UI v2 has foundations (variables, text and effect styles), 41 Lucide icons and components
+EGG UI v2 has foundations (variables, text and effect styles), 43 Lucide icons and components
 for buttons, badges, chips, avatars, separators, forms (Input, Field, Select, Checkbox, Radio,
 Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, sheets and drawers, popovers, combobox, calendar and date picker, pagination, stepper, description list, timeline, time picker, input OTP, file upload, progress, slider, charts (bar, line, area, sparkline, chart card), spinner, kbd, status dot, cards, tables on auto-layout
 grid and the sidebar, plus Field Presets (email, password, phone, card, address) and Blocks
@@ -81,8 +81,11 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 1. Done: foundations (chart palette, motion, density), charts, spinner, kbd, status dot.
 2. Done (high-use first): Input Group, Number Input, Button Group, Split Button, Tag Input /
    multi-select, Date Range Picker, Hover Card, Wizard shell, result pages, auth flows.
-3. Next by usage: Navigation Menu (mega menu), Command Palette, Search with suggestions, Split View
-   shell, SaaS admin blocks (team, billing, profile, onboarding), commerce blocks.
+3. Done: Navigation Menu, Command Palette, search suggestions, Split View shell, SaaS admin blocks
+   (team, billing, profile, onboarding, API keys, notifications, integrations), commerce blocks;
+   default content made domain-neutral.
+3b. Next: content blocks (blog list, article, docs shell with table of contents), logo cloud,
+   team, contact, newsletter, comparison table, Kanban, Scheduler.
 4. Later: Table of Contents, Tour, Docs shell, Rating, Color Picker, more charts.
 5. Blocks per vertical: SaaS admin (onboarding, billing, team, profile, integrations, API keys),
    commerce (product, cart, checkout, orders), content (blog, article, docs), auth (reset, 2FA,

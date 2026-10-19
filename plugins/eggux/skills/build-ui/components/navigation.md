@@ -23,3 +23,19 @@ Usage guidelines only. Visual specs live in the Figma components.
 ## Figma
 Navigation page: Breadcrumb Item, Breadcrumb, Top Bar, Page Header, Nav Link. Blocks /
 Navigation: Navbar, Footer. Page Shells use them.
+
+## Navigation Menu (mega menu)
+- For marketing sites with more than ~5 destinations under one top-level item (Product, Solutions).
+- Panel: 2 columns of `Navigation Menu Link` (icon, title, one-line benefit) + optional featured
+  card. Up to ~8 links; group by what visitors want to do.
+- Opens on hover with a short delay and on click/Enter; Escape closes; the top item stays a link
+  to an overview page. Mobile: the same links in the full-screen menu, grouped.
+- Figma: `Navigation Menu Link` (State; Title, Description, Icon), `Navigation Menu Panel` (Links,
+  Featured slots). Example "navbar with mega menu" on the Navigation components page.
+
+## Split View (list + detail)
+- For mail, chat, tickets, files and contacts: users go through many items in a row.
+- `Page Shell / Split View`: List slot 384 (resizable 280-560), divider with grip, Detail slot.
+- ↑ ↓ move the selection; the list keeps its scroll; the URL holds the selected id.
+- Below 1024 the detail is its own page with a back button.
+- Example "inbox" on the Page Shells page.

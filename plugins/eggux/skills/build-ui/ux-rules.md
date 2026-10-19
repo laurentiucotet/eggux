@@ -33,6 +33,7 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Use the client's terminology from `decisions.md`. A "Don't use" term is a defect.
 - Every list and table has an empty state. See `patterns/empty-state.md`.
 - 404, 500, 403, maintenance and success pages follow `patterns/result-pages.md`.
+- Settings and admin pages follow `patterns/settings-and-admin.md`; shops follow `patterns/commerce.md`.
 - Search, filters and sort are visible, clearable and kept in the URL. See `patterns/search-and-filter.md`.
 - Dates, numbers and currency follow the client's locale.
 - Charts follow `components/charts.md`; data-dense desktop screens may use Density Compact

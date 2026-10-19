@@ -32,3 +32,12 @@ shadcn `Popover`, `Command` (cmdk), Combobox = `Popover` + `Command`.
 - Read-only. Anything actionable must also be reachable on the target page.
 - Not on touch devices: a tap opens the target.
 - Figma: `Hover Card` (Content slot, 320 wide) on the Popover page.
+
+## Command Dialog (⌘K) and search with suggestions
+- Command Dialog: global shortcut ⌘K / Ctrl K, also a visible search button in the Top Bar.
+  Before typing: recent items and suggested actions. Results grouped (Pages, Records, Actions,
+  Settings), shortcuts on the right, footer with ↑ ↓ ↵ esc.
+- Search with suggestions: dropdown under a search Input; recent searches, then matches grouped
+  by type; Enter on the text searches everything. Highlight the matched part in code.
+- No results: say so and offer "Search everywhere for …" or a create action.
+- Figma: `Command Dialog` (Items slot, Command Input exposed); example "search with suggestions".
