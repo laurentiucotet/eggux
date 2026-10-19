@@ -28,3 +28,12 @@ Usage guidelines only. Visual specs live in the Figma components (Calendar page)
 ## Code
 shadcn `Calendar` (react-day-picker, `weekStartsOn={1}`, `locale={ro}`) and the Date Picker recipe
 (`Popover` + `Calendar`).
+
+## Time Picker
+- 24 h format in Romania ("10:30"). Steps of 15 or 30 min for appointments; typing hh:mm when
+  any minute is valid (logs, reminders).
+- Unavailable times are disabled in the list, not removed, when users expect them ("10:00").
+- Date + time: two fields side by side (Date Picker 240, Time Picker 140); for bookings prefer
+  `patterns/booking.md` (calendar + slots).
+- Figma: `Time Picker` (State × Content, clock icon) on the Calendar page. Open state: Time Picker
+  (focus) + Menu with times, Checked on the selected one. Examples "time picker open", "date and time".

@@ -25,6 +25,12 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Input | `Password Strength` | Strength: empty, weak, fair, good, strong | Meter + message under a new-password field |
 | Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Control (native slot, default Input) |
 | Input | `Textarea` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Min height 64, grows with content; put it in a Field |
+| Input OTP | `OTP Slot` | Position: first, middle, last. State: empty, filled, active, error | Digit |
+| Input OTP | `Input OTP` | Length: 4, 6 | Groups of OTP Slots (3 + 3 with separator) |
+| File Upload | `File Dropzone` | State: default, drag-over, error, disabled | Hint; Browse button exposed |
+| File Upload | `File Item` | State: uploading, complete, error | File name; Progress, cancel/remove, Retry |
+| Progress | `Progress` | Value: 0, 25, 50, 75, 100 | Resize the indicator for other values |
+| Slider | `Slider` | Type: single, range. State: default, focus, disabled | Move range and thumbs for other values |
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
@@ -36,6 +42,7 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Calendar | `Calendar Day` | State: default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end | Day |
 | Calendar | `Calendar` | - | Month. Monday-first month grid, prev/next ghost Button Icons |
 | Calendar | `Date Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Calendar icon; opens Calendar in a popover |
+| Calendar | `Time Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Clock icon; opens a Menu of times |
 | Pagination | `Pagination Item` | Type: page, previous, next, ellipsis. State: default, hover, active, focus, disabled | Label (page) |
 | Pagination | `Pagination` | - | Items (native slot) |
 | Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Connector |
@@ -193,9 +200,9 @@ chips, cards (list, profile, form, empty state), stat cards row, invoices table 
 and column resize, permissions tree, navigation tree, view switch, app shell (Sidebar + header +
 stats + table), sheet over list, bottom drawer with filters,
 textarea in field, combobox open, patient screen (App shell + record blocks), activity timeline, mobile patients, mobile menu open,
-mobile nav open, date picker open, date range, table footer with pagination.
+mobile nav open, price range, verify phone, time picker open, date and time, upload documents, date picker open, date range, table footer with pagination.
 
 ## Not built yet
-Time picker, file upload, slider, progress bar, data charts. Icons: the 40 Lucide icons stay; the team may switch to Phosphor (flatten each icon
+Data charts, rich text editor, color picker. Icons: the 41 Lucide icons stay; the team may switch to Phosphor (flatten each icon
 to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.
