@@ -37,6 +37,13 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - An INSTANCE_SWAP property on a node forces the default component on every variant. For
   per-variant icons, do not bind the swap.
 - Cloned variants lose `componentPropertyReferences`: re-wire every property after cloning.
+- Setting an INSTANCE_SWAP to the component it already shows resets that nested instance to the
+  main icon's own overrides (e.g. a plus in a primary Button turns dark). Set the swap only when
+  the icon changes.
+- `setProperties({ State })` on one nested instance re-creates sibling instances inside the same
+  parent instance: re-query nodes after each change instead of reusing a list.
+- A stroke cannot be bound to a boolean. For an optional divider, add a 1 px frame bound to
+  `border/default` and bind its `visible`.
 - Swapping an instance renames its layer to the component name; do not look nested instances
   up by their original layer name after a swap.
 - Hidden children of instances are skipped by `findAll` / `children` unless

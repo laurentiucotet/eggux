@@ -40,6 +40,8 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Pagination | `Pagination` | - | Items (native slot) |
 | Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Connector |
 | Stepper | `Stepper` | - | Steps (native slot) |
+| Description List | `Description List Item` | Orientation: horizontal, vertical | Label, Divider; Value (native slot) |
+| Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive | Title, Time, Description, Show description, Icon (swap), Connector; Content (native slot) + Show content |
 | Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
 | Menu | `Menu Label` | - | Label |
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
@@ -93,6 +95,8 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Hero | `Block / Hero Centered`, `Block / Hero Split` | - | Badge, display headline, lead, CTAs, Image Placeholder |
 | Sections | `Block / Features`, `/ Stats`, `/ CTA`, `/ Pricing`, `/ Testimonials`, `/ FAQ` | - | Section Header + Cards, grid, Toggle Group, Accordion |
 | App | `Block / Settings Section`, `/ Empty Page`, `/ Filtered List` | - | Settings row, first-use page, filter panel + list |
+| App | `Block / Record Header`, `/ Record Detail`, `/ Notifications`, `/ Booking` | - | Record page header with tabs; details + activity; notifications popover; calendar + time slots |
+| Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
@@ -180,7 +184,7 @@ list row loading (Skeleton), icon button with tooltip, open select, dialog over 
 chips, cards (list, profile, form, empty state), stat cards row, invoices table (grid), inline edit
 and column resize, permissions tree, navigation tree, view switch, app shell (Sidebar + header +
 stats + table), sheet over list, bottom drawer with filters,
-textarea in field, combobox open, date picker open, date range, table footer with pagination.
+textarea in field, combobox open, patient screen (App shell + record blocks), activity timeline, date picker open, date range, table footer with pagination.
 
 ## Not built yet
 Mobile navbar, time picker, file upload, slider, progress bar. Icons: the 39 Lucide icons stay; the team may switch to Phosphor (flatten each icon
