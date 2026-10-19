@@ -26,6 +26,8 @@ component guides it names. Names are Figma components; inventory in
 | Sign in, sign up, reset, 2FA, invite | Auth | Sign In, Sign Up, Forgot Password, Check Email, Reset Password, Two-Factor, Accept Invite | auth, form-presets | input (OTP) |
 | Marketing page | Marketing | Announcement Banner, Navbar, Navbar Mobile, Hero (Centered, Split, with Screenshot), Logo Cloud, Features (grid, Split, Bento), Stats, Testimonials (Single, Grid, Split, Carousel), Pricing, Comparison Table, FAQ, CTA (band, Split, Card), Newsletter, Team, Contact (Cards, with Map, Offices, Map Section), Footer (Simple) | marketing-pages, mobile | navigation (mega menu), card, accordion, carousel |
 | Blog, article, newsroom | Marketing | Blog Grid, Blog Featured, Blog List, Blog Post Header, Article, News List | content-and-docs | content (Post Card, Code Block, Table of Contents) |
+| Careers, jobs | Marketing | Careers List, Careers Benefits, Job Header, Article | marketing-pages | badge, chip |
+| Project plan with dates and dependencies | App | Gantt | (none) | boards-and-calendars |
 | Contact, locations | Marketing | Contact Cards, Contact with Map, Offices, Map Section | marketing-pages | input, image (Map) |
 | Documentation, help center | Docs | (example "docs page") | content-and-docs | content, navigation |
 | Board (stages) | App | Kanban Board | search-and-filter | boards-and-calendars |

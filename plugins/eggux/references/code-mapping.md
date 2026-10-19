@@ -55,6 +55,9 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Bar Chart`, `Line Chart`, `Sparkline` | shadcn `Chart` (Recharts) | `var(--chart-N)` |
 | `Donut Chart`, `Bar Chart Horizontal` | Recharts `PieChart` (`innerRadius`), `BarChart layout="vertical"` | |
 | `Heatmap` | custom CSS grid or nivo `HeatMap` | |
+| `Gauge` | Recharts `RadialBarChart` (half circle) or custom SVG arc | |
+| `Treemap` | Recharts `Treemap` with a custom cell renderer | |
+| `Gantt Bar`, `Gantt Milestone`, Gantt block | SVAR Gantt, Frappe Gantt, or a custom grid with dnd-kit | |
 
 ## Content, communication, AI
 | Figma | Code | Notes |
