@@ -34,6 +34,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   The scan reports this as `brokenSlot`.
 - `clone()` of a variant turns its SLOT into a FRAME named after the property. Clone first, then
   create slots; or delete that frame and create a fresh slot.
+- `component.findAll(n => n.type === 'SLOT')` also returns slots inside nested instances (an
+  Input Group's Start slot). Take the component's own slot from `component.children` or check
+  `slot.parent`.
 - In an instance, and in the main component after `editComponentProperty`, a slot node is named
   after its property (`Content`, `Footer`). Find slots by type and name or position.
 - Fill an instance slot before moving that instance into another instance's slot; references to
@@ -79,7 +82,8 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 
 ## Variables
 - Variable names that do not exist throw only when used: check the scale first (there is no
-  `spacing/18` or `spacing/160`; widths like 672 come from `layout/container/*`).
+  `spacing/4_5`, `spacing/5_5`, `spacing/18` or `spacing/160`; half steps stop at 3_5; widths
+  like 672 come from `layout/container/*`). `N(x) || N(y)` does not fall back: N throws.
 - FLOAT and STRING tokens without a Figma use (motion) get `scopes = []` and a WEB code syntax.
 
 ## Safety

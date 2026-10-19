@@ -68,12 +68,14 @@ express: when to use what, behavior, rules.
 
 ## Figma library status
 
-EGG UI v2 has foundations (variables, text and effect styles), 43 Lucide icons and components
-for buttons, badges, chips, avatars, separators, forms (Input, Field, Select, Checkbox, Radio,
-Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, sheets and drawers, popovers, combobox, calendar and date picker, pagination, stepper, description list, timeline, time picker, input OTP, file upload, progress, slider, charts (bar, line, area, sparkline, chart card), spinner, kbd, status dot, cards, tables on auto-layout
-grid and the sidebar, plus Field Presets (email, password, phone, card, address) and Blocks
-organized by category (navigation, hero, sections, forms, app: record page, booking, notifications, multi-step form), Page Shells (app, marketing, auth, mobile),
-and a Brand page with the logo and a theme preview. Content areas use Figma native slots.
+EGG UI v2 has foundations (variables, text and effect styles, density, motion, chart palette),
+50 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
+data display (tables on auto-layout grid, charts, description list, timeline), dates and
+scheduling, files, content (code block, table of contents, rich text editor), communication
+(comments, chat), commerce, Kanban, Rating, Carousel and Color Picker. On top: Field Presets,
+Blocks by category (app, commerce, content, forms, hero, navigation, results, sections) and 7
+Page Shells (app, marketing, auth, mobile, wizard, split view, docs), plus a Brand page with the
+logo and a theme preview. Content areas use Figma native slots.
 Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
 
 ## Roadmap
@@ -86,13 +88,13 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
    default content made domain-neutral.
 3b. Done: content (Post Card, Code Block, Table of Contents, Blog List, Article, Docs shell),
    marketing sections (Logo Cloud, Team, Contact, Newsletter, Comparison Table), Kanban, Scheduler.
-3c. Next: rich text editor, comments thread, chat, carousel, rating, color picker, month view.
-4. Later: Table of Contents, Tour, Docs shell, Rating, Color Picker, more charts.
-5. Blocks per vertical: SaaS admin (onboarding, billing, team, profile, integrations, API keys),
-   commerce (product, cart, checkout, orders), content (blog, article, docs), auth (reset, 2FA,
-   invite), communication (inbox, chat, comments).
-6. Advanced display: Scheduler, Kanban, Carousel, Rich Text Editor, Code Block, Prose.
-7. System: CHANGELOG, Code Connect, documentation site.
+3c. Done: Rich Text Editor, comments (Comment, Comment Composer, Comments block), chat (Chat
+   Message, Typing Indicator, Chat Composer, Conversation block), month view, Rating, Carousel,
+   Color Picker.
+3d. Next: AI chat interface and patterns (prompt input, assistant message with streaming,
+   sources, tool steps, suggestions, feedback, conversation history).
+4. Later: tour / coachmarks, video player, more charts (pie, donut, heatmap).
+5. System: CHANGELOG, Code Connect, documentation site.
 
 ## What the pack covers
 

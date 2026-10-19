@@ -12,7 +12,8 @@ component guides it names. Names are Figma components; inventory in
 | One object (detail) | App | Record Header, Record Detail | record-page | description-list, tabs, navigation |
 | Dashboard | App | Analytics | loading-states, empty-state | charts, card, indicators |
 | Settings, admin | App | Profile, Team Members, Billing, Notification Preferences, API Keys, Integrations, Settings Section | settings-and-admin, unsaved-changes, delete-confirmation | input, select, card |
-| Inbox, chat, tickets, files | Split View | (example "inbox") | search-and-filter, empty-state | navigation (split view), list-and-tree |
+| Inbox, chat, tickets, files | Split View | Conversation (example "inbox") | search-and-filter, empty-state | navigation (split view), list-and-tree, comments-and-chat |
+| Discussion on an object (task, document, invoice) | App (record page) | Comments | record-page | comments-and-chat, rich-text-editor |
 | Create / edit form | App, or Sheet / Dialog over a list | Forms blocks, Field Presets | form-validation, form-presets, unsaved-changes | input, select, date-picker, file-upload, dialog, drawer |
 | Long or blocking flow (onboarding, setup, import) | Wizard | Multi-step Form, Onboarding Checklist | multi-step-form | stepper, progress-and-slider |
 | Sign in, sign up, reset, 2FA, invite | Auth | Sign In, Sign Up, Forgot Password, Check Email, Reset Password, Two-Factor, Accept Invite | auth, form-presets | input (OTP) |
@@ -20,8 +21,8 @@ component guides it names. Names are Figma components; inventory in
 | Blog, article | Marketing | Blog List, Article | content-and-docs | content (Post Card, Code Block, Table of Contents) |
 | Documentation, help center | Docs | (example "docs page") | content-and-docs | content, navigation |
 | Board (stages) | App | Kanban Board | search-and-filter | boards-and-calendars |
-| Calendar, schedule | App | Scheduler Week, Booking | booking | boards-and-calendars, date-picker |
-| Shop: product, cart, checkout | Marketing | Product Card, Product Detail, Order Summary, Address, Payment | commerce, form-presets | select (multi), input (number, group), drawer |
+| Calendar, schedule | App | Scheduler Week, Scheduler Month, Booking | booking | boards-and-calendars, date-picker |
+| Shop: product, cart, checkout | Marketing | Product Card, Product Detail, Order Summary, Address, Payment | commerce, form-presets | select (multi), input (number, group), drawer, carousel, rating |
 | Pick a date and time | App or Marketing | Booking | booking | date-picker |
 | Error, empty, success page | the current shell | Result | result-pages, empty-state | |
 | Mobile screen | Mobile | Navbar Mobile | mobile | drawer, navigation |
@@ -36,6 +37,10 @@ component guides it names. Names are Figma components; inventory in
 | Pick one or many options | (none) | select (Select, Combobox, Tag Input), toggle in tabs |
 | Show more without leaving | (none) | popover (Popover, Hover Card), dialog, drawer, accordion |
 | Find anything fast | search-and-filter | popover (Command Dialog, search suggestions) |
+| Write formatted text | unsaved-changes | rich-text-editor |
+| Rate or review | (none) | rating |
+| Pick a color | (none) | color-picker |
+| Browse images or related items | (none) | carousel |
 
 ## Component guides and what they cover
 
@@ -46,9 +51,12 @@ component guides it names. Names are Figma components; inventory in
 | avatar | Avatar, Avatar Group |
 | badge | Badge, Badge Count, Chip, Status Dot (see indicators) |
 | button | Button, Button Icon, Button Group, Split Button |
-| boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week view |
+| boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view |
 | card | Card, Stat Card, Option Card, Post Card |
+| carousel | Carousel |
 | charts | Bar, Line, Sparkline, Chart Card, legend, tooltip |
+| color-picker | Color Picker, swatches, color field |
+| comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer |
 | content | Post Card, Code Block, TOC Item, Table of Contents |
 | date-picker | Calendar, Date Picker, Time Picker, Date Range Picker |
 | description-list | Description List, Timeline |
@@ -63,6 +71,8 @@ component guides it names. Names are Figma components; inventory in
 | pagination | Pagination |
 | popover | Popover, Command, Combobox panel, Command Dialog, Hover Card, search suggestions |
 | progress-and-slider | Progress, Slider |
+| rating | Rating |
+| rich-text-editor | Rich Text Editor |
 | select | Select, Combobox, Checkbox, Radio, Switch, Tag Input |
 | sidebar | Sidebar and its parts |
 | skeleton | Skeleton |
