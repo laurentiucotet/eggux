@@ -3,6 +3,17 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.30.0
+- Figma Intro page: getting started, what is inside with counts, how to use, file organization,
+  conventions, credits and license, changelog (library version 2.4).
+- 6 navigation blocks: Navbar Centered, Navbar Search, Navbar Mega Menu; Footer Newsletter,
+  Footer Corporate, Footer Centered.
+- New Help center family (Content page), 8 blocks: Help Hero, Help Categories, Help Popular
+  Articles, Help Article List, Support Options, Docs Page Footer, Changelog, Status Page; plus
+  `Example / Help center`. 109 blocks in total.
+- Guides: navbar and footer picks in marketing-pages; help center, changelog and status page
+  rules in content-and-docs; index rows; code mapping; Community checklist (Intro done).
+
 ## 0.29.0
 - 13 blocks: Pricing Single, Pricing Calculator; FAQ Grid, FAQ Centered; Stats Cards, Stats
   Split; Team Grid, Team List; Careers List, Careers Benefits, Job Header; Gallery Grid,

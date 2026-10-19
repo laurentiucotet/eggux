@@ -19,10 +19,12 @@ grouped by family inside each page's `Blocks` section.
 | Team | Team, Team Grid, Team List | Grid with photos for the company page; List with bios for leadership and investors |
 | Careers | Careers List, Careers Benefits, Job Header | List grouped by department with counts; benefits as facts; job page header with salary range |
 | Gallery | Gallery Grid, Gallery Mosaic | Grid for places and events; Mosaic for a property, product or venue detail page |
-| Footer | Footer, Footer Simple | Simple for few pages; columns for large sites |
+| Navbar | Navbar, Navbar Centered, Navbar Search, Navbar Mega Menu, Navbar Mobile | Default for most sites; Centered for brand-led sites with few links; Search for docs and help; Mega Menu past 7 top-level links or for several products |
+| Help center (Content page) | Help Hero, Help Categories, Help Popular Articles, Help Article List, Support Options, Docs Page Footer, Changelog, Status Page | See content-and-docs |
+| Footer | Footer, Footer Simple, Footer Newsletter, Footer Corporate, Footer Centered | Simple for few pages; columns for large sites; Newsletter when updates matter; Corporate for enterprise (legal, certifications, status, language); Centered for landing pages and microsites |
 
 ## Typical order (landing page)
-1. Navbar (Navbar Mobile below 768)
+1. Navbar (Navbar Mobile below 768; mega menu panels open on click, close on Escape)
 2. Hero: one promise, one primary CTA, one secondary
 3. Logo Cloud: proof right after the promise
 4. Features (3-6), Stats

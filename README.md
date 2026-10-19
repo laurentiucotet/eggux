@@ -123,7 +123,10 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3k. Done: `/eggux:new-feature` interview and feature spec template.
 3l. Done: `/eggux:new-component` with proposal, stress test, approval and component docs.
 3m. Done: pricing, FAQ, stats, team, careers and gallery variants; Gauge, Treemap; Gantt.
-4. Next: footer and navbar variants, blocks for docs and help centers, Code Connect once a component codebase exists.
+3n. Done: Intro page; navbar variants (Centered, Search, Mega Menu), footer variants (Newsletter,
+   Corporate, Centered); Help center family (hero, topics, popular, article list, support,
+   docs page footer, changelog, status page) with a Help center example.
+4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 
 ## What the pack covers
