@@ -9,12 +9,15 @@ validation: `references/tokens.md` § Data visualization.
 | One number people check (revenue today) | Stat Card, not a chart |
 | Change over time | Line (area for one series or a total) |
 | Compare categories | Bar (horizontal when labels are long) |
+| Rank items (top customers, reasons) | Bar Chart Horizontal, sorted |
+| Intensity over two dimensions (day × hour, team × week) | Heatmap |
 | Part of a whole over categories | Stacked bar (≤ 4 segments) |
 | Trend next to a number | Sparkline |
 | Two measures with different units | Two charts, never two y axes |
 | Exact values matter more than shape | Table |
 
-Pie and donut only for 2-3 parts of one whole; otherwise a stacked bar.
+Pie and donut only for 2-5 parts of one whole, largest first, the rest in "Other", always with
+the legend showing values and percentages; to compare parts, use Bar Chart Horizontal.
 
 ## Rules
 - Title says what is measured, description the period and unit; footer states the insight.
@@ -32,10 +35,13 @@ Pie and donut only for 2-3 parts of one whole; otherwise a stacked bar.
 - Dark mode uses the same tokens; check the chart on `background/card`.
 
 ## Figma
-`Bar Chart` (single, grouped, stacked), `Line Chart` (line, area), `Sparkline`, `Chart Legend`,
-`Chart Tooltip`, `Chart Card` (Actions and Chart slots). Edit bar heights and line points for real
+`Bar Chart` (single, grouped, stacked), `Bar Chart Horizontal`, `Line Chart` (line, area),
+`Donut Chart` (donut, pie; segments with `arcData`, 2 px surface separators), `Heatmap` (one
+hue in 5 opacity steps + muted for zero), `Sparkline`, `Chart Legend`, `Chart Tooltip`,
+`Chart Card` (Actions and Chart slots). Edit bar heights and line points for real
 data. Block: `Block / Analytics` on the App page.
 
 ## Code
 shadcn `Chart` (Recharts) with `ChartContainer`, `ChartTooltip`, `ChartLegend`; series colors via
-`var(--chart-N)` in `chartConfig`.
+`var(--chart-N)` in `chartConfig`. Donut: `PieChart` with `innerRadius`; horizontal bars:
+`BarChart layout="vertical"`; heatmap: a CSS grid of cells with `opacity` steps (or nivo).

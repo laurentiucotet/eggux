@@ -21,6 +21,7 @@ landing page: too much air, too few rows, no audit trail, no way to share a filt
 | Several companies or tenants | Org Switcher in the Sidebar Workspace | `settings-and-admin.md` |
 | Recurring numbers | Report: period, comparison, KPIs, chart, breakdown, export, schedule | `reports.md` |
 | Long records | Record Form: section nav, two-column fields, Save Bar, danger zone | `record-page.md` |
+| Bring data in | Import: upload, map columns (`Block / Import Mapping`), review problems, import in the background | this file § Import |
 
 ## Rules
 - Density: Compact rows (`density/*`), but touch targets stay 44 px on mobile and text never
@@ -37,6 +38,15 @@ landing page: too much air, too few rows, no audit trail, no way to share a filt
 - Dates, numbers and currency follow the user's locale; amounts show their currency.
 - Every screen has a permission-aware empty state: "You do not have access to invoices.
   Ask an admin" instead of a blank page.
+
+## Import
+- Steps: Upload (CSV, XLSX; size and row limits shown), Map columns, Review, Import.
+- Mapping: auto-match by column name; each file column shows sample values; unmatched columns
+  need a field or Skip; required fields must be mapped before Continue.
+- Review: count of new, updated and invalid rows; invalid rows can be downloaded, skipped or
+  imported with a "Needs review" tag. Never fail the whole file for a few rows.
+- Import runs in the background with progress; notify when done with a link to the result
+  and an undo window when possible. Save the mapping as a template for next time.
 
 ## Figma
 Blocks on the Enterprise page (BLOCKS): Filter Builder, Approval Request, Audit Log,

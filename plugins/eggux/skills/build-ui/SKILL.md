@@ -46,6 +46,7 @@ If a client file is missing, say which skill creates it and continue with base r
   copied from the Table page template, not components.
 
 ## Code
+Which code component implements each Figma component: `${CLAUDE_PLUGIN_ROOT}/references/code-mapping.md`.
 Follow the project's structure. Semantic Tailwind classes that map to tokens (`bg-primary`,
 `text-muted-foreground`, `border-border`), never palette classes (`bg-blue-600`).
 
