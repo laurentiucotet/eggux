@@ -62,18 +62,18 @@ express: when to use what, behavior, rules.
 
 ## Figma library status
 
-EGG UI v2 has foundations (variables, text and effect styles), 26 Lucide icons and these
-components: Button, Button Icon, Badge, Input, Field, Alert, Card, Checkbox, Radio, Switch,
-Skeleton, Tooltip, Menu (Item, Label, Separator), Select, Tabs, Toast, Dialog, Alert Dialog and
-Table (Row, Cell). Content areas use Figma native slots. Inventory and
-conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
+EGG UI v2 has foundations (variables, text and effect styles), 39 Lucide icons and components
+for buttons, badges, chips, avatars, separators, forms (Input, Field, Select, Checkbox, Radio,
+Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, cards, tables on auto-layout
+grid and the sidebar. Content areas use Figma native slots.
+Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
 
 ## What the pack covers
 
 - **Patterns:** delete confirmation, empty state, form validation, loading states, search and
   filter, feedback messages, unsaved changes.
-- **Components:** alert, badge, button, card, dialog, dropdown menu, input, select and choice
-  inputs, skeleton, table, tabs, toast, tooltip.
+- **Components:** alert, avatar, badge (and chip), button, card, dialog, dropdown menu, input,
+  select and choice inputs, sidebar, skeleton, table, tabs, toast, tooltip.
 
 ## Growing the pack
 

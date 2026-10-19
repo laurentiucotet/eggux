@@ -22,6 +22,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Destructive confirmations follow `patterns/delete-confirmation.md`.
 
 ## Figma
-- `Dialog`: Title, Description, Content (native slot), footer with Cancel + primary (exposed), close X.
-- `Alert Dialog`: no close button and no slot; footer with Cancel + destructive action.
+- Built from three pieces, like shadcn: `Dialog Header` (title, description, close X),
+  `Dialog Footer` (Actions slot) and `Dialog` with native slots Header, Content and Footer.
+- `Alert Dialog`: same pieces, Header with Close off, no Content, footer Cancel + destructive.
+- Reuse `Dialog Header` and `Dialog Footer` for Sheet and Drawer.
 - Overlay behind both: `dialog/overlay`. See the "dialog over page" example on the Dialog page.

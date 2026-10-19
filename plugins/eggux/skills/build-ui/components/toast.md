@@ -21,3 +21,5 @@ and inline messages: `patterns/feedback-messages.md`.
 ## Figma
 `Toast` types: default, success, error, warning, info, loading. Edit title and description in the
 instance; turn on `Action` for Undo or View (the nested Button is exposed).
+`Close button` is off by default. Turn it on for toasts with an action, errors and toasts that
+stay longer than ~8 s; simple confirmations dismiss themselves.

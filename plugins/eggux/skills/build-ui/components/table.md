@@ -27,6 +27,10 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Wide tables scroll horizontally with the first column sticky. On mobile, switch to a list.
 
 ## Figma
-Compose from `Table Row` (native slot `Cells`) with `Table Cell` for text and `Table Cell Slot` for
-badges, avatars or a `Button Icon` with the row actions menu. Keep column widths equal across rows.
-Start from the "invoices table" example on the Table page.
+The table is a GRID frame, not a component. Copy `Template / invoices table (grid)` and change
+columns and rows. Details: "Tables on auto-layout grid" in `references/figma-library.md`.
+- Cells: `Table Cell` (header, body, expanded × default, hover, selected) with a Content slot.
+- Content: `Table Header Label` (sorting), `Table Cell Text`, `Table Cell Stack`,
+  `Table Cell User`, Badge, Checkbox without label, Button Icon (actions, expand).
+- Selection: checkbox column, header checkbox indeterminate on partial selection,
+  `Table Toolbar` above the grid with "N selected" and the bulk actions.

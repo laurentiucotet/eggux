@@ -12,64 +12,105 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 
 | Page | Component | Variants | Properties |
 |---|---|---|---|
-| Icons | `Icon/<name>` | - | Lucide, 24 px, stroke bound to `foreground/default`. Rescale to 16 (UI) or 12 (badge) |
+| Icons | `Icon/<name>` | - | Lucide, 24 px, one `Vector` layer bound to `foreground/default`. Rescale to 16 (UI) or 12 (badge) |
 | Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link. Size: sm, default, lg. State: default, hover, focus, disabled | Label; Leading icon, Trailing icon (boolean + swap) |
 | Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. State: as Button | Icon (swap) |
-| Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info | Label; Icon (boolean + swap) |
+| Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info. Shape: rounded, pill | Label; Icon (boolean + swap); Dot; Count + Count value |
+| Badge | `Badge Count` | Variant: default, secondary, destructive, outline | Count (numeric bubble for nav items and icon buttons) |
+| Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Leading icon, Remove |
+| Avatar | `Avatar` | Type: initials, image. Size: sm 24, default 32, lg 40, xl 48 | Initials, Status (online dot). Photo = image fill on the `image` layer |
+| Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
 | Input | `Input` | State: default, focus, error, disabled. Content: placeholder, filled | Value; Leading icon (boolean + swap) |
-| Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Nested Input is exposed |
-| Alert | `Alert` | Variant: default, destructive, success, warning, info | Title, Description, Show description |
-| Card | `Card` | - | Title, Description, Show description, Show action, Show footer. Content (native slot). Nested buttons exposed |
+| Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Control (native slot, default Input) |
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
-| Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
-| Tooltip | `Tooltip` | Side: top, bottom, left, right (where it sits relative to the trigger) | Label |
-| Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
-| Menu | `Menu Label`, `Menu Separator` | - | Label |
-| Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
 | Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
+| Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
+| Menu | `Menu Label` | - | Label |
+| Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
 | Tabs | `Tab` | Style: pill, line. State: default, active, focus, disabled | Label |
 | Tabs | `Tabs`, `Tabs Line` | - | Tabs (native slot of Tab instances) |
-| Toast | `Toast` | Type: default, success, error, warning, info, loading | Show description, Action (nested Button exposed). Text edited per instance |
-| Dialog | `Dialog` | - | Title, Description, Show description, Show footer, Show close. Content (native slot) |
-| Dialog | `Alert Dialog` | - | Title, Description. Footer buttons exposed |
-| Table | `Table Cell` | Type: header, body. Align: left, right | Text |
-| Table | `Table Cell Slot` | - | Content (native slot, default: Badge) |
-| Table | `Table Row` | Type: header, body. State: default, hover, selected | Cells (native slot) |
+| Tooltip | `Tooltip` | Side: top, bottom, left, right | Label |
+| Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
+| Alert | `Alert` | Variant: default, destructive, success, warning, info | Title, Description, Show description |
+| Toast | `Toast` | Type: default, success, error, warning, info, loading | Show description, Action (nested Button exposed), Close button (off by default). Text edited per instance |
+| Dialog | `Dialog Header` | - | Title, Description, Show description, Close |
+| Dialog | `Dialog Footer` | - | Actions (native slot) |
+| Dialog | `Dialog` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer |
+| Dialog | `Alert Dialog` | - | Header, Footer (native slots). Header with Close off, footer Cancel + destructive |
+| Card | `Card Header` | - | Title, Description, Show description, Show action. Action (native slot) |
+| Card | `Card Footer` | - | Actions (native slot) |
+| Card | `Card` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer |
+| Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Footnote, Show footer. Change badge and trend line edited per instance |
+| Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
+| Table | `Table Cell` | Type: header, body, expanded. State: default, hover, selected | Content (native slot) |
+| Table | `Table Header Label` | Sort: off, sortable, ascending, descending. Align: left, right | Label |
+| Table | `Table Cell Text` | Style: default, strong, muted. Align: left, right | Text |
+| Table | `Table Cell Stack` | - | Title, Description |
+| Table | `Table Cell User` | - | Name, Email, Show email. Avatar exposed |
+| Table | `Table Toolbar` | - | Selection ("2 selected"), Actions (native slot) |
+| Sidebar | `Sidebar Item` | Mode: expanded, collapsed. State: default, hover, active, disabled | Label, Icon (swap), Badge (Badge Count, exposed), Chevron |
+| Sidebar | `Sidebar Group Label` | - | Label |
+| Sidebar | `Sidebar Group` | Mode: expanded, collapsed | Items (native slot), Show label |
+| Sidebar | `Sidebar Workspace`, `Sidebar User` | Mode: expanded, collapsed | Title, Subtitle |
+| Sidebar | `Sidebar` | Mode: expanded (256), collapsed (48) | Header, Content, Footer (native slots) |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
-loader-circle, mail, trash-2, ellipsis, pencil, copy, archive, user, settings, log-out, calendar. Add more on the Icons page
-as Lucide components with the same structure.
+loader-circle, mail, trash-2, ellipsis, pencil, copy, archive, user, users, settings, log-out,
+calendar, clock, trending-up, trending-down, map-pin, phone, building, inbox, house, file-text,
+chart-column, panel-left, bell.
 
 ## Conventions used
 - Variant values use the shadcn prop values (`Variant=outline`, `Size=sm`), so Figma maps 1:1 to code.
 - Focus is a 2 px gap (`background/default`) plus a 4 px ring (`border/ring`), as drop shadows.
+  Figma draws shadow spread only with `clipsContent` on, so focus variants clip; nothing else does.
 - Disabled is the variant at `opacity/50`.
 - Text inside a variant is bound to a TEXT property, so text styling is shared by all variants.
   Per-variant decoration (like the link hover underline) is drawn with a frame stroke instead.
+- Icons are a single `Vector` layer. Swapping keeps the stroke color override only when layer
+  structure matches, so every new icon is flattened to one layer named `Vector`.
+- Header / Content / Footer: Dialog and Card are built from a Header component, a Footer
+  component and a container with three native slots, matching shadcn `*Header`, `*Footer`.
 
 ## Slots
 Content areas use Figma native slots (component property type `SLOT`), never instance-swap
-placeholders. A slot holds a dashed placeholder by default; in an instance, delete it and put
-any layers or instances inside.
+placeholders. A slot holds a default (a placeholder or the usual child); in an instance, replace
+it with any layers or instances.
 
+- Every slot has `clipsContent` off: `createSlot()` turns it on by default and it cuts focus
+  rings, shadows and dropdowns.
 - In Figma: select the slot in the instance and add content to it. "Reset slot" brings back the default.
-- Through the Plugin API (build-ui): `inst.findOne(n => n.type === 'SLOT')`, remove its
-  placeholder, `appendChild` the content, then set `layoutSizingHorizontal = 'FILL'` on each child.
+- Through the Plugin API (build-ui): in an instance, slots are named after their property
+  (`Header`, `Content`, `Footer`, `Items`, `Control`). Find them with
+  `inst.children.find(n => n.type === 'SLOT' && n.name === 'Content')`, remove the default,
+  `appendChild` the content, then set `layoutSizingHorizontal = 'FILL'` on each child.
 - Creating a slot in a library component: `component.createSlot()` adds the node and a `SLOT`
-  property. In a component set, create the slot in every variant before `combineAsVariants`:
-  slots with the same name merge into one property. Rename the property with `editComponentProperty(key, { name, description })`, give the
-  slot auto layout and token-bound padding, and add a placeholder as default content.
-- Use a slot when the content varies per use (card body, dialog body, table cell content). Use
-  boolean or TEXT properties when the variation is fixed (show footer, title text).
+  property (key in `slot.componentPropertyReferences.slotContentId`). In a component set,
+  create the slot in every variant before `combineAsVariants`: slots with the same name merge
+  into one property. Rename it with `editComponentProperty(key, { name, description })`.
+- A slot cannot use GRID layout. Grid layouts (tables) are frames built by the designer.
+- Use a slot when the content varies per use. Use boolean or TEXT properties when the variation
+  is fixed (show footer, title text, leading icon on a menu item).
+
+## Tables on auto-layout grid
+The table is a template frame, not a component: copy `Template / invoices table (grid)` from the
+Table page. It is a frame with `layoutMode = GRID`, one column per field (fixed width for
+checkbox and actions, flex for content), rows that hug their content.
+
+- Each cell is a `Table Cell` instance with `layoutSizingHorizontal/Vertical = FILL`.
+- A row state (hover, selected) is the same State on every cell of that row.
+- An expanded row is one `Table Cell` Type=expanded spanning all columns (`gridColumnSpan`),
+  placed right after its row, whose expand button shows chevron-down.
+- Put `Table Toolbar` above the grid while rows are selected.
 
 ## Examples on the pages
-Some pages hold example frames (not components) that show composition: list row loading
-(Skeleton), icon button with tooltip, open select, dialog over page, invoices table. Copy them
-as a starting point.
+Example frames (not components) show composition; copy them as a starting point:
+list row loading (Skeleton), icon button with tooltip, open select, dialog over page, filter
+chips, cards (list, profile, form, empty state), stat cards row, invoices table (grid), app shell
+(Sidebar + header + stats + table).
 
 ## Not built yet
-Combobox, Textarea, Popover, Sheet, Drawer, Date picker, Pagination, Breadcrumb, Avatar, Sidebar.
+Combobox, Textarea, Popover, Sheet, Drawer, Date picker, Pagination, Breadcrumb, Avatar Group.
 Until they exist, compose from the components above, tokens and text styles, and flag it.
