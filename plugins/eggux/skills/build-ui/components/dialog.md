@@ -27,3 +27,11 @@ Usage guidelines only. Visual specs live in the Figma component.
 - `Alert Dialog`: same pieces, Header with Close off, no Content, footer Cancel + destructive.
 - Reuse `Dialog Header` and `Dialog Footer` for Sheet and Drawer.
 - Overlay behind both: `dialog/overlay`. See the "dialog over page" example on the Dialog page.
+
+## Alert Dialog types
+| Type | When | Buttons |
+|---|---|---|
+| confirm | A decision with consequences that can be undone or is not destructive | Cancel + action verb |
+| destructive | Irreversible loss (delete, revoke) | Cancel + destructive action verb |
+| acknowledge | The user must know before going on; no decision | One button ("Got it") |
+Prefer a toast or inline message for acknowledgements that do not block the next step.

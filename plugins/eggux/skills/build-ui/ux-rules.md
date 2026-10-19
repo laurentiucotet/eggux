@@ -25,6 +25,7 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Validate on blur or submit, not on every keystroke. See `patterns/form-validation.md`.
 - Required fields are marked consistently; mark optional ones instead when most are required.
 - Never clear what the user typed after an error.
+- Email, password, phone, card and address fields use the presets. See `patterns/form-presets.md`.
 
 ## Content
 - Use the client's terminology from `decisions.md`. A "Don't use" term is a defect.

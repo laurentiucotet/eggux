@@ -20,7 +20,8 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Leading icon, Remove |
 | Avatar | `Avatar` | Type: initials, image. Size: sm 24, default 32, lg 40, xl 48 | Initials, Status (online dot). Photo = image fill on the `image` layer |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
-| Input | `Input` | State: default, focus, error, disabled. Content: placeholder, filled | Value; Leading icon (boolean + swap) |
+| Input | `Input` | State: default, focus, error, disabled. Content: placeholder, filled | Value; Leading icon (boolean + swap); Trailing (native slot) + Show trailing |
+| Input | `Password Strength` | Strength: empty, weak, fair, good, strong | Meter + message under a new-password field |
 | Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Control (native slot, default Input) |
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
@@ -31,20 +32,24 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
 | Tabs | `Tab` | Style: pill, line. State: default, active, focus, disabled | Label |
 | Tabs | `Tabs`, `Tabs Line` | - | Tabs (native slot of Tab instances) |
+| Toggle Group | `Toggle Group Item` | State: off, hover, on, focus, disabled | Label, Show label, Icon + Icon type |
+| Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels |
+| List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description. Leading, Trailing (native slots) |
+| List & Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Checkbox (exposed), Icon + Icon type, Count |
 | Tooltip | `Tooltip` | Side: top, bottom, left, right | Label |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
-| Alert | `Alert` | Variant: default, destructive, success, warning, info | Title, Description, Show description |
+| Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner | Title, Description, Show description, Actions (native slot) + Show actions, Dismiss |
 | Toast | `Toast` | Type: default, success, error, warning, info, loading | Show description, Action (nested Button exposed), Close button (off by default). Text edited per instance |
-| Dialog | `Dialog Header` | - | Title, Description, Show description, Close |
+| Dialog | `Dialog Header` | - | Title, Description, Show description, Close. Media (native slot) + Show media |
 | Dialog | `Dialog Footer` | - | Actions (native slot) |
 | Dialog | `Dialog` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer |
-| Dialog | `Alert Dialog` | - | Header, Footer (native slots). Header with Close off, footer Cancel + destructive |
+| Dialog | `Alert Dialog` | Type: confirm, destructive, acknowledge | Header, Footer (native slots). Status icon in the header Media slot |
 | Card | `Card Header` | - | Title, Description, Show description, Show action. Action (native slot) |
 | Card | `Card Footer` | - | Actions (native slot) |
 | Card | `Card` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer |
 | Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Footnote, Show footer. Change badge and trend line edited per instance |
 | Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
-| Table | `Table Cell` | Type: header, body, expanded. State: default, hover, selected | Content (native slot) |
+| Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
 | Table | `Table Header Label` | Sort: off, sortable, ascending, descending. Align: left, right | Label |
 | Table | `Table Cell Text` | Style: default, strong, muted. Align: left, right | Text |
 | Table | `Table Cell Stack` | - | Title, Description |
@@ -55,6 +60,10 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Sidebar | `Sidebar Group` | Mode: expanded, collapsed | Items (native slot), Show label |
 | Sidebar | `Sidebar Workspace`, `Sidebar User` | Mode: expanded, collapsed | Title, Subtitle |
 | Sidebar | `Sidebar` | Mode: expanded (256), collapsed (48) | Header, Content, Footer (native slots) |
+| Brand | `Logo Mark` | - | The one place to put the client symbol; used by Logo and Sidebar Workspace |
+| Brand | `Logo` | Type: mark, wordmark, full | Name |
+| Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed |
+| Blocks | `Block / Sign In`, `Block / Sign Up`, `Block / Payment`, `Block / Address` | - | Card + Field Presets + Buttons |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
@@ -71,6 +80,8 @@ chart-column, panel-left, bell.
   Per-variant decoration (like the link hover underline) is drawn with a frame stroke instead.
 - Icons are a single `Vector` layer. Swapping keeps the stroke color override only when layer
   structure matches, so every new icon is flattened to one layer named `Vector`.
+- Cloning a variant turns its SLOT into a plain frame named after the property. Clone first,
+  then create slots, or delete the frame and create a fresh slot.
 - Header / Content / Footer: Dialog and Card are built from a Header component, a Footer
   component and a container with three native slots, matching shadcn `*Header`, `*Footer`.
 
@@ -105,12 +116,27 @@ checkbox and actions, flex for content), rows that hug their content.
   placed right after its row, whose expand button shows chevron-down.
 - Put `Table Toolbar` above the grid while rows are selected.
 
+## Brand page
+`Brand` holds Logo Mark, Logo and a Theme preview (color roles, type scale, radius, a few
+components) bound to Semantic tokens. To brand a client file: replace the glyph in Logo Mark,
+re-alias Semantic tokens (`/eggux:brand-intake`), check the preview in Light and Dark.
+
+## Three layers
+1. Primitives and components (Button, Input, Field, Card...): no business meaning.
+2. Field Presets: a component with a purpose (email, phone, card number) built from layer 1.
+3. Blocks: whole compositions (sign in, payment, address) built from layers 1 and 2.
+A change in layer 1 flows up. Add a preset or block only when the same composition appears in
+two or more projects; otherwise build it in the client file.
+
 ## Examples on the pages
 Example frames (not components) show composition; copy them as a starting point:
 list row loading (Skeleton), icon button with tooltip, open select, dialog over page, filter
-chips, cards (list, profile, form, empty state), stat cards row, invoices table (grid), app shell
-(Sidebar + header + stats + table).
+chips, cards (list, profile, form, empty state), stat cards row, invoices table (grid), inline edit
+and column resize, permissions tree, navigation tree, view switch, app shell (Sidebar + header +
+stats + table).
 
 ## Not built yet
-Combobox, Textarea, Popover, Sheet, Drawer, Date picker, Pagination, Breadcrumb, Avatar Group.
+Combobox (country search), Textarea, Popover, Sheet, Drawer, Date picker, Pagination, Breadcrumb,
+Avatar Group. Icons: the 39 Lucide icons stay; the team may switch to Phosphor (flatten each icon
+to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.

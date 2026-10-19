@@ -65,15 +65,18 @@ express: when to use what, behavior, rules.
 EGG UI v2 has foundations (variables, text and effect styles), 39 Lucide icons and components
 for buttons, badges, chips, avatars, separators, forms (Input, Field, Select, Checkbox, Radio,
 Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, cards, tables on auto-layout
-grid and the sidebar. Content areas use Figma native slots.
+grid and the sidebar, plus Field Presets (email, password, phone, card, address) and Blocks
+(sign in, sign up, payment, address), a Brand page with the logo and a theme preview. Content areas
+use Figma native slots.
 Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
 
 ## What the pack covers
 
-- **Patterns:** delete confirmation, empty state, form validation, loading states, search and
-  filter, feedback messages, unsaved changes.
+- **Patterns:** delete confirmation, empty state, form validation, form presets, loading states,
+  search and filter, feedback messages, unsaved changes.
 - **Components:** alert, avatar, badge (and chip), button, card, dialog, dropdown menu, input,
-  select and choice inputs, sidebar, skeleton, table, tabs, toast, tooltip.
+  select and choice inputs, sidebar, skeleton, table, tabs and toggle group, toast, tooltip,
+  list and tree.
 
 ## Growing the pack
 

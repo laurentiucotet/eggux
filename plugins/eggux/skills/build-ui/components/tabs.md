@@ -21,3 +21,9 @@ Usage guidelines only. Visual specs live in the Figma component.
 - In pill tabs, inactive text is `foreground/default`, not muted: muted text on the muted list
   fails contrast. The active tab is marked by its background and shadow.
 - Use `Tabs Line` for page-level sections, pill tabs for switching views inside a card or panel.
+
+## Tabs or Toggle Group
+- Tabs switch between panels of content. Toggle Group sets a value: view mode (list / board),
+  period (day / week / month), formatting. If nothing below changes except how data is shown or
+  filtered, it is a Toggle Group.
+- `Toggle Group` default or outline; items can be icon-only (with accessible label and tooltip).
