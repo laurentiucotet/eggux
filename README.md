@@ -66,7 +66,7 @@ express: when to use what, behavior, rules.
 
 EGG UI v2 has foundations (variables, text and effect styles), 39 Lucide icons and components
 for buttons, badges, chips, avatars, separators, forms (Input, Field, Select, Checkbox, Radio,
-Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, cards, tables on auto-layout
+Switch), menus, tabs, tooltips, skeletons, alerts, toasts, dialogs, sheets and drawers, cards, tables on auto-layout
 grid and the sidebar, plus Field Presets (email, password, phone, card, address) and Blocks
 organized by category (navigation, hero, sections, forms, app), Page Shells (app, marketing, auth),
 and a Brand page with the logo and a theme preview. Content areas use Figma native slots.

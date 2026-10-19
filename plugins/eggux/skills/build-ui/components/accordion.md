@@ -23,4 +23,4 @@ Usage guidelines only. Visual specs live in the Figma component.
 
 ## Figma
 `Accordion Item` Density × State, Meta and Content native slots; `Accordion` holds items in a
-slot. Example: "filter panel" on the Accordion page; `Block / Filtered List` on Blocks / App.
+slot. Example: "filter panel" on the Accordion page; `Block / Filtered List` on the App blocks page.
