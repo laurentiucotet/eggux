@@ -29,7 +29,7 @@ If a client file is missing, say which skill creates it and continue with base r
 - **Compose top down from the library.** Page Shell (App, Split View, Wizard, Marketing, Auth,
   Mobile) → Blocks → Field Presets → components. Use instances and fill slots; never detach. In
   code, use the shadcn components already in the project. Build something new only when nothing
-  fits, say so, and suggest `/eggux:add-component` if it will repeat.
+  fits, say so, and suggest `/eggux:new-component` if it will repeat.
 - **Tokens only.** Fills, strokes, radius, spacing, sizes and text styles bound to variables and
   styles. A raw value is a defect unless no token exists; then flag it.
 - **Copy:** the client's terminology and voice, real-looking content, never lorem ipsum. Replace

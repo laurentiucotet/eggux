@@ -1,7 +1,7 @@
 {
   "name": "eggux",
   "displayName": "EGG UX",
-  "version": "0.27.0",
+  "version": "0.28.0",
   "description": "Design system pack for client UI projects: discovery, brand intake into Figma variables, UI building on a shadcn-based library, decision log and UX review",
   "author": {
     "name": "Laurentiu Cotet",

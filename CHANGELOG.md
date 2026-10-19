@@ -3,6 +3,15 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.28.0
+- `add-component` becomes `new-component`: from a screenshot or description, reuse map,
+  proposal, build, stress test, review, approval; after approval the component doc
+  (`eggux/components/<name>.md` for clients, `components/<name>.md` in the plugin for the
+  library), a decision or library records, code with stories for the stress cases, Ready for dev.
+- `references/stress-test.md`: cases (text length, counts, missing data, numbers, dates, states,
+  themes, widths, translation), test content, Figma layout, breaks and the rules they become.
+- `templates/component.md` for component docs.
+
 ## 0.27.0
 - New skill `new-feature`: plays back the idea, interviews in rounds (purpose, access, flow,
   data, states, edge cases, feedback, scope) with defaults from the patterns and the client
