@@ -6,7 +6,7 @@ looks the way it does.
 
 ## Search
 - One search field above the collection, with a placeholder that says what it searches
-  ("Search patients by name or phone").
+  ("Search customers by name or email").
 - Results update as the user types, debounced (~300 ms), when search is fast; otherwise on Enter.
 - Matching text highlighted in results when it helps scanning.
 - Clear button inside the field when it has text. Escape clears it.
@@ -17,7 +17,7 @@ looks the way it does.
 - Each active filter is visible as a chip with its value and a remove button.
 - "Clear all" appears when more than one filter is active.
 - Filters apply immediately in a toolbar; in a filter panel with many fields, apply on a button.
-- Show the result count ("24 appointments") and keep it updated.
+- Show the result count ("24 orders") and keep it updated.
 
 ## State
 - Search, filters, sort and page live in the URL, so back, refresh and shared links keep them.

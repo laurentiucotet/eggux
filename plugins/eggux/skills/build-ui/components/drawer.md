@@ -6,7 +6,7 @@ Usage guidelines only. Visual specs live in the Figma components. Dialog vs Shee
 ## Which one
 | Component | Use |
 |---|---|
-| `Sheet` right | Edit or inspect one object without leaving the list (patient, invoice, appointment). Filters with many groups on desktop |
+| `Sheet` right | Edit or inspect one object without leaving the list (customer, invoice, order). Filters with many groups on desktop |
 | `Sheet` left | Navigation on mobile and tablet (the Sidebar inside a Sheet) |
 | `Drawer` | Mobile: filters, sort, quick actions, a short form, a confirmation. Thumb reach, drag to close |
 | `Dialog` | Short focused task on desktop that does not need the list behind it |
@@ -16,7 +16,7 @@ On desktop, the content of a mobile `Drawer` usually becomes a `Dialog` (short) 
 (long). Keep the same Header, Content and Footer so one design covers both.
 
 ## Rules
-- Title names the object or the task ("Edit patient", "Filters"). Description is optional.
+- Title names the object or the task ("Edit contact", "Filters"). Description is optional.
 - Sheet: full height, 384 wide (`spacing/96`); wider (up to 640) only for tables or previews.
   Footer stays fixed at the bottom; Content scrolls.
 - Sheet footer: primary action right, Cancel `outline` to its left, same as Dialog.

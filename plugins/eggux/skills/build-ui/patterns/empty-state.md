@@ -13,7 +13,7 @@
 | No permission | Actor cannot see this | Who to ask, never a blank area |
 
 ## Content
-- Title: one short line in the client's voice ("No appointments yet").
+- Title: one short line in the client's voice ("No invoices yet").
 - Description: one sentence on what will appear here or what to do.
 - CTA: only if the actor is permitted to create (check actors.md). Use the object's create CTA.
 - Visual: optional icon or illustration, muted, never larger than the content it replaces.

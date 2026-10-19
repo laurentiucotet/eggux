@@ -8,7 +8,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Never to hide information every user needs to complete the task.
 
 ## Filter panels
-- One Accordion Item per filter dimension (Status, Doctor, Location, Date), in the order actors
+- One Accordion Item per filter dimension (Status, Owner, Location, Date), in the order actors
   filter most.
 - Title = the dimension. Meta = Badge Count of active values in that group, or a short value
   summary ("Last 7 days"). Leading icon only if it helps scanning; use it on all groups or none.

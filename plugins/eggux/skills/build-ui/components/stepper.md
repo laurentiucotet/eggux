@@ -8,13 +8,13 @@ Usage guidelines only. Visual specs live in the Figma components (Stepper page).
   (use Tabs).
 
 ## Rules
-- Step titles are nouns for what is filled in ("Patient", "Appointment", "Confirm").
+- Step titles are nouns for what is filled in ("Account", "Plan", "Confirm").
 - Completed steps show a check and can be revisited; upcoming steps are not clickable.
 - Validate each step before moving on; an invalid step that was left shows `error`.
 - Keep entered data when going back. The last step is a review with edit links per section.
-- Primary button says what happens next ("Continue to appointment"), the last one the outcome
-  ("Book appointment").
-- Mobile: "Step 2 of 3 · Appointment" + a progress bar instead of the full stepper.
+- Primary button says what happens next ("Continue to plan"), the last one the outcome
+  ("Start subscription").
+- Mobile: "Step 2 of 3 · Plan" + a progress bar instead of the full stepper.
 
 ## Figma
 `Step` Orientation (horizontal, vertical) × State (completed, current, upcoming, error) with

@@ -40,12 +40,12 @@ The plugin holds the method; each client project holds its answers.
 
 ```
 plugins/eggux/
-├── references/          tokens, Figma inventory, Figma API notes, client file convention
+├── references/          tokens (incl. density, motion, chart palette), Figma inventory, Figma API notes, client file convention
 └── skills/
     ├── init/templates/  brand, objects, actors, workflows, decisions
     ├── discovery/       OOUX method
     ├── brand-intake/
-    ├── build-ui/        ux-rules.md, patterns/, components/
+    ├── build-ui/        ux-rules.md, index.md (screen → shell, blocks, guides), patterns/, components/
     ├── decision-log/
     ├── review/          Nielsen heuristics
     ├── audit-tokens/    audit.js, scan-components.js, run through Figma MCP

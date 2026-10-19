@@ -5,7 +5,7 @@ Usage guidelines only. Visual specs live in the Figma components (Calendar page)
 ## Which input
 | Date | Input |
 |---|---|
-| Near future or past (appointments, deadlines, filters) | `Date Picker` (Calendar in a Popover) |
+| Near future or past (bookings, deadlines, filters) | `Date Picker` (Calendar in a Popover) |
 | Far away or known by heart (birth date, document expiry) | Text input with mask `dd.mm.yyyy`, optional calendar button |
 | A period | Date range: two months side by side on desktop, one on mobile |
 | Booking with availability | Calendar inline + time slots next to it |
@@ -30,7 +30,7 @@ shadcn `Calendar` (react-day-picker, `weekStartsOn={1}`, `locale={ro}`) and the 
 (`Popover` + `Calendar`).
 
 ## Time Picker
-- 24 h format in Romania ("10:30"). Steps of 15 or 30 min for appointments; typing hh:mm when
+- Format follows the locale: 24 h in most of Europe ("10:30"), 12 h in the US ("10:30 AM"). Steps of 15 or 30 min for bookings; typing hh:mm when
   any minute is valid (logs, reminders).
 - Unavailable times are disabled in the list, not removed, when users expect them ("10:00").
 - Date + time: two fields side by side (Date Picker 240, Time Picker 140); for bookings prefer

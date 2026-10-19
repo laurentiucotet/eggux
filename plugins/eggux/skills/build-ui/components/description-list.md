@@ -3,7 +3,7 @@
 Usage guidelines only. Visual specs live in the Figma components.
 
 ## Description List (record details)
-- Use for read-only facts about one object: patient, client, invoice, settings summary.
+- Use for read-only facts about one object: customer, order, invoice, settings summary.
 - Labels are short nouns in sentence case; values are the data, never repeated labels.
 - Horizontal (label column 160) in cards and sheets; vertical in narrow columns and grids of 2-3.
 - Empty value: "Not set" or "-" in muted, plus an action when the user can fill it.

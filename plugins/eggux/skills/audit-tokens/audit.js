@@ -1,5 +1,5 @@
 // EGG UX token audit. Read-only. Paste as the `code` of a use_figma call.
-// Returns { summary, issues, contrast } for the Semantic and Components collections.
+// Returns { summary, issues, contrast } for the Semantic, Components and Density collections.
 
 const MIN_TEXT = 4.5;
 const MIN_UI = 3;
@@ -34,9 +34,9 @@ const isAlias = val =>
   (val && val.type === 'VARIABLE_ALIAS') || (val && val.color && val.color.type === 'VARIABLE_ALIAS');
 
 // 1. Structure: aliases only, code syntax, scopes.
-for (const name of ['Semantic', 'Components']) {
+for (const name of ['Semantic', 'Components', 'Density']) {
   const c = col(name);
-  if (!c) { issues.push(`Missing collection ${name}`); continue; }
+  if (!c) { if (name !== 'Density') issues.push(`Missing collection ${name}`); continue; }
   for (const v of vars.filter(x => x.variableCollectionId === c.id)) {
     for (const m of c.modes) {
       if (!isAlias(v.valuesByMode[m.modeId])) issues.push(`${name}/${v.name} [${m.name}]: raw value instead of alias`);
@@ -84,6 +84,11 @@ for (const v of compVars) {
   const m = v.name.match(/^[^/]+\/([a-z]+)-(hover|active|pressed)$/);
   if (m && S('foreground/' + m[1])) checks.push([`foreground/${m[1]}`, v.name, MIN_TEXT, `text on ${m[2]} state`]);
 }
+
+// Chart series are marks: 3:1 against the page and the card.
+for (const v of compVars.filter(v => /^chart\/\d+$/.test(v.name)))
+  for (const bgName of ['background/default', 'background/card'])
+    checks.push([v.name, bgName, MIN_UI, 'chart series mark']);
 
 const contrast = [];
 if (sem) for (const m of sem.modes) {
