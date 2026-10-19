@@ -209,12 +209,15 @@ components) bound to Semantic tokens. To brand a client file: replace the glyph 
 re-alias Semantic tokens (`/eggux:brand-intake`), check the preview in Light and Dark.
 
 ## Page shells
-Start every screen from a shell on the Page Shells page and fill its `Page` slot:
+Start every screen from a shell on the Page Shells page and fill its `Page` slot (which shell for
+which screen: `skills/build-ui/index.md`):
 - App: Sidebar + Top Bar (Breadcrumb, actions) + Page (Page Header, then content). Example on
   the App blocks page: "dashboard screen".
 - Marketing: Navbar + Page (stack Blocks from Hero and Sections) + Footer. Width 1440, content
   container `layout/container/6xl` (1152).
 - Auth: logo + one centered card (Sign In, Sign Up) on `background/muted`.
+- Split View: App shell with List (384, resizable) and Detail slots for mail, chat, tickets, files.
+- Wizard: focused flow without sidebar: step counter, Save and exit, progress, sticky Back / Continue.
 - Mobile (< 768): Mobile Header + Page + Bottom Nav. The App Sidebar opens from the menu button
   as a left Sheet ("mobile menu open"); marketing pages use `Block / Navbar Mobile`. See
   `build-ui/patterns/mobile.md`.
@@ -241,7 +244,7 @@ list row loading (Skeleton), icon button with tooltip, open select, dialog over 
 chips, cards (list, profile, form, empty state), stat cards row, invoices table (grid), inline edit
 and column resize, permissions tree, navigation tree, view switch, app shell (Sidebar + header +
 stats + table), sheet over list, bottom drawer with filters,
-textarea in field, combobox open, patient screen (App shell + record blocks), activity timeline, mobile patients, mobile menu open,
+textarea in field, combobox open, record page (App shell + record blocks), activity timeline, mobile list, mobile menu open,
 mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
 filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions, inbox (split
 view), cart sheet, checkout page, date picker open, date range, table footer with pagination.

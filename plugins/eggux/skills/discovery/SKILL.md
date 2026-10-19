@@ -16,8 +16,8 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/project-files.md`. Output goes to `eggux/
 1. **Read the source material fully.** Notes, transcripts, briefs, screenshots of the current
    product. Mark what is stated by the client and what is your inference.
 2. **Objects (ORCA)**, see `references/ooux.md`:
-   - Objects: nouns the users talk about repeatedly (Patient, Appointment, Invoice).
-   - Relationships: how objects connect (a Patient has many Appointments).
+   - Objects: nouns the users talk about repeatedly (Customer, Order, Invoice).
+   - Relationships: how objects connect (a Customer has many Orders).
    - CTAs: what can be done to each object, and by whom.
    - Attributes: what users need to see, marking the ones that belong on the card.
 3. **Actors:** each role with goals, permissions (which CTAs) and constraints.

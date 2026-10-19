@@ -13,8 +13,8 @@ in the card footer. 768 wide.
 - Validate a step on Continue; errors follow `form-validation.md`. Do not block going back.
 - Keep data across steps and after reload (draft); leaving mid-way follows `unsaved-changes.md`.
 - Continue names the next step ("Continue to confirm"); the last button names the outcome
-  ("Book appointment").
-- Mobile: "Step 2 of 3 · Appointment" + progress bar instead of the full Stepper.
+  ("Place order").
+- Mobile: "Step 2 of 3 · Shipping" + progress bar instead of the full Stepper.
 
 ## Shell
 Long or blocking flows (onboarding, setup, checkout, import) use `Page Shell / Wizard`: no sidebar,

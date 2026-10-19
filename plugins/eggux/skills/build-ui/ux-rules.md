@@ -27,20 +27,19 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Never clear what the user typed after an error.
 - Email, password, phone, card and address fields use the presets. See `patterns/form-presets.md`.
 - Long forms with an order are split into steps. See `patterns/multi-step-form.md`.
-- Sign in, reset, 2FA and invites follow `patterns/auth.md`.
 
 ## Content
 - Use the client's terminology from `decisions.md`. A "Don't use" term is a defect.
 - Every list and table has an empty state. See `patterns/empty-state.md`.
-- 404, 500, 403, maintenance and success pages follow `patterns/result-pages.md`.
-- Settings and admin pages follow `patterns/settings-and-admin.md`; shops follow `patterns/commerce.md`.
+- Every error page gives a next step; no dead ends. See `patterns/result-pages.md`.
 - Search, filters and sort are visible, clearable and kept in the URL. See `patterns/search-and-filter.md`.
 - Dates, numbers and currency follow the client's locale.
-- Charts follow `components/charts.md`; data-dense desktop screens may use Density Compact
-  (`references/tokens.md` § Density), never on mobile.
+- Charts never carry meaning by color alone and always have a table view. See `components/charts.md`.
+
+## Layout and motion
+- Start from a Page Shell; which shell, blocks and patterns fit which screen: `index.md`.
+- Data-dense desktop screens may use Density Compact (`references/tokens.md` § Density), never mobile.
 - Motion uses the `motion/*` tokens; exits faster than entries; respect reduced motion.
-- A single object has a record page (header, details, activity). See `patterns/record-page.md`.
-- Picking a day and a time follows `patterns/booking.md`.
 
 ## Accessibility
 - Text contrast at least 4.5:1. Icons, input borders, focus rings and other boundaries that

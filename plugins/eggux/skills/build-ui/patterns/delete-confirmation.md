@@ -13,11 +13,11 @@
 Prefer undo over confirmation when the system can support it.
 
 ## Confirm dialog content
-- **Title:** the action and the object: "Delete appointment?"
-- **Body:** what will be lost, named specifically ("The appointment on 12 Nov with Dr. Pop"),
+- **Title:** the action and the object: "Delete project?"
+- **Body:** what will be lost, named specifically ("The project Website redesign and its 24 tasks"),
   and "This can't be undone." when true.
 - **Buttons:** cancel (outline, left) and the action (destructive variant, right), labeled with
-  the verb: "Delete appointment". Never "Yes" / "No".
+  the verb: "Delete project". Never "Yes" / "No".
 - **Focus:** initial focus on Cancel. Escape closes the dialog.
 
 ## After

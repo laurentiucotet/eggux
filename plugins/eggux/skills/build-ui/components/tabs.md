@@ -3,7 +3,7 @@
 Usage guidelines only. Visual specs live in the Figma component.
 
 ## Use
-- To switch between views of the same object or the same context (Overview, Appointments, Invoices).
+- To switch between views of the same object or the same context (Overview, Orders, Invoices).
 - Not for steps in a sequence (use a stepper) and not for primary navigation (use the sidebar or nav).
 - 2 to 6 tabs. More means the content needs a different structure.
 

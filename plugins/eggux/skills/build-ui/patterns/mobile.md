@@ -1,6 +1,6 @@
 # Mobile and responsive
 
-Design mobile for every screen that field staff, patients or customers use on the phone; for
+Design mobile for every screen that field staff, customers or end users use on the phone; for
 back-office tools, at least check that the page does not break below 768.
 
 ## Breakpoints (Tailwind)
@@ -32,6 +32,6 @@ back-office tools, at least check that the page does not break below 768.
 - Thumb zone: primary actions at the bottom, destructive ones away from them.
 
 ## Figma
-`Page Shell / Mobile` (390 x 844) on the Page Shells page; examples "mobile patients", "mobile
+`Page Shell / Mobile` (390 x 844) on the Page Shells page; examples "mobile list", "mobile
 menu open"; `Block / Navbar Mobile` and "mobile nav open" on the Navigation blocks page; bottom
 drawer with filters on the Drawer page.

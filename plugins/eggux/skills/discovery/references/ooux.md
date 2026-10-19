@@ -4,7 +4,7 @@ Object-Oriented UX (Sophia Prater): model the things users care about before des
 
 ## Finding objects
 - Look for nouns that repeat across interviews and documents.
-- An object has multiple instances and its own attributes (Appointment yes; Settings usually no).
+- An object has multiple instances and its own attributes (Order yes; Settings usually no).
 - Merge synonyms into one object and record the chosen term in decisions.md.
 - Views (Dashboard, Home, Inbox) are not objects; they show objects.
 
@@ -23,5 +23,5 @@ Each object gets a consistent set of representations, built from the same attrib
 - **Create/edit form:** editable attributes with validation
 - **Empty state:** what to show when the actor has none yet
 
-Relationships become navigation: from a Patient detail page, the actor sees and opens their
-Appointments.
+Relationships become navigation: from a Customer detail page, the actor sees and opens their
+Orders.

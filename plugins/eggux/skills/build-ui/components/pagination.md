@@ -13,7 +13,7 @@ Usage guidelines only. Visual specs live in the Figma components (Pagination pag
 - Show first, last, current ±1 and ellipsis. Current page = `active` (outline), with
   `aria-current="page"`.
 - Previous/Next are disabled (not hidden) on the first and last page.
-- Pair with the total ("248 patients") and a rows-per-page Select (10, 25, 50) in tables.
+- Pair with the total ("248 customers") and a rows-per-page Select (10, 25, 50) in tables.
 - Keep filters, sort and page in the URL so the view can be shared and survives reload.
 - Changing filters resets to page 1. Keep row selection across pages only when the bulk action
   says so ("12 selected across 3 pages").

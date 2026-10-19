@@ -15,7 +15,7 @@ its variables; read them through Figma MCP, do not copy them here.
 
 ## Rules
 - One `default` button per view or dialog.
-- Label = verb + object when ambiguous ("Save patient"). Use the client's terminology.
+- Label = verb + object when ambiguous ("Save customer"). Use the client's terminology.
 - Order in dialogs and forms: secondary left, primary right.
 - `destructive` appears inside the confirmation step; the trigger in a list can be `ghost` or a menu item.
 - Icon-only buttons need an accessible label and a tooltip.

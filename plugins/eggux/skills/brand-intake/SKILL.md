@@ -32,8 +32,10 @@ provided; list what is missing instead of inventing it.
      `listAvailableFontsAsync`; if it does not, tell the user to install it.
    - Set `radius/base` to the closest radius primitive.
    - Change aliases only. Do not rename or delete tokens.
-   - Replace the glyph in `Logo Mark` (Brand page) with the client logo and set the `Logo` name;
-     the sidebar and every page follow.
+   - Replace the glyph in `Logo Mark` (Brand page) with the client logo and set the `Logo` name
+     (default "Acme"); the sidebar and every page follow.
+   - Chart colors (`chart/1..8`) stay unless the client has a data-viz palette; if they change
+     them, validate in both modes (`tokens.md` § Data visualization) before applying.
 6. **Code (if the project has a codebase):** update the CSS variables in the shadcn theme file
    (`globals.css` or equivalent) with the same values, keeping variable names.
 7. **Verify:** run `/eggux:audit-tokens` on the client file, fix what fails (aliases only),

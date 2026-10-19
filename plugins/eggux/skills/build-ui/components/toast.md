@@ -4,7 +4,7 @@ Usage guidelines only. Visual specs live in the Figma component. Choosing betwee
 and inline messages: `patterns/feedback-messages.md`.
 
 ## Use
-- Short confirmation of an action the user just took ("Appointment saved").
+- Short confirmation of an action the user just took ("Project saved").
 - Undo for reversible actions (`patterns/delete-confirmation.md`).
 - Background events the user should know about but need not act on now.
 

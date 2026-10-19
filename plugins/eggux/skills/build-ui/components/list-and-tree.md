@@ -5,7 +5,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 ## Which one
 | Component | Use |
 |---|---|
-| List Item | A row of content in a list (people, files, appointments): leading media, title, description, trailing meta or actions |
+| List Item | A row of content in a list (people, files, orders): leading media, title, description, trailing meta or actions |
 | Menu Item | An action inside a Menu popover (Edit, Duplicate, Delete) |
 | Sidebar Item | A navigation destination in the Sidebar |
 | Tree Item | A row in a hierarchy (folders, locations, permissions) |
