@@ -1,0 +1,15 @@
+{
+  "name": "eggux",
+  "description": "EGG UX design system pack: discovery, brand intake, UI building and UX review on a shadcn-based Figma library",
+  "owner": {
+    "name": "Laurentiu Cotet",
+    "url": "https://github.com/laurentiucotet"
+  },
+  "plugins": [
+    {
+      "name": "eggux",
+      "source": "./plugins/eggux",
+      "description": "Skills for running a client UI project end to end: init, discovery (OOUX), brand intake into Figma, building UI from the library, decision log and heuristic review"
+    }
+  ]
+}

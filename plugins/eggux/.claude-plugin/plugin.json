@@ -1,0 +1,12 @@
+{
+  "name": "eggux",
+  "displayName": "EGG UX",
+  "version": "0.1.0",
+  "description": "Design system pack for client UI projects: discovery, brand intake into Figma variables, UI building on a shadcn-based library, decision log and UX review",
+  "author": {
+    "name": "Laurentiu Cotet",
+    "url": "https://github.com/laurentiucotet"
+  },
+  "repository": "https://github.com/laurentiucotet/eggux",
+  "keywords": ["design-system", "figma", "shadcn", "ux", "ooux", "tokens"]
+}
