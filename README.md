@@ -39,6 +39,7 @@ checks every applied decision.
 | `/eggux:init` | Creates the `eggux/` folder in a client project from templates |
 | `/eggux:discovery` | Interview notes → objects (OOUX), actors, workflows |
 | `/eggux:brand-intake` | Brand assets → `brand.md` + Semantic variables in the client's Figma file |
+| `/eggux:new-feature` | Interviews you about a feature idea (actors, flow, data, states, edge cases, feedback) and writes `eggux/features/<feature>.md` with acceptance criteria |
 | `/eggux:build-ui` | Designs and builds screens from the library, following client files |
 | `/eggux:decision-log` | Turns Inbox requests into decisions, applies them in Figma and code, verifies the work |
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
@@ -64,7 +65,7 @@ plugins/eggux/
     └── add-component/   workflow for extending the library
 
 client-project/
-└── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md
+└── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md, features/
 ```
 
 Precedence: client `decisions.md` > client `brand.md` overrides > plugin base rules.
@@ -119,6 +120,7 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
    map, testimonials, CTA, blog, news, banner, features, hero, footer) and a Map component.
 3j. Done: generic patterns (action feedback, bulk actions, permissions, errors and recovery,
    notifications, sharing, writing) and 14 common flows reused by discovery.
+3k. Done: `/eggux:new-feature` interview and feature spec template.
 4. Next: more blocks per family (pricing, FAQ, stats, team, careers, gallery, footer variants),
    gauge and treemap charts, Gantt timeline, Code Connect once a component codebase exists.
 5. System: documentation site.

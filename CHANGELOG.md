@@ -3,6 +3,13 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.27.0
+- New skill `new-feature`: plays back the idea, interviews in rounds (purpose, access, flow,
+  data, states, edge cases, feedback, scope) with defaults from the patterns and the client
+  files, writes `eggux/features/<slug>.md` with acceptance criteria and updates objects,
+  actors, workflows and decisions.
+- build-ui reads the feature spec; review checks its acceptance criteria, states and edge cases.
+
 ## 0.26.0
 - Generic patterns: action-feedback (when a toast, when the visible change is enough, per action),
   bulk-actions, permissions-and-access, errors-and-recovery (sessions, offline, conflicts,

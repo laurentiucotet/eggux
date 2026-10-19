@@ -13,7 +13,10 @@ description: Design or build screens, flows and pages for a client project from 
    screen. Then read those `patterns/*.md` and `components/*.md`.
 3. `${CLAUDE_PLUGIN_ROOT}/references/figma-library.md` (what exists, slots, conventions) and
    `${CLAUDE_PLUGIN_ROOT}/references/tokens.md` (token names, text styles, density, motion, charts).
-4. Client files in `eggux/`: `brand.md` (overrides win over base rules), then `objects.md`,
+4. The feature spec in `eggux/features/` when the screen belongs to a feature: actors, flow,
+   states, edge cases, feedback and acceptance criteria come from there. No spec for a new
+   feature: suggest `/eggux:new-feature` first.
+5. Client files in `eggux/`: `brand.md` (overrides win over base rules), then `objects.md`,
    `actors.md`, `workflows.md` as relevant to the screen.
 
 If a client file is missing, say which skill creates it and continue with base rules only.
