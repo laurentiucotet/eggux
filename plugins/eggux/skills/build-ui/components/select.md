@@ -31,3 +31,7 @@ Usage guidelines only. Visual specs live in the Figma component.
   selected `Menu Item`. See the "select open" example.
 - `Checkbox`, `Radio`, `Switch` include their label (`Show label` to hide it). Error state marks
   the control; the message comes from `Field` or text under the group.
+- `Combobox` is the searchable trigger (chevrons-up-down). Open state: `Combobox` (focus) +
+  `Command` 4 px below: `Command Input` with the query, `Items` slot with the matching
+  `Menu Item`s (Checked on the selected one). No match: turn on `Empty`, off `Show items`.
+  See "combobox open" on the Popover page.

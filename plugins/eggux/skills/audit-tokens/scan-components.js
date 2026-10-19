@@ -11,9 +11,19 @@ let roots = [];
 if (ROOTS.length) for (const id of ROOTS) { const n = await figma.getNodeByIdAsync(id); if (n) roots.push(n); }
 else roots = figma.currentPage.findAllWithCriteria({ types: ['COMPONENT_SET', 'COMPONENT'] }).filter(n => n.type === 'COMPONENT_SET' || n.parent.type !== 'COMPONENT_SET');
 
-const findings = { rawFill: [], rawStroke: [], rawSpacing: [], rawRadius: [], unstyledText: [], clippingSlot: [], emptyIcon: [] };
+const findings = { rawFill: [], rawStroke: [], rawSpacing: [], rawRadius: [], unstyledText: [], clippingSlot: [], emptyIcon: [], brokenSlot: [] };
 let checked = 0;
 for (const r of roots) {
+  // A SLOT property must be used by a SLOT node in every variant. Overwriting a slot's
+  // componentPropertyReferences (e.g. to bind visibility) drops slotContentId and leaves a FRAME.
+  if (r.type === 'COMPONENT_SET' || r.type === 'COMPONENT') {
+    const defs = r.componentPropertyDefinitions;
+    const slotKeys = Object.keys(defs).filter(k => defs[k].type === 'SLOT');
+    for (const v of r.type === 'COMPONENT_SET' ? r.children : [r]) {
+      const used = new Set(v.findAll(n => n.type === 'SLOT').map(s => s.componentPropertyReferences && s.componentPropertyReferences.slotContentId));
+      for (const k of slotKeys) if (!used.has(k)) findings.brokenSlot.push(`${r.name} / ${v.name}: ${k}`);
+    }
+  }
   for (const n of [r, ...r.findAll(() => true)]) {
     if (n.type === 'COMPONENT_SET') continue;
     checked++;

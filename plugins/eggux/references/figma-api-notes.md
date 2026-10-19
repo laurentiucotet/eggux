@@ -23,6 +23,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - In an instance, a slot node is named after its property (`Content`, `Footer`), not the layer
   name used in the main component. Find slots by type and name.
 - A slot cannot have `layoutMode = 'GRID'`.
+- Never assign `slot.componentPropertyReferences = { visible: k }`: it drops `slotContentId` and
+  the slot becomes a plain FRAME. Merge instead:
+  `slot.componentPropertyReferences = { ...slot.componentPropertyReferences, visible: k }`.
+  The scan reports this as `brokenSlot`.
 - Fill an instance slot before moving that instance into another instance's slot; references to
   nested nodes are invalid after the move.
 
@@ -42,6 +46,12 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - An instance can be exposed only if it has properties or exposed children (`isExposedInstance`
   fails on a Navbar or Footer without properties).
 - Swapping instances to a rebuilt set drops overrides of properties whose key changed; re-apply them.
+
+- Setting `fontName` on a text with a text style detaches the style. Use another text style
+  (`ui/label` for a medium weight) instead of overriding the font.
+- Copy the look of an existing variant (fills, strokes, effects, bound radius, stroke weights,
+  height, opacity) instead of rebinding tokens by hand: Textarea, Combobox, Date Picker and
+  Pagination Item reuse Input, Select and Button this way.
 
 ## Icons
 - Swaps keep stroke overrides only on layers that match by position. Keep every icon a single
