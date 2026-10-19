@@ -16,7 +16,8 @@ interrupted while typing.
 - Disable submit only while submitting, never as validation. A disabled button does not explain why.
 
 ## Error messages
-- Next to the field, below it, in `foreground/destructive` with an icon (not color alone).
+- Next to the field, below it, in `background/destructive` (CSS `text-destructive`) with an icon
+  (not color alone). `foreground/destructive` is the text *on* a destructive fill, not error text.
 - Say what is wrong and how to fix it: "Enter a phone number with 10 digits", not "Invalid".
 - Field border switches to `background/destructive`.
 - Keep the user's input. Never clear the field.

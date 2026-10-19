@@ -27,6 +27,7 @@ The skills that touch Figma need the Figma MCP server connected.
 | `/eggux:build-ui` | Designs and builds screens from the library, following client files |
 | `/eggux:decision-log` | Records decisions and terminology, propagates them to Figma and code |
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
+| `/eggux:audit-tokens` | Checks Figma variables: aliases, code syntax, scopes, contrast in Light and Dark |
 
 ## How it is organized
 
@@ -41,7 +42,8 @@ plugins/eggux/
     ├── brand-intake/
     ├── build-ui/        ux-rules.md, patterns/, components/
     ├── decision-log/
-    └── review/          Nielsen heuristics
+    ├── review/          Nielsen heuristics
+    └── audit-tokens/    audit.js, run through Figma MCP
 
 client-project/
 └── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md
@@ -57,6 +59,13 @@ express: when to use what, behavior, rules.
 `Primitives` (raw scales, hidden colors) → `Semantic` (brand layer, Light/Dark, shadcn CSS names)
 → `Components` (only when a component must deviate). Details in
 [`plugins/eggux/references/tokens.md`](plugins/eggux/references/tokens.md).
+
+## What the pack covers
+
+- **Patterns:** delete confirmation, empty state, form validation, loading states, search and
+  filter, feedback messages, unsaved changes.
+- **Components:** alert, badge, button, card, dialog, dropdown menu, input, select and choice
+  inputs, skeleton, table, tabs, toast, tooltip.
 
 ## Growing the pack
 

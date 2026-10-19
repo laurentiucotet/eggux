@@ -61,6 +61,14 @@ Figma and code map 1:1.
 Every `background/X` has a `foreground/X` partner. When you add a background role, add its
 foreground and check contrast (4.5:1 for text, 3:1 for icons and borders) in both modes.
 
+Status roles (`destructive`, `success`, `warning`, `info`) work two ways:
+- As a fill: `background/X` with `foreground/X` on top (destructive button, success badge).
+- As text or icon on a normal surface: `background/X` itself (`text-destructive` for an error
+  message). That is why these tokens have the `TEXT_FILL` scope. `foreground/X` is never the
+  error text color; it is the text on the filled background.
+
+Both uses must pass 4.5:1. Run `/eggux:audit-tokens` to check all pairs.
+
 ## Components (`Components`)
 
 Current tokens: `sidebar/*` (from shadcn) and `chart/1..5`. Naming: `<component>/<property>`,
