@@ -166,6 +166,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Navigation | `Table of Contents` | - | Items (native slot) |
 | Accordion | `Accordion Item` | Density: default, compact. State: collapsed, expanded | Title, Leading icon + type, Show meta; Meta, Content (native slots) |
 | Accordion | `Accordion` | - | Items (native slot) |
+| Image | `Map` | - | Label, Address, Show label, Show controls, Show pin. Roads scale, pin stays centered; put a static map image as fill in production |
 | Image | `Image Placeholder` | Ratio: 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance |
 | Sections (blocks) | `Section Header` | Align: center, left | Overline, Title (heading/h2), Description |
 | Page Shells | `Page Shell / App`, `/ Marketing`, `/ Auth` | - | Page (native slot); Sidebar and Top Bar exposed in App |
@@ -189,6 +190,12 @@ Domain-specific needs become Field Presets or Blocks.
 | App | `Block / Scheduler Month` | - | Month grid, up to 3 events per day + "+N more", today marked |
 | App | `Block / Comments`, `/ Conversation` | - | Comment thread with replies, resolved comment and composer; chat with header, day separator, grouped messages, typing, composer |
 | Content | `Block / Blog List`, `/ Article` | - | Featured + grid of Post Cards + pagination; reading column with prose and TOC |
+| Sections (blocks) | `Block / Contact Cards`, `/ Contact with Map`, `/ Offices`, `/ Map Section` | - | Contact family: channel cards; form + map + address; office cards with maps; full-width map with overlay card |
+| Sections (blocks) | `Block / Testimonial Single`, `/ Testimonial Grid`, `/ Testimonial Split`, `/ Testimonial Carousel` | - | Testimonials family: one quote; six cards with ratings; case study with results; carousel |
+| Sections (blocks) | `Block / CTA Split`, `/ CTA Card`, `/ Features Split`, `/ Bento Grid` | - | CTA with image; CTA on primary; alternating feature rows; bento overview with real components |
+| Content | `Block / Blog Grid`, `/ Blog Featured`, `/ Blog Post Header`, `/ News List` | - | Blog family: latest three; featured + list; article top; dated news list |
+| Hero | `Block / Hero with Screenshot` | - | Headline, CTAs and the real product (Block / Analytics) in a browser frame |
+| Navigation (blocks) | `Block / Announcement Banner`, `/ Footer Simple` | - | Banner family: one-line message on primary, dismissible; compact footer |
 | Sections (blocks) | `Block / Logo Cloud`, `/ Team`, `/ Contact`, `/ Newsletter`, `/ Comparison Table` | - | Marketing sections, 1440 wide, 1152 container |
 | Navigation (blocks) | `Block / Navbar Mobile` | - | Logo + menu button, 390 wide. Opens the full-screen "mobile nav open" panel |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
@@ -281,10 +288,16 @@ which screen: `skills/build-ui/index.md`):
 ## Pages
 The file opens with Cover (1920 x 1080 thumbnail), Intro (getting started, credits, changelog),
 Foundations (tokens shown as swatches, type, spacing, radius, elevation, motion) and Brand.
-Brand has a second Theme preview in Corporate Light. Then two sections, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
+Brand has a second Theme preview in Corporate Light. Then two groups of pages, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
 categories and Page Shells). Block pages have no prefix. `Navigation` exists in both sections:
 the first holds the components (Breadcrumb, Top Bar), the second the Navbar and Footer blocks.
 Keep new pages in A-Z order inside their section.
+
+Every block page uses Figma sections: `Blocks` with one sub-section per family (Sections page:
+Section Header, Features, Stats, CTA, Pricing, Testimonials, FAQ, Logo Cloud, Team, Contact,
+Newsletter; App page: Settings and admin, Lists, Records, Communication, Scheduling and boards,
+Dashboards; and so on), and `Examples` next to it with every `Example / …` frame. New blocks go
+into their family section.
 
 ## Four layers
 1. Primitives and components (Button, Input, Field, Card...): no business meaning.

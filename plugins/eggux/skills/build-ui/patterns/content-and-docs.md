@@ -1,6 +1,7 @@
 # Content, blog and docs pages
 
-Blocks on the Content page (Blog List, Article) and `Page Shell / Docs`.
+Blocks on the Content page (Blog Grid, Blog Featured, Blog Post Header, News List, Blog List,
+Article) and `Page Shell / Docs`.
 
 ## Rules
 - Reading column ≈ 672 px (65-75 characters per line), `body/default` 16/28 for prose.

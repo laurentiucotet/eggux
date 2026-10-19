@@ -19,7 +19,7 @@ library; otherwise work in the client's file.
 |---|---|---|
 | Component | A reusable UI part with no business meaning (Breadcrumb, Accordion) | its own page |
 | Field Preset | A field with a purpose seen in 2+ projects (IBAN, CNP) | Form Presets |
-| Block | A composed section seen in 2+ projects (hero, pricing, sign in) | its category page under BLOCKS (App, Commerce, Content, Forms, Hero, Navigation, Results, Sections) |
+| Block | A composed section seen in 2+ projects (hero, pricing, sign in) | its category page under BLOCKS (AI, App, Commerce, Content, Enterprise, Forms, Hero, Navigation, Results, Sections), inside the `Blocks` section, in its family sub-section |
 | Page Shell | A full page frame with a replaceable content slot | Page Shells |
 
 Check `figma-library.md` and search the file first: extend an existing component (new variant,
@@ -46,6 +46,10 @@ slot or property) before creating a new one.
 - New pages go in A-Z order inside their section (COMPONENTS or BLOCKS), names without prefix.
 - Lay variants out in a grid on a dashed `background/default` frame; write the component
   description (when to use, rules).
+- Block pages use Figma sections: `Blocks` holds one sub-section per family (CTA, Testimonials,
+  Contact, Blog…), `Examples` holds every `Example / …` and `Template / …` frame. Put a new
+  block in its family (create the family if it is new), re-flow the family in rows and resize the
+  sections; never leave a block loose on the page.
 - Add at least one example frame named `Example / <what it shows>` with props and slots filled
   with realistic content (open states, the component inside a block or shell).
 
