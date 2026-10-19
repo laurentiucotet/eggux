@@ -47,5 +47,6 @@ Re-run the audit after fixing and report the before/after ratios.
 
 ## Component scan
 `scan-components.js` (next to this file) checks components or frames instead of variables: raw
-fills, strokes, spacing and radius, text without a style, slots that clip, empty icon instances.
+fills, strokes, spacing and radius, text without a style, slots that clip, empty icon instances,
+SLOT properties with no slot node (`brokenSlot`).
 Set `ROOTS` to the node ids to scan, or leave it empty for every component on the current page.

@@ -43,7 +43,7 @@ slot or property) before creating a new one.
 1. Screenshot the set and an example instance with props and slots filled.
 2. Light and Dark: a temporary frame with explicit Dark modes on Semantic and Components.
 3. Run `${CLAUDE_PLUGIN_ROOT}/skills/audit-tokens/scan-components.js` on the new roots: zero raw
-   values, unstyled text, clipping slots or empty icons. Run `/eggux:audit-tokens` when tokens
+   values, unstyled text, clipping slots, empty icons or broken slots. Run `/eggux:audit-tokens` when tokens
    changed.
 4. Remove temporary QA frames.
 

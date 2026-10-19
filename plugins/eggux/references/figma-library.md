@@ -19,14 +19,27 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Badge | `Badge Count` | Variant: default, secondary, destructive, outline | Count (numeric bubble for nav items and icon buttons) |
 | Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Leading icon, Remove |
 | Avatar | `Avatar` | Type: initials, image. Size: sm 24, default 32, lg 40, xl 48 | Initials, Status (online dot). Photo = image fill on the `image` layer |
+| Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
 | Input | `Input` | State: default, focus, error, disabled. Content: placeholder, filled | Value; Leading icon (boolean + swap); Trailing (native slot) + Show trailing |
 | Input | `Password Strength` | Strength: empty, weak, fair, good, strong | Meter + message under a new-password field |
 | Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Control (native slot, default Input) |
+| Input | `Textarea` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Min height 64, grows with content; put it in a Field |
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
 | Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
+| Popover | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
+| Popover | `Popover` | - | Content (native slot). 288 wide, popover tokens, shadow/md |
+| Popover | `Command Input` | - | Value. Search field with bottom divider |
+| Popover | `Command` | - | Command Input (exposed), Items (native slot), Empty, Show items. Base for Combobox and ⌘K |
+| Calendar | `Calendar Day` | State: default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end | Day |
+| Calendar | `Calendar` | - | Month. Monday-first month grid, prev/next ghost Button Icons |
+| Calendar | `Date Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Calendar icon; opens Calendar in a popover |
+| Pagination | `Pagination Item` | Type: page, previous, next, ellipsis. State: default, hover, active, focus, disabled | Label (page) |
+| Pagination | `Pagination` | - | Items (native slot) |
+| Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Connector |
+| Stepper | `Stepper` | - | Steps (native slot) |
 | Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
 | Menu | `Menu Label` | - | Label |
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
@@ -166,10 +179,10 @@ Example frames (not components) show composition; copy them as a starting point:
 list row loading (Skeleton), icon button with tooltip, open select, dialog over page, filter
 chips, cards (list, profile, form, empty state), stat cards row, invoices table (grid), inline edit
 and column resize, permissions tree, navigation tree, view switch, app shell (Sidebar + header +
-stats + table), sheet over list, bottom drawer with filters.
+stats + table), sheet over list, bottom drawer with filters,
+textarea in field, combobox open, date picker open, date range, table footer with pagination.
 
 ## Not built yet
-Combobox (country search), Textarea, Popover, Date picker, Pagination,
-Avatar Group, mobile navbar. Icons: the 39 Lucide icons stay; the team may switch to Phosphor (flatten each icon
+Mobile navbar, time picker, file upload, slider, progress bar. Icons: the 39 Lucide icons stay; the team may switch to Phosphor (flatten each icon
 to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.

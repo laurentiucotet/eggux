@@ -1,0 +1,28 @@
+# Popover and Command
+
+Usage guidelines only. Visual specs live in the Figma components (Popover page).
+
+## Which one
+| Component | Use |
+|---|---|
+| `Tooltip` | A label or short hint, no interaction inside |
+| `Menu` (Dropdown) | A list of actions or one choice from a short list |
+| `Popover` | Rich, interactive content tied to a trigger: quick edit, details, share link, filters with few options |
+| `Command` | Searchable list: Combobox, command palette (⌘K), mention picker |
+| `Sheet` / `Dialog` | Content that needs more room or blocks the page |
+
+## Rules
+- Opens on click, never on hover. Closes on outside click, Escape and after the action is done.
+- Focus moves into the popover and returns to the trigger on close.
+- Keep it small (width 288, up to ~400). More content belongs in a Sheet.
+- Never nest popovers. A Select or Combobox inside a Popover is fine.
+- Command lists: show recent or suggested items before typing, group with `Menu Label`, highlight
+  the first match, show "No results found." with a next step when possible.
+
+## Figma
+- `Popover`: Content (native slot), popover tokens, `shadow/md`.
+- `Command`: `Command Input` (exposed, Value) + `Items` slot + `Empty` state.
+- `Combobox`: trigger (State × Content); see `select.md`.
+
+## Code
+shadcn `Popover`, `Command` (cmdk), Combobox = `Popover` + `Command`.
