@@ -11,6 +11,7 @@ project. The plugin holds the method; this folder holds the client's answers.
 | `eggux/workflows.md` | discovery | build-ui, review |
 | `eggux/decisions.md` | decision-log (and anyone deciding something) | build-ui, review |
 | `eggux/features/<slug>.md` | new-feature | build-ui, review |
+| `eggux/components/<name>.md` | new-component (client components) | build-ui, review |
 
 Precedence when rules conflict: `decisions.md` > `brand.md` overrides > plugin base rules.
 The newest dated decision wins over an older one.

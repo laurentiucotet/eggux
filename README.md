@@ -44,7 +44,7 @@ checks every applied decision.
 | `/eggux:decision-log` | Turns Inbox requests into decisions, applies them in Figma and code, verifies the work |
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
 | `/eggux:audit-tokens` | Checks Figma variables (aliases, code syntax, scopes, contrast) and scans components for raw values |
-| `/eggux:add-component` | Adds a component, preset, block or page shell to the library the EGG way, with QA and docs |
+| `/eggux:new-component` | From a screenshot or description to an approved component: reuse map, proposal, build, stress test (min, typical, max content), review, docs and records |
 
 ## How it is organized
 
@@ -62,7 +62,7 @@ plugins/eggux/
     ├── decision-log/
     ├── review/          Nielsen heuristics
     ├── audit-tokens/    audit.js, scan-components.js, run through Figma MCP
-    └── add-component/   workflow for extending the library
+    └── new-component/   screenshot or description → proposal → build → stress test → approval → docs
 
 client-project/
 └── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md, features/
@@ -121,6 +121,7 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3j. Done: generic patterns (action feedback, bulk actions, permissions, errors and recovery,
    notifications, sharing, writing) and 14 common flows reused by discovery.
 3k. Done: `/eggux:new-feature` interview and feature spec template.
+3l. Done: `/eggux:new-component` with proposal, stress test, approval and component docs.
 4. Next: more blocks per family (pricing, FAQ, stats, team, careers, gallery, footer variants),
    gauge and treemap charts, Gantt timeline, Code Connect once a component codebase exists.
 5. System: documentation site.
