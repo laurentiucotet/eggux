@@ -44,4 +44,7 @@ provided; list what is missing instead of inventing it.
 7. **Verify:** run `/eggux:audit-tokens` on the client file, fix what fails (aliases only),
    then screenshot a few components in Light and Dark.
 
+Record the base theme and every brand override as a decision in `eggux/decisions.md`
+(type design, with the tokens changed), so later work and reviews can verify them.
+
 End with: what changed, contrast results, and anything the user still has to provide.

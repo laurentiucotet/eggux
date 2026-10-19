@@ -62,6 +62,8 @@ slot or property) before creating a new one.
 - `references/figma-library.md`: inventory row, conventions or slot rules learned.
 - `skills/build-ui/components/<name>.md` (usage rules) or a pattern for presets and blocks; add
   the screen or file to `skills/build-ui/index.md`.
+- `references/code-mapping.md`: which code component implements it.
+- `CHANGELOG.md` at the repo root: one line under the new version.
 - New Plugin API trap learned: add one line to `references/figma-api-notes.md`.
 - Bump `version` in `plugins/eggux/.claude-plugin/plugin.json`, run `claude plugin validate .`,
   commit.

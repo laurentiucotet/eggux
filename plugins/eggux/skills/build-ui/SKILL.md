@@ -6,13 +6,15 @@ description: Design or build screens, flows and pages for a client project from 
 # Build UI
 
 ## Read before building, in this order
+0. `eggux/decisions.md`, the whole file. If the Inbox has lines, process them first with
+   `/eggux:decision-log` (record, apply). Every applied decision overrides what follows.
 1. `ux-rules.md` (next to this file): universal rules. Always.
 2. `index.md` (next to this file): which shell, blocks, patterns and component guides fit the
    screen. Then read those `patterns/*.md` and `components/*.md`.
 3. `${CLAUDE_PLUGIN_ROOT}/references/figma-library.md` (what exists, slots, conventions) and
    `${CLAUDE_PLUGIN_ROOT}/references/tokens.md` (token names, text styles, density, motion, charts).
-4. Client files in `eggux/`: `decisions.md` (terminology wins), `brand.md` (overrides win over
-   base rules), then `objects.md`, `actors.md`, `workflows.md` as relevant to the screen.
+4. Client files in `eggux/`: `brand.md` (overrides win over base rules), then `objects.md`,
+   `actors.md`, `workflows.md` as relevant to the screen.
 
 If a client file is missing, say which skill creates it and continue with base rules only.
 
@@ -55,5 +57,6 @@ Follow the project's structure. Semantic Tailwind classes that map to tokens (`b
    (ROOTS = their ids): zero raw values, unstyled text, clipping or broken slots, empty icons.
 2. Screenshot the result in Light (and Dark if used) and look at it: overflow, clipped text,
    wrong widths.
-3. Run the checks of the `review` skill. Fix what fails, then report what was built and any rule
+3. Verify the decisions whose scope covers what you built (`decision-log` § Verify).
+4. Run the checks of the `review` skill. Fix what fails, then report what was built and any rule
    you could not follow.

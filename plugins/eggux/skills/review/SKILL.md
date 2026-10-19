@@ -14,7 +14,10 @@ they exist: the review checks the design against the actor's workflow, not in a 
    complete the step? Are there CTAs they are not permitted, or missing CTAs they need?
 2. **Nielsen heuristics:** go through `references/heuristics.md` one by one.
 3. **EGG UX rules:** `${CLAUDE_PLUGIN_ROOT}/skills/build-ui/ux-rules.md` and the patterns used.
-4. **Decisions:** terminology from `eggux/decisions.md`; any "Don't use" term is a finding.
+4. **Decisions:** every entry in `eggux/decisions.md` that is approved, applied or verified and
+   whose scope covers the screen: terminology ("Don't use" terms), design values (the decided
+   token, no overrides), component and behavior choices. Each violation is a finding that cites
+   the decision ID. Unprocessed Inbox lines are listed as "not yet decided", not as findings.
 5. **Tokens (Figma or code):** raw hex, px or font values where a token exists; palette classes
    (`bg-blue-600`) instead of semantic ones; text not using a text style. When the theme itself
    is in question, run `/eggux:audit-tokens`.
