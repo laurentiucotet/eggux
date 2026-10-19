@@ -30,3 +30,12 @@ its variables; read them through Figma MCP, do not copy them here.
 ## Client overrides
 Check `eggux/brand.md` → Overrides (for example "buttons never show icons"). In Figma, the icon
 is a boolean property; turn it off in the client file rather than detaching instances.
+
+## Button Group and Split Button
+- Button Group: 2-5 related actions of equal weight joined in one control (Edit / Duplicate /
+  Archive, previous / next, zoom − / +). Choosing a value is a Toggle Group, not a Button Group.
+- Split Button: one main action that runs the most common choice + a chevron that opens a Menu of
+  variants of the same action (Save / Save as draft / Save and close). Never hide unrelated or
+  destructive actions in it.
+- Figma: `Button Group Item` Position (first, middle, last) × State, Icon-only via Show label off;
+  `Button Group` (Items slot); `Split Button` Variant (default, outline). Example "split button open".

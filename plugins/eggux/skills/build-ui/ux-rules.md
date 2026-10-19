@@ -27,10 +27,12 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Never clear what the user typed after an error.
 - Email, password, phone, card and address fields use the presets. See `patterns/form-presets.md`.
 - Long forms with an order are split into steps. See `patterns/multi-step-form.md`.
+- Sign in, reset, 2FA and invites follow `patterns/auth.md`.
 
 ## Content
 - Use the client's terminology from `decisions.md`. A "Don't use" term is a defect.
 - Every list and table has an empty state. See `patterns/empty-state.md`.
+- 404, 500, 403, maintenance and success pages follow `patterns/result-pages.md`.
 - Search, filters and sort are visible, clearable and kept in the URL. See `patterns/search-and-filter.md`.
 - Dates, numbers and currency follow the client's locale.
 - Charts follow `components/charts.md`; data-dense desktop screens may use Density Compact

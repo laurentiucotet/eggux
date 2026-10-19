@@ -26,3 +26,9 @@ Usage guidelines only. Visual specs live in the Figma components (Popover page).
 
 ## Code
 shadcn `Popover`, `Command` (cmdk), Combobox = `Popover` + `Command`.
+
+## Hover Card
+- Preview of a linked person, item or link on hover or keyboard focus, after ~500 ms.
+- Read-only. Anything actionable must also be reachable on the target page.
+- Not on touch devices: a tap opens the target.
+- Figma: `Hover Card` (Content slot, 320 wide) on the Popover page.
