@@ -3,6 +3,10 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.30.1
+- Manifest: removed `displayName`, which older Claude Code versions reject at install
+  ("Unrecognized key").
+
 ## 0.30.0
 - Figma Intro page: getting started, what is inside with counts, how to use, file organization,
   conventions, credits and license, changelog (library version 2.4).
