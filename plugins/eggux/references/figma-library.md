@@ -60,10 +60,24 @@ fits, and say so. When this list and the file disagree, the file wins: update th
 | Sidebar | `Sidebar Group` | Mode: expanded, collapsed | Items (native slot), Show label |
 | Sidebar | `Sidebar Workspace`, `Sidebar User` | Mode: expanded, collapsed | Title, Subtitle |
 | Sidebar | `Sidebar` | Mode: expanded (256), collapsed (48) | Header, Content, Footer (native slots) |
+| Navigation | `Breadcrumb Item` | Type: link, current, ellipsis. State: default, hover (link) | Label, Separator |
+| Navigation | `Breadcrumb` | - | Items (native slot) |
+| Navigation | `Top Bar` | - | Sidebar trigger; Breadcrumb, Actions (native slots) |
+| Navigation | `Page Header` | - | Title (heading/h3), Description, Show description; Actions (native slot) |
+| Navigation | `Nav Link` | State: default, hover, active | Label, Chevron (marketing navbar) |
+| Accordion | `Accordion Item` | Density: default, compact. State: collapsed, expanded | Title, Leading icon + type, Show meta; Meta, Content (native slots) |
+| Accordion | `Accordion` | - | Items (native slot) |
+| Image | `Image Placeholder` | Ratio: 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance |
+| Blocks / Sections | `Section Header` | Align: center, left | Overline, Title (heading/h2), Description |
+| Page Shells | `Page Shell / App`, `/ Marketing`, `/ Auth` | - | Page (native slot); Sidebar and Top Bar exposed in App |
 | Brand | `Logo Mark` | - | The one place to put the client symbol; used by Logo and Sidebar Workspace |
 | Brand | `Logo` | Type: mark, wordmark, full | Name |
 | Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed |
-| Blocks | `Block / Sign In`, `Block / Sign Up`, `Block / Payment`, `Block / Address` | - | Card + Field Presets + Buttons |
+| Blocks / Forms | `Block / Sign In`, `/ Sign Up`, `/ Payment`, `/ Address` | - | Card + Field Presets + Buttons |
+| Blocks / Navigation | `Block / Navbar`, `Block / Footer` | - | Logo, Nav Links, CTAs; footer link columns |
+| Blocks / Hero | `Block / Hero Centered`, `Block / Hero Split` | - | Badge, display headline, lead, CTAs, Image Placeholder |
+| Blocks / Sections | `Block / Features`, `/ Stats`, `/ CTA`, `/ Pricing`, `/ Testimonials`, `/ FAQ` | - | Section Header + Cards, grid, Toggle Group, Accordion |
+| Blocks / App | `Block / Settings Section`, `/ Empty Page`, `/ Filtered List` | - | Settings row, first-use page, filter panel + list |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
@@ -121,10 +135,20 @@ checkbox and actions, flex for content), rows that hug their content.
 components) bound to Semantic tokens. To brand a client file: replace the glyph in Logo Mark,
 re-alias Semantic tokens (`/eggux:brand-intake`), check the preview in Light and Dark.
 
+## Page shells
+Start every screen from a shell on the Page Shells page and fill its `Page` slot:
+- App: Sidebar + Top Bar (Breadcrumb, actions) + Page (Page Header, then content). Example on
+  Blocks / App: "dashboard screen".
+- Marketing: Navbar + Page (stack Blocks from Hero and Sections) + Footer. Width 1440, content
+  container `layout/container/6xl` (1152).
+- Auth: logo + one centered card (Sign In, Sign Up) on `background/muted`.
+
 ## Three layers
 1. Primitives and components (Button, Input, Field, Card...): no business meaning.
 2. Field Presets: a component with a purpose (email, phone, card number) built from layer 1.
-3. Blocks: whole compositions (sign in, payment, address) built from layers 1 and 2.
+3. Blocks: whole compositions (navigation, hero, sections, forms, app sections) built from
+   layers 1 and 2, one page per category (`Blocks / <category>`).
+4. Page Shells: full pages with a Page slot where blocks go.
 A change in layer 1 flows up. Add a preset or block only when the same composition appears in
 two or more projects; otherwise build it in the client file.
 
@@ -136,7 +160,7 @@ and column resize, permissions tree, navigation tree, view switch, app shell (Si
 stats + table).
 
 ## Not built yet
-Combobox (country search), Textarea, Popover, Sheet, Drawer, Date picker, Pagination, Breadcrumb,
-Avatar Group. Icons: the 39 Lucide icons stay; the team may switch to Phosphor (flatten each icon
+Combobox (country search), Textarea, Popover, Sheet, Drawer, Date picker, Pagination,
+Avatar Group, mobile navbar. Icons: the 39 Lucide icons stay; the team may switch to Phosphor (flatten each icon
 to one `Vector` layer so swaps keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.
