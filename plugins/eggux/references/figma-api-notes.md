@@ -18,6 +18,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Adding FILL children to an auto-layout row resizes the earlier ones each time; fill
   non-auto-layout columns (grids, calendars) only after all columns exist, or their children's
   constraints distort them.
+- Max width that still hugs (chat bubbles): parent HUG with `maxWidth`, text inside on FILL. Short
+  text hugs, long text wraps at the max.
+- `resize()` on an auto-layout frame you want to hug in height (a thread, a column) fixes both
+  axes: set `primaryAxisSizingMode = 'AUTO'` again, or later children overlap.
 - `maxLines` only sticks when `textTruncation = 'ENDING'` is set first; without it, wrapping
   text stays on one line.
 - Constraint enums are `MIN | CENTER | MAX | STRETCH | SCALE` (not TOP/BOTTOM/LEFT/RIGHT).
@@ -64,6 +68,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Keep every icon one layer named `Vector`, or swapped icons come out partly in the default color.
 - An INSTANCE_SWAP property on a node forces its default on every variant: do not bind the swap
   when variants need different icons.
+- Components without an icon swap property (Menu Item): swap the nested icon with
+  `iconInstance.swapComponent(Icon/...)`.
+- New icons from Lucide SVG: convert the path (relative commands, H/V, arcs to cubic curves),
+  translate to the bounding box, set `vectorPaths`, then place the vector at the box origin.
 - Setting an INSTANCE_SWAP to the icon it already shows resets the nested color override (a plus
   in a primary Button turns dark). Set the swap only when the icon changes.
 - Flattening a main component empties existing instances. Record their colors first, then

@@ -41,6 +41,11 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Data-dense desktop screens may use Density Compact (`references/tokens.md` § Density), never mobile.
 - Motion uses the `motion/*` tokens; exits faster than entries; respect reduced motion.
 
+## AI features
+- The assistant shows what it can do, what data it uses, and when it is working; Stop is always there.
+- Facts get sources; actions that change data, contact people or spend money wait for approval.
+  See `patterns/ai-chat.md`.
+
 ## Accessibility
 - Text contrast at least 4.5:1. Icons, input borders, focus rings and other boundaries that
   identify a control at least 3:1. Decorative dividers are exempt.

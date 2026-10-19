@@ -69,11 +69,11 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 has foundations (variables, text and effect styles, density, motion, chart palette),
-50 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
+62 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
-(comments, chat), commerce, Kanban, Rating, Carousel and Color Picker. On top: Field Presets,
-Blocks by category (app, commerce, content, forms, hero, navigation, results, sections) and 7
+(comments, chat), AI chat, commerce, Kanban, Rating, Carousel and Color Picker. On top: Field Presets,
+Blocks by category (AI, app, commerce, content, forms, hero, navigation, results, sections) and 7
 Page Shells (app, marketing, auth, mobile, wizard, split view, docs), plus a Brand page with the
 logo and a theme preview. Content areas use Figma native slots.
 Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
@@ -91,9 +91,11 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3c. Done: Rich Text Editor, comments (Comment, Comment Composer, Comments block), chat (Chat
    Message, Typing Indicator, Chat Composer, Conversation block), month view, Rating, Carousel,
    Color Picker.
-3d. Next: AI chat interface and patterns (prompt input, assistant message with streaming,
-   sources, tool steps, suggestions, feedback, conversation history).
-4. Later: tour / coachmarks, video player, more charts (pie, donut, heatmap).
+3d. Done: AI chat (Prompt Input, Attachment, User and Assistant Message, Reasoning, Tool Call
+   with approval, Sources, Citation, Suggestion) and AI blocks (empty chat, conversation,
+   assistant panel, inline AI), with the `ai-chat` pattern.
+3e. Next: tour / coachmarks, video player.
+4. Later: more charts (pie, donut, heatmap).
 5. System: CHANGELOG, Code Connect, documentation site.
 
 ## What the pack covers

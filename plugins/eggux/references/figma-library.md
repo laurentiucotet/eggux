@@ -20,6 +20,16 @@ Domain-specific needs become Field Presets or Blocks.
 | Page | Component | Variants | Properties |
 |---|---|---|---|
 | Icons | `Icon/<name>` | - | Lucide, 24 px, one `Vector` layer bound to `foreground/default`. Rescale to 16 (UI) or 12 (badge) |
+| AI Chat | `Prompt Input` | State: default, focus, streaming, disabled | Placeholder, Value, Show attachments, Show tools, Show voice; Attachments, Tools (native slots). Send becomes Stop while streaming |
+| AI Chat | `Attachment` | Type: file, image. State: default, uploading, error | Name, Meta, Show remove |
+| AI Chat | `User Message` | - | Text, Show actions (copy, edit). Bubble hugs, max 576 |
+| AI Chat | `Assistant Message` | State: default, streaming, error | Content (native slot), Show actions (copy, regenerate, good, bad) |
+| AI Chat | `Reasoning` | State: running, collapsed, expanded | Label, Details |
+| AI Chat | `Tool Call` | Status: running, done, error, approval | Title, Detail; approval has Deny / Approve |
+| AI Chat | `Source Item` | - | Number, Title, Domain |
+| AI Chat | `Sources` | - | Label, Show list; Items (native slot) |
+| AI Chat | `Citation` | - | Label |
+| AI Chat | `Suggestion` | Layout: chip, card | Label, Description, Icon (card) |
 | Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link. Size: sm, default, lg. State: default, hover, focus, disabled | Label; Leading icon, Trailing icon (boolean + swap) |
 | Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. State: as Button | Icon (swap) |
 | Button | `Button Group Item` | Position: first, middle, last. State: default, hover, focus, disabled | Label, Show label, Icon + Icon type |
@@ -173,13 +183,16 @@ Domain-specific needs become Field Presets or Blocks.
 | Commerce | `Product Card` | State: default, sale, sold-out | Name, Variant text, Show action, Show wishlist |
 | Commerce | `Block / Product Detail` | - | Gallery, options (Toggle Group), quantity, add to cart, details accordion |
 | Commerce | `Block / Order Summary` | - | Lines, discount code, totals, pay button, trust line |
+| AI | `Block / AI Chat Empty`, `/ AI Conversation` | - | Welcome with input and starter prompts; conversation with reasoning, tool calls, citations, sources, approval, input |
+| AI | `Block / AI Assistant Panel`, `/ Inline AI` | - | 400-wide copilot panel with context; inline popover with actions and a result to accept |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
 loader-circle, mail, trash-2, ellipsis, pencil, copy, archive, user, users, settings, log-out,
 calendar, clock, trending-up, trending-down, map-pin, phone, building, inbox, house, file-text,
 chart-column, panel-left, bell, menu, upload, heart, shopping-bag, bold, italic, underline,
-list, text-quote, link, heading (50).
+list, text-quote, link, heading, sparkles, thumbs-up, thumbs-down, refresh-cw, square, arrow-up,
+paperclip, globe, wrench, mic, message-square, square-pen (62).
 
 ## Conventions used
 - Variant values use the shadcn prop values (`Variant=outline`, `Size=sm`), so Figma maps 1:1 to code.
@@ -256,7 +269,7 @@ Keep new pages in A-Z order inside their section.
 1. Primitives and components (Button, Input, Field, Card...): no business meaning.
 2. Field Presets: a component with a purpose (email, phone, card number) built from layer 1.
 3. Blocks: whole compositions (navigation, hero, sections, forms, app sections) built from
-   layers 1 and 2, one page per category under the BLOCKS divider (App, Commerce, Content,
+   layers 1 and 2, one page per category under the BLOCKS divider (AI, App, Commerce, Content,
    Forms, Hero, Navigation, Results, Sections).
 4. Page Shells: full pages with a Page slot where blocks go.
 A change in layer 1 flows up. Add a preset or block only when the same composition appears in
@@ -272,10 +285,10 @@ textarea in field, combobox open, record page (App shell + record blocks), activ
 mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
 filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions, inbox (split
 view), cart sheet, checkout page, docs page, date picker open, date range, table footer with pagination, color
-field.
+field, AI chat app.
 
 ## Not built yet
-AI chat (prompt input, assistant message, sources), video player, tour / coachmarks (full
-roadmap in the README). Icons: the 50 Lucide icons stay; the team may switch to Phosphor
-(flatten each icon to one `Vector` layer so swaps keep their color).
+Tour / coachmarks, video player, more charts (full roadmap in the README). Icons: the 62 Lucide
+icons stay; the team may switch to Phosphor (flatten each icon to one `Vector` layer so swaps
+keep their color).
 Until they exist, compose from the components above, tokens and text styles, and flag it.
