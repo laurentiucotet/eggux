@@ -26,6 +26,8 @@ component guides it names. Names are Figma components; inventory in
 | Pick a date and time | App or Marketing | Booking | booking | date-picker |
 | Error, empty, success page | the current shell | Result | result-pages, empty-state | |
 | Mobile screen | Mobile | Navbar Mobile | mobile | drawer, navigation |
+| AI assistant (chat page) | App (history in Sidebar) | AI Chat Empty, AI Conversation (example "AI chat app") | ai-chat, empty-state | ai-chat, comments-and-chat |
+| AI on a screen (copilot panel, inline edit) | current shell | AI Assistant Panel, Inline AI | ai-chat | ai-chat, popover |
 
 ## By interaction
 
@@ -41,12 +43,14 @@ component guides it names. Names are Figma components; inventory in
 | Rate or review | (none) | rating |
 | Pick a color | (none) | color-picker |
 | Browse images or related items | (none) | carousel |
+| Ask AI, let AI act | ai-chat | ai-chat |
 
 ## Component guides and what they cover
 
 | File | Covers |
 |---|---|
 | accordion | Accordion, filter groups |
+| ai-chat | Prompt Input, Attachment, User / Assistant Message, Reasoning, Tool Call, Sources, Citation, Suggestion |
 | alert | Alert inline and banner |
 | avatar | Avatar, Avatar Group |
 | badge | Badge, Badge Count, Chip, Status Dot (see indicators) |
