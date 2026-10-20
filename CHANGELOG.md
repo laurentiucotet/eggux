@@ -3,6 +3,10 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.34.1
+- Removed 4 orphan Card variants that a failed clone left on the Cover page; checked every page
+  for leftovers. API note: set the current page before creating nodes and check for strays.
+
 ## 0.34.0
 - Card: `Elevation` toggle (false / true, shadow md) replaces `Variant=elevated`; Variant is
   default, outline, muted; 12 variants. Default cards are flat (no shadow sm).
