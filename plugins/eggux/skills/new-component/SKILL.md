@@ -79,6 +79,8 @@ Build only after the user agrees or says to go ahead.
 - Missing icon: draw it as one `Vector` in Lucide geometry (24 grid, 2 px stroke), clone an
   existing icon component for the frame, and add it to the Icons frame.
 - New pages go in A-Z order inside their section (COMPONENTS or BLOCKS), names without prefix.
+- A component goes on the page of what it is for the designer looking for it (a field that
+  selects → Select), not of the parts it is built from (Popover, Command).
 - Lay variants out in a grid on a dashed `background/default` frame; write the component
   description (when to use, rules).
 - Block pages use Figma sections: `Blocks` holds one sub-section per family (CTA, Testimonials,
