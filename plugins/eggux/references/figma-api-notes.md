@@ -41,7 +41,7 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   the slot becomes a plain FRAME. Merge: `{ ...slot.componentPropertyReferences, visible: k }`.
   The scan reports this as `brokenSlot`.
 - `clone()` of a variant turns its SLOT into a FRAME named after the property, and the clone may
-  land outside the set. Append it (`set.appendChild(clone)`), then for each such frame:
+  land outside the set, on the current page (once on Cover). Append it (`set.appendChild(clone)`), then for each such frame:
   `v.createSlot()`, copy layout and bound padding, move the children in, delete the frame,
   point the slot to the existing keys (`{ slotContentId: K('Content'), visible: K('Show content') }`)
   and `set.deleteComponentProperty()` the key the new slot created. Run the scan after.
@@ -137,6 +137,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   by name prefix, never hard-code them.
 
 ## Safety
+- New and cloned nodes go to the current page, which may be any page a previous call left
+  open. Start every call that creates nodes with `await figma.setCurrentPageAsync(page)`, and
+  end a session of edits by listing each touched page's top-level nodes for strays.
 - A failed `use_figma` call is rolled back as a whole; fix and rerun. Wrap multi-node builds in
   try/catch that removes what the call created.
 - `getInstancesAsync()` also returns instances inside deleted nodes; filter by a page ancestor
