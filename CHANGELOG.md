@@ -3,6 +3,16 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.33.0
+- Card: `Variant` (default, outline, muted, elevated) and `Size` (default, sm); 8 variants.
+  Padding and gap on Density tokens `density/card-padding`, `-sm`, `density/card-gap`, `-sm`
+  (24 / 16 and 16 / 12 in Compact); `card/muted-background` (neutral/50 in Light for 4.5:1).
+  Stat Card and Option Card use the same padding tokens. Slot placeholder text wraps.
+- `Stress test / Card`: 6 cases × 9 rows (variants, sm, Dark, Compact, Corporate Light).
+- Guides: when to use a variant, a size or a separate component; padding model; tokens, code
+  mapping and the decision-log example on the new tokens; API notes on bound paint base colors
+  and property keys after `combineAsVariants`.
+
 ## 0.32.0
 - `new-feature` writes a folder per feature, `eggux/features/<slug>/`: `feature.md` (spec,
   screens, impact on the product, changelog), `scenarios.md` (S-xx scenarios and E-xx edge

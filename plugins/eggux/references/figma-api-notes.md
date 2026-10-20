@@ -121,6 +121,14 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Two pages can share a name (`Navigation` in COMPONENTS and in BLOCKS). Find block pages by
   searching after the BLOCKS divider.
 
+- A paint bound with `setBoundVariableForPaint` keeps the base color you pass. In a call that
+  also creates variables, screenshots (and sometimes the canvas) draw that base color, so a
+  `{r:0,g:0,b:0}` base shows black. Pass the resolved color as the base:
+  `v.resolveForConsumer(node).value`.
+- `combineAsVariants` on a used component keeps its id, its instances and their slot content,
+  but gives every component property a new key (`Header#48:0` → `Header#229:12`). Look keys up
+  by name prefix, never hard-code them.
+
 ## Safety
 - A failed `use_figma` call is rolled back as a whole; fix and rerun. Wrap multi-node builds in
   try/catch that removes what the call created.

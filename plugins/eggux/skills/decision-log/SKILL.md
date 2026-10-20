@@ -33,10 +33,10 @@ Read the whole file first. Take each request from the chat or from the Inbox, ol
 - Decision: Card padding 24 px (spacing/6) → 12 px (spacing/3), header, content and footer.
 - Scope: Card and everything built on it (Stat Card, blocks); all screens.
 - Reason: denser dashboards. Source: Andrei (manager), 2026-10-21 09:15.
-- Implementation: Components token card/padding → spacing/3, bound in Card; code: Card uses
-  py-3 / px-3 (or var(--card-padding)).
-- Verify: Card paddings bound to card/padding; no instance overrides; no p-6 / px-6 / py-6 in
-  the Card component code.
+- Implementation: Density token density/card-padding → spacing/3 (Comfortable), bound in
+  Card, Stat Card; code: var(--card-padding) = 12px.
+- Verify: Card paddings bound to density/card-padding; no instance overrides; no p-6 / px-6 /
+  py-6 in the Card component code.
 - Status: approved
 ```
 
