@@ -88,7 +88,7 @@ for (const f of CONFIG.flows) {
 if (flowFrames.length) { const s = section('Flows'); let y = 120; for (const fr of flowFrames) { s.appendChild(fr); fr.x = 80; fr.y = y; y += fr.height + 80; } s.resizeWithoutConstraints(1600, y); }
 
 // Scenarios and edge cases
-const placeholder = async (name, label) => { const p = figma.createFrame(); p.name = name; p.resize(CONFIG.frame.w, CONFIG.frame.h); p.fills = [paint('background/muted')]; border(p); p.dashPattern = [8, 8]; p.layoutMode = 'VERTICAL'; p.primaryAxisSizingMode = 'FIXED'; p.counterAxisSizingMode = 'FIXED'; p.primaryAxisAlignItems = 'CENTER'; p.counterAxisAlignItems = 'CENTER'; await txt(p, label, 'heading/h3', 'foreground/muted'); return p; };
+const placeholder = async (name, label) => { const p = figma.createFrame(); p.clipsContent = false; p.name = name; p.resize(CONFIG.frame.w, CONFIG.frame.h); p.fills = [paint('background/muted')]; border(p); p.dashPattern = [8, 8]; p.layoutMode = 'VERTICAL'; p.primaryAxisSizingMode = 'FIXED'; p.counterAxisSizingMode = 'FIXED'; p.primaryAxisAlignItems = 'CENTER'; p.counterAxisAlignItems = 'CENTER'; await txt(p, label, 'heading/h3', 'foreground/muted'); return p; };
 const caseSection = async (c, kind) => {
   const s = section(c.id + ' ' + c.title);
   const hd = fixW(box('About ' + c.id, 'VERTICAL', null, '4'), 640); pad(hd, '8', '8'); hd.fills = [paint('background/card')]; border(hd); rad(hd, 'xl');

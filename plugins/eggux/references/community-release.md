@@ -49,7 +49,7 @@ What is inside
 - Enterprise pack: data grid with saved views, groups, totals and bulk actions; filter
   builder; approval chain; audit log with field changes; roles and permissions matrix; report;
   long record form with save bar; organization switcher.
-- 159 components with 680 variants: forms, selection, overlays, navigation, feedback, tables
+- 159 components with 684 variants: forms, selection, overlays, navigation, feedback, tables
   on auto layout grid, charts (bar, line, donut, heatmap, gauge, treemap), dates, scheduling and Gantt, files, rich text editor, comments and
   chat, commerce, AI chat, tour and video.
 - 109 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero, Navigation,
