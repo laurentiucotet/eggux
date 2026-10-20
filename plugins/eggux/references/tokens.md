@@ -110,9 +110,11 @@ Current tokens:
 | `video/foreground` | `color/white` | Icons, time and subtitles over video |
 | `video/track` | `color/white` at `opacity/30` | Unplayed part of the progress bar |
 | `video/scrim` | `color/black` at `opacity/60` | Play button, duration and subtitle backgrounds |
+| `card/muted-background` | Light `color/neutral/50`; Dark, Corporate `background/muted` | Card Variant=muted; neutral/50 keeps muted text at 4.5:1 in Light |
 
 Naming: `<component>/<property>`,
-for example `button/radius`, `card/padding`. CSS: `--<component>-<property>`.
+for example `button/radius`, `card/muted-background`. Sizes that change with density live in
+the Density collection (`density/card-padding`). CSS: `--<component>-<property>`.
 
 When a component needs a token:
 1. Create it in `Components`, aliased to the Semantic token it currently uses.
@@ -185,6 +187,10 @@ tighten a whole screen (data tables, admin tools, power users).
 | `density/cell-padding-y` | 8 | 4 | Table Cell body |
 | `density/list-padding-y` | 8 | 4 | List Item |
 | `density/menu-padding-y` | 6 | 4 | Menu Item |
+| `density/card-padding` | 24 | 16 | Card (Size=default): top and bottom on the card, left and right on each slot; Stat Card |
+| `density/card-padding-sm` | 16 | 12 | Card (Size=sm), Option Card |
+| `density/card-gap` | 24 | 16 | Space between Card Header, Content and Footer |
+| `density/card-gap-sm` | 16 | 12 | Same, Size=sm |
 
 Compact keeps touch targets ≥ 44 only on desktop: never use Compact on mobile.
 Code: `[data-density="compact"]` sets the CSS variables.

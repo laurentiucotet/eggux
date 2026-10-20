@@ -12,6 +12,35 @@ Usage guidelines only. Visual specs live in the Figma component.
 Header (title `body/large`, optional description `body/small` muted, optional action top right)
 → content → optional footer with actions.
 
+## Variants and sizes
+| Variant | Looks | Use |
+|---|---|---|
+| `default` | Card background, border, shadow sm | Most cards |
+| `outline` | No fill, border | Cards inside a panel, a dialog or another surface; long lists of cards |
+| `muted` | Tinted (`card/muted-background`), no border | Secondary or summary information, empty and placeholder cards, side notes |
+| `elevated` | Card background, shadow md, no border | One card that must stand out or floats over content |
+
+| Size | Padding and gap | Use |
+|---|---|---|
+| `default` | 24 (16 in Compact) | Page-level cards, forms, detail cards |
+| `sm` | 16 (12 in Compact) | Grids of many cards, sidebars, dashboards |
+
+Which one:
+- A visual difference used across the product → a Variant or Size of Card.
+- Its own anatomy or behavior (metric, selectable option, post preview) → a separate component
+  built on Card: Stat Card, Option Card, Post Card.
+- A one-off look for one screen → do not add a variant; use an existing one or record a decision.
+- Status colors (success, warning, error) are not card variants: use an `Alert`, or a `Badge`
+  or Status Dot inside the card. Color alone never carries the status.
+- One variant per group of cards; do not mix default and elevated in the same grid.
+
+## Padding
+The card has padding top and bottom; Header, Content and Footer each have padding left and
+right. A slot set to padding 0 runs edge to edge (a table, an image, a map) while the others
+stay aligned. Product-wide changes ("cards with 12 px padding") change the tokens
+`density/card-padding` and `density/card-gap` (and the `-sm` pair), never single instances.
+Stat Card, Option Card and Post Card use the same tokens.
+
 ## Rules
 - A whole card is clickable only when it has one destination. Then it has a hover state, a focus
   ring and no other buttons inside except a menu. Otherwise, make the title the link.
@@ -22,8 +51,10 @@ Header (title `body/large`, optional description `body/small` muted, optional ac
 - Selectable cards (plan, visit type) use Option Card: the whole card is the target, one selected.
 
 ## Figma
-- `Card` = native slots Header (Card Header), Content (placeholder) and Footer (Card Footer).
+- `Card` (Variant × Size) = native slots Header (Card Header), Content (placeholder) and Footer (Card Footer).
   Fill the slots in the instance; never detach. Turn off Show header / Show footer when unused.
 - `Card Header` has its own Action slot (top right): Button Icon with a menu, a Badge, a Select.
 - `Stat Card` (Trend up, down, neutral) for dashboards; `Option Card` for selectable options.
 - Examples on the Card page: list, profile, form, empty state, stat cards row.
+- `Stress test / Card` (Stress tests section): minimal, typical, long title, full-bleed slot,
+  280 and 720 wide, for every variant, sm, Dark, Compact and Corporate Light.

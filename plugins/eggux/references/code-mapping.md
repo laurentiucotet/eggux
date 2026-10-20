@@ -33,7 +33,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Dialog`, `Alert Dialog` | shadcn `Dialog`, `AlertDialog` | |
 | `Sheet`, `Drawer` | shadcn `Sheet`, `Drawer` (vaul) | |
 | `Alert`, `Toast` | shadcn `Alert`, `Sonner` | |
-| `Card`, `Stat Card` | shadcn `Card` | Stat Card: custom content |
+| `Card`, `Stat Card` | shadcn `Card` + `cva` with `variant` (default, outline, muted, elevated) and `size` (default, sm) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content |
 | `Skeleton`, `Spinner`, `Kbd` | shadcn `Skeleton`, `Spinner`, `Kbd` | |
 | `Pagination`, `Breadcrumb` | shadcn `Pagination`, `Breadcrumb` | |
 | `Sidebar` and parts | shadcn `Sidebar` | |

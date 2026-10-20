@@ -136,7 +136,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Drawer | `Drawer` | - | Bottom drawer, top radius xl. Handle; Header (no close), Content, Footer (native slots, stacked full-width buttons) |
 | Card | `Card Header` | - | Title, Description, Show description, Show action. Action (native slot) |
 | Card | `Card Footer` | - | Actions (native slot) |
-| Card | `Card` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer |
+| Card | `Card` | Variant: default, outline, muted, elevated. Size: default (24), sm (16) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
 | Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Footnote, Show footer. Change badge and trend line edited per instance |
 | Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
 | Card | `Post Card` | Layout: vertical, horizontal | Title, Excerpt, Date, Author, Show author, Show excerpt; category Badge exposed |
