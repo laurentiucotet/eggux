@@ -45,6 +45,7 @@ checks every applied decision.
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
 | `/eggux:audit-tokens` | Checks Figma variables (aliases, code syntax, scopes, contrast) and scans components for raw values |
 | `/eggux:new-component` | From a screenshot or description to an approved component: reuse map, proposal, build, stress test (min, typical, max content), review, docs and records |
+| `/eggux:update-component` | After you edit a component by hand in Figma: finds what changed (snapshot diff), plays it back, polishes it (tokens, all variants, properties, layout), checks decisions, UX rules and affected instances, re-runs the stress test, reviews, then updates the doc, snapshot and records |
 
 ## How it is organized
 
@@ -62,10 +63,11 @@ plugins/eggux/
     ├── decision-log/
     ├── review/          Nielsen heuristics
     ├── audit-tokens/    audit.js, scan-components.js, run through Figma MCP
-    └── new-component/   screenshot or description → proposal → build → stress test → approval → docs
+    ├── new-component/   screenshot or description → proposal → build → stress test → approval → docs
+    └── update-component/ hand edit → snapshot diff → polish → impact → stress test → approval → docs
 
 client-project/
-└── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md, features/
+└── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md, features/, components/
 ```
 
 Precedence: client `decisions.md` > client `brand.md` overrides > plugin base rules.
@@ -126,6 +128,7 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3n. Done: Intro page; navbar variants (Centered, Search, Mega Menu), footer variants (Newsletter,
    Corporate, Centered); Help center family (hero, topics, popular, article list, support,
    docs page footer, changelog, status page) with a Help center example.
+3o. Done: `/eggux:update-component` with snapshot diff, polish, impact and stress test.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 

@@ -3,6 +3,17 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.31.0
+- New skill `update-component`: after a hand edit in Figma, diffs the component against its
+  saved snapshot (or the master library), plays back the changes, polishes them (tokens, sibling
+  variants, properties, auto layout, layer names), flags conflicts with decisions and UX rules
+  and breaking property changes, lists affected instances, re-runs the stress test, reviews,
+  and after approval updates the component doc, snapshot and records.
+- `skills/update-component/snapshot.js`: read-only snapshot of a component set (properties,
+  layout, tokens or raw values, text styles, instances) with an optional diff against a
+  baseline.
+- new-component saves a snapshot at approval; the component template and project-files list it.
+
 ## 0.30.1
 - Manifest: removed `displayName`, which older Claude Code versions reject at install
   ("Unrecognized key").

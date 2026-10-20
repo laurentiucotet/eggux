@@ -116,6 +116,7 @@ What stays:
 |---|---|---|
 | Figma | Component with its description (when to use, content rules); `Stress test / <Component>` in a `Stress tests` section on the page; an example frame | Same, in the master file |
 | Docs | `eggux/components/<name>.md` in the client repo, from `templates/component.md` | `skills/build-ui/components/<name>.md` in the plugin, same template |
+| Snapshot | `skills/update-component/snapshot.js` output (`flat`) saved to `eggux/components/<name>.snapshot.json`; `/eggux:update-component` diffs later hand edits against it | `skills/build-ui/components/<name>.snapshot.json` |
 | Records | A decision in `eggux/decisions.md` (type component, with the content rules) | Inventory row in `references/figma-library.md`, `references/code-mapping.md`, `skills/build-ui/index.md`, `CHANGELOG.md`, version bump, `claude plugin validate .`, commit |
 | Code (when the project has one) | The component with props that match Figma, the content rules (truncation, "+N"), and stories or tests for the stress cases | Code mapping only |
 
@@ -124,6 +125,8 @@ What stays:
 - A client component that appears in a second project: propose promoting it to the master
   library (remove client content, generalize props, keep the stress test).
 - New Plugin API trap learned: one line in `references/figma-api-notes.md`.
+
+Later hand edits in Figma go through `/eggux:update-component`.
 
 End with the status, what was built, the stress test result (cases, breaks found, rules added),
 and where the docs and records are.
