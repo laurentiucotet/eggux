@@ -40,4 +40,7 @@ Limits found in the stress test.
 Component, props, where it lives; stories or tests for the stress cases.
 
 ## Changelog
+One line per change: date, what changed, why. Hand edits are reviewed with
+`/eggux:update-component`; the snapshot next to this doc (`<name>.snapshot.json`) is the
+baseline for the next diff.
 - {{date}}: approved.
