@@ -65,12 +65,12 @@ Domain-specific needs become Field Presets or Blocks.
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
 | Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
-| Popover | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
+| Select | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
+| Select | `Tag` | State: default, disabled | Label, Remove |
+| Select | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Chevron |
 | Popover | `Popover` | - | Content (native slot). 288 wide, popover tokens, shadow/md |
 | Popover | `Command Input` | - | Value. Search field with bottom divider |
 | Popover | `Command` | - | Command Input (exposed), Items (native slot), Empty, Show items. Base for Combobox and ⌘K |
-| Popover | `Tag` | State: default, disabled | Label, Remove |
-| Popover | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Chevron |
 | Popover | `Hover Card` | - | Content (native slot), 320 wide |
 | Popover | `Command Dialog` | - | Command Input (exposed), Items (native slot), footer with key hints. 560 wide |
 | Calendar | `Calendar Day` | State: default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end | Day |

@@ -3,6 +3,12 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.34.2
+- Combobox, Tag, Tag Input and their examples move from the Popover page to the Select page:
+  pages group components by what they are (a field that selects), not by how they are built
+  (a Popover with a Command). Instances, including those in Filter Builder, stay linked.
+- new-component: put a component on the page of what it is, not of the parts it uses.
+
 ## 0.34.1
 - Removed 4 orphan Card variants that a failed clone left on the Cover page; checked every page
   for leftovers. API note: set the current page before creating nodes and check for strays.

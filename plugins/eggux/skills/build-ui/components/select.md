@@ -34,12 +34,12 @@ Usage guidelines only. Visual specs live in the Figma component.
 - `Combobox` is the searchable trigger (chevrons-up-down). Open state: `Combobox` (focus) +
   `Command` 4 px below: `Command Input` with the query, `Items` slot with the matching
   `Menu Item`s (Checked on the selected one). No match: turn on `Empty`, off `Show items`.
-  See "combobox open" on the Popover page.
+  See "combobox open" on the Select page.
 
 ## Multi-select and Tag Input
 - Several values in one field: from a list (multi-select, Chevron on, opens Command with Checked
   items that stay open while picking) or free entry (tags, Chevron off, Enter or comma adds).
 - Show selected values as `Tag`s; after ~5, collapse to "+3 more". Backspace removes the last tag.
 - Up to ~7 options with all worth seeing: Checkbox group instead.
-- Figma: `Tag` (Label, Remove), `Tag Input` (State, Tags slot, Chevron) on the Popover page.
+- Figma: `Tag` (Label, Remove), `Tag Input` (State, Tags slot, Chevron) on the Select page.
   Example "multi-select open".
