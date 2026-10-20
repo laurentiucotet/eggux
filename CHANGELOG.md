@@ -3,6 +3,17 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.34.0
+- Card: `Elevation` toggle (false / true, shadow md) replaces `Variant=elevated`; Variant is
+  default, outline, muted; 12 variants. Default cards are flat (no shadow sm).
+- Clip content turned off on 107 frames that did not need it (Card set and placeholders, Card
+  stress test, Intro, Help center example, Stat Card, Option Card); focus variants keep it.
+- The scan caught the 4 new variants with slots turned into plain frames (a clone side effect);
+  rebuilt as real slots on the shared keys, and instance content survives every toggle.
+- `scan-components.js` reports `clippingFrame`; API notes on `createFrame()` clipping by default
+  and on cloning variants; new-component: clip content off, on/off looks as true/false variant
+  properties; `feature-page.js` placeholders no longer clip.
+
 ## 0.33.0
 - Card: `Variant` (default, outline, muted, elevated) and `Size` (default, sm); 8 variants.
   Padding and gap on Density tokens `density/card-padding`, `-sm`, `density/card-gap`, `-sm`

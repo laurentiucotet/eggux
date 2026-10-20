@@ -64,6 +64,10 @@ Build only after the user agrees or says to go ahead.
 - States: default, hover, focus (2 px gap + 4 px ring, `clipsContent` on), disabled
   (`opacity/50`), plus error or selected when they exist.
 - Content that varies per use is a native slot (clipsContent off, sensible default content).
+- Clip content off on every frame you create (`createFrame()` turns it on); only focus
+  variants, image crops and scroll areas clip.
+- On/off looks (elevation, divider, compact header) are variant properties with the values
+  `false` / `true`, which Figma shows as a toggle; layer visibility uses BOOLEAN properties.
   Fixed variation is a boolean or TEXT property.
 - Layers 2-4 are built only from instances of layer 1, never redrawn. Copy the look of an
   existing variant (Input, Select, Button) instead of rebinding tokens by hand.

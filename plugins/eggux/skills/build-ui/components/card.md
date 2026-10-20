@@ -15,10 +15,14 @@ Header (title `body/large`, optional description `body/small` muted, optional ac
 ## Variants and sizes
 | Variant | Looks | Use |
 |---|---|---|
-| `default` | Card background, border, shadow sm | Most cards |
+| `default` | Card background, border | Most cards |
 | `outline` | No fill, border | Cards inside a panel, a dialog or another surface; long lists of cards |
 | `muted` | Tinted (`card/muted-background`), no border | Secondary or summary information, empty and placeholder cards, side notes |
-| `elevated` | Card background, shadow md, no border | One card that must stand out or floats over content |
+
+| Elevation | Looks | Use |
+|---|---|---|
+| `false` (default) | Flat | Cards on a page, in grids and lists |
+| `true` | Shadow md; an outline card gets the card background so the shadow has a surface | One card that must stand out, or a card floating over content (a draggable card, a card over a map) |
 
 | Size | Padding and gap | Use |
 |---|---|---|
@@ -32,7 +36,7 @@ Which one:
 - A one-off look for one screen → do not add a variant; use an existing one or record a decision.
 - Status colors (success, warning, error) are not card variants: use an `Alert`, or a `Badge`
   or Status Dot inside the card. Color alone never carries the status.
-- One variant per group of cards; do not mix default and elevated in the same grid.
+- One variant per group of cards; do not mix flat and elevated cards in the same grid.
 
 ## Padding
 The card has padding top and bottom; Header, Content and Footer each have padding left and
@@ -51,7 +55,7 @@ Stat Card, Option Card and Post Card use the same tokens.
 - Selectable cards (plan, visit type) use Option Card: the whole card is the target, one selected.
 
 ## Figma
-- `Card` (Variant × Size) = native slots Header (Card Header), Content (placeholder) and Footer (Card Footer).
+- `Card` (Variant × Size × Elevation, 12 variants) = native slots Header (Card Header), Content (placeholder) and Footer (Card Footer).
   Fill the slots in the instance; never detach. Turn off Show header / Show footer when unused.
 - `Card Header` has its own Action slot (top right): Button Icon with a menu, a Badge, a Select.
 - `Stat Card` (Trend up, down, neutral) for dashboards; `Option Card` for selectable options.

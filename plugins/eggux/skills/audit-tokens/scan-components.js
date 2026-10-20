@@ -11,7 +11,7 @@ let roots = [];
 if (ROOTS.length) for (const id of ROOTS) { const n = await figma.getNodeByIdAsync(id); if (n) roots.push(n); }
 else roots = figma.currentPage.findAllWithCriteria({ types: ['COMPONENT_SET', 'COMPONENT'] }).filter(n => n.type === 'COMPONENT_SET' || n.parent.type !== 'COMPONENT_SET');
 
-const findings = { rawFill: [], rawStroke: [], rawSpacing: [], rawRadius: [], unstyledText: [], clippingSlot: [], emptyIcon: [], brokenSlot: [] };
+const findings = { rawFill: [], rawStroke: [], rawSpacing: [], rawRadius: [], unstyledText: [], clippingSlot: [], clippingFrame: [], emptyIcon: [], brokenSlot: [] };
 let checked = 0;
 for (const r of roots) {
   // A SLOT property must be used by a SLOT node in every variant. Overwriting a slot's
@@ -35,6 +35,10 @@ for (const r of roots) {
     if ('fills' in n && Array.isArray(n.fills) && n.fills.some(p => !ok(p))) findings.rawFill.push(`${r.name} > ${n.name}`);
     if ('strokes' in n && Array.isArray(n.strokes) && n.strokes.some(p => !ok(p))) findings.rawStroke.push(`${r.name} > ${n.name}`);
     if (n.type === 'INSTANCE') continue;
+    // createFrame() starts with clip content on. Only focus variants, image crops and scroll
+    // areas should clip; anything else hides overflow that the stress test must see.
+    if (['FRAME', 'COMPONENT', 'COMPONENT_SET'].includes(n.type) && n.clipsContent && !/State=focus/.test(n.name) && !(Array.isArray(n.fills) && n.fills.some(p => p.type === 'IMAGE')))
+      findings.clippingFrame.push(`${r.name} > ${n.name}`);
     if ('layoutMode' in n && n.layoutMode && !['NONE', 'GRID'].includes(n.layoutMode))
       for (const k of ['paddingLeft', 'paddingRight', 'paddingTop', 'paddingBottom', 'itemSpacing'])
         if (n[k] > 0 && !(n.boundVariables && n.boundVariables[k])) findings.rawSpacing.push(`${r.name} > ${n.name} ${k}=${n[k]}`);

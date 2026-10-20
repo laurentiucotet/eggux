@@ -30,14 +30,21 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - `component.createSlot()` creates a SLOT node and a `SLOT` property; the key is in
   `slot.componentPropertyReferences.slotContentId`. Rename with `editComponentProperty`.
 - `createSlot()` turns `clipsContent` on. Turn it off on every slot.
+- `figma.createFrame()` also starts with `clipsContent = true` (`createComponent()` starts with
+  false). Set `clipsContent = false` on every frame you create, unless it must crop: a focus
+  variant (for the ring), an image crop, a scroll area. `scan-components.js` lists the others
+  as `clippingFrame`.
 - In a component set, create the slot in every variant before `combineAsVariants`; same-named
   slots merge into one property. Created after combining, each variant gets its own property:
   point all slots to one key and delete the others.
 - Never assign `slot.componentPropertyReferences = { visible: k }`: it drops `slotContentId` and
   the slot becomes a plain FRAME. Merge: `{ ...slot.componentPropertyReferences, visible: k }`.
   The scan reports this as `brokenSlot`.
-- `clone()` of a variant turns its SLOT into a FRAME named after the property. Clone first, then
-  create slots; or delete that frame and create a fresh slot.
+- `clone()` of a variant turns its SLOT into a FRAME named after the property, and the clone may
+  land outside the set. Append it (`set.appendChild(clone)`), then for each such frame:
+  `v.createSlot()`, copy layout and bound padding, move the children in, delete the frame,
+  point the slot to the existing keys (`{ slotContentId: K('Content'), visible: K('Show content') }`)
+  and `set.deleteComponentProperty()` the key the new slot created. Run the scan after.
 - `findOne(n => n.name === 'value')` can hit a TEXT layer with the same name inside a nested
   component. Filter by type (`n.type === 'INSTANCE'`) when looking for nested instances.
 - The plugin sandbox has no `Intl`: `toLocaleString` ignores locales and grouping. Format
