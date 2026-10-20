@@ -39,7 +39,8 @@ checks every applied decision.
 | `/eggux:init` | Creates the `eggux/` folder in a client project from templates |
 | `/eggux:discovery` | Interview notes → objects (OOUX), actors, workflows |
 | `/eggux:brand-intake` | Brand assets → `brand.md` + Semantic variables in the client's Figma file |
-| `/eggux:new-feature` | Interviews you about a feature idea (actors, flow, data, states, edge cases, feedback) and writes `eggux/features/<feature>.md` with acceptance criteria |
+| `/eggux:new-feature` | Interviews you about a feature idea (actors, flows, data, scenarios, edge cases, states, feedback), writes `eggux/features/<slug>/` (feature, scenarios, workflows, decisions) and creates the feature's Figma page with a section per flow, scenario and edge case |
+| `/eggux:update-feature` | Takes new input (decisions, details, comments, notes) and updates every file and Figma section it touches, marks affected screens "Needs update", archives superseded frames, checks that everything agrees and logs the change |
 | `/eggux:build-ui` | Designs and builds screens from the library, following client files |
 | `/eggux:decision-log` | Turns Inbox requests into decisions, applies them in Figma and code, verifies the work |
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
@@ -63,11 +64,13 @@ plugins/eggux/
     ├── decision-log/
     ├── review/          Nielsen heuristics
     ├── audit-tokens/    audit.js, scan-components.js, run through Figma MCP
+    ├── new-feature/     interview → feature folder → Figma page with flows, scenarios, edge cases
+    ├── update-feature/  new input → impact map → files and Figma page updated → consistency check
     ├── new-component/   screenshot or description → proposal → build → stress test → approval → docs
     └── update-component/ hand edit → snapshot diff → polish → impact → stress test → approval → docs
 
 client-project/
-└── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md, features/, components/
+└── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md, features/<slug>/, components/
 ```
 
 Precedence: client `decisions.md` > client `brand.md` overrides > plugin base rules.
@@ -129,6 +132,8 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
    Corporate, Centered); Help center family (hero, topics, popular, article list, support,
    docs page footer, changelog, status page) with a Help center example.
 3o. Done: `/eggux:update-component` with snapshot diff, polish, impact and stress test.
+3p. Done: features as folders (spec, scenarios, workflows, decisions) with a Figma page per
+   feature; `/eggux:update-feature`.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 

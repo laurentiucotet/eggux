@@ -3,6 +3,21 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.32.0
+- `new-feature` writes a folder per feature, `eggux/features/<slug>/`: `feature.md` (spec,
+  screens, impact on the product, changelog), `scenarios.md` (S-xx scenarios and E-xx edge
+  cases with Given / When / Then), `workflows.md` (F-xx flows with steps and a Mermaid
+  diagram), `decisions.md` (Inbox and FD-xx feature decisions).
+- `new-feature/feature-page.js`: creates the feature's Figma page after a `FEATURES` divider,
+  with sections Overview, Flows, one per scenario, one per edge case, States and Archive;
+  screens as named placeholders; all on tokens and text styles.
+- New skill `update-feature`: classifies new input, maps its impact on the feature files,
+  product files, other features and the Figma page, applies it everywhere, marks affected
+  screens with a "Needs update" annotation, archives superseded frames, checks consistency and
+  logs the change. Migrates old single-file specs.
+- build-ui designs into the feature page's sections; review checks scenarios, edge cases and
+  feature decisions by ID; the SessionStart hook reports feature Inbox lines.
+
 ## 0.31.0
 - New skill `update-component`: after a hand edit in Figma, diffs the component against its
   saved snapshot (or the master library), plays back the changes, polishes them (tokens, sibling

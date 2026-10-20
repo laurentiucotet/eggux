@@ -17,8 +17,10 @@ they exist: the review checks the design against the actor's workflow, not in a 
    For every action on the screen, check its feedback against `patterns/action-feedback.md`,
    and the states for no access, offline and errors (`permissions-and-access.md`,
    `errors-and-recovery.md`).
-4. **Feature spec:** when the screen belongs to `eggux/features/<feature>.md`, every acceptance
-   criterion, state and edge case in it; a missing one is a finding.
+4. **Feature:** when the screen belongs to `eggux/features/<slug>/`, every scenario and edge case
+   in `scenarios.md` (Given / When / Then), the states and acceptance criteria in `feature.md`,
+   and the decisions in its `decisions.md`; a missing one is a finding that cites the ID
+   (S-02, E-01, FD-04). Screens still annotated "Needs update" are findings.
 5. **Decisions:** every entry in `eggux/decisions.md` that is approved, applied or verified and
    whose scope covers the screen: terminology ("Don't use" terms), design values (the decided
    token, no overrides), component and behavior choices. Each violation is a finding that cites
