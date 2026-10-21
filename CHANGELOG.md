@@ -3,6 +3,15 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.36.0
+- 12 AI components on the AI Chat page: `Model Selector`, `Model Option`, `Context Chip`,
+  `Voice Recorder`, `Chat History Item`, `Response Feedback`, `Plan Step`, `Agent Plan`,
+  `Artifact Card`, `AI Summary`, `AI Suggestion`, `AI Notice`.
+- Examples: agent at work, AI on a record page, chat history; `Stress test / AI components`.
+- ai-chat pattern: agents, context, AI in the product (summary, suggested values, notice),
+  model choice, voice, history; component guide, index, code mapping, inventory; counts 184
+  components, 748 variants; Intro 2.7.
+
 ## 0.35.0
 - 13 components for building screens:
   - Table: `Table Cell Amount` (trend none, up, down), `Table Cell Status`, `Table Cell

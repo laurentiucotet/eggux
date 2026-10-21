@@ -40,7 +40,8 @@ does one thing well.
 - Reasoning stays collapsed ("Thought for 12 s"); it explains, it is not the answer.
 - After the answer: copy, regenerate, good / bad feedback (`Assistant Message` actions) and
   2-3 follow-up `Suggestion` chips when the next step is predictable.
-- Bad feedback asks for an optional reason (wrong, outdated, not helpful) in a small Popover.
+- Bad feedback opens `Response Feedback` under the answer: reasons as chips, optional details,
+  what is shared, Send. Good feedback sends at once.
 
 ## Actions the assistant takes
 - Reading is free; writing asks. Anything that changes data, sends messages, spends money or
@@ -49,6 +50,32 @@ does one thing well.
 - After an approved action, confirm with what changed and a link ("Email sent to
   billing@acme.com. View in Activity"), and offer Undo when possible.
 - Permissions are the user's: the assistant cannot do what the user cannot.
+
+## Agents (multi-step work)
+- A task with more than 2 steps shows an `Agent Plan`: title, step N of M and time left, Stop,
+  progress, `Plan Step`s (pending, running, done, error) and what needs approval.
+- Steps say what they do in the user's words ("Check payment history"), not tool names.
+- A failed step says what failed and what happens next (retry, skip, ask). The plan never stops
+  silently.
+- Long tasks run in the background: say so, notify when done (`notifications.md`), keep the
+  plan in the conversation collapsed to its result.
+- What the agent makes (report, chart, table, draft) appears as an `Artifact Card`; Open shows
+  it in a side canvas or its page. Each run makes a new version.
+
+## Context
+- Show what the assistant will use as `Context Chip`s in the input: the current record or page
+  (added by default, removable), files, people. Add with @ or the paperclip.
+- The answer names what it used (Sources); never use data the user cannot open.
+
+## AI in the product (outside chat)
+- `AI Summary` on record and report pages: 2-4 sentences with numbers and dates, sources,
+  regenerate, feedback, disclaimer. Generating shows what it reads; error offers Try again.
+- `AI Suggestion` for form fields: the proposed value in a dashed box with the reason, Accept
+  and Dismiss. Nothing is saved until accepted; accepted values keep an "AI generated" label
+  until edited, with Undo. Low confidence says so in the reason.
+- `AI Notice`: the "AI generated" label on content written by AI, and one disclaimer line under
+  answers and summaries, same words everywhere.
+- Use `sparkles` for AI entry points and AI-made content only.
 
 ## Errors and limits
 - A failed answer keeps the partial text, says what happened and offers Retry
@@ -61,6 +88,10 @@ does one thing well.
 - `Prompt Input`: Enter sends, Shift+Enter new line; grows to ~8 lines then scrolls; send
   disabled while empty; attachments above the text; tools and model selector only when users
   need to choose.
+- Model choice (`Model Selector` in the Tools slot, `Model Option` rows) only when users really
+  choose between cost, speed or data rules; describe models by what they are good for.
+- Voice: `Voice Recorder` replaces the input while dictating; the transcript lands in the input
+  for review, never sent unread.
 - Edit a sent message (`User Message` actions): the conversation continues from there.
 - Keep drafts per conversation.
 
@@ -68,7 +99,8 @@ does one thing well.
 - Conversations in the Sidebar grouped by date (Today, Previous 7 days, older by month), with
   a title generated from the first message and editable. New chat at the top. Search when
   there are more than ~20.
-- Rename, delete (with confirmation) and share from a menu on each item.
+- Rename, pin, share and delete (with undo) from a menu on each item (`Chat History Item`);
+  pinned conversations on top.
 
 ## Inline AI
 - Select text, then "Ask AI" or a list of actions (improve, shorter, fix spelling, tone,
