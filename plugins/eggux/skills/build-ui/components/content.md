@@ -6,7 +6,10 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Articles, news, case studies, changelog entries. Image 16:9, category + date · reading time,
   title, excerpt (3 lines max), author. The whole card is one link.
 - `Layout=horizontal` for the featured post at the top of a list; `vertical` in grids of 3.
-- Figma: `Post Card` (Card page), Title, Excerpt, Date, Author, Show author, Show excerpt; Badge
+- `Layout=compact` for related, most read and up next lists in an aside or under an article:
+  title on 2 lines, meta in Date ("Guide · 12 Oct 2026"), optional 1:1 image (Show image) on all
+  items or none; 3-5 items.
+- Figma: `Post Card` (Card page), Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact); Badge
   exposed for the category.
 
 ## Code Block

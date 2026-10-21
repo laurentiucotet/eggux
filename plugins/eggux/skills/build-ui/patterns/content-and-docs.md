@@ -3,7 +3,9 @@
 Blocks on the Content page (Blog family: Blog Grid, Blog Featured, Blog Post Header, News List,
 Blog List, Article; Help center family: Help Hero, Help Categories, Help Popular Articles, Help
 Article List, Support Options, Docs Page Footer, Changelog, Status Page) and `Page Shell / Docs`.
-Example: `Example / Help center` on the Content page.
+Example: `Example / Help center` on the Content page. Page tops for hubs, topics, search,
+people and events: the Page Headers page (`marketing-pages.md` § Page headers). Related links:
+`Post Card` Layout=compact.
 
 ## Rules
 - Reading column ≈ 672 px (65-75 characters per line), `body/default` 16/28 for prose.

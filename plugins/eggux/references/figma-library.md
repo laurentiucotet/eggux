@@ -177,7 +177,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
 | Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Subtitle (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
 | Card | `Progress Card` | Status: on track, at risk, off track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
-| Card | `Post Card` | Layout: vertical, horizontal | Title, Excerpt, Date, Author, Show author, Show excerpt; category Badge exposed |
+| Card | `Post Card` | Layout: vertical, horizontal, compact | Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact: 1:1 image 64); category Badge exposed. Compact = title on 2 lines + meta, for related lists |
 | Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
 | Table | `Table Header Label` | Sort: off, sortable, ascending, descending. Align: left, right | Label |
 | Table | `Table Cell Text` | Style: default, strong, muted. Align: left, right | Text |
@@ -245,6 +245,7 @@ Domain-specific needs become Field Presets or Blocks.
 | App | `Block / Kanban Board`, `/ Scheduler Week` | - | Board with columns and a dragged card; week view with toolbar, events, now line |
 | App | `Block / Scheduler Month` | - | Month grid, up to 3 events per day + "+N more", today marked |
 | App | `Block / Comments`, `/ Conversation` | - | Comment thread with replies, resolved comment and composer; chat with header, day separator, grouped messages, typing, composer |
+| Page Headers | `Block / Header Detail`, `/ Header Listing`, `/ Header Search Results`, `/ Header Profile`, `/ Header Event`, `/ Header Topic`, `/ Header Report`, `/ Header Simple` | - | Tops of inner pages: detail (product, dataset, service) with people and media; listing hub with type switch and search; search results with tabs and sort; person; event with date, place and speakers; topic with subtopic chips; report with three figures; plain page (legal, about). Examples: topic page, event page |
 | Content | `Block / Blog List`, `/ Article` | - | Featured + grid of Post Cards + pagination; reading column with prose and TOC |
 | Sections (blocks) | `Block / Contact Cards`, `/ Contact with Map`, `/ Offices`, `/ Map Section` | - | Contact family: channel cards; form + map + address; office cards with maps; full-width map with overlay card |
 | Sections (blocks) | `Block / Testimonial Single`, `/ Testimonial Grid`, `/ Testimonial Split`, `/ Testimonial Carousel` | - | Testimonials family: one quote; six cards with ratings; case study with results; carousel |
@@ -379,7 +380,7 @@ into their family section.
 2. Field Presets: a component with a purpose (email, phone, card number) built from layer 1.
 3. Blocks: whole compositions (navigation, hero, sections, forms, app sections) built from
    layers 1 and 2, one page per category under the BLOCKS divider (AI, App, Commerce, Content,
-   Enterprise, Forms, Hero, Navigation, Results, Sections).
+   Enterprise, Forms, Hero, Navigation, Page Headers, Results, Sections).
 4. Page Shells: full pages with a Page slot where blocks go.
 A change in layer 1 flows up. Add a preset or block only when the same composition appears in
 two or more projects; otherwise build it in the client file.

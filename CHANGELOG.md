@@ -3,6 +3,16 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.44.0
+- New block page Page Headers: `Block / Header Detail`, `Header Listing`, `Header Search
+  Results`, `Header Profile`, `Header Event`, `Header Topic`, `Header Report`, `Header Simple`,
+  with examples "topic page" and "event page". Generalized from the Mobility Global test
+  screens, domain-neutral content.
+- `Post Card` Layout=compact (title on 2 lines, meta, optional 1:1 image) for related, most read
+  and up next lists; the Article test screen uses it.
+- marketing-pages.md § Page headers (which header for which page), content-and-docs.md and the
+  build-ui index point to them; figma-library.md lists the page and the new layout.
+
 ## 0.43.1
 - figma-library.md lists Side Panel and Sidebar Double, the new Entity Card and Sortable List
   Item slots, and the tested back office grid shell.

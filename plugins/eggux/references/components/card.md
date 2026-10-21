@@ -11,11 +11,11 @@ Usage rules live in the guides linked under each component.
 | [Card Footer](#card-footer) | 1 | Actions |
 | [Stat Card](#stat-card) | 3 | - |
 | [Option Card](#option-card) | 5 | - |
-| [Post Card](#post-card) | 2 | - |
+| [Post Card](#post-card) | 3 | - |
 | [Entity Card](#entity-card) | 4 | Leading, Tags, Details, Actions |
 | [Progress Card](#progress-card) | 3 | - |
 
-On the Figma page: "Example / customer card", "Example / in blog featured", "Example / plan choice", "Example / quarter goal", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Option Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
+On the Figma page: "Example / customer card", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Option Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
 
 ## Card
 
@@ -247,15 +247,16 @@ Guides: [card](../../skills/build-ui/components/card.md)
 
 ## Post Card
 
-Component set · 2 variants · default size 352 × 410
+Component set · 3 variants · default size 352 × 410
 
-Article, news or case-study card: image 16:9, category + date · reading time, title, excerpt (3 lines max), author. horizontal = featured post. The whole card links to the article.
+Article, news or case-study card: image 16:9, category + date · reading time, title, excerpt (3 lines max), author. horizontal = featured post. compact = a link row for asides and lists (related, most read, up next): title on 2 lines and meta, optional 1:1 image (Show image). The whole card links to the article.
 
 **Use for**
 
 - Blog grids of 3: Layout=vertical
 - The featured post at the top of a list: Layout=horizontal
 - News, case studies, changelog entries and carousels of posts
+- Layout=compact: related, most read and up next lists in an aside or under an article
 
 **Not for**
 
@@ -269,6 +270,7 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 3. Title
 4. Excerpt, 3 lines max (Show excerpt)
 5. Author with Avatar (Show author)
+6. Compact: optional 1:1 image (Show image), Title on 2 lines, meta in Date (type · date)
 
 **Content and behavior**
 
@@ -276,6 +278,7 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 - Excerpt is 3 lines max, then truncates
 - Date and reading time on one line ("12 Oct 2026 · 6 min read")
 - Cards in a grid share the same structure
+- Compact: 3-5 items per list; meta says type and date ("Guide · 12 Oct 2026"); image on all items or none
 
 **Accessibility**
 
@@ -285,7 +288,7 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 
 | Variant property | Values |
 |---|---|
-| Layout | vertical, horizontal |
+| Layout | vertical, horizontal, compact |
 
 | Property | Type | Default |
 |---|---|---|
@@ -295,16 +298,17 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 | Author | text | Maria Ilie |
 | Show author | boolean | true |
 | Show excerpt | boolean | true |
+| Show image | boolean | false |
 
 Built from: `Avatar`, `Badge`, `Image Placeholder`
 
 Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
-- Radius: `radius/lg`
+- Radius: `radius/lg`, `radius/md`
 - Text styles: `body/default`, `body/small`, `heading/h2`, `heading/h4`, `ui/caption`, `ui/label`
 
-Guides: [content](../../skills/build-ui/components/content.md)
+Guides: [content](../../skills/build-ui/components/content.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
 ## Entity Card
 
