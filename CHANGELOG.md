@@ -3,6 +3,14 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.39.0
+- Carousel kit: `Carousel Arrow` (outline, overlay × previous, next × 4 states), `Carousel
+  Indicator` (dots, bars with Pause, counter × default, overlay), `Carousel Thumbnail`,
+  `Carousel Slide` (caption, overlay), `Carousel Gallery`, `Carousel Hero`, `Lightbox`.
+  `Carousel` now uses the arrow and indicator components.
+- `Stress test / Carousel`; carousel guide (which one, parts), code mapping, inventory,
+  component reference regenerated; counts 189 components, 778 variants; Intro 2.9.
+
 ## 0.38.0
 - `references/components/`: one generated Markdown file per component page (56 pages, 182
   components): variants, every property with its default, slots, the components and icons it is

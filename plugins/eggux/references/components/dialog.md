@@ -77,7 +77,7 @@ Tokens and styles:
 - Text styles: `ui/caption`
 - Effects: `shadow/lg`
 
-Guides: [dialog](../../skills/build-ui/components/dialog.md), [drawer](../../skills/build-ui/components/drawer.md), [popover](../../skills/build-ui/components/popover.md), [errors-and-recovery](../../skills/build-ui/patterns/errors-and-recovery.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
+Guides: [carousel](../../skills/build-ui/components/carousel.md), [dialog](../../skills/build-ui/components/dialog.md), [drawer](../../skills/build-ui/components/drawer.md), [popover](../../skills/build-ui/components/popover.md), [errors-and-recovery](../../skills/build-ui/patterns/errors-and-recovery.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
 
 Code: shadcn `Dialog`, `AlertDialog`
 
