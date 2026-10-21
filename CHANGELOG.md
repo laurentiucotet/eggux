@@ -3,6 +3,22 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.35.0
+- 13 components for building screens:
+  - Table: `Table Cell Amount` (trend none, up, down), `Table Cell Status`, `Table Cell
+    Progress`, `Table Cell Actions`, `Table Pagination`.
+  - Filters (page renamed from Filter Builder): `Filter Bar` (two rows), `Filter Chip` (empty
+    trigger, active), `Faceted Filter`, `Facet Option`, `Filter Section`.
+  - Cards: `Entity Card` (4 states), `Progress Card` (on track, at risk, off track).
+  - `Empty State` (default, sm) on its own page.
+- `Example / invoices with filters` and `Example / no results` (Table page); stress tests on the
+  Table, Filters, Card and Empty State pages. Rules from the stress tests: filter value
+  truncates at 200, entity title 2 lines and subtitle 1, progress target wraps, status note
+  truncates at 96, pagination range on one line, filter bar on two rows.
+- Fixed: primary buttons whose leading icon had turned dark after an icon swap (5 instances).
+- Guides: table, card, search and filter, empty state, index, code mapping, figma-library,
+  API notes; counts 172 components, 714 variants.
+
 ## 0.34.2
 - Combobox, Tag, Tag Input and their examples move from the Popover page to the Select page:
   pages group components by what they are (a field that selects), not by how they are built

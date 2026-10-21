@@ -47,7 +47,14 @@ The table is a GRID frame, not a component. Copy `Template / invoices table (gri
 columns and rows. Details: "Tables on auto-layout grid" in `references/figma-library.md`.
 - Cells: `Table Cell` (header, body, expanded × default, hover, selected) with a Content slot.
 - Content: `Table Header Label` (sorting), `Table Cell Text`, `Table Cell Stack`,
-  `Table Cell User`, Badge, Checkbox without label, Button Icon (actions, expand).
+  `Table Cell User`, `Table Cell Amount` (right-aligned, note or change), `Table Cell Status`
+  (Badge + note), `Table Cell Progress` (bar + percent), `Table Cell Actions` (edit + menu,
+  last column), Checkbox without label, Button Icon (expand).
+- Under the table: `Table Pagination` (range with total, rows per page, pages). Under 900 px
+  turn off rows per page.
+- Above the table: `Filter Bar` (see `patterns/search-and-filter.md`).
+- Nothing to show: `Empty State` Size=sm inside the table frame, under the header row.
+- Example: `Example / invoices with filters` and `Example / no results` (Table page).
 - Selection: checkbox column, header checkbox indeterminate on partial selection,
   `Table Toolbar` above the grid with "N selected" and the bulk actions.
 - Enterprise: copy `Template / data grid (enterprise)` (toolbar, chips, groups, totals,

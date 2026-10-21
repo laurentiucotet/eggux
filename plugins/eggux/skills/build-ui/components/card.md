@@ -59,6 +59,11 @@ Stat Card, Option Card and Post Card use the same tokens.
   Fill the slots in the instance; never detach. Turn off Show header / Show footer when unused.
 - `Card Header` has its own Action slot (top right): Button Icon with a menu, a Badge, a Select.
 - `Stat Card` (Trend up, down, neutral) for dashboards; `Option Card` for selectable options.
+- `Entity Card` for one object in a grid or board (customer, project, vendor): leading avatar or
+  icon, title (2 lines), subtitle (1 line), menu, tags, 2-4 details, footer with people and last
+  update. Fill Details with the attributes marked "card" in `objects.md`.
+- `Progress Card` for a goal against a target; Status on track / at risk / off track names the
+  state in text; say the rule behind it in the footnote or a tooltip.
 - Examples on the Card page: list, profile, form, empty state, stat cards row.
 - `Stress test / Card` (Stress tests section): minimal, typical, long title, full-bleed slot,
   280 and 720 wide, for every variant, sm, Dark, Compact and Corporate Light.

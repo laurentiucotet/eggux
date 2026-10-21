@@ -139,6 +139,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Card | `Card` | Variant: default, outline, muted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
 | Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Footnote, Show footer. Change badge and trend line edited per instance |
 | Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
+| Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Subtitle (1 line), Footer text; Show menu, Show tags, Show details, Show footer; Leading, Tags, Details (native slots). Card padding sm tokens |
+| Card | `Progress Card` | Status: on track, at risk, off track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
 | Card | `Post Card` | Layout: vertical, horizontal | Title, Excerpt, Date, Author, Show author, Show excerpt; category Badge exposed |
 | Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
 | Table | `Table Header Label` | Sort: off, sortable, ascending, descending. Align: left, right | Label |
@@ -147,9 +149,19 @@ Domain-specific needs become Field Presets or Blocks.
 | Table | `Table Cell User` | - | Name, Email, Show email. Avatar exposed |
 | Table | `Table Toolbar` | - | Selection ("2 selected"), Actions (native slot) |
 | Table | `Data Grid Toolbar` | - | Start, End (native slots): saved view, search, filters with count, columns, group by, export |
+| Table | `Table Cell Amount` | Trend: none, up, down | Amount; Note (none), Increase (up), Decrease (down); Show note. Right-aligned |
+| Table | `Table Cell Status` | - | Badge (exposed), Note (truncates at 96), Show note |
+| Table | `Table Cell Progress` | - | Progress (exposed, 96 wide), Label |
+| Table | `Table Cell Actions` | - | Show edit (icon button), Show menu (ellipsis). Right-aligned |
+| Table | `Table Pagination` | - | Range (one line, truncates), Show rows per page; Select + Pagination |
 | Table | `Table Group Row` | - | Label, Subtotal, Show subtotal; count exposed. Goes in a Table Cell Type=expanded spanning all columns |
-| Filter Builder | `Filter Condition` | Position: first, next | Field, operator (Selects), value (Tag Input by default), remove |
-| Filter Builder | `Filter Group` | - | Conditions (native slot), Add condition; muted nested group |
+| Filters | `Filter Condition` | Position: first, next | Field, operator (Selects), value (Tag Input by default), remove |
+| Filters | `Filter Group` | - | Conditions (native slot), Add condition; muted nested group |
+| Filters | `Filter Bar` | - | Two rows: Search + End slot (sort, columns); Filters slot (wraps) + Clear all. Show clear, Show filters |
+| Filters | `Filter Chip` | Type: empty (dashed "+ Field"), active. State: default, hover, focus | Field, Value (truncates at 200), Show remove |
+| Filters | `Faceted Filter` | - | Popover: Command Input, Items (native slot of Facet Options), Clear filters; Show footer |
+| Filters | `Facet Option` | Checked: false, true. State: default, hover | Label, Count, Show count |
+| Filters | `Filter Section` | Expanded: true, false | Title, Show selected count, Show more; Options (native slot). For filter side panels |
 | Approvals | `Approval Step` | Status: approved, current, rejected, upcoming | Name, Role, Time, Comment, Show comment, Connector |
 | Audit | `Change Item` | - | Field, Old, New |
 | Save Bar | `Save Bar` | State: default, saving, error | Sticky bar with message, Discard, Save changes |
@@ -214,6 +226,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Content | `Block / Support Options`, `/ Docs Page Footer`, `/ Changelog`, `/ Status Page` | - | Help center family: channels with hours and reply times; helpful vote, edit link, previous / next; dated releases with New / Improved / Fixed; status with 90-day uptime bars and incidents |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
 | Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
+| Empty State | `Empty State` | Size: default, sm | Title, Description, Show description, Icon (swap), Show actions; Actions (native slot) |
 | Results | `Block / Result` | Type: not-found, server-error, no-access, maintenance, success | Show code; Actions (native slot) |
 | Commerce | `Product Card` | State: default, sale, sold-out | Name, Variant text, Show action, Show wishlist |
 | Commerce | `Block / Product Detail` | - | Gallery, options (Toggle Group), quantity, add to cart, details accordion |
