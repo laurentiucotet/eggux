@@ -357,6 +357,11 @@ categories and Page Shells). Block pages have no prefix. `Navigation` exists in 
 the first holds the components (Breadcrumb, Top Bar), the second the Navbar and Footer blocks.
 Keep new pages in A-Z order inside their section.
 
+Component pages are moving to one row per component, left to right: `<Name> / Docs` (a
+generated doc frame), `<Name> / Component`, `<Name> / Stress test`, `<Name> / Examples`.
+`skills/tidy-component/component-page.js` builds the row; done so far: Cookie Consent. Other
+pages keep the older layout (sets on the page, a `Stress tests` section) until tidied.
+
 Every block page uses Figma sections: `Blocks` with one sub-section per family (Sections page:
 Section Header, Features, Stats, CTA, Pricing, Testimonials, FAQ, Logo Cloud, Team, Contact,
 Newsletter; App page: Settings and admin, Lists, Records, Communication, Scheduling and boards,
