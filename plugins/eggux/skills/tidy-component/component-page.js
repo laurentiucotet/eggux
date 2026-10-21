@@ -232,6 +232,25 @@ const wrapWithLabels = c => {
 };
 
 // ---------- lay out ----------
+// resize() sets both axes of an auto-layout frame to FIXED, so a frame built with resize() stops
+// growing with its content and the section is sized to the clipped height. Before placing,
+// every auto-layout frame inside a stress test or example whose content runs past its edge
+// goes back to hug on that axis (innermost first). Component internals are left alone.
+const inComp = n => { for (let p = n; p; p = p.parent) if (p.type === 'COMPONENT' || p.type === 'COMPONENT_SET') return true; return false; };
+const fitHug = root => {
+  if (!root.findAll) return 0;
+  const depth = n => { let d = 0; for (let p = n; p; p = p.parent) d++; return d; };
+  const frames = [root, ...root.findAll(n => n.type === 'FRAME')].filter(f => f.type === 'FRAME' && f.layoutMode && f.layoutMode !== 'NONE' && !inInstance(f) && !inComp(f)).sort((a, b) => depth(b) - depth(a));
+  let n = 0;
+  for (const f of frames) {
+    const kids = f.children.filter(c => c.layoutPositioning !== 'ABSOLUTE'); if (!kids.length) continue;
+    const bottom = Math.max(...kids.map(c => c.y + c.height)) + (f.paddingBottom || 0), right = Math.max(...kids.map(c => c.x + c.width)) + (f.paddingRight || 0);
+    const h = f.layoutMode === 'HORIZONTAL';
+    if (bottom > f.height + 1 && (h ? f.counterAxisSizingMode : f.primaryAxisSizingMode) === 'FIXED') { if (h) f.counterAxisSizingMode = 'AUTO'; else f.primaryAxisSizingMode = 'AUTO'; n++; }
+    if (right > f.width + 1 && f.layoutWrap !== 'WRAP' && (h ? f.primaryAxisSizingMode : f.counterAxisSizingMode) === 'FIXED') { if (h) f.primaryAxisSizingMode = 'AUTO'; else f.counterAxisSizingMode = 'AUTO'; n++; }
+  }
+  return n;
+};
 const place = (sec, nodes, colsN) => {
   let x = PAD, y = PAD, rowH = 0, col = 0;
   for (const n of nodes) {
@@ -255,6 +274,7 @@ for (const row of rows) {
   place(secs[1], [row.main, ...row.helpers].map(wrapWithLabels), 1);
   let generated = '';
   if (!row.stress.length && AUTO_STRESS) { row.stress.push(await buildStress(row, secs[2])); generated += 'stress '; }
+  for (const d of [...row.stress, ...row.examples]) fitHug(d);
   place(secs[2], row.stress.length ? row.stress : [await note(secs[2], 'No stress test yet. Build one from references/stress-test.md.')], 1);
   if (!row.examples.length && row.R.block) { const e = await buildExample(row, secs[3]); if (e) { row.examples.push(e); generated += 'example'; } }
   place(secs[3], row.examples.length ? row.examples : [await note(secs[3], 'No examples yet. Add 2-4 real screens (page shells, blocks) that use the component.')], 2);
@@ -272,6 +292,12 @@ for (const nm of order) {
 }
 for (const p of oldParents) if (p && p.type === 'SECTION' && !/ \/ (Docs|Component|Stress test|Examples)$/.test(p.name) && p.children.length === 0) p.remove();
 const leftovers = pg.children.filter(n => !(n.type === 'SECTION' && / \/ (Docs|Component|Stress test|Examples)$/.test(n.name))).map(n => n.type + ' ' + n.name);
-results.push({ page: PAGE, rows: report, unassigned, leftovers });
+// anything still running past its frame or section is reported, never left silently
+const overflow = [];
+for (const sct of pg.children.filter(n => n.type === 'SECTION')) for (const ch of sct.children) {
+  if (ch.y + ch.height > sct.height + 1 || ch.x + ch.width > sct.width + 1) overflow.push(sct.name);
+  if (ch.type === 'FRAME' && ch.layoutMode && ch.layoutMode !== 'NONE' && ch.children.length && Math.max(...ch.children.map(k => k.y + k.height)) > ch.height + 1) overflow.push(ch.name);
+}
+results.push({ page: PAGE, rows: report, unassigned, leftovers, overflow });
 }
 return results;

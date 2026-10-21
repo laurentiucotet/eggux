@@ -93,6 +93,10 @@ with the component in its Page slot (Page Header titled for the context), over `
 for dialogs, in the corner for toasts, at its real anchor for menus and popovers.
 
 ## 7. Check
+0. The result's `overflow` list is empty. The script sets stress test and example frames whose
+   content runs past their edge back to hug, then re-checks every section; a name in `overflow`
+   is a frame that still clips its content or a section smaller than what it holds. Fix it
+   before the screenshots: a frame built with `resize()` stays FIXED on both axes.
 1. Screenshot the Docs frame (scale 0.5) and each section; read the doc for wrong or vague
    lines and for leftovers from another domain.
 2. Run the scan again on the set: zero findings except intended clipping.
