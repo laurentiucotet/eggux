@@ -6,21 +6,86 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
+| [Table Cell](#table-cell) | 10 | Content |
 | [Table Header Label](#table-header-label) | 8 | - |
 | [Table Cell Text](#table-cell-text) | 6 | - |
 | [Table Cell Stack](#table-cell-stack) | 1 | - |
 | [Table Cell User](#table-cell-user) | 1 | - |
-| [Table Cell](#table-cell) | 10 | Content |
-| [Table Toolbar](#table-toolbar) | 1 | Actions |
-| [Data Grid Toolbar](#data-grid-toolbar) | 1 | Start, End |
-| [Table Group Row](#table-group-row) | 1 | - |
 | [Table Cell Amount](#table-cell-amount) | 3 | - |
 | [Table Cell Status](#table-cell-status) | 1 | - |
 | [Table Cell Progress](#table-cell-progress) | 1 | - |
 | [Table Cell Actions](#table-cell-actions) | 1 | - |
+| [Table Cell Link](#table-cell-link) | 1 | - |
+| [Table Cell Date](#table-cell-date) | 1 | - |
+| [Table Cell File](#table-cell-file) | 1 | - |
+| [Table Cell Tags](#table-cell-tags) | 1 | - |
+| [Table Cell Avatars](#table-cell-avatars) | 1 | - |
+| [Table Toolbar](#table-toolbar) | 1 | Actions |
+| [Data Grid Toolbar](#data-grid-toolbar) | 1 | Start, End |
+| [Table Group Row](#table-group-row) | 1 | - |
 | [Table Pagination](#table-pagination) | 1 | - |
 
-On the Figma page: "Example / bulk actions on invoices", "Example / density comparison", "Example / in audit log", "Example / inline edit and column resize", "Example / invoice list footer", "Example / invoices grouped by status", "Example / invoices with filters", "Example / no results", "Stress test / Data Grid Toolbar", "Stress test / Table Group Row", "Stress test / Table Pagination", "Stress test / Table Toolbar", "Stress test / Table cells", "Template / data grid (enterprise)", "Template / invoices table (grid)"
+On the Figma page: "Example / bulk actions on invoices", "Example / density comparison", "Example / in audit log", "Example / inline edit and column resize", "Example / invoice list footer", "Example / invoices grouped by status", "Example / invoices with filters", "Example / no results", "Example / table cell types", "Stress test / Data Grid Toolbar", "Stress test / Table Group Row", "Stress test / Table Pagination", "Stress test / Table Toolbar", "Stress test / Table cells", "Template / data grid (enterprise)", "Template / invoices table (grid)"
+
+## Table Cell
+
+Component set · 10 variants · default size 160 × 40
+
+Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row uses the same State (hover, selected). Expanded = detail row: one cell spanning all columns. Usage: eggux build-ui/components/table.md
+
+**Use for**
+
+- Data people compare across attributes, sort or scan
+- Data grids people work in all day: invoices, orders, tickets
+- Copy Template / invoices table (grid) and change columns and rows
+
+**Not for**
+
+- One item at a time or few attributes: use a list or cards
+- Mobile: switch the table to a list
+- Key-value details of one record: use Description List
+
+**Anatomy**
+
+1. Type=header with Table Header Label (Label, Sort, Align)
+2. Type=body with Table Cell Text, Table Cell Stack or Table Cell User
+3. Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Tags, Avatars
+4. Last column: Table Cell Actions (edit and menu)
+5. Type=expanded: one detail cell spanning all columns
+
+**Content and behavior**
+
+- Every cell of a row uses the same State (hover, selected)
+- The first column identifies the row and links to it (Table Cell Text Style=strong)
+- Text aligns left; numbers and currency align right with the same decimals
+- Status is a Badge with text, never a colored dot alone
+- Empty values show "-", never blank
+- Inline edit only for fields changed often: State=editing, State=error in the cell
+- One date format per column (Table Cell Date); time under it only when it matters
+- Links in a cell (Table Cell Link) go where the row goes; one link per row besides the row
+
+**Accessibility**
+
+- Header cells are th; the sorted column has aria-sort
+- Sortable headers are buttons reachable with the keyboard
+- Row icon buttons have a tooltip and an aria-label with the row: "Edit invoice INV-1041"
+- Row checkboxes have labels: "Select INV-1041"
+
+| Variant property | Values |
+|---|---|
+| Type | header, body, expanded |
+| State | default, hover, selected, resizing, dragging, editing, error |
+
+Slots (fill them in the instance, never detach): `Content`
+
+Built from: `Table Cell Stack`, `Table Cell Text`, `Table Header Label`
+
+Tokens and styles:
+- Colors: `background/default`, `background/destructive`, `background/muted`, `background/primary`, `border/default`, `border/input`, `border/ring`, `table/row-expanded`, `table/row-hover`
+- Spacing and size: `border-width/2`, `density/cell-padding-y`, `density/table-header-height`, `spacing/0_5`, `spacing/2`, `spacing/4`, `spacing/40`
+- Effects: `shadow/md`
+
+Guides: [table](../../skills/build-ui/components/table.md)
 
 ## Table Header Label
 
@@ -106,63 +171,158 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-## Table Cell
+## Table Cell Amount
 
-Component set · 10 variants · default size 160 × 40
+Component set · 3 variants · default size 160 × 38
 
-Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row uses the same State (hover, selected). Expanded = detail row: one cell spanning all columns. Usage: eggux build-ui/components/table.md
-
-**Use for**
-
-- Data people compare across attributes, sort or scan
-- Data grids people work in all day: invoices, orders, tickets
-- Copy Template / invoices table (grid) and change columns and rows
-
-**Not for**
-
-- One item at a time or few attributes: use a list or cards
-- Mobile: switch the table to a list
-- Key-value details of one record: use Description List
-
-**Anatomy**
-
-1. Type=header with Table Header Label (Label, Sort, Align)
-2. Type=body with Table Cell Text, Table Cell Stack or Table Cell User
-3. Rich body content: Table Cell Amount, Table Cell Status, Table Cell Progress
-4. Last column: Table Cell Actions (edit and menu)
-5. Type=expanded: one detail cell spanning all columns
-
-**Content and behavior**
-
-- Every cell of a row uses the same State (hover, selected)
-- The first column identifies the row and links to it (Table Cell Text Style=strong)
-- Text aligns left; numbers and currency align right with the same decimals
-- Status is a Badge with text, never a colored dot alone
-- Empty values show "-", never blank
-- Inline edit only for fields changed often: State=editing, State=error in the cell
-
-**Accessibility**
-
-- Header cells are th; the sorted column has aria-sort
-- Sortable headers are buttons reachable with the keyboard
-- Row icon buttons have a tooltip and an aria-label with the row: "Edit invoice INV-1041"
-- Row checkboxes have labels: "Select INV-1041"
+Amount in a table cell, right-aligned, tabular figures, with a note under it. Trend none uses Note (count, currency); up uses Increase, down uses Decrease, each with the sign in the text and a trend icon; color only supports it. Put it in Table Cell (body) with the column header Align=right.
 
 | Variant property | Values |
 |---|---|
-| Type | header, body, expanded |
-| State | default, hover, selected, resizing, dragging, editing, error |
+| Trend | none, up, down |
 
-Slots (fill them in the instance, never detach): `Content`
+| Property | Type | Default |
+|---|---|---|
+| Amount | text | €12,450.00 |
+| Note | text | 3 invoices |
+| Show note | boolean | true |
+| Increase | text | +12.4% vs Sep |
+| Decrease | text | −3.1% vs Sep |
 
-Built from: `Table Cell Stack`, `Table Cell Text`, `Table Header Label`
+Icons: trending-down, trending-up
 
 Tokens and styles:
-- Colors: `background/default`, `background/destructive`, `background/muted`, `background/primary`, `border/default`, `border/input`, `border/ring`, `table/row-expanded`, `table/row-hover`
-- Spacing and size: `border-width/2`, `density/cell-padding-y`, `density/table-header-height`, `spacing/0_5`, `spacing/2`, `spacing/4`, `spacing/40`
-- Effects: `shadow/md`
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1`
+- Text styles: `ui/caption`, `ui/label`
 
 Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`)
+
+## Table Cell Status
+
+Component · 1 variant · default size 134 × 20
+
+Status in a table cell: Badge (exposed: pick Variant and Label) and an optional note ("12 days", "since Oct 3"). One status per row; the label names the state, color supports it.
+
+| Property | Type | Default |
+|---|---|---|
+| Note | text | 12 days |
+| Show note | boolean | true |
+
+Built from: `Badge`
+
+Tokens and styles:
+- Colors: `foreground/muted`
+- Spacing and size: `spacing/2`
+- Text styles: `body/small`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+## Table Cell Progress
+
+Component · 1 variant · default size 136 × 20
+
+Progress in a table cell: bar (exposed Progress, pick Value) and the number as text, so the value is readable without the bar. 96 wide bar; use whole percents.
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | 75% |
+
+Built from: `Progress`
+
+Tokens and styles:
+- Colors: `foreground/muted`
+- Spacing and size: `spacing/3`
+- Text styles: `body/small`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+## Table Cell Actions
+
+Component · 1 variant · default size 36 × 36
+
+Row actions, last column, right-aligned: one frequent action as an icon button (Show edit) and the rest in a menu (ellipsis, opens Menu). Icon buttons need a tooltip and an aria-label with the row name ("Edit invoice INV-1041").
+
+| Property | Type | Default |
+|---|---|---|
+| Show edit | boolean | false |
+| Show menu | boolean | true |
+
+Built from: `Button Icon`
+
+Tokens and styles:
+- Spacing and size: `spacing/1`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+## Table Cell Link
+
+Component · 1 variant · default size 160 × 20
+
+A cell value that opens the record or a related object (invoice number, customer, order). Underlined text in foreground/default, one line, truncates. Only one link per row besides the row itself; the row click and the link go to the same place.
+
+| Property | Type | Default |
+|---|---|---|
+| Text | text | INV-1041 |
+
+Tokens and styles:
+- Colors: `foreground/default`
+- Text styles: `body/small`
+
+## Table Cell Date
+
+Component · 1 variant · default size 160 × 20
+
+A date in a table: one format for the whole column (12 Nov 2026), time under it when it matters (Show time). Relative dates ("2 h ago") only in activity lists, with the exact date in a tooltip. Sort newest first by default.
+
+| Property | Type | Default |
+|---|---|---|
+| Date | text | 12 Nov 2026 |
+| Time | text | 15:40 |
+| Show time | boolean | false |
+
+Tokens and styles:
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`
+- Text styles: `body/small`, `ui/caption`
+
+## Table Cell File
+
+Component · 1 variant · default size 220 × 20
+
+A file attached to a row: type icon, name (truncates in the middle in code, full name in a tooltip), size. The name opens a preview (File Preview); download sits in the row actions.
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | contract-northwind.pdf |
+| Size | text | 240 KB |
+| Show size | boolean | true |
+| Icon | instance swap | Icon/file-text |
+
+Icons: file-text
+
+Tokens and styles:
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
+- Text styles: `body/small`, `ui/caption`
+
+## Table Cell Tags
+
+Component · 1 variant · default size 200 × 22
+
+Two or three tags in a cell with +N for the rest (Tag List, exposed). Keep the same tag order in every row; the full list opens in a Tooltip from +N.
+
+Built from: `Tag List`
+
+## Table Cell Avatars
+
+Component · 1 variant · default size 200 × 24
+
+People on a row: assignees, approvers, members (Avatar Group sm, exposed). 3 avatars and +N; names in a Tooltip. One person: Table Cell User.
+
+Built from: `Avatar Group`
 
 ## Table Toolbar
 
@@ -317,92 +477,6 @@ Tokens and styles:
 Guides: [table](../../skills/build-ui/components/table.md)
 
 Code: custom on TanStack Table (grouping, aggregation, visibility) (Saved views stored per user)
-
-## Table Cell Amount
-
-Component set · 3 variants · default size 160 × 38
-
-Amount in a table cell, right-aligned, tabular figures, with a note under it. Trend none uses Note (count, currency); up uses Increase, down uses Decrease, each with the sign in the text and a trend icon; color only supports it. Put it in Table Cell (body) with the column header Align=right.
-
-| Variant property | Values |
-|---|---|
-| Trend | none, up, down |
-
-| Property | Type | Default |
-|---|---|---|
-| Amount | text | €12,450.00 |
-| Note | text | 3 invoices |
-| Show note | boolean | true |
-| Increase | text | +12.4% vs Sep |
-| Decrease | text | −3.1% vs Sep |
-
-Icons: trending-down, trending-up
-
-Tokens and styles:
-- Colors: `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1`
-- Text styles: `ui/caption`, `ui/label`
-
-Guides: [table](../../skills/build-ui/components/table.md)
-
-Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`)
-
-## Table Cell Status
-
-Component · 1 variant · default size 134 × 20
-
-Status in a table cell: Badge (exposed: pick Variant and Label) and an optional note ("12 days", "since Oct 3"). One status per row; the label names the state, color supports it.
-
-| Property | Type | Default |
-|---|---|---|
-| Note | text | 12 days |
-| Show note | boolean | true |
-
-Built from: `Badge`
-
-Tokens and styles:
-- Colors: `foreground/muted`
-- Spacing and size: `spacing/2`
-- Text styles: `body/small`
-
-Guides: [table](../../skills/build-ui/components/table.md)
-
-## Table Cell Progress
-
-Component · 1 variant · default size 136 × 20
-
-Progress in a table cell: bar (exposed Progress, pick Value) and the number as text, so the value is readable without the bar. 96 wide bar; use whole percents.
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | 75% |
-
-Built from: `Progress`
-
-Tokens and styles:
-- Colors: `foreground/muted`
-- Spacing and size: `spacing/3`
-- Text styles: `body/small`
-
-Guides: [table](../../skills/build-ui/components/table.md)
-
-## Table Cell Actions
-
-Component · 1 variant · default size 36 × 36
-
-Row actions, last column, right-aligned: one frequent action as an icon button (Show edit) and the rest in a menu (ellipsis, opens Menu). Icon buttons need a tooltip and an aria-label with the row name ("Edit invoice INV-1041").
-
-| Property | Type | Default |
-|---|---|---|
-| Show edit | boolean | false |
-| Show menu | boolean | true |
-
-Built from: `Button Icon`
-
-Tokens and styles:
-- Spacing and size: `spacing/1`
-
-Guides: [table](../../skills/build-ui/components/table.md)
 
 ## Table Pagination
 

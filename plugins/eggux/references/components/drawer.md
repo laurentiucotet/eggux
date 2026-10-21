@@ -16,7 +16,7 @@ On the Figma page: "Example / Editor with collapsed side panel", "Example / Edit
 
 Component set · 2 variants · default size 384 × 800
 
-Side drawer (shadcn Sheet). Full height, 384 wide. Use for editing or inspecting one object without leaving the list, and for the mobile sidebar (left). Built from Dialog Header + Dialog Footer.
+Side drawer (shadcn Sheet). Full height, 384 wide. Use for editing or inspecting one object without leaving the list, and for the mobile sidebar (left). Built from Dialog Header + Dialog Footer. Width: 384 details and filters, 480 forms, 640 a record, table or preview; full screen on mobile.
 
 **Use for**
 
@@ -39,7 +39,7 @@ Side drawer (shadcn Sheet). Full height, 384 wide. Use for editing or inspecting
 
 **Content and behavior**
 
-- 384 wide (spacing/96); up to 640 only for tables or previews
+- Width: 384 for details and filters, 480 for forms, 640 for a record, a table or a preview; full screen on mobile
 - Footer stays fixed at the bottom; Content scrolls
 - Never open a Sheet from a Sheet; a Dialog on top only for a confirmation
 - Outside click and Esc close it; unsaved input follows the unsaved changes pattern
@@ -187,3 +187,7 @@ Tokens and styles:
 - Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
 - Radius: `radius/lg`, `radius/md`
 - Text styles: `ui/caption`, `ui/label`
+
+Guides: [drawer](../../skills/build-ui/components/drawer.md)
+
+Code: `<aside>` in the page grid + shadcn `Collapsible` (Right `Sheet` below 1024 px; persist the collapsed state)

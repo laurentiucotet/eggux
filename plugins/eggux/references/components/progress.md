@@ -6,16 +6,16 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Progress](#progress) | 5 | - |
+| [Progress](#progress) | 20 | - |
 | [Progress Ring](#progress-ring) | 15 | - |
 
 On the Figma page: "Example / in onboarding checklist", "Example / uploads in progress", "Stress test / Progress", "Stress test / Progress Ring"
 
 ## Progress
 
-Component set · 5 variants · default size 320 × 8
+Component set · 20 variants · default size 320 × 8
 
-Determinate progress (shadcn Progress): uploads, imports, multi-step completion. Indicator width = value; resize the indicator for other values. Show the number or "3 of 5" next to it. Unknown duration: use a Spinner or Skeleton instead.
+Determinate progress (shadcn Progress): uploads, imports, multi-step completion. Indicator width = value; resize the indicator for other values. Show the number or "3 of 5" next to it. Unknown duration: use a Spinner or Skeleton instead. Tone: default, success (complete), warning (near a limit), error (failed); the text next to it says it too.
 
 **Use for**
 
@@ -36,6 +36,7 @@ Determinate progress (shadcn Progress): uploads, imports, multi-step completion.
 1. Track: background/muted, radius/full
 2. Indicator: background/primary, width = value
 3. Value text next to it: percent or "3 of 5"
+4. Tone: default, success, warning, error (indicator color)
 
 **Content and behavior**
 
@@ -43,6 +44,7 @@ Determinate progress (shadcn Progress): uploads, imports, multi-step completion.
 - Always show the number or the remaining count next to the bar; never only color
 - Value variants are 0, 25, 50, 75, 100; resize the indicator for other values
 - Jobs over ~10 s run in the background, with a toast or notification when done
+- Tone shows the outcome, not the amount: success when complete, warning near a limit, error when failed; the text says it too
 
 **Accessibility**
 
@@ -52,10 +54,11 @@ Determinate progress (shadcn Progress): uploads, imports, multi-step completion.
 
 | Variant property | Values |
 |---|---|
+| Tone | default, success, warning, error |
 | Value | 0, 25, 50, 75, 100 |
 
 Tokens and styles:
-- Colors: `background/muted`, `background/primary`
+- Colors: `background/destructive`, `background/muted`, `background/primary`, `background/success`, `background/warning`
 - Spacing and size: `spacing/2`
 - Radius: `radius/full`
 

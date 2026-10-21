@@ -59,3 +59,6 @@ columns and rows. Details: "Tables on auto-layout grid" in `references/figma-lib
   `Table Toolbar` above the grid with "N selected" and the bulk actions.
 - Enterprise: copy `Template / data grid (enterprise)` (toolbar, chips, groups, totals,
   pagination). Grid rows must be HUG; see the API notes.
+- More cell parts: `Table Cell Link` (the record or a related object, underlined), `Table Cell Date`
+  (one format per column, Show time), `Table Cell File` (icon, name, size), `Table Cell Tags` (Tag
+  List with +N), `Table Cell Avatars` (Avatar Group sm). Example "table cell types".

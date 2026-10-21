@@ -49,6 +49,8 @@ On desktop, the content of a mobile `Drawer` usually becomes a `Dialog` (short) 
 - Drawer header: `Dialog Header` with Close off (the handle and outside tap close it).
 - Examples on the Drawer page: "sheet over list" (edit form with Field Presets) and "bottom drawer
   on mobile" (filter groups with checkboxes).
+- `Sheet` width: 384 for details and filters, 480 for forms, 640 for a record, a table or a preview;
+  full screen on mobile.
 
 ## Code
 shadcn `Sheet` (`side="right" | "left"`) and `Drawer` (vaul). Responsive pattern: `Drawer` below

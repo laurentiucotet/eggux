@@ -26,6 +26,9 @@ its variables; read them through Figma MCP, do not copy them here.
 - `Button`: `Variant` × `Size` (sm, default, lg) × `State` (default, hover, focus, disabled).
   Properties: `Label`, `Leading icon`, `Trailing icon` (boolean + swap).
 - `Button Icon`: icon-only, 36 × 36, `Variant` × `State`, `Icon` swap. Pair it with a tooltip.
+- `Button` State=loading: a spinner replaces the leading icon, the width stays; label stays or
+  says the action in progress ("Saving…"). Block repeat clicks while loading.
+- `Button Icon` Size sm 32 (tables, dense toolbars), default 36, lg 40 (next to lg Buttons).
 
 ## Client overrides
 Check `eggux/brand.md` → Overrides (for example "buttons never show icons"). In Figma, the icon

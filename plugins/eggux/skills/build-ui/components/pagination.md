@@ -22,3 +22,5 @@ Usage guidelines only. Visual specs live in the Figma components (Pagination pag
 ## Figma
 `Pagination Item` Type (page, previous, next, ellipsis) × State; `Pagination` with an `Items`
 slot. Example "table footer" (selection count, rows per page, pagination).
+- `Pagination Compact`: previous, "Page 2 of 12", next (Button Icon sm) for cards, side panels,
+  dashboards and mobile.

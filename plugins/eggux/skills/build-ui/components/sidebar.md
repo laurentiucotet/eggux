@@ -39,3 +39,5 @@ Uses the `sidebar/*` tokens. See the "app shell" example on the Sidebar page.
 (collapsed `Sidebar Workspace`, `Sidebar Item`, `Sidebar User`), the Panel title text, Panel
 actions and Panel (`Sidebar Group`). Examples: "Back office list with double sidebar" and
 "Double sidebar collapsed".
+- `Sidebar Item` Level=2 for sub-pages: no icon, label aligned with the parent label; only under an
+  expanded parent with a Chevron, one level deep.

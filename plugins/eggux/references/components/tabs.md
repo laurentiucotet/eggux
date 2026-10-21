@@ -7,10 +7,11 @@ Usage rules live in the guides linked under each component.
 | Component | Variants | Slots |
 |---|---|---|
 | [Tabs](#tabs) | 1 | Tabs |
-| [Tab](#tab) | 8 | - |
+| [Tab](#tab) | 12 | - |
 | [Tabs Line](#tabs-line) | 1 | Tabs |
+| [Tabs Vertical](#tabs-vertical) | 1 | Tabs |
 
-On the Figma page: "Example / in record header", "Example / tabs with counts", "Stress test / Tabs", "Stress test / Tabs Line"
+On the Figma page: "Example / in record header", "Example / settings with vertical tabs", "Example / tabs with counts", "Stress test / Tabs", "Stress test / Tabs Line", "Stress test / Tabs Vertical"
 
 ## Tabs
 
@@ -37,6 +38,7 @@ shadcn TabsList. "Tabs" is a native slot of Tab instances. 2-6 tabs, selected ta
 2. Tabs slot: Tab instances (Style=pill)
 3. Active Tab: background and shadow
 4. Count: Show count on Tab adds a Badge Count (exposed) after the label
+5. Show icon on Tab adds a 16 px icon before the label (Icon swap)
 
 **Content and behavior**
 
@@ -46,6 +48,7 @@ shadcn TabsList. "Tabs" is a native slot of Tab instances. 2-6 tabs, selected ta
 - Inactive text uses foreground/default: muted text on the muted list fails contrast
 - Never hide what the main task needs behind a non-default tab
 - Mobile: tabs scroll horizontally, never wrap
+- Icons on all tabs or none
 
 **Accessibility**
 
@@ -68,25 +71,27 @@ Code: shadcn `Tabs`, `ToggleGroup`
 
 ## Tab
 
-Component set · 8 variants · default size 88 × 28
+Component set · 12 variants · default size 88 × 28
 
-Tab trigger. Put inside Tabs. "pill" is shadcn TabsTrigger (inactive text uses foreground/default: muted on muted fails contrast). "line" for page-level sections. Show count adds a Badge Count (exposed) after the label for the number of items behind the tab ("Guides 64"); write the number in the badge, never in the label. Usage: eggux build-ui/components/tabs.md
+Tab trigger. Put inside Tabs. "pill" is shadcn TabsTrigger (inactive text uses foreground/default: muted on muted fails contrast). "line" for page-level sections. Show count adds a Badge Count (exposed) after the label for the number of items behind the tab ("Guides 64"); write the number in the badge, never in the label. Usage: eggux build-ui/components/tabs.md vertical: full-width rows for Tabs Vertical. Show icon adds a 16 px icon before the label.
 
 | Variant property | Values |
 |---|---|
-| Style | pill, line |
+| Style | pill, line, vertical |
 | State | default, active, focus, disabled |
 
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Overview |
 | Show count | boolean | false |
+| Icon | instance swap | Icon/house |
+| Show icon | boolean | false |
 
-Built from: `Badge Count`
+Built from: `Badge Count`. Icons: house
 
 Tokens and styles:
-- Colors: `background/default`, `background/primary`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/3`, `spacing/7`, `spacing/9`
+- Colors: `background/default`, `background/muted`, `background/primary`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/3`, `spacing/7`, `spacing/8`, `spacing/9`
 - Radius: `radius/md`
 - Text styles: `ui/label`
 - Effects: `shadow/sm`
@@ -141,3 +146,47 @@ Tokens and styles:
 - Spacing and size: `spacing/4`
 
 Guides: [tabs](../../skills/build-ui/components/tabs.md)
+
+## Tabs Vertical
+
+Component · 1 variant · default size 200 × 140
+
+Tabs stacked in a column for settings and long forms with 4-10 sections: Tab Style=vertical in the Tabs slot, 200 wide. The active tab has a muted fill. Use when the section names are long or there are more than 5; on mobile it becomes a Select or a list that opens each section.
+
+**Use for**
+
+- Settings with 4-10 sections
+- Long forms split into sections
+- Section names too long for horizontal tabs
+
+**Not for**
+
+- 2-5 short sections: use Tabs
+- Navigation between pages of the app: use Sidebar
+- Steps that must be done in order: use Stepper
+
+**Anatomy**
+
+1. Tabs slot: Tab Style=vertical, full width
+2. Active tab: background/muted
+3. Optional icon and count on each Tab
+
+**Content and behavior**
+
+- Exactly one active tab, matching the section shown
+- 200 wide; the content sits on the right with a 48 gap
+- The selected section is in the URL
+- Mobile: a Select or a list that opens each section
+
+**Accessibility**
+
+- role=tablist with aria-orientation=vertical
+- Arrow up and down move between tabs
+- The active tab has aria-selected=true
+
+Slots (fill them in the instance, never detach): `Tabs`
+
+Built from: `Tab`
+
+Tokens and styles:
+- Spacing and size: `spacing/1`

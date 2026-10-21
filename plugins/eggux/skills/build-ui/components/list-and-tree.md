@@ -15,6 +15,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - The whole row opens the item when it has one destination; otherwise only the title links.
 - Trailing holds at most one action plus meta; more actions go in a Button Icon with a Menu.
 - Long lists follow `patterns/search-and-filter.md` and `patterns/loading-states.md`.
+- Show leading and Show trailing hide the slots for text-only rows (settings, links); compact
+  lists turn Show description off.
 
 ## Tree Item
 - Indent 16 px per level; at most 4 levels visible (deeper data needs a different structure).

@@ -7,7 +7,7 @@ Usage rules live in the guides linked under each component.
 | Component | Variants | Slots |
 |---|---|---|
 | [Sidebar](#sidebar) | 2 | Header, Content, Footer |
-| [Sidebar Item](#sidebar-item) | 8 | - |
+| [Sidebar Item](#sidebar-item) | 12 | - |
 | [Sidebar Group Label](#sidebar-group-label) | 1 | - |
 | [Sidebar Group](#sidebar-group) | 2 | Items |
 | [Sidebar Workspace](#sidebar-workspace) | 2 | - |
@@ -15,7 +15,7 @@ Usage rules live in the guides linked under each component.
 | [Org Switcher](#org-switcher) | 1 | - |
 | [Sidebar Double](#sidebar-double) | 2 | Rail header, Rail, Rail footer, Panel actions, Panel |
 
-On the Figma page: "Example / Back office list with double sidebar", "Example / Double sidebar collapsed", "Example / app shell", "Example / switch organization", "Stress test / Org Switcher", "Stress test / Sidebar", "Stress test / Sidebar Double", "Template / invoices table (grid)"
+On the Figma page: "Example / Back office list with double sidebar", "Example / Double sidebar collapsed", "Example / app shell", "Example / switch organization", "Examples / stat cards", "Stress test / Org Switcher", "Stress test / Sidebar", "Stress test / Sidebar Double", "Template / invoices table (grid)"
 
 ## Sidebar
 
@@ -41,6 +41,7 @@ shadcn Sidebar (uses sidebar/* tokens). Header, Content and Footer are native sl
 2. Content slot: Sidebar Group with a Sidebar Group Label
 3. Sidebar Item rows: Icon, Label, optional Badge and Chevron
 4. Footer slot: Sidebar User (Avatar, Title, Subtitle, menu)
+5. Sidebar Item Level=2: a sub-page row, no icon, label aligned with the parent label
 
 **Content and behavior**
 
@@ -50,6 +51,7 @@ shadcn Sidebar (uses sidebar/* tokens). Header, Content and Footer are native sl
 - Chevron marks a section with sub-pages
 - Mode expanded 256, collapsed 48: icons only, labels in tooltips
 - Mobile: a Sheet opened from the header trigger (panel-left)
+- Level 2 only under an expanded parent with a Chevron; one level deep at most
 
 **Accessibility**
 
@@ -76,12 +78,13 @@ Code: shadcn `Sidebar`
 
 ## Sidebar Item
 
-Component set · 8 variants · default size 224 × 32
+Component set · 12 variants · default size 224 × 32
 
-shadcn SidebarMenuButton. active = current page (one per sidebar). Badge = Badge Count (exposed). Chevron for a collapsible group. Collapsed = icon only; pair it with a Tooltip showing the label.
+shadcn SidebarMenuButton. active = current page (one per sidebar). Badge = Badge Count (exposed). Chevron for a collapsible group. Collapsed = icon only; pair it with a Tooltip showing the label. Level=2: sub-page row without icon, label aligned with the parent; only under an expanded parent with a Chevron.
 
 | Variant property | Values |
 |---|---|
+| Level | 1, 2 |
 | Mode | expanded, collapsed |
 | State | default, hover, active, disabled |
 
@@ -295,3 +298,7 @@ Tokens and styles:
 - Colors: `sidebar/background`, `sidebar/border`, `sidebar/foreground`
 - Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
 - Text styles: `ui/label`
+
+Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
+
+Code: shadcn `Sidebar` `collapsible="icon"` (rail) + a second `Sidebar` (panel) (Panel opens as a left `Sheet` on mobile)

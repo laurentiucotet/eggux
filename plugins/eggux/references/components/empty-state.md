@@ -8,13 +8,13 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Empty State](#empty-state) | 2 | Actions |
 
-On the Figma page: "Example / first invoice", "Stress test / Empty State"
+On the Figma page: "Example / empty state types", "Example / first invoice", "Stress test / Empty State"
 
 ## Empty State
 
 Component set · 2 variants · default size 400 × 286
 
-What to show when there is nothing: first use (explain and offer the first action), no results (say why and offer "Clear filters"), no access (say who can grant it), error (say what failed and offer Retry). Size default for pages and large cards, sm inside tables, cards and panels. Icon matches the object; never an illustration that hides the message.
+What to show when there is nothing: first use (explain and offer the first action), no results (say why and offer "Clear filters"), no access (say who can grant it), error (say what failed and offer Retry). Size default for pages and large cards, sm inside tables, cards and panels. Icon matches the object; never an illustration that hides the message. Five cases with their own icon and action: no data yet, no results, error, no access, first run (see "empty state types").
 
 **Use for**
 
@@ -45,6 +45,7 @@ What to show when there is nothing: first use (explain and offer the first actio
 - Never an illustration that hides the message
 - Inside a table: Size=sm under the header row
 - Cleared (inbox zero): a short positive line, no action
+- Five cases, each with its own icon and action (see "empty state types"): no data yet (create, import), no results (clear filters), error (try again), no access (request access), first run (set up)
 
 **Accessibility**
 

@@ -16,7 +16,7 @@ On the Figma page: "Example / in notifications", "Example / navigation tree", "E
 
 Component set · 5 variants · default size 384 × 58
 
-Row in a content list (people, files, appointments). Different from Menu Item (an action in a popover) and Sidebar Item (navigation). Leading and Trailing are native slots.
+Row in a content list (people, files, appointments). Different from Menu Item (an action in a popover) and Sidebar Item (navigation). Leading and Trailing are native slots. Show leading and Show trailing hide the slots for text-only rows.
 
 **Use for**
 
@@ -37,6 +37,7 @@ Row in a content list (people, files, appointments). Different from Menu Item (a
 2. Title
 3. Description (Show description)
 4. Trailing slot: meta, Badge, chevron or one action
+5. Show leading and Show trailing hide the slots for text-only rows
 
 **Content and behavior**
 
@@ -44,6 +45,7 @@ Row in a content list (people, files, appointments). Different from Menu Item (a
 - The whole row opens the item when it has one destination; otherwise only the title links
 - Trailing holds at most one action plus meta; more actions go in a Button Icon with a Menu
 - Every list has an empty state
+- Text-only lists (settings, links) turn Show leading off; compact lists turn Show description off
 
 **Accessibility**
 
@@ -60,6 +62,8 @@ Row in a content list (people, files, appointments). Different from Menu Item (a
 | Title | text | Ana Popescu |
 | Description | text | Last order: 12 Nov, 09:30 |
 | Show description | boolean | true |
+| Show leading | boolean | true |
+| Show trailing | boolean | true |
 
 Slots (fill them in the instance, never detach): `Leading`, `Trailing`
 

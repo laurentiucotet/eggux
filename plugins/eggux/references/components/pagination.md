@@ -6,35 +6,11 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Pagination Item](#pagination-item) | 11 | - |
 | [Pagination](#pagination) | 1 | Items |
+| [Pagination Item](#pagination-item) | 11 | - |
+| [Pagination Compact](#pagination-compact) | 1 | - |
 
-On the Figma page: "Example / table footer", "Stress test / Pagination"
-
-## Pagination Item
-
-Component set · 11 variants · default size 36 × 36
-
-One pagination control (shadcn Pagination). Current page = active (outline). Hide Previous/Next labels on mobile (icons only).
-
-| Variant property | Values |
-|---|---|
-| Type | page, previous, next, ellipsis |
-| State | default, hover, active, focus, disabled |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | 1 |
-
-Icons: chevron-left, chevron-right, ellipsis
-
-Tokens and styles:
-- Colors: `background/accent`, `background/default`, `border/input`, `foreground/accent`, `foreground/default`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/2_5`, `spacing/4`, `spacing/9`
-- Radius: `radius/md`
-- Text styles: `ui/label`
-
-Guides: [pagination](../../skills/build-ui/components/pagination.md)
+On the Figma page: "Example / table footer", "Stress test / Pagination", "Stress test / Pagination Compact"
 
 ## Pagination
 
@@ -70,6 +46,7 @@ Page navigation for long lists and tables. Show first, last, current ±1 and ell
 - In tables, pair it with the total and a rows-per-page Select: use Table Pagination
 - Filters, sort and page live in the URL; changing filters resets to page 1
 - Mobile: Previous and Next as icons only, plus "Page 2 of 25"
+- Narrow places (a card, a side panel, mobile): Pagination Compact with "Page 2 of 12"
 
 **Accessibility**
 
@@ -88,3 +65,75 @@ Tokens and styles:
 Guides: [pagination](../../skills/build-ui/components/pagination.md)
 
 Code: shadcn `Pagination`, `Breadcrumb`
+
+## Pagination Item
+
+Component set · 11 variants · default size 36 × 36
+
+One pagination control (shadcn Pagination). Current page = active (outline). Hide Previous/Next labels on mobile (icons only).
+
+| Variant property | Values |
+|---|---|
+| Type | page, previous, next, ellipsis |
+| State | default, hover, active, focus, disabled |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | 1 |
+
+Icons: chevron-left, chevron-right, ellipsis
+
+Tokens and styles:
+- Colors: `background/accent`, `background/default`, `border/input`, `foreground/accent`, `foreground/default`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/2_5`, `spacing/4`, `spacing/9`
+- Radius: `radius/md`
+- Text styles: `ui/label`
+
+Guides: [pagination](../../skills/build-ui/components/pagination.md)
+
+## Pagination Compact
+
+Component · 1 variant · default size 163 × 32
+
+Previous and next with "Page 2 of 12" for narrow places: a card, a side panel, mobile, a table in a dashboard. Disable previous on the first page and next on the last (exposed Button Icons, State=disabled). Large lists with jumps use Pagination.
+
+**Use for**
+
+- A list inside a card or a side panel
+- Tables in dashboards
+- Mobile
+
+**Not for**
+
+- Large lists where people jump to a page: use Pagination
+- Tables with rows per page and totals: use Table Pagination
+- Feeds: use Load more or infinite scroll
+
+**Anatomy**
+
+1. Previous: Button Icon outline sm (exposed)
+2. Label: "Page 2 of 12", body/small, muted
+3. Next: Button Icon outline sm (exposed)
+
+**Content and behavior**
+
+- Disable previous on the first page and next on the last; never hide them
+- The label counts pages, or items ("21-40 of 248") when that helps more
+- Page lives in the URL when the list is a page of its own
+
+**Accessibility**
+
+- nav with aria-label="Pagination"
+- Buttons have aria-labels "Previous page" and "Next page"
+- The label is announced when the page changes
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Page 2 of 12 |
+
+Built from: `Button Icon`
+
+Tokens and styles:
+- Colors: `foreground/muted`
+- Spacing and size: `spacing/2`
+- Text styles: `body/small`

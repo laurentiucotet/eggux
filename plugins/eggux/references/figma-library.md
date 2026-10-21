@@ -47,8 +47,8 @@ Domain-specific needs become Field Presets or Blocks.
 | AI Chat | `AI Summary` | State: ready, generating, error | Title, Meta, Show feedback, Show disclaimer; Content (native slot) |
 | AI Chat | `AI Suggestion` | State: suggested, accepted | Label, Value, Reason; Accept / Dismiss; accepted shows the AI label |
 | AI Chat | `AI Notice` | Type: label, disclaimer | Label, Disclaimer |
-| Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link. Size: sm, default, lg. State: default, hover, focus, disabled | Label; Leading icon, Trailing icon (boolean + swap) |
-| Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. State: as Button | Icon (swap) |
+| Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link. Size: sm, default, lg. State: default, hover, focus, disabled, loading (spinner instead of the leading icon) | Label; Leading icon, Trailing icon (boolean + swap) |
+| Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. Size: sm 32, default 36, lg 40. State: default, hover, focus, disabled | Icon (swap) |
 | Button | `Button Group Item` | Position: first, middle, last. State: default, hover, focus, disabled | Label, Show label, Icon + Icon type |
 | Button | `Button Group` | - | Items (native slot) |
 | Button | `Action Bar` | Align: end, start, center | Show divider, Show leading; Leading, Actions (native slots). The row of buttons that ends a form, a step or a hero |
@@ -58,7 +58,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Badge | `Status Dot` | Status: success, warning, error, info, neutral | Label, Show label |
 | Badge | `Tag List` | - | Show more; Tags (native slot) of Badges + "+N" Badge (exposed). A few tags on one line |
 | Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Leading icon, Remove |
-| Avatar | `Avatar` | Type: initials, image. Size: sm 24, default 32, lg 40, xl 48 | Initials, Status (online dot). Photo = image fill on the `image` layer |
+| Avatar | `Avatar` | Type: initials, image. Size: xs 20, sm 24, default 32, lg 40, xl 48. Shape: circle (people), square (companies, apps) | Initials, Status (online dot). Photo = image fill on the `image` layer |
 | Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar; Label + Show label ("Maintained by 3 analysts") |
 | Avatar | `Byline` | Size: sm, default, lg | Name, Detail, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
@@ -80,7 +80,7 @@ Domain-specific needs become Field Presets or Blocks.
 | File Upload | `File Item` | State: uploading, complete, error | File name; Progress, cancel/remove, Retry |
 | File Upload | `Resource Item` | - | Icon (swap), Name, Meta, Divider; Actions (native slot). A file people download or open |
 | File Upload | `File Preview` | State: ready, loading, unavailable | File name, Meta; zoom, download, close; page thumbnails; page count. Page area clips |
-| Progress | `Progress` | Value: 0, 25, 50, 75, 100 | Resize the indicator for other values |
+| Progress | `Progress` | Tone: default, success, warning, error. Value: 0, 25, 50, 75, 100 | Resize the indicator for other values |
 | Progress | `Progress Ring` | Size: sm, default, lg. Value: 0, 25, 50, 75, 100 | Show label (percent inside on default and lg) |
 | Slider | `Slider` | Type: single, range. State: default, focus, disabled | Move range and thumbs for other values |
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
@@ -150,6 +150,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Scheduler | `Calendar Event` | Size: default, compact. Category: 1-4 | Title, Time |
 | Pagination | `Pagination Item` | Type: page, previous, next, ellipsis. State: default, hover, active, focus, disabled | Label (page) |
 | Pagination | `Pagination` | - | Items (native slot) |
+| Pagination | `Pagination Compact` | - | Label ("Page 2 of 12"); previous and next Button Icon sm (exposed) |
 | Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Connector |
 | Stepper | `Stepper` | - | Steps (native slot) |
 | Description List | `Description List Item` | Orientation: horizontal, vertical | Label, Divider; Value (native slot) |
@@ -157,7 +158,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Description List | `Figure` | Layout: stacked, inline. Size: default, lg | Value, Label, Source, Show source, Divider. A number with what it counts; no trend |
 | Description List | `Summary Row` | Variant: default, discount, total | Label, Value. One line of a money breakdown, amount right aligned |
 | Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive | Title, Time, Description, Show description, Icon (swap), Connector; Content (native slot) + Show content |
-| Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
+| Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked, Description + Show description, Submenu (chevron) |
 | Menu | `Menu Label` | - | Label |
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
 | Menu | `Menubar Trigger` | State: default, hover, open | Label |
@@ -165,22 +166,22 @@ Domain-specific needs become Field Presets or Blocks.
 | Mobile | `Mobile Header` | Type: app, detail | Title; Leading, Trailing (native slots) |
 | Mobile | `Bottom Nav Item` | State: default, active | Label, Icon (swap) |
 | Mobile | `Bottom Nav` | - | Items (native slot), 3-5 items, safe-area padding |
-| Tabs | `Tab` | Style: pill, line. State: default, active, focus, disabled | Label, Show count (Badge Count exposed) |
-| Tabs | `Tabs`, `Tabs Line` | - | Tabs (native slot of Tab instances) |
+| Tabs | `Tab` | Style: pill, line, vertical. State: default, active, focus, disabled | Label, Show count (Badge Count exposed), Icon (swap) + Show icon |
+| Tabs | `Tabs`, `Tabs Line`, `Tabs Vertical` | - | Tabs (native slot of Tab instances); Tabs Vertical: 200 wide column of Tab Style=vertical |
 | Toggle Group | `Toggle Group Item` | State: off, hover, on, focus, disabled | Label, Show label, Icon + Icon type |
 | Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels |
-| List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description. Leading, Trailing (native slots) |
+| List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing. Leading, Trailing (native slots) |
 | List & Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Checkbox (exposed), Icon + Icon type, Count |
 | List & Tree | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description, Show leading; grip handle; Leading (native slot, 1:1 image 48), Trailing (native slot) |
-| Tooltip | `Tooltip` | Side: top, bottom, left, right | Label |
+| Tooltip | `Tooltip` | Side: top, bottom, left, right | Label (wraps at 280), Title + Show title (rich), Show shortcut (Kbd exposed) |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
 | Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner | Title, Description, Show description, Actions (native slot) + Show actions, Dismiss |
 | Toast | `Toast` | Type: default, success, error, warning, info, loading | Show description, Action (nested Button exposed), Close button (off by default). Text edited per instance |
 | Dialog | `Dialog Header` | - | Title, Description, Show description, Close. Media (native slot) + Show media |
 | Dialog | `Dialog Footer` | - | Actions (native slot) |
-| Dialog | `Dialog` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer |
+| Dialog | `Dialog` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer. Width sm 384, default 512, lg 672, xl 896 (resize) |
 | Dialog | `Alert Dialog` | Type: confirm, destructive, acknowledge | Header, Footer (native slots). Status icon in the header Media slot |
-| Drawer | `Sheet` | Side: right, left | Side drawer, full height, 384 wide. Header, Content, Footer (native slots) from Dialog Header/Footer |
+| Drawer | `Sheet` | Side: right, left | Side drawer, full height, 384 wide (480 forms, 640 record or preview). Header, Content, Footer (native slots) from Dialog Header/Footer |
 | Drawer | `Drawer` | - | Bottom drawer, top radius xl. Handle; Header (no close), Content, Footer (native slots, stacked full-width buttons) |
 | Drawer | `Side Panel` | State: expanded (320), collapsed (48) | Inline aside, no overlay. Title, Collapsible, Show footer; Actions, Content, Footer (native slots) |
 | Card | `Card Header` | - | Title, Description, Show description, Show action. Action (native slot) |
@@ -188,13 +189,14 @@ Domain-specific needs become Field Presets or Blocks.
 | Card | `Card` | Variant: default, outline, muted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
 | Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Footnote, Show footer. Change badge and trend line edited per instance |
 | Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
-| Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Subtitle (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
+| Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Subtitle (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions, Show people; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
 | Card | `Person Card` | Layout: vertical (280), horizontal (400) | Name, Role, Organization, Show organization, Show tags, Show contact, Show actions; Avatar, Tags, Contact (Meta Items), Actions (native slots) |
 | Card | `Event Card` | Layout: horizontal (640), vertical (352, image) | Title, Show tags, Show actions, Show image; Date Tile (exposed); Tags, Meta (Meta Items), Actions (native slots) |
 | Card | `Date Tile` | Size: default (56), sm (44) | Month, Day. Part of Event Card |
 | Card | `Progress Card` | Status: on track, at risk, off track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
 | Card | `Post Card` | Layout: vertical, horizontal, compact | Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact: 1:1 image 64); category Badge exposed. Compact = title on 2 lines + meta, for related lists |
 | Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
+| Table | `Table Cell Link`, `Table Cell Date`, `Table Cell File`, `Table Cell Tags`, `Table Cell Avatars` | - | Content for body cells: link (underlined), date (Show time), file (icon, name, size), tags (Tag List), people (Avatar Group sm) |
 | Table | `Table Header Label` | Sort: off, sortable, ascending, descending. Align: left, right | Label |
 | Table | `Table Cell Text` | Style: default, strong, muted. Align: left, right | Text |
 | Table | `Table Cell Stack` | - | Title, Description |
@@ -218,7 +220,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Audit | `Change Item` | - | Field, Old, New |
 | Save Bar | `Save Bar` | State: default, saving, error | Sticky bar with message, Discard, Save changes |
 | Sidebar | `Org Switcher` | - | Organization list with role and plan, search, create, manage |
-| Sidebar | `Sidebar Item` | Mode: expanded, collapsed. State: default, hover, active, disabled | Label, Icon (swap), Badge (Badge Count, exposed), Chevron |
+| Sidebar | `Sidebar Item` | Level: 1, 2 (sub-page, no icon; expanded only). Mode: expanded, collapsed. State: default, hover, active, disabled | Label, Icon (swap), Badge (Badge Count, exposed), Chevron |
 | Sidebar | `Sidebar Group Label` | - | Label |
 | Sidebar | `Sidebar Group` | Mode: expanded, collapsed | Items (native slot), Show label |
 | Sidebar | `Sidebar Workspace`, `Sidebar User` | Mode: expanded, collapsed | Title, Subtitle |
@@ -236,7 +238,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Accordion | `Accordion Item` | Density: default, compact. State: collapsed, expanded | Title, Leading icon + type, Show meta; Meta, Content (native slots) |
 | Accordion | `Accordion` | - | Items (native slot) |
 | Image | `Map` | - | Label, Address, Show label, Show controls, Show pin. Roads scale, pin stays centered; put a static map image as fill in production |
-| Image | `Image Placeholder` | Ratio: 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance |
+| Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance. Ratio locked: FILL keeps the height in proportion |
 | Image | `Image Cropper` | Shape: square, circle | Image layer (fill), scrim, selection that stays centered, zoom Slider, rotate, Cancel, Save |
 | Image | `Avatar Upload` | State: empty, filled, uploading, error | Avatar, rules hint, Upload or Change, Remove |
 | Sections (blocks) | `Section Header` | Align: center, left | Overline, Title (heading/h2), Description |
