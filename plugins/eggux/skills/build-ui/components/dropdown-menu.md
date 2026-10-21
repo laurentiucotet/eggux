@@ -20,6 +20,9 @@ Usage guidelines only. Visual specs live in the Figma component.
 `Menu` holds `Menu Item`, `Menu Label` and `Menu Separator` instances in its native slot `Items`.
 A highlighted destructive item uses a filled `background/destructive` row with white text, because
 red text on a light red tint fails contrast.
+- `Menu Item` Show description adds a muted second line (visibility, roles: on every item of that
+  group); Submenu adds a chevron that opens a second Menu, one level deep. Example "menu with
+  descriptions".
 
 ## Menubar
 - Desktop-style menus in a row (File, Edit, View, Help) for editors and tools with many

@@ -154,17 +154,11 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3z. Done: Event Card and Date Tile, Resource Item, Quote.
 3za. Done: Waterfall Chart and Combo Chart; project permission rules in .claude/settings.json.
 3zb. Done (audit batch 1): Section Heading, Feature Item, Action Bar, Summary Row, Byline, Tag List; Avatar Group label; hand-built headings, button rows, totals, authors, tags, features and icon facts in blocks replaced by components.
+3zc. Done (audit batch 2): Button loading, Button Icon sizes, Avatar square and xs, Sidebar Item level 2, Tab icon and vertical tabs, Menu Item description and submenu, rich Tooltip with shortcut, Progress tones, Image Placeholder 21:9 and locked ratios, Entity Card Show people, List Item without slots, five table cell parts, Pagination Compact; examples for empty state types and dialog sizes.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - `Page Shell / Back office` on the Page Shells page, from the tested grid shell;
-   - Entity Card: a boolean for the footer people (Avatar Group shows by default);
-   - Image Placeholder keeps its ratio when set to FILL (now the height is set by hand);
-   - List Item without Leading;
    - icons star, share and grid; a Search Hero block.
-   Audit batch 2 (variants of existing components): Empty State types, Button loading, Button Icon
-   sizes, Avatar square and xs, nested Sidebar Item, vertical Tabs and Tabs with icons, Menu Item
-   with description, submenu and check, Dialog and Sheet sizes, more Table Cell types, compact
-   Pagination, Progress states, rich Tooltip, Card interactive states, compact List Item.
    Audit batch 3 (common components): Copy Field, Notification Item, Integration Card, Line Item,
    Price, Show more, Plan Card.
 5. System: documentation site.

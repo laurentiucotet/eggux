@@ -28,6 +28,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Time Picker` | custom `Select` of times | |
 | `Slider`, `Progress` | shadcn `Slider`, `Progress` | |
 | `Tabs`, `Toggle Group` | shadcn `Tabs`, `ToggleGroup` | |
+| `Tabs Vertical` | shadcn `Tabs` with `orientation="vertical"`, `TabsList` as `flex-col` | Mobile: a `Select` of sections |
 | `Accordion` | shadcn `Accordion` | |
 | `Tooltip`, `Popover`, `Hover Card` | shadcn `Tooltip`, `Popover`, `HoverCard` | |
 | `Menu`, `Menu Item` | shadcn `DropdownMenu`, `ContextMenu` | |
@@ -39,6 +40,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Card`, `Stat Card` | shadcn `Card` + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content |
 | `Skeleton`, `Spinner`, `Kbd` | shadcn `Skeleton`, `Spinner`, `Kbd` | |
 | `Pagination`, `Breadcrumb` | shadcn `Pagination`, `Breadcrumb` | |
+| `Pagination Compact` | shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNext` | |
 | `Sidebar` and parts | shadcn `Sidebar` | |
 | `Sidebar Double` | shadcn `Sidebar` `collapsible="icon"` (rail) + a second `Sidebar` (panel) | Panel opens as a left `Sheet` on mobile |
 | `Navigation Menu` parts | shadcn `NavigationMenu` | |
@@ -72,6 +74,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Filter Bar`, `Filter Chip`, `Faceted Filter`, `Facet Option` | shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) | Faceted values from `column.getFacetedUniqueValues()` (TanStack) |
 | `Filter Section` | `Collapsible` + `Checkbox` list | |
 | `Table Cell Amount`, `Status`, `Progress`, `Actions` | cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` | Amounts with `Intl.NumberFormat`, `tabular-nums` |
+| `Table Cell Link`, `Date`, `File`, `Tags`, `Avatars` | cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group | One date format per column |
 | `Table Pagination` | shadcn data-table pagination (`Select` for page size + `Pagination`) | |
 | `Entity Card`, `Progress Card` | shadcn `Card` with `size="sm"`; `Progress` | |
 | `Person Card` | shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`) | |
@@ -119,3 +122,5 @@ later. "custom" means compose it from the listed primitives in the project.
 | Help center and docs blocks | page sections composed from `Input`, `Card`, `Breadcrumb`, `Button` | Search: shadcn `Command` (⌘K) or Algolia DocSearch; docs content: MDX (Nextra, Fumadocs) |
 | `Block / Status Page` uptime bars | custom flex of 90 spans with `title` and an uptime % in text | Data from your status provider (Instatus, Better Stack, Atlassian Statuspage) |
 | `Block / Navbar Mega Menu` | shadcn `NavigationMenu` with `NavigationMenuContent` | |
+
+Variants added in 0.49.0 map to props: Button `loading` (spinner + `disabled`), Button Icon `size` (sm, default, lg), Avatar `shape` (rounded-md for square) and xs (`size-5`), Sidebar Item level 2 (`SidebarMenuSub`), Tab with icon, Menu Item description and submenu (`DropdownMenuSub`), rich Tooltip with `Kbd`, Progress tone (indicator color class), Image Placeholder 21:9 (`aspect-[21/9]`).

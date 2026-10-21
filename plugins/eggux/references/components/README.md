@@ -27,7 +27,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Brand](brand.md) | Logo Mark, Logo |
 | [Button](button.md) | Button, Button Icon, Button Group, Button Group Item, Split Button, Action Bar |
 | [Calendar](calendar.md) | Calendar Day, Calendar, Date Picker, Time Picker, Date Range Picker |
-| [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Date Tile, Progress Card |
+| [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Progress Card, Person Card, Event Card, Date Tile |
 | [Carousel](carousel.md) | Carousel, Carousel Arrow, Carousel Indicator, Carousel Thumbnail, Carousel Slide, Carousel Gallery, Carousel Hero, Lightbox |
 | [Chart](chart.md) | Bar Chart, Bar Chart Horizontal, Line Chart, Sparkline, Donut Chart, Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart, Chart Legend, Chart Legend Item, Chart Tooltip, Chart Tooltip Row, Chart Card, Waterfall Chart, Combo Chart |
 | [Chat](chat.md) | Chat Message, Typing Indicator, Chat Composer |
@@ -36,7 +36,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Color Picker](color-picker.md) | Color Picker |
 | [Cookie Consent](cookie-consent.md) | Cookie Consent |
 | [Description List](description-list.md) | Description List Item, Meta Item, Figure, Summary Row |
-| [Dialog](dialog.md) | Dialog Header, Dialog Footer, Dialog, Alert Dialog |
+| [Dialog](dialog.md) | Dialog, Dialog Header, Dialog Footer, Alert Dialog |
 | [Drawer](drawer.md) | Sheet, Drawer, Side Panel |
 | [Editor](editor.md) | Rich Text Editor, Comment, Comment Composer |
 | [Empty State](empty-state.md) | Empty State |
@@ -50,10 +50,10 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Kanban](kanban.md) | Kanban Card, Kanban Column |
 | [Kbd](kbd.md) | Kbd, Kbd Group |
 | [List & Tree](list-and-tree.md) | List Item, Tree Item, Sortable List Item |
-| [Menu](menu.md) | Menu Item, Menu Label, Menu, Menubar Trigger, Menubar |
+| [Menu](menu.md) | Menu, Menu Item, Menu Label, Menubar, Menubar Trigger |
 | [Mobile](mobile.md) | Mobile Header, Bottom Nav Item, Bottom Nav |
 | [Navigation](navigation.md) | Breadcrumb Item, Breadcrumb, Top Bar, Page Header, Nav Link, Navigation Menu Link, Navigation Menu Panel, TOC Item, Table of Contents |
-| [Pagination](pagination.md) | Pagination Item, Pagination |
+| [Pagination](pagination.md) | Pagination, Pagination Item, Pagination Compact |
 | [Popover](popover.md) | Popover, Command Input, Command, Hover Card, Command Dialog |
 | [Progress](progress.md) | Progress, Progress Ring |
 | [Quote](quote.md) | Quote |
@@ -70,8 +70,8 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Slider](slider.md) | Slider |
 | [Spinner](spinner.md) | Spinner |
 | [Stepper](stepper.md) | Step, Stepper |
-| [Table](table.md) | Table Header Label, Table Cell Text, Table Cell Stack, Table Cell User, Table Cell, Table Toolbar, Data Grid Toolbar, Table Group Row, Table Cell Amount, Table Cell Status, Table Cell Progress, Table Cell Actions, Table Pagination |
-| [Tabs](tabs.md) | Tabs, Tab, Tabs Line |
+| [Table](table.md) | Table Cell, Table Header Label, Table Cell Text, Table Cell Stack, Table Cell User, Table Cell Amount, Table Cell Status, Table Cell Progress, Table Cell Actions, Table Cell Link, Table Cell Date, Table Cell File, Table Cell Tags, Table Cell Avatars, Table Toolbar, Data Grid Toolbar, Table Group Row, Table Pagination |
+| [Tabs](tabs.md) | Tabs, Tab, Tabs Line, Tabs Vertical |
 | [Timeline](timeline.md) | Timeline Item |
 | [Toast](toast.md) | Toast |
 | [Toggle Group](toggle-group.md) | Toggle Group Item, Toggle Group |
@@ -79,4 +79,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tour](tour.md) | Coachmark, Hotspot |
 | [Video](video.md) | Video Player |
 
-223 components on 61 pages.
+230 components on 61 pages.

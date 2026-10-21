@@ -6,12 +6,76 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
+| [Dialog](#dialog) | 1 | Header, Content, Footer |
 | [Dialog Header](#dialog-header) | 1 | Media |
 | [Dialog Footer](#dialog-footer) | 1 | Actions |
-| [Dialog](#dialog) | 1 | Header, Content, Footer |
 | [Alert Dialog](#alert-dialog) | 3 | Header, Footer |
 
-On the Figma page: "Example / delete confirmation over a list", "Example / dialog over page", "Stress test / Alert Dialog", "Stress test / Dialog"
+On the Figma page: "Example / delete confirmation over a list", "Example / dialog over page", "Example / dialog sizes", "Stress test / Alert Dialog", "Stress test / Dialog"
+
+## Dialog
+
+Component · 1 variant · default size 512 × 270
+
+shadcn Dialog: Header, Content and Footer are native slots (defaults: Dialog Header, placeholder, Dialog Footer). Short focused task; never a dialog from a dialog. Usage: eggux build-ui/components/dialog.md Width: sm 384 (short confirmation), default 512, lg 672 (table, preview, longer form), xl 896 (side-by-side); resize the instance.
+
+**Use for**
+
+- Rename, invite a member, quick create
+- A few fields where the page behind does not matter
+- Re-authentication after an expired session
+
+**Not for**
+
+- A decision before continuing: use Alert Dialog
+- Longer forms or details next to a list: use Sheet
+- More than one step or ~6 fields: use a page
+- Forms on mobile: use Drawer or a full-screen Sheet
+
+**Anatomy**
+
+1. Overlay (dialog/overlay)
+2. Header slot: Dialog Header with Title, Description, Close X and optional Media
+3. Content slot
+4. Footer slot: Dialog Footer, Cancel outline left, primary right
+
+**Content and behavior**
+
+- Title says the task ("Invite member"), never "Info" or "Warning"
+- One primary action, bottom right; Cancel outline to its left
+- Never open a dialog from a dialog
+- Long content scrolls inside; header and footer stay fixed
+- Closing with unsaved input follows the unsaved changes pattern
+- Fill the Header, Content and Footer slots in the instance; never detach
+- Width: sm 384 for a short confirmation, default 512 for a form with a few fields, lg 672 for a table, a preview or a longer form, xl 896 only for side-by-side content; resize the instance
+
+**Accessibility**
+
+- Focus moves to the first field on open and returns to the trigger on close
+- Focus stays inside while open; Esc closes
+- Title is the accessible name, Description the accessible description
+- Close X has an accessible label
+
+| Property | Type | Default |
+|---|---|---|
+| Show header | boolean | true |
+| Show content | boolean | true |
+| Show footer | boolean | true |
+
+Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
+
+Built from: `Dialog Footer`, `Dialog Header`
+
+Tokens and styles:
+- Colors: `background/default`, `background/muted`, `border/default`, `foreground/muted`
+- Spacing and size: `layout/container/lg`, `spacing/4`, `spacing/6`
+- Radius: `radius/lg`, `radius/md`
+- Text styles: `ui/caption`
+- Effects: `shadow/lg`
+
+Guides: [carousel](../../skills/build-ui/components/carousel.md), [dialog](../../skills/build-ui/components/dialog.md), [drawer](../../skills/build-ui/components/drawer.md), [popover](../../skills/build-ui/components/popover.md), [errors-and-recovery](../../skills/build-ui/patterns/errors-and-recovery.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
+
+Code: shadcn `Dialog`, `AlertDialog`
 
 ## Dialog Header
 
@@ -53,69 +117,6 @@ Tokens and styles:
 - Spacing and size: `spacing/2`
 
 Guides: [dialog](../../skills/build-ui/components/dialog.md), [drawer](../../skills/build-ui/components/drawer.md)
-
-## Dialog
-
-Component · 1 variant · default size 512 × 270
-
-shadcn Dialog: Header, Content and Footer are native slots (defaults: Dialog Header, placeholder, Dialog Footer). Short focused task; never a dialog from a dialog. Usage: eggux build-ui/components/dialog.md
-
-**Use for**
-
-- Rename, invite a member, quick create
-- A few fields where the page behind does not matter
-- Re-authentication after an expired session
-
-**Not for**
-
-- A decision before continuing: use Alert Dialog
-- Longer forms or details next to a list: use Sheet
-- More than one step or ~6 fields: use a page
-- Forms on mobile: use Drawer or a full-screen Sheet
-
-**Anatomy**
-
-1. Overlay (dialog/overlay)
-2. Header slot: Dialog Header with Title, Description, Close X and optional Media
-3. Content slot
-4. Footer slot: Dialog Footer, Cancel outline left, primary right
-
-**Content and behavior**
-
-- Title says the task ("Invite member"), never "Info" or "Warning"
-- One primary action, bottom right; Cancel outline to its left
-- Never open a dialog from a dialog
-- Long content scrolls inside; header and footer stay fixed
-- Closing with unsaved input follows the unsaved changes pattern
-- Fill the Header, Content and Footer slots in the instance; never detach
-
-**Accessibility**
-
-- Focus moves to the first field on open and returns to the trigger on close
-- Focus stays inside while open; Esc closes
-- Title is the accessible name, Description the accessible description
-- Close X has an accessible label
-
-| Property | Type | Default |
-|---|---|---|
-| Show header | boolean | true |
-| Show content | boolean | true |
-| Show footer | boolean | true |
-
-Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
-
-Built from: `Dialog Footer`, `Dialog Header`
-
-Tokens and styles:
-- Colors: `background/default`, `background/muted`, `border/default`, `foreground/muted`
-- Spacing and size: `layout/container/lg`, `spacing/4`, `spacing/6`
-- Radius: `radius/lg`, `radius/md`
-- Text styles: `ui/caption`
-- Effects: `shadow/lg`
-
-Guides: [carousel](../../skills/build-ui/components/carousel.md), [dialog](../../skills/build-ui/components/dialog.md), [drawer](../../skills/build-ui/components/drawer.md), [popover](../../skills/build-ui/components/popover.md), [errors-and-recovery](../../skills/build-ui/patterns/errors-and-recovery.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
-
-Code: shadcn `Dialog`, `AlertDialog`
 
 ## Alert Dialog
 

@@ -13,10 +13,10 @@ Usage rules live in the guides linked under each component.
 | [Option Card](#option-card) | 5 | - |
 | [Post Card](#post-card) | 3 | - |
 | [Entity Card](#entity-card) | 4 | Leading, Tags, Details, Actions |
+| [Progress Card](#progress-card) | 3 | - |
 | [Person Card](#person-card) | 2 | Avatar, Tags, Contact, Actions |
 | [Event Card](#event-card) | 2 | Tags, Meta, Actions |
 | [Date Tile](#date-tile) | 2 | - |
-| [Progress Card](#progress-card) | 3 | - |
 
 On the Figma page: "Example / customer card", "Example / events grid", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
 
@@ -307,7 +307,7 @@ Built from: `Avatar`, `Badge`, `Image Placeholder`
 
 Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
 - Radius: `radius/lg`, `radius/md`
 - Text styles: `body/default`, `body/small`, `heading/h2`, `heading/h4`, `ui/caption`, `ui/label`
 
@@ -317,7 +317,7 @@ Guides: [content](../../skills/build-ui/components/content.md), [content-and-doc
 
 Component set · 4 variants · default size 320 × 259
 
-Summary of one object (customer, project, vendor, asset) in a grid or board: leading avatar, icon or 1:1 image (slot), title and subtitle, Actions slot (Show actions) for the one direct action people take on every card (add, remove, pin), menu, status and tags (slot), 2-4 key details (slot), footer with people and last update. Show the attributes marked "card" in objects.md. Whole card clickable only with one destination; then hover and focus apply and the menu is the only other control. A toggled action shows its state: plus to add, check once added, with State=selected.
+Summary of one object (customer, project, vendor, asset) in a grid or board: leading avatar, icon or 1:1 image (slot), title and subtitle, Actions slot (Show actions) for the one direct action people take on every card (add, remove, pin), menu, status and tags (slot), 2-4 key details (slot), footer with people and last update. Show the attributes marked "card" in objects.md. Whole card clickable only with one destination; then hover and focus apply and the menu is the only other control. A toggled action shows its state: plus to add, check once added, with State=selected. Show people hides the Avatar Group in the footer.
 
 **Use for**
 
@@ -339,7 +339,7 @@ Summary of one object (customer, project, vendor, asset) in a grid or board: lea
 4. Menu Button Icon (Show menu)
 5. Tags slot: status and tags (Show tags)
 6. Details slot: 2-4 key details (Show details)
-7. Footer: people (Avatar Group) and Footer text (Show footer)
+7. Footer: people (Avatar Group, Show people) and Footer text (Show footer)
 
 **Content and behavior**
 
@@ -372,6 +372,7 @@ Summary of one object (customer, project, vendor, asset) in a grid or board: lea
 | Show details | boolean | true |
 | Show footer | boolean | true |
 | Show actions | boolean | false |
+| Show people | boolean | true |
 
 Slots (fill them in the instance, never detach): `Leading`, `Tags`, `Details`, `Actions`
 
@@ -383,6 +384,67 @@ Tokens and styles:
 - Radius: `radius/xl`
 - Text styles: `body/small`, `ui/caption`, `ui/label`
 - Effects: `shadow/md`
+
+Guides: [card](../../skills/build-ui/components/card.md)
+
+Code: shadcn `Card` with `size="sm"`; `Progress`
+
+## Progress Card
+
+Component set · 3 variants · default size 320 × 174
+
+A goal against its target (revenue, budget, quota, completion): label, status badge, value and target, bar (exposed Progress, pick Value), footnote with percent and time left. Status names the state in text; pick it from a rule (for example at risk under 80% of the expected pace) and say the rule in the footnote or a tooltip.
+
+**Use for**
+
+- Revenue, budget, quota or completion goals
+- Dashboards and reports next to Stat Cards
+- Team or customer quotas and budgets against plan
+
+**Not for**
+
+- A metric without a target: use Stat Card
+- Progress of a running task: use Progress or Agent Plan
+
+**Anatomy**
+
+1. Label
+2. Status Badge: on track, at risk, off track
+3. Value and Target ("€48,250 of €60,000")
+4. Progress bar (exposed Progress, set Value)
+5. Footnote: percent and time left
+
+**Content and behavior**
+
+- Status names the state in text, picked from a rule
+- Say the rule in the footnote or a tooltip ("at risk under 80% of the expected pace")
+- The bar Value matches the percent in the Footnote
+- Amounts follow the locale format
+
+**Accessibility**
+
+- Progress has role="progressbar" with aria-valuenow and a label
+- Status is in text, never color alone
+- The Footnote meets 4.5:1
+
+| Variant property | Values |
+|---|---|
+| Status | on track, at risk, off track |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Q4 revenue target |
+| Value | text | €48,250 |
+| Target | text | of €60,000 |
+| Footnote | text | 80% reached · 23 days left |
+
+Built from: `Badge`, `Progress`
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`
+- Spacing and size: `density/card-gap-sm`, `density/card-padding`, `spacing/0_5`, `spacing/2`
+- Radius: `radius/xl`
+- Text styles: `body/small`, `heading/h3`, `ui/caption`
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
@@ -448,7 +510,7 @@ Built from: `Avatar`, `Badge`, `Button`, `Meta Item`
 
 Tokens and styles:
 - Colors: `background/card`, `border/default`, `foreground/card`, `foreground/default`, `foreground/muted`
-- Spacing and size: `border-width/DEFAULT`, `density/card-gap-sm`, `density/card-padding-sm`, `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Spacing and size: `density/card-gap-sm`, `density/card-padding-sm`, `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
 - Radius: `radius/xl`
 - Text styles: `body/small`, `heading/h4`
 
@@ -518,6 +580,10 @@ Tokens and styles:
 - Radius: `radius/xl`
 - Text styles: `heading/h4`
 
+Guides: [card](../../skills/build-ui/components/card.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
+
+Code: shadcn `Card` + `Badge`, `Button`; date tile as custom markup (`<time datetime>` for the date)
+
 ## Date Tile
 
 Component set · 2 variants · default size 56 × 66
@@ -539,63 +605,4 @@ Tokens and styles:
 - Radius: `radius/lg`
 - Text styles: `heading/h3`, `heading/h4`, `ui/overline`
 
-## Progress Card
-
-Component set · 3 variants · default size 320 × 174
-
-A goal against its target (revenue, budget, quota, completion): label, status badge, value and target, bar (exposed Progress, pick Value), footnote with percent and time left. Status names the state in text; pick it from a rule (for example at risk under 80% of the expected pace) and say the rule in the footnote or a tooltip.
-
-**Use for**
-
-- Revenue, budget, quota or completion goals
-- Dashboards and reports next to Stat Cards
-- Team or customer quotas and budgets against plan
-
-**Not for**
-
-- A metric without a target: use Stat Card
-- Progress of a running task: use Progress or Agent Plan
-
-**Anatomy**
-
-1. Label
-2. Status Badge: on track, at risk, off track
-3. Value and Target ("€48,250 of €60,000")
-4. Progress bar (exposed Progress, set Value)
-5. Footnote: percent and time left
-
-**Content and behavior**
-
-- Status names the state in text, picked from a rule
-- Say the rule in the footnote or a tooltip ("at risk under 80% of the expected pace")
-- The bar Value matches the percent in the Footnote
-- Amounts follow the locale format
-
-**Accessibility**
-
-- Progress has role="progressbar" with aria-valuenow and a label
-- Status is in text, never color alone
-- The Footnote meets 4.5:1
-
-| Variant property | Values |
-|---|---|
-| Status | on track, at risk, off track |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Q4 revenue target |
-| Value | text | €48,250 |
-| Target | text | of €60,000 |
-| Footnote | text | 80% reached · 23 days left |
-
-Built from: `Badge`, `Progress`
-
-Tokens and styles:
-- Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`
-- Spacing and size: `density/card-gap-sm`, `density/card-padding`, `spacing/0_5`, `spacing/2`
-- Radius: `radius/xl`
-- Text styles: `body/small`, `heading/h3`, `ui/caption`
-
-Guides: [card](../../skills/build-ui/components/card.md)
-
-Code: shadcn `Card` with `size="sm"`; `Progress`
+Code: shadcn `Card` + `Badge`, `Button`; date tile as custom markup (`<time datetime>` for the date)

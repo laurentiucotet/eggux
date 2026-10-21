@@ -6,8 +6,8 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Button](#button) | 72 | - |
-| [Button Icon](#button-icon) | 20 | - |
+| [Button](#button) | 90 | - |
+| [Button Icon](#button-icon) | 60 | - |
 | [Button Group](#button-group) | 1 | Items |
 | [Button Group Item](#button-group-item) | 12 | - |
 | [Split Button](#split-button) | 2 | - |
@@ -17,9 +17,9 @@ On the Figma page: "Example / form footer", "Example / in navbar", "Example / in
 
 ## Button
 
-Component set · 72 variants · default size 69 × 32
+Component set · 90 variants · default size 69 × 32
 
-shadcn Button. One "default" (primary) per view; "destructive" only inside a confirmation step. Label is a verb. Usage: eggux build-ui/components/button.md
+shadcn Button. One "default" (primary) per view; "destructive" only inside a confirmation step. Label is a verb. Usage: eggux build-ui/components/button.md State=loading: spinner instead of the leading icon, same width; blocks repeat clicks.
 
 **Use for**
 
@@ -40,6 +40,7 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 1. Leading icon (optional, Leading icon type)
 2. Label
 3. Trailing icon (optional, Trailing icon type)
+4. State=loading: a spinning loader replaces the leading icon; width stays
 
 **Content and behavior**
 
@@ -47,7 +48,7 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 - Label is a verb; verb + object when ambiguous ("Save customer")
 - Dialogs and forms: secondary left, primary right
 - destructive only inside the confirmation step; the trigger in a list is ghost or a menu item
-- Loading keeps the width, shows a Spinner and blocks repeat clicks
+- Loading (State=loading) keeps the width and the label ("Saving…" when it helps), shows the spinner and blocks repeat clicks
 - Disabled only when truly unavailable, with a reason nearby; never as form validation
 
 **Accessibility**
@@ -61,7 +62,7 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 |---|---|
 | Variant | default, secondary, outline, ghost, destructive, link |
 | Size | sm, default, lg |
-| State | default, hover, focus, disabled |
+| State | default, hover, focus, disabled, loading |
 
 | Property | Type | Default |
 |---|---|---|
@@ -71,7 +72,7 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 | Trailing icon | boolean | false |
 | Trailing icon type | instance swap | Icon/chevron-right |
 
-Icons: chevron-right, plus
+Icons: chevron-right, loader-circle, plus
 
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`, `foreground/accent`, `foreground/default`, `foreground/destructive`, `foreground/primary`, `foreground/secondary`
@@ -86,9 +87,9 @@ Code: shadcn `Button` (`size="icon"`) (`Leading icon` → icon child before the 
 
 ## Button Icon
 
-Component set · 20 variants · default size 36 × 36
+Component set · 60 variants · default size 36 × 36
 
-Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label in code and a tooltip with the same text. Usage: eggux build-ui/components/button.md, tooltip.md
+Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label in code and a tooltip with the same text. Usage: eggux build-ui/components/button.md, tooltip.md Size: sm 32 (tables, dense toolbars), default 36, lg 40 (next to lg Buttons).
 
 **Use for**
 
@@ -104,7 +105,7 @@ Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label i
 **Anatomy**
 
 1. Icon (instance swap, default ellipsis)
-2. Container in the chosen Variant, 36 x 36
+2. Container in the chosen Variant: Size sm 32, default 36, lg 40
 3. Tooltip with the same text as the accessible label
 
 **Content and behavior**
@@ -113,6 +114,7 @@ Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label i
 - Variant rules match Button: one default per view, destructive only in a confirmation
 - ghost in toolbars and dense UI
 - Copy turns the icon into a check for 2 s with the label "Copied"; no toast
+- Size matches the Buttons next to it: sm in tables and dense toolbars, lg next to lg Buttons in heroes
 
 **Accessibility**
 
@@ -123,6 +125,7 @@ Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label i
 | Variant property | Values |
 |---|---|
 | Variant | default, secondary, outline, ghost, destructive |
+| Size | default, sm, lg |
 | State | default, hover, focus, disabled |
 
 | Property | Type | Default |
@@ -133,7 +136,7 @@ Icons: ellipsis
 
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`
-- Spacing and size: `density/control-height`
+- Spacing and size: `density/control-height`, `spacing/10`, `spacing/8`
 - Radius: `radius/md`
 - Effects: `shadow/xs`
 
@@ -326,3 +329,7 @@ Built from: `Button`
 Tokens and styles:
 - Colors: `border/default`
 - Spacing and size: `spacing/2`, `spacing/4`
+
+Guides: [button](../../skills/build-ui/components/button.md)
+
+Code: `<div class="flex gap-2 justify-end">` of shadcn `Button` (justify-start, justify-center) (Leading button with `mr-auto`; one primary)

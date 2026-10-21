@@ -9,6 +9,8 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
 - Show the number or the remaining count next to the bar; never only color.
 - Long jobs (> 10 s) run in the background with a toast or notification when done.
 - Figma: `Progress` Value 0, 25, 50, 75, 100; resize the indicator for other values.
+- Tone: success when complete, warning near a limit, error when failed; the text next to the bar
+  says it too. Figma: `Progress` Tone × Value.
 
 ## Slider
 - For a value on a continuous scale where approximate is fine (price range, radius, volume).

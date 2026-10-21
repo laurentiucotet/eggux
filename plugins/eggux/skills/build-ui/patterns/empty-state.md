@@ -22,6 +22,9 @@
 `Empty State` (Empty State page): Size default for pages and large cards, sm inside tables,
 cards and panels; Icon (swap), Title, Description, Actions slot. Examples: `Example / no
 results` (Table page), stress test with long text and title only.
+- The example "empty state types" on the Empty State page shows the five cases with their icon,
+  copy and actions: no data yet (inbox; create, import), no results (search; clear filters), error
+  (circle-alert; try again), no access (lock; request access), first run (sparkles; set up).
 
 ## Layout
 Centered inside the area the content would occupy, not the whole page. Text styles:

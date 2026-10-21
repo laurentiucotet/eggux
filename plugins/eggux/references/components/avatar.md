@@ -6,7 +6,7 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Avatar](#avatar) | 8 | - |
+| [Avatar](#avatar) | 20 | - |
 | [Avatar Group](#avatar-group) | 3 | Avatars |
 | [Byline](#byline) | 3 | - |
 
@@ -14,9 +14,9 @@ On the Figma page: "Example / article meta", "Example / assignees on a project p
 
 ## Avatar
 
-Component set · 8 variants · default size 24 × 24
+Component set · 20 variants · default size 24 × 24
 
-shadcn Avatar. Type=image: put the photo as an image fill on the "image" layer of the instance; the user icon is only a placeholder. Type=initials is the fallback (two letters). Status = online dot. Always pair with the person's name in text nearby or as accessible label.
+shadcn Avatar. Type=image: put the photo as an image fill on the "image" layer of the instance; the user icon is only a placeholder. Type=initials is the fallback (two letters). Status = online dot. Always pair with the person's name in text nearby or as accessible label. Shape: circle for people, square for companies, workspaces and apps. Size xs (20) for inline mentions and dense cells.
 
 **Use for**
 
@@ -35,6 +35,8 @@ shadcn Avatar. Type=image: put the photo as an image fill on the "image" layer o
 1. Image fill on the image layer (Type=image) or Initials (Type=initials)
 2. User icon placeholder, only when there is no name
 3. Status: online dot
+4. Shape: circle for people, square (radius md, lg on lg and xl) for companies, workspaces and apps
+5. Size xs (20) for inline mentions and dense table cells
 
 **Content and behavior**
 
@@ -42,6 +44,7 @@ shadcn Avatar. Type=image: put the photo as an image fill on the "image" layer o
 - Photo when available; two initials as fallback
 - Status dot only when presence matters to the task
 - Same size within a list or group
+- Square only for organizations and apps, never for people; one shape per list
 
 **Accessibility**
 
@@ -52,7 +55,8 @@ shadcn Avatar. Type=image: put the photo as an image fill on the "image" layer o
 | Variant property | Values |
 |---|---|
 | Type | initials, image |
-| Size | sm, default, lg, xl |
+| Size | sm, default, lg, xl, xs |
+| Shape | circle, square |
 
 | Property | Type | Default |
 |---|---|---|
@@ -63,8 +67,8 @@ Icons: user
 
 Tokens and styles:
 - Colors: `background/default`, `background/muted`, `background/success`, `foreground/default`
-- Spacing and size: `border-width/2`, `spacing/10`, `spacing/12`, `spacing/6`, `spacing/8`
-- Radius: `radius/full`
+- Spacing and size: `border-width/2`, `spacing/10`, `spacing/12`, `spacing/5`, `spacing/6`, `spacing/8`
+- Radius: `radius/full`, `radius/lg`, `radius/md`
 - Text styles: `body/large`, `ui/label`, `ui/label-small`
 
 Guides: [avatar](../../skills/build-ui/components/avatar.md)
@@ -185,3 +189,7 @@ Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/2`, `spacing/3`
 - Text styles: `ui/caption`, `ui/label`
+
+Guides: [avatar](../../skills/build-ui/components/avatar.md)
+
+Code: shadcn `Avatar` + name and detail (`flex items-center gap-3`) (Name links to the profile; dates in `<time>`)

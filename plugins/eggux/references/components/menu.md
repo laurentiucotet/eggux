@@ -6,61 +6,13 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
+| [Menu](#menu) | 1 | Items |
 | [Menu Item](#menu-item) | 6 | - |
 | [Menu Label](#menu-label) | 1 | - |
-| [Menu](#menu) | 1 | Items |
-| [Menubar Trigger](#menubar-trigger) | 3 | - |
 | [Menubar](#menubar) | 1 | Menus |
+| [Menubar Trigger](#menubar-trigger) | 3 | - |
 
-On the Figma page: "Example / actions menu under a header button", "Example / menubar open", "Stress test / Menu", "Stress test / Menubar"
-
-## Menu Item
-
-Component set · 6 variants · default size 216 × 32
-
-Row inside Menu (Dropdown, Select, Context menu). Checked shows the selected value in a Select. Destructive goes last, after a separator. Usage: eggux build-ui/components/dropdown-menu.md
-
-| Variant property | Values |
-|---|---|
-| Variant | default, destructive |
-| State | default, highlighted, disabled |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Edit |
-| Leading icon | boolean | false |
-| Shortcut | boolean | false |
-| Shortcut text | text | ⌘E |
-| Checked | boolean | false |
-
-Icons: check, pencil, trash-2
-
-Tokens and styles:
-- Colors: `background/accent`, `background/destructive`, `foreground/accent`, `foreground/destructive`, `foreground/muted`, `foreground/popover`
-- Spacing and size: `density/menu-padding-y`, `spacing/2`
-- Radius: `radius/sm`
-- Text styles: `body/small`, `ui/caption`
-
-Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [select](../../skills/build-ui/components/select.md)
-
-Code: shadcn `DropdownMenu`, `ContextMenu`
-
-## Menu Label
-
-Component · 1 variant · default size 216 × 32
-
-Group heading inside a Menu (ui/caption, muted). Use with a Separator between groups; not clickable.
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Details |
-
-Tokens and styles:
-- Colors: `foreground/popover`
-- Spacing and size: `spacing/1_5`, `spacing/2`
-- Text styles: `ui/label`
-
-Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [popover](../../skills/build-ui/components/popover.md)
+On the Figma page: "Example / actions menu under a header button", "Example / menu with descriptions", "Example / menubar open", "Stress test / Menu", "Stress test / Menubar"
 
 ## Menu
 
@@ -87,6 +39,7 @@ Popover list for Dropdown menu, Select and context menus. "Items" is a native sl
 3. Menu Item: Leading icon, Label, Shortcut text, Checked
 4. Separator between groups
 5. Destructive Menu Item last
+6. Menu Item options: Show description (a muted second line), Submenu (chevron at the end)
 
 **Content and behavior**
 
@@ -95,6 +48,8 @@ Popover list for Dropdown menu, Select and context menus. "Items" is a native sl
 - Show only permitted actions; disabled items only with a useful reason
 - Shortcuts on the right when they exist
 - Highlighted destructive uses a filled background/destructive row with white text
+- Descriptions only where the choice needs one (visibility, roles), on every item of that group
+- Submenu items open a second Menu on hover or arrow right; one level deep
 
 **Accessibility**
 
@@ -116,29 +71,56 @@ Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [pop
 
 Code: shadcn `DropdownMenu`, `ContextMenu`
 
-## Menubar Trigger
+## Menu Item
 
-Component set · 3 variants · default size 48 × 28
+Component set · 6 variants · default size 216 × 32
 
-One top-level menu in a Menubar. Hover highlights it; open shows the Menu below it. While one menu is open, hovering another trigger opens that one. Use only inside Menubar.
+Row inside Menu (Dropdown, Select, Context menu). Checked shows the selected value in a Select. Destructive goes last, after a separator. Usage: eggux build-ui/components/dropdown-menu.md Show description adds a muted second line; Submenu adds a chevron that opens a second Menu.
 
 | Variant property | Values |
 |---|---|
-| State | default, hover, open |
+| Variant | default, destructive |
+| State | default, highlighted, disabled |
 
 | Property | Type | Default |
 |---|---|---|
-| Label | text | File |
+| Label | text | Edit |
+| Leading icon | boolean | false |
+| Shortcut | boolean | false |
+| Shortcut text | text | ⌘E |
+| Checked | boolean | false |
+| Description | text | Visible to everyone in the workspace |
+| Show description | boolean | false |
+| Submenu | boolean | false |
+
+Icons: check, chevron-right, pencil, trash-2
 
 Tokens and styles:
-- Colors: `background/accent`, `foreground/default`
-- Spacing and size: `spacing/1`, `spacing/3`
+- Colors: `background/accent`, `background/destructive`, `foreground/accent`, `foreground/destructive`, `foreground/muted`, `foreground/popover`
+- Spacing and size: `density/menu-padding-y`, `spacing/0_5`, `spacing/2`
 - Radius: `radius/sm`
+- Text styles: `body/small`, `ui/caption`
+
+Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [select](../../skills/build-ui/components/select.md)
+
+Code: shadcn `DropdownMenu`, `ContextMenu`
+
+## Menu Label
+
+Component · 1 variant · default size 216 × 32
+
+Group heading inside a Menu (ui/caption, muted). Use with a Separator between groups; not clickable.
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Details |
+
+Tokens and styles:
+- Colors: `foreground/popover`
+- Spacing and size: `spacing/1_5`, `spacing/2`
 - Text styles: `ui/label`
 
-Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md)
-
-Code: shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`)
+Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [popover](../../skills/build-ui/components/popover.md)
 
 ## Menubar
 
@@ -184,6 +166,30 @@ Tokens and styles:
 - Colors: `background/default`, `border/default`
 - Spacing and size: `spacing/1`
 - Radius: `radius/md`
+
+Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md)
+
+Code: shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`)
+
+## Menubar Trigger
+
+Component set · 3 variants · default size 48 × 28
+
+One top-level menu in a Menubar. Hover highlights it; open shows the Menu below it. While one menu is open, hovering another trigger opens that one. Use only inside Menubar.
+
+| Variant property | Values |
+|---|---|
+| State | default, hover, open |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | File |
+
+Tokens and styles:
+- Colors: `background/accent`, `foreground/default`
+- Spacing and size: `spacing/1`, `spacing/3`
+- Radius: `radius/sm`
+- Text styles: `ui/label`
 
 Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md)
 

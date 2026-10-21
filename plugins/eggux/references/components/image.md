@@ -6,7 +6,7 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Image Placeholder](#image-placeholder) | 4 | - |
+| [Image Placeholder](#image-placeholder) | 5 | - |
 | [Map](#map) | 1 | - |
 | [Image Cropper](#image-cropper) | 2 | - |
 | [Avatar Upload](#avatar-upload) | 4 | - |
@@ -15,9 +15,9 @@ On the Figma page: "Example / cropping a profile photo", "Example / in map secti
 
 ## Image Placeholder
 
-Component set · 4 variants · default size 640 × 360
+Component set · 5 variants · default size 640 × 360
 
-Image area with a fixed ratio. Put the photo or screenshot as an image fill on the instance (Fill) and turn the caption off. Resize keeps the ratio.
+Image area with a fixed ratio. Put the photo or screenshot as an image fill on the instance (Fill) and turn the caption off. Resize keeps the ratio. Ratio 21:9 for wide banners. The ratio is locked: set the instance to FILL and the height follows.
 
 **Use for**
 
@@ -39,9 +39,9 @@ Image area with a fixed ratio. Put the photo or screenshot as an image fill on t
 
 **Content and behavior**
 
-- Ratio: 16:9, 4:3, 1:1, 3:4; resize keeps the ratio
+- Ratio: 21:9, 16:9, 4:3, 1:1, 3:4; the ratio is locked, so FILL keeps the height in proportion
 - Put the real image as an image fill and turn the caption off
-- One ratio per carousel or grid
+- One ratio per carousel or grid; 21:9 for wide banners and page header images
 
 **Accessibility**
 
@@ -50,7 +50,7 @@ Image area with a fixed ratio. Put the photo or screenshot as an image fill on t
 
 | Variant property | Values |
 |---|---|
-| Ratio | 16:9, 4:3, 1:1, 3:4 |
+| Ratio | 16:9, 4:3, 1:1, 3:4, 21:9 |
 
 | Property | Type | Default |
 |---|---|---|

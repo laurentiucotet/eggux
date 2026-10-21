@@ -20,3 +20,6 @@ Usage guidelines only. Visual specs live in the Figma component.
 ## Figma
 `Tooltip` with `Side` = where it sits relative to the trigger (the arrow points at the trigger).
 See the "icon button with tooltip" example.
+- Show shortcut adds a Kbd after the text ("Search ⌘K"). Show title makes a rich tooltip: a title
+  and up to three lines, wrapping at 280. Still no links or buttons: those need a Popover. Example
+  "rich tooltip and shortcut".

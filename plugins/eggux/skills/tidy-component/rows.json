@@ -475,7 +475,10 @@
     "Dialog Header",
     "Dialog Footer"
    ],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / dialog sizes"
+   ]
   },
   {
    "main": "Alert Dialog",
@@ -525,7 +528,10 @@
   {
    "main": "Empty State",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / empty state types"
+   ]
   }
  ],
  "Feature Item": [
@@ -721,7 +727,10 @@
     "Menu Item",
     "Menu Label"
    ],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / menu with descriptions"
+   ]
   },
   {
    "main": "Menubar",
@@ -790,6 +799,11 @@
     "Pagination Item"
    ],
    "block": "138:3"
+  },
+  {
+   "main": "Pagination Compact",
+   "helpers": [],
+   "block": null
   }
  ],
  "Popover": [
@@ -1015,9 +1029,17 @@
     "Table Cell Amount",
     "Table Cell Status",
     "Table Cell Progress",
-    "Table Cell Actions"
+    "Table Cell Actions",
+    "Table Cell Link",
+    "Table Cell Date",
+    "Table Cell File",
+    "Table Cell Tags",
+    "Table Cell Avatars"
    ],
-   "block": "181:923"
+   "block": "181:923",
+   "examples": [
+    "Example / table cell types"
+   ]
   },
   {
    "main": "Table Toolbar",
@@ -1055,6 +1077,14 @@
    "main": "Tabs Line",
    "helpers": [],
    "block": "92:949"
+  },
+  {
+   "main": "Tabs Vertical",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / settings with vertical tabs"
+   ]
   }
  ],
  "Timeline": [
@@ -1084,7 +1114,10 @@
   {
    "main": "Tooltip",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / rich tooltip and shortcut"
+   ]
   }
  ],
  "Tour": [

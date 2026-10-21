@@ -3,6 +3,29 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.49.0
+- Audit batch 2: more cases for components that already exist.
+  - `Button` State=loading (spinner instead of the leading icon); `Button Icon` Size sm 32,
+    default 36, lg 40.
+  - `Avatar` Shape circle or square (companies, apps) and Size xs 20.
+  - `Sidebar Item` Level=2 for sub-pages.
+  - `Tab` Show icon + Icon swap and Style=vertical; new `Tabs Vertical` (Tabs page).
+  - `Menu Item` Show description and Submenu.
+  - `Tooltip` Show title (rich, wraps at 280) and Show shortcut (Kbd).
+  - `Progress` Tone default, success, warning, error.
+  - `Image Placeholder` Ratio 21:9; every ratio is locked, so an instance on FILL keeps its
+    proportion.
+  - `Entity Card` Show people; `List Item` Show leading and Show trailing.
+  - New table cell parts: `Table Cell Link`, `Date`, `File`, `Tags`, `Avatars`.
+  - New `Pagination Compact` (Pagination page).
+- Examples: "empty state types" (no data yet, no results, error, no access, first run), "dialog
+  sizes" (sm 384, default 512, lg 672; Sheet widths in the docs), "settings with vertical tabs",
+  "table cell types", "menu with descriptions", "rich tooltip and shortcut".
+- Not built: Card interactive states (Entity Card, Option Card and Post Card already carry hover,
+  focus and selected) and a compact List Item variant (Show description off covers it).
+- Docs rows, regenerated stress tests on 15 pages, guides, code mapping, library map and
+  component reference (230 components on 61 pages).
+
 ## 0.48.0
 - Audit batch 1: six components built from patterns that were drawn by hand in the blocks again
   and again.

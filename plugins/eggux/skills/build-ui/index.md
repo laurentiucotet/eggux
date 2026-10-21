@@ -104,7 +104,7 @@ component guides it names. Names are Figma components; inventory in
 | input | Input, Field, Textarea, Input Group, Number Input, Input OTP, Inline Edit, Signature Pad |
 | list-and-tree | List Item, Tree Item, Sortable List Item, Scroll Area |
 | navigation | Breadcrumb, Top Bar, Page Header, Nav Link, Navigation Menu, Split View |
-| pagination | Pagination |
+| pagination | Pagination, Pagination Compact |
 | popover | Popover, Command, Combobox panel, Command Dialog, Hover Card, search suggestions |
 | progress-and-slider | Progress, Progress Ring, Slider |
 | rating | Rating |
@@ -114,7 +114,7 @@ component guides it names. Names are Figma components; inventory in
 | skeleton | Skeleton |
 | stepper | Step, Stepper |
 | table | Table cells, toolbar, inline edit, column resize |
-| tabs | Tabs, Toggle Group |
+| tabs | Tabs, Tabs Line, Tabs Vertical, Toggle Group |
 | toast | Toast |
 | tooltip | Tooltip |
 | tour | Coachmark, Hotspot, spotlight |

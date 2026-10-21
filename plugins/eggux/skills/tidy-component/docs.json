@@ -357,13 +357,16 @@
   "anatomy": [
    "Image fill on the image layer (Type=image) or Initials (Type=initials)",
    "User icon placeholder, only when there is no name",
-   "Status: online dot"
+   "Status: online dot",
+   "Shape: circle for people, square (radius md, lg on lg and xl) for companies, workspaces and apps",
+   "Size xs (20) for inline mentions and dense table cells"
   ],
   "rules": [
    "Always next to the person's name, or with the name as accessible label; never the only identifier",
    "Photo when available; two initials as fallback",
    "Status dot only when presence matters to the task",
-   "Same size within a list or group"
+   "Same size within a list or group",
+   "Square only for organizations and apps, never for people; one shape per list"
   ],
   "a11y": [
    "Image alt is the name, or alt=\"\" when the name is right next to it",
@@ -681,14 +684,15 @@
   "anatomy": [
    "Leading icon (optional, Leading icon type)",
    "Label",
-   "Trailing icon (optional, Trailing icon type)"
+   "Trailing icon (optional, Trailing icon type)",
+   "State=loading: a spinning loader replaces the leading icon; width stays"
   ],
   "rules": [
    "One Variant=default per view or dialog",
    "Label is a verb; verb + object when ambiguous (\"Save customer\")",
    "Dialogs and forms: secondary left, primary right",
    "destructive only inside the confirmation step; the trigger in a list is ghost or a menu item",
-   "Loading keeps the width, shows a Spinner and blocks repeat clicks",
+   "Loading (State=loading) keeps the width and the label (\"Saving…\" when it helps), shows the spinner and blocks repeat clicks",
    "Disabled only when truly unavailable, with a reason nearby; never as form validation"
   ],
   "a11y": [
@@ -751,14 +755,15 @@
   ],
   "anatomy": [
    "Icon (instance swap, default ellipsis)",
-   "Container in the chosen Variant, 36 x 36",
+   "Container in the chosen Variant: Size sm 32, default 36, lg 40",
    "Tooltip with the same text as the accessible label"
   ],
   "rules": [
    "Always a tooltip with the same text as the accessible label",
    "Variant rules match Button: one default per view, destructive only in a confirmation",
    "ghost in toolbars and dense UI",
-   "Copy turns the icon into a check for 2 s with the label \"Copied\"; no toast"
+   "Copy turns the icon into a check for 2 s with the label \"Copied\"; no toast",
+   "Size matches the Buttons next to it: sm in tables and dense toolbars, lg next to lg Buttons in heroes"
   ],
   "a11y": [
    "aria-label in code, same text as the tooltip",
@@ -1849,7 +1854,8 @@
    "Never open a dialog from a dialog",
    "Long content scrolls inside; header and footer stay fixed",
    "Closing with unsaved input follows the unsaved changes pattern",
-   "Fill the Header, Content and Footer slots in the instance; never detach"
+   "Fill the Header, Content and Footer slots in the instance; never detach",
+   "Width: sm 384 for a short confirmation, default 512 for a form with a few fields, lg 672 for a table, a preview or a longer form, xl 896 only for side-by-side content; resize the instance"
   ],
   "a11y": [
    "Focus moves to the first field on open and returns to the trigger on close",
@@ -1967,7 +1973,8 @@
    "Centered in the area the content would occupy, not the whole page",
    "Never an illustration that hides the message",
    "Inside a table: Size=sm under the header row",
-   "Cleared (inbox zero): a short positive line, no action"
+   "Cleared (inbox zero): a short positive line, no action",
+   "Five cases, each with its own icon and action (see \"empty state types\"): no data yet (create, import), no results (clear filters), error (try again), no access (request access), first run (set up)"
   ],
   "a11y": [
    "The title is a heading at the right level",
@@ -2001,7 +2008,7 @@
    "Menu Button Icon (Show menu)",
    "Tags slot: status and tags (Show tags)",
    "Details slot: 2-4 key details (Show details)",
-   "Footer: people (Avatar Group) and Footer text (Show footer)"
+   "Footer: people (Avatar Group, Show people) and Footer text (Show footer)"
   ],
   "rules": [
    "Details are the attributes marked \"card\" in objects.md, in that order",
@@ -2592,9 +2599,9 @@
    "Caption (Show caption)"
   ],
   "rules": [
-   "Ratio: 16:9, 4:3, 1:1, 3:4; resize keeps the ratio",
+   "Ratio: 21:9, 16:9, 4:3, 1:1, 3:4; the ratio is locked, so FILL keeps the height in proportion",
    "Put the real image as an image fill and turn the caption off",
-   "One ratio per carousel or grid"
+   "One ratio per carousel or grid; 21:9 for wide banners and page header images"
   ],
   "a11y": [
    "Meaningful images have alt text; decorative ones have empty alt",
@@ -2970,13 +2977,15 @@
    "Leading slot: Avatar or icon",
    "Title",
    "Description (Show description)",
-   "Trailing slot: meta, Badge, chevron or one action"
+   "Trailing slot: meta, Badge, chevron or one action",
+   "Show leading and Show trailing hide the slots for text-only rows"
   ],
   "rules": [
    "State: default, hover, selected, focus, disabled",
    "The whole row opens the item when it has one destination; otherwise only the title links",
    "Trailing holds at most one action plus meta; more actions go in a Button Icon with a Menu",
-   "Every list has an empty state"
+   "Every list has an empty state",
+   "Text-only lists (settings, links) turn Show leading off; compact lists turn Show description off"
   ],
   "a11y": [
    "The row is one link or button with an accessible name from the title",
@@ -3038,14 +3047,17 @@
    "Menu Label: group heading, not clickable",
    "Menu Item: Leading icon, Label, Shortcut text, Checked",
    "Separator between groups",
-   "Destructive Menu Item last"
+   "Destructive Menu Item last",
+   "Menu Item options: Show description (a muted second line), Submenu (chevron at the end)"
   ],
   "rules": [
    "Items are verbs: \"Edit\", \"Duplicate\", \"Archive\"; items that open a dialog end with \"...\"",
    "Most frequent first, destructive last after a Separator",
    "Show only permitted actions; disabled items only with a useful reason",
    "Shortcuts on the right when they exist",
-   "Highlighted destructive uses a filled background/destructive row with white text"
+   "Highlighted destructive uses a filled background/destructive row with white text",
+   "Descriptions only where the choice needs one (visibility, roles), on every item of that group",
+   "Submenu items open a second Menu on hover or arrow right; one level deep"
   ],
   "a11y": [
    "Arrows move, Enter selects, Escape closes and returns focus to the trigger",
@@ -3382,7 +3394,8 @@
    "Previous and Next are disabled on the first and last page, never hidden",
    "In tables, pair it with the total and a rows-per-page Select: use Table Pagination",
    "Filters, sort and page live in the URL; changing filters resets to page 1",
-   "Mobile: Previous and Next as icons only, plus \"Page 2 of 25\""
+   "Mobile: Previous and Next as icons only, plus \"Page 2 of 25\"",
+   "Narrow places (a card, a side panel, mobile): Pagination Compact with \"Page 2 of 12\""
   ],
   "a11y": [
    "Wrap it in a nav with aria-label=\"Pagination\"",
@@ -3561,13 +3574,15 @@
   "anatomy": [
    "Track: background/muted, radius/full",
    "Indicator: background/primary, width = value",
-   "Value text next to it: percent or \"3 of 5\""
+   "Value text next to it: percent or \"3 of 5\"",
+   "Tone: default, success, warning, error (indicator color)"
   ],
   "rules": [
    "Determinate only: the share must be known",
    "Always show the number or the remaining count next to the bar; never only color",
    "Value variants are 0, 25, 50, 75, 100; resize the indicator for other values",
-   "Jobs over ~10 s run in the background, with a toast or notification when done"
+   "Jobs over ~10 s run in the background, with a toast or notification when done",
+   "Tone shows the outcome, not the amount: success when complete, warning near a limit, error when failed; the text says it too"
   ],
   "a11y": [
    "role=\"progressbar\" with aria-valuenow, aria-valuemin and aria-valuemax",
@@ -4072,7 +4087,7 @@
    "Footer slot: Dialog Footer, fixed, primary right, Cancel outline left"
   ],
   "rules": [
-   "384 wide (spacing/96); up to 640 only for tables or previews",
+   "Width: 384 for details and filters, 480 for forms, 640 for a record, a table or a preview; full screen on mobile",
    "Footer stays fixed at the bottom; Content scrolls",
    "Never open a Sheet from a Sheet; a Dialog on top only for a confirmation",
    "Outside click and Esc close it; unsaved input follows the unsaved changes pattern",
@@ -4108,7 +4123,8 @@
    "Header slot: Sidebar Workspace (logo, Title, Subtitle, switcher)",
    "Content slot: Sidebar Group with a Sidebar Group Label",
    "Sidebar Item rows: Icon, Label, optional Badge and Chevron",
-   "Footer slot: Sidebar User (Avatar, Title, Subtitle, menu)"
+   "Footer slot: Sidebar User (Avatar, Title, Subtitle, menu)",
+   "Sidebar Item Level=2: a sub-page row, no icon, label aligned with the parent label"
   ],
   "rules": [
    "One active Sidebar Item, matching the current page",
@@ -4116,7 +4132,8 @@
    "Badge only for something to act on (unread, pending), never decorative",
    "Chevron marks a section with sub-pages",
    "Mode expanded 256, collapsed 48: icons only, labels in tooltips",
-   "Mobile: a Sheet opened from the header trigger (panel-left)"
+   "Mobile: a Sheet opened from the header trigger (panel-left)",
+   "Level 2 only under an expanded parent with a Chevron; one level deep at most"
   ],
   "a11y": [
    "A nav landmark; the active item has aria-current=\"page\"",
@@ -4597,7 +4614,7 @@
   "anatomy": [
    "Type=header with Table Header Label (Label, Sort, Align)",
    "Type=body with Table Cell Text, Table Cell Stack or Table Cell User",
-   "Rich body content: Table Cell Amount, Table Cell Status, Table Cell Progress",
+   "Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Tags, Avatars",
    "Last column: Table Cell Actions (edit and menu)",
    "Type=expanded: one detail cell spanning all columns"
   ],
@@ -4607,7 +4624,9 @@
    "Text aligns left; numbers and currency align right with the same decimals",
    "Status is a Badge with text, never a colored dot alone",
    "Empty values show \"-\", never blank",
-   "Inline edit only for fields changed often: State=editing, State=error in the cell"
+   "Inline edit only for fields changed often: State=editing, State=error in the cell",
+   "One date format per column (Table Cell Date); time under it only when it matters",
+   "Links in a cell (Table Cell Link) go where the row goes; one link per row besides the row"
   ],
   "a11y": [
    "Header cells are th; the sorted column has aria-sort",
@@ -4770,7 +4789,8 @@
    "List: background/muted, radius/lg",
    "Tabs slot: Tab instances (Style=pill)",
    "Active Tab: background and shadow",
-   "Count: Show count on Tab adds a Badge Count (exposed) after the label"
+   "Count: Show count on Tab adds a Badge Count (exposed) after the label",
+   "Show icon on Tab adds a 16 px icon before the label (Icon swap)"
   ],
   "rules": [
    "Labels are one or two words, nouns; counts in the Tab's Badge Count (Show count), never in the label",
@@ -4778,7 +4798,8 @@
    "The selected tab is in the URL; switching back keeps filters and scroll",
    "Inactive text uses foreground/default: muted text on the muted list fails contrast",
    "Never hide what the main task needs behind a non-default tab",
-   "Mobile: tabs scroll horizontally, never wrap"
+   "Mobile: tabs scroll horizontally, never wrap",
+   "Icons on all tabs or none"
   ],
   "a11y": [
    "Tab list role; arrow keys move between tabs, Tab moves into the panel",
@@ -5104,15 +5125,18 @@
   ],
   "anatomy": [
    "Trigger",
-   "Label: plain text, one line",
+   "Title (Show title): ui/label, for a rich tooltip",
+   "Label: plain text, wraps at 280",
+   "Kbd (Show shortcut, exposed): the keyboard shortcut",
    "Arrow pointing at the trigger (Side)"
   ],
   "rules": [
    "Same text as the accessible label of the icon-only button",
-   "Plain text, one line; never links or buttons",
+   "Plain text: one line, or a title and up to three lines in a rich tooltip; never links or buttons",
    "Appears on hover and on keyboard focus, after a short delay",
    "Never holds information needed to finish the task",
-   "Touch has no hover: the content must also be reachable another way"
+   "Touch has no hover: the content must also be reachable another way",
+   "Show the shortcut when the action has one (Search ⌘K)"
   ],
   "a11y": [
    "Shows on keyboard focus; Escape hides it",
@@ -6014,6 +6038,72 @@
   "code": "<ul class=\"flex gap-1.5\"> of Badges; +N as a Popover trigger.",
   "guides": [
    "skills/build-ui/components/badge.md"
+  ]
+ },
+ "Tabs Vertical": {
+  "summary": "Tabs stacked in a column for settings and long forms with many sections.",
+  "use": [
+   "Settings with 4-10 sections",
+   "Long forms split into sections",
+   "Section names too long for horizontal tabs"
+  ],
+  "avoid": [
+   "2-5 short sections: use Tabs",
+   "Navigation between pages of the app: use Sidebar",
+   "Steps that must be done in order: use Stepper"
+  ],
+  "anatomy": [
+   "Tabs slot: Tab Style=vertical, full width",
+   "Active tab: background/muted",
+   "Optional icon and count on each Tab"
+  ],
+  "rules": [
+   "Exactly one active tab, matching the section shown",
+   "200 wide; the content sits on the right with a 48 gap",
+   "The selected section is in the URL",
+   "Mobile: a Select or a list that opens each section"
+  ],
+  "a11y": [
+   "role=tablist with aria-orientation=vertical",
+   "Arrow up and down move between tabs",
+   "The active tab has aria-selected=true"
+  ],
+  "code": "shadcn Tabs with orientation=\"vertical\" and a flex-col TabsList.",
+  "guides": [
+   "skills/build-ui/components/tabs.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Pagination Compact": {
+  "summary": "Previous and next with \"Page 2 of 12\" for narrow places.",
+  "use": [
+   "A list inside a card or a side panel",
+   "Tables in dashboards",
+   "Mobile"
+  ],
+  "avoid": [
+   "Large lists where people jump to a page: use Pagination",
+   "Tables with rows per page and totals: use Table Pagination",
+   "Feeds: use Load more or infinite scroll"
+  ],
+  "anatomy": [
+   "Previous: Button Icon outline sm (exposed)",
+   "Label: \"Page 2 of 12\", body/small, muted",
+   "Next: Button Icon outline sm (exposed)"
+  ],
+  "rules": [
+   "Disable previous on the first page and next on the last; never hide them",
+   "The label counts pages, or items (\"21-40 of 248\") when that helps more",
+   "Page lives in the URL when the list is a page of its own"
+  ],
+  "a11y": [
+   "nav with aria-label=\"Pagination\"",
+   "Buttons have aria-labels \"Previous page\" and \"Next page\"",
+   "The label is announced when the page changes"
+  ],
+  "code": "shadcn Pagination with PaginationPrevious, a text item and PaginationNext.",
+  "guides": [
+   "skills/build-ui/components/pagination.md"
   ]
  }
 }

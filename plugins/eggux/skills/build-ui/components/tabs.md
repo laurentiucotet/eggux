@@ -21,6 +21,10 @@ Usage guidelines only. Visual specs live in the Figma component.
 - In pill tabs, inactive text is `foreground/default`, not muted: muted text on the muted list
   fails contrast. The active tab is marked by its background and shadow.
 - Use `Tabs Line` for page-level sections, pill tabs for switching views inside a card or panel.
+- `Tab` Show icon adds a 16 px icon before the label (Icon swap); icons on all tabs or none.
+- `Tabs Vertical`: Tab Style=vertical in a 200 wide column for settings and long forms with 4-10
+  sections; the content sits on the right. Mobile: a Select or a list that opens each section.
+  Example "settings with vertical tabs".
 
 ## Tabs or Toggle Group
 - Tabs switch between panels of content. Toggle Group sets a value: view mode (list / board),

@@ -77,3 +77,5 @@ Stat Card, Option Card and Post Card use the same tokens.
 - Examples on the Card page: list, profile, form, empty state, stat cards row.
 - `Stress test / Card` (Stress tests section): minimal, typical, long title, full-bleed slot,
   280 and 720 wide, for every variant, sm, Dark, Compact and Corporate Light.
+- `Entity Card` Show people hides the Avatar Group in the footer when people do not matter for the
+  object.

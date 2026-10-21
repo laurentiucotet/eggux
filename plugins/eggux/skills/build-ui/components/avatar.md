@@ -12,6 +12,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 ## Figma
 `Avatar` Type (initials, image) × Size (sm, default, lg, xl). For a photo, put an image fill on
 the `image` layer of the instance. `Status` shows the online dot.
+- Shape: circle for people, square for companies, workspaces and apps (one shape per list).
+  Size xs (20) for inline mentions and dense table cells.
 
 ## Avatar Group
 - For assignees, participants, "shared with". Show 3-5 avatars, then "+N".
