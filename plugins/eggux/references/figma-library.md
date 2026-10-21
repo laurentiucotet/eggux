@@ -158,7 +158,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels |
 | List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description. Leading, Trailing (native slots) |
 | List & Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Checkbox (exposed), Icon + Icon type, Count |
-| List & Tree | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description; grip handle; Trailing (native slot) |
+| List & Tree | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description, Show leading; grip handle; Leading (native slot, 1:1 image 48), Trailing (native slot) |
 | Tooltip | `Tooltip` | Side: top, bottom, left, right | Label |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
 | Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner | Title, Description, Show description, Actions (native slot) + Show actions, Dismiss |
@@ -169,12 +169,13 @@ Domain-specific needs become Field Presets or Blocks.
 | Dialog | `Alert Dialog` | Type: confirm, destructive, acknowledge | Header, Footer (native slots). Status icon in the header Media slot |
 | Drawer | `Sheet` | Side: right, left | Side drawer, full height, 384 wide. Header, Content, Footer (native slots) from Dialog Header/Footer |
 | Drawer | `Drawer` | - | Bottom drawer, top radius xl. Handle; Header (no close), Content, Footer (native slots, stacked full-width buttons) |
+| Drawer | `Side Panel` | State: expanded (320), collapsed (48) | Inline aside, no overlay. Title, Collapsible, Show footer; Actions, Content, Footer (native slots) |
 | Card | `Card Header` | - | Title, Description, Show description, Show action. Action (native slot) |
 | Card | `Card Footer` | - | Actions (native slot) |
 | Card | `Card` | Variant: default, outline, muted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
 | Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Footnote, Show footer. Change badge and trend line edited per instance |
 | Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
-| Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Subtitle (1 line), Footer text; Show menu, Show tags, Show details, Show footer; Leading, Tags, Details (native slots). Card padding sm tokens |
+| Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Subtitle (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
 | Card | `Progress Card` | Status: on track, at risk, off track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
 | Card | `Post Card` | Layout: vertical, horizontal | Title, Excerpt, Date, Author, Show author, Show excerpt; category Badge exposed |
 | Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
@@ -206,6 +207,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Sidebar | `Sidebar Group` | Mode: expanded, collapsed | Items (native slot), Show label |
 | Sidebar | `Sidebar Workspace`, `Sidebar User` | Mode: expanded, collapsed | Title, Subtitle |
 | Sidebar | `Sidebar` | Mode: expanded (256), collapsed (48) | Header, Content, Footer (native slots) |
+| Sidebar | `Sidebar Double` | Mode: expanded (288: rail 48 + panel 240), collapsed (48) | Panel title; Rail header, Rail, Rail footer, Panel actions, Panel (native slots) |
 | Navigation | `Breadcrumb Item` | Type: link, current, ellipsis. State: default, hover (link) | Label, Separator |
 | Navigation | `Breadcrumb` | - | Items (native slot) |
 | Navigation | `Top Bar` | - | Sidebar trigger; Breadcrumb, Actions (native slots) |
@@ -345,6 +347,10 @@ which screen: `skills/build-ui/index.md`):
 - Split View: App shell with List (384, resizable) and Detail slots for mail, chat, tickets, files.
 - Docs: header with search, left navigation, reading column, table of contents.
 - Wizard: focused flow without sidebar: step counter, Save and exit, progress, sticky Back / Continue.
+- Back office on a grid (test, page "Test / Mobility Global": `Page Shell / Back office (test)`, not
+  yet on the Page Shells page): Navigation column hugs Sidebar or Sidebar Double, Header (Top Bar +
+  Page Header), Body with Main (flex) and Aside (hugs a Side Panel), Actions bar fixed at the
+  bottom; only the Body scrolls. Variants Aside on / off, Show actions.
 - Mobile (< 768): Mobile Header + Page + Bottom Nav. The App Sidebar opens from the menu button
   as a left Sheet ("mobile menu open"); marketing pages use `Block / Navbar Mobile`. See
   `build-ui/patterns/mobile.md`.

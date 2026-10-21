@@ -3,6 +3,13 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.43.1
+- figma-library.md lists Side Panel and Sidebar Double, the new Entity Card and Sortable List
+  Item slots, and the tested back office grid shell.
+- build-ui index: a Back office / CMS screen row; drawer and sidebar guides list the new
+  components.
+- README roadmap: open library gaps found while rebuilding real screens.
+
 ## 0.43.0
 - New `Side Panel` (Drawer page): inline aside beside the page content with a header (Title,
   Actions slot, collapse), Content and Footer slots; State expanded 320 / collapsed 48.
