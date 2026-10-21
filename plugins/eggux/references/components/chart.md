@@ -19,6 +19,10 @@ Usage rules live in the guides linked under each component.
 | [Heatmap](#heatmap) | 1 | - |
 | [Gauge](#gauge) | 3 | - |
 | [Treemap](#treemap) | 1 | - |
+| [Funnel Chart](#funnel-chart) | 1 | - |
+| [Scatter Chart](#scatter-chart) | 2 | - |
+
+On the Figma page: "Stress test / Funnel and Scatter"
 
 ## Chart Legend Item
 
@@ -276,3 +280,39 @@ Tokens and styles:
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
 Code: Recharts `Treemap` with a custom cell renderer
+
+## Funnel Chart
+
+Component · 1 variant · default size 560 × 200
+
+Drop-off between ordered steps (created → sent → viewed → paid, sign-up → active → paying). Each stage: name, count, a bar sized to its count, and the conversion from the previous stage; the overall rate at the bottom. 3 to 6 stages, one series (chart/1). Not for unordered categories: use Bar Chart Horizontal. Code: Recharts FunnelChart or plain bars. Min width 480; stage names wrap to two lines, then truncate.
+
+Tokens and styles:
+- Colors: `chart/1`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/3`
+- Radius: `radius/sm`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+## Scatter Chart
+
+Component set · 2 variants · default size 560 × 264
+
+Relation between two numbers per item (invoice amount vs days to pay, deal size vs cycle length). One point per item; one or two series (chart/1, chart/2) with a Chart Legend for two. Name both axes with units; start at zero unless the range says otherwise. Hover shows the item in a Chart Tooltip. Over 500 points: lower opacity or use Heatmap. Code: Recharts ScatterChart.
+
+| Variant property | Values |
+|---|---|
+| Series | one, two |
+
+| Property | Type | Default |
+|---|---|---|
+| X title | text | X: invoice amount (EUR) |
+| Y title | text | Y: days to pay |
+
+Tokens and styles:
+- Colors: `border/default`, `border/input`, `chart/1`, `chart/2`, `foreground/muted`
+- Spacing and size: `spacing/10`, `spacing/2`
+- Text styles: `ui/caption`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)

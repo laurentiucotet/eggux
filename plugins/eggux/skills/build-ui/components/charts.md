@@ -45,7 +45,16 @@ not only colored; target tick), `Treemap` (tinted cells with a colored edge so l
 readable in every mode). Edit bar heights and line points for real
 data. Block: `Block / Analytics` on the App page.
 
+## Funnel and Scatter
+- `Funnel Chart`: drop-off between ordered steps (created → sent → viewed → paid). Each stage
+  shows its count and the conversion from the previous one; the overall rate under it. 3-6
+  stages, one color. Unordered categories go in `Bar Chart Horizontal`. Min width 480.
+- `Scatter Chart`: relation between two numbers per item (amount vs days to pay). Name both
+  axes with units; one or two series with a legend; tooltip names the item. Many points: lower
+  opacity or a `Heatmap`.
+
 ## Code
 shadcn `Chart` (Recharts) with `ChartContainer`, `ChartTooltip`, `ChartLegend`; series colors via
 `var(--chart-N)` in `chartConfig`. Donut: `PieChart` with `innerRadius`; horizontal bars:
 `BarChart layout="vertical"`; heatmap: a CSS grid of cells with `opacity` steps (or nivo).
+Funnel: `FunnelChart` or plain bars with widths from the data; scatter: `ScatterChart` with `XAxis`/`YAxis` `type="number"`.

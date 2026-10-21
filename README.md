@@ -89,7 +89,7 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 has foundations (variables, text and effect styles, density, motion, chart palette),
-78 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
+79 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
 (comments, chat), AI chat, commerce, Kanban, Rating, Carousel, Color Picker, tour and video. On top: Field Presets,
@@ -144,6 +144,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
    values, notice, model selector, context, voice, history, feedback).
 3s. Done: Content collection (names and labels as variables, English and Română).
 3t. Done: generated per-component reference (`references/components/`).
+3u. Done: people picker, transfer list, inline edit, signature pad, sortable list, progress ring, scroll area, file preview, image cropper, avatar upload, menubar, cookie consent, funnel and scatter charts.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 

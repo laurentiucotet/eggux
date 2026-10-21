@@ -7,6 +7,9 @@ Usage rules live in the guides linked under each component.
 | Component | Variants | Slots |
 |---|---|---|
 | [Progress](#progress) | 5 | - |
+| [Progress Ring](#progress-ring) | 15 | - |
+
+On the Figma page: "Stress test / Progress Ring"
 
 ## Progress
 
@@ -26,3 +29,27 @@ Tokens and styles:
 Guides: [progress-and-slider](../../skills/build-ui/components/progress-and-slider.md), [bulk-actions](../../skills/build-ui/patterns/bulk-actions.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
 
 Code: shadcn `Slider`, `Progress`
+
+## Progress Ring
+
+Component set · 15 variants · default size 32 × 32
+
+Circular progress for compact places: uploads in a list, profile or setup completion, a quota in a card. sm (32) has no label, so put the number next to it; default (48) and lg (80) show the percent inside. Same rules as Progress: known progress only; unknown duration uses Spinner.
+
+| Variant property | Values |
+|---|---|
+| Size | sm, default, lg |
+| Value | 0, 25, 50, 75, 100 |
+
+| Property | Type | Default |
+|---|---|---|
+| Show label | boolean | true |
+
+Tokens and styles:
+- Colors: `background/muted`, `background/primary`, `foreground/default`
+- Spacing and size: `spacing/12`, `spacing/20`, `spacing/8`
+- Text styles: `heading/h4`, `ui/label-small`
+
+Guides: [progress-and-slider](../../skills/build-ui/components/progress-and-slider.md)
+
+Code: SVG circle with `stroke-dasharray` (or Radix Progress) (`role="progressbar"`, `aria-valuenow`)

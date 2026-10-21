@@ -8,8 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [List Item](#list-item) | 5 | Leading, Trailing |
 | [Tree Item](#tree-item) | 36 | - |
+| [Sortable List Item](#sortable-list-item) | 4 | Trailing |
 
-On the Figma page: "Example / navigation tree", "Example / permissions tree"
+On the Figma page: "Example / navigation tree", "Example / permissions tree", "Stress test / Sortable List Item"
 
 ## List Item
 
@@ -68,3 +69,34 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/label`
 
 Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
+
+## Sortable List Item
+
+Component set · 4 variants · default size 480 × 58
+
+A row people reorder (columns, form fields, steps, priorities): drag handle, label, description, Trailing slot (switch, menu). dragging = lifted with shadow; drop-target = primary line where it will land. Keyboard: focus the handle, Space to pick up, arrows to move, Space to drop; announce the new position. Offer Move up / Move down in the menu too. Label truncates on one line, description on two.
+
+| Variant property | Values |
+|---|---|
+| State | default, hover, dragging, drop-target |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Invoice number |
+| Description | text | Shown in the table and in exports |
+| Show description | boolean | true |
+
+Slots (fill them in the instance, never detach): `Trailing`
+
+Built from: `Button Icon`. Icons: grip-vertical
+
+Tokens and styles:
+- Colors: `background/card`, `background/muted`, `background/primary`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `border-width/2`, `spacing/0_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `body/small`, `ui/label`
+- Effects: `shadow/lg`
+
+Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md), [select](../../skills/build-ui/components/select.md)
+
+Code: `@dnd-kit/sortable` with keyboard sensor and announcements (Drag handle = `useSortable` listeners)

@@ -27,35 +27,37 @@ it is built from, the tokens and styles it uses, its usage guides and its code m
 | [Calendar](calendar.md) | Calendar Day, Calendar, Date Picker, Time Picker, Date Range Picker |
 | [Card](card.md) | Card Header, Card Footer, Stat Card, Option Card, Post Card, Card, Entity Card, Progress Card |
 | [Carousel](carousel.md) | Carousel, Carousel Arrow, Carousel Indicator, Carousel Thumbnail, Carousel Slide, Carousel Gallery, Carousel Hero, Lightbox |
-| [Chart](chart.md) | Chart Legend Item, Chart Legend, Chart Tooltip Row, Chart Tooltip, Bar Chart, Line Chart, Sparkline, Chart Card, Donut Chart, Bar Chart Horizontal, Heatmap, Gauge, Treemap |
+| [Chart](chart.md) | Chart Legend Item, Chart Legend, Chart Tooltip Row, Chart Tooltip, Bar Chart, Line Chart, Sparkline, Chart Card, Donut Chart, Bar Chart Horizontal, Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart |
 | [Chat](chat.md) | Chat Message, Typing Indicator, Chat Composer |
 | [Chip](chip.md) | Chip |
 | [Code Block](code-block.md) | Code Block |
 | [Color Picker](color-picker.md) | Color Picker |
+| [Cookie Consent](cookie-consent.md) | Cookie Consent |
 | [Description List](description-list.md) | Description List Item |
 | [Dialog](dialog.md) | Dialog Header, Dialog Footer, Dialog, Alert Dialog |
 | [Drawer](drawer.md) | Sheet, Drawer |
 | [Editor](editor.md) | Rich Text Editor, Comment, Comment Composer |
 | [Empty State](empty-state.md) | Empty State |
-| [File Upload](file-upload.md) | File Dropzone, File Item |
+| [File Upload](file-upload.md) | File Dropzone, File Item, File Preview |
 | [Filters](filters.md) | Filter Condition, Filter Group, Filter Chip, Facet Option, Faceted Filter, Filter Section, Filter Bar |
 | [Form Presets](form-presets.md) | Field Preset |
-| [Image](image.md) | Image Placeholder, Map |
-| [Input](input.md) | Input, Field, Password Strength, Textarea, Input Addon, Input Group, Number Input |
+| [Image](image.md) | Image Placeholder, Map, Image Cropper, Avatar Upload |
+| [Input](input.md) | Input, Field, Password Strength, Textarea, Input Addon, Input Group, Number Input, Inline Edit, Signature Pad |
 | [Input OTP](input-otp.md) | OTP Slot, Input OTP |
 | [Kanban](kanban.md) | Kanban Card, Kanban Column |
 | [Kbd](kbd.md) | Kbd, Kbd Group |
-| [List & Tree](list-and-tree.md) | List Item, Tree Item |
-| [Menu](menu.md) | Menu Item, Menu Label, Menu |
+| [List & Tree](list-and-tree.md) | List Item, Tree Item, Sortable List Item |
+| [Menu](menu.md) | Menu Item, Menu Label, Menu, Menubar Trigger, Menubar |
 | [Mobile](mobile.md) | Mobile Header, Bottom Nav Item, Bottom Nav |
 | [Navigation](navigation.md) | Breadcrumb Item, Breadcrumb, Top Bar, Page Header, Nav Link, Navigation Menu Link, Navigation Menu Panel, TOC Item, Table of Contents |
 | [Pagination](pagination.md) | Pagination Item, Pagination |
 | [Popover](popover.md) | Popover, Command Input, Command, Hover Card, Command Dialog |
-| [Progress](progress.md) | Progress |
+| [Progress](progress.md) | Progress, Progress Ring |
 | [Rating](rating.md) | Rating |
 | [Save Bar](save-bar.md) | Save Bar |
 | [Scheduler](scheduler.md) | Calendar Event, Gantt Bar, Gantt Milestone |
-| [Select](select.md) | Select, Combobox, Tag, Tag Input |
+| [Scroll Area](scroll-area.md) | Scroll Area |
+| [Select](select.md) | Select, Combobox, Tag, Tag Input, Person Option, People Picker, Transfer List |
 | [Selection controls](selection-controls.md) | Checkbox, Radio, Switch |
 | [Separator](separator.md) | Separator |
 | [Sidebar](sidebar.md) | Sidebar Item, Sidebar Group Label, Sidebar Group, Sidebar Workspace, Sidebar User, Sidebar, Org Switcher |
@@ -72,4 +74,4 @@ it is built from, the tokens and styles it uses, its usage guides and its code m
 | [Tour](tour.md) | Coachmark, Hotspot |
 | [Video](video.md) | Video Player |
 
-189 components on 56 pages.
+205 components on 58 pages.

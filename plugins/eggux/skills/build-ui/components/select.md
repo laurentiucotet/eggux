@@ -43,3 +43,19 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Up to ~7 options with all worth seeing: Checkbox group instead.
 - Figma: `Tag` (Label, Remove), `Tag Input` (State, Tags slot, Chevron) on the Select page.
   Example "multi-select open".
+
+## People Picker
+- Choosing people (assignee, approvers, reviewers, share with). Search matches name, email and
+  team; results show avatar, name, role and email so two people with the same name differ.
+- Recent and suggested people first; selected people as chips in the field; after ~4, "+3".
+- Nobody matches: offer "Invite by email" when inviting is allowed, otherwise say who can add them.
+- One person only (owner, assignee): close the list after the pick.
+- Figma: `Person Option` (Selected × State; Name, Detail, Show detail; Avatar exposed),
+  `People Picker` (closed, open; Selected and Results slots; Placeholder truncates on one line).
+
+## Transfer List
+- Moving items between two sets where both sides matter (permissions of a role, columns of a
+  view, members of a group). Each side: title, count, search, checkboxes; buttons move checked items.
+- Under ~10 items: a checkbox list is simpler. Order matters: add `Sortable List Item` on the right.
+- Keyboard: Space checks, Tab reaches the move buttons; announce "2 moved to Selected".
+- Figma: `Transfer List` (Left title, Right title; Available and Selected slots of `Facet Option`s).

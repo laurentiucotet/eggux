@@ -154,3 +154,6 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   try/catch that removes what the call created.
 - `getInstancesAsync()` also returns instances inside deleted nodes; filter by a page ancestor
   before deciding a component is unused.
+- `node.description` reads back HTML-escaped (`&quot;`). Appending to it and writing it back escapes again (`&amp;quot;`). Unescape first, or rewrite the whole description.
+- Boolean operation nodes (`figma.subtract`, `union`) have no `constraints`. To keep a cut-out centered when the parent resizes, put the boolean in a frame and set the frame's constraints.
+- `frame.resize(w, h)` on an auto-layout frame sets both axes to FIXED. Set `layoutSizingVertical = 'HUG'` again for a column that must grow with its text.

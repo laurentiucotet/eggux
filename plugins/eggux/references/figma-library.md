@@ -66,6 +66,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Input | `Input Addon` | Position: start, end | Text |
 | Input | `Input Group` | State: default, focus, error, disabled | Value, Show start, Show end; Start, End (native slots) |
 | Input | `Number Input` | State: default, focus, error, disabled | Value; − / + steppers |
+| Input | `Inline Edit` | State: view, hover, editing, saving, error | Value. Pencil on hover; Input with check and x while editing |
+| Input | `Signature Pad` | State: empty, signed | Pad (clips the stroke), baseline, Clear, Type instead; signer and time when signed |
 | Input OTP | `OTP Slot` | Position: first, middle, last. State: empty, filled, active, error | Digit |
 | Input OTP | `Input OTP` | Length: 4, 6 | Groups of OTP Slots (3 + 3 with separator) |
 | Kbd | `Kbd` | - | Key |
@@ -73,15 +75,21 @@ Domain-specific needs become Field Presets or Blocks.
 | Spinner | `Spinner` | Size: sm 16, default 20, lg 32. Tone: muted, default | Loader icon; rotate in code |
 | File Upload | `File Dropzone` | State: default, drag-over, error, disabled | Hint; Browse button exposed |
 | File Upload | `File Item` | State: uploading, complete, error | File name; Progress, cancel/remove, Retry |
+| File Upload | `File Preview` | State: ready, loading, unavailable | File name, Meta; zoom, download, close; page thumbnails; page count. Page area clips |
 | Progress | `Progress` | Value: 0, 25, 50, 75, 100 | Resize the indicator for other values |
+| Progress | `Progress Ring` | Size: sm, default, lg. Value: 0, 25, 50, 75, 100 | Show label (percent inside on default and lg) |
 | Slider | `Slider` | Type: single, range. State: default, focus, disabled | Move range and thumbs for other values |
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
+| Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Clips its content; thin scrollbar on border/default |
 | Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
 | Select | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
 | Select | `Tag` | State: default, disabled | Label, Remove |
 | Select | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Chevron |
+| Select | `Person Option` | Selected: false, true. State: default, hover | Name, Detail, Show detail; Checkbox and Avatar (exposed) |
+| Select | `People Picker` | State: closed, open | Placeholder; Selected, Results (native slots); search, invite by email |
+| Select | `Transfer List` | - | Left title, Right title; Available, Selected (native slots of Facet Options); counts, search, move buttons |
 | Popover | `Popover` | - | Content (native slot). 288 wide, popover tokens, shadow/md |
 | Popover | `Command Input` | - | Value. Search field with bottom divider |
 | Popover | `Command` | - | Command Input (exposed), Items (native slot), Empty, Show items. Base for Combobox and ⌘K |
@@ -99,6 +107,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Chart | `Heatmap` | - | 7 × 12 grid, 5 opacity steps of chart/1, legend Fewer → More |
 | Chart | `Gauge` | Status: on track, at risk, off track | Label; arc with value, target tick, written status |
 | Chart | `Treemap` | - | Six tinted cells with colored edge, labels inside when they fit |
+| Chart | `Funnel Chart` | - | 4 stages: name, count, bar, conversion; overall rate. Min width 480 |
+| Chart | `Scatter Chart` | Series: one, two | X title, Y title; points on chart/1, chart/2; axes and gridlines |
 | Chart | `Sparkline` | Trend: up, down | 120 x 32, no axes |
 | Chart | `Chart Legend Item` | Key: swatch, line. Series: 1-8 | Label |
 | Chart | `Chart Legend` | - | Items (native slot) |
@@ -122,6 +132,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Carousel | `Carousel Hero` | - | 1440 × 560 banner: image, scrim, Overline, Headline, Text, action, bars, arrows |
 | Carousel | `Lightbox` | - | 1280 × 800 viewer on video/* tokens: Counter, Title, download, close, arrows, thumbnails |
 | Color Picker | `Color Picker` | - | Saturation area, hue slider, hex Input Group with opacity; Swatches (native slot) |
+| Cookie Consent | `Cookie Consent` | Type: banner, card, preferences | Title, Body. Accept all and Reject all with equal weight; Customize; categories with Switches, Necessary always on |
 | Kanban | `Kanban Card` | State: default, hover, dragging | Title, Due date, Show labels, Show meta; assignee exposed |
 | Kanban | `Kanban Column` | - | Title, Cards (native slot); count exposed |
 | Scheduler | `Gantt Bar` | Status: planned, in progress, done, blocked | Label; tinted bar, colored edge, progress line, status icon |
@@ -136,6 +147,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
 | Menu | `Menu Label` | - | Label |
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
+| Menu | `Menubar Trigger` | State: default, hover, open | Label |
+| Menu | `Menubar` | - | Menus (native slot of Menubar Triggers); opens a Menu below the trigger |
 | Mobile | `Mobile Header` | Type: app, detail | Title; Leading, Trailing (native slots) |
 | Mobile | `Bottom Nav Item` | State: default, active | Label, Icon (swap) |
 | Mobile | `Bottom Nav` | - | Items (native slot), 3-5 items, safe-area padding |
@@ -145,6 +158,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels |
 | List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description. Leading, Trailing (native slots) |
 | List & Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Checkbox (exposed), Icon + Icon type, Count |
+| List & Tree | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description; grip handle; Trailing (native slot) |
 | Tooltip | `Tooltip` | Side: top, bottom, left, right | Label |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
 | Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner | Title, Description, Show description, Actions (native slot) + Show actions, Dismiss |
@@ -205,6 +219,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Accordion | `Accordion` | - | Items (native slot) |
 | Image | `Map` | - | Label, Address, Show label, Show controls, Show pin. Roads scale, pin stays centered; put a static map image as fill in production |
 | Image | `Image Placeholder` | Ratio: 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance |
+| Image | `Image Cropper` | Shape: square, circle | Image layer (fill), scrim, selection that stays centered, zoom Slider, rotate, Cancel, Save |
+| Image | `Avatar Upload` | State: empty, filled, uploading, error | Avatar, rules hint, Upload or Change, Remove |
 | Sections (blocks) | `Section Header` | Align: center, left | Overline, Title (heading/h2), Description |
 | Page Shells | `Page Shell / App`, `/ Marketing`, `/ Auth` | - | Page (native slot); Sidebar and Top Bar exposed in App |
 | Page Shells | `Page Shell / Mobile` | - | 390 x 844. Mobile Header + Page (native slot) + Bottom Nav (exposed, `Bottom nav` boolean) |
@@ -367,10 +383,10 @@ textarea in field, combobox open, record page (App shell + record blocks), activ
 mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
 filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions, inbox (split
 view), cart sheet, checkout page, docs page, date picker open, date range, table footer with pagination, color
-field, AI chat app, product tour, enterprise invoices, theme comparison, data grid
+field, AI chat app, product tour, enterprise invoices, theme comparison, menubar open, data grid
 (enterprise) template.
 
 ## Not built yet
-Nothing from the current roadmap. Icons: the 78 Lucide icons stay; the team may switch to Phosphor
+Nothing from the current roadmap. Icons: the 79 Lucide icons stay; the team may switch to Phosphor
 (flatten each icon to one `Vector` layer so swaps keep their color). When something is missing,
 compose from the components above, tokens and text styles, and flag it.

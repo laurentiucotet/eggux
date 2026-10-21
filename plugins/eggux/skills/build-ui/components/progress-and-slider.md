@@ -18,3 +18,9 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
 - Step matches the data (5 lei, 1 km). Keyboard: arrows by step, PageUp/PageDown by 10 steps.
 - Figma: `Slider` Type (single, range) × State (default, focus, disabled). Move the range and thumb
   layers for other values. Example "price range".
+
+## Progress Ring
+- Same rules as Progress, for compact places: an upload in a list, setup completion in a card,
+  a quota next to a label.
+- sm (32) has no label: put the number next to it. default (48) and lg (80) show the percent.
+- Figma: `Progress Ring` Size × Value (0, 25, 50, 75, 100); Show label.

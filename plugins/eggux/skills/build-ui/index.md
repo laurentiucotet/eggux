@@ -57,7 +57,7 @@ component guides it names. Names are Figma components; inventory in
 | Confirm a destructive action | delete-confirmation | dialog |
 | Tell the user something happened | feedback-messages | toast, alert, indicators |
 | Wait for data or an operation | loading-states | skeleton, indicators, progress-and-slider |
-| Pick one or many options | (none) | select (Select, Combobox, Tag Input), toggle in tabs |
+| Pick one or many options | (none) | select (Select, Combobox, Tag Input, People Picker, Transfer List), toggle in tabs |
 | Show more without leaving | (none) | popover (Popover, Hover Card), dialog, drawer, accordion |
 | Find anything fast | search-and-filter | popover (Command Dialog, search suggestions) |
 | Write formatted text | unsaved-changes | rich-text-editor |
@@ -69,6 +69,11 @@ component guides it names. Names are Figma components; inventory in
 | Ask AI, let AI act | ai-chat | ai-chat |
 | Introduce a feature or a workflow | (none) | tour, popover |
 | Show a video (tutorial, demo) | (none) | video-player |
+| Edit one value in place | (none) | input (Inline Edit) |
+| Reorder items | (none) | list-and-tree (Sortable List Item) |
+| Preview a document or crop an image | (none) | file-upload (File Preview, Image Cropper, Avatar Upload) |
+| Sign a document | approvals | input (Signature Pad) |
+| Ask for cookie consent | marketing-pages | (Cookie Consent) |
 
 ## Component guides and what they cover
 
@@ -83,7 +88,7 @@ component guides it names. Names are Figma components; inventory in
 | boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view |
 | card | Card, Stat Card, Option Card, Post Card |
 | carousel | Carousel |
-| charts | Bar, Bar Horizontal, Line, Donut / Pie, Heatmap, Sparkline, Chart Card, legend, tooltip |
+| charts | Bar, Bar Horizontal, Line, Donut / Pie, Heatmap, Gauge, Treemap, Funnel, Scatter, Sparkline, Chart Card, legend, tooltip |
 | color-picker | Color Picker, swatches, color field |
 | comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer |
 | content | Post Card, Code Block, TOC Item, Table of Contents |
@@ -91,18 +96,18 @@ component guides it names. Names are Figma components; inventory in
 | description-list | Description List, Timeline |
 | dialog | Dialog, Alert Dialog |
 | drawer | Sheet, Drawer |
-| dropdown-menu | Menu, Menu Item |
-| file-upload | File Dropzone, File Item |
+| dropdown-menu | Menu, Menu Item, Menubar |
+| file-upload | File Dropzone, File Item, File Preview, Avatar Upload, Image Cropper |
 | indicators | Spinner, Status Dot, Kbd |
-| input | Input, Field, Textarea, Input Group, Number Input, Input OTP |
-| list-and-tree | List Item, Tree Item |
+| input | Input, Field, Textarea, Input Group, Number Input, Input OTP, Inline Edit, Signature Pad |
+| list-and-tree | List Item, Tree Item, Sortable List Item, Scroll Area |
 | navigation | Breadcrumb, Top Bar, Page Header, Nav Link, Navigation Menu, Split View |
 | pagination | Pagination |
 | popover | Popover, Command, Combobox panel, Command Dialog, Hover Card, search suggestions |
-| progress-and-slider | Progress, Slider |
+| progress-and-slider | Progress, Progress Ring, Slider |
 | rating | Rating |
 | rich-text-editor | Rich Text Editor |
-| select | Select, Combobox, Checkbox, Radio, Switch, Tag Input |
+| select | Select, Combobox, Checkbox, Radio, Switch, Tag Input, People Picker, Transfer List |
 | sidebar | Sidebar and its parts |
 | skeleton | Skeleton |
 | stepper | Step, Stepper |
