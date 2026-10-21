@@ -3,6 +3,14 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.42.1
+- Fixed stress test frames that stopped growing with their content (an auto-layout frame built
+  with `resize()` stays FIXED on both axes), so their white frame and section were shorter than
+  the cases: 20 frames on 11 pages back to hug, every row section refit.
+- `component-page.js` sets stress test and example frames back to hug when their content runs
+  past their edge, and reports any frame or section that still clips (`overflow`).
+  tidy-component checks that list; stress-test.md says how to build grids with hug sizing.
+
 ## 0.42.0
 - Every component page in the master library now uses the row layout: 151 rows on 57 pages,
   each with Docs, Component, Stress test and Examples sections. Helper parts sit in their main

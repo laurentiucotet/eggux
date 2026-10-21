@@ -30,6 +30,8 @@ Pick the ones that apply to the component's content.
 - One frame `Stress test / <Component>` on the component's page, inside the `<Component> / Stress test`
   section of the component's row (`skills/tidy-component`). Replace a generated stress test
   ("Generated cases") with real content cases when you review the component.
+- Build the grid with hug sizing. `resize()` fixes both axes: after it, set the axis that must
+  grow back to AUTO, then check that the frame and its section contain everything.
 - A grid: one column per case of the main dimension, one row per secondary dimension
   (for example text length × tag count), each cell labeled above with `ui/caption` muted.
 - A last row in Dark and Corporate, and one at the narrowest width.
