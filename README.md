@@ -152,6 +152,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3x. Done: Page Headers blocks (detail, listing, search results, profile, event, topic, report, simple); Post Card compact.
 3y. Done: Meta Item, Figure, Setting Row, Person Card; Tab counts.
 3z. Done: Event Card and Date Tile, Resource Item, Quote.
+3za. Done: Waterfall Chart and Combo Chart; project permission rules in .claude/settings.json.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - `Page Shell / Back office` on the Page Shells page, from the tested grid shell;

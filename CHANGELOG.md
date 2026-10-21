@@ -3,6 +3,18 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.47.0
+- New `Waterfall Chart` (start total, increases in color/blue/600, decreases in color/red/600,
+  end total; signed labels and connectors) and `Combo Chart` (bars on the left axis, a line on
+  the right axis; the one exception to "one y axis") on the Chart page, with the examples "cash
+  bridge" and "volume and on-time rate" in Chart Card.
+- Both charts resize with their container (constraints on gridlines, bars and labels); the
+  Figma API notes say how.
+- Bar Chart and Line Chart docs point to Combo Chart for two units; charts guide, code mapping,
+  library map and component reference updated (217 components).
+- `.claude/settings.json`: allow rules for the Figma write and screenshot tools, PR create and
+  merge, and git push, so sessions on this repo stop asking for them.
+
 ## 0.46.0
 - New `Event Card` (horizontal for lists, vertical with an image for grids) and its part
   `Date Tile` (Card page): format badges, title, time and place as Meta Items, one action.

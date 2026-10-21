@@ -90,7 +90,7 @@ component guides it names. Names are Figma components; inventory in
 | boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view |
 | card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Progress Card |
 | carousel | Carousel |
-| charts | Bar, Bar Horizontal, Line, Donut / Pie, Heatmap, Gauge, Treemap, Funnel, Scatter, Sparkline, Chart Card, legend, tooltip |
+| charts | Bar, Bar Horizontal, Line, Donut / Pie, Heatmap, Gauge, Treemap, Funnel, Scatter, Waterfall, Combo, Sparkline, Chart Card, legend, tooltip |
 | color-picker | Color Picker, swatches, color field |
 | comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer |
 | content | Post Card, Quote, Code Block, TOC Item, Table of Contents |

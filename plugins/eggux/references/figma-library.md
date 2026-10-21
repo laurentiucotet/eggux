@@ -111,6 +111,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Chart | `Treemap` | - | Six tinted cells with colored edge, labels inside when they fit |
 | Chart | `Funnel Chart` | - | 4 stages: name, count, bar, conversion; overall rate. Min width 480 |
 | Chart | `Scatter Chart` | Series: one, two | X title, Y title; points on chart/1, chart/2; axes and gridlines |
+| Chart | `Waterfall Chart` | - | 7 steps: totals neutral, increases blue, decreases red; signed labels, connectors, legend. Resizes with its container |
+| Chart | `Combo Chart` | - | Bars (chart/1, left axis) + line (chart/2, right axis, end label); legend names the axes. Resizes with its container |
 | Chart | `Sparkline` | Trend: up, down | 120 x 32, no axes |
 | Chart | `Chart Legend Item` | Key: swatch, line. Series: 1-8 | Label |
 | Chart | `Chart Legend` | - | Items (native slot) |
