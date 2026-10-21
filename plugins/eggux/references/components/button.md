@@ -8,11 +8,12 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Button](#button) | 72 | - |
 | [Button Icon](#button-icon) | 20 | - |
-| [Button Group Item](#button-group-item) | 12 | - |
 | [Button Group](#button-group) | 1 | Items |
+| [Button Group Item](#button-group-item) | 12 | - |
 | [Split Button](#split-button) | 2 | - |
+| [Action Bar](#action-bar) | 3 | Leading, Actions |
 
-On the Figma page: "Example / in navbar", "Example / in navbar mobile", "Example / record actions", "Example / split button open", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Split Button"
+On the Figma page: "Example / form footer", "Example / in navbar", "Example / in navbar mobile", "Example / record actions", "Example / split button open", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Split Button"
 
 ## Button
 
@@ -140,34 +141,6 @@ Guides: [button](../../skills/build-ui/components/button.md), [carousel](../../s
 
 Code: shadcn `Button` (`size="icon"`) (`Leading icon` → icon child before the label)
 
-## Button Group Item
-
-Component set · 12 variants · default size 80 × 36
-
-One segment of a Button Group: first (left radius), middle, last (right radius). active = pressed/selected (bg accent). Icon-only: Show label off + Icon on, with a tooltip.
-
-| Variant property | Values |
-|---|---|
-| Position | first, middle, last |
-| State | default, hover, focus, disabled |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Edit |
-| Show label | boolean | true |
-| Icon | boolean | false |
-| Icon type | instance swap | Icon/pencil |
-
-Icons: pencil
-
-Tokens and styles:
-- Colors: `background/accent`, `background/default`, `border/input`, `foreground/accent`, `foreground/default`
-- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
-- Text styles: `ui/label`
-
-Guides: [button](../../skills/build-ui/components/button.md)
-
 ## Button Group
 
 Component · 1 variant · default size 240 × 36
@@ -212,6 +185,34 @@ Built from: `Button Group Item`
 Guides: [button](../../skills/build-ui/components/button.md)
 
 Code: shadcn `ButtonGroup` or custom flex + `DropdownMenu`
+
+## Button Group Item
+
+Component set · 12 variants · default size 80 × 36
+
+One segment of a Button Group: first (left radius), middle, last (right radius). active = pressed/selected (bg accent). Icon-only: Show label off + Icon on, with a tooltip.
+
+| Variant property | Values |
+|---|---|
+| Position | first, middle, last |
+| State | default, hover, focus, disabled |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Edit |
+| Show label | boolean | true |
+| Icon | boolean | false |
+| Icon type | instance swap | Icon/pencil |
+
+Icons: pencil
+
+Tokens and styles:
+- Colors: `background/accent`, `background/default`, `border/input`, `foreground/accent`, `foreground/default`
+- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `ui/label`
+
+Guides: [button](../../skills/build-ui/components/button.md)
 
 ## Split Button
 
@@ -269,3 +270,59 @@ Tokens and styles:
 Guides: [button](../../skills/build-ui/components/button.md)
 
 Code: shadcn `ButtonGroup` or custom flex + `DropdownMenu`
+
+## Action Bar
+
+Component set · 3 variants · default size 560 × 36
+
+The row of buttons that ends a form, a dialog body, a step or a hero: Actions slot (primary and secondary), optional Leading slot (Back, Delete) and divider above. end for forms and steps (secondary left of primary: Cancel, Save); start for heroes and page headers (primary first: Get started, Talk to sales); center under centered heroes and CTAs. One primary per bar. Dialog footers use the Dialog's own footer; a sticky bar for unsaved changes is Save Bar.
+
+**Use for**
+
+- The end of a form or a settings section (Align=end)
+- The buttons of a hero or a page header (Align=start)
+- Under a centered hero, CTA or empty state (Align=center)
+- Back on the left and Next on the right in a wizard step (Show leading)
+
+**Not for**
+
+- The footer of a Dialog: use the Dialog's own footer
+- Unsaved changes that follow the scroll: use Save Bar
+- Related actions joined in one control: use Button Group
+
+**Anatomy**
+
+1. Divider above (Show divider)
+2. Leading slot (Show leading): Back, Delete, Remove
+3. Actions slot: secondary and primary Buttons
+4. Align: end, start, center
+
+**Content and behavior**
+
+- One primary button per bar
+- end: secondary left of primary (Cancel, Save); start and center: primary first
+- Destructive actions go in Leading, away from the primary
+- Same button Size inside one bar
+
+**Accessibility**
+
+- Tab order follows the visual order
+- The primary action is the submit button of the form
+- Disabled buttons explain why in a hint or a Tooltip
+
+| Variant property | Values |
+|---|---|
+| Align | end, start, center |
+
+| Property | Type | Default |
+|---|---|---|
+| Show divider | boolean | false |
+| Show leading | boolean | false |
+
+Slots (fill them in the instance, never detach): `Leading`, `Actions`
+
+Built from: `Button`
+
+Tokens and styles:
+- Colors: `border/default`
+- Spacing and size: `spacing/2`, `spacing/4`

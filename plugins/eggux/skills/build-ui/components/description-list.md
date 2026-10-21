@@ -28,6 +28,16 @@ Usage guidelines only. Visual specs live in the Figma components.
 - No trend arrow or color: a metric compared to a period is a Stat Card.
 - Figma: `Figure` Layout × Size (default, lg); Value, Label, Source, Show source, Divider.
 
+## Summary Row (money breakdowns)
+- One line of an order summary, invoice or quote total, price calculator or plan cost: label
+  left, amount right aligned.
+- `Variant=discount` for reductions (amount in success, always with a minus sign: −€62.50);
+  `total` for the last row, with a Separator above it.
+- Same currency and number format in every row; labels say what is included ("VAT 19%,
+  included").
+- Figma: `Summary Row` Variant (default, discount, total); Label, Value. Used in Order Summary and
+  Pricing Calculator.
+
 ## Timeline (activity, history)
 - Newest first. One event per item: what happened (title), who / where (description), when.
 - Tone marks the outcome: success, destructive (failed), primary (created/booked), default (info).

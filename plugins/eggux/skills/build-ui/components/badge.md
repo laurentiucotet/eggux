@@ -30,3 +30,11 @@ it everywhere. The same status never appears in two colors.
 - `Badge Count`: number only, for sidebar items and icon buttons. Above 99 show "99+".
 - `Chip`: default, hover, focus, selected, disabled; Leading icon (check when selected), Remove.
   See the "filter chips" example.
+
+## Tag List (a few tags on one line)
+- Category, format, frequency, region of a dataset, an article or a job, under a title or in a
+  card. Show 2-4 tags, then "+N" that opens the full list in a Tooltip or Popover.
+- Outline Badges for neutral labels; a status Variant only when the tag is a status. Same order
+  everywhere (type, frequency, region).
+- Not for filters people remove (Chip) or a single status (Badge, Status Dot).
+- Figma: `Tag List` with a Tags slot of Badges and an exposed "+N" Badge (Show more).

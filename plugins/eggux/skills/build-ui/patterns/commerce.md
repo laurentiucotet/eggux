@@ -14,4 +14,6 @@ and "checkout page". Address and Payment blocks are on Forms; success page is `B
 - Checkout: guest checkout allowed; address, delivery, payment on one page or a short Wizard;
   Order Summary sticky on the right; the pay button shows the amount ("Pay €95.00").
 - Prices: currency and tax rules of the market; totals add up visibly; no surprise fees at the end.
+  Each line of a summary is a Summary Row (discount in success with a minus sign, total last with a
+  Separator above).
 - After payment: `Block / Result` success with the order number, email confirmation, next steps.

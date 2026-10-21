@@ -22,10 +22,10 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Alert](alert.md) | Alert |
 | [Approvals](approvals.md) | Approval Step |
 | [Audit](audit.md) | Change Item |
-| [Avatar](avatar.md) | Avatar, Avatar Group |
-| [Badge](badge.md) | Badge, Badge Count, Status Dot |
+| [Avatar](avatar.md) | Avatar, Avatar Group, Byline |
+| [Badge](badge.md) | Badge, Badge Count, Status Dot, Tag List |
 | [Brand](brand.md) | Logo Mark, Logo |
-| [Button](button.md) | Button, Button Icon, Button Group Item, Button Group, Split Button |
+| [Button](button.md) | Button, Button Icon, Button Group, Button Group Item, Split Button, Action Bar |
 | [Calendar](calendar.md) | Calendar Day, Calendar, Date Picker, Time Picker, Date Range Picker |
 | [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Date Tile, Progress Card |
 | [Carousel](carousel.md) | Carousel, Carousel Arrow, Carousel Indicator, Carousel Thumbnail, Carousel Slide, Carousel Gallery, Carousel Hero, Lightbox |
@@ -35,11 +35,12 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Code Block](code-block.md) | Code Block |
 | [Color Picker](color-picker.md) | Color Picker |
 | [Cookie Consent](cookie-consent.md) | Cookie Consent |
-| [Description List](description-list.md) | Description List Item, Meta Item, Figure |
+| [Description List](description-list.md) | Description List Item, Meta Item, Figure, Summary Row |
 | [Dialog](dialog.md) | Dialog Header, Dialog Footer, Dialog, Alert Dialog |
 | [Drawer](drawer.md) | Sheet, Drawer, Side Panel |
 | [Editor](editor.md) | Rich Text Editor, Comment, Comment Composer |
 | [Empty State](empty-state.md) | Empty State |
+| [Feature Item](feature-item.md) | Feature Item |
 | [File Upload](file-upload.md) | File Dropzone, File Item, File Preview, Resource Item |
 | [Filters](filters.md) | Filter Condition, Filter Group, Filter Chip, Facet Option, Faceted Filter, Filter Section, Filter Bar |
 | [Form Presets](form-presets.md) | Field Preset |
@@ -60,6 +61,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Save Bar](save-bar.md) | Save Bar |
 | [Scheduler](scheduler.md) | Calendar Event, Gantt Bar, Gantt Milestone |
 | [Scroll Area](scroll-area.md) | Scroll Area |
+| [Section Heading](section-heading.md) | Section Heading |
 | [Select](select.md) | Select, Combobox, Tag, Tag Input, Person Option, People Picker, Transfer List |
 | [Selection controls](selection-controls.md) | Checkbox, Radio, Switch, Setting Row |
 | [Separator](separator.md) | Separator |
@@ -77,4 +79,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tour](tour.md) | Coachmark, Hotspot |
 | [Video](video.md) | Video Player |
 
-217 components on 59 pages.
+223 components on 61 pages.

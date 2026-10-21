@@ -9,8 +9,9 @@ Usage rules live in the guides linked under each component.
 | [Description List Item](#description-list-item) | 2 | Value |
 | [Meta Item](#meta-item) | 1 | - |
 | [Figure](#figure) | 4 | - |
+| [Summary Row](#summary-row) | 3 | - |
 
-On the Figma page: "Example / event facts", "Example / in billing", "Example / report figures", "Stress test / Description List Item", "Stress test / Figure", "Stress test / Meta Item"
+On the Figma page: "Example / event facts", "Example / in billing", "Example / invoice totals", "Example / report figures", "Stress test / Description List Item", "Stress test / Figure", "Stress test / Meta Item", "Stress test / Summary Row"
 
 ## Description List Item
 
@@ -119,6 +120,10 @@ Tokens and styles:
 - Spacing and size: `spacing/1_5`
 - Text styles: `body/small`
 
+Guides: [description-list](../../skills/build-ui/components/description-list.md)
+
+Code: custom: icon + text (`text-sm text-muted-foreground`); `dl` with value and label (Figure has no trend; that is Stat Card)
+
 ## Figure
 
 Component set · 4 variants · default size 240 × 56
@@ -176,3 +181,59 @@ Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/0`, `spacing/1`, `spacing/1_5`
 - Text styles: `body/small`, `heading/h2`, `heading/h3`, `heading/h4`, `ui/caption`
+
+Guides: [description-list](../../skills/build-ui/components/description-list.md)
+
+Code: custom: icon + text (`text-sm text-muted-foreground`); `dl` with value and label (Figure has no trend; that is Stat Card)
+
+## Summary Row
+
+Component set · 3 variants · default size 336 × 20
+
+One line of a money breakdown: label left, amount right (order summary, invoice totals, price calculator, plan cost). default for lines, discount for reductions (amount in success, with a minus sign), total for the last line (put a Separator above it). Amounts align right with the same number format and currency in every row. Record details that are not amounts use Description List Item.
+
+**Use for**
+
+- Order and cart summaries
+- Invoice and quote totals
+- Price calculators and plan cost
+- Tiers of a volume price
+
+**Not for**
+
+- Record details that are not amounts: use Description List Item
+- Many rows compared side by side: use a Table
+- A single key number: use Figure or Stat Card
+
+**Anatomy**
+
+1. Label: body/small, muted (total: ui/label)
+2. Value: body/small, right aligned (total: heading/h4)
+3. Variant: default, discount (value in success), total
+
+**Content and behavior**
+
+- Same currency and number format in every row
+- Discounts carry a minus sign (−€62.50)
+- Total is the last row, with a Separator above
+- Labels say what is included (VAT 19%, included)
+
+**Accessibility**
+
+- Code as a description list (dt, dd) or a table
+- The discount color is never the only cue: keep the minus sign
+- The total is announced with its label
+
+| Variant property | Values |
+|---|---|
+| Variant | default, discount, total |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Subtotal |
+| Value | text | €95.00 |
+
+Tokens and styles:
+- Colors: `background/success`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/4`
+- Text styles: `body/small`, `heading/h4`, `ui/label`

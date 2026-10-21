@@ -24,6 +24,7 @@ interrupted while typing.
 
 ## Submit
 - Button shows loading state while submitting and blocks double submit.
+- The form ends with an Action Bar (Align=end): Cancel, then the primary; Delete in Leading.
 - Server errors: keep all input, show the message near the submit button or at the top.
 - Success: confirm and move the user to the next logical step of the workflow.
 
