@@ -27,7 +27,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Brand](brand.md) | Logo Mark, Logo |
 | [Button](button.md) | Button, Button Icon, Button Group Item, Button Group, Split Button |
 | [Calendar](calendar.md) | Calendar Day, Calendar, Date Picker, Time Picker, Date Range Picker |
-| [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Progress Card |
+| [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Person Card, Progress Card |
 | [Carousel](carousel.md) | Carousel, Carousel Arrow, Carousel Indicator, Carousel Thumbnail, Carousel Slide, Carousel Gallery, Carousel Hero, Lightbox |
 | [Chart](chart.md) | Chart Legend Item, Chart Legend, Chart Tooltip Row, Chart Tooltip, Bar Chart, Line Chart, Sparkline, Chart Card, Donut Chart, Bar Chart Horizontal, Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart |
 | [Chat](chat.md) | Chat Message, Typing Indicator, Chat Composer |
@@ -35,7 +35,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Code Block](code-block.md) | Code Block |
 | [Color Picker](color-picker.md) | Color Picker |
 | [Cookie Consent](cookie-consent.md) | Cookie Consent |
-| [Description List](description-list.md) | Description List Item |
+| [Description List](description-list.md) | Description List Item, Meta Item, Figure |
 | [Dialog](dialog.md) | Dialog Header, Dialog Footer, Dialog, Alert Dialog |
 | [Drawer](drawer.md) | Sheet, Drawer, Side Panel |
 | [Editor](editor.md) | Rich Text Editor, Comment, Comment Composer |
@@ -60,7 +60,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Scheduler](scheduler.md) | Calendar Event, Gantt Bar, Gantt Milestone |
 | [Scroll Area](scroll-area.md) | Scroll Area |
 | [Select](select.md) | Select, Combobox, Tag, Tag Input, Person Option, People Picker, Transfer List |
-| [Selection controls](selection-controls.md) | Checkbox, Radio, Switch |
+| [Selection controls](selection-controls.md) | Checkbox, Radio, Switch, Setting Row |
 | [Separator](separator.md) | Separator |
 | [Sidebar](sidebar.md) | Sidebar, Sidebar Item, Sidebar Group Label, Sidebar Group, Sidebar Workspace, Sidebar User, Org Switcher, Sidebar Double |
 | [Skeleton](skeleton.md) | Skeleton |
@@ -68,7 +68,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Spinner](spinner.md) | Spinner |
 | [Stepper](stepper.md) | Step, Stepper |
 | [Table](table.md) | Table Header Label, Table Cell Text, Table Cell Stack, Table Cell User, Table Cell, Table Toolbar, Data Grid Toolbar, Table Group Row, Table Cell Amount, Table Cell Status, Table Cell Progress, Table Cell Actions, Table Pagination |
-| [Tabs](tabs.md) | Tab, Tabs, Tabs Line |
+| [Tabs](tabs.md) | Tabs, Tab, Tabs Line |
 | [Timeline](timeline.md) | Timeline Item |
 | [Toast](toast.md) | Toast |
 | [Toggle Group](toggle-group.md) | Toggle Group Item, Toggle Group |
@@ -76,4 +76,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tour](tour.md) | Coachmark, Hotspot |
 | [Video](video.md) | Video Player |
 
-207 components on 58 pages.
+211 components on 58 pages.

@@ -116,6 +116,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Row sizes of type HUG set before the cells exist come back as FIXED 1 (the table collapses to
   one line). Set `g.gridRowSizes = Array(n).fill({ type: 'HUG' })` after the last cell is added,
   and again after content inside the cells changes height (wrapped text).
+- Replacing a grid child (insert the new node, remove the old) can push the new one to an extra
+  row. `setGridChildPosition` refuses an occupied cell and `gridRowCount` refuses to drop an
+  occupied row: add a row, move children through it, then reduce the count.
 - Place cells with `cell.setGridChildPosition(row, col)`; span with `cell.gridColumnSpan`.
 - `rescale()` breaks GRID frames (rows overlap); place grids 1:1 and crop instead.
 
@@ -147,9 +150,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   a spacer must be `layoutSizingVertical = 'FIXED'` and resized to 1.
 - `editComponentProperty` on a slot property fails after `combineAsVariants` ("Must pass in
   valid name…"). Rename slots in each variant before combining.
-- Setting a Button's icon swap property to the icon it already shows resets the icon's stroke
-  override to the icon's own color (dark on a primary button). Re-bind the vector stroke to the
-  label's color after swapping, or pick the icon on the main component.
+- Setting any icon swap property to the icon it already shows resets the icon's stroke override
+  to the icon's own color (dark on a primary button, dark in a muted Meta Item). Set the swap only
+  when the icon changes, or re-bind the vector stroke after. Swapping to a different icon keeps the
+  override (every icon is one `Vector` layer).
 - A TEXT property has one default for all variants. When variants need different default text
   (Note, Increase, Decrease), give each variant its own property.
 

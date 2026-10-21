@@ -6,35 +6,11 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Tab](#tab) | 8 | - |
 | [Tabs](#tabs) | 1 | Tabs |
+| [Tab](#tab) | 8 | - |
 | [Tabs Line](#tabs-line) | 1 | Tabs |
 
-On the Figma page: "Example / in record header", "Stress test / Tabs", "Stress test / Tabs Line"
-
-## Tab
-
-Component set · 8 variants · default size 88 × 28
-
-Tab trigger. Put inside Tabs. "pill" is shadcn TabsTrigger (inactive text uses foreground/default: muted on muted fails contrast). "line" for page-level sections. Usage: eggux build-ui/components/tabs.md
-
-| Variant property | Values |
-|---|---|
-| Style | pill, line |
-| State | default, active, focus, disabled |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Overview |
-
-Tokens and styles:
-- Colors: `background/default`, `background/primary`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/3`, `spacing/7`, `spacing/9`
-- Radius: `radius/md`
-- Text styles: `ui/label`
-- Effects: `shadow/sm`
-
-Guides: [tabs](../../skills/build-ui/components/tabs.md)
+On the Figma page: "Example / in record header", "Example / tabs with counts", "Stress test / Tabs", "Stress test / Tabs Line"
 
 ## Tabs
 
@@ -60,10 +36,11 @@ shadcn TabsList. "Tabs" is a native slot of Tab instances. 2-6 tabs, selected ta
 1. List: background/muted, radius/lg
 2. Tabs slot: Tab instances (Style=pill)
 3. Active Tab: background and shadow
+4. Count: Show count on Tab adds a Badge Count (exposed) after the label
 
 **Content and behavior**
 
-- Labels are one or two words, nouns; counts in a badge when useful ("Invoices 3")
+- Labels are one or two words, nouns; counts in the Tab's Badge Count (Show count), never in the label
 - Exactly one Tab is active
 - The selected tab is in the URL; switching back keeps filters and scroll
 - Inactive text uses foreground/default: muted text on the muted list fails contrast
@@ -88,6 +65,33 @@ Tokens and styles:
 Guides: [tabs](../../skills/build-ui/components/tabs.md)
 
 Code: shadcn `Tabs`, `ToggleGroup`
+
+## Tab
+
+Component set · 8 variants · default size 88 × 28
+
+Tab trigger. Put inside Tabs. "pill" is shadcn TabsTrigger (inactive text uses foreground/default: muted on muted fails contrast). "line" for page-level sections. Show count adds a Badge Count (exposed) after the label for the number of items behind the tab ("Guides 64"); write the number in the badge, never in the label. Usage: eggux build-ui/components/tabs.md
+
+| Variant property | Values |
+|---|---|
+| Style | pill, line |
+| State | default, active, focus, disabled |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Overview |
+| Show count | boolean | false |
+
+Built from: `Badge Count`
+
+Tokens and styles:
+- Colors: `background/default`, `background/primary`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/3`, `spacing/7`, `spacing/9`
+- Radius: `radius/md`
+- Text styles: `ui/label`
+- Effects: `shadow/sm`
+
+Guides: [tabs](../../skills/build-ui/components/tabs.md)
 
 ## Tabs Line
 
@@ -120,6 +124,7 @@ Underlined tabs for page-level sections. "Tabs" is a native slot of Tab instance
 - The selected tab is in the URL; switching back keeps filters and scroll
 - The page header stays visible on every tab
 - Mobile: tabs scroll horizontally, never wrap
+- Counts per tab with Show count on Tab ("Guides 64") on search results and lists
 
 **Accessibility**
 

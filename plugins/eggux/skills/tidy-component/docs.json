@@ -4767,10 +4767,11 @@
   "anatomy": [
    "List: background/muted, radius/lg",
    "Tabs slot: Tab instances (Style=pill)",
-   "Active Tab: background and shadow"
+   "Active Tab: background and shadow",
+   "Count: Show count on Tab adds a Badge Count (exposed) after the label"
   ],
   "rules": [
-   "Labels are one or two words, nouns; counts in a badge when useful (\"Invoices 3\")",
+   "Labels are one or two words, nouns; counts in the Tab's Badge Count (Show count), never in the label",
    "Exactly one Tab is active",
    "The selected tab is in the URL; switching back keeps filters and scroll",
    "Inactive text uses foreground/default: muted text on the muted list fails contrast",
@@ -4811,7 +4812,8 @@
    "Exactly one Tab is active",
    "The selected tab is in the URL; switching back keeps filters and scroll",
    "The page header stays visible on every tab",
-   "Mobile: tabs scroll horizontally, never wrap"
+   "Mobile: tabs scroll horizontally, never wrap",
+   "Counts per tab with Show count on Tab (\"Guides 64\") on search results and lists"
   ],
   "a11y": [
    "Tab list role; arrow keys move between tabs, Tab moves into the panel",
@@ -5476,6 +5478,148 @@
    "skills/build-ui/components/sidebar.md",
    "skills/build-ui/components/navigation.md",
    "skills/build-ui/patterns/enterprise-apps.md"
+  ]
+ },
+ "Meta Item": {
+  "summary": "One fact with an icon: date and time, place, people, length, size or contact.",
+  "use": [
+   "Event, article and product facts in headers and cards",
+   "Contact lines in a Person Card",
+   "A row of 2-4 facts under a title"
+  ],
+  "avoid": [
+   "Label and value pairs in a details panel: use Description List Item",
+   "Status: use Badge",
+   "A number that matters on its own: use Figure"
+  ],
+  "anatomy": [
+   "Icon (Icon swap, Show icon), 16 px, muted",
+   "Label, body/small, muted"
+  ],
+  "rules": [
+   "The icon says the kind of fact (calendar, clock, map-pin, users, mail); never decoration",
+   "Same icon for the same kind of fact across the product",
+   "In a row gap 24, in a column gap 8; 4 items at most",
+   "Dates with time zone, places with the city",
+   "A link keeps the label color; underline on hover"
+  ],
+  "a11y": [
+   "The icon is decorative (aria-hidden); the label carries the meaning",
+   "Text meets 4.5:1 on its background",
+   "A fact that is a link has a link role and a clear name"
+  ],
+  "code": "Custom inline element: icon (lucide) + text, flex gap-1.5, text-sm text-muted-foreground.",
+  "guides": [
+   "skills/build-ui/components/description-list.md",
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Figure": {
+  "summary": "A number with what it counts: stacked for headline figures, inline for counts in a header.",
+  "use": [
+   "Headline figures in a report or study header",
+   "Key facts without a comparison period",
+   "Counts in a profile or topic header (\"42 articles\")"
+  ],
+  "avoid": [
+   "A metric compared to a period: use Stat Card",
+   "A goal against a target: use Progress Card",
+   "Label and value details: use Description List Item"
+  ],
+  "anatomy": [
+   "Value: heading/h3 (stacked) or h4 (inline); lg one step larger",
+   "Label: body/small, muted",
+   "Source (stacked, Show source)",
+   "Divider (stacked)"
+  ],
+  "rules": [
+   "Layout=stacked for 2-4 headline figures; inline for counts in a line",
+   "The label reads on its own (\"average time to get paid\", not \"time\")",
+   "Add the source when the figure is a claim; one source line under a group is enough",
+   "Numbers in the locale format with units (€18,500, 47 days, 62%)",
+   "No trend arrows or colors here: that is Stat Card"
+  ],
+  "a11y": [
+   "Value and label are read together as one phrase",
+   "Do not round in a way that changes the meaning; the exact value in a tooltip when rounded"
+  ],
+  "code": "Custom: dl with dd (value) and dt (label), or a span pair inline.",
+  "guides": [
+   "skills/build-ui/components/description-list.md",
+   "skills/build-ui/patterns/reports.md",
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Setting Row": {
+  "summary": "One setting: title, optional description and its control on the right.",
+  "use": [
+   "Settings sections: notifications, preferences, integrations",
+   "On and off options that apply at once",
+   "A choice (Select) or an action (Change, Connect) for one setting"
+  ],
+  "avoid": [
+   "A form people fill and submit: use Field",
+   "Many options of one group: use a Checkbox group in a Field",
+   "A list of objects: use List Item or a Table"
+  ],
+  "anatomy": [
+   "Title (ui/label)",
+   "Description (Show description)",
+   "Control slot: Switch, Select or Button",
+   "Divider (off on the last row)"
+  ],
+  "rules": [
+   "Title names the setting, description says what changes",
+   "Switches save at once, unless the section has its own Save button; then every row saves with it",
+   "Controls align right; Selects 200 wide",
+   "Disabled rows say why in the description",
+   "Group rows under a section title; 3-8 rows per section"
+  ],
+  "a11y": [
+   "The Switch is labeled by the Title and described by the Description",
+   "The whole row is not a click target; only the control",
+   "State changes are announced (\"Payment reminders on\")"
+  ],
+  "code": "Custom row with shadcn Switch, Select or Button; label and aria-describedby from the texts.",
+  "guides": [
+   "skills/build-ui/components/select.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Person Card": {
+  "summary": "One person: author, expert, speaker, contact or team member, with role, expertise and contact.",
+  "use": [
+   "Experts, authors and speakers on a content or product page",
+   "Contacts on a record or account page",
+   "Team directories and \"Who to talk to\" sections"
+  ],
+  "avoid": [
+   "A record with details and status: use Entity Card",
+   "A user picked in a form: use Person Option in People Picker",
+   "Avatar and name in a table: use Table Cell User"
+  ],
+  "anatomy": [
+   "Avatar slot: photo or initials",
+   "Name (heading/h4), Role, Organization (Show organization)",
+   "Tags slot: expertise as Badges (Show tags)",
+   "Contact slot: Meta Items with mail, phone, link (Show contact)",
+   "Actions slot: View profile, Follow (Show actions)"
+  ],
+  "rules": [
+   "vertical in grids of 3-4, horizontal in asides and lists",
+   "Role says what they do here; Organization only when people come from several",
+   "Contact details people copy are plain text",
+   "Two tags at most; the rest on the profile",
+   "Photos square-cropped, same style across the grid"
+  ],
+  "a11y": [
+   "The name is the card heading at the page's level",
+   "Email and phone are links (mailto:, tel:)",
+   "A photo has the person's name as alt, or alt=\"\" when the name is next to it"
+  ],
+  "code": "shadcn Card with Avatar, Badge and links.",
+  "guides": [
+   "skills/build-ui/components/card.md"
   ]
  }
 }

@@ -66,6 +66,9 @@ Stat Card, Option Card and Post Card use the same tokens.
   people take on every card (add to a selection, remove, pin); a toggled action shows its state:
   plus to add, check (`secondary`) once added, with State=selected. Everything else goes in the
   menu.
+- `Person Card` for one person (author, expert, speaker, contact): Avatar, Name, Role,
+  Organization, expertise Badges, contact as Meta Items, optional actions. `vertical` in grids of
+  3-4, `horizontal` in asides. A record with details and status stays an Entity Card.
 - `Progress Card` for a goal against a target; Status on track / at risk / off track names the
   state in text; say the rule behind it in the footnote or a tooltip.
 - Examples on the Card page: list, profile, form, empty state, stat cards row.

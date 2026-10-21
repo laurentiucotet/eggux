@@ -13,9 +13,10 @@ Usage rules live in the guides linked under each component.
 | [Option Card](#option-card) | 5 | - |
 | [Post Card](#post-card) | 3 | - |
 | [Entity Card](#entity-card) | 4 | Leading, Tags, Details, Actions |
+| [Person Card](#person-card) | 2 | Avatar, Tags, Contact, Actions |
 | [Progress Card](#progress-card) | 3 | - |
 
-On the Figma page: "Example / customer card", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Option Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
+On the Figma page: "Example / customer card", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
 
 ## Card
 
@@ -384,6 +385,70 @@ Tokens and styles:
 Guides: [card](../../skills/build-ui/components/card.md)
 
 Code: shadcn `Card` with `size="sm"`; `Progress`
+
+## Person Card
+
+Component set · 2 variants · default size 280 × 266
+
+One person: author, expert, speaker, contact or team member. Avatar slot (photo or initials), Name, Role, Organization, expertise as Badges (Tags slot), contact as Meta Items (Contact slot: email, phone, link), optional actions (View profile, Follow). vertical in grids of 3-4; horizontal in asides and lists. Contact details people copy are plain text, not hidden behind a button. A record with details and status goes in Entity Card.
+
+**Use for**
+
+- Experts, authors and speakers on a content or product page
+- Contacts on a record or account page
+- Team directories and "Who to talk to" sections
+
+**Not for**
+
+- A record with details and status: use Entity Card
+- A user picked in a form: use Person Option in People Picker
+- Avatar and name in a table: use Table Cell User
+
+**Anatomy**
+
+1. Avatar slot: photo or initials
+2. Name (heading/h4), Role, Organization (Show organization)
+3. Tags slot: expertise as Badges (Show tags)
+4. Contact slot: Meta Items with mail, phone, link (Show contact)
+5. Actions slot: View profile, Follow (Show actions)
+
+**Content and behavior**
+
+- vertical in grids of 3-4, horizontal in asides and lists
+- Role says what they do here; Organization only when people come from several
+- Contact details people copy are plain text
+- Two tags at most; the rest on the profile
+- Photos square-cropped, same style across the grid
+
+**Accessibility**
+
+- The name is the card heading at the page's level
+- Email and phone are links (mailto:, tel:)
+- A photo has the person's name as alt, or alt="" when the name is next to it
+
+| Variant property | Values |
+|---|---|
+| Layout | vertical, horizontal |
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | Maria Ilie |
+| Role | text | Head of Finance Operations |
+| Organization | text | Acme |
+| Show organization | boolean | true |
+| Show tags | boolean | true |
+| Show contact | boolean | true |
+| Show actions | boolean | false |
+
+Slots (fill them in the instance, never detach): `Avatar`, `Tags`, `Contact`, `Actions`
+
+Built from: `Avatar`, `Badge`, `Button`, `Meta Item`
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/card`, `foreground/default`, `foreground/muted`
+- Spacing and size: `border-width/DEFAULT`, `density/card-gap-sm`, `density/card-padding-sm`, `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/xl`
+- Text styles: `body/small`, `heading/h4`
 
 ## Progress Card
 

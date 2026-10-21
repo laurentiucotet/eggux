@@ -9,8 +9,9 @@ Usage rules live in the guides linked under each component.
 | [Checkbox](#checkbox) | 12 | - |
 | [Radio](#radio) | 8 | - |
 | [Switch](#switch) | 6 | - |
+| [Setting Row](#setting-row) | 1 | Control |
 
-On the Figma page: "Example / billing period", "Example / in settings section", "Example / in two-factor", "Stress test / Checkbox", "Stress test / Radio", "Stress test / Switch"
+On the Figma page: "Example / billing period", "Example / in settings section", "Example / in two-factor", "Example / settings section", "Stress test / Checkbox", "Stress test / Radio", "Stress test / Setting Row", "Stress test / Switch"
 
 ## Checkbox
 
@@ -190,3 +191,58 @@ Tokens and styles:
 Guides: [select](../../skills/build-ui/components/select.md)
 
 Code: shadcn `Checkbox`, `RadioGroup`, `Switch`
+
+## Setting Row
+
+Component · 1 variant · default size 640 × 77
+
+One setting: title, optional description, and its control on the right (Control slot: Switch for on/off, Select for a choice, Button for an action like Change or Connect). Stack rows in a settings section; Divider off on the last row. The title names the setting, the description says what changes. Switches save at once, unless the section has its own Save button; then every row in it saves with that button.
+
+**Use for**
+
+- Settings sections: notifications, preferences, integrations
+- On and off options that apply at once
+- A choice (Select) or an action (Change, Connect) for one setting
+
+**Not for**
+
+- A form people fill and submit: use Field
+- Many options of one group: use a Checkbox group in a Field
+- A list of objects: use List Item or a Table
+
+**Anatomy**
+
+1. Title (ui/label)
+2. Description (Show description)
+3. Control slot: Switch, Select or Button
+4. Divider (off on the last row)
+
+**Content and behavior**
+
+- Title names the setting, description says what changes
+- Switches save at once, unless the section has its own Save button; then every row saves with it
+- Controls align right; Selects 200 wide
+- Disabled rows say why in the description
+- Group rows under a section title; 3-8 rows per section
+
+**Accessibility**
+
+- The Switch is labeled by the Title and described by the Description
+- The whole row is not a click target; only the control
+- State changes are announced ("Payment reminders on")
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Payment reminders |
+| Description | text | Email customers 3 days before and 7 days after the due date. |
+| Show description | boolean | true |
+| Divider | boolean | true |
+
+Slots (fill them in the instance, never detach): `Control`
+
+Built from: `Separator`, `Switch`
+
+Tokens and styles:
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`, `spacing/6`
+- Text styles: `body/small`, `ui/label`

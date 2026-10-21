@@ -42,6 +42,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Navigation Menu` parts | shadcn `NavigationMenu` | |
 | `Stepper`, `Step` | custom (no shadcn stepper) | |
 | `Description List`, `Timeline` | custom `dl` / `ol` | |
+| `Meta Item`, `Figure` | custom: icon + text (`text-sm text-muted-foreground`); `dl` with value and label | Figure has no trend; that is Stat Card |
+| `Setting Row` | custom row + shadcn `Switch`, `Select` or `Button` | Label and `aria-describedby` from the texts |
 | `Carousel`, `Carousel Arrow`, `Carousel Indicator`, `Carousel Slide` | shadcn `Carousel` (Embla): `CarouselPrevious`, `CarouselNext`, dots from the Embla API | Autoplay plugin only with a pause control |
 | `Carousel Gallery`, `Carousel Thumbnail` | Embla main + thumbs carousels | |
 | `Carousel Hero` | Embla with Autoplay plugin, pause on hover and focus | |
@@ -69,6 +71,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Table Cell Amount`, `Status`, `Progress`, `Actions` | cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` | Amounts with `Intl.NumberFormat`, `tabular-nums` |
 | `Table Pagination` | shadcn data-table pagination (`Select` for page size + `Pagination`) | |
 | `Entity Card`, `Progress Card` | shadcn `Card` with `size="sm"`; `Progress` | |
+| `Person Card` | shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`) | |
 | `Empty State` | shadcn `Empty` (or a custom block: icon, title, description, actions) | |
 | `Approval Step` | custom on the Timeline layout | |
 | `Change Item` | custom | |
