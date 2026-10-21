@@ -29,7 +29,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Calendar](calendar.md) | Calendar Day, Calendar, Date Picker, Time Picker, Date Range Picker |
 | [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Date Tile, Progress Card |
 | [Carousel](carousel.md) | Carousel, Carousel Arrow, Carousel Indicator, Carousel Thumbnail, Carousel Slide, Carousel Gallery, Carousel Hero, Lightbox |
-| [Chart](chart.md) | Chart Legend Item, Chart Legend, Chart Tooltip Row, Chart Tooltip, Bar Chart, Line Chart, Sparkline, Chart Card, Donut Chart, Bar Chart Horizontal, Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart |
+| [Chart](chart.md) | Bar Chart, Bar Chart Horizontal, Line Chart, Sparkline, Donut Chart, Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart, Chart Legend, Chart Legend Item, Chart Tooltip, Chart Tooltip Row, Chart Card, Waterfall Chart, Combo Chart |
 | [Chat](chat.md) | Chat Message, Typing Indicator, Chat Composer |
 | [Chip](chip.md) | Chip |
 | [Code Block](code-block.md) | Code Block |
@@ -77,4 +77,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tour](tour.md) | Coachmark, Hotspot |
 | [Video](video.md) | Video Player |
 
-215 components on 59 pages.
+217 components on 59 pages.

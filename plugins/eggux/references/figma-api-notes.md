@@ -179,5 +179,8 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - A one-side stroke on a frame that stretches (FILL) inside an instance was drawn at the main
   component's height (a divider stopped at 720 in a 900 tall instance). Put the divider on the
   sibling that grows (the panel's left edge) instead.
+- Charts drawn with absolute positions inside a fixed frame do not follow FILL: set constraints
+  (gridlines STRETCH, bars and labels SCALE, left axis MIN, right axis MAX) so an instance in a
+  narrower card redraws instead of overflowing.
 - `use_figma` code can build functions from text: `new (Object.getPrototypeOf(async function(){}).constructor)('figma', 'JOBS', src)`. Store a long script in a hidden text node once and send only the data per call; delete the node after.
 - An instance's SLOT accepts `appendChild` and child removal, so a page shell instance can host any component in its Page slot without detaching.

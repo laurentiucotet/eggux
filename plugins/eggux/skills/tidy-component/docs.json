@@ -531,7 +531,7 @@
    "Trend over time: use Line Chart",
    "Long category names or rankings: use Bar Chart Horizontal",
    "One number people check: use Stat Card",
-   "Two measures with different units: two charts, never two y axes"
+   "Two measures with different units: Combo Chart when they explain each other, otherwise two charts"
   ],
   "anatomy": [
    "Y axis with round ticks (0, 15K, 30K)",
@@ -541,7 +541,7 @@
    "Chart Legend for 2 or more series (in Chart Card)"
   ],
   "rules": [
-   "One y axis, starting at 0",
+   "One y axis, starting at 0 (two axes only in Combo Chart)",
    "2 px surface gap between touching bars and stacked segments",
    "Series colors chart/1..8 in order; color follows the entity, never its rank",
    "Labels and values use text tokens, never the series color",
@@ -2921,7 +2921,7 @@
   "avoid": [
    "Comparing categories: use Bar Chart",
    "Trend next to a number, without axes: use Sparkline",
-   "Two measures with different units: two charts, never two y axes",
+   "Two measures with different units: Combo Chart when they explain each other, otherwise two charts",
    "Exact values matter more than shape: use a Table"
   ],
   "anatomy": [
@@ -2934,7 +2934,7 @@
    "Chart Legend for 2 or more series"
   ],
   "rules": [
-   "One y axis only",
+   "One y axis only (two axes only in Combo Chart)",
    "Label the end value or the extreme, never every point",
    "Legend for 2 or more series, none for one",
    "Series colors chart/1..8 in order; text in text tokens",
@@ -5728,6 +5728,80 @@
   "guides": [
    "skills/build-ui/components/content.md",
    "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Waterfall Chart": {
+  "summary": "How a starting total becomes an ending total through increases and decreases: cash bridge, budget to actual, revenue to profit.",
+  "use": [
+   "Opening to closing cash or balance",
+   "Budget to actual, plan to forecast",
+   "Revenue to profit by cost line"
+  ],
+  "avoid": [
+   "Parts of one total without a start and end: use stacked Bar Chart or Donut Chart",
+   "Change over time: use Line Chart",
+   "More than 8 steps: group the small ones or use a table"
+  ],
+  "anatomy": [
+   "Y axis with currency ticks, gridlines, baseline",
+   "Total bars (start, end, subtotals) in color/neutral/400",
+   "Increase bars color/blue/600, decrease bars color/red/600",
+   "Connector at each running total",
+   "Signed value label on every bar",
+   "X axis step names, legend Increase / Decrease / Total"
+  ],
+  "rules": [
+   "Steps in the order they happen; start and end are totals",
+   "Every bar has its signed value (+€86K, −€64K); totals without a sign",
+   "Increase and decrease use the diverging arms, never series slots; say in the legend which is which",
+   "At most 8 steps; fold the small ones into \"Other\"",
+   "The footer says the result in a sentence (\"€14K above opening\")"
+  ],
+  "a11y": [
+   "Color is not the only cue: signs on the labels and the legend",
+   "The table view lists each step with its value and the running total",
+   "Red and blue keep 3:1 on card and page in every mode"
+  ],
+  "code": "Recharts BarChart with a transparent offset bar stacked under each step, or ComposedChart with ReferenceLine connectors.",
+  "guides": [
+   "skills/build-ui/components/charts.md",
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Combo Chart": {
+  "summary": "Bars and a line on one x axis for two measures in different units that explain each other, such as volume and rate.",
+  "use": [
+   "Volume and a rate: invoices sent and the share paid on time",
+   "Revenue and margin by month",
+   "Orders and average order value"
+  ],
+  "avoid": [
+   "Two measures in the same unit: use grouped bars or two lines",
+   "Measures that do not explain each other: use two charts",
+   "More than one line or more than one bar series"
+  ],
+  "anatomy": [
+   "Left axis for the bars, right axis for the line, each with its unit on the ticks",
+   "Bars chart/1, line chart/2 (2 px, end dot)",
+   "End value label on the line",
+   "Legend naming the axis of each series"
+  ],
+  "rules": [
+   "Both axes start at 0 with round ticks",
+   "Pick the left maximum so the line stays clear of the bars",
+   "Legend says which axis each series reads on (\"left axis\", \"right axis\")",
+   "Label the end value of the line, not every point",
+   "The footer states the relation in a sentence"
+  ],
+  "a11y": [
+   "The table view has one column per measure with units",
+   "Series are told apart by form (bar, line) and the legend, not color alone",
+   "Axis text in foreground/muted, never the series color"
+  ],
+  "code": "Recharts ComposedChart with Bar (yAxisId=\"left\") and Line (yAxisId=\"right\"), two YAxis.",
+  "guides": [
+   "skills/build-ui/components/charts.md",
+   "skills/build-ui/patterns/reports.md"
   ]
  }
 }

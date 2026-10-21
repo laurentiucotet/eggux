@@ -82,6 +82,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Donut Chart`, `Bar Chart Horizontal` | Recharts `PieChart` (`innerRadius`), `BarChart layout="vertical"` | |
 | `Heatmap` | custom CSS grid or nivo `HeatMap` | |
 | `Gauge` | Recharts `RadialBarChart` (half circle) or custom SVG arc | |
+| `Waterfall Chart` | Recharts `BarChart` with a transparent offset bar per step | Increase `color/blue/600`, decrease `color/red/600`, totals `color/neutral/400` |
+| `Combo Chart` | Recharts `ComposedChart`: `Bar yAxisId="left"` + `Line yAxisId="right"` | Two `YAxis`, both from 0 |
 | `Treemap` | Recharts `Treemap` with a custom cell renderer | |
 | `Gantt Bar`, `Gantt Milestone`, Gantt block | SVAR Gantt, Frappe Gantt, or a custom grid with dnd-kit | |
 

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Figma__use_figma",
+      "mcp__Figma__get_screenshot",
+      "mcp__github__create_pull_request",
+      "mcp__github__merge_pull_request",
+      "Bash(git push:*)"
+    ]
+  }
+}

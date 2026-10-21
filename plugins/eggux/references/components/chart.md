@@ -6,162 +6,25 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Chart Legend Item](#chart-legend-item) | 16 | - |
-| [Chart Legend](#chart-legend) | 1 | Items |
-| [Chart Tooltip Row](#chart-tooltip-row) | 8 | - |
-| [Chart Tooltip](#chart-tooltip) | 1 | Rows |
 | [Bar Chart](#bar-chart) | 3 | - |
+| [Bar Chart Horizontal](#bar-chart-horizontal) | 1 | - |
 | [Line Chart](#line-chart) | 2 | - |
 | [Sparkline](#sparkline) | 2 | - |
-| [Chart Card](#chart-card) | 1 | Actions, Chart |
 | [Donut Chart](#donut-chart) | 2 | - |
-| [Bar Chart Horizontal](#bar-chart-horizontal) | 1 | - |
 | [Heatmap](#heatmap) | 1 | - |
 | [Gauge](#gauge) | 3 | - |
 | [Treemap](#treemap) | 1 | - |
 | [Funnel Chart](#funnel-chart) | 1 | - |
 | [Scatter Chart](#scatter-chart) | 2 | - |
+| [Chart Legend](#chart-legend) | 1 | Items |
+| [Chart Legend Item](#chart-legend-item) | 16 | - |
+| [Chart Tooltip](#chart-tooltip) | 1 | Rows |
+| [Chart Tooltip Row](#chart-tooltip-row) | 8 | - |
+| [Chart Card](#chart-card) | 1 | Actions, Chart |
+| [Waterfall Chart](#waterfall-chart) | 1 | - |
+| [Combo Chart](#combo-chart) | 1 | - |
 
-On the Figma page: "Example / activity by weekday and hour", "Example / in analytics", "Example / in bento grid", "Example / invoice flow", "Example / payment behavior", "Example / quarter target", "Example / revenue by product", "Example / spend by vendor", "Example / trend next to a metric", "Example / values on hover", "Stress test / Bar Chart", "Stress test / Bar Chart Horizontal", "Stress test / Chart Card", "Stress test / Chart Legend", "Stress test / Chart Tooltip", "Stress test / Donut Chart", "Stress test / Funnel and Scatter", "Stress test / Gauge", "Stress test / Heatmap", "Stress test / Line Chart", "Stress test / Scatter Chart", "Stress test / Sparkline", "Stress test / Treemap"
-
-## Chart Legend Item
-
-Component set · 16 variants · default size 50 × 16
-
-Legend entry: colored key + label in text color (never the series color). swatch for bars/areas, line for line charts. Series = chart/N token, assigned in order.
-
-| Variant property | Values |
-|---|---|
-| Key | swatch, line |
-| Series | 1, 2, 3, 4, 5, 6, 7, 8 |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Series |
-
-Tokens and styles:
-- Colors: `chart/1`, `chart/2`, `chart/3`, `chart/4`, `chart/5`, `chart/6`, `chart/7`, `chart/8`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
-- Radius: `radius/full`, `radius/sm`
-- Text styles: `ui/caption`
-
-## Chart Legend
-
-Component · 1 variant · default size 187 × 16
-
-Legend row above or below the plot. Clicking an item isolates the series in code.
-
-**Use for**
-
-- Any chart with 2 or more series
-- Scatter Chart with two series
-- Inside Chart Card (Show legend)
-
-**Not for**
-
-- One series: no legend, the title names it
-- Values at one point: use Chart Tooltip
-- Donut Chart: the legend also shows values and percentages
-
-**Anatomy**
-
-1. Items slot
-2. Chart Legend Item key: swatch for bars and areas, line for line charts
-3. Chart Legend Item Label, in text color
-
-**Content and behavior**
-
-- Labels use text color, never the series color
-- Series = chart/N token, assigned in order
-- Same order as the series in the chart and in the tooltip
-- Clicking an item isolates the series (in code)
-- Fill the Items slot in the instance; never detach
-
-**Accessibility**
-
-- Labels name the series, so color is not the only key
-- Clickable items are buttons that expose their isolated state
-
-Slots (fill them in the instance, never detach): `Items`
-
-Built from: `Chart Legend Item`
-
-Tokens and styles:
-- Spacing and size: `spacing/4`
-
-Guides: [charts](../../skills/build-ui/components/charts.md)
-
-## Chart Tooltip Row
-
-Component set · 8 variants · default size 160 × 16
-
-One row in a Chart Tooltip: series swatch (chart/1..8), label, value aligned right. One row per visible series, in legend order.
-
-| Variant property | Values |
-|---|---|
-| Series | 1, 2, 3, 4, 5, 6, 7, 8 |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Series |
-| Value | text | 1,284 |
-
-Tokens and styles:
-- Colors: `chart/1`, `chart/2`, `chart/3`, `chart/4`, `chart/5`, `chart/6`, `chart/7`, `chart/8`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/2`
-- Radius: `radius/sm`
-- Text styles: `ui/caption`, `ui/label-small`
-
-## Chart Tooltip
-
-Component · 1 variant · default size 176 × 92
-
-Hover tooltip: crosshair on line/area, per-mark on bar. Title = the x value; one row per series; values in text color.
-
-**Use for**
-
-- Line and area charts: crosshair at the hovered x value
-- Bar charts: values of the hovered bar
-- Heatmap and Scatter Chart: the exact value or the item
-
-**Not for**
-
-- Values that must always be visible: label the end value or use a Table
-- Explaining a control: use Tooltip
-
-**Anatomy**
-
-1. Title: the x value ("March 2026")
-2. Rows slot
-3. Chart Tooltip Row: series swatch, Label, Value aligned right
-
-**Content and behavior**
-
-- One row per visible series, in legend order
-- Values in text color, never the series color
-- Compact numbers with units
-- Hit targets bigger than the marks
-
-**Accessibility**
-
-- Hover is not available to everyone: the same values are in the table view
-- Keyboard focus on a data point shows the same tooltip (Recharts accessibilityLayer)
-
-| Property | Type | Default |
-|---|---|---|
-| Title | text | March 2026 |
-
-Slots (fill them in the instance, never detach): `Rows`
-
-Built from: `Chart Tooltip Row`
-
-Tokens and styles:
-- Colors: `background/popover`, `border/default`, `foreground/default`
-- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`
-- Radius: `radius/md`
-- Text styles: `ui/label-small`
-
-Guides: [charts](../../skills/build-ui/components/charts.md)
+On the Figma page: "Example / activity by weekday and hour", "Example / cash bridge", "Example / in analytics", "Example / in bento grid", "Example / invoice flow", "Example / payment behavior", "Example / quarter target", "Example / revenue by product", "Example / spend by vendor", "Example / trend next to a metric", "Example / values on hover", "Example / volume and on-time rate", "Stress test / Bar Chart", "Stress test / Bar Chart Horizontal", "Stress test / Chart Card", "Stress test / Chart Legend", "Stress test / Chart Tooltip", "Stress test / Combo Chart", "Stress test / Donut Chart", "Stress test / Funnel and Scatter", "Stress test / Gauge", "Stress test / Heatmap", "Stress test / Line Chart", "Stress test / Scatter Chart", "Stress test / Sparkline", "Stress test / Treemap", "Stress test / Waterfall Chart"
 
 ## Bar Chart
 
@@ -181,7 +44,7 @@ Vertical bars (shadcn Chart / Recharts BarChart). Bars max 24 wide, 4 px radius 
 - Trend over time: use Line Chart
 - Long category names or rankings: use Bar Chart Horizontal
 - One number people check: use Stat Card
-- Two measures with different units: two charts, never two y axes
+- Two measures with different units: Combo Chart when they explain each other, otherwise two charts
 
 **Anatomy**
 
@@ -193,7 +56,7 @@ Vertical bars (shadcn Chart / Recharts BarChart). Bars max 24 wide, 4 px radius 
 
 **Content and behavior**
 
-- One y axis, starting at 0
+- One y axis, starting at 0 (two axes only in Combo Chart)
 - 2 px surface gap between touching bars and stacked segments
 - Series colors chart/1..8 in order; color follows the entity, never its rank
 - Labels and values use text tokens, never the series color
@@ -221,6 +84,53 @@ Guides: [charts](../../skills/build-ui/components/charts.md)
 
 Code: shadcn `Chart` (Recharts) (`var(--chart-N)`)
 
+## Bar Chart Horizontal
+
+Component · 1 variant · default size 560 × 136
+
+Ranking and comparison of categories with long names (top customers, regions, reasons). Sorted by value, labels left, values right, one color (chart/1); highlight one bar with chart/2 only to make a point. Max ~10 rows; more goes to a table. Set bar width as a share of the track.
+
+**Use for**
+
+- Rank items: top customers, regions, reasons for cancellation
+- Category names too long for a vertical axis
+- Compare parts of a whole with fewer than 6 parts, instead of Donut Chart or Treemap
+
+**Not for**
+
+- More than ~10 rows: use a Table
+- Trend over time: use Line Chart
+- Ordered steps with drop-off: use Funnel Chart
+
+**Anatomy**
+
+1. Category label, left
+2. Track with the bar; bar width is a share of the track
+3. Value, right
+
+**Content and behavior**
+
+- Sorted by value, largest first
+- One color (chart/1); chart/2 only to highlight one bar that makes a point
+- Max ~10 rows; more goes to a table
+- Labels and values use text tokens, never the bar color
+- Compact numbers (48.2K)
+
+**Accessibility**
+
+- Table view for screen readers and exact values
+- Values are written as text, so bar length is never the only carrier
+- A highlighted bar is also named in the title or insight, not only colored
+
+Tokens and styles:
+- Colors: `chart/1`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`
+- Text styles: `ui/caption`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: Recharts `PieChart` (`innerRadius`), `BarChart layout="vertical"`
+
 ## Line Chart
 
 Component set · 2 variants · default size 560 × 240
@@ -238,7 +148,7 @@ Change over time (Recharts LineChart / AreaChart). Lines 2 px, round joins; end 
 
 - Comparing categories: use Bar Chart
 - Trend next to a number, without axes: use Sparkline
-- Two measures with different units: two charts, never two y axes
+- Two measures with different units: Combo Chart when they explain each other, otherwise two charts
 - Exact values matter more than shape: use a Table
 
 **Anatomy**
@@ -253,7 +163,7 @@ Change over time (Recharts LineChart / AreaChart). Lines 2 px, round joins; end 
 
 **Content and behavior**
 
-- One y axis only
+- One y axis only (two axes only in Combo Chart)
 - Label the end value or the extreme, never every point
 - Legend for 2 or more series, none for one
 - Series colors chart/1..8 in order; text in text tokens
@@ -325,69 +235,6 @@ Guides: [charts](../../skills/build-ui/components/charts.md)
 
 Code: shadcn `Chart` (Recharts) (`var(--chart-N)`)
 
-## Chart Card
-
-Component · 1 variant · default size 640 × 474
-
-Card around one chart (shadcn chart card): title says what is measured, description the period; time range in Actions; legend for 2+ series; footer states the insight in words. Every chart needs a table view in code.
-
-**Use for**
-
-- Dashboards and reports: one card per chart
-- Charts that need a time range control (7 days, 30 days, 6 months)
-- Block / Report and Block / Analytics layouts
-
-**Not for**
-
-- One number people check: use Stat Card
-- Several charts in one card: one Chart Card each
-- Exact values: use a Table, or the table view
-
-**Anatomy**
-
-1. Title: what is measured
-2. Description: the period and unit
-3. Actions slot: time range Toggle Group
-4. Chart slot: Bar Chart, Line Chart or another chart
-5. Chart Legend (Show legend)
-6. Footer with Insight and Note (Show footer)
-
-**Content and behavior**
-
-- Title says what is measured ("Revenue vs costs"), never "Chart"
-- Legend on for 2 or more series, off for one
-- Footer states the insight in words ("Profit up 21% vs last half-year")
-- Every chart has a table view in code
-- Empty: say why; loading: Skeleton in the chart shape; error: inline Alert with retry
-- Fill the Actions and Chart slots in the instance; never detach
-
-**Accessibility**
-
-- Table view toggle or "View data" action, reachable by keyboard
-- The insight gives the takeaway without reading the chart
-- The time range Toggle Group has a label
-
-| Property | Type | Default |
-|---|---|---|
-| Title | text | Revenue vs costs |
-| Description | text | January - June 2026 |
-| Insight | text | Profit up 21% vs last half-year |
-| Note | text | Costs grew slower than revenue every month since March. |
-| Show legend | boolean | true |
-| Show footer | boolean | true |
-
-Slots (fill them in the instance, never detach): `Actions`, `Chart`
-
-Built from: `Bar Chart`, `Chart Legend`, `Toggle Group`. Icons: trending-up
-
-Tokens and styles:
-- Colors: `background/card`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`, `spacing/6`
-- Radius: `radius/xl`
-- Text styles: `body/small`, `heading/h4`, `ui/label`
-
-Guides: [charts](../../skills/build-ui/components/charts.md)
-
 ## Donut Chart
 
 Component set · 2 variants · default size 440 × 200
@@ -441,53 +288,6 @@ Tokens and styles:
 - Spacing and size: `border-width/2`, `spacing/2`, `spacing/8`
 - Radius: `radius/sm`
 - Text styles: `heading/h3`, `ui/caption`, `ui/label`
-
-Guides: [charts](../../skills/build-ui/components/charts.md)
-
-Code: Recharts `PieChart` (`innerRadius`), `BarChart layout="vertical"`
-
-## Bar Chart Horizontal
-
-Component · 1 variant · default size 560 × 136
-
-Ranking and comparison of categories with long names (top customers, regions, reasons). Sorted by value, labels left, values right, one color (chart/1); highlight one bar with chart/2 only to make a point. Max ~10 rows; more goes to a table. Set bar width as a share of the track.
-
-**Use for**
-
-- Rank items: top customers, regions, reasons for cancellation
-- Category names too long for a vertical axis
-- Compare parts of a whole with fewer than 6 parts, instead of Donut Chart or Treemap
-
-**Not for**
-
-- More than ~10 rows: use a Table
-- Trend over time: use Line Chart
-- Ordered steps with drop-off: use Funnel Chart
-
-**Anatomy**
-
-1. Category label, left
-2. Track with the bar; bar width is a share of the track
-3. Value, right
-
-**Content and behavior**
-
-- Sorted by value, largest first
-- One color (chart/1); chart/2 only to highlight one bar that makes a point
-- Max ~10 rows; more goes to a table
-- Labels and values use text tokens, never the bar color
-- Compact numbers (48.2K)
-
-**Accessibility**
-
-- Table view for screen readers and exact values
-- Values are written as text, so bar length is never the only carrier
-- A highlighted bar is also named in the title or insight, not only colored
-
-Tokens and styles:
-- Colors: `chart/1`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`
-- Text styles: `ui/caption`
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
@@ -746,3 +546,305 @@ Tokens and styles:
 - Text styles: `ui/caption`
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
+
+## Chart Legend
+
+Component · 1 variant · default size 187 × 16
+
+Legend row above or below the plot. Clicking an item isolates the series in code.
+
+**Use for**
+
+- Any chart with 2 or more series
+- Scatter Chart with two series
+- Inside Chart Card (Show legend)
+
+**Not for**
+
+- One series: no legend, the title names it
+- Values at one point: use Chart Tooltip
+- Donut Chart: the legend also shows values and percentages
+
+**Anatomy**
+
+1. Items slot
+2. Chart Legend Item key: swatch for bars and areas, line for line charts
+3. Chart Legend Item Label, in text color
+
+**Content and behavior**
+
+- Labels use text color, never the series color
+- Series = chart/N token, assigned in order
+- Same order as the series in the chart and in the tooltip
+- Clicking an item isolates the series (in code)
+- Fill the Items slot in the instance; never detach
+
+**Accessibility**
+
+- Labels name the series, so color is not the only key
+- Clickable items are buttons that expose their isolated state
+
+Slots (fill them in the instance, never detach): `Items`
+
+Built from: `Chart Legend Item`
+
+Tokens and styles:
+- Spacing and size: `spacing/4`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+## Chart Legend Item
+
+Component set · 16 variants · default size 50 × 16
+
+Legend entry: colored key + label in text color (never the series color). swatch for bars/areas, line for line charts. Series = chart/N token, assigned in order.
+
+| Variant property | Values |
+|---|---|
+| Key | swatch, line |
+| Series | 1, 2, 3, 4, 5, 6, 7, 8 |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Series |
+
+Tokens and styles:
+- Colors: `chart/1`, `chart/2`, `chart/3`, `chart/4`, `chart/5`, `chart/6`, `chart/7`, `chart/8`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/full`, `radius/sm`
+- Text styles: `ui/caption`
+
+## Chart Tooltip
+
+Component · 1 variant · default size 176 × 92
+
+Hover tooltip: crosshair on line/area, per-mark on bar. Title = the x value; one row per series; values in text color.
+
+**Use for**
+
+- Line and area charts: crosshair at the hovered x value
+- Bar charts: values of the hovered bar
+- Heatmap and Scatter Chart: the exact value or the item
+
+**Not for**
+
+- Values that must always be visible: label the end value or use a Table
+- Explaining a control: use Tooltip
+
+**Anatomy**
+
+1. Title: the x value ("March 2026")
+2. Rows slot
+3. Chart Tooltip Row: series swatch, Label, Value aligned right
+
+**Content and behavior**
+
+- One row per visible series, in legend order
+- Values in text color, never the series color
+- Compact numbers with units
+- Hit targets bigger than the marks
+
+**Accessibility**
+
+- Hover is not available to everyone: the same values are in the table view
+- Keyboard focus on a data point shows the same tooltip (Recharts accessibilityLayer)
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | March 2026 |
+
+Slots (fill them in the instance, never detach): `Rows`
+
+Built from: `Chart Tooltip Row`
+
+Tokens and styles:
+- Colors: `background/popover`, `border/default`, `foreground/default`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`
+- Radius: `radius/md`
+- Text styles: `ui/label-small`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+## Chart Tooltip Row
+
+Component set · 8 variants · default size 160 × 16
+
+One row in a Chart Tooltip: series swatch (chart/1..8), label, value aligned right. One row per visible series, in legend order.
+
+| Variant property | Values |
+|---|---|
+| Series | 1, 2, 3, 4, 5, 6, 7, 8 |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Series |
+| Value | text | 1,284 |
+
+Tokens and styles:
+- Colors: `chart/1`, `chart/2`, `chart/3`, `chart/4`, `chart/5`, `chart/6`, `chart/7`, `chart/8`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
+- Radius: `radius/sm`
+- Text styles: `ui/caption`, `ui/label-small`
+
+## Chart Card
+
+Component · 1 variant · default size 640 × 474
+
+Card around one chart (shadcn chart card): title says what is measured, description the period; time range in Actions; legend for 2+ series; footer states the insight in words. Every chart needs a table view in code.
+
+**Use for**
+
+- Dashboards and reports: one card per chart
+- Charts that need a time range control (7 days, 30 days, 6 months)
+- Block / Report and Block / Analytics layouts
+
+**Not for**
+
+- One number people check: use Stat Card
+- Several charts in one card: one Chart Card each
+- Exact values: use a Table, or the table view
+
+**Anatomy**
+
+1. Title: what is measured
+2. Description: the period and unit
+3. Actions slot: time range Toggle Group
+4. Chart slot: Bar Chart, Line Chart or another chart
+5. Chart Legend (Show legend)
+6. Footer with Insight and Note (Show footer)
+
+**Content and behavior**
+
+- Title says what is measured ("Revenue vs costs"), never "Chart"
+- Legend on for 2 or more series, off for one
+- Footer states the insight in words ("Profit up 21% vs last half-year")
+- Every chart has a table view in code
+- Empty: say why; loading: Skeleton in the chart shape; error: inline Alert with retry
+- Fill the Actions and Chart slots in the instance; never detach
+
+**Accessibility**
+
+- Table view toggle or "View data" action, reachable by keyboard
+- The insight gives the takeaway without reading the chart
+- The time range Toggle Group has a label
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Revenue vs costs |
+| Description | text | January - June 2026 |
+| Insight | text | Profit up 21% vs last half-year |
+| Note | text | Costs grew slower than revenue every month since March. |
+| Show legend | boolean | true |
+| Show footer | boolean | true |
+
+Slots (fill them in the instance, never detach): `Actions`, `Chart`
+
+Built from: `Bar Chart`, `Chart Legend`, `Toggle Group`. Icons: trending-up
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`, `spacing/6`
+- Radius: `radius/xl`
+- Text styles: `body/small`, `heading/h4`, `ui/label`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+## Waterfall Chart
+
+Component · 1 variant · default size 640 × 284
+
+Waterfall (Recharts BarChart with stacked invisible offsets): how a starting total becomes an ending total through ups and downs, such as opening to closing cash, budget to actual, revenue to profit. Totals in color/neutral/400, increases color/blue/600, decreases color/red/600 (the diverging arms, not series slots); 4 px radius at the data end; a 1 px connector at each running total; every step labelled with its signed value (+€86K, −€64K). Steps in the order they happen, at most 8; fold small ones into "Other". Legend: Increase, Decrease, Total.
+
+**Use for**
+
+- Opening to closing cash or balance
+- Budget to actual, plan to forecast
+- Revenue to profit by cost line
+
+**Not for**
+
+- Parts of one total without a start and end: use stacked Bar Chart or Donut Chart
+- Change over time: use Line Chart
+- More than 8 steps: group the small ones or use a table
+
+**Anatomy**
+
+1. Y axis with currency ticks, gridlines, baseline
+2. Total bars (start, end, subtotals) in color/neutral/400
+3. Increase bars color/blue/600, decrease bars color/red/600
+4. Connector at each running total
+5. Signed value label on every bar
+6. X axis step names, legend Increase / Decrease / Total
+
+**Content and behavior**
+
+- Steps in the order they happen; start and end are totals
+- Every bar has its signed value (+€86K, −€64K); totals without a sign
+- Increase and decrease use the diverging arms, never series slots; say in the legend which is which
+- At most 8 steps; fold the small ones into "Other"
+- The footer says the result in a sentence ("€14K above opening")
+
+**Accessibility**
+
+- Color is not the only cue: signs on the labels and the legend
+- The table view lists each step with its value and the running total
+- Red and blue keep 3:1 on card and page in every mode
+
+Built from: `Chart Legend`
+
+Tokens and styles:
+- Colors: `border/default`, `border/input`, `color/blue/600`, `color/neutral/400`, `color/red/600`, `foreground/default`, `foreground/muted`
+- Text styles: `ui/caption`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: Recharts `BarChart` with a transparent offset bar per step (Increase `color/blue/600`, decrease `color/red/600`, totals `color/neutral/400`)
+
+## Combo Chart
+
+Component · 1 variant · default size 640 × 264
+
+Combo (Recharts ComposedChart): bars and a line that share the x axis but measure different units, such as volume and rate (invoices sent and the share paid on time). Bars chart/1 on the left axis, line chart/2 on the right axis; both axes start at 0 with round ticks and their unit on the ticks; pick the left maximum so the line stays clear of the bars. The legend names the axis of each series. Use only when the two measures explain each other; otherwise use two charts. Label the end value of the line.
+
+**Use for**
+
+- Volume and a rate: invoices sent and the share paid on time
+- Revenue and margin by month
+- Orders and average order value
+
+**Not for**
+
+- Two measures in the same unit: use grouped bars or two lines
+- Measures that do not explain each other: use two charts
+- More than one line or more than one bar series
+
+**Anatomy**
+
+1. Left axis for the bars, right axis for the line, each with its unit on the ticks
+2. Bars chart/1, line chart/2 (2 px, end dot)
+3. End value label on the line
+4. Legend naming the axis of each series
+
+**Content and behavior**
+
+- Both axes start at 0 with round ticks
+- Pick the left maximum so the line stays clear of the bars
+- Legend says which axis each series reads on ("left axis", "right axis")
+- Label the end value of the line, not every point
+- The footer states the relation in a sentence
+
+**Accessibility**
+
+- The table view has one column per measure with units
+- Series are told apart by form (bar, line) and the legend, not color alone
+- Axis text in foreground/muted, never the series color
+
+Built from: `Chart Legend`
+
+Tokens and styles:
+- Colors: `background/default`, `border/default`, `border/input`, `chart/1`, `chart/2`, `foreground/default`, `foreground/muted`
+- Text styles: `ui/caption`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: Recharts `ComposedChart`: `Bar yAxisId="left"` + `Line yAxisId="right"` (Two `YAxis`, both from 0)

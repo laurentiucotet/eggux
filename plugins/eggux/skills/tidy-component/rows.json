@@ -333,6 +333,22 @@
    "block": null
   },
   {
+   "main": "Waterfall Chart",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / cash bridge"
+   ]
+  },
+  {
+   "main": "Combo Chart",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / volume and on-time rate"
+   ]
+  },
+  {
    "main": "Chart Legend",
    "helpers": [
     "Chart Legend Item"
