@@ -47,6 +47,7 @@ checks every applied decision.
 | `/eggux:audit-tokens` | Checks Figma variables (aliases, code syntax, scopes, contrast) and scans components for raw values |
 | `/eggux:new-component` | From a screenshot or description to an approved component: reuse map, proposal, build, stress test (min, typical, max content), review, docs and records |
 | `/eggux:update-component` | After you edit a component by hand in Figma: finds what changed (snapshot diff), plays it back, polishes it (tokens, all variants, properties, layout), checks decisions, UX rules and affected instances, re-runs the stress test, reviews, then updates the doc, snapshot and records |
+| `/eggux:tidy-component` | Cleans up a component (tokens, clip, names, description) and lays out its page in one row per component: Docs (generated doc frame), Component, Stress test, Examples (the component in real screens); builds a missing stress test and examples |
 
 ## How it is organized
 
@@ -69,6 +70,7 @@ plugins/eggux/
     ├── new-feature/     interview → feature folder → Figma page with flows, scenarios, edge cases
     ├── update-feature/  new input → impact map → files and Figma page updated → consistency check
     ├── new-component/   screenshot or description → proposal → build → stress test → approval → docs
+    ├── tidy-component/  cleanup → stress test → examples → page row: Docs, Component, Stress test, Examples
     └── update-component/ hand edit → snapshot diff → polish → impact → stress test → approval → docs
 
 client-project/
@@ -145,6 +147,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3s. Done: Content collection (names and labels as variables, English and Română).
 3t. Done: generated per-component reference (`references/components/`).
 3u. Done: people picker, transfer list, inline edit, signature pad, sortable list, progress ring, scroll area, file preview, image cropper, avatar upload, menubar, cookie consent, funnel and scatter charts.
+3v. Done: `/eggux:tidy-component` and the component page row (Docs, Component, Stress test, Examples); first page: Cookie Consent.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 

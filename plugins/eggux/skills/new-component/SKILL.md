@@ -89,6 +89,9 @@ Build only after the user agrees or says to go ahead.
   sections; never leave a block loose on the page.
 - Add at least one example frame named `Example / <what it shows>` with props and slots filled
   with realistic content (open states, the component inside a block or shell).
+- Component pages follow the row layout of `skills/tidy-component`: `<Name> / Docs`,
+  `/ Component`, `/ Stress test`, `/ Examples`, left to right. Build the stress test and the
+  examples first, then run `skills/tidy-component/component-page.js` (step 8).
 
 
 ## 5. Stress test
@@ -120,7 +123,7 @@ What stays:
 
 | Where | Client component | Master library component |
 |---|---|---|
-| Figma | Component with its description (when to use, content rules); `Stress test / <Component>` in a `Stress tests` section on the page; an example frame | Same, in the master file |
+| Figma | Component with its description (when to use, content rules); the page row from `skills/tidy-component/component-page.js`: Docs, Component, Stress test, Examples | Same, in the master file |
 | Docs | `eggux/components/<name>.md` in the client repo, from `templates/component.md` | `skills/build-ui/components/<name>.md` in the plugin, same template |
 | Snapshot | `skills/update-component/snapshot.js` output (`flat`) saved to `eggux/components/<name>.snapshot.json`; `/eggux:update-component` diffs later hand edits against it | `skills/build-ui/components/<name>.snapshot.json` |
 | Records | A decision in `eggux/decisions.md` (type component, with the content rules) | Inventory row in `references/figma-library.md`, `references/code-mapping.md`, `skills/build-ui/index.md`, `CHANGELOG.md`, regenerate `references/components/` (`scripts/component-docs.*`), version bump, `claude plugin validate .`, commit |

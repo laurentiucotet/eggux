@@ -3,6 +3,17 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.41.0
+- `/eggux:tidy-component`: cleans up a component and lays out its page in one row per
+  component, left to right: `<Name> / Docs` (a doc frame generated from the component and a
+  short docs config: summary, use and avoid, anatomy, variants, properties, slots, rules,
+  accessibility, tokens, code), `/ Component`, `/ Stress test`, `/ Examples`.
+  `component-page.js` builds or refreshes the row.
+- new-component ends with the row; update-component re-runs it; stress-test and figma-library
+  describe the layout.
+- Cookie Consent page tidied: docs frame and four examples (banner on a marketing site, card in
+  an app, preferences over an app, card on mobile).
+
 ## 0.40.0
 - 16 new components: `Person Option`, `People Picker`, `Transfer List` (Select page); `Inline
   Edit`, `Signature Pad` (Input); `Sortable List Item` (List & Tree); `Progress Ring`

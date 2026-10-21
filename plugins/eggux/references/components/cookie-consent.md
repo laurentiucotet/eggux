@@ -8,7 +8,7 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Cookie Consent](#cookie-consent) | 3 | - |
 
-On the Figma page: "Stress test / Cookie Consent"
+On the Figma page: "Example / banner on marketing site", "Example / card in app", "Example / card on mobile", "Example / preferences over app", "Stress test / Cookie Consent"
 
 ## Cookie Consent
 

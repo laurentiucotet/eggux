@@ -27,7 +27,9 @@ Pick the ones that apply to the component's content.
 - Tags: 0, 1, 3, 10 (with one 30-character tag)
 
 ## Layout in Figma
-- One frame `Stress test / <Component>` on the component's page, inside a `Stress tests` section.
+- One frame `Stress test / <Component>` on the component's page, inside the `<Component> / Stress test`
+  section of the component's row (`skills/tidy-component`). Older pages keep a `Stress tests` section
+  until they are tidied.
 - A grid: one column per case of the main dimension, one row per secondary dimension
   (for example text length × tag count), each cell labeled above with `ui/caption` muted.
 - A last row in Dark and Corporate, and one at the narrowest width.
