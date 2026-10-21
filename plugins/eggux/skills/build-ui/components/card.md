@@ -61,7 +61,11 @@ Stat Card, Option Card and Post Card use the same tokens.
 - `Stat Card` (Trend up, down, neutral) for dashboards; `Option Card` for selectable options.
 - `Entity Card` for one object in a grid or board (customer, project, vendor): leading avatar or
   icon, title (2 lines), subtitle (1 line), menu, tags, 2-4 details, footer with people and last
-  update. Fill Details with the attributes marked "card" in `objects.md`.
+  update. Fill Details with the attributes marked "card" in `objects.md`. Leading takes a 1:1
+  image for products and media. The Actions slot (Show actions) holds the one direct action
+  people take on every card (add to a selection, remove, pin); a toggled action shows its state:
+  plus to add, check (`secondary`) once added, with State=selected. Everything else goes in the
+  menu.
 - `Progress Card` for a goal against a target; Status on track / at risk / off track names the
   state in text; say the rule behind it in the footnote or a tooltip.
 - Examples on the Card page: list, profile, form, empty state, stat cards row.

@@ -6,16 +6,84 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
+| [Card](#card) | 12 | Header, Content, Footer |
 | [Card Header](#card-header) | 1 | Action |
 | [Card Footer](#card-footer) | 1 | Actions |
 | [Stat Card](#stat-card) | 3 | - |
 | [Option Card](#option-card) | 5 | - |
 | [Post Card](#post-card) | 2 | - |
-| [Card](#card) | 12 | Header, Content, Footer |
-| [Entity Card](#entity-card) | 4 | Leading, Tags, Details |
+| [Entity Card](#entity-card) | 4 | Leading, Tags, Details, Actions |
 | [Progress Card](#progress-card) | 3 | - |
 
 On the Figma page: "Example / customer card", "Example / in blog featured", "Example / plan choice", "Example / quarter goal", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Option Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
+
+## Card
+
+Component set · 12 variants · default size 384 × 308
+
+shadcn Card. Variant: default (card background and border), outline (border only; inside panels and long lists), muted (tinted, no border; secondary or summary information). Size: default (padding and gap 24, 16 in Compact), sm (16, 12 in Compact). Elevation: false (flat) or true (shadow md; an outline card gets the card background so the shadow has a surface). Use Elevation for one card that must stand out or floats over content, never for a whole grid. Header, Content and Footer are native slots with their own side padding, so a slot set to padding 0 runs edge to edge. Padding and gap come from density/card-*; change those tokens for a product-wide decision. A card with its own anatomy (Stat Card, Option Card, Post Card) is a separate component built on Card.
+
+**Use for**
+
+- Content about one object or topic, set apart from the page
+- Variant=outline inside panels, dialogs and long lists of cards
+- Variant=muted for secondary or summary information and placeholders
+- Size=sm for grids of many cards, sidebars and dashboards
+
+**Not for**
+
+- A status message: use Alert, or a Badge inside the card
+- A metric, selectable option or post: use Stat Card, Option Card or Post Card
+- Groups inside a card: use spacing or a Separator, never a nested card
+
+**Anatomy**
+
+1. Header slot (Card Header): Title, Description, Action slot top right
+2. Content slot
+3. Footer slot (Card Footer): Actions slot
+
+**Content and behavior**
+
+- Never nest cards in cards
+- Elevation=true only for one card that must stand out or floats; never a whole grid
+- One variant per group of cards; equal height and structure per row
+- Whole card clickable only with one destination; otherwise the title is the link
+- Footer: one primary action at most, usually none in a grid
+- Padding comes from density/card-* tokens; change the tokens, never single instances
+- Turn off Show header or Show footer when unused; never detach
+
+**Accessibility**
+
+- A clickable card is one link with a hover state and a focus ring
+- The Card Header Title is a heading at the right level for the page
+- Action slot Button Icons have labels and tooltips
+
+| Variant property | Values |
+|---|---|
+| Variant | default, outline, muted |
+| Size | default, sm |
+| Elevation | false, true |
+
+| Property | Type | Default |
+|---|---|---|
+| Show header | boolean | true |
+| Show content | boolean | true |
+| Show footer | boolean | true |
+
+Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
+
+Built from: `Card Footer`, `Card Header`
+
+Tokens and styles:
+- Colors: `background/card`, `background/muted`, `border/default`, `card/muted-background`, `foreground/muted`
+- Spacing and size: `density/card-gap`, `density/card-gap-sm`, `density/card-padding`, `density/card-padding-sm`, `spacing/4`, `spacing/96`
+- Radius: `radius/md`, `radius/xl`
+- Text styles: `ui/caption`
+- Effects: `shadow/md`
+
+Guides: [card](../../skills/build-ui/components/card.md)
+
+Code: shadcn `Card` + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
 
 ## Card Header
 
@@ -238,79 +306,11 @@ Tokens and styles:
 
 Guides: [content](../../skills/build-ui/components/content.md)
 
-## Card
-
-Component set · 12 variants · default size 384 × 308
-
-shadcn Card. Variant: default (card background and border), outline (border only; inside panels and long lists), muted (tinted, no border; secondary or summary information). Size: default (padding and gap 24, 16 in Compact), sm (16, 12 in Compact). Elevation: false (flat) or true (shadow md; an outline card gets the card background so the shadow has a surface). Use Elevation for one card that must stand out or floats over content, never for a whole grid. Header, Content and Footer are native slots with their own side padding, so a slot set to padding 0 runs edge to edge. Padding and gap come from density/card-*; change those tokens for a product-wide decision. A card with its own anatomy (Stat Card, Option Card, Post Card) is a separate component built on Card.
-
-**Use for**
-
-- Content about one object or topic, set apart from the page
-- Variant=outline inside panels, dialogs and long lists of cards
-- Variant=muted for secondary or summary information and placeholders
-- Size=sm for grids of many cards, sidebars and dashboards
-
-**Not for**
-
-- A status message: use Alert, or a Badge inside the card
-- A metric, selectable option or post: use Stat Card, Option Card or Post Card
-- Groups inside a card: use spacing or a Separator, never a nested card
-
-**Anatomy**
-
-1. Header slot (Card Header): Title, Description, Action slot top right
-2. Content slot
-3. Footer slot (Card Footer): Actions slot
-
-**Content and behavior**
-
-- Never nest cards in cards
-- Elevation=true only for one card that must stand out or floats; never a whole grid
-- One variant per group of cards; equal height and structure per row
-- Whole card clickable only with one destination; otherwise the title is the link
-- Footer: one primary action at most, usually none in a grid
-- Padding comes from density/card-* tokens; change the tokens, never single instances
-- Turn off Show header or Show footer when unused; never detach
-
-**Accessibility**
-
-- A clickable card is one link with a hover state and a focus ring
-- The Card Header Title is a heading at the right level for the page
-- Action slot Button Icons have labels and tooltips
-
-| Variant property | Values |
-|---|---|
-| Variant | default, outline, muted |
-| Size | default, sm |
-| Elevation | false, true |
-
-| Property | Type | Default |
-|---|---|---|
-| Show header | boolean | true |
-| Show content | boolean | true |
-| Show footer | boolean | true |
-
-Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
-
-Built from: `Card Footer`, `Card Header`
-
-Tokens and styles:
-- Colors: `background/card`, `background/muted`, `border/default`, `card/muted-background`, `foreground/muted`
-- Spacing and size: `density/card-gap`, `density/card-gap-sm`, `density/card-padding`, `density/card-padding-sm`, `spacing/4`, `spacing/96`
-- Radius: `radius/md`, `radius/xl`
-- Text styles: `ui/caption`
-- Effects: `shadow/md`
-
-Guides: [card](../../skills/build-ui/components/card.md)
-
-Code: shadcn `Card` + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
-
 ## Entity Card
 
 Component set · 4 variants · default size 320 × 259
 
-Summary of one object (customer, project, vendor, asset) in a grid or board: leading avatar or icon (slot), title and subtitle, menu, status and tags (slot), 2-4 key details (slot), footer with people and last update. Show the attributes marked "card" in objects.md. Whole card clickable only with one destination; then hover and focus apply and the menu is the only other control.
+Summary of one object (customer, project, vendor, asset) in a grid or board: leading avatar, icon or 1:1 image (slot), title and subtitle, Actions slot (Show actions) for the one direct action people take on every card (add, remove, pin), menu, status and tags (slot), 2-4 key details (slot), footer with people and last update. Show the attributes marked "card" in objects.md. Whole card clickable only with one destination; then hover and focus apply and the menu is the only other control. A toggled action shows its state: plus to add, check once added, with State=selected.
 
 **Use for**
 
@@ -326,18 +326,21 @@ Summary of one object (customer, project, vendor, asset) in a grid or board: lea
 
 **Anatomy**
 
-1. Leading slot: avatar or icon
+1. Leading slot: avatar, icon or a 1:1 image
 2. Title (2 lines) and Subtitle (1 line)
-3. Menu Button Icon (Show menu)
-4. Tags slot: status and tags (Show tags)
-5. Details slot: 2-4 key details (Show details)
-6. Footer: people (Avatar Group) and Footer text (Show footer)
+3. Actions slot: one or two Button Icon for a direct action, like add or remove (Show actions)
+4. Menu Button Icon (Show menu)
+5. Tags slot: status and tags (Show tags)
+6. Details slot: 2-4 key details (Show details)
+7. Footer: people (Avatar Group) and Footer text (Show footer)
 
 **Content and behavior**
 
 - Details are the attributes marked "card" in objects.md, in that order
 - Whole card clickable only with one destination; then hover and focus apply
 - In a clickable card the menu is the only other control
+- Actions slot for the one action people take on every card (add to a selection, remove, pin); everything else goes in the menu
+- A toggled action shows its state: plus to add, check (secondary) once added, with State=selected on the card
 - Status in text (Badge), never color alone
 - Footer text says when it was last updated ("Updated 2 h ago")
 
@@ -346,6 +349,7 @@ Summary of one object (customer, project, vendor, asset) in a grid or board: lea
 - One link for the card; the menu is a separate button with a label
 - State=focus shows the border/ring focus ring
 - State=selected is announced, not only shown
+- Each Button Icon in Actions has an accessible label that names the card ("Add Electric Vehicle Forecast")
 
 | Variant property | Values |
 |---|---|
@@ -360,14 +364,15 @@ Summary of one object (customer, project, vendor, asset) in a grid or board: lea
 | Show tags | boolean | true |
 | Show details | boolean | true |
 | Show footer | boolean | true |
+| Show actions | boolean | false |
 
-Slots (fill them in the instance, never detach): `Leading`, `Tags`, `Details`
+Slots (fill them in the instance, never detach): `Leading`, `Tags`, `Details`, `Actions`
 
 Built from: `Avatar`, `Avatar Group`, `Badge`, `Button Icon`, `Separator`
 
 Tokens and styles:
 - Colors: `background/card`, `border/default`, `border/ring`, `foreground/card`, `foreground/muted`
-- Spacing and size: `density/card-gap-sm`, `density/card-padding-sm`, `spacing/0_5`, `spacing/2`, `spacing/3`
+- Spacing and size: `density/card-gap-sm`, `density/card-padding-sm`, `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`
 - Radius: `radius/xl`
 - Text styles: `body/small`, `ui/caption`, `ui/label`
 - Effects: `shadow/md`

@@ -237,10 +237,11 @@ const wrapWithLabels = c => {
 // every auto-layout frame inside a stress test or example whose content runs past its edge
 // goes back to hug on that axis (innermost first). Component internals are left alone.
 const inComp = n => { for (let p = n; p; p = p.parent) if (p.type === 'COMPONENT' || p.type === 'COMPONENT_SET') return true; return false; };
+const viewport = n => n.clipsContent && /^Examples? \//.test(n.name); // screens clip on purpose
 const fitHug = root => {
-  if (!root.findAll) return 0;
+  if (!root.findAll || viewport(root)) return 0;
   const depth = n => { let d = 0; for (let p = n; p; p = p.parent) d++; return d; };
-  const frames = [root, ...root.findAll(n => n.type === 'FRAME')].filter(f => f.type === 'FRAME' && f.layoutMode && f.layoutMode !== 'NONE' && !inInstance(f) && !inComp(f)).sort((a, b) => depth(b) - depth(a));
+  const frames = [root, ...root.findAll(n => n.type === 'FRAME')].filter(f => f.type === 'FRAME' && f.layoutMode && f.layoutMode !== 'NONE' && f.layoutMode !== 'GRID' && !inInstance(f) && !inComp(f)).sort((a, b) => depth(b) - depth(a));
   let n = 0;
   for (const f of frames) {
     const kids = f.children.filter(c => c.layoutPositioning !== 'ABSOLUTE'); if (!kids.length) continue;
@@ -296,7 +297,7 @@ const leftovers = pg.children.filter(n => !(n.type === 'SECTION' && / \/ (Docs|C
 const overflow = [];
 for (const sct of pg.children.filter(n => n.type === 'SECTION')) for (const ch of sct.children) {
   if (ch.y + ch.height > sct.height + 1 || ch.x + ch.width > sct.width + 1) overflow.push(sct.name);
-  if (ch.type === 'FRAME' && ch.layoutMode && ch.layoutMode !== 'NONE' && ch.children.length && Math.max(...ch.children.map(k => k.y + k.height)) > ch.height + 1) overflow.push(ch.name);
+  if (ch.type === 'FRAME' && ch.layoutMode && ch.layoutMode !== 'NONE' && ch.layoutMode !== 'GRID' && !viewport(ch) && ch.children.length && Math.max(...ch.children.map(k => k.y + k.height)) > ch.height + 1) overflow.push(ch.name);
 }
 results.push({ page: PAGE, rows: report, unassigned, leftovers, overflow });
 }

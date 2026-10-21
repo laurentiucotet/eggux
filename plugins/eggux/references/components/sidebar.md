@@ -6,15 +6,73 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
+| [Sidebar](#sidebar) | 2 | Header, Content, Footer |
 | [Sidebar Item](#sidebar-item) | 8 | - |
 | [Sidebar Group Label](#sidebar-group-label) | 1 | - |
 | [Sidebar Group](#sidebar-group) | 2 | Items |
 | [Sidebar Workspace](#sidebar-workspace) | 2 | - |
 | [Sidebar User](#sidebar-user) | 2 | - |
-| [Sidebar](#sidebar) | 2 | Header, Content, Footer |
 | [Org Switcher](#org-switcher) | 1 | - |
+| [Sidebar Double](#sidebar-double) | 2 | Rail header, Rail, Rail footer, Panel actions, Panel |
 
-On the Figma page: "Example / app shell", "Example / switch organization", "Stress test / Org Switcher", "Stress test / Sidebar"
+On the Figma page: "Example / Back office list with double sidebar", "Example / Double sidebar collapsed", "Example / app shell", "Example / switch organization", "Stress test / Org Switcher", "Stress test / Sidebar", "Stress test / Sidebar Double", "Template / invoices table (grid)"
+
+## Sidebar
+
+Component set · 2 variants · default size 256 × 720
+
+shadcn Sidebar (uses sidebar/* tokens). Header, Content and Footer are native slots. Mode: expanded 256 / collapsed 48 (icon only, labels in tooltips). One active item per sidebar.
+
+**Use for**
+
+- Apps with more than ~5 destinations or with sections
+- Desktop app shell (from 1024 px)
+- Settings navigation as its own Sidebar Group
+
+**Not for**
+
+- Switching views of one object: use Tabs
+- Sites with few pages: use Navigation Menu in a top bar
+- Mobile: open it as a left Sheet from the header
+
+**Anatomy**
+
+1. Header slot: Sidebar Workspace (logo, Title, Subtitle, switcher)
+2. Content slot: Sidebar Group with a Sidebar Group Label
+3. Sidebar Item rows: Icon, Label, optional Badge and Chevron
+4. Footer slot: Sidebar User (Avatar, Title, Subtitle, menu)
+
+**Content and behavior**
+
+- One active Sidebar Item, matching the current page
+- Groups follow the user's work; labels are nouns in the product's terms
+- Badge only for something to act on (unread, pending), never decorative
+- Chevron marks a section with sub-pages
+- Mode expanded 256, collapsed 48: icons only, labels in tooltips
+- Mobile: a Sheet opened from the header trigger (panel-left)
+
+**Accessibility**
+
+- A nav landmark; the active item has aria-current="page"
+- Collapsed items have a Tooltip and an accessible label
+- The collapse trigger has an accessible label
+- Every item is reachable with the keyboard
+
+| Variant property | Values |
+|---|---|
+| Mode | expanded, collapsed |
+
+Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
+
+Built from: `Sidebar Group`, `Sidebar User`, `Sidebar Workspace`
+
+Tokens and styles:
+- Colors: `sidebar/background`, `sidebar/border`
+- Spacing and size: `spacing/12`, `spacing/2`, `spacing/64`
+
+Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
+
+Code: shadcn `Sidebar`
 
 ## Sidebar Item
 
@@ -132,63 +190,6 @@ Tokens and styles:
 
 Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
 
-## Sidebar
-
-Component set · 2 variants · default size 256 × 720
-
-shadcn Sidebar (uses sidebar/* tokens). Header, Content and Footer are native slots. Mode: expanded 256 / collapsed 48 (icon only, labels in tooltips). One active item per sidebar.
-
-**Use for**
-
-- Apps with more than ~5 destinations or with sections
-- Desktop app shell (from 1024 px)
-- Settings navigation as its own Sidebar Group
-
-**Not for**
-
-- Switching views of one object: use Tabs
-- Sites with few pages: use Navigation Menu in a top bar
-- Mobile: open it as a left Sheet from the header
-
-**Anatomy**
-
-1. Header slot: Sidebar Workspace (logo, Title, Subtitle, switcher)
-2. Content slot: Sidebar Group with a Sidebar Group Label
-3. Sidebar Item rows: Icon, Label, optional Badge and Chevron
-4. Footer slot: Sidebar User (Avatar, Title, Subtitle, menu)
-
-**Content and behavior**
-
-- One active Sidebar Item, matching the current page
-- Groups follow the user's work; labels are nouns in the product's terms
-- Badge only for something to act on (unread, pending), never decorative
-- Chevron marks a section with sub-pages
-- Mode expanded 256, collapsed 48: icons only, labels in tooltips
-- Mobile: a Sheet opened from the header trigger (panel-left)
-
-**Accessibility**
-
-- A nav landmark; the active item has aria-current="page"
-- Collapsed items have a Tooltip and an accessible label
-- The collapse trigger has an accessible label
-- Every item is reachable with the keyboard
-
-| Variant property | Values |
-|---|---|
-| Mode | expanded, collapsed |
-
-Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
-
-Built from: `Sidebar Group`, `Sidebar User`, `Sidebar Workspace`
-
-Tokens and styles:
-- Colors: `sidebar/background`, `sidebar/border`
-- Spacing and size: `spacing/12`, `spacing/2`, `spacing/64`
-
-Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
-
-Code: shadcn `Sidebar`
-
 ## Org Switcher
 
 Component · 1 variant · default size 288 × 283
@@ -236,3 +237,61 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/caption`, `ui/label`
 
 Code: `DropdownMenu` or `Popover` + `Command`
+
+## Sidebar Double
+
+Component set · 2 variants · default size 288 × 720
+
+Two-level app navigation: an icon rail for sections (Rail header, Rail, Rail footer slots) and a panel for the pages of the active section, with a header (Panel title, Panel actions slot) and the Panel slot for Sidebar Groups. Collapsed shows the rail only. Use when sections have many pages each; one level fits in Sidebar. Code: shadcn Sidebar with collapsible="icon" for the rail plus a second Sidebar for the panel.
+
+**Use for**
+
+- Back offices and admin apps with several sections of 5+ pages each
+- Products where people switch sections often and need the section's pages in view
+- Content management: one rail item per content area, its types in the panel
+
+**Not for**
+
+- One level of navigation or fewer than ~12 pages: use Sidebar
+- Switching views of one object: use Tabs
+- Mobile: open the panel as a left Sheet from the header
+
+**Anatomy**
+
+1. Rail header slot: Sidebar Workspace (collapsed)
+2. Rail slot: Sidebar Item (collapsed), one per section
+3. Rail footer slot: Sidebar User (collapsed)
+4. Panel header: Panel title and Panel actions slot
+5. Panel slot: Sidebar Groups with the section's pages
+
+**Content and behavior**
+
+- Rail 48 wide, panel 240; Mode=collapsed shows the rail only
+- One active rail item (the section) and one active panel item (the page)
+- Panel title repeats the rail item's name
+- Panel actions only for the section (add a page or an item), one or two Button Icon
+- Rail icons have Tooltips with the section name
+
+**Accessibility**
+
+- Two nav landmarks with labels ("Sections", the section name)
+- The active items have aria-current
+- Rail items are buttons with accessible labels; arrows move between them
+- The collapse trigger has an accessible label and aria-expanded
+
+| Variant property | Values |
+|---|---|
+| Mode | expanded, collapsed |
+
+| Property | Type | Default |
+|---|---|---|
+| Panel title | text | Projects |
+
+Slots (fill them in the instance, never detach): `Rail header`, `Rail`, `Rail footer`, `Panel actions`, `Panel`
+
+Built from: `Button Icon`, `Sidebar Group`, `Sidebar Item`, `Sidebar User`, `Sidebar Workspace`
+
+Tokens and styles:
+- Colors: `sidebar/background`, `sidebar/border`, `sidebar/foreground`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
+- Text styles: `ui/label`

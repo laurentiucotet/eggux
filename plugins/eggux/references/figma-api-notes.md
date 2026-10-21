@@ -37,6 +37,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - In a component set, create the slot in every variant before `combineAsVariants`; same-named
   slots merge into one property. Created after combining, each variant gets its own property:
   point all slots to one key and delete the others.
+- Adding a slot to every variant of an existing set: rename the first variant's slot property
+  right after `createSlot()`, then for each other variant create the slot, point it to that key
+  (`{ ...refs, slotContentId: k0 }`) and `deleteComponentProperty` its own key at once. Creating
+  all slots first and renaming after fails ("Must pass in valid name").
 - Never assign `slot.componentPropertyReferences = { visible: k }`: it drops `slotContentId` and
   the slot becomes a plain FRAME. Merge: `{ ...slot.componentPropertyReferences, visible: k }`.
   The scan reports this as `brokenSlot`.
@@ -166,5 +170,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   `counterAxisSizingMode` again and resize after the switch.
 - An auto-layout child with `layoutGrow = 1` is FIXED on that axis. Set it back to HUG before
   measuring how tall the content is.
+- `createInstance()` puts the instance on the current page at 0,0 until it is appended. A
+  leftover call without `appendChild` leaves a stray; list the page's top level after a build.
+- A one-side stroke on a frame that stretches (FILL) inside an instance was drawn at the main
+  component's height (a divider stopped at 720 in a 900 tall instance). Put the divider on the
+  sibling that grows (the panel's left edge) instead.
 - `use_figma` code can build functions from text: `new (Object.getPrototypeOf(async function(){}).constructor)('figma', 'JOBS', src)`. Store a long script in a hidden text node once and send only the data per call; delete the node after.
 - An instance's SLOT accepts `appendChild` and child removal, so a page shell instance can host any component in its Page slot without detaching.

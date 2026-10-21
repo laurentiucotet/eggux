@@ -35,6 +35,8 @@ Checkbox is exposed. Examples: permissions tree, navigation tree on the List & T
   Move up / Move down in the row menu.
 - Figma: `Sortable List Item` State default, hover, dragging (lifted with shadow), drop-target
   (primary line); Label truncates on one line, Description on two; Trailing slot.
+- Leading slot (Show leading): a 1:1 image, 48 px, when the picture tells items apart
+  (products, media); crop, never stretch. Decorative (empty alt) when the Label names the item.
 
 ## Scroll Area
 - A region that scrolls inside the page: long lists in a popover, a sidebar, a table body under

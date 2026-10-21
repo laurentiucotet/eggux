@@ -18,7 +18,7 @@ for (const page of [...pages.slice(ci + 1, bi), ...pages.filter(p => p.name === 
   await page.loadAsync();
   const roots = page.findAll(n => (n.type === 'COMPONENT_SET' || (n.type === 'COMPONENT' && n.parent.type !== 'COMPONENT_SET')) && !n.name.startsWith('Icon/'))
     .filter(n => { for (let p = n.parent; p; p = p.parent) if (['INSTANCE', 'COMPONENT', 'COMPONENT_SET'].includes(p.type)) return false; return true; });
-  const extras = page.findAll(n => (n.type === 'FRAME' || n.type === 'GROUP' || n.type === 'SECTION') && /^(Stress test|Example|Template) \//.test(n.name)).map(n => n.name);
+  const extras = page.findAll(n => (n.type === 'FRAME' || n.type === 'GROUP' || n.type === 'SECTION') && /^(Stress test|Examples?|Template) \//.test(n.name)).map(n => n.name);
   const comps = [];
   for (const r of roots) {
     const variants = r.type === 'COMPONENT_SET' ? r.children : [r];

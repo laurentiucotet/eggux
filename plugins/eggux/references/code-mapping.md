@@ -32,11 +32,13 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Command`, `Command Dialog` | shadcn `Command`, `CommandDialog` | |
 | `Dialog`, `Alert Dialog` | shadcn `Dialog`, `AlertDialog` | |
 | `Sheet`, `Drawer` | shadcn `Sheet`, `Drawer` (vaul) | |
+| `Side Panel` | `<aside>` in the page grid + shadcn `Collapsible` | Right `Sheet` below 1024 px; persist the collapsed state |
 | `Alert`, `Toast` | shadcn `Alert`, `Sonner` | |
 | `Card`, `Stat Card` | shadcn `Card` + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content |
 | `Skeleton`, `Spinner`, `Kbd` | shadcn `Skeleton`, `Spinner`, `Kbd` | |
 | `Pagination`, `Breadcrumb` | shadcn `Pagination`, `Breadcrumb` | |
 | `Sidebar` and parts | shadcn `Sidebar` | |
+| `Sidebar Double` | shadcn `Sidebar` `collapsible="icon"` (rail) + a second `Sidebar` (panel) | Panel opens as a left `Sheet` on mobile |
 | `Navigation Menu` parts | shadcn `NavigationMenu` | |
 | `Stepper`, `Step` | custom (no shadcn stepper) | |
 | `Description List`, `Timeline` | custom `dl` / `ol` | |

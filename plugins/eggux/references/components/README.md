@@ -27,7 +27,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Brand](brand.md) | Logo Mark, Logo |
 | [Button](button.md) | Button, Button Icon, Button Group Item, Button Group, Split Button |
 | [Calendar](calendar.md) | Calendar Day, Calendar, Date Picker, Time Picker, Date Range Picker |
-| [Card](card.md) | Card Header, Card Footer, Stat Card, Option Card, Post Card, Card, Entity Card, Progress Card |
+| [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Progress Card |
 | [Carousel](carousel.md) | Carousel, Carousel Arrow, Carousel Indicator, Carousel Thumbnail, Carousel Slide, Carousel Gallery, Carousel Hero, Lightbox |
 | [Chart](chart.md) | Chart Legend Item, Chart Legend, Chart Tooltip Row, Chart Tooltip, Bar Chart, Line Chart, Sparkline, Chart Card, Donut Chart, Bar Chart Horizontal, Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart |
 | [Chat](chat.md) | Chat Message, Typing Indicator, Chat Composer |
@@ -37,7 +37,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Cookie Consent](cookie-consent.md) | Cookie Consent |
 | [Description List](description-list.md) | Description List Item |
 | [Dialog](dialog.md) | Dialog Header, Dialog Footer, Dialog, Alert Dialog |
-| [Drawer](drawer.md) | Sheet, Drawer |
+| [Drawer](drawer.md) | Sheet, Drawer, Side Panel |
 | [Editor](editor.md) | Rich Text Editor, Comment, Comment Composer |
 | [Empty State](empty-state.md) | Empty State |
 | [File Upload](file-upload.md) | File Dropzone, File Item, File Preview |
@@ -62,7 +62,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Select](select.md) | Select, Combobox, Tag, Tag Input, Person Option, People Picker, Transfer List |
 | [Selection controls](selection-controls.md) | Checkbox, Radio, Switch |
 | [Separator](separator.md) | Separator |
-| [Sidebar](sidebar.md) | Sidebar Item, Sidebar Group Label, Sidebar Group, Sidebar Workspace, Sidebar User, Sidebar, Org Switcher |
+| [Sidebar](sidebar.md) | Sidebar, Sidebar Item, Sidebar Group Label, Sidebar Group, Sidebar Workspace, Sidebar User, Org Switcher, Sidebar Double |
 | [Skeleton](skeleton.md) | Skeleton |
 | [Slider](slider.md) | Slider |
 | [Spinner](spinner.md) | Spinner |
@@ -76,4 +76,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tour](tour.md) | Coachmark, Hotspot |
 | [Video](video.md) | Video Player |
 
-205 components on 58 pages.
+207 components on 58 pages.

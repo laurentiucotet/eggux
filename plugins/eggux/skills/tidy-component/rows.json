@@ -410,6 +410,15 @@
    "main": "Drawer",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Side Panel",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Editor with side panel",
+    "Example / Editor with collapsed side panel"
+   ]
   }
  ],
  "Editor": [
@@ -819,6 +828,15 @@
     "Sidebar User"
    ],
    "block": "77:314"
+  },
+  {
+   "main": "Sidebar Double",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Back office list with double sidebar",
+    "Example / Double sidebar collapsed"
+   ]
   },
   {
    "main": "Org Switcher",
