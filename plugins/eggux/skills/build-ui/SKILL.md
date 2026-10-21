@@ -11,7 +11,8 @@ description: Design or build screens, flows and pages for a client project from 
 1. `ux-rules.md` (next to this file): universal rules. Always.
 2. `index.md` (next to this file): which shell, blocks, patterns and component guides fit the
    screen. Then read those `patterns/*.md` and `components/*.md`.
-3. `${CLAUDE_PLUGIN_ROOT}/references/figma-library.md` (what exists, slots, conventions) and
+3. `${CLAUDE_PLUGIN_ROOT}/references/figma-library.md` (what exists, slots, conventions); for one
+   component's exact properties, slots and tokens, `references/components/<page>.md`; and
    `${CLAUDE_PLUGIN_ROOT}/references/tokens.md` (token names, text styles, density, motion, charts).
 4. The feature folder `eggux/features/<slug>/` when the screen belongs to a feature: actors,
    access, data, states and feedback from `feature.md`, flows from `workflows.md`, Given / When /

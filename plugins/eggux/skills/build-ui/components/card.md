@@ -52,7 +52,7 @@ Stat Card, Option Card and Post Card use the same tokens.
 - Footer actions follow button rules: one primary at most, usually none in a grid of cards.
 - Metric cards: label (`body/small` muted), value (`heading/h2`, one line), change with direction
   in text and icon, not color alone.
-- Selectable cards (plan, visit type) use Option Card: the whole card is the target, one selected.
+- Selectable cards (plan, delivery, billing period) use Option Card: the whole card is the target, one selected.
 
 ## Figma
 - `Card` (Variant × Size × Elevation, 12 variants) = native slots Header (Card Header), Content (placeholder) and Footer (Card Footer).

@@ -123,7 +123,7 @@ What stays:
 | Figma | Component with its description (when to use, content rules); `Stress test / <Component>` in a `Stress tests` section on the page; an example frame | Same, in the master file |
 | Docs | `eggux/components/<name>.md` in the client repo, from `templates/component.md` | `skills/build-ui/components/<name>.md` in the plugin, same template |
 | Snapshot | `skills/update-component/snapshot.js` output (`flat`) saved to `eggux/components/<name>.snapshot.json`; `/eggux:update-component` diffs later hand edits against it | `skills/build-ui/components/<name>.snapshot.json` |
-| Records | A decision in `eggux/decisions.md` (type component, with the content rules) | Inventory row in `references/figma-library.md`, `references/code-mapping.md`, `skills/build-ui/index.md`, `CHANGELOG.md`, version bump, `claude plugin validate .`, commit |
+| Records | A decision in `eggux/decisions.md` (type component, with the content rules) | Inventory row in `references/figma-library.md`, `references/code-mapping.md`, `skills/build-ui/index.md`, `CHANGELOG.md`, regenerate `references/components/` (`scripts/component-docs.*`), version bump, `claude plugin validate .`, commit |
 | Code (when the project has one) | The component with props that match Figma, the content rules (truncation, "+N"), and stories or tests for the stress cases | Code mapping only |
 
 - Mark the component's section Ready for dev in Figma (Dev Mode); if the API refuses, tell the
