@@ -11,8 +11,9 @@ Usage rules live in the guides linked under each component.
 | [Menu Label](#menu-label) | 1 | - |
 | [Menubar](#menubar) | 1 | Menus |
 | [Menubar Trigger](#menubar-trigger) | 3 | - |
+| [Account Menu](#account-menu) | 1 | - |
 
-On the Figma page: "Example / actions menu under a header button", "Example / menu with descriptions", "Example / menubar open", "Stress test / Menu", "Stress test / Menubar"
+On the Figma page: "Example / actions menu under a header button", "Example / menu with descriptions", "Example / menubar open", "Stress test / Account Menu", "Stress test / Menu", "Stress test / Menubar"
 
 ## Menu
 
@@ -194,3 +195,60 @@ Tokens and styles:
 Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md)
 
 Code: shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`)
+
+## Account Menu
+
+Component · 1 variant · default size 260 × 254
+
+The menu behind the signed-in person's avatar (top bar or Sidebar User): name and email, Profile, Settings, Theme, Keyboard shortcuts, Log out last after a separator. Personal items only; workspace switching goes in Org Switcher. Log out never asks for confirmation unless there are unsaved changes.
+
+**Use for**
+
+- Avatar in the Top Bar
+- Sidebar User at the bottom of the Sidebar
+- Personal items: Profile, Settings, Theme, Keyboard shortcuts
+
+**Not for**
+
+- Switching workspace or company: use Org Switcher
+- Actions on a record: use Menu
+- Product navigation: use Sidebar
+
+**Anatomy**
+
+1. Header: Avatar, name (ui/label) and email (body/small, muted)
+2. Separator
+3. Menu Items: Profile, Settings, Theme, Keyboard shortcuts
+4. Separator
+5. Menu Item: Log out, last
+
+**Content and behavior**
+
+- Personal items only; workspace items go in Org Switcher
+- Log out is last, after a Separator
+- Log out never asks for confirmation unless there are unsaved changes
+- Long emails truncate with an ellipsis and show in full in a Tooltip
+- Theme opens a submenu (Light, Dark, System) with a check on the current one
+
+**Accessibility**
+
+- The trigger has aria-label="Account menu" (or the person's name) and aria-haspopup="menu"
+- Arrows move, Enter selects, Escape closes and returns focus to the trigger
+- The header is not focusable; it is read as the menu label
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | Daniel Pop |
+| Email | text | daniel@acme.com |
+
+Built from: `Avatar`, `Menu Item`, `Separator`
+
+Tokens and styles:
+- Colors: `background/popover`, `border/default`, `foreground/muted`, `foreground/popover`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`
+- Radius: `radius/md`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md)
+
+Code: shadcn `DropdownMenu` with `DropdownMenuLabel` (Avatar, name, email) (Log out last after `DropdownMenuSeparator`)

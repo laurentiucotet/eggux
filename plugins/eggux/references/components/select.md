@@ -8,13 +8,17 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Select](#select) | 8 | - |
 | [Combobox](#combobox) | 8 | - |
-| [Tag](#tag) | 2 | - |
 | [Tag Input](#tag-input) | 4 | Tags |
-| [Person Option](#person-option) | 4 | - |
+| [Tag](#tag) | 2 | - |
 | [People Picker](#people-picker) | 2 | Selected, Results |
+| [Person Option](#person-option) | 4 | - |
 | [Transfer List](#transfer-list) | 1 | Available, Selected |
+| [Address Autocomplete](#address-autocomplete) | 1 | - |
+| [Select Option](#select-option) | 6 | - |
+| [Recurrence Picker](#recurrence-picker) | 3 | - |
+| [Language Switcher](#language-switcher) | 2 | - |
 
-On the Figma page: "Example / combobox open", "Example / multi-select open", "Example / role permissions", "Example / select open", "Example / share a report", "Stress test / Combobox", "Stress test / People Picker and Transfer List", "Stress test / Select", "Stress test / Tag Input", "Stress test / Transfer List"
+On the Figma page: "Example / combobox open", "Example / multi-select open", "Example / role permissions", "Example / select open", "Example / share a report", "Stress test / Address Autocomplete", "Stress test / Combobox", "Stress test / Language Switcher", "Stress test / People Picker and Transfer List", "Stress test / Recurrence Picker", "Stress test / Select", "Stress test / Select Option", "Stress test / Tag Input", "Stress test / Transfer List"
 
 ## Select
 
@@ -141,33 +145,6 @@ Guides: [popover](../../skills/build-ui/components/popover.md), [select](../../s
 
 Code: shadcn `Select`; `Popover` + `Command`
 
-## Tag
-
-Component set · 2 variants · default size 72 × 24
-
-Removable value inside Tag Input and multi-select (secondary bg, 24 high). For filters outside a field use Chip.
-
-| Variant property | Values |
-|---|---|
-| State | default, disabled |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Design |
-| Remove | boolean | true |
-
-Icons: x
-
-Tokens and styles:
-- Colors: `background/secondary`, `foreground/secondary`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`, `spacing/6`
-- Radius: `radius/sm`
-- Text styles: `ui/label-small`
-
-Guides: [select](../../skills/build-ui/components/select.md)
-
-Code: custom on `Badge` + remove `Button`
-
 ## Tag Input
 
 Component set · 4 variants · default size 360 × 38
@@ -230,34 +207,32 @@ Guides: [select](../../skills/build-ui/components/select.md)
 
 Code: shadcn `Select`; `Popover` + `Command`
 
-## Person Option
+## Tag
 
-Component set · 4 variants · default size 288 × 54
+Component set · 2 variants · default size 72 × 24
 
-One person in a People Picker list: checkbox (multi-select), avatar (exposed: initials or photo), name, role and email. Disambiguate people with the same name by email or team.
+Removable value inside Tag Input and multi-select (secondary bg, 24 high). For filters outside a field use Chip.
 
 | Variant property | Values |
 |---|---|
-| Selected | false, true |
-| State | default, hover |
+| State | default, disabled |
 
 | Property | Type | Default |
 |---|---|---|
-| Name | text | Ana Popescu |
-| Detail | text | Finance manager · ana.popescu@acme.com |
-| Show detail | boolean | true |
+| Label | text | Design |
+| Remove | boolean | true |
 
-Built from: `Avatar`, `Checkbox`
+Icons: x
 
 Tokens and styles:
-- Colors: `background/accent`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Colors: `background/secondary`, `foreground/secondary`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`, `spacing/6`
 - Radius: `radius/sm`
-- Text styles: `body/small`, `ui/label`
+- Text styles: `ui/label-small`
 
 Guides: [select](../../skills/build-ui/components/select.md)
 
-Code: shadcn `Popover` + `Command` with `Avatar` rows; chips in the trigger (Server search by name, email, team; debounce 200 ms)
+Code: custom on `Badge` + remove `Button`
 
 ## People Picker
 
@@ -322,6 +297,35 @@ Guides: [select](../../skills/build-ui/components/select.md)
 
 Code: shadcn `Popover` + `Command` with `Avatar` rows; chips in the trigger (Server search by name, email, team; debounce 200 ms)
 
+## Person Option
+
+Component set · 4 variants · default size 288 × 54
+
+One person in a People Picker list: checkbox (multi-select), avatar (exposed: initials or photo), name, role and email. Disambiguate people with the same name by email or team.
+
+| Variant property | Values |
+|---|---|
+| Selected | false, true |
+| State | default, hover |
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | Ana Popescu |
+| Detail | text | Finance manager · ana.popescu@acme.com |
+| Show detail | boolean | true |
+
+Built from: `Avatar`, `Checkbox`
+
+Tokens and styles:
+- Colors: `background/accent`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/sm`
+- Text styles: `body/small`, `ui/label`
+
+Guides: [select](../../skills/build-ui/components/select.md)
+
+Code: shadcn `Popover` + `Command` with `Avatar` rows; chips in the trigger (Server search by name, email, team; debounce 200 ms)
+
 ## Transfer List
 
 Component · 1 variant · default size 628 × 291
@@ -379,3 +383,238 @@ Tokens and styles:
 Guides: [select](../../skills/build-ui/components/select.md)
 
 Code: custom: two lists of `Checkbox` rows + move `Button`s (Or `@dnd-kit` when order matters)
+
+## Address Autocomplete
+
+Component · 1 variant · default size 360 × 233
+
+Address field with suggestions as people type (street, number, then city and country on a second line). Pick a suggestion to fill the address fields below it; "Enter the address manually" opens the separate fields. Suggestions after 3 characters; keep what was typed if nothing matches.
+
+**Use for**
+
+- Shipping and billing addresses at checkout
+- Company and customer addresses
+- Delivery or meeting places
+
+**Not for**
+
+- Picking from a known list (a warehouse, an office): use Select or Combobox
+- Countries or cities only: use Combobox
+- Coordinates on a map: use Map
+
+**Anatomy**
+
+1. Field: map-pin icon and Query
+2. Suggestions (Show suggestions): map-pin, street and number, then city and country on a second line
+3. Manual: "Enter the address manually" link
+
+**Content and behavior**
+
+- Suggestions after 3 characters, with a debounce
+- A pick fills the separate fields below (street, city, postal code, country); people can still edit them
+- Keep what was typed if nothing matches, and offer manual entry
+- "Enter the address manually" opens the separate fields
+- Bias suggestions to the country of the account; show at most 5
+
+**Accessibility**
+
+- Combobox pattern: role="combobox", aria-expanded, aria-activedescendant on the input
+- Arrow keys move through suggestions, Enter picks, Esc closes and keeps the text
+- The number of suggestions is announced politely
+
+| Property | Type | Default |
+|---|---|---|
+| Query | text | Strada Vic |
+| Show suggestions | boolean | true |
+
+Icons: map-pin
+
+Tokens and styles:
+- Colors: `background/accent`, `background/default`, `background/popover`, `border/default`, `border/ring`, `foreground/default`, `foreground/muted`
+- Spacing and size: `density/control-height`, `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`, `radius/sm`
+- Text styles: `body/small`, `ui/caption`, `ui/label`
+
+Guides: [select](../../skills/build-ui/components/select.md), [commerce](../../skills/build-ui/patterns/commerce.md)
+
+Code: shadcn `Popover` + `Command` (`shouldFilter={false}`) fed by a places API (Google Places, Mapbox) (Debounce, 3 characters minimum; fills the address Fields)
+
+## Select Option
+
+Component set · 6 variants · default size 280 × 48
+
+A rich option in a Select, Combobox or Menu list: icon or avatar, title and a muted second line (type, place, email), check when selected. Use when the label alone is ambiguous (two customers with the same name) or a picture tells options apart. Same Leading for every option in one list.
+
+**Use for**
+
+- Options that share a name (two customers called Northwind)
+- Options a picture tells apart: workspaces, integrations, people
+- Lists where the type or place helps the choice
+
+**Not for**
+
+- Short options that are clear by name: use Menu Item
+- People with role and email: use Person Option in People Picker
+- Choices with a long description: use Option Card
+
+**Anatomy**
+
+1. Leading: icon tile or avatar (Leading, Icon)
+2. Title
+3. Description (Show description): muted, one line
+4. Check (Checked)
+
+**Content and behavior**
+
+- Leading: icon, avatar, none; the same Leading for every option in one list
+- State: default, highlighted
+- Description is one short line: type, place, email ("Customer · Berlin")
+- Title and description truncate on one line each; the full text shows in a tooltip
+- Checked marks the selected option; multi-select lists keep it open while picking
+
+**Accessibility**
+
+- role="option" with aria-selected; the list is a listbox
+- Title and description are read together as the option name
+- Icons and avatars are decorative (aria-hidden) unless they carry meaning
+
+| Variant property | Values |
+|---|---|
+| Leading | icon, avatar, none |
+| State | default, highlighted |
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Northwind Traders |
+| Description | text | Customer · Berlin |
+| Show description | boolean | true |
+| Checked | boolean | false |
+| Icon | instance swap | Icon/building |
+
+Built from: `Avatar`. Icons: building, check
+
+Tokens and styles:
+- Colors: `background/accent`, `background/muted`, `foreground/muted`, `foreground/popover`
+- Spacing and size: `spacing/1_5`, `spacing/2`
+- Radius: `radius/md`, `radius/sm`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [select](../../skills/build-ui/components/select.md)
+
+Code: shadcn `CommandItem` / `SelectItem` with `Avatar` or icon, two text lines, check icon (Same Leading for every option in a list)
+
+## Recurrence Picker
+
+Component set · 3 variants · default size 400 × 192
+
+How often something repeats: recurring invoices, reports by email, reminders, meetings. Interval and unit, the days for weekly, the day for monthly, and when it ends (never, on a date, after N times). The summary sentence says the result in words; read it back in confirmations. Time zone of the account unless the field says otherwise.
+
+**Use for**
+
+- Recurring invoices
+- Reports sent by email on a schedule
+- Reminders and meetings
+
+**Not for**
+
+- One date: use Date Picker
+- A fixed set of choices (daily, weekly digest): use Select or Radio
+- A time of day only: use Time Picker
+
+**Anatomy**
+
+1. Repeat every: interval Number Input and unit Select (day, week, month)
+2. Days (Frequency=weekly): Toggle Group Items M T W T F S S
+3. On (Frequency=monthly): Select of the day ("Day 5")
+4. Ends: Radios "Never", "On 31 Dec 2026", "After 12 times"
+5. Summary (Show summary): "Every week on Monday, Wednesday and Friday, until 31 Dec 2026"
+
+**Content and behavior**
+
+- Frequency: daily, weekly, monthly
+- The summary says the result in words; read it back in confirmations and lists
+- Weekly needs at least one day; default to the day of the start date
+- Monthly on day 29-31 says what happens in shorter months ("last day of the month")
+- Time zone of the account unless the field says otherwise
+
+**Accessibility**
+
+- Each part has a label; Ends is a radiogroup
+- Day toggles have full names as aria-labels ("Monday") and aria-pressed
+- The summary is in a live region (aria-live="polite") so changes are read
+
+| Variant property | Values |
+|---|---|
+| Frequency | daily, weekly, monthly |
+
+| Property | Type | Default |
+|---|---|---|
+| Show summary | boolean | true |
+
+Built from: `Number Input`, `Radio`, `Select`, `Toggle Group Item`
+
+Tokens and styles:
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
+- Text styles: `body/small`, `ui/label`
+
+Guides: [select](../../skills/build-ui/components/select.md)
+
+Code: custom: `Number Input`, `Select`, `ToggleGroup` (multiple), `RadioGroup`; rrule (Summary from `rrule.toText()` or own strings; account time zone)
+
+## Language Switcher
+
+Component set · 2 variants · default size 200 × 36
+
+Choose the interface language: globe, the current language in its own name ("Deutsch", not "German"), a list with each name in its language and in the current one. In the footer of a site, the Account Menu or settings. Never use flags for languages. Switching keeps the page.
+
+**Use for**
+
+- The footer of a site
+- The Account Menu
+- Language in profile or appearance settings
+
+**Not for**
+
+- Choosing the language of content (a document, a translation): use Select
+- Region, currency or format settings: use Select
+- A country (phone code, address): use Phone Input or Combobox
+
+**Anatomy**
+
+1. Trigger: globe icon, Language, chevron-down
+2. List (State=open): each name in its language and in the current one
+
+**Content and behavior**
+
+- State: closed, open
+- The current language in its own name: "Deutsch", not "German"
+- In the list: "Deutsch (German)"; order by name
+- Never use flags for languages
+- Switching keeps the page and the scroll position
+
+**Accessibility**
+
+- The trigger has aria-label="Language: English"
+- Each option sets lang on its own name (lang="de")
+- After the switch the html lang attribute changes and focus returns to the trigger
+
+| Variant property | Values |
+|---|---|
+| State | closed, open |
+
+| Property | Type | Default |
+|---|---|---|
+| Language | text | English |
+
+Icons: check, chevron-down, globe
+
+Tokens and styles:
+- Colors: `background/accent`, `background/default`, `background/popover`, `border/default`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`, `foreground/popover`
+- Spacing and size: `density/control-height`, `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`, `radius/sm`
+- Text styles: `body/small`, `ui/caption`
+
+Guides: [select](../../skills/build-ui/components/select.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
+
+Code: shadcn `DropdownMenu` + `DropdownMenuRadioGroup` (or `Select`) (Names in their own language, `lang` on each; no flags)

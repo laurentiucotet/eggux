@@ -39,8 +39,9 @@ EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 - 18 new Lucide icons (97 in total): sun, moon, monitor, smartphone, layout-grid, external-link,
   star, share-2, arrow-left, key-round, credit-card, package, zap, image, code, at-sign, smile,
   git-branch.
-- Docs: 125 docs entries and rows, notes in 41 guides, new Commerce, Marketing and Admin sections
-  in the code mapping, library map and component reference.
+- Docs: 125 docs entries and rows, generated Docs frames and stress tests on 46 pages, notes in 41
+  guides, new Commerce, Marketing and Admin sections in the code mapping, library map and component
+  reference (356 components on 71 pages).
 - Not built: examples in real screens for the new components (their Examples sections hold a note).
 
 ## 0.49.0

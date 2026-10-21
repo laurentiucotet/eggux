@@ -7,8 +7,10 @@ Usage rules live in the guides linked under each component.
 | Component | Variants | Slots |
 |---|---|---|
 | [Rating](#rating) | 12 | - |
+| [Review Item](#review-item) | 1 | - |
+| [Rating Summary](#rating-summary) | 1 | - |
 
-On the Figma page: "Example / in testimonial carousel", "Stress test / Rating"
+On the Figma page: "Example / in testimonial carousel", "Stress test / Rating", "Stress test / Rating Summary", "Stress test / Review Item"
 
 ## Rating
 
@@ -67,3 +69,117 @@ Tokens and styles:
 Guides: [rating](../../skills/build-ui/components/rating.md)
 
 Code: custom `RadioGroup`
+
+## Review Item
+
+Component · 1 variant · default size 560 × 195
+
+One customer review: who, verified purchase, date, stars, a title and the text, Helpful votes. Long text cuts with Show More. Sort by most helpful by default, with filters by stars. Never edit what customers wrote; replies from the company sit under the review.
+
+**Use for**
+
+- Reviews on a product page under Rating Summary
+- Reviews of an app, a course or a service
+- A review queue in moderation tools
+
+**Not for**
+
+- Quotes chosen for marketing: use Testimonial Card
+- Discussion threads: use Comment
+- Asking for satisfaction: use CSAT Rating
+
+**Anatomy**
+
+1. Header: Avatar, name, Verified Badge (Show verified), date
+2. Rating sm
+3. Title
+4. Text
+5. Helpful (Show helpful): "Helpful?" with Yes and No Buttons
+
+**Content and behavior**
+
+- Long text cuts with Show More
+- Sort by most helpful by default, with filters by stars
+- Never edit what customers wrote; company replies sit under the review
+- Verified only when the purchase is confirmed
+- Dates as day, month, year ("3 Oct 2026")
+
+**Accessibility**
+
+- Code as an <article>; the title is a heading
+- Rating has aria-label="Rated 4 out of 5"
+- Helpful buttons use aria-pressed and include the count in their name
+- Show More uses aria-expanded
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | Mark Schulz |
+| Date | text | 3 Oct 2026 |
+| Title | text | Good fit, thin fabric |
+| Text | text | Fits true to size and the color is exactly as in the photos. The linen is thinner than I expected, so it creases quickly. Washed twice without shrinking. |
+| Show verified | boolean | true |
+| Show helpful | boolean | true |
+
+Built from: `Avatar`, `Badge`, `Button`, `Rating`
+
+Tokens and styles:
+- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/4`
+- Text styles: `body/small`, `ui/caption`, `ui/label`
+
+Guides: [rating](../../skills/build-ui/components/rating.md), [commerce](../../skills/build-ui/patterns/commerce.md)
+
+Code: `<article>` + `Avatar`, `Badge`, `Rating`, ghost `Button`s (Helpful: `aria-pressed`)
+
+## Rating Summary
+
+Component · 1 variant · default size 480 × 104
+
+The average rating with how it splits across 1-5 stars, above the reviews. Each bar row filters the list to that rating. Count says how many reviews it comes from; under 5 reviews show the count only. Bars scale to the share of reviews; resize the fill of each track.
+
+**Use for**
+
+- Above the reviews on a product page
+- App and service rating pages
+- Course or venue pages with reviews
+
+**Not for**
+
+- A rating next to a name or a price: use Rating with value and count
+- Survey results: use Distribution Bar or Bar Chart Horizontal
+- One score without the split: use Figure
+
+**Anatomy**
+
+1. Average: the number, Rating and count ("128 reviews")
+2. Distribution: 5 rows of stars, bar and count
+
+**Content and behavior**
+
+- Each bar row filters the list to that rating
+- Count says how many reviews it comes from
+- Under 5 reviews, show the count only
+- Bars scale to the share of reviews; 5 stars on top
+
+**Accessibility**
+
+- The average reads "4.6 out of 5, 128 reviews"
+- Each row is a button named by stars and count ("5 stars, 92 reviews") with aria-pressed when filtering
+- Bars are aria-hidden; the counts are text
+
+| Property | Type | Default |
+|---|---|---|
+| Average | text | 4.6 |
+| Count | text | 128 reviews |
+
+Built from: `Rating`
+
+Tokens and styles:
+- Colors: `background/muted`, `background/warning`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/8`
+- Radius: `radius/full`
+- Text styles: `display`, `ui/caption`
+
+Guides: [rating](../../skills/build-ui/components/rating.md), [commerce](../../skills/build-ui/patterns/commerce.md)
+
+Code: custom: `Rating` + rows of shadcn `Progress` in `Button`s (Rows set the star filter)

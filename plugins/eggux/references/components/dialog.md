@@ -10,8 +10,9 @@ Usage rules live in the guides linked under each component.
 | [Dialog Header](#dialog-header) | 1 | Media |
 | [Dialog Footer](#dialog-footer) | 1 | Actions |
 | [Alert Dialog](#alert-dialog) | 3 | Header, Footer |
+| [Welcome Dialog](#welcome-dialog) | 3 | - |
 
-On the Figma page: "Example / delete confirmation over a list", "Example / dialog over page", "Example / dialog sizes", "Stress test / Alert Dialog", "Stress test / Dialog"
+On the Figma page: "Example / delete confirmation over a list", "Example / dialog over page", "Example / dialog sizes", "Stress test / Alert Dialog", "Stress test / Dialog", "Stress test / Welcome Dialog"
 
 ## Dialog
 
@@ -172,6 +173,62 @@ Tokens and styles:
 - Radius: `radius/lg`
 - Effects: `shadow/lg`
 
-Guides: [dialog](../../skills/build-ui/components/dialog.md)
+Guides: [dialog](../../skills/build-ui/components/dialog.md), [popover](../../skills/build-ui/components/popover.md)
 
 Code: shadcn `Dialog`, `AlertDialog`
+
+## Welcome Dialog
+
+Component set · 3 variants · default size 480 × 467
+
+A short first-run tour in a dialog, after sign-up or a major release: image, title, one sentence, dots for 2-4 steps, Skip or Back and Next. Each step shows one thing people can do now. Shown once per person; Skip and Esc close it; the last step leads to the first task. Pointing at real UI uses Coachmark.
+
+**Use for**
+
+- First sign-in after sign-up
+- A major release that changes how people work
+- A new area of the product opened for the first time
+
+**Not for**
+
+- Pointing at real UI: use Coachmark
+- Tasks to set up an account: use Block / Onboarding Checklist
+- Small changes: use a Toast or an Announcement Pill
+
+**Anatomy**
+
+1. Image: Image Placeholder (illustration or short animation)
+2. Title: heading/h3
+3. Description: one sentence
+4. Dots: step indicator
+5. Footer: secondary (Skip, or Back after the first step) and primary (Next, last step: the first task)
+
+**Content and behavior**
+
+- 2-4 steps; each shows one thing people can do now
+- Shown once per person; Skip and Esc close it and do not show it again
+- The last step leads to the first task ("Create your first invoice")
+- Step=first shows Skip; middle shows Back; last names the task
+- Help offers a way to open it again
+
+**Accessibility**
+
+- role="dialog" with aria-labelledby on the title; focus starts on the primary button
+- Dots are decorative; the step is in text ("Step 2 of 3") for screen readers
+- The image has alt text or is decorative (alt="")
+
+| Variant property | Values |
+|---|---|
+| Step | first, middle, last |
+
+Built from: `Button`, `Image Placeholder`
+
+Tokens and styles:
+- Colors: `background/default`, `background/primary`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/4`, `spacing/6`
+- Radius: `radius/full`, `radius/lg`
+- Text styles: `body/default`, `heading/h3`
+
+Guides: [dialog](../../skills/build-ui/components/dialog.md)
+
+Code: shadcn `Dialog` with a step state (Shown once per user; Skip and Esc close it)

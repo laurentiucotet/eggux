@@ -10,8 +10,10 @@ Usage rules live in the guides linked under each component.
 | [Map](#map) | 1 | - |
 | [Image Cropper](#image-cropper) | 2 | - |
 | [Avatar Upload](#avatar-upload) | 4 | - |
+| [Image Compare Slider](#image-compare-slider) | 1 | - |
+| [Device Frame](#device-frame) | 2 | Screen |
 
-On the Figma page: "Example / cropping a profile photo", "Example / in map section", "Example / in product card", "Example / profile settings", "Stress test / Image Cropper", "Stress test / Image Cropper and Avatar Upload", "Stress test / Image Placeholder", "Stress test / Map"
+On the Figma page: "Example / cropping a profile photo", "Example / in map section", "Example / in product card", "Example / profile settings", "Stress test / Device Frame", "Stress test / Image Compare Slider", "Stress test / Image Cropper", "Stress test / Image Cropper and Avatar Upload", "Stress test / Image Placeholder", "Stress test / Map"
 
 ## Image Placeholder
 
@@ -115,6 +117,8 @@ Tokens and styles:
 - Radius: `radius/full`, `radius/md`, `radius/sm`, `radius/xl`
 - Text styles: `ui/caption`, `ui/label`
 - Effects: `shadow/md`
+
+Guides: [card](../../skills/build-ui/components/card.md)
 
 ## Image Cropper
 
@@ -224,3 +228,113 @@ Tokens and styles:
 Guides: [file-upload](../../skills/build-ui/components/file-upload.md)
 
 Code: `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input (Crop on the client, upload the result)
+
+## Image Compare Slider
+
+Component · 1 variant · default size 640 × 360
+
+Two images of the same view, before and after, with a handle to drag between them: redesigns, photo edits, document versions, site changes. Drag or arrow keys move the handle; labels say which side is which. Put the images as fills on "before" and "after"; both use the same ratio and framing.
+
+**Use for**
+
+- Redesigns and site changes
+- Photo edits
+- Document versions
+
+**Not for**
+
+- Many images: use Carousel Gallery
+- Text or code changes: use Diff Viewer
+- One image to view large: use Lightbox
+
+**Anatomy**
+
+1. Before image: fill on "before"
+2. After image: fill on "after", in a crop
+3. Divider and handle with chevrons
+4. Before and After labels: Badges
+
+**Content and behavior**
+
+- Both images use the same ratio and framing
+- The handle starts in the middle
+- Labels say which side is which
+- Drag or arrow keys move the handle; on touch only the handle drags, so the page still scrolls
+- A caption says what changed
+
+**Accessibility**
+
+- The handle is role="slider" with aria-valuenow 0-100 and aria-label="Before and after comparison"
+- Arrow keys move 5%, Home and End go to the ends
+- Both images have alt text
+
+Built from: `Badge`. Icons: chevron-left, chevron-right, image
+
+Tokens and styles:
+- Colors: `background/default`, `background/muted`, `border/default`, `foreground/muted`
+- Radius: `radius/full`, `radius/lg`
+- Text styles: `ui/caption`
+- Effects: `shadow/md`
+
+Code: react-compare-slider, or `clip-path` + `<input type="range">` (Handle `role="slider"`, arrow keys)
+
+## Device Frame
+
+Component set · 2 variants · default size 960 × 582
+
+A browser window or a phone around a product screenshot for marketing pages, docs and case studies. Put a real screen (a block or an image) in the Screen slot at 1:1; never stretch it. One frame style per page. Inside the product, show the UI itself, not a frame.
+
+**Use for**
+
+- Block / Hero with Screenshot
+- Feature rows in Block / Features Split
+- Docs and case studies
+
+**Not for**
+
+- Photos and illustrations: use Image Placeholder
+- A product demo with motion: use Video Thumbnail
+- Inside the product: use the real block or component
+
+**Anatomy**
+
+1. Chrome: three dots and the address bar with lock icon (Device=browser)
+2. Address: "app.acme.com/invoices"
+3. Screen slot: a block or an image at 1:1
+4. Device: browser, phone
+
+**Content and behavior**
+
+- A real screen at 1:1; never stretch it
+- One frame style per page
+- The address matches the screen
+- Realistic content (Acme, invoices), no placeholder text
+
+**Accessibility**
+
+- The screenshot has alt text that says what it shows
+- The frame chrome is decorative (aria-hidden)
+- Text inside the screenshot is never the only place for information
+
+| Variant property | Values |
+|---|---|
+| Device | browser, phone |
+
+| Property | Type | Default |
+|---|---|---|
+| Address | text | app.acme.com/invoices |
+
+Slots (fill them in the instance, never detach): `Screen`
+
+Built from: `Image Placeholder`. Icons: lock
+
+Tokens and styles:
+- Colors: `background/default`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
+- Radius: `radius/full`, `radius/lg`
+- Text styles: `ui/caption`
+- Effects: `shadow/lg`
+
+Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
+
+Code: custom `<figure>`: border, top bar (dots, URL), `<img>` or live component (Screenshot at 1:1)

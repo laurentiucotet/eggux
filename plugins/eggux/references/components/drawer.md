@@ -9,8 +9,9 @@ Usage rules live in the guides linked under each component.
 | [Sheet](#sheet) | 2 | Header, Content, Footer |
 | [Drawer](#drawer) | 1 | Header, Content, Footer |
 | [Side Panel](#side-panel) | 2 | Actions, Content, Footer |
+| [Resizable Panels](#resizable-panels) | 1 | Start, End |
 
-On the Figma page: "Example / Editor with collapsed side panel", "Example / Editor with side panel", "Example / bottom drawer on mobile", "Example / sheet over list", "Stress test / Drawer", "Stress test / Sheet", "Stress test / Side Panel"
+On the Figma page: "Example / Editor with collapsed side panel", "Example / Editor with side panel", "Example / bottom drawer on mobile", "Example / sheet over list", "Stress test / Drawer", "Stress test / Resizable Panels", "Stress test / Sheet", "Stress test / Side Panel"
 
 ## Sheet
 
@@ -191,3 +192,55 @@ Tokens and styles:
 Guides: [drawer](../../skills/build-ui/components/drawer.md)
 
 Code: `<aside>` in the page grid + shadcn `Collapsible` (Right `Sheet` below 1024 px; persist the collapsed state)
+
+## Resizable Panels
+
+Component · 1 variant · default size 960 × 400
+
+Two panels with a handle to drag the split: list and detail, editor and preview, code and output. Each panel has a minimum width; double-click the handle to reset. The split is remembered per person. Keyboard: focus the handle and use arrows. On narrow screens show one panel at a time.
+
+**Use for**
+
+- List and detail side by side (inbox, tickets)
+- Editor and preview
+- Code and output, or a query and its results
+
+**Not for**
+
+- A detail that opens on demand over the list: use Sheet
+- A fixed panel of properties next to an editor: use Side Panel
+- Small screens: use a Sheet for the detail over the list
+
+**Anatomy**
+
+1. Start slot: the first panel
+2. Handle: divider with Icon/grip-vertical
+3. End slot: the second panel
+
+**Content and behavior**
+
+- Each panel has a minimum width; content never squeezes below it
+- Double-click the handle to reset the split
+- The split is remembered per person
+- On narrow screens show one panel at a time with a way back
+- A panel can collapse to a rail when dragged past its minimum
+
+**Accessibility**
+
+- The handle has role="separator" with aria-valuenow, aria-valuemin and aria-valuemax
+- Focus the handle and use arrows to resize; Enter collapses or restores
+- The handle has a visible focus ring and a 3:1 contrast against the panels
+
+Slots (fill them in the instance, never detach): `Start`, `End`
+
+Icons: grip-vertical
+
+Tokens and styles:
+- Colors: `background/muted`, `border/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/4`
+- Radius: `radius/lg`
+- Text styles: `body/small`
+
+Guides: [drawer](../../skills/build-ui/components/drawer.md)
+
+Code: shadcn `Resizable` (react-resizable-panels) (`autoSaveId` remembers the split; one panel at a time on mobile)

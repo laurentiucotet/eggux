@@ -7,8 +7,9 @@ Usage rules live in the guides linked under each component.
 | Component | Variants | Slots |
 |---|---|---|
 | [Alert](#alert) | 10 | Actions |
+| [Service Status Row](#service-status-row) | 4 | - |
 
-On the Figma page: "Example / in import mapping", "Stress test / Alert"
+On the Figma page: "Example / in import mapping", "Stress test / Alert", "Stress test / Service Status Row"
 
 ## Alert
 
@@ -78,3 +79,62 @@ Tokens and styles:
 Guides: [alert](../../skills/build-ui/components/alert.md), [card](../../skills/build-ui/components/card.md), [errors-and-recovery](../../skills/build-ui/patterns/errors-and-recovery.md), [feedback-messages](../../skills/build-ui/patterns/feedback-messages.md), [permissions-and-access](../../skills/build-ui/patterns/permissions-and-access.md)
 
 Code: shadcn `Alert`, `Sonner`
+
+## Service Status Row
+
+Component set · 4 variants · default size 720 × 45
+
+One service on a status page or an admin health panel: name, uptime for the last 90 days, current status in words with a dot. Status changes link to the incident. Order services the way customers think about the product, not by internal system names.
+
+**Use for**
+
+- A public status page
+- A health panel in admin
+- The state of connected services on a settings page
+
+**Not for**
+
+- An incident message for the whole page: use Alert
+- A status in a table cell: use Badge
+- One integration with its settings: use Integration Card
+
+**Anatomy**
+
+1. Service: ui/label
+2. Uptime (Show uptime): "99.98% uptime", body/small, muted
+3. Status: Status Dot with a word (Operational, Degraded, Outage, Maintenance)
+
+**Content and behavior**
+
+- Order services the way customers think about the product (Web app, API, Payments), never internal system names
+- Status is always in words; the dot supports it
+- A status other than operational links to the incident
+- Uptime has two decimals over the same 90 days on every row
+- Maintenance says until when, with the time zone, in the incident
+
+**Accessibility**
+
+- Rows are a list or a table; the status word is read with the service name
+- The dot is aria-hidden
+- The incident link names the incident, not "here"
+
+| Variant property | Values |
+|---|---|
+| Status | operational, degraded, outage, maintenance |
+
+| Property | Type | Default |
+|---|---|---|
+| Service | text | Payments API |
+| Uptime | text | 99.98% uptime |
+| Show uptime | boolean | true |
+
+Built from: `Status Dot`
+
+Tokens and styles:
+- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/3`, `spacing/4`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
+
+Code: custom row with `Status Dot`, `flex justify-between` (Data from your status provider; link non-operational states to the incident)

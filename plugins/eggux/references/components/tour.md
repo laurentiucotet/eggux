@@ -8,8 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Coachmark](#coachmark) | 4 | Media |
 | [Hotspot](#hotspot) | 1 | - |
+| [Annotation Pin](#annotation-pin) | 3 | - |
 
-On the Figma page: "Example / new feature hint", "Example / product tour", "Stress test / Coachmark", "Stress test / Hotspot"
+On the Figma page: "Example / filter panel", "Example / new feature hint", "Example / product tour", "Stress test / Annotation Pin", "Stress test / Coachmark", "Stress test / Hotspot"
 
 ## Coachmark
 
@@ -124,3 +125,59 @@ Tokens and styles:
 Guides: [tour](../../skills/build-ui/components/tour.md)
 
 Code: Driver.js, Shepherd or `Popover` anchored to the target
+
+## Annotation Pin
+
+Component set · 3 variants · default size 28 × 28
+
+A numbered marker placed on a design, document or screenshot where a comment lives. The point (bottom-left corner) marks the spot. Click opens the thread in a Popover or the side panel; active is the open one; resolved pins fade and show a check. Numbers match the comment list order.
+
+**Use for**
+
+- Comments on a design, a PDF or a screenshot
+- Review feedback tied to a spot on an image
+- Numbered callouts that match a comment list
+
+**Not for**
+
+- Pointing out a feature in the product: use Hotspot
+- A tour step: use Coachmark
+- Comments on a whole record: use Comment
+
+**Anatomy**
+
+1. Pin: round with the point at the bottom-left corner
+2. Number: the comment's position in the list
+
+**Content and behavior**
+
+- The point (bottom-left corner) marks the spot
+- Numbers match the comment list order
+- Click opens the thread in a Popover or the side panel; State=active is the open one
+- Resolved pins fade and show a check
+- Pins that overlap move apart and stay clickable
+
+**Accessibility**
+
+- Each pin is a button: "Comment 3 by Elena Popa"
+- Tab order follows the numbers; Enter opens the thread
+- Pins are also reachable from the comment list, which is the main way for screen readers
+
+| Variant property | Values |
+|---|---|
+| State | default, active, resolved |
+
+| Property | Type | Default |
+|---|---|---|
+| Number | text | 3 |
+
+Icons: check
+
+Tokens and styles:
+- Colors: `background/default`, `background/muted`, `background/primary`, `foreground/primary`
+- Text styles: `ui/caption`
+- Effects: `shadow/lg`, `shadow/md`
+
+Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
+
+Code: custom absolutely positioned `Button` + shadcn `Popover` (Store positions as percentages of the image)

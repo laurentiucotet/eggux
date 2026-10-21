@@ -294,6 +294,131 @@ Domain-specific needs become Field Presets or Blocks.
 | Enterprise | `Block / Import Mapping` | - | Import stepper, file column → field mapping with samples and status, problems alert, save as template |
 | AI | `Block / AI Chat Empty`, `/ AI Conversation` | - | Welcome with input and starter prompts; conversation with reasoning, tool calls, citations, sources, approval, input |
 | AI | `Block / AI Assistant Panel`, `/ Inline AI` | - | 400-wide copilot panel with context; inline popover with actions and a result to accept |
+| Accordion | `Show More` | State: collapsed, expanded | Text. A long text cut to 3 lines with a Show more / Show less toggle. |
+| Admin | `API Key Row` | - | Name, Meta, Key. One API key or token in developer settings: name, scope, who created it, last use, the masked key, copy and a menu. |
+| Admin | `Integration Card` | Status: available, connected, error | Name, Category, Description, Logo. One app or service in an integrations directory or settings: logo, name, category, a one-line value and its state. |
+| Admin | `Org Chart Node` | State: default, selected, vacant | Name, Role, Reports. One person or open role in an org chart: photo, name, title and the number of direct reports. |
+| Admin | `Permission Row` | Type: row, header | Title, Description. One permission across roles in a role matrix: name, what it allows, and one checkbox per role. |
+| Admin | `SSO Button` | Provider: google, microsoft, saml, email | Sign-in with an identity provider on sign-in and sign-up screens: Google, Microsoft, company SSO (SAML/OIDC) or email. |
+| Admin | `Session Row` | Device: desktop, mobile | Name, Meta. One signed-in device in security settings: device and browser, approximate location, partial IP, last active, and Sign out. |
+| AI Chat | `AI Button` | Variant: default, outline, ghost. State: default, loading | Label. Starts an AI action from where people work: summarize, draft, explain, fill. Sparkles icon and a verb that says what happens. |
+| AI Chat | `AI Loading` | - | Status, Progress, Show progress, Show stop. Placeholder while AI writes an answer or a summary in place: what it is doing now, shimmer lines in the shape of the result, step and time left, Stop. |
+| AI Chat | `Confidence Indicator` | Level: high, medium, low | Show info. Says how sure the AI is about an extracted value, a match or an answer: high, medium or low. |
+| AI Chat | `Suggestion Review Bar` | - | Count, Show bulk actions. Floating bar for reviewing AI edits in a document or form one by one: position, previous and next, accept or reject, and accept or reject all. |
+| Alert | `Service Status Row` | Status: operational, degraded, outage, maintenance | Service, Uptime, Show uptime. One service on a status page or an admin health panel: name, uptime for the last 90 days and the current status in words with a dot. |
+| Audit | `Release Note Item` | Type: new, improved, fixed | Title, Text, Date, Show image, Show link. One entry of a changelog or What's new: type badge, version and date, a title that says the benefit, two sentences on how to use it, optional screenshot and link. |
+| Audit | `Version Item` | State: current, past, selected | Meta, Summary. One saved version in a version history panel: who, when, what changed, and Restore. |
+| Automation | `Automation Rule` | Status: on, off | Name, Meta, Trigger, Condition, Action, Show condition. One automation in a rules list, written as a sentence: When trigger, and condition, then action. |
+| Automation | `Mapping Row` | Status: mapped, unmapped, error | Source, Sample. Maps one source column or field to a target field during import or sync setup: source with a sample, arrow, target Select and status. |
+| Automation | `Workflow Node` | Type: trigger, condition, action. State: default, selected, error | One step on an automation or approval canvas: trigger, condition (branches) or action, with ports to connect steps. |
+| Avatar | `Presence Bar` | - | Who else has this document, record or board open right now: a live dot and their avatars. |
+| Badge | `Announcement Pill` | - | Label, Show tag. A short link above a hero title to the newest launch: "New" tag, one line, arrow. |
+| Badge | `Trust Badge` | - | Name, Detail, Icon. A certification or compliance claim with what backs it: SOC 2, ISO 27001, GDPR, PCI DSS. |
+| Brand | `Logo Tile` | Style: bordered, plain | Name. A customer or partner logo in a tile for logo clouds, integration grids and case study lists. |
+| Button | `Social Share` | - | Label, Show label, Show networks. Share buttons for a public page: copy link, email, the system share sheet and up to three networks. |
+| Card | `Link Preview` | Layout: horizontal, vertical | Domain, Title, Description, Show image. A pasted URL shown as a card in comments, chat, notes and editors: site, title, description and image from the page metadata. |
+| Card | `Location Card` | - | City, Address, Show tag. One office, store or venue: city, tag, full address, phone, hours and a directions link. |
+| Chart | `Bullet Chart` | - | Title, Unit, Value, Target. One measure against its target and bands (poor, fair, good) in one line: revenue vs plan, SLA vs goal. |
+| Chart | `Choropleth Map` | - | Values by region on a map, shaded from light (low) to dark (high): revenue by county, customers by country. |
+| Chart | `Dashboard Widget` | - | Title, Period, Updated, Show footer, Content (slot). A movable, resizable tile on a customizable dashboard: drag handle, title, period, refresh, expand and menu, any chart or KPI in Content. |
+| Chart | `Distribution Bar` | - | Title, Total, Show legend. Parts of one whole as a single 100% bar: invoices by status, budget by category, storage by type. |
+| Chart | `Radar Chart` | - | Compares 1-3 items across 5-8 qualities on the same scale: vendor scores, skill profiles, plan features. |
+| Chart | `Sankey Chart` | - | How amounts flow from sources to outcomes: payment method to paid or overdue, traffic source to sign-up, budget to spend. |
+| Chat | `Mention Chip` | State: default, you | Name. A person mentioned in text (comments, chat, notes): @ and the name on a tinted chip, inline with the text. |
+| Chat | `Reaction` | State: default, reacted | Emoji, Count. One emoji reaction with its count; State=reacted when the reader added it. Part of Reaction Bar. |
+| Chat | `Reaction Bar` | - | Reactions (slot). Reactions under a comment or message: one Reaction per emoji with its count, then a button that opens the Emoji Picker. |
+| Chat | `Thread Summary` | - | Replies, Last. Collapsed replies under a comment or message: who replied, how many and when the last one came. |
+| Code Block | `Command Snippet` | - | Command, Show prompt. One command or value people copy into a terminal or config: install line, CLI command, environment variable. |
+| Code Block | `Diff Line` | Type: context, added, removed | Text, Line. One line of a diff: number, marker, sign and text. Part of Diff Viewer. |
+| Code Block | `Diff Viewer` | - | File, Lines (slot). What changed between two versions of a text, contract, config or code: file name with counts, then Diff Lines. |
+| Code Block | `Endpoint Row` | Method: GET, POST, PUT, PATCH, DELETE | Path, Summary. One API endpoint in a reference list: method badge, path in mono with parameters in braces, and a one-line summary. |
+| Code Block | `JSON Viewer` | - | Structured data people inspect: webhook payloads, API responses, event properties, audit details. Objects and arrays collapse. |
+| Code Block | `Log Row` | Level: debug, info, warn, error | Time, Message. One line of a log or event stream: time with milliseconds, level and message in mono. |
+| Color Picker | `Swatch` | State: default, selected | One color to pick, 28 px: a dot of the color with a ring when selected. Part of Swatch Picker. |
+| Color Picker | `Swatch Picker` | - | Label, Show label, Swatches (slot). A short set of colors for labels, categories, calendars and project avatars, with the name of the selected one. |
+| Commerce | `Address Card` | Selected: false, true | Name, Address, Show default, Show radio. A saved address to pick or manage: name, address lines, phone, Default badge, Edit and Remove. |
+| Commerce | `Line Item` | Layout: cart, summary | Name, Variant, Total. One product in a cart, checkout summary, order or invoice: image, name, variant, quantity and line total. |
+| Commerce | `Mini Cart` | - | Items (slot). The cart in a popover after Add to cart or from the cart icon: items, subtotal, View cart and Checkout. |
+| Commerce | `Order Row` | Status: processing, shipped, delivered, cancelled | Number, Meta, Total. One order in an account's order history: number, date, item count, status, total and a chevron to the order page. |
+| Commerce | `Payment Method Card` | State: default, expired | Card, Brand. A saved card, bank account or wallet in billing settings or checkout: brand, last 4 digits, expiry, Default badge and a menu. |
+| Commerce | `Quantity Selector` | Size: sm, default. State: default, min | Value. Change a quantity in steps of one: minus, the number, plus; the number is also typeable. |
+| Commerce | `Shipment Tracker` | - | ETA, Carrier. Where an order is: the expected day first, carrier and tracking number, then the steps with dates. |
+| Commerce | `Stock Indicator` | Level: in stock, low, out | Availability of a product or variant: in stock, low with the number left, or out of stock. |
+| Commerce | `Variant Swatch` | Type: color, size. State: default, selected, unavailable | Label. One option of a product variant: a color dot or a size box. |
+| Commerce | `Wishlist Button` | Saved: false, true | Save a product for later: heart outline, filled when saved. |
+| Dialog | `Welcome Dialog` | Step: first, middle, last | A short first-run tour in a dialog, after sign-up or a major release: image, title, one sentence and 2-4 steps. |
+| Drawer | `Resizable Panels` | - | Start (slot), End (slot). Two panels with a handle to drag the split: list and detail, editor and preview, code and output. |
+| Feature Item | `Step Item` | Layout: vertical, horizontal | Number, Title, Description. One step of "How it works" on a marketing or onboarding page: number, short title, one sentence. |
+| File Upload | `File Field` | State: empty, selected, error | File name, Error. One file as a form field: Choose file, then the name and size, with remove. |
+| Filters | `Saved View Item` | State: default, hover, active | Name, Show shared, Show count. One saved filter set (a view) in a list or sidebar: name, shared icon and item count. |
+| Form Layout | `Error Summary` | - | Title, Errors (slot). At the top of a long form after a failed submit: how many fields need a fix and a link to each. |
+| Form Layout | `Fieldset` | State: default, error | Legend, Description, Show description, Error, Options (slot). A group of related controls with one label: checkboxes, radios, the parts of an address or a date. |
+| Form Layout | `Form Section` | Layout: side, stacked | Title, Description, Show description, Show divider, Fields (slot). One group of a long form or settings page: title and a sentence on the left, the fields on the right. |
+| Form Layout | `Requirement Item` | State: met, pending, failed | Label. One rule and whether it is met: check, dash or x. Part of Requirement List. |
+| Form Layout | `Requirement List` | - | Title, Show title, Items (slot). Rules checked live while people type or before they publish: password rules, import checks, what a listing needs. |
+| Image | `Device Frame` | Device: browser, phone | Address, Screen (slot). A browser window or a phone around a product screenshot for marketing pages, docs and case studies. |
+| Image | `Image Compare Slider` | - | Two images of the same view, before and after, with a handle to drag between them. |
+| Input | `Copy Field` | State: default, copied | Value. A read-only value people copy and paste elsewhere: API key, invite link, webhook URL, reference code. |
+| Input | `Currency Input` | State: default, focus, error, disabled | Amount, Currency. An amount with its currency: a currency picker on the left and the amount right-aligned in the locale format. |
+| Input | `Date Input` | State: default, focus, error, disabled | Day, Month, Year. A date people type in day, month and year segments, with a calendar button that opens Date Picker. |
+| Input | `Duration Input` | State: default, focus, error | Hours, Minutes. A length of time in hours and minutes for time entries, SLAs, reminders and meeting length. |
+| Input | `Inline Form` | State: default, error, success | Hint, Error, Success message, Show hint. One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag. |
+| Input | `Phone Input` | State: default, focus, error, disabled | Country, Number. Phone number with a country code picker; formats as people type and stores the number in E.164. |
+| Input | `Range Fields` | State: default, error | Min, Max, Unit. Two fields for a minimum and a maximum: price or amount filters, typed date ranges, quantities. |
+| Input | `Search Field` | State: default, focus, filled | Placeholder, Query, Show shortcut. Search box for a list, a table or the whole app: search icon, a placeholder that names what is searched, a shortcut hint and clear. |
+| Kbd | `Shortcut Row` | - | Action. One keyboard shortcut in the shortcuts dialog or a help page: what it does, then the keys. |
+| List & Tree | `Checklist Item` | State: open, done, overdue | Title, Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
+| List & Tree | `Job Listing` | - | Title, Meta, Location, Posted, Salary, Show badge, Show salary. One open role in a careers list: title, team, type and work mode, location, posted date, salary range and Apply. |
+| Menu | `Account Menu` | - | Name, Email. The menu behind the signed-in person's avatar: name and email, personal settings, and Log out. |
+| Metrics | `Countdown` | - | Days, Hours, Minutes, Seconds, Show seconds. Time left until a deadline people act on: an offer, a webinar start, a payment due, a session that expires. |
+| Metrics | `Leaderboard Row` | State: default, current | Rank, Name, Value. A ranked person or team: rank, avatar, name and value. |
+| Metrics | `Metric Strip` | - | Metrics (slot). A row of 3-5 key figures at the top of a dashboard, report or record page, lighter than Stat Cards: label, value, trend, dividers between. |
+| Metrics | `Metric Strip Item` | Divider: false, true | Label, Value, Show trend. One figure in a Metric Strip: label, value and an optional Trend Indicator. |
+| Metrics | `Trend Indicator` | Direction: up, down, flat. Tone: positive, negative, neutral | Comparison, Show comparison. A change against a period: arrow, signed percent or amount, and what it is compared to. Direction says which way it moved; Tone says if that is good, bad or neither. |
+| Metrics | `Usage Meter` | Level: normal, near, over | Label, Show hint. How much of a plan limit is used: seats, storage, API calls, documents per month. Label, used of limit, bar and a hint. |
+| Mobile | `Action Sheet` | - | Title, Description, Show header. A short list of actions for one item on mobile, rising from the bottom, with Cancel apart. |
+| Mobile | `FAB` | Type: icon, extended | Label, Icon. Floating action button for the one main action on a mobile screen: new invoice, compose, add. |
+| Navigation | `Back Link` | State: default, hover | Label. A link above the page title back to the list the record came from: "All invoices" with a left arrow. |
+| Navigation | `Page Toolbar` | - | Show search, Show filters, Show view, Show primary. The row between a list page title and the list: search and Filters on the left, View Switcher and the primary action on the right. |
+| Navigation | `Scroll To Top` | - | Floating button bottom right on long pages that takes people back to the top. |
+| Navigation | `Skip Link` | - | First focusable element of every page, hidden until it gets keyboard focus, that jumps to the main content. |
+| Notifications | `Notification Center` | - | Items (slot). The panel behind the bell in the top bar: latest notifications by type, newest first, with Mark all as read and View all. |
+| Notifications | `Notification Item` | Read: false, true | Message, Meta, Show actions, Actions (slot). One notification: who did what to which object, when and where, with an unread dot and optional actions. |
+| Pagination | `Load More` | State: default, loading | Count, Label. End of a feed or a long list that grows in place: how many are shown out of the total, and a button for the next page. |
+| Popover | `App Launcher` | - | Grid of the products in a suite, opened from a layout-grid Button Icon in the top bar. |
+| Popover | `Confirm Popover` | Tone: default, destructive | Title, Description. A small confirmation next to the button that triggered it, for actions with some cost that do not need a dialog. |
+| Popover | `Emoji Picker` | - | Searchable grid of emoji for reactions, a status or a workspace icon, opened in a Popover. |
+| Pricing | `Check List Item` | Included: true, false | Label. One feature in a plan or a comparison: a check when included, a dash and muted text when not. |
+| Pricing | `Plan Card` | Featured: false, true | Plan, Description, Features title, Features (slot). One plan in a pricing section: name, who it is for, Price, the main action and what it adds as Check List Items. |
+| Pricing | `Price` | Size: sm, default, lg | Amount, Old price, Period, Show old price, Show period. A price as people compare it: amount with currency, period, and the old price struck through during a discount. |
+| Pricing | `Pricing Toggle` | Period: monthly, yearly | Show saving. Monthly or yearly switch above plan cards, with what the yearly period saves. |
+| Progress | `Job Item` | State: running, done, failed | Title. A task that runs in the background (export, import, bulk send, report): name, progress with count and time left, Cancel; Download when done, Retry when failed. |
+| Quote | `Footnote` | - | Number, Text, Show back link. A numbered note at the end of an article, report or pricing page that explains a claim in the text. |
+| Quote | `Testimonial Card` | - | Quote, Show rating. One customer quote as a card for testimonial grids and carousels: optional rating, the quote with a specific result, Byline. |
+| Rating | `Rating Summary` | - | Average, Count. The average rating with how it splits across 1-5 stars, above the reviews. |
+| Rating | `Review Item` | - | Name, Date, Title, Text, Show verified, Show helpful. One customer review: who, verified purchase, date, stars, a title, the text and Helpful votes. |
+| Scheduler | `Agenda Item` | State: upcoming, now, past | Title, Start, End, Meta. One event in a day agenda: start and end time, a color bar for the calendar, title, place and people. |
+| Scheduler | `Availability Row` | Available: true, false | Day. Working hours for one weekday in booking and team settings: on/off Switch, the day, one or more time ranges and a button to add a range. |
+| Scheduler | `Meeting Card` | State: upcoming, live | Title. A meeting people are about to join: title, time with time zone, place or video link, who is invited, Join and Details. |
+| Scheduler | `Time Slot` | State: default, hover, selected, disabled | Time. One bookable start time in a booking flow, shown in a grid under the chosen day. |
+| Search | `Search Result Item` | - | Title, Snippet, Show path, Show meta. One result on a search page: path, title link, a two-line snippet with the matched words, type and date. |
+| Select | `Address Autocomplete` | - | Query, Show suggestions. Address field with suggestions as people type; a pick fills the address fields below it. |
+| Select | `Language Switcher` | State: closed, open | Language. Choose the interface language: globe, the current language in its own name and a list of languages. |
+| Select | `Recurrence Picker` | Frequency: daily, weekly, monthly | Show summary. How often something repeats: interval and unit, the days or the day, when it ends, and a summary sentence. |
+| Select | `Select Option` | Leading: icon, avatar, none. State: default, highlighted | Title, Description, Show description, Checked, Icon. A rich option in a Select, Combobox or Menu list: icon or avatar, title, a muted second line and a check when selected. |
+| Selection controls | `Checkbox Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description. A checkbox with more context, as a card: several can be on and the whole card toggles. |
+| Sharing | `Access Row` | Role: editable, owner, pending | Name, Email. One person or group with access to an object in a share dialog: avatar, name and email, and their role. |
+| Sharing | `Invite Row` | - | Show role. Adds people to an object or a workspace: email or name with suggestions from the directory, the role they get, and Invite. |
+| Sharing | `Share Link Row` | Access: restricted, anyone | General access of an object at the bottom of a share dialog: who can open the link, and Copy link. |
+| Spinner | `Loading Overlay` | - | Label, Show label. Covers one region while its content reloads, keeping the old content faded underneath, with a Spinner and a short label. |
+| Surveys | `CSAT Rating` | State: unanswered, answered | Question. Customer satisfaction after one interaction: five faces with words under them; one tap sends it. |
+| Surveys | `Feedback Widget` | State: ask, comment, thanks | Question. A one-tap question at the end of a help article, an AI answer or a finished task: Yes or No, then an optional comment, then thanks. |
+| Surveys | `NPS Survey` | State: unanswered, answered | Question. Net Promoter Score: a 0-10 scale with anchors, then one optional open question. |
+| Toggle Group | `Theme Toggle` | Value: light, dark, system | Light, dark or follow the system: three icon buttons with tooltips. |
+| Toggle Group | `View Switcher` | View: list, board, calendar. Labels: true, false | Switch how one set of records is shown: list, board or calendar. |
+| Tour | `Annotation Pin` | State: default, active, resolved | Number. A numbered marker on a design, document or screenshot where a comment lives. |
+| Video | `Audio Player` | - | Title, Current, Length. Plays one audio file: podcast episode, voice message, recorded call. |
+| Video | `Video Thumbnail` | - | Show duration. A video before it plays: poster frame, play button and duration. |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,

@@ -7,8 +7,10 @@ Usage rules live in the guides linked under each component.
 | Component | Variants | Slots |
 |---|---|---|
 | [Video Player](#video-player) | 3 | - |
+| [Video Thumbnail](#video-thumbnail) | 1 | - |
+| [Audio Player](#audio-player) | 1 | - |
 
-On the Figma page: "Example / getting started video", "Stress test / Video Player"
+On the Figma page: "Example / getting started video", "Stress test / Audio Player", "Stress test / Video Player", "Stress test / Video Thumbnail"
 
 ## Video Player
 
@@ -74,3 +76,112 @@ Tokens and styles:
 Guides: [video-player](../../skills/build-ui/components/video-player.md)
 
 Code: native `video` or Vidstack
+
+## Video Thumbnail
+
+Component · 1 variant · default size 360 × 203
+
+A video before it plays: poster frame, play button, duration. Click opens the Video Player in place or in a Lightbox. Title and description go under it in the card or list. The poster shows something from the video, never only a logo.
+
+**Use for**
+
+- Video cards in a resource hub
+- Tutorial lists
+- A demo link in a Hero or a feature section
+
+**Not for**
+
+- Playing the video: use Video Player
+- Images that open large: use Lightbox
+- Audio only: use Audio Player
+
+**Anatomy**
+
+1. Image Placeholder 16:9 (poster)
+2. Play button: play icon
+3. Duration Badge (Show duration)
+
+**Content and behavior**
+
+- Click opens the Video Player in place or in a Lightbox
+- Title and description go under it in the card or list
+- The poster shows something from the video, never only a logo
+- Duration in m:ss; same ratio across a list
+
+**Accessibility**
+
+- A button named by the video and its length ("Play: Closing the books faster, 4 minutes")
+- The play icon is aria-hidden; the duration is text
+- Visible focus ring over the image
+
+| Property | Type | Default |
+|---|---|---|
+| Show duration | boolean | true |
+
+Built from: `Badge`, `Image Placeholder`. Icons: play
+
+Tokens and styles:
+- Colors: `background/default`
+- Radius: `radius/full`, `radius/lg`
+- Effects: `shadow/md`
+
+Guides: [video-player](../../skills/build-ui/components/video-player.md)
+
+Code: `<button>` + `<img>` poster, lucide `Play`, `Badge` (Opens `Video Player` in place or in a `Dialog`)
+
+## Audio Player
+
+Component · 1 variant · default size 480 × 68
+
+Plays one audio file: podcast episode, voice message, recorded call. Play/pause, title, position and length, a seek bar, volume. Space toggles play; arrows seek 5 s. Offer a transcript link next to it. Video uses Video Player.
+
+**Use for**
+
+- Podcast episodes
+- Voice messages in chat
+- Recorded calls in a record
+
+**Not for**
+
+- Video: use Video Player
+- Recording audio: use Voice Recorder
+- A list of episodes to pick from: use List Item
+
+**Anatomy**
+
+1. Play: Button Icon (play, pause)
+2. Title
+3. Progress: current time, seek bar, length
+4. Volume: Button Icon
+
+**Content and behavior**
+
+- Space toggles play; arrows seek 5 s
+- Offer a transcript link next to it
+- One player plays at a time; never autoplay
+- Times in m:ss, h:mm:ss past an hour
+- Title in one line
+
+**Accessibility**
+
+- The play button name follows the state ("Play", "Pause")
+- The seek bar is role="slider" with aria-valuetext ("4 minutes 12 seconds of 14 minutes 30 seconds")
+- The volume button is named "Mute" or "Unmute"
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Episode 12: Closing the books faster |
+| Current | text | 04:12 |
+| Length | text | 14:30 |
+
+Built from: `Button Icon`
+
+Tokens and styles:
+- Colors: `background/card`, `background/muted`, `background/primary`, `border/default`, `foreground/card`, `foreground/muted`
+- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/full`, `radius/lg`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md), [video-player](../../skills/build-ui/components/video-player.md)
+
+Code: native `<audio>` + custom controls (shadcn `Button`, `Slider`), or Vidstack (Space play / pause, arrows seek 5 s)

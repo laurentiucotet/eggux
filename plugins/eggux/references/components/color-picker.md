@@ -7,8 +7,10 @@ Usage rules live in the guides linked under each component.
 | Component | Variants | Slots |
 |---|---|---|
 | [Color Picker](#color-picker) | 1 | Swatches |
+| [Swatch Picker](#swatch-picker) | 1 | Swatches |
+| [Swatch](#swatch) | 2 | - |
 
-On the Figma page: "Example / color field", "Stress test / Color Picker"
+On the Figma page: "Stress test / Color Picker", "Stress test / Swatch Picker"
 
 ## Color Picker
 
@@ -61,3 +63,99 @@ Tokens and styles:
 Guides: [color-picker](../../skills/build-ui/components/color-picker.md)
 
 Code: react-colorful in `Popover`
+
+## Swatch Picker
+
+Component · 1 variant · default size 252 × 52
+
+A short set of colors for labels, categories, calendars and project avatars: 6-10 Swatches from the chart palette in the Swatches slot, one selected, its name under them. Free colors (brand, themes) use Color Picker. Colors stay readable in dark mode because they come from chart tokens.
+
+**Use for**
+
+- Label and tag colors
+- Calendar and category colors
+- Project or workspace avatar colors
+
+**Not for**
+
+- Any color (brand, themes): use Color Picker
+- Presets plus a custom color: use Color Picker with its Swatches slot
+
+**Anatomy**
+
+1. Swatches slot: 6-10 Swatches
+2. Label (Show label): the name of the selected color
+
+**Content and behavior**
+
+- 6-10 colors from the chart palette; one selected
+- Colors come from chart tokens so they stay readable in dark mode
+- Same order everywhere the palette appears
+- Show the name under the swatches; never rely on color alone
+
+**Accessibility**
+
+- A radiogroup with a label ("Label color"); arrow keys move between swatches
+- Each swatch is labelled with its color name
+- Items that use the color also show a name or icon
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Blue |
+| Show label | boolean | true |
+
+Slots (fill them in the instance, never detach): `Swatches`
+
+Built from: `Swatch`
+
+Tokens and styles:
+- Colors: `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`
+- Text styles: `ui/caption`
+
+Guides: [color-picker](../../skills/build-ui/components/color-picker.md)
+
+Code: shadcn `RadioGroup` (or `ToggleGroup` single) of round items with chart token backgrounds (Color name as label)
+
+## Swatch
+
+Component set · 2 variants · default size 28 × 28
+
+One color to pick, 28 px: a dot of the color, a ring when selected. Override the fill of the "color" layer with a chart or brand token. Part of Swatch Picker.
+
+**Use for**
+
+- Inside Swatch Picker
+- Preset colors in the Swatches slot of Color Picker
+
+**Not for**
+
+- Any color, typed or picked freely: use Color Picker
+
+**Anatomy**
+
+1. Color: a dot filled with a chart or brand token
+2. Ring (State=selected)
+
+**Content and behavior**
+
+- State: default, selected
+- Override the fill of the "color" layer with a chart or brand token, never a raw hex
+- The ring is visible on light and dark backgrounds
+
+**Accessibility**
+
+- A button or radio with the color name as its label ("Blue")
+- Focus ring and selected ring look different
+
+| Variant property | Values |
+|---|---|
+| State | default, selected |
+
+Tokens and styles:
+- Colors: `chart/1`, `foreground/default`
+- Radius: `radius/full`
+
+Guides: [color-picker](../../skills/build-ui/components/color-picker.md)
+
+Code: shadcn `RadioGroup` (or `ToggleGroup` single) of round items with chart token backgrounds (Color name as label)

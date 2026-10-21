@@ -8,8 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Progress](#progress) | 20 | - |
 | [Progress Ring](#progress-ring) | 15 | - |
+| [Job Item](#job-item) | 3 | - |
 
-On the Figma page: "Example / in onboarding checklist", "Example / uploads in progress", "Stress test / Progress", "Stress test / Progress Ring"
+On the Figma page: "Example / in onboarding checklist", "Example / uploads in progress", "Stress test / Job Item", "Stress test / Progress", "Stress test / Progress Ring"
 
 ## Progress
 
@@ -121,3 +122,64 @@ Tokens and styles:
 Guides: [progress-and-slider](../../skills/build-ui/components/progress-and-slider.md)
 
 Code: SVG circle with `stroke-dasharray` (or Radix Progress) (`role="progressbar"`, `aria-valuenow`)
+
+## Job Item
+
+Component set · 3 variants · default size 400 × 82
+
+A task that runs in the background (export, import, bulk send, report): name, progress with count and time left, cancel; done offers the result (Download); failed says where it stopped and offers Retry. Stacked in a panel or a corner; people keep working. A notification when it finishes if they left the page.
+
+**Use for**
+
+- Exports and imports that take more than about 10 seconds
+- Bulk actions on many records
+- Reports the server builds
+
+**Not for**
+
+- Short reloads of a region: use Loading Overlay
+- A file the person uploads: use File Item
+- A short note that something started: use Toast
+- A goal against a target: use Progress Card
+
+**Anatomy**
+
+1. Icon tile: what the job does (download, upload, send)
+2. Title: ui/label, the job and format ("Export invoices (CSV)")
+3. Progress bar (State=running)
+4. Status: count and time left, the result, or where it failed; body/small, muted
+5. Action: Cancel Button Icon while running; Download when done; Retry when failed
+
+**Content and behavior**
+
+- Running shows count and time left ("1,240 of 3,000 · about 2 min left"); an indeterminate bar when the total is unknown
+- Done offers the result (Download) and stays until dismissed
+- Failed says where it stopped ("Stopped at row 1,241: invalid date") and offers Retry
+- Stack jobs in a panel or a corner, newest on top; people keep working
+- Notify when it finishes if they left the page
+
+**Accessibility**
+
+- The bar has role="progressbar" with aria-valuenow and aria-valuetext ("1,240 of 3,000")
+- Done and failed are announced in a polite live region ("Export ready")
+- Cancel is named with the job ("Cancel export invoices"); failed status is text plus an icon
+
+| Variant property | Values |
+|---|---|
+| State | running, done, failed |
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Export invoices (CSV) |
+
+Built from: `Button`, `Button Icon`, `Progress`. Icons: circle-alert, circle-check, download
+
+Tokens and styles:
+- Colors: `background/card`, `background/destructive`, `background/muted`, `border/default`, `foreground/card`, `foreground/muted`
+- Spacing and size: `spacing/1_5`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [loading-states](../../skills/build-ui/patterns/loading-states.md), [notifications](../../skills/build-ui/patterns/notifications.md)
+
+Code: custom row: shadcn `Progress` + `Button` (Status by polling or server-sent events; notify when done)

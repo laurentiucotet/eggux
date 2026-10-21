@@ -9,8 +9,12 @@ Usage rules live in the guides linked under each component.
 | [Chat Message](#chat-message) | 2 | - |
 | [Typing Indicator](#typing-indicator) | 1 | - |
 | [Chat Composer](#chat-composer) | 1 | - |
+| [Mention Chip](#mention-chip) | 2 | - |
+| [Reaction Bar](#reaction-bar) | 1 | Reactions |
+| [Reaction](#reaction) | 2 | - |
+| [Thread Summary](#thread-summary) | 1 | - |
 
-On the Figma page: "Example / in conversation", "Stress test / Chat Composer", "Stress test / Chat Message", "Stress test / Typing Indicator"
+On the Figma page: "Example / in conversation", "Stress test / Chat Composer", "Stress test / Chat Message", "Stress test / Mention Chip", "Stress test / Reaction Bar", "Stress test / Thread Summary", "Stress test / Typing Indicator"
 
 ## Chat Message
 
@@ -165,3 +169,207 @@ Tokens and styles:
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md), [rich-text-editor](../../skills/build-ui/components/rich-text-editor.md)
 
 Code: custom
+
+## Mention Chip
+
+Component set · 2 variants · default size 82 × 22
+
+A person mentioned in text (comments, chat, notes): @ and the name on a tinted chip, inline with the text. Mentions of the reader (you) stand out in warning. Hover shows a Hover Card; the mention notifies the person. Typed with @ and picked from a list of people with access.
+
+**Use for**
+
+- Comments
+- Chat messages
+- Notes and task descriptions
+
+**Not for**
+
+- Filters people remove: use Chip
+- A label or a category: use Badge
+- The author of something: use Byline
+
+**Anatomy**
+
+1. Name: "@Maria Ilie" on a tinted background; State=you in warning
+
+**Content and behavior**
+
+- Typed with @ and picked from a list of people with access
+- Mentioning someone without access asks to share first
+- Mentions of the reader stand out in warning (State=you)
+- Hover shows a Hover Card; the mention notifies the person once
+- The full name shows on one line; it never truncates
+
+**Accessibility**
+
+- The chip is a link named with the person ("Maria Ilie"); the Hover Card also opens on focus
+- Text on the tint meets 4.5:1 in both states
+- The "you" state is also in the name for screen readers ("Maria Ilie, you")
+
+| Variant property | Values |
+|---|---|
+| State | default, you |
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | @Maria Ilie |
+
+Tokens and styles:
+- Colors: `background/accent`, `background/warning`, `foreground/accent`, `foreground/warning`
+- Spacing and size: `spacing/1`
+- Radius: `radius/sm`
+- Text styles: `ui/label`
+
+Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md), [notifications](../../skills/build-ui/patterns/notifications.md)
+
+Code: Tiptap `Mention` extension + `Command` list; rendered as `<a>` (Mention notifies once; reader mentions use the warning tint)
+
+## Reaction Bar
+
+Component · 1 variant · default size 178 × 32
+
+Reactions under a comment or message: one Reaction per emoji with its count, then a button that opens the Emoji Picker. Tapping a Reaction adds or removes the reader's own. Hover lists who reacted. Keep reactions for acknowledgement; decisions still go in a reply.
+
+**Use for**
+
+- Under comments
+- Under chat messages
+- Under announcements and posts
+
+**Not for**
+
+- Decisions and approvals: use a reply in Comment, or Approval Step
+- Feedback on an AI answer: use Response Feedback
+- Rating content: use Rating
+
+**Anatomy**
+
+1. Reactions slot: Reactions
+2. Add reaction: Button Icon that opens the Emoji Picker
+
+**Content and behavior**
+
+- One Reaction per emoji, in the order they were first used
+- Tapping a Reaction adds or removes the reader's own
+- Hover lists who reacted (up to 10 names, then "and N others")
+- With no reactions, only the add button shows, on hover or focus of the message
+- Reactions are for acknowledgement; decisions still go in a reply
+
+**Accessibility**
+
+- A group with aria-label "Reactions"
+- Add reaction has aria-label "Add reaction"; focus returns to it when the picker closes
+- Each Reaction is a toggle (aria-pressed)
+
+Slots (fill them in the instance, never detach): `Reactions`
+
+Built from: `Button Icon`, `Reaction`
+
+Tokens and styles:
+- Spacing and size: `spacing/1`
+
+Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
+
+Code: custom flex of shadcn `Toggle` (`aria-pressed`) + `Popover` emoji picker (emoji-mart or frimousse)
+
+## Reaction
+
+Component set · 2 variants · default size 46 × 28
+
+One emoji reaction with its count; reacted when the reader added it. Part of Reaction Bar.
+
+**Use for**
+
+- Inside a Reaction Bar only
+
+**Not for**
+
+- Feedback on an AI answer: use Response Feedback
+
+**Anatomy**
+
+1. Emoji
+2. Count: tabular numbers
+
+**Content and behavior**
+
+- Tapping it adds or removes the reader's own reaction
+- Reacted is tinted so the reader sees their own
+- At count 0 the Reaction is removed
+
+**Accessibility**
+
+- A toggle button with aria-pressed, named with emoji and count ("Thumbs up, 4 reactions")
+- Hover and focus list who reacted
+
+| Variant property | Values |
+|---|---|
+| State | default, reacted |
+
+| Property | Type | Default |
+|---|---|---|
+| Emoji | text | 👍 |
+| Count | text | 4 |
+
+Tokens and styles:
+- Colors: `background/accent`, `background/primary`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`
+- Radius: `radius/full`
+- Text styles: `ui/label`
+
+Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
+
+Code: custom flex of shadcn `Toggle` (`aria-pressed`) + `Popover` emoji picker (emoji-mart or frimousse)
+
+## Thread Summary
+
+Component · 1 variant · default size 254 × 24
+
+Collapsed replies under a comment or message: who replied, how many, when the last one came. Opens the thread in place or in a side panel. Unread replies make the count bold with a dot.
+
+**Use for**
+
+- Comment threads
+- Chat threads
+- Discussions in an activity feed
+
+**Not for**
+
+- Showing the replies in full: use Comment
+- A count on an icon: use Badge Count
+- Who has access: use Avatar Group
+
+**Anatomy**
+
+1. Repliers: Avatar Group, up to 3
+2. Replies: "3 replies", ui/label, link color
+3. Last: "Last reply 2 h ago", ui/caption, muted
+
+**Content and behavior**
+
+- Opens the thread in place or in a side panel
+- Unread replies make the count bold with a dot
+- Count uses singular and plural ("1 reply", "3 replies")
+- Last reply time is relative; the exact time shows on hover
+
+**Accessibility**
+
+- A button with aria-expanded when it opens in place
+- The name reads count and time ("3 replies, last reply 2 hours ago")
+- Unread is in text ("2 new"), not only bold and a dot
+
+| Property | Type | Default |
+|---|---|---|
+| Replies | text | 3 replies |
+| Last | text | Last reply 2 h ago |
+
+Built from: `Avatar Group`
+
+Tokens and styles:
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
+
+Code: custom button + `Avatar` group; `Collapsible` or `Sheet` (`aria-expanded` when it opens in place)

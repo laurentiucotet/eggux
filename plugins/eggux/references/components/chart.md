@@ -23,8 +23,14 @@ Usage rules live in the guides linked under each component.
 | [Chart Card](#chart-card) | 1 | Actions, Chart |
 | [Waterfall Chart](#waterfall-chart) | 1 | - |
 | [Combo Chart](#combo-chart) | 1 | - |
+| [Dashboard Widget](#dashboard-widget) | 1 | Content |
+| [Distribution Bar](#distribution-bar) | 1 | - |
+| [Bullet Chart](#bullet-chart) | 1 | - |
+| [Radar Chart](#radar-chart) | 1 | - |
+| [Sankey Chart](#sankey-chart) | 1 | - |
+| [Choropleth Map](#choropleth-map) | 1 | - |
 
-On the Figma page: "Example / activity by weekday and hour", "Example / cash bridge", "Example / in analytics", "Example / in bento grid", "Example / invoice flow", "Example / payment behavior", "Example / quarter target", "Example / revenue by product", "Example / spend by vendor", "Example / trend next to a metric", "Example / values on hover", "Example / volume and on-time rate", "Stress test / Bar Chart", "Stress test / Bar Chart Horizontal", "Stress test / Chart Card", "Stress test / Chart Legend", "Stress test / Chart Tooltip", "Stress test / Combo Chart", "Stress test / Donut Chart", "Stress test / Funnel and Scatter", "Stress test / Gauge", "Stress test / Heatmap", "Stress test / Line Chart", "Stress test / Scatter Chart", "Stress test / Sparkline", "Stress test / Treemap", "Stress test / Waterfall Chart"
+On the Figma page: "Example / activity by weekday and hour", "Example / cash bridge", "Example / in analytics", "Example / in bento grid", "Example / invoice flow", "Example / payment behavior", "Example / quarter target", "Example / revenue by product", "Example / spend by vendor", "Example / trend next to a metric", "Example / values on hover", "Example / volume and on-time rate", "Stress test / Bar Chart", "Stress test / Bar Chart Horizontal", "Stress test / Bullet Chart", "Stress test / Chart Card", "Stress test / Chart Legend", "Stress test / Chart Tooltip", "Stress test / Choropleth Map", "Stress test / Combo Chart", "Stress test / Dashboard Widget", "Stress test / Distribution Bar", "Stress test / Donut Chart", "Stress test / Funnel and Scatter", "Stress test / Gauge", "Stress test / Heatmap", "Stress test / Line Chart", "Stress test / Radar Chart", "Stress test / Sankey Chart", "Stress test / Scatter Chart", "Stress test / Sparkline", "Stress test / Treemap", "Stress test / Waterfall Chart"
 
 ## Bar Chart
 
@@ -848,3 +854,316 @@ Tokens and styles:
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
 Code: Recharts `ComposedChart`: `Bar yAxisId="left"` + `Line yAxisId="right"` (Two `YAxis`, both from 0)
+
+## Dashboard Widget
+
+Component · 1 variant · default size 480 × 297
+
+A movable, resizable tile on a customizable dashboard: drag handle, title, period, refresh, expand and menu, any chart or KPI in Content, last updated. Snap to a 12-column grid; sizes 3, 4, 6 or 12 columns. Edit mode shows the handles; view mode hides them. A fixed report uses Chart Card.
+
+**Use for**
+
+- Dashboards people arrange themselves
+- Home pages with a chosen set of KPIs and charts
+- Saved dashboards shared with a team
+
+**Not for**
+
+- A fixed report: use Chart Card
+- One number on a fixed page: use Stat Card
+- Figures in one row: use Metric Strip
+
+**Anatomy**
+
+1. Drag handle: grip-vertical (edit mode)
+2. Title and Period
+3. Refresh, Expand and More: Button Icon ghost sm
+4. Content slot: a chart, a Sparkline or a KPI
+5. Footer (Show footer): "Updated 5 min ago"
+
+**Content and behavior**
+
+- Snap to a 12-column grid; sizes 3, 4, 6 or 12 columns
+- Edit mode shows the handles and resize corner; view mode hides them
+- Period is written on every widget; a dashboard-wide period says so once
+- Menu: edit, duplicate, change size, remove (with Undo)
+- Each widget loads, fails and refreshes on its own: Skeleton, inline Alert with Retry, never a blank tile
+
+**Accessibility**
+
+- Moving and resizing work by keyboard: menu items "Move left", "Move right", "Change size"; the new place is announced
+- Icon buttons have labels ("Refresh Invoices paid")
+- The widget is a region named by its title
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Invoices paid |
+| Period | text | Last 30 days |
+| Updated | text | Updated 5 min ago |
+| Show footer | boolean | true |
+
+Slots (fill them in the instance, never detach): `Content`
+
+Built from: `Button Icon`, `Sparkline`. Icons: grip-vertical
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`, `spacing/4`
+- Radius: `radius/lg`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: react-grid-layout (12 cols, `draggableHandle`) with shadcn `Card` per item (Sizes 3, 4, 6, 12 columns; save the layout per user)
+
+## Distribution Bar
+
+Component · 1 variant · default size 560 × 72
+
+Parts of one whole as a single 100% bar: invoices by status, budget by category, storage by type. 2-6 segments in a fixed order, largest or most important first, with a legend showing the share. Hover a segment for the count. More than 6 parts or comparisons across groups use a stacked Bar Chart.
+
+**Use for**
+
+- Invoices by status with a total
+- Budget or spend by category
+- Storage by file type in billing settings
+
+**Not for**
+
+- More than 6 parts or comparing groups: use stacked Bar Chart
+- Part of a whole as the main visual of a card: use Donut Chart
+- Usage of a limit: use Usage Meter
+
+**Anatomy**
+
+1. Header: Title and Total
+2. Bar: 2-6 segments, chart/1..6
+3. Legend (Show legend): swatch, label, share
+
+**Content and behavior**
+
+- 2-6 segments in a fixed order, largest or most important first; the rest in "Other"
+- Segment colors follow the entity (chart/1..6) and stay the same across pages
+- Legend shows the share (42%); hover a segment for the count
+- 2 px gap between segments; tiny segments keep a 4 px minimum width
+- Shares add to 100%; round the largest to fix rounding
+
+**Accessibility**
+
+- The legend carries label and share in text, so color is not the only cue
+- Segments are focusable with a Tooltip that has the count; or the bar is aria-hidden and the legend is a list
+- Adjacent segments keep 3:1 against each other or the gap separates them
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Invoices by status |
+| Total | text | 1,284 total |
+| Show legend | boolean | true |
+
+Tokens and styles:
+- Colors: `chart/1`, `chart/2`, `chart/3`, `chart/4`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
+- Radius: `radius/full`, `radius/sm`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: flex row of segments (width from the share) + legend `<ul>`; or Recharts `BarChart layout="vertical"` stacked to 100% (`var(--chart-N)` per entity; 2-6 segments)
+
+## Bullet Chart
+
+Component · 1 variant · default size 640 × 38
+
+One measure against its target and bands (poor, fair, good) in one line: revenue vs plan, SLA vs goal. The dark bar is the actual, the line the target, the grey bands the ranges. Stack several with the same scale for a KPI review. A single percent toward a goal uses Progress or Gauge.
+
+**Use for**
+
+- Revenue vs plan, SLA vs goal
+- A stack of KPIs on the same scale for a review
+- Tables and dense dashboards where a Gauge is too large
+
+**Not for**
+
+- A single percent toward a goal: use Progress or Gauge
+- Trend over time: use Line Chart
+- Many items compared to each other: use Bar Chart Horizontal
+
+**Anatomy**
+
+1. Label: Title and Unit ("EUR, this quarter")
+2. Track: three range bands, grey
+3. Value bar: the actual, dark
+4. Target: a vertical line
+5. Value text: actual and target
+
+**Content and behavior**
+
+- The dark bar is the actual, the line the target, the grey bands the ranges
+- Bands are named in the legend or footnote (poor, fair, good) with their limits
+- Stacked bullets share the same scale when the units match
+- Scale starts at 0; values written as text next to the track (412k, target 480k)
+- Unit and period in the label
+
+**Accessibility**
+
+- Actual and target are text, so the line and bar are not the only cue
+- In code use role="meter" with aria-valuenow and a label that includes the target
+- Value bar keeps 3:1 against the bands
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Revenue |
+| Unit | text | EUR, this quarter |
+| Value | text | 412k |
+| Target | text | target 480k |
+
+Tokens and styles:
+- Colors: `chart/1`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/4`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [charts](../../skills/build-ui/components/charts.md), [reports](../../skills/build-ui/patterns/reports.md)
+
+Code: Recharts `BarChart layout="vertical"`: stacked range bars, thin value `Bar`, `ReferenceLine` for the target; or custom SVG (Same scale for stacked bullets)
+
+## Radar Chart
+
+Component · 1 variant · default size 360 × 320
+
+Compares 1-3 items across 5-8 qualities on the same scale: vendor scores, skill profiles, plan features. Each axis is one quality; the shape is the item. Same scale on every axis, labels outside, a legend for series. More than 3 series or precise values read better in a grouped Bar Chart or a table.
+
+**Use for**
+
+- Vendor or tender scores across criteria
+- Skill or competency profiles
+- Comparing two plans on qualities with the same scale
+
+**Not for**
+
+- More than 3 series or precise values: use grouped Bar Chart or a table
+- Change over time: use Line Chart
+- Qualities on different scales: use a table
+
+**Anatomy**
+
+1. Grid rings: 25, 50, 75, 100
+2. Axes: one per quality
+3. Series areas and lines: chart/1, chart/2, chart/3
+4. Axis labels outside the grid
+5. Legend for 2+ series
+
+**Content and behavior**
+
+- 5-8 axes; same scale on every axis, starting at the center
+- 1-3 series; area fill low opacity so overlaps stay readable
+- Labels outside the grid, short (one or two words)
+- Axis order stays fixed and groups related qualities
+- Legend for 2+ series; tooltip lists every axis value of the hovered series
+
+**Accessibility**
+
+- Every Radar Chart has a table view with each quality and score
+- Series differ by line style or markers too, not color alone
+- Lines and labels keep 3:1 on card and page in every mode
+
+Tokens and styles:
+- Colors: `border/default`, `chart/1`, `chart/2`, `foreground/muted`
+- Text styles: `ui/caption`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: shadcn `Chart` (Recharts) `RadarChart` with `PolarGrid`, `PolarAngleAxis`, `Radar` per series (1-3 series, 5-8 axes; `var(--chart-N)`)
+
+## Sankey Chart
+
+Component · 1 variant · default size 640 × 280
+
+Shows how amounts flow from sources to outcomes: payment method to paid or overdue, traffic source to sign-up, budget to spend. Band width is the amount. Keep to 2-3 columns and under 12 nodes; label every node with its value; color bands by source. Hover a band for the exact amount.
+
+**Use for**
+
+- Payment method to paid or overdue
+- Traffic source to sign-up and plan
+- Budget lines to spend by department
+
+**Not for**
+
+- Drop-off between ordered steps: use Funnel Chart
+- Parts of one total: use Distribution Bar or Donut Chart
+- A start total changed by steps: use Waterfall Chart
+
+**Anatomy**
+
+1. Source nodes (left)
+2. Flows: band width is the amount, colored by source
+3. Outcome nodes (right)
+4. Node labels with values
+
+**Content and behavior**
+
+- 2-3 columns and under 12 nodes; fold small flows into "Other"
+- Label every node with its value (Card €184K)
+- Color bands by source with chart/1..8; nodes in neutral
+- Order nodes so bands cross as little as possible
+- Hover a band for the exact amount and its share of the source
+
+**Accessibility**
+
+- The table view lists each flow: source, target, amount
+- Labels are text on the node, not only in a tooltip
+- Bands keep enough contrast on card (low opacity fills, darker on hover)
+
+Tokens and styles:
+- Colors: `background/destructive`, `chart/1`, `chart/2`, `chart/3`, `foreground/default`
+- Text styles: `ui/caption`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: Recharts `Sankey` with custom node and link renderers (Links colored by source with `var(--chart-N)`; under 12 nodes)
+
+## Choropleth Map
+
+Component · 1 variant · default size 480 × 328
+
+Values by region on a map, shaded from light (low) to dark (high): revenue by county, customers by country. One measure, one hue, 5 steps, with a legend. Replace the tile regions with real map shapes, or keep the tile layout when equal-size regions read better. Hover a region for its name and value.
+
+**Use for**
+
+- Revenue or customers by country, county or region
+- Where place matters to the decision (sales territories, shipping zones)
+- A tile layout when equal-size regions read better than real shapes
+
+**Not for**
+
+- Ranking regions precisely: use Bar Chart Horizontal
+- An address or office location: use Map
+- Two dimensions that are not places: use Heatmap
+
+**Anatomy**
+
+1. Regions: shade and code (tile layout, or real map shapes)
+2. Legend: low, 5-step scale, high
+
+**Content and behavior**
+
+- One measure, one hue, 5 steps; muted for no data, said in the legend
+- Replace the tile regions with real map shapes, or keep tiles when equal size reads better
+- Normalize when size skews the map (per customer, per capita)
+- Legend states the unit and the step limits
+- Hover a region for its name and value
+
+**Accessibility**
+
+- The table view lists every region with its value
+- Regions are focusable with name and value in the label; or the map is aria-hidden next to the table
+- Darkest and lightest steps keep 3:1 against the surface; borders separate neighbors
+
+Tokens and styles:
+- Colors: `chart/1`, `foreground/default`, `foreground/muted`, `foreground/primary`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/sm`
+- Text styles: `ui/caption`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: react-simple-maps + d3-scale `scaleQuantize` (5 steps, one hue); tile layout as a CSS grid (Muted for no data; table view lists every region)

@@ -6,40 +6,21 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Breadcrumb Item](#breadcrumb-item) | 4 | - |
 | [Breadcrumb](#breadcrumb) | 1 | Items |
+| [Breadcrumb Item](#breadcrumb-item) | 4 | - |
 | [Top Bar](#top-bar) | 1 | Breadcrumb, Actions |
 | [Page Header](#page-header) | 1 | Actions |
 | [Nav Link](#nav-link) | 3 | - |
-| [Navigation Menu Link](#navigation-menu-link) | 2 | - |
 | [Navigation Menu Panel](#navigation-menu-panel) | 1 | Links, Featured |
-| [TOC Item](#toc-item) | 6 | - |
+| [Navigation Menu Link](#navigation-menu-link) | 2 | - |
 | [Table of Contents](#table-of-contents) | 1 | Items |
+| [TOC Item](#toc-item) | 6 | - |
+| [Back Link](#back-link) | 2 | - |
+| [Skip Link](#skip-link) | 1 | - |
+| [Scroll To Top](#scroll-to-top) | 1 | - |
+| [Page Toolbar](#page-toolbar) | 1 | - |
 
-On the Figma page: "Example / in navbar", "Example / in page shell / app", "Example / in page shell / docs", "Example / in product detail", "Example / navbar with mega menu", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Table of Contents", "Stress test / Top Bar"
-
-## Breadcrumb Item
-
-Component set · 4 variants · default size 74 × 20
-
-shadcn BreadcrumbItem. link = ancestor page; current = this page (not a link, Separator off); ellipsis = collapsed middle levels (opens a menu).
-
-| Variant property | Values |
-|---|---|
-| Type | link, current, ellipsis |
-| State | default, hover |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Projects |
-| Separator | boolean | true |
-
-Icons: chevron-right, ellipsis
-
-Tokens and styles:
-- Colors: `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1_5`
-- Text styles: `body/small`
+On the Figma page: "Example / in navbar", "Example / in page shell / app", "Example / in page shell / docs", "Example / in product detail", "Example / navbar with mega menu", "Stress test / Back Link", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Page Toolbar", "Stress test / Scroll To Top", "Stress test / Skip Link", "Stress test / Table of Contents", "Stress test / Top Bar"
 
 ## Breadcrumb
 
@@ -88,6 +69,29 @@ Tokens and styles:
 - Spacing and size: `spacing/1_5`
 
 Code: shadcn `Pagination`, `Breadcrumb`
+
+## Breadcrumb Item
+
+Component set · 4 variants · default size 74 × 20
+
+shadcn BreadcrumbItem. link = ancestor page; current = this page (not a link, Separator off); ellipsis = collapsed middle levels (opens a menu).
+
+| Variant property | Values |
+|---|---|
+| Type | link, current, ellipsis |
+| State | default, hover |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Projects |
+| Separator | boolean | true |
+
+Icons: chevron-right, ellipsis
+
+Tokens and styles:
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1_5`
+- Text styles: `body/small`
 
 ## Top Bar
 
@@ -242,33 +246,6 @@ Tokens and styles:
 - Radius: `radius/md`
 - Text styles: `ui/label`
 
-## Navigation Menu Link
-
-Component set · 2 variants · default size 280 × 78
-
-Link inside a mega menu panel: icon, title, one-line description. The description says what the user gets, not what the product is.
-
-| Variant property | Values |
-|---|---|
-| State | default, hover |
-
-| Property | Type | Default |
-|---|---|---|
-| Title | text | Analytics |
-| Description | text | Dashboards and reports for every team. |
-| Show icon | boolean | true |
-| Icon | instance swap | Icon/chart-column |
-
-Icons: chart-column
-
-Tokens and styles:
-- Colors: `background/accent`, `background/default`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/3`, `spacing/9`
-- Radius: `radius/md`
-- Text styles: `ui/caption`, `ui/label`
-
-Guides: [navigation](../../skills/build-ui/components/navigation.md)
-
 ## Navigation Menu Panel
 
 Component · 1 variant · default size 834 × 260
@@ -322,29 +299,32 @@ Tokens and styles:
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
-## TOC Item
+## Navigation Menu Link
 
-Component set · 6 variants · default size 224 × 28
+Component set · 2 variants · default size 280 × 78
 
-Entry of an on-page table of contents. Level 1 = h2, level 2 = h3. active = the section in view (scroll spy), primary left bar.
+Link inside a mega menu panel: icon, title, one-line description. The description says what the user gets, not what the product is.
 
 | Variant property | Values |
 |---|---|
-| Level | 1, 2 |
-| State | default, hover, active |
+| State | default, hover |
 
 | Property | Type | Default |
 |---|---|---|
-| Label | text | Installation |
+| Title | text | Analytics |
+| Description | text | Dashboards and reports for every team. |
+| Show icon | boolean | true |
+| Icon | instance swap | Icon/chart-column |
+
+Icons: chart-column
 
 Tokens and styles:
-- Colors: `background/primary`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/3`, `spacing/6`
-- Text styles: `body/small`, `ui/label`
+- Colors: `background/accent`, `background/default`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/3`, `spacing/9`
+- Radius: `radius/md`
+- Text styles: `ui/caption`, `ui/label`
 
-Guides: [content](../../skills/build-ui/components/content.md)
-
-Code: custom with scroll spy
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
 ## Table of Contents
 
@@ -394,3 +374,230 @@ Tokens and styles:
 Guides: [content](../../skills/build-ui/components/content.md)
 
 Code: custom with scroll spy
+
+## TOC Item
+
+Component set · 6 variants · default size 224 × 28
+
+Entry of an on-page table of contents. Level 1 = h2, level 2 = h3. active = the section in view (scroll spy), primary left bar.
+
+| Variant property | Values |
+|---|---|
+| Level | 1, 2 |
+| State | default, hover, active |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Installation |
+
+Tokens and styles:
+- Colors: `background/primary`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/3`, `spacing/6`
+- Text styles: `body/small`, `ui/label`
+
+Guides: [content](../../skills/build-ui/components/content.md)
+
+Code: custom with scroll spy
+
+## Back Link
+
+Component set · 2 variants · default size 98 × 20
+
+Way back to the list a record came from, above the page title: "← All invoices". Names the destination, never "Back". Keeps the list's filters and scroll position. Deep hierarchies use Breadcrumb instead.
+
+**Use for**
+
+- Record pages opened from a list (an invoice from All invoices)
+- Settings subpages that return to the settings overview
+- Mobile pages without a Breadcrumb
+
+**Not for**
+
+- Hierarchies deeper than two levels: use Breadcrumb
+- Going back between wizard steps: use the Back button in the Action Bar
+- Mobile screens with a header: use Mobile Header
+
+**Anatomy**
+
+1. Icon: Icon/arrow-left
+2. Label: the destination, ui/label (body/small), muted; foreground on hover
+
+**Content and behavior**
+
+- Name the destination ("All invoices"); never "Back"
+- Return to the list with its filters, sort and scroll position
+- Sits above the page title, aligned with it; one per page
+- Links to a fixed URL, so it works when the page is opened from a bookmark
+
+**Accessibility**
+
+- A real link (<a>), not a button calling history.back()
+- The arrow icon is aria-hidden; the label says where it goes
+- Visible focus ring; text meets 4.5:1 in default and hover
+
+| Variant property | Values |
+|---|---|
+| State | default, hover |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | All invoices |
+
+Icons: arrow-left
+
+Tokens and styles:
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1_5`
+- Text styles: `ui/label`
+
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: `Link` with `ArrowLeft`, `text-sm text-muted-foreground` (Fixed URL to the list; restore its filters and scroll)
+
+## Skip Link
+
+Component · 1 variant · default size 170 × 36
+
+First focusable element of every page, hidden until it gets keyboard focus; then it shows top left and jumps to the main content. Add one per repeated block that is long (a sidebar of 30 links). Required for keyboard users; never remove it.
+
+**Use for**
+
+- Every page and shell: "Skip to main content"
+- Before a long repeated block, such as a sidebar of 30 links
+- Pages with a large Navbar or mega menu
+
+**Not for**
+
+- Links between sections of one article: use Table of Contents
+- Going back to the top of a long page: use Scroll To Top
+- Links people see and use all the time: use Nav Link or the Sidebar
+
+**Anatomy**
+
+1. Label: "Skip to main content", on a surface with border and shadow, top left
+
+**Content and behavior**
+
+- The first element in the tab order of every page
+- Hidden until focused, then shown top left above everything
+- Moves focus to the main content (the <main> landmark or the page title)
+- Add one per long repeated block; never remove it
+
+**Accessibility**
+
+- A link to #main; the target has tabindex="-1" so it can take focus
+- Visible focus style with at least 3:1 against the page
+- Use sr-only with focus:not-sr-only; never display:none
+
+Tokens and styles:
+- Colors: `background/primary`, `foreground/primary`
+- Spacing and size: `spacing/2`, `spacing/4`
+- Radius: `radius/md`
+- Text styles: `ui/label`
+
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: `<a href="#main" class="sr-only focus:not-sr-only">` (Target has `tabindex="-1"`)
+
+## Scroll To Top
+
+Component · 1 variant · default size 40 × 40
+
+Floating button bottom right on long pages (docs, articles, long lists) after people scroll two screens down. Moves focus to the top of the page. Tooltip "Back to top". Not on pages shorter than three screens.
+
+**Use for**
+
+- Docs and long articles
+- Long lists and feeds without pagination
+- Pages longer than three screens
+
+**Not for**
+
+- Moving between sections of a long page: use Table of Contents
+- Long lists people page through: use Pagination
+- Skipping repeated navigation for keyboard users: use Skip Link
+
+**Anatomy**
+
+1. Button Icon (outline, round) with Icon/arrow-up, bottom right
+
+**Content and behavior**
+
+- Not on pages shorter than three screens
+- Appears after people scroll two screens down; hidden at the top
+- Bottom right, 16-24 px from the edges, above the Bottom Nav and away from a FAB
+- Tooltip "Back to top"
+- Scrolls smoothly unless reduced motion is on
+
+**Accessibility**
+
+- aria-label="Back to top"
+- Moves focus to the top of the page (the Skip Link or the page heading), not only the scroll position
+- Respects prefers-reduced-motion
+
+Icons: arrow-up
+
+Tokens and styles:
+- Colors: `background/default`, `border/default`
+- Radius: `radius/full`
+- Effects: `shadow/md`
+
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: shadcn `Button size="icon" variant="outline"`, `fixed bottom-6 right-6` (Shown after two screens of scroll; moves focus to the top)
+
+## Page Toolbar
+
+Component · 1 variant · default size 1136 × 46
+
+The row between a list page title and the list: search and Filters (with the active count) on the left, View Switcher and the primary action on the right. One primary action. While rows are selected, Table Toolbar takes its place. Data grids with saved views use Data Grid Toolbar.
+
+**Use for**
+
+- List pages: invoices, customers, orders
+- Pages that switch between table, board and calendar views
+- Lists with a few filters behind one Filters button
+
+**Not for**
+
+- Rows are selected: use Table Toolbar
+- Data grids with saved views, columns and density: use Data Grid Toolbar
+- Several filters always visible as chips: use Filter Bar
+
+**Anatomy**
+
+1. Search: Search Field (Show search)
+2. Filters: Button outline with Icon/list-filter (Show filters)
+3. Filter count: Badge Count with the number of active filters
+4. View: View Switcher (Show view)
+5. Primary: Button (Show primary)
+
+**Content and behavior**
+
+- One primary action, on the right ("New invoice")
+- The filter count shows only when filters are on
+- Search, filters and view live in the URL
+- While rows are selected, Table Toolbar takes its place
+- On narrow screens search takes the full row and the rest wraps below
+
+**Accessibility**
+
+- Search has an aria-label that says what it searches
+- The Filters button includes the count in its name: "Filters, 2 active"
+- Tab order: search, filters, view, primary
+
+| Property | Type | Default |
+|---|---|---|
+| Show search | boolean | true |
+| Show filters | boolean | true |
+| Show view | boolean | true |
+| Show primary | boolean | true |
+
+Built from: `Badge Count`, `Button`, `Search Field`, `View Switcher`
+
+Tokens and styles:
+- Spacing and size: `spacing/2`
+
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: custom flex: `Input`, `Button` + `Badge`, `ToggleGroup`, primary `Button` (Swapped for Table Toolbar while rows are selected; state in the URL)

@@ -10,13 +10,21 @@ Usage rules live in the guides linked under each component.
 | [Field](#field) | 3 | Control |
 | [Password Strength](#password-strength) | 5 | - |
 | [Textarea](#textarea) | 8 | - |
-| [Input Addon](#input-addon) | 2 | - |
 | [Input Group](#input-group) | 4 | Start, End |
+| [Input Addon](#input-addon) | 2 | - |
 | [Number Input](#number-input) | 4 | - |
 | [Inline Edit](#inline-edit) | 5 | - |
 | [Signature Pad](#signature-pad) | 2 | - |
+| [Copy Field](#copy-field) | 2 | - |
+| [Search Field](#search-field) | 3 | - |
+| [Inline Form](#inline-form) | 3 | - |
+| [Currency Input](#currency-input) | 4 | - |
+| [Phone Input](#phone-input) | 4 | - |
+| [Date Input](#date-input) | 4 | - |
+| [Duration Input](#duration-input) | 3 | - |
+| [Range Fields](#range-fields) | 2 | - |
 
-On the Figma page: "Example / approve a contract", "Example / in multi-step form", "Example / in navbar search", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Example / textarea in field", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Signature Pad", "Stress test / Textarea"
+On the Figma page: "Example / approve a contract", "Example / in multi-step form", "Example / in navbar search", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Stress test / Copy Field", "Stress test / Currency Input", "Stress test / Date Input", "Stress test / Duration Input", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Inline Form", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Phone Input", "Stress test / Range Fields", "Stress test / Search Field", "Stress test / Signature Pad", "Stress test / Textarea"
 
 ## Input
 
@@ -245,29 +253,6 @@ Guides: [input](../../skills/build-ui/components/input.md), [rich-text-editor](.
 
 Code: shadcn `Input`, `Label`, `Textarea`, `Form` (react-hook-form) (Field = `FormItem` with label, description, message)
 
-## Input Addon
-
-Component set · 2 variants · default size 74 × 36
-
-Text or icon attached to an Input Group: protocol, domain, unit, currency, @. Muted background, divider toward the field.
-
-| Variant property | Values |
-|---|---|
-| Position | start, end |
-
-| Property | Type | Default |
-|---|---|---|
-| Text | text | https:// |
-
-Tokens and styles:
-- Colors: `background/muted`, `border/input`, `foreground/muted`
-- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Text styles: `body/small`
-
-Guides: [input](../../skills/build-ui/components/input.md)
-
-Code: shadcn `InputGroup` or custom
-
 ## Input Group
 
 Component set · 4 variants · default size 360 × 36
@@ -325,6 +310,29 @@ Tokens and styles:
 - Text styles: `body/small`
 
 Guides: [color-picker](../../skills/build-ui/components/color-picker.md), [input](../../skills/build-ui/components/input.md)
+
+Code: shadcn `InputGroup` or custom
+
+## Input Addon
+
+Component set · 2 variants · default size 74 × 36
+
+Text or icon attached to an Input Group: protocol, domain, unit, currency, @. Muted background, divider toward the field.
+
+| Variant property | Values |
+|---|---|
+| Position | start, end |
+
+| Property | Type | Default |
+|---|---|---|
+| Text | text | https:// |
+
+Tokens and styles:
+- Colors: `background/muted`, `border/input`, `foreground/muted`
+- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
+- Text styles: `body/small`
+
+Guides: [input](../../skills/build-ui/components/input.md)
 
 Code: shadcn `InputGroup` or custom
 
@@ -498,3 +506,474 @@ Tokens and styles:
 Guides: [input](../../skills/build-ui/components/input.md)
 
 Code: `signature_pad` (or `react-signature-canvas`) in a bordered canvas (Typed fallback; store PNG/SVG + timestamp)
+
+## Copy Field
+
+Component set · 2 variants · default size 360 × 36
+
+A value people copy and paste elsewhere: API key, invite link, webhook URL, reference code. Read-only field in muted with the value in mono, then Copy. State=copied for 2 s after the click: check icon and "Copied", no toast. Long values truncate; the full value is what gets copied. Secrets: mask all but the last 4 characters until Reveal.
+
+**Use for**
+
+- API keys and tokens on an API Keys or integration page
+- Invite and share links
+- Webhook URLs, IDs and reference codes people paste into another tool
+
+**Not for**
+
+- A value people edit: use Input
+- A short code inside text: use Kbd or inline code
+- A one-time code people type: use Input OTP
+
+**Anatomy**
+
+1. Field: muted background, Value in mono, truncated
+2. Copy: Button (exposed), icon and "Copy"
+3. State=copied: check icon and "Copied"
+
+**Content and behavior**
+
+- State=copied lasts 2 s after the click, then returns to default; no toast
+- Long values truncate at the end; the full value is what gets copied
+- Secrets show only the last 4 characters until Reveal; show a full key once, at creation
+- The field has a visible label through Field that names the value ("Live secret key")
+- When copying fails, select the value and say "Press Ctrl+C to copy"
+
+**Accessibility**
+
+- The value is a readonly input or text the keyboard can select
+- Copy has an aria-label that names the value ("Copy API key")
+- "Copied" is announced in a live region (role="status", aria-live="polite")
+
+| Variant property | Values |
+|---|---|
+| State | default, copied |
+
+| Property | Type | Default |
+|---|---|---|
+| Value | text | sk_live_51H8xKd2a9f4F2a |
+
+Built from: `Button`
+
+Tokens and styles:
+- Colors: `background/muted`, `border/input`, `foreground/default`
+- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `code`
+
+Guides: [input](../../skills/build-ui/components/input.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
+
+Code: shadcn `InputGroup` with a `readOnly` Input (`font-mono`) + Copy `Button`; `navigator.clipboard.writeText` (copied state 2 s, no toast; mask secrets until Reveal)
+
+## Search Field
+
+Component set · 3 variants · default size 320 × 36
+
+Search box for a list, a table or the whole app: search icon, placeholder that names what is searched ("Search invoices"), ⌘K hint (Show shortcut), clear (x) once there is a query. Results update as people type (debounce ~300 ms); Esc clears. Global search opens Command Dialog; filtering one list stays inline.
+
+**Use for**
+
+- Filtering one list or table as people type
+- The search of a Filter Bar or a Top Bar
+- Global search that opens Command Dialog on click or with the shortcut
+
+**Not for**
+
+- Search with filters, sort and views: use Filter Bar
+- Picking one value from a list in a form: use Combobox
+- Free text that is not a query: use Input
+
+**Anatomy**
+
+1. Search icon
+2. Placeholder ("Search invoices") or Query
+3. Clear (x), once there is a query
+4. Shortcut: Kbd "⌘K" (Show shortcut)
+
+**Content and behavior**
+
+- State: default, focus, filled
+- The placeholder names what is searched: "Search invoices", never just "Search"
+- Results update as people type, with a debounce of about 300 ms; Esc clears
+- Clear shows only when there is a query; the shortcut hides while typing
+- Global search opens Command Dialog; filtering one list stays inline. Keep the query in the URL
+- No results: Empty State that names the query
+
+**Accessibility**
+
+- role="search" on the wrapper and an aria-label that says what it searches when there is no visible label
+- Clear is a button with aria-label="Clear search"
+- The result count is announced in a live region as it changes
+
+| Variant property | Values |
+|---|---|
+| State | default, focus, filled |
+
+| Property | Type | Default |
+|---|---|---|
+| Placeholder | text | Search invoices |
+| Query | text | northwind |
+| Show shortcut | boolean | true |
+
+Built from: `Kbd`. Icons: search, x
+
+Tokens and styles:
+- Colors: `background/default`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
+- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `body/small`
+
+Guides: [input](../../skills/build-ui/components/input.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+
+Code: shadcn `InputGroup` (`type="search"`) + search icon, `Kbd`, clear `Button` (Debounce ~300 ms; global search opens `CommandDialog`)
+
+## Inline Form
+
+Component set · 3 variants · default size 400 × 62
+
+One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag. Input and Button are exposed (set the placeholder and the verb). error keeps the value and says how to fix it; success replaces the hint with what happens next. Two or more fields need a form.
+
+**Use for**
+
+- Newsletter sign-up in a footer or a content page
+- Coupon or promo code in a cart
+- Invite one person by email
+- Adding one item to a list (tag, domain, email)
+
+**Not for**
+
+- Two or more fields: use Field in a form with an Action Bar
+- Searching a list: use Search Field
+- Editing a value that already exists: use Inline Edit
+
+**Anatomy**
+
+1. Input (exposed): placeholder with an example value
+2. Button (exposed): the verb ("Subscribe", "Apply", "Invite")
+3. Hint (Show hint), Error or Success message under the row
+
+**Content and behavior**
+
+- State: default, error, success
+- The button says what happens: a verb, never "Submit"
+- Error keeps the value and says how to fix it: "Enter an email address like name@company.com."
+- Success replaces the hint with what happens next; clear the input only when people add several items
+- On narrow screens the button stays on the line; below 320 px it goes full width under the input
+
+**Accessibility**
+
+- The input has a visible label or an aria-label ("Email address")
+- It is a form: Enter submits
+- Error and success messages are linked with aria-describedby and announced in a live region
+
+| Variant property | Values |
+|---|---|
+| State | default, error, success |
+
+| Property | Type | Default |
+|---|---|---|
+| Hint | text | One email a month. Unsubscribe at any time. |
+| Error | text | Enter an email address like name@company.com. |
+| Success message | text | You are subscribed. Check your inbox to confirm. |
+| Show hint | boolean | true |
+
+Built from: `Button`, `Input`
+
+Tokens and styles:
+- Colors: `background/destructive`, `background/success`, `foreground/muted`
+- Spacing and size: `spacing/1_5`, `spacing/2`
+- Text styles: `body/small`
+
+Guides: [input](../../skills/build-ui/components/input.md), [commerce](../../skills/build-ui/patterns/commerce.md)
+
+Code: `<form class="flex gap-2">` with shadcn `Input` + `Button` (react-hook-form + zod) (Keep the value on error)
+
+## Currency Input
+
+Component set · 4 variants · default size 240 × 36
+
+An amount with its currency: invoice lines, budgets, prices, limits. Currency picker on the left (ISO code), amount right-aligned in the locale format with two decimals, formatted on blur. Accept typed separators of the locale; never let the currency change silently. One currency for the whole form: hide the picker and show the code as a fixed prefix.
+
+**Use for**
+
+- Invoice lines, prices and budgets
+- Limits and thresholds (approval above EUR 5,000)
+- Forms where the currency can differ per record
+
+**Not for**
+
+- One currency for the whole form: use Input Group with the code as a fixed prefix
+- Small integer quantities: use Number Input
+- A minimum and a maximum amount: use Range Fields
+
+**Anatomy**
+
+1. Currency: ISO code ("EUR") with chevron-down, opens a list
+2. Amount: right-aligned, two decimals
+
+**Content and behavior**
+
+- State: default, focus, error, disabled
+- Format on blur in the locale format (1,250.00 or 1.250,00); accept the typed separators of the locale
+- Never change the currency silently: changing it keeps the amount and asks before converting
+- Errors name the limit: "Enter an amount up to EUR 10,000.00"
+- Store the amount in minor units with the ISO code
+
+**Accessibility**
+
+- The currency trigger has an aria-label ("Currency, EUR")
+- The amount input uses inputmode="decimal" and is labelled by the Field label
+- Focus ring wraps the whole field
+
+| Variant property | Values |
+|---|---|
+| State | default, focus, error, disabled |
+
+| Property | Type | Default |
+|---|---|---|
+| Amount | text | 1,250.00 |
+| Currency | text | EUR |
+
+Icons: chevron-down
+
+Tokens and styles:
+- Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`
+- Spacing and size: `density/control-height`, `spacing/0`, `spacing/1`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `body/small`, `ui/label`
+
+Guides: [input](../../skills/build-ui/components/input.md), [commerce](../../skills/build-ui/patterns/commerce.md)
+
+Code: shadcn `InputGroup` with a `Select` of ISO codes + `Input`; react-number-format or `Intl.NumberFormat` (Store minor units + ISO code; one currency: Input Group prefix)
+
+## Phone Input
+
+Component set · 4 variants · default size 280 × 36
+
+Phone number with a country code picker (searchable list, country name and code). Default to the country of the account; format as people type, store in E.164 (+40712345678). Accept pasted numbers with the + prefix and set the country from them. Ask for a phone number only when it is used.
+
+**Use for**
+
+- Contact details on a profile, a customer or an order
+- Two-factor setup and SMS notifications
+- Delivery contacts at checkout
+
+**Not for**
+
+- Other numbers (IDs, quantities): use Input or Number Input
+- Common contact data in one go: use Field Preset
+- One-time codes sent by SMS: use Input OTP
+
+**Anatomy**
+
+1. Country: country code ("RO +40") with chevron-down, opens a searchable list
+2. Number: formatted as people type
+
+**Content and behavior**
+
+- State: default, focus, error, disabled
+- Default to the country of the account
+- Accept pasted numbers with the + prefix and set the country from them
+- Store in E.164 (+40712345678); show it formatted for the country
+- Ask for a phone number only when it is used, and say what for in the hint
+
+**Accessibility**
+
+- The country list is searchable by country name and code; arrow keys move, Enter picks
+- The number input uses type="tel" and autocomplete="tel"
+- The country trigger has an aria-label ("Country code, Romania +40")
+
+| Variant property | Values |
+|---|---|
+| State | default, focus, error, disabled |
+
+| Property | Type | Default |
+|---|---|---|
+| Country | text | RO +40 |
+| Number | text | 712 345 678 |
+
+Icons: chevron-down
+
+Tokens and styles:
+- Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`
+- Spacing and size: `density/control-height`, `spacing/0`, `spacing/1`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `body/small`, `ui/label`
+
+Guides: [input](../../skills/build-ui/components/input.md)
+
+Code: react-phone-number-input (libphonenumber-js) + shadcn `Popover` + `Command` country list (Store E.164; `type="tel"`, `autocomplete="tel"`)
+
+## Date Input
+
+Component set · 4 variants · default size 200 × 36
+
+A date people type: day, month and year segments in the locale order, with a calendar button that opens Date Picker. Use it for known dates (birth date, invoice date, contract start) where typing is faster than picking. Arrow keys change a segment; empty segments show DD, MM, YYYY in muted. Errors name the rule ("Date must be after 1 Jan 2026").
+
+**Use for**
+
+- Known dates: birth date, invoice date, contract start, document expiry
+- Dates far from today, where typing is faster than paging months
+- Data entry forms used all day
+
+**Not for**
+
+- Dates near today or with availability: use Date Picker
+- A period with a start and an end: use Date Range Picker
+- A time of day: use Time Picker
+
+**Anatomy**
+
+1. Day, month and year segments in the locale order, with separators
+2. Empty segments: DD, MM, YYYY in muted
+3. Calendar button: calendar icon, opens Date Picker
+
+**Content and behavior**
+
+- State: default, focus, error, disabled
+- Segment order and separators follow the locale (12.11.2026 for ro-RO)
+- Arrow keys change the focused segment; typing a full segment moves to the next
+- Validate on blur; errors name the rule: "Date must be after 1 Jan 2026"
+- Pasting a full date fills all segments
+
+**Accessibility**
+
+- Each segment is a spinbutton with a label ("Day", "Month", "Year") inside a group labelled by the Field
+- The calendar button has aria-label="Choose date" and returns focus to the field on close
+- Errors are linked with aria-describedby
+
+| Variant property | Values |
+|---|---|
+| State | default, focus, error, disabled |
+
+| Property | Type | Default |
+|---|---|---|
+| Day | text | 12 |
+| Month | text | 11 |
+| Year | text | 2026 |
+
+Icons: calendar
+
+Tokens and styles:
+- Colors: `background/accent`, `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
+- Spacing and size: `density/control-height`, `spacing/0_5`, `spacing/1`, `spacing/3`
+- Radius: `radius/md`, `radius/sm`
+- Text styles: `body/small`
+
+Guides: [date-picker](../../skills/build-ui/components/date-picker.md)
+
+Code: react-aria `DateField` + shadcn `Popover` with `Calendar` (react-day-picker) (Segments in locale order)
+
+## Duration Input
+
+Component set · 3 variants · default size 200 × 36
+
+A length of time in hours and minutes: time entries, SLAs, reminders, meeting length. Accept "1:30", "90" (minutes) and "1.5h" and normalize on blur. Minutes above 59 roll into hours. Days only when the task needs them (lead times): add a third segment.
+
+**Use for**
+
+- Time entries and timesheets
+- SLAs and response targets
+- Reminders and meeting length
+
+**Not for**
+
+- A time of day: use Time Picker
+- A date: use Date Input or Date Picker
+- A count without a time unit: use Number Input
+
+**Anatomy**
+
+1. Hours with the "h" unit
+2. Minutes with the "min" unit
+
+**Content and behavior**
+
+- State: default, focus, error
+- Accept "1:30", "90" (minutes) and "1.5h"; normalize on blur
+- Minutes above 59 roll into hours
+- Add a days segment only when the task needs it (lead times)
+- Store minutes as one number; errors name the limit ("Up to 24 h per entry")
+
+**Accessibility**
+
+- Hours and minutes are inputs with labels ("Hours", "Minutes") in a group labelled by the Field
+- inputmode="numeric"; arrow keys step by 1
+- The normalized value is read back after blur ("1 hour 30 minutes")
+
+| Variant property | Values |
+|---|---|
+| State | default, focus, error |
+
+| Property | Type | Default |
+|---|---|---|
+| Hours | text | 1 |
+| Minutes | text | 30 |
+
+Tokens and styles:
+- Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
+- Spacing and size: `density/control-height`, `spacing/1`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `body/small`
+
+Guides: [input](../../skills/build-ui/components/input.md)
+
+Code: custom: two shadcn `Input`s (`inputmode="numeric"`) with unit addons (Parse "1:30", "90", "1.5h" on blur; store minutes)
+
+## Range Fields
+
+Component set · 2 variants · default size 320 × 36
+
+Two fields for a minimum and a maximum: price or amount filters, date ranges typed by hand, quantities. Either side may stay empty ("from 100"). error when min is above max; say it under the pair. Wide numeric ranges people scan visually: use Slider Type=range with these fields next to it.
+
+**Use for**
+
+- Price or amount filters in a Filter Section
+- Quantities and sizes with a lower and an upper bound
+- Ranges people type, next to a Slider Type=range
+
+**Not for**
+
+- A range people scan visually: use Slider Type=range with these fields next to it
+- A date range with a calendar: use Date Range Picker
+- One value: use Input Group or Number Input
+
+**Anatomy**
+
+1. Min field: unit ("€") and value
+2. Dash between the fields
+3. Max field: unit and value
+
+**Content and behavior**
+
+- State: default, error
+- Either side may stay empty ("from 100")
+- Error when min is above max; say it once under the pair: "Minimum must be lower than the maximum"
+- Same unit and format on both sides; format on blur
+- In filters, apply on blur or Enter, not on every key
+
+**Accessibility**
+
+- Wrap the pair in a fieldset or group with the label ("Price")
+- Each input has its own label: "Minimum price", "Maximum price"
+- The error is linked to both inputs with aria-describedby
+
+| Variant property | Values |
+|---|---|
+| State | default, error |
+
+| Property | Type | Default |
+|---|---|---|
+| Min | text | 100 |
+| Max | text | 2,500 |
+| Unit | text | € |
+
+Tokens and styles:
+- Colors: `background/default`, `background/destructive`, `border/input`, `foreground/default`, `foreground/muted`
+- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `body/small`
+
+Guides: [input](../../skills/build-ui/components/input.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+
+Code: custom: two shadcn `InputGroup`s in a `<fieldset>`; zod `refine` min <= max (Either side may be empty)
