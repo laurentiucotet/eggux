@@ -3504,11 +3504,12 @@
   ]
  },
  "Post Card": {
-  "summary": "A card for an article, news item, case study or changelog entry that links to the full post.",
+  "summary": "A card for an article, news item, case study or changelog entry that links to the full post; compact for related links in an aside.",
   "use": [
    "Blog grids of 3: Layout=vertical",
    "The featured post at the top of a list: Layout=horizontal",
-   "News, case studies, changelog entries and carousels of posts"
+   "News, case studies, changelog entries and carousels of posts",
+   "Layout=compact: related, most read and up next lists in an aside or under an article"
   ],
   "avoid": [
    "A product with a price: use Product Card",
@@ -3519,13 +3520,15 @@
    "Category Badge, Date and reading time",
    "Title",
    "Excerpt, 3 lines max (Show excerpt)",
-   "Author with Avatar (Show author)"
+   "Author with Avatar (Show author)",
+   "Compact: optional 1:1 image (Show image), Title on 2 lines, meta in Date (type · date)"
   ],
   "rules": [
    "The whole card is one link to the article",
    "Excerpt is 3 lines max, then truncates",
    "Date and reading time on one line (\"12 Oct 2026 · 6 min read\")",
-   "Cards in a grid share the same structure"
+   "Cards in a grid share the same structure",
+   "Compact: 3-5 items per list; meta says type and date (\"Guide · 12 Oct 2026\"); image on all items or none"
   ],
   "a11y": [
    "One link per card; the Title is the link text",

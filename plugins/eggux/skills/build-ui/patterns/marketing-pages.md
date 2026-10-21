@@ -17,11 +17,29 @@ grouped by family inside each page's `Blocks` section.
 | FAQ | FAQ, FAQ Grid, FAQ Centered | Grid when answers are 1-2 sentences; accordion for longer answers; end with a contact option |
 | Stats | Stats, Stats Cards, Stats Split | Real numbers with their period and source; Split when the method matters |
 | Team | Team, Team Grid, Team List | Grid with photos for the company page; List with bios for leadership and investors |
+| Page headers (Page Headers page) | Header Detail, Header Listing, Header Search Results, Header Profile, Header Event, Header Topic, Header Report, Header Simple | Top of inner pages, by page type: see § Page headers. Landing pages use Hero |
 | Careers | Careers List, Careers Benefits, Job Header | List grouped by department with counts; benefits as facts; job page header with salary range |
 | Gallery | Gallery Grid, Gallery Mosaic | Grid for places and events; Mosaic for a property, product or venue detail page |
 | Navbar | Navbar, Navbar Centered, Navbar Search, Navbar Mega Menu, Navbar Mobile | Default for most sites; Centered for brand-led sites with few links; Search for docs and help; Mega Menu past 7 top-level links or for several products |
 | Help center (Content page) | Help Hero, Help Categories, Help Popular Articles, Help Article List, Support Options, Docs Page Footer, Changelog, Status Page | See content-and-docs |
 | Footer | Footer, Footer Simple, Footer Newsletter, Footer Corporate, Footer Centered | Simple for few pages; columns for large sites; Newsletter when updates matter; Corporate for enterprise (legal, certifications, status, language); Centered for landing pages and microsites |
+
+## Page headers
+Every inner page starts with the header for its type, right under the Navbar. One h1, one
+primary action at most.
+
+| Page | Block | Says |
+|---|---|---|
+| Product, dataset, service, solution | Header Detail | What it is (badges for type and scope), who is behind it, the main action; media on the right. Details and a Table of Contents follow |
+| Hub or listing (resources, insights, library) | Header Listing | What is here; a type switch that filters the list; search that keeps the type |
+| Search results | Header Search Results | The query, still editable; count; tabs by type with counts; sort |
+| Person (author, expert, speaker) | Header Profile | Name, role, organization, short bio, three counts, follow and contact |
+| Event, webinar | Header Event | Format, date and time with time zone, place or online, speakers, register and add to calendar; after the date, Watch the recording |
+| Topic, category, tag | Header Topic | Scope in one line, how much and how fresh, subtopics as Chips, follow |
+| Report, study | Header Report | Three headline figures with their source; download and read online |
+| Legal, about, policy | Header Simple | Title, one sentence, last updated; centered at 720 |
+
+Related links in an aside or under an article: `Post Card` Layout=compact, 3-5 items.
 
 ## Typical order (landing page)
 1. Navbar (Navbar Mobile below 768; mega menu panels open on click, close on Escape)
