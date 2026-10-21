@@ -33,6 +33,18 @@ Domain-specific needs become Field Presets or Blocks.
 | AI Chat | `Sources` | - | Label, Show list; Items (native slot) |
 | AI Chat | `Citation` | - | Label |
 | AI Chat | `Suggestion` | Layout: chip, card | Label, Description, Icon (card) |
+| AI Chat | `Model Selector` | State: default, hover, focus | Model. Sparkles + name + chevron; opens Model Options |
+| AI Chat | `Model Option` | Selected: false, true. State: default, hover | Name, Description, Show badge; Badge exposed |
+| AI Chat | `Context Chip` | Type: file, record, person | File, Record, Person (one text property per type, truncates at 180), Show remove |
+| AI Chat | `Voice Recorder` | State: recording, processing | Cancel, recording dot, time, waveform, send; Transcribing… |
+| AI Chat | `Chat History Item` | State: default, hover, active | Title (1 line), Time, Show time, Pinned; menu on hover |
+| AI Chat | `Response Feedback` | - | Title, reason Chips, Textarea (Show details), Note, Cancel / Send |
+| AI Chat | `Plan Step` | Status: pending, running, done, error | Title, Detail, Error, Show detail, Time, Show time |
+| AI Chat | `Agent Plan` | - | Title, Status, Footer, Show stop, Show footer; Progress exposed; Steps (native slot) |
+| AI Chat | `Artifact Card` | Type: document, chart, table. State: default, hover | <Type> title and meta per type; Open |
+| AI Chat | `AI Summary` | State: ready, generating, error | Title, Meta, Show feedback, Show disclaimer; Content (native slot) |
+| AI Chat | `AI Suggestion` | State: suggested, accepted | Label, Value, Reason; Accept / Dismiss; accepted shows the AI label |
+| AI Chat | `AI Notice` | Type: label, disclaimer | Label, Disclaimer |
 | Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link. Size: sm, default, lg. State: default, hover, focus, disabled | Label; Leading icon, Trailing icon (boolean + swap) |
 | Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. State: as Button | Icon (swap) |
 | Button | `Button Group Item` | Position: first, middle, last. State: default, hover, focus, disabled | Label, Show label, Icon + Icon type |

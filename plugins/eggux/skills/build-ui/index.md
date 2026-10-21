@@ -39,6 +39,8 @@ component guides it names. Names are Figma components; inventory in
 | Mobile screen | Mobile | Navbar Mobile | mobile | drawer, navigation |
 | AI assistant (chat page) | App (history in Sidebar) | AI Chat Empty, AI Conversation (example "AI chat app") | ai-chat, empty-state | ai-chat, comments-and-chat |
 | AI on a screen (copilot panel, inline edit) | current shell | AI Assistant Panel, Inline AI | ai-chat | ai-chat, popover |
+| AI summary or suggested values on a record or form | current shell | example "AI on a record page" (AI Summary, AI Suggestion, AI Notice) | ai-chat, forms | ai-chat, card |
+| Agent doing a multi-step task | App or panel | example "agent at work" (Agent Plan, Artifact Card, Tool Call approval) | ai-chat, notifications | ai-chat |
 
 ## By interaction
 

@@ -74,6 +74,11 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Comment`, `Comment Composer` | custom + `Textarea` | |
 | `Chat Message`, `Chat Composer`, `Typing Indicator` | custom | |
 | `Prompt Input`, `User Message`, `Assistant Message`, `Reasoning`, `Tool Call`, `Sources`, `Citation`, `Suggestion` | Vercel AI SDK + AI Elements, or assistant-ui | |
+| `Model Selector`, `Model Option`, `Context Chip`, `Agent Plan`, `Plan Step`, `Artifact Card` | AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `Badge`, `Card` | Plan steps from the agent's tool events |
+| `Voice Recorder` | MediaRecorder + speech-to-text API; custom UI | Ask for the microphone on first tap |
+| `Chat History Item` | shadcn `SidebarMenuItem` + `DropdownMenu` | |
+| `Response Feedback` | `Popover` or inline `Card` with `ToggleGroup` (multiple) and `Textarea` | Send with the message id |
+| `AI Summary`, `AI Suggestion`, `AI Notice` | custom on `Card`, `Input`, `Badge` | Store who accepted an AI value and when |
 | `File Dropzone`, `File Item`, `Attachment` | react-dropzone + custom | |
 | `Rating` | custom `RadioGroup` | |
 | `Color Picker` | react-colorful in `Popover` | |

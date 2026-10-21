@@ -137,6 +137,8 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3q. Done: Card variants, sizes, Elevation and density tokens; screen components: table cells,
    table pagination, filter bar and chips, faceted filter, filter sections, entity and progress
    cards, empty state.
+3r. Done: AI components for agents and AI in the product (plan, artifacts, summary, suggested
+   values, notice, model selector, context, voice, history, feedback).
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 
