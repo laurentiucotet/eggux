@@ -26,7 +26,7 @@ it is built from, the tokens and styles it uses, its usage guides and its code m
 | [Button](button.md) | Button, Button Icon, Button Group Item, Button Group, Split Button |
 | [Calendar](calendar.md) | Calendar Day, Calendar, Date Picker, Time Picker, Date Range Picker |
 | [Card](card.md) | Card Header, Card Footer, Stat Card, Option Card, Post Card, Card, Entity Card, Progress Card |
-| [Carousel](carousel.md) | Carousel |
+| [Carousel](carousel.md) | Carousel, Carousel Arrow, Carousel Indicator, Carousel Thumbnail, Carousel Slide, Carousel Gallery, Carousel Hero, Lightbox |
 | [Chart](chart.md) | Chart Legend Item, Chart Legend, Chart Tooltip Row, Chart Tooltip, Bar Chart, Line Chart, Sparkline, Chart Card, Donut Chart, Bar Chart Horizontal, Heatmap, Gauge, Treemap |
 | [Chat](chat.md) | Chat Message, Typing Indicator, Chat Composer |
 | [Chip](chip.md) | Chip |
@@ -72,4 +72,4 @@ it is built from, the tokens and styles it uses, its usage guides and its code m
 | [Tour](tour.md) | Coachmark, Hotspot |
 | [Video](video.md) | Video Player |
 
-182 components on 56 pages.
+189 components on 56 pages.

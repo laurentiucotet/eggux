@@ -113,7 +113,14 @@ Domain-specific needs become Field Presets or Blocks.
 | Chat | `Typing Indicator` | - | Three dots + "… is typing" |
 | Chat | `Chat Composer` | - | Attach, message field, Send |
 | Rating | `Rating` | Size: sm, default. Value: 0-5 | Show value, Show count, Count. Value text edited per instance |
-| Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); previous / next outline Button Icons, dots |
+| Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); Carousel Arrow (outline) and Carousel Indicator (dots); viewport clips |
+| Carousel | `Carousel Arrow` | Variant: outline, overlay. Direction: previous, next. State: default, hover, focus, disabled | Round 36 (outline) or 40 with shadow (overlay) |
+| Carousel | `Carousel Indicator` | Type: dots, bars, counter. Tone: default, overlay | Counter; bars include Pause |
+| Carousel | `Carousel Thumbnail` | State: default, hover, active | 64 square, Image Placeholder inside, 2 px ring when active |
+| Carousel | `Carousel Slide` | Type: caption, overlay | Title, Description (caption); Headline, Text, action (overlay); Show description, Show action |
+| Carousel | `Carousel Gallery` | - | Stage (image layer, overlay arrows, counter, open viewer) + Thumbnails slot; Show thumbnails |
+| Carousel | `Carousel Hero` | - | 1440 × 560 banner: image, scrim, Overline, Headline, Text, action, bars, arrows |
+| Carousel | `Lightbox` | - | 1280 × 800 viewer on video/* tokens: Counter, Title, download, close, arrows, thumbnails |
 | Color Picker | `Color Picker` | - | Saturation area, hue slider, hex Input Group with opacity; Swatches (native slot) |
 | Kanban | `Kanban Card` | State: default, hover, dragging | Title, Due date, Show labels, Show meta; assignee exposed |
 | Kanban | `Kanban Column` | - | Title, Cards (native slot); count exposed |

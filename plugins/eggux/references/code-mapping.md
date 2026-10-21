@@ -40,7 +40,10 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Navigation Menu` parts | shadcn `NavigationMenu` | |
 | `Stepper`, `Step` | custom (no shadcn stepper) | |
 | `Description List`, `Timeline` | custom `dl` / `ol` | |
-| `Carousel` | shadcn `Carousel` (Embla) | |
+| `Carousel`, `Carousel Arrow`, `Carousel Indicator`, `Carousel Slide` | shadcn `Carousel` (Embla): `CarouselPrevious`, `CarouselNext`, dots from the Embla API | Autoplay plugin only with a pause control |
+| `Carousel Gallery`, `Carousel Thumbnail` | Embla main + thumbs carousels | |
+| `Carousel Hero` | Embla with Autoplay plugin, pause on hover and focus | |
+| `Lightbox` | yet-another-react-lightbox or PhotoSwipe, or a `Dialog` | Esc, arrows, focus trap |
 
 ## Data and enterprise
 | Figma | Code | Notes |
