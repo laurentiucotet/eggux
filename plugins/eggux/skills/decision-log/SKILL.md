@@ -44,8 +44,8 @@ Read the whole file first. Take each request from the chat or from the Inbox, ol
 
 ## 2. Apply (right after recording, unless the user says to wait)
 Work in the client's Figma file and codebase, never in the master library.
-- **Terminology:** update the component or the String variable that holds the text, so
-  instances follow; in code, the copy source (i18n or copy file). List hardcoded strings.
+- **Terminology:** update the `Content` variable that holds the text (`action/*`, `status/*`,
+  `references/content.md`) or the component, so instances follow; in code, the copy source (i18n or copy file). List hardcoded strings.
 - **Design:** change it once at the source, never instance by instance.
   - One component: create a Components token `<component>/<property>` aliased to the new value
     (`tokens.md` § Components) and bind every place of that component that used the old token

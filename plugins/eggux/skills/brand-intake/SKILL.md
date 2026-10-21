@@ -35,8 +35,10 @@ provided; list what is missing instead of inventing it.
      `listAvailableFontsAsync`; if it does not, tell the user to install it.
    - Set `radius/base` to the closest radius primitive.
    - Change aliases only. Do not rename or delete tokens.
-   - Replace the glyph in `Logo Mark` (Brand page) with the client logo and set the `Logo` name
-     (default "Acme"); the sidebar and every page follow.
+   - Replace the glyph in `Logo Mark` (Brand page) with the client logo.
+   - Set the `Content` collection's `brand/*` strings: company, legal name, product, domain,
+     support email, copyright. The Logo name, footers and every bound text follow
+     (`references/content.md`). Add a mode for each language the product ships.
    - Chart colors (`chart/1..8`) stay unless the client has a data-viz palette; if they change
      them, validate in both modes (`tokens.md` § Data visualization) before applying.
 6. **Code (if the project has a codebase):** update the CSS variables in the shadcn theme file

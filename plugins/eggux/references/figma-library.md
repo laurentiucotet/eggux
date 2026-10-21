@@ -327,7 +327,7 @@ which screen: `skills/build-ui/index.md`):
 ## Pages
 The file opens with Cover (1920 x 1080 thumbnail), Intro (getting started, credits, changelog),
 Foundations (tokens shown as swatches, type, spacing, radius, elevation, motion) and Brand.
-Brand has a second Theme preview in Corporate Light. Then two groups of pages, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
+Brand has a second Theme preview in Corporate Light, a Content panel (brand strings bound to the `Content` collection) and an English / Română comparison of the invoices example. Then two groups of pages, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
 categories and Page Shells). Block pages have no prefix. `Navigation` exists in both sections:
 the first holds the components (Breadcrumb, Top Bar), the second the Navbar and Footer blocks.
 Keep new pages in A-Z order inside their section.

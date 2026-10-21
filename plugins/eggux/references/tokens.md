@@ -195,6 +195,13 @@ tighten a whole screen (data tables, admin tools, power users).
 Compact keeps touch targets ≥ 44 only on desktop: never use Compact on mobile.
 Code: `[data-density="compact"]` sets the CSS variables.
 
+## Content (strings)
+
+Collection `Content`, STRING variables, modes `English` and `Română`: `brand/*` (company, legal
+name, product, domain, support email, copyright), `action/*`, `status/*`, `feedback/*`,
+`field/*`, `ai/*`, `legal/*`, `nav/*`. Code syntax is the i18n key (`t('action.save')`).
+Rules and binding: `references/content.md`.
+
 ## Text styles
 
 Contextual, bound to `font/*` and type primitives. Use these, never raw size/weight combinations.

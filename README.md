@@ -139,6 +139,7 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
    cards, empty state.
 3r. Done: AI components for agents and AI in the product (plan, artifacts, summary, suggested
    values, notice, model selector, context, voice, history, feedback).
+3s. Done: Content collection (names and labels as variables, English and Română).
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 
