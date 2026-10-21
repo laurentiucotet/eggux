@@ -27,13 +27,24 @@ For large lists where people need precise subsets (finance, operations, CRM):
   between), date (before, after, in the last N days), sets (is any of, is none of).
 - Live result count; Apply in the footer; "Save as view" turns the result into a saved view.
 - Active conditions show as chips under the toolbar; editing a chip opens the builder.
-- Figma: `Filter Condition`, `Filter Group` (Filter Builder page), `Block / Filter Builder`.
+- Figma: `Filter Condition`, `Filter Group` (Filters page), `Block / Filter Builder`.
 
 ## State
 - Search, filters, sort and page live in the URL, so back, refresh and shared links keep them.
 - Returning to the list from a detail page restores the exact state and scroll position.
 - No results: the "No results" empty state names the query and offers "Clear filters".
 - Saved views only when actors repeat the same combination often; confirm with the client first.
+
+## Components (Figma, Filters page)
+- `Filter Bar`: first row search + view controls; second row the filters and Clear all.
+- `Filter Chip` Type=empty is the trigger ("+ Owner"); Type=active shows field and values (two
+  names, then "3 selected"), edits on click, removes with x.
+- `Faceted Filter`: the popover of one chip, `Facet Option` rows with counts; applies on each
+  click, no Apply button.
+- `Filter Section`: groups for a side panel (many attributes, commerce, search pages); first 5-6
+  values, then "Show N more".
+- Pick: up to 4 common filters → chips in the Filter Bar; many attributes or browsing → side
+  panel of Filter Sections; precise conditions (and / or, operators) → Filter Builder.
 
 ## shadcn / Figma
 `Input` with search icon, `Popover` + `Command` for filter options, `Badge` chips, `Button variant="ghost"` for "Clear all".

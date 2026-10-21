@@ -134,6 +134,9 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3o. Done: `/eggux:update-component` with snapshot diff, polish, impact and stress test.
 3p. Done: features as folders (spec, scenarios, workflows, decisions) with a Figma page per
    feature; `/eggux:update-feature`.
+3q. Done: Card variants, sizes, Elevation and density tokens; screen components: table cells,
+   table pagination, filter bar and chips, faceted filter, filter sections, entity and progress
+   cards, empty state.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 

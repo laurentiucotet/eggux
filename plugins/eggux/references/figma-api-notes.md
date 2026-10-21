@@ -136,6 +136,16 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   but gives every component property a new key (`Header#48:0` → `Header#229:12`). Look keys up
   by name prefix, never hard-code them.
 
+- An empty auto-layout frame from `createFrame()` keeps its 100 px default height when it hugs;
+  a spacer must be `layoutSizingVertical = 'FIXED'` and resized to 1.
+- `editComponentProperty` on a slot property fails after `combineAsVariants` ("Must pass in
+  valid name…"). Rename slots in each variant before combining.
+- Setting a Button's icon swap property to the icon it already shows resets the icon's stroke
+  override to the icon's own color (dark on a primary button). Re-bind the vector stroke to the
+  label's color after swapping, or pick the icon on the main component.
+- A TEXT property has one default for all variants. When variants need different default text
+  (Note, Increase, Decrease), give each variant its own property.
+
 ## Safety
 - New and cloned nodes go to the current page, which may be any page a previous call left
   open. Start every call that creates nodes with `await figma.setCurrentPageAsync(page)`, and

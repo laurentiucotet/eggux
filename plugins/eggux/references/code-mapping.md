@@ -48,6 +48,12 @@ later. "custom" means compose it from the listed primitives in the project.
 | Table template, `Table Cell` and parts | shadcn `Table` + TanStack Table | Grid columns → column defs |
 | `Data Grid Toolbar`, `Table Group Row` | custom on TanStack Table (grouping, aggregation, visibility) | Saved views stored per user |
 | `Filter Condition`, `Filter Group` | custom: `Select`, `Combobox`, `Input`, `Button` | Serialize to the API filter format |
+| `Filter Bar`, `Filter Chip`, `Faceted Filter`, `Facet Option` | shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) | Faceted values from `column.getFacetedUniqueValues()` (TanStack) |
+| `Filter Section` | `Collapsible` + `Checkbox` list | |
+| `Table Cell Amount`, `Status`, `Progress`, `Actions` | cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` | Amounts with `Intl.NumberFormat`, `tabular-nums` |
+| `Table Pagination` | shadcn data-table pagination (`Select` for page size + `Pagination`) | |
+| `Entity Card`, `Progress Card` | shadcn `Card` with `size="sm"`; `Progress` | |
+| `Empty State` | shadcn `Empty` (or a custom block: icon, title, description, actions) | |
 | `Approval Step` | custom on the Timeline layout | |
 | `Change Item` | custom | |
 | `Save Bar` | custom sticky footer | Listen to form dirty state |

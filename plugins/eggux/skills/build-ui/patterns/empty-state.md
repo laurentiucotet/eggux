@@ -18,6 +18,11 @@
 - CTA: only if the actor is permitted to create (check actors.md). Use the object's create CTA.
 - Visual: optional icon or illustration, muted, never larger than the content it replaces.
 
+## Component
+`Empty State` (Empty State page): Size default for pages and large cards, sm inside tables,
+cards and panels; Icon (swap), Title, Description, Actions slot. Examples: `Example / no
+results` (Table page), stress test with long text and title only.
+
 ## Layout
 Centered inside the area the content would occupy, not the whole page. Text styles:
 `heading/h4` for title, `body/small` with `foreground/muted` for description.

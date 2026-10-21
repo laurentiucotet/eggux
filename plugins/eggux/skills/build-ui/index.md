@@ -8,7 +8,7 @@ component guides it names. Names are Figma components; inventory in
 
 | Screen | Shell | Blocks | Patterns | Component guides |
 |---|---|---|---|---|
-| List / table of objects | App | Filtered List, Empty Page | search-and-filter, empty-state, loading-states | table, pagination, badge, list-and-tree |
+| List / table of objects | App | Filtered List, Empty Page (example "invoices with filters") | search-and-filter, empty-state, loading-states | table, pagination, badge, list-and-tree, card (Entity Card for grids) |
 | Large list people work in (invoices, orders, tickets) | App, Corporate + Compact | Template / data grid (enterprise), Filter Builder (example "enterprise invoices") | enterprise-apps, search-and-filter | table |
 | Request that needs sign-off | App | Approval Request | approvals, enterprise-apps | description-list, file-upload |
 | Who changed what | App (admin) | Audit Log | audit-log | table |
