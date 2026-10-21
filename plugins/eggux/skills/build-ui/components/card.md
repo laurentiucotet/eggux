@@ -69,6 +69,9 @@ Stat Card, Option Card and Post Card use the same tokens.
 - `Person Card` for one person (author, expert, speaker, contact): Avatar, Name, Role,
   Organization, expertise Badges, contact as Meta Items, optional actions. `vertical` in grids of
   3-4, `horizontal` in asides. A record with details and status stays an Entity Card.
+- `Event Card` for one event in a list (`horizontal`) or grid (`vertical`, with image): Date
+  Tile, format badges, title, time with time zone and place as Meta Items, one action (Register,
+  Join waitlist, Watch recording). Sorted by date; past events in their own list.
 - `Progress Card` for a goal against a target; Status on track / at risk / off track names the
   state in text; say the rule behind it in the footnote or a tooltip.
 - Examples on the Card page: list, profile, form, empty state, stat cards row.

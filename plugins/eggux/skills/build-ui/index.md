@@ -88,18 +88,18 @@ component guides it names. Names are Figma components; inventory in
 | badge | Badge, Badge Count, Chip, Status Dot (see indicators) |
 | button | Button, Button Icon, Button Group, Split Button |
 | boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view |
-| card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Progress Card |
+| card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Progress Card |
 | carousel | Carousel |
 | charts | Bar, Bar Horizontal, Line, Donut / Pie, Heatmap, Gauge, Treemap, Funnel, Scatter, Sparkline, Chart Card, legend, tooltip |
 | color-picker | Color Picker, swatches, color field |
 | comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer |
-| content | Post Card, Code Block, TOC Item, Table of Contents |
+| content | Post Card, Quote, Code Block, TOC Item, Table of Contents |
 | date-picker | Calendar, Date Picker, Time Picker, Date Range Picker |
 | description-list | Description List, Meta Item, Figure, Timeline |
 | dialog | Dialog, Alert Dialog |
 | drawer | Sheet, Drawer, Side Panel |
 | dropdown-menu | Menu, Menu Item, Menubar |
-| file-upload | File Dropzone, File Item, File Preview, Avatar Upload, Image Cropper |
+| file-upload | File Dropzone, File Item, File Preview, Resource Item, Avatar Upload, Image Cropper |
 | indicators | Spinner, Status Dot, Kbd |
 | input | Input, Field, Textarea, Input Group, Number Input, Input OTP, Inline Edit, Signature Pad |
 | list-and-tree | List Item, Tree Item, Sortable List Item, Scroll Area |

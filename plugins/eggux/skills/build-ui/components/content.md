@@ -1,4 +1,4 @@
-# Content components: Post Card, Code Block, Table of Contents
+# Content components: Post Card, Quote, Code Block, Table of Contents
 
 Usage guidelines only. Visual specs live in the Figma components.
 
@@ -11,6 +11,15 @@ Usage guidelines only. Visual specs live in the Figma components.
   items or none; 3-5 items.
 - Figma: `Post Card` (Card page), Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact); Badge
   exposed for the category.
+
+## Quote
+- `default` (left rule, body/large) inside an article or case study; `pull` (centered,
+  heading/h3) for one strong line between sections of a long page; never two in a row.
+- Word for word, with permission, under 40 words; no quotation marks in the text. Attribution:
+  name and role at the time, optional avatar.
+- Customer proof on marketing pages: the Testimonial blocks. Notes and warnings: Alert.
+- Figma: `Quote` Variant default, pull; Quote, Name, Role, Show avatar, Show attribution.
+  `Block / Article` uses the default variant.
 
 ## Code Block
 - Commands, snippets, API examples. Language label + Copy; Copy confirms with "Copied" for 2 s.

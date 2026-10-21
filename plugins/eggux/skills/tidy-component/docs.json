@@ -5621,5 +5621,113 @@
   "guides": [
    "skills/build-ui/components/card.md"
   ]
+ },
+ "Event Card": {
+  "summary": "One event, webinar or session in a list or grid: date tile, format, title, time and place, one action.",
+  "use": [
+   "Agenda and upcoming events lists (Layout=horizontal)",
+   "Event grids on a hub or topic page (Layout=vertical, with image)",
+   "Sessions of a conference day"
+  ],
+  "avoid": [
+   "The event page itself: use Block / Header Event",
+   "Calendar views with many events: use Scheduler",
+   "Articles and news: use Post Card"
+  ],
+  "anatomy": [
+   "Date Tile (exposed): month over day",
+   "Tags slot: format Badges (Webinar, Online, In person)",
+   "Title, 2 lines",
+   "Meta slot: Meta Items for time with time zone and place",
+   "Actions slot: one action (Register, Join waitlist, Watch recording)",
+   "Vertical: image 16:9 on top (Show image)"
+  ],
+  "rules": [
+   "Sorted by date, soonest first; past events in their own list",
+   "Time always with time zone; place with city, or Online",
+   "One action per card; the whole card links to the event page",
+   "Past events: Recorded badge and Watch the recording, or no action",
+   "Full events say it in the action (Join waitlist), never by hiding the card"
+  ],
+  "a11y": [
+   "The Date Tile reads as a full date (\"12 November 2026\") for screen readers",
+   "One link for the card; the action is a separate button with a label that names the event",
+   "Badges are text, not color alone"
+  ],
+  "code": "shadcn Card with a date tile, Badge and Button; <time datetime> for the date.",
+  "guides": [
+   "skills/build-ui/components/card.md",
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Resource Item": {
+  "summary": "A file or link people download or open: type icon, name, format and size, action.",
+  "use": [
+   "Downloads on a product, dataset or report page",
+   "Attachments people take away: templates, guides, brand assets",
+   "Links to documents stored elsewhere"
+  ],
+  "avoid": [
+   "Files people upload: use File Item",
+   "Previewing a file: use File Preview",
+   "Navigation to pages: use List Item or links"
+  ],
+  "anatomy": [
+   "Icon tile (Icon swap): the file type",
+   "Name: what it is, not the file name",
+   "Meta: format · size · updated or pages",
+   "Actions slot: download, open or copy link",
+   "Divider (off on the last row)"
+  ],
+  "rules": [
+   "Meta gives format and size before people click",
+   "A Download all button under the list when there are 3 or more, with the total size",
+   "Gated files say so in the meta (\"Sign in to download\")",
+   "Same icon per file type across the product"
+  ],
+  "a11y": [
+   "The action's label names the file (\"Download Sample data, XLSX, 2.4 MB\")",
+   "Opening in a new tab is announced",
+   "The icon tile is decorative"
+  ],
+  "code": "Custom row: icon, text, shadcn Button (ghost icon) with <a download>.",
+  "guides": [
+   "skills/build-ui/components/file-upload.md",
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Quote": {
+  "summary": "A quotation in running content: default with a left rule inside an article, pull to break up a long page.",
+  "use": [
+   "A sentence from a person quoted in an article or case study",
+   "One strong line between sections of a long page (Variant=pull)",
+   "An expert's view next to data"
+  ],
+  "avoid": [
+   "Customer proof on a marketing page: use the Testimonial blocks",
+   "Notes and warnings: use Alert",
+   "Code or commands: use Code Block"
+  ],
+  "anatomy": [
+   "Rule on the left (default) or a quote mark (pull)",
+   "Quote text: body/large (default), heading/h3 (pull)",
+   "Attribution: Avatar (Show avatar), Name, Role (Show attribution)"
+  ],
+  "rules": [
+   "Word for word, with permission; no quotation marks in the text",
+   "One pull quote per page section, never two in a row",
+   "Attribution names the person and their role at the time",
+   "Under 40 words; longer passages stay in the body text"
+  ],
+  "a11y": [
+   "Code as blockquote with a figcaption for the attribution",
+   "The quote mark is decorative",
+   "Text contrast as body text, never muted"
+  ],
+  "code": "<figure><blockquote> with <figcaption>; Tailwind border-l-2 for the default variant.",
+  "guides": [
+   "skills/build-ui/components/content.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
  }
 }

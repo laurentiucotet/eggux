@@ -14,9 +14,11 @@ Usage rules live in the guides linked under each component.
 | [Post Card](#post-card) | 3 | - |
 | [Entity Card](#entity-card) | 4 | Leading, Tags, Details, Actions |
 | [Person Card](#person-card) | 2 | Avatar, Tags, Contact, Actions |
+| [Event Card](#event-card) | 2 | Tags, Meta, Actions |
+| [Date Tile](#date-tile) | 2 | - |
 | [Progress Card](#progress-card) | 3 | - |
 
-On the Figma page: "Example / customer card", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
+On the Figma page: "Example / customer card", "Example / events grid", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
 
 ## Card
 
@@ -449,6 +451,93 @@ Tokens and styles:
 - Spacing and size: `border-width/DEFAULT`, `density/card-gap-sm`, `density/card-padding-sm`, `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
 - Radius: `radius/xl`
 - Text styles: `body/small`, `heading/h4`
+
+Guides: [card](../../skills/build-ui/components/card.md)
+
+Code: shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`)
+
+## Event Card
+
+Component set · 2 variants · default size 640 × 144
+
+One event, webinar or session in a list or grid: Date Tile (exposed), format badges (Tags slot), title, time with time zone and place as Meta Items (Meta slot), one action (Register, Watch recording). horizontal for agenda lists, vertical with an image for grids of 3. The whole card links to the event page; the action is the only other control. Past events: "Watch the recording" or no action, and a Recorded badge.
+
+**Use for**
+
+- Agenda and upcoming events lists (Layout=horizontal)
+- Event grids on a hub or topic page (Layout=vertical, with image)
+- Sessions of a conference day
+
+**Not for**
+
+- The event page itself: use Block / Header Event
+- Calendar views with many events: use Scheduler
+- Articles and news: use Post Card
+
+**Anatomy**
+
+1. Date Tile (exposed): month over day
+2. Tags slot: format Badges (Webinar, Online, In person)
+3. Title, 2 lines
+4. Meta slot: Meta Items for time with time zone and place
+5. Actions slot: one action (Register, Join waitlist, Watch recording)
+6. Vertical: image 16:9 on top (Show image)
+
+**Content and behavior**
+
+- Sorted by date, soonest first; past events in their own list
+- Time always with time zone; place with city, or Online
+- One action per card; the whole card links to the event page
+- Past events: Recorded badge and Watch the recording, or no action
+- Full events say it in the action (Join waitlist), never by hiding the card
+
+**Accessibility**
+
+- The Date Tile reads as a full date ("12 November 2026") for screen readers
+- One link for the card; the action is a separate button with a label that names the event
+- Badges are text, not color alone
+
+| Variant property | Values |
+|---|---|
+| Layout | horizontal, vertical |
+
+| Property | Type | Default |
+|---|---|---|
+| Show tags | boolean | true |
+| Title | text | Close the books in five days |
+| Show actions | boolean | true |
+| Show image | boolean | true |
+
+Slots (fill them in the instance, never detach): `Tags`, `Meta`, `Actions`
+
+Built from: `Badge`, `Button`, `Date Tile`, `Image Placeholder`, `Meta Item`
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/card`
+- Spacing and size: `density/card-gap-sm`, `density/card-padding-sm`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/xl`
+- Text styles: `heading/h4`
+
+## Date Tile
+
+Component set · 2 variants · default size 56 × 66
+
+The date of an event as a tile: month (three letters) over the day. Part of Event Card; also in agenda lists and calendars of events. Size default 56, sm 44. Past events: the card says it, the tile stays the same.
+
+| Variant property | Values |
+|---|---|
+| Size | default, sm |
+
+| Property | Type | Default |
+|---|---|---|
+| Month | text | NOV |
+| Day | text | 12 |
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0`, `spacing/1`, `spacing/1_5`, `spacing/2`
+- Radius: `radius/lg`
+- Text styles: `heading/h3`, `heading/h4`, `ui/overline`
 
 ## Progress Card
 

@@ -72,6 +72,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Table Pagination` | shadcn data-table pagination (`Select` for page size + `Pagination`) | |
 | `Entity Card`, `Progress Card` | shadcn `Card` with `size="sm"`; `Progress` | |
 | `Person Card` | shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`) | |
+| `Event Card`, `Date Tile` | shadcn `Card` + `Badge`, `Button`; date tile as custom markup | `<time datetime>` for the date |
 | `Empty State` | shadcn `Empty` (or a custom block: icon, title, description, actions) | |
 | `Approval Step` | custom on the Timeline layout | |
 | `Change Item` | custom | |
@@ -89,6 +90,7 @@ later. "custom" means compose it from the listed primitives in the project.
 |---|---|---|
 | `Rich Text Editor` | Tiptap (or Lexical) + shadcn `Toggle` toolbar | |
 | `Code Block` | Shiki or Prism + copy `Button` | |
+| `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, larger type |
 | `Table of Contents`, `TOC Item` | custom with scroll spy | |
 | `Comment`, `Comment Composer` | custom + `Textarea` | |
 | `Chat Message`, `Chat Composer`, `Typing Indicator` | custom | |
@@ -99,6 +101,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Response Feedback` | `Popover` or inline `Card` with `ToggleGroup` (multiple) and `Textarea` | Send with the message id |
 | `AI Summary`, `AI Suggestion`, `AI Notice` | custom on `Card`, `Input`, `Badge` | Store who accepted an AI value and when |
 | `File Dropzone`, `File Item`, `Attachment` | react-dropzone + custom | |
+| `Resource Item` | custom row + `Button` (ghost icon) with `<a download>` | Label names the file, format and size |
 | `Rating` | custom `RadioGroup` | |
 | `Color Picker` | react-colorful in `Popover` | |
 | `Coachmark`, `Hotspot` | Driver.js, Shepherd or `Popover` anchored to the target | |

@@ -9,8 +9,9 @@ Usage rules live in the guides linked under each component.
 | [File Dropzone](#file-dropzone) | 4 | - |
 | [File Item](#file-item) | 3 | - |
 | [File Preview](#file-preview) | 3 | - |
+| [Resource Item](#resource-item) | 1 | Actions |
 
-On the Figma page: "Example / attach documents", "Example / invoice preview over a list", "Example / upload documents", "Stress test / File Dropzone", "Stress test / File Item", "Stress test / File Preview"
+On the Figma page: "Example / attach documents", "Example / downloads", "Example / invoice preview over a list", "Example / upload documents", "Stress test / File Dropzone", "Stress test / File Item", "Stress test / File Preview", "Stress test / Resource Item"
 
 ## File Dropzone
 
@@ -187,3 +188,59 @@ Tokens and styles:
 Guides: [file-upload](../../skills/build-ui/components/file-upload.md)
 
 Code: `react-pdf` (pdf.js) for PDF, `<img>` for images, in `Sheet` or `Dialog` (Unsupported types: download link)
+
+## Resource Item
+
+Component · 1 variant · default size 560 × 65
+
+A file or link people download or open: type icon, name, meta (format · size · updated), action (download, open, copy link). Stack in a card or a section ("Data samples and dictionaries", "Downloads"); Divider off on the last row. Name says what it is, not the file name; meta gives format and size so people know before they click. Files people upload use File Item.
+
+**Use for**
+
+- Downloads on a product, dataset or report page
+- Attachments people take away: templates, guides, brand assets
+- Links to documents stored elsewhere
+
+**Not for**
+
+- Files people upload: use File Item
+- Previewing a file: use File Preview
+- Navigation to pages: use List Item or links
+
+**Anatomy**
+
+1. Icon tile (Icon swap): the file type
+2. Name: what it is, not the file name
+3. Meta: format · size · updated or pages
+4. Actions slot: download, open or copy link
+5. Divider (off on the last row)
+
+**Content and behavior**
+
+- Meta gives format and size before people click
+- A Download all button under the list when there are 3 or more, with the total size
+- Gated files say so in the meta ("Sign in to download")
+- Same icon per file type across the product
+
+**Accessibility**
+
+- The action's label names the file ("Download Sample data, XLSX, 2.4 MB")
+- Opening in a new tab is announced
+- The icon tile is decorative
+
+| Property | Type | Default |
+|---|---|---|
+| Icon | instance swap | Icon/file-text |
+| Name | text | Sample data |
+| Meta | text | XLSX · 2.4 MB · Updated 12 Oct 2026 |
+| Divider | boolean | true |
+
+Slots (fill them in the instance, never detach): `Actions`
+
+Built from: `Button Icon`, `Separator`. Icons: file-text
+
+Tokens and styles:
+- Colors: `background/muted`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `ui/caption`, `ui/label`
