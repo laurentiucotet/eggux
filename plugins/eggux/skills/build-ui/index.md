@@ -18,6 +18,7 @@ component guides it names. Names are Figma components; inventory in
 | Import data (CSV, XLSX) | Wizard or App | Import Mapping | enterprise-apps (§ Import), multi-step-form | file-upload, stepper, table |
 | One object (detail) | App | Record Header, Record Detail | record-page | description-list, tabs, navigation |
 | Dashboard | App | Analytics | loading-states, empty-state | charts, card, indicators |
+| Back office, CMS (lists and editors of content) | App (grid: Sidebar Double for many sections, Side Panel beside editors, actions bar fixed at the bottom) | Data table, Forms blocks | enterprise-apps, unsaved-changes | sidebar, drawer (Side Panel), table, card (Entity Card actions), list-and-tree (Sortable List Item) |
 | Settings, admin | App | Profile, Team Members, Billing, Notification Preferences, API Keys, Integrations, Settings Section | settings-and-admin, unsaved-changes, delete-confirmation | input, select, card |
 | Inbox, chat, tickets, files | Split View | Conversation (example "inbox") | search-and-filter, empty-state | navigation (split view), list-and-tree, comments-and-chat |
 | Discussion on an object (task, document, invoice) | App (record page) | Comments | record-page | comments-and-chat, rich-text-editor |
@@ -95,7 +96,7 @@ component guides it names. Names are Figma components; inventory in
 | date-picker | Calendar, Date Picker, Time Picker, Date Range Picker |
 | description-list | Description List, Timeline |
 | dialog | Dialog, Alert Dialog |
-| drawer | Sheet, Drawer |
+| drawer | Sheet, Drawer, Side Panel |
 | dropdown-menu | Menu, Menu Item, Menubar |
 | file-upload | File Dropzone, File Item, File Preview, Avatar Upload, Image Cropper |
 | indicators | Spinner, Status Dot, Kbd |
@@ -108,7 +109,7 @@ component guides it names. Names are Figma components; inventory in
 | rating | Rating |
 | rich-text-editor | Rich Text Editor |
 | select | Select, Combobox, Checkbox, Radio, Switch, Tag Input, People Picker, Transfer List |
-| sidebar | Sidebar and its parts |
+| sidebar | Sidebar and its parts, Sidebar Double |
 | skeleton | Skeleton |
 | stepper | Step, Stepper |
 | table | Table cells, toolbar, inline edit, column resize |

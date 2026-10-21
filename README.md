@@ -150,6 +150,13 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3v. Done: `/eggux:tidy-component` and the component page row (Docs, Component, Stress test, Examples); all 57 component pages (151 rows) with generated docs, stress tests and contextual examples.
 3w. Done: back office shell test (grid page shell); Side Panel, Sidebar Double; Entity Card Actions slot; Sortable List Item 1:1 Leading image.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
+   Open library gaps found while rebuilding real screens:
+   - `Page Shell / Back office` on the Page Shells page, from the tested grid shell;
+   - Stat Card without the trend badge (plain figure with a footnote);
+   - Entity Card: a boolean for the footer people (Avatar Group shows by default);
+   - Image Placeholder keeps its ratio when set to FILL (now the height is set by hand);
+   - Post Card compact list layout, List Item without Leading;
+   - icons star, share and grid; a Search Hero block.
 5. System: documentation site.
 
 ## What the pack covers
