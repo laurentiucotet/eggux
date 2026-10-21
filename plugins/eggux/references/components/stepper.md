@@ -9,6 +9,8 @@ Usage rules live in the guides linked under each component.
 | [Step](#step) | 8 | - |
 | [Stepper](#stepper) | 1 | Steps |
 
+On the Figma page: "Example / in multi-step form", "Stress test / Stepper"
+
 ## Step
 
 Component set · 8 variants · default size 240 × 36
@@ -45,6 +47,40 @@ Code: custom (no shadcn stepper)
 Component · 1 variant · default size 960 × 36
 
 Progress through a multi-step form or wizard (3-6 steps). Show it above the form; on mobile show "Step 2 of 3" + title instead.
+
+**Use for**
+
+- Multi-step forms and wizards where order matters: onboarding, checkout
+- 3-6 steps
+- On top of Block / Multi-step Form, one Card per step
+
+**Not for**
+
+- 2 steps: use one page or a Dialog
+- Independent sections: use Tabs
+- Mobile: "Step 2 of 3 · Plan" and a Progress bar
+
+**Anatomy**
+
+1. Steps slot: Step instances
+2. Indicator: Number, check when completed, x when error
+3. Title
+4. Description (Show description)
+5. Connector to the next step, off on the last
+
+**Content and behavior**
+
+- Step titles are nouns: "Account", "Plan", "Confirm"
+- Exactly one Step is current
+- Completed steps show a check and are clickable; upcoming steps are not
+- Validate each step before moving on; an invalid step that was left shows error
+- Keep entered data when going back; the last step is a review
+
+**Accessibility**
+
+- An ordered list; the current step has aria-current="step"
+- Step state is in text for screen readers ("Completed", "Error")
+- Moving to a step moves focus to its heading
 
 Slots (fill them in the instance, never detach): `Steps`
 

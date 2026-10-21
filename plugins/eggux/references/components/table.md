@@ -20,7 +20,7 @@ Usage rules live in the guides linked under each component.
 | [Table Cell Actions](#table-cell-actions) | 1 | - |
 | [Table Pagination](#table-pagination) | 1 | - |
 
-On the Figma page: "Example / density comparison", "Example / inline edit and column resize", "Example / invoices with filters", "Example / no results", "Stress test / Table cells", "Template / data grid (enterprise)", "Template / invoices table (grid)"
+On the Figma page: "Example / bulk actions on invoices", "Example / density comparison", "Example / in audit log", "Example / inline edit and column resize", "Example / invoice list footer", "Example / invoices grouped by status", "Example / invoices with filters", "Example / no results", "Stress test / Data Grid Toolbar", "Stress test / Table Group Row", "Stress test / Table Pagination", "Stress test / Table Toolbar", "Stress test / Table cells", "Template / data grid (enterprise)", "Template / invoices table (grid)"
 
 ## Table Header Label
 
@@ -112,6 +112,42 @@ Component set · 10 variants · default size 160 × 40
 
 Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row uses the same State (hover, selected). Expanded = detail row: one cell spanning all columns. Usage: eggux build-ui/components/table.md
 
+**Use for**
+
+- Data people compare across attributes, sort or scan
+- Data grids people work in all day: invoices, orders, tickets
+- Copy Template / invoices table (grid) and change columns and rows
+
+**Not for**
+
+- One item at a time or few attributes: use a list or cards
+- Mobile: switch the table to a list
+- Key-value details of one record: use Description List
+
+**Anatomy**
+
+1. Type=header with Table Header Label (Label, Sort, Align)
+2. Type=body with Table Cell Text, Table Cell Stack or Table Cell User
+3. Rich body content: Table Cell Amount, Table Cell Status, Table Cell Progress
+4. Last column: Table Cell Actions (edit and menu)
+5. Type=expanded: one detail cell spanning all columns
+
+**Content and behavior**
+
+- Every cell of a row uses the same State (hover, selected)
+- The first column identifies the row and links to it (Table Cell Text Style=strong)
+- Text aligns left; numbers and currency align right with the same decimals
+- Status is a Badge with text, never a colored dot alone
+- Empty values show "-", never blank
+- Inline edit only for fields changed often: State=editing, State=error in the cell
+
+**Accessibility**
+
+- Header cells are th; the sorted column has aria-sort
+- Sortable headers are buttons reachable with the keyboard
+- Row icon buttons have a tooltip and an aria-label with the row: "Edit invoice INV-1041"
+- Row checkboxes have labels: "Select INV-1041"
+
 | Variant property | Values |
 |---|---|
 | Type | header, body, expanded |
@@ -134,6 +170,37 @@ Component · 1 variant · default size 720 × 48
 
 Bulk action bar shown above the table while rows are selected: "N selected" + actions.
 
+**Use for**
+
+- Tables with bulk actions and a checkbox column
+- Data grids: it replaces the Data Grid Toolbar while rows are selected
+- Bulk actions such as Send, Export, Assign or Archive on selected invoices
+
+**Not for**
+
+- Actions on one row: use Table Cell Actions
+- Tables without bulk actions: no checkbox column and no toolbar
+
+**Anatomy**
+
+1. Selection count: "2 selected"
+2. Actions slot: Buttons for the bulk actions
+3. Clear selection
+
+**Content and behavior**
+
+- Shown only while rows are selected, in place of the regular toolbar
+- Only actions valid for the whole selection are enabled; disabled ones say why
+- After selecting a page, offer "Select all 1,284 invoices"
+- Destructive bulk actions confirm with the count
+- One toast reports the result with counts and failures: "18 sent, 2 failed"
+
+**Accessibility**
+
+- The selection count is announced when it changes
+- role="toolbar" with a label; every action is reachable with the keyboard
+- Focus stays in the table when the toolbar appears
+
 | Property | Type | Default |
 |---|---|---|
 | Selection | text | 2 selected |
@@ -155,6 +222,38 @@ Component · 1 variant · default size 1200 × 36
 
 Toolbar above a data grid: saved views, search, filters with active count, columns, group by, export. While rows are selected, show Table Toolbar (bulk actions) in its place.
 
+**Use for**
+
+- Lists people work in all day: invoices, orders, tickets, users
+- Grids with saved views, grouping and export
+- Audit logs above the event grid
+
+**Not for**
+
+- Simple tables with search and a few filters: use Filter Bar
+- While rows are selected: show Table Toolbar in its place
+
+**Anatomy**
+
+1. Start slot: saved view selector and search Input
+2. Filters Button with a Badge Count of active filters
+3. End slot: Columns, Group by, density, Export
+4. Active filters as chips under it
+
+**Content and behavior**
+
+- A saved view keeps columns, filters, sort and grouping
+- Unsaved changes to a view offer Save and Save as new
+- Filters show the active count; active filters appear as chips
+- Export exports the current view
+- Search, filters and sort are kept in the URL
+
+**Accessibility**
+
+- role="toolbar" with a label
+- Icon-only buttons have a tooltip and an accessible label
+- The filter count is part of the button name: "Filters, 3 active"
+
 Slots (fill them in the instance, never detach): `Start`, `End`
 
 Built from: `Badge Count`, `Button`, `Input`
@@ -171,6 +270,36 @@ Code: custom on TanStack Table (grouping, aggregation, visibility) (Saved views 
 Component · 1 variant · default size 1200 × 20
 
 Content of a group header row: put it in a Table Cell Type=expanded that spans all columns. Chevron collapses the group; count and subtotal summarize it.
+
+**Use for**
+
+- Data grids grouped by status, owner or customer
+- Groups that need a subtotal, such as amounts in EUR
+- Long grids where collapsing groups helps people scan
+
+**Not for**
+
+- A total for the whole table: use a totals row at the bottom on background/muted
+- Detail of one row: use Table Cell Type=expanded with the detail
+
+**Anatomy**
+
+1. chevron-down: collapses the group
+2. Label: "Overdue"
+3. Count: Badge Count
+4. Subtotal (Show subtotal)
+
+**Content and behavior**
+
+- Put it in a Table Cell Type=expanded that spans all columns
+- The chevron collapses and expands the group
+- Count and subtotal summarize the group; the subtotal uses the column's number format
+- Grouping is chosen with Group by in the Data Grid Toolbar
+
+**Accessibility**
+
+- The chevron is a button with aria-expanded and a label: "Collapse Overdue"
+- Count and subtotal are text, read together with the label
 
 | Property | Type | Default |
 |---|---|---|
@@ -280,6 +409,36 @@ Guides: [table](../../skills/build-ui/components/table.md)
 Component · 1 variant · default size 1040 × 60
 
 Under a table: range with the total and the object name, rows per page (10, 20, 50, 100), Pagination. Keep it when there is one page (range only), so the total is always visible.
+
+**Use for**
+
+- Under every paginated table or data grid
+- Kept with one page (range only), so the total stays visible
+- Data grids, together with the Data Grid Toolbar above
+
+**Not for**
+
+- Feeds browsed once: use a Load more button
+- Pagination outside a table: use Pagination
+
+**Anatomy**
+
+1. Range: "Showing 1-20 of 1,284 invoices"
+2. Rows per page: Select (Show rows per page)
+3. Pagination
+
+**Content and behavior**
+
+- The range names the total and the object
+- Rows per page: 10, 20, 50, 100
+- Under 900 px, turn off Show rows per page
+- Changing filters resets to page 1
+
+**Accessibility**
+
+- The rows-per-page Select has a label
+- Range changes are announced politely
+- Pagination is a nav with aria-label="Pagination"
 
 | Property | Type | Default |
 |---|---|---|

@@ -116,8 +116,9 @@ Iterate on feedback; every change re-runs steps 4 to 8 for what it touches.
 | Records | A decision in `eggux/decisions.md` when the change sets a rule or changes the product's look | `CHANGELOG.md`, `figma-library.md` row when properties or variants changed, `code-mapping.md` when props changed, regenerate `references/components/` (`scripts/component-docs.*`), version bump, `claude plugin validate .`, commit |
 | Code (when the project has one) | Props and styles updated; renamed or removed props listed as breaking; stories for the stress cases | Code mapping only |
 
-- Re-run `skills/tidy-component/component-page.js` for the component: it rebuilds the Docs frame
-  from the new properties and keeps the row in order. Pages not yet in the row layout get it now.
+- Update the component's entry in `skills/tidy-component/docs.json` (rules, anatomy) and re-run
+  `component-page.js` for its page through `jobs.py`: it rebuilds the Docs frame from the new
+  properties and keeps the row in order.
 - Mark the section Ready for dev again (Dev Mode); if the API refuses, tell the person.
 - A client change that would help every project: propose it for the master library.
 - New Plugin API trap learned: one line in `references/figma-api-notes.md`.

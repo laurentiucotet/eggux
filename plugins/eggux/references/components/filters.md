@@ -14,7 +14,7 @@ Usage rules live in the guides linked under each component.
 | [Filter Section](#filter-section) | 2 | Options |
 | [Filter Bar](#filter-bar) | 1 | End, Filters |
 
-On the Figma page: "Stress test / Filters"
+On the Figma page: "Example / catalog filters", "Example / in filter builder", "Example / invoice filters", "Example / status filter options", "Stress test / Faceted Filter", "Stress test / Filter Group", "Stress test / Filter Section", "Stress test / Filters"
 
 ## Filter Condition
 
@@ -42,6 +42,38 @@ Code: custom: `Select`, `Combobox`, `Input`, `Button` (Serialize to the API filt
 Component · 1 variant · default size 800 × 126
 
 Nested group of conditions joined by the same and / or, on a muted background. One level of nesting is enough for most products.
+
+**Use for**
+
+- Precise subsets in large lists: finance, operations, CRM
+- Conditions that mix and / or: Status is Overdue and (Owner is Alex or Amount > 1000 EUR)
+- Filters that become a saved view ("Save as view")
+
+**Not for**
+
+- Picking values of a few fields: use Filter Chips and Faceted Filter
+- Browsing a catalog: use Filter Sections in a side panel
+
+**Anatomy**
+
+1. Muted background
+2. Conditions slot of Filter Conditions
+3. Filter Condition: first starts with "Where", next starts with and / or
+4. Field, operator and value controls
+5. Add condition Button
+
+**Content and behavior**
+
+- One level of nesting; deeper groups are not supported
+- Operators follow the field type: text, number and money, date, sets
+- Value control follows the field: Tag Input for sets, Date Range Picker for dates, Number Input for amounts
+- Live result count; Apply in the builder footer; active conditions show as chips under the toolbar
+
+**Accessibility**
+
+- Each Select and value control has a label that names the condition
+- Remove condition Button Icons have labels
+- Adding a condition moves focus to its field Select
 
 Slots (fill them in the instance, never detach): `Conditions`
 
@@ -120,6 +152,37 @@ Component · 1 variant · default size 240 × 247
 
 Popover opened from a Filter Chip: search, values with checkboxes and counts (Items slot of Facet Options), Clear filters. Applies on each click, no Apply button; Escape closes. Over 8 values: keep the search; selected values first.
 
+**Use for**
+
+- Choosing one or more values of a field from a Filter Chip: Status, Owner, Category
+- Fields with a known set of values and useful counts
+- Fields with many values where search helps: Customer, Project
+
+**Not for**
+
+- Free text, numbers or date ranges: use a Filter Condition with the matching control
+- Many fields at once in a side panel: use Filter Section
+
+**Anatomy**
+
+1. Search (Command Input)
+2. Items slot of Facet Options: checkbox, label, count
+3. Separator
+4. Footer with Clear filters (Show footer)
+
+**Content and behavior**
+
+- Applies on each click, no Apply button
+- Over 8 values: keep the search and put selected values first
+- Counts update with the other filters; show 0 rather than hiding an option
+- Chip label shows up to 2 names, then "3 selected"
+
+**Accessibility**
+
+- Escape closes and returns focus to the Filter Chip
+- Arrows move through options, Space or Enter toggles
+- Each Facet Option is a checkbox with its label; the count is read after the label
+
 | Property | Type | Default |
 |---|---|---|
 | Show footer | boolean | true |
@@ -143,6 +206,38 @@ Code: shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandIte
 Component set · 2 variants · default size 256 × 229
 
 A group in a filter side panel: title, number of selected values, collapse. Options slot holds Facet Options, a Slider (price range) or a Date Range Picker trigger. Show the first 5-6 values, then "Show N more". Collapsed sections keep their count visible.
+
+**Use for**
+
+- Side panels with many attributes: catalogs, search pages, commerce
+- Ranges next to checkboxes: a Slider for price, a Date Range Picker trigger
+- Mobile filter Drawers with one group per attribute
+
+**Not for**
+
+- Up to 4 common filters above a table: use Filter Chips in a Filter Bar
+- Conditions with operators and and / or: use the Filter Builder (Filter Group)
+
+**Anatomy**
+
+1. Title
+2. Selected count (Show selected count)
+3. Collapse chevron
+4. Options slot: Facet Options, Slider or Date Range Picker trigger
+5. Show N more (Show more)
+
+**Content and behavior**
+
+- Show the first 5-6 values, then "Show N more"
+- Collapsed sections (Expanded=false) keep their count visible
+- Counts show 0 rather than hiding the option
+- A panel with many fields may apply on a button; say how many results it will show
+
+**Accessibility**
+
+- The title is a button with aria-expanded
+- Options are real checkboxes with labels
+- Selected count is text, read with the title
 
 | Variant property | Values |
 |---|---|
@@ -172,6 +267,40 @@ Code: `Collapsible` + `Checkbox` list
 Component · 1 variant · default size 1040 × 76
 
 Above a list or table. First row: search and view controls (End slot: sort, columns, export). Second row: filters as Filter Chips (Filters slot, wraps on narrow screens): empty triggers "+ Owner" and active filters "Status: Overdue, Pending", then Clear all when any filter is on. Show the result count next to the table title, and an Empty State with "Clear filters" when nothing matches.
+
+**Use for**
+
+- Tables and lists with up to 4 common filters: invoices by Status, Owner, Date
+- Lists people work in all day, next to sort, columns and export
+- Saved views that combine search, filters and sort
+
+**Not for**
+
+- Many attributes or browsing (catalog, search page): use a side panel of Filter Sections
+- Precise conditions with and / or and operators: use the Filter Builder (Filter Group)
+- Short lists under ~10 rows: no filters, search at most
+
+**Anatomy**
+
+1. Search Input
+2. End slot: sort, columns, export
+3. Filters slot of Filter Chips: empty triggers "+ Owner"
+4. Active Filter Chips: "Status: Overdue, Pending"
+5. Clear all (Show clear)
+
+**Content and behavior**
+
+- Filters apply immediately; show the result count next to the table title and keep it updated
+- Clear all appears when filters are on (Show clear)
+- Filters wrap on narrow screens; on mobile they move to a bottom Drawer
+- Search, filters and sort live in the URL
+- No results: Empty State that names the query and offers "Clear filters"
+
+**Accessibility**
+
+- Search has a label or aria-label that says what it searches: "Search customers by name or email"
+- Result count changes are announced in a live region
+- Tab order follows the reading order: search, filters, Clear all, End controls
 
 | Property | Type | Default |
 |---|---|---|

@@ -8,13 +8,48 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Timeline Item](#timeline-item) | 5 | Content |
 
-On the Figma page: "Example / activity"
+On the Figma page: "Example / activity", "Stress test / Timeline Item"
 
 ## Timeline Item
 
 Component set · 5 variants · default size 480 × 70
 
 One event in an activity history (record history, audit log, order tracking). Newest first. Tone marks the outcome, not decoration. Connector off on the last item. Time relative under 24 h, absolute after ("22 Oct, 10:30"); full timestamp in a tooltip.
+
+**Use for**
+
+- Activity column on a record page
+- Order or shipment tracking
+- Changes made by the system, listed in order
+
+**Not for**
+
+- Conversations between people: use Comment
+- Filterable change history: use the Audit Log with Change Item
+- Steps the user still has to complete: use Stepper
+
+**Anatomy**
+
+1. Icon in a circle colored by Tone (Icon)
+2. Connector line to the next item
+3. Title: what happened
+4. Time: "2 h ago"
+5. Description: who and where (Show description)
+6. Content slot: note excerpt, attachment or diff (Show content)
+
+**Content and behavior**
+
+- Newest first; one event per item
+- Tone marks the outcome: success, destructive (failed), primary (created), default (info)
+- Time is relative under 24 h, then absolute ("22 Oct, 10:30"); full timestamp in a tooltip
+- Connector off on the last item
+- Long histories: the last 5-10 with "View all"; group by day
+
+**Accessibility**
+
+- The timeline is an ordered list
+- The outcome is in the Title text, not only in the Tone color
+- The time element carries the full timestamp in its datetime attribute
 
 | Variant property | Values |
 |---|---|

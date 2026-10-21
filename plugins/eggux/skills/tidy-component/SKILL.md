@@ -57,23 +57,40 @@ in the component and in `CONFIG.docs.rules`.
 Keep existing examples that still use the component; remove ones that show an old variant.
 
 ## 5. Docs content
-Fill `CONFIG.docs` in `component-page.js` (next to this file). Write it from the description,
-the guide and the code mapping, short and concrete:
+The Docs frame is built from `docs.json` (next to this file, keyed by main component name) and
+from the component itself. Add or edit the entry before running:
 - `summary`: one or two sentences, what it is for;
 - `use` / `avoid`: 3-5 lines each; every "avoid" names what to use instead;
-- `anatomy`: numbered parts in reading order (empty = the components it is built from);
+- `anatomy`: parts in reading order, no numbers (empty = the components it is built from);
 - `rules`: content and behavior rules, the stress test findings included;
 - `a11y`: keyboard, focus, screen reader, contrast;
-- `code`: the code mapping line; `guides`: repo paths.
-Variants, properties, slots, tokens and styles are read from the component; do not write them.
-Set `status` (Draft, In review, Ready, Ready for dev) and `helpers`.
+- `code`: the code mapping line; `guides`: plugin-relative paths of the guides.
+Variants, properties, slots, parts (helpers), tokens and styles are read from the component; do
+not write them. `rows.json` holds each page's rows: `main`, `helpers` (parts shown in the same
+row and documented under Parts) and `block` (id of the smallest block or shell that uses the
+component, for a generated example). Add a row when a component is added to a page.
 
 ## 6. Lay out
-Run `component-page.js` with `use_figma`. It creates or reuses the four sections, rebuilds the
-Docs frame, moves the set, helpers, stress tests and examples in, sizes the sections and places
-them in a row (120 apart; a new row goes 240 below the rest). Running it again only refreshes.
-Sections left empty by the move (the old `Stress tests` section) are removed. Empty Stress test
-or Examples sections get a note saying what is missing: fill it, do not leave the note.
+`python3 skills/tidy-component/jobs.py "<Page>" ["<Page>" ...]` prints `component-page.js` with
+the pages filled in; run it with `use_figma`. Keep a call under ~45 KB and ~14 rows. For many
+pages, store the script body in a hidden text node once and run it with
+`new AsyncFunction('figma', 'JOBS', node.characters)`, sending only JOBS per call; delete the node
+after. The script:
+- creates or reuses the four sections per row and stacks the rows in `rows.json` order;
+- rebuilds the Docs frame; moves the main component and its helpers in (labels next to a
+  component move with it, in a "<Name> with labels" frame);
+- assigns every existing `Stress test /`, `Example /`, `Examples /` and `Template /` frame to the
+  row whose components it uses most (top-level instances; ties go to the row with fewer
+  frames); force one with `examples` in `rows.json`;
+- generates a basic stress test where none exists (default, long and short text, options on and
+  off, narrow, each variant, Dark), marked "Generated cases"; generated frames are rebuilt on
+  every run, so replace them with real cases when you review;
+- generates "Example / in <block>" from `block` where no example exists;
+- removes sections left empty and leaves a note in any Stress test or Examples section that is
+  still empty: fill it, do not leave the note.
+Components without a block or example get a hand-built one: the App or Marketing page shell
+with the component in its Page slot (Page Header titled for the context), over `dialog/overlay`
+for dialogs, in the corner for toasts, at its real anchor for menus and popovers.
 
 ## 7. Check
 1. Screenshot the Docs frame (scale 0.5) and each section; read the doc for wrong or vague

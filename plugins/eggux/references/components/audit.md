@@ -8,11 +8,44 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Change Item](#change-item) | 1 | - |
 
+On the Figma page: "Example / in audit log", "Stress test / Change Item"
+
 ## Change Item
 
 Component · 1 variant · default size 560 × 24
 
 One field changed in an audit entry: field, old value, new value. Empty old value shows "(empty)". Sensitive values are masked (••••).
+
+**Use for**
+
+- Expanded rows of an audit log
+- History tab on a record page
+- Conflict and history views when edits clash
+
+**Not for**
+
+- The event itself (who, what, when): use the audit log row
+- Approval decisions: use Approval Step
+
+**Anatomy**
+
+1. Field
+2. Old value
+3. Arrow-right
+4. New value
+
+**Content and behavior**
+
+- An empty old value shows "(empty)"
+- Sensitive values are masked (••••)
+- Read only: never edit or delete entries from the UI
+- Dates and amounts follow the locale format
+
+**Accessibility**
+
+- The arrow is decorative; read as "Due date changed from 7 Oct 2026 to 21 Oct 2026"
+- Old and new values differ by position and text, not color alone
+- Masked values are announced as hidden, not read as dots
 
 | Property | Type | Default |
 |---|---|---|

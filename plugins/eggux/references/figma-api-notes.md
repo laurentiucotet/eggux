@@ -157,3 +157,5 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - `node.description` reads back HTML-escaped (`&quot;`). Appending to it and writing it back escapes again (`&amp;quot;`). Unescape first, or rewrite the whole description.
 - Boolean operation nodes (`figma.subtract`, `union`) have no `constraints`. To keep a cut-out centered when the parent resizes, put the boolean in a frame and set the frame's constraints.
 - `frame.resize(w, h)` on an auto-layout frame sets both axes to FIXED. Set `layoutSizingVertical = 'HUG'` again for a column that must grow with its text.
+- `use_figma` code can build functions from text: `new (Object.getPrototypeOf(async function(){}).constructor)('figma', 'JOBS', src)`. Store a long script in a hidden text node once and send only the data per call; delete the node after.
+- An instance's SLOT accepts `appendChild` and child removal, so a page shell instance can host any component in its Page slot without detaching.

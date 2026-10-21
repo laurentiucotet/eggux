@@ -8,13 +8,45 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Chip](#chip) | 5 | - |
 
-On the Figma page: "Example / filter chips"
+On the Figma page: "Example / filter chips", "Stress test / Chip"
 
 ## Chip
 
 Component set · 5 variants · default size 94 × 32
 
 Chip (pill) for filters and multi-selection. selected = active filter (check icon when Leading icon is on). Remove shows an x to clear it; in code the x is a button labelled "Remove <value>". Usage: eggux build-ui/components/badge.md, patterns/search-and-filter.md
+
+**Use for**
+
+- Quick filters above a list ("This week", "Unpaid")
+- Multi-select options shown as toggles
+- Active filter values that can be cleared with Remove
+
+**Not for**
+
+- A status or category that is not clickable: use Badge
+- A field filter with several values in a Filter Bar: use Filter Chip
+- One choice among a few options: use Toggle Group
+
+**Anatomy**
+
+1. Leading icon (Leading icon): calendar, or check when selected
+2. Label
+3. Remove x (Remove)
+
+**Content and behavior**
+
+- Label is one or two words in sentence case
+- State=selected marks an active filter; with Leading icon on, the icon becomes a check
+- Selected is shown by the check and fill, not by color alone
+- Show "Clear all" when more than one filter is active
+
+**Accessibility**
+
+- A selectable chip is a toggle button with aria-pressed
+- The remove x is a separate button labelled "Remove <value>"
+- Focus state is visible (border/ring)
+- Touch targets at least 44 x 44 on mobile
 
 | Variant property | Values |
 |---|---|

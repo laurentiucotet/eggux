@@ -9,13 +9,45 @@ Usage rules live in the guides linked under each component.
 | [Accordion](#accordion) | 1 | Items |
 | [Accordion Item](#accordion-item) | 4 | Meta, Content |
 
-On the Figma page: "Example / filter panel"
+On the Figma page: "Example / filter panel", "Stress test / Accordion"
 
 ## Accordion
 
 Component · 1 variant · default size 640 × 248
 
 shadcn Accordion: Items slot of Accordion Item instances.
+
+**Use for**
+
+- FAQ and optional detail (Density default)
+- Filter groups in a side panel, Sheet or Drawer (Density compact)
+- Settings groups in a side panel
+
+**Not for**
+
+- Information every user needs to finish the task: show it on the page
+- Switching between panels of the same level: use Tabs
+- Steps in a fixed order: use Stepper
+
+**Anatomy**
+
+1. Items slot of Accordion Items
+2. Trigger row: Leading icon (optional), Title, Meta slot (Show meta), chevron
+3. Content slot, shown when State=expanded
+
+**Content and behavior**
+
+- The whole trigger row toggles
+- Several items may be open at once unless the content is mutually exclusive
+- Filters: Title is the dimension; Meta is a Badge Count of active values or a short summary
+- Leading icon on all items or none
+- Groups with active filters are open by default
+
+**Accessibility**
+
+- Enter or Space toggles; arrow keys move between items
+- The trigger is a button with aria-expanded and aria-controls
+- Keyboard focus shows the border/ring focus ring on the trigger row
 
 Slots (fill them in the instance, never detach): `Items`
 

@@ -3,6 +3,23 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.42.0
+- Every component page in the master library now uses the row layout: 151 rows on 57 pages,
+  each with Docs, Component, Stress test and Examples sections. Helper parts sit in their main
+  component's row and are documented under Parts.
+- Docs frames for all 151 main components: summary, when to use and not, anatomy, variants,
+  properties, slots, parts, content rules, accessibility, tokens and styles, code and guides.
+  Content lives in `skills/tidy-component/docs.json`; rows in `rows.json`; `jobs.py` builds
+  the script for any pages.
+- `component-page.js` v2: several pages per call, existing stress tests and examples assigned to
+  the row that uses them, a basic stress test generated where none existed (marked "Generated
+  cases", to replace during review), "Example / in <block>" from the smallest block that uses
+  the component.
+- 51 new contextual examples (components in the App or Marketing page shell, dialogs over an
+  overlay, toast in its corner, menus at their anchor).
+- `references/components/*.md` now include when to use, anatomy, rules and accessibility from
+  `docs.json`. Intro page text updated.
+
 ## 0.41.0
 - `/eggux:tidy-component`: cleans up a component and lays out its page in one row per
   component, left to right: `<Name> / Docs` (a doc frame generated from the component and a

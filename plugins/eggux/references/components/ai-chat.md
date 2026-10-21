@@ -29,7 +29,7 @@ Usage rules live in the guides linked under each component.
 | [AI Summary](#ai-summary) | 3 | Content |
 | [AI Suggestion](#ai-suggestion) | 2 | - |
 
-On the Figma page: "Example / AI on a record page", "Example / agent at work", "Example / chat history", "Stress test / AI components"
+On the Figma page: "Example / AI on a record page", "Example / agent at work", "Example / chat history", "Example / context added to a request", "Example / dictating a request", "Example / feedback after a bad answer", "Example / in ai assistant panel", "Example / in ai chat empty", "Example / in ai conversation", "Example / model choice in the assistant", "Example / report made by the assistant", "Example / suggested category on a new invoice", "Stress test / AI Suggestion", "Stress test / AI Summary", "Stress test / AI components", "Stress test / Agent Plan", "Stress test / Artifact Card", "Stress test / Assistant Message", "Stress test / Chat History Item", "Stress test / Context Chip", "Stress test / Prompt Input", "Stress test / Reasoning", "Stress test / Response Feedback", "Stress test / Sources", "Stress test / Suggestion", "Stress test / Tool Call", "Stress test / User Message", "Stress test / Voice Recorder"
 
 ## Attachment
 
@@ -66,6 +66,43 @@ Component set · 4 variants · default size 768 × 118
 
 Main input of an AI chat: grows with the text, attachments above, tools and model on the left, voice and send on the right. Enter sends, Shift+Enter new line. While the answer streams, send becomes stop. Send disabled while empty.
 
+**Use for**
+
+- Full chat page, docked assistant panel or inline AI where people type a request
+- Requests that need files or context: turn on Show attachments and fill the Attachments slot
+- Model or tool choices users really make: Model Selector in the Tools slot
+
+**Not for**
+
+- One known task (summarize, classify): use a Button with sparkles or a Suggestion
+- Chat between people: use Chat Composer
+- While dictating: the Voice Recorder replaces it until the transcript is ready
+
+**Anatomy**
+
+1. Attachments slot above the text: Attachment and Context Chip (Show attachments)
+2. Text area with Placeholder or Value
+3. Tools slot on the left: tools and Model Selector (Show tools)
+4. Voice Button Icon on the right (Show voice)
+5. Send Button Icon (arrow-up); Stop (square) while State=streaming
+
+**Content and behavior**
+
+- Enter sends, Shift+Enter adds a new line
+- Grows to about 8 lines, then scrolls
+- Send is disabled while the field is empty
+- State=streaming: Send becomes Stop; Stop keeps what was generated so far
+- Hide Tools and voice where they do not apply (panel, inline)
+- Never a blank box alone: pair the empty chat with 3-4 starter Suggestions
+- Keep drafts per conversation; show limits (file size, context) before they are hit
+
+**Accessibility**
+
+- Text area has an accessible label; the Placeholder is an example, never the label
+- Send, Stop, voice and attach have accessible labels and tooltips
+- Focus returns to the input after sending
+- State=focus shows the border/ring focus ring around the whole field
+
 | Variant property | Values |
 |---|---|
 | State | default, focus, streaming, disabled |
@@ -98,6 +135,37 @@ Component · 1 variant · default size 768 × 48
 
 A message the user sent: muted bubble on the right, max 576 wide, hugs short text. Actions (copy, edit and resend) on hover. Attachments go above the bubble.
 
+**Use for**
+
+- Every message the person sends in an AI chat
+- Shown at once on send, before the assistant starts
+- Above the bubble, the files sent with it (Attachment)
+
+**Not for**
+
+- Answers from the assistant: use Assistant Message
+- Chat between people: use Chat Message
+- Comments on a record: use Comment
+
+**Anatomy**
+
+1. Attachments above the bubble (Attachment)
+2. Bubble with Text: muted, max 576 wide, hugs short text
+3. Actions under the bubble: copy, edit and resend (Show actions)
+
+**Content and behavior**
+
+- Text is shown as sent; never rewrite or trim it
+- Actions show on hover on desktop and always on touch
+- Edit and resend continues the conversation from that message
+- The user's message is never lost, even when the answer fails
+
+**Accessibility**
+
+- Copy and Edit Button Icons have accessible labels and tooltips with the same text
+- Actions shown on hover also show on keyboard focus
+- Each message says who sent it to screen readers (visually hidden "You")
+
 | Property | Type | Default |
 |---|---|---|
 | Text | text | Which invoices for Acme are still open? |
@@ -120,6 +188,42 @@ Code: Vercel AI SDK + AI Elements, or assistant-ui
 Component set · 3 variants · default size 768 × 232
 
 A reply from the assistant: no bubble, full width for long answers; small avatar marks the speaker. streaming: text grows with a caret, no actions, Prompt Input shows Stop. error: keep the partial answer, explain, offer Retry. Actions under a finished answer: copy, regenerate, good, bad.
+
+**Use for**
+
+- Every answer in a chat page or assistant panel
+- Answers that include Reasoning, Tool Calls, lists, tables, Code Blocks and Sources
+- Streaming replies (State=streaming) and failed replies (State=error)
+
+**Not for**
+
+- Messages the user sent: use User Message
+- A one-off AI result on a record page: use AI Summary
+- Messages between people: use Chat Message
+
+**Anatomy**
+
+1. Avatar with the sparkles icon, marks the speaker
+2. Content slot: Reasoning, Tool Calls, text, lists, tables, Code Blocks, in the order they happened
+3. Sources, with Citations in the text
+4. Actions: copy, regenerate, good, bad (Show actions)
+5. Alert with the reason and Retry (State=error)
+
+**Content and behavior**
+
+- Lead with the answer, then the detail; short paragraphs in body/default (panel: body/small)
+- State=streaming: text grows with a caret, no actions, Prompt Input shows Stop
+- State=error: keep the partial answer, say what happened, offer Retry
+- Facts from data get a Citation; with no source, say "I could not find…" instead of guessing
+- Do not auto-scroll when the user scrolled up; show "Jump to latest"
+- Sanitize model output before rendering HTML
+
+**Accessibility**
+
+- Streaming text is announced with aria-live="polite", once per finished paragraph, not per token
+- Action tooltips and labels: Copy, Regenerate, Good response, Bad response
+- Actions show on keyboard focus as well as hover
+- Reduced motion: no typing animation, show text in chunks
 
 | Variant property | Values |
 |---|---|
@@ -149,6 +253,37 @@ Component set · 3 variants · default size 720 × 20
 
 The model's thinking, collapsed by default. running: spinner + "Thinking…"; done: "Thought for 12 s" opens a muted summary with a left rule. Never show raw chain of thought as the answer.
 
+**Use for**
+
+- Answers where the model reasons before replying
+- Inside the Assistant Message Content slot, before the answer
+- Long waits before an answer, so people see the model is working
+
+**Not for**
+
+- Actions the assistant runs (search, create, send): use Tool Call
+- The answer itself: write it in the Assistant Message, never inside Reasoning
+- Multi-step tasks with progress: use Agent Plan
+
+**Anatomy**
+
+1. Chevron: chevron-right closed, chevron-down open
+2. Label: Spinner and "Thinking…" while running, "Thought for 12 s" when done
+3. Details: muted summary with a left rule (State=expanded)
+
+**Content and behavior**
+
+- State=running appears within 100 ms of sending
+- Collapsed by default when done; the person opens it
+- Label says how long it took ("Thought for 12 s")
+- Details is a summary that explains; never show raw chain of thought as the answer
+
+**Accessibility**
+
+- The Label row is a button with aria-expanded
+- Running state is announced once (role="status"), not on every update
+- Details text in foreground/muted still meets 4.5:1
+
 | Variant property | Values |
 |---|---|
 | State | running, collapsed, expanded |
@@ -174,6 +309,40 @@ Code: Vercel AI SDK + AI Elements, or assistant-ui
 Component set · 4 variants · default size 720 × 62
 
 An action the assistant takes (search, create, send). Shows what runs and with which input; done collapses, error explains and offers Retry. approval: actions that change data, spend money or contact people wait for the user (Approve / Deny).
+
+**Use for**
+
+- Each tool the assistant uses while answering
+- Actions that change data, send messages or spend money: Status=approval before they run
+- Steps of an Agent Plan that act outside the product
+
+**Not for**
+
+- The model's thinking: use Reasoning
+- A task with more than 2 steps: use Agent Plan with Plan Steps
+
+**Anatomy**
+
+1. Wrench icon, or Spinner while running
+2. Title: what runs ("Search invoices")
+3. Detail: the input ("customer: Acme, status: open")
+4. Status Badge
+5. Chevron to open the input and the result
+6. Approve and Deny (Status=approval) or Retry (Status=error)
+
+**Content and behavior**
+
+- Reading is free; writing asks: changes, messages, payments and hard-to-undo actions use Status=approval
+- Approval shows what, to whom, with a preview; never act silently
+- Status=done collapses; Status=error explains what failed and offers Retry
+- After an approved action, confirm what changed with a link, and offer Undo when possible
+- The assistant cannot do what the user cannot
+
+**Accessibility**
+
+- Status is in text (Badge), never color alone
+- Status changes are announced politely (aria-live)
+- Approve and Deny are buttons in reading order, reachable by keyboard
 
 | Variant property | Values |
 |---|---|
@@ -222,6 +391,37 @@ Component · 1 variant · default size 720 × 128
 
 Sources behind an answer, under the text. Collapsed: favicons + "3 sources"; open: list of Source Items. Every factual claim from a source gets a Citation.
 
+**Use for**
+
+- Answers with facts from data, documents or the web
+- AI Summary, to show exactly what was used
+- Assistant panel answers about the current record, linking the records used
+
+**Not for**
+
+- A marker after one claim: use Citation
+- Records the user will act on: link them in the text
+
+**Anatomy**
+
+1. Favicons and Label ("3 sources") when collapsed
+2. Chevron-down
+3. Items slot: Source Items with Number, favicon or initial, Title and Domain (Show list)
+4. Citations in the text, numbered like the Source Items
+
+**Content and behavior**
+
+- Every factual claim from a source gets a Citation with its Source Item number
+- A Source Item opens the source in a new tab
+- List only sources the user can open
+- Citation hover shows a Hover Card with the source; click opens it
+
+**Accessibility**
+
+- The toggle is a button with aria-expanded and the count in its name
+- Links that open a new tab say so to screen readers
+- Each Citation has a label naming the source ("Source 1: Invoice INV-1024")
+
 | Property | Type | Default |
 |---|---|---|
 | Label | text | 3 sources |
@@ -266,6 +466,35 @@ Code: Vercel AI SDK + AI Elements, or assistant-ui
 Component set · 2 variants · default size 197 × 38
 
 Starter prompt or follow-up. chip: under the input or after an answer (2-4 follow-ups). card: empty state, 4 tasks the assistant does well. Click fills the input (or sends, for follow-ups).
+
+**Use for**
+
+- Empty chat: Layout=card, 4 tasks the assistant does well
+- Under the input or after an answer: Layout=chip for follow-ups
+- Next to content for one known task (summarize, suggest a reply)
+
+**Not for**
+
+- Filters and selections: use Chip
+- A command that runs at once with no prompt: use a Button with sparkles
+
+**Anatomy**
+
+1. Icon (instance swap, Layout=card)
+2. Label: the prompt, starting with a verb
+3. Description: what the result contains (Layout=card)
+
+**Content and behavior**
+
+- Starters come from real user tasks, never generic examples
+- Follow-ups: 2-4 chips, only when the next step is predictable
+- Click fills the input; follow-up chips send at once
+- Label is short: "Summarize open invoices"
+
+**Accessibility**
+
+- Each Suggestion is a button named by its Label
+- Reachable with Tab; focus shows the border/ring focus ring
 
 | Variant property | Values |
 |---|---|
@@ -324,6 +553,36 @@ Component set · 3 variants · default size 121 × 32
 
 Model picker in the Prompt Input Tools slot or a chat header. Opens a menu of Model Options. Show it only when users really choose (cost, speed, data rules); otherwise pick the model for them.
 
+**Use for**
+
+- Users really choose between cost, speed or data rules
+- Products that offer 2-4 models
+- Chat header of a full chat page, when the choice applies to the whole conversation
+
+**Not for**
+
+- One sensible model: pick it for the user and leave the selector out
+- Choosing a value in a form: use Select
+
+**Anatomy**
+
+1. Sparkles icon
+2. Model: the current model name
+3. Chevron-down
+4. Menu of Model Options: Name, Description, optional Badge, check on the selected one
+
+**Content and behavior**
+
+- Describe models by what they are good for, not by version numbers
+- 2-4 Model Options; the default first
+- Description states the trade-off in one line: quality, speed, cost
+
+**Accessibility**
+
+- Trigger is a button with aria-haspopup and a name like "Model: Acme Pro"
+- Arrow keys move in the menu, Enter selects, Esc closes and returns focus
+- The selected option has a check and aria-checked, not color alone
+
 | Variant property | Values |
 |---|---|
 | State | default, hover, focus |
@@ -349,6 +608,38 @@ Code: AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `B
 Component set · 3 variants · default size 256 × 50
 
 One conversation in the history list (Sidebar or a panel): title from the first request (one line), relative time, pin. Menu on hover: rename, pin, share, delete (with undo). Group by Today, Previous 7 days, Older; pinned on top.
+
+**Use for**
+
+- History of an AI chat app in the Sidebar
+- A list of past conversations in an assistant panel
+- Pinned conversations, at the top of the list (Pinned on)
+
+**Not for**
+
+- Navigation between product pages: use Sidebar menu items
+- A list of records: use a Table or List
+
+**Anatomy**
+
+1. Pin icon (Pinned)
+2. Title: one line, from the first request
+3. Time: relative, "2 h ago" (Show time)
+4. Menu Button Icon on hover: rename, pin, share, delete
+
+**Content and behavior**
+
+- Title is generated from the first message, one line, editable
+- Group by date (Today, Previous 7 days, older); pinned items on top
+- State=active marks the open conversation
+- Delete offers Undo
+- Search the list when there are more than about 20 conversations; New chat at the top
+
+**Accessibility**
+
+- The item is a link; the open one has aria-current="page"
+- The menu button has a label ("Options for <title>") and shows on keyboard focus
+- A truncated Title is available in full in a tooltip
 
 | Variant property | Values |
 |---|---|
@@ -379,6 +670,37 @@ Component set · 3 variants · default size 127 × 24
 
 What the assistant will use, shown in the Prompt Input (Attachments slot) or above a message: a file, a record (INV-1041) or a person. Each type has its own text property (File, Record, Person). Users add with @ or the paperclip and remove with x. The current page or record is added by default and says so. Labels truncate at 180.
 
+**Use for**
+
+- The current page or record in an assistant panel, added by default
+- Files, records and people added with @ or the paperclip
+- Above a sent message, to show what it used
+
+**Not for**
+
+- Files uploading or failing: use Attachment
+- Filters: use Chip
+- Status of an object: use Badge
+
+**Anatomy**
+
+1. Icon by Type: file-text (file), link (record), user (person)
+2. Label from the File, Record or Person text property
+3. Remove x (Show remove)
+
+**Content and behavior**
+
+- Each Type has its own text property: File, Record, Person
+- Labels truncate at 180
+- The current page or record is added by default and says so; the user can remove it
+- Never use data the user cannot open
+
+**Accessibility**
+
+- Remove x is a button labeled "Remove <label>"
+- A truncated label is available in full in a tooltip
+- Adding or removing a chip is announced politely
+
 | Variant property | Values |
 |---|---|
 | Type | file, record, person |
@@ -408,6 +730,39 @@ Component · 1 variant · default size 480 × 274
 
 Opens under an answer after Bad response: reasons as chips (one or more), optional details, Send. Say what is shared. After Send: toast "Thanks, this helps", the thumb stays filled. Good response sends at once, no form.
 
+**Use for**
+
+- After Bad response on an Assistant Message or an AI Summary
+- Answers people can rate as wrong, incomplete or unsafe
+- Only after the user chose Bad response; never open it unasked
+
+**Not for**
+
+- Good response: send at once, no form
+- General product feedback: use a feedback form in a Dialog
+
+**Anatomy**
+
+1. Title ("What went wrong?")
+2. Reasons as Chips, one or more
+3. Details Textarea, optional (Show details)
+4. Note: what is shared
+5. Send Button and close Button Icon
+
+**Content and behavior**
+
+- Opens under the answer, as an inline Card or a Popover
+- One or more reasons; details are optional
+- The Note says what is shared before Send ("Sends this conversation to the Acme team.")
+- After Send: toast "Thanks, this helps"; the thumb stays filled
+- Send with the message id
+
+**Accessibility**
+
+- Focus moves into the form on open; Esc closes and returns focus to Bad response
+- Reason Chips are toggle buttons with aria-pressed
+- The Textarea has a visible label
+
 | Property | Type | Default |
 |---|---|---|
 | Title | text | What went wrong? |
@@ -431,6 +786,38 @@ Code: `Popover` or inline `Card` with `ToggleGroup` (multiple) and `Textarea` (S
 Component set · 2 variants · default size 768 × 62
 
 Replaces the Prompt Input while dictating: cancel, recording dot and time, live waveform, send. Processing shows "Transcribing…"; the text then lands in the input for review, never sent unread. Ask for microphone permission only on the first tap, with a reason.
+
+**Use for**
+
+- Prompt Input with Show voice on, while recording and transcribing
+- Mobile and hands-busy input
+- Long requests that are easier to say than to type
+
+**Not for**
+
+- Panel and inline AI: hide voice (Show voice off)
+- Products without speech-to-text: turn Show voice off
+
+**Anatomy**
+
+1. Cancel Button Icon
+2. Recording dot and time
+3. Live waveform
+4. Send Button Icon
+5. Spinner and "Transcribing…" (State=processing)
+
+**Content and behavior**
+
+- Ask for microphone permission only on the first tap, with a reason
+- State=processing shows "Transcribing…"
+- The transcript lands in the Prompt Input for review; never send it unread
+- Cancel returns to the Prompt Input
+
+**Accessibility**
+
+- Cancel and Send have accessible labels and tooltips
+- Recording and its time are announced, not shown by the red dot alone
+- Focus returns to the Prompt Input with the transcript
 
 | Variant property | Values |
 |---|---|
@@ -511,6 +898,42 @@ Component · 1 variant · default size 640 × 334
 
 A multi-step task the assistant runs: title, where it is and time left, Stop, progress, the steps (Plan Steps in the Steps slot), and what it will not do without approval. Steps that act outside the product (send, pay, delete) become a Tool Call with approval. Keep the plan visible after it finishes, collapsed to its result.
 
+**Use for**
+
+- Tasks with more than 2 steps
+- Long tasks that run in the background
+- Agent work that produces Artifact Cards (report, chart, table)
+
+**Not for**
+
+- A single action: use Tool Call
+- The model's thinking: use Reasoning
+- Progress of an upload or import: use Progress
+
+**Anatomy**
+
+1. Sparkles icon and Title
+2. Status: step N of M and time left
+3. Stop Button (Show stop)
+4. Progress bar
+5. Steps slot: Plan Steps (pending, running, done, error) with Title, Detail and Time
+6. Footer: what it will not do without approval (Show footer)
+
+**Content and behavior**
+
+- Steps say what they do in the user's words ("Check payment history"), not tool names
+- Steps that send, pay or delete become a Tool Call with Status=approval
+- A failed step says what failed and what happens next; the plan never stops silently
+- Background tasks say so and notify when done
+- After it finishes, keep the plan in the conversation, collapsed to its result
+
+**Accessibility**
+
+- Stop has a label and is always reachable by keyboard
+- Step changes are announced politely, once per step
+- Step status is in icon and text, never color alone
+- Progress has role="progressbar" with aria-valuenow
+
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Preparing the Q3 overdue report |
@@ -538,6 +961,38 @@ Code: AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `B
 Component set · 6 variants · default size 360 × 66
 
 Something the assistant made (document, chart, table) shown in the conversation as a card; Open shows it in a side canvas or its page, where people edit, export or save it. Meta says the type, size and version. Each regeneration makes a new version; never overwrite silently.
+
+**Use for**
+
+- Reports, charts, tables and drafts an agent produces
+- Results people will edit, export or save
+- Every new version of a result the assistant regenerated
+
+**Not for**
+
+- Short answers: write them in the Assistant Message
+- Files the user attached: use Attachment
+- Sources used for an answer: use Sources
+
+**Anatomy**
+
+1. Icon by Type: file-text, chart-column, columns-3
+2. Title: Document title, Chart title or Table title
+3. Meta: type, size and version
+4. Open Button
+
+**Content and behavior**
+
+- Open shows it in a side canvas or its page, where people edit, export or save
+- Meta names type, size and version ("Document · 3 pages · v2")
+- Each regeneration makes a new version; never overwrite silently
+- Each Type has its own title and meta properties
+
+**Accessibility**
+
+- Open has a name with the title ("Open Q3 overdue invoices report")
+- The type is in the Meta text, not only in the icon
+- Keyboard focus shows the border/ring focus ring
 
 | Variant property | Values |
 |---|---|
@@ -571,6 +1026,40 @@ Component set · 3 variants · default size 640 × 218
 
 AI summary on a record or report page: what matters now, in 2-4 sentences with numbers and dates, from named sources. Generating shows what it reads; error says what failed and offers Try again. Regenerate keeps the previous version until the new one is ready. Opening the sources shows exactly what was used.
 
+**Use for**
+
+- Record pages (customer, project, invoice) and report pages
+- Long histories people need in a few lines
+- Report pages, to state what changed in the period in numbers
+
+**Not for**
+
+- Open questions about the record: use the assistant panel
+- A proposed value for a field: use AI Suggestion
+- One number people check: use Stat Card
+
+**Anatomy**
+
+1. Sparkles icon and Title
+2. Meta: sources and age ("4 sources · generated 2 min ago")
+3. Content slot: 2-4 sentences
+4. Feedback and regenerate Button Icons (Show feedback)
+5. AI Notice disclaimer (Show disclaimer)
+
+**Content and behavior**
+
+- 2-4 sentences with numbers and dates, from named sources
+- Opening the sources shows exactly what was used
+- State=generating shows what it reads; State=error says what failed and offers Try again
+- Regenerate keeps the previous version until the new one is ready
+- The disclaimer uses the same words everywhere
+
+**Accessibility**
+
+- Generating and ready are announced politely
+- Feedback and regenerate have labels and tooltips
+- Disclaimer text in foreground/muted still meets 4.5:1
+
 | Variant property | Values |
 |---|---|
 | State | ready, generating, error |
@@ -601,6 +1090,39 @@ Code: custom on `Card`, `Input`, `Badge` (Store who accepted an AI value and whe
 Component set · 2 variants · default size 320 × 124
 
 A value the AI proposes for a form field: dashed tinted box with the value, the reason, Accept and Dismiss. Nothing is saved until the person accepts. Accepted values keep an "AI generated" label until edited, with Undo. Several suggestions on one form: offer "Accept all" at the top, still one by one below.
+
+**Use for**
+
+- Form fields AI can fill from existing data (category, tags, owner)
+- Several suggestions on one form, with "Accept all" at the top
+- Imported or scanned documents, to propose values for review
+
+**Not for**
+
+- Values only the person knows: use a plain Input
+- A summary of a record: use AI Summary
+
+**Anatomy**
+
+1. Label: the field
+2. Dashed tinted box with the Value
+3. Reason ("Based on 12 earlier invoices from this vendor.")
+4. Accept and Dismiss Buttons
+5. AI Notice label and Undo (State=accepted)
+
+**Content and behavior**
+
+- Nothing is saved until the person accepts
+- Accepted values keep an "AI generated" label until edited, with Undo
+- Low confidence says so in the Reason
+- Several suggestions: "Accept all" at the top, still one by one below
+- Store who accepted the value and when
+
+**Accessibility**
+
+- Accept and Dismiss name the field ("Accept Expense category")
+- After Accept or Dismiss, focus moves to the field
+- The dashed border is not the only signal: the AI Notice says it in text
 
 | Variant property | Values |
 |---|---|

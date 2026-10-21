@@ -91,7 +91,8 @@ Build only after the user agrees or says to go ahead.
   with realistic content (open states, the component inside a block or shell).
 - Component pages follow the row layout of `skills/tidy-component`: `<Name> / Docs`,
   `/ Component`, `/ Stress test`, `/ Examples`, left to right. Build the stress test and the
-  examples first, then run `skills/tidy-component/component-page.js` (step 8).
+  examples first, add the component to `skills/tidy-component/rows.json` and `docs.json`, then
+  run `component-page.js` through `jobs.py` (step 8).
 
 
 ## 5. Stress test

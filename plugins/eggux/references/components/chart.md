@@ -22,7 +22,7 @@ Usage rules live in the guides linked under each component.
 | [Funnel Chart](#funnel-chart) | 1 | - |
 | [Scatter Chart](#scatter-chart) | 2 | - |
 
-On the Figma page: "Stress test / Funnel and Scatter"
+On the Figma page: "Example / activity by weekday and hour", "Example / in analytics", "Example / in bento grid", "Example / invoice flow", "Example / payment behavior", "Example / quarter target", "Example / revenue by product", "Example / spend by vendor", "Example / trend next to a metric", "Example / values on hover", "Stress test / Bar Chart", "Stress test / Bar Chart Horizontal", "Stress test / Chart Card", "Stress test / Chart Legend", "Stress test / Chart Tooltip", "Stress test / Donut Chart", "Stress test / Funnel and Scatter", "Stress test / Gauge", "Stress test / Heatmap", "Stress test / Line Chart", "Stress test / Scatter Chart", "Stress test / Sparkline", "Stress test / Treemap"
 
 ## Chart Legend Item
 
@@ -50,6 +50,37 @@ Tokens and styles:
 Component · 1 variant · default size 187 × 16
 
 Legend row above or below the plot. Clicking an item isolates the series in code.
+
+**Use for**
+
+- Any chart with 2 or more series
+- Scatter Chart with two series
+- Inside Chart Card (Show legend)
+
+**Not for**
+
+- One series: no legend, the title names it
+- Values at one point: use Chart Tooltip
+- Donut Chart: the legend also shows values and percentages
+
+**Anatomy**
+
+1. Items slot
+2. Chart Legend Item key: swatch for bars and areas, line for line charts
+3. Chart Legend Item Label, in text color
+
+**Content and behavior**
+
+- Labels use text color, never the series color
+- Series = chart/N token, assigned in order
+- Same order as the series in the chart and in the tooltip
+- Clicking an item isolates the series (in code)
+- Fill the Items slot in the instance; never detach
+
+**Accessibility**
+
+- Labels name the series, so color is not the only key
+- Clickable items are buttons that expose their isolated state
 
 Slots (fill them in the instance, never detach): `Items`
 
@@ -87,6 +118,35 @@ Component · 1 variant · default size 176 × 92
 
 Hover tooltip: crosshair on line/area, per-mark on bar. Title = the x value; one row per series; values in text color.
 
+**Use for**
+
+- Line and area charts: crosshair at the hovered x value
+- Bar charts: values of the hovered bar
+- Heatmap and Scatter Chart: the exact value or the item
+
+**Not for**
+
+- Values that must always be visible: label the end value or use a Table
+- Explaining a control: use Tooltip
+
+**Anatomy**
+
+1. Title: the x value ("March 2026")
+2. Rows slot
+3. Chart Tooltip Row: series swatch, Label, Value aligned right
+
+**Content and behavior**
+
+- One row per visible series, in legend order
+- Values in text color, never the series color
+- Compact numbers with units
+- Hit targets bigger than the marks
+
+**Accessibility**
+
+- Hover is not available to everyone: the same values are in the table view
+- Keyboard focus on a data point shows the same tooltip (Recharts accessibilityLayer)
+
 | Property | Type | Default |
 |---|---|---|
 | Title | text | March 2026 |
@@ -109,6 +169,44 @@ Component set · 3 variants · default size 560 × 240
 
 Vertical bars (shadcn Chart / Recharts BarChart). Bars max 24 wide, 4 px radius at the data end only, 2 px surface gap between touching bars and stacked segments. single = one series in chart/1 (no legend); grouped = up to 4 series; stacked = part-to-whole. Edit bar heights for real data; y ticks round (0, 15K, 30K).
 
+**Use for**
+
+- Compare values across categories or periods, such as revenue per month
+- Type=single: one series in chart/1, no legend
+- Type=grouped: up to 4 series side by side
+- Type=stacked: part of a whole per category, up to 4 segments
+
+**Not for**
+
+- Trend over time: use Line Chart
+- Long category names or rankings: use Bar Chart Horizontal
+- One number people check: use Stat Card
+- Two measures with different units: two charts, never two y axes
+
+**Anatomy**
+
+1. Y axis with round ticks (0, 15K, 30K)
+2. Grid hairlines, recessive
+3. Bars, max 24 wide, 4 px radius at the data end only
+4. X axis labels
+5. Chart Legend for 2 or more series (in Chart Card)
+
+**Content and behavior**
+
+- One y axis, starting at 0
+- 2 px surface gap between touching bars and stacked segments
+- Series colors chart/1..8 in order; color follows the entity, never its rank
+- Labels and values use text tokens, never the series color
+- Compact numbers (48.2K); edit bar heights for real data
+- Empty: say why ("No sales yet in this period"); loading: Skeleton in the chart shape
+
+**Accessibility**
+
+- Every chart has a table view (toggle or "View data") for screen readers and exact values
+- Color never carries meaning alone: the legend and labels name each series
+- Per-bar tooltip on hover; hit targets bigger than the bars
+- Check contrast on background/card in light and dark mode
+
 | Variant property | Values |
 |---|---|
 | Type | single, grouped, stacked |
@@ -129,6 +227,44 @@ Component set · 2 variants · default size 560 × 240
 
 Change over time (Recharts LineChart / AreaChart). Lines 2 px, round joins; end dot 8 px with a 2 px surface ring; area wash = series at 10%. One y axis only. Label the end value or the extreme, never every point.
 
+**Use for**
+
+- Trends over time: revenue per month, active customers per week
+- Type=area: one series or a total
+- Type=line: several series over the same period
+- The main trend chart at the top of a report
+
+**Not for**
+
+- Comparing categories: use Bar Chart
+- Trend next to a number, without axes: use Sparkline
+- Two measures with different units: two charts, never two y axes
+- Exact values matter more than shape: use a Table
+
+**Anatomy**
+
+1. Y axis with round ticks
+2. Grid hairlines, recessive
+3. Lines, 2 px, round joins
+4. Area wash, series at 10% (Type=area)
+5. End dot, 8 px with a 2 px surface ring
+6. X axis (time)
+7. Chart Legend for 2 or more series
+
+**Content and behavior**
+
+- One y axis only
+- Label the end value or the extreme, never every point
+- Legend for 2 or more series, none for one
+- Series colors chart/1..8 in order; text in text tokens
+- Edit line points for real data
+
+**Accessibility**
+
+- Table view for screen readers and exact values
+- Hover shows a crosshair and a Chart Tooltip; the hit area is larger than the line
+- Series are told apart by legend and end labels, not by color alone
+
 | Variant property | Values |
 |---|---|
 | Type | line, area |
@@ -148,6 +284,35 @@ Component set · 2 variants · default size 120 × 32
 
 Trend without axes for stat cards and table cells (12 points). Direction is told by the delta text next to it (+12%), not by color.
 
+**Use for**
+
+- Trend next to the main number of a Stat Card
+- Trend per row in a table cell, such as revenue per customer
+- Last 12 points of one measure
+
+**Not for**
+
+- Reading values or periods: use Line Chart with axes
+- Progress toward a target: use Gauge or Progress
+- A number with no trend: use Stat Card alone
+
+**Anatomy**
+
+1. Line, 2 px, chart/1, 12 points
+2. Trend: up or down
+3. Delta text beside it (+12%), in the Stat Card or cell
+
+**Content and behavior**
+
+- No axes, labels or legend
+- Direction is told by the delta text, not by color
+- Same period for every sparkline in a column or row of cards
+
+**Accessibility**
+
+- The delta text carries the meaning; the line is decorative (aria-hidden)
+- The card or cell has a text summary, such as "Up 12% vs last month"
+
 | Variant property | Values |
 |---|---|
 | Trend | up, down |
@@ -165,6 +330,42 @@ Code: shadcn `Chart` (Recharts) (`var(--chart-N)`)
 Component · 1 variant · default size 640 × 474
 
 Card around one chart (shadcn chart card): title says what is measured, description the period; time range in Actions; legend for 2+ series; footer states the insight in words. Every chart needs a table view in code.
+
+**Use for**
+
+- Dashboards and reports: one card per chart
+- Charts that need a time range control (7 days, 30 days, 6 months)
+- Block / Report and Block / Analytics layouts
+
+**Not for**
+
+- One number people check: use Stat Card
+- Several charts in one card: one Chart Card each
+- Exact values: use a Table, or the table view
+
+**Anatomy**
+
+1. Title: what is measured
+2. Description: the period and unit
+3. Actions slot: time range Toggle Group
+4. Chart slot: Bar Chart, Line Chart or another chart
+5. Chart Legend (Show legend)
+6. Footer with Insight and Note (Show footer)
+
+**Content and behavior**
+
+- Title says what is measured ("Revenue vs costs"), never "Chart"
+- Legend on for 2 or more series, off for one
+- Footer states the insight in words ("Profit up 21% vs last half-year")
+- Every chart has a table view in code
+- Empty: say why; loading: Skeleton in the chart shape; error: inline Alert with retry
+- Fill the Actions and Chart slots in the instance; never detach
+
+**Accessibility**
+
+- Table view toggle or "View data" action, reachable by keyboard
+- The insight gives the takeaway without reading the chart
+- The time range Toggle Group has a label
 
 | Property | Type | Default |
 |---|---|---|
@@ -193,6 +394,39 @@ Component set · 2 variants · default size 440 × 200
 
 Part of a whole (share by entity, status mix). 2-5 segments, largest first, starting at 12 o'clock; the rest goes into "Other". Always show the legend with values and percentages; donut puts the total in the center. Comparisons between parts read better in Bar Chart Horizontal. Set segment angles with arcData; 2 px surface separators.
 
+**Use for**
+
+- Share of one whole with 2-5 parts
+- Type=donut: the total sits in the center (Total, Total label)
+- Type=pie: the same, without a center total
+
+**Not for**
+
+- Comparing parts with each other: use Bar Chart Horizontal
+- Many parts or a hierarchy: use Treemap
+- Share over time or across categories: use a stacked Bar Chart
+
+**Anatomy**
+
+1. Segments, largest first, starting at 12 o'clock
+2. 2 px surface separators
+3. Center total and its label (donut)
+4. Legend with values and percentages
+
+**Content and behavior**
+
+- 2-5 segments; the rest goes into "Other"
+- Always show the legend with values and percentages
+- Set segment angles with arcData
+- Series colors chart/1..8 in order; color follows the entity
+- Text uses text tokens, never the segment color
+
+**Accessibility**
+
+- Table view with values and percentages
+- The legend names every segment, so color is not the only key
+- Separators keep adjacent segments apart in every mode
+
 | Variant property | Values |
 |---|---|
 | Type | donut, pie |
@@ -218,6 +452,38 @@ Component · 1 variant · default size 560 × 136
 
 Ranking and comparison of categories with long names (top customers, regions, reasons). Sorted by value, labels left, values right, one color (chart/1); highlight one bar with chart/2 only to make a point. Max ~10 rows; more goes to a table. Set bar width as a share of the track.
 
+**Use for**
+
+- Rank items: top customers, regions, reasons for cancellation
+- Category names too long for a vertical axis
+- Compare parts of a whole with fewer than 6 parts, instead of Donut Chart or Treemap
+
+**Not for**
+
+- More than ~10 rows: use a Table
+- Trend over time: use Line Chart
+- Ordered steps with drop-off: use Funnel Chart
+
+**Anatomy**
+
+1. Category label, left
+2. Track with the bar; bar width is a share of the track
+3. Value, right
+
+**Content and behavior**
+
+- Sorted by value, largest first
+- One color (chart/1); chart/2 only to highlight one bar that makes a point
+- Max ~10 rows; more goes to a table
+- Labels and values use text tokens, never the bar color
+- Compact numbers (48.2K)
+
+**Accessibility**
+
+- Table view for screen readers and exact values
+- Values are written as text, so bar length is never the only carrier
+- A highlighted bar is also named in the title or insight, not only colored
+
 Tokens and styles:
 - Colors: `chart/1`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`
@@ -232,6 +498,39 @@ Code: Recharts `PieChart` (`innerRadius`), `BarChart layout="vertical"`
 Component · 1 variant · default size 416 × 268
 
 Intensity over two dimensions (weekday × hour, team × week). One hue (chart/1) in 5 steps of opacity plus muted for zero; legend from fewer to more; tooltip with the exact value on hover. Never use red/green scales.
+
+**Use for**
+
+- Activity by weekday and hour
+- Workload per team and week
+- Scatter data with more than 500 points, binned into cells
+
+**Not for**
+
+- One dimension: use Bar Chart
+- Trend of one measure over time: use Line Chart
+- Exact values matter: use a Table
+
+**Anatomy**
+
+1. Row labels
+2. Column labels
+3. Cells: chart/1 in 5 opacity steps, background/muted for zero
+4. Legend from fewer to more
+5. Chart Tooltip with the exact value on hover
+
+**Content and behavior**
+
+- One hue only (chart/1) in 5 opacity steps, plus muted for zero
+- Never use red/green scales
+- The legend reads from fewer to more
+- Exact value on hover, never only the shade
+
+**Accessibility**
+
+- Table view for screen readers and exact values
+- Shade is never the only carrier: values are in the tooltip and the table
+- Zero cells (muted) stay distinct from the lowest step in light and dark mode
 
 Tokens and styles:
 - Colors: `background/muted`, `chart/1`, `foreground/muted`
@@ -248,6 +547,38 @@ Code: custom CSS grid or nivo `HeatMap`
 Component set · 3 variants · default size 240 × 176
 
 Progress of one number toward a target (quota, budget, SLA). Status is written, not only colored (On track, At risk, Off track); the tick marks the target. Use sparingly: a Progress bar or Stat Card is clearer in tables and dashboards with many numbers.
+
+**Use for**
+
+- One headline measure against a target: Q4 revenue vs target
+- Status matters: on track, at risk, off track
+- Dashboards with only a few numbers
+
+**Not for**
+
+- Tables and dense dashboards: use Progress or Stat Card
+- Trend over time: use Line Chart
+- Many targets side by side: use Progress bars in a list or table
+
+**Anatomy**
+
+1. Label ("Q4 revenue vs target")
+2. Half-circle track and fill
+3. Target tick
+4. Value
+5. Status text: On track, At risk, Off track
+
+**Content and behavior**
+
+- Status is written, not only colored
+- The tick marks the target
+- Status tone follows Status: on track, at risk (warning), off track (destructive)
+- Use sparingly
+
+**Accessibility**
+
+- Status is text, so meaning does not rely on color
+- Value and target are text; in code use role="meter" with aria-valuenow and a label
 
 | Variant property | Values |
 |---|---|
@@ -272,6 +603,38 @@ Component · 1 variant · default size 560 × 320
 
 Part of a whole with many parts or a hierarchy (revenue by product, spend by vendor). Rectangle area = value, largest top-left; label inside when it fits, otherwise on hover. Tinted fills with a colored edge keep text readable in every mode. For under 6 parts, a Bar Chart Horizontal is easier to compare.
 
+**Use for**
+
+- 6 or more parts of one whole
+- Hierarchies, such as product line and product
+- Spotting the biggest contributors at a glance
+
+**Not for**
+
+- Fewer than 6 parts: use Bar Chart Horizontal
+- 2-5 parts where the share is the point: use Donut Chart
+- Exact comparisons: use a Table
+
+**Anatomy**
+
+1. Rectangles, area = value, largest top-left
+2. Tinted fill with a colored edge (chart/1..6)
+3. Label and value inside when they fit
+4. Chart Tooltip on hover for cells too small for a label
+
+**Content and behavior**
+
+- Largest rectangle top-left
+- Label inside when it fits, otherwise on hover
+- Tinted fills with a colored edge keep text readable in every mode
+- Color follows the entity, never its rank
+
+**Accessibility**
+
+- Table view with every part and its value
+- Text on tinted fills keeps 4.5:1
+- Small cells are covered by the tooltip and the table view
+
 Tokens and styles:
 - Colors: `chart/1`, `chart/2`, `chart/3`, `chart/4`, `chart/5`, `chart/6`, `foreground/default`, `foreground/muted`
 - Radius: `radius/sm`
@@ -287,6 +650,39 @@ Component · 1 variant · default size 560 × 200
 
 Drop-off between ordered steps (created → sent → viewed → paid, sign-up → active → paying). Each stage: name, count, a bar sized to its count, and the conversion from the previous stage; the overall rate at the bottom. 3 to 6 stages, one series (chart/1). Not for unordered categories: use Bar Chart Horizontal. Code: Recharts FunnelChart or plain bars. Min width 480; stage names wrap to two lines, then truncate.
 
+**Use for**
+
+- Invoice flow: created, sent, viewed, paid
+- Sign-up, active, paying
+- 3 to 6 ordered stages of one series
+
+**Not for**
+
+- Unordered categories: use Bar Chart Horizontal
+- More than 6 stages: use a Table
+- Change over time: use Line Chart
+
+**Anatomy**
+
+1. Stage name
+2. Count
+3. Bar sized to the count (chart/1)
+4. Conversion from the previous stage
+5. Overall rate at the bottom
+
+**Content and behavior**
+
+- 3 to 6 stages, one color (chart/1)
+- Stages keep their real order, never sorted by value
+- Min width 480
+- Stage names wrap to two lines, then truncate
+
+**Accessibility**
+
+- Counts and rates are text, so bar width is not the only carrier
+- Table view with stage, count and conversion
+- Truncated stage names show in full on hover and in the table view
+
 Tokens and styles:
 - Colors: `chart/1`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/2`, `spacing/3`
@@ -300,6 +696,40 @@ Guides: [charts](../../skills/build-ui/components/charts.md)
 Component set · 2 variants · default size 560 × 264
 
 Relation between two numbers per item (invoice amount vs days to pay, deal size vs cycle length). One point per item; one or two series (chart/1, chart/2) with a Chart Legend for two. Name both axes with units; start at zero unless the range says otherwise. Hover shows the item in a Chart Tooltip. Over 500 points: lower opacity or use Heatmap. Code: Recharts ScatterChart.
+
+**Use for**
+
+- Look for a relation between two measures per item
+- Spot outliers, such as large deals with long cycles
+- Series=two: compare two groups, with a Chart Legend
+
+**Not for**
+
+- More than 500 points: lower opacity or use Heatmap
+- One measure across categories: use Bar Chart
+- Change over time: use Line Chart
+
+**Anatomy**
+
+1. Y title with unit (Y title)
+2. Y axis
+3. Points, one per item (chart/1, chart/2)
+4. X axis
+5. X title with unit (X title)
+6. Chart Legend for two series
+
+**Content and behavior**
+
+- Name both axes with units
+- Axes start at zero unless the range says otherwise
+- One or two series; legend only for two
+- Hover shows the item in a Chart Tooltip
+
+**Accessibility**
+
+- Table view listing each item and both values
+- The tooltip names the item, not only the coordinates
+- Axis titles are text, so screen readers get the units
 
 | Variant property | Values |
 |---|---|

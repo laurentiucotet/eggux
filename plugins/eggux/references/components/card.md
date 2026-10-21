@@ -15,7 +15,7 @@ Usage rules live in the guides linked under each component.
 | [Entity Card](#entity-card) | 4 | Leading, Tags, Details |
 | [Progress Card](#progress-card) | 3 | - |
 
-On the Figma page: "Stress test / Card", "Stress test / Entity and Progress cards"
+On the Figma page: "Example / customer card", "Example / in blog featured", "Example / plan choice", "Example / quarter goal", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Option Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
 
 ## Card Header
 
@@ -60,6 +60,38 @@ Component set · 3 variants · default size 288 × 174
 
 Metric card (shadcn dashboard section card). Trend sets the icon; the change and trend line are edited per instance. Direction is shown by icon and text, never color alone.
 
+**Use for**
+
+- One number people check (revenue this month)
+- A row of key metrics at the top of a report or dashboard
+- Dashboard sections next to a Chart Card
+
+**Not for**
+
+- A trend people need to read over time: use a chart in a Chart Card
+- A goal against a target: use Progress Card
+
+**Anatomy**
+
+1. Label (body/small, muted)
+2. Value (heading/h2, one line)
+3. Change Badge with the Trend icon: trending-up, trending-down, minus
+4. Trend line and Footnote (Show footer)
+
+**Content and behavior**
+
+- Trend sets the icon; edit the change and trend line per instance
+- Direction is shown by icon and text, never color alone
+- Value stays on one line; amounts in the locale format (€48,250)
+- The Footnote says what it is compared to
+- Cards in a row share structure and height
+
+**Accessibility**
+
+- The change reads as text ("Up 12% compared to September")
+- Label and value are read together
+- The Footnote meets 4.5:1
+
 | Variant property | Values |
 |---|---|
 | Trend | up, down, neutral |
@@ -90,6 +122,38 @@ Component set · 5 variants · default size 384 × 80
 
 Selectable card: a radio option with more context (plan, delivery, billing period). The whole card is the click target; selected = 2 px primary border + checked radio. Group 2-4 of them vertically or in a row.
 
+**Use for**
+
+- Choosing one of 2-4 options that each need a description
+- Plans, shipping methods, billing periods
+- Onboarding choices where each option needs a sentence of context
+
+**Not for**
+
+- Many options or short labels: use RadioGroup or Select
+- Several options at once: use Checkbox
+- Setting a view mode: use Toggle Group
+
+**Anatomy**
+
+1. Icon (optional, Icon type)
+2. Title
+3. Description (Show description)
+4. Radio
+
+**Content and behavior**
+
+- The whole card is the click target
+- One selected: 2 px primary border and checked radio
+- Group 2-4 cards vertically or in a row
+- State=disabled says why nearby
+
+**Accessibility**
+
+- The group is a radiogroup with a label; arrow keys move between options
+- Selected shows by the radio and the border, not color alone
+- State=focus shows the focus ring on the card
+
 | Variant property | Values |
 |---|---|
 | State | default, hover, focus, selected, disabled |
@@ -119,6 +183,38 @@ Component set · 2 variants · default size 352 × 410
 
 Article, news or case-study card: image 16:9, category + date · reading time, title, excerpt (3 lines max), author. horizontal = featured post. The whole card links to the article.
 
+**Use for**
+
+- Blog grids of 3: Layout=vertical
+- The featured post at the top of a list: Layout=horizontal
+- News, case studies, changelog entries and carousels of posts
+
+**Not for**
+
+- A product with a price: use Product Card
+- A record in an app: use Entity Card
+
+**Anatomy**
+
+1. Image 16:9 (Image Placeholder)
+2. Category Badge, Date and reading time
+3. Title
+4. Excerpt, 3 lines max (Show excerpt)
+5. Author with Avatar (Show author)
+
+**Content and behavior**
+
+- The whole card is one link to the article
+- Excerpt is 3 lines max, then truncates
+- Date and reading time on one line ("12 Oct 2026 · 6 min read")
+- Cards in a grid share the same structure
+
+**Accessibility**
+
+- One link per card; the Title is the link text
+- The image has alt text, or alt="" when decorative
+- Focus ring around the whole card
+
 | Variant property | Values |
 |---|---|
 | Layout | vertical, horizontal |
@@ -147,6 +243,41 @@ Guides: [content](../../skills/build-ui/components/content.md)
 Component set · 12 variants · default size 384 × 308
 
 shadcn Card. Variant: default (card background and border), outline (border only; inside panels and long lists), muted (tinted, no border; secondary or summary information). Size: default (padding and gap 24, 16 in Compact), sm (16, 12 in Compact). Elevation: false (flat) or true (shadow md; an outline card gets the card background so the shadow has a surface). Use Elevation for one card that must stand out or floats over content, never for a whole grid. Header, Content and Footer are native slots with their own side padding, so a slot set to padding 0 runs edge to edge. Padding and gap come from density/card-*; change those tokens for a product-wide decision. A card with its own anatomy (Stat Card, Option Card, Post Card) is a separate component built on Card.
+
+**Use for**
+
+- Content about one object or topic, set apart from the page
+- Variant=outline inside panels, dialogs and long lists of cards
+- Variant=muted for secondary or summary information and placeholders
+- Size=sm for grids of many cards, sidebars and dashboards
+
+**Not for**
+
+- A status message: use Alert, or a Badge inside the card
+- A metric, selectable option or post: use Stat Card, Option Card or Post Card
+- Groups inside a card: use spacing or a Separator, never a nested card
+
+**Anatomy**
+
+1. Header slot (Card Header): Title, Description, Action slot top right
+2. Content slot
+3. Footer slot (Card Footer): Actions slot
+
+**Content and behavior**
+
+- Never nest cards in cards
+- Elevation=true only for one card that must stand out or floats; never a whole grid
+- One variant per group of cards; equal height and structure per row
+- Whole card clickable only with one destination; otherwise the title is the link
+- Footer: one primary action at most, usually none in a grid
+- Padding comes from density/card-* tokens; change the tokens, never single instances
+- Turn off Show header or Show footer when unused; never detach
+
+**Accessibility**
+
+- A clickable card is one link with a hover state and a focus ring
+- The Card Header Title is a heading at the right level for the page
+- Action slot Button Icons have labels and tooltips
 
 | Variant property | Values |
 |---|---|
@@ -180,6 +311,41 @@ Code: shadcn `Card` + `cva` with `variant` (default, outline, muted), `size` (de
 Component set · 4 variants · default size 320 × 259
 
 Summary of one object (customer, project, vendor, asset) in a grid or board: leading avatar or icon (slot), title and subtitle, menu, status and tags (slot), 2-4 key details (slot), footer with people and last update. Show the attributes marked "card" in objects.md. Whole card clickable only with one destination; then hover and focus apply and the menu is the only other control.
+
+**Use for**
+
+- Grids and boards of records
+- Customers, projects, vendors and assets people scan by key details
+- Board columns, where each card is one record
+
+**Not for**
+
+- Many records compared by columns: use a Table
+- One metric: use Stat Card
+- A goal against a target: use Progress Card
+
+**Anatomy**
+
+1. Leading slot: avatar or icon
+2. Title (2 lines) and Subtitle (1 line)
+3. Menu Button Icon (Show menu)
+4. Tags slot: status and tags (Show tags)
+5. Details slot: 2-4 key details (Show details)
+6. Footer: people (Avatar Group) and Footer text (Show footer)
+
+**Content and behavior**
+
+- Details are the attributes marked "card" in objects.md, in that order
+- Whole card clickable only with one destination; then hover and focus apply
+- In a clickable card the menu is the only other control
+- Status in text (Badge), never color alone
+- Footer text says when it was last updated ("Updated 2 h ago")
+
+**Accessibility**
+
+- One link for the card; the menu is a separate button with a label
+- State=focus shows the border/ring focus ring
+- State=selected is announced, not only shown
 
 | Variant property | Values |
 |---|---|
@@ -215,6 +381,38 @@ Code: shadcn `Card` with `size="sm"`; `Progress`
 Component set · 3 variants · default size 320 × 174
 
 A goal against its target (revenue, budget, quota, completion): label, status badge, value and target, bar (exposed Progress, pick Value), footnote with percent and time left. Status names the state in text; pick it from a rule (for example at risk under 80% of the expected pace) and say the rule in the footnote or a tooltip.
+
+**Use for**
+
+- Revenue, budget, quota or completion goals
+- Dashboards and reports next to Stat Cards
+- Team or customer quotas and budgets against plan
+
+**Not for**
+
+- A metric without a target: use Stat Card
+- Progress of a running task: use Progress or Agent Plan
+
+**Anatomy**
+
+1. Label
+2. Status Badge: on track, at risk, off track
+3. Value and Target ("€48,250 of €60,000")
+4. Progress bar (exposed Progress, set Value)
+5. Footnote: percent and time left
+
+**Content and behavior**
+
+- Status names the state in text, picked from a rule
+- Say the rule in the footnote or a tooltip ("at risk under 80% of the expected pace")
+- The bar Value matches the percent in the Footnote
+- Amounts follow the locale format
+
+**Accessibility**
+
+- Progress has role="progressbar" with aria-valuenow and a label
+- Status is in text, never color alone
+- The Footnote meets 4.5:1
 
 | Variant property | Values |
 |---|---|

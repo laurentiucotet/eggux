@@ -9,6 +9,8 @@ Usage rules live in the guides linked under each component.
 | [Toggle Group Item](#toggle-group-item) | 5 | - |
 | [Toggle Group](#toggle-group) | 2 | Items |
 
+On the Figma page: "Example / view switch", "Stress test / Toggle Group"
+
 ## Toggle Group Item
 
 Component set · 5 variants · default size 58 × 36
@@ -41,6 +43,39 @@ Guides: [rich-text-editor](../../skills/build-ui/components/rich-text-editor.md)
 Component set · 2 variants · default size 176 × 36
 
 shadcn ToggleGroup: sets a value (view mode, period, text style). For switching content panels use Tabs. Usage: eggux build-ui/components/tabs.md
+
+**Use for**
+
+- View mode: list / board
+- Period: day / week / month
+- Formatting in a Rich Text Editor toolbar
+- Product options such as size on a product page
+
+**Not for**
+
+- Switching panels of content: use Tabs
+- Independent actions (Archive, zoom): use Button Group
+- Many options: use Select
+
+**Anatomy**
+
+1. Group (Variant: default or outline)
+2. Items slot: Toggle Group Item instances
+3. Item: Label and/or icon (Show label, Icon, Icon type)
+4. Selected item: State=on
+
+**Content and behavior**
+
+- It sets a value; if the content below changes panels, use Tabs
+- Single choice for view mode or period; multiple for formatting
+- Icon-only items: Show label off, Icon on, with a tooltip
+- Choosing a value is a Toggle Group, not a Button Group
+
+**Accessibility**
+
+- Arrow keys move between items; Space or Enter toggles
+- Selected state is exposed (aria-checked for single, aria-pressed for multiple)
+- Icon-only items have an aria-label that matches the tooltip
 
 | Variant property | Values |
 |---|---|

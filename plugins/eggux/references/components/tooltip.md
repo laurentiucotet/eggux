@@ -8,13 +8,47 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Tooltip](#tooltip) | 4 | - |
 
-On the Figma page: "Example / icon button with tooltip"
+On the Figma page: "Example / icon button with tooltip", "Stress test / Tooltip"
 
 ## Tooltip
 
 Component set · 4 variants · default size 115 × 33
 
 shadcn Tooltip. Side = where the tooltip sits relative to its trigger. Plain text, one line; same text as the accessible label of icon-only buttons. Usage: eggux build-ui/components/tooltip.md
+
+**Use for**
+
+- Name of every icon-only button
+- A one-line hint on a control
+- Full timestamp on a relative time, or the full text of a truncated label
+- Reason a control is disabled and how to fix it
+
+**Not for**
+
+- Interactive content: use Popover
+- Preview of a person or record: use Hover Card
+- Help for a field: hint text under the field
+- Pointing out a new feature: use Coachmark
+
+**Anatomy**
+
+1. Trigger
+2. Label: plain text, one line
+3. Arrow pointing at the trigger (Side)
+
+**Content and behavior**
+
+- Same text as the accessible label of the icon-only button
+- Plain text, one line; never links or buttons
+- Appears on hover and on keyboard focus, after a short delay
+- Never holds information needed to finish the task
+- Touch has no hover: the content must also be reachable another way
+
+**Accessibility**
+
+- Shows on keyboard focus; Escape hides it
+- Tied to the trigger with aria-describedby, or its text is the button's aria-label
+- Text on background/primary meets 4.5:1
 
 | Variant property | Values |
 |---|---|
