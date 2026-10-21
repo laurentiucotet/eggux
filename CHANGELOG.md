@@ -3,6 +3,11 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.42.2
+- Figma API notes: grid row sizes must be set to hug after the cells are added; switching
+  `layoutMode` keeps the old sizing modes; a growing child is FIXED until set back to hug.
+  Found while rebuilding three Mobility Global back office and showcase screens with the library.
+
 ## 0.42.1
 - Fixed stress test frames that stopped growing with their content (an auto-layout frame built
   with `resize()` stays FIXED on both axes), so their white frame and section were shorter than

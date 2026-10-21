@@ -109,6 +109,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Assigning `gridRowSizes` / `gridColumnSizes` with a new array can be ignored. Set the
   columns at creation, then make rows hug by mutating the live objects:
   `for (const s of g.gridRowSizes) s.type = 'HUG'`, and set `layoutSizingVertical = 'HUG'`.
+- Row sizes of type HUG set before the cells exist come back as FIXED 1 (the table collapses to
+  one line). Set `g.gridRowSizes = Array(n).fill({ type: 'HUG' })` after the last cell is added,
+  and again after content inside the cells changes height (wrapped text).
 - Place cells with `cell.setGridChildPosition(row, col)`; span with `cell.gridColumnSpan`.
 - `rescale()` breaks GRID frames (rows overlap); place grids 1:1 and crop instead.
 
@@ -157,5 +160,11 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - `node.description` reads back HTML-escaped (`&quot;`). Appending to it and writing it back escapes again (`&amp;quot;`). Unescape first, or rewrite the whole description.
 - Boolean operation nodes (`figma.subtract`, `union`) have no `constraints`. To keep a cut-out centered when the parent resizes, put the boolean in a frame and set the frame's constraints.
 - `frame.resize(w, h)` on an auto-layout frame sets both axes to FIXED. Set `layoutSizingVertical = 'HUG'` again for a column that must grow with its text.
+- Switching `layoutMode` between VERTICAL and HORIZONTAL swaps which axis is primary but keeps
+  the sizing modes, so a fixed-width column becomes hug width (a 1152 container shrank to 100
+  and its text wrapped one letter per line). Set `primaryAxisSizingMode` and
+  `counterAxisSizingMode` again and resize after the switch.
+- An auto-layout child with `layoutGrow = 1` is FIXED on that axis. Set it back to HUG before
+  measuring how tall the content is.
 - `use_figma` code can build functions from text: `new (Object.getPrototypeOf(async function(){}).constructor)('figma', 'JOBS', src)`. Store a long script in a hidden text node once and send only the data per call; delete the node after.
 - An instance's SLOT accepts `appendChild` and child removal, so a page shell instance can host any component in its Page slot without detaching.
