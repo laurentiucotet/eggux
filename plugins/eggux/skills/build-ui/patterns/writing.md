@@ -6,6 +6,8 @@
 ## Voice
 - Plain, short, active; say what the user gets, not what the system does.
 - Use the client's words (`eggux/decisions.md` terminology); one name per concept.
+- Repeated names and labels come from the `Content` collection (`references/content.md`): bind
+  them, never retype "Save" or the company name.
 - Sentence case for everything: titles, buttons, menu items, labels.
 
 ## Labels

@@ -3,6 +3,16 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.37.0
+- `Content` variable collection (STRING, modes English and Română): 85 variables for brand
+  names, actions, statuses, feedback, field labels, AI notice, legal and navigation. 382 texts
+  and instance properties in the master library bound to them.
+- Brand page: Content panel and an English / Română comparison of the invoices example.
+- `references/content.md` (groups, rules, binding, client setup); brand-intake sets `brand/*`
+  and adds language modes; decision-log changes terminology through Content; writing and
+  tokens link it.
+- Counts corrected to 182 components (180 on component pages + Logo and Logo Mark).
+
 ## 0.36.0
 - 12 AI components on the AI Chat page: `Model Selector`, `Model Option`, `Context Chip`,
   `Voice Recorder`, `Chat History Item`, `Response Feedback`, `Plan Step`, `Agent Plan`,
