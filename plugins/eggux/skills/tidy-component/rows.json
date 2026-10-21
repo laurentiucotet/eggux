@@ -229,6 +229,14 @@
    "block": null
   },
   {
+   "main": "Person Card",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / people directory"
+   ]
+  },
+  {
    "main": "Progress Card",
    "helpers": [],
    "block": null
@@ -383,6 +391,22 @@
    "main": "Description List Item",
    "helpers": [],
    "block": "124:2163"
+  },
+  {
+   "main": "Meta Item",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / event facts"
+   ]
+  },
+  {
+   "main": "Figure",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / report figures"
+   ]
   }
  ],
  "Dialog": [
@@ -808,6 +832,14 @@
    "main": "Switch",
    "helpers": [],
    "block": "79:3"
+  },
+  {
+   "main": "Setting Row",
+   "helpers": [],
+   "block": "79:3",
+   "examples": [
+    "Example / settings section"
+   ]
   }
  ],
  "Separator": [
@@ -916,7 +948,10 @@
    "helpers": [
     "Tab"
    ],
-   "block": "92:949"
+   "block": "92:949",
+   "examples": [
+    "Example / tabs with counts"
+   ]
   },
   {
    "main": "Tabs Line",

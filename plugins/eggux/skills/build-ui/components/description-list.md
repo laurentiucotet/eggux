@@ -13,6 +13,21 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Figma: `Description List Item` Orientation × Label, Divider (off on the last row), Value slot.
 - Code: `<dl>` with `<dt>`/`<dd>` and Tailwind grid, no shadcn component.
 
+## Meta Item (facts with an icon)
+- One fact: date and time with time zone, place with city, people, length, size, contact.
+- The icon says the kind of fact (calendar, clock, map-pin, users, mail, phone, link); the same
+  icon for the same kind of fact everywhere. Never decoration.
+- A row of 2-4 under a title (gap 24) or a column (gap 8). Label stays muted, links included.
+- Figma: `Meta Item` Icon (swap), Label, Show icon. Code: icon + text, `text-sm text-muted-foreground`.
+
+## Figure (numbers with what they count)
+- `Layout=stacked` for 2-4 headline figures (report and study headers, key facts);
+  `inline` for counts in a header ("42 articles").
+- The label reads on its own; numbers in the locale format with units; a source line when the
+  figure is a claim (Show source, or one line under the group). Divider between stacked figures.
+- No trend arrow or color: a metric compared to a period is a Stat Card.
+- Figma: `Figure` Layout × Size (default, lg); Value, Label, Source, Show source, Divider.
+
 ## Timeline (activity, history)
 - Newest first. One event per item: what happened (title), who / where (description), when.
 - Tone marks the outcome: success, destructive (failed), primary (created/booked), default (info).

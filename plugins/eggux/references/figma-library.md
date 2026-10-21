@@ -82,6 +82,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
+| Selection controls | `Setting Row` | - | Title, Description, Show description, Divider; Control (native slot: Switch, Select, Button) |
 | Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Clips its content; thin scrollbar on border/default |
 | Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
 | Select | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
@@ -143,6 +144,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Connector |
 | Stepper | `Stepper` | - | Steps (native slot) |
 | Description List | `Description List Item` | Orientation: horizontal, vertical | Label, Divider; Value (native slot) |
+| Description List | `Meta Item` | - | Icon (swap, 16, muted), Label, Show icon. One fact: date, place, people, contact |
+| Description List | `Figure` | Layout: stacked, inline. Size: default, lg | Value, Label, Source, Show source, Divider. A number with what it counts; no trend |
 | Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive | Title, Time, Description, Show description, Icon (swap), Connector; Content (native slot) + Show content |
 | Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
 | Menu | `Menu Label` | - | Label |
@@ -152,7 +155,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Mobile | `Mobile Header` | Type: app, detail | Title; Leading, Trailing (native slots) |
 | Mobile | `Bottom Nav Item` | State: default, active | Label, Icon (swap) |
 | Mobile | `Bottom Nav` | - | Items (native slot), 3-5 items, safe-area padding |
-| Tabs | `Tab` | Style: pill, line. State: default, active, focus, disabled | Label |
+| Tabs | `Tab` | Style: pill, line. State: default, active, focus, disabled | Label, Show count (Badge Count exposed) |
 | Tabs | `Tabs`, `Tabs Line` | - | Tabs (native slot of Tab instances) |
 | Toggle Group | `Toggle Group Item` | State: off, hover, on, focus, disabled | Label, Show label, Icon + Icon type |
 | Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels |
@@ -176,6 +179,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Footnote, Show footer. Change badge and trend line edited per instance |
 | Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
 | Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Subtitle (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
+| Card | `Person Card` | Layout: vertical (280), horizontal (400) | Name, Role, Organization, Show organization, Show tags, Show contact, Show actions; Avatar, Tags, Contact (Meta Items), Actions (native slots) |
 | Card | `Progress Card` | Status: on track, at risk, off track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
 | Card | `Post Card` | Layout: vertical, horizontal, compact | Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact: 1:1 image 64); category Badge exposed. Compact = title on 2 lines + meta, for related lists |
 | Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |

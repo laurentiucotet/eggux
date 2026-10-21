@@ -88,14 +88,14 @@ component guides it names. Names are Figma components; inventory in
 | badge | Badge, Badge Count, Chip, Status Dot (see indicators) |
 | button | Button, Button Icon, Button Group, Split Button |
 | boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view |
-| card | Card, Stat Card, Option Card, Post Card |
+| card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Progress Card |
 | carousel | Carousel |
 | charts | Bar, Bar Horizontal, Line, Donut / Pie, Heatmap, Gauge, Treemap, Funnel, Scatter, Sparkline, Chart Card, legend, tooltip |
 | color-picker | Color Picker, swatches, color field |
 | comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer |
 | content | Post Card, Code Block, TOC Item, Table of Contents |
 | date-picker | Calendar, Date Picker, Time Picker, Date Range Picker |
-| description-list | Description List, Timeline |
+| description-list | Description List, Meta Item, Figure, Timeline |
 | dialog | Dialog, Alert Dialog |
 | drawer | Sheet, Drawer, Side Panel |
 | dropdown-menu | Menu, Menu Item, Menubar |
@@ -109,7 +109,7 @@ component guides it names. Names are Figma components; inventory in
 | progress-and-slider | Progress, Progress Ring, Slider |
 | rating | Rating |
 | rich-text-editor | Rich Text Editor |
-| select | Select, Combobox, Checkbox, Radio, Switch, Tag Input, People Picker, Transfer List |
+| select | Select, Combobox, Checkbox, Radio, Switch, Setting Row, Tag Input, People Picker, Transfer List |
 | sidebar | Sidebar and its parts, Sidebar Double |
 | skeleton | Skeleton |
 | stepper | Step, Stepper |

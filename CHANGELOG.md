@@ -3,6 +3,22 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.45.0
+- New `Meta Item` and `Figure` (Description List page): a fact with an icon; a number with what
+  it counts (stacked or inline, default or lg, source, divider).
+- New `Setting Row` (Selection controls page): title, description, Control slot, divider.
+- New `Person Card` (Card page): vertical and horizontal, Avatar, Tags, Contact (Meta Items) and
+  Actions slots.
+- `Tab`: Show count with an exposed Badge Count.
+- The parts that were built by hand now use them: Header Event and Header Profile (Meta Item,
+  Figure), Header Report (Figure), Header Search Results (tab counts), Block / Settings Section
+  (Setting Row), the Showcase test screen (Person Card).
+- Docs rows, generated stress tests and examples on Card, Description List, Selection controls
+  and Tabs; guides, code mapping, library map and component reference updated. Figure closes the
+  "Stat Card without trend" gap.
+- Figma API notes: setting any icon swap to the same icon resets its color; replacing grid
+  children can add a row.
+
 ## 0.44.0
 - New block page Page Headers: `Block / Header Detail`, `Header Listing`, `Header Search
   Results`, `Header Profile`, `Header Event`, `Header Topic`, `Header Report`, `Header Simple`,

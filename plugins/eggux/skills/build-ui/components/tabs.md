@@ -8,8 +8,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - 2 to 6 tabs. More means the content needs a different structure.
 
 ## Rules
-- Labels are one or two words, nouns, in the client's terminology. Counts in a badge when useful
-  ("Invoices 3").
+- Labels are one or two words, nouns, in the client's terminology. Counts in the Tab's Badge
+  Count (Show count) when useful ("Invoices 3"), never typed into the label.
 - The selected tab is in the URL, so refresh and links keep it.
 - Tab content keeps the user's state (filters, scroll) when they switch back.
 - Do not hide something the actor needs to complete the main task behind a non-default tab.
