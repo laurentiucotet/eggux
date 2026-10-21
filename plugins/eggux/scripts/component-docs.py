@@ -17,6 +17,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # plugins/eg
 OUT = os.path.join(ROOT, 'references', 'components')
 GUIDES = [os.path.join(ROOT, 'skills', 'build-ui', d) for d in ('components', 'patterns')]
 CODE_MAP = os.path.join(ROOT, 'references', 'code-mapping.md')
+DOCS = os.path.join(ROOT, 'skills', 'tidy-component', 'docs.json')  # the Docs frames' content
 
 
 def slug(name):
@@ -75,6 +76,13 @@ def render_component(c, guides, codes):
     out += [meta, '']
     if c['description']:
         out += [html.unescape(c['description']), '']
+    d = DOC.get(c['name'])
+    if d:
+        for key, title in (('use', 'Use for'), ('avoid', 'Not for'), ('anatomy', 'Anatomy'),
+                           ('rules', 'Content and behavior'), ('a11y', 'Accessibility')):
+            if d.get(key):
+                items = [f'{i + 1}. {x}' for i, x in enumerate(d[key])] if key == 'anatomy' else [f'- {x}' for x in d[key]]
+                out += [f'**{title}**', ''] + items + ['']
     if c['variantProps']:
         out += ['| Variant property | Values |', '|---|---|']
         out += [f"| {n} | {', '.join(v)} |" for n, v in c['variantProps']]
@@ -127,13 +135,17 @@ def render_page(page, generated, guides, codes):
 
 
 def main(paths):
+    global DOC
+    DOC = json.load(open(DOCS)) if os.path.exists(DOCS) else {}
     pages, generated = load(paths)
     guides, codes = guide_index(), code_index()
     os.makedirs(OUT, exist_ok=True)
     index = ['# Component reference', '',
              f'One file per component page of the EGG UI master library, generated on {generated}.',
              'Each component lists its variants, properties with defaults, slots, the components and icons',
-             'it is built from, the tokens and styles it uses, its usage guides and its code mapping.', '',
+             'it is built from, the tokens and styles it uses, its usage guides and its code mapping. Main',
+             'components also list when to use them, anatomy, rules and accessibility from',
+             '`skills/tidy-component/docs.json`, the same content as the Docs frame on the Figma page.', '',
              '## Regenerate', '',
              '1. Run `scripts/component-docs.js` with `use_figma` on the master library, a few pages per call',
              '   (set `PAGES`), and save each returned JSON to a file.',

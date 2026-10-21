@@ -12,7 +12,7 @@ Usage rules live in the guides linked under each component.
 | [Menubar Trigger](#menubar-trigger) | 3 | - |
 | [Menubar](#menubar) | 1 | Menus |
 
-On the Figma page: "Example / menubar open", "Stress test / Menubar"
+On the Figma page: "Example / actions menu under a header button", "Example / menubar open", "Stress test / Menu", "Stress test / Menubar"
 
 ## Menu Item
 
@@ -68,6 +68,40 @@ Component · 1 variant · default size 224 × 179
 
 Popover list for Dropdown menu, Select and context menus. "Items" is a native slot: add Menu Item, Menu Label and Menu Separator instances. Usage: eggux build-ui/components/dropdown-menu.md
 
+**Use for**
+
+- Actions on an object when there are more than one or two: row actions, More in a header
+- Right-click context menus
+- The option list of a Select
+
+**Not for**
+
+- Choosing a value in a form: use Select
+- Deep navigation: use Sidebar or Navigation Menu
+- Searching many options: use Command (Combobox)
+
+**Anatomy**
+
+1. Items slot
+2. Menu Label: group heading, not clickable
+3. Menu Item: Leading icon, Label, Shortcut text, Checked
+4. Separator between groups
+5. Destructive Menu Item last
+
+**Content and behavior**
+
+- Items are verbs: "Edit", "Duplicate", "Archive"; items that open a dialog end with "..."
+- Most frequent first, destructive last after a Separator
+- Show only permitted actions; disabled items only with a useful reason
+- Shortcuts on the right when they exist
+- Highlighted destructive uses a filled background/destructive row with white text
+
+**Accessibility**
+
+- Arrows move, Enter selects, Escape closes and returns focus to the trigger
+- Trigger is a Button Icon labeled with the object: "Actions for Invoice #1042"
+- Menu Item Checked uses menuitemcheckbox or the option role in a Select
+
 Slots (fill them in the instance, never detach): `Items`
 
 Built from: `Menu Item`, `Menu Label`, `Separator`
@@ -111,6 +145,36 @@ Code: shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`)
 Component · 1 variant · default size 233 × 38
 
 Desktop app menus in a row (File, Edit, View, Help), for editors and tools with many commands. Fill the Menus slot with Menubar Triggers; each opens a Menu with items, shortcuts and submenus. Arrow keys move between menus, Esc closes. Not for site navigation: use Navigation or Sidebar.
+
+**Use for**
+
+- Editors and desktop-like tools with many commands
+- Products where users expect File, Edit, View menus
+- Report or document builders with File, Insert and Format menus
+
+**Not for**
+
+- Site or app navigation: use Navigation Menu or Sidebar
+- A few actions on one object: use a Menu from a Button
+
+**Anatomy**
+
+1. Menus slot of Menubar Triggers
+2. Menubar Trigger: Label
+3. Menu under the open trigger: items, shortcuts, submenus
+
+**Content and behavior**
+
+- Menubar Trigger State: default, hover, open
+- Click opens a menu; while one is open, hovering another trigger opens that one
+- Every command also has a shortcut or another place in the UI
+- Menubar Trigger is used only inside Menubar
+
+**Accessibility**
+
+- Left and right arrows move between menus, Esc closes
+- Role menubar with menuitem triggers
+- Focus returns to the trigger on close
 
 Slots (fill them in the instance, never detach): `Menus`
 

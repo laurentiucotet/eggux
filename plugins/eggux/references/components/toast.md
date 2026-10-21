@@ -8,11 +8,49 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Toast](#toast) | 6 | - |
 
+On the Figma page: "Example / toast after sending an invoice", "Stress test / Toast"
+
 ## Toast
 
 Component set · 6 variants · default size 384 × 76
 
 Sonner toast. One line, past tense, names the object. At most one action ("Undo", "View"). Close button off by default; turn it on for toasts with an action, errors and long durations. Errors that block the goal also show inline. Usage: eggux build-ui/components/toast.md
+
+**Use for**
+
+- Confirming an action whose result is out of view: "Invoice INV-1048 created"
+- Undo for restorable deletes and archives
+- Background events: export ready, import done
+- Bulk results with counts: "18 sent, 2 failed"
+
+**Not for**
+
+- The result is visible where the user is: the change itself is the feedback
+- Errors that block the goal: inline error where the problem is
+- Information people need later: put it on the page or use Alert
+
+**Anatomy**
+
+1. Type icon: success, error, warning, info or loading
+2. Title: one line
+3. Description (Show description)
+4. Action button (Action)
+5. Close button (Close button)
+
+**Content and behavior**
+
+- One line, past tense, names the object: "Invoice #1042 sent", not "Success!"
+- At most one action, a verb: "Undo", "View"
+- Auto-dismiss after 4-6 s, 8-10 s with an action; pause on hover and focus
+- Close button off by default; on for toasts with an action, errors and long durations
+- Errors that block the goal also show inline
+- Same position everywhere: bottom right, top center on mobile
+
+**Accessibility**
+
+- aria-live="polite"; "assertive" for errors
+- Timers pause on focus, so the action can be reached with the keyboard
+- Nothing appears only in a toast
 
 | Variant property | Values |
 |---|---|

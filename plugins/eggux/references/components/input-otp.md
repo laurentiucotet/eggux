@@ -9,6 +9,8 @@ Usage rules live in the guides linked under each component.
 | [OTP Slot](#otp-slot) | 12 | - |
 | [Input OTP](#input-otp) | 2 | - |
 
+On the Figma page: "Example / verify phone", "Stress test / Input OTP"
+
 ## OTP Slot
 
 Component set · 12 variants · default size 40 × 40
@@ -37,6 +39,38 @@ Guides: [input](../../skills/build-ui/components/input.md)
 Component set · 2 variants · default size 160 × 40
 
 One-time code input (shadcn Input OTP / input-otp). 6 digits as 3 + 3, or 4. Set each OTP Slot state in the instance. Paste fills all boxes; autocomplete="one-time-code"; inputmode="numeric".
+
+**Use for**
+
+- Two-factor sign in
+- Verifying a phone number or email address
+- Confirming a sensitive action: payout details, email change
+
+**Not for**
+
+- Passwords and PINs the user chooses: use Field Preset password
+- Long recovery codes: use Input
+
+**Anatomy**
+
+1. OTP Slots, first / middle / last per group
+2. Separator (minus) between groups of 6
+3. Message under the boxes
+4. Resend code
+
+**Content and behavior**
+
+- Length: 4, or 6 as 3 + 3
+- OTP Slot State: empty, filled, active (caret + focus ring), error
+- Paste fills all boxes; auto-submit on the last digit, or enable Verify then
+- Wrong code: error on all boxes, message under them, digits kept for editing
+- Say where the code was sent (masked) and offer "Resend code" after a countdown
+
+**Accessibility**
+
+- autocomplete="one-time-code" and inputmode="numeric"
+- One labeled input for the whole code, not one per box
+- Errors and resend countdown are announced
 
 | Variant property | Values |
 |---|---|

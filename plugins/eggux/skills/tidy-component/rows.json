@@ -1,0 +1,958 @@
+{
+ "Accordion": [
+  {
+   "main": "Accordion",
+   "helpers": [
+    "Accordion Item"
+   ],
+   "block": "76:433"
+  }
+ ],
+ "AI Chat": [
+  {
+   "main": "Prompt Input",
+   "helpers": [
+    "Attachment"
+   ],
+   "block": "159:214"
+  },
+  {
+   "main": "User Message",
+   "helpers": [],
+   "block": "159:214"
+  },
+  {
+   "main": "Assistant Message",
+   "helpers": [],
+   "block": "159:214"
+  },
+  {
+   "main": "Reasoning",
+   "helpers": [],
+   "block": "158:63"
+  },
+  {
+   "main": "Tool Call",
+   "helpers": [],
+   "block": "159:214"
+  },
+  {
+   "main": "Sources",
+   "helpers": [
+    "Source Item",
+    "Citation"
+   ],
+   "block": "158:63"
+  },
+  {
+   "main": "Suggestion",
+   "helpers": [],
+   "block": "158:3"
+  },
+  {
+   "main": "Model Selector",
+   "helpers": [
+    "Model Option"
+   ],
+   "block": null
+  },
+  {
+   "main": "Chat History Item",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Context Chip",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Response Feedback",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Voice Recorder",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Agent Plan",
+   "helpers": [
+    "Plan Step"
+   ],
+   "block": null
+  },
+  {
+   "main": "Artifact Card",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "AI Summary",
+   "helpers": [
+    "AI Notice"
+   ],
+   "block": null
+  },
+  {
+   "main": "AI Suggestion",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Alert": [
+  {
+   "main": "Alert",
+   "helpers": [],
+   "block": "189:5652"
+  }
+ ],
+ "Approvals": [
+  {
+   "main": "Approval Step",
+   "helpers": [],
+   "block": "181:501"
+  }
+ ],
+ "Audit": [
+  {
+   "main": "Change Item",
+   "helpers": [],
+   "block": "181:923"
+  }
+ ],
+ "Avatar": [
+  {
+   "main": "Avatar",
+   "helpers": [],
+   "block": "92:949"
+  },
+  {
+   "main": "Avatar Group",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Badge": [
+  {
+   "main": "Badge",
+   "helpers": [],
+   "block": "200:1241"
+  },
+  {
+   "main": "Badge Count",
+   "helpers": [],
+   "block": "79:108"
+  },
+  {
+   "main": "Status Dot",
+   "helpers": [],
+   "block": "145:2962"
+  }
+ ],
+ "Button": [
+  {
+   "main": "Button",
+   "helpers": [],
+   "block": "72:3"
+  },
+  {
+   "main": "Button Icon",
+   "helpers": [],
+   "block": "96:5364"
+  },
+  {
+   "main": "Button Group",
+   "helpers": [
+    "Button Group Item"
+   ],
+   "block": null
+  },
+  {
+   "main": "Split Button",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Calendar": [
+  {
+   "main": "Calendar",
+   "helpers": [
+    "Calendar Day"
+   ],
+   "block": "93:1683"
+  },
+  {
+   "main": "Date Picker",
+   "helpers": [],
+   "block": "93:316"
+  },
+  {
+   "main": "Time Picker",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Date Range Picker",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Card": [
+  {
+   "main": "Card",
+   "helpers": [
+    "Card Header",
+    "Card Footer"
+   ],
+   "block": "117:410"
+  },
+  {
+   "main": "Stat Card",
+   "helpers": [],
+   "block": "109:1790"
+  },
+  {
+   "main": "Option Card",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Post Card",
+   "helpers": [],
+   "block": "200:1069"
+  },
+  {
+   "main": "Entity Card",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Progress Card",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Carousel": [
+  {
+   "main": "Carousel",
+   "helpers": [
+    "Carousel Arrow",
+    "Carousel Indicator",
+    "Carousel Slide"
+   ],
+   "block": "198:1482"
+  },
+  {
+   "main": "Carousel Gallery",
+   "helpers": [
+    "Carousel Thumbnail"
+   ],
+   "block": null
+  },
+  {
+   "main": "Carousel Hero",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Lightbox",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Chart": [
+  {
+   "main": "Bar Chart",
+   "helpers": [],
+   "block": "109:1790"
+  },
+  {
+   "main": "Bar Chart Horizontal",
+   "helpers": [],
+   "block": "202:3285"
+  },
+  {
+   "main": "Line Chart",
+   "helpers": [],
+   "block": "109:1790"
+  },
+  {
+   "main": "Sparkline",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Donut Chart",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Heatmap",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Gauge",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Treemap",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Funnel Chart",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Scatter Chart",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Chart Legend",
+   "helpers": [
+    "Chart Legend Item"
+   ],
+   "block": "109:1790"
+  },
+  {
+   "main": "Chart Tooltip",
+   "helpers": [
+    "Chart Tooltip Row"
+   ],
+   "block": null
+  },
+  {
+   "main": "Chart Card",
+   "helpers": [],
+   "block": "109:1790"
+  }
+ ],
+ "Chat": [
+  {
+   "main": "Chat Message",
+   "helpers": [],
+   "block": "145:2962"
+  },
+  {
+   "main": "Typing Indicator",
+   "helpers": [],
+   "block": "145:2962"
+  },
+  {
+   "main": "Chat Composer",
+   "helpers": [],
+   "block": "145:2962"
+  }
+ ],
+ "Chip": [
+  {
+   "main": "Chip",
+   "helpers": [],
+   "block": "213:1104"
+  }
+ ],
+ "Code Block": [
+  {
+   "main": "Code Block",
+   "helpers": [],
+   "block": "138:209"
+  }
+ ],
+ "Color Picker": [
+  {
+   "main": "Color Picker",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Cookie Consent": [
+  {
+   "main": "Cookie Consent",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Description List": [
+  {
+   "main": "Description List Item",
+   "helpers": [],
+   "block": "124:2163"
+  }
+ ],
+ "Dialog": [
+  {
+   "main": "Dialog",
+   "helpers": [
+    "Dialog Header",
+    "Dialog Footer"
+   ],
+   "block": null
+  },
+  {
+   "main": "Alert Dialog",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Drawer": [
+  {
+   "main": "Sheet",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Drawer",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Editor": [
+  {
+   "main": "Rich Text Editor",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Comment",
+   "helpers": [],
+   "block": "144:3001"
+  },
+  {
+   "main": "Comment Composer",
+   "helpers": [],
+   "block": "144:3001"
+  }
+ ],
+ "Empty State": [
+  {
+   "main": "Empty State",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "File Upload": [
+  {
+   "main": "File Dropzone",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "File Item",
+   "helpers": [],
+   "block": "181:501"
+  },
+  {
+   "main": "File Preview",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Filters": [
+  {
+   "main": "Filter Bar",
+   "helpers": [
+    "Filter Chip"
+   ],
+   "block": null
+  },
+  {
+   "main": "Faceted Filter",
+   "helpers": [
+    "Facet Option"
+   ],
+   "block": null
+  },
+  {
+   "main": "Filter Section",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Filter Group",
+   "helpers": [
+    "Filter Condition"
+   ],
+   "block": "179:1208"
+  }
+ ],
+ "Form Presets": [
+  {
+   "main": "Field Preset",
+   "helpers": [],
+   "block": "117:410"
+  }
+ ],
+ "Image": [
+  {
+   "main": "Image Placeholder",
+   "helpers": [],
+   "block": "126:3"
+  },
+  {
+   "main": "Map",
+   "helpers": [],
+   "block": "197:1428"
+  },
+  {
+   "main": "Image Cropper",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Avatar Upload",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Input": [
+  {
+   "main": "Input",
+   "helpers": [],
+   "block": "212:862"
+  },
+  {
+   "main": "Field",
+   "helpers": [],
+   "block": "117:410"
+  },
+  {
+   "main": "Password Strength",
+   "helpers": [],
+   "block": "117:557"
+  },
+  {
+   "main": "Textarea",
+   "helpers": [],
+   "block": "93:316"
+  },
+  {
+   "main": "Input Group",
+   "helpers": [
+    "Input Addon"
+   ],
+   "block": "126:260"
+  },
+  {
+   "main": "Number Input",
+   "helpers": [],
+   "block": "126:82"
+  },
+  {
+   "main": "Inline Edit",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Signature Pad",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Input OTP": [
+  {
+   "main": "Input OTP",
+   "helpers": [
+    "OTP Slot"
+   ],
+   "block": "117:646"
+  }
+ ],
+ "Kanban": [
+  {
+   "main": "Kanban Card",
+   "helpers": [],
+   "block": "140:2631"
+  },
+  {
+   "main": "Kanban Column",
+   "helpers": [],
+   "block": "140:2631"
+  }
+ ],
+ "Kbd": [
+  {
+   "main": "Kbd",
+   "helpers": [],
+   "block": "212:862"
+  },
+  {
+   "main": "Kbd Group",
+   "helpers": [],
+   "block": "144:3001"
+  }
+ ],
+ "List & Tree": [
+  {
+   "main": "List Item",
+   "helpers": [],
+   "block": "92:1352"
+  },
+  {
+   "main": "Tree Item",
+   "helpers": [],
+   "block": "138:1552"
+  },
+  {
+   "main": "Sortable List Item",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Menu": [
+  {
+   "main": "Menu",
+   "helpers": [
+    "Menu Item",
+    "Menu Label"
+   ],
+   "block": null
+  },
+  {
+   "main": "Menubar",
+   "helpers": [
+    "Menubar Trigger"
+   ],
+   "block": null
+  }
+ ],
+ "Mobile": [
+  {
+   "main": "Mobile Header",
+   "helpers": [],
+   "block": "96:480"
+  },
+  {
+   "main": "Bottom Nav",
+   "helpers": [
+    "Bottom Nav Item"
+   ],
+   "block": "96:480"
+  }
+ ],
+ "Navigation": [
+  {
+   "main": "Breadcrumb",
+   "helpers": [
+    "Breadcrumb Item"
+   ],
+   "block": "126:82"
+  },
+  {
+   "main": "Top Bar",
+   "helpers": [],
+   "block": "77:314"
+  },
+  {
+   "main": "Page Header",
+   "helpers": [],
+   "block": "77:314"
+  },
+  {
+   "main": "Nav Link",
+   "helpers": [],
+   "block": "72:3"
+  },
+  {
+   "main": "Navigation Menu Panel",
+   "helpers": [
+    "Navigation Menu Link"
+   ],
+   "block": "212:920"
+  },
+  {
+   "main": "Table of Contents",
+   "helpers": [
+    "TOC Item"
+   ],
+   "block": "138:1552"
+  }
+ ],
+ "Pagination": [
+  {
+   "main": "Pagination",
+   "helpers": [
+    "Pagination Item"
+   ],
+   "block": "138:3"
+  }
+ ],
+ "Popover": [
+  {
+   "main": "Popover",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Command",
+   "helpers": [
+    "Command Input"
+   ],
+   "block": null
+  },
+  {
+   "main": "Command Dialog",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Hover Card",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Progress": [
+  {
+   "main": "Progress",
+   "helpers": [],
+   "block": "124:2348"
+  },
+  {
+   "main": "Progress Ring",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Rating": [
+  {
+   "main": "Rating",
+   "helpers": [],
+   "block": "198:1482"
+  }
+ ],
+ "Save Bar": [
+  {
+   "main": "Save Bar",
+   "helpers": [],
+   "block": "183:1035"
+  }
+ ],
+ "Scheduler": [
+  {
+   "main": "Calendar Event",
+   "helpers": [],
+   "block": "141:2756"
+  },
+  {
+   "main": "Gantt Bar",
+   "helpers": [
+    "Gantt Milestone"
+   ],
+   "block": "209:3777"
+  }
+ ],
+ "Scroll Area": [
+  {
+   "main": "Scroll Area",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Select": [
+  {
+   "main": "Select",
+   "helpers": [],
+   "block": "67:2442"
+  },
+  {
+   "main": "Combobox",
+   "helpers": [],
+   "block": "93:316"
+  },
+  {
+   "main": "Tag Input",
+   "helpers": [
+    "Tag"
+   ],
+   "block": "179:1208"
+  },
+  {
+   "main": "People Picker",
+   "helpers": [
+    "Person Option"
+   ],
+   "block": null
+  },
+  {
+   "main": "Transfer List",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Selection controls": [
+  {
+   "main": "Checkbox",
+   "helpers": [],
+   "block": "117:646"
+  },
+  {
+   "main": "Radio",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Switch",
+   "helpers": [],
+   "block": "79:3"
+  }
+ ],
+ "Separator": [
+  {
+   "main": "Separator",
+   "helpers": [],
+   "block": "92:1352"
+  }
+ ],
+ "Sidebar": [
+  {
+   "main": "Sidebar",
+   "helpers": [
+    "Sidebar Item",
+    "Sidebar Group Label",
+    "Sidebar Group",
+    "Sidebar Workspace",
+    "Sidebar User"
+   ],
+   "block": "77:314"
+  },
+  {
+   "main": "Org Switcher",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Skeleton": [
+  {
+   "main": "Skeleton",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Slider": [
+  {
+   "main": "Slider",
+   "helpers": [],
+   "block": "205:1650"
+  }
+ ],
+ "Spinner": [
+  {
+   "main": "Spinner",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Stepper": [
+  {
+   "main": "Stepper",
+   "helpers": [
+    "Step"
+   ],
+   "block": "93:316"
+  }
+ ],
+ "Table": [
+  {
+   "main": "Table Cell",
+   "helpers": [
+    "Table Header Label",
+    "Table Cell Text",
+    "Table Cell Stack",
+    "Table Cell User",
+    "Table Cell Amount",
+    "Table Cell Status",
+    "Table Cell Progress",
+    "Table Cell Actions"
+   ],
+   "block": "181:923"
+  },
+  {
+   "main": "Table Toolbar",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Data Grid Toolbar",
+   "helpers": [],
+   "block": "181:923"
+  },
+  {
+   "main": "Table Group Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Table Pagination",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Tabs": [
+  {
+   "main": "Tabs",
+   "helpers": [
+    "Tab"
+   ],
+   "block": "92:949"
+  },
+  {
+   "main": "Tabs Line",
+   "helpers": [],
+   "block": "92:949"
+  }
+ ],
+ "Timeline": [
+  {
+   "main": "Timeline Item",
+   "helpers": [],
+   "block": "92:1018"
+  }
+ ],
+ "Toast": [
+  {
+   "main": "Toast",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Toggle Group": [
+  {
+   "main": "Toggle Group",
+   "helpers": [
+    "Toggle Group Item"
+   ],
+   "block": "141:2756"
+  }
+ ],
+ "Tooltip": [
+  {
+   "main": "Tooltip",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Tour": [
+  {
+   "main": "Coachmark",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Hotspot",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Video": [
+  {
+   "main": "Video Player",
+   "helpers": [],
+   "block": null
+  }
+ ]
+}

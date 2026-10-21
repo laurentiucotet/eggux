@@ -14,7 +14,7 @@ Usage rules live in the guides linked under each component.
 | [Sidebar](#sidebar) | 2 | Header, Content, Footer |
 | [Org Switcher](#org-switcher) | 1 | - |
 
-On the Figma page: "Example / app shell", "Template / invoices table (grid)"
+On the Figma page: "Example / app shell", "Example / switch organization", "Stress test / Org Switcher", "Stress test / Sidebar"
 
 ## Sidebar Item
 
@@ -138,6 +138,41 @@ Component set · 2 variants · default size 256 × 720
 
 shadcn Sidebar (uses sidebar/* tokens). Header, Content and Footer are native slots. Mode: expanded 256 / collapsed 48 (icon only, labels in tooltips). One active item per sidebar.
 
+**Use for**
+
+- Apps with more than ~5 destinations or with sections
+- Desktop app shell (from 1024 px)
+- Settings navigation as its own Sidebar Group
+
+**Not for**
+
+- Switching views of one object: use Tabs
+- Sites with few pages: use Navigation Menu in a top bar
+- Mobile: open it as a left Sheet from the header
+
+**Anatomy**
+
+1. Header slot: Sidebar Workspace (logo, Title, Subtitle, switcher)
+2. Content slot: Sidebar Group with a Sidebar Group Label
+3. Sidebar Item rows: Icon, Label, optional Badge and Chevron
+4. Footer slot: Sidebar User (Avatar, Title, Subtitle, menu)
+
+**Content and behavior**
+
+- One active Sidebar Item, matching the current page
+- Groups follow the user's work; labels are nouns in the product's terms
+- Badge only for something to act on (unread, pending), never decorative
+- Chevron marks a section with sub-pages
+- Mode expanded 256, collapsed 48: icons only, labels in tooltips
+- Mobile: a Sheet opened from the header trigger (panel-left)
+
+**Accessibility**
+
+- A nav landmark; the active item has aria-current="page"
+- Collapsed items have a Tooltip and an accessible label
+- The collapse trigger has an accessible label
+- Every item is reachable with the keyboard
+
 | Variant property | Values |
 |---|---|
 | Mode | expanded, collapsed |
@@ -159,6 +194,38 @@ Code: shadcn `Sidebar`
 Component · 1 variant · default size 288 × 283
 
 Switch between organizations, tenants or workspaces from the Sidebar Workspace. Shows the current one with a check, role and plan, search when there are more than 5, and create / manage at the bottom. Switching reloads data and keeps the user on the same kind of page.
+
+**Use for**
+
+- Users who belong to several companies, tenants or workspaces
+- Opened from Sidebar Workspace in the Sidebar header
+- Agencies or accountants who manage several client companies
+
+**Not for**
+
+- Users in one organization only: show its name in the header, no switcher
+- Switching projects inside one workspace: use the Sidebar or a Combobox
+
+**Anatomy**
+
+1. Command Input for search (more than 5 organizations)
+2. Organization rows: name, role and plan
+3. Check on the current organization
+4. Separator
+5. Create (plus) and Manage (settings) at the bottom
+
+**Content and behavior**
+
+- The current organization shows a check, role and plan
+- Search appears when there are more than 5
+- Switching reloads data and keeps the user on the same kind of page
+- No toast after switching; the new organization's page is the feedback
+
+**Accessibility**
+
+- Arrows move, Enter switches, Escape closes and returns focus
+- The current organization is announced as selected
+- After switching, focus moves to the new page heading
 
 Built from: `Command Input`, `Separator`. Icons: check, plus, settings
 

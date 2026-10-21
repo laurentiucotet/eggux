@@ -11,7 +11,7 @@ Usage rules live in the guides linked under each component.
 | [Dialog](#dialog) | 1 | Header, Content, Footer |
 | [Alert Dialog](#alert-dialog) | 3 | Header, Footer |
 
-On the Figma page: "Example / dialog over page"
+On the Figma page: "Example / delete confirmation over a list", "Example / dialog over page", "Stress test / Alert Dialog", "Stress test / Dialog"
 
 ## Dialog Header
 
@@ -60,6 +60,42 @@ Component · 1 variant · default size 512 × 270
 
 shadcn Dialog: Header, Content and Footer are native slots (defaults: Dialog Header, placeholder, Dialog Footer). Short focused task; never a dialog from a dialog. Usage: eggux build-ui/components/dialog.md
 
+**Use for**
+
+- Rename, invite a member, quick create
+- A few fields where the page behind does not matter
+- Re-authentication after an expired session
+
+**Not for**
+
+- A decision before continuing: use Alert Dialog
+- Longer forms or details next to a list: use Sheet
+- More than one step or ~6 fields: use a page
+- Forms on mobile: use Drawer or a full-screen Sheet
+
+**Anatomy**
+
+1. Overlay (dialog/overlay)
+2. Header slot: Dialog Header with Title, Description, Close X and optional Media
+3. Content slot
+4. Footer slot: Dialog Footer, Cancel outline left, primary right
+
+**Content and behavior**
+
+- Title says the task ("Invite member"), never "Info" or "Warning"
+- One primary action, bottom right; Cancel outline to its left
+- Never open a dialog from a dialog
+- Long content scrolls inside; header and footer stay fixed
+- Closing with unsaved input follows the unsaved changes pattern
+- Fill the Header, Content and Footer slots in the instance; never detach
+
+**Accessibility**
+
+- Focus moves to the first field on open and returns to the trigger on close
+- Focus stays inside while open; Esc closes
+- Title is the accessible name, Description the accessible description
+- Close X has an accessible label
+
 | Property | Type | Default |
 |---|---|---|
 | Show header | boolean | true |
@@ -86,6 +122,40 @@ Code: shadcn `Dialog`, `AlertDialog`
 Component set · 3 variants · default size 512 × 158
 
 shadcn AlertDialog presets. confirm = a decision with consequences; destructive = irreversible, action named with its verb; acknowledge = one button, the user only needs to know. No close button, no outside click; focus on Cancel (or the only button). Usage: eggux build-ui/patterns/delete-confirmation.md
+
+**Use for**
+
+- Type=confirm: a decision with consequences that can be undone or is not destructive
+- Type=destructive: irreversible loss, such as delete or revoke
+- Type=acknowledge: one button, the user only needs to know
+- Discard unsaved changes
+
+**Not for**
+
+- Restorable actions: act at once and offer Undo in a toast
+- Information that does not block the next step: use a toast or inline Alert
+- A task with fields: use Dialog
+
+**Anatomy**
+
+1. Overlay (dialog/overlay)
+2. Header slot: Dialog Header with Close off, title as a question, description
+3. Footer slot: Cancel outline left, action verb right (destructive variant when destructive)
+
+**Content and behavior**
+
+- Title names the action and object: "Delete project?"
+- Body says what is lost and "This can't be undone." when true
+- Buttons are verbs ("Delete project"), never Yes / No
+- No close button and no close on outside click
+- High impact (account, project, bulk data): type the name to confirm
+- On failure the dialog stays open with the error
+
+**Accessibility**
+
+- Focus starts on Cancel (or the only button); Esc closes as Cancel
+- role="alertdialog": title and description are announced on open
+- After the action, focus returns to a logical place in the list
 
 | Variant property | Values |
 |---|---|

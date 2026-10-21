@@ -8,11 +8,44 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Field Preset](#field-preset) | 10 | - |
 
+On the Figma page: "Example / in forgot password", "Stress test / Field Preset"
+
 ## Field Preset
 
 Component set · 10 variants · default size 320 × 64
 
 Ready-made fields built from Field + Input/Select (they follow every change to those). In code set the matching type, inputmode and autocomplete: email, current-password, new-password, tel, cc-number, cc-exp, cc-csc, postal-code, country-name, address-level1. The nested Field is exposed for states and errors.
+
+**Use for**
+
+- Sign in, sign up, payment and address forms
+- Any field whose data matches one of the 10 Types
+- Checkout and billing details: card, postal code, country, region
+
+**Not for**
+
+- Data that matches no preset: use Field with Input
+- One-time codes: use Input OTP
+
+**Anatomy**
+
+1. Field label
+2. Control: Input or Select for the Type
+3. Hint or error (nested Field exposed)
+
+**Content and behavior**
+
+- Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region
+- In code set the matching type, inputmode and autocomplete (email, tel, cc-number, postal-code...)
+- Change the label to the client's terminology; keep the preset behavior
+- password never blocks paste; new-password pairs with Password Strength
+- card-number groups digits by 4; card-expiry formats MM / YY as the user types
+
+**Accessibility**
+
+- Correct autocomplete lets browsers and password managers fill the field
+- inputmode opens the right mobile keyboard
+- Errors and states come from the nested Field
 
 | Variant property | Values |
 |---|---|

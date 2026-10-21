@@ -2,7 +2,9 @@
 
 One file per component page of the EGG UI master library, generated on 2026-10-21.
 Each component lists its variants, properties with defaults, slots, the components and icons
-it is built from, the tokens and styles it uses, its usage guides and its code mapping.
+it is built from, the tokens and styles it uses, its usage guides and its code mapping. Main
+components also list when to use them, anatomy, rules and accessibility from
+`skills/tidy-component/docs.json`, the same content as the Docs frame on the Figma page.
 
 ## Regenerate
 

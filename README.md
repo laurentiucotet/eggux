@@ -147,7 +147,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3s. Done: Content collection (names and labels as variables, English and Română).
 3t. Done: generated per-component reference (`references/components/`).
 3u. Done: people picker, transfer list, inline edit, signature pad, sortable list, progress ring, scroll area, file preview, image cropper, avatar upload, menubar, cookie consent, funnel and scatter charts.
-3v. Done: `/eggux:tidy-component` and the component page row (Docs, Component, Stress test, Examples); first page: Cookie Consent.
+3v. Done: `/eggux:tidy-component` and the component page row (Docs, Component, Stress test, Examples); all 57 component pages (151 rows) with generated docs, stress tests and contextual examples.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 
