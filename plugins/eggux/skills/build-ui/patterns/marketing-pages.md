@@ -40,6 +40,8 @@ primary action at most.
 | Legal, about, policy | Header Simple | Title, one sentence, last updated; centered at 720 |
 
 Related links in an aside or under an article: `Post Card` Layout=compact, 3-5 items.
+Event lists under Header Event or on a topic page: `Event Card`. Downloads on a detail page:
+`Resource Item` rows in a card. A strong line between sections: `Quote` Variant=pull.
 
 ## Typical order (landing page)
 1. Navbar (Navbar Mobile below 768; mega menu panels open on click, close on Escape)

@@ -151,6 +151,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3w. Done: back office shell test (grid page shell); Side Panel, Sidebar Double; Entity Card Actions slot; Sortable List Item 1:1 Leading image.
 3x. Done: Page Headers blocks (detail, listing, search results, profile, event, topic, report, simple); Post Card compact.
 3y. Done: Meta Item, Figure, Setting Row, Person Card; Tab counts.
+3z. Done: Event Card and Date Tile, Resource Item, Quote.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - `Page Shell / Back office` on the Page Shells page, from the tested grid shell;

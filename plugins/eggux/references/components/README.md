@@ -27,7 +27,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Brand](brand.md) | Logo Mark, Logo |
 | [Button](button.md) | Button, Button Icon, Button Group Item, Button Group, Split Button |
 | [Calendar](calendar.md) | Calendar Day, Calendar, Date Picker, Time Picker, Date Range Picker |
-| [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Person Card, Progress Card |
+| [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Date Tile, Progress Card |
 | [Carousel](carousel.md) | Carousel, Carousel Arrow, Carousel Indicator, Carousel Thumbnail, Carousel Slide, Carousel Gallery, Carousel Hero, Lightbox |
 | [Chart](chart.md) | Chart Legend Item, Chart Legend, Chart Tooltip Row, Chart Tooltip, Bar Chart, Line Chart, Sparkline, Chart Card, Donut Chart, Bar Chart Horizontal, Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart |
 | [Chat](chat.md) | Chat Message, Typing Indicator, Chat Composer |
@@ -40,7 +40,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Drawer](drawer.md) | Sheet, Drawer, Side Panel |
 | [Editor](editor.md) | Rich Text Editor, Comment, Comment Composer |
 | [Empty State](empty-state.md) | Empty State |
-| [File Upload](file-upload.md) | File Dropzone, File Item, File Preview |
+| [File Upload](file-upload.md) | File Dropzone, File Item, File Preview, Resource Item |
 | [Filters](filters.md) | Filter Condition, Filter Group, Filter Chip, Facet Option, Faceted Filter, Filter Section, Filter Bar |
 | [Form Presets](form-presets.md) | Field Preset |
 | [Image](image.md) | Image Placeholder, Map, Image Cropper, Avatar Upload |
@@ -55,6 +55,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Pagination](pagination.md) | Pagination Item, Pagination |
 | [Popover](popover.md) | Popover, Command Input, Command, Hover Card, Command Dialog |
 | [Progress](progress.md) | Progress, Progress Ring |
+| [Quote](quote.md) | Quote |
 | [Rating](rating.md) | Rating |
 | [Save Bar](save-bar.md) | Save Bar |
 | [Scheduler](scheduler.md) | Calendar Event, Gantt Bar, Gantt Milestone |
@@ -76,4 +77,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tour](tour.md) | Coachmark, Hotspot |
 | [Video](video.md) | Video Player |
 
-211 components on 58 pages.
+215 components on 59 pages.

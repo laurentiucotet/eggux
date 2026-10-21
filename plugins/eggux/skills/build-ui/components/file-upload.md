@@ -23,6 +23,14 @@ Usage guidelines only. Visual specs live in the Figma components (File Upload pa
 - `File Item` State: uploading (Progress + cancel), complete (remove), error (reason + Retry +
   cancel); File name. Example "upload documents" (Field + dropzone + items).
 
+## Resource Item (downloads)
+- Files people take away: samples, templates, guides, brand assets. Name says what it is, not the
+  file name; meta gives format and size (and pages or last update) before people click.
+- Stack in a card under a title; Divider off on the last row; "Download all (25 MB)" under 3 or
+  more. Gated files say so in the meta ("Sign in to download").
+- Figma: `Resource Item` Icon (swap: file-text, list, archive, chart-column, link), Name, Meta,
+  Actions slot, Divider. Example "downloads". Uploads stay File Item.
+
 ## File Preview
 - Look at a document without downloading it: invoices, contracts, attachments. Opens in a
   Sheet beside a list, a Dialog, or its own page; Esc closes and returns focus.

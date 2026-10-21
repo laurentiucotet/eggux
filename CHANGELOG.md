@@ -3,6 +3,18 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.46.0
+- New `Event Card` (horizontal for lists, vertical with an image for grids) and its part
+  `Date Tile` (Card page): format badges, title, time and place as Meta Items, one action.
+- New `Resource Item` (File Upload page): a file people download or open, with type icon,
+  name, format and size, action.
+- New `Quote` (new Quote page): default with a left rule, pull centered.
+- In use: `Block / Article` (Quote), the Showcase test screen downloads (Resource Item);
+  examples "upcoming events", "events grid", "downloads", "quote in an article", "pull quote
+  between sections".
+- Docs rows, generated stress tests, guides (card, file-upload, content, marketing-pages),
+  code mapping, library map and component reference (215 components on 59 pages).
+
 ## 0.45.0
 - New `Meta Item` and `Figure` (Description List page): a fact with an icon; a number with what
   it counts (stacked or inline, default or lg, source, divider).
