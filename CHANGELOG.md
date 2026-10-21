@@ -3,6 +3,19 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.40.0
+- 16 new components: `Person Option`, `People Picker`, `Transfer List` (Select page); `Inline
+  Edit`, `Signature Pad` (Input); `Sortable List Item` (List & Tree); `Progress Ring`
+  (Progress); `Scroll Area` (new page); `File Preview` (File Upload); `Image Cropper`, `Avatar
+  Upload` (Image); `Menubar Trigger`, `Menubar` and a "menubar open" example (Menu); `Cookie
+  Consent` banner, card and preferences (new page); `Funnel Chart`, `Scatter Chart` (Chart).
+  New icon `grip-vertical`.
+- Stress tests for each; the content rules they found are in the descriptions (truncation,
+  minimum widths, centered crop selection).
+- Guides: select, input, list-and-tree, progress-and-slider, file-upload, dropdown-menu,
+  charts, marketing-pages (cookie consent); index, inventory, code mapping; component
+  reference regenerated (58 pages, 205 components, 830 variants); Intro 2.10.
+
 ## 0.39.0
 - Carousel kit: `Carousel Arrow` (outline, overlay × previous, next × 4 states), `Carousel
   Indicator` (dots, bars with Pause, counter × default, overlay), `Carousel Thumbnail`,

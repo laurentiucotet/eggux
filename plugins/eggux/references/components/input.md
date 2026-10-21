@@ -13,8 +13,10 @@ Usage rules live in the guides linked under each component.
 | [Input Addon](#input-addon) | 2 | - |
 | [Input Group](#input-group) | 4 | Start, End |
 | [Number Input](#number-input) | 4 | - |
+| [Inline Edit](#inline-edit) | 5 | - |
+| [Signature Pad](#signature-pad) | 2 | - |
 
-On the Figma page: "Example / input groups"
+On the Figma page: "Example / input groups", "Stress test / Inline Edit and Signature Pad"
 
 ## Input
 
@@ -198,3 +200,51 @@ Tokens and styles:
 Guides: [input](../../skills/build-ui/components/input.md)
 
 Code: shadcn `InputGroup` or custom
+
+## Inline Edit
+
+Component set · 5 variants · default size 320 × 40
+
+Edit a value in place (titles, names, short fields on a detail page): hover shows it is editable, click or Enter opens the input, Enter or the check saves, Escape or x cancels, blur saves. Saving shows a spinner; errors keep the input open with the message. Use a form for several related fields.
+
+| Variant property | Values |
+|---|---|
+| State | view, hover, editing, saving, error |
+
+| Property | Type | Default |
+|---|---|---|
+| Value | text | Q3 vendor review |
+
+Built from: `Button Icon`, `Input`, `Spinner`. Icons: pencil
+
+Tokens and styles:
+- Colors: `background/destructive`, `background/muted`, `foreground/default`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`
+- Radius: `radius/md`
+- Text styles: `body/default`, `ui/caption`
+
+Guides: [input](../../skills/build-ui/components/input.md)
+
+Code: custom: text ↔ `Input` with save / cancel `Button Icon`s (Optimistic save, revert on error)
+
+## Signature Pad
+
+Component set · 2 variants · default size 480 × 220
+
+Draw a signature for approvals, contracts and deliveries: the pad (clips the stroke on purpose), a baseline, Clear, and "Type instead" (typed name in a script font) for keyboard and screen reader users. After signing, show who signed and when. Store the image with the timestamp and the document version.
+
+| Variant property | Values |
+|---|---|
+| State | empty, signed |
+
+Built from: `Button`
+
+Tokens and styles:
+- Colors: `background/default`, `border/default`, `border/input`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
+- Radius: `radius/md`
+- Text styles: `body/small`, `heading/h3`, `ui/caption`
+
+Guides: [input](../../skills/build-ui/components/input.md)
+
+Code: `signature_pad` (or `react-signature-canvas`) in a bordered canvas (Typed fallback; store PNG/SVG + timestamp)

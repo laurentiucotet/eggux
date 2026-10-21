@@ -110,7 +110,7 @@ Tokens and styles:
 - Radius: `radius/sm`
 - Text styles: `body/small`, `ui/caption`
 
-Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+Guides: [select](../../skills/build-ui/components/select.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) (Faceted values from `column.getFacetedUniqueValues()` (TanStack))
 

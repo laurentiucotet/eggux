@@ -49,3 +49,14 @@ grouped by family inside each page's `Blocks` section.
 - Maps: never the only way to find an address; add directions and opening hours; lazy-load
   interactive maps and use a static image above the fold.
 - Announcement banner: one at a time, dismissible, not for errors or outages.
+
+## Cookie consent
+- Needed before any non-essential cookie (analytics, ads, embeds that track). Necessary cookies
+  need no consent but are listed.
+- Accept all and Reject all have the same weight and sit side by side; Customize opens the
+  preferences. Optional categories start off. Never block the page or hide Reject.
+- Remember the choice; a "Cookie settings" link in the footer reopens the preferences.
+- Marketing sites: `Cookie Consent` Type banner at the bottom. Apps: Type card in the
+  bottom-left corner. Preferences: Type preferences (dialog with Switches; Necessary always on).
+- Texts: say what each category does in one line; link the cookie policy. Legal review per
+  country; record the decision in `decisions.md`.

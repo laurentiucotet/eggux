@@ -9,6 +9,10 @@ Usage rules live in the guides linked under each component.
 | [Menu Item](#menu-item) | 6 | - |
 | [Menu Label](#menu-label) | 1 | - |
 | [Menu](#menu) | 1 | Items |
+| [Menubar Trigger](#menubar-trigger) | 3 | - |
+| [Menubar](#menubar) | 1 | Menus |
+
+On the Figma page: "Example / menubar open", "Stress test / Menubar"
 
 ## Menu Item
 
@@ -77,3 +81,46 @@ Tokens and styles:
 Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [popover](../../skills/build-ui/components/popover.md), [select](../../skills/build-ui/components/select.md)
 
 Code: shadcn `DropdownMenu`, `ContextMenu`
+
+## Menubar Trigger
+
+Component set · 3 variants · default size 48 × 28
+
+One top-level menu in a Menubar. Hover highlights it; open shows the Menu below it. While one menu is open, hovering another trigger opens that one. Use only inside Menubar.
+
+| Variant property | Values |
+|---|---|
+| State | default, hover, open |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | File |
+
+Tokens and styles:
+- Colors: `background/accent`, `foreground/default`
+- Spacing and size: `spacing/1`, `spacing/3`
+- Radius: `radius/sm`
+- Text styles: `ui/label`
+
+Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md)
+
+Code: shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`)
+
+## Menubar
+
+Component · 1 variant · default size 233 × 38
+
+Desktop app menus in a row (File, Edit, View, Help), for editors and tools with many commands. Fill the Menus slot with Menubar Triggers; each opens a Menu with items, shortcuts and submenus. Arrow keys move between menus, Esc closes. Not for site navigation: use Navigation or Sidebar.
+
+Slots (fill them in the instance, never detach): `Menus`
+
+Built from: `Menubar Trigger`
+
+Tokens and styles:
+- Colors: `background/default`, `border/default`
+- Spacing and size: `spacing/1`
+- Radius: `radius/md`
+
+Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md)
+
+Code: shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`)

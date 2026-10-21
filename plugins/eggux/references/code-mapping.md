@@ -44,6 +44,17 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Carousel Gallery`, `Carousel Thumbnail` | Embla main + thumbs carousels | |
 | `Carousel Hero` | Embla with Autoplay plugin, pause on hover and focus | |
 | `Lightbox` | yet-another-react-lightbox or PhotoSwipe, or a `Dialog` | Esc, arrows, focus trap |
+| `People Picker`, `Person Option` | shadcn `Popover` + `Command` with `Avatar` rows; chips in the trigger | Server search by name, email, team; debounce 200 ms |
+| `Transfer List` | custom: two lists of `Checkbox` rows + move `Button`s | Or `@dnd-kit` when order matters |
+| `Inline Edit` | custom: text ↔ `Input` with save / cancel `Button Icon`s | Optimistic save, revert on error |
+| `Signature Pad` | `signature_pad` (or `react-signature-canvas`) in a bordered canvas | Typed fallback; store PNG/SVG + timestamp |
+| `Sortable List Item` | `@dnd-kit/sortable` with keyboard sensor and announcements | Drag handle = `useSortable` listeners |
+| `Progress Ring` | SVG circle with `stroke-dasharray` (or Radix Progress) | `role="progressbar"`, `aria-valuenow` |
+| `Scroll Area` | shadcn `ScrollArea`, `ScrollBar orientation="horizontal"` | |
+| `File Preview` | `react-pdf` (pdf.js) for PDF, `<img>` for images, in `Sheet` or `Dialog` | Unsupported types: download link |
+| `Image Cropper`, `Avatar Upload` | `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input | Crop on the client, upload the result |
+| `Menubar`, `Menubar Trigger` | shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`) | |
+| `Cookie Consent` | custom banner / card + shadcn `Dialog` with `Switch`es; or a CMP (Cookiebot, Osano) styled to match | Load scripts only after consent |
 
 ## Data and enterprise
 | Figma | Code | Notes |

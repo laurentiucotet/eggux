@@ -20,3 +20,11 @@ Usage guidelines only. Visual specs live in the Figma component.
 `Menu` holds `Menu Item`, `Menu Label` and `Menu Separator` instances in its native slot `Items`.
 A highlighted destructive item uses a filled `background/destructive` row with white text, because
 red text on a light red tint fails contrast.
+
+## Menubar
+- Desktop-style menus in a row (File, Edit, View, Help) for editors and tools with many
+  commands. Not for site or app navigation: use Navigation or Sidebar.
+- Click opens a menu; while one is open, hover moves to the next. Arrows move between menus,
+  Esc closes. Every command also has a shortcut or another place in the UI.
+- Figma: `Menubar Trigger` (default, hover, open; Label) in the `Menus` slot of `Menubar`.
+  Example "menubar open" on the Menu page.

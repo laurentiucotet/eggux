@@ -39,3 +39,18 @@ Label (`ui/label`) → input → hint or error (`ui/caption`). The label is alwa
   the buttons. Money, decimals and large numbers: Input Group with a unit, right-aligned in tables.
 - Figma: `Input Addon` (start, end), `Input Group` (State; Start/End slots; Show start/end),
   `Number Input` (State). Example "input groups" on the Input page.
+
+## Inline Edit
+- One value edited in place on a detail page (title, name, a short field). Several related
+  fields, validation across fields or a review step: use a form.
+- View shows a pencil on hover; click or Enter opens the input with the text selected. Enter or
+  the check saves, Escape or x cancels, blur saves. Saving shows a spinner; an error keeps the
+  input open with the message; success needs no toast.
+- Figma: `Inline Edit` State view, hover, editing, saving, error; Value.
+
+## Signature Pad
+- Approvals, contracts, delivery receipts. Always offer "Type instead" (typed name) for
+  keyboard and screen reader users; Clear restarts.
+- After signing show who signed and when; store the image with the timestamp and the document
+  version. Legal weight depends on the country: name the signing method in the decision log.
+- Figma: `Signature Pad` State empty, signed. The pad clips the stroke on purpose.
