@@ -3,6 +3,17 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.38.0
+- `references/components/`: one generated Markdown file per component page (56 pages, 182
+  components): variants, every property with its default, slots, the components and icons it is
+  built from, tokens and styles used, examples and stress tests on the page, links to usage
+  guides and the code mapping. Index in `references/components/README.md`.
+- `scripts/component-docs.js` (read-only extraction with use_figma) and
+  `scripts/component-docs.py` (writes the files); new-component and update-component regenerate
+  them for library changes; build-ui reads them for exact properties.
+- Figma descriptions: removed leftover domain words (Combobox, Option Card, Input Group,
+  Block / Record Header).
+
 ## 0.37.0
 - `Content` variable collection (STRING, modes English and Română): 85 variables for brand
   names, actions, statuses, feedback, field labels, AI notice, legal and navigation. 382 texts

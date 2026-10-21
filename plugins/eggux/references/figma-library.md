@@ -3,6 +3,8 @@
 Inventory of the master library (`BufvaVkSh9vMWPye117Ucd`). Client files start as a duplicate,
 so the same names exist there. Use instances of these; build something new only when nothing
 fits, and say so. When this list and the file disagree, the file wins: update this list.
+Full per-component detail (every property with its default, slots, parts, tokens, guides, code)
+is generated into `references/components/` by `scripts/component-docs.*`.
 
 EGG UI is a generalist design system: complete enough for any product (SaaS, e-commerce, fintech,
 booking, content, internal tools). Component names, descriptions and props stay domain-neutral;

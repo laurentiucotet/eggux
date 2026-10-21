@@ -55,7 +55,9 @@ The plugin holds the method; each client project holds its answers.
 ```
 plugins/eggux/
 ├── hooks/               SessionStart reminder of the client's decisions.md and its Inbox
-├── references/          tokens (incl. density, motion, chart palette), Figma inventory, Figma API notes, code mapping, client file convention
+├── references/          tokens (incl. density, motion, chart palette), content strings, Figma inventory, Figma API notes, code mapping, client file convention
+│   └── components/      generated reference: one file per component page (variants, properties, slots, parts, tokens, guides, code)
+├── scripts/             component-docs.js (extract from Figma) + component-docs.py (write references/components)
 └── skills/
     ├── init/templates/  brand, objects, actors, workflows, decisions
     ├── discovery/       OOUX method
@@ -95,6 +97,7 @@ Blocks by category (AI, app, commerce, content, forms, hero, navigation, results
 Page Shells (app, marketing, auth, mobile, wizard, split view, docs), plus a Brand page with the
 logo and a theme preview. Content areas use Figma native slots.
 Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
+Per-component reference (generated from Figma): [`plugins/eggux/references/components/`](plugins/eggux/references/components/README.md).
 
 ## Roadmap
 
@@ -140,6 +143,7 @@ Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins
 3r. Done: AI components for agents and AI in the product (plan, artifacts, summary, suggested
    values, notice, model selector, context, voice, history, feedback).
 3s. Done: Content collection (names and labels as variables, English and Română).
+3t. Done: generated per-component reference (`references/components/`).
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
 5. System: documentation site.
 

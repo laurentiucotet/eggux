@@ -113,7 +113,7 @@ Iterate on feedback; every change re-runs steps 4 to 8 for what it touches.
 | Figma | Component description; stress test frame updated | Same, in the master file |
 | Doc | `eggux/components/<name>.md`: the changed sections, a Changelog line (date, what changed, why) | `skills/build-ui/components/<name>.md`, same |
 | Snapshot | `snapshot.js` output (`flat`) saved to `eggux/components/<name>.snapshot.json`, replacing the old one | `skills/build-ui/components/<name>.snapshot.json` |
-| Records | A decision in `eggux/decisions.md` when the change sets a rule or changes the product's look | `CHANGELOG.md`, `figma-library.md` row when properties or variants changed, `code-mapping.md` when props changed, version bump, `claude plugin validate .`, commit |
+| Records | A decision in `eggux/decisions.md` when the change sets a rule or changes the product's look | `CHANGELOG.md`, `figma-library.md` row when properties or variants changed, `code-mapping.md` when props changed, regenerate `references/components/` (`scripts/component-docs.*`), version bump, `claude plugin validate .`, commit |
 | Code (when the project has one) | Props and styles updated; renamed or removed props listed as breaking; stories for the stress cases | Code mapping only |
 
 - Mark the section Ready for dev again (Dev Mode); if the API refuses, tell the person.
