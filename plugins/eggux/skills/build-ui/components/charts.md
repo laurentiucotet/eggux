@@ -72,3 +72,11 @@ shadcn `Chart` (Recharts) with `ChartContainer`, `ChartTooltip`, `ChartLegend`; 
 Funnel: `FunnelChart` or plain bars with widths from the data; scatter: `ScatterChart` with `XAxis`/`YAxis` `type="number"`.
 Waterfall: `BarChart` with a transparent offset bar stacked under each step; combo: `ComposedChart`
 with `Bar yAxisId="left"` and `Line yAxisId="right"`.
+
+## Related components
+- More forms: `Distribution Bar` for 2-6 parts of one whole in one line, `Bullet Chart` for a
+  measure against target and bands (dense KPI reviews), `Radar Chart` for 1-3 items across 5-8
+  qualities on one scale, `Sankey Chart` for flows from sources to outcomes (2-3 columns, under 12
+  nodes), `Choropleth Map` for one measure by region (one hue, 5 steps). Customizable dashboards put
+  each chart in a `Dashboard Widget` (react-grid-layout, 12 columns); fixed reports keep `Chart
+  Card`.

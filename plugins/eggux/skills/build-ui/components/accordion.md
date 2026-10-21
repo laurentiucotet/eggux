@@ -24,3 +24,5 @@ Usage guidelines only. Visual specs live in the Figma component.
 ## Figma
 `Accordion Item` Density × State, Meta and Content native slots; `Accordion` holds items in a
 slot. Example: "filter panel" on the Accordion page; `Block / Filtered List` on the App blocks page.
+- One long text (a note, a bio, a description) cut to 3 lines uses `Show More`; Accordion is for
+  several sections.

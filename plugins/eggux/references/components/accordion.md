@@ -8,8 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Accordion](#accordion) | 1 | Items |
 | [Accordion Item](#accordion-item) | 4 | Meta, Content |
+| [Show More](#show-more) | 2 | - |
 
-On the Figma page: "Example / filter panel", "Stress test / Accordion"
+On the Figma page: "Example / filter panel", "Stress test / Accordion", "Stress test / Show More"
 
 ## Accordion
 
@@ -85,3 +86,58 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/label`
 
 Guides: [accordion](../../skills/build-ui/components/accordion.md), [drawer](../../skills/build-ui/components/drawer.md)
+
+## Show More
+
+Component set · 2 variants · default size 560 × 124
+
+A long text cut to 3 lines with Show more / Show less: notes, descriptions, bios, reviews. Only when the full text is rarely needed; key information stays above the cut. Keyboard focus stays on the toggle; the expanded text is announced. Several sections to open: Accordion.
+
+**Use for**
+
+- Notes, descriptions and bios on a record page
+- Long reviews or comments in a list
+- Product or job descriptions where the start says enough
+
+**Not for**
+
+- Several sections to open: use Accordion
+- A whole article or long rich content: use Sheet or a page of its own
+- Long lists of items: use Load More
+
+**Anatomy**
+
+1. Text: body/default, 3 lines when collapsed, fade or ellipsis at the cut
+2. Toggle: Button link "Show more" / "Show less"
+
+**Content and behavior**
+
+- Only when the full text is rarely needed; key information stays above the cut
+- Show the toggle only when the text is longer than 3 lines
+- Show less returns to the same scroll position
+- Never cut in the middle of a word
+
+**Accessibility**
+
+- The toggle is a button with aria-expanded and aria-controls on the text
+- Focus stays on the toggle; the expanded text is announced
+- The full text is in the DOM, cut with line-clamp, so screen readers can reach it
+
+| Variant property | Values |
+|---|---|
+| State | collapsed, expanded |
+
+| Property | Type | Default |
+|---|---|---|
+| Text | text | Northwind Traders has bought from Acme since 2019 and pays on average 6 days after the due date. Their finance team prefers invoices by email in German, with the purchase order number in the subject. Approvals above €10,000 go to Laura Becker; smaller ones to the accounts payable inbox. In 2026 they moved to quarterly contracts with volume pricing from 50 seats. |
+
+Built from: `Button`
+
+Tokens and styles:
+- Colors: `foreground/default`
+- Spacing and size: `spacing/2`
+- Text styles: `body/default`
+
+Guides: [accordion](../../skills/build-ui/components/accordion.md)
+
+Code: shadcn `Collapsible` or `line-clamp-3` + `Button variant="link"` (`aria-expanded` on the toggle)

@@ -47,3 +47,10 @@ Usage guidelines only. Visual specs live in the Figma components (Kanban, Schedu
 - Click a day to open the day view or create an event; drag events between days.
 - Mobile: a small `Calendar` with event dots and the list of the selected day under it.
 - Figma: `Block / Scheduler Month` on the App page.
+
+## Related components
+- Switch between list, board and calendar views of the same records with `View Switcher`; keep the
+  view in the URL and keep filters on switch.
+- Day lists outside the grid use `Agenda Item` (sorted by start, all-day on top, State=now and
+  past). A meeting people are about to join uses `Meeting Card`, with Join primary from 5 minutes
+  before the start.

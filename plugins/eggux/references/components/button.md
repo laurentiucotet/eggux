@@ -12,8 +12,9 @@ Usage rules live in the guides linked under each component.
 | [Button Group Item](#button-group-item) | 12 | - |
 | [Split Button](#split-button) | 2 | - |
 | [Action Bar](#action-bar) | 3 | Leading, Actions |
+| [Social Share](#social-share) | 1 | - |
 
-On the Figma page: "Example / form footer", "Example / in navbar", "Example / in navbar mobile", "Example / record actions", "Example / split button open", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Split Button"
+On the Figma page: "Example / form footer", "Example / in navbar", "Example / in navbar mobile", "Example / record actions", "Example / split button open", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Social Share", "Stress test / Split Button"
 
 ## Button
 
@@ -333,3 +334,61 @@ Tokens and styles:
 Guides: [button](../../skills/build-ui/components/button.md)
 
 Code: `<div class="flex gap-2 justify-end">` of shadcn `Button` (justify-start, justify-center) (Leading button with `mr-auto`; one primary)
+
+## Social Share
+
+Component · 1 variant · default size 279 × 32
+
+Share buttons for a public page: copy link, email, the system share sheet, and up to three networks your audience uses. Copy link confirms with a Toast. Replace the letter marks with the networks' official logos in product. Inside the app, sharing with people uses the Sharing page components.
+
+**Use for**
+
+- Articles, blog posts and changelog entries
+- Public event, job or product pages
+- The end of a public report or case study
+
+**Not for**
+
+- Sharing a record with people in the workspace: use Share Link Row
+- A link people copy and paste: use Copy Field
+- Inviting teammates: use Invite Row
+
+**Anatomy**
+
+1. Label (Show label): "Share", body/small, muted
+2. Copy link: Button Icon
+3. Email: Button Icon
+4. Share: Button Icon (system share sheet)
+5. Networks (Show networks): up to three network marks
+
+**Content and behavior**
+
+- Copy link first; it confirms with a Toast ("Link copied")
+- Up to three networks the audience uses
+- Replace the letter marks with the networks' official logos in product
+- The system share button shows only where the browser supports it
+- Shared links open with a title, description and image (Open Graph)
+
+**Accessibility**
+
+- Each button has an aria-label: "Copy link", "Share by email", "Share on LinkedIn"
+- Network links that open a new window say so ("opens in a new tab")
+- Icons meet 3:1 against the background
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Share |
+| Show label | boolean | true |
+| Show networks | boolean | true |
+
+Built from: `Button Icon`
+
+Tokens and styles:
+- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
+- Radius: `radius/md`
+- Text styles: `ui/label`
+
+Guides: [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
+
+Code: shadcn `Button size="icon"`; `navigator.clipboard`, `mailto:`, `navigator.share`, network share URLs (Copy link confirms with Sonner; official network logos)

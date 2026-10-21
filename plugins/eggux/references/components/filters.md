@@ -6,87 +6,72 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Filter Condition](#filter-condition) | 2 | - |
-| [Filter Group](#filter-group) | 1 | Conditions |
-| [Filter Chip](#filter-chip) | 6 | - |
-| [Facet Option](#facet-option) | 4 | - |
-| [Faceted Filter](#faceted-filter) | 1 | Items |
-| [Filter Section](#filter-section) | 2 | Options |
 | [Filter Bar](#filter-bar) | 1 | End, Filters |
+| [Filter Chip](#filter-chip) | 6 | - |
+| [Faceted Filter](#faceted-filter) | 1 | Items |
+| [Facet Option](#facet-option) | 4 | - |
+| [Filter Section](#filter-section) | 2 | Options |
+| [Filter Group](#filter-group) | 1 | Conditions |
+| [Filter Condition](#filter-condition) | 2 | - |
+| [Saved View Item](#saved-view-item) | 3 | - |
 
-On the Figma page: "Example / catalog filters", "Example / in filter builder", "Example / invoice filters", "Example / status filter options", "Stress test / Faceted Filter", "Stress test / Filter Group", "Stress test / Filter Section", "Stress test / Filters"
+On the Figma page: "Example / catalog filters", "Example / in filter builder", "Example / invoice filters", "Example / status filter options", "Stress test / Faceted Filter", "Stress test / Filter Group", "Stress test / Filter Section", "Stress test / Filters", "Stress test / Saved View Item"
 
-## Filter Condition
+## Filter Bar
 
-Component set · 2 variants · default size 760 × 62
+Component · 1 variant · default size 1040 × 76
 
-One condition: field, operator (depends on the field type), value. first starts with "Where", next with and / or. The value control follows the field: Tag Input for sets, Date Range Picker for dates, Number Input for amounts.
-
-| Variant property | Values |
-|---|---|
-| Position | first, next |
-
-Built from: `Button Icon`, `Select`, `Tag Input`
-
-Tokens and styles:
-- Colors: `foreground/muted`
-- Spacing and size: `spacing/2`
-- Text styles: `body/small`
-
-Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
-
-Code: custom: `Select`, `Combobox`, `Input`, `Button` (Serialize to the API filter format)
-
-## Filter Group
-
-Component · 1 variant · default size 800 × 126
-
-Nested group of conditions joined by the same and / or, on a muted background. One level of nesting is enough for most products.
+Above a list or table. First row: search and view controls (End slot: sort, columns, export). Second row: filters as Filter Chips (Filters slot, wraps on narrow screens): empty triggers "+ Owner" and active filters "Status: Overdue, Pending", then Clear all when any filter is on. Show the result count next to the table title, and an Empty State with "Clear filters" when nothing matches.
 
 **Use for**
 
-- Precise subsets in large lists: finance, operations, CRM
-- Conditions that mix and / or: Status is Overdue and (Owner is Alex or Amount > 1000 EUR)
-- Filters that become a saved view ("Save as view")
+- Tables and lists with up to 4 common filters: invoices by Status, Owner, Date
+- Lists people work in all day, next to sort, columns and export
+- Saved views that combine search, filters and sort
 
 **Not for**
 
-- Picking values of a few fields: use Filter Chips and Faceted Filter
-- Browsing a catalog: use Filter Sections in a side panel
+- Many attributes or browsing (catalog, search page): use a side panel of Filter Sections
+- Precise conditions with and / or and operators: use the Filter Builder (Filter Group)
+- Short lists under ~10 rows: no filters, search at most
 
 **Anatomy**
 
-1. Muted background
-2. Conditions slot of Filter Conditions
-3. Filter Condition: first starts with "Where", next starts with and / or
-4. Field, operator and value controls
-5. Add condition Button
+1. Search Input
+2. End slot: sort, columns, export
+3. Filters slot of Filter Chips: empty triggers "+ Owner"
+4. Active Filter Chips: "Status: Overdue, Pending"
+5. Clear all (Show clear)
 
 **Content and behavior**
 
-- One level of nesting; deeper groups are not supported
-- Operators follow the field type: text, number and money, date, sets
-- Value control follows the field: Tag Input for sets, Date Range Picker for dates, Number Input for amounts
-- Live result count; Apply in the builder footer; active conditions show as chips under the toolbar
+- Filters apply immediately; show the result count next to the table title and keep it updated
+- Clear all appears when filters are on (Show clear)
+- Filters wrap on narrow screens; on mobile they move to a bottom Drawer
+- Search, filters and sort live in the URL
+- No results: Empty State that names the query and offers "Clear filters"
 
 **Accessibility**
 
-- Each Select and value control has a label that names the condition
-- Remove condition Button Icons have labels
-- Adding a condition moves focus to its field Select
+- Search has a label or aria-label that says what it searches: "Search customers by name or email"
+- Result count changes are announced in a live region
+- Tab order follows the reading order: search, filters, Clear all, End controls
 
-Slots (fill them in the instance, never detach): `Conditions`
+| Property | Type | Default |
+|---|---|---|
+| Show clear | boolean | true |
+| Show filters | boolean | true |
 
-Built from: `Button`, `Filter Condition`
+Slots (fill them in the instance, never detach): `End`, `Filters`
+
+Built from: `Button`, `Filter Chip`, `Input`
 
 Tokens and styles:
-- Colors: `background/muted`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`
-- Radius: `radius/lg`
+- Spacing and size: `spacing/2`
 
-Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+Guides: [table](../../skills/build-ui/components/table.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
-Code: custom: `Select`, `Combobox`, `Input`, `Button` (Serialize to the API filter format)
+Code: shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) (Faceted values from `column.getFacetedUniqueValues()` (TanStack))
 
 ## Filter Chip
 
@@ -114,35 +99,6 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/label`
 
 Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
-
-Code: shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) (Faceted values from `column.getFacetedUniqueValues()` (TanStack))
-
-## Facet Option
-
-Component set · 4 variants · default size 224 × 32
-
-One value in a Faceted Filter or a Filter Section: checkbox, label, count of matching rows. Counts update with the other filters; show 0 rather than hiding the option.
-
-| Variant property | Values |
-|---|---|
-| Checked | false, true |
-| State | default, hover |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Overdue |
-| Count | text | 24 |
-| Show count | boolean | true |
-
-Built from: `Checkbox`
-
-Tokens and styles:
-- Colors: `background/accent`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1_5`, `spacing/2`
-- Radius: `radius/sm`
-- Text styles: `body/small`, `ui/caption`
-
-Guides: [select](../../skills/build-ui/components/select.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) (Faceted values from `column.getFacetedUniqueValues()` (TanStack))
 
@@ -198,6 +154,35 @@ Tokens and styles:
 - Effects: `shadow/md`
 
 Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+
+Code: shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) (Faceted values from `column.getFacetedUniqueValues()` (TanStack))
+
+## Facet Option
+
+Component set · 4 variants · default size 224 × 32
+
+One value in a Faceted Filter or a Filter Section: checkbox, label, count of matching rows. Counts update with the other filters; show 0 rather than hiding the option.
+
+| Variant property | Values |
+|---|---|
+| Checked | false, true |
+| State | default, hover |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Overdue |
+| Count | text | 24 |
+| Show count | boolean | true |
+
+Built from: `Checkbox`
+
+Tokens and styles:
+- Colors: `background/accent`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1_5`, `spacing/2`
+- Radius: `radius/sm`
+- Text styles: `body/small`, `ui/caption`
+
+Guides: [select](../../skills/build-ui/components/select.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) (Faceted values from `column.getFacetedUniqueValues()` (TanStack))
 
@@ -262,58 +247,135 @@ Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: `Collapsible` + `Checkbox` list
 
-## Filter Bar
+## Filter Group
 
-Component · 1 variant · default size 1040 × 76
+Component · 1 variant · default size 800 × 126
 
-Above a list or table. First row: search and view controls (End slot: sort, columns, export). Second row: filters as Filter Chips (Filters slot, wraps on narrow screens): empty triggers "+ Owner" and active filters "Status: Overdue, Pending", then Clear all when any filter is on. Show the result count next to the table title, and an Empty State with "Clear filters" when nothing matches.
+Nested group of conditions joined by the same and / or, on a muted background. One level of nesting is enough for most products.
 
 **Use for**
 
-- Tables and lists with up to 4 common filters: invoices by Status, Owner, Date
-- Lists people work in all day, next to sort, columns and export
-- Saved views that combine search, filters and sort
+- Precise subsets in large lists: finance, operations, CRM
+- Conditions that mix and / or: Status is Overdue and (Owner is Alex or Amount > 1000 EUR)
+- Filters that become a saved view ("Save as view")
 
 **Not for**
 
-- Many attributes or browsing (catalog, search page): use a side panel of Filter Sections
-- Precise conditions with and / or and operators: use the Filter Builder (Filter Group)
-- Short lists under ~10 rows: no filters, search at most
+- Picking values of a few fields: use Filter Chips and Faceted Filter
+- Browsing a catalog: use Filter Sections in a side panel
 
 **Anatomy**
 
-1. Search Input
-2. End slot: sort, columns, export
-3. Filters slot of Filter Chips: empty triggers "+ Owner"
-4. Active Filter Chips: "Status: Overdue, Pending"
-5. Clear all (Show clear)
+1. Muted background
+2. Conditions slot of Filter Conditions
+3. Filter Condition: first starts with "Where", next starts with and / or
+4. Field, operator and value controls
+5. Add condition Button
 
 **Content and behavior**
 
-- Filters apply immediately; show the result count next to the table title and keep it updated
-- Clear all appears when filters are on (Show clear)
-- Filters wrap on narrow screens; on mobile they move to a bottom Drawer
-- Search, filters and sort live in the URL
-- No results: Empty State that names the query and offers "Clear filters"
+- One level of nesting; deeper groups are not supported
+- Operators follow the field type: text, number and money, date, sets
+- Value control follows the field: Tag Input for sets, Date Range Picker for dates, Number Input for amounts
+- Live result count; Apply in the builder footer; active conditions show as chips under the toolbar
 
 **Accessibility**
 
-- Search has a label or aria-label that says what it searches: "Search customers by name or email"
-- Result count changes are announced in a live region
-- Tab order follows the reading order: search, filters, Clear all, End controls
+- Each Select and value control has a label that names the condition
+- Remove condition Button Icons have labels
+- Adding a condition moves focus to its field Select
+
+Slots (fill them in the instance, never detach): `Conditions`
+
+Built from: `Button`, `Filter Condition`
+
+Tokens and styles:
+- Colors: `background/muted`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`
+- Radius: `radius/lg`
+
+Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+
+Code: custom: `Select`, `Combobox`, `Input`, `Button` (Serialize to the API filter format)
+
+## Filter Condition
+
+Component set · 2 variants · default size 760 × 62
+
+One condition: field, operator (depends on the field type), value. first starts with "Where", next with and / or. The value control follows the field: Tag Input for sets, Date Range Picker for dates, Number Input for amounts.
+
+| Variant property | Values |
+|---|---|
+| Position | first, next |
+
+Built from: `Button Icon`, `Select`, `Tag Input`
+
+Tokens and styles:
+- Colors: `foreground/muted`
+- Spacing and size: `spacing/2`
+- Text styles: `body/small`
+
+Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+
+Code: custom: `Select`, `Combobox`, `Input`, `Button` (Serialize to the API filter format)
+
+## Saved View Item
+
+Component set · 3 variants · default size 240 × 32
+
+One saved filter set (a view) in a list or sidebar: name, shared icon, item count. Click applies the filters and sort; the active view is highlighted. The Filter Bar shows "Save view" when filters change. Menu: rename, share, set as default, delete. Personal views first, then shared.
+
+**Use for**
+
+- A list of views in the sidebar
+- The view switcher of a data grid
+- Views shared with the team
+
+**Not for**
+
+- Changing the filters: use Filter Bar
+- Links to pages: use Nav Link
+- Recent chats: use Chat History Item
+
+**Anatomy**
+
+1. Icon: list-filter
+2. Name: ui/label, one line
+3. Shared (Show shared): users icon
+4. Count (Show count): Badge Count
+
+**Content and behavior**
+
+- Click applies the filters, sort and columns; the active view is highlighted
+- Personal views first, then shared
+- The Filter Bar shows "Save view" when filters change
+- Menu: rename, share, set as default, delete (owner only)
+- Long names truncate; the full name shows in a Tooltip
+
+**Accessibility**
+
+- A link with aria-current="page" when active
+- The menu button is named with the view ("Actions for Overdue over EUR 5k")
+- Shared is in text for screen readers ("Shared")
+
+| Variant property | Values |
+|---|---|
+| State | default, hover, active |
 
 | Property | Type | Default |
 |---|---|---|
-| Show clear | boolean | true |
-| Show filters | boolean | true |
+| Name | text | Overdue over EUR 5k |
+| Show shared | boolean | true |
+| Show count | boolean | true |
 
-Slots (fill them in the instance, never detach): `End`, `Filters`
-
-Built from: `Button`, `Filter Chip`, `Input`
+Built from: `Badge Count`. Icons: list-filter, users
 
 Tokens and styles:
-- Spacing and size: `spacing/2`
+- Colors: `background/accent`, `background/secondary`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1_5`, `spacing/2`
+- Radius: `radius/md`
+- Text styles: `ui/label`
 
-Guides: [table](../../skills/build-ui/components/table.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
-Code: shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) (Faceted values from `column.getFacetedUniqueValues()` (TanStack))
+Code: shadcn `SidebarMenuItem` + `SidebarMenuBadge` + `DropdownMenu` (View = serialized filters, sort and columns per user)

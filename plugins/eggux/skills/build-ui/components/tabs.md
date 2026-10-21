@@ -31,3 +31,7 @@ Usage guidelines only. Visual specs live in the Figma component.
   period (day / week / month), formatting. If nothing below changes except how data is shown or
   filtered, it is a Toggle Group.
 - `Toggle Group` default or outline; items can be icon-only (with accessible label and tooltip).
+
+## Related components
+- `View Switcher` (list, board, calendar) and `Theme Toggle` (light, dark, system) are ready-made
+  Toggle Groups: they set a value and keep the same content.

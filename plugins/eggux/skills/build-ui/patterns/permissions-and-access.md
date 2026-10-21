@@ -23,3 +23,5 @@
 ## Figma
 `Block / Result` Type=no-access, `Tooltip`, `Badge` with lock icon, `Alert` banner for view only,
 `Block / Roles & Permissions`.
+- The role matrix is a table of `Permission Row`s (Type=header names the roles; locked roles show
+  disabled checked boxes), saved with the Save Bar and logged.

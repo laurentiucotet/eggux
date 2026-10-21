@@ -17,8 +17,10 @@ Usage rules live in the guides linked under each component.
 | [Person Card](#person-card) | 2 | Avatar, Tags, Contact, Actions |
 | [Event Card](#event-card) | 2 | Tags, Meta, Actions |
 | [Date Tile](#date-tile) | 2 | - |
+| [Link Preview](#link-preview) | 2 | - |
+| [Location Card](#location-card) | 1 | - |
 
-On the Figma page: "Example / customer card", "Example / events grid", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
+On the Figma page: "Example / customer card", "Example / events grid", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Link Preview", "Stress test / Location Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
 
 ## Card
 
@@ -246,7 +248,7 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/label`
 - Effects: `shadow/xs`
 
-Guides: [card](../../skills/build-ui/components/card.md)
+Guides: [card](../../skills/build-ui/components/card.md), [select](../../skills/build-ui/components/select.md)
 
 ## Post Card
 
@@ -606,3 +608,123 @@ Tokens and styles:
 - Text styles: `heading/h3`, `heading/h4`, `ui/overline`
 
 Code: shadcn `Card` + `Badge`, `Button`; date tile as custom markup (`<time datetime>` for the date)
+
+## Link Preview
+
+Component set · 2 variants · default size 480 × 122
+
+A pasted URL shown as a card in comments, chat, notes and editors: site, title, description, image from the page metadata. The whole card opens the link in a new tab. Author can remove the preview and keep the plain link. No preview for private links that need sign-in.
+
+**Use for**
+
+- Links in comments and chat messages
+- Links in notes and rich text
+- Shared links in an activity feed
+
+**Not for**
+
+- Articles on your own site: use Post Card
+- Attached files: use File Item
+- A record inside the product: use Entity Card
+
+**Anatomy**
+
+1. Site: globe icon and domain
+2. Title: 2 lines
+3. Description: 2 lines, muted
+4. Image (Show image): Image Placeholder
+5. Layout: horizontal, vertical
+
+**Content and behavior**
+
+- The whole card opens the link in a new tab
+- The author can remove the preview and keep the plain link
+- No preview for private links that need sign-in
+- Title and description cut at 2 lines
+- While loading, a Skeleton; when the fetch fails, the plain link
+
+**Accessibility**
+
+- One link wraps the card; its name is the title and it says it opens a new tab
+- The image is decorative (alt="")
+- Remove has aria-label="Remove preview"
+
+| Variant property | Values |
+|---|---|
+| Layout | horizontal, vertical |
+
+| Property | Type | Default |
+|---|---|---|
+| Domain | text | acme.com |
+| Title | text | How we cut month-end close from nine days to five |
+| Description | text | Three changes to approvals and bank matching, and the numbers behind them. |
+| Show image | boolean | true |
+
+Built from: `Image Placeholder`. Icons: globe
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/3`, `spacing/4`
+- Radius: `radius/lg`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [card](../../skills/build-ui/components/card.md), [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
+
+Code: shadcn `Card` in `<a target="_blank" rel="noopener">` (Open Graph metadata fetched on the server)
+
+## Location Card
+
+Component · 1 variant · default size 320 × 204
+
+One office, store or venue: city, tag (Headquarters, Store), full address, phone, hours, directions link to the map app. Grids of 3 on contact and careers pages; next to a Map when there are several. Addresses in the format of the country.
+
+**Use for**
+
+- Contact and careers pages, in grids of 3 (Block / Offices)
+- Next to a Map when there are several places
+- Store finder results
+
+**Not for**
+
+- Saved shipping addresses: use Address Card
+- One address in a record: use Description List Item
+- An event at a place: use Event Card
+
+**Anatomy**
+
+1. Title row: city and tag Badge (Show tag): Headquarters, Store
+2. Address
+3. Meta Items: phone, hours
+4. Directions: Button link
+
+**Content and behavior**
+
+- Addresses in the format of the country
+- Directions opens the map app with the address
+- Phone as a tel: link in international format
+- Hours with days; say when a place is closed
+- Same fields in every card of a grid
+
+**Accessibility**
+
+- The city is a heading; the address is in an <address> element
+- The Directions link names the place ("Directions to Berlin office") and says it opens a new tab
+- Meta icons are aria-hidden
+
+| Property | Type | Default |
+|---|---|---|
+| City | text | Berlin |
+| Address | text | Friedrichstraße 68, 10117 Berlin, Germany |
+| Show tag | boolean | true |
+
+Built from: `Badge`, `Button`, `Meta Item`
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`
+- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/5`
+- Radius: `radius/xl`
+- Text styles: `body/small`, `heading/h4`
+
+Guides: [card](../../skills/build-ui/components/card.md)
+
+Code: shadcn `Card` + `<address>`, `tel:` link, maps link

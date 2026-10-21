@@ -10,8 +10,9 @@ Usage rules live in the guides linked under each component.
 | [File Item](#file-item) | 3 | - |
 | [File Preview](#file-preview) | 3 | - |
 | [Resource Item](#resource-item) | 1 | Actions |
+| [File Field](#file-field) | 3 | - |
 
-On the Figma page: "Example / attach documents", "Example / downloads", "Example / invoice preview over a list", "Example / upload documents", "Stress test / File Dropzone", "Stress test / File Item", "Stress test / File Preview", "Stress test / Resource Item"
+On the Figma page: "Example / attach documents", "Example / downloads", "Example / invoice preview over a list", "Example / upload documents", "Stress test / File Dropzone", "Stress test / File Field", "Stress test / File Item", "Stress test / File Preview", "Stress test / Resource Item"
 
 ## File Dropzone
 
@@ -244,3 +245,67 @@ Tokens and styles:
 - Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/3`
 - Radius: `radius/md`
 - Text styles: `ui/caption`, `ui/label`
+
+Guides: [file-upload](../../skills/build-ui/components/file-upload.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
+
+Code: custom row + `Button` (ghost icon) with `<a download>` (Label names the file, format and size)
+
+## File Field
+
+Component set · 3 variants · default size 360 × 36
+
+One file as a form field (contract, logo, CSV to import): Choose file, then the name and size, with remove. Use inside forms where a Dropzone is too big. Accepted types and size in the field hint; the error says what to change. Several files or drag and drop: File Dropzone with File Items.
+
+**Use for**
+
+- One document in a form: a contract, a certificate
+- A logo or a CSV to import, where a dropzone is too big
+- Dense forms and Sheets
+
+**Not for**
+
+- Several files or drag and drop: use File Dropzone with File Items
+- An avatar or a logo with a preview: use Avatar Upload
+- A file already in the product: use Select or Combobox
+
+**Anatomy**
+
+1. Choose: Button "Choose file"
+2. Empty text "No file chosen" or the file name and size
+3. Remove (x), once a file is chosen
+4. Error under the field (State=error)
+
+**Content and behavior**
+
+- State: empty, selected, error
+- Accepted types and max size go in the Field hint
+- The error says what to change: "Choose a PDF under 10 MB."
+- Long file names truncate in the middle and keep the extension
+- Choosing a new file replaces the old one
+
+**Accessibility**
+
+- A native input type="file" with a visible label through Field
+- Remove has an aria-label with the file name ("Remove contract-northwind.pdf")
+- Errors are linked with aria-describedby and announced
+
+| Variant property | Values |
+|---|---|
+| State | empty, selected, error |
+
+| Property | Type | Default |
+|---|---|---|
+| File name | text | contract-northwind.pdf · 240 KB |
+| Error | text | Choose a PDF under 10 MB. |
+
+Built from: `Button`. Icons: x
+
+Tokens and styles:
+- Colors: `background/default`, `background/destructive`, `border/input`, `foreground/default`, `foreground/muted`
+- Spacing and size: `density/control-height`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `body/small`
+
+Guides: [file-upload](../../skills/build-ui/components/file-upload.md)
+
+Code: custom: hidden `input type="file"` + shadcn `Button`, file name, remove `Button` (Several files: `File Dropzone` (react-dropzone))

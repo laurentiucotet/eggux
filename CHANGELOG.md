@@ -3,6 +3,47 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.50.0
+- 120 new components and 5 parts, built on existing primitives and tokens, each with a Figma
+  description, docs entry, row on its page and generated stress test.
+  - Forms (Input, Select, Selection controls, File Upload, Color Picker, Toggle Group and the new
+    Form Layout page): `Copy Field`, `Search Field`, `Inline Form`, `Currency Input`, `Phone Input`,
+    `Date Input`, `Duration Input`, `Range Fields`, `Address Autocomplete`, `Select Option`,
+    `Recurrence Picker`, `Language Switcher`, `Checkbox Card`, `File Field`, `Swatch Picker`
+    (part `Swatch`), `Form Section`, `Fieldset`, `Error Summary`, `Requirement List` (part
+    `Requirement Item`), `View Switcher`, `Theme Toggle`.
+  - Navigation and overlays: `Back Link`, `Skip Link`, `Scroll To Top`, `Page Toolbar`, `Account
+    Menu`, `Emoji Picker`, `App Launcher`, `Confirm Popover`, `Welcome Dialog`, `Resizable Panels`,
+    `FAB`, `Action Sheet`, `Annotation Pin`, `Social Share`, `Show More`, `Load More`, `Shortcut Row`;
+    new pages Notifications (`Notification Item`, `Notification Center`) and Search (`Search Result
+    Item`).
+  - Data and developer tools: new Metrics page (`Trend Indicator`, `Metric Strip` with part `Metric
+    Strip Item`, `Usage Meter`, `Countdown`, `Leaderboard Row`); `Command Snippet`, `Endpoint Row`,
+    `Log Row`, `Diff Viewer` (part `Diff Line`), `JSON Viewer`; `Version Item`, `Release Note Item`;
+    charts `Dashboard Widget`, `Distribution Bar`, `Bullet Chart`, `Radar Chart`, `Sankey Chart`,
+    `Choropleth Map`; new Automation page (`Automation Rule`, `Workflow Node`, `Mapping Row`).
+  - Commerce and marketing: new Commerce component page (`Quantity Selector`, `Stock Indicator`,
+    `Wishlist Button`, `Variant Swatch`, `Line Item`, `Mini Cart`, `Order Row`, `Shipment Tracker`,
+    `Address Card`, `Payment Method Card`; the existing `Product Card` moved here from the block
+    page); new Pricing page (`Price`, `Check List Item`, `Pricing Toggle`, `Plan Card`);
+    `Announcement Pill`, `Trust Badge`, `Testimonial Card`, `Footnote`, `Step Item`, `Logo Tile`,
+    `Review Item`, `Rating Summary`, `Link Preview`, `Location Card`, `Image Compare Slider`,
+    `Device Frame`, `Video Thumbnail`, `Audio Player`.
+  - Collaboration, admin and AI: `Agenda Item`, `Meeting Card`, `Availability Row`, `Time Slot`,
+    `Loading Overlay`, `Job Item` (background job), new Surveys page (`Feedback Widget`, `NPS
+    Survey`, `CSAT Rating`), `Service Status Row`, new Sharing page (`Access Row`, `Invite Row`,
+    `Share Link Row`), `Presence Bar`, `Mention Chip`, `Reaction Bar` (part `Reaction`), `Thread
+    Summary`, `Checklist Item`, `Job Listing`, new Admin page (`Integration Card`, `Permission Row`,
+    `API Key Row`, `Session Row`, `SSO Button`, `Org Chart Node`), `AI Button`, `AI Loading`,
+    `Confidence Indicator`, `Suggestion Review Bar`, `Saved View Item`.
+- 18 new Lucide icons (97 in total): sun, moon, monitor, smartphone, layout-grid, external-link,
+  star, share-2, arrow-left, key-round, credit-card, package, zap, image, code, at-sign, smile,
+  git-branch.
+- Docs: 125 docs entries and rows, generated Docs frames and stress tests on 46 pages, notes in 41
+  guides, new Commerce, Marketing and Admin sections in the code mapping, library map and component
+  reference (356 components on 71 pages).
+- Not built: examples in real screens for the new components (their Examples sections hold a note).
+
 ## 0.49.0
 - Audit batch 2: more cases for components that already exist.
   - `Button` State=loading (spinner instead of the leading icon); `Button Icon` Size sm 32,

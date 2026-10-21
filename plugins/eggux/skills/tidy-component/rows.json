@@ -6,6 +6,43 @@
     "Accordion Item"
    ],
    "block": "76:433"
+  },
+  {
+   "main": "Show More",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Admin": [
+  {
+   "main": "Integration Card",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Permission Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "API Key Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Session Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "SSO Button",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Org Chart Node",
+   "helpers": [],
+   "block": null
   }
  ],
  "AI Chat": [
@@ -99,6 +136,26 @@
    "main": "AI Suggestion",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "AI Button",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "AI Loading",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Confidence Indicator",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Suggestion Review Bar",
+   "helpers": [],
+   "block": null
   }
  ],
  "Alert": [
@@ -106,6 +163,11 @@
    "main": "Alert",
    "helpers": [],
    "block": "189:5652"
+  },
+  {
+   "main": "Service Status Row",
+   "helpers": [],
+   "block": null
   }
  ],
  "Approvals": [
@@ -120,6 +182,33 @@
    "main": "Change Item",
    "helpers": [],
    "block": "181:923"
+  },
+  {
+   "main": "Version Item",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Release Note Item",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Automation": [
+  {
+   "main": "Automation Rule",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Workflow Node",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Mapping Row",
+   "helpers": [],
+   "block": null
   }
  ],
  "Avatar": [
@@ -140,6 +229,11 @@
    "examples": [
     "Example / article meta"
    ]
+  },
+  {
+   "main": "Presence Bar",
+   "helpers": [],
+   "block": null
   }
  ],
  "Badge": [
@@ -165,6 +259,16 @@
    "examples": [
     "Example / dataset header"
    ]
+  },
+  {
+   "main": "Announcement Pill",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Trust Badge",
+   "helpers": [],
+   "block": null
   }
  ],
  "Button": [
@@ -197,6 +301,11 @@
    "examples": [
     "Example / form footer"
    ]
+  },
+  {
+   "main": "Social Share",
+   "helpers": [],
+   "block": null
   }
  ],
  "Calendar": [
@@ -273,6 +382,16 @@
   },
   {
    "main": "Progress Card",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Link Preview",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Location Card",
    "helpers": [],
    "block": null
   }
@@ -390,6 +509,36 @@
    "main": "Chart Card",
    "helpers": [],
    "block": "109:1790"
+  },
+  {
+   "main": "Dashboard Widget",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Distribution Bar",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Bullet Chart",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Radar Chart",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Sankey Chart",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Choropleth Map",
+   "helpers": [],
+   "block": null
   }
  ],
  "Chat": [
@@ -407,6 +556,23 @@
    "main": "Chat Composer",
    "helpers": [],
    "block": "145:2962"
+  },
+  {
+   "main": "Mention Chip",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Reaction Bar",
+   "helpers": [
+    "Reaction"
+   ],
+   "block": null
+  },
+  {
+   "main": "Thread Summary",
+   "helpers": [],
+   "block": null
   }
  ],
  "Chip": [
@@ -421,11 +587,102 @@
    "main": "Code Block",
    "helpers": [],
    "block": "138:209"
+  },
+  {
+   "main": "Command Snippet",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Endpoint Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Log Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Diff Viewer",
+   "helpers": [
+    "Diff Line"
+   ],
+   "block": null
+  },
+  {
+   "main": "JSON Viewer",
+   "helpers": [],
+   "block": null
   }
  ],
  "Color Picker": [
   {
    "main": "Color Picker",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Swatch Picker",
+   "helpers": [
+    "Swatch"
+   ],
+   "block": null
+  }
+ ],
+ "Commerce": [
+  {
+   "main": "Quantity Selector",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Stock Indicator",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Wishlist Button",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Variant Swatch",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Product Card",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Line Item",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Mini Cart",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Order Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Shipment Tracker",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Address Card",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Payment Method Card",
    "helpers": [],
    "block": null
   }
@@ -484,6 +741,11 @@
    "main": "Alert Dialog",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Welcome Dialog",
+   "helpers": [],
+   "block": null
   }
  ],
  "Drawer": [
@@ -505,6 +767,11 @@
     "Example / Editor with side panel",
     "Example / Editor with collapsed side panel"
    ]
+  },
+  {
+   "main": "Resizable Panels",
+   "helpers": [],
+   "block": null
   }
  ],
  "Editor": [
@@ -542,6 +809,11 @@
    "examples": [
     "Example / features in a grid"
    ]
+  },
+  {
+   "main": "Step Item",
+   "helpers": [],
+   "block": null
   }
  ],
  "File Upload": [
@@ -567,6 +839,11 @@
    "examples": [
     "Example / downloads"
    ]
+  },
+  {
+   "main": "File Field",
+   "helpers": [],
+   "block": null
   }
  ],
  "Filters": [
@@ -595,6 +872,35 @@
     "Filter Condition"
    ],
    "block": "179:1208"
+  },
+  {
+   "main": "Saved View Item",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Form Layout": [
+  {
+   "main": "Form Section",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Fieldset",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Error Summary",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Requirement List",
+   "helpers": [
+    "Requirement Item"
+   ],
+   "block": null
   }
  ],
  "Form Presets": [
@@ -622,6 +928,16 @@
   },
   {
    "main": "Avatar Upload",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Image Compare Slider",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Device Frame",
    "helpers": [],
    "block": null
   }
@@ -668,6 +984,46 @@
    "main": "Signature Pad",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Copy Field",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Search Field",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Inline Form",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Currency Input",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Phone Input",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Date Input",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Duration Input",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Range Fields",
+   "helpers": [],
+   "block": null
   }
  ],
  "Input OTP": [
@@ -701,6 +1057,11 @@
    "main": "Kbd Group",
    "helpers": [],
    "block": "144:3001"
+  },
+  {
+   "main": "Shortcut Row",
+   "helpers": [],
+   "block": null
   }
  ],
  "List & Tree": [
@@ -716,6 +1077,16 @@
   },
   {
    "main": "Sortable List Item",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Checklist Item",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Job Listing",
    "helpers": [],
    "block": null
   }
@@ -738,6 +1109,40 @@
     "Menubar Trigger"
    ],
    "block": null
+  },
+  {
+   "main": "Account Menu",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Metrics": [
+  {
+   "main": "Trend Indicator",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Metric Strip",
+   "helpers": [
+    "Metric Strip Item"
+   ],
+   "block": null
+  },
+  {
+   "main": "Usage Meter",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Countdown",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Leaderboard Row",
+   "helpers": [],
+   "block": null
   }
  ],
  "Mobile": [
@@ -752,6 +1157,16 @@
     "Bottom Nav Item"
    ],
    "block": "96:480"
+  },
+  {
+   "main": "FAB",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Action Sheet",
+   "helpers": [],
+   "block": null
   }
  ],
  "Navigation": [
@@ -790,6 +1205,38 @@
     "TOC Item"
    ],
    "block": "138:1552"
+  },
+  {
+   "main": "Back Link",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Skip Link",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Scroll To Top",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Page Toolbar",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Notifications": [
+  {
+   "main": "Notification Item",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Notification Center",
+   "helpers": [],
+   "block": null
   }
  ],
  "Pagination": [
@@ -802,6 +1249,11 @@
   },
   {
    "main": "Pagination Compact",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Load More",
    "helpers": [],
    "block": null
   }
@@ -828,6 +1280,43 @@
    "main": "Hover Card",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Emoji Picker",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "App Launcher",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Confirm Popover",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Pricing": [
+  {
+   "main": "Price",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Check List Item",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Pricing Toggle",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Plan Card",
+   "helpers": [],
+   "block": null
   }
  ],
  "Progress": [
@@ -838,6 +1327,11 @@
   },
   {
    "main": "Progress Ring",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Job Item",
    "helpers": [],
    "block": null
   }
@@ -851,6 +1345,16 @@
     "Example / quote in an article",
     "Example / pull quote between sections"
    ]
+  },
+  {
+   "main": "Testimonial Card",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Footnote",
+   "helpers": [],
+   "block": null
   }
  ],
  "Rating": [
@@ -858,6 +1362,16 @@
    "main": "Rating",
    "helpers": [],
    "block": "198:1482"
+  },
+  {
+   "main": "Review Item",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Rating Summary",
+   "helpers": [],
+   "block": null
   }
  ],
  "Save Bar": [
@@ -879,11 +1393,38 @@
     "Gantt Milestone"
    ],
    "block": "209:3777"
+  },
+  {
+   "main": "Agenda Item",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Meeting Card",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Availability Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Time Slot",
+   "helpers": [],
+   "block": null
   }
  ],
  "Scroll Area": [
   {
    "main": "Scroll Area",
+   "helpers": [],
+   "block": null
+  }
+ ],
+ "Search": [
+  {
+   "main": "Search Result Item",
    "helpers": [],
    "block": null
   }
@@ -927,6 +1468,26 @@
    "main": "Transfer List",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Address Autocomplete",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Select Option",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Recurrence Picker",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Language Switcher",
+   "helpers": [],
+   "block": null
   }
  ],
  "Selection controls": [
@@ -952,6 +1513,11 @@
    "examples": [
     "Example / settings section"
    ]
+  },
+  {
+   "main": "Checkbox Card",
+   "helpers": [],
+   "block": null
   }
  ],
  "Separator": [
@@ -959,6 +1525,23 @@
    "main": "Separator",
    "helpers": [],
    "block": "92:1352"
+  }
+ ],
+ "Sharing": [
+  {
+   "main": "Access Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Invite Row",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Share Link Row",
+   "helpers": [],
+   "block": null
   }
  ],
  "Sidebar": [
@@ -1007,6 +1590,11 @@
    "main": "Spinner",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Loading Overlay",
+   "helpers": [],
+   "block": null
   }
  ],
  "Stepper": [
@@ -1016,6 +1604,23 @@
     "Step"
    ],
    "block": "93:316"
+  }
+ ],
+ "Surveys": [
+  {
+   "main": "Feedback Widget",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "NPS Survey",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "CSAT Rating",
+   "helpers": [],
+   "block": null
   }
  ],
  "Table": [
@@ -1108,6 +1713,16 @@
     "Toggle Group Item"
    ],
    "block": "141:2756"
+  },
+  {
+   "main": "View Switcher",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Theme Toggle",
+   "helpers": [],
+   "block": null
   }
  ],
  "Tooltip": [
@@ -1130,11 +1745,26 @@
    "main": "Hotspot",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Annotation Pin",
+   "helpers": [],
+   "block": null
   }
  ],
  "Video": [
   {
    "main": "Video Player",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Video Thumbnail",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Audio Player",
    "helpers": [],
    "block": null
   }

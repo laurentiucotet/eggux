@@ -91,10 +91,13 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 has foundations (variables, text and effect styles, density, motion, chart palette),
-79 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
+97 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
-(comments, chat), AI chat, commerce, Kanban, Rating, Carousel, Color Picker, tour and video. On top: Field Presets,
+(comments, chat, reactions, mentions), AI chat and AI states, commerce (product, cart, orders, account),
+pricing, metrics, developer tools (endpoints, logs, diffs, JSON), automation, admin (integrations,
+roles, API keys, sessions, SSO), sharing, notifications, surveys, Kanban, Rating, Carousel, Color
+Picker, tour, video and audio. On top: Field Presets,
 Blocks by category (AI, app, commerce, content, forms, hero, navigation, results, sections) and 7
 Page Shells (app, marketing, auth, mobile, wizard, split view, docs), plus a Brand page with the
 logo and a theme preview. Content areas use Figma native slots.
@@ -155,12 +158,12 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3za. Done: Waterfall Chart and Combo Chart; project permission rules in .claude/settings.json.
 3zb. Done (audit batch 1): Section Heading, Feature Item, Action Bar, Summary Row, Byline, Tag List; Avatar Group label; hand-built headings, button rows, totals, authors, tags, features and icon facts in blocks replaced by components.
 3zc. Done (audit batch 2): Button loading, Button Icon sizes, Avatar square and xs, Sidebar Item level 2, Tab icon and vertical tabs, Menu Item description and submenu, rich Tooltip with shortcut, Progress tones, Image Placeholder 21:9 and locked ratios, Entity Card Show people, List Item without slots, five table cell parts, Pagination Compact; examples for empty state types and dialog sizes.
+3zd. Done (0.50.0): 120 new components on 46 pages, among them forms (Copy Field, Search Field, Currency, Phone, Date and Duration inputs, Form Section, Fieldset, Error Summary), navigation and overlays (Page Toolbar, Account Menu, Notification Center, Welcome Dialog, Resizable Panels, Action Sheet, FAB), data and developer tools (Metric Strip, Usage Meter, Diff Viewer, JSON Viewer, Log Row, Endpoint Row), new charts (Distribution Bar, Bullet, Radar, Sankey, Choropleth, Dashboard Widget), commerce, pricing, admin, automation, sharing, surveys and AI states; 18 new icons.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - `Page Shell / Back office` on the Page Shells page, from the tested grid shell;
-   - icons star, share and grid; a Search Hero block.
-   Audit batch 3 (common components): Copy Field, Notification Item, Integration Card, Line Item,
-   Price, Show more, Plan Card.
+   - a Search Hero block;
+   - examples in real screens for the 0.50.0 components (their rows have generated stress tests).
 5. System: documentation site.
 
 ## What the pack covers

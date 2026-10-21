@@ -44,3 +44,11 @@ Usage guidelines only. Visual specs live in the Figma components (Chat page) and
 ## Code
 Comments and chat are lists: render with virtualization past a few hundred items. Announce new
 messages with `aria-live="polite"`; the composer is a labelled `textarea`.
+
+## Related components
+- Comments on a design, a PDF or a screenshot are marked with numbered `Annotation Pin`s that match
+  the comment list order; resolved pins fade.
+- A pasted URL in a comment or message shows as a `Link Preview`; the author can remove it and keep
+  the plain link. Voice messages play in an `Audio Player`.
+- Mentions render as `Mention Chip` (State=you for the reader). Reactions use `Reaction Bar` with
+  `Reaction` parts; collapsed replies use `Thread Summary`.

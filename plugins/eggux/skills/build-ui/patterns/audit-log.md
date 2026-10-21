@@ -22,3 +22,6 @@ when and from where, and to undo mistakes with evidence.
 ## Figma
 `Change Item` on the Audit page; `Block / Audit Log` on the Enterprise page (Data Grid Toolbar
 + grid with an expanded row).
+- Document and configuration history uses `Version Item` (newest first, current marked, Restore
+  creates a new version) with a `Diff Viewer` preview. Technical event streams use `Log Row`, with
+  the payload in a `JSON Viewer`; these are not the audit log.

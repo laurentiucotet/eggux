@@ -24,3 +24,5 @@ Usage guidelines only. Visual specs live in the Figma components (Pagination pag
 slot. Example "table footer" (selection count, rows per page, pagination).
 - `Pagination Compact`: previous, "Page 2 of 12", next (Button Icon sm) for cards, side panels,
   dashboards and mobile.
+- Feeds, activity and search results end with `Load More` ("Showing 20 of 248 invoices", "Load 20
+  more"); it keeps the scroll position and moves focus to the first new item.

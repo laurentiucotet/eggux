@@ -6,59 +6,34 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Attachment](#attachment) | 4 | - |
 | [Prompt Input](#prompt-input) | 4 | Attachments, Tools |
+| [Attachment](#attachment) | 4 | - |
 | [User Message](#user-message) | 1 | - |
 | [Assistant Message](#assistant-message) | 3 | Content |
 | [Reasoning](#reasoning) | 3 | - |
 | [Tool Call](#tool-call) | 4 | - |
-| [Source Item](#source-item) | 1 | - |
 | [Sources](#sources) | 1 | Items |
+| [Source Item](#source-item) | 1 | - |
 | [Citation](#citation) | 1 | - |
 | [Suggestion](#suggestion) | 2 | - |
-| [Model Option](#model-option) | 4 | - |
 | [Model Selector](#model-selector) | 3 | - |
+| [Model Option](#model-option) | 4 | - |
 | [Chat History Item](#chat-history-item) | 3 | - |
 | [Context Chip](#context-chip) | 3 | - |
 | [Response Feedback](#response-feedback) | 1 | - |
 | [Voice Recorder](#voice-recorder) | 2 | - |
-| [AI Notice](#ai-notice) | 2 | - |
-| [Plan Step](#plan-step) | 4 | - |
 | [Agent Plan](#agent-plan) | 1 | Steps |
+| [Plan Step](#plan-step) | 4 | - |
 | [Artifact Card](#artifact-card) | 6 | - |
 | [AI Summary](#ai-summary) | 3 | Content |
+| [AI Notice](#ai-notice) | 2 | - |
 | [AI Suggestion](#ai-suggestion) | 2 | - |
+| [AI Button](#ai-button) | 6 | - |
+| [AI Loading](#ai-loading) | 1 | - |
+| [Confidence Indicator](#confidence-indicator) | 3 | - |
+| [Suggestion Review Bar](#suggestion-review-bar) | 1 | - |
 
-On the Figma page: "Example / AI on a record page", "Example / agent at work", "Example / chat history", "Example / context added to a request", "Example / dictating a request", "Example / feedback after a bad answer", "Example / in ai assistant panel", "Example / in ai chat empty", "Example / in ai conversation", "Example / model choice in the assistant", "Example / report made by the assistant", "Example / suggested category on a new invoice", "Stress test / AI Suggestion", "Stress test / AI Summary", "Stress test / AI components", "Stress test / Agent Plan", "Stress test / Artifact Card", "Stress test / Assistant Message", "Stress test / Chat History Item", "Stress test / Context Chip", "Stress test / Prompt Input", "Stress test / Reasoning", "Stress test / Response Feedback", "Stress test / Sources", "Stress test / Suggestion", "Stress test / Tool Call", "Stress test / User Message", "Stress test / Voice Recorder"
-
-## Attachment
-
-Component set · 4 variants · default size 224 × 54
-
-A file or image attached to a prompt or message. Uploading shows progress; error keeps the item with a reason so the user can remove or retry. Put the image as fill on the thumbnail.
-
-| Variant property | Values |
-|---|---|
-| Type | file, image |
-| State | default, uploading, error |
-
-| Property | Type | Default |
-|---|---|---|
-| Name | text | Q3-report.pdf |
-| Meta | text | PDF · 240 KB |
-| Show remove | boolean | true |
-
-Built from: `Spinner`. Icons: circle-alert, file-text, x
-
-Tokens and styles:
-- Colors: `background/default`, `background/destructive`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/2`, `spacing/6`, `spacing/9`
-- Radius: `radius/full`, `radius/lg`, `radius/md`
-- Text styles: `ui/caption`, `ui/label`
-
-Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
-
-Code: react-dropzone + custom
+On the Figma page: "Example / AI on a record page", "Example / agent at work", "Example / chat history", "Example / context added to a request", "Example / dictating a request", "Example / feedback after a bad answer", "Example / in ai assistant panel", "Example / in ai chat empty", "Example / in ai conversation", "Example / model choice in the assistant", "Example / report made by the assistant", "Example / suggested category on a new invoice", "Stress test / AI Button", "Stress test / AI Loading", "Stress test / AI Suggestion", "Stress test / AI Summary", "Stress test / AI components", "Stress test / Agent Plan", "Stress test / Artifact Card", "Stress test / Assistant Message", "Stress test / Chat History Item", "Stress test / Confidence Indicator", "Stress test / Context Chip", "Stress test / Prompt Input", "Stress test / Reasoning", "Stress test / Response Feedback", "Stress test / Sources", "Stress test / Suggestion", "Stress test / Suggestion Review Bar", "Stress test / Tool Call", "Stress test / User Message", "Stress test / Voice Recorder"
 
 ## Prompt Input
 
@@ -128,6 +103,35 @@ Tokens and styles:
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
 Code: Vercel AI SDK + AI Elements, or assistant-ui
+
+## Attachment
+
+Component set · 4 variants · default size 224 × 54
+
+A file or image attached to a prompt or message. Uploading shows progress; error keeps the item with a reason so the user can remove or retry. Put the image as fill on the thumbnail.
+
+| Variant property | Values |
+|---|---|
+| Type | file, image |
+| State | default, uploading, error |
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | Q3-report.pdf |
+| Meta | text | PDF · 240 KB |
+| Show remove | boolean | true |
+
+Built from: `Spinner`. Icons: circle-alert, file-text, x
+
+Tokens and styles:
+- Colors: `background/default`, `background/destructive`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/6`, `spacing/9`
+- Radius: `radius/full`, `radius/lg`, `radius/md`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
+
+Code: react-dropzone + custom
 
 ## User Message
 
@@ -365,26 +369,6 @@ Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../
 
 Code: Vercel AI SDK + AI Elements, or assistant-ui
 
-## Source Item
-
-Component · 1 variant · default size 320 × 48
-
-One source used in an answer: number (matches the Citation), favicon or initial, title, domain. Opens the source in a new tab; hover = accent background.
-
-| Property | Type | Default |
-|---|---|---|
-| Number | text | 1 |
-| Title | text | Invoice INV-1024 |
-| Domain | text | billing.acme.com |
-
-Tokens and styles:
-- Colors: `background/muted`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/5`
-- Radius: `radius/full`, `radius/md`
-- Text styles: `ui/caption`, `ui/label`
-
-Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md)
-
 ## Sources
 
 Component · 1 variant · default size 720 × 128
@@ -440,6 +424,26 @@ Tokens and styles:
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
 Code: Vercel AI SDK + AI Elements, or assistant-ui
+
+## Source Item
+
+Component · 1 variant · default size 320 × 48
+
+One source used in an answer: number (matches the Citation), favicon or initial, title, domain. Opens the source in a new tab; hover = accent background.
+
+| Property | Type | Default |
+|---|---|---|
+| Number | text | 1 |
+| Title | text | Invoice INV-1024 |
+| Domain | text | billing.acme.com |
+
+Tokens and styles:
+- Colors: `background/muted`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/5`
+- Radius: `radius/full`, `radius/md`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md)
 
 ## Citation
 
@@ -518,35 +522,6 @@ Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../
 
 Code: Vercel AI SDK + AI Elements, or assistant-ui
 
-## Model Option
-
-Component set · 4 variants · default size 288 × 78
-
-One model in the model menu: name, one-line trade-off (quality, speed, cost), optional badge (exposed: edit its Label and Variant), check on the selected one. Describe models by what they are good for, not by version numbers. 2-4 models; put the default first.
-
-| Variant property | Values |
-|---|---|
-| Selected | false, true |
-| State | default, hover |
-
-| Property | Type | Default |
-|---|---|---|
-| Name | text | Acme Pro |
-| Description | text | Long reports, analysis and code. Slower. |
-| Show badge | boolean | true |
-
-Built from: `Badge`. Icons: check, sparkles
-
-Tokens and styles:
-- Colors: `background/accent`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`
-- Radius: `radius/sm`
-- Text styles: `body/small`, `ui/label`
-
-Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
-
-Code: AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `Badge`, `Card` (Plan steps from the agent's tool events)
-
 ## Model Selector
 
 Component set · 3 variants · default size 121 × 32
@@ -598,6 +573,35 @@ Tokens and styles:
 - Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/8`
 - Radius: `radius/md`
 - Text styles: `ui/label`
+
+Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
+
+Code: AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `Badge`, `Card` (Plan steps from the agent's tool events)
+
+## Model Option
+
+Component set · 4 variants · default size 288 × 78
+
+One model in the model menu: name, one-line trade-off (quality, speed, cost), optional badge (exposed: edit its Label and Variant), check on the selected one. Describe models by what they are good for, not by version numbers. 2-4 models; put the default first.
+
+| Variant property | Values |
+|---|---|
+| Selected | false, true |
+| State | default, hover |
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | Acme Pro |
+| Description | text | Long reports, analysis and code. Slower. |
+| Show badge | boolean | true |
+
+Built from: `Badge`. Icons: check, sparkles
+
+Tokens and styles:
+- Colors: `background/accent`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/sm`
+- Text styles: `body/small`, `ui/label`
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
@@ -835,63 +839,6 @@ Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../
 
 Code: MediaRecorder + speech-to-text API; custom UI (Ask for the microphone on first tap)
 
-## AI Notice
-
-Component set · 2 variants · default size 106 × 20
-
-Label: marks content written by AI (summaries, drafts, suggested values) until a person edits or approves it. Disclaimer: one line under AI answers and summaries; keep the same words everywhere. Never hide that content is AI generated.
-
-| Variant property | Values |
-|---|---|
-| Type | label, disclaimer |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | AI generated |
-| Disclaimer | text | AI can make mistakes. Check important details. |
-
-Icons: info, sparkles
-
-Tokens and styles:
-- Colors: `background/muted`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`
-- Radius: `radius/full`
-- Text styles: `ui/caption`, `ui/label-small`
-
-Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
-
-Code: custom on `Card`, `Input`, `Badge` (Store who accepted an AI value and when)
-
-## Plan Step
-
-Component set · 4 variants · default size 560 × 38
-
-One step of an agent plan: pending (outline circle, muted), running (spinner), done (check), error (alert, Error text says what failed and what happens next). Title says what the step does in the user's words; Detail says what it found.
-
-| Variant property | Values |
-|---|---|
-| Status | pending, running, done, error |
-
-| Property | Type | Default |
-|---|---|---|
-| Title | text | Find overdue invoices in Q3 |
-| Detail | text | Found 24 invoices from 9 customers |
-| Error | text | The invoices service did not respond. Retrying in 10 s. |
-| Show detail | boolean | true |
-| Time | text | 4 s |
-| Show time | boolean | true |
-
-Built from: `Spinner`. Icons: circle-alert, circle-check
-
-Tokens and styles:
-- Colors: `background/destructive`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/3`
-- Text styles: `body/small`, `ui/caption`
-
-Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
-
-Code: AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `Badge`, `Card` (Plan steps from the agent's tool events)
-
 ## Agent Plan
 
 Component · 1 variant · default size 640 × 334
@@ -951,6 +898,36 @@ Tokens and styles:
 - Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
 - Radius: `radius/lg`
 - Text styles: `ui/caption`, `ui/label`
+
+Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
+
+Code: AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `Badge`, `Card` (Plan steps from the agent's tool events)
+
+## Plan Step
+
+Component set · 4 variants · default size 560 × 38
+
+One step of an agent plan: pending (outline circle, muted), running (spinner), done (check), error (alert, Error text says what failed and what happens next). Title says what the step does in the user's words; Detail says what it found.
+
+| Variant property | Values |
+|---|---|
+| Status | pending, running, done, error |
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Find overdue invoices in Q3 |
+| Detail | text | Found 24 invoices from 9 customers |
+| Error | text | The invoices service did not respond. Retrying in 10 s. |
+| Show detail | boolean | true |
+| Time | text | 4 s |
+| Show time | boolean | true |
+
+Built from: `Spinner`. Icons: circle-alert, circle-check
+
+Tokens and styles:
+- Colors: `background/destructive`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/3`
+- Text styles: `body/small`, `ui/caption`
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
@@ -1085,6 +1062,33 @@ Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../
 
 Code: custom on `Card`, `Input`, `Badge` (Store who accepted an AI value and when)
 
+## AI Notice
+
+Component set · 2 variants · default size 106 × 20
+
+Label: marks content written by AI (summaries, drafts, suggested values) until a person edits or approves it. Disclaimer: one line under AI answers and summaries; keep the same words everywhere. Never hide that content is AI generated.
+
+| Variant property | Values |
+|---|---|
+| Type | label, disclaimer |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | AI generated |
+| Disclaimer | text | AI can make mistakes. Check important details. |
+
+Icons: info, sparkles
+
+Tokens and styles:
+- Colors: `background/muted`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`
+- Radius: `radius/full`
+- Text styles: `ui/caption`, `ui/label-small`
+
+Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
+
+Code: custom on `Card`, `Input`, `Badge` (Store who accepted an AI value and when)
+
 ## AI Suggestion
 
 Component set · 2 variants · default size 320 × 124
@@ -1145,3 +1149,236 @@ Tokens and styles:
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
 Code: custom on `Card`, `Input`, `Badge` (Store who accepted an AI value and when)
+
+## AI Button
+
+Component set · 6 variants · default size 99 × 36
+
+Starts an AI action from where people work: summarize, draft, explain, fill. Sparkles icon plus a verb that says what happens ("Summarize thread", not "AI"). Loading shows progress and blocks double clicks; Esc or Stop cancels. One AI Button per area; open-ended chat goes in the Prompt Input.
+
+**Use for**
+
+- "Summarize thread" on a long conversation
+- "Draft reply" in a composer
+- "Explain" next to a chart or a figure
+- "Fill from document" in a form
+
+**Not for**
+
+- Open-ended questions: use Prompt Input
+- An action that is not AI: use Button
+- Suggested prompts in a chat: use Suggestion
+
+**Anatomy**
+
+1. Icon: sparkles
+2. Label: the verb and object ("Summarize thread")
+3. Variant: default, outline, ghost; State: default, loading
+
+**Content and behavior**
+
+- The label says what happens ("Summarize thread", not "AI")
+- One AI Button per area
+- Loading shows progress and blocks double clicks; Esc or Stop cancels
+- The result arrives in place as AI Suggestion or AI Summary; it never overwrites without review
+
+**Accessibility**
+
+- The name is the action; the icon is aria-hidden
+- aria-busy while loading; Esc cancels and focus stays on the button
+- Loading is announced politely ("Summarizing")
+
+| Variant property | Values |
+|---|---|
+| Variant | default, outline, ghost |
+| State | default, loading |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Ask AI |
+
+Icons: loader-circle, sparkles
+
+Tokens and styles:
+- Colors: `background/default`, `background/primary`, `border/input`, `foreground/default`, `foreground/primary`
+- Spacing and size: `density/control-height`, `spacing/2`, `spacing/4`
+- Radius: `radius/md`
+- Text styles: `ui/label`
+
+Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
+
+Code: shadcn `Button`, `Skeleton`, `Tooltip` + custom; Vercel AI SDK for streaming (Never apply low-confidence values automatically; store who accepted an AI value)
+
+## AI Loading
+
+Component · 1 variant · default size 560 × 152
+
+Placeholder while AI writes an answer or a summary in place: what it is doing now ("Reading 12 invoices"), shimmer lines in the shape of the result, step and time left, Stop. Replace the status text as steps change; stream text into place as soon as it arrives. Under 1 second, show nothing.
+
+**Use for**
+
+- A summary written into a page
+- Values extracted from files
+- An answer generated outside chat
+
+**Not for**
+
+- The model's thinking in chat: use Reasoning
+- Steps an agent runs: use Agent Plan
+- Content that is not AI: use Skeleton
+- AI work that runs for minutes: use Job Item
+
+**Anatomy**
+
+1. Status row: sparkles icon, status ("Reading 12 invoices…"), Stop Button (Show stop)
+2. Lines: shimmer in the shape of the result
+3. Progress (Show progress): step and time left, ui/caption, muted
+
+**Content and behavior**
+
+- The status says what it does now; replace it as steps change
+- Stream text into place as soon as it arrives
+- Under 1 second, show nothing
+- Stop keeps what arrived and says it stopped
+- Time left only when it is known
+
+**Accessibility**
+
+- Status text is in role="status" (aria-live="polite"), updated per step, not per token
+- The region has aria-busy="true"; Stop is reachable by keyboard and Esc
+- The shimmer stops with prefers-reduced-motion
+
+| Property | Type | Default |
+|---|---|---|
+| Status | text | Reading 12 invoices… |
+| Progress | text | Step 2 of 3 · about 10 seconds left |
+| Show progress | boolean | true |
+| Show stop | boolean | true |
+
+Built from: `Button`. Icons: sparkles
+
+Tokens and styles:
+- Colors: `background/card`, `background/muted`, `border/default`, `foreground/card`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`
+- Radius: `radius/full`, `radius/lg`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
+
+Code: shadcn `Button`, `Skeleton`, `Tooltip` + custom; Vercel AI SDK for streaming (Never apply low-confidence values automatically; store who accepted an AI value)
+
+## Confidence Indicator
+
+Component set · 3 variants · default size 137 × 16
+
+Says how sure the AI is about an extracted value, match or answer: high, medium, low. Put it next to the value; the info icon opens a Tooltip with why (source found, partial match, guess). Low confidence asks people to check and never auto-applies. Use 3 levels; never show raw percentages.
+
+**Use for**
+
+- Values extracted from a document
+- Matches in a reconciliation
+- Answers with weak sources
+
+**Not for**
+
+- The status of a record: use Badge
+- A score toward a goal: use Progress
+- A rating: use Rating
+
+**Anatomy**
+
+1. Bars: 3, filled by level
+2. Label: "High confidence", ui/caption
+3. Info (Show info): icon that opens a Tooltip with the reason
+
+**Content and behavior**
+
+- Three levels; never raw percentages
+- Next to the value it describes
+- The Tooltip says why (source found, partial match, guess)
+- Low asks people to check and never auto-applies
+- Level is in bars and words; color supports it
+
+**Accessibility**
+
+- The word is read with the value
+- Info is a button named "Why medium confidence"; the Tooltip opens on focus
+- Bars are aria-hidden
+
+| Variant property | Values |
+|---|---|
+| Level | high, medium, low |
+
+| Property | Type | Default |
+|---|---|---|
+| Show info | boolean | true |
+
+Icons: info
+
+Tokens and styles:
+- Colors: `background/destructive`, `background/success`, `background/warning`, `border/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/2`
+- Radius: `radius/full`
+- Text styles: `ui/caption`
+
+Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
+
+Code: shadcn `Button`, `Skeleton`, `Tooltip` + custom; Vercel AI SDK for streaming (Never apply low-confidence values automatically; store who accepted an AI value)
+
+## Suggestion Review Bar
+
+Component · 1 variant · default size 690 × 50
+
+Floating bar for reviewing AI edits in a document or form one by one: position, previous and next, accept or reject the current one, accept or reject all. Each suggestion shows inline as AI Suggestion. Keyboard: Tab next, Enter accept, Backspace reject. Accept all asks once when changes are many.
+
+**Use for**
+
+- AI edits in a document
+- A form AI filled from a file
+- Bulk AI categorization to review
+
+**Not for**
+
+- One suggestion inline: use AI Suggestion
+- An action the AI wants to run: use Tool Call
+- Unsaved form changes: use Save Bar
+
+**Anatomy**
+
+1. Icon: sparkles
+2. Count: "3 of 7 suggestions"
+3. Navigation: previous and next Button Icons
+4. Reject and Accept Buttons
+5. Reject all and Accept all (Show bulk actions)
+
+**Content and behavior**
+
+- Each suggestion shows inline as AI Suggestion; the bar moves between them
+- Keyboard: Tab next, Enter accept, Backspace reject
+- Accept all asks once when the changes are many
+- Floats at the bottom center of the document until all are reviewed
+- Accepted changes can be undone; at the end the bar sums up and leaves
+
+**Accessibility**
+
+- role="toolbar" with aria-label "Review suggestions"
+- The position is announced politely as it changes; focus moves to the current suggestion
+- Shortcuts show in Tooltips with Kbd
+
+| Property | Type | Default |
+|---|---|---|
+| Count | text | 3 of 7 suggestions |
+| Show bulk actions | boolean | true |
+
+Built from: `Button`, `Button Icon`. Icons: sparkles
+
+Tokens and styles:
+- Colors: `background/popover`, `border/default`, `foreground/popover`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`
+- Radius: `radius/lg`
+- Text styles: `ui/label`
+- Effects: `shadow/lg`
+
+Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
+
+Code: shadcn `Button`, `Skeleton`, `Tooltip` + custom; Vercel AI SDK for streaming (Never apply low-confidence values automatically; store who accepted an AI value)

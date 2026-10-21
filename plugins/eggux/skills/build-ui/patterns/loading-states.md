@@ -26,3 +26,8 @@
 `Skeleton`, `Progress`, spinner icon inside `Button`. See `components/skeleton.md`.
 
 Spinner, Progress and Skeleton components: `components/indicators.md`, `components/progress-and-slider.md`.
+
+## Related components
+- Refetching a region the user already sees uses `Loading Overlay` (old content faded, Spinner and
+  label). Background jobs over ~10 s use `Job Item` in a panel or corner, with Download when done
+  and Retry when failed. AI writing in place uses `AI Loading`.

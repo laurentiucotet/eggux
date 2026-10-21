@@ -20,3 +20,11 @@ Usage guidelines only. Visual specs live in the Figma component (Rating page).
 
 ## Code
 Display: a `span` with `aria-label="Rated 4.7 out of 5"`. Input: `RadioGroup` with star icons.
+
+## Related components
+- Above a review list, `Rating Summary` shows the average and the 1-5 split; each row filters the
+  list. Each review is a `Review Item` (verified, date, stars, title, text, Helpful). Marketing
+  quotes use `Testimonial Card`.
+- Surveys have their own components: `Feedback Widget` (Yes/No at the end of an article or task),
+  `NPS Survey` (0-10, at most every 90 days) and `CSAT Rating` (five faces with words, after one
+  interaction).

@@ -10,8 +10,10 @@ Usage rules live in the guides linked under each component.
 | [Badge Count](#badge-count) | 4 | - |
 | [Status Dot](#status-dot) | 5 | - |
 | [Tag List](#tag-list) | 1 | Tags |
+| [Announcement Pill](#announcement-pill) | 1 | - |
+| [Trust Badge](#trust-badge) | 1 | - |
 
-On the Figma page: "Example / dataset header", "Example / filter panel", "Example / in announcement banner", "Example / in conversation", "Example / in filtered list", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Status Dot", "Stress test / Tag List"
+On the Figma page: "Example / dataset header", "Example / filter panel", "Example / in announcement banner", "Example / in conversation", "Example / in filtered list", "Stress test / Announcement Pill", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Status Dot", "Stress test / Tag List", "Stress test / Trust Badge"
 
 ## Badge
 
@@ -230,3 +232,118 @@ Built from: `Badge`
 
 Tokens and styles:
 - Spacing and size: `spacing/1_5`
+
+Guides: [badge](../../skills/build-ui/components/badge.md)
+
+Code: `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger
+
+## Announcement Pill
+
+Component · 1 variant · default size 276 × 28
+
+A short link above a hero title to the newest launch: "New" tag, one line, arrow. Links to the announcement or changelog. One at a time; remove it after a few weeks. Product notices inside the app use Alert or Announcement Banner.
+
+**Use for**
+
+- Above the Hero title for a launch or a release
+- Top of a changelog or a product page for the latest version
+
+**Not for**
+
+- Product notices inside the app: use Alert
+- A site-wide message above the Navbar: use Block / Announcement Banner
+- A status or a label: use Badge
+
+**Anatomy**
+
+1. Tag Badge (Show tag): "New"
+2. Label: one line
+3. Arrow icon: arrow-right
+
+**Content and behavior**
+
+- One at a time; remove it after a few weeks
+- Links to the announcement or the changelog
+- Label is one line (about 40 characters) and says what is new
+- Tag says "New" or "Beta", nothing louder
+- Never for errors or outages
+
+**Accessibility**
+
+- The whole pill is one link; its name reads tag and label ("New: Automations for every team")
+- The arrow icon is aria-hidden
+- Visible focus ring around the pill; label meets 4.5:1
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Automations for every team |
+| Show tag | boolean | true |
+
+Built from: `Badge`. Icons: arrow-right
+
+Tokens and styles:
+- Colors: `background/default`, `border/default`, `foreground/default`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`
+- Radius: `radius/full`
+- Text styles: `ui/label`
+
+Guides: [badge](../../skills/build-ui/components/badge.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
+
+Code: `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` (One at a time)
+
+## Trust Badge
+
+Component · 1 variant · default size 197 × 54
+
+A certification or compliance claim: SOC 2, ISO 27001, GDPR, PCI DSS. Name and what backs it (audit date, region). Only claims that are current and can be shown on request; link to the trust page. In footers, pricing and security sections, sign-up pages for enterprise buyers.
+
+**Use for**
+
+- Footers (Block / Footer Corporate)
+- Pricing and security sections
+- Sign-up pages for enterprise buyers
+- A trust or security page
+
+**Not for**
+
+- Customer logos: use Logo Tile
+- Customer proof in words: use Testimonial Card
+- The status of a record: use Badge
+
+**Anatomy**
+
+1. Icon (swap): shield-check
+2. Name: "SOC 2 Type II"
+3. Detail: muted, audit date or region
+
+**Content and behavior**
+
+- Only claims that are current and can be shown on request
+- Detail says what backs it ("Audited September 2026", "Data in the EU")
+- Link to the trust page
+- Update or remove it when a certificate expires
+- Same order everywhere; 3-5 in a row
+
+**Accessibility**
+
+- The icon is aria-hidden; name and detail are text, not part of an image
+- When linked, the link names the claim ("SOC 2 Type II report")
+- The muted detail meets 4.5:1
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | SOC 2 Type II |
+| Detail | text | Audited September 2026 |
+| Icon | instance swap | Icon/shield-check |
+
+Icons: shield-check
+
+Tokens and styles:
+- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [badge](../../skills/build-ui/components/badge.md)
+
+Code: custom: lucide icon + name and detail, `<a>` to the trust page (Only current claims)

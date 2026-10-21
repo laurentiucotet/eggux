@@ -9,8 +9,12 @@ Usage rules live in the guides linked under each component.
 | [Calendar Event](#calendar-event) | 8 | - |
 | [Gantt Bar](#gantt-bar) | 4 | - |
 | [Gantt Milestone](#gantt-milestone) | 1 | - |
+| [Agenda Item](#agenda-item) | 3 | - |
+| [Meeting Card](#meeting-card) | 2 | - |
+| [Availability Row](#availability-row) | 2 | - |
+| [Time Slot](#time-slot) | 4 | - |
 
-On the Figma page: "Example / in gantt", "Example / in scheduler week", "Stress test / Calendar Event", "Stress test / Gantt Bar"
+On the Figma page: "Example / in gantt", "Example / in scheduler week", "Stress test / Agenda Item", "Stress test / Availability Row", "Stress test / Calendar Event", "Stress test / Gantt Bar", "Stress test / Meeting Card", "Stress test / Time Slot"
 
 ## Calendar Event
 
@@ -149,3 +153,238 @@ Tokens and styles:
 Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md)
 
 Code: SVAR Gantt, Frappe Gantt, or a custom grid with dnd-kit
+
+## Agenda Item
+
+Component set · 3 variants · default size 400 × 54
+
+One event in a day agenda (dashboard "Today", side panel, mobile): start and end, a color bar for the calendar, title, place and people. now is highlighted with a Now badge; past is muted. Sort by start time; all-day events on top. The row opens the event.
+
+**Use for**
+
+- "Today" on a dashboard
+- An agenda in a side panel or on mobile
+- The events of the day picked in a Calendar
+
+**Not for**
+
+- Events placed on a day or week time grid: use Calendar Event
+- A meeting people are about to join, with Join: use Meeting Card
+- Public events with an image and registration: use Event Card
+
+**Anatomy**
+
+1. Time: start (ui/label) over end (ui/caption, muted)
+2. Color bar: the color of the calendar
+3. Title: ui/label, one line; Now Badge when State=now
+4. Meta: place and people, body/small, muted ("Room 2 · 4 people")
+
+**Content and behavior**
+
+- Sort by start time; all-day events go on top with "All day" in place of the times
+- State=now highlights the running event with a Now badge; past events are muted, never hidden
+- Title stays on one line and truncates; the event page shows it in full
+- The color bar never carries meaning alone: the calendar name is in the event and in the legend
+- The whole row opens the event; no buttons inside the row
+
+**Accessibility**
+
+- The row is one link or button named by title, time and place ("Weekly cash review, 09:30 to 10:15, Room 2")
+- Times in <time datetime>; the list is a ul with an aria-label ("Today")
+- Muted past rows still meet 4.5:1
+
+| Variant property | Values |
+|---|---|
+| State | upcoming, now, past |
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Weekly cash review |
+| Start | text | 09:30 |
+| End | text | 10:15 |
+| Meta | text | Room 2 · 4 people |
+
+Built from: `Badge`
+
+Tokens and styles:
+- Colors: `background/accent`, `border/default`, `chart/1`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/full`, `radius/md`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md)
+
+Code: custom `<li>` with `<time>` pairs; shadcn `Card` + `Meta Item`, `Avatar` group, `Button` (Join is an `<a>` to the meeting URL; live from 5 min before the start)
+
+## Meeting Card
+
+Component set · 2 variants · default size 360 × 212
+
+A meeting people are about to join: title, time with time zone, place or video link, who is invited, Join. live from 5 minutes before the start (Join becomes primary). In a dashboard, a record's activity or a notification. Recurring meetings say so in the time line.
+
+**Use for**
+
+- The next meeting on a dashboard
+- A call in the activity of a record (a customer, a deal)
+- A meeting reminder in a notification panel
+
+**Not for**
+
+- A row in a day list: use Agenda Item
+- A block on a day or week grid: use Calendar Event
+- Public events with registration: use Event Card
+
+**Anatomy**
+
+1. Title: one line, two at most
+2. Meta Items: time with time zone, place or video link
+3. People: Avatar Group of the invitees
+4. Actions: Join Button (primary when State=live) and Details Button
+
+**Content and behavior**
+
+- State=live from 5 minutes before the start until the end; Join becomes primary
+- The time line says day, start and end, and time zone ("Tue 22 Oct · 14:00-15:00 EET"); recurring meetings say so ("Weekly")
+- Place is a room or the video provider ("Google Meet"), never a raw URL
+- Avatar Group shows up to 4 people, then +N; the organizer first
+- Ended meetings leave the dashboard; in a record they stay with a link to notes
+
+**Accessibility**
+
+- The card is an article with the title as its heading
+- Join is a link named with the meeting ("Join Q4 planning with Northwind")
+- The live state is in text ("Starting now"), never color alone
+- Times in <time datetime>
+
+| Variant property | Values |
+|---|---|
+| State | upcoming, live |
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Q4 planning with Northwind |
+
+Built from: `Avatar Group`, `Badge`, `Button`, `Meta Item`
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/card`
+- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/5`
+- Radius: `radius/xl`
+- Text styles: `body/large`
+
+Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md)
+
+Code: custom `<li>` with `<time>` pairs; shadcn `Card` + `Meta Item`, `Avatar` group, `Button` (Join is an `<a>` to the meeting URL; live from 5 min before the start)
+
+## Availability Row
+
+Component set · 2 variants · default size 560 × 53
+
+Working hours for one weekday in booking and team settings: on/off, the day, one or more time ranges, add a range. Seven rows, Monday first unless the locale starts on Sunday. Overlapping ranges merge on save; the time zone is said once above the list.
+
+**Use for**
+
+- When people can book you (booking settings)
+- Team or support hours
+- Opening hours of a location
+
+**Not for**
+
+- One on/off setting: use Setting Row
+- Picking one time: use Time Picker
+- Days off and holidays: use Date Range Picker
+
+**Anatomy**
+
+1. Switch: available on this day
+2. Day: ui/label
+3. Hours: start Select, a separator, end Select
+4. Add range: Button Icon (plus)
+
+**Content and behavior**
+
+- Seven rows, Monday first unless the locale starts on Sunday
+- Available=false hides the hours and says "Unavailable"
+- Times in 15 or 30 minute steps; the end is after the start; overlapping ranges merge on save
+- Extra ranges stack under the first, each with a remove button
+- The time zone is said once above the list; "Copy to all days" in the header saves repeat work
+
+**Accessibility**
+
+- The Switch is labelled with the day ("Available on Monday")
+- The Selects are labelled "Monday start" and "Monday end"; Add range has aria-label "Add hours on Monday"
+- Errors show under the row and are linked with aria-describedby
+
+| Variant property | Values |
+|---|---|
+| Available | true, false |
+
+| Property | Type | Default |
+|---|---|---|
+| Day | text | Monday |
+
+Built from: `Button Icon`, `Select`, `Switch`
+
+Tokens and styles:
+- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/3`
+- Text styles: `body/small`, `ui/label`
+
+Guides: [booking](../../skills/build-ui/patterns/booking.md)
+
+Code: custom row: shadcn `Switch` + two `Select` of times + `Button size="icon"` (Ranges with `useFieldArray` (react-hook-form); merge overlaps on save)
+
+## Time Slot
+
+Component set · 4 variants · default size 112 × 36
+
+One bookable start time in a booking flow: a grid of slots under the chosen day, 3-4 per row. selected is primary; taken slots are disabled with a strikethrough, or hidden when most are free. Show the time zone above the grid and the length of the slot ("30 min").
+
+**Use for**
+
+- Booking a call, a demo or an appointment
+- A delivery or pickup window
+- Rescheduling a booking
+
+**Not for**
+
+- A time people pick freely: use Time Picker
+- Picking the day: use Calendar
+- A few options that need more text: use Option Card
+
+**Anatomy**
+
+1. Time: ui/label, centered ("09:30")
+2. State: default, hover, selected (primary), disabled (strikethrough)
+
+**Content and behavior**
+
+- Grid of 3-4 slots per row under the chosen day; one selected at a time
+- Taken slots are disabled with a strikethrough, or hidden when most slots are free
+- Show the time zone above the grid and the length of a slot ("30 min")
+- A day with no free slots says so and links to the next free day
+- A slot taken during checkout: explain and show the nearest free slots
+
+**Accessibility**
+
+- The grid is a radiogroup; each slot has role="radio" and aria-checked; arrow keys move
+- Disabled slots have aria-disabled and "unavailable" in the name
+- The footer repeats the choice in text ("Tue, 22 Oct · 09:30"), so the state is not color alone
+
+| Variant property | Values |
+|---|---|
+| State | default, hover, selected, disabled |
+
+| Property | Type | Default |
+|---|---|---|
+| Time | text | 09:30 |
+
+Tokens and styles:
+- Colors: `background/accent`, `background/default`, `background/primary`, `border/input`, `foreground/default`, `foreground/primary`
+- Spacing and size: `density/control-height`
+- Radius: `radius/md`
+- Text styles: `ui/label`
+
+Guides: [booking](../../skills/build-ui/patterns/booking.md)
+
+Code: shadcn `ToggleGroup type="single"` (or `RadioGroup`) of outline `Button`s (Times from the availability API; time zone above the grid)

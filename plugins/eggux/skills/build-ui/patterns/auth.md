@@ -15,3 +15,9 @@ Two-Factor, Accept Invite. Shell: `Page Shell / Auth`.
   invite → explain and offer "Ask for a new invite".
 - After success: sign the user in, land where they were going, confirm with a toast.
 - Errors inline under the field (`form-validation.md`); rate-limit messages say when to retry.
+
+## Related components
+- Show password rules as a `Requirement List` under the new-password field: each item turns met as
+  people type, nothing turns red before a submit.
+- Identity providers use `SSO Button`: full width, stacked, same order everywhere, the enforced
+  provider first; "Continue with SSO" asks for the work email.

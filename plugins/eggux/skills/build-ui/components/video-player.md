@@ -23,3 +23,8 @@ poster or frame as image fill on the `frame` layer.
 ## Code
 Native `<video>` with custom controls, or a player (Vidstack, Plyr) for HLS and captions.
 `<track kind="captions">` for every language.
+
+## Related components
+- Before playback, lists and cards show a `Video Thumbnail` (poster, play button, duration) that
+  opens the `Video Player`. Audio files (podcasts, voice messages, calls) use `Audio Player` with a
+  transcript link.

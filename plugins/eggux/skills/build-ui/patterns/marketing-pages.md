@@ -82,3 +82,13 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
   bottom-left corner. Preferences: Type preferences (dialog with Switches; Necessary always on).
 - Texts: say what each category does in one line; link the cookie policy. Legal review per
   country; record the decision in `decisions.md`.
+
+## Related components
+- Use `Countdown` only for real deadlines (offer end, webinar start, registration close), always
+  with the exact date, time zone and what happens at zero. Never reset it to create urgency.
+- Pricing blocks are built from `Plan Card` (2-4 side by side, one Featured), `Price`, `Check List
+  Item` (5-8 per plan) and `Pricing Toggle` for monthly or yearly. Logo Cloud uses `Logo Tile` in
+  one muted color; testimonial blocks use `Testimonial Card`.
+- Above a hero title, one `Announcement Pill` links to the newest launch. "How it works" sections
+  use `Step Item` (3-4 steps). Certifications in footers, pricing and security sections use `Trust
+  Badge`; product screenshots sit in a `Device Frame`, one frame style per page.

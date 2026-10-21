@@ -22,3 +22,9 @@
 ## Figma
 `Dialog` with `Combobox` (people), `Select` (role), `Avatar Group`, `Block / Team Members`,
 `Block / Accept Invite`.
+- Public pages (articles, events, jobs) use `Social Share`: copy link with a Toast, email, the
+  system share sheet and up to three networks. Sharing inside the workspace stays with the sharing
+  components.
+- Build the share dialog from `Invite Row` (top), one `Access Row` per person or group (owner first,
+  pending invites marked) and `Share Link Row` (bottom, general access and Copy link). Show who is
+  in the object now with `Presence Bar` next to Share.

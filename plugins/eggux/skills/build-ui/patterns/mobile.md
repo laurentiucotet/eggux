@@ -35,3 +35,6 @@ back-office tools, at least check that the page does not break below 768.
 `Page Shell / Mobile` (390 x 844) on the Page Shells page; examples "mobile list", "mobile
 menu open"; `Block / Navbar Mobile` and "mobile nav open" on the Navigation blocks page; bottom
 drawer with filters on the Drawer page.
+- The one main action on a mobile screen is a `FAB` (bottom right, above the Bottom Nav). Actions on
+  one item open an `Action Sheet` (2-6 actions, destructive last, Cancel apart); content and forms
+  go in a Drawer.

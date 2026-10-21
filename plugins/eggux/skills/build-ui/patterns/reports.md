@@ -23,3 +23,6 @@ which nobody can export, schedule or trust.
 ## Figma
 `Block / Report` on the Enterprise page: header with period and actions, Stat Cards, Chart Card,
 breakdown grid with Progress for share and a total row.
+- Lead a dashboard or report with a `Metric Strip` (3-5 figures, one period said once) when Stat
+  Cards would take too much space; each change uses `Trend Indicator`, where Tone says whether the
+  direction is good. Use `Bullet Chart` stacks for KPI reviews against targets.

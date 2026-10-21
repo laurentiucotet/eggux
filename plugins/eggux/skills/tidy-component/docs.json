@@ -6105,5 +6105,4419 @@
   "guides": [
    "skills/build-ui/components/pagination.md"
   ]
+ },
+ "Copy Field": {
+  "summary": "A read-only value people copy and paste elsewhere: API key, invite link, webhook URL, reference code.",
+  "use": [
+   "API keys and tokens on an API Keys or integration page",
+   "Invite and share links",
+   "Webhook URLs, IDs and reference codes people paste into another tool"
+  ],
+  "avoid": [
+   "A value people edit: use Input",
+   "A short code inside text: use Kbd or inline code",
+   "A one-time code people type: use Input OTP"
+  ],
+  "anatomy": [
+   "Field: muted background, Value in mono, truncated",
+   "Copy: Button (exposed), icon and \"Copy\"",
+   "State=copied: check icon and \"Copied\""
+  ],
+  "rules": [
+   "State=copied lasts 2 s after the click, then returns to default; no toast",
+   "Long values truncate at the end; the full value is what gets copied",
+   "Secrets show only the last 4 characters until Reveal; show a full key once, at creation",
+   "The field has a visible label through Field that names the value (\"Live secret key\")",
+   "When copying fails, select the value and say \"Press Ctrl+C to copy\""
+  ],
+  "a11y": [
+   "The value is a readonly input or text the keyboard can select",
+   "Copy has an aria-label that names the value (\"Copy API key\")",
+   "\"Copied\" is announced in a live region (role=\"status\", aria-live=\"polite\")"
+  ],
+  "code": "custom: shadcn InputGroup with a readOnly Input (font-mono) and a Copy Button; navigator.clipboard.writeText.",
+  "guides": [
+   "skills/build-ui/components/input.md",
+   "skills/build-ui/patterns/settings-and-admin.md",
+   "skills/build-ui/patterns/sharing-and-invites.md"
+  ]
+ },
+ "Search Field": {
+  "summary": "Search box for a list, a table or the whole app: search icon, a placeholder that names what is searched, a shortcut hint and clear.",
+  "use": [
+   "Filtering one list or table as people type",
+   "The search of a Filter Bar or a Top Bar",
+   "Global search that opens Command Dialog on click or with the shortcut"
+  ],
+  "avoid": [
+   "Search with filters, sort and views: use Filter Bar",
+   "Picking one value from a list in a form: use Combobox",
+   "Free text that is not a query: use Input"
+  ],
+  "anatomy": [
+   "Search icon",
+   "Placeholder (\"Search invoices\") or Query",
+   "Clear (x), once there is a query",
+   "Shortcut: Kbd \"⌘K\" (Show shortcut)"
+  ],
+  "rules": [
+   "State: default, focus, filled",
+   "The placeholder names what is searched: \"Search invoices\", never just \"Search\"",
+   "Results update as people type, with a debounce of about 300 ms; Esc clears",
+   "Clear shows only when there is a query; the shortcut hides while typing",
+   "Global search opens Command Dialog; filtering one list stays inline. Keep the query in the URL",
+   "No results: Empty State that names the query"
+  ],
+  "a11y": [
+   "role=\"search\" on the wrapper and an aria-label that says what it searches when there is no visible label",
+   "Clear is a button with aria-label=\"Clear search\"",
+   "The result count is announced in a live region as it changes"
+  ],
+  "code": "shadcn InputGroup (type=\"search\") with a search icon, Kbd and a clear Button; global search opens CommandDialog (cmdk).",
+  "guides": [
+   "skills/build-ui/patterns/search-and-filter.md",
+   "skills/build-ui/components/input.md"
+  ]
+ },
+ "Inline Form": {
+  "summary": "One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag.",
+  "use": [
+   "Newsletter sign-up in a footer or a content page",
+   "Coupon or promo code in a cart",
+   "Invite one person by email",
+   "Adding one item to a list (tag, domain, email)"
+  ],
+  "avoid": [
+   "Two or more fields: use Field in a form with an Action Bar",
+   "Searching a list: use Search Field",
+   "Editing a value that already exists: use Inline Edit"
+  ],
+  "anatomy": [
+   "Input (exposed): placeholder with an example value",
+   "Button (exposed): the verb (\"Subscribe\", \"Apply\", \"Invite\")",
+   "Hint (Show hint), Error or Success message under the row"
+  ],
+  "rules": [
+   "State: default, error, success",
+   "The button says what happens: a verb, never \"Submit\"",
+   "Error keeps the value and says how to fix it: \"Enter an email address like name@company.com.\"",
+   "Success replaces the hint with what happens next; clear the input only when people add several items",
+   "On narrow screens the button stays on the line; below 320 px it goes full width under the input"
+  ],
+  "a11y": [
+   "The input has a visible label or an aria-label (\"Email address\")",
+   "It is a form: Enter submits",
+   "Error and success messages are linked with aria-describedby and announced in a live region"
+  ],
+  "code": "<form class=\"flex gap-2\"> with shadcn Input and Button (react-hook-form + zod).",
+  "guides": [
+   "skills/build-ui/components/input.md",
+   "skills/build-ui/patterns/form-validation.md",
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Currency Input": {
+  "summary": "An amount with its currency: a currency picker on the left and the amount right-aligned in the locale format.",
+  "use": [
+   "Invoice lines, prices and budgets",
+   "Limits and thresholds (approval above EUR 5,000)",
+   "Forms where the currency can differ per record"
+  ],
+  "avoid": [
+   "One currency for the whole form: use Input Group with the code as a fixed prefix",
+   "Small integer quantities: use Number Input",
+   "A minimum and a maximum amount: use Range Fields"
+  ],
+  "anatomy": [
+   "Currency: ISO code (\"EUR\") with chevron-down, opens a list",
+   "Amount: right-aligned, two decimals"
+  ],
+  "rules": [
+   "State: default, focus, error, disabled",
+   "Format on blur in the locale format (1,250.00 or 1.250,00); accept the typed separators of the locale",
+   "Never change the currency silently: changing it keeps the amount and asks before converting",
+   "Errors name the limit: \"Enter an amount up to EUR 10,000.00\"",
+   "Store the amount in minor units with the ISO code"
+  ],
+  "a11y": [
+   "The currency trigger has an aria-label (\"Currency, EUR\")",
+   "The amount input uses inputmode=\"decimal\" and is labelled by the Field label",
+   "Focus ring wraps the whole field"
+  ],
+  "code": "custom: shadcn InputGroup with a Select of ISO codes and an Input; react-number-format or Intl.NumberFormat for the amount.",
+  "guides": [
+   "skills/build-ui/components/input.md",
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Phone Input": {
+  "summary": "Phone number with a country code picker; formats as people type and stores the number in E.164.",
+  "use": [
+   "Contact details on a profile, a customer or an order",
+   "Two-factor setup and SMS notifications",
+   "Delivery contacts at checkout"
+  ],
+  "avoid": [
+   "Other numbers (IDs, quantities): use Input or Number Input",
+   "Common contact data in one go: use Field Preset",
+   "One-time codes sent by SMS: use Input OTP"
+  ],
+  "anatomy": [
+   "Country: country code (\"RO +40\") with chevron-down, opens a searchable list",
+   "Number: formatted as people type"
+  ],
+  "rules": [
+   "State: default, focus, error, disabled",
+   "Default to the country of the account",
+   "Accept pasted numbers with the + prefix and set the country from them",
+   "Store in E.164 (+40712345678); show it formatted for the country",
+   "Ask for a phone number only when it is used, and say what for in the hint"
+  ],
+  "a11y": [
+   "The country list is searchable by country name and code; arrow keys move, Enter picks",
+   "The number input uses type=\"tel\" and autocomplete=\"tel\"",
+   "The country trigger has an aria-label (\"Country code, Romania +40\")"
+  ],
+  "code": "react-phone-number-input (libphonenumber-js) with a shadcn Popover + Command country list.",
+  "guides": [
+   "skills/build-ui/components/input.md",
+   "skills/build-ui/patterns/form-presets.md"
+  ]
+ },
+ "Date Input": {
+  "summary": "A date people type in day, month and year segments, with a calendar button that opens Date Picker.",
+  "use": [
+   "Known dates: birth date, invoice date, contract start, document expiry",
+   "Dates far from today, where typing is faster than paging months",
+   "Data entry forms used all day"
+  ],
+  "avoid": [
+   "Dates near today or with availability: use Date Picker",
+   "A period with a start and an end: use Date Range Picker",
+   "A time of day: use Time Picker"
+  ],
+  "anatomy": [
+   "Day, month and year segments in the locale order, with separators",
+   "Empty segments: DD, MM, YYYY in muted",
+   "Calendar button: calendar icon, opens Date Picker"
+  ],
+  "rules": [
+   "State: default, focus, error, disabled",
+   "Segment order and separators follow the locale (12.11.2026 for ro-RO)",
+   "Arrow keys change the focused segment; typing a full segment moves to the next",
+   "Validate on blur; errors name the rule: \"Date must be after 1 Jan 2026\"",
+   "Pasting a full date fills all segments"
+  ],
+  "a11y": [
+   "Each segment is a spinbutton with a label (\"Day\", \"Month\", \"Year\") inside a group labelled by the Field",
+   "The calendar button has aria-label=\"Choose date\" and returns focus to the field on close",
+   "Errors are linked with aria-describedby"
+  ],
+  "code": "react-aria DateField (segments) + shadcn Popover with Calendar (react-day-picker).",
+  "guides": [
+   "skills/build-ui/components/date-picker.md",
+   "skills/build-ui/components/input.md"
+  ]
+ },
+ "Duration Input": {
+  "summary": "A length of time in hours and minutes for time entries, SLAs, reminders and meeting length.",
+  "use": [
+   "Time entries and timesheets",
+   "SLAs and response targets",
+   "Reminders and meeting length"
+  ],
+  "avoid": [
+   "A time of day: use Time Picker",
+   "A date: use Date Input or Date Picker",
+   "A count without a time unit: use Number Input"
+  ],
+  "anatomy": [
+   "Hours with the \"h\" unit",
+   "Minutes with the \"min\" unit"
+  ],
+  "rules": [
+   "State: default, focus, error",
+   "Accept \"1:30\", \"90\" (minutes) and \"1.5h\"; normalize on blur",
+   "Minutes above 59 roll into hours",
+   "Add a days segment only when the task needs it (lead times)",
+   "Store minutes as one number; errors name the limit (\"Up to 24 h per entry\")"
+  ],
+  "a11y": [
+   "Hours and minutes are inputs with labels (\"Hours\", \"Minutes\") in a group labelled by the Field",
+   "inputmode=\"numeric\"; arrow keys step by 1",
+   "The normalized value is read back after blur (\"1 hour 30 minutes\")"
+  ],
+  "code": "custom: two shadcn Inputs (inputmode numeric) with unit addons; parse and normalize on blur, store minutes.",
+  "guides": [
+   "skills/build-ui/components/input.md"
+  ]
+ },
+ "Range Fields": {
+  "summary": "Two fields for a minimum and a maximum: price or amount filters, typed date ranges, quantities.",
+  "use": [
+   "Price or amount filters in a Filter Section",
+   "Quantities and sizes with a lower and an upper bound",
+   "Ranges people type, next to a Slider Type=range"
+  ],
+  "avoid": [
+   "A range people scan visually: use Slider Type=range with these fields next to it",
+   "A date range with a calendar: use Date Range Picker",
+   "One value: use Input Group or Number Input"
+  ],
+  "anatomy": [
+   "Min field: unit (\"€\") and value",
+   "Dash between the fields",
+   "Max field: unit and value"
+  ],
+  "rules": [
+   "State: default, error",
+   "Either side may stay empty (\"from 100\")",
+   "Error when min is above max; say it once under the pair: \"Minimum must be lower than the maximum\"",
+   "Same unit and format on both sides; format on blur",
+   "In filters, apply on blur or Enter, not on every key"
+  ],
+  "a11y": [
+   "Wrap the pair in a fieldset or group with the label (\"Price\")",
+   "Each input has its own label: \"Minimum price\", \"Maximum price\"",
+   "The error is linked to both inputs with aria-describedby"
+  ],
+  "code": "custom: two shadcn InputGroups in a fieldset; zod refine for min <= max.",
+  "guides": [
+   "skills/build-ui/components/input.md",
+   "skills/build-ui/patterns/search-and-filter.md",
+   "skills/build-ui/components/progress-and-slider.md"
+  ]
+ },
+ "Address Autocomplete": {
+  "summary": "Address field with suggestions as people type; a pick fills the address fields below it.",
+  "use": [
+   "Shipping and billing addresses at checkout",
+   "Company and customer addresses",
+   "Delivery or meeting places"
+  ],
+  "avoid": [
+   "Picking from a known list (a warehouse, an office): use Select or Combobox",
+   "Countries or cities only: use Combobox",
+   "Coordinates on a map: use Map"
+  ],
+  "anatomy": [
+   "Field: map-pin icon and Query",
+   "Suggestions (Show suggestions): map-pin, street and number, then city and country on a second line",
+   "Manual: \"Enter the address manually\" link"
+  ],
+  "rules": [
+   "Suggestions after 3 characters, with a debounce",
+   "A pick fills the separate fields below (street, city, postal code, country); people can still edit them",
+   "Keep what was typed if nothing matches, and offer manual entry",
+   "\"Enter the address manually\" opens the separate fields",
+   "Bias suggestions to the country of the account; show at most 5"
+  ],
+  "a11y": [
+   "Combobox pattern: role=\"combobox\", aria-expanded, aria-activedescendant on the input",
+   "Arrow keys move through suggestions, Enter picks, Esc closes and keeps the text",
+   "The number of suggestions is announced politely"
+  ],
+  "code": "shadcn Popover + Command (cmdk, shouldFilter=false) fed by a places API (Google Places, Mapbox), debounced.",
+  "guides": [
+   "skills/build-ui/components/select.md",
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Select Option": {
+  "summary": "A rich option in a Select, Combobox or Menu list: icon or avatar, title, a muted second line and a check when selected.",
+  "use": [
+   "Options that share a name (two customers called Northwind)",
+   "Options a picture tells apart: workspaces, integrations, people",
+   "Lists where the type or place helps the choice"
+  ],
+  "avoid": [
+   "Short options that are clear by name: use Menu Item",
+   "People with role and email: use Person Option in People Picker",
+   "Choices with a long description: use Option Card"
+  ],
+  "anatomy": [
+   "Leading: icon tile or avatar (Leading, Icon)",
+   "Title",
+   "Description (Show description): muted, one line",
+   "Check (Checked)"
+  ],
+  "rules": [
+   "Leading: icon, avatar, none; the same Leading for every option in one list",
+   "State: default, highlighted",
+   "Description is one short line: type, place, email (\"Customer · Berlin\")",
+   "Title and description truncate on one line each; the full text shows in a tooltip",
+   "Checked marks the selected option; multi-select lists keep it open while picking"
+  ],
+  "a11y": [
+   "role=\"option\" with aria-selected; the list is a listbox",
+   "Title and description are read together as the option name",
+   "Icons and avatars are decorative (aria-hidden) unless they carry meaning"
+  ],
+  "code": "shadcn CommandItem or SelectItem with an Avatar or icon, two text lines and a check icon.",
+  "guides": [
+   "skills/build-ui/components/select.md"
+  ]
+ },
+ "Recurrence Picker": {
+  "summary": "How often something repeats: interval and unit, the days or the day, when it ends, and a summary sentence.",
+  "use": [
+   "Recurring invoices",
+   "Reports sent by email on a schedule",
+   "Reminders and meetings"
+  ],
+  "avoid": [
+   "One date: use Date Picker",
+   "A fixed set of choices (daily, weekly digest): use Select or Radio",
+   "A time of day only: use Time Picker"
+  ],
+  "anatomy": [
+   "Repeat every: interval Number Input and unit Select (day, week, month)",
+   "Days (Frequency=weekly): Toggle Group Items M T W T F S S",
+   "On (Frequency=monthly): Select of the day (\"Day 5\")",
+   "Ends: Radios \"Never\", \"On 31 Dec 2026\", \"After 12 times\"",
+   "Summary (Show summary): \"Every week on Monday, Wednesday and Friday, until 31 Dec 2026\""
+  ],
+  "rules": [
+   "Frequency: daily, weekly, monthly",
+   "The summary says the result in words; read it back in confirmations and lists",
+   "Weekly needs at least one day; default to the day of the start date",
+   "Monthly on day 29-31 says what happens in shorter months (\"last day of the month\")",
+   "Time zone of the account unless the field says otherwise"
+  ],
+  "a11y": [
+   "Each part has a label; Ends is a radiogroup",
+   "Day toggles have full names as aria-labels (\"Monday\") and aria-pressed",
+   "The summary is in a live region (aria-live=\"polite\") so changes are read"
+  ],
+  "code": "custom: Number Input, shadcn Select, ToggleGroup (type multiple) and RadioGroup; rrule for the rule and the summary.",
+  "guides": [
+   "skills/build-ui/components/select.md",
+   "skills/build-ui/components/date-picker.md"
+  ]
+ },
+ "Language Switcher": {
+  "summary": "Choose the interface language: globe, the current language in its own name and a list of languages.",
+  "use": [
+   "The footer of a site",
+   "The Account Menu",
+   "Language in profile or appearance settings"
+  ],
+  "avoid": [
+   "Choosing the language of content (a document, a translation): use Select",
+   "Region, currency or format settings: use Select",
+   "A country (phone code, address): use Phone Input or Combobox"
+  ],
+  "anatomy": [
+   "Trigger: globe icon, Language, chevron-down",
+   "List (State=open): each name in its language and in the current one"
+  ],
+  "rules": [
+   "State: closed, open",
+   "The current language in its own name: \"Deutsch\", not \"German\"",
+   "In the list: \"Deutsch (German)\"; order by name",
+   "Never use flags for languages",
+   "Switching keeps the page and the scroll position"
+  ],
+  "a11y": [
+   "The trigger has aria-label=\"Language: English\"",
+   "Each option sets lang on its own name (lang=\"de\")",
+   "After the switch the html lang attribute changes and focus returns to the trigger"
+  ],
+  "code": "shadcn DropdownMenu with DropdownMenuRadioGroup (or Select); the locale lives in the URL or a cookie.",
+  "guides": [
+   "skills/build-ui/components/select.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Checkbox Card": {
+  "summary": "A checkbox with more context, as a card: several can be on and the whole card toggles.",
+  "use": [
+   "Modules or add-ons to enable",
+   "Notification channels and reminders",
+   "Onboarding goals where people pick several"
+  ],
+  "avoid": [
+   "One choice of several: use Option Card",
+   "Short labels that need no description: use Checkbox",
+   "A setting that applies at once: use Setting Row with a Switch"
+  ],
+  "anatomy": [
+   "Checkbox",
+   "Title",
+   "Description (Show description)"
+  ],
+  "rules": [
+   "State: default, hover, focus, selected, disabled",
+   "The whole card is the click target",
+   "Group 2-6 cards in a column or a grid of 2; a group label says what is chosen",
+   "Selected shows by the checkbox and the border, not color alone",
+   "Disabled says why in the description"
+  ],
+  "a11y": [
+   "Each card is a labelled checkbox; Space toggles",
+   "The group is a fieldset with a legend (Fieldset)",
+   "Title is the label, description is linked with aria-describedby"
+  ],
+  "code": "shadcn Checkbox inside a Label styled as a Card (has-[[data-state=checked]] border).",
+  "guides": [
+   "skills/build-ui/components/select.md",
+   "skills/build-ui/components/card.md"
+  ]
+ },
+ "File Field": {
+  "summary": "One file as a form field: Choose file, then the name and size, with remove.",
+  "use": [
+   "One document in a form: a contract, a certificate",
+   "A logo or a CSV to import, where a dropzone is too big",
+   "Dense forms and Sheets"
+  ],
+  "avoid": [
+   "Several files or drag and drop: use File Dropzone with File Items",
+   "An avatar or a logo with a preview: use Avatar Upload",
+   "A file already in the product: use Select or Combobox"
+  ],
+  "anatomy": [
+   "Choose: Button \"Choose file\"",
+   "Empty text \"No file chosen\" or the file name and size",
+   "Remove (x), once a file is chosen",
+   "Error under the field (State=error)"
+  ],
+  "rules": [
+   "State: empty, selected, error",
+   "Accepted types and max size go in the Field hint",
+   "The error says what to change: \"Choose a PDF under 10 MB.\"",
+   "Long file names truncate in the middle and keep the extension",
+   "Choosing a new file replaces the old one"
+  ],
+  "a11y": [
+   "A native input type=\"file\" with a visible label through Field",
+   "Remove has an aria-label with the file name (\"Remove contract-northwind.pdf\")",
+   "Errors are linked with aria-describedby and announced"
+  ],
+  "code": "custom: hidden input type=\"file\" + shadcn Button, file name and remove Button; react-hook-form for validation.",
+  "guides": [
+   "skills/build-ui/components/file-upload.md",
+   "skills/build-ui/patterns/form-validation.md"
+  ]
+ },
+ "Swatch": {
+  "summary": "One color to pick, 28 px: a dot of the color with a ring when selected. Part of Swatch Picker.",
+  "use": [
+   "Inside Swatch Picker",
+   "Preset colors in the Swatches slot of Color Picker"
+  ],
+  "avoid": [
+   "Any color, typed or picked freely: use Color Picker"
+  ],
+  "anatomy": [
+   "Color: a dot filled with a chart or brand token",
+   "Ring (State=selected)"
+  ],
+  "rules": [
+   "State: default, selected",
+   "Override the fill of the \"color\" layer with a chart or brand token, never a raw hex",
+   "The ring is visible on light and dark backgrounds"
+  ],
+  "a11y": [
+   "A button or radio with the color name as its label (\"Blue\")",
+   "Focus ring and selected ring look different"
+  ],
+  "code": "custom: a round button with the color as background and a ring on the selected one.",
+  "guides": [
+   "skills/build-ui/components/color-picker.md"
+  ]
+ },
+ "Swatch Picker": {
+  "summary": "A short set of colors for labels, categories, calendars and project avatars, with the name of the selected one.",
+  "use": [
+   "Label and tag colors",
+   "Calendar and category colors",
+   "Project or workspace avatar colors"
+  ],
+  "avoid": [
+   "Any color (brand, themes): use Color Picker",
+   "Presets plus a custom color: use Color Picker with its Swatches slot"
+  ],
+  "anatomy": [
+   "Swatches slot: 6-10 Swatches",
+   "Label (Show label): the name of the selected color"
+  ],
+  "rules": [
+   "6-10 colors from the chart palette; one selected",
+   "Colors come from chart tokens so they stay readable in dark mode",
+   "Same order everywhere the palette appears",
+   "Show the name under the swatches; never rely on color alone"
+  ],
+  "a11y": [
+   "A radiogroup with a label (\"Label color\"); arrow keys move between swatches",
+   "Each swatch is labelled with its color name",
+   "Items that use the color also show a name or icon"
+  ],
+  "code": "shadcn RadioGroup of round items (or ToggleGroup type single) with chart token backgrounds.",
+  "guides": [
+   "skills/build-ui/components/color-picker.md"
+  ]
+ },
+ "Form Section": {
+  "summary": "One group of a long form or settings page: title and a sentence on the left, the fields on the right.",
+  "use": [
+   "Settings pages with several groups (billing, contact, security)",
+   "Long record forms: a customer, a product, an invoice",
+   "Profile pages"
+  ],
+  "avoid": [
+   "Settings that apply at once, one per row: use Setting Row",
+   "A short form of 2-4 fields: use Fields in one column",
+   "A group of checkboxes or radios with one label: use Fieldset"
+  ],
+  "anatomy": [
+   "Title (heading/h3) and Description (Show description)",
+   "Fields slot: Field instances",
+   "Divider (Show divider): Separator"
+  ],
+  "rules": [
+   "Layout: side from 1024 px (heading column 280), stacked on narrow screens and in Sheets",
+   "Group fields the way people think about them; 2-6 fields per section",
+   "Description says what the fields are for or when changes apply",
+   "Divider between sections, off on the last one",
+   "One Save for the page, in a Save Bar or Action Bar"
+  ],
+  "a11y": [
+   "The title is a real heading that follows the page outline",
+   "Wrap the section in a section element labelled by its title (aria-labelledby)",
+   "Tab order goes from the heading column to the fields, top to bottom"
+  ],
+  "code": "<section class=\"grid gap-6 lg:grid-cols-[280px_1fr]\"> with h3, p and FormFields; Separator between sections.",
+  "guides": [
+   "skills/build-ui/patterns/settings-and-admin.md",
+   "skills/build-ui/patterns/form-validation.md",
+   "skills/build-ui/patterns/record-page.md"
+  ]
+ },
+ "Fieldset": {
+  "summary": "A group of related controls with one label: checkboxes, radios, the parts of an address or a date.",
+  "use": [
+   "A checkbox or radio group with a question",
+   "The parts of an address or a date",
+   "A group of Checkbox Cards or Option Cards"
+  ],
+  "avoid": [
+   "One control: use Field",
+   "A titled group of unrelated fields in a long form: use Form Section",
+   "One on/off setting: use Setting Row"
+  ],
+  "anatomy": [
+   "Legend: the question",
+   "Description (Show description): the rule",
+   "Options slot: Checkbox, Radio or Fields",
+   "Error (State=error)"
+  ],
+  "rules": [
+   "State: default, error",
+   "The legend names the question (\"Notify me about\"); the description gives the rule (\"Choose at least one.\")",
+   "The error belongs to the group, not to one control: \"Choose at least one notification.\"",
+   "Options in a meaningful order; 2-7 options, more go in a Select or Combobox"
+  ],
+  "a11y": [
+   "A fieldset with a legend, or role=\"group\" / role=\"radiogroup\" with aria-labelledby",
+   "Description and error are linked to the group with aria-describedby",
+   "On submit, focus moves to the first control of the group in error"
+  ],
+  "code": "<fieldset> with <legend>; shadcn RadioGroup or Checkbox items; FormMessage for the group error.",
+  "guides": [
+   "skills/build-ui/patterns/form-validation.md",
+   "skills/build-ui/components/select.md"
+  ]
+ },
+ "Error Summary": {
+  "summary": "At the top of a long form after a failed submit: how many fields need a fix and a link to each.",
+  "use": [
+   "Forms longer than one screen",
+   "Multi-step forms at the review step",
+   "Imports and settings pages with many fields"
+  ],
+  "avoid": [
+   "Short forms: show inline errors on the Field only",
+   "A server or network error: use Alert",
+   "A message about a saved action: use Toast"
+  ],
+  "anatomy": [
+   "circle-alert icon",
+   "Title: \"Fix 3 fields to continue\"",
+   "Errors slot: one link per field (\"Email: enter an email address like name@company.com\")"
+  ],
+  "rules": [
+   "Shows only after a submit; focus moves here",
+   "Each link names the field and the fix, the same message the field shows inline",
+   "Links in the order of the fields on the page",
+   "The count updates as fields are fixed; the summary disappears when all are fixed"
+  ],
+  "a11y": [
+   "role=\"alert\" or a focused container with tabindex=\"-1\" and a heading",
+   "Each link moves focus to its field (href=\"#field-id\")",
+   "Error color is paired with the icon and the title text"
+  ],
+  "code": "custom: shadcn Alert (destructive) with a list of anchor links built from react-hook-form formState.errors.",
+  "guides": [
+   "skills/build-ui/patterns/form-validation.md",
+   "skills/build-ui/patterns/multi-step-form.md"
+  ]
+ },
+ "Requirement Item": {
+  "summary": "One rule and whether it is met: check, dash or x. Part of Requirement List.",
+  "use": [
+   "Inside Requirement List"
+  ],
+  "avoid": [
+   "A message about one field: use the Field hint or error"
+  ],
+  "anatomy": [
+   "Icon: circle-check (met), dash (pending), x (failed)",
+   "Label: the rule"
+  ],
+  "rules": [
+   "State: met, pending, failed",
+   "met uses success; failed only after a submit",
+   "The label is the rule in a few words (\"At least 12 characters\")"
+  ],
+  "a11y": [
+   "The state is in text for screen readers (\"met\", \"not met yet\"), not only the icon",
+   "Icons are aria-hidden"
+  ],
+  "code": "<li> with a lucide icon (CircleCheck, Minus, X) and text.",
+  "guides": [
+   "skills/build-ui/patterns/form-validation.md"
+  ]
+ },
+ "Requirement List": {
+  "summary": "Rules checked live while people type or before they publish: password rules, import checks, what a listing needs.",
+  "use": [
+   "Password rules under a new-password field",
+   "Checks before a listing or a page goes live",
+   "Import checks before people continue"
+  ],
+  "avoid": [
+   "One strength level for a password: use Password Strength",
+   "Errors after a submit: use the Field error or Error Summary",
+   "Steps of a process: use Stepper"
+  ],
+  "anatomy": [
+   "Title (Show title): \"Your password needs\"",
+   "Items slot: Requirement Items"
+  ],
+  "rules": [
+   "Each Requirement Item updates as soon as it is met",
+   "Nothing turns red before a submit; pending stays neutral",
+   "Under 6 rules, in the order people fix them",
+   "Rules are positive and short: \"At least 12 characters\""
+  ],
+  "a11y": [
+   "A list (ul) linked to the field with aria-describedby",
+   "Changes are announced politely (aria-live=\"polite\"), not on every key",
+   "Met is shown by icon and text, not color alone"
+  ],
+  "code": "custom: <ul> of Requirement Items, state from the zod schema of the field.",
+  "guides": [
+   "skills/build-ui/patterns/form-validation.md",
+   "skills/build-ui/patterns/auth.md",
+   "skills/build-ui/patterns/form-presets.md"
+  ]
+ },
+ "View Switcher": {
+  "summary": "Switch how one set of records is shown: list, board or calendar.",
+  "use": [
+   "Tasks, deals or projects shown as a list, a board or a calendar",
+   "Records with places or images (add map or gallery)",
+   "The right side of a page toolbar"
+  ],
+  "avoid": [
+   "Switching between different content (Overview, Invoices): use Tabs",
+   "Density or columns of one table: use Data Grid Toolbar",
+   "Other values such as a period: use Toggle Group"
+  ],
+  "anatomy": [
+   "Toggle Group with Toggle Group Items: List, Board, Calendar, each with an icon",
+   "Labels=false: icons only, with tooltips"
+  ],
+  "rules": [
+   "View: list, board, calendar; Labels: true, false",
+   "Icon-only (Labels=false) in dense toolbars, with tooltips",
+   "The chosen view is remembered per person and kept in the URL",
+   "Filters, search and selection survive the switch",
+   "Offer only views the data supports"
+  ],
+  "a11y": [
+   "A radiogroup (ToggleGroup type single) with aria-label=\"View\"",
+   "Arrow keys move between views; Space or Enter selects",
+   "Icon-only items have an aria-label that matches the tooltip"
+  ],
+  "code": "shadcn ToggleGroup type=\"single\" with lucide icons; the view in a URL search param.",
+  "guides": [
+   "skills/build-ui/components/tabs.md",
+   "skills/build-ui/components/boards-and-calendars.md",
+   "skills/build-ui/patterns/enterprise-apps.md"
+  ]
+ },
+ "Theme Toggle": {
+  "summary": "Light, dark or follow the system: three icon buttons with tooltips.",
+  "use": [
+   "The Account Menu",
+   "Appearance settings",
+   "The footer of a docs or content site"
+  ],
+  "avoid": [
+   "A brand or theme color: use Color Picker",
+   "Density or other appearance options: use Select or Toggle Group"
+  ],
+  "anatomy": [
+   "Toggle Group with three icon Toggle Group Items: light, dark, system"
+  ],
+  "rules": [
+   "Value: light, dark, system",
+   "System is the default",
+   "The change applies at once, without a reload",
+   "Saved per person; set before first paint so the page does not flash"
+  ],
+  "a11y": [
+   "A radiogroup with aria-label=\"Theme\"; items labelled \"Light\", \"Dark\", \"System\"",
+   "Tooltips match the aria-labels",
+   "Both themes meet contrast on every token"
+  ],
+  "code": "shadcn ToggleGroup type=\"single\" with next-themes (setTheme light, dark, system).",
+  "guides": [
+   "skills/build-ui/components/tabs.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Emoji Picker": {
+  "summary": "Searchable grid of emoji for reactions, a status or a workspace icon, opened in a Popover.",
+  "use": [
+   "Picking an emoji for a status or a workspace icon",
+   "The + button at the end of a Reaction Bar",
+   "Inserting an emoji in a Comment or Chat Composer"
+  ],
+  "avoid": [
+   "Adding a reaction from a short fixed set: use Reaction Bar",
+   "Picking a product icon or a color: use Swatch Picker",
+   "Rating or feedback faces: use CSAT Rating"
+  ],
+  "anatomy": [
+   "Search: Command Input",
+   "Categories: icon tabs (Recent, Smileys, Hearts, Objects, Ideas, World)",
+   "Section label: the current category",
+   "Grid: emoji cells, 8 per row"
+  ],
+  "rules": [
+   "Opens in a Popover from a smiley Button Icon; picking an emoji closes it",
+   "Recently used first, then categories in a fixed order",
+   "Search matches names and keywords (\"check\", \"party\"); no results shows \"No emoji found\"",
+   "Skin tone is remembered per person",
+   "Enter picks the highlighted emoji; the search keeps focus while arrows move in the grid"
+  ],
+  "a11y": [
+   "The grid has role=\"grid\" (or listbox) with arrow-key navigation and one tab stop",
+   "Each emoji has an accessible name (\"thumbs up\"), not only the character",
+   "Category tabs are buttons with aria-label and aria-pressed for the current one",
+   "Escape closes the picker and returns focus to the trigger"
+  ],
+  "code": "frimousse or emoji-mart in a shadcn Popover; trigger is a ghost Button size=\"icon\".",
+  "guides": [
+   "skills/build-ui/components/popover.md",
+   "skills/build-ui/components/comments-and-chat.md"
+  ]
+ },
+ "App Launcher": {
+  "summary": "Grid of the products in a suite, opened from a layout-grid Button Icon in the top bar.",
+  "use": [
+   "Suites with 4 or more apps under one sign-in (Invoices, Payroll, CRM)",
+   "Jumping between apps from the Top Bar",
+   "Showing which app people are in"
+  ],
+  "avoid": [
+   "Two or three apps: use Org Switcher or a link in the Top Bar",
+   "Switching workspaces or tenants: use Org Switcher",
+   "Navigation inside one app: use Sidebar"
+  ],
+  "anatomy": [
+   "Title: \"Apps\", ui/label, muted",
+   "Grid of apps, 3 per row: icon tile and app name",
+   "Current app: highlighted tile"
+  ],
+  "rules": [
+   "Only for suites with 4 or more apps",
+   "App names of one or two words, below the tile, never truncated",
+   "Same order for everyone; the current app is highlighted, not moved to the start",
+   "Apps the person has no access to are hidden",
+   "An app that opens in a new tab shows an external-link icon"
+  ],
+  "a11y": [
+   "The trigger is a Button Icon with aria-label=\"Apps\" and aria-expanded",
+   "Each app is a link; the current one has aria-current=\"page\"",
+   "Arrows move in the grid, Escape closes and returns focus to the trigger"
+  ],
+  "code": "shadcn Popover with a 3-column grid of links (grid-cols-3); trigger is a ghost Button size=\"icon\" with LayoutGrid.",
+  "guides": [
+   "skills/build-ui/components/popover.md",
+   "skills/build-ui/components/navigation.md",
+   "skills/build-ui/patterns/enterprise-apps.md"
+  ]
+ },
+ "Confirm Popover": {
+  "summary": "A small confirmation next to the button that triggered it, for actions with some cost that do not need a dialog.",
+  "use": [
+   "Archive, remove a person from a project, discard a draft",
+   "Row actions in a table where a dialog would hide the context",
+   "Bulk actions on a few items (\"Archive 3 invoices?\")"
+  ],
+  "avoid": [
+   "Irreversible loss of data: use Alert Dialog",
+   "Reversible actions: use a Toast with Undo, no confirmation",
+   "A choice with several options or a form: use Dialog"
+  ],
+  "anatomy": [
+   "Title: a question with the object, ui/label",
+   "Description: one line on the consequence, body/small, muted",
+   "Actions: Cancel (Button outline sm) and confirm (Button sm, destructive for Tone=destructive)"
+  ],
+  "rules": [
+   "Title is a question that names the action and the object: \"Archive 3 invoices?\"",
+   "Description says what happens next or how to undo it, in one line",
+   "The confirm button repeats the verb (\"Archive\"); never \"OK\" or \"Yes\"",
+   "Tone=destructive for remove and discard; default for archive and similar",
+   "Opens next to the trigger; clicking outside or Escape cancels"
+  ],
+  "a11y": [
+   "Focus moves to Cancel when it opens and returns to the trigger when it closes",
+   "role=\"alertdialog\" with aria-labelledby on the title and aria-describedby on the description",
+   "Escape cancels; Enter on the confirm button runs the action"
+  ],
+  "code": "shadcn Popover with title, text and two Buttons (PopoverContent role=\"alertdialog\").",
+  "guides": [
+   "skills/build-ui/components/popover.md",
+   "skills/build-ui/patterns/delete-confirmation.md"
+  ]
+ },
+ "Back Link": {
+  "summary": "A link above the page title back to the list the record came from: \"All invoices\" with a left arrow.",
+  "use": [
+   "Record pages opened from a list (an invoice from All invoices)",
+   "Settings subpages that return to the settings overview",
+   "Mobile pages without a Breadcrumb"
+  ],
+  "avoid": [
+   "Hierarchies deeper than two levels: use Breadcrumb",
+   "Going back between wizard steps: use the Back button in the Action Bar",
+   "Mobile screens with a header: use Mobile Header"
+  ],
+  "anatomy": [
+   "Icon: Icon/arrow-left",
+   "Label: the destination, ui/label (body/small), muted; foreground on hover"
+  ],
+  "rules": [
+   "Name the destination (\"All invoices\"); never \"Back\"",
+   "Return to the list with its filters, sort and scroll position",
+   "Sits above the page title, aligned with it; one per page",
+   "Links to a fixed URL, so it works when the page is opened from a bookmark"
+  ],
+  "a11y": [
+   "A real link (<a>), not a button calling history.back()",
+   "The arrow icon is aria-hidden; the label says where it goes",
+   "Visible focus ring; text meets 4.5:1 in default and hover"
+  ],
+  "code": "Next.js Link (or <a>) with ArrowLeft, text-sm text-muted-foreground hover:text-foreground.",
+  "guides": [
+   "skills/build-ui/components/navigation.md",
+   "skills/build-ui/patterns/record-page.md"
+  ]
+ },
+ "Skip Link": {
+  "summary": "First focusable element of every page, hidden until it gets keyboard focus, that jumps to the main content.",
+  "use": [
+   "Every page and shell: \"Skip to main content\"",
+   "Before a long repeated block, such as a sidebar of 30 links",
+   "Pages with a large Navbar or mega menu"
+  ],
+  "avoid": [
+   "Links between sections of one article: use Table of Contents",
+   "Going back to the top of a long page: use Scroll To Top",
+   "Links people see and use all the time: use Nav Link or the Sidebar"
+  ],
+  "anatomy": [
+   "Label: \"Skip to main content\", on a surface with border and shadow, top left"
+  ],
+  "rules": [
+   "The first element in the tab order of every page",
+   "Hidden until focused, then shown top left above everything",
+   "Moves focus to the main content (the <main> landmark or the page title)",
+   "Add one per long repeated block; never remove it"
+  ],
+  "a11y": [
+   "A link to #main; the target has tabindex=\"-1\" so it can take focus",
+   "Visible focus style with at least 3:1 against the page",
+   "Use sr-only with focus:not-sr-only; never display:none"
+  ],
+  "code": "<a href=\"#main\" class=\"sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50\">.",
+  "guides": [
+   "skills/build-ui/components/navigation.md"
+  ]
+ },
+ "Scroll To Top": {
+  "summary": "Floating button bottom right on long pages that takes people back to the top.",
+  "use": [
+   "Docs and long articles",
+   "Long lists and feeds without pagination",
+   "Pages longer than three screens"
+  ],
+  "avoid": [
+   "Moving between sections of a long page: use Table of Contents",
+   "Long lists people page through: use Pagination",
+   "Skipping repeated navigation for keyboard users: use Skip Link"
+  ],
+  "anatomy": [
+   "Button Icon (outline, round) with Icon/arrow-up, bottom right"
+  ],
+  "rules": [
+   "Not on pages shorter than three screens",
+   "Appears after people scroll two screens down; hidden at the top",
+   "Bottom right, 16-24 px from the edges, above the Bottom Nav and away from a FAB",
+   "Tooltip \"Back to top\"",
+   "Scrolls smoothly unless reduced motion is on"
+  ],
+  "a11y": [
+   "aria-label=\"Back to top\"",
+   "Moves focus to the top of the page (the Skip Link or the page heading), not only the scroll position",
+   "Respects prefers-reduced-motion"
+  ],
+  "code": "shadcn Button size=\"icon\" variant=\"outline\", fixed bottom-6 right-6; shown from a scroll listener.",
+  "guides": [
+   "skills/build-ui/components/navigation.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Page Toolbar": {
+  "summary": "The row between a list page title and the list: search and Filters on the left, View Switcher and the primary action on the right.",
+  "use": [
+   "List pages: invoices, customers, orders",
+   "Pages that switch between table, board and calendar views",
+   "Lists with a few filters behind one Filters button"
+  ],
+  "avoid": [
+   "Rows are selected: use Table Toolbar",
+   "Data grids with saved views, columns and density: use Data Grid Toolbar",
+   "Several filters always visible as chips: use Filter Bar"
+  ],
+  "anatomy": [
+   "Search: Search Field (Show search)",
+   "Filters: Button outline with Icon/list-filter (Show filters)",
+   "Filter count: Badge Count with the number of active filters",
+   "View: View Switcher (Show view)",
+   "Primary: Button (Show primary)"
+  ],
+  "rules": [
+   "One primary action, on the right (\"New invoice\")",
+   "The filter count shows only when filters are on",
+   "Search, filters and view live in the URL",
+   "While rows are selected, Table Toolbar takes its place",
+   "On narrow screens search takes the full row and the rest wraps below"
+  ],
+  "a11y": [
+   "Search has an aria-label that says what it searches",
+   "The Filters button includes the count in its name: \"Filters, 2 active\"",
+   "Tab order: search, filters, view, primary"
+  ],
+  "code": "custom: flex justify-between with shadcn Input, Button + Badge, ToggleGroup and Button.",
+  "guides": [
+   "skills/build-ui/patterns/search-and-filter.md",
+   "skills/build-ui/components/table.md",
+   "skills/build-ui/patterns/enterprise-apps.md"
+  ]
+ },
+ "Account Menu": {
+  "summary": "The menu behind the signed-in person's avatar: name and email, personal settings, and Log out.",
+  "use": [
+   "Avatar in the Top Bar",
+   "Sidebar User at the bottom of the Sidebar",
+   "Personal items: Profile, Settings, Theme, Keyboard shortcuts"
+  ],
+  "avoid": [
+   "Switching workspace or company: use Org Switcher",
+   "Actions on a record: use Menu",
+   "Product navigation: use Sidebar"
+  ],
+  "anatomy": [
+   "Header: Avatar, name (ui/label) and email (body/small, muted)",
+   "Separator",
+   "Menu Items: Profile, Settings, Theme, Keyboard shortcuts",
+   "Separator",
+   "Menu Item: Log out, last"
+  ],
+  "rules": [
+   "Personal items only; workspace items go in Org Switcher",
+   "Log out is last, after a Separator",
+   "Log out never asks for confirmation unless there are unsaved changes",
+   "Long emails truncate with an ellipsis and show in full in a Tooltip",
+   "Theme opens a submenu (Light, Dark, System) with a check on the current one"
+  ],
+  "a11y": [
+   "The trigger has aria-label=\"Account menu\" (or the person's name) and aria-haspopup=\"menu\"",
+   "Arrows move, Enter selects, Escape closes and returns focus to the trigger",
+   "The header is not focusable; it is read as the menu label"
+  ],
+  "code": "shadcn DropdownMenu with DropdownMenuLabel (Avatar, name, email), DropdownMenuItems and DropdownMenuSeparator.",
+  "guides": [
+   "skills/build-ui/components/dropdown-menu.md",
+   "skills/build-ui/components/navigation.md",
+   "skills/build-ui/components/sidebar.md"
+  ]
+ },
+ "Notification Item": {
+  "summary": "One notification: who did what to which object, when and where, with an unread dot and optional actions.",
+  "use": [
+   "Rows in the Notification Center",
+   "The full notifications page",
+   "Approvals, mentions and assignments people can act on from the list"
+  ],
+  "avoid": [
+   "Result of the person's own action: use Toast",
+   "Changes on one record over time: use Timeline Item",
+   "A message that blocks the page: use Alert"
+  ],
+  "anatomy": [
+   "Avatar: who did it",
+   "Message: \"Elena Popa approved INV-1041 for €2,450.00\", actor and object in bold",
+   "Meta: time and area, body/small, muted",
+   "Actions slot (Show actions): one or two Buttons sm",
+   "Unread dot (Read=false)"
+  ],
+  "rules": [
+   "Message names the actor, the action and the object; two lines at most",
+   "Read=false has a muted background and the dot",
+   "The whole row opens the object and marks it read",
+   "Actions only for what people can do from the list (Approve, View invoice); at most two",
+   "System notifications without a person use an icon Avatar"
+  ],
+  "a11y": [
+   "The row is a link; actions are separate buttons, not nested in the link",
+   "Unread is in the accessible name (\"Unread: Elena Popa approved...\"), not color or the dot alone",
+   "The time is a <time> element with the full date in a title"
+  ],
+  "code": "custom row: shadcn Avatar, text and Buttons; unread dot as a span with sr-only text.",
+  "guides": [
+   "skills/build-ui/patterns/notifications.md"
+  ]
+ },
+ "Notification Center": {
+  "summary": "The panel behind the bell in the top bar: latest notifications by type, newest first, with Mark all as read and View all.",
+  "use": [
+   "The bell in the Top Bar",
+   "Products with mentions, approvals and assignments",
+   "Quick triage without leaving the page"
+  ],
+  "avoid": [
+   "The full history with filters: use Block / Notifications",
+   "Choosing channels and frequency: use Block / Notification Preferences",
+   "Feedback on the person's own action: use Toast"
+  ],
+  "anatomy": [
+   "Header: title and Mark all as read (Button ghost sm)",
+   "Tabs: All, Mentions, Approvals",
+   "Items slot: Notification Items",
+   "Footer: View all (Button ghost)"
+  ],
+  "rules": [
+   "Newest first, unread on top; 5-8 items, then View all",
+   "The bell shows a Badge Count of unread items",
+   "Opening the panel does not mark items read; opening an item does",
+   "Empty: \"You are all caught up.\"",
+   "Mark all as read applies to the current tab"
+  ],
+  "a11y": [
+   "The bell is a button with the count in its name: \"Notifications, 3 unread\"",
+   "New items are announced with aria-live=\"polite\" on the count, never by moving focus",
+   "Escape closes the panel and returns focus to the bell"
+  ],
+  "code": "shadcn Popover with Tabs and a ScrollArea of Notification Items; trigger Button size=\"icon\" + Badge.",
+  "guides": [
+   "skills/build-ui/patterns/notifications.md",
+   "skills/build-ui/components/popover.md",
+   "skills/build-ui/components/navigation.md"
+  ]
+ },
+ "Search Result Item": {
+  "summary": "One result on a search page: path, title link, a two-line snippet with the matched words, type and date.",
+  "use": [
+   "Search results pages for help centers and docs",
+   "Global search across records (customers, invoices, articles)",
+   "Results grouped by type"
+  ],
+  "avoid": [
+   "Suggestions while typing: use Command Dialog",
+   "A list of records to manage: use a Table or List Item",
+   "Related links under an article: use Post Card"
+  ],
+  "anatomy": [
+   "Path (Show path): where it lives, segments with Icon/chevron-right, body/small, muted",
+   "Title: link, heading/h4",
+   "Snippet: two lines around the matched words",
+   "Meta (Show meta): type Badge and updated date"
+  ],
+  "rules": [
+   "Bold the matched terms in the title and snippet",
+   "Snippet is cut to two lines around the first match",
+   "Records can show their status Badge in meta",
+   "Group results by type when there are several kinds",
+   "No results: Empty State that repeats the query and suggests other words"
+  ],
+  "a11y": [
+   "Results are a list; each title is a link and a heading",
+   "Matched terms use <mark> (or strong), with contrast that does not rely on color alone",
+   "The result count is announced in a live region when the query changes"
+  ],
+  "code": "custom: <li> with breadcrumb text, an <a> heading, a <p class=\"line-clamp-2\"> and Badge; highlights with <mark>.",
+  "guides": [
+   "skills/build-ui/patterns/search-and-filter.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Show More": {
+  "summary": "A long text cut to 3 lines with a Show more / Show less toggle.",
+  "use": [
+   "Notes, descriptions and bios on a record page",
+   "Long reviews or comments in a list",
+   "Product or job descriptions where the start says enough"
+  ],
+  "avoid": [
+   "Several sections to open: use Accordion",
+   "A whole article or long rich content: use Sheet or a page of its own",
+   "Long lists of items: use Load More"
+  ],
+  "anatomy": [
+   "Text: body/default, 3 lines when collapsed, fade or ellipsis at the cut",
+   "Toggle: Button link \"Show more\" / \"Show less\""
+  ],
+  "rules": [
+   "Only when the full text is rarely needed; key information stays above the cut",
+   "Show the toggle only when the text is longer than 3 lines",
+   "Show less returns to the same scroll position",
+   "Never cut in the middle of a word"
+  ],
+  "a11y": [
+   "The toggle is a button with aria-expanded and aria-controls on the text",
+   "Focus stays on the toggle; the expanded text is announced",
+   "The full text is in the DOM, cut with line-clamp, so screen readers can reach it"
+  ],
+  "code": "shadcn Collapsible, or a <p class=\"line-clamp-3\"> toggled by a Button variant=\"link\".",
+  "guides": [
+   "skills/build-ui/components/accordion.md",
+   "skills/build-ui/components/content.md"
+  ]
+ },
+ "Load More": {
+  "summary": "End of a feed or a long list that grows in place: how many are shown out of the total, and a button for the next page.",
+  "use": [
+   "Feeds and activity",
+   "Search results browsed once",
+   "Lists of cards, comments or reviews"
+  ],
+  "avoid": [
+   "Tables where people jump to a page: use Pagination",
+   "Tables with rows per page: use Table Pagination",
+   "Narrow lists inside a card: use Pagination Compact"
+  ],
+  "anatomy": [
+   "Count: \"Showing 20 of 248 invoices\", body/small, muted",
+   "Button: \"Load 20 more\", outline (State=loading shows a Spinner)"
+  ],
+  "rules": [
+   "The label says how many it loads (\"Load 20 more\")",
+   "Hide the button when everything is shown; keep the count",
+   "Keep the scroll position and move focus to the first new item",
+   "Loading keeps the button width and disables it",
+   "On error, keep the loaded items and show Retry"
+  ],
+  "a11y": [
+   "The count is in a live region (aria-live=\"polite\") and updates after loading",
+   "The button has aria-busy while loading",
+   "Focus moves to the first new item so keyboard users continue from there"
+  ],
+  "code": "shadcn Button variant=\"outline\" with a count; TanStack Query useInfiniteQuery (fetchNextPage).",
+  "guides": [
+   "skills/build-ui/components/pagination.md",
+   "skills/build-ui/patterns/loading-states.md"
+  ]
+ },
+ "Shortcut Row": {
+  "summary": "One keyboard shortcut in the shortcuts dialog or a help page: what it does, then the keys.",
+  "use": [
+   "The keyboard shortcuts dialog opened with ?",
+   "Help and docs pages that list shortcuts",
+   "Keyboard shortcuts from the Account Menu"
+  ],
+  "avoid": [
+   "A shortcut next to a menu label: use Menu Item with Shortcut",
+   "A shortcut hint on a button: use Tooltip with Kbd",
+   "Keys inline in prose: use Kbd or Kbd Group"
+  ],
+  "anatomy": [
+   "Action: what it does, body/small",
+   "Keys: Kbd instances (exposed), right aligned"
+  ],
+  "rules": [
+   "Action is a verb phrase in sentence case: \"Open command menu\"",
+   "Group rows by area (Navigation, Editing) with a heading per group",
+   "Show ⌘ on Mac and Ctrl on Windows and Linux",
+   "Key sequences (G then I) read as separate keys with \"then\" between them",
+   "List only shortcuts that work"
+  ],
+  "a11y": [
+   "Rows are a description list (dt action, dd keys) or a table",
+   "Keys use <kbd> with readable names for symbols (\"Command K\")",
+   "Text meets 4.5:1 on the row background"
+  ],
+  "code": "custom: <div class=\"flex justify-between\"> with text and shadcn Kbd / KbdGroup.",
+  "guides": [
+   "skills/build-ui/components/indicators.md"
+  ]
+ },
+ "Welcome Dialog": {
+  "summary": "A short first-run tour in a dialog, after sign-up or a major release: image, title, one sentence and 2-4 steps.",
+  "use": [
+   "First sign-in after sign-up",
+   "A major release that changes how people work",
+   "A new area of the product opened for the first time"
+  ],
+  "avoid": [
+   "Pointing at real UI: use Coachmark",
+   "Tasks to set up an account: use Block / Onboarding Checklist",
+   "Small changes: use a Toast or an Announcement Pill"
+  ],
+  "anatomy": [
+   "Image: Image Placeholder (illustration or short animation)",
+   "Title: heading/h3",
+   "Description: one sentence",
+   "Dots: step indicator",
+   "Footer: secondary (Skip, or Back after the first step) and primary (Next, last step: the first task)"
+  ],
+  "rules": [
+   "2-4 steps; each shows one thing people can do now",
+   "Shown once per person; Skip and Esc close it and do not show it again",
+   "The last step leads to the first task (\"Create your first invoice\")",
+   "Step=first shows Skip; middle shows Back; last names the task",
+   "Help offers a way to open it again"
+  ],
+  "a11y": [
+   "role=\"dialog\" with aria-labelledby on the title; focus starts on the primary button",
+   "Dots are decorative; the step is in text (\"Step 2 of 3\") for screen readers",
+   "The image has alt text or is decorative (alt=\"\")"
+  ],
+  "code": "shadcn Dialog with a step state; dots as spans, footer Buttons.",
+  "guides": [
+   "skills/build-ui/components/dialog.md",
+   "skills/build-ui/components/tour.md"
+  ]
+ },
+ "Resizable Panels": {
+  "summary": "Two panels with a handle to drag the split: list and detail, editor and preview, code and output.",
+  "use": [
+   "List and detail side by side (inbox, tickets)",
+   "Editor and preview",
+   "Code and output, or a query and its results"
+  ],
+  "avoid": [
+   "A detail that opens on demand over the list: use Sheet",
+   "A fixed panel of properties next to an editor: use Side Panel",
+   "Small screens: use a Sheet for the detail over the list"
+  ],
+  "anatomy": [
+   "Start slot: the first panel",
+   "Handle: divider with Icon/grip-vertical",
+   "End slot: the second panel"
+  ],
+  "rules": [
+   "Each panel has a minimum width; content never squeezes below it",
+   "Double-click the handle to reset the split",
+   "The split is remembered per person",
+   "On narrow screens show one panel at a time with a way back",
+   "A panel can collapse to a rail when dragged past its minimum"
+  ],
+  "a11y": [
+   "The handle has role=\"separator\" with aria-valuenow, aria-valuemin and aria-valuemax",
+   "Focus the handle and use arrows to resize; Enter collapses or restores",
+   "The handle has a visible focus ring and a 3:1 contrast against the panels"
+  ],
+  "code": "shadcn Resizable (react-resizable-panels) with autoSaveId to remember the split.",
+  "guides": [
+   "skills/build-ui/components/drawer.md",
+   "skills/build-ui/components/navigation.md"
+  ]
+ },
+ "FAB": {
+  "summary": "Floating action button for the one main action on a mobile screen: new invoice, compose, add.",
+  "use": [
+   "The main create action on a mobile list (New invoice)",
+   "Compose in a mobile inbox or feed",
+   "Type=extended on a first visit or empty lists, shrinking to the icon on scroll"
+  ],
+  "avoid": [
+   "Desktop: use a primary Button in the Page Header",
+   "Destructive or secondary actions: use Action Sheet or Menu",
+   "Several actions: use Action Sheet"
+  ],
+  "anatomy": [
+   "Icon: Icon/plus (swap with Icon)",
+   "Label (Type=extended): \"New invoice\""
+  ],
+  "rules": [
+   "One per screen, for the main action only",
+   "Bottom right, 16 px from the edges, above the Bottom Nav",
+   "Extended shows a label and shrinks to the icon on scroll",
+   "Never covers the last row of content; add bottom padding to the list",
+   "Hidden while the keyboard is open"
+  ],
+  "a11y": [
+   "Icon only: aria-label with the action (\"New invoice\")",
+   "Touch target at least 48 by 48 px",
+   "Placed in the DOM after the main content, before the Bottom Nav, so the tab order follows the screen"
+  ],
+  "code": "shadcn Button size=\"icon\" rounded-full shadow-lg, fixed bottom-20 right-4 (bottom-4 without Bottom Nav).",
+  "guides": [
+   "skills/build-ui/patterns/mobile.md",
+   "skills/build-ui/components/button.md"
+  ]
+ },
+ "Action Sheet": {
+  "summary": "A short list of actions for one item on mobile, rising from the bottom, with Cancel apart.",
+  "use": [
+   "Actions on one item on mobile: share, duplicate, download, delete",
+   "The More button on a mobile record page",
+   "A long press on a row in a mobile list"
+  ],
+  "avoid": [
+   "Content or a form: use Drawer",
+   "Desktop: use Menu",
+   "One main action: use FAB or a Button"
+  ],
+  "anatomy": [
+   "Header (Show header): title (the object) and description",
+   "Actions: icon and label, one per row",
+   "Destructive action last, in red",
+   "Cancel: a separate group below"
+  ],
+  "rules": [
+   "2-6 actions, one line each, verbs",
+   "Destructive last and red; it still asks for confirmation when it cannot be undone",
+   "Cancel sits apart at the bottom",
+   "Tap outside or swipe down closes it",
+   "Title names the object (\"INV-2041\")"
+  ],
+  "a11y": [
+   "role=\"menu\" with menuitem rows, or a list of buttons in a dialog; focus moves to the first action",
+   "Escape and Cancel close it and return focus to the trigger",
+   "Rows are at least 48 px high; destructive is named by its label, not color alone"
+  ],
+  "code": "shadcn Drawer (vaul) with a list of Buttons and a separate Cancel; desktop falls back to DropdownMenu.",
+  "guides": [
+   "skills/build-ui/patterns/mobile.md",
+   "skills/build-ui/components/drawer.md",
+   "skills/build-ui/components/dropdown-menu.md"
+  ]
+ },
+ "Annotation Pin": {
+  "summary": "A numbered marker on a design, document or screenshot where a comment lives.",
+  "use": [
+   "Comments on a design, a PDF or a screenshot",
+   "Review feedback tied to a spot on an image",
+   "Numbered callouts that match a comment list"
+  ],
+  "avoid": [
+   "Pointing out a feature in the product: use Hotspot",
+   "A tour step: use Coachmark",
+   "Comments on a whole record: use Comment"
+  ],
+  "anatomy": [
+   "Pin: round with the point at the bottom-left corner",
+   "Number: the comment's position in the list"
+  ],
+  "rules": [
+   "The point (bottom-left corner) marks the spot",
+   "Numbers match the comment list order",
+   "Click opens the thread in a Popover or the side panel; State=active is the open one",
+   "Resolved pins fade and show a check",
+   "Pins that overlap move apart and stay clickable"
+  ],
+  "a11y": [
+   "Each pin is a button: \"Comment 3 by Elena Popa\"",
+   "Tab order follows the numbers; Enter opens the thread",
+   "Pins are also reachable from the comment list, which is the main way for screen readers"
+  ],
+  "code": "custom: absolutely positioned Button (percent coordinates) + shadcn Popover for the thread.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md",
+   "skills/build-ui/components/tour.md"
+  ]
+ },
+ "Social Share": {
+  "summary": "Share buttons for a public page: copy link, email, the system share sheet and up to three networks.",
+  "use": [
+   "Articles, blog posts and changelog entries",
+   "Public event, job or product pages",
+   "The end of a public report or case study"
+  ],
+  "avoid": [
+   "Sharing a record with people in the workspace: use Share Link Row",
+   "A link people copy and paste: use Copy Field",
+   "Inviting teammates: use Invite Row"
+  ],
+  "anatomy": [
+   "Label (Show label): \"Share\", body/small, muted",
+   "Copy link: Button Icon",
+   "Email: Button Icon",
+   "Share: Button Icon (system share sheet)",
+   "Networks (Show networks): up to three network marks"
+  ],
+  "rules": [
+   "Copy link first; it confirms with a Toast (\"Link copied\")",
+   "Up to three networks the audience uses",
+   "Replace the letter marks with the networks' official logos in product",
+   "The system share button shows only where the browser supports it",
+   "Shared links open with a title, description and image (Open Graph)"
+  ],
+  "a11y": [
+   "Each button has an aria-label: \"Copy link\", \"Share by email\", \"Share on LinkedIn\"",
+   "Network links that open a new window say so (\"opens in a new tab\")",
+   "Icons meet 3:1 against the background"
+  ],
+  "code": "shadcn Button size=\"icon\" variant=\"outline\"; navigator.clipboard, mailto:, navigator.share and network share URLs.",
+  "guides": [
+   "skills/build-ui/components/button.md",
+   "skills/build-ui/patterns/sharing-and-invites.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Trend Indicator": {
+  "summary": "A change against a period: arrow, signed percent or amount, and what it is compared to. Direction says which way it moved; Tone says if that is good, bad or neither.",
+  "use": [
+   "The change under a value in a Metric Strip or a Stat Card",
+   "A change next to a figure in a table row or a report header",
+   "Rising costs or churn: Direction=up with Tone=negative"
+  ],
+  "avoid": [
+   "A trend people read over time: use Sparkline or Line Chart",
+   "A value against a target: use Bullet Chart or Progress Card",
+   "A status with no change: use Badge"
+  ],
+  "anatomy": [
+   "Icon: trending-up, trending-down or minus (from Direction)",
+   "Value: signed percent or amount, ui/label",
+   "Comparison (Show comparison): \"vs last month\", ui/caption, muted"
+  ],
+  "rules": [
+   "Direction follows the data; Tone follows the meaning (costs up is negative, churn down is positive)",
+   "Always signed: +12.4%, −3.1%, 0.0% for flat; one decimal for percentages",
+   "The comparison names the period (\"vs last month\", \"vs Q3\"); hide it only when the period is said once nearby",
+   "Edit the value text per instance; keep the same comparison for every item in a row",
+   "Neutral tone when the change is too small to matter, or when up and down mean nothing good or bad"
+  ],
+  "a11y": [
+   "The sign and the words carry the meaning; color only supports it",
+   "The icon is decorative (aria-hidden); read as \"Up 12.4% vs last month\" with a visually hidden \"Up\" or \"Down\"",
+   "Positive and negative text keeps 4.5:1 on card and page in every mode"
+  ],
+  "code": "custom: lucide TrendingUp, TrendingDown or Minus + <span class=\"tabular-nums\">; tone as text-success, text-destructive or text-muted-foreground.",
+  "guides": [
+   "skills/build-ui/components/charts.md",
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Metric Strip Item": {
+  "summary": "One figure in a Metric Strip: label, value and an optional Trend Indicator.",
+  "use": [
+   "Each figure of a Metric Strip"
+  ],
+  "avoid": [
+   "A figure on its own with a footnote or chart: use Stat Card",
+   "A number with no trend outside a strip: use Figure"
+  ],
+  "anatomy": [
+   "Label: body/small, muted",
+   "Value: one line, heading",
+   "Trend (Show trend): Trend Indicator (exposed)",
+   "Divider on the left (Divider=true)"
+  ],
+  "rules": [
+   "Divider=false on the first item, Divider=true on every item after it",
+   "Value stays on one line; amounts in the locale format and compact (€1.84M)",
+   "Label is a noun of one to three words, sentence case",
+   "Show trend on all items in a strip or on none"
+  ],
+  "a11y": [
+   "Label and value are read together (dt and dd)",
+   "The divider is decorative"
+  ],
+  "code": "custom: <div> with <dt>, <dd class=\"tabular-nums\"> and Trend Indicator; divider as border-l.",
+  "guides": [
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Metric Strip": {
+  "summary": "A row of 3-5 key figures at the top of a dashboard, report or record page, lighter than Stat Cards: label, value, trend, dividers between.",
+  "use": [
+   "Key figures above a report or dashboard: revenue, invoices, overdue, days to pay",
+   "The summary at the top of a record page (customer totals)",
+   "A dense header where a row of Stat Cards would take too much space"
+  ],
+  "avoid": [
+   "Figures that need a footnote or a chart each: use Stat Card",
+   "One figure against a target: use Progress Card or Gauge",
+   "Counts in a page header with no trend: use Figure"
+  ],
+  "anatomy": [
+   "Metrics slot: 3-5 Metric Strip Items, Divider=true after the first"
+  ],
+  "rules": [
+   "3-5 figures; more go in a table or a second section",
+   "Same period for every item, said once nearby (\"Last 30 days\" in the header)",
+   "Most important figure first, in the same order on every visit",
+   "Items share the width equally; on narrow screens wrap to two columns, no horizontal scroll",
+   "Loading: Skeleton in each value; no data: \"No data\" in muted text, never 0"
+  ],
+  "a11y": [
+   "Code as a <dl> with one dt and dd per figure",
+   "The period is in text near the strip, so each figure is read with it",
+   "Trend reads as text (\"Up 12% vs last month\")"
+  ],
+  "code": "custom: <dl class=\"grid grid-cols-2 md:grid-cols-4 divide-x\"> of Metric Strip Items.",
+  "guides": [
+   "skills/build-ui/patterns/reports.md",
+   "skills/build-ui/components/charts.md"
+  ]
+ },
+ "Usage Meter": {
+  "summary": "How much of a plan limit is used: seats, storage, API calls, documents per month. Label, used of limit, bar and a hint.",
+  "use": [
+   "Billing and plan settings: one meter per limit",
+   "Next to the action that uses the limit (invite a member, upload a file)",
+   "Team Members header: seats used"
+  ],
+  "avoid": [
+   "A goal people try to reach: use Progress Card",
+   "Progress of a running task: use Progress",
+   "Parts of one total: use Distribution Bar"
+  ],
+  "anatomy": [
+   "Label: \"Seats\"",
+   "Usage: \"8 of 10\", tabular",
+   "Bar: Progress (tone from Level)",
+   "Hint (Show hint): what to do, or the consequence and the date"
+  ],
+  "rules": [
+   "Level=near from 80%: warning tone and say what to do (\"Upgrade or remove members\")",
+   "Level=over above 100%: error tone, say the consequence and the date (\"Uploads pause on 1 Nov\")",
+   "Usage shows used and limit with the unit (\"4.2 of 5 GB\"); unlimited plans show the count and no bar",
+   "Say when the count resets for monthly limits (\"Resets 1 Nov\")",
+   "Offer the fix in the hint or next to it: Upgrade, Buy more, Manage"
+  ],
+  "a11y": [
+   "The bar has role=\"meter\" with aria-valuenow, aria-valuemax and a label (\"Seats used\")",
+   "Level is in the hint text, never color alone",
+   "Crossing near or over is announced once in a polite live region, not on every render"
+  ],
+  "code": "shadcn Progress with a tone class + label row; role=\"meter\" and aria-value* on the bar.",
+  "guides": [
+   "skills/build-ui/components/progress-and-slider.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Countdown": {
+  "summary": "Time left until a deadline people act on: an offer, a webinar start, a payment due, a session that expires.",
+  "use": [
+   "A real deadline: offer ends, registration closes, webinar starts",
+   "A payment due or a session that expires",
+   "A resend code timer (short form, minutes and seconds)"
+  ],
+  "avoid": [
+   "Fake urgency that resets: use Meta Item with the real date, or nothing",
+   "A date far ahead (more than 30 days): use the date with Meta Item",
+   "Progress of a running job: use Progress"
+  ],
+  "anatomy": [
+   "Days tile: value and unit",
+   "Hours tile",
+   "Minutes tile",
+   "Seconds tile (Show seconds)"
+  ],
+  "rules": [
+   "Days, hours, minutes; seconds only in the last hour (Show seconds)",
+   "Always say what happens at zero next to it, with the exact date and time zone (\"Offer ends 24 Oct, 18:00 CEST\")",
+   "Two digits per tile (02, 14); drop the days tile when it is 00",
+   "At zero, replace it with the outcome (\"Registration closed\") and remove the action it promoted",
+   "Count from the server time, never only the device clock"
+  ],
+  "a11y": [
+   "Screen readers get the end time, not a ticking value: role=\"timer\" with aria-live=\"off\" and a <time datetime> label",
+   "Announce once at a meaningful step (5 minutes left) for session expiry, with a way to extend",
+   "No flashing or color pulse in the last seconds"
+  ],
+  "code": "custom: tiles from a useCountdown hook (setInterval 1 s, server end time); <time datetime> for the deadline.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/patterns/auth.md"
+  ]
+ },
+ "Leaderboard Row": {
+  "summary": "A ranked person or team: rank, avatar, name and value.",
+  "use": [
+   "Sales targets: top account managers this quarter",
+   "Support resolution or contributions per team",
+   "The viewer's own row under the top 10 (State=current)"
+  ],
+  "avoid": [
+   "Public rankings that shame people: show the viewer their own progress with Progress Card",
+   "Ranking categories or products: use Bar Chart Horizontal",
+   "A plain list of people: use List Item or Byline"
+  ],
+  "anatomy": [
+   "Rank: tabular, muted",
+   "Avatar",
+   "Name: ui/label",
+   "Value: tabular, right-aligned, with the unit",
+   "State=current: highlighted row for the viewer"
+  ],
+  "rules": [
+   "Top 5-10, then the viewer's row (State=current) when they are below, with a gap marker between",
+   "Value says the unit (€48,250, 312 tickets); same unit for every row",
+   "Ties share a rank (1, 2, 2, 4)",
+   "Say the period and the measure above the list (\"Paid revenue, Q4\")",
+   "Long names truncate with a Tooltip; value never truncates"
+  ],
+  "a11y": [
+   "Code as an <ol> or a table with rank, name and value columns",
+   "The current row has aria-current=\"true\" and a visible \"You\" label, not only a tint",
+   "The Avatar is decorative next to the name (alt=\"\")"
+  ],
+  "code": "custom: <ol> of rows, shadcn Avatar, tabular-nums value; current row bg-accent.",
+  "guides": [
+   "skills/build-ui/components/list-and-tree.md",
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Command Snippet": {
+  "summary": "One command or value people copy into a terminal or config: install line, CLI command, environment variable.",
+  "use": [
+   "Install steps in docs and onboarding (npm install @acme/sdk)",
+   "A CLI command or one environment variable",
+   "A value to paste into another tool: webhook URL, key id"
+  ],
+  "avoid": [
+   "Several lines or command output: use Code Block",
+   "A secret key shown once: use the API Keys block with a masked value and Copy",
+   "Code inside a sentence: inline code style"
+  ],
+  "anatomy": [
+   "Prompt (Show prompt): $, muted, not copied",
+   "Command: mono on background/muted, one line",
+   "Copy: Button Icon ghost sm (check for 2 s)"
+  ],
+  "rules": [
+   "One command per snippet; never include the $ in what gets copied",
+   "Long commands scroll horizontally, never wrap",
+   "Copy shows a check for 2 s, then returns to the copy icon",
+   "Show prompt off for values that are not terminal commands (URLs, env values)",
+   "Placeholders the user must replace are named in caps (YOUR_API_KEY) and explained below"
+  ],
+  "a11y": [
+   "Copy is labelled \"Copy command\"; \"Copied\" is announced politely (aria-live)",
+   "The prompt is aria-hidden and excluded from selection (select-none)",
+   "Mono text keeps 4.5:1 on background/muted"
+  ],
+  "code": "custom: <pre><code> on bg-muted + shadcn Button size=\"icon\" with navigator.clipboard.writeText.",
+  "guides": [
+   "skills/build-ui/components/content.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Endpoint Row": {
+  "summary": "One API endpoint in a reference list: method badge, path in mono with parameters in braces, and a one-line summary.",
+  "use": [
+   "API reference sidebar or overview lists",
+   "The endpoints a webhook or integration uses",
+   "Grouped lists per resource: Invoices, Customers"
+  ],
+  "avoid": [
+   "The full request and response: use Code Block or JSON Viewer",
+   "A navigation item with no method: use Nav Link",
+   "One command to copy: use Command Snippet"
+  ],
+  "anatomy": [
+   "Method: Badge (GET info, POST success, PUT and PATCH warning, DELETE destructive)",
+   "Path: mono, parameters in braces (/v1/invoices/{id})",
+   "Summary: body/small, muted"
+  ],
+  "rules": [
+   "Methods keep the same color everywhere; the method name is always written",
+   "Path in mono, parameters in braces, no host",
+   "Summary starts with a verb: \"Retrieve an invoice\"",
+   "The whole row links to the endpoint page",
+   "Order within a resource: list, create, retrieve, update, delete"
+  ],
+  "a11y": [
+   "The row is one link with an accessible name of method, path and summary",
+   "Method is text in the Badge, never color alone",
+   "Paths do not break mid-segment; long paths wrap at slashes"
+  ],
+  "code": "custom: <a> row with shadcn Badge (method variant) + <code> path + summary.",
+  "guides": [
+   "skills/build-ui/components/badge.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Log Row": {
+  "summary": "One line of a log or event stream: time with milliseconds, level and message in mono.",
+  "use": [
+   "Live tails of request, job or deploy logs",
+   "Search results in a log viewer",
+   "Webhook delivery and integration event history"
+  ],
+  "avoid": [
+   "Who changed what on a record: use the Audit Log with Change Item",
+   "Events people read as a story: use Timeline Item",
+   "A structured payload: use JSON Viewer in the expanded row"
+  ],
+  "anatomy": [
+   "Time: hh:mm:ss.SSS, mono, muted",
+   "Level: debug, info, warn, error",
+   "Message: mono",
+   "Destructive rule on the left (Level=error)"
+  ],
+  "rules": [
+   "Newest at the bottom in live tails, at the top in searches",
+   "Long messages wrap, never truncate",
+   "Level filter and search above the list; pause the tail while the user scrolls up",
+   "Time zone stated once in the header; times in the same zone",
+   "Rows expand to show the payload (JSON Viewer) and the request id"
+  ],
+  "a11y": [
+   "Code as a list or a log region (role=\"log\", aria-live=\"polite\" only for live tails, paused on demand)",
+   "Level is text, never color alone",
+   "The rows are keyboard focusable when they expand"
+  ],
+  "code": "custom: virtualized list (@tanstack/react-virtual) of mono rows; level as a text label.",
+  "guides": [
+   "skills/build-ui/components/list-and-tree.md",
+   "skills/build-ui/patterns/audit-log.md"
+  ]
+ },
+ "Diff Line": {
+  "summary": "One line of a diff: number, marker, sign and text. Part of Diff Viewer.",
+  "use": [
+   "Each line of a Diff Viewer"
+  ],
+  "avoid": [
+   "One field that changed on a record: use Change Item"
+  ],
+  "anatomy": [
+   "Line number: mono, muted",
+   "Marker: color strip (added success, removed destructive)",
+   "Sign: +, − or blank",
+   "Text: added, removed with strikethrough, or context"
+  ],
+  "rules": [
+   "Type=added in success, Type=removed in destructive with strikethrough, context plain",
+   "The sign is always shown for added and removed lines",
+   "Removed lines come above the added lines that replace them",
+   "Text keeps its whitespace; long lines wrap in prose and scroll in code"
+  ],
+  "a11y": [
+   "The sign carries the meaning; screen readers get \"added\" or \"removed\" as visually hidden text",
+   "Line numbers are aria-hidden"
+  ],
+  "code": "custom: row in a <table> or grid; diff from jsdiff (diffLines).",
+  "guides": [
+   "skills/build-ui/components/content.md"
+  ]
+ },
+ "Diff Viewer": {
+  "summary": "What changed between two versions of a text, contract, config or code: file name with counts, then Diff Lines.",
+  "use": [
+   "Preview of a version in a version history (Version Item, State=selected)",
+   "Changes to a contract, template or terms before approval",
+   "Config or code changes in a deploy or review"
+  ],
+  "avoid": [
+   "Field-level changes of a record: use Change Item",
+   "A single code example: use Code Block",
+   "Release notes for users: use Release Note Item"
+  ],
+  "anatomy": [
+   "Header: file-text icon, file name, added count, removed count",
+   "Lines slot: Diff Lines"
+  ],
+  "rules": [
+   "Show 3 lines of context around each change and collapse the rest (\"Show 24 unchanged lines\")",
+   "Removed lines above added lines",
+   "Counts in the header: +3 −1",
+   "Unified by default; side by side only on wide screens (1024 and up)",
+   "No changes: say \"No differences\" instead of an empty frame"
+  ],
+  "a11y": [
+   "Each line names its type in hidden text (added, removed), so color is not the only cue",
+   "Collapsed sections are buttons with the count in their label",
+   "The header counts are text, read as \"3 added, 1 removed\""
+  ],
+  "code": "custom on jsdiff (diffLines); react-diff-viewer-continued for side by side.",
+  "guides": [
+   "skills/build-ui/components/content.md",
+   "skills/build-ui/patterns/audit-log.md"
+  ]
+ },
+ "JSON Viewer": {
+  "summary": "Structured data people inspect: webhook payloads, API responses, event properties, audit details. Objects and arrays collapse.",
+  "use": [
+   "Webhook payloads and API responses in a log or delivery detail",
+   "Event properties in analytics or audit details",
+   "Metadata of a record in an admin view"
+  ],
+  "avoid": [
+   "A short example people copy: use Code Block",
+   "Editing data: use a form, or a code editor (Monaco, CodeMirror)",
+   "Field changes: use Change Item"
+  ],
+  "anatomy": [
+   "Header: label and Copy Button Icon",
+   "Lines: chevron for objects and arrays, key, value",
+   "Values: strings, numbers and booleans in chart colors; keys in default text"
+  ],
+  "rules": [
+   "Large payloads open collapsed after the first level",
+   "Collapsed nodes show a count (\"items: [3]\")",
+   "Copy copies the whole payload, formatted",
+   "Long strings wrap; null shows as null, never blank",
+   "Mask secrets (tokens, card numbers) before they reach the viewer"
+  ],
+  "a11y": [
+   "Code as a tree (role=\"tree\", role=\"treeitem\", aria-expanded); arrow keys open and close nodes",
+   "Value types are readable without color: quotes for strings",
+   "Value colors keep 4.5:1 on background/muted"
+  ],
+  "code": "custom tree on <pre>, or react-json-view-lite themed with tokens; Copy with navigator.clipboard.",
+  "guides": [
+   "skills/build-ui/components/content.md",
+   "skills/build-ui/components/list-and-tree.md"
+  ]
+ },
+ "Dashboard Widget": {
+  "summary": "A movable, resizable tile on a customizable dashboard: drag handle, title, period, refresh, expand and menu, any chart or KPI in Content.",
+  "use": [
+   "Dashboards people arrange themselves",
+   "Home pages with a chosen set of KPIs and charts",
+   "Saved dashboards shared with a team"
+  ],
+  "avoid": [
+   "A fixed report: use Chart Card",
+   "One number on a fixed page: use Stat Card",
+   "Figures in one row: use Metric Strip"
+  ],
+  "anatomy": [
+   "Drag handle: grip-vertical (edit mode)",
+   "Title and Period",
+   "Refresh, Expand and More: Button Icon ghost sm",
+   "Content slot: a chart, a Sparkline or a KPI",
+   "Footer (Show footer): \"Updated 5 min ago\""
+  ],
+  "rules": [
+   "Snap to a 12-column grid; sizes 3, 4, 6 or 12 columns",
+   "Edit mode shows the handles and resize corner; view mode hides them",
+   "Period is written on every widget; a dashboard-wide period says so once",
+   "Menu: edit, duplicate, change size, remove (with Undo)",
+   "Each widget loads, fails and refreshes on its own: Skeleton, inline Alert with Retry, never a blank tile"
+  ],
+  "a11y": [
+   "Moving and resizing work by keyboard: menu items \"Move left\", \"Move right\", \"Change size\"; the new place is announced",
+   "Icon buttons have labels (\"Refresh Invoices paid\")",
+   "The widget is a region named by its title"
+  ],
+  "code": "react-grid-layout (12 cols) with shadcn Card per item; drag handle via draggableHandle.",
+  "guides": [
+   "skills/build-ui/components/charts.md",
+   "skills/build-ui/components/card.md",
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Distribution Bar": {
+  "summary": "Parts of one whole as a single 100% bar: invoices by status, budget by category, storage by type.",
+  "use": [
+   "Invoices by status with a total",
+   "Budget or spend by category",
+   "Storage by file type in billing settings"
+  ],
+  "avoid": [
+   "More than 6 parts or comparing groups: use stacked Bar Chart",
+   "Part of a whole as the main visual of a card: use Donut Chart",
+   "Usage of a limit: use Usage Meter"
+  ],
+  "anatomy": [
+   "Header: Title and Total",
+   "Bar: 2-6 segments, chart/1..6",
+   "Legend (Show legend): swatch, label, share"
+  ],
+  "rules": [
+   "2-6 segments in a fixed order, largest or most important first; the rest in \"Other\"",
+   "Segment colors follow the entity (chart/1..6) and stay the same across pages",
+   "Legend shows the share (42%); hover a segment for the count",
+   "2 px gap between segments; tiny segments keep a 4 px minimum width",
+   "Shares add to 100%; round the largest to fix rounding"
+  ],
+  "a11y": [
+   "The legend carries label and share in text, so color is not the only cue",
+   "Segments are focusable with a Tooltip that has the count; or the bar is aria-hidden and the legend is a list",
+   "Adjacent segments keep 3:1 against each other or the gap separates them"
+  ],
+  "code": "custom: flex row of segments with width from the share + legend <ul>; or Recharts BarChart layout=\"vertical\" stacked to 100%.",
+  "guides": [
+   "skills/build-ui/components/charts.md"
+  ]
+ },
+ "Bullet Chart": {
+  "summary": "One measure against its target and bands (poor, fair, good) in one line: revenue vs plan, SLA vs goal.",
+  "use": [
+   "Revenue vs plan, SLA vs goal",
+   "A stack of KPIs on the same scale for a review",
+   "Tables and dense dashboards where a Gauge is too large"
+  ],
+  "avoid": [
+   "A single percent toward a goal: use Progress or Gauge",
+   "Trend over time: use Line Chart",
+   "Many items compared to each other: use Bar Chart Horizontal"
+  ],
+  "anatomy": [
+   "Label: Title and Unit (\"EUR, this quarter\")",
+   "Track: three range bands, grey",
+   "Value bar: the actual, dark",
+   "Target: a vertical line",
+   "Value text: actual and target"
+  ],
+  "rules": [
+   "The dark bar is the actual, the line the target, the grey bands the ranges",
+   "Bands are named in the legend or footnote (poor, fair, good) with their limits",
+   "Stacked bullets share the same scale when the units match",
+   "Scale starts at 0; values written as text next to the track (412k, target 480k)",
+   "Unit and period in the label"
+  ],
+  "a11y": [
+   "Actual and target are text, so the line and bar are not the only cue",
+   "In code use role=\"meter\" with aria-valuenow and a label that includes the target",
+   "Value bar keeps 3:1 against the bands"
+  ],
+  "code": "custom SVG or Recharts BarChart layout=\"vertical\" with stacked range bars, a thin value Bar and a ReferenceLine for the target.",
+  "guides": [
+   "skills/build-ui/components/charts.md",
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Radar Chart": {
+  "summary": "Compares 1-3 items across 5-8 qualities on the same scale: vendor scores, skill profiles, plan features.",
+  "use": [
+   "Vendor or tender scores across criteria",
+   "Skill or competency profiles",
+   "Comparing two plans on qualities with the same scale"
+  ],
+  "avoid": [
+   "More than 3 series or precise values: use grouped Bar Chart or a table",
+   "Change over time: use Line Chart",
+   "Qualities on different scales: use a table"
+  ],
+  "anatomy": [
+   "Grid rings: 25, 50, 75, 100",
+   "Axes: one per quality",
+   "Series areas and lines: chart/1, chart/2, chart/3",
+   "Axis labels outside the grid",
+   "Legend for 2+ series"
+  ],
+  "rules": [
+   "5-8 axes; same scale on every axis, starting at the center",
+   "1-3 series; area fill low opacity so overlaps stay readable",
+   "Labels outside the grid, short (one or two words)",
+   "Axis order stays fixed and groups related qualities",
+   "Legend for 2+ series; tooltip lists every axis value of the hovered series"
+  ],
+  "a11y": [
+   "Every Radar Chart has a table view with each quality and score",
+   "Series differ by line style or markers too, not color alone",
+   "Lines and labels keep 3:1 on card and page in every mode"
+  ],
+  "code": "shadcn Chart (Recharts) RadarChart with PolarGrid, PolarAngleAxis and Radar per series; var(--chart-N).",
+  "guides": [
+   "skills/build-ui/components/charts.md"
+  ]
+ },
+ "Sankey Chart": {
+  "summary": "How amounts flow from sources to outcomes: payment method to paid or overdue, traffic source to sign-up, budget to spend.",
+  "use": [
+   "Payment method to paid or overdue",
+   "Traffic source to sign-up and plan",
+   "Budget lines to spend by department"
+  ],
+  "avoid": [
+   "Drop-off between ordered steps: use Funnel Chart",
+   "Parts of one total: use Distribution Bar or Donut Chart",
+   "A start total changed by steps: use Waterfall Chart"
+  ],
+  "anatomy": [
+   "Source nodes (left)",
+   "Flows: band width is the amount, colored by source",
+   "Outcome nodes (right)",
+   "Node labels with values"
+  ],
+  "rules": [
+   "2-3 columns and under 12 nodes; fold small flows into \"Other\"",
+   "Label every node with its value (Card €184K)",
+   "Color bands by source with chart/1..8; nodes in neutral",
+   "Order nodes so bands cross as little as possible",
+   "Hover a band for the exact amount and its share of the source"
+  ],
+  "a11y": [
+   "The table view lists each flow: source, target, amount",
+   "Labels are text on the node, not only in a tooltip",
+   "Bands keep enough contrast on card (low opacity fills, darker on hover)"
+  ],
+  "code": "shadcn Chart (Recharts) Sankey with custom node and link renderers; colors via var(--chart-N).",
+  "guides": [
+   "skills/build-ui/components/charts.md",
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Choropleth Map": {
+  "summary": "Values by region on a map, shaded from light (low) to dark (high): revenue by county, customers by country.",
+  "use": [
+   "Revenue or customers by country, county or region",
+   "Where place matters to the decision (sales territories, shipping zones)",
+   "A tile layout when equal-size regions read better than real shapes"
+  ],
+  "avoid": [
+   "Ranking regions precisely: use Bar Chart Horizontal",
+   "An address or office location: use Map",
+   "Two dimensions that are not places: use Heatmap"
+  ],
+  "anatomy": [
+   "Regions: shade and code (tile layout, or real map shapes)",
+   "Legend: low, 5-step scale, high"
+  ],
+  "rules": [
+   "One measure, one hue, 5 steps; muted for no data, said in the legend",
+   "Replace the tile regions with real map shapes, or keep tiles when equal size reads better",
+   "Normalize when size skews the map (per customer, per capita)",
+   "Legend states the unit and the step limits",
+   "Hover a region for its name and value"
+  ],
+  "a11y": [
+   "The table view lists every region with its value",
+   "Regions are focusable with name and value in the label; or the map is aria-hidden next to the table",
+   "Darkest and lightest steps keep 3:1 against the surface; borders separate neighbors"
+  ],
+  "code": "react-simple-maps with a d3-scale quantize scale on one chart hue; tile grid as a CSS grid of cells.",
+  "guides": [
+   "skills/build-ui/components/charts.md"
+  ]
+ },
+ "Version Item": {
+  "summary": "One saved version in a version history panel: who, when, what changed, and Restore.",
+  "use": [
+   "Version history of a document, template or contract",
+   "History of a configuration (workflow, price list)",
+   "A Side Panel next to the editor with the versions newest first"
+  ],
+  "avoid": [
+   "Field-level changes of a record: use Change Item",
+   "Events by many people on a record: use Timeline Item",
+   "Product release notes: use Release Note Item"
+  ],
+  "anatomy": [
+   "Avatar",
+   "Version and Current Badge (State=current)",
+   "Meta: name · date and time",
+   "Summary: what changed",
+   "Restore Button (State=past and selected)"
+  ],
+  "rules": [
+   "Newest first; the current version is marked and has no Restore",
+   "Selecting a version previews it (State=selected) with a Diff Viewer",
+   "Restoring creates a new version; it never deletes the newer ones",
+   "Summary says what changed in one line; autosaved versions say \"Autosave\"",
+   "Group autosaves by session or day when there are many"
+  ],
+  "a11y": [
+   "The list is a listbox or a list of buttons; the selected one has aria-selected or aria-current",
+   "Restore is a labelled button (\"Restore version from 12 Oct, 15:40\")",
+   "Dates in a <time> element"
+  ],
+  "code": "custom: list of rows with shadcn Avatar, Badge and Button; preview via Diff Viewer.",
+  "guides": [
+   "skills/build-ui/patterns/audit-log.md",
+   "skills/build-ui/patterns/record-page.md"
+  ]
+ },
+ "Release Note Item": {
+  "summary": "One entry of a changelog or What's new: type badge, version and date, a title that says the benefit, two sentences on how to use it, optional screenshot and link.",
+  "use": [
+   "Public changelog pages",
+   "In-app What's new: the last 3-5 entries with a link to the full changelog",
+   "Release notes in a help center"
+  ],
+  "avoid": [
+   "Version history of a document: use Version Item",
+   "A system notice people must act on: use Alert",
+   "A one-off product tip: use Coachmark"
+  ],
+  "anatomy": [
+   "Type: Badge (New info, Improved secondary, Fixed success)",
+   "Date: version · date",
+   "Title: the benefit",
+   "Text: two sentences on how to use it",
+   "Image (Show image): Image Placeholder",
+   "Link (Show link): Button link"
+  ],
+  "rules": [
+   "Newest first; one entry per change",
+   "Title says the benefit for the user, not the feature name",
+   "Text: two sentences: what changed and where to find it (Settings → Reminders)",
+   "Type from the variant: new, improved, fixed",
+   "Screenshot only when it shows where to click; link to the help article"
+  ],
+  "a11y": [
+   "Each entry is an <article> with the title as a heading",
+   "The type is text in the Badge, never color alone",
+   "Dates in a <time> element; the screenshot has alt text that says what it shows"
+  ],
+  "code": "custom: <article> with shadcn Badge, <time>, optional <img> and Button variant=\"link\".",
+  "guides": [
+   "skills/build-ui/patterns/content-and-docs.md",
+   "skills/build-ui/components/badge.md"
+  ]
+ },
+ "Automation Rule": {
+  "summary": "One automation in a rules list, written as a sentence: When trigger, and condition, then action.",
+  "use": [
+   "Rules lists in settings: routing, reminders, assignments",
+   "Simple one-trigger, one-action automations",
+   "Approval rules (\"approves over €10,000\")"
+  ],
+  "avoid": [
+   "Multi-step flows with branches: use Workflow Node on a canvas",
+   "A plain on/off setting: use Setting Row",
+   "Conditions for a filter or a view: use Filter Group"
+  ],
+  "anatomy": [
+   "Name and Meta (\"Ran 48 times this month · last run 2 h ago\")",
+   "Status: Switch",
+   "More: Button Icon ghost (edit, duplicate, run history, delete)",
+   "Sentence: When trigger, and condition (Show condition), then action, each with an icon"
+  ],
+  "rules": [
+   "Read as one sentence: When, and, Then",
+   "The Switch turns it on or off without deleting it (Status=on, off)",
+   "Show how often it ran and when last, so people trust it; failures say so in Meta",
+   "Delete asks for confirmation; off keeps the history",
+   "Name says the outcome (\"Route large invoices to finance\")"
+  ],
+  "a11y": [
+   "The Switch is labelled with the rule name (\"Route large invoices to finance, on\")",
+   "The sentence is real text; icons are decorative",
+   "The menu button is labelled \"More actions for Route large invoices to finance\""
+  ],
+  "code": "custom on shadcn Card + Switch + DropdownMenu; tokens of the sentence as Badge-like spans.",
+  "guides": [
+   "skills/build-ui/patterns/settings-and-admin.md",
+   "skills/build-ui/patterns/approvals.md"
+  ]
+ },
+ "Workflow Node": {
+  "summary": "One step on an automation or approval canvas: trigger, condition (branches) or action, with ports to connect steps.",
+  "use": [
+   "Automation builders with several steps and branches",
+   "Approval chains with conditions",
+   "Import or sync pipelines people configure"
+  ],
+  "avoid": [
+   "One trigger and one action: use Automation Rule",
+   "A linear list of steps people complete: use Stepper",
+   "Approvers of one request: use Approval Step"
+  ],
+  "anatomy": [
+   "Header: type icon (zap for a trigger), Type, ellipsis menu icon",
+   "Body: Title and Detail (one-line summary)",
+   "Port out (and in, except the trigger)"
+  ],
+  "rules": [
+   "Steps run top to bottom; one trigger per workflow, at the top",
+   "Connect with 1.5 px border/default lines; condition nodes branch to Yes and No",
+   "Click selects (State=selected) and opens settings in the Side Panel",
+   "State=error says what is missing (\"Choose a recipient\"); the workflow cannot be turned on with errors",
+   "Detail summarizes the settings in one line"
+  ],
+  "a11y": [
+   "Nodes are focusable in run order; Enter opens settings; Delete removes with Undo",
+   "Every node and edge has a text label; a list view of the steps exists for screen readers",
+   "Error is text in the node, not only a red border"
+  ],
+  "code": "@xyflow/react custom node (Handle for ports) with shadcn Card styling; settings in Sheet.",
+  "guides": [
+   "skills/build-ui/patterns/approvals.md",
+   "skills/build-ui/components/boards-and-calendars.md"
+  ]
+ },
+ "Mapping Row": {
+  "summary": "Maps one source column or field to a target field during import or sync setup: source with a sample, arrow, target Select and status.",
+  "use": [
+   "Map columns step of a CSV or XLSX import",
+   "Field mapping of an integration or sync",
+   "Matching fields between two systems before a migration"
+  ],
+  "avoid": [
+   "Moving items between two lists: use Transfer List",
+   "Editing one value: use Field",
+   "Comparing two versions: use Diff Viewer"
+  ],
+  "anatomy": [
+   "Source: name and sample value (\"e.g. 1,240.00\")",
+   "Arrow-right",
+   "Target: Select",
+   "Status: circle-check (mapped), skipped (unmapped), error"
+  ],
+  "rules": [
+   "Pre-fill obvious matches by name; the user confirms",
+   "Unmapped fields are skipped and say so (\"Will not be imported\")",
+   "Error explains the type clash (\"Text cannot go into Amount\")",
+   "Required target fields must be mapped before Continue",
+   "A summary above counts mapped, skipped and errors; save the mapping as a template"
+  ],
+  "a11y": [
+   "The Select is labelled with the source name (\"Map invoice_total to\")",
+   "Status is text or an icon with a label, never color alone",
+   "Errors are linked with aria-describedby and listed in the summary"
+  ],
+  "code": "custom row: shadcn Select (or Combobox for many fields) + lucide ArrowRight + status Badge; react-hook-form field array.",
+  "guides": [
+   "skills/build-ui/patterns/enterprise-apps.md",
+   "skills/build-ui/patterns/common-flows.md"
+  ]
+ },
+ "Price": {
+  "summary": "A price as people compare it: amount with currency, period, and the old price struck through during a discount.",
+  "use": [
+   "Plan Card prices (Size=default)",
+   "Product Card and Line Item prices (Size=sm)",
+   "A single-plan pricing page (Size=lg)",
+   "Add-ons and one-time fees in a list"
+  ],
+  "avoid": [
+   "Totals, taxes and discounts in a breakdown: use Summary Row",
+   "A key number that is not a price: use Figure or Stat Card",
+   "A price people type: use Currency Input"
+  ],
+  "anatomy": [
+   "Old price (Show old price): struck through, muted",
+   "Amount: with the currency symbol, the largest text",
+   "Period (Show period): muted, \"per seat / month\", \"one-time\"",
+   "Size: sm, default, lg"
+  ],
+  "rules": [
+   "Amounts in the locale format of the market (€29, €1,290)",
+   "Period names the unit and the interval; yearly prices shown per month say \"billed yearly\"",
+   "Say whether VAT is included near the price",
+   "Old price only during a real discount, with the end date nearby",
+   "Prices compared side by side use the same Size"
+  ],
+  "a11y": [
+   "The old price is announced as such (\"Was €35, now €29\"): <s> alone is not read by most screen readers",
+   "Amount and period read as one phrase (\"€29 per seat per month\")",
+   "The muted period and old price meet 4.5:1"
+  ],
+  "code": "custom: <span> amount, <s> old price and a period in text-muted-foreground; Intl.NumberFormat with currency, tabular-nums.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Check List Item": {
+  "summary": "One feature in a plan or a comparison: a check when included, a dash and muted text when not.",
+  "use": [
+   "Features of a Plan Card",
+   "What is included on a single-plan page",
+   "Benefits next to a sign-up form or a CTA card"
+  ],
+  "avoid": [
+   "The full comparison across plans: use Block / Comparison Table",
+   "Tasks people tick off: use Checklist Item",
+   "Benefits with an icon and a description: use Feature Item",
+   "Password or field rules: use Requirement Item"
+  ],
+  "anatomy": [
+   "Icon: check (Included=true) or a dash (Included=false)",
+   "Label: one feature, muted when not included"
+  ],
+  "rules": [
+   "Lead with the benefit; numbers where they matter (\"Up to 5 approvers\")",
+   "5-8 items per plan; the full comparison goes in Block / Comparison Table",
+   "Same order of features across the plans of a section",
+   "Long labels wrap under the label, never under the icon",
+   "Show not-included items only when the contrast helps the choice"
+  ],
+  "a11y": [
+   "Code as a <ul>; the icon is aria-hidden",
+   "Not-included items carry visually hidden text (\"Not included\"), not only the dash",
+   "Muted text still meets 4.5:1"
+  ],
+  "code": "<ul> of <li class=\"flex gap-2\"> with lucide Check or Minus (aria-hidden) and an sr-only state.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Pricing Toggle": {
+  "summary": "Monthly or yearly switch above plan cards, with what the yearly period saves.",
+  "use": [
+   "A pricing section with monthly and yearly billing",
+   "Plan choice in billing settings",
+   "Above Block / Pricing Calculator"
+  ],
+  "avoid": [
+   "More than two periods or a currency choice: use Toggle Group or Select",
+   "A setting that turns something on or off: use Switch",
+   "Views of the same data: use View Switcher"
+  ],
+  "anatomy": [
+   "Toggle Group: Monthly, Yearly (Period sets the selected one)",
+   "Saving Badge (Show saving): \"Save 20%\""
+  ],
+  "rules": [
+   "Switching updates every price on the page at once, without a reload",
+   "Default to the period most customers buy",
+   "The saving is a real number (\"Save 20%\" or \"2 months free\")",
+   "Yearly prices say \"billed yearly\" next to the Price",
+   "The chosen period carries over to sign-up and checkout (in the URL)"
+  ],
+  "a11y": [
+   "Toggle Group with type=\"single\" and aria-label=\"Billing period\"",
+   "The saving is part of the Yearly item's accessible name or linked with aria-describedby",
+   "After a switch, an aria-live=\"polite\" region says what changed (\"Prices per month, billed yearly\")"
+  ],
+  "code": "shadcn ToggleGroup type=\"single\" with a Badge; the period in state and in the URL (?billing=yearly).",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Plan Card": {
+  "summary": "One plan in a pricing section: name, who it is for, Price, the main action and what it adds as Check List Items.",
+  "use": [
+   "Block / Pricing with 2-4 plans side by side",
+   "Plan choice in billing settings and upgrade dialogs",
+   "One recommended plan next to a short comparison"
+  ],
+  "avoid": [
+   "The detailed feature comparison: use Block / Comparison Table",
+   "A single plan with its own page: use Block / Pricing Single",
+   "A choice inside a form: use Option Card",
+   "Current plan usage in settings: use Usage Meter"
+  ],
+  "anatomy": [
+   "Plan name",
+   "Description: who it is for, one sentence",
+   "Price (exposed)",
+   "CTA: Button (primary when Featured=true)",
+   "Separator",
+   "Features title: \"Everything in Starter, plus:\"",
+   "Features slot: Check List Items"
+  ],
+  "rules": [
+   "Featured=true on one recommended plan only, with the primary button",
+   "2-4 plans, cheapest first, the same order of features",
+   "Enterprise says \"Contact sales\" instead of a price",
+   "CTA labels match across the page (\"Start free trial\"); one primary per section",
+   "Features title says what the plan adds to the one before",
+   "Cards in a row share height; buttons and prices align"
+  ],
+  "a11y": [
+   "The plan name is a heading one level below the section title",
+   "The CTA names the plan (\"Start free trial, Business plan\") with aria-label or aria-describedby",
+   "The recommended plan says it in text, not only with the border"
+  ],
+  "code": "shadcn Card with Price, Button and a <ul> of Check List Items; featured with ring-2 ring-primary.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/components/card.md"
+  ]
+ },
+ "Announcement Pill": {
+  "summary": "A short link above a hero title to the newest launch: \"New\" tag, one line, arrow.",
+  "use": [
+   "Above the Hero title for a launch or a release",
+   "Top of a changelog or a product page for the latest version"
+  ],
+  "avoid": [
+   "Product notices inside the app: use Alert",
+   "A site-wide message above the Navbar: use Block / Announcement Banner",
+   "A status or a label: use Badge"
+  ],
+  "anatomy": [
+   "Tag Badge (Show tag): \"New\"",
+   "Label: one line",
+   "Arrow icon: arrow-right"
+  ],
+  "rules": [
+   "One at a time; remove it after a few weeks",
+   "Links to the announcement or the changelog",
+   "Label is one line (about 40 characters) and says what is new",
+   "Tag says \"New\" or \"Beta\", nothing louder",
+   "Never for errors or outages"
+  ],
+  "a11y": [
+   "The whole pill is one link; its name reads tag and label (\"New: Automations for every team\")",
+   "The arrow icon is aria-hidden",
+   "Visible focus ring around the pill; label meets 4.5:1"
+  ],
+  "code": "<a> with rounded-full border, a shadcn Badge and lucide ArrowRight.",
+  "guides": [
+   "skills/build-ui/components/badge.md",
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Trust Badge": {
+  "summary": "A certification or compliance claim with what backs it: SOC 2, ISO 27001, GDPR, PCI DSS.",
+  "use": [
+   "Footers (Block / Footer Corporate)",
+   "Pricing and security sections",
+   "Sign-up pages for enterprise buyers",
+   "A trust or security page"
+  ],
+  "avoid": [
+   "Customer logos: use Logo Tile",
+   "Customer proof in words: use Testimonial Card",
+   "The status of a record: use Badge"
+  ],
+  "anatomy": [
+   "Icon (swap): shield-check",
+   "Name: \"SOC 2 Type II\"",
+   "Detail: muted, audit date or region"
+  ],
+  "rules": [
+   "Only claims that are current and can be shown on request",
+   "Detail says what backs it (\"Audited September 2026\", \"Data in the EU\")",
+   "Link to the trust page",
+   "Update or remove it when a certificate expires",
+   "Same order everywhere; 3-5 in a row"
+  ],
+  "a11y": [
+   "The icon is aria-hidden; name and detail are text, not part of an image",
+   "When linked, the link names the claim (\"SOC 2 Type II report\")",
+   "The muted detail meets 4.5:1"
+  ],
+  "code": "custom: lucide icon and two lines of text in a bordered <div>; an <a> when it links to the trust page.",
+  "guides": [
+   "skills/build-ui/components/badge.md",
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Testimonial Card": {
+  "summary": "One customer quote as a card for testimonial grids and carousels: optional rating, the quote with a specific result, Byline.",
+  "use": [
+   "Block / Testimonial Grid and Testimonial Carousel",
+   "Next to a pricing or sign-up section",
+   "Case study lists"
+  ],
+  "avoid": [
+   "A quote inside an article: use Quote",
+   "Product reviews from buyers: use Review Item",
+   "One large quote for a section: use Block / Testimonial Single"
+  ],
+  "anatomy": [
+   "Rating (Show rating)",
+   "Quote: 2-4 lines",
+   "Byline: Avatar, name, role and company"
+  ],
+  "rules": [
+   "Real people with permission; name, role and company",
+   "Specific results beat praise (\"closed the books four days faster\")",
+   "Same length across a grid (2-4 lines)",
+   "Rating only when it comes with the quote from the same customer",
+   "Real photos or initials; no stock photos"
+  ],
+  "a11y": [
+   "Code as <figure> with <blockquote> and the Byline in <figcaption>",
+   "Rating has aria-label=\"Rated 5 out of 5\"",
+   "In a carousel, one card per slide with a pause control"
+  ],
+  "code": "shadcn Card with <figure><blockquote> and a Byline in <figcaption>.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/components/content.md"
+  ]
+ },
+ "Footnote": {
+  "summary": "A numbered note at the end of an article, report or pricing page that explains a claim in the text.",
+  "use": [
+   "Pricing conditions (VAT, exchange rates)",
+   "Reports and case studies that qualify a number",
+   "Claims in a hero or a stats section"
+  ],
+  "avoid": [
+   "Several sources with links: use Sources",
+   "Warnings people must read: use Alert",
+   "A short definition on hover: use Tooltip"
+  ],
+  "anatomy": [
+   "Number: matches the superscript in the text",
+   "Text: one or two sentences",
+   "Back link (Show back link): arrow-up icon and \"Back to text\""
+  ],
+  "rules": [
+   "Numbers follow the order in the text, starting at 1",
+   "The number matches a superscript link in the text",
+   "Back to text returns to the same reference",
+   "One or two sentences per note",
+   "Notes sit together at the end of the page or section"
+  ],
+  "a11y": [
+   "Code as an <ol> with an id per note",
+   "The superscript link has an aria-label (\"Footnote 1\")",
+   "The back link has an aria-label (\"Back to reference 1\") and moves focus to it"
+  ],
+  "code": "custom: <ol> of notes with ids; <sup><a href=\"#fn-1\"> in the text and a back link to #fnref-1.",
+  "guides": [
+   "skills/build-ui/components/content.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Step Item": {
+  "summary": "One step of \"How it works\" on a marketing or onboarding page: number, short title, one sentence.",
+  "use": [
+   "A How it works section with 3-4 steps",
+   "Onboarding pages that explain the setup",
+   "The overview of a help article"
+  ],
+  "avoid": [
+   "Steps people do in the product (a wizard): use Stepper",
+   "Benefits with no order: use Feature Item",
+   "Tasks people tick off: use Checklist Item",
+   "Events over time: use Timeline Item"
+  ],
+  "anatomy": [
+   "Number circle: 1, 2, 3",
+   "Title: short, starts with a verb",
+   "Description: one sentence, muted",
+   "Layout: vertical, horizontal"
+  ],
+  "rules": [
+   "3-4 steps: vertical in a row, horizontal in a column",
+   "Numbers start at 1 and follow the order",
+   "Title in 2-5 words; description in one sentence",
+   "Same Layout across a group"
+  ],
+  "a11y": [
+   "Code as an <ol> so the order is read; the number circle is aria-hidden",
+   "Titles are headings one level below the section title",
+   "Muted description meets 4.5:1"
+  ],
+  "code": "<ol> of <li> with a number circle (rounded-full bg-muted), <h3> and <p>.",
+  "guides": [
+   "skills/build-ui/components/content.md",
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/components/stepper.md"
+  ]
+ },
+ "Logo Tile": {
+  "summary": "A customer or partner logo in a tile for logo clouds, integration grids and case study lists.",
+  "use": [
+   "Block / Logo Cloud right after the Hero",
+   "Integration and partner grids",
+   "Case study lists by customer"
+  ],
+  "avoid": [
+   "Your own brand in the Navbar: use Logo",
+   "An integration people connect, with status and actions: use Integration Card",
+   "Certifications: use Trust Badge"
+  ],
+  "anatomy": [
+   "Logo: image fill or vector in place of the placeholder icon",
+   "Name: text fallback (\"Northwind\")",
+   "Style: bordered, plain"
+  ],
+  "rules": [
+   "Single color (foreground/muted) so the row reads as one",
+   "Same height for every logo; adjust wide and tall logos by eye",
+   "Real customers or partners with permission only",
+   "Link only when the tile leads to a case study or an integration",
+   "4-8 per row on desktop, 2-3 on mobile"
+  ],
+  "a11y": [
+   "The logo image has the company name as alt",
+   "A linked tile names the destination (\"Northwind case study\")",
+   "The row is a <ul> under a heading (\"Trusted by finance teams at\")"
+  ],
+  "code": "<li> with <img alt> or inline SVG in currentColor (text-muted-foreground); an <a> when it links.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Quantity Selector": {
+  "summary": "Change a quantity in steps of one: minus, the number, plus; the number is also typeable.",
+  "use": [
+   "Cart lines (Size=sm)",
+   "Product page next to Add to cart (Size=default)",
+   "Order forms with several items"
+  ],
+  "avoid": [
+   "Decimals or large ranges: use Number Input",
+   "A value on a scale: use Slider",
+   "A read-only quantity: use Line Item Layout=summary"
+  ],
+  "anatomy": [
+   "Decrease: Button Icon (minus)",
+   "Value: the number, typeable",
+   "Increase: Button Icon (plus)",
+   "Size: sm, default; State: default, min"
+  ],
+  "rules": [
+   "State=min disables minus at the lowest quantity (1, or 0 when removing is allowed)",
+   "Max comes from stock; say it when reached (\"Only 3 left\") and disable plus",
+   "Typed values outside the range go back to the nearest allowed one, with a message",
+   "Totals update at once"
+  ],
+  "a11y": [
+   "The value is an input with a label that names the product (\"Quantity, Linen shirt\") and min and max",
+   "Buttons have aria-labels \"Decrease quantity\" and \"Increase quantity\"",
+   "Arrow keys change the value; a disabled button keeps focus on the input"
+  ],
+  "code": "custom: two shadcn Button size=\"icon\" around an Input type=\"number\" inputMode=\"numeric\" with min and max.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/components/input.md"
+  ]
+ },
+ "Stock Indicator": {
+  "summary": "Availability of a product or variant: in stock, low with the number left, or out of stock.",
+  "use": [
+   "Next to the price on a product page",
+   "Cart lines",
+   "Product Card when stock matters"
+  ],
+  "avoid": [
+   "The status of an order or a record: use Badge",
+   "Delivery progress: use Shipment Tracker",
+   "System status: use Service Status Row"
+  ],
+  "anatomy": [
+   "Status Dot with the level as text: \"In stock\", \"Only 3 left\", \"Out of stock\"",
+   "Level: in stock, low, out"
+  ],
+  "rules": [
+   "Low only when it is true, with the number left; never to create pressure",
+   "Out of stock keeps the product visible with Notify me or the restock date nearby",
+   "Follows the selected variant and updates when it changes",
+   "Text says the level; color is never the only cue"
+  ],
+  "a11y": [
+   "The dot is aria-hidden; the text carries the meaning",
+   "A change after a variant switch is announced in an aria-live=\"polite\" region",
+   "Text meets 4.5:1"
+  ],
+  "code": "custom: Status Dot and a text <span>, from the inventory of the selected variant.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/components/indicators.md"
+  ]
+ },
+ "Wishlist Button": {
+  "summary": "Save a product for later: heart outline, filled when saved.",
+  "use": [
+   "Product Card, top right over the image",
+   "Product page, next to Add to cart",
+   "Cart lines, to move an item to saved"
+  ],
+  "avoid": [
+   "Reacting to content or messages: use Reaction",
+   "Adding to the cart: use Button",
+   "Sharing a product: use Social Share"
+  ],
+  "anatomy": [
+   "Button Icon: heart, outline when Saved=false, filled when Saved=true"
+  ],
+  "rules": [
+   "Toggles at once, with a short toast only the first time (\"Saved to your list\")",
+   "Never leaves the page",
+   "Over a photo, the button keeps its background for contrast",
+   "Signed-out people can save too; ask to sign in when they open the list"
+  ],
+  "a11y": [
+   "The accessible name says the state and the product (\"Save Linen shirt\", \"Remove Linen shirt from saved\")",
+   "Visible focus ring over images; touch target at least 44 px on mobile",
+   "The heart icon is aria-hidden"
+  ],
+  "code": "shadcn Button size=\"icon\" variant=\"ghost\" with lucide Heart (fill-current when saved); optimistic update.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/components/button.md"
+  ]
+ },
+ "Variant Swatch": {
+  "summary": "One option of a product variant: a color dot or a size box.",
+  "use": [
+   "Colors and sizes on a product page",
+   "Material or finish choices",
+   "A quick add dialog from a Product Card"
+  ],
+  "avoid": [
+   "Picking any color: use Color Picker or Swatch Picker",
+   "Options with a price or a description: use Option Card",
+   "Long lists of options: use Select"
+  ],
+  "anatomy": [
+   "Color: fill from the product photo (Type=color)",
+   "Label: \"M\" (Type=size)",
+   "State: default, selected, unavailable"
+  ],
+  "rules": [
+   "Group swatches under a label that names the choice and the value (\"Color: Sand\")",
+   "Selected has a 2 px ring",
+   "Unavailable stays visible, muted or struck through, and says \"Out of stock\" on hover",
+   "Colors come from the product photo",
+   "Choosing a swatch updates photo, price and stock"
+  ],
+  "a11y": [
+   "The group is a radiogroup with a label; each swatch is a radio named by its value (\"Sand\", \"M\")",
+   "Unavailable swatches stay focusable with aria-disabled and \"Out of stock\" in the name",
+   "Arrow keys move between swatches; color is never the only cue"
+  ],
+  "code": "shadcn RadioGroup (or ToggleGroup type=\"single\") with custom items; color values from the product data.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Product Card": {
+  "summary": "A product in a grid or carousel: square photo, sale or sold-out badges, wishlist, name, variant hint, price and optional quick add.",
+  "use": [
+   "Product grids and category pages (3-4 per row on desktop, 2 on mobile)",
+   "Carousels of related products",
+   "Product search results"
+  ],
+  "avoid": [
+   "Articles and case studies: use Post Card",
+   "A product in a cart or an order: use Line Item",
+   "The product page itself: use Block / Product Detail"
+  ],
+  "anatomy": [
+   "Image Placeholder 1:1",
+   "Badges: sale %, new or sold out (State)",
+   "Wishlist: Button Icon ghost, top right (Show wishlist)",
+   "Name: 2 lines",
+   "Variant text: \"Sand · 3 colors\"",
+   "Price: sale price and struck original when State=sale",
+   "Action: Button (Show action), \"Add to cart\" or \"Notify me\" when sold out"
+  ],
+  "rules": [
+   "The whole card opens the product; Wishlist and the action button are the only other controls",
+   "Name in 2 lines at most, then cut",
+   "State=sale: new price, struck original and the sale % Badge",
+   "State=sold-out stays visible, image dimmed, action becomes \"Notify me\"",
+   "Add to cart opens the Mini Cart, never a new page",
+   "Same photo ratio and background across a grid"
+  ],
+  "a11y": [
+   "One link for the card (on the name, stretched over the card)",
+   "Wishlist and Add to cart are separate buttons with the product name in their labels",
+   "The image alt is empty when the name sits next to it; the price reads old and new"
+  ],
+  "code": "shadcn Card with an <a> on the name (after:absolute after:inset-0), Badge, Button size=\"icon\" for wishlist, Button for the action.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/components/card.md"
+  ]
+ },
+ "Line Item": {
+  "summary": "One product in a cart, checkout summary, order or invoice: image, name, variant, quantity and line total.",
+  "use": [
+   "Cart page and Mini Cart (Layout=cart)",
+   "Checkout order summary (Layout=summary)",
+   "Order details, invoices and confirmation pages"
+  ],
+  "avoid": [
+   "Subtotal, taxes and discounts: use Summary Row",
+   "Orders in an order history: use Order Row",
+   "A product in a grid: use Product Card"
+  ],
+  "anatomy": [
+   "Image Placeholder 1:1",
+   "Name",
+   "Variant: \"Sand · M\"",
+   "Quantity: Quantity Selector sm (cart) or \"Qty 2\" (summary)",
+   "Total: line total",
+   "Remove: Button (cart)"
+  ],
+  "rules": [
+   "cart lets people change the quantity and remove; summary is read-only",
+   "The line total updates at once",
+   "Removing offers Undo in a Toast",
+   "Name in 2 lines at most; variant in one line",
+   "When quantity is above 1, show the unit price (\"€47.20 each\")"
+  ],
+  "a11y": [
+   "Code as a <ul> of items",
+   "Remove names the product (\"Remove Linen shirt\")",
+   "Total changes are announced in an aria-live=\"polite\" region",
+   "The image is decorative next to the name (alt=\"\")"
+  ],
+  "code": "custom: <li class=\"flex gap-4\"> with <img>, text, Quantity Selector, amount (tabular-nums) and a ghost Button.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Mini Cart": {
+  "summary": "The cart in a popover after Add to cart or from the cart icon: items, subtotal, View cart and Checkout.",
+  "use": [
+   "After Add to cart (open for 4 s)",
+   "From the cart icon in the Navbar",
+   "A quick check before checkout"
+  ],
+  "avoid": [
+   "Changing quantities and applying codes: use Line Item Layout=cart on the cart page",
+   "The cart on mobile: use Sheet",
+   "A confirmation only: use Toast with \"View cart\""
+  ],
+  "anatomy": [
+   "Header: title and close Button Icon",
+   "Items slot: Line Items",
+   "Separator",
+   "Subtotal: Summary Row",
+   "Note: shipping and taxes at checkout",
+   "Actions: View cart (outline), Checkout (primary)"
+  ],
+  "rules": [
+   "Opens for 4 s after adding, then on demand; hover or focus keeps it open",
+   "Shows and removes only; quantities change on the cart page",
+   "Empty: \"Your cart is empty\" and a link to keep shopping",
+   "3-4 items, then the list scrolls",
+   "The note says what the subtotal leaves out"
+  ],
+  "a11y": [
+   "Opened after adding, it does not take focus; \"Added to cart\" is announced in an aria-live region",
+   "Opened from the icon, focus moves into it; Esc closes and returns focus to the icon",
+   "The cart icon names the count (\"Cart, 2 items\")"
+  ],
+  "code": "shadcn Popover (Sheet on mobile) with Line Items, Summary Row and two Buttons.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/components/popover.md"
+  ]
+ },
+ "Order Row": {
+  "summary": "One order in an account's order history: number, date, item count, status, total and a chevron to the order page.",
+  "use": [
+   "Order history in an account",
+   "Recent orders on an account overview",
+   "A customer's orders in a support tool"
+  ],
+  "avoid": [
+   "Many orders with sorting and bulk actions: use Table",
+   "The items inside an order: use Line Item",
+   "Where a delivery is: use Shipment Tracker"
+  ],
+  "anatomy": [
+   "Number: \"Order #10482\"",
+   "Meta: date · item count",
+   "Status Badge: processing, shipped, delivered, cancelled",
+   "Total",
+   "Chevron right"
+  ],
+  "rules": [
+   "Newest first",
+   "Status names come from one list across email, page and support",
+   "Search by order number above the list when there are more than 20",
+   "The whole row opens the order page",
+   "Cancelled orders stay in the list with their total"
+  ],
+  "a11y": [
+   "The row is one link named by number, status and total (\"Order #10482, Shipped, €112.40\")",
+   "Status is text in the Badge, not color alone; the chevron is aria-hidden",
+   "Dates in a <time> element"
+  ],
+  "code": "custom: <a> row (flex items-center) with a shadcn Badge; <time> for the date, Intl.NumberFormat for the total.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/components/badge.md"
+  ]
+ },
+ "Shipment Tracker": {
+  "summary": "Where an order is: the expected day first, carrier and tracking number, then the steps with dates.",
+  "use": [
+   "The order page",
+   "The page a shipping email links to",
+   "A support view of an order"
+  ],
+  "avoid": [
+   "A process people go through: use Stepper",
+   "A history of changes: use Timeline Item",
+   "A list of orders: use Order Row"
+  ],
+  "anatomy": [
+   "Header: package icon, ETA, carrier · tracking number, Track Button",
+   "Steps: Ordered, Shipped, Out for delivery, Delivered, with dates"
+  ],
+  "rules": [
+   "The expected day comes first (\"Arriving Thursday, 14 Nov\")",
+   "Problems (delayed, returned) replace the step with an error and say what happens next",
+   "Track links to the carrier for the full scan history",
+   "The tracking number can be copied",
+   "Several parcels: one tracker per parcel"
+  ],
+  "a11y": [
+   "Steps as an <ol>; the current step has aria-current=\"step\"",
+   "Step states are text (done, current, delayed), not color alone",
+   "The Track link names the carrier and says it opens a new tab"
+  ],
+  "code": "custom: header and an <ol> of Steps; the carrier tracking URL from the shipment data.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/components/stepper.md"
+  ]
+ },
+ "Address Card": {
+  "summary": "A saved address to pick or manage: name, address lines, phone, Default badge, Edit and Remove.",
+  "use": [
+   "Choosing an address in checkout (Show radio)",
+   "The address book in account settings",
+   "Billing address in billing settings"
+  ],
+  "avoid": [
+   "Entering a new address: use Block / Address or Address Autocomplete",
+   "An office or a store people visit: use Location Card",
+   "A choice with a price or a description: use Option Card"
+  ],
+  "anatomy": [
+   "Radio (Show radio)",
+   "Name and Default Badge (Show default)",
+   "Address: lines in the country's format, phone",
+   "Actions: Edit, Remove Buttons"
+  ],
+  "rules": [
+   "Lines in the format of the country",
+   "Checkout: a radio, pick one, Selected=true; account settings: no radio",
+   "Add new address is the last card",
+   "Remove asks to confirm (Confirm Popover)",
+   "One default address; the Default badge sits next to the name"
+  ],
+  "a11y": [
+   "In checkout the cards are a radiogroup; the whole card is the label of its radio",
+   "Edit and Remove name the address (\"Edit address, Elena Popa\")",
+   "Lines in an <address> element"
+  ],
+  "code": "shadcn RadioGroup with Card items (Label wraps the card); <address> for the lines; Buttons for Edit and Remove.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/components/card.md"
+  ]
+ },
+ "Payment Method Card": {
+  "summary": "A saved card, bank account or wallet in billing settings or checkout: brand, last 4 digits, expiry, Default badge and a menu.",
+  "use": [
+   "Billing settings (Block / Billing)",
+   "Saved methods in checkout",
+   "Subscription management"
+  ],
+  "avoid": [
+   "Entering a new card: use Block / Payment",
+   "A saved address: use Address Card",
+   "Invoices and charges: use Table"
+  ],
+  "anatomy": [
+   "Brand: \"VISA\"",
+   "Card: \"Visa ending in 4242\" and expiry",
+   "Default Badge",
+   "Menu: Button Icon (Make default, Remove)",
+   "State: default, expired"
+  ],
+  "rules": [
+   "Never show more than the last 4 digits",
+   "expired says it in destructive and offers Update",
+   "Removing the default asks which method replaces it",
+   "Brand marks come from the payment provider"
+  ],
+  "a11y": [
+   "The card reads as text (\"Visa ending in 4242, expires 08/28\"), not dots",
+   "Expired is said in text, not color alone",
+   "The menu button names the method (\"Options for Visa ending in 4242\")"
+  ],
+  "code": "custom row on shadcn Card with Badge and DropdownMenu; data from the payment provider (for example Stripe PaymentMethod).",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Review Item": {
+  "summary": "One customer review: who, verified purchase, date, stars, a title, the text and Helpful votes.",
+  "use": [
+   "Reviews on a product page under Rating Summary",
+   "Reviews of an app, a course or a service",
+   "A review queue in moderation tools"
+  ],
+  "avoid": [
+   "Quotes chosen for marketing: use Testimonial Card",
+   "Discussion threads: use Comment",
+   "Asking for satisfaction: use CSAT Rating"
+  ],
+  "anatomy": [
+   "Header: Avatar, name, Verified Badge (Show verified), date",
+   "Rating sm",
+   "Title",
+   "Text",
+   "Helpful (Show helpful): \"Helpful?\" with Yes and No Buttons"
+  ],
+  "rules": [
+   "Long text cuts with Show More",
+   "Sort by most helpful by default, with filters by stars",
+   "Never edit what customers wrote; company replies sit under the review",
+   "Verified only when the purchase is confirmed",
+   "Dates as day, month, year (\"3 Oct 2026\")"
+  ],
+  "a11y": [
+   "Code as an <article>; the title is a heading",
+   "Rating has aria-label=\"Rated 4 out of 5\"",
+   "Helpful buttons use aria-pressed and include the count in their name",
+   "Show More uses aria-expanded"
+  ],
+  "code": "<article> with Avatar, Badge, Rating, text and two ghost Buttons; Show More for long text.",
+  "guides": [
+   "skills/build-ui/components/rating.md",
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Rating Summary": {
+  "summary": "The average rating with how it splits across 1-5 stars, above the reviews.",
+  "use": [
+   "Above the reviews on a product page",
+   "App and service rating pages",
+   "Course or venue pages with reviews"
+  ],
+  "avoid": [
+   "A rating next to a name or a price: use Rating with value and count",
+   "Survey results: use Distribution Bar or Bar Chart Horizontal",
+   "One score without the split: use Figure"
+  ],
+  "anatomy": [
+   "Average: the number, Rating and count (\"128 reviews\")",
+   "Distribution: 5 rows of stars, bar and count"
+  ],
+  "rules": [
+   "Each bar row filters the list to that rating",
+   "Count says how many reviews it comes from",
+   "Under 5 reviews, show the count only",
+   "Bars scale to the share of reviews; 5 stars on top"
+  ],
+  "a11y": [
+   "The average reads \"4.6 out of 5, 128 reviews\"",
+   "Each row is a button named by stars and count (\"5 stars, 92 reviews\") with aria-pressed when filtering",
+   "Bars are aria-hidden; the counts are text"
+  ],
+  "code": "custom: Rating and rows of shadcn Progress inside Buttons that set the star filter.",
+  "guides": [
+   "skills/build-ui/components/rating.md",
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Link Preview": {
+  "summary": "A pasted URL shown as a card in comments, chat, notes and editors: site, title, description and image from the page metadata.",
+  "use": [
+   "Links in comments and chat messages",
+   "Links in notes and rich text",
+   "Shared links in an activity feed"
+  ],
+  "avoid": [
+   "Articles on your own site: use Post Card",
+   "Attached files: use File Item",
+   "A record inside the product: use Entity Card"
+  ],
+  "anatomy": [
+   "Site: globe icon and domain",
+   "Title: 2 lines",
+   "Description: 2 lines, muted",
+   "Image (Show image): Image Placeholder",
+   "Layout: horizontal, vertical"
+  ],
+  "rules": [
+   "The whole card opens the link in a new tab",
+   "The author can remove the preview and keep the plain link",
+   "No preview for private links that need sign-in",
+   "Title and description cut at 2 lines",
+   "While loading, a Skeleton; when the fetch fails, the plain link"
+  ],
+  "a11y": [
+   "One link wraps the card; its name is the title and it says it opens a new tab",
+   "The image is decorative (alt=\"\")",
+   "Remove has aria-label=\"Remove preview\""
+  ],
+  "code": "custom: shadcn Card inside <a target=\"_blank\" rel=\"noopener\">; Open Graph metadata fetched on the server.",
+  "guides": [
+   "skills/build-ui/components/card.md",
+   "skills/build-ui/components/comments-and-chat.md"
+  ]
+ },
+ "Location Card": {
+  "summary": "One office, store or venue: city, tag, full address, phone, hours and a directions link.",
+  "use": [
+   "Contact and careers pages, in grids of 3 (Block / Offices)",
+   "Next to a Map when there are several places",
+   "Store finder results"
+  ],
+  "avoid": [
+   "Saved shipping addresses: use Address Card",
+   "One address in a record: use Description List Item",
+   "An event at a place: use Event Card"
+  ],
+  "anatomy": [
+   "Title row: city and tag Badge (Show tag): Headquarters, Store",
+   "Address",
+   "Meta Items: phone, hours",
+   "Directions: Button link"
+  ],
+  "rules": [
+   "Addresses in the format of the country",
+   "Directions opens the map app with the address",
+   "Phone as a tel: link in international format",
+   "Hours with days; say when a place is closed",
+   "Same fields in every card of a grid"
+  ],
+  "a11y": [
+   "The city is a heading; the address is in an <address> element",
+   "The Directions link names the place (\"Directions to Berlin office\") and says it opens a new tab",
+   "Meta icons are aria-hidden"
+  ],
+  "code": "shadcn Card with <address>, a tel: link and a link to the maps URL.",
+  "guides": [
+   "skills/build-ui/components/card.md",
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Image Compare Slider": {
+  "summary": "Two images of the same view, before and after, with a handle to drag between them.",
+  "use": [
+   "Redesigns and site changes",
+   "Photo edits",
+   "Document versions"
+  ],
+  "avoid": [
+   "Many images: use Carousel Gallery",
+   "Text or code changes: use Diff Viewer",
+   "One image to view large: use Lightbox"
+  ],
+  "anatomy": [
+   "Before image: fill on \"before\"",
+   "After image: fill on \"after\", in a crop",
+   "Divider and handle with chevrons",
+   "Before and After labels: Badges"
+  ],
+  "rules": [
+   "Both images use the same ratio and framing",
+   "The handle starts in the middle",
+   "Labels say which side is which",
+   "Drag or arrow keys move the handle; on touch only the handle drags, so the page still scrolls",
+   "A caption says what changed"
+  ],
+  "a11y": [
+   "The handle is role=\"slider\" with aria-valuenow 0-100 and aria-label=\"Before and after comparison\"",
+   "Arrow keys move 5%, Home and End go to the ends",
+   "Both images have alt text"
+  ],
+  "code": "react-compare-slider, or custom: clip-path on the after image and an <input type=\"range\">.",
+  "guides": [
+   "skills/build-ui/components/content.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Device Frame": {
+  "summary": "A browser window or a phone around a product screenshot for marketing pages, docs and case studies.",
+  "use": [
+   "Block / Hero with Screenshot",
+   "Feature rows in Block / Features Split",
+   "Docs and case studies"
+  ],
+  "avoid": [
+   "Photos and illustrations: use Image Placeholder",
+   "A product demo with motion: use Video Thumbnail",
+   "Inside the product: use the real block or component"
+  ],
+  "anatomy": [
+   "Chrome: three dots and the address bar with lock icon (Device=browser)",
+   "Address: \"app.acme.com/invoices\"",
+   "Screen slot: a block or an image at 1:1",
+   "Device: browser, phone"
+  ],
+  "rules": [
+   "A real screen at 1:1; never stretch it",
+   "One frame style per page",
+   "The address matches the screen",
+   "Realistic content (Acme, invoices), no placeholder text"
+  ],
+  "a11y": [
+   "The screenshot has alt text that says what it shows",
+   "The frame chrome is decorative (aria-hidden)",
+   "Text inside the screenshot is never the only place for information"
+  ],
+  "code": "custom: <figure> with a rounded border, a top bar of dots and the URL, and an <img> or the live component inside.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Video Thumbnail": {
+  "summary": "A video before it plays: poster frame, play button and duration.",
+  "use": [
+   "Video cards in a resource hub",
+   "Tutorial lists",
+   "A demo link in a Hero or a feature section"
+  ],
+  "avoid": [
+   "Playing the video: use Video Player",
+   "Images that open large: use Lightbox",
+   "Audio only: use Audio Player"
+  ],
+  "anatomy": [
+   "Image Placeholder 16:9 (poster)",
+   "Play button: play icon",
+   "Duration Badge (Show duration)"
+  ],
+  "rules": [
+   "Click opens the Video Player in place or in a Lightbox",
+   "Title and description go under it in the card or list",
+   "The poster shows something from the video, never only a logo",
+   "Duration in m:ss; same ratio across a list"
+  ],
+  "a11y": [
+   "A button named by the video and its length (\"Play: Closing the books faster, 4 minutes\")",
+   "The play icon is aria-hidden; the duration is text",
+   "Visible focus ring over the image"
+  ],
+  "code": "<button> with an <img> poster, lucide Play and a Badge; opens the player (native <video> or Vidstack) in place or in a Dialog.",
+  "guides": [
+   "skills/build-ui/components/video-player.md"
+  ]
+ },
+ "Audio Player": {
+  "summary": "Plays one audio file: podcast episode, voice message, recorded call.",
+  "use": [
+   "Podcast episodes",
+   "Voice messages in chat",
+   "Recorded calls in a record"
+  ],
+  "avoid": [
+   "Video: use Video Player",
+   "Recording audio: use Voice Recorder",
+   "A list of episodes to pick from: use List Item"
+  ],
+  "anatomy": [
+   "Play: Button Icon (play, pause)",
+   "Title",
+   "Progress: current time, seek bar, length",
+   "Volume: Button Icon"
+  ],
+  "rules": [
+   "Space toggles play; arrows seek 5 s",
+   "Offer a transcript link next to it",
+   "One player plays at a time; never autoplay",
+   "Times in m:ss, h:mm:ss past an hour",
+   "Title in one line"
+  ],
+  "a11y": [
+   "The play button name follows the state (\"Play\", \"Pause\")",
+   "The seek bar is role=\"slider\" with aria-valuetext (\"4 minutes 12 seconds of 14 minutes 30 seconds\")",
+   "The volume button is named \"Mute\" or \"Unmute\""
+  ],
+  "code": "native <audio> with custom controls (shadcn Button and Slider), or Vidstack.",
+  "guides": [
+   "skills/build-ui/components/video-player.md"
+  ]
+ },
+ "Agenda Item": {
+  "summary": "One event in a day agenda: start and end time, a color bar for the calendar, title, place and people.",
+  "use": [
+   "\"Today\" on a dashboard",
+   "An agenda in a side panel or on mobile",
+   "The events of the day picked in a Calendar"
+  ],
+  "avoid": [
+   "Events placed on a day or week time grid: use Calendar Event",
+   "A meeting people are about to join, with Join: use Meeting Card",
+   "Public events with an image and registration: use Event Card"
+  ],
+  "anatomy": [
+   "Time: start (ui/label) over end (ui/caption, muted)",
+   "Color bar: the color of the calendar",
+   "Title: ui/label, one line; Now Badge when State=now",
+   "Meta: place and people, body/small, muted (\"Room 2 · 4 people\")"
+  ],
+  "rules": [
+   "Sort by start time; all-day events go on top with \"All day\" in place of the times",
+   "State=now highlights the running event with a Now badge; past events are muted, never hidden",
+   "Title stays on one line and truncates; the event page shows it in full",
+   "The color bar never carries meaning alone: the calendar name is in the event and in the legend",
+   "The whole row opens the event; no buttons inside the row"
+  ],
+  "a11y": [
+   "The row is one link or button named by title, time and place (\"Weekly cash review, 09:30 to 10:15, Room 2\")",
+   "Times in <time datetime>; the list is a ul with an aria-label (\"Today\")",
+   "Muted past rows still meet 4.5:1"
+  ],
+  "code": "custom: <li> with two <time> elements, a color span and two lines of text, wrapped in a link.",
+  "guides": [
+   "skills/build-ui/components/boards-and-calendars.md"
+  ]
+ },
+ "Meeting Card": {
+  "summary": "A meeting people are about to join: title, time with time zone, place or video link, who is invited, Join and Details.",
+  "use": [
+   "The next meeting on a dashboard",
+   "A call in the activity of a record (a customer, a deal)",
+   "A meeting reminder in a notification panel"
+  ],
+  "avoid": [
+   "A row in a day list: use Agenda Item",
+   "A block on a day or week grid: use Calendar Event",
+   "Public events with registration: use Event Card"
+  ],
+  "anatomy": [
+   "Title: one line, two at most",
+   "Meta Items: time with time zone, place or video link",
+   "People: Avatar Group of the invitees",
+   "Actions: Join Button (primary when State=live) and Details Button"
+  ],
+  "rules": [
+   "State=live from 5 minutes before the start until the end; Join becomes primary",
+   "The time line says day, start and end, and time zone (\"Tue 22 Oct · 14:00-15:00 EET\"); recurring meetings say so (\"Weekly\")",
+   "Place is a room or the video provider (\"Google Meet\"), never a raw URL",
+   "Avatar Group shows up to 4 people, then +N; the organizer first",
+   "Ended meetings leave the dashboard; in a record they stay with a link to notes"
+  ],
+  "a11y": [
+   "The card is an article with the title as its heading",
+   "Join is a link named with the meeting (\"Join Q4 planning with Northwind\")",
+   "The live state is in text (\"Starting now\"), never color alone",
+   "Times in <time datetime>"
+  ],
+  "code": "shadcn Card with Meta Items, Avatar Group and Buttons; Join as an <a> to the meeting URL.",
+  "guides": [
+   "skills/build-ui/components/boards-and-calendars.md",
+   "skills/build-ui/components/card.md"
+  ]
+ },
+ "Availability Row": {
+  "summary": "Working hours for one weekday in booking and team settings: on/off Switch, the day, one or more time ranges and a button to add a range.",
+  "use": [
+   "When people can book you (booking settings)",
+   "Team or support hours",
+   "Opening hours of a location"
+  ],
+  "avoid": [
+   "One on/off setting: use Setting Row",
+   "Picking one time: use Time Picker",
+   "Days off and holidays: use Date Range Picker"
+  ],
+  "anatomy": [
+   "Switch: available on this day",
+   "Day: ui/label",
+   "Hours: start Select, a separator, end Select",
+   "Add range: Button Icon (plus)"
+  ],
+  "rules": [
+   "Seven rows, Monday first unless the locale starts on Sunday",
+   "Available=false hides the hours and says \"Unavailable\"",
+   "Times in 15 or 30 minute steps; the end is after the start; overlapping ranges merge on save",
+   "Extra ranges stack under the first, each with a remove button",
+   "The time zone is said once above the list; \"Copy to all days\" in the header saves repeat work"
+  ],
+  "a11y": [
+   "The Switch is labelled with the day (\"Available on Monday\")",
+   "The Selects are labelled \"Monday start\" and \"Monday end\"; Add range has aria-label \"Add hours on Monday\"",
+   "Errors show under the row and are linked with aria-describedby"
+  ],
+  "code": "custom row: shadcn Switch, two Selects of times and Button size=\"icon\"; ranges with useFieldArray (react-hook-form).",
+  "guides": [
+   "skills/build-ui/patterns/booking.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Time Slot": {
+  "summary": "One bookable start time in a booking flow, shown in a grid under the chosen day.",
+  "use": [
+   "Booking a call, a demo or an appointment",
+   "A delivery or pickup window",
+   "Rescheduling a booking"
+  ],
+  "avoid": [
+   "A time people pick freely: use Time Picker",
+   "Picking the day: use Calendar",
+   "A few options that need more text: use Option Card"
+  ],
+  "anatomy": [
+   "Time: ui/label, centered (\"09:30\")",
+   "State: default, hover, selected (primary), disabled (strikethrough)"
+  ],
+  "rules": [
+   "Grid of 3-4 slots per row under the chosen day; one selected at a time",
+   "Taken slots are disabled with a strikethrough, or hidden when most slots are free",
+   "Show the time zone above the grid and the length of a slot (\"30 min\")",
+   "A day with no free slots says so and links to the next free day",
+   "A slot taken during checkout: explain and show the nearest free slots"
+  ],
+  "a11y": [
+   "The grid is a radiogroup; each slot has role=\"radio\" and aria-checked; arrow keys move",
+   "Disabled slots have aria-disabled and \"unavailable\" in the name",
+   "The footer repeats the choice in text (\"Tue, 22 Oct · 09:30\"), so the state is not color alone"
+  ],
+  "code": "shadcn ToggleGroup type=\"single\" (or RadioGroup) of outline Buttons; times from the availability API.",
+  "guides": [
+   "skills/build-ui/patterns/booking.md"
+  ]
+ },
+ "Loading Overlay": {
+  "summary": "Covers one region while its content reloads, keeping the old content faded underneath, with a Spinner and a short label.",
+  "use": [
+   "A table after a filter, sort or page change",
+   "A chart after a period change",
+   "A card that refreshes its data"
+  ],
+  "avoid": [
+   "First load of a page or a card: use Skeleton",
+   "Work that runs longer than about 10 seconds: use Job Item",
+   "One button or row that is busy: use Spinner",
+   "An upload with a known length: use Progress"
+  ],
+  "anatomy": [
+   "Content: the region underneath, faded",
+   "Scrim: background at partial opacity",
+   "Message: Spinner and Label (Show label), body/small"
+  ],
+  "rules": [
+   "Keep the old content in place so the layout does not jump; resize the overlay to the region it covers, never the whole page",
+   "Show it after about 300 ms; quicker loads need nothing",
+   "The label says what loads (\"Loading invoices…\")",
+   "The covered region is not interactive; the rest of the page stays usable",
+   "A failed load replaces it with an error Empty State in the same area, with \"Try again\""
+  ],
+  "a11y": [
+   "The region gets aria-busy=\"true\" while loading",
+   "The label is in a role=\"status\" element (aria-live=\"polite\"); the Spinner is aria-hidden when the label shows",
+   "Content underneath is inert; the label meets 4.5:1 over the scrim"
+  ],
+  "code": "custom: relative wrapper with an absolute inset-0 bg-background/60 layer and shadcn Spinner; aria-busy on the region.",
+  "guides": [
+   "skills/build-ui/patterns/loading-states.md",
+   "skills/build-ui/components/indicators.md"
+  ]
+ },
+ "Job Item": {
+  "summary": "A task that runs in the background (export, import, bulk send, report): name, progress with count and time left, Cancel; Download when done, Retry when failed.",
+  "use": [
+   "Exports and imports that take more than about 10 seconds",
+   "Bulk actions on many records",
+   "Reports the server builds"
+  ],
+  "avoid": [
+   "Short reloads of a region: use Loading Overlay",
+   "A file the person uploads: use File Item",
+   "A short note that something started: use Toast",
+   "A goal against a target: use Progress Card"
+  ],
+  "anatomy": [
+   "Icon tile: what the job does (download, upload, send)",
+   "Title: ui/label, the job and format (\"Export invoices (CSV)\")",
+   "Progress bar (State=running)",
+   "Status: count and time left, the result, or where it failed; body/small, muted",
+   "Action: Cancel Button Icon while running; Download when done; Retry when failed"
+  ],
+  "rules": [
+   "Running shows count and time left (\"1,240 of 3,000 · about 2 min left\"); an indeterminate bar when the total is unknown",
+   "Done offers the result (Download) and stays until dismissed",
+   "Failed says where it stopped (\"Stopped at row 1,241: invalid date\") and offers Retry",
+   "Stack jobs in a panel or a corner, newest on top; people keep working",
+   "Notify when it finishes if they left the page"
+  ],
+  "a11y": [
+   "The bar has role=\"progressbar\" with aria-valuenow and aria-valuetext (\"1,240 of 3,000\")",
+   "Done and failed are announced in a polite live region (\"Export ready\")",
+   "Cancel is named with the job (\"Cancel export invoices\"); failed status is text plus an icon"
+  ],
+  "code": "custom row: shadcn Progress and Button; job status by polling or server-sent events.",
+  "guides": [
+   "skills/build-ui/components/progress-and-slider.md",
+   "skills/build-ui/patterns/loading-states.md",
+   "skills/build-ui/patterns/notifications.md"
+  ]
+ },
+ "Feedback Widget": {
+  "summary": "A one-tap question at the end of a help article, an AI answer or a finished task: Yes or No, then an optional comment, then thanks.",
+  "use": [
+   "The end of a help or docs article",
+   "After a finished task (an import, a setup step)",
+   "Under an AI summary or answer outside chat"
+  ],
+  "avoid": [
+   "Feedback on one chat answer, with reasons: use Response Feedback",
+   "Loyalty over time: use NPS Survey",
+   "Satisfaction after one interaction: use CSAT Rating",
+   "Rating a product: use Rating"
+  ],
+  "anatomy": [
+   "Question: ui/label",
+   "Answers: Yes and No Buttons",
+   "Comment (State=comment): Textarea and Send",
+   "Thanks (State=thanks): a short confirmation in place"
+  ],
+  "rules": [
+   "One question; it never blocks the page",
+   "Ask once per page per person and remember the answer",
+   "After an answer, the comment is optional; after No it asks what was missing",
+   "Send the answer with the page and version so it can be acted on",
+   "Thanks replaces the widget in place; no dialog"
+  ],
+  "a11y": [
+   "Answers are a group labelled by the question; buttons use aria-pressed",
+   "Focus moves to the comment field after an answer",
+   "Thanks is in a role=\"status\" element"
+  ],
+  "code": "custom on shadcn Button and Textarea; send the answer with the page id and version.",
+  "guides": [
+   "skills/build-ui/components/rating.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "NPS Survey": {
+  "summary": "Net Promoter Score: a 0-10 scale with anchors, then one optional open question.",
+  "use": [
+   "A relationship survey every few months",
+   "In-app as a dismissible card",
+   "In an email with one link per score"
+  ],
+  "avoid": [
+   "Satisfaction with one interaction: use CSAT Rating",
+   "\"Was this helpful?\": use Feedback Widget",
+   "Rating a product or a review: use Rating"
+  ],
+  "anatomy": [
+   "Question: ui/label",
+   "Scale: 11 score buttons, 0-10",
+   "Anchors: \"Not likely\" and \"Very likely\", ui/caption, muted",
+   "Follow-up (State=answered): one open question with a Textarea"
+  ],
+  "rules": [
+   "At most every 90 days per person; never during onboarding or right after an error",
+   "The scale reads as numbers, not colors: all scores look the same until one is picked",
+   "One tap records the score; the follow-up is optional (\"What is the main reason for your score?\")",
+   "Dismissing counts as asked",
+   "On narrow screens the scale wraps to two rows (0-5, 6-10)"
+  ],
+  "a11y": [
+   "The scale is a radiogroup labelled by the question; arrow keys move",
+   "The ends include the anchors in their names (\"0, Not likely\")",
+   "Dismiss has aria-label \"Dismiss survey\""
+  ],
+  "code": "shadcn ToggleGroup type=\"single\" (or RadioGroup) of 11 Buttons and a Textarea; send the score with the user and date.",
+  "guides": [
+   "skills/build-ui/components/rating.md"
+  ]
+ },
+ "CSAT Rating": {
+  "summary": "Customer satisfaction after one interaction: five faces with words under them; one tap sends it.",
+  "use": [
+   "After a support ticket is closed",
+   "After a delivery",
+   "After an onboarding call"
+  ],
+  "avoid": [
+   "Loyalty over time: use NPS Survey",
+   "\"Was this page helpful?\": use Feedback Widget",
+   "Stars for a product: use Rating"
+  ],
+  "anatomy": [
+   "Question: ui/label",
+   "Faces: 5 options, emoji over a word (Very poor, Poor, OK, Good, Very good)",
+   "Comment (State=answered): optional Textarea"
+  ],
+  "rules": [
+   "Words carry the meaning, faces support it",
+   "One tap sends the rating; a comment is optional after it",
+   "A low rating asks what went wrong",
+   "Ask within a day of the interaction, once",
+   "Same order everywhere: worst on the left, best on the right"
+  ],
+  "a11y": [
+   "The faces are a radiogroup labelled by the question; each option is named by its word; the emoji is aria-hidden",
+   "Arrow keys move between options",
+   "The confirmation is in a role=\"status\" element"
+  ],
+  "code": "custom RadioGroup with emoji and labels; send with the ticket or order id.",
+  "guides": [
+   "skills/build-ui/components/rating.md"
+  ]
+ },
+ "Service Status Row": {
+  "summary": "One service on a status page or an admin health panel: name, uptime for the last 90 days and the current status in words with a dot.",
+  "use": [
+   "A public status page",
+   "A health panel in admin",
+   "The state of connected services on a settings page"
+  ],
+  "avoid": [
+   "An incident message for the whole page: use Alert",
+   "A status in a table cell: use Badge",
+   "One integration with its settings: use Integration Card"
+  ],
+  "anatomy": [
+   "Service: ui/label",
+   "Uptime (Show uptime): \"99.98% uptime\", body/small, muted",
+   "Status: Status Dot with a word (Operational, Degraded, Outage, Maintenance)"
+  ],
+  "rules": [
+   "Order services the way customers think about the product (Web app, API, Payments), never internal system names",
+   "Status is always in words; the dot supports it",
+   "A status other than operational links to the incident",
+   "Uptime has two decimals over the same 90 days on every row",
+   "Maintenance says until when, with the time zone, in the incident"
+  ],
+  "a11y": [
+   "Rows are a list or a table; the status word is read with the service name",
+   "The dot is aria-hidden",
+   "The incident link names the incident, not \"here\""
+  ],
+  "code": "custom row: flex justify-between with Status Dot; data from your status provider (Instatus, Better Stack, Atlassian Statuspage).",
+  "guides": [
+   "skills/build-ui/patterns/content-and-docs.md",
+   "skills/build-ui/components/indicators.md"
+  ]
+ },
+ "Access Row": {
+  "summary": "One person or group with access to an object in a share dialog: avatar, name and email, and their role.",
+  "use": [
+   "The list of people in a share dialog",
+   "Members of a project or a folder",
+   "Pending invites next to members"
+  ],
+  "avoid": [
+   "Adding people: use Invite Row",
+   "Who can open the link: use Share Link Row",
+   "One permission across roles: use Permission Row",
+   "Who has access, in a page header: use Avatar Group"
+  ],
+  "anatomy": [
+   "Avatar",
+   "Name: ui/label, \"(you)\" for the reader",
+   "Email: body/small, muted; member count for a group",
+   "Role: Select (editable), text (owner), \"Invited\" and when (pending)"
+  ],
+  "rules": [
+   "The role picker lists Can view, Can comment, Can edit, then Remove access at the bottom, apart",
+   "Owner shows the role as text; owner first, then you, then the rest A-Z",
+   "Pending shows \"Invited 2 days ago\"; its menu offers Resend and Cancel invite",
+   "Changes save at once with a toast; removing your own access asks to confirm"
+  ],
+  "a11y": [
+   "The list is a ul with aria-label \"People with access\"",
+   "The role Select is named with the person (\"Role for Maria Ilie\")",
+   "The Avatar is decorative next to the name (alt=\"\")"
+  ],
+  "code": "custom row: shadcn Avatar and Select (or DropdownMenu with a destructive item).",
+  "guides": [
+   "skills/build-ui/patterns/sharing-and-invites.md",
+   "skills/build-ui/patterns/permissions-and-access.md"
+  ]
+ },
+ "Invite Row": {
+  "summary": "Adds people to an object or a workspace: email or name with suggestions from the directory, the role they get, and Invite.",
+  "use": [
+   "The top of a share dialog, above the Access Rows",
+   "Invite members on a Team Members page",
+   "Invite people to a project"
+  ],
+  "avoid": [
+   "Picking people for an assignment: use People Picker",
+   "Changing the role of someone with access: use Access Row",
+   "Sharing by link: use Share Link Row"
+  ],
+  "anatomy": [
+   "Input: email or name, suggestions from the directory",
+   "Role: Select (Show role)",
+   "Invite: Button, primary"
+  ],
+  "rules": [
+   "Several addresses can be pasted at once and turn into chips; invalid ones are marked inline",
+   "External domains get a warning before sending",
+   "The role defaults to the most restrictive one that works (Can view)",
+   "Invite is disabled until there is one valid address; seat limits show before sending",
+   "After sending, people appear as pending Access Rows and a toast confirms"
+  ],
+  "a11y": [
+   "The Input is labelled \"Add people by name or email\" and works as a combobox (aria-expanded, aria-activedescendant)",
+   "Errors are linked with aria-describedby",
+   "Enter adds an address; Invite submits"
+  ],
+  "code": "shadcn Popover and Command (combobox) with chips, Select and Button; validate emails with zod.",
+  "guides": [
+   "skills/build-ui/patterns/sharing-and-invites.md"
+  ]
+ },
+ "Share Link Row": {
+  "summary": "General access of an object at the bottom of a share dialog: who can open the link, and Copy link.",
+  "use": [
+   "The bottom of a share dialog",
+   "Publish settings of a document or a dashboard",
+   "Sharing a report outside the workspace"
+  ],
+  "avoid": [
+   "Named people with access: use Access Row",
+   "Inviting people: use Invite Row",
+   "An embed code or an API URL: use Code Block"
+  ],
+  "anatomy": [
+   "Icon tile: lock (restricted), globe (anyone)",
+   "Access: the level, with a picker (Restricted, Anyone in the workspace, Anyone with the link)",
+   "Detail: what that means, body/small, muted",
+   "Copy link: Button"
+  ],
+  "rules": [
+   "Default to the most restrictive level that works",
+   "The icon and the sentence say the reach in plain words (\"Only people with access can open this link\")",
+   "Public access asks for confirmation the first time and shows the globe everywhere the object appears",
+   "Copy link gives inline \"Copied\" feedback for about 2 seconds",
+   "Public links can expire; say when"
+  ],
+  "a11y": [
+   "The access picker is labelled \"General access\"",
+   "\"Link copied\" is announced in a polite live region",
+   "The icon is aria-hidden; the sentence carries the meaning"
+  ],
+  "code": "custom row: Select (or DropdownMenu) and Button with navigator.clipboard.writeText.",
+  "guides": [
+   "skills/build-ui/patterns/sharing-and-invites.md"
+  ]
+ },
+ "Presence Bar": {
+  "summary": "Who else has this document, record or board open right now: a live dot and their avatars.",
+  "use": [
+   "A shared document or editor",
+   "A record page several people edit",
+   "A board or whiteboard"
+  ],
+  "avoid": [
+   "Who has access, present or not: use Avatar Group",
+   "Who is typing in a chat: use Typing Indicator",
+   "The status of one person: use Avatar with a Status Dot"
+  ],
+  "anatomy": [
+   "Live: Status Dot",
+   "People: Avatar Group, with a short label (\"3 people here\")"
+  ],
+  "rules": [
+   "Shows only when someone else is present; the reader is not in it",
+   "Top right of the editor, next to Share",
+   "Hovering an avatar shows the name and what they are looking at; clicking jumps there",
+   "Up to 4 avatars, then +N; each person keeps the same color as their cursor",
+   "People who leave disappear; idle people fade"
+  ],
+  "a11y": [
+   "A group with aria-label \"People viewing\"",
+   "Each avatar is a button named with the person and place (\"Maria Ilie, editing Section 2\")",
+   "Arrivals are not announced one by one; the label sums them up"
+  ],
+  "code": "shadcn Avatar group and HoverCard; presence from Liveblocks, Yjs awareness or your own websocket.",
+  "guides": [
+   "skills/build-ui/components/avatar.md",
+   "skills/build-ui/patterns/sharing-and-invites.md"
+  ]
+ },
+ "Mention Chip": {
+  "summary": "A person mentioned in text (comments, chat, notes): @ and the name on a tinted chip, inline with the text.",
+  "use": [
+   "Comments",
+   "Chat messages",
+   "Notes and task descriptions"
+  ],
+  "avoid": [
+   "Filters people remove: use Chip",
+   "A label or a category: use Badge",
+   "The author of something: use Byline"
+  ],
+  "anatomy": [
+   "Name: \"@Maria Ilie\" on a tinted background; State=you in warning"
+  ],
+  "rules": [
+   "Typed with @ and picked from a list of people with access",
+   "Mentioning someone without access asks to share first",
+   "Mentions of the reader stand out in warning (State=you)",
+   "Hover shows a Hover Card; the mention notifies the person once",
+   "The full name shows on one line; it never truncates"
+  ],
+  "a11y": [
+   "The chip is a link named with the person (\"Maria Ilie\"); the Hover Card also opens on focus",
+   "Text on the tint meets 4.5:1 in both states",
+   "The \"you\" state is also in the name for screen readers (\"Maria Ilie, you\")"
+  ],
+  "code": "Tiptap Mention extension (or custom) with a Command list; rendered as an <a> with the user id.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md",
+   "skills/build-ui/patterns/notifications.md"
+  ]
+ },
+ "Reaction": {
+  "summary": "One emoji reaction with its count; State=reacted when the reader added it. Part of Reaction Bar.",
+  "use": [
+   "Inside a Reaction Bar only"
+  ],
+  "avoid": [
+   "Feedback on an AI answer: use Response Feedback"
+  ],
+  "anatomy": [
+   "Emoji",
+   "Count: tabular numbers"
+  ],
+  "rules": [
+   "Tapping it adds or removes the reader's own reaction",
+   "Reacted is tinted so the reader sees their own",
+   "At count 0 the Reaction is removed"
+  ],
+  "a11y": [
+   "A toggle button with aria-pressed, named with emoji and count (\"Thumbs up, 4 reactions\")",
+   "Hover and focus list who reacted"
+  ],
+  "code": "shadcn Toggle with aria-pressed.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md"
+  ]
+ },
+ "Reaction Bar": {
+  "summary": "Reactions under a comment or message: one Reaction per emoji with its count, then a button that opens the Emoji Picker.",
+  "use": [
+   "Under comments",
+   "Under chat messages",
+   "Under announcements and posts"
+  ],
+  "avoid": [
+   "Decisions and approvals: use a reply in Comment, or Approval Step",
+   "Feedback on an AI answer: use Response Feedback",
+   "Rating content: use Rating"
+  ],
+  "anatomy": [
+   "Reactions slot: Reactions",
+   "Add reaction: Button Icon that opens the Emoji Picker"
+  ],
+  "rules": [
+   "One Reaction per emoji, in the order they were first used",
+   "Tapping a Reaction adds or removes the reader's own",
+   "Hover lists who reacted (up to 10 names, then \"and N others\")",
+   "With no reactions, only the add button shows, on hover or focus of the message",
+   "Reactions are for acknowledgement; decisions still go in a reply"
+  ],
+  "a11y": [
+   "A group with aria-label \"Reactions\"",
+   "Add reaction has aria-label \"Add reaction\"; focus returns to it when the picker closes",
+   "Each Reaction is a toggle (aria-pressed)"
+  ],
+  "code": "custom flex of Toggles and a Popover with an emoji picker (emoji-mart or frimousse).",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md"
+  ]
+ },
+ "Thread Summary": {
+  "summary": "Collapsed replies under a comment or message: who replied, how many and when the last one came.",
+  "use": [
+   "Comment threads",
+   "Chat threads",
+   "Discussions in an activity feed"
+  ],
+  "avoid": [
+   "Showing the replies in full: use Comment",
+   "A count on an icon: use Badge Count",
+   "Who has access: use Avatar Group"
+  ],
+  "anatomy": [
+   "Repliers: Avatar Group, up to 3",
+   "Replies: \"3 replies\", ui/label, link color",
+   "Last: \"Last reply 2 h ago\", ui/caption, muted"
+  ],
+  "rules": [
+   "Opens the thread in place or in a side panel",
+   "Unread replies make the count bold with a dot",
+   "Count uses singular and plural (\"1 reply\", \"3 replies\")",
+   "Last reply time is relative; the exact time shows on hover"
+  ],
+  "a11y": [
+   "A button with aria-expanded when it opens in place",
+   "The name reads count and time (\"3 replies, last reply 2 hours ago\")",
+   "Unread is in text (\"2 new\"), not only bold and a dot"
+  ],
+  "code": "custom button with an Avatar group; Collapsible in place or Sheet for a side panel.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md"
+  ]
+ },
+ "Checklist Item": {
+  "summary": "One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee.",
+  "use": [
+   "An onboarding checklist",
+   "To-dos of a project or a record",
+   "Steps before a close or a launch"
+  ],
+  "avoid": [
+   "Steps people must do in order: use Stepper",
+   "A choice in a form: use Checkbox",
+   "Cards on a board: use Kanban Card"
+  ],
+  "anatomy": [
+   "Checkbox",
+   "Title: ui/label",
+   "Due (Show due): ui/caption, muted; destructive when overdue",
+   "Assignee (Show assignee): Avatar xs"
+  ],
+  "rules": [
+   "Ticking saves at once and can be undone (toast with Undo)",
+   "Done is struck through and moves to the end",
+   "Overdue says it in destructive (\"Overdue · 12 Oct\")",
+   "Open items sort by due date; the title wraps to two lines at most",
+   "The row opens the task; the Checkbox only ticks"
+  ],
+  "a11y": [
+   "The Checkbox is labelled by the title",
+   "Overdue and done are in text, not color or strikethrough alone",
+   "The assignee Avatar has the person's name as alt"
+  ],
+  "code": "custom row: shadcn Checkbox and Avatar; optimistic update with an Undo toast (Sonner).",
+  "guides": [
+   "skills/build-ui/components/list-and-tree.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Job Listing": {
+  "summary": "One open role in a careers list: title, team, type and work mode, location, posted date, salary range and Apply.",
+  "use": [
+   "A careers page",
+   "Open roles on a company profile",
+   "Internal job openings"
+  ],
+  "avoid": [
+   "A background export or import: use Job Item",
+   "A generic row: use List Item",
+   "A blog post or article: use Post Card"
+  ],
+  "anatomy": [
+   "Title: ui/label, with a Badge (Show badge: \"New\")",
+   "Meta: team, type, work mode (\"Finance · Full-time · Hybrid\")",
+   "Details: location and posted date",
+   "Salary (Show salary): range with currency and period",
+   "Apply: Button"
+  ],
+  "rules": [
+   "The whole row links to the role page",
+   "Show the salary range when you can; candidates filter on it",
+   "Sort newest first; group by team with Section Heading and counts",
+   "\"New\" only for roles posted in the last 7 days",
+   "On mobile, salary and Apply move under the details"
+  ],
+  "a11y": [
+   "The row is a list item with one main link named by the title",
+   "Apply is named with the role (\"Apply for Senior Accountant\")",
+   "The posted date is in a <time> element"
+  ],
+  "code": "custom: <li> with a stretched <a> (after:absolute after:inset-0), Badge and Button asChild.",
+  "guides": [
+   "skills/build-ui/components/list-and-tree.md",
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Integration Card": {
+  "summary": "One app or service in an integrations directory or settings: logo, name, category, a one-line value and its state.",
+  "use": [
+   "An integrations directory",
+   "Connected apps in settings",
+   "\"Connect your tools\" in onboarding"
+  ],
+  "avoid": [
+   "One on/off setting: use Setting Row",
+   "A generic record: use Entity Card",
+   "One choice in a form: use Option Card"
+  ],
+  "anatomy": [
+   "Logo tile: vendor logo (Logo)",
+   "Name: ui/label; Category: ui/caption, muted",
+   "Action: Connect Button (available), Switch (connected)",
+   "Description: the value in one line, two at most",
+   "Footer: vendor, or last sync and Settings"
+  ],
+  "rules": [
+   "Available shows Connect (OAuth)",
+   "Connected shows a Switch, last sync and Settings",
+   "Error says what failed and how to fix it (\"Token expired. Reconnect\")",
+   "Grid of 3 on desktop, 1 on mobile; cards in a row share height",
+   "Disconnecting asks for confirmation and says what stops"
+  ],
+  "a11y": [
+   "The name is the card heading; Connect is named with the app (\"Connect Payments\")",
+   "The Switch is labelled \"Payments enabled\"",
+   "Error is in text with an icon, not color alone"
+  ],
+  "code": "shadcn Card size=\"sm\" with Button, Switch and Badge; Connect opens the provider OAuth flow.",
+  "guides": [
+   "skills/build-ui/patterns/settings-and-admin.md",
+   "skills/build-ui/components/card.md"
+  ]
+ },
+ "Permission Row": {
+  "summary": "One permission across roles in a role matrix: name, what it allows, and one checkbox per role.",
+  "use": [
+   "A roles and permissions matrix",
+   "A custom role editor",
+   "Default access per role for a module"
+  ],
+  "avoid": [
+   "The role of one person on one object: use Access Row",
+   "One on/off setting: use Setting Row",
+   "Many permissions for one role, as a list: use Checkbox"
+  ],
+  "anatomy": [
+   "Text: title (ui/label) and description (ui/caption, muted)",
+   "One Checkbox per role column",
+   "Type=header: the row that names the roles"
+  ],
+  "rules": [
+   "The header row names the roles; at most 5-6 role columns",
+   "Locked roles (owner, admin) show disabled checked boxes and say why",
+   "Group rows by area with Section Heading",
+   "Save changes with the Save Bar and log them in the audit log",
+   "A permission that needs another (approve needs view) ticks it too, and says so"
+  ],
+  "a11y": [
+   "A real table: role names as th scope=\"col\", permission as th scope=\"row\"",
+   "Each Checkbox is named by permission and role (\"Approve invoices, Accountant\")",
+   "Locked boxes explain the reason with aria-describedby"
+  ],
+  "code": "shadcn Table with Checkbox cells; form state in react-hook-form, saved with the Save Bar.",
+  "guides": [
+   "skills/build-ui/patterns/permissions-and-access.md",
+   "skills/build-ui/patterns/settings-and-admin.md",
+   "skills/build-ui/patterns/audit-log.md"
+  ]
+ },
+ "API Key Row": {
+  "summary": "One API key or token in developer settings: name, scope, who created it, last use, the masked key, copy and a menu.",
+  "use": [
+   "API keys in developer settings",
+   "Personal access tokens",
+   "Webhook signing secrets"
+  ],
+  "avoid": [
+   "Showing a new key once: use Dialog with a Code Block",
+   "Signed-in devices: use Session Row",
+   "A plain setting: use Setting Row"
+  ],
+  "anatomy": [
+   "Key icon tile",
+   "Name: ui/label, with a scope Badge",
+   "Meta: created when and by whom, last used; ui/caption, muted",
+   "Key: masked, monospace (\"sk_live_••••••••4f2a\")",
+   "Copy: Button Icon; More: Button Icon (Rename, Roll, Revoke)"
+  ],
+  "rules": [
+   "Show the full key once, at creation, in a Dialog with Copy; after that only the last 4 characters",
+   "Revoke asks for confirmation and names the key; it stops working at once",
+   "Roll creates a new key, shown once, and says how long the old one keeps working",
+   "Unused keys older than 90 days get a warning",
+   "Newest first; revoked keys leave the list and go to the audit log"
+  ],
+  "a11y": [
+   "The masked key reads \"Key ending in 4f2a\"",
+   "Copy and More are named with the key (\"More actions for Production server\")",
+   "Revoke confirms in an Alert Dialog"
+  ],
+  "code": "custom row: Badge, Button size=\"icon\" and DropdownMenu; AlertDialog for revoke.",
+  "guides": [
+   "skills/build-ui/patterns/settings-and-admin.md",
+   "skills/build-ui/patterns/delete-confirmation.md"
+  ]
+ },
+ "Session Row": {
+  "summary": "One signed-in device in security settings: device and browser, approximate location, partial IP, last active, and Sign out.",
+  "use": [
+   "Sessions in security settings",
+   "A user's sessions in admin",
+   "After a sign-in alert from an unknown place"
+  ],
+  "avoid": [
+   "API tokens: use API Key Row",
+   "Past actions: use Timeline Item",
+   "A list of people: use List Item"
+  ],
+  "anatomy": [
+   "Device icon: monitor or smartphone (Device)",
+   "Name: browser and system, with a Current Badge (\"This device\")",
+   "Meta: location, partial IP, last active; ui/caption, muted",
+   "Action: Sign out Button"
+  ],
+  "rules": [
+   "The current device comes first, is marked, and cannot sign itself out here",
+   "Then sort by last active",
+   "Location is approximate (city, country); the IP is partial",
+   "End the list with \"Sign out of all other sessions\"",
+   "Sign out works at once; the row leaves with a toast"
+  ],
+  "a11y": [
+   "Sign out is named with the device (\"Sign out Chrome on macOS\")",
+   "Current is in text, not only a badge color",
+   "The list is a ul with aria-label \"Active sessions\""
+  ],
+  "code": "custom row: Badge and Button; sessions from your auth provider (Auth.js, Clerk, WorkOS).",
+  "guides": [
+   "skills/build-ui/patterns/settings-and-admin.md",
+   "skills/build-ui/patterns/auth.md"
+  ]
+ },
+ "SSO Button": {
+  "summary": "Sign-in with an identity provider on sign-in and sign-up screens: Google, Microsoft, company SSO (SAML/OIDC) or email.",
+  "use": [
+   "Sign in and sign up screens",
+   "Accept invite",
+   "Sign in again before a sensitive action"
+  ],
+  "avoid": [
+   "Any other action: use Button",
+   "Connecting an app to the workspace: use Integration Card"
+  ],
+  "anatomy": [
+   "Mark: the provider logo (key for SAML, mail for email)",
+   "Label: \"Continue with Google\""
+  ],
+  "rules": [
+   "Full width, stacked, in the same order everywhere; the provider the org enforces goes first",
+   "\"Continue with\" on both sign in and sign up",
+   "\"Continue with SSO\" asks for the work email, then redirects",
+   "When the domain enforces SSO, the other options hide after the email is known",
+   "Follow each provider's brand rules for the mark; the button blocks double clicks while it redirects"
+  ],
+  "a11y": [
+   "A button named by its label; the mark is aria-hidden",
+   "Focus ring visible on every provider",
+   "Errors come back to the sign-in screen as text above the buttons"
+  ],
+  "code": "shadcn Button variant=\"outline\" w-full with the provider mark; signIn(provider) in Auth.js, Clerk or WorkOS.",
+  "guides": [
+   "skills/build-ui/patterns/auth.md"
+  ]
+ },
+ "Org Chart Node": {
+  "summary": "One person or open role in an org chart: photo, name, title and the number of direct reports.",
+  "use": [
+   "An org chart or team page",
+   "Reporting lines in HR",
+   "Who owns which team, in a company directory"
+  ],
+  "avoid": [
+   "A full profile with contact and actions: use Person Card",
+   "A file or folder hierarchy: use Tree Item",
+   "A flat list of people: use List Item"
+  ],
+  "anatomy": [
+   "Avatar",
+   "Name: ui/label",
+   "Role: body/small, muted",
+   "Reports: users icon and count (\"6 reports\")"
+  ],
+  "rules": [
+   "Click opens the Person Card; the reports count expands the branch",
+   "Connect nodes with 1 px border/default lines",
+   "Vacant roles are dashed and say \"Open role\", linked to the Job Listing",
+   "Large orgs show 2-3 levels and a search",
+   "Names and titles wrap to two lines at most"
+  ],
+  "a11y": [
+   "The chart is a tree (role=\"tree\", treeitem with aria-expanded and aria-level); arrow keys move",
+   "The reports button is named \"Show 6 reports of Ana Popescu\"",
+   "Vacant and selected are in text, not only border style"
+  ],
+  "code": "@xyflow/react with a dagre layout (or react-d3-tree); custom node with shadcn Avatar.",
+  "guides": [
+   "skills/build-ui/components/list-and-tree.md",
+   "skills/build-ui/patterns/enterprise-apps.md"
+  ]
+ },
+ "AI Button": {
+  "summary": "Starts an AI action from where people work: summarize, draft, explain, fill. Sparkles icon and a verb that says what happens.",
+  "use": [
+   "\"Summarize thread\" on a long conversation",
+   "\"Draft reply\" in a composer",
+   "\"Explain\" next to a chart or a figure",
+   "\"Fill from document\" in a form"
+  ],
+  "avoid": [
+   "Open-ended questions: use Prompt Input",
+   "An action that is not AI: use Button",
+   "Suggested prompts in a chat: use Suggestion"
+  ],
+  "anatomy": [
+   "Icon: sparkles",
+   "Label: the verb and object (\"Summarize thread\")",
+   "Variant: default, outline, ghost; State: default, loading"
+  ],
+  "rules": [
+   "The label says what happens (\"Summarize thread\", not \"AI\")",
+   "One AI Button per area",
+   "Loading shows progress and blocks double clicks; Esc or Stop cancels",
+   "The result arrives in place as AI Suggestion or AI Summary; it never overwrites without review"
+  ],
+  "a11y": [
+   "The name is the action; the icon is aria-hidden",
+   "aria-busy while loading; Esc cancels and focus stays on the button",
+   "Loading is announced politely (\"Summarizing\")"
+  ],
+  "code": "shadcn Button with the lucide Sparkles icon and a loading state; the call through the Vercel AI SDK.",
+  "guides": [
+   "skills/build-ui/components/ai-chat.md",
+   "skills/build-ui/patterns/ai-chat.md"
+  ]
+ },
+ "AI Loading": {
+  "summary": "Placeholder while AI writes an answer or a summary in place: what it is doing now, shimmer lines in the shape of the result, step and time left, Stop.",
+  "use": [
+   "A summary written into a page",
+   "Values extracted from files",
+   "An answer generated outside chat"
+  ],
+  "avoid": [
+   "The model's thinking in chat: use Reasoning",
+   "Steps an agent runs: use Agent Plan",
+   "Content that is not AI: use Skeleton",
+   "AI work that runs for minutes: use Job Item"
+  ],
+  "anatomy": [
+   "Status row: sparkles icon, status (\"Reading 12 invoices…\"), Stop Button (Show stop)",
+   "Lines: shimmer in the shape of the result",
+   "Progress (Show progress): step and time left, ui/caption, muted"
+  ],
+  "rules": [
+   "The status says what it does now; replace it as steps change",
+   "Stream text into place as soon as it arrives",
+   "Under 1 second, show nothing",
+   "Stop keeps what arrived and says it stopped",
+   "Time left only when it is known"
+  ],
+  "a11y": [
+   "Status text is in role=\"status\" (aria-live=\"polite\"), updated per step, not per token",
+   "The region has aria-busy=\"true\"; Stop is reachable by keyboard and Esc",
+   "The shimmer stops with prefers-reduced-motion"
+  ],
+  "code": "custom: Skeleton lines with a shimmer and status text; streamed with the Vercel AI SDK.",
+  "guides": [
+   "skills/build-ui/components/ai-chat.md",
+   "skills/build-ui/patterns/ai-chat.md",
+   "skills/build-ui/patterns/loading-states.md"
+  ]
+ },
+ "Confidence Indicator": {
+  "summary": "Says how sure the AI is about an extracted value, a match or an answer: high, medium or low.",
+  "use": [
+   "Values extracted from a document",
+   "Matches in a reconciliation",
+   "Answers with weak sources"
+  ],
+  "avoid": [
+   "The status of a record: use Badge",
+   "A score toward a goal: use Progress",
+   "A rating: use Rating"
+  ],
+  "anatomy": [
+   "Bars: 3, filled by level",
+   "Label: \"High confidence\", ui/caption",
+   "Info (Show info): icon that opens a Tooltip with the reason"
+  ],
+  "rules": [
+   "Three levels; never raw percentages",
+   "Next to the value it describes",
+   "The Tooltip says why (source found, partial match, guess)",
+   "Low asks people to check and never auto-applies",
+   "Level is in bars and words; color supports it"
+  ],
+  "a11y": [
+   "The word is read with the value",
+   "Info is a button named \"Why medium confidence\"; the Tooltip opens on focus",
+   "Bars are aria-hidden"
+  ],
+  "code": "custom: three spans, a label and shadcn Tooltip; map model scores to levels on the server.",
+  "guides": [
+   "skills/build-ui/components/ai-chat.md",
+   "skills/build-ui/patterns/ai-chat.md"
+  ]
+ },
+ "Suggestion Review Bar": {
+  "summary": "Floating bar for reviewing AI edits in a document or form one by one: position, previous and next, accept or reject, and accept or reject all.",
+  "use": [
+   "AI edits in a document",
+   "A form AI filled from a file",
+   "Bulk AI categorization to review"
+  ],
+  "avoid": [
+   "One suggestion inline: use AI Suggestion",
+   "An action the AI wants to run: use Tool Call",
+   "Unsaved form changes: use Save Bar"
+  ],
+  "anatomy": [
+   "Icon: sparkles",
+   "Count: \"3 of 7 suggestions\"",
+   "Navigation: previous and next Button Icons",
+   "Reject and Accept Buttons",
+   "Reject all and Accept all (Show bulk actions)"
+  ],
+  "rules": [
+   "Each suggestion shows inline as AI Suggestion; the bar moves between them",
+   "Keyboard: Tab next, Enter accept, Backspace reject",
+   "Accept all asks once when the changes are many",
+   "Floats at the bottom center of the document until all are reviewed",
+   "Accepted changes can be undone; at the end the bar sums up and leaves"
+  ],
+  "a11y": [
+   "role=\"toolbar\" with aria-label \"Review suggestions\"",
+   "The position is announced politely as it changes; focus moves to the current suggestion",
+   "Shortcuts show in Tooltips with Kbd"
+  ],
+  "code": "custom toolbar on shadcn Button; suggestions from Tiptap track changes or a diff of the form state.",
+  "guides": [
+   "skills/build-ui/components/ai-chat.md",
+   "skills/build-ui/patterns/ai-chat.md"
+  ]
+ },
+ "Saved View Item": {
+  "summary": "One saved filter set (a view) in a list or sidebar: name, shared icon and item count.",
+  "use": [
+   "A list of views in the sidebar",
+   "The view switcher of a data grid",
+   "Views shared with the team"
+  ],
+  "avoid": [
+   "Changing the filters: use Filter Bar",
+   "Links to pages: use Nav Link",
+   "Recent chats: use Chat History Item"
+  ],
+  "anatomy": [
+   "Icon: list-filter",
+   "Name: ui/label, one line",
+   "Shared (Show shared): users icon",
+   "Count (Show count): Badge Count"
+  ],
+  "rules": [
+   "Click applies the filters, sort and columns; the active view is highlighted",
+   "Personal views first, then shared",
+   "The Filter Bar shows \"Save view\" when filters change",
+   "Menu: rename, share, set as default, delete (owner only)",
+   "Long names truncate; the full name shows in a Tooltip"
+  ],
+  "a11y": [
+   "A link with aria-current=\"page\" when active",
+   "The menu button is named with the view (\"Actions for Overdue over EUR 5k\")",
+   "Shared is in text for screen readers (\"Shared\")"
+  ],
+  "code": "shadcn SidebarMenuItem with SidebarMenuBadge and DropdownMenu; the view stored as serialized filters per user.",
+  "guides": [
+   "skills/build-ui/patterns/search-and-filter.md",
+   "skills/build-ui/components/table.md"
+  ]
  }
 }

@@ -8,8 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Kbd](#kbd) | 1 | - |
 | [Kbd Group](#kbd-group) | 1 | Keys |
+| [Shortcut Row](#shortcut-row) | 1 | - |
 
-On the Figma page: "Example / in comments", "Example / search with shortcut", "Stress test / Kbd", "Stress test / Kbd Group"
+On the Figma page: "Example / in comments", "Stress test / Kbd", "Stress test / Kbd Group", "Stress test / Shortcut Row"
 
 ## Kbd
 
@@ -101,3 +102,55 @@ Tokens and styles:
 - Spacing and size: `spacing/1`
 
 Guides: [indicators](../../skills/build-ui/components/indicators.md)
+
+## Shortcut Row
+
+Component · 1 variant · default size 400 × 37
+
+One keyboard shortcut in the shortcuts dialog (opened with ?) or a help page: what it does, then the keys. Group rows by area (Navigation, Editing). Show ⌘ on Mac and Ctrl on Windows. Keys are exposed Kbd instances.
+
+**Use for**
+
+- The keyboard shortcuts dialog opened with ?
+- Help and docs pages that list shortcuts
+- Keyboard shortcuts from the Account Menu
+
+**Not for**
+
+- A shortcut next to a menu label: use Menu Item with Shortcut
+- A shortcut hint on a button: use Tooltip with Kbd
+- Keys inline in prose: use Kbd or Kbd Group
+
+**Anatomy**
+
+1. Action: what it does, body/small
+2. Keys: Kbd instances (exposed), right aligned
+
+**Content and behavior**
+
+- Action is a verb phrase in sentence case: "Open command menu"
+- Group rows by area (Navigation, Editing) with a heading per group
+- Show ⌘ on Mac and Ctrl on Windows and Linux
+- Key sequences (G then I) read as separate keys with "then" between them
+- List only shortcuts that work
+
+**Accessibility**
+
+- Rows are a description list (dt action, dd keys) or a table
+- Keys use <kbd> with readable names for symbols ("Command K")
+- Text meets 4.5:1 on the row background
+
+| Property | Type | Default |
+|---|---|---|
+| Action | text | Open command menu |
+
+Built from: `Kbd`
+
+Tokens and styles:
+- Colors: `border/default`, `foreground/default`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
+- Text styles: `body/small`
+
+Guides: [indicators](../../skills/build-ui/components/indicators.md)
+
+Code: custom `flex justify-between` + shadcn `Kbd` / `KbdGroup` (⌘ on Mac, Ctrl elsewhere)

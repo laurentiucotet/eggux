@@ -9,8 +9,10 @@ Usage rules live in the guides linked under each component.
 | [List Item](#list-item) | 5 | Leading, Trailing |
 | [Tree Item](#tree-item) | 36 | - |
 | [Sortable List Item](#sortable-list-item) | 4 | Trailing, Leading |
+| [Checklist Item](#checklist-item) | 3 | - |
+| [Job Listing](#job-listing) | 1 | - |
 
-On the Figma page: "Example / in notifications", "Example / navigation tree", "Example / permissions tree", "Example / table columns", "Stress test / List Item", "Stress test / Sortable List Item", "Stress test / Tree Item"
+On the Figma page: "Example / in notifications", "Example / navigation tree", "Example / permissions tree", "Example / table columns", "Stress test / Checklist Item", "Stress test / Job Listing", "Stress test / List Item", "Stress test / Sortable List Item", "Stress test / Tree Item"
 
 ## List Item
 
@@ -206,3 +208,123 @@ Tokens and styles:
 Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md), [select](../../skills/build-ui/components/select.md)
 
 Code: `@dnd-kit/sortable` with keyboard sensor and announcements (Drag handle = `useSortable` listeners)
+
+## Checklist Item
+
+Component set · 3 variants · default size 480 × 54
+
+One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date, assignee. done is struck through and moves to the end; overdue says it in destructive. Ticking it saves at once and can be undone. Several steps people must do in order: Stepper.
+
+**Use for**
+
+- An onboarding checklist
+- To-dos of a project or a record
+- Steps before a close or a launch
+
+**Not for**
+
+- Steps people must do in order: use Stepper
+- A choice in a form: use Checkbox
+- Cards on a board: use Kanban Card
+
+**Anatomy**
+
+1. Checkbox
+2. Title: ui/label
+3. Due (Show due): ui/caption, muted; destructive when overdue
+4. Assignee (Show assignee): Avatar xs
+
+**Content and behavior**
+
+- Ticking saves at once and can be undone (toast with Undo)
+- Done is struck through and moves to the end
+- Overdue says it in destructive ("Overdue · 12 Oct")
+- Open items sort by due date; the title wraps to two lines at most
+- The row opens the task; the Checkbox only ticks
+
+**Accessibility**
+
+- The Checkbox is labelled by the title
+- Overdue and done are in text, not color or strikethrough alone
+- The assignee Avatar has the person's name as alt
+
+| Variant property | Values |
+|---|---|
+| State | open, done, overdue |
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Send Q4 forecast to Northwind |
+| Show due | boolean | true |
+| Show assignee | boolean | true |
+
+Built from: `Avatar`, `Checkbox`
+
+Tokens and styles:
+- Colors: `background/destructive`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `body/small`, `ui/caption`
+
+Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
+
+Code: custom row: shadcn `Checkbox` + `Avatar` (Optimistic save with an Undo toast (Sonner))
+
+## Job Listing
+
+Component · 1 variant · default size 720 × 113
+
+One open role in a careers list: title, team, type and work mode, location, posted date, salary range, Apply. The whole row links to the role page. Show the salary range when you can; candidates filter on it. Sort newest first; group by team with Section Heading.
+
+**Use for**
+
+- A careers page
+- Open roles on a company profile
+- Internal job openings
+
+**Not for**
+
+- A background export or import: use Job Item
+- A generic row: use List Item
+- A blog post or article: use Post Card
+
+**Anatomy**
+
+1. Title: ui/label, with a Badge (Show badge: "New")
+2. Meta: team, type, work mode ("Finance · Full-time · Hybrid")
+3. Details: location and posted date
+4. Salary (Show salary): range with currency and period
+5. Apply: Button
+
+**Content and behavior**
+
+- The whole row links to the role page
+- Show the salary range when you can; candidates filter on it
+- Sort newest first; group by team with Section Heading and counts
+- "New" only for roles posted in the last 7 days
+- On mobile, salary and Apply move under the details
+
+**Accessibility**
+
+- The row is a list item with one main link named by the title
+- Apply is named with the role ("Apply for Senior Accountant")
+- The posted date is in a <time> element
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Senior Accountant |
+| Meta | text | Finance · Full-time · Hybrid |
+| Location | text | Bucharest, Romania |
+| Posted | text | Posted 3 days ago |
+| Salary | text | EUR 3,800-4,600 / month |
+| Show badge | boolean | true |
+| Show salary | boolean | true |
+
+Built from: `Badge`, `Button`. Icons: clock, map-pin
+
+Tokens and styles:
+- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
+- Text styles: `body/small`, `heading/h4`, `ui/caption`, `ui/label`
+
+Code: custom `<li>` with a stretched `<a>` + `Badge` + `Button asChild` (Salary range with currency and period)

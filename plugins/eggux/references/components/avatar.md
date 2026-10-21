@@ -9,8 +9,9 @@ Usage rules live in the guides linked under each component.
 | [Avatar](#avatar) | 20 | - |
 | [Avatar Group](#avatar-group) | 3 | Avatars |
 | [Byline](#byline) | 3 | - |
+| [Presence Bar](#presence-bar) | 1 | - |
 
-On the Figma page: "Example / article meta", "Example / assignees on a project page", "Example / in record header", "Stress test / Avatar", "Stress test / Avatar Group", "Stress test / Byline"
+On the Figma page: "Example / article meta", "Example / assignees on a project page", "Example / in record header", "Stress test / Avatar", "Stress test / Avatar Group", "Stress test / Byline", "Stress test / Presence Bar"
 
 ## Avatar
 
@@ -193,3 +194,49 @@ Tokens and styles:
 Guides: [avatar](../../skills/build-ui/components/avatar.md)
 
 Code: shadcn `Avatar` + name and detail (`flex items-center gap-3`) (Name links to the profile; dates in `<time>`)
+
+## Presence Bar
+
+Component · 1 variant · default size 258 × 24
+
+Who else has this document, record or board open right now: a live dot, their avatars, a short sentence. Top right of the editor, next to Share. Hovering an avatar shows the name and what they are looking at; clicking it jumps there. Only shows when someone else is present.
+
+**Use for**
+
+- A shared document or editor
+- A record page several people edit
+- A board or whiteboard
+
+**Not for**
+
+- Who has access, present or not: use Avatar Group
+- Who is typing in a chat: use Typing Indicator
+- The status of one person: use Avatar with a Status Dot
+
+**Anatomy**
+
+1. Live: Status Dot
+2. People: Avatar Group, with a short label ("3 people here")
+
+**Content and behavior**
+
+- Shows only when someone else is present; the reader is not in it
+- Top right of the editor, next to Share
+- Hovering an avatar shows the name and what they are looking at; clicking jumps there
+- Up to 4 avatars, then +N; each person keeps the same color as their cursor
+- People who leave disappear; idle people fade
+
+**Accessibility**
+
+- A group with aria-label "People viewing"
+- Each avatar is a button named with the person and place ("Maria Ilie, editing Section 2")
+- Arrivals are not announced one by one; the label sums them up
+
+Built from: `Avatar Group`, `Status Dot`
+
+Tokens and styles:
+- Spacing and size: `spacing/2`
+
+Guides: [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
+
+Code: shadcn `Avatar` group + `HoverCard` (Presence from Liveblocks, Yjs awareness or your websocket)

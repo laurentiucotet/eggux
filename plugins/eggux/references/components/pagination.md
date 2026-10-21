@@ -9,8 +9,9 @@ Usage rules live in the guides linked under each component.
 | [Pagination](#pagination) | 1 | Items |
 | [Pagination Item](#pagination-item) | 11 | - |
 | [Pagination Compact](#pagination-compact) | 1 | - |
+| [Load More](#load-more) | 2 | - |
 
-On the Figma page: "Example / table footer", "Stress test / Pagination", "Stress test / Pagination Compact"
+On the Figma page: "Example / table footer", "Stress test / Load More", "Stress test / Pagination", "Stress test / Pagination Compact"
 
 ## Pagination
 
@@ -137,3 +138,64 @@ Tokens and styles:
 - Colors: `foreground/muted`
 - Spacing and size: `spacing/2`
 - Text styles: `body/small`
+
+Guides: [pagination](../../skills/build-ui/components/pagination.md)
+
+Code: shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNext`
+
+## Load More
+
+Component set · 2 variants · default size 560 × 60
+
+End of a feed or a long list that grows in place: how many are shown out of the total, and a button that loads the next page. Keeps scroll position and moves focus to the first new item. Use for feeds, activity and search results; tables where people jump to a page use Pagination.
+
+**Use for**
+
+- Feeds and activity
+- Search results browsed once
+- Lists of cards, comments or reviews
+
+**Not for**
+
+- Tables where people jump to a page: use Pagination
+- Tables with rows per page: use Table Pagination
+- Narrow lists inside a card: use Pagination Compact
+
+**Anatomy**
+
+1. Count: "Showing 20 of 248 invoices", body/small, muted
+2. Button: "Load 20 more", outline (State=loading shows a Spinner)
+
+**Content and behavior**
+
+- The label says how many it loads ("Load 20 more")
+- Hide the button when everything is shown; keep the count
+- Keep the scroll position and move focus to the first new item
+- Loading keeps the button width and disables it
+- On error, keep the loaded items and show Retry
+
+**Accessibility**
+
+- The count is in a live region (aria-live="polite") and updates after loading
+- The button has aria-busy while loading
+- Focus moves to the first new item so keyboard users continue from there
+
+| Variant property | Values |
+|---|---|
+| State | default, loading |
+
+| Property | Type | Default |
+|---|---|---|
+| Count | text | Showing 20 of 248 invoices |
+| Label | text | Load 20 more |
+
+Built from: `Button`
+
+Tokens and styles:
+- Colors: `foreground/muted`
+- Spacing and size: `spacing/2`
+- Text styles: `ui/caption`
+
+Guides: [pagination](../../skills/build-ui/components/pagination.md)
+
+Code: shadcn `Button variant="outline"` + count; TanStack Query `useInfiniteQuery` (Focus the first new item; count in `aria-live`)
