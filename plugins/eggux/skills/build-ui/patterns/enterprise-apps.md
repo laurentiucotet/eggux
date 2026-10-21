@@ -7,7 +7,12 @@ landing page: too much air, too few rows, no audit trail, no way to share a filt
 ## Start here
 - Theme: `Corporate Light` (or `Corporate Dark`) on Semantic and Components, `Compact` on
   Density, for the whole app shell. Default theme stays for marketing and consumer flows.
-- Shell: App shell; Sidebar with Org Switcher when users belong to several entities.
+- Shell: App shell; Sidebar with Org Switcher when users belong to several entities. Back
+  offices with several sections of many pages each: Sidebar Double. Editors: a Side Panel in
+  the page grid for the object's summary, actions fixed at the bottom.
+- Page grid: navigation column hugs the sidebar, Main flexes, the aside column hugs the Side
+  Panel (320, or 48 collapsed); header on top, actions bar fixed at the bottom, only the body
+  scrolls.
 - Lists over ~50 rows use the data grid (`components/table.md` § Data grid), not cards.
 
 ## What enterprise users expect

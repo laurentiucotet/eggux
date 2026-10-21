@@ -152,17 +152,28 @@ def main(paths):
              '2. Run `python3 plugins/eggux/scripts/component-docs.py <json files>`.',
              '3. Review the diff; commit with the release.', '',
              '## Pages', '', '| Page | Components |', '|---|---|']
-    total = 0
+    # Keep the rows of pages not in this run, so a partial run updates the index instead of
+    # replacing it.
+    rows = {}
+    readme = os.path.join(OUT, 'README.md')
+    if os.path.exists(readme):
+        for line in open(readme):
+            m = re.match(r'^\| \[(.+?)\]\((.+?)\) \| (.*) \|$', line.strip())
+            if m:
+                rows[m.group(1)] = (m.group(2), m.group(3))
     for name in sorted(pages, key=str.lower):
         page = pages[name]
         fn = slug(name) + '.md'
         open(os.path.join(OUT, fn), 'w').write(render_page(page, generated, guides, codes))
-        comps = ', '.join(c['name'] for c in page['components'])
+        rows[name] = (fn, ', '.join(c['name'] for c in page['components']))
+    total = 0
+    for name in sorted(rows, key=str.lower):
+        fn, comps = rows[name]
         index.append(f'| [{name}]({fn}) | {comps} |')
-        total += len(page['components'])
-    index += ['', f'{total} components on {len(pages)} pages.', '']
+        total += len(comps.split(', ')) if comps else 0
+    index += ['', f'{total} components on {len(rows)} pages.', '']
     open(os.path.join(OUT, 'README.md'), 'w').write('\n'.join(index))
-    print(f'{len(pages)} pages, {total} components → {OUT}')
+    print(f'{len(pages)} pages written, index: {total} components on {len(rows)} pages → {OUT}')
 
 
 if __name__ == '__main__':

@@ -8,8 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Sheet](#sheet) | 2 | Header, Content, Footer |
 | [Drawer](#drawer) | 1 | Header, Content, Footer |
+| [Side Panel](#side-panel) | 2 | Actions, Content, Footer |
 
-On the Figma page: "Example / bottom drawer on mobile", "Example / sheet over list", "Stress test / Drawer", "Stress test / Sheet"
+On the Figma page: "Example / Editor with collapsed side panel", "Example / Editor with side panel", "Example / bottom drawer on mobile", "Example / sheet over list", "Stress test / Drawer", "Stress test / Sheet", "Stress test / Side Panel"
 
 ## Sheet
 
@@ -127,3 +128,62 @@ Tokens and styles:
 Guides: [dialog](../../skills/build-ui/components/dialog.md), [drawer](../../skills/build-ui/components/drawer.md), [tour](../../skills/build-ui/components/tour.md), [mobile](../../skills/build-ui/patterns/mobile.md)
 
 Code: shadcn `Sheet`, `Drawer` (vaul)
+
+## Side Panel
+
+Component set · 2 variants · default size 320 × 327
+
+Inline panel beside the page content (an Aside): details, properties or a preview of the object being edited. Header: Title, Actions slot, collapse button (Collapsible). Content slot; optional Footer slot. Collapsed: 48 wide, expand button and vertical title. Use Sheet when the panel opens over the page. Code: an <aside> in the page grid with a collapsible state (shadcn Collapsible).
+
+**Use for**
+
+- Summary of the object being edited next to the form (status, codes, preview)
+- Properties or settings of the selected item in an editor or builder
+- Context people check while they work: related records, activity, help
+
+**Not for**
+
+- Editing an object from a list without leaving it: use Sheet
+- Primary content of the page: put it in Main
+- Navigation between pages: use Sidebar or Sidebar Double
+
+**Anatomy**
+
+1. Header: Title, Actions slot (menu or one Button Icon), collapse Button Icon (Collapsible)
+2. Content slot: Description List Items, previews, short lists
+3. Footer slot: one full-width action (Show footer)
+4. Collapsed: expand Button Icon and the Title, vertical
+
+**Content and behavior**
+
+- 320 wide expanded, 48 collapsed; the page grid column hugs it, so Main takes the space back
+- Title names what the panel shows ("Showcase info", "Properties"), not the action
+- Content reads top to bottom; no tabs inside a Side Panel
+- Collapsed state is remembered per user and page
+- Below 1024 px open it as a right Sheet instead
+
+**Accessibility**
+
+- An aside landmark labeled by the Title
+- Collapse and expand buttons have accessible labels and aria-expanded
+- Focus stays where it was when the panel collapses
+
+| Variant property | Values |
+|---|---|
+| State | expanded, collapsed |
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Details |
+| Collapsible | boolean | true |
+| Show footer | boolean | false |
+
+Slots (fill them in the instance, never detach): `Actions`, `Content`, `Footer`
+
+Built from: `Button`, `Button Icon`
+
+Tokens and styles:
+- Colors: `background/default`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
+- Radius: `radius/lg`, `radius/md`
+- Text styles: `ui/caption`, `ui/label`

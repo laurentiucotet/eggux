@@ -11,6 +11,7 @@ Usage guidelines only. Visual specs live in the Figma components. Dialog vs Shee
 | `Drawer` | Mobile: filters, sort, quick actions, a short form, a confirmation. Thumb reach, drag to close |
 | `Dialog` | Short focused task on desktop that does not need the list behind it |
 | Page | More than ~8 fields, several steps, or content the user wants to link to |
+| `Side Panel` | Inline, beside the page content: details, properties or a preview of the object being edited. The page stays usable; nothing is covered |
 
 On desktop, the content of a mobile `Drawer` usually becomes a `Dialog` (short) or a `Sheet`
 (long). Keep the same Header, Content and Footer so one design covers both.
@@ -30,7 +31,19 @@ On desktop, the content of a mobile `Drawer` usually becomes a `Dialog` (short) 
 - Filters in a Sheet or Drawer: one `Accordion Item` (compact) per group with a `Badge Count` of
   active options in Meta; see `accordion.md`.
 
+## Side Panel
+- An aside in the page grid, not an overlay. Title names what it shows ("Showcase info",
+  "Properties"); Actions slot holds a menu or one Button Icon; the collapse button
+  (Collapsible) folds it to a 48 px strip with the title written vertically.
+- 320 wide expanded, 48 collapsed. The grid column hugs it, so Main takes the space back.
+- Content reads top to bottom: Description List Items, a preview, short lists. No tabs, no long
+  forms; those belong in Main or a page.
+- Optional Footer: one full-width action ("View all details").
+- Remember the collapsed state per user and page. Below 1024 px open it as a right Sheet.
+
 ## Figma
+- `Side Panel`: State expanded, collapsed; Title; slots Actions, Content, Footer (Show footer);
+  Collapsible. Examples: "Editor with side panel", "Editor with collapsed side panel".
 - `Sheet`: Side right, left. `Drawer`: Handle (boolean). Both have native slots Header, Content,
   Footer, built from `Dialog Header` and `Dialog Footer`.
 - Drawer header: `Dialog Header` with Close off (the handle and outside tap close it).

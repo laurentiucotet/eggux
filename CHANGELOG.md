@@ -3,6 +3,23 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.43.0
+- New `Side Panel` (Drawer page): inline aside beside the page content with a header (Title,
+  Actions slot, collapse), Content and Footer slots; State expanded 320 / collapsed 48.
+- New `Sidebar Double` (Sidebar page): icon rail for sections plus a panel with a header
+  (Panel title, Panel actions slot) and Sidebar Groups; Mode expanded 288 / collapsed 48.
+- `Entity Card`: Actions slot (Show actions) for one direct action on every card (add, remove,
+  pin); Leading takes a 1:1 image.
+- `Sortable List Item`: Leading slot (Show leading) with a 1:1 image, 48 px.
+- Docs, stress tests and examples for the four rows (tidy-component); guides for sidebar,
+  drawer, card, list and tree, enterprise apps; code-mapping rows for the new components.
+- Test page "Test / Mobility Global": `Page Shell / Back office (test)`, a grid shell
+  (navigation and aside columns hug their content, body scrolls, actions fixed at the bottom),
+  tested at 1440 and 1280, with collapsed navigation and panel, and as a list.
+- component-page.js leaves viewport examples (clipped `Example /` screens) and GRID frames
+  alone when fitting to hug. component-docs.js also finds `Examples /` frames;
+  component-docs.py keeps the index rows of pages not in the run.
+
 ## 0.42.2
 - Figma API notes: grid row sizes must be set to hug after the cells are added; switching
   `layoutMode` keeps the old sizing modes; a growing child is FIXED until set back to hug.

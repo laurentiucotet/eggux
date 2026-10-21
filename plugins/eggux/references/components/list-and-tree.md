@@ -8,7 +8,7 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [List Item](#list-item) | 5 | Leading, Trailing |
 | [Tree Item](#tree-item) | 36 | - |
-| [Sortable List Item](#sortable-list-item) | 4 | Trailing |
+| [Sortable List Item](#sortable-list-item) | 4 | Trailing, Leading |
 
 On the Figma page: "Example / in notifications", "Example / navigation tree", "Example / permissions tree", "Example / table columns", "Stress test / List Item", "Stress test / Sortable List Item", "Stress test / Tree Item"
 
@@ -140,7 +140,7 @@ Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
 
 Component set · 4 variants · default size 480 × 58
 
-A row people reorder (columns, form fields, steps, priorities): drag handle, label, description, Trailing slot (switch, menu). dragging = lifted with shadow; drop-target = primary line where it will land. Keyboard: focus the handle, Space to pick up, arrows to move, Space to drop; announce the new position. Offer Move up / Move down in the menu too. Label truncates on one line, description on two.
+A row people reorder (columns, form fields, steps, priorities): drag handle, Leading slot (Show leading: a 1:1 image, 48 px, for items told apart by their picture), label, description, Trailing slot (switch, remove, menu). dragging = lifted with shadow; drop-target = primary line where it will land. Keyboard: focus the handle, Space to pick up, arrows to move, Space to drop; announce the new position. Offer Move up / Move down in the menu too. Label truncates on one line, description on two.
 
 **Use for**
 
@@ -156,9 +156,10 @@ A row people reorder (columns, form fields, steps, priorities): drag handle, lab
 **Anatomy**
 
 1. Drag handle (grip-vertical)
-2. Label
-3. Description (Show description)
-4. Trailing slot: Switch or menu
+2. Leading slot: 1:1 image, 48 px, or an icon (Show leading)
+3. Label
+4. Description (Show description)
+5. Trailing slot: Switch, remove or menu
 
 **Content and behavior**
 
@@ -167,12 +168,14 @@ A row people reorder (columns, form fields, steps, priorities): drag handle, lab
 - Save on drop and allow Undo
 - Label truncates on one line, Description on two
 - Show the order number when it matters
+- Leading image only when the picture tells items apart (products, media); keep it 1:1 at 48 px, crop, never stretch
 
 **Accessibility**
 
 - Focus the handle, Space picks up, arrows move, Space drops, Escape cancels
 - Announce the new position: "Invoice number moved to position 2 of 6"
 - Offer Move up and Move down in the row menu
+- A Leading image is decorative (empty alt) when the Label already names the item
 
 | Variant property | Values |
 |---|---|
@@ -183,10 +186,11 @@ A row people reorder (columns, form fields, steps, priorities): drag handle, lab
 | Label | text | Invoice number |
 | Description | text | Shown in the table and in exports |
 | Show description | boolean | true |
+| Show leading | boolean | false |
 
-Slots (fill them in the instance, never detach): `Trailing`
+Slots (fill them in the instance, never detach): `Trailing`, `Leading`
 
-Built from: `Button Icon`. Icons: grip-vertical
+Built from: `Button Icon`, `Image Placeholder`. Icons: grip-vertical
 
 Tokens and styles:
 - Colors: `background/card`, `background/muted`, `background/primary`, `border/default`, `foreground/default`, `foreground/muted`
