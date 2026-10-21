@@ -53,3 +53,11 @@ Usage guidelines only. Visual specs live in the Figma components.
   is active (scroll spy); clicking scrolls with an offset for sticky headers.
 - Sticky on the right from 1280; below that, a collapsible "On this page" at the top.
 - Figma: `TOC Item` Level (1, 2) × State, `Table of Contents` (Items slot), Navigation page.
+
+## Related components
+- Next to `Code Block`: `Command Snippet` for a single command to copy (the $ is never copied),
+  `Diff Viewer` for changes between two versions of a text, and `JSON Viewer` for collapsible
+  payloads.
+- `Step Item` is the numbered step of a "How it works" section (3-4 steps). `Testimonial Card` is
+  customer proof in grids and carousels; `Quote` stays for quotes in running text. `Footnote`
+  explains a claim in the text with a numbered note and a back link.

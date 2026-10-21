@@ -38,3 +38,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 | destructive | Irreversible loss (delete, revoke) | Cancel + destructive action verb |
 | acknowledge | The user must know before going on; no decision | One button ("Got it") |
 Prefer a toast or inline message for acknowledgements that do not block the next step.
+
+## Related components
+- A first-run tour after sign-up or a major release uses `Welcome Dialog` (2-4 steps, shown once,
+  the last step leads to the first task). Pointing at real UI uses Coachmark.

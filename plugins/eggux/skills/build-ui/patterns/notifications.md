@@ -28,3 +28,7 @@ matters.
 
 ## Figma
 `Block / Notifications` (popover), `Badge Count`, `Toast`, `Block / Notification Preferences`.
+- The bell opens `Notification Center` (tabs by type, 5-8 `Notification Item`s, Mark all as read,
+  View all). Opening the panel does not mark items read; opening an item does.
+- A `Mention Chip` notifies the mentioned person once. A finished `Job Item` sends an in-app
+  notification when the person left the page.

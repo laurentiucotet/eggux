@@ -46,3 +46,7 @@ Usage guidelines only. Visual specs live in the Figma components (File Upload pa
 - Errors say what to fix ("Choose an image under 5 MB").
 - Figma: `Avatar Upload` State empty, filled, uploading, error; `Image Cropper` Shape square,
   circle (image as fill on the "image" layer; the selection stays centered; min width 320).
+
+## Related components
+- One file inside a form (contract, logo, CSV) uses `File Field`: Choose file, name and size,
+  remove. Several files or drag and drop stay on `File Dropzone` with `File Item`s.

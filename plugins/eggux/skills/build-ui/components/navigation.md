@@ -39,3 +39,9 @@ Navigation: Navbar, Footer. Page Shells use them.
 - ↑ ↓ move the selection; the list keeps its scroll; the URL holds the selected id.
 - Below 1024 the detail is its own page with a back button.
 - Example "inbox" on the Page Shells page.
+
+## Related components
+- `Back Link` ("All invoices") sits above the title of a record page opened from a list; deeper
+  hierarchies use Breadcrumb. Every page starts with a `Skip Link`; long docs and articles get
+  `Scroll To Top`. List pages put `Page Toolbar` (search, Filters, View Switcher, primary action)
+  between the title and the list.

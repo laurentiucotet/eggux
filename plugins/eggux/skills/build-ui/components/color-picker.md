@@ -24,3 +24,7 @@ slot). Gradients in the control are raw colors by design; everything else uses t
 ## Code
 `react-colorful` (or the native `input type="color"` for simple cases) inside a shadcn
 `Popover`.
+
+## Related components
+- "Swatches only" is now `Swatch Picker`: 6-10 `Swatch`es from the chart palette, one selected, its
+  name under them. Use it for labels, categories and calendars; free colors stay on `Color Picker`.

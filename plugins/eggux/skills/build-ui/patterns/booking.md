@@ -14,3 +14,8 @@ left, time slots for the chosen day on the right, footer with the chosen slot an
 - Hold the slot for a few minutes during checkout and say so; if it is taken meanwhile, explain
   and show the nearest alternatives.
 - Mobile: Calendar full width, slots under it, sticky footer.
+
+## Related components
+- Slots are `Time Slot` instances in a grid of 3-4 per row (selected primary, taken disabled with a
+  strikethrough). Booking settings list working hours with seven `Availability Row`s, the time zone
+  said once above them.

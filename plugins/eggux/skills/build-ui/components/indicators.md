@@ -20,3 +20,7 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Platform-aware: ⌘ ⌥ ⇧ ⌃ on Mac, "Ctrl" / "Alt" on Windows and Linux.
 - Do not teach shortcuts that are not implemented; never rely on a shortcut as the only way.
 - Figma: `Kbd` (Key) and `Kbd Group` (Keys slot) on the Kbd page; "search with shortcut" example.
+
+## Related components
+- The keyboard shortcuts dialog (opened with ?) lists `Shortcut Row`s grouped by area: the action,
+  then the keys as Kbd.

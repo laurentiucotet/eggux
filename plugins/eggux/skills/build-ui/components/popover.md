@@ -41,3 +41,8 @@ shadcn `Popover`, `Command` (cmdk), Combobox = `Popover` + `Command`.
   by type; Enter on the text searches everything. Highlight the matched part in code.
 - No results: say so and offer "Search everywhere for …" or a create action.
 - Figma: `Command Dialog` (Items slot, Command Input exposed); example "search with suggestions".
+
+## Related components
+- `Confirm Popover` asks a short question next to the trigger for actions with some cost (archive,
+  remove, discard); irreversible loss uses `Alert Dialog`. `Emoji Picker` and `App Launcher` are
+  ready-made Popover contents for emoji and for switching apps in a suite of 4 or more.

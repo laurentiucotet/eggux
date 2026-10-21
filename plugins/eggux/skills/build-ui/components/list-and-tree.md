@@ -46,3 +46,7 @@ Checkbox is exposed. Examples: permissions tree, navigation tree on the List & T
   in the same direction.
 - Show that more content exists (a cut item, a fade, the scrollbar); keep keyboard scrolling.
 - Figma: `Scroll Area` Orientation vertical, horizontal (own page). Clips its content on purpose.
+
+## Related components
+- Tasks with a checkbox, due date and assignee use `Checklist Item`; careers lists use `Job
+  Listing`. Reporting lines use `Org Chart Node`, not Tree Item.

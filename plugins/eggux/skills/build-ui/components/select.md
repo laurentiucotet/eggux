@@ -59,3 +59,9 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Under ~10 items: a checkbox list is simpler. Order matters: add `Sortable List Item` on the right.
 - Keyboard: Space checks, Tab reaches the move buttons; announce "2 moved to Selected".
 - Figma: `Transfer List` (Left title, Right title; Available and Selected slots of `Facet Option`s).
+
+## Related components
+- Use `Select Option` for rich options (icon or avatar, title, second line) when labels alone are
+  ambiguous. `Address Autocomplete` fills address fields from suggestions; `Recurrence Picker` sets
+  how often something repeats, with a summary sentence; `Language Switcher` picks the interface
+  language. `Checkbox Card` is the multi-choice pair of `Option Card`.

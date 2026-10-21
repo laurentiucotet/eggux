@@ -38,3 +38,7 @@ it everywhere. The same status never appears in two colors.
   everywhere (type, frequency, region).
 - Not for filters people remove (Chip) or a single status (Badge, Status Dot).
 - Figma: `Tag List` with a Tags slot of Badges and an exposed "+N" Badge (Show more).
+
+## Related components
+- Two marketing badges: `Announcement Pill` (a "New" link above a hero title, one at a time) and
+  `Trust Badge` (a current certification with what backs it, linking to the trust page).

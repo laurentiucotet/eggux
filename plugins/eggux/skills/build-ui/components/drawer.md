@@ -55,3 +55,8 @@ On desktop, the content of a mobile `Drawer` usually becomes a `Dialog` (short) 
 ## Code
 shadcn `Sheet` (`side="right" | "left"`) and `Drawer` (vaul). Responsive pattern: `Drawer` below
 `md`, `Dialog` or `Sheet` from `md`.
+
+## Related components
+- List and detail, editor and preview, or code and output side by side with a draggable split use
+  `Resizable Panels`; the split is remembered per person and narrow screens show one panel at a
+  time.

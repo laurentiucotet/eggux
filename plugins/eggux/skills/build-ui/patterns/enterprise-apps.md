@@ -60,3 +60,6 @@ Blocks on the Enterprise page (BLOCKS): Filter Builder, Approval Request, Audit 
 Roles & Permissions, Report, Record Form. Examples: "enterprise invoices" (App shell,
 Corporate + Compact) and "theme comparison" (Default vs Corporate). Template:
 `Template / data grid (enterprise)` on the Table page.
+- The Map columns step uses one `Mapping Row` per source column: sample value, target Select, status
+  (mapped, skipped, error), with a summary of counts above. Multi-step automations and approval
+  flows use `Workflow Node` on a canvas (@xyflow/react).

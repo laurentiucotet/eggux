@@ -54,3 +54,9 @@ Label (`ui/label`) → input → hint or error (`ui/caption`). The label is alwa
 - After signing show who signed and when; store the image with the timestamp and the document
   version. Legal weight depends on the country: name the signing method in the decision log.
 - Figma: `Signature Pad` State empty, signed. The pad clips the stroke on purpose.
+
+## Related components
+- Specialized inputs: `Copy Field` for values people copy (keys, links), `Search Field` for
+  searching a list or the app, `Inline Form` for one field and one button (newsletter, coupon,
+  invite). For typed values with a format: `Currency Input` (amount with ISO code), `Phone Input`
+  (country code, E.164), `Duration Input` (hours and minutes) and `Range Fields` (min and max).

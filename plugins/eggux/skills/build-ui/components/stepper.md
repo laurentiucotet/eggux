@@ -20,3 +20,5 @@ Usage guidelines only. Visual specs live in the Figma components (Stepper page).
 `Step` Orientation (horizontal, vertical) × State (completed, current, upcoming, error) with
 Title, Description, Number, Connector. `Stepper` has a `Steps` slot: steps with a connector
 FILL, the last one HUG with Connector off.
+- Steps on a marketing or onboarding page that people only read use `Step Item`; delivery progress
+  of an order uses `Shipment Tracker`. Stepper stays for steps people do in the product.

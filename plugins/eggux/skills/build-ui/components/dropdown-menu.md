@@ -31,3 +31,7 @@ red text on a light red tint fails contrast.
   Esc closes. Every command also has a shortcut or another place in the UI.
 - Figma: `Menubar Trigger` (default, hover, open; Label) in the `Menus` slot of `Menubar`.
   Example "menubar open" on the Menu page.
+
+## Related components
+- The avatar in the Top Bar or Sidebar User opens `Account Menu`: name and email, Profile, Settings,
+  Theme, Keyboard shortcuts, then Log out last. Workspace switching stays in Org Switcher.

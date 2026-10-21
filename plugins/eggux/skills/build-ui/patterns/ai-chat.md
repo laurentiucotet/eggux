@@ -116,3 +116,6 @@ does one thing well.
 
 ## Figma
 Components on the AI Chat page, blocks on the AI blocks page. See `components/ai-chat.md`.
+- Outside chat, start AI actions with `AI Button` (a verb, never just "AI"), show `AI Loading` while
+  it writes, mark extracted values with `Confidence Indicator` (3 levels, low never auto-applies)
+  and review many edits with `Suggestion Review Bar`.

@@ -296,14 +296,16 @@ Domain-specific needs become Field Presets or Blocks.
 | AI | `Block / AI Assistant Panel`, `/ Inline AI` | - | 400-wide copilot panel with context; inline popover with actions and a result to accept |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
-chevron-right, chevrons-up-down, arrow-up-down, info, circle-alert, triangle-alert, circle-check,
-loader-circle, mail, trash-2, ellipsis, pencil, copy, archive, user, users, settings, log-out,
-calendar, clock, trending-up, trending-down, map-pin, phone, building, inbox, house, file-text,
-chart-column, panel-left, bell, menu, upload, heart, shopping-bag, bold, italic, underline,
-list, text-quote, link, heading, sparkles, thumbs-up, thumbs-down, refresh-cw, square, arrow-up,
-paperclip, globe, wrench, mic, message-square, square-pen, play, pause, volume-2, maximize,
-captions, lightbulb, list-filter, columns-3, download, shield-check, history, lock, eye, pin,
-arrow-right, user-check (78).
+chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,
+circle-alert, triangle-alert, circle-check, loader-circle, mail, at-sign, trash-2, ellipsis, pencil,
+copy, archive, user, users, user-check, settings, log-out, calendar, clock, history, trending-up,
+trending-down, map-pin, phone, smartphone, monitor, building, inbox, house, file-text, chart-column,
+panel-left, layout-grid, columns-3, bell, menu, upload, download, heart, star, smile, thumbs-up,
+thumbs-down, shopping-bag, package, credit-card, bold, italic, underline, list, list-filter,
+text-quote, link, external-link, share-2, heading, code, git-branch, sparkles, zap, lightbulb,
+refresh-cw, square, paperclip, globe, wrench, mic, message-square, square-pen, play, pause,
+volume-2, maximize, captions, image, shield-check, key-round, lock, eye, pin, grip-vertical, sun,
+moon (97).
 
 ## Conventions used
 - Variant values use the shadcn prop values (`Variant=outline`, `Size=sm`), so Figma maps 1:1 to code.
@@ -380,6 +382,8 @@ Foundations (tokens shown as swatches, type, spacing, radius, elevation, motion)
 Brand has a second Theme preview in Corporate Light, a Content panel (brand strings bound to the `Content` collection) and an English / Română comparison of the invoices example. Then two groups of pages, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
 categories and Page Shells). Block pages have no prefix. `Navigation` exists in both sections:
 the first holds the components (Breadcrumb, Top Bar), the second the Navbar and Footer blocks.
+`Commerce` too: the first holds Product Card and the cart, order and account parts, the second the
+Product Detail and Order Summary blocks.
 Keep new pages in A-Z order inside their section.
 
 Every component page has one row per main component, left to right: `<Name> / Docs` (a
@@ -417,6 +421,6 @@ field, AI chat app, product tour, enterprise invoices, theme comparison, menubar
 (enterprise) template.
 
 ## Not built yet
-Nothing from the current roadmap. Icons: the 79 Lucide icons stay; the team may switch to Phosphor
+Nothing from the current roadmap. Icons: the 97 Lucide icons stay; the team may switch to Phosphor
 (flatten each icon to one `Vector` layer so swaps keep their color). When something is missing,
 compose from the components above, tokens and text styles, and flag it.

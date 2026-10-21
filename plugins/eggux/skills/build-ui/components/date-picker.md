@@ -47,3 +47,8 @@ shadcn `Calendar` (react-day-picker, `weekStartsOn={1}`, `locale={ro}`) and the 
 - Mobile: one month in a full-height Drawer, presets as chips above.
 - Figma: `Date Range Picker` (Presets slot, Summary, Show presets) on the Calendar page. Example
   "date range filter".
+
+## Related components
+- For known dates people type (birth date, invoice date), use `Date Input`: day, month and year
+  segments with a calendar button. For repeats (recurring invoices, reminders), use `Recurrence
+  Picker`.

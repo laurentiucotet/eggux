@@ -79,3 +79,5 @@ Stat Card, Option Card and Post Card use the same tokens.
   280 and 720 wide, for every variant, sm, Dark, Compact and Corporate Light.
 - `Entity Card` Show people hides the Avatar Group in the footer when people do not matter for the
   object.
+- `Link Preview` shows a pasted URL as a card in comments, chat and notes. `Location Card` shows an
+  office, store or venue with address, phone, hours and directions; grids of 3 or next to a `Map`.

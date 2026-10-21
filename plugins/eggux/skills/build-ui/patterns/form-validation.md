@@ -31,3 +31,8 @@ interrupted while typing.
 ## shadcn / Figma
 `Form` + `FormField` + `FormMessage` (react-hook-form + zod) in code. In Figma, the input
 component's error variant and the `ui/caption` style for hints.
+
+## Related components
+- Long forms: show an `Error Summary` at the top after a failed submit, with a link to each field.
+  Group fields in `Form Section`s and option groups in a `Fieldset` whose error belongs to the
+  group. Rules checked live (password, publish checks) use `Requirement List`.

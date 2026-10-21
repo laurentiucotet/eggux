@@ -23,3 +23,14 @@ section" on the Selection controls page and `Block / Settings Section`.
 
 Destructive settings (delete workspace, transfer ownership) live in a separate "Danger zone" card
 at the bottom, with typed confirmation (`delete-confirmation.md`).
+
+## Related components
+- Settings pages with fields use `Form Section` (title and description on the left, fields on the
+  right) and one Save. API keys and webhook URLs use `Copy Field`. Appearance settings use `Theme
+  Toggle` and `Language Switcher`.
+- Billing and Team Members show each plan limit with a `Usage Meter` (near from 80% with what to do,
+  over above 100% with the consequence and date). Rules lists use `Automation Rule`: one sentence
+  per rule, a Switch to pause it and how often it ran.
+- Admin rows: `Integration Card` for the Integrations block, `Permission Row` for the role matrix,
+  `API Key Row` for API Keys and `Session Row` for signed-in devices. Onboarding checklists use
+  `Checklist Item`.
