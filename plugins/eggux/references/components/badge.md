@@ -9,8 +9,9 @@ Usage rules live in the guides linked under each component.
 | [Badge](#badge) | 14 | - |
 | [Badge Count](#badge-count) | 4 | - |
 | [Status Dot](#status-dot) | 5 | - |
+| [Tag List](#tag-list) | 1 | Tags |
 
-On the Figma page: "Example / in announcement banner", "Example / in conversation", "Example / in filtered list", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Status Dot"
+On the Figma page: "Example / dataset header", "Example / filter panel", "Example / in announcement banner", "Example / in conversation", "Example / in filtered list", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Status Dot", "Stress test / Tag List"
 
 ## Badge
 
@@ -182,3 +183,50 @@ Tokens and styles:
 Guides: [indicators](../../skills/build-ui/components/indicators.md)
 
 Code: shadcn `Badge` (+ success, warning, info variants) (Status Dot: custom span + label)
+
+## Tag List
+
+Component · 1 variant · default size 244 × 22
+
+A few tags or labels on one line with "+N" for the rest: category, status, region, format. Badges go in the Tags slot (outline for neutral labels, a status Variant only when it means something); the +N Badge opens the full list in a Tooltip or Popover. Show 2-4, keep labels to one or two words. Filters people remove use Chip; a single status uses Badge or Status Dot.
+
+**Use for**
+
+- Category, format and region of a dataset, an article or a job
+- Labels under a page title
+- Tags in a card or a table row with limited space
+
+**Not for**
+
+- Filters people remove: use Chip
+- One status: use Badge or Status Dot
+- Choosing tags: use a multi Select or a Combobox
+
+**Anatomy**
+
+1. Tags slot: Badges (outline for neutral labels)
+2. +N Badge (Show more, exposed): secondary, opens the full list
+
+**Content and behavior**
+
+- Show 2-4 tags, then +N
+- One or two words per tag, sentence case
+- Status colors only when the tag means a status
+- Same order everywhere (type, frequency, region)
+
+**Accessibility**
+
+- Code as a list (ul) with a label ("Tags")
+- +N is a button that names the hidden tags in its Tooltip or Popover
+- Tags that link to a listing are links, not buttons
+
+| Property | Type | Default |
+|---|---|---|
+| Show more | boolean | true |
+
+Slots (fill them in the instance, never detach): `Tags`
+
+Built from: `Badge`
+
+Tokens and styles:
+- Spacing and size: `spacing/1_5`

@@ -3,6 +3,31 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.48.0
+- Audit batch 1: six components built from patterns that were drawn by hand in the blocks again
+  and again.
+  - `Section Heading` (new page): title, description, optional overline, Actions slot; Size lg
+    (h2), default (h3), sm (h4). Centered marketing sections keep the Section Header block.
+  - `Feature Item` (new page): icon tile, title, text, optional link; stacked, inline, centered.
+  - `Action Bar` (Button page): Actions and Leading slots, optional divider; Align end, start,
+    center.
+  - `Summary Row` (Description List page): label and amount; default, discount, total.
+  - `Byline` (Avatar page): Avatar, name, detail; sm, default, lg.
+  - `Tag List` (Badge page): Badges in a Tags slot and a "+N" Badge.
+- `Avatar Group`: Label and Show label ("Maintained by 3 analysts").
+- In use: section headings in Integrations, Audit Log, Roles, Report, Record Form, Import
+  Mapping, Status Page and two test screens; Action Bars in heroes, page headers, CTAs, Empty
+  Page, Import Mapping, Map Section, Job Header; Summary Rows in Order Summary and Pricing
+  Calculator; Bylines in Article, Blog Post Header and testimonials; Tag Lists in page headers,
+  Job Header and test screens; Feature Items in Features, Bento Grid and Careers Benefits; Meta
+  Items in Support Options, Careers List and Map Section; Avatar Group labels in two page headers
+  and the Showcase screen.
+- Examples "sections on a page", "features in a grid", "form footer", "invoice totals", "article
+  meta", "dataset header"; docs rows and generated stress tests; guides (button, avatar, badge,
+  description-list, content, marketing-pages, commerce, enterprise-apps, content-and-docs,
+  form-validation), code mapping, library map and component reference (223 components on 61
+  pages). README lists audit batches 2 and 3.
+
 ## 0.47.0
 - New `Waterfall Chart` (start total, increases in color/blue/600, decreases in color/red/600,
   end total; signed labels and connectors) and `Combo Chart` (bars on the left axis, a line on

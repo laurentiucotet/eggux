@@ -1,6 +1,27 @@
-# Content components: Post Card, Quote, Code Block, Table of Contents
+# Content components: Section Heading, Feature Item, Post Card, Quote, Code Block, Table of Contents
 
 Usage guidelines only. Visual specs live in the Figma components.
+
+## Section Heading
+- Opens a section of an app or content page, or a group inside a card or a long form: title,
+  one-sentence description, optional overline, one row of actions on the right (View all, Add, a
+  search Input, a Toggle Group).
+- `Size=lg` (h2) for content page sections, `default` (h3) for sections of an app page, `sm` (h4)
+  for groups inside a card or panel. Same Size for sections on the same level.
+- Centered marketing sections use the Section Header block; card titles use Card Header; the page
+  title uses a Page Header block.
+- Figma: `Section Heading` (own page) Size; Title, Description, Overline, Show overline, Show
+  description, Show actions; Actions slot. Used in Integrations, Audit Log, Report, Record Form,
+  Import Mapping and Status Page.
+
+## Feature Item
+- One benefit or capability: icon tile, title in 2-5 words, one or two lines of text, optional
+  link. `stacked` in grids of 3 or 4, `inline` in two-column lists and asides, `centered` under a
+  centered Section Header.
+- Same Layout, icon style and text length across a grid; one idea per item.
+- Plan feature lists with checks are a check list; numbers are Figure or Stat Card.
+- Figma: `Feature Item` (own page) Layout; Title, Description, Icon (swap), Show description, Show
+  link. Used in the Features, Bento Grid and Careers Benefits blocks.
 
 ## Post Card
 - Articles, news, case studies, changelog entries. Image 16:9, category + date · reading time,

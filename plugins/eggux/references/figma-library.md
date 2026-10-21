@@ -51,13 +51,16 @@ Domain-specific needs become Field Presets or Blocks.
 | Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. State: as Button | Icon (swap) |
 | Button | `Button Group Item` | Position: first, middle, last. State: default, hover, focus, disabled | Label, Show label, Icon + Icon type |
 | Button | `Button Group` | - | Items (native slot) |
+| Button | `Action Bar` | Align: end, start, center | Show divider, Show leading; Leading, Actions (native slots). The row of buttons that ends a form, a step or a hero |
 | Button | `Split Button` | Variant: default, outline | Label; chevron opens a Menu |
 | Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info. Shape: rounded, pill | Label; Icon (boolean + swap); Dot; Count + Count value |
 | Badge | `Badge Count` | Variant: default, secondary, destructive, outline | Count (numeric bubble for nav items and icon buttons) |
 | Badge | `Status Dot` | Status: success, warning, error, info, neutral | Label, Show label |
+| Badge | `Tag List` | - | Show more; Tags (native slot) of Badges + "+N" Badge (exposed). A few tags on one line |
 | Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Leading icon, Remove |
 | Avatar | `Avatar` | Type: initials, image. Size: sm 24, default 32, lg 40, xl 48 | Initials, Status (online dot). Photo = image fill on the `image` layer |
-| Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar |
+| Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar; Label + Show label ("Maintained by 3 analysts") |
+| Avatar | `Byline` | Size: sm, default, lg | Name, Detail, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
 | Input | `Input` | State: default, focus, error, disabled. Content: placeholder, filled | Value; Leading icon (boolean + swap); Trailing (native slot) + Show trailing |
 | Input | `Password Strength` | Strength: empty, weak, fair, good, strong | Meter + message under a new-password field |
@@ -127,6 +130,8 @@ Domain-specific needs become Field Presets or Blocks.
 | Chat | `Typing Indicator` | - | Three dots + "… is typing" |
 | Chat | `Chat Composer` | - | Attach, message field, Send |
 | Quote | `Quote` | Variant: default (left rule), pull (centered) | Quote, Name, Role, Show avatar, Show attribution. A quotation in running content |
+| Section Heading | `Section Heading` | Size: lg (h2), default (h3), sm (h4) | Title, Description, Overline, Show overline, Show description, Show actions; Actions (native slot). Opens a section of an app or content page |
+| Feature Item | `Feature Item` | Layout: stacked, inline, centered | Title, Description, Icon (swap), Show description, Show link. One benefit: icon tile, title, text |
 | Rating | `Rating` | Size: sm, default. Value: 0-5 | Show value, Show count, Count. Value text edited per instance |
 | Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); Carousel Arrow (outline) and Carousel Indicator (dots); viewport clips |
 | Carousel | `Carousel Arrow` | Variant: outline, overlay. Direction: previous, next. State: default, hover, focus, disabled | Round 36 (outline) or 40 with shadow (overlay) |
@@ -150,6 +155,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Description List | `Description List Item` | Orientation: horizontal, vertical | Label, Divider; Value (native slot) |
 | Description List | `Meta Item` | - | Icon (swap, 16, muted), Label, Show icon. One fact: date, place, people, contact |
 | Description List | `Figure` | Layout: stacked, inline. Size: default, lg | Value, Label, Source, Show source, Divider. A number with what it counts; no trend |
+| Description List | `Summary Row` | Variant: default, discount, total | Label, Value. One line of a money breakdown, amount right aligned |
 | Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive | Title, Time, Description, Show description, Icon (swap), Connector; Content (native slot) + Show content |
 | Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked |
 | Menu | `Menu Label` | - | Label |

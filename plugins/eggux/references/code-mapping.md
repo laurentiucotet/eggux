@@ -13,9 +13,11 @@ later. "custom" means compose it from the listed primitives in the project.
 |---|---|---|
 | `Button`, `Button Icon` | shadcn `Button` (`size="icon"`) | `Leading icon` → icon child before the label |
 | `Button Group`, `Split Button` | shadcn `ButtonGroup` or custom flex + `DropdownMenu` | |
+| `Action Bar` | `<div class="flex gap-2 justify-end">` of shadcn `Button` (justify-start, justify-center) | Leading button with `mr-auto`; one primary |
 | `Badge`, `Badge Count`, `Status Dot` | shadcn `Badge` (+ success, warning, info variants) | Status Dot: custom span + label |
 | `Chip`, `Tag` | custom on `Badge` + remove `Button` | |
 | `Avatar`, `Avatar Group` | shadcn `Avatar` | Group: negative margin + ring |
+| `Byline` | shadcn `Avatar` + name and detail (`flex items-center gap-3`) | Name links to the profile; dates in `<time>` |
 | `Separator` | shadcn `Separator` | |
 | `Input`, `Field`, `Textarea` | shadcn `Input`, `Label`, `Textarea`, `Form` (react-hook-form) | Field = `FormItem` with label, description, message |
 | `Input Group`, `Input Addon`, `Number Input` | shadcn `InputGroup` or custom | |
@@ -43,6 +45,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Stepper`, `Step` | custom (no shadcn stepper) | |
 | `Description List`, `Timeline` | custom `dl` / `ol` | |
 | `Meta Item`, `Figure` | custom: icon + text (`text-sm text-muted-foreground`); `dl` with value and label | Figure has no trend; that is Stat Card |
+| `Summary Row` | `<dl>` row, `flex justify-between`, `tabular-nums` | Discount keeps the minus sign; Separator above the total |
 | `Setting Row` | custom row + shadcn `Switch`, `Select` or `Button` | Label and `aria-describedby` from the texts |
 | `Carousel`, `Carousel Arrow`, `Carousel Indicator`, `Carousel Slide` | shadcn `Carousel` (Embla): `CarouselPrevious`, `CarouselNext`, dots from the Embla API | Autoplay plugin only with a pause control |
 | `Carousel Gallery`, `Carousel Thumbnail` | Embla main + thumbs carousels | |
@@ -93,6 +96,9 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Rich Text Editor` | Tiptap (or Lexical) + shadcn `Toggle` toolbar | |
 | `Code Block` | Shiki or Prism + copy `Button` | |
 | `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, larger type |
+| `Section Heading` | `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` | Heading level follows the page outline |
+| `Feature Item` | custom: lucide icon in a `bg-muted rounded-md` tile + `<h3>` + `<p>` | Icon `aria-hidden`; grid of 3 or 4 |
+| `Tag List` | `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger | |
 | `Table of Contents`, `TOC Item` | custom with scroll spy | |
 | `Comment`, `Comment Composer` | custom + `Textarea` | |
 | `Chat Message`, `Chat Composer`, `Typing Indicator` | custom | |

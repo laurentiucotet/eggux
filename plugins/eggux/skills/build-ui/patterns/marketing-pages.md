@@ -8,7 +8,7 @@ grouped by family inside each page's `Blocks` section.
 |---|---|---|
 | Banner | Announcement Banner | One launch or event message above the Navbar, dismissible |
 | Hero | Hero Centered, Hero Split, Hero with Screenshot | Screenshot when the product sells itself; split for a human or illustrative image |
-| Features | Features, Features Split, Bento Grid | Grid for 3-6 short benefits; split rows for deep-dives; bento for a platform overview with real components |
+| Features | Features, Features Split, Bento Grid | Grid for 3-6 short benefits (Feature Item, stacked); split rows for deep-dives; bento for a platform overview with real components |
 | Testimonials | Testimonials, Testimonial Single, Grid, Split, Carousel | Single for one strong quote; grid for breadth; split (case study) for enterprise buyers; carousel only past six |
 | CTA | CTA, CTA Split, CTA Card | Card (primary color) once per page near the end; split with a product image mid-page |
 | Contact | Contact, Contact Cards, Contact with Map, Offices, Map Section | Cards for channels; map variants only when people visit; always the written address next to a map |
@@ -65,7 +65,9 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
 - Comparison Table: plans as columns (recommended marked), features grouped, check / dash /
   value; mobile shows one plan at a time.
 - Sections alternate background only when it helps scanning (`background/default` / `muted`).
-- Testimonials: real name, role and company; specific results beat praise; no stock photos.
+- Testimonials: real name, role and company (Byline); specific results beat praise; no stock photos.
+- Hero, CTA and page header buttons sit in an Action Bar (start, or center under centered text);
+  one primary.
 - Maps: never the only way to find an address; add directions and opening hours; lazy-load
   interactive maps and use a static image above the fold.
 - Announcement banner: one at a time, dismissible, not for errors or outages.

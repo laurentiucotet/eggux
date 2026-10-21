@@ -132,6 +132,14 @@
    "main": "Avatar Group",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Byline",
+   "helpers": [],
+   "block": "198:1304",
+   "examples": [
+    "Example / article meta"
+   ]
   }
  ],
  "Badge": [
@@ -149,6 +157,14 @@
    "main": "Status Dot",
    "helpers": [],
    "block": "145:2962"
+  },
+  {
+   "main": "Tag List",
+   "helpers": [],
+   "block": "361:767",
+   "examples": [
+    "Example / dataset header"
+   ]
   }
  ],
  "Button": [
@@ -173,6 +189,14 @@
    "main": "Split Button",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Action Bar",
+   "helpers": [],
+   "block": "72:80",
+   "examples": [
+    "Example / form footer"
+   ]
   }
  ],
  "Calendar": [
@@ -434,6 +458,14 @@
    "examples": [
     "Example / report figures"
    ]
+  },
+  {
+   "main": "Summary Row",
+   "helpers": [],
+   "block": "126:260",
+   "examples": [
+    "Example / invoice totals"
+   ]
   }
  ],
  "Dialog": [
@@ -494,6 +526,16 @@
    "main": "Empty State",
    "helpers": [],
    "block": null
+  }
+ ],
+ "Feature Item": [
+  {
+   "main": "Feature Item",
+   "helpers": [],
+   "block": "73:12",
+   "examples": [
+    "Example / features in a grid"
+   ]
   }
  ],
  "File Upload": [
@@ -830,6 +872,16 @@
    "main": "Scroll Area",
    "helpers": [],
    "block": null
+  }
+ ],
+ "Section Heading": [
+  {
+   "main": "Section Heading",
+   "helpers": [],
+   "block": "125:2633",
+   "examples": [
+    "Example / sections on a page"
+   ]
   }
  ],
  "Select": [

@@ -39,3 +39,15 @@ is a boolean property; turn it off in the client file rather than detaching inst
   destructive actions in it.
 - Figma: `Button Group Item` Position (first, middle, last) × State, Icon-only via Show label off;
   `Button Group` (Items slot); `Split Button` Variant (default, outline). Example "split button open".
+
+## Action Bar (the row of buttons at the end)
+- Ends a form, a settings section, a wizard step, a hero or a page header. One primary per bar.
+- `Align=end` for forms and steps: secondary left of primary (Cancel, Save). `start` for heroes
+  and page headers: primary first (Get started, Talk to sales). `center` under centered heroes,
+  CTAs and empty states.
+- Destructive or secondary-flow actions (Delete, Remove, Back) go in the Leading slot, on the left,
+  away from the primary. Show divider when the bar closes a long form.
+- Not for: Dialog footers (the Dialog has its own), unsaved changes that follow the scroll (Save
+  Bar), related actions joined in one control (Button Group).
+- Figma: `Action Bar` Align (end, start, center); Show divider, Show leading; Leading and Actions
+  slots. Used in the hero, page header, CTA, empty page and import blocks.

@@ -376,7 +376,7 @@
   ]
  },
  "Avatar Group": {
-  "summary": "Stacked avatars for assignees, participants or the people something is shared with.",
+  "summary": "Stacked avatars for assignees, participants or the people something is shared with, with an optional label.",
   "use": [
    "Assignees on a card or a table row",
    "Participants of a project",
@@ -389,12 +389,14 @@
   "anatomy": [
    "Avatars slot: 3-5 Avatars of one size, overlapping",
    "Ring: 2 px background/default around each Avatar",
-   "+N for the rest, opens the full list"
+   "+N for the rest, opens the full list",
+   "Label (Show label): body/small, muted (\"Maintained by 3 analysts\")"
   ],
   "rules": [
    "Show 3-5 avatars, then \"+N\"",
    "Same size inside a group: sm, default or lg",
-   "Full list in a Tooltip (names) or a Popover (names and actions)"
+   "Full list in a Tooltip (names) or a Popover (names and actions)",
+   "Label says who they are or how many, not the names already shown"
   ],
   "a11y": [
    "The group has a name with the count (\"5 assignees\")",
@@ -5802,6 +5804,216 @@
   "guides": [
    "skills/build-ui/components/charts.md",
    "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Section Heading": {
+  "summary": "Title and description that open a section of an app or content page, with an optional overline and one row of actions on the right.",
+  "use": [
+   "A section of an app page: Reports, Integrations, Audit log",
+   "A content page section with a View all link",
+   "A group inside a card or a long form (Size=sm)",
+   "A search Input or a filter next to the title of a list"
+  ],
+  "avoid": [
+   "Centered marketing sections: use the Section Header block",
+   "The title of a Card: use Card Header",
+   "The page title: use a Page Header block"
+  ],
+  "anatomy": [
+   "Overline (Show overline): ui/overline, muted",
+   "Title: heading/h2 (lg), heading/h3 (default), heading/h4 (sm)",
+   "Description (Show description): body/lead (lg), body/small",
+   "Actions slot (Show actions): Buttons, a search Input, a Toggle Group"
+  ],
+  "rules": [
+   "One title per section, in sentence case, a noun or a short phrase",
+   "Description says what the section holds in one sentence",
+   "At most two buttons in Actions; one primary",
+   "Same Size for sections on the same level of a page"
+  ],
+  "a11y": [
+   "The title is a real heading (h2, h3, h4) that follows the page outline",
+   "Actions come after the heading in tab order",
+   "A search Input in Actions has a label"
+  ],
+  "code": "<header> with <h2|h3|h4> and <p>; flex justify-between for the actions.",
+  "guides": [
+   "skills/build-ui/components/content.md",
+   "skills/build-ui/patterns/enterprise-apps.md"
+  ]
+ },
+ "Feature Item": {
+  "summary": "One benefit or capability: icon tile, short title, one or two lines of text, optional link.",
+  "use": [
+   "Feature grids of 3 or 4 on marketing pages",
+   "Benefits on a careers page",
+   "What a plan or product does, in a two-column list (Layout=inline)",
+   "Under a centered Section Header (Layout=centered)"
+  ],
+  "avoid": [
+   "Plan feature lists with checks: use a check list",
+   "Numbers and results: use Figure or Stat Card",
+   "Clickable cards that open something: use Card or Post Card"
+  ],
+  "anatomy": [
+   "Icon tile: 40 px, background/muted, radius/md, Icon swap",
+   "Title: body/large",
+   "Description (Show description): body/small, muted",
+   "Link (Show link): Button link, sm"
+  ],
+  "rules": [
+   "Same Layout, icon style and text length across a grid",
+   "Title in 2-5 words; description in one or two lines",
+   "One idea per item; no bullet lists inside",
+   "Link only when there is a page that explains more"
+  ],
+  "a11y": [
+   "The icon is decorative (aria-hidden)",
+   "The title is a heading one level below the section title",
+   "Link text names the destination, not only \"Learn more\" when several sit together"
+  ],
+  "code": "<div> with an icon, <h3> and <p>; grid of 3 or 4 columns.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/components/content.md"
+  ]
+ },
+ "Action Bar": {
+  "summary": "The row of buttons that ends a form, a step or a hero: Actions slot, optional Leading slot and divider.",
+  "use": [
+   "The end of a form or a settings section (Align=end)",
+   "The buttons of a hero or a page header (Align=start)",
+   "Under a centered hero, CTA or empty state (Align=center)",
+   "Back on the left and Next on the right in a wizard step (Show leading)"
+  ],
+  "avoid": [
+   "The footer of a Dialog: use the Dialog's own footer",
+   "Unsaved changes that follow the scroll: use Save Bar",
+   "Related actions joined in one control: use Button Group"
+  ],
+  "anatomy": [
+   "Divider above (Show divider)",
+   "Leading slot (Show leading): Back, Delete, Remove",
+   "Actions slot: secondary and primary Buttons",
+   "Align: end, start, center"
+  ],
+  "rules": [
+   "One primary button per bar",
+   "end: secondary left of primary (Cancel, Save); start and center: primary first",
+   "Destructive actions go in Leading, away from the primary",
+   "Same button Size inside one bar"
+  ],
+  "a11y": [
+   "Tab order follows the visual order",
+   "The primary action is the submit button of the form",
+   "Disabled buttons explain why in a hint or a Tooltip"
+  ],
+  "code": "<div class=\"flex gap-2 justify-end\"> (or justify-start, justify-center); the leading button with mr-auto.",
+  "guides": [
+   "skills/build-ui/components/button.md",
+   "skills/build-ui/patterns/form-validation.md"
+  ]
+ },
+ "Summary Row": {
+  "summary": "One line of a money breakdown: label left, amount right; default, discount and total.",
+  "use": [
+   "Order and cart summaries",
+   "Invoice and quote totals",
+   "Price calculators and plan cost",
+   "Tiers of a volume price"
+  ],
+  "avoid": [
+   "Record details that are not amounts: use Description List Item",
+   "Many rows compared side by side: use a Table",
+   "A single key number: use Figure or Stat Card"
+  ],
+  "anatomy": [
+   "Label: body/small, muted (total: ui/label)",
+   "Value: body/small, right aligned (total: heading/h4)",
+   "Variant: default, discount (value in success), total"
+  ],
+  "rules": [
+   "Same currency and number format in every row",
+   "Discounts carry a minus sign (−€62.50)",
+   "Total is the last row, with a Separator above",
+   "Labels say what is included (VAT 19%, included)"
+  ],
+  "a11y": [
+   "Code as a description list (dt, dd) or a table",
+   "The discount color is never the only cue: keep the minus sign",
+   "The total is announced with its label"
+  ],
+  "code": "<dl> rows with flex justify-between; tabular-nums on the amounts.",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md",
+   "skills/build-ui/components/description-list.md"
+  ]
+ },
+ "Byline": {
+  "summary": "Who wrote, said or owns something: Avatar, name and one detail.",
+  "use": [
+   "Author under an article title (Size=default)",
+   "Who said it, under a testimonial or quote (lg, or sm in a grid)",
+   "Owner of a record, a dataset or a report",
+   "Author in a list of posts"
+  ],
+  "avoid": [
+   "Several people: use Avatar Group with a label",
+   "A full profile with role, contact and actions: use Person Card",
+   "A comment with its text: use Comment"
+  ],
+  "anatomy": [
+   "Avatar (exposed: Type, Initials), Show avatar",
+   "Name: ui/label",
+   "Detail (Show detail): ui/caption, muted: role and company, or date and reading time"
+  ],
+  "rules": [
+   "One person per Byline",
+   "Detail is one line: role, company or date · reading time",
+   "Size follows the context: sm in dense grids, default under titles, lg under testimonials",
+   "The name links to the profile when there is one"
+  ],
+  "a11y": [
+   "The Avatar is decorative next to the name (alt=\"\")",
+   "Dates in a <time> element",
+   "The link is on the name, not on the avatar alone"
+  ],
+  "code": "<div class=\"flex items-center gap-3\"> with Avatar and two lines of text.",
+  "guides": [
+   "skills/build-ui/components/avatar.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Tag List": {
+  "summary": "A few tags on one line with +N for the rest.",
+  "use": [
+   "Category, format and region of a dataset, an article or a job",
+   "Labels under a page title",
+   "Tags in a card or a table row with limited space"
+  ],
+  "avoid": [
+   "Filters people remove: use Chip",
+   "One status: use Badge or Status Dot",
+   "Choosing tags: use a multi Select or a Combobox"
+  ],
+  "anatomy": [
+   "Tags slot: Badges (outline for neutral labels)",
+   "+N Badge (Show more, exposed): secondary, opens the full list"
+  ],
+  "rules": [
+   "Show 2-4 tags, then +N",
+   "One or two words per tag, sentence case",
+   "Status colors only when the tag means a status",
+   "Same order everywhere (type, frequency, region)"
+  ],
+  "a11y": [
+   "Code as a list (ul) with a label (\"Tags\")",
+   "+N is a button that names the hidden tags in its Tooltip or Popover",
+   "Tags that link to a listing are links, not buttons"
+  ],
+  "code": "<ul class=\"flex gap-1.5\"> of Badges; +N as a Popover trigger.",
+  "guides": [
+   "skills/build-ui/components/badge.md"
   ]
  }
 }

@@ -84,18 +84,18 @@ component guides it names. Names are Figma components; inventory in
 | accordion | Accordion, filter groups |
 | ai-chat | Prompt Input, Attachment, User / Assistant Message, Reasoning, Tool Call, Sources, Citation, Suggestion |
 | alert | Alert inline and banner |
-| avatar | Avatar, Avatar Group |
-| badge | Badge, Badge Count, Chip, Status Dot (see indicators) |
-| button | Button, Button Icon, Button Group, Split Button |
+| avatar | Avatar, Avatar Group, Byline |
+| badge | Badge, Badge Count, Chip, Status Dot (see indicators), Tag List |
+| button | Button, Button Icon, Button Group, Split Button, Action Bar |
 | boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view |
 | card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Progress Card |
 | carousel | Carousel |
 | charts | Bar, Bar Horizontal, Line, Donut / Pie, Heatmap, Gauge, Treemap, Funnel, Scatter, Waterfall, Combo, Sparkline, Chart Card, legend, tooltip |
 | color-picker | Color Picker, swatches, color field |
 | comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer |
-| content | Post Card, Quote, Code Block, TOC Item, Table of Contents |
+| content | Section Heading, Feature Item, Post Card, Quote, Code Block, TOC Item, Table of Contents |
 | date-picker | Calendar, Date Picker, Time Picker, Date Range Picker |
-| description-list | Description List, Meta Item, Figure, Timeline |
+| description-list | Description List, Meta Item, Figure, Summary Row, Timeline |
 | dialog | Dialog, Alert Dialog |
 | drawer | Sheet, Drawer, Side Panel |
 | dropdown-menu | Menu, Menu Item, Menubar |

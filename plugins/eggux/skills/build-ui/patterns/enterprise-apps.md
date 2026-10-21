@@ -32,6 +32,8 @@ landing page: too much air, too few rows, no audit trail, no way to share a filt
 - Density: Compact rows (`density/*`), but touch targets stay 44 px on mobile and text never
   goes below `body/small`.
 - Show provenance: who changed it last and when, on every record header and report.
+- Sections of a page open with a Section Heading (default, h3) with its actions on the right;
+  groups inside a card use Size=sm. Forms end with an Action Bar (end).
 - Nothing destructive or financial happens without confirmation, and nothing important
   without a log entry.
 - Keyboard first: search with `/`, command palette `⌘K`, Enter to open a row, Space to select,
