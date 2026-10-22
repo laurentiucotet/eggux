@@ -268,7 +268,7 @@ One signed-in device in security settings: device and browser, approximate locat
 | Variant property | Values |
 |---|---|
 | Device | desktop, mobile |
-| State | current, default |
+| State | default, current |
 
 | Property | Type | Default |
 |---|---|---|
@@ -311,7 +311,7 @@ Usage: eggux build-ui/patterns/enterprise-apps.md
 **Anatomy**
 
 1. Avatar
-2. Name: ui/label (State=vacant shows "Open role")
+2. Name: ui/label; on State=vacant the Vacancy text ("Open role") takes its place
 3. Role: body/small, muted (also on State=vacant: the title being hired for)
 4. Reports: users icon and count ("6 reports"), not on State=vacant
 5. State: default, selected, vacant
@@ -320,7 +320,7 @@ Usage: eggux build-ui/patterns/enterprise-apps.md
 
 - Click opens the Person Card; the reports count expands the branch
 - Connect nodes with 1 px border/default lines
-- Vacant roles are dashed, say "Open role" and keep the Role of the position, linked to the Job Listing
+- Vacant roles are dashed, say "Open role" (Vacancy) and keep the Role of the position, linked to the Job Listing
 - Large orgs show 2-3 levels and a search
 - Names and titles wrap to two lines at most
 
@@ -339,6 +339,7 @@ Usage: eggux build-ui/patterns/enterprise-apps.md
 | Name | text | Ana Popescu |
 | Role | text | Head of Finance |
 | Reports | text | 6 reports |
+| Vacancy | text | Open role |
 
 Built from: `Avatar`. Icons: plus, users
 

@@ -12,6 +12,10 @@ example content varies across domains. Default texts in components and blocks us
 product ("Acme": projects, customers, invoices); domain content lives in examples only.
 Domain-specific needs become Field Presets or Blocks.
 
+Nested Buttons (with text), Badges, Badge Counts and Chips inside components are exposed: select
+the parent instance and edit their Label in its properties panel. Badges whose text follows a
+variant of the parent (Order Row status, Release Note type, Endpoint method) stay internal.
+
 ## Foundations
 - Variables: `Primitives` (Value), `Semantic` and `Components` (Light, Dark, Corporate Light,
   Corporate Dark), `Density` (Comfortable, Compact). Chart palette `chart/1..8`, motion `motion/*`. See `tokens.md`.
@@ -303,9 +307,9 @@ Domain-specific needs become Field Presets or Blocks.
 | Accordion | `Show More` | State: collapsed, expanded | Text. A long text cut to 3 lines with a Show more / Show less toggle. |
 | Admin | `API Key Row` | - | Name, Meta, Key, Show scope. One API key or token in developer settings: key icon, name with a scope Badge (Show scope; set its Label, e.g. |
 | Admin | `Integration Card` | Status: available, connected, error | Name, Category, Description, Logo, Vendor, Show icon, Show letter, Letter, Show badge, Show vendor, Show link. One app in an integrations directory or settings: logo tile, name, category, one-line value and state. |
-| Admin | `Org Chart Node` | State: default, selected, vacant | Name, Role, Reports. One person or open role in an org chart: avatar, name, role and direct reports. |
+| Admin | `Org Chart Node` | State: default, selected, vacant | Name, Role, Reports, Vacancy. One person or open role in an org chart: avatar, name, role and direct reports. |
 | Admin | `Permission Row` | Type: permission, header, group | Title, Description, Show description, Show changed, Show role 4, Show role 5, Group. One row of a role matrix, built from Table Cells so rows, the header and group rows share one grid. |
-| Admin | `Session Row` | Device: desktop, mobile. State: current, default | Name, Meta. One signed-in device in security settings: device and browser, approximate location, partial IP, last active, Sign out. |
+| Admin | `Session Row` | Device: desktop, mobile. State: default, current | Name, Meta. One signed-in device in security settings: device and browser, approximate location, partial IP, last active, Sign out. |
 | AI Chat | `AI Loading` | - | Status, Progress, Show progress, Show stop. Placeholder while AI writes an answer or a summary in place: what it is doing now, shimmer lines in the shape of the result, step and time left, Stop. |
 | AI Chat | `Confidence Indicator` | Level: high, medium, low | Show info. Says how sure the AI is about an extracted value, a match or an answer: high, medium or low. |
 | AI Chat | `AI Review Bar` | - | Count, Show bulk actions. Floating bar for reviewing AI edits in a document or form one by one: position, previous and next, accept or reject, and accept or reject all. |
