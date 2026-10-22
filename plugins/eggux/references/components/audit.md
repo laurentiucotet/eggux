@@ -1,6 +1,6 @@
 # Audit
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -115,6 +115,7 @@ One saved version in a version history panel: who, when, what changed, and Resto
 |---|---|---|
 | Meta | text | Elena Popa · 12 Oct 2026, 15:40 |
 | Summary | text | Changed payment terms to 14 days |
+| Version | text | Version 12 |
 
 Built from: `Avatar`, `Badge`, `Button`
 
@@ -154,6 +155,7 @@ One entry of a changelog or "What's new": type badge (New, Improved, Fixed), ver
 4. Text: two sentences on how to use it
 5. Image (Show image): Image Placeholder
 6. Link (Show link): Button link
+7. Text (Show text): off for one-line entries
 
 **Content and behavior**
 
@@ -180,6 +182,7 @@ One entry of a changelog or "What's new": type badge (New, Improved, Fixed), ver
 | Date | text | v2.14 · 12 Oct 2026 |
 | Show image | boolean | false |
 | Show link | boolean | true |
+| Show text | boolean | true |
 
 Built from: `Badge`, `Button`, `Image Placeholder`
 

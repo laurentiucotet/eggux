@@ -1,6 +1,6 @@
 # Chat
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -172,7 +172,7 @@ Code: custom
 
 ## Mention Chip
 
-Component set · 2 variants · default size 82 × 22
+Component set · 2 variants · default size 82 × 24
 
 A person mentioned in text (comments, chat, notes): @ and the name on a tinted chip, inline with the text. Mentions of the reader (you) stand out in warning. Hover shows a Hover Card; the mention notifies the person. Typed with @ and picked from a list of people with access.
 
@@ -216,7 +216,7 @@ A person mentioned in text (comments, chat, notes): @ and the name on a tinted c
 
 Tokens and styles:
 - Colors: `background/accent`, `background/warning`, `foreground/accent`, `foreground/warning`
-- Spacing and size: `spacing/1`
+- Spacing and size: `spacing/0_5`, `spacing/1`
 - Radius: `radius/sm`
 - Text styles: `ui/label`
 
@@ -315,7 +315,7 @@ Tokens and styles:
 - Colors: `background/accent`, `background/primary`, `border/default`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/2`
 - Radius: `radius/full`
-- Text styles: `ui/label`
+- Text styles: `body/small`, `ui/label`
 
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
 

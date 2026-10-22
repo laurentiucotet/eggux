@@ -1,6 +1,6 @@
 # Kbd
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Kbd Group](#kbd-group) | 1 | Keys |
 | [Shortcut Row](#shortcut-row) | 1 | - |
 
-On the Figma page: "Example / in comments", "Stress test / Kbd", "Stress test / Kbd Group", "Stress test / Shortcut Row"
+On the Figma page: "Example / in comments", "Example / search with shortcut", "Stress test / Kbd", "Stress test / Kbd Group", "Stress test / Shortcut Row"
 
 ## Kbd
 
@@ -58,7 +58,7 @@ Tokens and styles:
 
 Guides: [indicators](../../skills/build-ui/components/indicators.md)
 
-Code: shadcn `Skeleton`, `Spinner`, `Kbd`
+Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`)
 
 ## Kbd Group
 
@@ -102,6 +102,8 @@ Tokens and styles:
 - Spacing and size: `spacing/1`
 
 Guides: [indicators](../../skills/build-ui/components/indicators.md)
+
+Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`)
 
 ## Shortcut Row
 

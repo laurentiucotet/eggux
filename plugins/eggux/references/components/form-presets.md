@@ -1,6 +1,6 @@
 # Form Presets
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -54,3 +54,5 @@ Ready-made fields built from Field + Input/Select (they follow every change to t
 Built from: `Field`
 
 Guides: [form-presets](../../skills/build-ui/patterns/form-presets.md)
+
+Code: `Field` (`FormItem`) + shadcn `Input` or `Select` with `type`, `inputmode` and `autocomplete` set per preset (See `skills/build-ui/patterns/form-presets.md`)

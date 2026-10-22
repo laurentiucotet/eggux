@@ -1,40 +1,18 @@
 # Calendar
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Calendar Day](#calendar-day) | 10 | - |
 | [Calendar](#calendar) | 1 | - |
+| [Calendar Day](#calendar-day) | 10 | - |
 | [Date Picker](#date-picker) | 8 | - |
 | [Time Picker](#time-picker) | 8 | - |
 | [Date Range Picker](#date-range-picker) | 1 | Presets |
 
 On the Figma page: "Example / date and time", "Example / date picker open", "Example / date range", "Example / date range filter", "Example / time picker open", "Stress test / Calendar", "Stress test / Date Picker", "Stress test / Date Range Picker", "Stress test / Time Picker"
-
-## Calendar Day
-
-Component set · 10 variants · default size 32 × 32
-
-One day cell, 32 x 32. today = accent, selected and range ends = primary, range-middle = accent without radius, outside = days of the adjacent months (muted).
-
-| Variant property | Values |
-|---|---|
-| State | default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end |
-
-| Property | Type | Default |
-|---|---|---|
-| Day | text | 19 |
-
-Tokens and styles:
-- Colors: `background/accent`, `background/default`, `background/primary`, `foreground/accent`, `foreground/default`, `foreground/muted`, `foreground/primary`
-- Spacing and size: `spacing/8`
-- Radius: `radius/md`
-- Text styles: `body/small`, `ui/label`
-
-Guides: [date-picker](../../skills/build-ui/components/date-picker.md)
 
 ## Calendar
 
@@ -89,6 +67,30 @@ Tokens and styles:
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md), [date-picker](../../skills/build-ui/components/date-picker.md)
+
+Code: shadcn `Calendar` (react-day-picker) in `Popover`
+
+## Calendar Day
+
+Component set · 10 variants · default size 32 × 32
+
+One day cell, 32 x 32. today = accent, selected and range ends = primary, range-middle = accent without radius, outside = days of the adjacent months (muted).
+
+| Variant property | Values |
+|---|---|
+| State | default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end |
+
+| Property | Type | Default |
+|---|---|---|
+| Day | text | 19 |
+
+Tokens and styles:
+- Colors: `background/accent`, `background/default`, `background/primary`, `foreground/accent`, `foreground/default`, `foreground/muted`, `foreground/primary`
+- Spacing and size: `spacing/8`
+- Radius: `radius/md`
+- Text styles: `body/small`, `ui/label`
+
+Guides: [date-picker](../../skills/build-ui/components/date-picker.md)
 
 Code: shadcn `Calendar` (react-day-picker) in `Popover`
 

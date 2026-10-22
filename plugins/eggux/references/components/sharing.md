@@ -1,6 +1,6 @@
 # Sharing
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -53,7 +53,7 @@ One person or group with access to an object in a share dialog: avatar, name and
 
 | Variant property | Values |
 |---|---|
-| Role | editable, owner, pending |
+| Type | editable, owner, pending |
 
 | Property | Type | Default |
 |---|---|---|
@@ -163,7 +163,7 @@ General access of an object at the bottom of a share dialog: who can open the li
 
 | Variant property | Values |
 |---|---|
-| Access | restricted, anyone |
+| Type | restricted, anyone |
 
 Built from: `Button`. Icons: globe, lock
 

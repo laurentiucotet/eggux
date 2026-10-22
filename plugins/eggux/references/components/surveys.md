@@ -1,6 +1,6 @@
 # Surveys
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -59,6 +59,7 @@ A one-tap question at the end of a help article, an AI answer or a finished task
 | Property | Type | Default |
 |---|---|---|
 | Question | text | Was this page helpful? |
+| Thanks | text | Thanks for the feedback. |
 
 Built from: `Button`, `Textarea`. Icons: circle-check
 
@@ -133,7 +134,7 @@ Code: shadcn `Button`, `ToggleGroup` (or `RadioGroup`) + `Textarea` (Send with p
 
 ## CSAT Rating
 
-Component set · 2 variants · default size 420 × 140
+Component set · 2 variants · default size 420 × 144
 
 Customer satisfaction after one interaction (a support ticket, a delivery, an onboarding call): five faces with words under them. One tap sends it; a comment is optional after. Words carry the meaning, faces support it. Ask within a day of the interaction, once.
 
@@ -181,7 +182,7 @@ Tokens and styles:
 - Colors: `background/accent`, `background/card`, `border/default`, `foreground/card`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`, `spacing/5`
 - Radius: `radius/md`, `radius/xl`
-- Text styles: `body/small`, `ui/caption`, `ui/label`
+- Text styles: `body/lead`, `body/small`, `ui/caption`, `ui/label`
 
 Guides: [rating](../../skills/build-ui/components/rating.md)
 

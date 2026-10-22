@@ -1,6 +1,6 @@
 # Accordion
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -41,7 +41,7 @@ shadcn Accordion: Items slot of Accordion Item instances.
 - The whole trigger row toggles
 - Several items may be open at once unless the content is mutually exclusive
 - Filters: Title is the dimension; Meta is a Badge Count of active values or a short summary
-- Leading icon on all items or none
+- Show leading icon on all items or none
 - Groups with active filters are open by default
 
 **Accessibility**
@@ -56,7 +56,7 @@ Built from: `Accordion Item`
 
 Guides: [accordion](../../skills/build-ui/components/accordion.md)
 
-Code: shadcn `Accordion`
+Code: shadcn `Accordion` (`AccordionItem`) (Size=sm: smaller padding)
 
 ## Accordion Item
 
@@ -66,14 +66,14 @@ shadcn AccordionItem. default for FAQ and long content; compact for filter group
 
 | Variant property | Values |
 |---|---|
-| Density | default, compact |
+| Size | default, sm |
 | State | collapsed, expanded |
 
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Can I change my plan later? |
-| Leading icon | boolean | false |
-| Leading icon type | instance swap | Icon/users |
+| Show leading icon | boolean | false |
+| Leading icon | instance swap | Icon/users |
 | Show meta | boolean | false |
 
 Slots (fill them in the instance, never detach): `Meta`, `Content`
@@ -86,6 +86,8 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/label`
 
 Guides: [accordion](../../skills/build-ui/components/accordion.md), [drawer](../../skills/build-ui/components/drawer.md)
+
+Code: shadcn `Accordion` (`AccordionItem`) (Size=sm: smaller padding)
 
 ## Show More
 

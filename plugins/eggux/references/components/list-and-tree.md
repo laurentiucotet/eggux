@@ -1,6 +1,6 @@
 # List & Tree
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -9,10 +9,10 @@ Usage rules live in the guides linked under each component.
 | [List Item](#list-item) | 5 | Leading, Trailing |
 | [Tree Item](#tree-item) | 36 | - |
 | [Sortable List Item](#sortable-list-item) | 4 | Trailing, Leading |
-| [Checklist Item](#checklist-item) | 3 | - |
+| [Task Item](#task-item) | 3 | Action |
 | [Job Listing](#job-listing) | 1 | - |
 
-On the Figma page: "Example / in notifications", "Example / navigation tree", "Example / permissions tree", "Example / table columns", "Stress test / Checklist Item", "Stress test / Job Listing", "Stress test / List Item", "Stress test / Sortable List Item", "Stress test / Tree Item"
+On the Figma page: "Example / in notifications", "Example / navigation tree", "Example / permissions tree", "Example / table columns", "Stress test / Job Listing", "Stress test / List Item", "Stress test / Sortable List Item", "Stress test / Task Item", "Stress test / Tree Item"
 
 ## List Item
 
@@ -30,7 +30,7 @@ Row in a content list (people, files, appointments). Different from Menu Item (a
 
 - Actions in a popover: use Menu Item
 - Navigation destinations: use Sidebar Item
-- Comparing items across several attributes: use Table
+- Comparing items across several attributes: use a table of Table Cells
 - Hierarchies: use Tree Item
 
 **Anatomy**
@@ -79,6 +79,8 @@ Tokens and styles:
 
 Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
 
+Code: custom row (`ul` / `li`) with shadcn `Avatar` and `Badge` (Show leading and Show trailing map to optional children)
+
 ## Tree Item
 
 Component set · 36 variants · default size 256 × 32
@@ -100,10 +102,10 @@ Row of a tree (navigation, folders, permissions). Type: collapsed, expanded, lea
 
 1. Indent (16 px per Level)
 2. Chevron (Type collapsed or expanded; none for leaf)
-3. Checkbox (Checkbox)
-4. Icon (Icon, Icon type)
+3. Checkbox (Show checkbox)
+4. Icon (Show icon, Icon)
 5. Label
-6. Count (Count)
+6. Count (Show count)
 
 **Content and behavior**
 
@@ -127,10 +129,10 @@ Row of a tree (navigation, folders, permissions). Type: collapsed, expanded, lea
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Design |
-| Checkbox | boolean | false |
-| Icon | boolean | true |
-| Icon type | instance swap | Icon/file-text |
-| Count | boolean | false |
+| Show checkbox | boolean | false |
+| Show icon | boolean | true |
+| Icon | instance swap | Icon/file-text |
+| Show count | boolean | false |
 
 Built from: `Badge Count`, `Checkbox`. Icons: chevron-down, chevron-right, file-text
 
@@ -141,6 +143,8 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/label`
 
 Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
+
+Code: custom tree (`role="tree"`) with shadcn `Checkbox` and `Badge` (Arrow keys expand and collapse)
 
 ## Sortable List Item
 
@@ -157,7 +161,7 @@ A row people reorder (columns, form fields, steps, priorities): drag handle, Lea
 **Not for**
 
 - Order that does not matter: use List Item
-- Moving cards between stages: use Kanban
+- Moving cards between stages: use Kanban Card
 
 **Anatomy**
 
@@ -209,7 +213,7 @@ Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md), [sel
 
 Code: `@dnd-kit/sortable` with keyboard sensor and announcements (Drag handle = `useSortable` listeners)
 
-## Checklist Item
+## Task Item
 
 Component set · 3 variants · default size 480 × 54
 
@@ -232,7 +236,8 @@ One task in a checklist (onboarding, a project, a record's to-dos): checkbox, ti
 1. Checkbox
 2. Title: ui/label
 3. Due (Show due): ui/caption, muted; destructive when overdue
-4. Assignee (Show assignee): Avatar xs
+4. Action slot (Show action): one Button, such as Connect or Start
+5. Assignee (Show assignee): Avatar xs
 
 **Content and behavior**
 
@@ -240,7 +245,7 @@ One task in a checklist (onboarding, a project, a record's to-dos): checkbox, ti
 - Done is struck through and moves to the end
 - Overdue says it in destructive ("Overdue · 12 Oct")
 - Open items sort by due date; the title wraps to two lines at most
-- The row opens the task; the Checkbox only ticks
+- The row opens the task; the Checkbox only ticks; the action button starts the task
 
 **Accessibility**
 
@@ -257,6 +262,10 @@ One task in a checklist (onboarding, a project, a record's to-dos): checkbox, ti
 | Title | text | Send Q4 forecast to Northwind |
 | Show due | boolean | true |
 | Show assignee | boolean | true |
+| Due | text | Due 14 Nov |
+| Show action | boolean | false |
+
+Slots (fill them in the instance, never detach): `Action`
 
 Built from: `Avatar`, `Checkbox`
 
@@ -284,7 +293,7 @@ One open role in a careers list: title, team, type and work mode, location, post
 
 **Not for**
 
-- A background export or import: use Job Item
+- A background export or import: use Background Job
 - A generic row: use List Item
 - A blog post or article: use Post Card
 
@@ -292,7 +301,7 @@ One open role in a careers list: title, team, type and work mode, location, post
 
 1. Title: ui/label, with a Badge (Show badge: "New")
 2. Meta: team, type, work mode ("Finance · Full-time · Hybrid")
-3. Details: location and posted date
+3. Details: location and posted date (Show posted)
 4. Salary (Show salary): range with currency and period
 5. Apply: Button
 
@@ -319,6 +328,7 @@ One open role in a careers list: title, team, type and work mode, location, post
 | Salary | text | EUR 3,800-4,600 / month |
 | Show badge | boolean | true |
 | Show salary | boolean | true |
+| Show posted | boolean | true |
 
 Built from: `Badge`, `Button`. Icons: clock, map-pin
 
@@ -326,5 +336,7 @@ Tokens and styles:
 - Colors: `border/default`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
 - Text styles: `body/small`, `heading/h4`, `ui/caption`, `ui/label`
+
+Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
 
 Code: custom `<li>` with a stretched `<a>` + `Badge` + `Button asChild` (Salary range with currency and period)

@@ -1,6 +1,6 @@
 # Admin
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -10,10 +10,9 @@ Usage rules live in the guides linked under each component.
 | [Permission Row](#permission-row) | 2 | - |
 | [API Key Row](#api-key-row) | 1 | - |
 | [Session Row](#session-row) | 2 | - |
-| [SSO Button](#sso-button) | 4 | - |
 | [Org Chart Node](#org-chart-node) | 3 | - |
 
-On the Figma page: "Stress test / API Key Row", "Stress test / Integration Card", "Stress test / Org Chart Node", "Stress test / Permission Row", "Stress test / SSO Button", "Stress test / Session Row"
+On the Figma page: "Stress test / API Key Row", "Stress test / Integration Card", "Stress test / Org Chart Node", "Stress test / Permission Row", "Stress test / Session Row"
 
 ## Integration Card
 
@@ -65,6 +64,7 @@ One app or service in an integrations directory or settings: logo, name, categor
 | Category | text | Finance |
 | Description | text | Collect card payments on invoices and reconcile them automatically. |
 | Logo | instance swap | Icon/credit-card |
+| Vendor | text | By Acme Pay |
 
 Built from: `Button`, `Status Dot`, `Switch`. Icons: credit-card
 
@@ -82,7 +82,7 @@ Code: shadcn `Card size="sm"` + `Button`, `Switch`, `Badge` (Connect opens the p
 
 Component set · 2 variants · default size 720 × 63
 
-One permission across roles in a role matrix: name, what it allows, one checkbox per role. Header row names the roles. Locked roles (owner, admin) show disabled checked boxes. Group rows by area with Section Heading; save changes with the Save Bar and log them in the Audit Log.
+One permission across roles in a role matrix: name, what it allows, one checkbox per role. Header row names the roles. Locked roles (owner, admin) show disabled checked boxes. Group rows by area with Section Heading; save changes with the Save Bar and record them in the audit history.
 
 **Use for**
 
@@ -192,7 +192,7 @@ Tokens and styles:
 
 Guides: [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: custom row + `Badge`, `Button size="icon"`, `DropdownMenu`, `AlertDialog` (Full key shown once at creation; sessions from your auth provider)
+Code: custom row + `Badge`, `Button size="icon"`, `DropdownMenu`; `AlertDialog` for revoke (Full key shown once at creation, then only the last 4 characters)
 
 ## Session Row
 
@@ -252,59 +252,7 @@ Tokens and styles:
 
 Guides: [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: custom row + `Badge`, `Button size="icon"`, `DropdownMenu`, `AlertDialog` (Full key shown once at creation; sessions from your auth provider)
-
-## SSO Button
-
-Component set · 4 variants · default size 360 × 40
-
-Sign-in with an identity provider on sign-in and sign-up screens: Google, Microsoft, company SSO (SAML/OIDC), or email. Full width, stacked, same order everywhere; the provider the org enforces goes first. "Continue with SSO" asks for the work email, then redirects. Follow each provider's brand rules for the mark.
-
-**Use for**
-
-- Sign in and sign up screens
-- Accept invite
-- Sign in again before a sensitive action
-
-**Not for**
-
-- Any other action: use Button
-- Connecting an app to the workspace: use Integration Card
-
-**Anatomy**
-
-1. Mark: the provider logo (key for SAML, mail for email)
-2. Label: "Continue with Google"
-
-**Content and behavior**
-
-- Full width, stacked, in the same order everywhere; the provider the org enforces goes first
-- "Continue with" on both sign in and sign up
-- "Continue with SSO" asks for the work email, then redirects
-- When the domain enforces SSO, the other options hide after the email is known
-- Follow each provider's brand rules for the mark; the button blocks double clicks while it redirects
-
-**Accessibility**
-
-- A button named by its label; the mark is aria-hidden
-- Focus ring visible on every provider
-- Errors come back to the sign-in screen as text above the buttons
-
-| Variant property | Values |
-|---|---|
-| Provider | google, microsoft, saml, email |
-
-Icons: mail, shield-check
-
-Tokens and styles:
-- Colors: `background/default`, `border/input`, `foreground/default`
-- Spacing and size: `spacing/2`
-- Radius: `radius/md`
-- Text styles: `ui/label`
-
-Guides: [auth](../../skills/build-ui/patterns/auth.md)
-
-Code: shadcn `Button variant="outline"` `w-full` + provider mark (`signIn(provider)` in Auth.js, Clerk or WorkOS)
+Code: custom row + `Badge` and `Button` (Sessions from your auth provider (Auth.js, Clerk, WorkOS); the current device cannot sign itself out)
 
 ## Org Chart Node
 

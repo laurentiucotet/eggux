@@ -1,6 +1,6 @@
 # Quote
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -26,7 +26,7 @@ A quotation in running content: default (left rule, body/large) inside an articl
 
 **Not for**
 
-- Customer proof on a marketing page: use the Testimonial blocks
+- Customer proof on a marketing page: use Testimonial Card or Block / Testimonials
 - Notes and warnings: use Alert
 - Code or commands: use Code Block
 

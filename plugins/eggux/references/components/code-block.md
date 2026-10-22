@@ -1,6 +1,6 @@
 # Code Block
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -72,7 +72,7 @@ Code: Shiki or Prism + copy `Button`
 
 ## Command Snippet
 
-Component · 1 variant · default size 480 × 40
+Component · 1 variant · default size 480 × 36
 
 One command or value people copy into a terminal or config: install line, CLI command, environment variable. Mono on muted, copy button (check for 2 s after copying). Several lines or output: Code Block. Never include the $ in what gets copied.
 
@@ -117,11 +117,11 @@ Built from: `Button Icon`
 
 Tokens and styles:
 - Colors: `background/muted`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`
 - Radius: `radius/md`
 - Text styles: `code`
 
-Guides: [content](../../skills/build-ui/components/content.md)
+Guides: [content](../../skills/build-ui/components/content.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
 Code: `<pre><code>` on `bg-muted` + shadcn `Button size="icon"` (`navigator.clipboard.writeText`) (Prompt `$` is `select-none aria-hidden`, never copied)
 
@@ -280,6 +280,8 @@ What changed between two versions of a text, contract, config or code: file name
 | Property | Type | Default |
 |---|---|---|
 | File | text | payment-terms.md |
+| Added | text | +1 |
+| Removed | text | −1 |
 
 Slots (fill them in the instance, never detach): `Lines`
 
@@ -342,6 +344,8 @@ Tokens and styles:
 - Spacing and size: `spacing/0_5`, `spacing/2`
 - Text styles: `code`
 
+Guides: [content](../../skills/build-ui/components/content.md)
+
 Code: jsdiff (`diffLines`) + custom rows; `react-diff-viewer-continued` for side by side (3 lines of context, rest collapsed; hidden "added" / "removed" text)
 
 ## JSON Viewer
@@ -386,7 +390,7 @@ Icons: chevron-down
 
 Tokens and styles:
 - Colors: `background/muted`, `foreground/default`
-- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/3`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/3`, `spacing/4`, `spacing/8`
 - Radius: `radius/md`
 - Text styles: `code`
 

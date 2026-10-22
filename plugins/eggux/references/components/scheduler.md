@@ -1,6 +1,6 @@
 # Scheduler
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -57,8 +57,8 @@ Event in day/week views: card surface with a left bar in the calendar's category
 
 | Variant property | Values |
 |---|---|
-| Size | default, compact |
-| Category | 1, 2, 3, 4 |
+| Size | default, sm |
+| Series | 1, 2, 3, 4 |
 
 | Property | Type | Default |
 |---|---|---|
@@ -89,7 +89,7 @@ A task on a Gantt timeline. Width = duration, left edge = start. Tinted fill wit
 
 **Not for**
 
-- Stages without dates: use Kanban
+- Stages without dates: use Kanban Card in a Kanban Column
 - Meetings and bookings: use Calendar Event in the scheduler
 - Mobile: a list grouped by phase with dates; the timeline is desktop only
 
@@ -103,7 +103,7 @@ A task on a Gantt timeline. Width = duration, left edge = start. Tinted fill wit
 
 **Content and behavior**
 
-- Status is planned, in progress, done or blocked; planned is dashed
+- Status is planned, in-progress, done or blocked; planned is dashed
 - Status is also an icon and written in the task list, never color alone
 - Labels truncate; the full name is in the task list and on hover
 - Dependencies are finish-to-start arrows that never point backwards
@@ -117,7 +117,7 @@ A task on a Gantt timeline. Width = duration, left edge = start. Tinted fill wit
 
 | Variant property | Values |
 |---|---|
-| Status | planned, in progress, done, blocked |
+| Status | planned, in-progress, done, blocked |
 
 | Property | Type | Default |
 |---|---|---|
@@ -304,7 +304,7 @@ Working hours for one weekday in booking and team settings: on/off, the day, one
 **Content and behavior**
 
 - Seven rows, Monday first unless the locale starts on Sunday
-- Available=false hides the hours and says "Unavailable"
+- State=unavailable hides the hours and says "Unavailable"
 - Times in 15 or 30 minute steps; the end is after the start; overlapping ranges merge on save
 - Extra ranges stack under the first, each with a remove button
 - The time zone is said once above the list; "Copy to all days" in the header saves repeat work
@@ -317,7 +317,7 @@ Working hours for one weekday in booking and team settings: on/off, the day, one
 
 | Variant property | Values |
 |---|---|
-| Available | true, false |
+| State | available, unavailable |
 
 | Property | Type | Default |
 |---|---|---|

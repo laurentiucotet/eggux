@@ -1,6 +1,6 @@
 # Pagination
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -27,7 +27,7 @@ Page navigation for long lists and tables. Show first, last, current ±1 and ell
 
 **Not for**
 
-- Feeds, activity and search results browsed once: use a Load more button or infinite scroll
+- Feeds, activity and search results browsed once: use Load More or infinite scroll
 - Fewer than ~25 rows: show them all, no pagination
 - Steps of a flow: use Stepper
 
@@ -65,7 +65,7 @@ Tokens and styles:
 
 Guides: [pagination](../../skills/build-ui/components/pagination.md)
 
-Code: shadcn `Pagination`, `Breadcrumb`
+Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (In tables use `Table Pagination`)
 
 ## Pagination Item
 
@@ -92,6 +92,8 @@ Tokens and styles:
 
 Guides: [pagination](../../skills/build-ui/components/pagination.md)
 
+Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (In tables use `Table Pagination`)
+
 ## Pagination Compact
 
 Component · 1 variant · default size 163 × 32
@@ -108,7 +110,7 @@ Previous and next with "Page 2 of 12" for narrow places: a card, a side panel, m
 
 - Large lists where people jump to a page: use Pagination
 - Tables with rows per page and totals: use Table Pagination
-- Feeds: use Load more or infinite scroll
+- Feeds: use Load More or infinite scroll
 
 **Anatomy**
 
@@ -187,7 +189,6 @@ End of a feed or a long list that grows in place: how many are shown out of the 
 | Property | Type | Default |
 |---|---|---|
 | Count | text | Showing 20 of 248 invoices |
-| Label | text | Load 20 more |
 
 Built from: `Button`
 

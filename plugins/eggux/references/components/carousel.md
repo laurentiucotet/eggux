@@ -1,6 +1,6 @@
 # Carousel
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -9,9 +9,9 @@ Usage rules live in the guides linked under each component.
 | [Carousel](#carousel) | 2 | Slides |
 | [Carousel Arrow](#carousel-arrow) | 16 | - |
 | [Carousel Indicator](#carousel-indicator) | 6 | - |
-| [Carousel Thumbnail](#carousel-thumbnail) | 3 | - |
 | [Carousel Slide](#carousel-slide) | 2 | - |
 | [Carousel Gallery](#carousel-gallery) | 1 | Thumbnails |
+| [Carousel Thumbnail](#carousel-thumbnail) | 3 | - |
 | [Carousel Hero](#carousel-hero) | 1 | - |
 | [Lightbox](#lightbox) | 1 | - |
 
@@ -92,7 +92,7 @@ Icons: chevron-left, chevron-right
 
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `border/default`, `border/input`
-- Spacing and size: `spacing/10`, `spacing/9`
+- Spacing and size: `density/control-height`
 - Radius: `radius/full`
 - Effects: `shadow/md`
 
@@ -126,27 +126,6 @@ Tokens and styles:
 Guides: [carousel](../../skills/build-ui/components/carousel.md)
 
 Code: shadcn `Carousel` (Embla): `CarouselPrevious`, `CarouselNext`, dots from the Embla API (Autoplay plugin only with a pause control)
-
-## Carousel Thumbnail
-
-Component set · 3 variants · default size 64 × 64
-
-Small preview in a gallery strip. Put the image as fill on the nested Image Placeholder. active = the slide shown (2 px ring, not color alone). Thumbnails are buttons with the image alt as label. Clips its image on purpose (image crop).
-
-| Variant property | Values |
-|---|---|
-| State | default, hover, active |
-
-Built from: `Image Placeholder`
-
-Tokens and styles:
-- Colors: `border/default`, `border/ring`
-- Spacing and size: `spacing/16`
-- Radius: `radius/md`
-
-Guides: [carousel](../../skills/build-ui/components/carousel.md)
-
-Code: Embla main + thumbs carousels
 
 ## Carousel Slide
 
@@ -236,6 +215,27 @@ Guides: [carousel](../../skills/build-ui/components/carousel.md)
 
 Code: Embla main + thumbs carousels
 
+## Carousel Thumbnail
+
+Component set · 3 variants · default size 64 × 64
+
+Small preview in a gallery strip. Put the image as fill on the nested Image Placeholder. active = the slide shown (2 px ring, not color alone). Thumbnails are buttons with the image alt as label. Clips its image on purpose (image crop).
+
+| Variant property | Values |
+|---|---|
+| State | default, hover, active |
+
+Built from: `Image Placeholder`
+
+Tokens and styles:
+- Colors: `border/default`, `border/ring`
+- Spacing and size: `spacing/16`
+- Radius: `radius/md`
+
+Guides: [carousel](../../skills/build-ui/components/carousel.md)
+
+Code: Embla main + thumbs carousels
+
 ## Carousel Hero
 
 Component · 1 variant · default size 1440 × 560
@@ -258,7 +258,7 @@ Full-width rotating banner (homepages, campaigns): image (fill on the "image" la
 
 1. Image (fill on the "image" layer) with video/scrim
 2. Overline (Show overline)
-3. Headline
+3. Title
 4. Text
 5. One action Button
 6. Carousel Indicator bars with Pause
@@ -283,7 +283,7 @@ Full-width rotating banner (homepages, campaigns): image (fill on the "image" la
 | Property | Type | Default |
 |---|---|---|
 | Overline | text | NEW · OCTOBER 2026 |
-| Headline | text | Close the month in days, not weeks |
+| Title | text | Close the month in days, not weeks |
 | Text | text | Invoices, approvals and reports in one place, for finance teams of every size. |
 | Show overline | boolean | true |
 

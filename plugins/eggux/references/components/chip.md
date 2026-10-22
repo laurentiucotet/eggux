@@ -1,6 +1,6 @@
 # Chip
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -30,14 +30,14 @@ Chip (pill) for filters and multi-selection. selected = active filter (check ico
 
 **Anatomy**
 
-1. Leading icon (Leading icon): calendar, or check when selected
+1. Leading icon (Show leading icon): calendar, or check when selected
 2. Label
-3. Remove x (Remove)
+3. Remove x (Show remove)
 
 **Content and behavior**
 
 - Label is one or two words in sentence case
-- State=selected marks an active filter; with Leading icon on, the icon becomes a check
+- State=selected marks an active filter; with Show leading icon on, the icon becomes a check
 - Selected is shown by the check and fill, not by color alone
 - Show "Clear all" when more than one filter is active
 
@@ -55,8 +55,8 @@ Chip (pill) for filters and multi-selection. selected = active filter (check ico
 | Property | Type | Default |
 |---|---|---|
 | Label | text | This week |
-| Leading icon | boolean | false |
-| Remove | boolean | false |
+| Show leading icon | boolean | false |
+| Show remove | boolean | false |
 
 Icons: calendar, check, x
 

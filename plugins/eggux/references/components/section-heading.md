@@ -1,6 +1,6 @@
 # Section Heading
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -12,7 +12,7 @@ On the Figma page: "Example / sections on a page", "Stress test / Section Headin
 
 ## Section Heading
 
-Component set · 3 variants · default size 720 × 104
+Component set · 3 variants · default size 720 × 56
 
 Title and description that open a section of an app or content page, or a group inside a card or a long form, with an optional overline and one row of actions on the right (View all, Add, a search Input). lg (h2) for a content page section, default (h3) for a section of an app page, sm (h4) for a group inside a card or panel. Centered marketing sections use the Section Header block; card titles use Card Header; the page title uses a Page Header block.
 
@@ -27,7 +27,7 @@ Title and description that open a section of an app or content page, or a group 
 
 - Centered marketing sections: use the Section Header block
 - The title of a Card: use Card Header
-- The page title: use a Page Header block
+- The page title: use Page Header
 
 **Anatomy**
 
@@ -70,3 +70,7 @@ Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
 - Text styles: `body/lead`, `body/small`, `heading/h2`, `heading/h3`, `heading/h4`, `ui/overline`
+
+Guides: [content](../../skills/build-ui/components/content.md)
+
+Code: `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` (Heading level follows the page outline)

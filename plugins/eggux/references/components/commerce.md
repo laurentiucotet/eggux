@@ -1,15 +1,11 @@
 # Commerce
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Quantity Selector](#quantity-selector) | 4 | - |
-| [Stock Indicator](#stock-indicator) | 3 | - |
-| [Wishlist Button](#wishlist-button) | 2 | - |
-| [Variant Swatch](#variant-swatch) | 6 | - |
 | [Product Card](#product-card) | 3 | - |
 | [Line Item](#line-item) | 2 | - |
 | [Mini Cart](#mini-cart) | 1 | Items |
@@ -18,213 +14,7 @@ Usage rules live in the guides linked under each component.
 | [Address Card](#address-card) | 2 | - |
 | [Payment Method Card](#payment-method-card) | 2 | - |
 
-On the Figma page: "Stress test / Address Card", "Stress test / Line Item", "Stress test / Mini Cart", "Stress test / Order Row", "Stress test / Payment Method Card", "Stress test / Product Card", "Stress test / Quantity Selector", "Stress test / Shipment Tracker", "Stress test / Stock Indicator", "Stress test / Variant Swatch", "Stress test / Wishlist Button"
-
-## Quantity Selector
-
-Component set · 4 variants · default size 102 × 38
-
-Change a quantity in steps of one: minus, the number, plus. State=min disables minus at the lowest quantity (1, or 0 when removing is allowed). The number is also typeable. Max from stock; say it when reached ("Only 3 left"). sm in cart lines, default on product pages.
-
-**Use for**
-
-- Cart lines (Size=sm)
-- Product page next to Add to cart (Size=default)
-- Order forms with several items
-
-**Not for**
-
-- Decimals or large ranges: use Number Input
-- A value on a scale: use Slider
-- A read-only quantity: use Line Item Layout=summary
-
-**Anatomy**
-
-1. Decrease: Button Icon (minus)
-2. Value: the number, typeable
-3. Increase: Button Icon (plus)
-4. Size: sm, default; State: default, min
-
-**Content and behavior**
-
-- State=min disables minus at the lowest quantity (1, or 0 when removing is allowed)
-- Max comes from stock; say it when reached ("Only 3 left") and disable plus
-- Typed values outside the range go back to the nearest allowed one, with a message
-- Totals update at once
-
-**Accessibility**
-
-- The value is an input with a label that names the product ("Quantity, Linen shirt") and min and max
-- Buttons have aria-labels "Decrease quantity" and "Increase quantity"
-- Arrow keys change the value; a disabled button keeps focus on the input
-
-| Variant property | Values |
-|---|---|
-| Size | sm, default |
-| State | default, min |
-
-| Property | Type | Default |
-|---|---|---|
-| Value | text | 2 |
-
-Built from: `Button Icon`
-
-Tokens and styles:
-- Colors: `border/input`, `foreground/default`
-- Radius: `radius/md`
-- Text styles: `ui/label`
-
-Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
-
-Code: two shadcn `Button size="icon"` + `Input type="number" inputMode="numeric"` (min and max from stock)
-
-## Stock Indicator
-
-Component set · 3 variants · default size 68 × 20
-
-Availability of a product or variant: in stock, low (with the number left), out of stock (with Notify me or the restock date nearby). Next to the price on product pages and in carts. Low stock only when it is true; never use it to create pressure.
-
-**Use for**
-
-- Next to the price on a product page
-- Cart lines
-- Product Card when stock matters
-
-**Not for**
-
-- The status of an order or a record: use Badge
-- Delivery progress: use Shipment Tracker
-- System status: use Service Status Row
-
-**Anatomy**
-
-1. Status Dot with the level as text: "In stock", "Only 3 left", "Out of stock"
-2. Level: in stock, low, out
-
-**Content and behavior**
-
-- Low only when it is true, with the number left; never to create pressure
-- Out of stock keeps the product visible with Notify me or the restock date nearby
-- Follows the selected variant and updates when it changes
-- Text says the level; color is never the only cue
-
-**Accessibility**
-
-- The dot is aria-hidden; the text carries the meaning
-- A change after a variant switch is announced in an aria-live="polite" region
-- Text meets 4.5:1
-
-| Variant property | Values |
-|---|---|
-| Level | in stock, low, out |
-
-Built from: `Status Dot`
-
-Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
-
-Code: `Status Dot` + text `<span>` (Per selected variant; `aria-live="polite"` on change)
-
-## Wishlist Button
-
-Component set · 2 variants · default size 36 × 36
-
-Save a product for later: heart outline, filled when saved. Toggles at once with a short toast only the first time ("Saved to your list"). Accessible name says the state ("Save Linen shirt", "Remove Linen shirt from saved"). On product cards top right, on product pages next to Add to cart.
-
-**Use for**
-
-- Product Card, top right over the image
-- Product page, next to Add to cart
-- Cart lines, to move an item to saved
-
-**Not for**
-
-- Reacting to content or messages: use Reaction
-- Adding to the cart: use Button
-- Sharing a product: use Social Share
-
-**Anatomy**
-
-1. Button Icon: heart, outline when Saved=false, filled when Saved=true
-
-**Content and behavior**
-
-- Toggles at once, with a short toast only the first time ("Saved to your list")
-- Never leaves the page
-- Over a photo, the button keeps its background for contrast
-- Signed-out people can save too; ask to sign in when they open the list
-
-**Accessibility**
-
-- The accessible name says the state and the product ("Save Linen shirt", "Remove Linen shirt from saved")
-- Visible focus ring over images; touch target at least 44 px on mobile
-- The heart icon is aria-hidden
-
-| Variant property | Values |
-|---|---|
-| Saved | false, true |
-
-Built from: `Button Icon`
-
-Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
-
-Code: shadcn `Button size="icon" variant="ghost"` + lucide `Heart` (`fill-current` when saved) (Optimistic toggle; aria-label names state and product)
-
-## Variant Swatch
-
-Component set · 6 variants · default size 36 × 36
-
-One option of a product variant: a color dot or a size box. Group them under a label that names the choice ("Color: Sand"). selected has a 2 px ring; unavailable stays visible, muted or struck through, and says "Out of stock" on hover. Colors come from the product photo, set as the fill of the "color" layer.
-
-**Use for**
-
-- Colors and sizes on a product page
-- Material or finish choices
-- A quick add dialog from a Product Card
-
-**Not for**
-
-- Picking any color: use Color Picker or Swatch Picker
-- Options with a price or a description: use Option Card
-- Long lists of options: use Select
-
-**Anatomy**
-
-1. Color: fill from the product photo (Type=color)
-2. Label: "M" (Type=size)
-3. State: default, selected, unavailable
-
-**Content and behavior**
-
-- Group swatches under a label that names the choice and the value ("Color: Sand")
-- Selected has a 2 px ring
-- Unavailable stays visible, muted or struck through, and says "Out of stock" on hover
-- Colors come from the product photo
-- Choosing a swatch updates photo, price and stock
-
-**Accessibility**
-
-- The group is a radiogroup with a label; each swatch is a radio named by its value ("Sand", "M")
-- Unavailable swatches stay focusable with aria-disabled and "Out of stock" in the name
-- Arrow keys move between swatches; color is never the only cue
-
-| Variant property | Values |
-|---|---|
-| Type | color, size |
-| State | default, selected, unavailable |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | M |
-
-Tokens and styles:
-- Colors: `border/default`, `border/input`, `chart/2`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/3`
-- Radius: `radius/full`, `radius/md`
-- Text styles: `ui/label`
-
-Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
-
-Code: shadcn `RadioGroup` (or `ToggleGroup type="single"`) with custom items (Unavailable: `aria-disabled`, still focusable)
+On the Figma page: "Stress test / Address Card", "Stress test / Line Item", "Stress test / Mini Cart", "Stress test / Order Row", "Stress test / Payment Method Card", "Stress test / Product Card", "Stress test / Shipment Tracker"
 
 ## Product Card
 
@@ -279,6 +69,8 @@ Product tile for grids and carousels: image 1:1, badges (sale %, new, sold out),
 | Variant text | text | Sand · 4 colors |
 | Show action | boolean | true |
 | Show wishlist | boolean | true |
+| Price | text | €59.00 |
+| Old price | text | €59.00 |
 
 Built from: `Badge`, `Button`, `Button Icon`, `Image Placeholder`
 
@@ -294,7 +86,7 @@ Code: shadcn `Card` with an `<a>` stretched over the card, `Badge`, `Button` (ic
 
 ## Line Item
 
-Component set · 2 variants · default size 480 × 106
+Component set · 2 variants · default size 480 × 100
 
 One product in a cart, checkout summary, order or invoice: image, name, variant, quantity, line total. cart lets people change the quantity and remove; summary is read-only ("Qty 2"). The line total updates at once; removing offers Undo. Totals below use Summary Row.
 
@@ -315,7 +107,7 @@ One product in a cart, checkout summary, order or invoice: image, name, variant,
 1. Image Placeholder 1:1
 2. Name
 3. Variant: "Sand · M"
-4. Quantity: Quantity Selector sm (cart) or "Qty 2" (summary)
+4. Quantity: Number Input sm (cart) or "Qty 2" (summary)
 5. Total: line total
 6. Remove: Button (cart)
 
@@ -343,15 +135,18 @@ One product in a cart, checkout summary, order or invoice: image, name, variant,
 | Name | text | Linen shirt, relaxed fit |
 | Variant | text | Sand · M |
 | Total | text | €94.40 |
+| Quantity | text | Qty 2 |
 
-Built from: `Button`, `Image Placeholder`, `Quantity Selector`
+Built from: `Button`, `Image Placeholder`, `Number Input`
 
 Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/3`
 - Text styles: `ui/caption`, `ui/label`
 
-Code: custom `<li class="flex gap-4">`: `<img>`, text, `Quantity Selector`, amount, ghost `Button` (`tabular-nums`; Undo in `Sonner` toast)
+Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
+
+Code: custom `<li class="flex gap-4">`: `<img>`, text, `Number Input` (Size=sm), amount, ghost `Button` (`tabular-nums`; Undo in `Sonner` toast)
 
 ## Mini Cart
 
@@ -422,7 +217,7 @@ One order in an account's order history: number, date and item count, status, to
 
 **Not for**
 
-- Many orders with sorting and bulk actions: use Table
+- Many orders with sorting and bulk actions: use a table of Table Cells
 - The items inside an order: use Line Item
 - Where a delivery is: use Shipment Tracker
 
@@ -551,7 +346,7 @@ A saved address to pick or manage: name, address lines in the country's format, 
 **Content and behavior**
 
 - Lines in the format of the country
-- Checkout: a radio, pick one, Selected=true; account settings: no radio
+- Checkout: a radio, pick one, State=selected; account settings: no radio
 - Add new address is the last card
 - Remove asks to confirm (Confirm Popover)
 - One default address; the Default badge sits next to the name
@@ -564,7 +359,7 @@ A saved address to pick or manage: name, address lines in the country's format, 
 
 | Variant property | Values |
 |---|---|
-| Selected | false, true |
+| State | default, selected |
 
 | Property | Type | Default |
 |---|---|---|
@@ -601,7 +396,7 @@ A saved card, bank account or wallet in billing settings or checkout: brand, las
 
 - Entering a new card: use Block / Payment
 - A saved address: use Address Card
-- Invoices and charges: use Table
+- Invoices and charges: use a table of Table Cells
 
 **Anatomy**
 

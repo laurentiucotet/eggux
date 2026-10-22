@@ -1,6 +1,6 @@
 # Alert
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -36,7 +36,7 @@ Persistent message about a page or section. Layout inline (card above the conten
 2. Title: the situation in a few words
 3. Description: what to do about it (Show description)
 4. Actions slot: up to three small buttons or links (Show actions)
-5. Dismiss x (Dismiss)
+5. Dismiss x (Show close)
 
 **Content and behavior**
 
@@ -64,7 +64,7 @@ Persistent message about a page or section. Layout inline (card above the conten
 | Description | text | You can add team members from the Settings page. |
 | Show description | boolean | true |
 | Show actions | boolean | false |
-| Dismiss | boolean | false |
+| Show close | boolean | false |
 
 Slots (fill them in the instance, never detach): `Actions`
 
@@ -100,7 +100,7 @@ One service on a status page or an admin health panel: name, uptime for the last
 
 **Anatomy**
 
-1. Service: ui/label
+1. Name: ui/label
 2. Uptime (Show uptime): "99.98% uptime", body/small, muted
 3. Status: Status Dot with a word (Operational, Degraded, Outage, Maintenance)
 
@@ -124,7 +124,7 @@ One service on a status page or an admin health panel: name, uptime for the last
 
 | Property | Type | Default |
 |---|---|---|
-| Service | text | Payments API |
+| Name | text | Payments API |
 | Uptime | text | 99.98% uptime |
 | Show uptime | boolean | true |
 

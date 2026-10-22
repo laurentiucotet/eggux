@@ -1,6 +1,6 @@
 # Badge
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -9,11 +9,11 @@ Usage rules live in the guides linked under each component.
 | [Badge](#badge) | 14 | - |
 | [Badge Count](#badge-count) | 4 | - |
 | [Status Dot](#status-dot) | 5 | - |
-| [Tag List](#tag-list) | 1 | Tags |
+| [Badge List](#badge-list) | 1 | Tags |
 | [Announcement Pill](#announcement-pill) | 1 | - |
 | [Trust Badge](#trust-badge) | 1 | - |
 
-On the Figma page: "Example / dataset header", "Example / filter panel", "Example / in announcement banner", "Example / in conversation", "Example / in filtered list", "Stress test / Announcement Pill", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Status Dot", "Stress test / Tag List", "Stress test / Trust Badge"
+On the Figma page: "Example / dataset header", "Example / filter panel", "Example / in announcement banner", "Example / in filtered list", "Example / stock status", "Stress test / Announcement Pill", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Badge List", "Stress test / Status Dot", "Stress test / Trust Badge"
 
 ## Badge
 
@@ -37,7 +37,7 @@ shadcn Badge plus EGG status variants. Shape: rounded (default) or pill. Options
 
 1. Icon or Dot (optional)
 2. Label
-3. Count value (Count)
+3. Count value (Show count)
 
 **Content and behavior**
 
@@ -62,10 +62,10 @@ shadcn Badge plus EGG status variants. Shape: rounded (default) or pill. Options
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Badge |
-| Icon | boolean | false |
-| Icon type | instance swap | Icon/check |
-| Dot | boolean | false |
-| Count | boolean | false |
+| Show icon | boolean | false |
+| Icon | instance swap | Icon/check |
+| Show dot | boolean | false |
+| Show count | boolean | false |
 | Count value | text | 3 |
 
 Icons: check
@@ -182,11 +182,11 @@ Tokens and styles:
 - Spacing and size: `spacing/2`
 - Text styles: `body/small`
 
-Guides: [indicators](../../skills/build-ui/components/indicators.md)
+Guides: [badge](../../skills/build-ui/components/badge.md), [indicators](../../skills/build-ui/components/indicators.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
 Code: shadcn `Badge` (+ success, warning, info variants) (Status Dot: custom span + label)
 
-## Tag List
+## Badge List
 
 Component · 1 variant · default size 244 × 22
 
@@ -233,15 +233,15 @@ Built from: `Badge`
 Tokens and styles:
 - Spacing and size: `spacing/1_5`
 
-Guides: [badge](../../skills/build-ui/components/badge.md)
+Guides: [badge](../../skills/build-ui/components/badge.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
 Code: `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger
 
 ## Announcement Pill
 
-Component · 1 variant · default size 276 × 28
+Component · 1 variant · default size 276 × 26
 
-A short link above a hero title to the newest launch: "New" tag, one line, arrow. Links to the announcement or changelog. One at a time; remove it after a few weeks. Product notices inside the app use Alert or Announcement Banner.
+A short link above a hero title to the newest launch: "New" tag, one line, arrow. Links to the announcement or changelog. One at a time; remove it after a few weeks. Product notices inside the app use Alert.
 
 **Use for**
 
@@ -283,7 +283,7 @@ Built from: `Badge`. Icons: arrow-right
 
 Tokens and styles:
 - Colors: `background/default`, `border/default`, `foreground/default`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`
 - Radius: `radius/full`
 - Text styles: `ui/label`
 
@@ -314,12 +314,12 @@ A certification or compliance claim: SOC 2, ISO 27001, GDPR, PCI DSS. Name and w
 
 1. Icon (swap): shield-check
 2. Name: "SOC 2 Type II"
-3. Detail: muted, audit date or region
+3. Description: muted, audit date or region
 
 **Content and behavior**
 
 - Only claims that are current and can be shown on request
-- Detail says what backs it ("Audited September 2026", "Data in the EU")
+- Description says what backs it ("Audited September 2026", "Data in the EU")
 - Link to the trust page
 - Update or remove it when a certificate expires
 - Same order everywhere; 3-5 in a row
@@ -333,7 +333,7 @@ A certification or compliance claim: SOC 2, ISO 27001, GDPR, PCI DSS. Name and w
 | Property | Type | Default |
 |---|---|---|
 | Name | text | SOC 2 Type II |
-| Detail | text | Audited September 2026 |
+| Description | text | Audited September 2026 |
 | Icon | instance swap | Icon/shield-check |
 
 Icons: shield-check
@@ -344,6 +344,6 @@ Tokens and styles:
 - Radius: `radius/md`
 - Text styles: `ui/caption`, `ui/label`
 
-Guides: [badge](../../skills/build-ui/components/badge.md)
+Guides: [badge](../../skills/build-ui/components/badge.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
 Code: custom: lucide icon + name and detail, `<a>` to the trust page (Only current claims)

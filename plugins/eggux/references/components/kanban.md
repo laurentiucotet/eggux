@@ -1,6 +1,6 @@
 # Kanban
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -25,7 +25,7 @@ Task or deal card on a board: labels (max 2-3), title, due date, comments, assig
 
 **Not for**
 
-- Finding and bulk-editing items: use a Table or list view
+- Finding and bulk-editing items: use a table of Table Cells or a list view
 - Dated tasks with dependencies: use Gantt
 
 **Anatomy**
@@ -72,6 +72,8 @@ Tokens and styles:
 
 Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md)
 
+Code: dnd-kit + custom
+
 ## Kanban Column
 
 Component · 1 variant · default size 296 × 466
@@ -87,7 +89,7 @@ One stage of a board (To do, In progress, Review, Done). Count in the header; WI
 **Not for**
 
 - Groups without an order: use a list grouped by header
-- Dates on a time axis: use Scheduler or Gantt
+- Dates on a time axis: use Calendar Event in Block / Scheduler Week or Gantt Bar
 
 **Anatomy**
 
@@ -125,3 +127,5 @@ Tokens and styles:
 - Text styles: `ui/label`
 
 Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md)
+
+Code: dnd-kit + custom

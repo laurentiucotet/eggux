@@ -1,6 +1,6 @@
 # Navigation
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -14,13 +14,12 @@ Usage rules live in the guides linked under each component.
 | [Navigation Menu Panel](#navigation-menu-panel) | 1 | Links, Featured |
 | [Navigation Menu Link](#navigation-menu-link) | 2 | - |
 | [Table of Contents](#table-of-contents) | 1 | Items |
-| [TOC Item](#toc-item) | 6 | - |
+| [Table of Contents Item](#table-of-contents-item) | 6 | - |
 | [Back Link](#back-link) | 2 | - |
 | [Skip Link](#skip-link) | 1 | - |
-| [Scroll To Top](#scroll-to-top) | 1 | - |
 | [Page Toolbar](#page-toolbar) | 1 | - |
 
-On the Figma page: "Example / in navbar", "Example / in page shell / app", "Example / in page shell / docs", "Example / in product detail", "Example / navbar with mega menu", "Stress test / Back Link", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Page Toolbar", "Stress test / Scroll To Top", "Stress test / Skip Link", "Stress test / Table of Contents", "Stress test / Top Bar"
+On the Figma page: "Example / in navbar", "Example / in page shell / app", "Example / in page shell / docs", "Example / in product detail", "Example / navbar with mega menu", "Stress test / Back Link", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Page Toolbar", "Stress test / Skip Link", "Stress test / Table of Contents", "Stress test / Top Bar"
 
 ## Breadcrumb
 
@@ -68,7 +67,9 @@ Built from: `Breadcrumb Item`
 Tokens and styles:
 - Spacing and size: `spacing/1_5`
 
-Code: shadcn `Pagination`, `Breadcrumb`
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (In tables use `Table Pagination`)
 
 ## Breadcrumb Item
 
@@ -84,7 +85,7 @@ shadcn BreadcrumbItem. link = ancestor page; current = this page (not a link, Se
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Projects |
-| Separator | boolean | true |
+| Show separator | boolean | true |
 
 Icons: chevron-right, ellipsis
 
@@ -92,6 +93,10 @@ Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1_5`
 - Text styles: `body/small`
+
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (In tables use `Table Pagination`)
 
 ## Top Bar
 
@@ -113,7 +118,7 @@ App top bar (shadcn site header): sidebar trigger, Breadcrumb slot, Actions slot
 
 **Anatomy**
 
-1. Sidebar trigger (Sidebar trigger)
+1. Sidebar trigger (Show sidebar trigger)
 2. Separator
 3. Breadcrumb slot
 4. Actions slot: search, notifications, help, user Avatar
@@ -132,7 +137,7 @@ App top bar (shadcn site header): sidebar trigger, Breadcrumb slot, Actions slot
 
 | Property | Type | Default |
 |---|---|---|
-| Sidebar trigger | boolean | true |
+| Show sidebar trigger | boolean | true |
 
 Slots (fill them in the instance, never detach): `Breadcrumb`, `Actions`
 
@@ -141,6 +146,10 @@ Built from: `Avatar`, `Breadcrumb`, `Button Icon`, `Separator`
 Tokens and styles:
 - Colors: `background/default`, `border/default`
 - Spacing and size: `spacing/14`, `spacing/2`, `spacing/4`
+
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: shadcn site header: `SidebarTrigger`, `Breadcrumb`, `Button`
 
 ## Page Header
 
@@ -192,6 +201,10 @@ Tokens and styles:
 - Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
 - Text styles: `body/small`, `heading/h3`
 
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: custom `<header>` with a heading, text and shadcn `Button` (One per page)
+
 ## Nav Link
 
 Component set · 3 variants · default size 91 × 36
@@ -201,7 +214,7 @@ shadcn NavigationMenu trigger / link for marketing navbars. active = current sec
 **Use for**
 
 - Top-level links in a marketing Navbar
-- Triggers of a Navigation Menu Panel (Chevron on)
+- Triggers of a Navigation Menu Panel (Show chevron on)
 - Section links on a marketing site: Pricing, Customers, Docs
 
 **Not for**
@@ -213,7 +226,7 @@ shadcn NavigationMenu trigger / link for marketing navbars. active = current sec
 **Anatomy**
 
 1. Label (Label)
-2. Chevron (Chevron) when it opens a Navigation Menu Panel
+2. Chevron (Show chevron) when it opens a Navigation Menu Panel
 3. Active indicator (State=active)
 
 **Content and behavior**
@@ -226,7 +239,7 @@ shadcn NavigationMenu trigger / link for marketing navbars. active = current sec
 **Accessibility**
 
 - Active link has aria-current="page"
-- Triggers with Chevron expose aria-expanded
+- Triggers with Show chevron expose aria-expanded
 - Focus ring uses border/ring
 
 | Variant property | Values |
@@ -236,21 +249,25 @@ shadcn NavigationMenu trigger / link for marketing navbars. active = current sec
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Features |
-| Chevron | boolean | false |
+| Show chevron | boolean | false |
 
 Icons: chevron-down
 
 Tokens and styles:
 - Colors: `background/accent`, `foreground/accent`, `foreground/default`
-- Spacing and size: `spacing/1`, `spacing/4`, `spacing/9`
+- Spacing and size: `density/control-height`, `spacing/1`, `spacing/4`
 - Radius: `radius/md`
 - Text styles: `ui/label`
+
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: shadcn `NavigationMenu` (`NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuTrigger`)
 
 ## Navigation Menu Panel
 
 Component · 1 variant · default size 834 × 260
 
-Mega menu panel under a Navbar Nav Link with Chevron (shadcn Navigation Menu). Opens on hover with a small delay and on click/Enter; Escape closes. Group links by what users want to do, not by internal team names.
+Mega menu panel under a Nav Link with its chevron (shadcn Navigation Menu). Opens on hover with a small delay and on click/Enter; Escape closes. Group links by what users want to do, not by internal team names.
 
 **Use for**
 
@@ -299,6 +316,8 @@ Tokens and styles:
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
+Code: shadcn `NavigationMenu` (`NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuTrigger`)
+
 ## Navigation Menu Link
 
 Component set · 2 variants · default size 280 × 78
@@ -326,6 +345,8 @@ Tokens and styles:
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
+Code: shadcn `NavigationMenu` (`NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuTrigger`)
+
 ## Table of Contents
 
 Component · 1 variant · default size 224 × 224
@@ -345,14 +366,14 @@ On-page navigation for long articles and docs, sticky on the right from 1280 wid
 
 **Anatomy**
 
-1. Items slot of TOC Items
-2. TOC Item Level 1 (h2) and Level 2 (h3)
-3. Active TOC Item with primary left bar
+1. Items slot of Table of Contents Items
+2. Table of Contents Item Level 1 (h2) and Level 2 (h3)
+3. Active Table of Contents Item with primary left bar
 
 **Content and behavior**
 
 - Sticky on the right from 1280 wide; below that a collapsible "On this page" at the top
-- TOC Item State: default, hover, active; active = the section in view (scroll spy)
+- Table of Contents Item State: default, hover, active; active = the section in view (scroll spy)
 - Clicking scrolls with an offset for sticky headers
 - Labels match the heading text
 
@@ -364,7 +385,7 @@ On-page navigation for long articles and docs, sticky on the right from 1280 wid
 
 Slots (fill them in the instance, never detach): `Items`
 
-Built from: `TOC Item`
+Built from: `Table of Contents Item`
 
 Tokens and styles:
 - Colors: `foreground/muted`
@@ -375,7 +396,7 @@ Guides: [content](../../skills/build-ui/components/content.md)
 
 Code: custom with scroll spy
 
-## TOC Item
+## Table of Contents Item
 
 Component set · 6 variants · default size 224 × 28
 
@@ -469,7 +490,7 @@ First focusable element of every page, hidden until it gets keyboard focus; then
 **Not for**
 
 - Links between sections of one article: use Table of Contents
-- Going back to the top of a long page: use Scroll To Top
+- Going back to the top of a long page: use Button Icon
 - Links people see and use all the time: use Nav Link or the Sidebar
 
 **Anatomy**
@@ -499,58 +520,11 @@ Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
 Code: `<a href="#main" class="sr-only focus:not-sr-only">` (Target has `tabindex="-1"`)
 
-## Scroll To Top
-
-Component · 1 variant · default size 40 × 40
-
-Floating button bottom right on long pages (docs, articles, long lists) after people scroll two screens down. Moves focus to the top of the page. Tooltip "Back to top". Not on pages shorter than three screens.
-
-**Use for**
-
-- Docs and long articles
-- Long lists and feeds without pagination
-- Pages longer than three screens
-
-**Not for**
-
-- Moving between sections of a long page: use Table of Contents
-- Long lists people page through: use Pagination
-- Skipping repeated navigation for keyboard users: use Skip Link
-
-**Anatomy**
-
-1. Button Icon (outline, round) with Icon/arrow-up, bottom right
-
-**Content and behavior**
-
-- Not on pages shorter than three screens
-- Appears after people scroll two screens down; hidden at the top
-- Bottom right, 16-24 px from the edges, above the Bottom Nav and away from a FAB
-- Tooltip "Back to top"
-- Scrolls smoothly unless reduced motion is on
-
-**Accessibility**
-
-- aria-label="Back to top"
-- Moves focus to the top of the page (the Skip Link or the page heading), not only the scroll position
-- Respects prefers-reduced-motion
-
-Icons: arrow-up
-
-Tokens and styles:
-- Colors: `background/default`, `border/default`
-- Radius: `radius/full`
-- Effects: `shadow/md`
-
-Guides: [navigation](../../skills/build-ui/components/navigation.md)
-
-Code: shadcn `Button size="icon" variant="outline"`, `fixed bottom-6 right-6` (Shown after two screens of scroll; moves focus to the top)
-
 ## Page Toolbar
 
-Component · 1 variant · default size 1136 × 46
+Component · 1 variant · default size 1136 × 36
 
-The row between a list page title and the list: search and Filters (with the active count) on the left, View Switcher and the primary action on the right. One primary action. While rows are selected, Table Toolbar takes its place. Data grids with saved views use Data Grid Toolbar.
+The row between a list page title and the list: search and Filters (with the active count) on the left, a Toggle Group for the view (Show view) and the primary action on the right. One primary action. While rows are selected, Table Toolbar takes its place. Data grids with saved views use Data Grid Toolbar.
 
 **Use for**
 
@@ -569,7 +543,7 @@ The row between a list page title and the list: search and Filters (with the act
 1. Search: Search Field (Show search)
 2. Filters: Button outline with Icon/list-filter (Show filters)
 3. Filter count: Badge Count with the number of active filters
-4. View: View Switcher (Show view)
+4. View: Toggle Group (Show view)
 5. Primary: Button (Show primary)
 
 **Content and behavior**
@@ -593,11 +567,11 @@ The row between a list page title and the list: search and Filters (with the act
 | Show view | boolean | true |
 | Show primary | boolean | true |
 
-Built from: `Badge Count`, `Button`, `Search Field`, `View Switcher`
+Built from: `Badge Count`, `Button`, `Search Field`, `Toggle Group`
 
 Tokens and styles:
 - Spacing and size: `spacing/2`
 
-Guides: [navigation](../../skills/build-ui/components/navigation.md)
+Guides: [navigation](../../skills/build-ui/components/navigation.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: custom flex: `Input`, `Button` + `Badge`, `ToggleGroup`, primary `Button` (Swapped for Table Toolbar while rows are selected; state in the URL)

@@ -1,6 +1,6 @@
 # Avatar
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -15,7 +15,7 @@ On the Figma page: "Example / article meta", "Example / assignees on a project p
 
 ## Avatar
 
-Component set · 20 variants · default size 24 × 24
+Component set · 20 variants · default size 32 × 32
 
 shadcn Avatar. Type=image: put the photo as an image fill on the "image" layer of the instance; the user icon is only a placeholder. Type=initials is the fallback (two letters). Status = online dot. Always pair with the person's name in text nearby or as accessible label. Shape: circle for people, square for companies, workspaces and apps. Size xs (20) for inline mentions and dense cells.
 
@@ -62,7 +62,7 @@ shadcn Avatar. Type=image: put the photo as an image fill on the "image" layer o
 | Property | Type | Default |
 |---|---|---|
 | Initials | text | AP |
-| Status | boolean | false |
+| Show status | boolean | false |
 
 Icons: user
 
@@ -158,7 +158,7 @@ Who wrote, said or owns something: Avatar, name and one detail (role and company
 
 1. Avatar (exposed: Type, Initials), Show avatar
 2. Name: ui/label
-3. Detail (Show detail): ui/caption, muted: role and company, or date and reading time
+3. Description (Show description): ui/caption, muted: role and company, or date and reading time
 
 **Content and behavior**
 
@@ -180,8 +180,8 @@ Who wrote, said or owns something: Avatar, name and one detail (role and company
 | Property | Type | Default |
 |---|---|---|
 | Name | text | Maria Ilie |
-| Detail | text | Product designer, Acme |
-| Show detail | boolean | true |
+| Description | text | Product designer, Acme |
+| Show description | boolean | true |
 | Show avatar | boolean | true |
 
 Built from: `Avatar`

@@ -1,6 +1,6 @@
 # Menu
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -19,7 +19,7 @@ On the Figma page: "Example / actions menu under a header button", "Example / me
 
 Component · 1 variant · default size 224 × 179
 
-Popover list for Dropdown menu, Select and context menus. "Items" is a native slot: add Menu Item, Menu Label and Menu Separator instances. Usage: eggux build-ui/components/dropdown-menu.md
+Popover list for Dropdown menu, Select and context menus. "Items" is a native slot: add Menu Item, Menu Label and Separator instances. Usage: eggux build-ui/components/dropdown-menu.md
 
 **Use for**
 
@@ -30,17 +30,17 @@ Popover list for Dropdown menu, Select and context menus. "Items" is a native sl
 **Not for**
 
 - Choosing a value in a form: use Select
-- Deep navigation: use Sidebar or Navigation Menu
+- Deep navigation: use Sidebar or Navigation Menu Panel in the Navbar
 - Searching many options: use Command (Combobox)
 
 **Anatomy**
 
 1. Items slot
 2. Menu Label: group heading, not clickable
-3. Menu Item: Leading icon, Label, Shortcut text, Checked
+3. Menu Item: Leading icon, Label, Shortcut text (Show shortcut), Checked
 4. Separator between groups
 5. Destructive Menu Item last
-6. Menu Item options: Show description (a muted second line), Submenu (chevron at the end)
+6. Menu Item options: Show description (a muted second line), Show submenu (chevron at the end)
 
 **Content and behavior**
 
@@ -70,7 +70,7 @@ Tokens and styles:
 
 Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [popover](../../skills/build-ui/components/popover.md), [select](../../skills/build-ui/components/select.md)
 
-Code: shadcn `DropdownMenu`, `ContextMenu`
+Code: shadcn `DropdownMenu`, `ContextMenu` (`DropdownMenuLabel`, `DropdownMenuSeparator`)
 
 ## Menu Item
 
@@ -86,13 +86,13 @@ Row inside Menu (Dropdown, Select, Context menu). Checked shows the selected val
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Edit |
-| Leading icon | boolean | false |
-| Shortcut | boolean | false |
+| Show leading icon | boolean | false |
+| Show shortcut | boolean | false |
 | Shortcut text | text | ⌘E |
 | Checked | boolean | false |
 | Description | text | Visible to everyone in the workspace |
 | Show description | boolean | false |
-| Submenu | boolean | false |
+| Show submenu | boolean | false |
 
 Icons: check, chevron-right, pencil, trash-2
 
@@ -104,7 +104,7 @@ Tokens and styles:
 
 Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [select](../../skills/build-ui/components/select.md)
 
-Code: shadcn `DropdownMenu`, `ContextMenu`
+Code: shadcn `DropdownMenu`, `ContextMenu` (`DropdownMenuLabel`, `DropdownMenuSeparator`)
 
 ## Menu Label
 
@@ -123,9 +123,11 @@ Tokens and styles:
 
 Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [popover](../../skills/build-ui/components/popover.md)
 
+Code: shadcn `DropdownMenu`, `ContextMenu` (`DropdownMenuLabel`, `DropdownMenuSeparator`)
+
 ## Menubar
 
-Component · 1 variant · default size 233 × 38
+Component · 1 variant · default size 233 × 36
 
 Desktop app menus in a row (File, Edit, View, Help), for editors and tools with many commands. Fill the Menus slot with Menubar Triggers; each opens a Menu with items, shortcuts and submenus. Arrow keys move between menus, Esc closes. Not for site navigation: use Navigation or Sidebar.
 
@@ -137,7 +139,7 @@ Desktop app menus in a row (File, Edit, View, Help), for editors and tools with 
 
 **Not for**
 
-- Site or app navigation: use Navigation Menu or Sidebar
+- Site or app navigation: use Navigation Menu Panel in the Navbar or Sidebar
 - A few actions on one object: use a Menu from a Button
 
 **Anatomy**
@@ -165,7 +167,7 @@ Built from: `Menubar Trigger`
 
 Tokens and styles:
 - Colors: `background/default`, `border/default`
-- Spacing and size: `spacing/1`
+- Spacing and size: `density/control-height`, `spacing/1`
 - Radius: `radius/md`
 
 Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md)

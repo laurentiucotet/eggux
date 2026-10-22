@@ -1,6 +1,6 @@
 # Metrics
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -8,7 +8,7 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Trend Indicator](#trend-indicator) | 9 | - |
 | [Metric Strip](#metric-strip) | 1 | Metrics |
-| [Metric Strip Item](#metric-strip-item) | 2 | - |
+| [Metric Strip Item](#metric-strip-item) | 1 | - |
 | [Usage Meter](#usage-meter) | 3 | - |
 | [Countdown](#countdown) | 1 | - |
 | [Leaderboard Row](#leaderboard-row) | 2 | - |
@@ -17,7 +17,7 @@ On the Figma page: "Stress test / Countdown", "Stress test / Leaderboard Row", "
 
 ## Trend Indicator
 
-Component set · 9 variants · default size 151 × 20
+Component set · 9 variants · default size 141 × 20
 
 A change against a period: arrow, signed percent or amount, and what it is compared to. Direction is up, down or flat; Tone says if that is good (positive), bad (negative) or neither, so rising costs can be up and negative. The sign and the words carry the meaning; color only supports it. Edit the value text per instance.
 
@@ -25,7 +25,7 @@ A change against a period: arrow, signed percent or amount, and what it is compa
 
 - The change under a value in a Metric Strip or a Stat Card
 - A change next to a figure in a table row or a report header
-- Rising costs or churn: Direction=up with Tone=negative
+- Rising costs or churn: Trend=up with Tone=negative
 
 **Not for**
 
@@ -35,13 +35,13 @@ A change against a period: arrow, signed percent or amount, and what it is compa
 
 **Anatomy**
 
-1. Icon: trending-up, trending-down or minus (from Direction)
+1. Icon: trending-up, trending-down or minus (from Trend)
 2. Value: signed percent or amount, ui/label
 3. Comparison (Show comparison): "vs last month", ui/caption, muted
 
 **Content and behavior**
 
-- Direction follows the data; Tone follows the meaning (costs up is negative, churn down is positive)
+- Trend follows the data; Tone follows the meaning (costs up is negative, churn down is positive)
 - Always signed: +12.4%, −3.1%, 0.0% for flat; one decimal for percentages
 - The comparison names the period ("vs last month", "vs Q3"); hide it only when the period is said once nearby
 - Edit the value text per instance; keep the same comparison for every item in a row
@@ -55,13 +55,14 @@ A change against a period: arrow, signed percent or amount, and what it is compa
 
 | Variant property | Values |
 |---|---|
-| Direction | up, down, flat |
+| Trend | up, down, flat |
 | Tone | positive, negative, neutral |
 
 | Property | Type | Default |
 |---|---|---|
 | Comparison | text | vs last month |
 | Show comparison | boolean | true |
+| Value | text | 12.4% |
 
 Icons: minus, trending-down, trending-up
 
@@ -94,7 +95,7 @@ A row of 3-5 key figures at the top of a dashboard, report or record page, light
 
 **Anatomy**
 
-1. Metrics slot: 3-5 Metric Strip Items, Divider=true after the first
+1. Metrics slot: 3-5 Metric Strip Items, Show divider on after the first
 
 **Content and behavior**
 
@@ -124,7 +125,7 @@ Code: `<dl class="grid grid-cols-2 md:grid-cols-4 divide-x">` with `dt` / `dd` +
 
 ## Metric Strip Item
 
-Component set · 2 variants · default size 260 × 88
+Component · 1 variant · default size 260 × 88
 
 One figure in a Metric Strip: label, value, optional Trend Indicator (exposed). Divider=true on every item after the first.
 
@@ -142,11 +143,11 @@ One figure in a Metric Strip: label, value, optional Trend Indicator (exposed). 
 1. Label: body/small, muted
 2. Value: one line, heading
 3. Trend (Show trend): Trend Indicator (exposed)
-4. Divider on the left (Divider=true)
+4. Divider on the left (Show divider)
 
 **Content and behavior**
 
-- Divider=false on the first item, Divider=true on every item after it
+- Show divider off on the first item, on for every item after it
 - Value stays on one line; amounts in the locale format and compact (€1.84M)
 - Label is a noun of one to three words, sentence case
 - Show trend on all items in a strip or on none
@@ -156,15 +157,12 @@ One figure in a Metric Strip: label, value, optional Trend Indicator (exposed). 
 - Label and value are read together (dt and dd)
 - The divider is decorative
 
-| Variant property | Values |
-|---|---|
-| Divider | false, true |
-
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Revenue |
 | Value | text | €1.84M |
 | Show trend | boolean | true |
+| Show divider | boolean | false |
 
 Built from: `Trend Indicator`
 
@@ -172,6 +170,8 @@ Tokens and styles:
 - Colors: `border/default`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/6`
 - Text styles: `body/small`, `heading/h3`
+
+Guides: [reports](../../skills/build-ui/patterns/reports.md)
 
 Code: `<dl class="grid grid-cols-2 md:grid-cols-4 divide-x">` with `dt` / `dd` + `Trend Indicator` (3-5 items; one period said once nearby)
 
@@ -348,5 +348,7 @@ Tokens and styles:
 - Spacing and size: `spacing/2`, `spacing/3`
 - Radius: `radius/md`
 - Text styles: `ui/label`
+
+Guides: [reports](../../skills/build-ui/patterns/reports.md)
 
 Code: `<ol>` of rows with shadcn `Avatar`, `tabular-nums` value (Current row `aria-current="true"` and `bg-accent`)

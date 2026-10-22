@@ -1,6 +1,6 @@
 # Description List
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -29,7 +29,7 @@ Label-value pair for record details (shadcn has no component; dl/dt/dd in code).
 **Not for**
 
 - Editable fields: use Field with Input, or Inline Edit for single rows
-- Many objects compared side by side: use a Table
+- Many objects compared side by side: use a table of Table Cells
 - History of events: use Timeline Item
 
 **Anatomy**
@@ -59,7 +59,7 @@ Label-value pair for record details (shadcn has no component; dl/dt/dd in code).
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Phone |
-| Divider | boolean | true |
+| Show divider | boolean | true |
 
 Slots (fill them in the instance, never detach): `Value`
 
@@ -69,6 +69,8 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/label`
 
 Guides: [description-list](../../skills/build-ui/components/description-list.md)
+
+Code: custom `dl` with `dt` / `dd` and a Tailwind grid; custom `ol` (No shadcn component)
 
 ## Meta Item
 
@@ -173,7 +175,7 @@ A number with what it counts: stacked (value over label, optional source and div
 | Label | text | average time to get paid |
 | Source | text | Acme survey, September 2026 |
 | Show source | boolean | false |
-| Divider | boolean | false |
+| Show divider | boolean | false |
 
 Built from: `Separator`
 
@@ -202,7 +204,7 @@ One line of a money breakdown: label left, amount right (order summary, invoice 
 **Not for**
 
 - Record details that are not amounts: use Description List Item
-- Many rows compared side by side: use a Table
+- Many rows compared side by side: use a table of Table Cells
 - A single key number: use Figure or Stat Card
 
 **Anatomy**
@@ -237,3 +239,7 @@ Tokens and styles:
 - Colors: `background/success`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/2`, `spacing/4`
 - Text styles: `body/small`, `heading/h4`, `ui/label`
+
+Guides: [description-list](../../skills/build-ui/components/description-list.md), [commerce](../../skills/build-ui/patterns/commerce.md)
+
+Code: `<dl>` row, `flex justify-between`, `tabular-nums` (Discount keeps the minus sign; Separator above the total)

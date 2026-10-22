@@ -1,6 +1,6 @@
 # Rating
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -14,7 +14,7 @@ On the Figma page: "Example / in testimonial carousel", "Stress test / Rating", 
 
 ## Rating
 
-Component set · 12 variants · default size 78 × 14
+Component set · 12 variants · default size 116 × 20
 
 Star rating, display (reviews, products) or input (feedback). Filled stars in background/warning; always show the number too ("4.7 (128)"), color is not the only signal. As input: radio group of 5, hover previews, half stars only for display.
 

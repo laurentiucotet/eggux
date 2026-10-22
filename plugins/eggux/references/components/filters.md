@@ -1,6 +1,6 @@
 # Filters
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -214,7 +214,7 @@ A group in a filter side panel: title, number of selected values, collapse. Opti
 **Content and behavior**
 
 - Show the first 5-6 values, then "Show N more"
-- Collapsed sections (Expanded=false) keep their count visible
+- Collapsed sections (State=collapsed) keep their count visible
 - Counts show 0 rather than hiding the option
 - A panel with many fields may apply on a button; say how many results it will show
 
@@ -226,7 +226,7 @@ A group in a filter side panel: title, number of selected values, collapse. Opti
 
 | Variant property | Values |
 |---|---|
-| Expanded | true, false |
+| State | expanded, collapsed |
 
 | Property | Type | Default |
 |---|---|---|
@@ -249,7 +249,7 @@ Code: `Collapsible` + `Checkbox` list
 
 ## Filter Group
 
-Component · 1 variant · default size 800 × 126
+Component · 1 variant · default size 800 × 122
 
 Nested group of conditions joined by the same and / or, on a muted background. One level of nesting is enough for most products.
 
@@ -300,7 +300,7 @@ Code: custom: `Select`, `Combobox`, `Input`, `Button` (Serialize to the API filt
 
 ## Filter Condition
 
-Component set · 2 variants · default size 760 × 62
+Component set · 2 variants · default size 760 × 58
 
 One condition: field, operator (depends on the field type), value. first starts with "Where", next with and / or. The value control follows the field: Tag Input for sets, Date Range Picker for dates, Number Input for amounts.
 

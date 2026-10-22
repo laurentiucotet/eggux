@@ -1,6 +1,6 @@
 # Table
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -18,7 +18,7 @@ Usage rules live in the guides linked under each component.
 | [Table Cell Link](#table-cell-link) | 1 | - |
 | [Table Cell Date](#table-cell-date) | 1 | - |
 | [Table Cell File](#table-cell-file) | 1 | - |
-| [Table Cell Tags](#table-cell-tags) | 1 | - |
+| [Table Cell Badges](#table-cell-badges) | 1 | - |
 | [Table Cell Avatars](#table-cell-avatars) | 1 | - |
 | [Table Toolbar](#table-toolbar) | 1 | Actions |
 | [Data Grid Toolbar](#data-grid-toolbar) | 1 | Start, End |
@@ -43,13 +43,13 @@ Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row use
 
 - One item at a time or few attributes: use a list or cards
 - Mobile: switch the table to a list
-- Key-value details of one record: use Description List
+- Key-value details of one record: use Description List Item rows
 
 **Anatomy**
 
 1. Type=header with Table Header Label (Label, Sort, Align)
 2. Type=body with Table Cell Text, Table Cell Stack or Table Cell User
-3. Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Tags, Avatars
+3. Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Badges, Avatars
 4. Last column: Table Cell Actions (edit and menu)
 5. Type=expanded: one detail cell spanning all columns
 
@@ -220,6 +220,8 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
+Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`)
+
 ## Table Cell Progress
 
 Component · 1 variant · default size 136 × 20
@@ -239,6 +241,8 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
+Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`)
+
 ## Table Cell Actions
 
 Component · 1 variant · default size 36 × 36
@@ -257,6 +261,8 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
+Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`)
+
 ## Table Cell Link
 
 Component · 1 variant · default size 160 × 20
@@ -270,6 +276,10 @@ A cell value that opens the record or a related object (invoice number, customer
 Tokens and styles:
 - Colors: `foreground/default`
 - Text styles: `body/small`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group (One date format per column)
 
 ## Table Cell Date
 
@@ -287,6 +297,10 @@ Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/0_5`
 - Text styles: `body/small`, `ui/caption`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group (One date format per column)
 
 ## Table Cell File
 
@@ -308,13 +322,21 @@ Tokens and styles:
 - Spacing and size: `spacing/2`
 - Text styles: `body/small`, `ui/caption`
 
-## Table Cell Tags
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group (One date format per column)
+
+## Table Cell Badges
 
 Component · 1 variant · default size 200 × 22
 
-Two or three tags in a cell with +N for the rest (Tag List, exposed). Keep the same tag order in every row; the full list opens in a Tooltip from +N.
+Two or three tags in a cell with +N for the rest (Badge List, exposed). Keep the same tag order in every row; the full list opens in a Tooltip from +N.
 
-Built from: `Tag List`
+Built from: `Badge List`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group (One date format per column)
 
 ## Table Cell Avatars
 
@@ -323,6 +345,10 @@ Component · 1 variant · default size 200 × 24
 People on a row: assignees, approvers, members (Avatar Group sm, exposed). 3 avatars and +N; names in a Tooltip. One person: Table Cell User.
 
 Built from: `Avatar Group`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group (One date format per column)
 
 ## Table Toolbar
 
@@ -375,6 +401,8 @@ Tokens and styles:
 - Text styles: `ui/label`
 
 Guides: [table](../../skills/build-ui/components/table.md), [bulk-actions](../../skills/build-ui/patterns/bulk-actions.md)
+
+Code: custom bar on shadcn `Table` + TanStack Table row selection (Shows "N selected" and the bulk actions)
 
 ## Data Grid Toolbar
 
@@ -492,7 +520,7 @@ Under a table: range with the total and the object name, rows per page (10, 20, 
 
 **Not for**
 
-- Feeds browsed once: use a Load more button
+- Feeds browsed once: use Load More
 - Pagination outside a table: use Pagination
 
 **Anatomy**
