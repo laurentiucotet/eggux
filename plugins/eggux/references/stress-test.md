@@ -15,7 +15,7 @@ Pick the ones that apply to the component's content.
 | Dates | Today, relative ("2 h ago"), far past, far future, different time zone |
 | States | Default, hover, focus, active or selected, disabled, loading, error, empty |
 | Themes and density | Light, Dark, Corporate Light, Compact |
-| Width | Narrowest container it lives in (mobile 360, sidebar 280, grid column), widest (full 1152) |
+| Width | Every Layout variant at real column widths of the 1152 container: 1/4 (276), 1/3 (368), 1/2 (564) and full; plus the narrowest container it lives in (mobile 360, sidebar 280) |
 | Translation | German or Romanian at +35% length; right-to-left only when the client needs it |
 
 ## Test content
@@ -44,6 +44,8 @@ Pick the ones that apply to the component's content.
 - Empty gaps when optional parts are missing.
 - A row of items wrapping into an unplanned second line.
 - Contrast or focus lost in a theme.
+- A part that keeps a fixed size while the instance shrinks (a fixed image, a fixed text column).
+  Sizes set inside an instance are ignored by Figma, so the designer cannot fix it per use.
 
 ## Turning breaks into rules
 | Break | Typical rule |
@@ -55,3 +57,4 @@ Pick the ones that apply to the component's content.
 | Optional fields | Hide the row, never leave its gap |
 | Big numbers | Compact format (1.2M) with the exact value on hover; numbers never wrap |
 | Narrow width | Stack parts vertically below a breakpoint, or hide secondary parts |
+| Fixed inner size | The part FILLs with a min and max width (and keeps its ratio), or a `Size` variant covers the narrow case |

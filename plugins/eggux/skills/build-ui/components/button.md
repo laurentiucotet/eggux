@@ -21,6 +21,7 @@ its variables; read them through Figma MCP, do not copy them here.
 - Icon-only buttons need an accessible label and a tooltip.
 - Loading: keep the width, show a spinner, block repeat clicks.
 - Disabled only when the action is truly unavailable, with a reason nearby. Never as form validation.
+- On a muted card or panel, secondary actions are `outline`, never `secondary` (same color as the surface). `link` text uses `foreground/brand`.
 
 ## Figma
 - `Button`: `Variant` × `Size` (sm, default, lg) × `State` (default, hover, focus, disabled,

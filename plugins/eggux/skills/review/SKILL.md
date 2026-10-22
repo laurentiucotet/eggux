@@ -38,6 +38,11 @@ they exist: the review checks the design against the actor's workflow, not in a 
    default copy ("Acme", "Website redesign") left in a client design. `scan-components.js`
    from `/eggux:audit-tokens` finds raw values and broken slots.
 
+10. **Fidelity (when a reference is given):** the reference next to the result. Section order and
+    hierarchy, spacing rhythm, accent colors and type scale, images and icons. Each approximation
+    is a finding with its cause: a missing component or property (library gap), an override on an
+    instance, a missing icon or token.
+
 ## Output
 A table, most severe first:
 

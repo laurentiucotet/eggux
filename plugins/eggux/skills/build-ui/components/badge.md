@@ -23,6 +23,7 @@ it everywhere. The same status never appears in two colors.
 - The text carries the meaning; color only reinforces it.
 - One or two words, sentence case. No full sentences.
 - Do not use a badge for the primary information of a row; use it next to it.
+- On a muted card or panel use `outline` (or a status variant), never `secondary`: it disappears into the surface.
 
 ## Figma
 - `Badge`: Variant × Shape (rounded, pill). Options: Show icon (Icon swap), Show dot (status dot

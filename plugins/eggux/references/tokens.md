@@ -51,6 +51,7 @@ Figma and code map 1:1.
 | `background/warning` | `--warning` | Extension |
 | `background/info` | `--info` | Extension |
 | `foreground/<same names>` | `--foreground`, `--<name>-foreground` | Text and icons on the matching background |
+| `foreground/brand` | `--brand` | Text and icons in the brand color on the page: accent words in a headline, inline links, `Button` link. Never put `background/primary` on text |
 | `border/default` | `--border` | |
 | `border/input` | `--input` | |
 | `border/ring` | `--ring` | Focus ring, usually follows the brand |

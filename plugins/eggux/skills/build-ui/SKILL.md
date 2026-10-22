@@ -47,6 +47,26 @@ If a client file is missing, say which skill creates it and continue with base r
   `patterns/mobile.md`. Density Compact only for data-dense desktop screens.
 - **Both modes:** check Light and Dark when the client uses Dark.
 
+## Reproduce a reference screen
+When the input is a screenshot or a live page to rebuild (a client's current product, a
+competitor, a mock from another tool):
+1. **Inventory before building.** List the sections top to bottom and, for each, the Page Shell,
+   Block or component that covers it (`index.md`, `figma-library.md`, Blocks first, then
+   components). Mark what nothing covers and what only covers it with an override. Show the table
+   before building when the gaps change the plan.
+2. **Theme from the reference.** Pick the mode closest to its colors (Default or Corporate, Light
+   or Dark per region: a navy header is the Dark mode of the same theme on that frame). Accent
+   text and inline links use `foreground/brand`; never put `background/*` tokens on text.
+3. **Client header and footer are components.** The first screen of a client turns its navbar
+   and footer into `Block / Navbar <client>` and a Footer block instance with the client content;
+   later screens use instances, never copied frames.
+4. **Build section by section**, screenshot each one, and fix before the next.
+5. **Overrides are findings.** A text style changed on an instance, a hidden layer that should be
+   a boolean, a size that cannot be set: list each one as a library gap and suggest
+   `/eggux:update-component` or `/eggux:new-component`.
+6. **Compare with the reference** side by side at the end: hierarchy, spacing rhythm, accent
+   colors, what was approximated and why.
+
 ## Figma
 - Load the Figma `figma-use` skill (and `figma-generate-design` for full screens) before writing.
   Read `${CLAUDE_PLUGIN_ROOT}/references/figma-api-notes.md` before any write: it lists the API
@@ -64,7 +84,7 @@ Follow the project's structure. Semantic Tailwind classes that map to tokens (`b
 1. Run `${CLAUDE_PLUGIN_ROOT}/skills/audit-tokens/scan-components.js` on the frames you built
    (ROOTS = their ids): zero raw values, unstyled text, clipping or broken slots, empty icons.
 2. Screenshot the result in Light (and Dark if used) and look at it: overflow, clipped text,
-   wrong widths.
+   wrong widths. When there is a reference, put it next to the result and compare.
 3. Verify the decisions whose scope covers what you built (`decision-log` § Verify).
 4. Run the checks of the `review` skill. Fix what fails, then report what was built and any rule
    you could not follow.

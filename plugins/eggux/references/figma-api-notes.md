@@ -80,6 +80,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - `isExposedInstance = true` only after the nested instance is inside the component, and only
   for instances that have properties or exposed children.
 - Cloned variants lose `componentPropertyReferences`: re-wire every property after cloning.
+- `resize()` on a frame or instance nested inside an instance does nothing and raises no error.
+  A size the designer must change per use has to come from the component (FILL with min / max,
+  a `Size` variant) or from an exposed instance that resizes with its parent.
 - Swapping instances to a rebuilt set drops overrides of properties whose key changed; re-apply.
 - Swapping renames the layer to the component name; do not find nested instances by their old
   layer name afterwards.
