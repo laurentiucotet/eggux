@@ -93,7 +93,7 @@
    "The whole trigger row toggles",
    "Several items may be open at once unless the content is mutually exclusive",
    "Filters: Title is the dimension; Meta is a Badge Count of active values or a short summary",
-   "Leading icon on all items or none",
+   "Show leading icon on all items or none",
    "Groups with active filters are open by default"
   ],
   "a11y": [
@@ -239,7 +239,7 @@
   "avoid": [
    "Field changes on a record: use Change Item in an audit log",
    "Steps the user goes through in a form: use Stepper",
-   "Events over time without decisions: use Timeline"
+   "Events over time without decisions: use Timeline Item"
   ],
   "anatomy": [
    "Marker by Status (check, clock, x) and Connector to the next step",
@@ -573,7 +573,7 @@
    "Compare parts of a whole with fewer than 6 parts, instead of Donut Chart or Treemap"
   ],
   "avoid": [
-   "More than ~10 rows: use a Table",
+   "More than ~10 rows: use a table of Table Cells",
    "Trend over time: use Line Chart",
    "Ordered steps with drop-off: use Funnel Chart"
   ],
@@ -626,7 +626,7 @@
    "Active item has aria-current=\"page\"",
    "The whole cell is the touch target (min 48 x 48)"
   ],
-  "code": "No mapping in code-mapping.md: custom nav of links with env(safe-area-inset-bottom).",
+  "code": "custom nav of links with env(safe-area-inset-bottom).",
   "guides": [
    "skills/build-ui/patterns/mobile.md"
   ]
@@ -1049,7 +1049,7 @@
   "avoid": [
    "One number people check: use Stat Card",
    "Several charts in one card: one Chart Card each",
-   "Exact values: use a Table, or the table view"
+   "Exact values: use a table of Table Cells, or the table view"
   ],
   "anatomy": [
    "Title: what is measured",
@@ -1119,7 +1119,7 @@
    "Heatmap and Scatter Chart: the exact value or the item"
   ],
   "avoid": [
-   "Values that must always be visible: label the end value or use a Table",
+   "Values that must always be visible: label the end value or use a table of Table Cells",
    "Explaining a control: use Tooltip"
   ],
   "anatomy": [
@@ -1185,7 +1185,7 @@
   ],
   "avoid": [
    "Navigation between product pages: use Sidebar menu items",
-   "A list of records: use a Table or List"
+   "A list of records: use a table of Table Cells or List Items"
   ],
   "anatomy": [
    "Pin icon (Pinned)",
@@ -1303,7 +1303,7 @@
   ],
   "rules": [
    "Label is one or two words in sentence case",
-   "State=selected marks an active filter; with Leading icon on, the icon becomes a check",
+   "State=selected marks an active filter; with Show leading icon on, the icon becomes a check",
    "Selected is shown by the check and fill, not by color alone",
    "Show \"Clear all\" when more than one filter is active"
   ],
@@ -1802,7 +1802,7 @@
   ],
   "avoid": [
    "Editable fields: use Field with Input, or Inline Edit for single rows",
-   "Many objects compared side by side: use a Table",
+   "Many objects compared side by side: use a table of Table Cells",
    "History of events: use Timeline Item"
   ],
   "anatomy": [
@@ -1997,7 +1997,7 @@
    "Board columns, where each card is one record"
   ],
   "avoid": [
-   "Many records compared by columns: use a Table",
+   "Many records compared by columns: use a table of Table Cells",
    "One metric: use Stat Card",
    "A goal against a target: use Progress Card"
   ],
@@ -2023,7 +2023,7 @@
    "One link for the card; the menu is a separate button with a label",
    "State=focus shows the border/ring focus ring",
    "State=selected is announced, not only shown",
-   "Each Button Icon in Actions has an accessible label that names the card (\"Add Electric Vehicle Forecast\")"
+   "Each Button Icon in Actions has an accessible label that names the card (\"Add Website redesign\")"
   ],
   "code": "shadcn Card with size=\"sm\".",
   "guides": [
@@ -2326,7 +2326,7 @@
   ],
   "rules": [
    "Show the first 5-6 values, then \"Show N more\"",
-   "Collapsed sections (Expanded=false) keep their count visible",
+   "Collapsed sections (State=collapsed) keep their count visible",
    "Counts show 0 rather than hiding the option",
    "A panel with many fields may apply on a button; say how many results it will show"
   ],
@@ -2349,7 +2349,7 @@
   ],
   "avoid": [
    "Unordered categories: use Bar Chart Horizontal",
-   "More than 6 stages: use a Table",
+   "More than 6 stages: use a table of Table Cells",
    "Change over time: use Line Chart"
   ],
   "anatomy": [
@@ -2383,7 +2383,7 @@
    "Gantt Milestone for zero-length events: sign-off, review, launch"
   ],
   "avoid": [
-   "Stages without dates: use Kanban",
+   "Stages without dates: use Kanban Card in a Kanban Column",
    "Meetings and bookings: use Calendar Event in the scheduler",
    "Mobile: a list grouped by phase with dates; the timeline is desktop only"
   ],
@@ -2395,7 +2395,7 @@
    "Gantt Milestone: diamond on the date with its Label"
   ],
   "rules": [
-   "Status is planned, in progress, done or blocked; planned is dashed",
+   "Status is planned, in-progress, done or blocked; planned is dashed",
    "Status is also an icon and written in the task list, never color alone",
    "Labels truncate; the full name is in the task list and on hover",
    "Dependencies are finish-to-start arrows that never point backwards",
@@ -2415,7 +2415,7 @@
   "summary": "Progress of one number toward a target, such as a quota, budget or SLA, with the status written out.",
   "use": [
    "One headline measure against a target: Q4 revenue vs target",
-   "Status matters: on track, at risk, off track",
+   "Status matters: on-track, at-risk, off-track",
    "Dashboards with only a few numbers"
   ],
   "avoid": [
@@ -2433,7 +2433,7 @@
   "rules": [
    "Status is written, not only colored",
    "The tick marks the target",
-   "Status tone follows Status: on track, at risk (warning), off track (destructive)",
+   "Status tone follows Status: on-track, at-risk (warning), off-track (destructive)",
    "Use sparingly"
   ],
   "a11y": [
@@ -2455,7 +2455,7 @@
   "avoid": [
    "One dimension: use Bar Chart",
    "Trend of one measure over time: use Line Chart",
-   "Exact values matter: use a Table"
+   "Exact values matter: use a table of Table Cells"
   ],
   "anatomy": [
    "Row labels",
@@ -2607,7 +2607,7 @@
    "Meaningful images have alt text; decorative ones have empty alt",
    "Text over an image keeps 4.5:1 contrast"
   ],
-  "code": "No mapping in code-mapping.md: an <img> or next/image with aspect-ratio and object-cover.",
+  "code": "an <img> or next/image with aspect-ratio and object-cover.",
   "guides": [
    "skills/build-ui/components/carousel.md"
   ]
@@ -2693,7 +2693,7 @@
    "A Select (currency) or Button (Copy, Generate) attached to a field"
   ],
   "avoid": [
-   "Icons inside the field: use Input with Leading icon or the Trailing slot",
+   "Icons inside the field: use Input with Show leading icon or the Trailing slot",
    "Small integer quantities: use Number Input"
   ],
   "anatomy": [
@@ -2761,7 +2761,7 @@
    "Sales pipelines and support queues on a board view"
   ],
   "avoid": [
-   "Finding and bulk-editing items: use a Table or list view",
+   "Finding and bulk-editing items: use a table of Table Cells or a list view",
    "Dated tasks with dependencies: use Gantt"
   ],
   "anatomy": [
@@ -2797,7 +2797,7 @@
   ],
   "avoid": [
    "Groups without an order: use a list grouped by header",
-   "Dates on a time axis: use Scheduler or Gantt"
+   "Dates on a time axis: use Calendar Event in Block / Scheduler Week or Gantt Bar"
   ],
   "anatomy": [
    "Title",
@@ -2931,7 +2931,7 @@
    "Comparing categories: use Bar Chart",
    "Trend next to a number, without axes: use Sparkline",
    "Two measures with different units: Combo Chart when they explain each other, otherwise two charts",
-   "Exact values matter more than shape: use a Table"
+   "Exact values matter more than shape: use a table of Table Cells"
   ],
   "anatomy": [
    "Y axis with round ticks",
@@ -2970,7 +2970,7 @@
   "avoid": [
    "Actions in a popover: use Menu Item",
    "Navigation destinations: use Sidebar Item",
-   "Comparing items across several attributes: use Table",
+   "Comparing items across several attributes: use a table of Table Cells",
    "Hierarchies: use Tree Item"
   ],
   "anatomy": [
@@ -2992,7 +2992,7 @@
    "Focus state uses border/ring",
    "Selected is shown with more than color (check or aria-selected)"
   ],
-  "code": "No mapping in code-mapping.md: custom row (ul / li) with shadcn Avatar and Badge.",
+  "code": "custom row (ul / li) with shadcn Avatar and Badge.",
   "guides": [
    "skills/build-ui/components/list-and-tree.md",
    "skills/build-ui/patterns/mobile.md"
@@ -3025,7 +3025,7 @@
    "The written address is the accessible content; the map has a title or alt",
    "Interactive maps keep zoom buttons reachable by keyboard"
   ],
-  "code": "No mapping in code-mapping.md: static map image or an embedded map (Mapbox, Google).",
+  "code": "static map image or an embedded map (Mapbox, Google).",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md"
   ]
@@ -3039,7 +3039,7 @@
   ],
   "avoid": [
    "Choosing a value in a form: use Select",
-   "Deep navigation: use Sidebar or Navigation Menu",
+   "Deep navigation: use Sidebar or Navigation Menu Panel in the Navbar",
    "Searching many options: use Command (Combobox)"
   ],
   "anatomy": [
@@ -3079,7 +3079,7 @@
    "Report or document builders with File, Insert and Format menus"
   ],
   "avoid": [
-   "Site or app navigation: use Navigation Menu or Sidebar",
+   "Site or app navigation: use Navigation Menu Panel in the Navbar or Sidebar",
    "A few actions on one object: use a Menu from a Button"
   ],
   "anatomy": [
@@ -3131,7 +3131,7 @@
    "Touch targets at least 44 x 44",
    "Title is the page heading for screen readers"
   ],
-  "code": "No mapping in code-mapping.md: custom header with shadcn Button (size=\"icon\") and Avatar.",
+  "code": "custom header with shadcn Button (size=\"icon\") and Avatar.",
   "guides": [
    "skills/build-ui/patterns/mobile.md"
   ]
@@ -3140,7 +3140,7 @@
   "summary": "Link or trigger in a marketing navbar (shadcn NavigationMenu), with a chevron when it opens a submenu.",
   "use": [
    "Top-level links in a marketing Navbar",
-   "Triggers of a Navigation Menu Panel (Chevron on)",
+   "Triggers of a Navigation Menu Panel (Show chevron on)",
    "Section links on a marketing site: Pricing, Customers, Docs"
   ],
   "avoid": [
@@ -3150,7 +3150,7 @@
   ],
   "anatomy": [
    "Label (Label)",
-   "Chevron (Chevron) when it opens a Navigation Menu Panel",
+   "Chevron (Show chevron) when it opens a Navigation Menu Panel",
    "Active indicator (State=active)"
   ],
   "rules": [
@@ -3161,7 +3161,7 @@
   ],
   "a11y": [
    "Active link has aria-current=\"page\"",
-   "Triggers with Chevron expose aria-expanded",
+   "Triggers with Show chevron expose aria-expanded",
    "Focus ring uses border/ring"
   ],
   "code": "shadcn NavigationMenu (NavigationMenuLink, NavigationMenuTrigger).",
@@ -3333,7 +3333,7 @@
    "Title is the page heading; keep heading levels in order",
    "Action buttons have verb labels"
   ],
-  "code": "No mapping in code-mapping.md: custom header with a heading, text and shadcn Button.",
+  "code": "custom header with a heading, text and shadcn Button.",
   "guides": [
    "skills/build-ui/components/navigation.md",
    "skills/build-ui/patterns/common-flows.md"
@@ -3347,7 +3347,7 @@
    "Under a table, inside Table Pagination with the range and rows per page"
   ],
   "avoid": [
-   "Feeds, activity and search results browsed once: use a Load more button or infinite scroll",
+   "Feeds, activity and search results browsed once: use Load More or infinite scroll",
    "Fewer than ~25 rows: show them all, no pagination",
    "Steps of a flow: use Stepper"
   ],
@@ -3405,7 +3405,7 @@
    "Level and message are text, announced politely in a live region as the user types",
    "Message is linked to the password field with aria-describedby"
   ],
-  "code": "No mapping in code-mapping.md: custom bars + text under the shadcn Input.",
+  "code": "custom bars + text under the shadcn Input.",
   "guides": [
    "skills/build-ui/patterns/form-presets.md",
    "skills/build-ui/patterns/auth.md"
@@ -3580,7 +3580,7 @@
   ],
   "anatomy": [
    "Label",
-   "Status Badge: on track, at risk, off track",
+   "Status Badge: on-track, at-risk, off-track",
    "Value and Target (\"€48,250 of €60,000\")",
    "Progress bar (exposed Progress, set Value)",
    "Footnote: percent and time left"
@@ -3643,7 +3643,7 @@
    "Model or tool choices users really make: Model Picker in the Tools slot"
   ],
   "avoid": [
-   "One known task (summarize, classify): use a Button with sparkles or a Suggestion",
+   "One known task (summarize, classify): use a Button with sparkles or a Prompt Suggestion",
    "Chat between people: use Chat Composer",
    "While dictating: the Voice Recorder replaces it until the transcript is ready"
   ],
@@ -4086,7 +4086,7 @@
   ],
   "avoid": [
    "Switching views of one object: use Tabs",
-   "Sites with few pages: use Navigation Menu in a top bar",
+   "Sites with few pages: use Nav Links in the Navbar",
    "Mobile: open it as a left Sheet from the header"
   ],
   "anatomy": [
@@ -4235,7 +4235,7 @@
   ],
   "avoid": [
    "Order that does not matter: use List Item",
-   "Moving cards between stages: use Kanban"
+   "Moving cards between stages: use Kanban Card"
   ],
   "anatomy": [
    "Drag handle (grip-vertical)",
@@ -4547,7 +4547,7 @@
   "avoid": [
    "One item at a time or few attributes: use a list or cards",
    "Mobile: switch the table to a list",
-   "Key-value details of one record: use Description List"
+   "Key-value details of one record: use Description List Item rows"
   ],
   "anatomy": [
    "Type=header with Table Header Label (Label, Sort, Align)",
@@ -4618,7 +4618,7 @@
    "Data grids, together with the Data Grid Toolbar above"
   ],
   "avoid": [
-   "Feeds browsed once: use a Load more button",
+   "Feeds browsed once: use Load More",
    "Pagination outside a table: use Pagination"
   ],
   "anatomy": [
@@ -4746,8 +4746,8 @@
  "Tag Input": {
   "summary": "Several values in one field: multi-select from a list, or free tags typed by the user.",
   "use": [
-   "Multi-select from a list (Chevron on): opens Command with checked items",
-   "Free tags or keywords (Chevron off): Enter adds a tag",
+   "Multi-select from a list (Show chevron on): opens Command with checked items",
+   "Free tags or keywords (Show chevron off): Enter adds a tag",
    "Lists too long for a Checkbox group"
   ],
   "avoid": [
@@ -4760,7 +4760,7 @@
    "Tags slot: Tag instances (Label, Remove)",
    "Overflow text: \"+3 more\"",
    "Typing area",
-   "chevrons-up-down icon (Chevron on)"
+   "chevrons-up-down icon (Show chevron on)"
   ],
   "rules": [
    "Show at most ~5 tags, then \"+3 more\"",
@@ -4901,13 +4901,13 @@
    "Title: one line",
    "Description (Show description)",
    "Action button (Action)",
-   "Close button (Close button)"
+   "Close button (Show close)"
   ],
   "rules": [
    "One line, past tense, names the object: \"Invoice #1042 sent\", not \"Success!\"",
    "At most one action, a verb: \"Undo\", \"View\"",
    "Auto-dismiss after 4-6 s, 8-10 s with an action; pause on hover and focus",
-   "Close button off by default; on for toasts with an action, errors and long durations",
+   "Show close off by default; on for toasts with an action, errors and long durations",
    "Errors that block the goal also show inline",
    "Same position everywhere: bottom right, top center on mobile"
   ],
@@ -4944,7 +4944,7 @@
    "Group (Variant: default or outline)",
    "Items slot: Toggle Group Item instances",
    "Item: Label and/or icon (Show label, Icon, Icon)",
-   "Selected item: State=on"
+   "Selected item: State=selected"
   ],
   "rules": [
    "It sets a value; if the content below changes panels, use Tabs",
@@ -5072,7 +5072,7 @@
    "Unread count is announced with the notifications label",
    "Tab order: sidebar trigger, breadcrumb, actions"
   ],
-  "code": "No mapping in code-mapping.md: shadcn site header (SidebarTrigger, Breadcrumb, Button).",
+  "code": "shadcn site header (SidebarTrigger, Breadcrumb, Button).",
   "guides": [
    "skills/build-ui/components/navigation.md",
    "skills/build-ui/components/popover.md",
@@ -5145,7 +5145,7 @@
    "Keyboard: up and down move, right expands, left collapses",
    "Checkbox state includes indeterminate (aria-checked=\"mixed\")"
   ],
-  "code": "No mapping in code-mapping.md: custom tree (role=\"tree\") with shadcn Checkbox and Badge.",
+  "code": "custom tree (role=\"tree\") with shadcn Checkbox and Badge.",
   "guides": [
    "skills/build-ui/components/list-and-tree.md"
   ]
@@ -5160,7 +5160,7 @@
   "avoid": [
    "Fewer than 6 parts: use Bar Chart Horizontal",
    "2-5 parts where the share is the point: use Donut Chart",
-   "Exact comparisons: use a Table"
+   "Exact comparisons: use a table of Table Cells"
   ],
   "anatomy": [
    "Rectangles, area = value, largest top-left",
@@ -5479,7 +5479,7 @@
   "avoid": [
    "A form people fill and submit: use Field",
    "Many options of one group: use a Checkbox group in a Field",
-   "A list of objects: use List Item or a Table"
+   "A list of objects: use List Item or a table of Table Cells"
   ],
   "anatomy": [
    "Title (ui/label)",
@@ -5550,7 +5550,7 @@
   ],
   "avoid": [
    "The event page itself: use Block / Header Event",
-   "Calendar views with many events: use Scheduler",
+   "Calendar views with many events: use Calendar Event in Block / Scheduler Month",
    "Articles and news: use Post Card"
   ],
   "anatomy": [
@@ -5623,7 +5623,7 @@
    "An expert's view next to data"
   ],
   "avoid": [
-   "Customer proof on a marketing page: use the Testimonial blocks",
+   "Customer proof on a marketing page: use Testimonial Card or Block / Testimonials",
    "Notes and warnings: use Alert",
    "Code or commands: use Code Block"
   ],
@@ -5734,7 +5734,7 @@
   "avoid": [
    "Centered marketing sections: use the Section Header block",
    "The title of a Card: use Card Header",
-   "The page title: use a Page Header block"
+   "The page title: use Page Header"
   ],
   "anatomy": [
    "Overline (Show overline): ui/overline, muted",
@@ -5769,7 +5769,7 @@
    "\"How it works\" sections with numbered steps (Marker=number)"
   ],
   "avoid": [
-   "Plan feature lists with checks: use a check list",
+   "Plan feature lists with checks: use Check Item",
    "Numbers and results: use Figure or Stat Card",
    "Clickable cards that open something: use Card or Post Card",
    "Steps people do in the product (a wizard): use Stepper"
@@ -5844,7 +5844,7 @@
   ],
   "avoid": [
    "Record details that are not amounts: use Description List Item",
-   "Many rows compared side by side: use a Table",
+   "Many rows compared side by side: use a table of Table Cells",
    "A single key number: use Figure or Stat Card"
   ],
   "anatomy": [
@@ -5885,7 +5885,7 @@
   "anatomy": [
    "Avatar (exposed: Type, Initials), Show avatar",
    "Name: ui/label",
-   "Detail (Show detail): ui/caption, muted: role and company, or date and reading time"
+   "Description (Show description): ui/caption, muted: role and company, or date and reading time"
   ],
   "rules": [
    "One person per Byline",
@@ -5914,7 +5914,7 @@
   "avoid": [
    "Large lists where people jump to a page: use Pagination",
    "Tables with rows per page and totals: use Table Pagination",
-   "Feeds: use Load more or infinite scroll"
+   "Feeds: use Load More or infinite scroll"
   ],
   "anatomy": [
    "Previous: Button Icon outline sm (exposed)",
@@ -6794,11 +6794,11 @@
    "Message: \"Elena Popa approved INV-1041 for €2,450.00\", actor and object in bold",
    "Meta: time and area, body/small, muted",
    "Actions slot (Show actions): one or two Buttons sm",
-   "Unread dot (Read=false)"
+   "Unread dot (State=unread)"
   ],
   "rules": [
    "Message names the actor, the action and the object; two lines at most",
-   "Read=false has a muted background and the dot",
+   "State=unread has a muted background and the dot",
    "The whole row opens the object and marks it read",
    "Actions only for what people can do from the list (Approve, View invoice); at most two",
    "System notifications without a person use an icon Avatar"
@@ -6859,7 +6859,7 @@
   ],
   "avoid": [
    "Suggestions while typing: use Command Dialog",
-   "A list of records to manage: use a Table or List Item",
+   "A list of records to manage: use a table of Table Cells or List Items",
    "Related links under an article: use Post Card"
   ],
   "anatomy": [
@@ -7169,7 +7169,7 @@
   "use": [
    "The change under a value in a Metric Strip or a Stat Card",
    "A change next to a figure in a table row or a report header",
-   "Rising costs or churn: Direction=up with Tone=negative"
+   "Rising costs or churn: Trend=up with Tone=negative"
   ],
   "avoid": [
    "A trend people read over time: use Sparkline or Line Chart",
@@ -7242,7 +7242,7 @@
    "Counts in a page header with no trend: use Figure"
   ],
   "anatomy": [
-   "Metrics slot: 3-5 Metric Strip Items, Divider=true after the first"
+   "Metrics slot: 3-5 Metric Strip Items, Show divider on after the first"
   ],
   "rules": [
    "3-5 figures; more go in a table or a second section",
@@ -8025,13 +8025,13 @@
    "Plan name",
    "Description: who it is for, one sentence",
    "Price (exposed)",
-   "CTA: Button (primary when Featured=true)",
+   "CTA: Button (primary when Variant=featured)",
    "Separator",
    "Features title: \"Everything in Starter, plus:\"",
    "Features slot: Check Items"
   ],
   "rules": [
-   "Featured=true on one recommended plan only, with the primary button",
+   "Variant=featured on one recommended plan only, with the primary button",
    "2-4 plans, cheapest first, the same order of features",
    "Enterprise says \"Contact sales\" instead of a price",
    "CTA labels match across the page (\"Start free trial\"); one primary per section",
@@ -8347,7 +8347,7 @@
    "A customer's orders in a support tool"
   ],
   "avoid": [
-   "Many orders with sorting and bulk actions: use Table",
+   "Many orders with sorting and bulk actions: use a table of Table Cells",
    "The items inside an order: use Line Item",
    "Where a delivery is: use Shipment Tracker"
   ],
@@ -8430,7 +8430,7 @@
   ],
   "rules": [
    "Lines in the format of the country",
-   "Checkout: a radio, pick one, Selected=true; account settings: no radio",
+   "Checkout: a radio, pick one, State=selected; account settings: no radio",
    "Add new address is the last card",
    "Remove asks to confirm (Confirm Popover)",
    "One default address; the Default badge sits next to the name"
@@ -8456,7 +8456,7 @@
   "avoid": [
    "Entering a new card: use Block / Payment",
    "A saved address: use Address Card",
-   "Invoices and charges: use Table"
+   "Invoices and charges: use a table of Table Cells"
   ],
   "anatomy": [
    "Brand: \"VISA\"",
@@ -8856,7 +8856,7 @@
   ],
   "rules": [
    "Seven rows, Monday first unless the locale starts on Sunday",
-   "Available=false hides the hours and says \"Unavailable\"",
+   "State=unavailable hides the hours and says \"Unavailable\"",
    "Times in 15 or 30 minute steps; the end is after the start; overlapping ranges merge on save",
    "Extra ranges stack under the first, each with a remove button",
    "The time zone is said once above the list; \"Copy to all days\" in the header saves repeat work"

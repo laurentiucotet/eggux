@@ -47,8 +47,8 @@ ending with `Block / Docs Page Footer`.
 - Incidents in plain language: what happened, impact, duration, what changed. Keep at least 90 days.
 
 ## Related components
-- Changelog and in-app What's new entries use `Release Note Item`. Developer docs use `Command
-  Snippet` for one copyable command, `Endpoint Row` for API reference lists and `JSON Viewer` for
-  request and response payloads.
+- Changelog and in-app What's new entries use `Release Note Item`. Developer docs use
+  `Command Snippet` for one copyable command, `Endpoint Row` for API reference lists and
+  `JSON Viewer` for request and response payloads.
 - Status page rows use `Service Status Row`: service name, 90-day uptime as text and status in words
   with a Status Dot, linked to the incident when not operational.

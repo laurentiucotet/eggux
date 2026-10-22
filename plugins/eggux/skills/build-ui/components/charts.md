@@ -79,5 +79,5 @@ with `Bar yAxisId="left"` and `Line yAxisId="right"`.
   measure against target and bands (dense KPI reviews), `Radar Chart` for 1-3 items across 5-8
   qualities on one scale, `Sankey Chart` for flows from sources to outcomes (2-3 columns, under 12
   nodes), `Choropleth Map` for one measure by region (one hue, 5 steps). Customizable dashboards put
-  each chart in a `Dashboard Widget` (react-grid-layout, 12 columns); fixed reports keep `Chart
-  Card`.
+  each chart in a `Dashboard Widget` (react-grid-layout, 12 columns); fixed reports keep
+  `Chart Card`.

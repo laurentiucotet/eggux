@@ -250,7 +250,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Access Row`, `Invite Row`, `Share Link Row` | shadcn `Avatar`, `Select`, `Popover` + `Command` (combobox with chips), `Button` | Copy with `navigator.clipboard.writeText`; validate emails with zod |
 | `Integration Card` | shadcn `Card size="sm"` + `Button`, `Switch`, `Badge` | Connect opens the provider OAuth flow |
 | `Permission Row` | shadcn `Table` with `Checkbox` cells | Form state in react-hook-form; save with `Save Bar`; log changes |
-| `API Key Row`, `Session Row` | custom row + `Badge`, `Button size="icon"`, `DropdownMenu`, `AlertDialog` | Full key shown once at creation; sessions from your auth provider |
+| `API Key Row` | custom row + `Badge`, `Button size="icon"`, `DropdownMenu`; `AlertDialog` for revoke | Full key shown once at creation, then only the last 4 characters |
+| `Session Row` | custom row + `Badge` and `Button` | Sessions from your auth provider (Auth.js, Clerk, WorkOS); the current device cannot sign itself out |
 | `Org Chart Node` | @xyflow/react with a dagre layout (or react-d3-tree); custom node with `Avatar` | `role="tree"` semantics for keyboard use |
 
 ## Built from base components

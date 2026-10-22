@@ -50,5 +50,5 @@ shadcn `Calendar` (react-day-picker, `weekStartsOn={1}`, `locale={ro}`) and the 
 
 ## Related components
 - For known dates people type (birth date, invoice date), use `Date Input`: day, month and year
-  segments with a calendar button. For repeats (recurring invoices, reminders), use `Recurrence
-  Picker`.
+  segments with a calendar button. For repeats (recurring invoices, reminders), use
+  `Recurrence Picker`.
