@@ -688,7 +688,8 @@
    "Leading icon (optional, Leading icon)",
    "Label",
    "Trailing icon (optional, Trailing icon)",
-   "State=loading: a spinning loader replaces the leading icon; width stays"
+   "State=loading: a spinning loader replaces the leading icon; width stays",
+   "Variant=link: label, icons and hover underline use foreground/brand; no fill"
   ],
   "rules": [
    "One Variant=default per view or dialog",
@@ -696,15 +697,16 @@
    "Dialogs and forms: secondary left, primary right",
    "destructive only inside the confirmation step; the trigger in a list is ghost or a menu item",
    "Loading (State=loading) keeps the width and the label (\"Saving…\" when it helps), shows the spinner and blocks repeat clicks",
-   "Disabled only when truly unavailable, with a reason nearby; never as form validation"
+   "Disabled only when truly unavailable, with a reason nearby; never as form validation",
+   "Variant=link text and icons are foreground/brand (text-brand), never background/primary"
   ],
   "a11y": [
    "Reachable with Tab; Enter and Space activate; State=focus shows the border/ring focus ring",
    "Touch target at least 44 x 44 px on mobile",
    "Loading is announced (\"Saving…\")",
-   "Text meets 4.5:1 in every Variant"
+   "Text meets 4.5:1 in every Variant; link (foreground/brand) passes 4.5:1 on background/default, muted and card in every theme"
   ],
-  "code": "shadcn Button (variant, size); Leading icon is an icon child before the label.",
+  "code": "shadcn Button (variant, size); Leading icon is an icon child before the label. variant=\"link\" uses text-brand (var(--brand)) instead of text-primary.",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/patterns/action-feedback.md",
@@ -867,7 +869,7 @@
    "Groups inside a card: use spacing or a Separator, never a nested card"
   ],
   "anatomy": [
-   "Header slot (Card Header): Title, Description, Action slot top right",
+   "Header slot (Card Header): Icon (Show icon, Icon swap, 20 px), Title, Description, Action slot top right",
    "Content slot",
    "Footer slot (Card Footer): Actions slot"
   ],
@@ -878,14 +880,16 @@
    "Whole card clickable only with one destination; otherwise the title is the link",
    "Footer: one primary action at most, usually none in a grid",
    "Padding comes from density/card-* tokens; change the tokens, never single instances",
-   "Turn off Show header or Show footer when unused; never detach"
+   "Turn off Show header or Show footer when unused; never detach",
+   "Card Header icon: on all cards of a row or none; it names the card type, never decorates"
   ],
   "a11y": [
    "A clickable card is one link with a hover state and a focus ring",
    "The Card Header Title is a heading at the right level for the page",
-   "Action slot Button Icons have labels and tooltips"
+   "Action slot Button Icons have labels and tooltips",
+   "The Card Header icon is decorative (aria-hidden); the Title carries the meaning"
   ],
-  "code": "shadcn Card + cva: variant (default, outline, muted), size (default, sm), elevated (shadow-md).",
+  "code": "shadcn Card + cva: variant (default, outline, muted), size (default, sm), elevated (shadow-md). CardHeader icon: optional Lucide icon (size-5) before CardTitle.",
   "guides": [
    "skills/build-ui/components/card.md"
   ]
@@ -2981,6 +2985,7 @@
    "Title",
    "Description (Show description)",
    "Trailing slot: meta, Badge, chevron or one action",
+   "Divider (Show divider): Separator, 1 px border/default at the bottom edge, inside the row's bottom padding",
    "Show leading and Show trailing hide the slots for text-only rows"
   ],
   "rules": [
@@ -2988,14 +2993,15 @@
    "The whole row opens the item when it has one destination; otherwise only the title links",
    "Trailing holds at most one action plus meta; more actions go in a Button Icon with a Menu",
    "Every list has an empty state",
-   "Text-only lists (settings, links) turn Show leading off; compact lists turn Show description off"
+   "Text-only lists (settings, links) turn Show leading off; compact lists turn Show description off",
+   "Divided lists: Show divider on every row but the last, list gap 0 so the line sits halfway between rows"
   ],
   "a11y": [
    "The row is one link or button with an accessible name from the title",
    "Focus state uses border/ring",
    "Selected is shown with more than color (check or aria-selected)"
   ],
-  "code": "custom row (ul / li) with shadcn Avatar and Badge.",
+  "code": "custom row (ul / li) with shadcn Avatar and Badge; Show divider = border-b on the li (last:border-0 or divide-y on the ul).",
   "guides": [
    "skills/build-ui/components/list-and-tree.md",
    "skills/build-ui/patterns/mobile.md"
@@ -3497,7 +3503,8 @@
    "Blog grids of 3: Layout=vertical",
    "The featured post at the top of a list: Layout=horizontal",
    "News, case studies, changelog entries and carousels of posts",
-   "Layout=compact: related, most read and up next lists in an aside or under an article"
+   "Layout=compact: related, most read and up next lists in an aside or under an article",
+   "Size=sm: dense grids of 4, lists in a column next to a featured story, dashboards"
   ],
   "avoid": [
    "A product with a price: use Product Card",
@@ -3506,25 +3513,29 @@
   "anatomy": [
    "Image 16:9 (Image Placeholder)",
    "Horizontal: the image takes half the card width (160-640) and keeps its ratio, so the card works from a featured row down to a list in a column",
-   "Category Badge, Date and reading time",
-   "Title",
+   "Horizontal Size=sm: the image takes one third of the width (120-240), text top aligned",
+   "Category Badge (exposed), Date and reading time",
+   "Title: heading/h4 (vertical, sm), heading/h2 (horizontal default)",
    "Excerpt, 3 lines max (Show excerpt)",
    "Author with Avatar (Show author)",
-   "Compact: optional 1:1 image (Show image), Title on 2 lines, meta in Date (type · date)"
+   "Compact: optional 1:1 image (Show image, 64 px, 48 px in sm), Title on 2 lines (ui/label, ui/label-small in sm), meta in Date (type · date)",
+   "Size: default or sm (smaller gaps and titles) for every Layout"
   ],
   "rules": [
    "The whole card is one link to the article",
    "Excerpt is 3 lines max, then truncates",
    "Date and reading time on one line (\"12 Oct 2026 · 6 min read\")",
    "Cards in a grid share the same structure",
-   "Compact: 3-5 items per list; meta says type and date (\"Guide · 12 Oct 2026\"); image on all items or none"
+   "Compact: 3-5 items per list; meta says type and date (\"Guide · 12 Oct 2026\"); image on all items or none",
+   "One Size per list or grid; sm for lists next to a featured story and for grids of 4",
+   "Never restyle the title per instance: switch Size instead"
   ],
   "a11y": [
    "One link per card; the Title is the link text",
    "The image has alt text, or alt=\"\" when decorative",
    "Focus ring around the whole card"
   ],
-  "code": "shadcn Card with image, Badge and Avatar, wrapped in one link.",
+  "code": "shadcn Card with image, Badge and Avatar, wrapped in one link; size (default, sm) via cva: gaps, title class, image basis-1/3 min-w-[120px] max-w-[240px] in horizontal sm.",
   "guides": [
    "skills/build-ui/components/content.md",
    "skills/build-ui/components/card.md",
@@ -5554,7 +5565,8 @@
   "use": [
    "Agenda and upcoming events lists (Layout=horizontal)",
    "Event grids on a hub or topic page (Layout=vertical, with image)",
-   "Sessions of a conference day"
+   "Sessions of a conference day",
+   "Date position=image: grids where titles are long, so the title gets the full card width"
   ],
   "avoid": [
    "The event page itself: use Block / Header Event",
@@ -5563,6 +5575,7 @@
   ],
   "anatomy": [
    "Date Tile (exposed): month over day",
+   "Date position (vertical): text = Date Tile next to the title; image = Date Tile over the top-left corner of the image, inset spacing/3, on background/default",
    "Tags slot: format Badges (Webinar, Online, In person)",
    "Title, 2 lines",
    "Meta slot: Meta Items for time with time zone and place",
@@ -5574,14 +5587,15 @@
    "Time always with time zone; place with city, or Online",
    "One action per card; the whole card links to the event page",
    "Past events: Recorded badge and Watch the recording, or no action",
-   "Full events say it in the action (Join waitlist), never by hiding the card"
+   "Full events say it in the action (Join waitlist), never by hiding the card",
+   "Date position=image only with Show image on; same Date position for every card of a grid"
   ],
   "a11y": [
    "The Date Tile reads as a full date (\"12 November 2026\") for screen readers",
    "One link for the card; the action is a separate button with a label that names the event",
    "Badges are text, not color alone"
   ],
-  "code": "shadcn Card with a date tile, Badge and Button; <time datetime> for the date.",
+  "code": "shadcn Card with a date tile, Badge and Button; <time datetime> for the date. Date position=image: the tile is absolute top-3 left-3 inside a relative image wrapper.",
   "guides": [
    "skills/build-ui/components/card.md",
    "skills/build-ui/patterns/marketing-pages.md"
@@ -5746,6 +5760,7 @@
   ],
   "anatomy": [
    "Overline (Show overline): ui/overline, muted",
+   "Icon (Show icon, Icon swap): 24 px (lg), 20 px (default, sm), foreground/default, centered on the title line",
    "Title: heading/h2 (lg), heading/h3 (default), heading/h4 (sm)",
    "Description (Show description): body/lead (lg), body/small",
    "Actions slot (Show actions): Buttons, a search Input, a Toggle Group"
@@ -5754,14 +5769,16 @@
    "One title per section, in sentence case, a noun or a short phrase",
    "Description says what the section holds in one sentence",
    "At most two buttons in Actions; one primary",
+   "Show icon on all sections of a page or none; one icon per content type (reports, events, news)",
    "Same Size for sections on the same level of a page"
   ],
   "a11y": [
    "The title is a real heading (h2, h3, h4) that follows the page outline",
    "Actions come after the heading in tab order",
-   "A search Input in Actions has a label"
+   "A search Input in Actions has a label",
+   "The icon is decorative (aria-hidden); the title says what the section is"
   ],
-  "code": "<header> with <h2|h3|h4> and <p>; flex justify-between for the actions.",
+  "code": "<header> with <h2|h3|h4> and <p>; flex justify-between for the actions; optional Lucide icon (size-6 lg, size-5 default and sm) before the title, aria-hidden.",
   "guides": [
    "skills/build-ui/components/content.md",
    "skills/build-ui/patterns/enterprise-apps.md"

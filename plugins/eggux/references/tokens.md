@@ -51,7 +51,7 @@ Figma and code map 1:1.
 | `background/warning` | `--warning` | Extension |
 | `background/info` | `--info` | Extension |
 | `foreground/<same names>` | `--foreground`, `--<name>-foreground` | Text and icons on the matching background |
-| `foreground/brand` | `--brand` | Text and icons in the brand color on the page: accent words in a headline, inline links, `Button` link. Never put `background/primary` on text |
+| `foreground/brand` | `--brand` | Text and icons in the brand color on the page: accent words in a headline, inline links, `Button` link. Never put `background/primary` on text. Light `neutral/900`, Dark `neutral/200`, Corporate Light `blue/700`, Corporate Dark `blue/400`; at least 4.5:1 on default, muted and card. Tailwind v4: `--color-brand: var(--brand)` in `@theme inline`, then `text-brand` |
 | `border/default` | `--border` | |
 | `border/input` | `--input` | |
 | `border/ring` | `--ring` | Focus ring, usually follows the brand |

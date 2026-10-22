@@ -10,6 +10,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 | Sidebar Item | A navigation destination in the Sidebar |
 | Tree Item | A row in a hierarchy (folders, locations, permissions) |
 | Table | Items compared across several attributes |
+- Divided lists: List Item `Show divider` on every row but the last, list gap 0.
 
 ## List Item
 - The whole row opens the item when it has one destination; otherwise only the title links.

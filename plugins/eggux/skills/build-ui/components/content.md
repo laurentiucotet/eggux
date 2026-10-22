@@ -13,6 +13,7 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Figma: `Section Heading` (own page) Size; Title, Description, Overline, Show overline, Show
   description, Show actions; Actions slot. Used in Integrations, Audit Log, Report, Record Form,
   Import Mapping and Status Page.
+- `Show icon`: on all sections of a page or on none.
 
 ## Feature Item
 - One benefit, capability or step: icon tile (Marker=icon) or step number (Marker=number), title
@@ -34,6 +35,7 @@ Usage guidelines only. Visual specs live in the Figma components.
   items or none; 3-5 items.
 - Figma: `Post Card` (Card page), Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact); Badge
   exposed for the category.
+- `Size=sm` for grids of 4 and for lists next to a featured story; never restyle the title on an instance.
 
 ## Quote
 - `default` (left rule, body/large) inside an article or case study; `pull` (centered,
@@ -65,3 +67,4 @@ Usage guidelines only. Visual specs live in the Figma components.
   the two images (retouching, redesigns, a site before and after a change).
 - `Testimonial Card` is customer proof in grids and carousels; `Quote` stays for quotes in running
   text. `Footnote` explains a claim in the text with a numbered note and a back link.
+- Social and podcast links use `Icon/brand/*` (Simple Icons), with an aria-label naming the network.

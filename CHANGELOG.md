@@ -3,6 +3,29 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.53.0
+Lessons from rebuilding the Mobility Global home page from the library.
+- New token `foreground/brand` (`--brand`): text and icons in the brand color (accent headline
+  words, inline links). Light neutral/900, Dark neutral/200, Corporate Light blue/700, Corporate
+  Dark blue/400; at least 4.5:1 on default, muted and card in every mode. Button link and the
+  link icons in Show More, Release Note Item, Location Card and 7 blocks use it instead of
+  `background/primary`.
+- New icons: `Icon/database`, `bookmark`, `headphones`, `podcast`; brand icons `Icon/brand/`
+  apple-podcasts, spotify, linkedin, youtube, github, x (Simple Icons, filled).
+- Components: Card Header and Section Heading `Show icon` + `Icon`; List Item `Show divider`;
+  Post Card `Size=default|sm` for every Layout (sm horizontal: image one third, 120-240); Event
+  Card vertical `Date position=image` (date tile over the image).
+- New block `Block / Hero Prompt` (Hero page): AI-first home hero with an accent line, Prompt
+  Input, suggestions and an image.
+- Test page: `Block / Navbar Mobility Global` replaces the copied navbars on 5 screens (and a
+  spacer bug that added 64 px); `Screen / Home` uses all of the above.
+- Skills: build-ui gets "Reproduce a reference screen" (inventory and gaps before building, theme
+  from the reference, client header and footer as components, overrides are findings, compare
+  with the reference); review gets a fidelity check; the stress test checks every Layout at the
+  1/4, 1/3 and 1/2 column widths and flags fixed inner sizes (`component-page.js` generates those
+  cells); new-component forbids fixed inner sizes; ux-rules, badge and button guides: outline,
+  not secondary, on muted surfaces; Figma API notes: `resize()` inside an instance is ignored.
+
 ## 0.52.2
 - Post Card Layout=horizontal: the image takes half the card width (min 160, max 640) instead of a fixed
   640, so horizontal cards work in narrow columns (found while rebuilding the Mobility Global home page).
