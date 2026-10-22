@@ -35,11 +35,6 @@
    "block": null
   },
   {
-   "main": "SSO Button",
-   "helpers": [],
-   "block": null
-  },
-  {
    "main": "Org Chart Node",
    "helpers": [],
    "block": null
@@ -82,12 +77,12 @@
    "block": "158:63"
   },
   {
-   "main": "Suggestion",
+   "main": "Prompt Suggestion",
    "helpers": [],
    "block": "158:3"
   },
   {
-   "main": "Model Selector",
+   "main": "Model Picker",
    "helpers": [
     "Model Option"
    ],
@@ -138,11 +133,6 @@
    "block": null
   },
   {
-   "main": "AI Button",
-   "helpers": [],
-   "block": null
-  },
-  {
    "main": "AI Loading",
    "helpers": [],
    "block": null
@@ -153,7 +143,7 @@
    "block": null
   },
   {
-   "main": "Suggestion Review Bar",
+   "main": "AI Review Bar",
    "helpers": [],
    "block": null
   }
@@ -253,7 +243,7 @@
    "block": "145:2962"
   },
   {
-   "main": "Tag List",
+   "main": "Badge List",
    "helpers": [],
    "block": "361:767",
    "examples": [
@@ -632,26 +622,6 @@
  ],
  "Commerce": [
   {
-   "main": "Quantity Selector",
-   "helpers": [],
-   "block": null
-  },
-  {
-   "main": "Stock Indicator",
-   "helpers": [],
-   "block": null
-  },
-  {
-   "main": "Wishlist Button",
-   "helpers": [],
-   "block": null
-  },
-  {
-   "main": "Variant Swatch",
-   "helpers": [],
-   "block": null
-  },
-  {
    "main": "Product Card",
    "helpers": [],
    "block": null
@@ -741,11 +711,6 @@
    "main": "Alert Dialog",
    "helpers": [],
    "block": null
-  },
-  {
-   "main": "Welcome Dialog",
-   "helpers": [],
-   "block": null
   }
  ],
  "Drawer": [
@@ -809,11 +774,6 @@
    "examples": [
     "Example / features in a grid"
    ]
-  },
-  {
-   "main": "Step Item",
-   "helpers": [],
-   "block": null
   }
  ],
  "File Upload": [
@@ -898,7 +858,7 @@
   {
    "main": "Requirement List",
    "helpers": [
-    "Requirement Item"
+    "Check Item"
    ],
    "block": null
   }
@@ -1021,7 +981,7 @@
    "block": null
   },
   {
-   "main": "Range Fields",
+   "main": "Range Input",
    "helpers": [],
    "block": null
   }
@@ -1081,7 +1041,7 @@
    "block": null
   },
   {
-   "main": "Checklist Item",
+   "main": "Task Item",
    "helpers": [],
    "block": null
   },
@@ -1202,7 +1162,7 @@
   {
    "main": "Table of Contents",
    "helpers": [
-    "TOC Item"
+    "Table of Contents Item"
    ],
    "block": "138:1552"
   },
@@ -1213,11 +1173,6 @@
   },
   {
    "main": "Skip Link",
-   "helpers": [],
-   "block": null
-  },
-  {
-   "main": "Scroll To Top",
    "helpers": [],
    "block": null
   },
@@ -1304,16 +1259,6 @@
    "block": null
   },
   {
-   "main": "Check List Item",
-   "helpers": [],
-   "block": null
-  },
-  {
-   "main": "Pricing Toggle",
-   "helpers": [],
-   "block": null
-  },
-  {
    "main": "Plan Card",
    "helpers": [],
    "block": null
@@ -1331,7 +1276,7 @@
    "block": null
   },
   {
-   "main": "Job Item",
+   "main": "Background Job",
    "helpers": [],
    "block": null
   }
@@ -1483,11 +1428,6 @@
    "main": "Recurrence Picker",
    "helpers": [],
    "block": null
-  },
-  {
-   "main": "Language Switcher",
-   "helpers": [],
-   "block": null
   }
  ],
  "Selection controls": [
@@ -1513,11 +1453,6 @@
    "examples": [
     "Example / settings section"
    ]
-  },
-  {
-   "main": "Checkbox Card",
-   "helpers": [],
-   "block": null
   }
  ],
  "Separator": [
@@ -1638,7 +1573,7 @@
     "Table Cell Link",
     "Table Cell Date",
     "Table Cell File",
-    "Table Cell Tags",
+    "Table Cell Badges",
     "Table Cell Avatars"
    ],
    "block": "181:923",
@@ -1677,19 +1612,6 @@
    "examples": [
     "Example / tabs with counts"
    ]
-  },
-  {
-   "main": "Tabs Line",
-   "helpers": [],
-   "block": "92:949"
-  },
-  {
-   "main": "Tabs Vertical",
-   "helpers": [],
-   "block": null,
-   "examples": [
-    "Example / settings with vertical tabs"
-   ]
   }
  ],
  "Timeline": [
@@ -1713,16 +1635,6 @@
     "Toggle Group Item"
    ],
    "block": "141:2756"
-  },
-  {
-   "main": "View Switcher",
-   "helpers": [],
-   "block": null
-  },
-  {
-   "main": "Theme Toggle",
-   "helpers": [],
-   "block": null
   }
  ],
  "Tooltip": [
