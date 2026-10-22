@@ -4,7 +4,7 @@ Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The 
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
 ## 0.52.0
-- Gaps from the 0.51.0 audit closed. New components: `Uptime Bars` (part `Uptime Day`, State operational,
+- Gaps from the 0.51.0 audit closed; the library has 345 components (339 + 6). New components: `Uptime Bars` (part `Uptime Day`, State operational,
   degraded, outage, maintenance, no-data), `Pager Link` (Direction previous, next) for docs prev / next,
   `Image Figure` (image with caption and credit); new parts `Release Note Line` (per-line New / Improved /
   Fixed) and `Table Cell Check` (included, excluded, text) for plan comparisons.
