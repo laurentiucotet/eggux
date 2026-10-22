@@ -94,6 +94,14 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   be drawn with a frame stroke.
 - Copy the look of an existing variant (fills, strokes, effects, bound radius, stroke weights,
   height, opacity) instead of rebinding tokens by hand.
+- A TEXT property cannot drive text inside a nested instance. Expose the nested Button, Badge or
+  Chip instead (`isExposedInstance = true`); its own Label then shows in the parent's panel.
+- A TEXT property has one default for every variant. When variants need different default text
+  (a vacant node, a done or error state), give each its own property (Vacancy; Status, Result,
+  Error) or keep plain text per variant without a property.
+- Variant option order in the panel follows the order the options were created; renaming keeps
+  the slot. To move an option last, move its variants out of the set (`appendChild` to the
+  parent) and back in (`insertChild`): ids and property references stay.
 
 ## Icons
 - Keep every icon one layer named `Vector`, or swapped icons come out partly in the default color.

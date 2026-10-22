@@ -3,6 +3,14 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.52.1
+- Nested Buttons with text, Badges, Badge Counts and Chips are exposed in 62 components (99 instances), so
+  their labels are edited from the parent's properties panel; badges whose text follows a variant of the
+  parent stay internal.
+- Org Chart Node: `Vacancy` text property for the vacant state (default "Open role").
+- Session Row: State options in the panel read default, current.
+- Figma API notes: nested text, per-variant defaults and variant option order.
+
 ## 0.52.0
 - Gaps from the 0.51.0 audit closed; the library has 345 components (339 + 6). New components: `Uptime Bars` (part `Uptime Day`, State operational,
   degraded, outage, maintenance, no-data), `Pager Link` (Direction previous, next) for docs prev / next,
