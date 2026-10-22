@@ -1,6 +1,6 @@
 # Video
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -121,7 +121,7 @@ A video before it plays: poster frame, play button, duration. Click opens the Vi
 Built from: `Badge`, `Image Placeholder`. Icons: play
 
 Tokens and styles:
-- Colors: `background/default`
+- Colors: `background/default`, `background/muted`
 - Radius: `radius/full`, `radius/lg`
 - Effects: `shadow/md`
 
@@ -171,8 +171,8 @@ Plays one audio file: podcast episode, voice message, recorded call. Play/pause,
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Episode 12: Closing the books faster |
-| Current | text | 04:12 |
-| Length | text | 14:30 |
+| Time | text | 04:12 |
+| Duration | text | 14:30 |
 
 Built from: `Button Icon`
 

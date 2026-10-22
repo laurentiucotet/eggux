@@ -1,6 +1,6 @@
 # AI Chat
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -15,8 +15,8 @@ Usage rules live in the guides linked under each component.
 | [Sources](#sources) | 1 | Items |
 | [Source Item](#source-item) | 1 | - |
 | [Citation](#citation) | 1 | - |
-| [Suggestion](#suggestion) | 2 | - |
-| [Model Selector](#model-selector) | 3 | - |
+| [Prompt Suggestion](#prompt-suggestion) | 2 | - |
+| [Model Picker](#model-picker) | 3 | - |
 | [Model Option](#model-option) | 4 | - |
 | [Chat History Item](#chat-history-item) | 3 | - |
 | [Context Chip](#context-chip) | 3 | - |
@@ -28,12 +28,11 @@ Usage rules live in the guides linked under each component.
 | [AI Summary](#ai-summary) | 3 | Content |
 | [AI Notice](#ai-notice) | 2 | - |
 | [AI Suggestion](#ai-suggestion) | 2 | - |
-| [AI Button](#ai-button) | 6 | - |
 | [AI Loading](#ai-loading) | 1 | - |
 | [Confidence Indicator](#confidence-indicator) | 3 | - |
-| [Suggestion Review Bar](#suggestion-review-bar) | 1 | - |
+| [AI Review Bar](#ai-review-bar) | 1 | - |
 
-On the Figma page: "Example / AI on a record page", "Example / agent at work", "Example / chat history", "Example / context added to a request", "Example / dictating a request", "Example / feedback after a bad answer", "Example / in ai assistant panel", "Example / in ai chat empty", "Example / in ai conversation", "Example / model choice in the assistant", "Example / report made by the assistant", "Example / suggested category on a new invoice", "Stress test / AI Button", "Stress test / AI Loading", "Stress test / AI Suggestion", "Stress test / AI Summary", "Stress test / AI components", "Stress test / Agent Plan", "Stress test / Artifact Card", "Stress test / Assistant Message", "Stress test / Chat History Item", "Stress test / Confidence Indicator", "Stress test / Context Chip", "Stress test / Prompt Input", "Stress test / Reasoning", "Stress test / Response Feedback", "Stress test / Sources", "Stress test / Suggestion", "Stress test / Suggestion Review Bar", "Stress test / Tool Call", "Stress test / User Message", "Stress test / Voice Recorder"
+On the Figma page: "Example / AI on a record page", "Example / agent at work", "Example / chat history", "Example / context added to a request", "Example / dictating a request", "Example / feedback after a bad answer", "Example / in ai assistant panel", "Example / in ai chat empty", "Example / in ai conversation", "Example / model choice in the assistant", "Example / report made by the assistant", "Example / suggested category on a new invoice", "Stress test / AI Loading", "Stress test / AI Review Bar", "Stress test / AI Suggestion", "Stress test / AI Summary", "Stress test / AI components", "Stress test / Agent Plan", "Stress test / Artifact Card", "Stress test / Assistant Message", "Stress test / Chat History Item", "Stress test / Confidence Indicator", "Stress test / Context Chip", "Stress test / Prompt Input", "Stress test / Prompt Suggestion", "Stress test / Reasoning", "Stress test / Response Feedback", "Stress test / Sources", "Stress test / Tool Call", "Stress test / User Message", "Stress test / Voice Recorder"
 
 ## Prompt Input
 
@@ -45,11 +44,11 @@ Main input of an AI chat: grows with the text, attachments above, tools and mode
 
 - Full chat page, docked assistant panel or inline AI where people type a request
 - Requests that need files or context: turn on Show attachments and fill the Attachments slot
-- Model or tool choices users really make: Model Selector in the Tools slot
+- Model or tool choices users really make: Model Picker in the Tools slot
 
 **Not for**
 
-- One known task (summarize, classify): use a Button with sparkles or a Suggestion
+- One known task (summarize, classify): use a Button with sparkles or a Prompt Suggestion
 - Chat between people: use Chat Composer
 - While dictating: the Voice Recorder replaces it until the transcript is ready
 
@@ -57,7 +56,7 @@ Main input of an AI chat: grows with the text, attachments above, tools and mode
 
 1. Attachments slot above the text: Attachment and Context Chip (Show attachments)
 2. Text area with Placeholder or Value
-3. Tools slot on the left: tools and Model Selector (Show tools)
+3. Tools slot on the left: tools and Model Picker (Show tools)
 4. Voice Button Icon on the right (Show voice)
 5. Send Button Icon (arrow-up); Stop (square) while State=streaming
 
@@ -296,6 +295,7 @@ The model's thinking, collapsed by default. running: spinner + "Thinking…"; do
 |---|---|---|
 | Label | text | Thought for 12 s |
 | Details | text | The user wants the open invoices for Acme. Search invoices by customer and status, then sum the amounts and sort by due date. |
+| Status | text | Thinking… |
 
 Built from: `Spinner`. Icons: chevron-down, chevron-right
 
@@ -329,7 +329,7 @@ An action the assistant takes (search, create, send). Shows what runs and with w
 
 1. Wrench icon, or Spinner while running
 2. Title: what runs ("Search invoices")
-3. Detail: the input ("customer: Acme, status: open")
+3. Description: the input ("customer: Acme, status: open")
 4. Status Badge
 5. Chevron to open the input and the result
 6. Approve and Deny (Status=approval) or Retry (Status=error)
@@ -344,7 +344,7 @@ An action the assistant takes (search, create, send). Shows what runs and with w
 
 **Accessibility**
 
-- Status is in text (Badge), never color alone
+- Status is in text (Show badge), never color alone
 - Status changes are announced politely (aria-live)
 - Approve and Deny are buttons in reading order, reachable by keyboard
 
@@ -355,7 +355,7 @@ An action the assistant takes (search, create, send). Shows what runs and with w
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Search invoices |
-| Detail | text | customer: Acme, status: open |
+| Description | text | customer: Acme, status: open |
 
 Built from: `Badge`, `Button`, `Spinner`. Icons: chevron-down, wrench
 
@@ -445,6 +445,8 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md)
 
+Code: Vercel AI SDK + AI Elements, or assistant-ui
+
 ## Citation
 
 Component · 1 variant · default size 20 × 20
@@ -465,9 +467,9 @@ Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../
 
 Code: Vercel AI SDK + AI Elements, or assistant-ui
 
-## Suggestion
+## Prompt Suggestion
 
-Component set · 2 variants · default size 197 × 38
+Component set · 2 variants · default size 195 × 32
 
 Starter prompt or follow-up. chip: under the input or after an answer (2-4 follow-ups). card: empty state, 4 tasks the assistant does well. Click fills the input (or sends, for follow-ups).
 
@@ -514,7 +516,7 @@ Icons: file-text
 
 Tokens and styles:
 - Colors: `background/default`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`
+- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
 - Radius: `radius/full`, `radius/xl`
 - Text styles: `body/small`, `ui/label`
 
@@ -522,7 +524,7 @@ Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../
 
 Code: Vercel AI SDK + AI Elements, or assistant-ui
 
-## Model Selector
+## Model Picker
 
 Component set · 3 variants · default size 121 × 32
 
@@ -622,7 +624,7 @@ One conversation in the history list (Sidebar or a panel): title from the first 
 **Not for**
 
 - Navigation between product pages: use Sidebar menu items
-- A list of records: use a Table or List
+- A list of records: use a table of Table Cells or List Items
 
 **Anatomy**
 
@@ -916,9 +918,9 @@ One step of an agent plan: pending (outline circle, muted), running (spinner), d
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Find overdue invoices in Q3 |
-| Detail | text | Found 24 invoices from 9 customers |
+| Description | text | Found 24 invoices from 9 customers |
 | Error | text | The invoices service did not respond. Retrying in 10 s. |
-| Show detail | boolean | true |
+| Show description | boolean | true |
 | Time | text | 4 s |
 | Show time | boolean | true |
 
@@ -1137,6 +1139,7 @@ A value the AI proposes for a form field: dashed tinted box with the value, the 
 | Label | text | Expense category |
 | Value | text | Office supplies |
 | Reason | text | Based on 12 earlier invoices from this vendor. |
+| Note | text | Suggested by AI and accepted by you. Undo |
 
 Built from: `AI Notice`, `Button`. Icons: sparkles
 
@@ -1149,65 +1152,6 @@ Tokens and styles:
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
 Code: custom on `Card`, `Input`, `Badge` (Store who accepted an AI value and when)
-
-## AI Button
-
-Component set · 6 variants · default size 99 × 36
-
-Starts an AI action from where people work: summarize, draft, explain, fill. Sparkles icon plus a verb that says what happens ("Summarize thread", not "AI"). Loading shows progress and blocks double clicks; Esc or Stop cancels. One AI Button per area; open-ended chat goes in the Prompt Input.
-
-**Use for**
-
-- "Summarize thread" on a long conversation
-- "Draft reply" in a composer
-- "Explain" next to a chart or a figure
-- "Fill from document" in a form
-
-**Not for**
-
-- Open-ended questions: use Prompt Input
-- An action that is not AI: use Button
-- Suggested prompts in a chat: use Suggestion
-
-**Anatomy**
-
-1. Icon: sparkles
-2. Label: the verb and object ("Summarize thread")
-3. Variant: default, outline, ghost; State: default, loading
-
-**Content and behavior**
-
-- The label says what happens ("Summarize thread", not "AI")
-- One AI Button per area
-- Loading shows progress and blocks double clicks; Esc or Stop cancels
-- The result arrives in place as AI Suggestion or AI Summary; it never overwrites without review
-
-**Accessibility**
-
-- The name is the action; the icon is aria-hidden
-- aria-busy while loading; Esc cancels and focus stays on the button
-- Loading is announced politely ("Summarizing")
-
-| Variant property | Values |
-|---|---|
-| Variant | default, outline, ghost |
-| State | default, loading |
-
-| Property | Type | Default |
-|---|---|---|
-| Label | text | Ask AI |
-
-Icons: loader-circle, sparkles
-
-Tokens and styles:
-- Colors: `background/default`, `background/primary`, `border/input`, `foreground/default`, `foreground/primary`
-- Spacing and size: `density/control-height`, `spacing/2`, `spacing/4`
-- Radius: `radius/md`
-- Text styles: `ui/label`
-
-Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
-
-Code: shadcn `Button`, `Skeleton`, `Tooltip` + custom; Vercel AI SDK for streaming (Never apply low-confidence values automatically; store who accepted an AI value)
 
 ## AI Loading
 
@@ -1226,7 +1170,7 @@ Placeholder while AI writes an answer or a summary in place: what it is doing no
 - The model's thinking in chat: use Reasoning
 - Steps an agent runs: use Agent Plan
 - Content that is not AI: use Skeleton
-- AI work that runs for minutes: use Job Item
+- AI work that runs for minutes: use Background Job
 
 **Anatomy**
 
@@ -1265,7 +1209,7 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
 
-Code: shadcn `Button`, `Skeleton`, `Tooltip` + custom; Vercel AI SDK for streaming (Never apply low-confidence values automatically; store who accepted an AI value)
+Code: shadcn `Skeleton`, `Tooltip`, `Button` + custom; Vercel AI SDK for streaming; review bar on Tiptap track changes or a diff of the form state (Never apply low-confidence values automatically; store who accepted an AI value)
 
 ## Confidence Indicator
 
@@ -1323,9 +1267,9 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: shadcn `Button`, `Skeleton`, `Tooltip` + custom; Vercel AI SDK for streaming (Never apply low-confidence values automatically; store who accepted an AI value)
+Code: shadcn `Skeleton`, `Tooltip`, `Button` + custom; Vercel AI SDK for streaming; review bar on Tiptap track changes or a diff of the form state (Never apply low-confidence values automatically; store who accepted an AI value)
 
-## Suggestion Review Bar
+## AI Review Bar
 
 Component · 1 variant · default size 690 × 50
 
@@ -1381,4 +1325,4 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: shadcn `Button`, `Skeleton`, `Tooltip` + custom; Vercel AI SDK for streaming (Never apply low-confidence values automatically; store who accepted an AI value)
+Code: shadcn `Skeleton`, `Tooltip`, `Button` + custom; Vercel AI SDK for streaming; review bar on Tiptap track changes or a diff of the form state (Never apply low-confidence values automatically; store who accepted an AI value)

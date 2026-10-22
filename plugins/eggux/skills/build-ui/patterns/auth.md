@@ -17,7 +17,9 @@ Two-Factor, Accept Invite. Shell: `Page Shell / Auth`.
 - Errors inline under the field (`form-validation.md`); rate-limit messages say when to retry.
 
 ## Related components
-- Show password rules as a `Requirement List` under the new-password field: each item turns met as
-  people type, nothing turns red before a submit.
-- Identity providers use `SSO Button`: full width, stacked, same order everywhere, the enforced
+- Show password rules as a `Requirement List` of `Check Item`s under the new-password field: each
+  item turns Mark=check as people type, nothing turns x before a submit. `Password Strength`
+  sits under the same field.
+- Identity providers use `Button` outline, full width, with the provider mark as the leading icon
+  (example "sign-in providers" on the Button page): stacked, same order everywhere, the enforced
   provider first; "Continue with SSO" asks for the work email.

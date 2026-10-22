@@ -1,6 +1,6 @@
 # Search
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -25,7 +25,7 @@ One result on a search page: where it lives (path), title that links to it, a tw
 **Not for**
 
 - Suggestions while typing: use Command Dialog
-- A list of records to manage: use a Table or List Item
+- A list of records to manage: use a table of Table Cells or List Items
 - Related links under an article: use Post Card
 
 **Anatomy**
@@ -55,6 +55,8 @@ One result on a search page: where it lives (path), title that links to it, a tw
 | Snippet | text | Open the invoice and choose Send reminder. Acme emails the client with the amount due and a payment link, and logs it in the activity. |
 | Show path | boolean | true |
 | Show meta | boolean | true |
+| Path | text | Help center |
+| Updated | text | Updated 12 Oct 2026 |
 
 Built from: `Badge`. Icons: chevron-right
 

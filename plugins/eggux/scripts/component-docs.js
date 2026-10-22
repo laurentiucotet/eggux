@@ -18,7 +18,11 @@ for (const page of [...pages.slice(ci + 1, bi), ...pages.filter(p => p.name === 
   await page.loadAsync();
   const roots = page.findAll(n => (n.type === 'COMPONENT_SET' || (n.type === 'COMPONENT' && n.parent.type !== 'COMPONENT_SET')) && !n.name.startsWith('Icon/'))
     .filter(n => { for (let p = n.parent; p; p = p.parent) if (['INSTANCE', 'COMPONENT', 'COMPONENT_SET'].includes(p.type)) return false; return true; });
-  const extras = page.findAll(n => (n.type === 'FRAME' || n.type === 'GROUP' || n.type === 'SECTION') && /^(Stress test|Examples?|Template) \//.test(n.name)).map(n => n.name);
+  // Example frames, sections and groups, plus examples that are instances of a block or a
+  // component ("Example / scroll to top" can be a Button Icon instance). Skip names inside
+  // components and instances, which are not examples of their own.
+  const extras = page.findAll(n => ['FRAME', 'GROUP', 'SECTION', 'INSTANCE'].includes(n.type) && /^(Stress test|Examples?|Template) \//.test(n.name)
+    && !(n.type === 'INSTANCE' && inInstance(n)) && !(n.parent && ['COMPONENT', 'COMPONENT_SET'].includes(n.parent.type))).map(n => n.name);
   const comps = [];
   for (const r of roots) {
     const variants = r.type === 'COMPONENT_SET' ? r.children : [r];

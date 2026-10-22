@@ -55,7 +55,7 @@ Stat Card, Option Card and Post Card use the same tokens.
 - Selectable cards (plan, delivery, billing period) use Option Card: the whole card is the target, one selected.
 
 ## Figma
-- `Card` (Variant × Size × Elevation, 12 variants) = native slots Header (Card Header), Content (placeholder) and Footer (Card Footer).
+- `Card` (Variant × Size × Elevation, 12 variants) = native slots Header (`Card Header`), Content (placeholder) and Footer (`Card Footer`).
   Fill the slots in the instance; never detach. Turn off Show header / Show footer when unused.
 - `Card Header` has its own Action slot (top right): Button Icon with a menu, a Badge, a Select.
 - `Stat Card` (Trend up, down, neutral) for dashboards; `Option Card` for selectable options.
@@ -69,12 +69,13 @@ Stat Card, Option Card and Post Card use the same tokens.
 - `Person Card` for one person (author, expert, speaker, contact): Avatar, Name, Role,
   Organization, expertise Badges, contact as Meta Items, optional actions. `vertical` in grids of
   3-4, `horizontal` in asides. A record with details and status stays an Entity Card.
-- `Event Card` for one event in a list (`horizontal`) or grid (`vertical`, with image): Date
-  Tile, format badges, title, time with time zone and place as Meta Items, one action (Register,
+- `Event Card` for one event in a list (`horizontal`) or grid (`vertical`, with image):
+  `Date Tile`, format badges, title, time with time zone and place as Meta Items, one action (Register,
   Join waitlist, Watch recording). Sorted by date; past events in their own list.
-- `Progress Card` for a goal against a target; Status on track / at risk / off track names the
+- `Progress Card` for a goal against a target; Status on-track / at-risk / off-track names the
   state in text; say the rule behind it in the footnote or a tooltip.
-- Examples on the Card page: list, profile, form, empty state, stat cards row.
+- Examples on the Card page: "Examples / cards", "Examples / stat cards", "customer card",
+  "people directory", "plan choice", "quarter goal", "events grid".
 - `Stress test / Card` (Stress tests section): minimal, typical, long title, full-bleed slot,
   280 and 720 wide, for every variant, sm, Dark, Compact and Corporate Light.
 - `Entity Card` Show people hides the Avatar Group in the footer when people do not matter for the

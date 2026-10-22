@@ -1,6 +1,6 @@
 # File Upload
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -60,6 +60,8 @@ Drop area + "Browse files" button for uploads. The whole area is clickable and k
 | Property | Type | Default |
 |---|---|---|
 | Hint | text | PDF, JPG or PNG · up to 10 MB each |
+| Error | text | Only PDF, JPG or PNG files are accepted. |
+| Title | text | Drag and drop files here |
 
 Built from: `Button`. Icons: upload
 
@@ -112,7 +114,7 @@ One selected or uploaded file. uploading: progress + cancel (X). complete: size 
 
 | Variant property | Values |
 |---|---|
-| State | uploading, complete, error |
+| State | uploading, done, error |
 
 | Property | Type | Default |
 |---|---|---|
@@ -234,7 +236,7 @@ A file or link people download or open: type icon, name, meta (format · size ·
 | Icon | instance swap | Icon/file-text |
 | Name | text | Sample data |
 | Meta | text | XLSX · 2.4 MB · Updated 12 Oct 2026 |
-| Divider | boolean | true |
+| Show divider | boolean | true |
 
 Slots (fill them in the instance, never detach): `Actions`
 

@@ -30,5 +30,5 @@ the `image` layer of the instance. `Status` shows the online dot.
   testimonials and quotes.
 - Several people: Avatar Group with a Label ("Maintained by 3 analysts"). A full profile with
   contact and actions: Person Card.
-- Figma: `Byline` Size; Name, Detail, Show detail, Show avatar; Avatar exposed (Type, Initials).
+- Figma: `Byline` Size; Name, Description, Show detail, Show avatar; Avatar exposed (Type, Initials).
   Used in the Article, Blog Post Header and Testimonial blocks.

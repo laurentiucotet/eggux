@@ -1,6 +1,6 @@
 # Toast
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -32,17 +32,17 @@ Sonner toast. One line, past tense, names the object. At most one action ("Undo"
 **Anatomy**
 
 1. Type icon: success, error, warning, info or loading
-2. Title: one line
-3. Description (Show description)
-4. Action button (Action)
-5. Close button (Close button)
+2. Title: one line (Title)
+3. Description (Show description, Description)
+4. Action button (Show action)
+5. Close button (Show close)
 
 **Content and behavior**
 
 - One line, past tense, names the object: "Invoice #1042 sent", not "Success!"
 - At most one action, a verb: "Undo", "View"
 - Auto-dismiss after 4-6 s, 8-10 s with an action; pause on hover and focus
-- Close button off by default; on for toasts with an action, errors and long durations
+- Show close off by default; on for toasts with an action, errors and long durations
 - Errors that block the goal also show inline
 - Same position everywhere: bottom right, top center on mobile
 
@@ -59,8 +59,10 @@ Sonner toast. One line, past tense, names the object. At most one action ("Undo"
 | Property | Type | Default |
 |---|---|---|
 | Show description | boolean | true |
-| Action | boolean | false |
-| Close button | boolean | false |
+| Show action | boolean | false |
+| Show close | boolean | false |
+| Title | text | Changes saved |
+| Description | text | Project “Website redesign” was updated. |
 
 Built from: `Button`. Icons: circle-alert, circle-check, info, loader-circle, triangle-alert, x
 

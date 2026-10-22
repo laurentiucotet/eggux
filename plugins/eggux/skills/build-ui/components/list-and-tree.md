@@ -26,8 +26,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Counts only where they help the task (unread, items to review).
 
 ## Figma
-`List Item` has native slots Leading and Trailing. `Tree Item` Type × State × Level; the
-Checkbox is exposed. Examples: permissions tree, navigation tree on the List & Tree page.
+`List Item` has native slots Leading and Trailing. `Tree Item` Type × State × Level; Show
+checkbox (the Checkbox is exposed), Show count, Show icon with the Icon swap. Examples: permissions tree, navigation tree on the List & Tree page.
 
 ## Sortable List Item
 - Lists people reorder: columns of a view, form fields, steps, priorities. Show the order
@@ -48,5 +48,5 @@ Checkbox is exposed. Examples: permissions tree, navigation tree on the List & T
 - Figma: `Scroll Area` Orientation vertical, horizontal (own page). Clips its content on purpose.
 
 ## Related components
-- Tasks with a checkbox, due date and assignee use `Checklist Item`; careers lists use `Job
-  Listing`. Reporting lines use `Org Chart Node`, not Tree Item.
+- Tasks with a checkbox, due date and assignee use `Task Item`; careers lists use
+  `Job Listing`. Reporting lines use `Org Chart Node`, not Tree Item.

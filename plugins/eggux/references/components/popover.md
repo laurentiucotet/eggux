@@ -1,6 +1,6 @@
 # Popover
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -110,7 +110,7 @@ Searchable list (shadcn Command / cmdk). Base for Combobox, command palette (⌘
 
 | Property | Type | Default |
 |---|---|---|
-| Empty | boolean | false |
+| Show empty | boolean | false |
 | Show items | boolean | true |
 
 Slots (fill them in the instance, never detach): `Items`
@@ -125,7 +125,7 @@ Tokens and styles:
 
 Guides: [popover](../../skills/build-ui/components/popover.md), [select](../../skills/build-ui/components/select.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
-Code: shadcn `Command`, `CommandDialog`
+Code: shadcn `Command`, `CommandInput`, `CommandDialog`
 
 ## Command Input
 
@@ -141,10 +141,12 @@ Icons: search
 
 Tokens and styles:
 - Colors: `border/default`, `foreground/muted`
-- Spacing and size: `spacing/2`, `spacing/3`, `spacing/9`
+- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
 - Text styles: `body/small`
 
 Guides: [popover](../../skills/build-ui/components/popover.md), [select](../../skills/build-ui/components/select.md)
+
+Code: shadcn `Command`, `CommandInput`, `CommandDialog`
 
 ## Command Dialog
 
@@ -199,7 +201,7 @@ Tokens and styles:
 
 Guides: [popover](../../skills/build-ui/components/popover.md)
 
-Code: shadcn `Command`, `CommandDialog`
+Code: shadcn `Command`, `CommandInput`, `CommandDialog`
 
 ## Hover Card
 
@@ -296,10 +298,10 @@ Pick an emoji for reactions, status or a workspace icon: search, categories, rec
 Built from: `Command Input`. Icons: globe, heart, history, lightbulb, smile, sparkles
 
 Tokens and styles:
-- Colors: `background/accent`, `background/popover`, `border/default`, `foreground/muted`
+- Colors: `background/accent`, `background/popover`, `border/default`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`
 - Radius: `radius/md`, `radius/sm`
-- Text styles: `ui/caption`
+- Text styles: `body/lead`, `ui/caption`
 
 Guides: [popover](../../skills/build-ui/components/popover.md)
 

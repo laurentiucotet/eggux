@@ -1,6 +1,6 @@
 # Progress
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -8,9 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Progress](#progress) | 20 | - |
 | [Progress Ring](#progress-ring) | 15 | - |
-| [Job Item](#job-item) | 3 | - |
+| [Background Job](#background-job) | 3 | - |
 
-On the Figma page: "Example / in onboarding checklist", "Example / uploads in progress", "Stress test / Job Item", "Stress test / Progress", "Stress test / Progress Ring"
+On the Figma page: "Example / in onboarding checklist", "Example / uploads in progress", "Stress test / Background Job", "Stress test / Progress", "Stress test / Progress Ring"
 
 ## Progress
 
@@ -69,7 +69,7 @@ Code: shadcn `Slider`, `Progress`
 
 ## Progress Ring
 
-Component set · 15 variants · default size 32 × 32
+Component set · 15 variants · default size 48 × 48
 
 Circular progress for compact places: uploads in a list, profile or setup completion, a quota in a card. sm (32) has no label, so put the number next to it; default (48) and lg (80) show the percent inside. Same rules as Progress: known progress only; unknown duration uses Spinner.
 
@@ -123,7 +123,7 @@ Guides: [progress-and-slider](../../skills/build-ui/components/progress-and-slid
 
 Code: SVG circle with `stroke-dasharray` (or Radix Progress) (`role="progressbar"`, `aria-valuenow`)
 
-## Job Item
+## Background Job
 
 Component set · 3 variants · default size 400 × 82
 
@@ -166,7 +166,7 @@ A task that runs in the background (export, import, bulk send, report): name, pr
 
 | Variant property | Values |
 |---|---|
-| State | running, done, failed |
+| State | running, done, error |
 
 | Property | Type | Default |
 |---|---|---|

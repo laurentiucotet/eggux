@@ -25,6 +25,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - `maxLines` only sticks when `textTruncation = 'ENDING'` is set first; without it, wrapping
   text stays on one line.
 - Constraint enums are `MIN | CENTER | MAX | STRETCH | SCALE` (not TOP/BOTTOM/LEFT/RIGHT).
+- `resize()` on a frame with `layoutMode = 'NONE'` applies its children's constraints: STRETCH and
+  SCALE children change size, MAX children move. Set constraints first, or resize the children
+  after, when they must stay as they are.
 
 ## Slots
 - `component.createSlot()` creates a SLOT node and a `SLOT` property; the key is in
@@ -33,7 +36,8 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - `figma.createFrame()` also starts with `clipsContent = true` (`createComponent()` starts with
   false). Set `clipsContent = false` on every frame you create, unless it must crop: a focus
   variant (for the ring), an image crop, a scroll area. `scan-components.js` lists the others
-  as `clippingFrame`.
+  as `clippingFrame`; it skips frames without children, focus variants and crop layers named in
+  its `CROP_NAMES` list (image, media, viewport, track, avatar, logo...).
 - In a component set, create the slot in every variant before `combineAsVariants`; same-named
   slots merge into one property. Created after combining, each variant gets its own property:
   point all slots to one key and delete the others.
@@ -41,6 +45,15 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   right after `createSlot()`, then for each other variant create the slot, point it to that key
   (`{ ...refs, slotContentId: k0 }`) and `deleteComponentProperty` its own key at once. Creating
   all slots first and renaming after fails ("Must pass in valid name").
+- A variant that hides a slot (Side Panel collapsed, Sidebar Double collapsed) must still contain
+  the SLOT node, hidden (`visible = false`). If that variant has no SLOT node, switching an
+  instance to it and back loses the content placed in the slot.
+- A cloned SLOT (or a new one) can be re-linked to an existing property by setting
+  `slot.componentPropertyReferences = { slotContentId: key }`, then deleting the key the new slot
+  created. Look the key up by name prefix in `set.componentPropertyDefinitions`.
+- `combineAsVariants` merges same-named slot properties into one, and slot content placed in
+  existing instances survives the merge (merging Tabs, Tabs Line and Tabs Vertical kept every
+  instance's tabs).
 - Never assign `slot.componentPropertyReferences = { visible: k }`: it drops `slotContentId` and
   the slot becomes a plain FRAME. Merge: `{ ...slot.componentPropertyReferences, visible: k }`.
   The scan reports this as `brokenSlot`.
@@ -72,6 +85,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   layer name afterwards.
 - Hidden children of instances are skipped by `findAll` / `children` unless
   `figma.skipInvisibleInstanceChildren = false`.
+- Scanning blocks: call `await instance.getMainComponentAsync()` on each instance before walking
+  into it. Until the main component is loaded, `findAll` does not see the content placed in the
+  instance's slots, so a scan reports too few nested instances.
 - A stroke cannot be bound to a boolean. For an optional divider, add a 1 px frame bound to
   `border/default` and bind its `visible`.
 - TEXT properties share text styling across variants; per-variant decoration (underline) has to
@@ -95,13 +111,17 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   vector's top-left, then position the vector in the 24 grid. Arcs must be written as curves.
 
 ## Text and styles
+- Write component descriptions with `descriptionMarkdown`. Setting `description` stores quotes
+  as `&quot;`, which then shows literally in the published description and in the generated
+  reference. All descriptions were rewritten this way in 0.51.0.
 - Setting `fontName` on a text with a text style detaches the style. Pick another text style
   (`ui/label` for a medium weight) instead.
 - Load every font a text style uses (`Roboto Mono SemiBold` for `code`) before writing text.
 - Drop shadow spread shows only with `clipsContent` on and a fill on the node. Focus variants
   without a background (ghost, link) need a `background/default` fill.
-- A paint's own `opacity` is lost when the color is bound to a variable; bind the node's
-  `opacity` to `opacity/*` instead (chart area wash).
+- A paint's own `opacity` is ignored in rendering when the color is bound to a variable (it reads
+  back, but the paint draws opaque). Use the layer opacity instead: bind the node's `opacity` to
+  `opacity/*` (chart area wash).
 
 ## Variables
 - Variable names that do not exist throw only when used: check the scale first (there is no

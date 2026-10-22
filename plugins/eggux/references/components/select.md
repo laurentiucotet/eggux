@@ -1,6 +1,6 @@
 # Select
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -16,9 +16,8 @@ Usage rules live in the guides linked under each component.
 | [Address Autocomplete](#address-autocomplete) | 1 | - |
 | [Select Option](#select-option) | 6 | - |
 | [Recurrence Picker](#recurrence-picker) | 3 | - |
-| [Language Switcher](#language-switcher) | 2 | - |
 
-On the Figma page: "Example / combobox open", "Example / multi-select open", "Example / role permissions", "Example / select open", "Example / share a report", "Stress test / Address Autocomplete", "Stress test / Combobox", "Stress test / Language Switcher", "Stress test / People Picker and Transfer List", "Stress test / Recurrence Picker", "Stress test / Select", "Stress test / Select Option", "Stress test / Tag Input", "Stress test / Transfer List"
+On the Figma page: "Example / combobox open", "Example / language switch", "Example / multi-select open", "Example / role permissions", "Example / select open", "Example / share a report", "Stress test / Address Autocomplete", "Stress test / Combobox", "Stress test / People Picker and Transfer List", "Stress test / Recurrence Picker", "Stress test / Select", "Stress test / Select Option", "Stress test / Tag Input", "Stress test / Transfer List"
 
 ## Select
 
@@ -80,7 +79,7 @@ Tokens and styles:
 - Text styles: `body/small`
 - Effects: `shadow/xs`
 
-Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [select](../../skills/build-ui/components/select.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
+Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [select](../../skills/build-ui/components/select.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
 
 Code: shadcn `Select`; `Popover` + `Command`
 
@@ -147,14 +146,14 @@ Code: shadcn `Select`; `Popover` + `Command`
 
 ## Tag Input
 
-Component set · 4 variants · default size 360 × 38
+Component set · 4 variants · default size 360 × 36
 
 Several values in one field: multi-select from a list (Chevron on, opens Command with checkboxes) or free tags (Chevron off, Enter adds). Show at most ~5 tags, then "+3 more".
 
 **Use for**
 
-- Multi-select from a list (Chevron on): opens Command with checked items
-- Free tags or keywords (Chevron off): Enter adds a tag
+- Multi-select from a list (Show chevron on): opens Command with checked items
+- Free tags or keywords (Show chevron off): Enter adds a tag
 - Lists too long for a Checkbox group
 
 **Not for**
@@ -166,10 +165,10 @@ Several values in one field: multi-select from a list (Chevron on, opens Command
 **Anatomy**
 
 1. Field container (State)
-2. Tags slot: Tag instances (Label, Remove)
+2. Tags slot: Tag instances (Label, Show remove)
 3. Overflow text: "+3 more"
 4. Typing area
-5. chevrons-up-down icon (Chevron on)
+5. chevrons-up-down icon (Show chevron on)
 
 **Content and behavior**
 
@@ -191,7 +190,7 @@ Several values in one field: multi-select from a list (Chevron on, opens Command
 
 | Property | Type | Default |
 |---|---|---|
-| Chevron | boolean | true |
+| Show chevron | boolean | true |
 
 Slots (fill them in the instance, never detach): `Tags`
 
@@ -220,7 +219,7 @@ Removable value inside Tag Input and multi-select (secondary bg, 24 high). For f
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Design |
-| Remove | boolean | true |
+| Show remove | boolean | true |
 
 Icons: x
 
@@ -236,7 +235,7 @@ Code: custom on `Badge` + remove `Button`
 
 ## People Picker
 
-Component set · 2 variants · default size 360 × 38
+Component set · 2 variants · default size 360 × 36
 
 Choose one or more people (assignee, approvers, share with): selected people as chips in the field (Selected slot), search by name, email or team, results with avatar, role and email (Results slot of Person Options), invite by email when nobody matches. Recent and suggested people first. Over ~4 selected: "+3" in the field. Placeholder truncates on one line; chips wrap to new rows.
 
@@ -311,8 +310,8 @@ One person in a People Picker list: checkbox (multi-select), avatar (exposed: in
 | Property | Type | Default |
 |---|---|---|
 | Name | text | Ana Popescu |
-| Detail | text | Finance manager · ana.popescu@acme.com |
-| Show detail | boolean | true |
+| Description | text | Finance manager · ana.popescu@acme.com |
+| Show description | boolean | true |
 
 Built from: `Avatar`, `Checkbox`
 
@@ -480,7 +479,7 @@ A rich option in a Select, Combobox or Menu list: icon or avatar, title and a mu
 
 | Variant property | Values |
 |---|---|
-| Leading | icon, avatar, none |
+| Type | icon, avatar, none |
 | State | default, highlighted |
 
 | Property | Type | Default |
@@ -558,63 +557,6 @@ Tokens and styles:
 - Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
 - Text styles: `body/small`, `ui/label`
 
-Guides: [select](../../skills/build-ui/components/select.md)
+Guides: [date-picker](../../skills/build-ui/components/date-picker.md), [select](../../skills/build-ui/components/select.md)
 
 Code: custom: `Number Input`, `Select`, `ToggleGroup` (multiple), `RadioGroup`; rrule (Summary from `rrule.toText()` or own strings; account time zone)
-
-## Language Switcher
-
-Component set · 2 variants · default size 200 × 36
-
-Choose the interface language: globe, the current language in its own name ("Deutsch", not "German"), a list with each name in its language and in the current one. In the footer of a site, the Account Menu or settings. Never use flags for languages. Switching keeps the page.
-
-**Use for**
-
-- The footer of a site
-- The Account Menu
-- Language in profile or appearance settings
-
-**Not for**
-
-- Choosing the language of content (a document, a translation): use Select
-- Region, currency or format settings: use Select
-- A country (phone code, address): use Phone Input or Combobox
-
-**Anatomy**
-
-1. Trigger: globe icon, Language, chevron-down
-2. List (State=open): each name in its language and in the current one
-
-**Content and behavior**
-
-- State: closed, open
-- The current language in its own name: "Deutsch", not "German"
-- In the list: "Deutsch (German)"; order by name
-- Never use flags for languages
-- Switching keeps the page and the scroll position
-
-**Accessibility**
-
-- The trigger has aria-label="Language: English"
-- Each option sets lang on its own name (lang="de")
-- After the switch the html lang attribute changes and focus returns to the trigger
-
-| Variant property | Values |
-|---|---|
-| State | closed, open |
-
-| Property | Type | Default |
-|---|---|---|
-| Language | text | English |
-
-Icons: check, chevron-down, globe
-
-Tokens and styles:
-- Colors: `background/accent`, `background/default`, `background/popover`, `border/default`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`, `foreground/popover`
-- Spacing and size: `density/control-height`, `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`, `radius/sm`
-- Text styles: `body/small`, `ui/caption`
-
-Guides: [select](../../skills/build-ui/components/select.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
-
-Code: shadcn `DropdownMenu` + `DropdownMenuRadioGroup` (or `Select`) (Names in their own language, `lang` on each; no flags)

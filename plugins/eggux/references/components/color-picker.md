@@ -1,6 +1,6 @@
 # Color Picker
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -8,9 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Color Picker](#color-picker) | 1 | Swatches |
 | [Swatch Picker](#swatch-picker) | 1 | Swatches |
-| [Swatch](#swatch) | 2 | - |
+| [Swatch](#swatch) | 9 | - |
 
-On the Figma page: "Stress test / Color Picker", "Stress test / Swatch Picker"
+On the Figma page: "Example / color field", "Stress test / Color Picker", "Stress test / Swatch Picker"
 
 ## Color Picker
 
@@ -115,47 +115,61 @@ Tokens and styles:
 
 Guides: [color-picker](../../skills/build-ui/components/color-picker.md)
 
-Code: shadcn `RadioGroup` (or `ToggleGroup` single) of round items with chart token backgrounds (Color name as label)
+Code: shadcn `RadioGroup` (or `ToggleGroup type="single"`) with custom items: a color dot (Type=color) or a label box (Type=label) (Color or option name as label; unavailable: `aria-disabled`, still focusable)
 
 ## Swatch
 
-Component set · 2 variants · default size 28 × 28
+Component set · 9 variants · default size 36 × 36
 
-One color to pick, 28 px: a dot of the color, a ring when selected. Override the fill of the "color" layer with a chart or brand token. Part of Swatch Picker.
+One choice of a color or a short label (size, option). Type=color: a dot of the color, override the fill of the "color" layer with a chart or brand token; Size=sm (28) in Swatch Picker, default (36) for product options. Type=label: a short text like S, M, L. State=selected shows a ring; unavailable is faded and stays focusable with "out of stock" in its name.
 
 **Use for**
 
-- Inside Swatch Picker
-- Preset colors in the Swatches slot of Color Picker
+- Colors in Swatch Picker (Size=sm)
+- Product colors and sizes on a product page (Size=default)
+- Material or finish choices
 
 **Not for**
 
 - Any color, typed or picked freely: use Color Picker
+- Options with a price or a description: use Option Card
+- Long lists of options: use Select
 
 **Anatomy**
 
-1. Color: a dot filled with a chart or brand token
-2. Ring (State=selected)
+1. Color: a dot filled with a token or the product color (Type=color)
+2. Label: "M" (Type=label)
+3. Ring when State=selected; faded when unavailable
 
 **Content and behavior**
 
-- State: default, selected
-- Override the fill of the "color" layer with a chart or brand token, never a raw hex
-- The ring is visible on light and dark backgrounds
+- Override the fill of the "color" layer with a chart, brand or product color token, never a raw hex in the library
+- Group swatches under a label that names the choice and the value ("Color: Sand")
+- Unavailable options stay visible and focusable, faded, with "out of stock" in their name
+- Size=sm (28) in pickers, default (36) for product options
 
 **Accessibility**
 
-- A button or radio with the color name as its label ("Blue")
-- Focus ring and selected ring look different
+- A radio group: each swatch is a radio with the color or option name as its label
+- Selected is announced; unavailable has aria-disabled and stays in the tab order
+- The ring has 3:1 contrast on light and dark backgrounds
 
 | Variant property | Values |
 |---|---|
-| State | default, selected |
+| Type | color, label |
+| Size | default, sm |
+| State | default, selected, unavailable |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | M |
 
 Tokens and styles:
-- Colors: `chart/1`, `foreground/default`
-- Radius: `radius/full`
+- Colors: `border/default`, `border/input`, `chart/2`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/3`
+- Radius: `radius/full`, `radius/md`
+- Text styles: `ui/label`
 
-Guides: [color-picker](../../skills/build-ui/components/color-picker.md)
+Guides: [color-picker](../../skills/build-ui/components/color-picker.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: shadcn `RadioGroup` (or `ToggleGroup` single) of round items with chart token backgrounds (Color name as label)
+Code: shadcn `RadioGroup` (or `ToggleGroup type="single"`) with custom items: a color dot (Type=color) or a label box (Type=label) (Color or option name as label; unavailable: `aria-disabled`, still focusable)

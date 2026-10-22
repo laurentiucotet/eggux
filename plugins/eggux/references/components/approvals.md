@@ -1,6 +1,6 @@
 # Approvals
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -26,7 +26,7 @@ One approver in a chain: marker, name, role and rule, status, time, comment. cur
 
 - Field changes on a record: use Change Item in an audit log
 - Steps the user goes through in a form: use Stepper
-- Events over time without decisions: use Timeline
+- Events over time without decisions: use Timeline Item
 
 **Anatomy**
 
@@ -63,7 +63,7 @@ One approver in a chain: marker, name, role and rule, status, time, comment. cur
 | Time | text | 22 Oct 2026, 10:30 |
 | Comment | text | Within budget, vendor is approved. |
 | Show comment | boolean | true |
-| Connector | boolean | true |
+| Show connector | boolean | true |
 
 Built from: `Badge`. Icons: check, clock, x
 

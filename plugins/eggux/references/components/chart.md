@@ -1,6 +1,6 @@
 # Chart
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -104,7 +104,7 @@ Ranking and comparison of categories with long names (top customers, regions, re
 
 **Not for**
 
-- More than ~10 rows: use a Table
+- More than ~10 rows: use a table of Table Cells
 - Trend over time: use Line Chart
 - Ordered steps with drop-off: use Funnel Chart
 
@@ -155,7 +155,7 @@ Change over time (Recharts LineChart / AreaChart). Lines 2 px, round joins; end 
 - Comparing categories: use Bar Chart
 - Trend next to a number, without axes: use Sparkline
 - Two measures with different units: Combo Chart when they explain each other, otherwise two charts
-- Exact values matter more than shape: use a Table
+- Exact values matter more than shape: use a table of Table Cells
 
 **Anatomy**
 
@@ -315,7 +315,7 @@ Intensity over two dimensions (weekday × hour, team × week). One hue (chart/1)
 
 - One dimension: use Bar Chart
 - Trend of one measure over time: use Line Chart
-- Exact values matter: use a Table
+- Exact values matter: use a table of Table Cells
 
 **Anatomy**
 
@@ -357,7 +357,7 @@ Progress of one number toward a target (quota, budget, SLA). Status is written, 
 **Use for**
 
 - One headline measure against a target: Q4 revenue vs target
-- Status matters: on track, at risk, off track
+- Status matters: on-track, at-risk, off-track
 - Dashboards with only a few numbers
 
 **Not for**
@@ -378,7 +378,7 @@ Progress of one number toward a target (quota, budget, SLA). Status is written, 
 
 - Status is written, not only colored
 - The tick marks the target
-- Status tone follows Status: on track, at risk (warning), off track (destructive)
+- Status tone follows Status: on-track, at-risk (warning), off-track (destructive)
 - Use sparingly
 
 **Accessibility**
@@ -388,7 +388,7 @@ Progress of one number toward a target (quota, budget, SLA). Status is written, 
 
 | Variant property | Values |
 |---|---|
-| Status | on track, at risk, off track |
+| Status | on-track, at-risk, off-track |
 
 | Property | Type | Default |
 |---|---|---|
@@ -419,7 +419,7 @@ Part of a whole with many parts or a hierarchy (revenue by product, spend by ven
 
 - Fewer than 6 parts: use Bar Chart Horizontal
 - 2-5 parts where the share is the point: use Donut Chart
-- Exact comparisons: use a Table
+- Exact comparisons: use a table of Table Cells
 
 **Anatomy**
 
@@ -465,7 +465,7 @@ Drop-off between ordered steps (created → sent → viewed → paid, sign-up �
 **Not for**
 
 - Unordered categories: use Bar Chart Horizontal
-- More than 6 stages: use a Table
+- More than 6 stages: use a table of Table Cells
 - Change over time: use Line Chart
 
 **Anatomy**
@@ -496,6 +496,8 @@ Tokens and styles:
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: Recharts `FunnelChart`, or plain bars with widths from the data
 
 ## Scatter Chart
 
@@ -553,6 +555,8 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
+Code: Recharts `ScatterChart` with `XAxis` and `YAxis` `type="number"`
+
 ## Chart Legend
 
 Component · 1 variant · default size 187 × 16
@@ -599,6 +603,8 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
+Code: shadcn `ChartLegend` with `ChartLegendContent` (Recharts) (Colors from `chartConfig`)
+
 ## Chart Legend Item
 
 Component set · 16 variants · default size 50 × 16
@@ -620,6 +626,10 @@ Tokens and styles:
 - Radius: `radius/full`, `radius/sm`
 - Text styles: `ui/caption`
 
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: shadcn `ChartLegend` with `ChartLegendContent` (Recharts) (Colors from `chartConfig`)
+
 ## Chart Tooltip
 
 Component · 1 variant · default size 176 × 92
@@ -634,7 +644,7 @@ Hover tooltip: crosshair on line/area, per-mark on bar. Title = the x value; one
 
 **Not for**
 
-- Values that must always be visible: label the end value or use a Table
+- Values that must always be visible: label the end value or use a table of Table Cells
 - Explaining a control: use Tooltip
 
 **Anatomy**
@@ -671,6 +681,8 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
+Code: shadcn `ChartTooltip` with `ChartTooltipContent` (Recharts)
+
 ## Chart Tooltip Row
 
 Component set · 8 variants · default size 160 × 16
@@ -692,6 +704,10 @@ Tokens and styles:
 - Radius: `radius/sm`
 - Text styles: `ui/caption`, `ui/label-small`
 
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: shadcn `ChartTooltip` with `ChartTooltipContent` (Recharts)
+
 ## Chart Card
 
 Component · 1 variant · default size 640 × 474
@@ -708,7 +724,7 @@ Card around one chart (shadcn chart card): title says what is measured, descript
 
 - One number people check: use Stat Card
 - Several charts in one card: one Chart Card each
-- Exact values: use a Table, or the table view
+- Exact values: use a table of Table Cells, or the table view
 
 **Anatomy**
 
@@ -755,6 +771,8 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
+Code: shadcn `Card` + shadcn `Chart` (Recharts) + `ToggleGroup` for the time range
+
 ## Waterfall Chart
 
 Component · 1 variant · default size 640 × 284
@@ -800,6 +818,7 @@ Built from: `Chart Legend`
 
 Tokens and styles:
 - Colors: `border/default`, `border/input`, `color/blue/600`, `color/neutral/400`, `color/red/600`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
 - Text styles: `ui/caption`
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
@@ -849,6 +868,7 @@ Built from: `Chart Legend`
 
 Tokens and styles:
 - Colors: `background/default`, `border/default`, `border/input`, `chart/1`, `chart/2`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
 - Text styles: `ui/caption`
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
@@ -1115,6 +1135,7 @@ Shows how amounts flow from sources to outcomes: payment method to paid or overd
 
 Tokens and styles:
 - Colors: `background/destructive`, `chart/1`, `chart/2`, `chart/3`, `foreground/default`
+- Radius: `radius/sm`
 - Text styles: `ui/caption`
 
 Guides: [charts](../../skills/build-ui/components/charts.md)

@@ -11,7 +11,7 @@ back-office tools, at least check that the page does not break below 768.
 | ≥ 1024 (`lg`) | Full App shell: Sidebar expanded, Top Bar, multi-column blocks |
 
 ## Navigation
-- App with 3-5 daily destinations: `Bottom Nav`; everything else under "More" or the menu.
+- App with 3-5 daily destinations: `Bottom Nav` with one `Bottom Nav Item` each; everything else under "More" or the menu.
 - Otherwise: menu button in `Mobile Header` opens the Sidebar as a left `Sheet`.
 - Detail pages: back button + object title, no Bottom Nav; primary action in a sticky bottom bar.
 - Marketing: `Block / Navbar Mobile`; the menu is a full-screen panel with links and full-width CTAs.

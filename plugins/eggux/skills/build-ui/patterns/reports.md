@@ -10,7 +10,7 @@ which nobody can export, schedule or trust.
   schedulable. Use `Block / Report`.
 
 ## Rules
-- Header states scope and period ("All entities · EUR · 1 Jul – 30 Sep 2026") and when the data
+- Header states scope and period ("All entities · EUR · 1 Jul - 30 Sep 2026") and when the data
   was updated. The period picker has presets (this quarter, last quarter, year to date).
 - Every KPI has a comparison (previous period or target) and says whether up is good.
 - One trend chart for the main measure, then a breakdown table with totals and share.
@@ -23,6 +23,9 @@ which nobody can export, schedule or trust.
 ## Figma
 `Block / Report` on the Enterprise page: header with period and actions, Stat Cards, Chart Card,
 breakdown grid with Progress for share and a total row.
-- Lead a dashboard or report with a `Metric Strip` (3-5 figures, one period said once) when Stat
-  Cards would take too much space; each change uses `Trend Indicator`, where Tone says whether the
-  direction is good. Use `Bullet Chart` stacks for KPI reviews against targets.
+- Lead a dashboard or report with a `Metric Strip` (3-5 `Metric Strip Item`s, one period said
+  once, Show divider off on the first) when Stat Cards would take too much space; each change
+  uses `Trend Indicator`, where Trend says the direction and Tone whether it is good. Use
+  `Bullet Chart` stacks for KPI reviews against targets.
+- Rankings (top customers, teams, products) use `Leaderboard Row`: rank, avatar, name and value,
+  sorted by the value, 5-10 rows with "View all".

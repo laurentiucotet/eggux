@@ -11,14 +11,14 @@ users recognize and recover from errors.
 | Open-ended questions, long tasks, the assistant is the product | Full chat page (App shell, history in the Sidebar) | `Block / AI Chat Empty`, `Block / AI Conversation`, example "AI chat app" |
 | Help with what is on screen (an invoice, a project, a ticket) | Docked panel on the right, 400 wide | `Block / AI Assistant Panel` |
 | Edit or write text in place | Inline popover on the selection or field | `Block / Inline AI` |
-| One known task (summarize, classify, suggest a reply) | A button or a Suggestion next to the content, result shown inline | `Suggestion`, `Button` with sparkles |
+| One known task (summarize, classify, suggest a reply) | A button or a Prompt Suggestion next to the content, result shown inline | `Prompt Suggestion`, `Button` with sparkles |
 
 Prefer the smallest surface that does the job. A chat box is not a substitute for a button that
 does one thing well.
 
 ## Before the first message
 - Say what the assistant can do, with 3-4 starter prompts taken from real user tasks
-  (`Suggestion` chips or cards). Never a blank box with "Ask me anything" alone.
+  (`Prompt Suggestion` chips or cards). Never a blank box with "Ask me anything" alone.
 - Say what data it uses ("Answers use your workspace's invoices and customers") and keep a
   short disclaimer under the input ("… can make mistakes. Check important information.").
 - In a panel, show the context it will use (badge "Invoice INV-1024"); the user can remove it.
@@ -39,7 +39,7 @@ does one thing well.
 - Numbers, names and dates the user will act on link to the record.
 - Reasoning stays collapsed ("Thought for 12 s"); it explains, it is not the answer.
 - After the answer: copy, regenerate, good / bad feedback (`Assistant Message` actions) and
-  2-3 follow-up `Suggestion` chips when the next step is predictable.
+  2-3 follow-up `Prompt Suggestion` chips when the next step is predictable.
 - Bad feedback opens `Response Feedback` under the answer: reasons as chips, optional details,
   what is shared, Send. Good feedback sends at once.
 
@@ -86,9 +86,9 @@ does one thing well.
 
 ## Input
 - `Prompt Input`: Enter sends, Shift+Enter new line; grows to ~8 lines then scrolls; send
-  disabled while empty; attachments above the text; tools and model selector only when users
+  disabled while empty; attachments above the text; tools and model picker only when users
   need to choose.
-- Model choice (`Model Selector` in the Tools slot, `Model Option` rows) only when users really
+- Model choice (`Model Picker` in the Tools slot, `Model Option` rows) only when users really
   choose between cost, speed or data rules; describe models by what they are good for.
 - Voice: `Voice Recorder` replaces the input while dictating; the transcript lands in the input
   for review, never sent unread.
@@ -116,6 +116,7 @@ does one thing well.
 
 ## Figma
 Components on the AI Chat page, blocks on the AI blocks page. See `components/ai-chat.md`.
-- Outside chat, start AI actions with `AI Button` (a verb, never just "AI"), show `AI Loading` while
-  it writes, mark extracted values with `Confidence Indicator` (3 levels, low never auto-applies)
-  and review many edits with `Suggestion Review Bar`.
+- Outside chat, start AI actions with a `Button` with Show leading icon on and the `sparkles` icon
+  (a verb, never just "AI"; example "AI action" on the Button page), show `AI Loading` while it
+  writes, mark extracted values with `Confidence Indicator` (3 levels, low never auto-applies)
+  and review many edits with `AI Review Bar`.

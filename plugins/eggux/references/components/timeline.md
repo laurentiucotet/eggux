@@ -1,6 +1,6 @@
 # Timeline
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -61,7 +61,7 @@ One event in an activity history (record history, audit log, order tracking). Ne
 | Time | text | 2 h ago |
 | Description | text | Maria Ilie · Order #1042 · 22 Oct, 10:30 |
 | Show description | boolean | true |
-| Connector | boolean | true |
+| Show connector | boolean | true |
 | Show content | boolean | false |
 | Icon | instance swap | Icon/clock |
 
@@ -76,3 +76,5 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/caption`, `ui/label`
 
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md), [description-list](../../skills/build-ui/components/description-list.md)
+
+Code: custom `dl` with `dt` / `dd` and a Tailwind grid; custom `ol` (No shadcn component)

@@ -1,6 +1,6 @@
 # Skeleton
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -59,4 +59,4 @@ Tokens and styles:
 
 Guides: [skeleton](../../skills/build-ui/components/skeleton.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
 
-Code: shadcn `Skeleton`, `Spinner`, `Kbd`
+Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`)

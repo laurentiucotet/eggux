@@ -13,8 +13,8 @@ which surface and the behavior rules: `patterns/ai-chat.md`.
 | `Tool Call` | Status: running, done, error, approval | An action the assistant runs; approval waits for the user |
 | `Sources`, `Source Item` | - | Sources under an answer, numbered like the Citations |
 | `Citation` | - | Inline marker after a claim, number or domain |
-| `Suggestion` | Layout: chip, card | Starter prompts (cards or chips) and follow-ups (chips) |
-| `Model Selector`, `Model Option` | Selector: default, hover, focus. Option: Selected × State | Model picker in the Tools slot and its menu rows (name, trade-off, badge) |
+| `Prompt Suggestion` | Layout: chip, card | Starter prompts (cards or chips) and follow-ups (chips) |
+| `Model Picker`, `Model Option` | Picker: default, hover, focus. Option: Selected × State | Model picker in the Tools slot and its menu rows (name, trade-off, badge) |
 | `Context Chip` | Type: file, record, person | What the assistant will use; in the Attachments slot |
 | `Voice Recorder` | State: recording, processing | Replaces the Prompt Input while dictating |
 | `Chat History Item` | State: default, hover, active | One conversation in the history list; Pinned, Time |
@@ -39,7 +39,7 @@ which surface and the behavior rules: `patterns/ai-chat.md`.
 ## Figma
 - Blocks: `Block / AI Chat Empty`, `Block / AI Conversation`, `Block / AI Assistant Panel`,
   `Block / Inline AI` on the AI page; example "AI chat app" (Sidebar history + conversation).
-- Examples on the AI Chat page: "agent at work" (plan, artifact, context chips, model selector),
+- Examples on the AI Chat page: "agent at work" (plan, artifact, context chips, model picker),
   "AI on a record page" (summary, suggestions, notice), "chat history" (groups, pinned, active).
   `Stress test / AI components` in the Stress tests section.
 - Text in the Content slot uses `body/default` (panel: `body/small`).

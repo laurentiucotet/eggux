@@ -1,6 +1,6 @@
 # Input
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -12,7 +12,7 @@ Usage rules live in the guides linked under each component.
 | [Textarea](#textarea) | 8 | - |
 | [Input Group](#input-group) | 4 | Start, End |
 | [Input Addon](#input-addon) | 2 | - |
-| [Number Input](#number-input) | 4 | - |
+| [Number Input](#number-input) | 8 | - |
 | [Inline Edit](#inline-edit) | 5 | - |
 | [Signature Pad](#signature-pad) | 2 | - |
 | [Copy Field](#copy-field) | 2 | - |
@@ -22,9 +22,9 @@ Usage rules live in the guides linked under each component.
 | [Phone Input](#phone-input) | 4 | - |
 | [Date Input](#date-input) | 4 | - |
 | [Duration Input](#duration-input) | 3 | - |
-| [Range Fields](#range-fields) | 2 | - |
+| [Range Input](#range-input) | 2 | - |
 
-On the Figma page: "Example / approve a contract", "Example / in multi-step form", "Example / in navbar search", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Stress test / Copy Field", "Stress test / Currency Input", "Stress test / Date Input", "Stress test / Duration Input", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Inline Form", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Phone Input", "Stress test / Range Fields", "Stress test / Search Field", "Stress test / Signature Pad", "Stress test / Textarea"
+On the Figma page: "Example / approve a contract", "Example / in multi-step form", "Example / in navbar search", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Example / textarea in field", "Stress test / Copy Field", "Stress test / Currency Input", "Stress test / Date Input", "Stress test / Duration Input", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Inline Form", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Phone Input", "Stress test / Range Input", "Stress test / Search Field", "Stress test / Signature Pad", "Stress test / Textarea"
 
 ## Input
 
@@ -47,7 +47,7 @@ shadcn Input. Content=placeholder shows an example value in foreground/muted, ne
 
 **Anatomy**
 
-1. Leading icon (Leading icon, Leading icon type)
+1. Leading icon (Show leading icon, Leading icon)
 2. Value or placeholder
 3. Trailing slot (Show trailing): clear, show password
 
@@ -73,8 +73,8 @@ shadcn Input. Content=placeholder shows an example value in foreground/muted, ne
 | Property | Type | Default |
 |---|---|---|
 | Value | text | name@example.com |
-| Leading icon | boolean | false |
-| Leading icon type | instance swap | Icon/search |
+| Show leading icon | boolean | false |
+| Leading icon | instance swap | Icon/search |
 | Show trailing | boolean | false |
 
 Slots (fill them in the instance, never detach): `Trailing`
@@ -178,7 +178,7 @@ Strength meter under a new-password Field. Message says what is missing; the lev
 
 **Content and behavior**
 
-- Strength: empty, weak, fair, good, strong
+- Level: empty, weak, fair, good, strong
 - The level is in text and bar count, not only color
 - Fair uses foreground/default because amber fails as a thin bar on white
 - No composition rules beyond length; never block paste
@@ -190,13 +190,17 @@ Strength meter under a new-password Field. Message says what is missing; the lev
 
 | Variant property | Values |
 |---|---|
-| Strength | empty, weak, fair, good, strong |
+| Level | empty, weak, fair, good, strong |
 
 Tokens and styles:
 - Colors: `background/destructive`, `background/info`, `background/muted`, `background/success`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/72`
 - Radius: `radius/full`
 - Text styles: `ui/caption`
+
+Guides: [input](../../skills/build-ui/components/input.md), [auth](../../skills/build-ui/patterns/auth.md)
+
+Code: custom bars + text under the shadcn `Input` (Level in text, not only color)
 
 ## Textarea
 
@@ -267,7 +271,7 @@ Input with attached addons (shadcn Input Group). Use when a fixed prefix/suffix 
 
 **Not for**
 
-- Icons inside the field: use Input with Leading icon or the Trailing slot
+- Icons inside the field: use Input with Show leading icon or the Trailing slot
 - Small integer quantities: use Number Input
 
 **Anatomy**
@@ -338,13 +342,13 @@ Code: shadcn `InputGroup` or custom
 
 ## Number Input
 
-Component set · 4 variants · default size 140 × 36
+Component set · 8 variants · default size 140 × 36
 
-Number with − / + steppers for small integer quantities (guests, seats, items). Typing stays possible; min/max disable the buttons; long press repeats. For money or decimals use Input Group with a unit.
+Number with − / + steppers for small integer quantities (guests, seats, items). Typing stays possible; min/max disable the buttons; long press repeats. For money or decimals use Input Group with a unit. Size=sm (32) for cart lines and dense rows. At the minimum or maximum, set the - or + icon to foreground/muted and block the click.
 
 **Use for**
 
-- Small integers: seats, guests, items in a cart
+- Small integers: seats, guests, items in a cart (Size=sm in Line Item)
 - Quantities changed by one or two steps
 - Settings with a short integer range: reminders, retries
 
@@ -356,15 +360,18 @@ Number with − / + steppers for small integer quantities (guests, seats, items)
 **Anatomy**
 
 1. Decrease button (minus)
-2. Value
+2. Value, typeable
 3. Increase button (plus)
+4. Size: default (36), sm (32) for cart lines and dense rows
 
 **Content and behavior**
 
 - Typing stays possible
 - Min and max disable the matching button
 - Long press repeats the step
-- State: default, focus, error, disabled
+- State: default, focus, error, disabled; Size: default, sm
+- At the minimum or maximum, set the matching icon to foreground/muted and block the click (cart: minus at 1, or remove the line at 0)
+- In carts the maximum comes from stock; say "Only 3 left" next to the field
 
 **Accessibility**
 
@@ -374,6 +381,7 @@ Number with − / + steppers for small integer quantities (guests, seats, items)
 
 | Variant property | Values |
 |---|---|
+| Size | sm, default |
 | State | default, focus, error, disabled |
 
 | Property | Type | Default |
@@ -388,13 +396,13 @@ Tokens and styles:
 - Radius: `radius/md`
 - Text styles: `body/small`
 
-Guides: [input](../../skills/build-ui/components/input.md)
+Guides: [input](../../skills/build-ui/components/input.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
 Code: shadcn `InputGroup` or custom
 
 ## Inline Edit
 
-Component set · 5 variants · default size 320 × 40
+Component set · 5 variants · default size 320 × 36
 
 Edit a value in place (titles, names, short fields on a detail page): hover shows it is editable, click or Enter opens the input, Enter or the check saves, Escape or x cancels, blur saves. Saving shows a spinner; errors keep the input open with the message. Use a form for several related fields.
 
@@ -439,6 +447,7 @@ Edit a value in place (titles, names, short fields on a detail page): hover show
 | Property | Type | Default |
 |---|---|---|
 | Value | text | Q3 vendor review |
+| Error | text | Enter a name. |
 
 Built from: `Button Icon`, `Input`, `Spinner`. Icons: pencil
 
@@ -704,7 +713,7 @@ An amount with its currency: invoice lines, budgets, prices, limits. Currency pi
 
 - One currency for the whole form: use Input Group with the code as a fixed prefix
 - Small integer quantities: use Number Input
-- A minimum and a maximum amount: use Range Fields
+- A minimum and a maximum amount: use Range Input
 
 **Anatomy**
 
@@ -920,7 +929,7 @@ Guides: [input](../../skills/build-ui/components/input.md)
 
 Code: custom: two shadcn `Input`s (`inputmode="numeric"`) with unit addons (Parse "1:30", "90", "1.5h" on blur; store minutes)
 
-## Range Fields
+## Range Input
 
 Component set · 2 variants · default size 320 × 36
 

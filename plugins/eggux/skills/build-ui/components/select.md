@@ -7,8 +7,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 |---|---|---|
 | 2-5, all worth seeing | `RadioGroup` | `Checkbox` group |
 | 2 (on/off) that applies immediately | `Switch` | - |
-| 6-15 | `Select` | `Combobox` with multi-select |
-| More than 15, or the user knows what they want | `Combobox` with search | `Combobox` with chips |
+| 6-15 | `Select` | `Tag Input` with a list (Show chevron on) |
+| More than 15, or the user knows what they want | `Combobox` with search | `Tag Input` with search in the list |
 
 ## Rules
 - Default to no selection unless one option is clearly right for most users. Never preselect
@@ -33,15 +33,16 @@ Usage guidelines only. Visual specs live in the Figma component.
   the control; the message comes from `Field` or text under the group.
 - `Combobox` is the searchable trigger (chevrons-up-down). Open state: `Combobox` (focus) +
   `Command` 4 px below: `Command Input` with the query, `Items` slot with the matching
-  `Menu Item`s (Checked on the selected one). No match: turn on `Empty`, off `Show items`.
+  `Menu Item`s (Checked on the selected one). No match: turn on `Show empty`, off `Show items`.
   See "combobox open" on the Select page.
 
 ## Multi-select and Tag Input
-- Several values in one field: from a list (multi-select, Chevron on, opens Command with Checked
-  items that stay open while picking) or free entry (tags, Chevron off, Enter or comma adds).
+- `Tag Input` is the multi-select: several values in one field, from a list (Show chevron on,
+  opens Command with Checked items that stay open while picking) or free entry (tags, Show
+  chevron off, Enter or comma adds). Combobox picks one value only.
 - Show selected values as `Tag`s; after ~5, collapse to "+3 more". Backspace removes the last tag.
-- Up to ~7 options with all worth seeing: Checkbox group instead.
-- Figma: `Tag` (Label, Remove), `Tag Input` (State, Tags slot, Chevron) on the Select page.
+- 2-5 options all worth seeing: Checkbox group instead.
+- Figma: `Tag` (Label, Show remove), `Tag Input` (State, Tags slot, Show chevron) on the Select page.
   Example "multi-select open".
 
 ## People Picker
@@ -50,7 +51,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Recent and suggested people first; selected people as chips in the field; after ~4, "+3".
 - Nobody matches: offer "Invite by email" when inviting is allowed, otherwise say who can add them.
 - One person only (owner, assignee): close the list after the pick.
-- Figma: `Person Option` (Selected × State; Name, Detail, Show detail; Avatar exposed),
+- Figma: `Person Option` (Selected × State; Name, Description, Show detail; Avatar exposed),
   `People Picker` (closed, open; Selected and Results slots; Placeholder truncates on one line).
 
 ## Transfer List
@@ -63,5 +64,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 ## Related components
 - Use `Select Option` for rich options (icon or avatar, title, second line) when labels alone are
   ambiguous. `Address Autocomplete` fills address fields from suggestions; `Recurrence Picker` sets
-  how often something repeats, with a summary sentence; `Language Switcher` picks the interface
-  language. `Checkbox Card` is the multi-choice pair of `Option Card`.
+  how often something repeats, with a summary sentence. The interface language is a `Select`
+  that opens a `Menu` of languages, each written in its own language: example "language switch"
+  on the Select page. `Option Card` Control=checkbox is the multi-choice card;
+  Control=radio picks one.

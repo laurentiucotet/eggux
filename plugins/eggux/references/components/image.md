@@ -1,6 +1,6 @@
 # Image
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -65,6 +65,8 @@ Tokens and styles:
 
 Guides: [carousel](../../skills/build-ui/components/carousel.md)
 
+Code: `<img>` or `next/image` with `aspect-ratio` and `object-cover`
+
 ## Map
 
 Component · 1 variant · default size 720 × 405
@@ -119,6 +121,8 @@ Tokens and styles:
 - Effects: `shadow/md`
 
 Guides: [card](../../skills/build-ui/components/card.md)
+
+Code: static map image or an embedded map (Mapbox, Google) (Address in text next to it)
 
 ## Image Cropper
 
@@ -275,6 +279,8 @@ Tokens and styles:
 - Radius: `radius/full`, `radius/lg`
 - Text styles: `ui/caption`
 - Effects: `shadow/md`
+
+Guides: [content](../../skills/build-ui/components/content.md)
 
 Code: react-compare-slider, or `clip-path` + `<input type="range">` (Handle `role="slider"`, arrow keys)
 

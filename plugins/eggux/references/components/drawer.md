@@ -1,6 +1,6 @@
 # Drawer
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -92,7 +92,7 @@ Bottom drawer (shadcn Drawer / vaul). Mobile-first: filters, quick actions, shor
 
 **Anatomy**
 
-1. Handle on top (Handle)
+1. Handle on top (Show handle)
 2. Header slot: Dialog Header with Close off
 3. Content slot
 4. Footer slot: full-width buttons stacked, primary first
@@ -113,7 +113,7 @@ Bottom drawer (shadcn Drawer / vaul). Mobile-first: filters, quick actions, shor
 
 | Property | Type | Default |
 |---|---|---|
-| Handle | boolean | true |
+| Show handle | boolean | true |
 
 Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
 

@@ -11,7 +11,7 @@ people and events: the Page Headers page (`marketing-pages.md` § Page headers).
 - Reading column ≈ 672 px (65-75 characters per line), `body/default` 16/28 for prose.
 - Hierarchy: one h1 per page; h2 for sections, h3 below; more space above headings than below.
 - Article top: category, date and reading time, title, lead (one or two sentences), author
-  (Byline, default: name and "12 Oct 2026 · 6 min read"). Tags under the title: Tag List.
+  (Byline, default: name and "12 Oct 2026 · 6 min read"). Tags under the title: `Badge List`.
 - Images have captions or alt text; code in Code Blocks; notes and warnings as inline Alerts.
 - Long pages: Table of Contents on the right; docs pages end with previous / next links and
   "Was this page helpful?".
@@ -47,8 +47,8 @@ ending with `Block / Docs Page Footer`.
 - Incidents in plain language: what happened, impact, duration, what changed. Keep at least 90 days.
 
 ## Related components
-- Changelog and in-app What's new entries use `Release Note Item`. Developer docs use `Command
-  Snippet` for one copyable command, `Endpoint Row` for API reference lists and `JSON Viewer` for
-  request and response payloads.
+- Changelog and in-app What's new entries use `Release Note Item`. Developer docs use
+  `Command Snippet` for one copyable command, `Endpoint Row` for API reference lists and
+  `JSON Viewer` for request and response payloads.
 - Status page rows use `Service Status Row`: service name, 90-day uptime as text and status in words
   with a Status Dot, linked to the incident when not operational.

@@ -9,9 +9,10 @@ Usage guidelines only. Visual specs live in the Figma component.
 
 ## Rules
 - One active item, matching the current page. A section with sub-pages shows a chevron.
-- Badge Count only for something the actor must act on (unread, pending); never decorative.
-- Header: workspace or organization switcher. Footer: signed-in user with a menu
-  (Settings, Log out).
+- Badge Count (Show badge) only for something the actor must act on (unread, pending); never
+  decorative.
+- Header: the workspace; with several organizations it opens the `Org Switcher` menu. Footer:
+  signed-in user with a menu (Settings, Log out).
 - Collapsed mode shows icons only; every item has a Tooltip with its label.
 - On mobile the sidebar becomes a Sheet opened from the page header trigger (`panel-left`).
 - Keyboard: every item is reachable; the collapse trigger has an accessible label.
@@ -32,12 +33,14 @@ Usage guidelines only. Visual specs live in the Figma component.
 
 ## Figma
 `Sidebar` (Mode expanded 256 / collapsed 48) with native slots Header, Content and Footer, built
-from `Sidebar Workspace`, `Sidebar Group` (Items slot of `Sidebar Item`) and `Sidebar User`.
+from `Sidebar Workspace`, `Sidebar Group` (a `Sidebar Group Label` and an Items slot of
+`Sidebar Item`) and `Sidebar User`.
 Uses the `sidebar/*` tokens. See the "app shell" example on the Sidebar page.
 
 `Sidebar Double` (Mode expanded 288 / collapsed 48) with slots Rail header, Rail, Rail footer
 (collapsed `Sidebar Workspace`, `Sidebar Item`, `Sidebar User`), the Panel title text, Panel
-actions and Panel (`Sidebar Group`). Examples: "Back office list with double sidebar" and
-"Double sidebar collapsed".
+actions and Panel (`Sidebar Group`). Mode=collapsed keeps the Panel slot as a hidden layer, so
+its content survives a switch back to expanded. Examples: "Back office list with double sidebar"
+and "Double sidebar collapsed".
 - `Sidebar Item` Level=2 for sub-pages: no icon, label aligned with the parent label; only under an
-  expanded parent with a Chevron, one level deep.
+  expanded parent with Show chevron on, one level deep.

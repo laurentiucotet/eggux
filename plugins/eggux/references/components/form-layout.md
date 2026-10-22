@@ -1,6 +1,6 @@
 # Form Layout
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Fieldset](#fieldset) | 2 | Options |
 | [Error Summary](#error-summary) | 1 | Errors |
 | [Requirement List](#requirement-list) | 1 | Items |
-| [Requirement Item](#requirement-item) | 3 | - |
+| [Check Item](#check-item) | 3 | - |
 
 On the Figma page: "Stress test / Error Summary", "Stress test / Fieldset", "Stress test / Form Section", "Stress test / Requirement List"
 
@@ -86,7 +86,7 @@ A group of related controls with one label: checkboxes, radios, the parts of an 
 
 - A checkbox or radio group with a question
 - The parts of an address or a date
-- A group of Checkbox Cards or Option Cards
+- A group of Option Cards
 
 **Not for**
 
@@ -197,7 +197,7 @@ Code: shadcn `Alert` (destructive) with anchor links from react-hook-form `formS
 
 Component · 1 variant · default size 320 × 126
 
-Rules checked live while people type or before they publish: password rules, import checks, what a listing needs before it goes live. Each Requirement Item updates as soon as it is met; nothing turns red before a submit. Keep it under 6 rules and in the order people fix them.
+Rules checked live while people type or before they publish: password rules, import checks, what a listing needs before it goes live. Each Check Item updates as soon as it is met; nothing turns red before a submit. Keep it under 6 rules and in the order people fix them.
 
 **Use for**
 
@@ -214,11 +214,11 @@ Rules checked live while people type or before they publish: password rules, imp
 **Anatomy**
 
 1. Title (Show title): "Your password needs"
-2. Items slot: Requirement Items
+2. Items slot: Check Items
 
 **Content and behavior**
 
-- Each Requirement Item updates as soon as it is met
+- Each Check Item updates as soon as it is met
 - Nothing turns red before a submit; pending stays neutral
 - Under 6 rules, in the order people fix them
 - Rules are positive and short: "At least 12 characters"
@@ -236,50 +236,56 @@ Rules checked live while people type or before they publish: password rules, imp
 
 Slots (fill them in the instance, never detach): `Items`
 
-Built from: `Requirement Item`
+Built from: `Check Item`
 
 Tokens and styles:
 - Colors: `foreground/default`
 - Spacing and size: `spacing/1_5`, `spacing/2`
 - Text styles: `ui/label`
 
-Guides: [auth](../../skills/build-ui/patterns/auth.md), [form-validation](../../skills/build-ui/patterns/form-validation.md)
+Guides: [input](../../skills/build-ui/components/input.md), [auth](../../skills/build-ui/patterns/auth.md), [form-validation](../../skills/build-ui/patterns/form-validation.md)
 
-Code: custom `<ul>` of lucide icon + text, state from the zod schema (`aria-live="polite"`; nothing red before submit)
+Code: custom `<ul>` of `Check Item`s, state from the zod schema of the field (`aria-live="polite"`; nothing red before submit)
 
-## Requirement Item
+## Check Item
 
 Component set · 3 variants · default size 168 × 20
 
-One rule and whether it is met: check in success when met, a dash while pending, x when it failed after a submit. Part of Requirement List.
+One line with a mark: check (met, included), dash (pending, not included) or x (failed after a submit). Used in Requirement List (password and publish rules) and in Plan Card feature lists. Label is one line; keep the order people read or fix them in.
 
 **Use for**
 
-- Inside Requirement List
+- Rules in a Requirement List (password, publish checks)
+- Features of a Plan Card
+- Benefits next to a sign-up form or a call to action
 
 **Not for**
 
+- Tasks people tick off: use Task Item
+- Benefits with an icon and a description: use Feature Item
 - A message about one field: use the Field hint or error
 
 **Anatomy**
 
-1. Icon: circle-check (met), dash (pending), x (failed)
-2. Label: the rule
+1. Mark: circle-check (Mark=check), dash (Mark=dash), x (Mark=x)
+2. Label: one line, muted when Mark=dash
 
 **Content and behavior**
 
-- State: met, pending, failed
-- met uses success; failed only after a submit
-- The label is the rule in a few words ("At least 12 characters")
+- Mark=check for met or included, dash for pending or not included, x only after a submit failed
+- One line per item; lead with the benefit or the rule ("At least 12 characters")
+- In plans, list what is included first and keep the same order across plans
+- In Requirement List the marks update as people type; nothing turns x before a submit
 
 **Accessibility**
 
-- The state is in text for screen readers ("met", "not met yet"), not only the icon
-- Icons are aria-hidden
+- The mark is aria-hidden; the meaning is in text ("included", "not included", "met", "not met yet")
+- Lists are ul elements
+- Contrast of muted labels stays at 4.5:1
 
 | Variant property | Values |
 |---|---|
-| State | met, pending, failed |
+| Mark | check, dash, x |
 
 | Property | Type | Default |
 |---|---|---|
@@ -292,4 +298,6 @@ Tokens and styles:
 - Spacing and size: `spacing/2`
 - Text styles: `body/small`
 
-Code: custom `<ul>` of lucide icon + text, state from the zod schema (`aria-live="polite"`; nothing red before submit)
+Guides: [content](../../skills/build-ui/components/content.md), [input](../../skills/build-ui/components/input.md), [auth](../../skills/build-ui/patterns/auth.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
+
+Code: `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status (Mark=check, dash, x)

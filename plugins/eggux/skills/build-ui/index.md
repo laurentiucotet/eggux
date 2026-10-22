@@ -81,41 +81,41 @@ component guides it names. Names are Figma components; inventory in
 
 | File | Covers |
 |---|---|
-| accordion | Accordion, filter groups |
-| ai-chat | Prompt Input, Attachment, User / Assistant Message, Reasoning, Tool Call, Sources, Citation, Suggestion |
+| accordion | Accordion, filter groups, Show More |
+| ai-chat | Prompt Input, Attachment, User / Assistant Message, Reasoning, Tool Call, Sources, Citation, Prompt Suggestion, AI Suggestion, AI Summary, Agent Plan, Artifact Card, Chat History Item, Context Chip, Response Feedback, User Message, Voice Recorder, AI Loading, Confidence Indicator, AI Review Bar, Model Picker |
 | alert | Alert inline and banner |
-| avatar | Avatar, Avatar Group, Byline |
-| badge | Badge, Badge Count, Chip, Status Dot (see indicators), Tag List |
-| button | Button, Button Icon, Button Group, Split Button, Action Bar |
-| boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view |
-| card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Progress Card |
-| carousel | Carousel |
-| charts | Bar, Bar Horizontal, Line, Donut / Pie, Heatmap, Gauge, Treemap, Funnel, Scatter, Waterfall, Combo, Sparkline, Chart Card, legend, tooltip |
-| color-picker | Color Picker, swatches, color field |
-| comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer |
-| content | Section Heading, Feature Item, Post Card, Quote, Code Block, TOC Item, Table of Contents |
-| date-picker | Calendar, Date Picker, Time Picker, Date Range Picker |
-| description-list | Description List, Meta Item, Figure, Summary Row, Timeline |
+| avatar | Avatar, Avatar Group, Byline, Presence Bar |
+| badge | Badge, Badge Count, Chip, Status Dot (see indicators), Badge List, Endpoint Row, Release Note Item, Announcement Pill, Trust Badge, Order Row |
+| button | Button, Button Icon, Button Group, Split Button, Action Bar, FAB, Social Share |
+| boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view, Gantt Bar, Workflow Node, Agenda Item, Meeting Card |
+| card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Progress Card, Separator, Plan Card, Product Card, Address Card, Link Preview, Location Card, Integration Card |
+| carousel | Carousel, Carousel Gallery, Carousel Hero, Image Placeholder, Lightbox |
+| charts | Bar Chart, Bar Chart Horizontal, Line Chart, Donut Chart (donut, pie), Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart, Waterfall Chart, Combo Chart, Sparkline, Chart Card, Chart Legend, Chart Tooltip, Trend Indicator, Metric Strip, Dashboard Widget, Distribution Bar, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map |
+| color-picker | Color Picker, Swatch, Swatch Picker, color field |
+| comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer, Annotation Pin, Mention Chip, Reaction, Reaction Bar, Thread Summary |
+| content | Section Heading, Feature Item, Post Card, Quote, Code Block, Table of Contents Item, Table of Contents, Command Snippet, Diff Line, Diff Viewer, JSON Viewer, Testimonial Card, Footnote, Image Compare Slider |
+| date-picker | Calendar, Date Picker, Time Picker, Date Range Picker, Date Input |
+| description-list | Description List, Meta Item, Figure, Summary Row, Timeline, Description List Item, Timeline Item |
 | dialog | Dialog, Alert Dialog |
-| drawer | Sheet, Drawer, Side Panel |
-| dropdown-menu | Menu, Menu Item, Menubar |
-| file-upload | File Dropzone, File Item, File Preview, Resource Item, Avatar Upload, Image Cropper |
-| indicators | Spinner, Status Dot, Kbd |
-| input | Input, Field, Textarea, Input Group, Number Input, Input OTP, Inline Edit, Signature Pad |
-| list-and-tree | List Item, Tree Item, Sortable List Item, Scroll Area |
-| navigation | Breadcrumb, Top Bar, Page Header, Nav Link, Navigation Menu, Split View |
-| pagination | Pagination, Pagination Compact |
-| popover | Popover, Command, Combobox panel, Command Dialog, Hover Card, search suggestions |
-| progress-and-slider | Progress, Progress Ring, Slider |
-| rating | Rating |
+| drawer | Sheet, Drawer, Side Panel, Resizable Panels, Action Sheet |
+| dropdown-menu | Menu, Menu Item, Menubar, Account Menu |
+| file-upload | File Dropzone, File Item, File Preview, Resource Item, Avatar Upload, Image Cropper, File Field |
+| indicators | Spinner, Status Dot, Kbd, Kbd Group, Shortcut Row, Loading Overlay, Service Status Row |
+| input | Input, Field, Textarea, Input Group, Number Input, Input OTP, Inline Edit, Signature Pad, Copy Field, Search Field, Inline Form, Currency Input, Phone Input, Duration Input, Check Item, Range Input |
+| list-and-tree | List Item, Tree Item, Sortable List Item, Scroll Area, Leaderboard Row, Log Row, Job Listing, Org Chart Node, Task Item |
+| navigation | Breadcrumb, Top Bar, Page Header, Nav Link, Navigation Menu, Split View, Navigation Menu Panel, Back Link, Skip Link |
+| pagination | Pagination, Pagination Compact, Load More |
+| popover | Popover, Command, Combobox panel, Command Dialog, Hover Card, search suggestions, Emoji Picker, App Launcher, Confirm Popover, Notification Center, Mini Cart |
+| progress-and-slider | Progress, Progress Ring, Slider, Usage Meter, Background Job |
+| rating | Rating, Review Item, Rating Summary, Feedback Widget, NPS Survey, CSAT Rating |
 | rich-text-editor | Rich Text Editor |
-| select | Select, Combobox, Checkbox, Radio, Switch, Setting Row, Tag Input, People Picker, Transfer List |
-| sidebar | Sidebar and its parts, Sidebar Double |
+| select | Select, Combobox, Checkbox, Radio, Switch, Setting Row, Tag Input, People Picker, Transfer List, Faceted Filter, Address Autocomplete, Select Option, Recurrence Picker, Fieldset |
+| sidebar | Sidebar and its parts, Sidebar Double, Org Switcher |
 | skeleton | Skeleton |
-| stepper | Step, Stepper |
-| table | Table cells, toolbar, inline edit, column resize |
-| tabs | Tabs, Tabs Line, Tabs Vertical, Toggle Group |
+| stepper | Step, Stepper, Shipment Tracker |
+| table | Table cells, toolbar, inline edit, column resize, Data Grid Toolbar, Empty State, Filter Bar, Table Cell, Table Group Row, Table Pagination, Table Toolbar, Page Toolbar, Saved View Item |
+| tabs | Tabs (default, line, vertical), Tab, Toggle Group |
 | toast | Toast |
 | tooltip | Tooltip |
 | tour | Coachmark, Hotspot, spotlight |
-| video-player | Video Player |
+| video-player | Video Player, Video Thumbnail, Audio Player |

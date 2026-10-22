@@ -18,8 +18,7 @@ Label (`ui/label`) → input → hint or error (`ui/caption`). The label is alwa
 - Use for free text longer than one line: notes, descriptions, messages, reasons.
 - Height shows the expected length (3-5 rows); it grows with content up to a max, then scrolls.
 - A limit is shown as a counter in the Field hint ("86/500"), turning to error past the limit.
-- Figma: `Textarea` (State × Content, like Input) inside a `Field` Control slot. Example
-  "textarea in field" on the Input page.
+- Figma: `Textarea` (State × Content, like Input) inside a `Field` Control slot.
 
 ## Input OTP (one-time codes)
 - For verification codes sent by SMS or email: 6 digits as 3 + 3, or 4.
@@ -31,14 +30,16 @@ Label (`ui/label`) → input → hint or error (`ui/caption`). The label is alwa
   `Input OTP` Length 4 or 6. Example "verify phone" on the Input OTP page.
 
 ## Input Group and Number Input
-- Input Group when a fixed prefix or suffix is part of the value: https://, .com, lei, kg, %, @.
+- Input Group when a fixed prefix or suffix is part of the value: https://, .com, EUR, kg, %, @.
   The addon is not editable and not part of what the user types; a Select (currency, country
   code) or a Button (Copy, Generate) can sit in the Start/End slots.
-- Icons inside the field stay on `Input` (Leading icon, Trailing slot).
+- Icons inside the field stay on `Input` (Show leading icon with the Leading icon swap, Trailing
+  slot).
 - Number Input for small integers (guests, seats, quantity): − / + plus typing; min/max disable
   the buttons. Money, decimals and large numbers: Input Group with a unit, right-aligned in tables.
 - Figma: `Input Addon` (start, end), `Input Group` (State; Start/End slots; Show start/end),
-  `Number Input` (State). Example "input groups" on the Input page.
+  `Number Input` (State × Size: default 36, sm 32 for cart lines and dense rows). Example "input
+  groups" on the Input page.
 
 ## Inline Edit
 - One value edited in place on a detail page (title, name, a short field). Several related
@@ -59,4 +60,7 @@ Label (`ui/label`) → input → hint or error (`ui/caption`). The label is alwa
 - Specialized inputs: `Copy Field` for values people copy (keys, links), `Search Field` for
   searching a list or the app, `Inline Form` for one field and one button (newsletter, coupon,
   invite). For typed values with a format: `Currency Input` (amount with ISO code), `Phone Input`
-  (country code, E.164), `Duration Input` (hours and minutes) and `Range Fields` (min and max).
+  (country code, E.164), `Duration Input` (hours and minutes) and `Range Input` (min and max).
+- New-password fields: `Password Strength` under the Field (Level and what is missing, in text)
+  and a `Requirement List` of `Check Item`s (Mark=check when met, dash while pending, x only after
+  a submit). See `patterns/auth.md`.

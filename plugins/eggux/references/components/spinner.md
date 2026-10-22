@@ -1,6 +1,6 @@
 # Spinner
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -9,11 +9,11 @@ Usage rules live in the guides linked under each component.
 | [Spinner](#spinner) | 6 | - |
 | [Loading Overlay](#loading-overlay) | 1 | - |
 
-On the Figma page: "Stress test / Loading Overlay", "Stress test / Spinner"
+On the Figma page: "Example / button loading", "Stress test / Loading Overlay", "Stress test / Spinner"
 
 ## Spinner
 
-Component set · 6 variants · default size 16 × 16
+Component set · 6 variants · default size 20 × 20
 
 Indeterminate loading (shadcn Spinner). Rotates linear, 1 s per turn (motion/ease/linear). Use for waits under ~3 s or inside buttons ("Saving…" + disabled); content loads use Skeleton, known progress uses Progress. Respect prefers-reduced-motion (pulse opacity instead).
 
@@ -58,15 +58,15 @@ Icons: loader-circle
 Tokens and styles:
 - Spacing and size: `spacing/4`, `spacing/5`, `spacing/8`
 
-Guides: [indicators](../../skills/build-ui/components/indicators.md), [action-feedback](../../skills/build-ui/patterns/action-feedback.md)
+Guides: [indicators](../../skills/build-ui/components/indicators.md)
 
-Code: shadcn `Skeleton`, `Spinner`, `Kbd`
+Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`)
 
 ## Loading Overlay
 
 Component · 1 variant · default size 480 × 240
 
-Covers one region while its content reloads (a table after a filter change, a chart after a period change), keeping the old content faded underneath so the layout does not jump. Spinner and a short label. First loads use Skeleton instead; actions that run long use Job Item. Resize to the region it covers.
+Covers one region while its content reloads (a table after a filter change, a chart after a period change), keeping the old content faded underneath so the layout does not jump. Spinner and a short label. First loads use Skeleton instead; actions that run long use Background Job. Resize to the region it covers.
 
 **Use for**
 
@@ -77,7 +77,7 @@ Covers one region while its content reloads (a table after a filter change, a ch
 **Not for**
 
 - First load of a page or a card: use Skeleton
-- Work that runs longer than about 10 seconds: use Job Item
+- Work that runs longer than about 10 seconds: use Background Job
 - One button or row that is busy: use Spinner
 - An upload with a known length: use Progress
 

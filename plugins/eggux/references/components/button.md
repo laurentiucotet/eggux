@@ -1,6 +1,6 @@
 # Button
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -14,11 +14,11 @@ Usage rules live in the guides linked under each component.
 | [Action Bar](#action-bar) | 3 | Leading, Actions |
 | [Social Share](#social-share) | 1 | - |
 
-On the Figma page: "Example / form footer", "Example / in navbar", "Example / in navbar mobile", "Example / record actions", "Example / split button open", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Social Share", "Stress test / Split Button"
+On the Figma page: "Example / AI action", "Example / form footer", "Example / record actions", "Example / scroll to top", "Example / sign-in providers", "Example / split button open", "Example / wishlist", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Social Share", "Stress test / Split Button"
 
 ## Button
 
-Component set · 90 variants · default size 69 × 32
+Component set · 90 variants · default size 77 × 36
 
 shadcn Button. One "default" (primary) per view; "destructive" only inside a confirmation step. Label is a verb. Usage: eggux build-ui/components/button.md State=loading: spinner instead of the leading icon, same width; blocks repeat clicks.
 
@@ -38,9 +38,9 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 
 **Anatomy**
 
-1. Leading icon (optional, Leading icon type)
+1. Leading icon (optional, Leading icon)
 2. Label
-3. Trailing icon (optional, Trailing icon type)
+3. Trailing icon (optional, Trailing icon)
 4. State=loading: a spinning loader replaces the leading icon; width stays
 
 **Content and behavior**
@@ -68,10 +68,10 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Button |
-| Leading icon | boolean | false |
-| Leading icon type | instance swap | Icon/plus |
-| Trailing icon | boolean | false |
-| Trailing icon type | instance swap | Icon/chevron-right |
+| Show leading icon | boolean | false |
+| Leading icon | instance swap | Icon/plus |
+| Show trailing icon | boolean | false |
+| Trailing icon | instance swap | Icon/chevron-right |
 
 Icons: chevron-right, loader-circle, plus
 
@@ -82,9 +82,9 @@ Tokens and styles:
 - Text styles: `ui/label`
 - Effects: `shadow/xs`
 
-Guides: [button](../../skills/build-ui/components/button.md), [action-feedback](../../skills/build-ui/patterns/action-feedback.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
+Guides: [button](../../skills/build-ui/components/button.md), [action-feedback](../../skills/build-ui/patterns/action-feedback.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md), [auth](../../skills/build-ui/patterns/auth.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
 
-Code: shadcn `Button` (`size="icon"`) (`Leading icon` → icon child before the label)
+Code: shadcn `Button` (`variant`, `size`) (`Show leading icon` → icon child before the label; State=loading → spinner + `disabled`)
 
 ## Button Icon
 
@@ -141,9 +141,9 @@ Tokens and styles:
 - Radius: `radius/md`
 - Effects: `shadow/xs`
 
-Guides: [button](../../skills/build-ui/components/button.md), [carousel](../../skills/build-ui/components/carousel.md)
+Guides: [button](../../skills/build-ui/components/button.md), [carousel](../../skills/build-ui/components/carousel.md), [navigation](../../skills/build-ui/components/navigation.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: shadcn `Button` (`size="icon"`) (`Leading icon` → icon child before the label)
+Code: shadcn `Button size="icon"` with `aria-label`, wrapped in `Tooltip` (Same `variant` values as Button; tooltip text = aria-label)
 
 ## Button Group
 
@@ -205,8 +205,8 @@ One segment of a Button Group: first (left radius), middle, last (right radius).
 |---|---|---|
 | Label | text | Edit |
 | Show label | boolean | true |
-| Icon | boolean | false |
-| Icon type | instance swap | Icon/pencil |
+| Show icon | boolean | false |
+| Icon | instance swap | Icon/pencil |
 
 Icons: pencil
 
@@ -217,6 +217,8 @@ Tokens and styles:
 - Text styles: `ui/label`
 
 Guides: [button](../../skills/build-ui/components/button.md)
+
+Code: shadcn `ButtonGroup` or custom flex + `DropdownMenu`
 
 ## Split Button
 

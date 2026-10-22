@@ -18,10 +18,13 @@ Usage guidelines only. Visual specs live in the Figma components.
 
 ## Navbar (marketing)
 - Logo, 4-6 links (chevron when it opens a menu), sign in + one primary CTA.
+- The brand is `Logo` (Type full; wordmark or mark where space is tight, mark in a collapsed
+  Sidebar). Its symbol lives once in `Logo Mark` on the Brand page; every Logo follows.
 - On mobile the links move into a Sheet; the CTA stays visible.
 
 ## Figma
-Navigation page: Breadcrumb Item, Breadcrumb, Top Bar, Page Header, Nav Link. Blocks /
+Navigation page: `Breadcrumb Item` (Show separator off on the last), `Breadcrumb`, `Top Bar`
+(Show sidebar trigger), `Page Header`, `Nav Link` (Show chevron when it opens a menu). Blocks /
 Navigation: Navbar, Footer. Page Shells use them.
 
 ## Navigation Menu (mega menu)
@@ -42,6 +45,7 @@ Navigation: Navbar, Footer. Page Shells use them.
 
 ## Related components
 - `Back Link` ("All invoices") sits above the title of a record page opened from a list; deeper
-  hierarchies use Breadcrumb. Every page starts with a `Skip Link`; long docs and articles get
-  `Scroll To Top`. List pages put `Page Toolbar` (search, Filters, View Switcher, primary action)
-  between the title and the list.
+  hierarchies use Breadcrumb. Every page starts with a `Skip Link`; long docs and articles get a
+  scroll to top button: `Button Icon` outline, Size lg, arrow-up, fixed bottom right (example
+  "scroll to top" on the Button page). List pages put `Page Toolbar` (search, Filters, a
+  `Toggle Group` view switch, primary action) between the title and the list.

@@ -29,56 +29,56 @@ Domain-specific needs become Field Presets or Blocks.
 | AI Chat | `Attachment` | Type: file, image. State: default, uploading, error | Name, Meta, Show remove |
 | AI Chat | `User Message` | - | Text, Show actions (copy, edit). Bubble hugs, max 576 |
 | AI Chat | `Assistant Message` | State: default, streaming, error | Content (native slot), Show actions (copy, regenerate, good, bad) |
-| AI Chat | `Reasoning` | State: running, collapsed, expanded | Label, Details |
-| AI Chat | `Tool Call` | Status: running, done, error, approval | Title, Detail; approval has Deny / Approve |
+| AI Chat | `Reasoning` | State: running, collapsed, expanded | Label, Status, Details |
+| AI Chat | `Tool Call` | Status: running, done, error, approval | Title, Description; approval has Deny / Approve |
 | AI Chat | `Source Item` | - | Number, Title, Domain |
 | AI Chat | `Sources` | - | Label, Show list; Items (native slot) |
 | AI Chat | `Citation` | - | Label |
-| AI Chat | `Suggestion` | Layout: chip, card | Label, Description, Icon (card) |
-| AI Chat | `Model Selector` | State: default, hover, focus | Model. Sparkles + name + chevron; opens Model Options |
+| AI Chat | `Prompt Suggestion` | Layout: chip, card | Label, Description, Icon (card) |
+| AI Chat | `Model Picker` | State: default, hover, focus | Model. Sparkles + name + chevron; opens Model Options |
 | AI Chat | `Model Option` | Selected: false, true. State: default, hover | Name, Description, Show badge; Badge exposed |
 | AI Chat | `Context Chip` | Type: file, record, person | File, Record, Person (one text property per type, truncates at 180), Show remove |
 | AI Chat | `Voice Recorder` | State: recording, processing | Cancel, recording dot, time, waveform, send; Transcribing… |
 | AI Chat | `Chat History Item` | State: default, hover, active | Title (1 line), Time, Show time, Pinned; menu on hover |
 | AI Chat | `Response Feedback` | - | Title, reason Chips, Textarea (Show details), Note, Cancel / Send |
-| AI Chat | `Plan Step` | Status: pending, running, done, error | Title, Detail, Error, Show detail, Time, Show time |
+| AI Chat | `Plan Step` | Status: pending, running, done, error | Title, Description, Error, Show detail, Time, Show time |
 | AI Chat | `Agent Plan` | - | Title, Status, Footer, Show stop, Show footer; Progress exposed; Steps (native slot) |
 | AI Chat | `Artifact Card` | Type: document, chart, table. State: default, hover | <Type> title and meta per type; Open |
 | AI Chat | `AI Summary` | State: ready, generating, error | Title, Meta, Show feedback, Show disclaimer; Content (native slot) |
-| AI Chat | `AI Suggestion` | State: suggested, accepted | Label, Value, Reason; Accept / Dismiss; accepted shows the AI label |
+| AI Chat | `AI Suggestion` | State: suggested, accepted | Label, Value, Reason, Note; Accept / Dismiss; accepted shows the AI label |
 | AI Chat | `AI Notice` | Type: label, disclaimer | Label, Disclaimer |
-| Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link. Size: sm, default, lg. State: default, hover, focus, disabled, loading (spinner instead of the leading icon) | Label; Leading icon, Trailing icon (boolean + swap) |
+| Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link. Size: sm, default, lg. State: default, hover, focus, disabled, loading (spinner instead of the leading icon) | Label; Show leading icon + Leading icon (swap), Show trailing icon + Trailing icon (swap) |
 | Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. Size: sm 32, default 36, lg 40. State: default, hover, focus, disabled | Icon (swap) |
-| Button | `Button Group Item` | Position: first, middle, last. State: default, hover, focus, disabled | Label, Show label, Icon + Icon type |
+| Button | `Button Group Item` | Position: first, middle, last. State: default, hover, focus, disabled | Label, Show label, Show icon + Icon (swap) |
 | Button | `Button Group` | - | Items (native slot) |
 | Button | `Action Bar` | Align: end, start, center | Show divider, Show leading; Leading, Actions (native slots). The row of buttons that ends a form, a step or a hero |
 | Button | `Split Button` | Variant: default, outline | Label; chevron opens a Menu |
-| Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info. Shape: rounded, pill | Label; Icon (boolean + swap); Dot; Count + Count value |
+| Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info. Shape: rounded, pill | Label; Show icon + Icon (swap); Show dot; Show count + Count value |
 | Badge | `Badge Count` | Variant: default, secondary, destructive, outline | Count (numeric bubble for nav items and icon buttons) |
 | Badge | `Status Dot` | Status: success, warning, error, info, neutral | Label, Show label |
-| Badge | `Tag List` | - | Show more; Tags (native slot) of Badges + "+N" Badge (exposed). A few tags on one line |
-| Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Leading icon, Remove |
-| Avatar | `Avatar` | Type: initials, image. Size: xs 20, sm 24, default 32, lg 40, xl 48. Shape: circle (people), square (companies, apps) | Initials, Status (online dot). Photo = image fill on the `image` layer |
+| Badge | `Badge List` | - | Show more; Tags (native slot) of Badges + "+N" Badge (exposed). A few tags on one line |
+| Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Show leading icon + Leading icon (swap), Show remove |
+| Avatar | `Avatar` | Type: initials, image. Size: xs 20, sm 24, default 32, lg 40, xl 48. Shape: circle (people), square (companies, apps) | Initials, Show status (online dot). Photo = image fill on the `image` layer |
 | Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar; Label + Show label ("Maintained by 3 analysts") |
-| Avatar | `Byline` | Size: sm, default, lg | Name, Detail, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
+| Avatar | `Byline` | Size: sm, default, lg | Name, Description, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
-| Input | `Input` | State: default, focus, error, disabled. Content: placeholder, filled | Value; Leading icon (boolean + swap); Trailing (native slot) + Show trailing |
-| Input | `Password Strength` | Strength: empty, weak, fair, good, strong | Meter + message under a new-password field |
+| Input | `Input` | State: default, focus, error, disabled. Content: placeholder, filled | Value; Show leading icon + Leading icon (swap); Trailing (native slot) + Show trailing |
+| Input | `Password Strength` | Level: empty, weak, fair, good, strong | Meter + message under a new-password field |
 | Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Control (native slot, default Input) |
 | Input | `Textarea` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Min height 64, grows with content; put it in a Field |
 | Input | `Input Addon` | Position: start, end | Text |
 | Input | `Input Group` | State: default, focus, error, disabled | Value, Show start, Show end; Start, End (native slots) |
-| Input | `Number Input` | State: default, focus, error, disabled | Value; − / + steppers |
-| Input | `Inline Edit` | State: view, hover, editing, saving, error | Value. Pencil on hover; Input with check and x while editing |
+| Input | `Number Input` | Size: default 36, sm 32. State: default, focus, error, disabled | Value; − / + steppers. sm is the quantity in Line Item and dense rows |
+| Input | `Inline Edit` | State: view, hover, editing, saving, error | Value, Error. Pencil on hover; Input with check and x while editing |
 | Input | `Signature Pad` | State: empty, signed | Pad (clips the stroke), baseline, Clear, Type instead; signer and time when signed |
 | Input OTP | `OTP Slot` | Position: first, middle, last. State: empty, filled, active, error | Digit |
 | Input OTP | `Input OTP` | Length: 4, 6 | Groups of OTP Slots (3 + 3 with separator) |
 | Kbd | `Kbd` | - | Key |
 | Kbd | `Kbd Group` | - | Keys (native slot) |
 | Spinner | `Spinner` | Size: sm 16, default 20, lg 32. Tone: muted, default | Loader icon; rotate in code |
-| File Upload | `File Dropzone` | State: default, drag-over, error, disabled | Hint; Browse button exposed |
-| File Upload | `File Item` | State: uploading, complete, error | File name; Progress, cancel/remove, Retry |
-| File Upload | `Resource Item` | - | Icon (swap), Name, Meta, Divider; Actions (native slot). A file people download or open |
+| File Upload | `File Dropzone` | State: default, drag-over, error, disabled | Title (not in drag-over), Hint, Error (error state); Browse button exposed |
+| File Upload | `File Item` | State: uploading, done, error | File name; Progress, cancel/remove, Retry |
+| File Upload | `Resource Item` | - | Icon (swap), Name, Meta, Show divider; Actions (native slot). A file people download or open |
 | File Upload | `File Preview` | State: ready, loading, unavailable | File name, Meta; zoom, download, close; page thumbnails; page count. Page area clips |
 | Progress | `Progress` | Tone: default, success, warning, error. Value: 0, 25, 50, 75, 100 | Resize the indicator for other values |
 | Progress | `Progress Ring` | Size: sm, default, lg. Value: 0, 25, 50, 75, 100 | Show label (percent inside on default and lg) |
@@ -86,18 +86,18 @@ Domain-specific needs become Field Presets or Blocks.
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
-| Selection controls | `Setting Row` | - | Title, Description, Show description, Divider; Control (native slot: Switch, Select, Button) |
+| Selection controls | `Setting Row` | - | Title, Description, Show description, Show divider; Control (native slot: Switch, Select, Button) |
 | Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Clips its content; thin scrollbar on border/default |
 | Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
 | Select | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
-| Select | `Tag` | State: default, disabled | Label, Remove |
-| Select | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Chevron |
-| Select | `Person Option` | Selected: false, true. State: default, hover | Name, Detail, Show detail; Checkbox and Avatar (exposed) |
+| Select | `Tag` | State: default, disabled | Label, Show remove |
+| Select | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Show chevron |
+| Select | `Person Option` | Selected: false, true. State: default, hover | Name, Description, Show detail; Checkbox and Avatar (exposed) |
 | Select | `People Picker` | State: closed, open | Placeholder; Selected, Results (native slots); search, invite by email |
 | Select | `Transfer List` | - | Left title, Right title; Available, Selected (native slots of Facet Options); counts, search, move buttons |
 | Popover | `Popover` | - | Content (native slot). 288 wide, popover tokens, shadow/md |
 | Popover | `Command Input` | - | Value. Search field with bottom divider |
-| Popover | `Command` | - | Command Input (exposed), Items (native slot), Empty, Show items. Base for Combobox and ⌘K |
+| Popover | `Command` | - | Command Input (exposed), Items (native slot), Show empty, Show items. Base for Combobox and ⌘K |
 | Popover | `Hover Card` | - | Content (native slot), 320 wide |
 | Popover | `Command Dialog` | - | Command Input (exposed), Items (native slot), footer with key hints. 560 wide |
 | Calendar | `Calendar Day` | State: default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end | Day |
@@ -110,7 +110,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Chart | `Donut Chart` | Type: donut, pie | Total, Total label; 4 segments (arcData) and legend with values |
 | Chart | `Bar Chart Horizontal` | - | Ranked rows: label, bar (share of track), value |
 | Chart | `Heatmap` | - | 7 × 12 grid, 5 opacity steps of chart/1, legend Fewer → More |
-| Chart | `Gauge` | Status: on track, at risk, off track | Label; arc with value, target tick, written status |
+| Chart | `Gauge` | Status: on-track, at-risk, off-track | Label; arc with value, target tick, written status |
 | Chart | `Treemap` | - | Six tinted cells with colored edge, labels inside when they fit |
 | Chart | `Funnel Chart` | - | 4 stages: name, count, bar, conversion; overall rate. Min width 480 |
 | Chart | `Scatter Chart` | Series: one, two | X title, Y title; points on chart/1, chart/2; axes and gridlines |
@@ -124,14 +124,14 @@ Domain-specific needs become Field Presets or Blocks.
 | Chart | `Chart Card` | - | Title, Description, Insight, Note, Show legend, Show footer; Actions, Chart (native slots); Legend exposed |
 | Code Block | `Code Block` | - | Language, Code, Show header; Copy button |
 | Editor | `Rich Text Editor` | State: default, focus | Toolbar (heading, bold, italic, underline, lists, quote, link); Content (native slot), Show footer (hint + counter) |
-| Chat | `Comment` | Type: comment, reply. State: default, resolved | Name, Time, Text, Show actions; Avatar exposed |
-| Chat | `Comment Composer` | - | Avatar, Textarea, attach, ⌘↵ hint, Comment button |
+| Editor | `Comment` | Type: comment, reply. State: default, resolved | Name, Time, Text, Show actions; Avatar exposed |
+| Editor | `Comment Composer` | - | Avatar, Textarea, attach, ⌘↵ hint, Comment button |
 | Chat | `Chat Message` | Direction: incoming, outgoing | Text, Time, Show meta (time + delivery status) |
 | Chat | `Typing Indicator` | - | Three dots + "… is typing" |
 | Chat | `Chat Composer` | - | Attach, message field, Send |
 | Quote | `Quote` | Variant: default (left rule), pull (centered) | Quote, Name, Role, Show avatar, Show attribution. A quotation in running content |
 | Section Heading | `Section Heading` | Size: lg (h2), default (h3), sm (h4) | Title, Description, Overline, Show overline, Show description, Show actions; Actions (native slot). Opens a section of an app or content page |
-| Feature Item | `Feature Item` | Layout: stacked, inline, centered | Title, Description, Icon (swap), Show description, Show link. One benefit: icon tile, title, text |
+| Feature Item | `Feature Item` | Layout: stacked, inline, centered. Marker: icon, number | Title, Description, Number, Icon (swap), Show description, Show link. One benefit, capability or step: icon tile or step number, title, text |
 | Rating | `Rating` | Size: sm, default. Value: 0-5 | Show value, Show count, Count. Value text edited per instance |
 | Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); Carousel Arrow (outline) and Carousel Indicator (dots); viewport clips |
 | Carousel | `Carousel Arrow` | Variant: outline, overlay. Direction: previous, next. State: default, hover, focus, disabled | Round 36 (outline) or 40 with shadow (overlay) |
@@ -139,26 +139,26 @@ Domain-specific needs become Field Presets or Blocks.
 | Carousel | `Carousel Thumbnail` | State: default, hover, active | 64 square, Image Placeholder inside, 2 px ring when active |
 | Carousel | `Carousel Slide` | Type: caption, overlay | Title, Description (caption); Headline, Text, action (overlay); Show description, Show action |
 | Carousel | `Carousel Gallery` | - | Stage (image layer, overlay arrows, counter, open viewer) + Thumbnails slot; Show thumbnails |
-| Carousel | `Carousel Hero` | - | 1440 × 560 banner: image, scrim, Overline, Headline, Text, action, bars, arrows |
+| Carousel | `Carousel Hero` | - | 1440 × 560 banner: image, scrim, Overline, Title, Text, action, bars, arrows |
 | Carousel | `Lightbox` | - | 1280 × 800 viewer on video/* tokens: Counter, Title, download, close, arrows, thumbnails |
 | Color Picker | `Color Picker` | - | Saturation area, hue slider, hex Input Group with opacity; Swatches (native slot) |
 | Cookie Consent | `Cookie Consent` | Type: banner, card, preferences | Title, Body. Accept all and Reject all with equal weight; Customize; categories with Switches, Necessary always on |
 | Kanban | `Kanban Card` | State: default, hover, dragging | Title, Due date, Show labels, Show meta; assignee exposed |
 | Kanban | `Kanban Column` | - | Title, Cards (native slot); count exposed |
-| Scheduler | `Gantt Bar` | Status: planned, in progress, done, blocked | Label; tinted bar, colored edge, progress line, status icon |
+| Scheduler | `Gantt Bar` | Status: planned, in-progress, done, blocked | Label; tinted bar, colored edge, progress line, status icon |
 | Scheduler | `Gantt Milestone` | - | Label; diamond on the date |
-| Scheduler | `Calendar Event` | Size: default, compact. Category: 1-4 | Title, Time |
+| Scheduler | `Calendar Event` | Size: default, sm. Series: 1-4 | Title, Time |
 | Pagination | `Pagination Item` | Type: page, previous, next, ellipsis. State: default, hover, active, focus, disabled | Label (page) |
 | Pagination | `Pagination` | - | Items (native slot) |
 | Pagination | `Pagination Compact` | - | Label ("Page 2 of 12"); previous and next Button Icon sm (exposed) |
-| Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Connector |
+| Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Show connector |
 | Stepper | `Stepper` | - | Steps (native slot) |
-| Description List | `Description List Item` | Orientation: horizontal, vertical | Label, Divider; Value (native slot) |
+| Description List | `Description List Item` | Orientation: horizontal, vertical | Label, Show divider; Value (native slot) |
 | Description List | `Meta Item` | - | Icon (swap, 16, muted), Label, Show icon. One fact: date, place, people, contact |
-| Description List | `Figure` | Layout: stacked, inline. Size: default, lg | Value, Label, Source, Show source, Divider. A number with what it counts; no trend |
+| Description List | `Figure` | Layout: stacked, inline. Size: default, lg | Value, Label, Source, Show source, Show divider. A number with what it counts; no trend |
 | Description List | `Summary Row` | Variant: default, discount, total | Label, Value. One line of a money breakdown, amount right aligned |
-| Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive | Title, Time, Description, Show description, Icon (swap), Connector; Content (native slot) + Show content |
-| Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Leading icon, Shortcut + Shortcut text, Checked, Description + Show description, Submenu (chevron) |
+| Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive | Title, Time, Description, Show description, Icon (swap), Show connector; Content (native slot) + Show content |
+| Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Show leading icon + Leading icon (swap), Show shortcut + Shortcut text, Checked, Description + Show description, Show submenu (chevron) |
 | Menu | `Menu Label` | - | Label |
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
 | Menu | `Menubar Trigger` | State: default, hover, open | Label |
@@ -166,37 +166,37 @@ Domain-specific needs become Field Presets or Blocks.
 | Mobile | `Mobile Header` | Type: app, detail | Title; Leading, Trailing (native slots) |
 | Mobile | `Bottom Nav Item` | State: default, active | Label, Icon (swap) |
 | Mobile | `Bottom Nav` | - | Items (native slot), 3-5 items, safe-area padding |
-| Tabs | `Tab` | Style: pill, line, vertical. State: default, active, focus, disabled | Label, Show count (Badge Count exposed), Icon (swap) + Show icon |
-| Tabs | `Tabs`, `Tabs Line`, `Tabs Vertical` | - | Tabs (native slot of Tab instances); Tabs Vertical: 200 wide column of Tab Style=vertical |
-| Toggle Group | `Toggle Group Item` | State: off, hover, on, focus, disabled | Label, Show label, Icon + Icon type |
-| Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels |
+| Tabs | `Tab` | Variant: default, line, vertical. State: default, active, focus, disabled | Label, Show count (Badge Count exposed), Icon (swap) + Show icon |
+| Tabs | `Tabs` | Variant: default, line, vertical | Tabs (native slot of Tab instances with the same Variant). default: pill tabs in a card; line: underlined page sections; vertical: a 200 wide column for settings |
+| Toggle Group | `Toggle Group Item` | State: default, hover, selected, focus, disabled | Label, Show label, Show icon + Icon (swap) |
+| Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels. Theme, view and billing period switches are examples on this page, not components |
 | List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing. Leading, Trailing (native slots) |
-| List & Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Checkbox (exposed), Icon + Icon type, Count |
+| List & Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Show checkbox (Checkbox exposed), Show icon + Icon (swap), Show count |
 | List & Tree | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description, Show leading; grip handle; Leading (native slot, 1:1 image 48), Trailing (native slot) |
 | Tooltip | `Tooltip` | Side: top, bottom, left, right | Label (wraps at 280), Title + Show title (rich), Show shortcut (Kbd exposed) |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
-| Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner | Title, Description, Show description, Actions (native slot) + Show actions, Dismiss |
-| Toast | `Toast` | Type: default, success, error, warning, info, loading | Show description, Action (nested Button exposed), Close button (off by default). Text edited per instance |
-| Dialog | `Dialog Header` | - | Title, Description, Show description, Close. Media (native slot) + Show media |
+| Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner | Title, Description, Show description, Actions (native slot) + Show actions, Show close |
+| Toast | `Toast` | Type: default, success, error, warning, info, loading | Show description, Show action (nested Button exposed), Show close (off by default). Title and description text edited per instance (no TEXT properties) |
+| Dialog | `Dialog Header` | - | Title, Description, Show description, Show close. Media (native slot) + Show media |
 | Dialog | `Dialog Footer` | - | Actions (native slot) |
 | Dialog | `Dialog` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer. Width sm 384, default 512, lg 672, xl 896 (resize) |
 | Dialog | `Alert Dialog` | Type: confirm, destructive, acknowledge | Header, Footer (native slots). Status icon in the header Media slot |
 | Drawer | `Sheet` | Side: right, left | Side drawer, full height, 384 wide (480 forms, 640 record or preview). Header, Content, Footer (native slots) from Dialog Header/Footer |
-| Drawer | `Drawer` | - | Bottom drawer, top radius xl. Handle; Header (no close), Content, Footer (native slots, stacked full-width buttons) |
+| Drawer | `Drawer` | - | Bottom drawer, top radius xl. Show handle; Header (no close), Content, Footer (native slots, stacked full-width buttons) |
 | Drawer | `Side Panel` | State: expanded (320), collapsed (48) | Inline aside, no overlay. Title, Collapsible, Show footer; Actions, Content, Footer (native slots) |
 | Card | `Card Header` | - | Title, Description, Show description, Show action. Action (native slot) |
 | Card | `Card Footer` | - | Actions (native slot) |
 | Card | `Card` | Variant: default, outline, muted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
-| Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Footnote, Show footer. Change badge and trend line edited per instance |
-| Card | `Option Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description, Icon + Icon type. Selectable card with a radio |
-| Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Subtitle (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions, Show people; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
+| Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Trend text, Footnote, Show footer. Trend line edited per instance |
+| Card | `Option Card` | Control: radio, checkbox. State: default, hover, focus, selected, disabled | Title, Description, Show description, Show icon + Icon (swap). Selectable card: a radio for one choice, a checkbox for several; the whole card is the target |
+| Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Description (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions, Show people; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
 | Card | `Person Card` | Layout: vertical (280), horizontal (400) | Name, Role, Organization, Show organization, Show tags, Show contact, Show actions; Avatar, Tags, Contact (Meta Items), Actions (native slots) |
 | Card | `Event Card` | Layout: horizontal (640), vertical (352, image) | Title, Show tags, Show actions, Show image; Date Tile (exposed); Tags, Meta (Meta Items), Actions (native slots) |
 | Card | `Date Tile` | Size: default (56), sm (44) | Month, Day. Part of Event Card |
-| Card | `Progress Card` | Status: on track, at risk, off track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
+| Card | `Progress Card` | Status: on-track, at-risk, off-track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
 | Card | `Post Card` | Layout: vertical, horizontal, compact | Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact: 1:1 image 64); category Badge exposed. Compact = title on 2 lines + meta, for related lists |
 | Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
-| Table | `Table Cell Link`, `Table Cell Date`, `Table Cell File`, `Table Cell Tags`, `Table Cell Avatars` | - | Content for body cells: link (underlined), date (Show time), file (icon, name, size), tags (Tag List), people (Avatar Group sm) |
+| Table | `Table Cell Link`, `Table Cell Date`, `Table Cell File`, `Table Cell Badges`, `Table Cell Avatars` | - | Content for body cells: link (underlined), date (Show time), file (icon, name, size), badges (Badge List), people (Avatar Group sm) |
 | Table | `Table Header Label` | Sort: off, sortable, ascending, descending. Align: left, right | Label |
 | Table | `Table Cell Text` | Style: default, strong, muted. Align: left, right | Text |
 | Table | `Table Cell Stack` | - | Title, Description |
@@ -215,27 +215,27 @@ Domain-specific needs become Field Presets or Blocks.
 | Filters | `Filter Chip` | Type: empty (dashed "+ Field"), active. State: default, hover, focus | Field, Value (truncates at 200), Show remove |
 | Filters | `Faceted Filter` | - | Popover: Command Input, Items (native slot of Facet Options), Clear filters; Show footer |
 | Filters | `Facet Option` | Checked: false, true. State: default, hover | Label, Count, Show count |
-| Filters | `Filter Section` | Expanded: true, false | Title, Show selected count, Show more; Options (native slot). For filter side panels |
-| Approvals | `Approval Step` | Status: approved, current, rejected, upcoming | Name, Role, Time, Comment, Show comment, Connector |
+| Filters | `Filter Section` | State: expanded, collapsed | Title, Show selected count, Show more; Options (native slot). For filter side panels |
+| Approvals | `Approval Step` | Status: approved, current, rejected, upcoming | Name, Role, Time, Comment, Show comment, Show connector |
 | Audit | `Change Item` | - | Field, Old, New |
 | Save Bar | `Save Bar` | State: default, saving, error | Sticky bar with message, Discard, Save changes |
 | Sidebar | `Org Switcher` | - | Organization list with role and plan, search, create, manage |
-| Sidebar | `Sidebar Item` | Level: 1, 2 (sub-page, no icon; expanded only). Mode: expanded, collapsed. State: default, hover, active, disabled | Label, Icon (swap), Badge (Badge Count, exposed), Chevron |
+| Sidebar | `Sidebar Item` | Level: 1, 2 (sub-page, no icon; expanded only). Mode: expanded, collapsed. State: default, hover, active, disabled | Label, Icon (swap), Show badge (Badge Count, exposed), Show chevron |
 | Sidebar | `Sidebar Group Label` | - | Label |
 | Sidebar | `Sidebar Group` | Mode: expanded, collapsed | Items (native slot), Show label |
-| Sidebar | `Sidebar Workspace`, `Sidebar User` | Mode: expanded, collapsed | Title, Subtitle |
+| Sidebar | `Sidebar Workspace`, `Sidebar User` | Mode: expanded, collapsed | Title, Description |
 | Sidebar | `Sidebar` | Mode: expanded (256), collapsed (48) | Header, Content, Footer (native slots) |
 | Sidebar | `Sidebar Double` | Mode: expanded (288: rail 48 + panel 240), collapsed (48) | Panel title; Rail header, Rail, Rail footer, Panel actions, Panel (native slots) |
-| Navigation | `Breadcrumb Item` | Type: link, current, ellipsis. State: default, hover (link) | Label, Separator |
+| Navigation | `Breadcrumb Item` | Type: link, current, ellipsis. State: default, hover (link) | Label, Show separator |
 | Navigation | `Breadcrumb` | - | Items (native slot) |
-| Navigation | `Top Bar` | - | Sidebar trigger; Breadcrumb, Actions (native slots) |
+| Navigation | `Top Bar` | - | Show sidebar trigger; Breadcrumb, Actions (native slots) |
 | Navigation | `Page Header` | - | Title (heading/h3), Description, Show description; Actions (native slot) |
-| Navigation | `Nav Link` | State: default, hover, active | Label, Chevron (marketing navbar) |
+| Navigation | `Nav Link` | State: default, hover, active | Label, Show chevron (marketing navbar) |
 | Navigation | `Navigation Menu Link` | State: default, hover | Title, Description, Show icon, Icon (swap) |
 | Navigation | `Navigation Menu Panel` | - | Links, Featured (native slots), Show featured |
-| Navigation | `TOC Item` | Level: 1, 2. State: default, hover, active | Label |
+| Navigation | `Table of Contents Item` | Level: 1, 2. State: default, hover, active | Label |
 | Navigation | `Table of Contents` | - | Items (native slot) |
-| Accordion | `Accordion Item` | Density: default, compact. State: collapsed, expanded | Title, Leading icon + type, Show meta; Meta, Content (native slots) |
+| Accordion | `Accordion Item` | Size: default, sm. State: collapsed, expanded | Title, Show leading icon + Leading icon (swap), Show meta; Meta, Content (native slots) |
 | Accordion | `Accordion` | - | Items (native slot) |
 | Image | `Map` | - | Label, Address, Show label, Show controls, Show pin. Roads scale, pin stays centered; put a static map image as fill in production |
 | Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance. Ratio locked: FILL keeps the height in proportion |
@@ -286,7 +286,7 @@ Domain-specific needs become Field Presets or Blocks.
 | Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
 | Empty State | `Empty State` | Size: default, sm | Title, Description, Show description, Icon (swap), Show actions; Actions (native slot) |
 | Results | `Block / Result` | Type: not-found, server-error, no-access, maintenance, success | Show code; Actions (native slot) |
-| Commerce | `Product Card` | State: default, sale, sold-out | Name, Variant text, Show action, Show wishlist |
+| Commerce | `Product Card` | State: default, sale, sold-out | Name, Variant text, Price, Old price, Show action, Show wishlist |
 | Commerce | `Block / Product Detail` | - | Gallery, options (Toggle Group), quantity, add to cart, details accordion |
 | Commerce | `Block / Order Summary` | - | Lines, discount code, totals, pay button, trust line |
 | Enterprise | `Block / Filter Builder`, `/ Approval Request`, `/ Audit Log` | - | Advanced filters popover; request with details and approval chain; read-only event log with field changes |
@@ -296,24 +296,22 @@ Domain-specific needs become Field Presets or Blocks.
 | AI | `Block / AI Assistant Panel`, `/ Inline AI` | - | 400-wide copilot panel with context; inline popover with actions and a result to accept |
 | Accordion | `Show More` | State: collapsed, expanded | Text. A long text cut to 3 lines with a Show more / Show less toggle. |
 | Admin | `API Key Row` | - | Name, Meta, Key. One API key or token in developer settings: name, scope, who created it, last use, the masked key, copy and a menu. |
-| Admin | `Integration Card` | Status: available, connected, error | Name, Category, Description, Logo. One app or service in an integrations directory or settings: logo, name, category, a one-line value and its state. |
+| Admin | `Integration Card` | Status: available, connected, error | Name, Vendor, Category, Description, Logo. One app or service in an integrations directory or settings: logo, name, category, a one-line value and its state. |
 | Admin | `Org Chart Node` | State: default, selected, vacant | Name, Role, Reports. One person or open role in an org chart: photo, name, title and the number of direct reports. |
 | Admin | `Permission Row` | Type: row, header | Title, Description. One permission across roles in a role matrix: name, what it allows, and one checkbox per role. |
-| Admin | `SSO Button` | Provider: google, microsoft, saml, email | Sign-in with an identity provider on sign-in and sign-up screens: Google, Microsoft, company SSO (SAML/OIDC) or email. |
 | Admin | `Session Row` | Device: desktop, mobile | Name, Meta. One signed-in device in security settings: device and browser, approximate location, partial IP, last active, and Sign out. |
-| AI Chat | `AI Button` | Variant: default, outline, ghost. State: default, loading | Label. Starts an AI action from where people work: summarize, draft, explain, fill. Sparkles icon and a verb that says what happens. |
 | AI Chat | `AI Loading` | - | Status, Progress, Show progress, Show stop. Placeholder while AI writes an answer or a summary in place: what it is doing now, shimmer lines in the shape of the result, step and time left, Stop. |
 | AI Chat | `Confidence Indicator` | Level: high, medium, low | Show info. Says how sure the AI is about an extracted value, a match or an answer: high, medium or low. |
-| AI Chat | `Suggestion Review Bar` | - | Count, Show bulk actions. Floating bar for reviewing AI edits in a document or form one by one: position, previous and next, accept or reject, and accept or reject all. |
-| Alert | `Service Status Row` | Status: operational, degraded, outage, maintenance | Service, Uptime, Show uptime. One service on a status page or an admin health panel: name, uptime for the last 90 days and the current status in words with a dot. |
+| AI Chat | `AI Review Bar` | - | Count, Show bulk actions. Floating bar for reviewing AI edits in a document or form one by one: position, previous and next, accept or reject, and accept or reject all. |
+| Alert | `Service Status Row` | Status: operational, degraded, outage, maintenance | Name, Uptime, Show uptime. One service on a status page or an admin health panel: name, uptime for the last 90 days and the current status in words with a dot. |
 | Audit | `Release Note Item` | Type: new, improved, fixed | Title, Text, Date, Show image, Show link. One entry of a changelog or What's new: type badge, version and date, a title that says the benefit, two sentences on how to use it, optional screenshot and link. |
-| Audit | `Version Item` | State: current, past, selected | Meta, Summary. One saved version in a version history panel: who, when, what changed, and Restore. |
+| Audit | `Version Item` | State: current, past, selected | Version, Meta, Summary. One saved version in a version history panel: who, when, what changed, and Restore. |
 | Automation | `Automation Rule` | Status: on, off | Name, Meta, Trigger, Condition, Action, Show condition. One automation in a rules list, written as a sentence: When trigger, and condition, then action. |
 | Automation | `Mapping Row` | Status: mapped, unmapped, error | Source, Sample. Maps one source column or field to a target field during import or sync setup: source with a sample, arrow, target Select and status. |
 | Automation | `Workflow Node` | Type: trigger, condition, action. State: default, selected, error | One step on an automation or approval canvas: trigger, condition (branches) or action, with ports to connect steps. |
 | Avatar | `Presence Bar` | - | Who else has this document, record or board open right now: a live dot and their avatars. |
 | Badge | `Announcement Pill` | - | Label, Show tag. A short link above a hero title to the newest launch: "New" tag, one line, arrow. |
-| Badge | `Trust Badge` | - | Name, Detail, Icon. A certification or compliance claim with what backs it: SOC 2, ISO 27001, GDPR, PCI DSS. |
+| Badge | `Trust Badge` | - | Name, Description, Icon. A certification or compliance claim with what backs it: SOC 2, ISO 27001, GDPR, PCI DSS. |
 | Brand | `Logo Tile` | Style: bordered, plain | Name. A customer or partner logo in a tile for logo clouds, integration grids and case study lists. |
 | Button | `Social Share` | - | Label, Show label, Show networks. Share buttons for a public page: copy link, email, the system share sheet and up to three networks. |
 | Card | `Link Preview` | Layout: horizontal, vertical | Domain, Title, Description, Show image. A pasted URL shown as a card in comments, chat, notes and editors: site, title, description and image from the page metadata. |
@@ -330,32 +328,26 @@ Domain-specific needs become Field Presets or Blocks.
 | Chat | `Thread Summary` | - | Replies, Last. Collapsed replies under a comment or message: who replied, how many and when the last one came. |
 | Code Block | `Command Snippet` | - | Command, Show prompt. One command or value people copy into a terminal or config: install line, CLI command, environment variable. |
 | Code Block | `Diff Line` | Type: context, added, removed | Text, Line. One line of a diff: number, marker, sign and text. Part of Diff Viewer. |
-| Code Block | `Diff Viewer` | - | File, Lines (slot). What changed between two versions of a text, contract, config or code: file name with counts, then Diff Lines. |
+| Code Block | `Diff Viewer` | - | File, Added, Removed, Lines (slot). What changed between two versions of a text, contract, config or code: file name with counts, then Diff Lines. |
 | Code Block | `Endpoint Row` | Method: GET, POST, PUT, PATCH, DELETE | Path, Summary. One API endpoint in a reference list: method badge, path in mono with parameters in braces, and a one-line summary. |
 | Code Block | `JSON Viewer` | - | Structured data people inspect: webhook payloads, API responses, event properties, audit details. Objects and arrays collapse. |
 | Code Block | `Log Row` | Level: debug, info, warn, error | Time, Message. One line of a log or event stream: time with milliseconds, level and message in mono. |
-| Color Picker | `Swatch` | State: default, selected | One color to pick, 28 px: a dot of the color with a ring when selected. Part of Swatch Picker. |
+| Color Picker | `Swatch` | Type: color, label. Size: default, sm. State: default, selected, unavailable | Label. One choice: a color dot (Type=color) or a box with a short label like S, M, L (Type=label). Size=sm (28) in Swatch Picker, default (36) for product options; ring when selected, faded when unavailable. |
 | Color Picker | `Swatch Picker` | - | Label, Show label, Swatches (slot). A short set of colors for labels, categories, calendars and project avatars, with the name of the selected one. |
-| Commerce | `Address Card` | Selected: false, true | Name, Address, Show default, Show radio. A saved address to pick or manage: name, address lines, phone, Default badge, Edit and Remove. |
-| Commerce | `Line Item` | Layout: cart, summary | Name, Variant, Total. One product in a cart, checkout summary, order or invoice: image, name, variant, quantity and line total. |
+| Commerce | `Address Card` | State: default, selected | Name, Address, Show default, Show radio. A saved address to pick or manage: name, address lines, phone, Default badge, Edit and Remove. |
+| Commerce | `Line Item` | Layout: cart, summary | Name, Variant, Quantity, Total; Number Input sm (cart). One product in a cart, checkout summary, order or invoice: image, name, variant, quantity and line total. |
 | Commerce | `Mini Cart` | - | Items (slot). The cart in a popover after Add to cart or from the cart icon: items, subtotal, View cart and Checkout. |
 | Commerce | `Order Row` | Status: processing, shipped, delivered, cancelled | Number, Meta, Total. One order in an account's order history: number, date, item count, status, total and a chevron to the order page. |
 | Commerce | `Payment Method Card` | State: default, expired | Card, Brand. A saved card, bank account or wallet in billing settings or checkout: brand, last 4 digits, expiry, Default badge and a menu. |
-| Commerce | `Quantity Selector` | Size: sm, default. State: default, min | Value. Change a quantity in steps of one: minus, the number, plus; the number is also typeable. |
 | Commerce | `Shipment Tracker` | - | ETA, Carrier. Where an order is: the expected day first, carrier and tracking number, then the steps with dates. |
-| Commerce | `Stock Indicator` | Level: in stock, low, out | Availability of a product or variant: in stock, low with the number left, or out of stock. |
-| Commerce | `Variant Swatch` | Type: color, size. State: default, selected, unavailable | Label. One option of a product variant: a color dot or a size box. |
-| Commerce | `Wishlist Button` | Saved: false, true | Save a product for later: heart outline, filled when saved. |
-| Dialog | `Welcome Dialog` | Step: first, middle, last | A short first-run tour in a dialog, after sign-up or a major release: image, title, one sentence and 2-4 steps. |
 | Drawer | `Resizable Panels` | - | Start (slot), End (slot). Two panels with a handle to drag the split: list and detail, editor and preview, code and output. |
-| Feature Item | `Step Item` | Layout: vertical, horizontal | Number, Title, Description. One step of "How it works" on a marketing or onboarding page: number, short title, one sentence. |
 | File Upload | `File Field` | State: empty, selected, error | File name, Error. One file as a form field: Choose file, then the name and size, with remove. |
 | Filters | `Saved View Item` | State: default, hover, active | Name, Show shared, Show count. One saved filter set (a view) in a list or sidebar: name, shared icon and item count. |
 | Form Layout | `Error Summary` | - | Title, Errors (slot). At the top of a long form after a failed submit: how many fields need a fix and a link to each. |
 | Form Layout | `Fieldset` | State: default, error | Legend, Description, Show description, Error, Options (slot). A group of related controls with one label: checkboxes, radios, the parts of an address or a date. |
 | Form Layout | `Form Section` | Layout: side, stacked | Title, Description, Show description, Show divider, Fields (slot). One group of a long form or settings page: title and a sentence on the left, the fields on the right. |
-| Form Layout | `Requirement Item` | State: met, pending, failed | Label. One rule and whether it is met: check, dash or x. Part of Requirement List. |
-| Form Layout | `Requirement List` | - | Title, Show title, Items (slot). Rules checked live while people type or before they publish: password rules, import checks, what a listing needs. |
+| Form Layout | `Check Item` | Mark: check, dash, x | Label. One line with a mark: check when met or included, dash when pending or not included, x after a failed submit. Part of Requirement List; also the feature list of Plan Card. |
+| Form Layout | `Requirement List` | - | Title, Show title, Items (slot of Check Items). Rules checked live while people type or before they publish: password rules, import checks, what a listing needs. |
 | Image | `Device Frame` | Device: browser, phone | Address, Screen (slot). A browser window or a phone around a product screenshot for marketing pages, docs and case studies. |
 | Image | `Image Compare Slider` | - | Two images of the same view, before and after, with a handle to drag between them. |
 | Input | `Copy Field` | State: default, copied | Value. A read-only value people copy and paste elsewhere: API key, invite link, webhook URL, reference code. |
@@ -364,60 +356,53 @@ Domain-specific needs become Field Presets or Blocks.
 | Input | `Duration Input` | State: default, focus, error | Hours, Minutes. A length of time in hours and minutes for time entries, SLAs, reminders and meeting length. |
 | Input | `Inline Form` | State: default, error, success | Hint, Error, Success message, Show hint. One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag. |
 | Input | `Phone Input` | State: default, focus, error, disabled | Country, Number. Phone number with a country code picker; formats as people type and stores the number in E.164. |
-| Input | `Range Fields` | State: default, error | Min, Max, Unit. Two fields for a minimum and a maximum: price or amount filters, typed date ranges, quantities. |
+| Input | `Range Input` | State: default, error | Min, Max, Unit. Two fields for a minimum and a maximum: price or amount filters, typed date ranges, quantities. |
 | Input | `Search Field` | State: default, focus, filled | Placeholder, Query, Show shortcut. Search box for a list, a table or the whole app: search icon, a placeholder that names what is searched, a shortcut hint and clear. |
 | Kbd | `Shortcut Row` | - | Action. One keyboard shortcut in the shortcuts dialog or a help page: what it does, then the keys. |
-| List & Tree | `Checklist Item` | State: open, done, overdue | Title, Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
+| List & Tree | `Task Item` | State: open, done, overdue | Title, Due, Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
 | List & Tree | `Job Listing` | - | Title, Meta, Location, Posted, Salary, Show badge, Show salary. One open role in a careers list: title, team, type and work mode, location, posted date, salary range and Apply. |
 | Menu | `Account Menu` | - | Name, Email. The menu behind the signed-in person's avatar: name and email, personal settings, and Log out. |
 | Metrics | `Countdown` | - | Days, Hours, Minutes, Seconds, Show seconds. Time left until a deadline people act on: an offer, a webinar start, a payment due, a session that expires. |
 | Metrics | `Leaderboard Row` | State: default, current | Rank, Name, Value. A ranked person or team: rank, avatar, name and value. |
 | Metrics | `Metric Strip` | - | Metrics (slot). A row of 3-5 key figures at the top of a dashboard, report or record page, lighter than Stat Cards: label, value, trend, dividers between. |
-| Metrics | `Metric Strip Item` | Divider: false, true | Label, Value, Show trend. One figure in a Metric Strip: label, value and an optional Trend Indicator. |
-| Metrics | `Trend Indicator` | Direction: up, down, flat. Tone: positive, negative, neutral | Comparison, Show comparison. A change against a period: arrow, signed percent or amount, and what it is compared to. Direction says which way it moved; Tone says if that is good, bad or neither. |
+| Metrics | `Metric Strip Item` | - | Label, Value, Show trend, Show divider. One figure in a Metric Strip: label, value and an optional Trend Indicator. |
+| Metrics | `Trend Indicator` | Trend: up, down, flat. Tone: positive, negative, neutral | Value, Comparison, Show comparison. A change against a period: arrow, signed percent or amount, and what it is compared to. Trend says which way it moved; Tone says if that is good, bad or neither. |
 | Metrics | `Usage Meter` | Level: normal, near, over | Label, Show hint. How much of a plan limit is used: seats, storage, API calls, documents per month. Label, used of limit, bar and a hint. |
 | Mobile | `Action Sheet` | - | Title, Description, Show header. A short list of actions for one item on mobile, rising from the bottom, with Cancel apart. |
 | Mobile | `FAB` | Type: icon, extended | Label, Icon. Floating action button for the one main action on a mobile screen: new invoice, compose, add. |
 | Navigation | `Back Link` | State: default, hover | Label. A link above the page title back to the list the record came from: "All invoices" with a left arrow. |
-| Navigation | `Page Toolbar` | - | Show search, Show filters, Show view, Show primary. The row between a list page title and the list: search and Filters on the left, View Switcher and the primary action on the right. |
-| Navigation | `Scroll To Top` | - | Floating button bottom right on long pages that takes people back to the top. |
+| Navigation | `Page Toolbar` | - | Show search, Show filters, Show view, Show primary. The row between a list page title and the list: search and Filters on the left, a view switch (Toggle Group) and the primary action on the right. |
 | Navigation | `Skip Link` | - | First focusable element of every page, hidden until it gets keyboard focus, that jumps to the main content. |
 | Notifications | `Notification Center` | - | Items (slot). The panel behind the bell in the top bar: latest notifications by type, newest first, with Mark all as read and View all. |
-| Notifications | `Notification Item` | Read: false, true | Message, Meta, Show actions, Actions (slot). One notification: who did what to which object, when and where, with an unread dot and optional actions. |
-| Pagination | `Load More` | State: default, loading | Count, Label. End of a feed or a long list that grows in place: how many are shown out of the total, and a button for the next page. |
+| Notifications | `Notification Item` | State: unread, read | Message, Meta, Show actions, Actions (slot). One notification: who did what to which object, when and where, with an unread dot and optional actions. |
+| Pagination | `Load More` | State: default, loading | Count; Button (exposed). End of a feed or a long list that grows in place: how many are shown out of the total, and a button for the next page. |
 | Popover | `App Launcher` | - | Grid of the products in a suite, opened from a layout-grid Button Icon in the top bar. |
 | Popover | `Confirm Popover` | Tone: default, destructive | Title, Description. A small confirmation next to the button that triggered it, for actions with some cost that do not need a dialog. |
 | Popover | `Emoji Picker` | - | Searchable grid of emoji for reactions, a status or a workspace icon, opened in a Popover. |
-| Pricing | `Check List Item` | Included: true, false | Label. One feature in a plan or a comparison: a check when included, a dash and muted text when not. |
-| Pricing | `Plan Card` | Featured: false, true | Plan, Description, Features title, Features (slot). One plan in a pricing section: name, who it is for, Price, the main action and what it adds as Check List Items. |
+| Pricing | `Plan Card` | Variant: default, featured | Title, Description, Features title, Features (slot). One plan in a pricing section: name, who it is for, Price, the main action and what it adds as Check Items. |
 | Pricing | `Price` | Size: sm, default, lg | Amount, Old price, Period, Show old price, Show period. A price as people compare it: amount with currency, period, and the old price struck through during a discount. |
-| Pricing | `Pricing Toggle` | Period: monthly, yearly | Show saving. Monthly or yearly switch above plan cards, with what the yearly period saves. |
-| Progress | `Job Item` | State: running, done, failed | Title. A task that runs in the background (export, import, bulk send, report): name, progress with count and time left, Cancel; Download when done, Retry when failed. |
+| Progress | `Background Job` | State: running, done, error | Title. A task that runs in the background (export, import, bulk send, report): name, progress with count and time left, Cancel; Download when done, Retry on error. |
 | Quote | `Footnote` | - | Number, Text, Show back link. A numbered note at the end of an article, report or pricing page that explains a claim in the text. |
 | Quote | `Testimonial Card` | - | Quote, Show rating. One customer quote as a card for testimonial grids and carousels: optional rating, the quote with a specific result, Byline. |
 | Rating | `Rating Summary` | - | Average, Count. The average rating with how it splits across 1-5 stars, above the reviews. |
 | Rating | `Review Item` | - | Name, Date, Title, Text, Show verified, Show helpful. One customer review: who, verified purchase, date, stars, a title, the text and Helpful votes. |
 | Scheduler | `Agenda Item` | State: upcoming, now, past | Title, Start, End, Meta. One event in a day agenda: start and end time, a color bar for the calendar, title, place and people. |
-| Scheduler | `Availability Row` | Available: true, false | Day. Working hours for one weekday in booking and team settings: on/off Switch, the day, one or more time ranges and a button to add a range. |
+| Scheduler | `Availability Row` | State: available, unavailable | Day. Working hours for one weekday in booking and team settings: on/off Switch, the day, one or more time ranges and a button to add a range. |
 | Scheduler | `Meeting Card` | State: upcoming, live | Title. A meeting people are about to join: title, time with time zone, place or video link, who is invited, Join and Details. |
 | Scheduler | `Time Slot` | State: default, hover, selected, disabled | Time. One bookable start time in a booking flow, shown in a grid under the chosen day. |
-| Search | `Search Result Item` | - | Title, Snippet, Show path, Show meta. One result on a search page: path, title link, a two-line snippet with the matched words, type and date. |
+| Search | `Search Result Item` | - | Title, Path, Snippet, Updated, Show path, Show meta. One result on a search page: path, title link, a two-line snippet with the matched words, type and date. |
 | Select | `Address Autocomplete` | - | Query, Show suggestions. Address field with suggestions as people type; a pick fills the address fields below it. |
-| Select | `Language Switcher` | State: closed, open | Language. Choose the interface language: globe, the current language in its own name and a list of languages. |
 | Select | `Recurrence Picker` | Frequency: daily, weekly, monthly | Show summary. How often something repeats: interval and unit, the days or the day, when it ends, and a summary sentence. |
-| Select | `Select Option` | Leading: icon, avatar, none. State: default, highlighted | Title, Description, Show description, Checked, Icon. A rich option in a Select, Combobox or Menu list: icon or avatar, title, a muted second line and a check when selected. |
-| Selection controls | `Checkbox Card` | State: default, hover, focus, selected, disabled | Title, Description, Show description. A checkbox with more context, as a card: several can be on and the whole card toggles. |
-| Sharing | `Access Row` | Role: editable, owner, pending | Name, Email. One person or group with access to an object in a share dialog: avatar, name and email, and their role. |
+| Select | `Select Option` | Type: icon, avatar, none. State: default, highlighted | Title, Description, Show description, Checked, Icon. A rich option in a Select, Combobox or Menu list: icon or avatar, title, a muted second line and a check when selected. |
+| Sharing | `Access Row` | Type: editable, owner, pending | Name, Email. One person or group with access to an object in a share dialog: avatar, name and email, and their role. |
 | Sharing | `Invite Row` | - | Show role. Adds people to an object or a workspace: email or name with suggestions from the directory, the role they get, and Invite. |
-| Sharing | `Share Link Row` | Access: restricted, anyone | General access of an object at the bottom of a share dialog: who can open the link, and Copy link. |
+| Sharing | `Share Link Row` | Type: restricted, anyone | General access of an object at the bottom of a share dialog: who can open the link, and Copy link. |
 | Spinner | `Loading Overlay` | - | Label, Show label. Covers one region while its content reloads, keeping the old content faded underneath, with a Spinner and a short label. |
 | Surveys | `CSAT Rating` | State: unanswered, answered | Question. Customer satisfaction after one interaction: five faces with words under them; one tap sends it. |
-| Surveys | `Feedback Widget` | State: ask, comment, thanks | Question. A one-tap question at the end of a help article, an AI answer or a finished task: Yes or No, then an optional comment, then thanks. |
+| Surveys | `Feedback Widget` | State: ask, comment, thanks | Question, Thanks. A one-tap question at the end of a help article, an AI answer or a finished task: Yes or No, then an optional comment, then thanks. |
 | Surveys | `NPS Survey` | State: unanswered, answered | Question. Net Promoter Score: a 0-10 scale with anchors, then one optional open question. |
-| Toggle Group | `Theme Toggle` | Value: light, dark, system | Light, dark or follow the system: three icon buttons with tooltips. |
-| Toggle Group | `View Switcher` | View: list, board, calendar. Labels: true, false | Switch how one set of records is shown: list, board or calendar. |
 | Tour | `Annotation Pin` | State: default, active, resolved | Number. A numbered marker on a design, document or screenshot where a comment lives. |
-| Video | `Audio Player` | - | Title, Current, Length. Plays one audio file: podcast episode, voice message, recorded call. |
+| Video | `Audio Player` | - | Title, Time, Duration. Plays one audio file: podcast episode, voice message, recorded call. |
 | Video | `Video Thumbnail` | - | Show duration. A video before it plays: poster frame, play button and duration. |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
@@ -434,11 +419,41 @@ moon (97).
 
 ## Conventions used
 - Variant values use the shadcn prop values (`Variant=outline`, `Size=sm`), so Figma maps 1:1 to code.
+  The default variant is the default value (`Size=default`, `Tone=default`).
+- Variant property names come from one list: Variant, Size, State, Type, Status, Layout, Level,
+  Position, Side, Shape, Tone, Content, Ratio, Device, Provider, Step, Frequency, Method, Trend,
+  Series, Key, Align, Mark, Marker, Control, Mode, Orientation, Value, Direction, Length, Spacing,
+  Sort, Elevation. Tab no longer uses `Style`: it is `Variant`, like Tabs. `Checked`, `Selected` and
+  `Expanded` are variant properties only where a component has both a state axis and a selection
+  axis (Checkbox `Checked` × State, Model Option `Selected` × State); otherwise selection is a
+  State value.
+- Values are lowercase with hyphens (`on-track`, `in-progress`, `drag-over`). Only `Method` keeps
+  uppercase HTTP verbs (GET, POST).
+- One vocabulary for outcomes: `pending`, `running`, `done`, `error` (no `complete`, no `failed`).
+  Steppers keep `upcoming`, `current`, `completed`, `error`.
+- Selection: `selected` for something picked (rows, options, cards, Toggle Group Item),
+  `active` for the current place in navigation (Sidebar Item, Tab, Nav Link, Pagination Item),
+  `highlighted` only for keyboard focus inside a menu list (Menu Item, Select Option).
+- Booleans are `Show <part>`: Show leading icon, Show trailing icon, Show icon, Show close, Show
+  remove, Show divider, Show connector, Show chevron, Show badge, Show count and so on. Exceptions
+  that name a state: `Checked` (Menu Item, Select Option), `Collapsible` (Side Panel), `Pinned`
+  (Chat History Item).
+- An icon swap is named after its part, next to its boolean: `Show leading icon` + `Leading icon`,
+  `Show trailing icon` + `Trailing icon`, `Show icon` + `Icon`.
+- TEXT properties: `Title` for headings of cards and rows, `Name` for people and entities, `Label`
+  for controls; `Description` for prose, `Meta` for compact facts; `Value` for metrics, `Amount`
+  for money; players use `Time` and `Duration`.
+- "A table" means the table template of Table Cells on the Table page
+  (`Template / invoices table (grid)`); there is no Table component.
 - Focus is a 2 px gap (`background/default`) plus a 4 px ring (`border/ring`), as drop shadows.
-  Figma draws shadow spread only with `clipsContent` on, so focus variants clip; nothing else does.
+  Figma draws shadow spread only with `clipsContent` on, so focus variants clip. Crops and
+  viewers clip too (image, media, viewport, slide, plot, track, map, avatar, logo); nothing else
+  does.
 - Disabled is the variant at `opacity/50`.
 - Text inside a variant is bound to a TEXT property, so text styling is shared by all variants.
   Per-variant decoration (like the link hover underline) is drawn with a frame stroke instead.
+- Component descriptions are written with `descriptionMarkdown`. Setting `description` stores
+  quotes as `&quot;` in the published description.
 - Icons are a single `Vector` layer. Swapping keeps the stroke color override only when layer
   structure matches, so every new icon is flattened to one layer named `Vector`.
 - Cloning a variant turns its SLOT into a plain frame named after the property. Clone first,
@@ -462,6 +477,8 @@ it with any layers or instances.
   property (key in `slot.componentPropertyReferences.slotContentId`). In a component set,
   create the slot in every variant before `combineAsVariants`: slots with the same name merge
   into one property. Rename it with `editComponentProperty(key, { name, description })`.
+- A variant that hides a slot (a collapsed Side Panel or Sidebar Double) keeps the SLOT node,
+  hidden, so content placed in an instance survives the variant switch. See `figma-api-notes.md`.
 - A slot cannot use GRID layout. Grid layouts (tables) are frames built by the designer.
 - Use a slot when the content varies per use. Use boolean or TEXT properties when the variation
   is fixed (show footer, title text, leading icon on a menu item).
@@ -478,8 +495,8 @@ checkbox and actions, flex for content), rows that hug their content.
 - Put `Table Toolbar` above the grid while rows are selected.
 
 ## Brand page
-`Brand` holds Logo Mark, Logo and a Theme preview (color roles, type scale, radius, a few
-components) bound to Semantic tokens. To brand a client file: replace the glyph in Logo Mark,
+`Brand` holds Logo Mark, Logo, Logo Tile (customer and partner logos for logo clouds) and a
+Theme preview (color roles, type scale, radius, a few components) bound to Semantic tokens. To brand a client file: replace the glyph in Logo Mark,
 re-alias Semantic tokens (`/eggux:brand-intake`), check the preview in Light and Dark.
 
 ## Page shells
@@ -534,18 +551,25 @@ two or more projects; otherwise build it in the client file.
 
 ## Examples on the pages
 Example frames (not components) show composition; copy them as a starting point:
-list row loading (Skeleton), icon button with tooltip, open select, dialog over page, filter
-chips, cards (list, profile, form, empty state), stat cards row, invoices table (grid), inline edit
-and column resize, permissions tree, navigation tree, view switch, app shell (Sidebar + header +
-stats + table), sheet over list, bottom drawer with filters,
-textarea in field, combobox open, record page (App shell + record blocks), activity timeline, mobile list, mobile menu open,
-mobile nav open, price range, verify phone, time picker open, date and time, upload documents, density comparison (Table page), search with shortcut, button loading, input groups, split button open, multi-select open, date range
-filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions, inbox (split
-view), cart sheet, checkout page, docs page, date picker open, date range, table footer with pagination, color
-field, AI chat app, product tour, enterprise invoices, theme comparison, menubar open, data grid
+list row loading (Skeleton), icon button with tooltip, select open, dialog over page, filter
+chips, cards, stat cards, invoices table (grid), inline edit and column resize, permissions tree,
+navigation tree, app shell (Sidebar + header + stats + table), sheet over list, bottom drawer on
+mobile, combobox open, record page (App shell + record blocks), activity, mobile list, mobile
+menu open, mobile nav open, price range, verify phone, time picker open, date and time, upload
+documents, density comparison (Table page), input groups, split button open, multi-select open,
+date range filter, 404 in app, onboarding step, navbar with mega menu, search with suggestions,
+inbox (split view), cart sheet, checkout page, docs page, date picker open, date range, table
+footer, AI chat app, product tour, enterprise invoices, theme comparison, menubar open, data grid
 (enterprise) template.
 
+Since 0.51.0 some former components are examples built from base components: "AI action",
+"wishlist", "scroll to top" and "sign-in providers" (Button page), "theme switch", "view switch"
+and "billing period" (Toggle Group page), "stock status" (Badge page), "welcome dialog" (Dialog
+page) and "language switch" (Select page). Copy the example; there is no component to insert.
+
 ## Not built yet
-Nothing from the current roadmap. Icons: the 97 Lucide icons stay; the team may switch to Phosphor
-(flatten each icon to one `Vector` layer so swaps keep their color). When something is missing,
-compose from the components above, tokens and text styles, and flag it.
+Open gaps from the README roadmap: `Page Shell / Back office` on the Page Shells page (from the
+tested grid shell), a Search Hero block, and examples in real screens for the 0.50.0 components
+(their rows have generated stress tests). Icons: the 97 Lucide icons stay; the team may switch
+to Phosphor (flatten each icon to one `Vector` layer so swaps keep their color). When something
+is missing, compose from the components above, tokens and text styles, and flag it.

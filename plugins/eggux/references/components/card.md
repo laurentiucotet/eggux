@@ -1,6 +1,6 @@
 # Card
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Card Header](#card-header) | 1 | Action |
 | [Card Footer](#card-footer) | 1 | Actions |
 | [Stat Card](#stat-card) | 3 | - |
-| [Option Card](#option-card) | 5 | - |
+| [Option Card](#option-card) | 10 | - |
 | [Post Card](#post-card) | 3 | - |
 | [Entity Card](#entity-card) | 4 | Leading, Tags, Details, Actions |
 | [Progress Card](#progress-card) | 3 | - |
@@ -88,7 +88,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
 
 ## Card Header
 
@@ -114,6 +114,8 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
+
 ## Card Footer
 
 Component · 1 variant · default size 336 × 36
@@ -126,6 +128,10 @@ Built from: `Button`
 
 Tokens and styles:
 - Spacing and size: `spacing/2`
+
+Guides: [card](../../skills/build-ui/components/card.md)
+
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
 
 ## Stat Card
 
@@ -150,6 +156,7 @@ Metric card (shadcn dashboard section card). Trend sets the icon; the change and
 2. Value (heading/h2, one line)
 3. Change Badge with the Trend icon: trending-up, trending-down, minus
 4. Trend line and Footnote (Show footer)
+5. Show change and Show trend hide the change badge and the trend row when there is no comparison
 
 **Content and behavior**
 
@@ -175,6 +182,9 @@ Metric card (shadcn dashboard section card). Trend sets the icon; the change and
 | Value | text | €48,250 |
 | Footnote | text | Compared to October 2026 |
 | Show footer | boolean | true |
+| Trend text | text | 12,5% vs last month |
+| Show change | boolean | true |
+| Show trend | boolean | true |
 
 Built from: `Badge`. Icons: minus, trending-down, trending-up
 
@@ -187,39 +197,39 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
 
 ## Option Card
 
-Component set · 5 variants · default size 384 × 80
+Component set · 10 variants · default size 384 × 80
 
-Selectable card: a radio option with more context (plan, delivery, billing period). The whole card is the click target; selected = 2 px primary border + checked radio. Group 2-4 of them vertically or in a row.
+Selectable card: a radio option with more context (plan, delivery, billing period). The whole card is the click target; selected = 2 px primary border + checked radio. Group 2-4 of them vertically or in a row. Control=checkbox for several choices (a card per option with a checkbox); radio for one choice.
 
 **Use for**
 
-- Choosing one of 2-4 options that each need a description
-- Plans, shipping methods, billing periods
+- Choosing one of 2-4 options that each need a description (Control=radio)
+- Turning on several add-ons, modules or channels (Control=checkbox)
 - Onboarding choices where each option needs a sentence of context
 
 **Not for**
 
-- Many options or short labels: use RadioGroup or Select
-- Several options at once: use Checkbox
-- Setting a view mode: use Toggle Group
+- Many options or short labels: use Radio or Select
+- Short labels that need no description: use Checkbox
+- A setting that applies at once: use Setting Row with a Switch
 
 **Anatomy**
 
-1. Icon (optional, Icon type)
+1. Icon (optional, Show icon + Icon)
 2. Title
 3. Description (Show description)
-4. Radio
+4. Control: Radio (Control=radio) or Checkbox (Control=checkbox)
 
 **Content and behavior**
 
 - The whole card is the click target
-- One selected: 2 px primary border and checked radio
-- Group 2-4 cards vertically or in a row
-- State=disabled says why nearby
+- Control=radio: exactly one selected; Control=checkbox: any number
+- State: default, hover, focus, selected, disabled
+- Group 2-6 cards in a column or a grid with the same height
 
 **Accessibility**
 
@@ -230,16 +240,17 @@ Selectable card: a radio option with more context (plan, delivery, billing perio
 | Variant property | Values |
 |---|---|
 | State | default, hover, focus, selected, disabled |
+| Control | checkbox, radio |
 
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Standard shipping |
 | Description | text | Delivered in 3-5 business days. |
 | Show description | boolean | true |
-| Icon | boolean | true |
-| Icon type | instance swap | Icon/building |
+| Show icon | boolean | true |
+| Icon | instance swap | Icon/building |
 
-Built from: `Radio`. Icons: building
+Built from: `Checkbox`, `Radio`. Icons: building
 
 Tokens and styles:
 - Colors: `background/accent`, `background/card`, `background/muted`, `background/primary`, `border/default`, `foreground/card`, `foreground/muted`
@@ -249,6 +260,8 @@ Tokens and styles:
 - Effects: `shadow/xs`
 
 Guides: [card](../../skills/build-ui/components/card.md), [select](../../skills/build-ui/components/select.md)
+
+Code: shadcn `RadioGroup` (Control=radio) or `Checkbox` (Control=checkbox) with a `Label` wrapping a `Card` (`has-[:checked]:ring-2`) (Whole card is the target; checkbox groups in a `<fieldset>`)
 
 ## Post Card
 
@@ -315,6 +328,8 @@ Tokens and styles:
 
 Guides: [content](../../skills/build-ui/components/content.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
+Code: shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link
+
 ## Entity Card
 
 Component set · 4 variants · default size 320 × 259
@@ -329,14 +344,14 @@ Summary of one object (customer, project, vendor, asset) in a grid or board: lea
 
 **Not for**
 
-- Many records compared by columns: use a Table
+- Many records compared by columns: use a table of Table Cells
 - One metric: use Stat Card
 - A goal against a target: use Progress Card
 
 **Anatomy**
 
 1. Leading slot: avatar, icon or a 1:1 image
-2. Title (2 lines) and Subtitle (1 line)
+2. Title (2 lines) and Description (1 line)
 3. Actions slot: one or two Button Icon for a direct action, like add or remove (Show actions)
 4. Menu Button Icon (Show menu)
 5. Tags slot: status and tags (Show tags)
@@ -350,7 +365,7 @@ Summary of one object (customer, project, vendor, asset) in a grid or board: lea
 - In a clickable card the menu is the only other control
 - Actions slot for the one action people take on every card (add to a selection, remove, pin); everything else goes in the menu
 - A toggled action shows its state: plus to add, check (secondary) once added, with State=selected on the card
-- Status in text (Badge), never color alone
+- Status in text (Show badge), never color alone
 - Footer text says when it was last updated ("Updated 2 h ago")
 
 **Accessibility**
@@ -358,7 +373,7 @@ Summary of one object (customer, project, vendor, asset) in a grid or board: lea
 - One link for the card; the menu is a separate button with a label
 - State=focus shows the border/ring focus ring
 - State=selected is announced, not only shown
-- Each Button Icon in Actions has an accessible label that names the card ("Add Electric Vehicle Forecast")
+- Each Button Icon in Actions has an accessible label that names the card ("Add Website redesign")
 
 | Variant property | Values |
 |---|---|
@@ -367,7 +382,7 @@ Summary of one object (customer, project, vendor, asset) in a grid or board: lea
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Northwind Traders |
-| Subtitle | text | Customer · Berlin |
+| Description | text | Customer · Berlin |
 | Footer text | text | Updated 2 h ago |
 | Show menu | boolean | true |
 | Show tags | boolean | true |
@@ -411,7 +426,7 @@ A goal against its target (revenue, budget, quota, completion): label, status ba
 **Anatomy**
 
 1. Label
-2. Status Badge: on track, at risk, off track
+2. Status Badge: on-track, at-risk, off-track
 3. Value and Target ("€48,250 of €60,000")
 4. Progress bar (exposed Progress, set Value)
 5. Footnote: percent and time left
@@ -431,7 +446,7 @@ A goal against its target (revenue, budget, quota, completion): label, status ba
 
 | Variant property | Values |
 |---|---|
-| Status | on track, at risk, off track |
+| Status | on-track, at-risk, off-track |
 
 | Property | Type | Default |
 |---|---|---|
@@ -535,7 +550,7 @@ One event, webinar or session in a list or grid: Date Tile (exposed), format bad
 **Not for**
 
 - The event page itself: use Block / Header Event
-- Calendar views with many events: use Scheduler
+- Calendar views with many events: use Calendar Event in Block / Scheduler Month
 - Articles and news: use Post Card
 
 **Anatomy**
@@ -606,6 +621,8 @@ Tokens and styles:
 - Spacing and size: `spacing/0`, `spacing/1`, `spacing/1_5`, `spacing/2`
 - Radius: `radius/lg`
 - Text styles: `heading/h3`, `heading/h4`, `ui/overline`
+
+Guides: [card](../../skills/build-ui/components/card.md)
 
 Code: shadcn `Card` + `Badge`, `Button`; date tile as custom markup (`<time datetime>` for the date)
 

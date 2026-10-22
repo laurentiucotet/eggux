@@ -21,9 +21,12 @@ page (BLOCKS): Product Detail, Order Summary; examples "cart sheet" and "checkou
 ## Related components
 - Checkout addresses use `Address Autocomplete` with manual entry; coupon codes use `Inline Form`;
   prices and limits with a currency use `Currency Input`.
-- Components on the Commerce page: `Product Card`, `Variant Swatch` (options with "Color: Sand"
-  labels), `Quantity Selector`, `Stock Indicator`, `Wishlist Button`. Carts and orders use `Line
-  Item` (cart or summary), `Mini Cart` after Add to cart, and `Summary Row` for totals.
+- Components on the Commerce page: `Product Card`, `Line Item` (cart or summary), `Mini Cart`
+  after Add to cart, and `Summary Row` for totals. Product options use `Swatch` (Color Picker
+  page): Type=color or label, Size=default, State selected or unavailable, under a label like
+  "Color: Sand". Quantity is a `Number Input` (Size=sm in Line Item). Stock is a `Status Dot`
+  with its label (example "stock status" on the Badge page). Save for later is a `Button Icon`
+  ghost with the heart icon (example "wishlist" on the Button page).
 - Account pages: `Order Row` for order history (newest first), `Shipment Tracker` on the order page,
   `Address Card` and `Payment Method Card` for saved addresses and payment methods (last 4 digits
   only). Reviews: `Rating Summary` above a list of `Review Item`.

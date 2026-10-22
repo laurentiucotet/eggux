@@ -51,9 +51,9 @@ For large lists where people need precise subsets (finance, operations, CRM):
 
 ## Related components
 - The search box is `Search Field` (placeholder names what is searched, clear, ⌘K hint). Min and max
-  filters (price, amount) use `Range Fields`, next to a range Slider when people scan values.
+  filters (price, amount) use `Range Input`, next to a range Slider when people scan values.
 - Search pages list `Search Result Item`s (path, title link, two-line snippet with the matched words
-  in bold, type and date), grouped by type when there are several kinds. List pages use `Page
-  Toolbar` when filters sit behind one Filters button.
+  in bold, type and date), grouped by type when there are several kinds. List pages use
+  `Page Toolbar` when filters sit behind one Filters button.
 - Saved views are listed with `Saved View Item` (personal first, then shared; the active one
   highlighted); the Filter Bar offers "Save view" when filters change.

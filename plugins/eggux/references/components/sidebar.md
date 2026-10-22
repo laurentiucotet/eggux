@@ -1,6 +1,6 @@
 # Sidebar
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -32,15 +32,15 @@ shadcn Sidebar (uses sidebar/* tokens). Header, Content and Footer are native sl
 **Not for**
 
 - Switching views of one object: use Tabs
-- Sites with few pages: use Navigation Menu in a top bar
+- Sites with few pages: use Nav Links in the Navbar
 - Mobile: open it as a left Sheet from the header
 
 **Anatomy**
 
-1. Header slot: Sidebar Workspace (logo, Title, Subtitle, switcher)
+1. Header slot: Sidebar Workspace (logo, Title, Description, switcher)
 2. Content slot: Sidebar Group with a Sidebar Group Label
-3. Sidebar Item rows: Icon, Label, optional Badge and Chevron
-4. Footer slot: Sidebar User (Avatar, Title, Subtitle, menu)
+3. Sidebar Item rows: Icon, Label, optional Badge (Show badge) and Chevron (Show chevron)
+4. Footer slot: Sidebar User (Avatar, Title, Description, menu)
 5. Sidebar Item Level=2: a sub-page row, no icon, label aligned with the parent label
 
 **Content and behavior**
@@ -74,7 +74,7 @@ Tokens and styles:
 
 Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
 
-Code: shadcn `Sidebar`
+Code: shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarHeader`, `SidebarFooter`)
 
 ## Sidebar Item
 
@@ -92,8 +92,8 @@ shadcn SidebarMenuButton. active = current page (one per sidebar). Badge = Badge
 |---|---|---|
 | Label | text | Dashboard |
 | Icon | instance swap | Icon/house |
-| Badge | boolean | false |
-| Chevron | boolean | false |
+| Show badge | boolean | false |
+| Show chevron | boolean | false |
 
 Built from: `Badge Count`. Icons: chevron-right, house
 
@@ -104,6 +104,8 @@ Tokens and styles:
 - Text styles: `body/small`, `ui/label`
 
 Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
+
+Code: shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarHeader`, `SidebarFooter`)
 
 ## Sidebar Group Label
 
@@ -119,6 +121,10 @@ Tokens and styles:
 - Colors: `foreground/muted`
 - Spacing and size: `spacing/2`, `spacing/56`, `spacing/8`
 - Text styles: `ui/label-small`
+
+Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
+
+Code: shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarHeader`, `SidebarFooter`)
 
 ## Sidebar Group
 
@@ -143,6 +149,8 @@ Tokens and styles:
 
 Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
 
+Code: shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarHeader`, `SidebarFooter`)
+
 ## Sidebar Workspace
 
 Component set · 2 variants · default size 224 × 52
@@ -156,7 +164,7 @@ Sidebar header: organization or workspace switcher (opens a Menu).
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Acme Inc. |
-| Subtitle | text | Pro plan |
+| Description | text | Pro plan |
 
 Built from: `Logo Mark`. Icons: chevrons-up-down
 
@@ -167,6 +175,8 @@ Tokens and styles:
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
+
+Code: shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarHeader`, `SidebarFooter`)
 
 ## Sidebar User
 
@@ -181,7 +191,7 @@ Sidebar footer: signed-in user (opens a Menu with Settings and Log out).
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Daniel Pop |
-| Subtitle | text | daniel@acme.com |
+| Description | text | daniel@acme.com |
 
 Built from: `Avatar`. Icons: chevrons-up-down
 
@@ -192,6 +202,8 @@ Tokens and styles:
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
+
+Code: shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarHeader`, `SidebarFooter`)
 
 ## Org Switcher
 
@@ -238,6 +250,8 @@ Tokens and styles:
 - Spacing and size: `spacing/0`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/7`
 - Radius: `radius/md`, `radius/sm`
 - Text styles: `body/small`, `ui/caption`, `ui/label`
+
+Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
 
 Code: `DropdownMenu` or `Popover` + `Command`
 

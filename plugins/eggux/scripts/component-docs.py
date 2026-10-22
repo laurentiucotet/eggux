@@ -42,7 +42,8 @@ def guide_index():
             if not f.endswith('.md'):
                 continue
             text = open(os.path.join(d, f)).read()
-            for name in set(re.findall(r'`([^`]+)`', text)):
+            # A backticked name can wrap over a line break: collapse whitespace before matching.
+            for name in {re.sub(r'\s+', ' ', n).strip() for n in re.findall(r'`([^`]+)`', text)}:
                 idx.setdefault(name, []).append(os.path.relpath(os.path.join(d, f), OUT))
     return idx
 
@@ -56,6 +57,7 @@ def code_index():
         if len(cells) < 2:
             continue
         for name in re.findall(r'`([^`]+)`', cells[0]):
+            name = re.sub(r'\s+', ' ', name).strip()
             idx.setdefault(name, []).append((cells[1], cells[2] if len(cells) > 2 else ''))
     return idx
 

@@ -1,6 +1,6 @@
 # Mobile
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -70,6 +70,8 @@ Tokens and styles:
 
 Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
 
+Code: custom header with shadcn `Button size="icon"` and `Avatar`
+
 ## Bottom Nav
 
 Component · 1 variant · default size 390 × 81
@@ -116,6 +118,8 @@ Tokens and styles:
 
 Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
 
+Code: custom `<nav>` of links with `env(safe-area-inset-bottom)` (Current item `aria-current="page"`)
+
 ## Bottom Nav Item
 
 Component set · 2 variants · default size 78 × 56
@@ -137,6 +141,10 @@ Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/14`
 - Text styles: `ui/caption`, `ui/label-small`
+
+Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
+
+Code: custom `<nav>` of links with `env(safe-area-inset-bottom)` (Current item `aria-current="page"`)
 
 ## FAB
 

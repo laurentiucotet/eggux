@@ -1,6 +1,6 @@
 # Notifications
 
-Generated from the EGG UI master library on 2026-10-21 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -35,12 +35,12 @@ One notification: who (Avatar) did what to which object, when and where, and an 
 2. Message: "Elena Popa approved INV-1041 for €2,450.00", actor and object in bold
 3. Meta: time and area, body/small, muted
 4. Actions slot (Show actions): one or two Buttons sm
-5. Unread dot (Read=false)
+5. Unread dot (State=unread)
 
 **Content and behavior**
 
 - Message names the actor, the action and the object; two lines at most
-- Read=false has a muted background and the dot
+- State=unread has a muted background and the dot
 - The whole row opens the object and marks it read
 - Actions only for what people can do from the list (Approve, View invoice); at most two
 - System notifications without a person use an icon Avatar
@@ -53,7 +53,7 @@ One notification: who (Avatar) did what to which object, when and where, and an 
 
 | Variant property | Values |
 |---|---|
-| Read | false, true |
+| State | unread, read |
 
 | Property | Type | Default |
 |---|---|---|
