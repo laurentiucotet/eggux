@@ -32,3 +32,4 @@ matters.
   View all). Opening the panel does not mark items read; opening an item does.
 - A `Mention Chip` notifies the mentioned person once. A finished `Background Job` sends an in-app
   notification when the person left the page.
+- `Notification Center`: turn tabs off (Show tabs) when the product has one kind of notification.

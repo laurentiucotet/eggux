@@ -12,7 +12,7 @@ Usage rules live in the guides linked under each component.
 | [FAB](#fab) | 2 | - |
 | [Action Sheet](#action-sheet) | 1 | - |
 
-On the Figma page: "Example / in page shell / mobile", "Stress test / Action Sheet", "Stress test / Bottom Nav", "Stress test / FAB", "Stress test / Mobile Header"
+On the Figma page: "Example / in page shell / mobile", "Example / invoices on mobile", "Stress test / Action Sheet", "Stress test / Bottom Nav", "Stress test / FAB", "Stress test / Mobile Header"
 
 ## Mobile Header
 
@@ -225,9 +225,9 @@ A short list of actions for one item on mobile, rising from the bottom: share, d
 
 **Anatomy**
 
-1. Header (Show header): title (the object) and description
-2. Actions: icon and label, one per row
-3. Destructive action last, in red
+1. Header (Show header): Title (the object) and Description
+2. Actions: Action 1, Action 2, Action 3, each with an icon swap (Action 1 icon ...), one per row
+3. Destructive action (+ Destructive action icon): last, in red
 4. Cancel: a separate group below
 
 **Content and behavior**
@@ -249,6 +249,15 @@ A short list of actions for one item on mobile, rising from the bottom: share, d
 | Title | text | INV-2041 |
 | Description | text | Choose what to do with this invoice |
 | Show header | boolean | true |
+| Action 1 | text | Share |
+| Action 1 icon | instance swap | Icon/share-2 |
+| Action 2 | text | Duplicate |
+| Action 2 icon | instance swap | Icon/copy |
+| Action 3 | text | Download PDF |
+| Action 3 icon | instance swap | Icon/download |
+| Destructive action | text | Delete |
+| Destructive action icon | instance swap | Icon/trash-2 |
+| Cancel | text | Cancel |
 
 Icons: copy, download, share-2, trash-2
 

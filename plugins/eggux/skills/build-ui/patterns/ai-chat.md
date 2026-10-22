@@ -76,6 +76,7 @@ does one thing well.
 - `AI Notice`: the "AI generated" label on content written by AI, and one disclaimer line under
   answers and summaries, same words everywhere.
 - Use `sparkles` for AI entry points and AI-made content only.
+- AI-filled fields: AI Suggestion with a Confidence Indicator next to each value, and an AI Review Bar to move between them.
 
 ## Errors and limits
 - A failed answer keeps the partial text, says what happened and offers Retry

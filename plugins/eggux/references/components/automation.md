@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Workflow Node](#workflow-node) | 9 | - |
 | [Mapping Row](#mapping-row) | 3 | - |
 
-On the Figma page: "Stress test / Automation Rule", "Stress test / Mapping Row", "Stress test / Workflow Node"
+On the Figma page: "Example / in automations", "Stress test / Automation Rule", "Stress test / Mapping Row", "Stress test / Workflow Node"
 
 ## Automation Rule
 
@@ -72,15 +72,15 @@ Tokens and styles:
 - Radius: `radius/lg`, `radius/md`
 - Text styles: `ui/caption`, `ui/label`
 
-Guides: [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
+Guides: [approvals](../../skills/build-ui/patterns/approvals.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
 Code: custom on shadcn `Card` + `Switch` + `DropdownMenu` (Sentence: When trigger, and condition, then action)
 
 ## Workflow Node
 
-Component set · 9 variants · default size 260 × 183
+Component set · 9 variants · default size 260 × 107
 
-One step on an automation or approval canvas: trigger, condition (branches) or action. Type icon and label, a one-line summary, ports to connect steps. Click selects and opens settings in the side panel; error shows what is missing. Steps run top to bottom; connect with 1.5 px border/default lines. Simple rules use Automation Rule.
+One step on an automation or approval canvas: trigger, condition (branches) or action. Type icon and label, Title and a one-line Detail, ports to connect steps. Click selects and opens settings in the side panel; error says in Detail what is missing. Steps run top to bottom; connect with 1.5 px border/default lines. Simple rules use Automation Rule.
 
 **Use for**
 
@@ -96,8 +96,8 @@ One step on an automation or approval canvas: trigger, condition (branches) or a
 
 **Anatomy**
 
-1. Header: type icon (zap for a trigger), Type, ellipsis menu icon
-2. Body: Title and Detail (one-line summary)
+1. Header: type icon and type name (Trigger, Condition, Action from Type), ellipsis menu icon
+2. Body: Title (what happens) and Detail (one-line summary of the settings, or what is missing when State=error)
 3. Port out (and in, except the trigger)
 
 **Content and behavior**
@@ -105,7 +105,7 @@ One step on an automation or approval canvas: trigger, condition (branches) or a
 - Steps run top to bottom; one trigger per workflow, at the top
 - Connect with 1.5 px border/default lines; condition nodes branch to Yes and No
 - Click selects (State=selected) and opens settings in the Side Panel
-- State=error says what is missing ("Choose a recipient"); the workflow cannot be turned on with errors
+- State=error says what is missing in Detail ("Choose a recipient"); the workflow cannot be turned on with errors
 - Detail summarizes the settings in one line
 
 **Accessibility**
@@ -119,6 +119,11 @@ One step on an automation or approval canvas: trigger, condition (branches) or a
 | Type | trigger, condition, action |
 | State | default, selected, error |
 
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Invoice is received |
+| Detail | text | Finance workspace |
+
 Icons: circle-alert, ellipsis, git-branch, user-check, zap
 
 Tokens and styles:
@@ -128,7 +133,7 @@ Tokens and styles:
 - Text styles: `ui/caption`, `ui/label`
 - Effects: `shadow/sm`
 
-Guides: [enterprise-apps](../../skills/build-ui/patterns/enterprise-apps.md)
+Guides: [approvals](../../skills/build-ui/patterns/approvals.md), [enterprise-apps](../../skills/build-ui/patterns/enterprise-apps.md)
 
 Code: @xyflow/react custom node (`Handle` for ports), settings in shadcn `Sheet` (Edges 1.5 px `border/default`; keyboard and list view for steps)
 
@@ -187,6 +192,6 @@ Tokens and styles:
 - Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`, `spacing/4`
 - Text styles: `ui/caption`, `ui/label`
 
-Guides: [enterprise-apps](../../skills/build-ui/patterns/enterprise-apps.md)
+Guides: [approvals](../../skills/build-ui/patterns/approvals.md), [enterprise-apps](../../skills/build-ui/patterns/enterprise-apps.md)
 
 Code: shadcn `Select` (or `Combobox`) + lucide `ArrowRight` + status `Badge`; react-hook-form `useFieldArray` (Auto-match by name; save the mapping as a template)

@@ -11,7 +11,7 @@ Usage rules live in the guides linked under each component.
 | [Side Panel](#side-panel) | 2 | Actions, Content, Footer |
 | [Resizable Panels](#resizable-panels) | 1 | Start, End |
 
-On the Figma page: "Example / Editor with collapsed side panel", "Example / Editor with side panel", "Example / bottom drawer on mobile", "Example / sheet over list", "Stress test / Drawer", "Stress test / Resizable Panels", "Stress test / Sheet", "Stress test / Side Panel"
+On the Figma page: "Example / Editor with collapsed side panel", "Example / Editor with side panel", "Example / bottom drawer on mobile", "Example / invoice list and detail", "Example / sheet over list", "Stress test / Drawer", "Stress test / Resizable Panels", "Stress test / Sheet", "Stress test / Side Panel"
 
 ## Sheet
 

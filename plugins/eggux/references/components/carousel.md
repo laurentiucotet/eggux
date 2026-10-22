@@ -15,7 +15,7 @@ Usage rules live in the guides linked under each component.
 | [Carousel Hero](#carousel-hero) | 1 | - |
 | [Lightbox](#lightbox) | 1 | - |
 
-On the Figma page: "Example / hero on a marketing page", "Example / image viewer over a page", "Example / in testimonial carousel", "Example / product gallery", "Stress test / Carousel", "Stress test / Carousel Gallery", "Stress test / Carousel Hero", "Stress test / Lightbox"
+On the Figma page: "Example / hero on a marketing page", "Example / image viewer over a page", "Example / office gallery on a location page", "Example / product gallery", "Stress test / Carousel", "Stress test / Carousel Gallery", "Stress test / Carousel Hero", "Stress test / Lightbox"
 
 ## Carousel
 

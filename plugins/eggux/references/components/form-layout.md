@@ -12,7 +12,7 @@ Usage rules live in the guides linked under each component.
 | [Requirement List](#requirement-list) | 1 | Items |
 | [Check Item](#check-item) | 3 | - |
 
-On the Figma page: "Stress test / Error Summary", "Stress test / Fieldset", "Stress test / Form Section", "Stress test / Requirement List"
+On the Figma page: "Example / in account settings form", "Stress test / Error Summary", "Stress test / Fieldset", "Stress test / Form Section", "Stress test / Requirement List"
 
 ## Form Section
 

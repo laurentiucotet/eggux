@@ -14,7 +14,7 @@ Usage rules live in the guides linked under each component.
 | [Action Bar](#action-bar) | 3 | Leading, Actions |
 | [Social Share](#social-share) | 1 | - |
 
-On the Figma page: "Example / AI action", "Example / form footer", "Example / record actions", "Example / scroll to top", "Example / sign-in providers", "Example / split button open", "Example / wishlist", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Social Share", "Stress test / Split Button"
+On the Figma page: "Example / AI action", "Example / form footer", "Example / record actions", "Example / scroll to top", "Example / share row at the end of an article", "Example / sign-in providers", "Example / split button open", "Example / wishlist", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Social Share", "Stress test / Split Button"
 
 ## Button
 

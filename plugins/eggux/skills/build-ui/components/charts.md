@@ -45,6 +45,7 @@ hue in 5 opacity steps + muted for zero), `Sparkline`, `Chart Legend` (rows of
 not only colored; target tick), `Treemap` (tinted cells with a colored edge so labels stay
 readable in every mode). Edit bar heights and line points for real
 data. Block: `Block / Analytics` on the App page.
+- Radar, Sankey and Choropleth go inside a Chart Card Chart slot; turn off Show legend when the chart labels itself (Sankey, Choropleth).
 
 ## Funnel and Scatter
 - `Funnel Chart`: drop-off between ordered steps (created → sent → viewed → paid). Each stage

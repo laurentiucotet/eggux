@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Hotspot](#hotspot) | 1 | - |
 | [Annotation Pin](#annotation-pin) | 3 | - |
 
-On the Figma page: "Example / filter panel", "Example / new feature hint", "Example / product tour", "Stress test / Annotation Pin", "Stress test / Coachmark", "Stress test / Hotspot"
+On the Figma page: "Example / design review with annotation pins", "Example / filter panel", "Example / new feature hint", "Example / product tour", "Stress test / Annotation Pin", "Stress test / Coachmark", "Stress test / Hotspot"
 
 ## Coachmark
 

@@ -10,34 +10,40 @@
   {
    "main": "Show More",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / customer profile with show more and details"
+   ]
   }
  ],
  "Admin": [
   {
    "main": "Integration Card",
    "helpers": [],
-   "block": null
+   "block": "125:2633"
   },
   {
    "main": "Permission Row",
    "helpers": [],
-   "block": null
+   "block": "183:1035"
   },
   {
    "main": "API Key Row",
    "helpers": [],
-   "block": null
+   "block": "125:2384"
   },
   {
    "main": "Session Row",
    "helpers": [],
-   "block": null
+   "block": "550:78066"
   },
   {
    "main": "Org Chart Node",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / finance team org chart"
+   ]
   }
  ],
  "AI Chat": [
@@ -86,7 +92,10 @@
    "helpers": [
     "Model Option"
    ],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / model picker open above the prompt"
+   ]
   },
   {
    "main": "Chat History Item",
@@ -135,17 +144,26 @@
   {
    "main": "AI Loading",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / reviewing AI suggestions on an invoice"
+   ]
   },
   {
    "main": "Confidence Indicator",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / reviewing AI suggestions on an invoice"
+   ]
   },
   {
    "main": "AI Review Bar",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / reviewing AI suggestions on an invoice"
+   ]
   }
  ],
  "Alert": [
@@ -157,7 +175,14 @@
   {
    "main": "Service Status Row",
    "helpers": [],
-   "block": null
+   "block": "214:1389"
+  },
+  {
+   "main": "Uptime Bars",
+   "helpers": [
+    "Uptime Day"
+   ],
+   "block": "214:1389"
   }
  ],
  "Approvals": [
@@ -176,29 +201,34 @@
   {
    "main": "Version Item",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / version history of an invoice"
+   ]
   },
   {
    "main": "Release Note Item",
-   "helpers": [],
-   "block": null
+   "helpers": [
+    "Release Note Line"
+   ],
+   "block": "214:1288"
   }
  ],
  "Automation": [
   {
    "main": "Automation Rule",
    "helpers": [],
-   "block": null
+   "block": "550:80307"
   },
   {
    "main": "Workflow Node",
    "helpers": [],
-   "block": null
+   "block": "550:80307"
   },
   {
    "main": "Mapping Row",
    "helpers": [],
-   "block": null
+   "block": "550:80307"
   }
  ],
  "Avatar": [
@@ -223,7 +253,10 @@
   {
    "main": "Presence Bar",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / document header with live presence"
+   ]
   }
  ],
  "Badge": [
@@ -295,7 +328,10 @@
   {
    "main": "Social Share",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / share row at the end of an article"
+   ]
   }
  ],
  "Calendar": [
@@ -378,12 +414,15 @@
   {
    "main": "Link Preview",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / shared link in a conversation"
+   ]
   },
   {
    "main": "Location Card",
    "helpers": [],
-   "block": null
+   "block": "197:1319"
   }
  ],
  "Carousel": [
@@ -394,7 +433,10 @@
     "Carousel Indicator",
     "Carousel Slide"
    ],
-   "block": "198:1482"
+   "block": "198:1482",
+   "examples": [
+    "Example / office gallery on a location page"
+   ]
   },
   {
    "main": "Carousel Gallery",
@@ -503,32 +545,41 @@
   {
    "main": "Dashboard Widget",
    "helpers": [],
-   "block": null
+   "block": "550:82029"
   },
   {
    "main": "Distribution Bar",
    "helpers": [],
-   "block": null
+   "block": "550:82029"
   },
   {
    "main": "Bullet Chart",
    "helpers": [],
-   "block": null
+   "block": "550:82029"
   },
   {
    "main": "Radar Chart",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / payments analytics"
+   ]
   },
   {
    "main": "Sankey Chart",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / payments analytics"
+   ]
   },
   {
    "main": "Choropleth Map",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / payments analytics"
+   ]
   }
  ],
  "Chat": [
@@ -550,19 +601,28 @@
   {
    "main": "Mention Chip",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / team thread with mentions and reactions"
+   ]
   },
   {
    "main": "Reaction Bar",
    "helpers": [
     "Reaction"
    ],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / team thread with mentions and reactions"
+   ]
   },
   {
    "main": "Thread Summary",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / team thread with mentions and reactions"
+   ]
   }
  ],
  "Chip": [
@@ -581,80 +641,89 @@
   {
    "main": "Command Snippet",
    "helpers": [],
-   "block": null
+   "block": "550:78821"
   },
   {
    "main": "Endpoint Row",
    "helpers": [],
-   "block": null
+   "block": "550:78821"
   },
   {
    "main": "Log Row",
    "helpers": [],
-   "block": null
+   "block": "550:78821"
   },
   {
    "main": "Diff Viewer",
    "helpers": [
     "Diff Line"
    ],
-   "block": null
+   "block": "550:78821"
   },
   {
    "main": "JSON Viewer",
    "helpers": [],
-   "block": null
+   "block": "550:78821"
   }
  ],
  "Color Picker": [
   {
    "main": "Color Picker",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / brand colors"
+   ]
   },
   {
    "main": "Swatch Picker",
    "helpers": [
     "Swatch"
    ],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / brand colors"
+   ]
   }
  ],
  "Commerce": [
   {
    "main": "Product Card",
    "helpers": [],
-   "block": null
+   "block": "550:79685"
   },
   {
    "main": "Line Item",
    "helpers": [],
-   "block": null
+   "block": "550:81608"
   },
   {
    "main": "Mini Cart",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / mini cart opened from the store header"
+   ]
   },
   {
    "main": "Order Row",
    "helpers": [],
-   "block": null
+   "block": "124:2163"
   },
   {
    "main": "Shipment Tracker",
    "helpers": [],
-   "block": null
+   "block": "550:81608"
   },
   {
    "main": "Address Card",
    "helpers": [],
-   "block": null
+   "block": "550:81608"
   },
   {
    "main": "Payment Method Card",
    "helpers": [],
-   "block": null
+   "block": "550:81608"
   }
  ],
  "Cookie Consent": [
@@ -702,7 +771,7 @@
     "Dialog Header",
     "Dialog Footer"
    ],
-   "block": null,
+   "block": "550:81245",
    "examples": [
     "Example / dialog sizes"
    ]
@@ -736,7 +805,10 @@
   {
    "main": "Resizable Panels",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / invoice list and detail"
+   ]
   }
  ],
  "Editor": [
@@ -803,7 +875,10 @@
   {
    "main": "File Field",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / supplier onboarding documents"
+   ]
   }
  ],
  "Filters": [
@@ -824,7 +899,7 @@
   {
    "main": "Filter Section",
    "helpers": [],
-   "block": null
+   "block": "550:79685"
   },
   {
    "main": "Filter Group",
@@ -836,31 +911,34 @@
   {
    "main": "Saved View Item",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / saved views next to the invoice list"
+   ]
   }
  ],
  "Form Layout": [
   {
    "main": "Form Section",
    "helpers": [],
-   "block": null
+   "block": "550:33533"
   },
   {
    "main": "Fieldset",
    "helpers": [],
-   "block": null
+   "block": "550:33533"
   },
   {
    "main": "Error Summary",
    "helpers": [],
-   "block": null
+   "block": "550:33533"
   },
   {
    "main": "Requirement List",
    "helpers": [
     "Check Item"
    ],
-   "block": null
+   "block": "550:33533"
   }
  ],
  "Form Presets": [
@@ -889,17 +967,25 @@
   {
    "main": "Avatar Upload",
    "helpers": [],
-   "block": null
+   "block": "125:2178"
   },
   {
    "main": "Image Compare Slider",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / before and after in a case study"
+   ]
   },
   {
    "main": "Device Frame",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Image Figure",
+   "helpers": [],
+   "block": "206:2004"
   }
  ],
  "Input": [
@@ -948,7 +1034,10 @@
   {
    "main": "Copy Field",
    "helpers": [],
-   "block": null
+   "block": "550:78066",
+   "examples": [
+    "Example / workspace rules"
+   ]
   },
   {
    "main": "Search Field",
@@ -963,27 +1052,33 @@
   {
    "main": "Currency Input",
    "helpers": [],
-   "block": null
+   "block": "550:33533"
   },
   {
    "main": "Phone Input",
    "helpers": [],
-   "block": null
+   "block": "550:33533"
   },
   {
    "main": "Date Input",
    "helpers": [],
-   "block": null
+   "block": "550:33533"
   },
   {
    "main": "Duration Input",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / workspace rules"
+   ]
   },
   {
    "main": "Range Input",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / workspace rules"
+   ]
   }
  ],
  "Input OTP": [
@@ -1021,7 +1116,10 @@
   {
    "main": "Shortcut Row",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / keyboard shortcuts dialog"
+   ]
   }
  ],
  "List & Tree": [
@@ -1073,14 +1171,17 @@
   {
    "main": "Account Menu",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / account menu from the top bar"
+   ]
   }
  ],
  "Metrics": [
   {
    "main": "Trend Indicator",
    "helpers": [],
-   "block": null
+   "block": "550:82029"
   },
   {
    "main": "Metric Strip",
@@ -1092,17 +1193,17 @@
   {
    "main": "Usage Meter",
    "helpers": [],
-   "block": null
+   "block": "124:2163"
   },
   {
    "main": "Countdown",
    "helpers": [],
-   "block": null
+   "block": "550:82029"
   },
   {
    "main": "Leaderboard Row",
    "helpers": [],
-   "block": null
+   "block": "550:82029"
   }
  ],
  "Mobile": [
@@ -1121,12 +1222,18 @@
   {
    "main": "FAB",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / invoices on mobile"
+   ]
   },
   {
    "main": "Action Sheet",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / invoices on mobile"
+   ]
   }
  ],
  "Navigation": [
@@ -1174,12 +1281,18 @@
   {
    "main": "Skip Link",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / invoices page with skip link and toolbar"
+   ]
   },
   {
    "main": "Page Toolbar",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / invoices page with skip link and toolbar"
+   ]
   }
  ],
  "Notifications": [
@@ -1191,7 +1304,7 @@
   {
    "main": "Notification Center",
    "helpers": [],
-   "block": null
+   "block": "92:1352"
   }
  ],
  "Pagination": [
@@ -1205,12 +1318,20 @@
   {
    "main": "Pagination Compact",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / recent payments card"
+   ]
   },
   {
    "main": "Load More",
    "helpers": [],
-   "block": null
+   "block": "550:79685"
+  },
+  {
+   "main": "Pager Link",
+   "helpers": [],
+   "block": "214:1235"
   }
  ],
  "Popover": [
@@ -1239,17 +1360,26 @@
   {
    "main": "Emoji Picker",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / emoji picker in a comment"
+   ]
   },
   {
    "main": "App Launcher",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / app launcher from the top bar"
+   ]
   },
   {
    "main": "Confirm Popover",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / confirm before archiving invoices"
+   ]
   }
  ],
  "Pricing": [
@@ -1278,7 +1408,10 @@
   {
    "main": "Background Job",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / exports panel from the top bar"
+   ]
   }
  ],
  "Quote": [
@@ -1299,7 +1432,10 @@
   {
    "main": "Footnote",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / report page with footnotes"
+   ]
   }
  ],
  "Rating": [
@@ -1311,12 +1447,12 @@
   {
    "main": "Review Item",
    "helpers": [],
-   "block": null
+   "block": "550:80651"
   },
   {
    "main": "Rating Summary",
    "helpers": [],
-   "block": null
+   "block": "550:80651"
   }
  ],
  "Save Bar": [
@@ -1342,22 +1478,22 @@
   {
    "main": "Agenda Item",
    "helpers": [],
-   "block": null
+   "block": "550:80885"
   },
   {
    "main": "Meeting Card",
    "helpers": [],
-   "block": null
+   "block": "550:80885"
   },
   {
    "main": "Availability Row",
    "helpers": [],
-   "block": null
+   "block": "550:80885"
   },
   {
    "main": "Time Slot",
    "helpers": [],
-   "block": null
+   "block": "93:1683"
   }
  ],
  "Scroll Area": [
@@ -1371,7 +1507,10 @@
   {
    "main": "Search Result Item",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / help center search results"
+   ]
   }
  ],
  "Section Heading": [
@@ -1417,17 +1556,20 @@
   {
    "main": "Address Autocomplete",
    "helpers": [],
-   "block": null
+   "block": "550:33533"
   },
   {
    "main": "Select Option",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / customer picker in a new invoice"
+   ]
   },
   {
    "main": "Recurrence Picker",
    "helpers": [],
-   "block": null
+   "block": "550:33533"
   }
  ],
  "Selection controls": [
@@ -1466,17 +1608,17 @@
   {
    "main": "Access Row",
    "helpers": [],
-   "block": null
+   "block": "124:1931"
   },
   {
    "main": "Invite Row",
    "helpers": [],
-   "block": null
+   "block": "550:81245"
   },
   {
    "main": "Share Link Row",
    "helpers": [],
-   "block": null
+   "block": "550:81245"
   }
  ],
  "Sidebar": [
@@ -1529,7 +1671,10 @@
   {
    "main": "Loading Overlay",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / refreshing a card"
+   ]
   }
  ],
  "Stepper": [
@@ -1550,12 +1695,18 @@
   {
    "main": "NPS Survey",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / quarterly customer survey"
+   ]
   },
   {
    "main": "CSAT Rating",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / quarterly customer survey"
+   ]
   }
  ],
  "Table": [
@@ -1574,7 +1725,8 @@
     "Table Cell Date",
     "Table Cell File",
     "Table Cell Badges",
-    "Table Cell Avatars"
+    "Table Cell Avatars",
+    "Table Cell Check"
    ],
    "block": "181:923",
    "examples": [
@@ -1661,7 +1813,10 @@
   {
    "main": "Annotation Pin",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / design review with annotation pins"
+   ]
   }
  ],
  "Video": [
@@ -1673,12 +1828,18 @@
   {
    "main": "Video Thumbnail",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / help center videos and podcast"
+   ]
   },
   {
    "main": "Audio Player",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / help center videos and podcast"
+   ]
   }
  ]
 }

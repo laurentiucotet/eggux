@@ -425,17 +425,20 @@
   ],
   "anatomy": [
    "Avatar (initials when empty)",
-   "Hint: type, minimum size, maximum weight",
-   "Upload or Change Button",
-   "Remove Button",
+   "Label (Show label): \"Profile photo\", \"Company logo\"",
+   "Hint: type, minimum size, maximum weight (empty and filled)",
+   "Upload or Change: Button outline sm, exposed (set its Label, e.g. \"Upload photo\")",
+   "Remove (Show remove): Button ghost sm, empty and filled",
    "Progress and Cancel while uploading",
-   "Error message"
+   "Error message (State=error)"
   ],
   "rules": [
    "State: empty, filled, uploading, error",
    "Upload opens the file picker, then the Image Cropper",
+   "Show remove only when there is something to remove (a photo, or initials people may reset)",
    "Errors say what to fix: \"Choose an image under 5 MB\"",
    "Remove asks no confirmation and offers Undo in a toast",
+   "Hide the Label when the section title already names the picture",
    "Hint wraps within 280 px"
   ],
   "a11y": [
@@ -4554,6 +4557,7 @@
    "Type=header with Table Header Label (Label, Sort, Align)",
    "Type=body with Table Cell Text, Table Cell Stack or Table Cell User",
    "Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Badges, Avatars",
+   "Plan comparison values: Table Cell Check (Value=included|excluded|text, Text, Note)",
    "Last column: Table Cell Actions (edit and menu)",
    "Type=expanded: one detail cell spanning all columns"
   ],
@@ -4565,15 +4569,17 @@
    "Empty values show \"-\", never blank",
    "Inline edit only for fields changed often: State=editing, State=error in the cell",
    "One date format per column (Table Cell Date); time under it only when it matters",
-   "Links in a cell (Table Cell Link) go where the row goes; one link per row besides the row"
+   "Links in a cell (Table Cell Link) go where the row goes; one link per row besides the row",
+   "Comparison tables: Table Cell Check centered in plan columns; excluded is a dash, never blank"
   ],
   "a11y": [
    "Header cells are th; the sorted column has aria-sort",
    "Sortable headers are buttons reachable with the keyboard",
    "Row icon buttons have a tooltip and an aria-label with the row: \"Edit invoice INV-1041\"",
-   "Row checkboxes have labels: \"Select INV-1041\""
+   "Row checkboxes have labels: \"Select INV-1041\"",
+   "Table Cell Check icons read \"Included\" or \"Not included\" (visually hidden text)"
   ],
-  "code": "shadcn Table + TanStack Table; cell renderers in column defs, amounts with Intl.NumberFormat.",
+  "code": "shadcn Table + TanStack Table; cell renderers in column defs, amounts with Intl.NumberFormat; Table Cell Check = Check or Minus icon with sr-only text, or the value.",
   "guides": [
    "skills/build-ui/components/table.md",
    "skills/build-ui/patterns/enterprise-apps.md"
@@ -6372,11 +6378,13 @@
    "Presets plus a custom color: use Color Picker with its Swatches slot"
   ],
   "anatomy": [
-   "Swatches slot: 6-10 Swatches",
-   "Label (Show label): the name of the selected color"
+   "Swatches slot: 6-10 Swatches (Type=color, Size=sm); each Swatch Label is its color name (Blue, Orange, Teal, Amber, Pink, Green, Violet, Rose for chart/1..8)",
+   "Selected Swatch: State=selected; the default selects the first, Blue (chart/1)",
+   "Label (Show label): the name of the selected color, same as that Swatch's Label"
   ],
   "rules": [
    "6-10 colors from the chart palette; one selected",
+   "The Label always names the selected swatch; when you select another swatch, change the Label too",
    "Colors come from chart tokens so they stay readable in dark mode",
    "Same order everywhere the palette appears",
    "Show the name under the swatches; never rely on color alone"
@@ -6684,7 +6692,7 @@
    "Links people see and use all the time: use Nav Link or the Sidebar"
   ],
   "anatomy": [
-   "Label: \"Skip to main content\", on a surface with border and shadow, top left"
+   "Label: \"Skip to main content\" (or \"Skip to results\" before a long filter block), on a surface with border and shadow, top left"
   ],
   "rules": [
    "The first element in the tab order of every page",
@@ -6828,7 +6836,7 @@
   ],
   "anatomy": [
    "Header: title and Mark all as read (Button ghost sm)",
-   "Tabs: All, Mentions, Approvals",
+   "Tabs (Show tabs): All, Mentions, Approvals",
    "Items slot: Notification Items",
    "Footer: View all (Button ghost)"
   ],
@@ -6837,7 +6845,8 @@
    "The bell shows a Badge Count of unread items",
    "Opening the panel does not mark items read; opening an item does",
    "Empty: \"You are all caught up.\"",
-   "Mark all as read applies to the current tab"
+   "Mark all as read applies to the current tab",
+   "Show tabs only when there are several kinds of notification; one kind needs no tabs"
   ],
   "a11y": [
    "The bell is a button with the count in its name: \"Notifications, 3 unread\"",
@@ -6864,10 +6873,10 @@
    "Related links under an article: use Post Card"
   ],
   "anatomy": [
-   "Path (Show path): where it lives, segments with Icon/chevron-right, body/small, muted",
+   "Path (Show path): Path (first segment, \"Help center\"), Icon/chevron-right, Section (second segment, \"Invoices\"); body/small, muted",
    "Title: link, heading/h4",
    "Snippet: two lines around the matched words",
-   "Meta (Show meta): type Badge and updated date"
+   "Meta (Show meta): type Badge and Updated (\"Updated 12 Oct 2026\")"
   ],
   "rules": [
    "Bold the matched terms in the title and snippet",
@@ -6934,7 +6943,7 @@
   ],
   "anatomy": [
    "Count: \"Showing 20 of 248 invoices\", body/small, muted",
-   "Button: \"Load 20 more\", outline (State=loading shows a Spinner)"
+   "Button (exposed instance): Label \"Load 20 more\", outline (State=loading shows a Spinner)"
   ],
   "rules": [
    "The label says how many it loads (\"Load 20 more\")",
@@ -7069,9 +7078,9 @@
    "One main action: use FAB or a Button"
   ],
   "anatomy": [
-   "Header (Show header): title (the object) and description",
-   "Actions: icon and label, one per row",
-   "Destructive action last, in red",
+   "Header (Show header): Title (the object) and Description",
+   "Actions: Action 1, Action 2, Action 3, each with an icon swap (Action 1 icon ...), one per row",
+   "Destructive action (+ Destructive action icon): last, in red",
    "Cancel: a separate group below"
   ],
   "rules": [
@@ -7422,19 +7431,21 @@
   "anatomy": [
    "Method: Badge (GET info, POST success, PUT and PATCH warning, DELETE destructive)",
    "Path: mono, parameters in braces (/v1/invoices/{id})",
-   "Summary: body/small, muted"
+   "Summary: body/small, muted",
+   "State: default, hover (background/muted), selected (background/accent) for the open endpoint"
   ],
   "rules": [
    "Methods keep the same color everywhere; the method name is always written",
    "Path in mono, parameters in braces, no host",
    "Summary starts with a verb: \"Retrieve an invoice\"",
-   "The whole row links to the endpoint page",
+   "The whole row links to the endpoint page; the open endpoint is State=selected, one per list",
    "Order within a resource: list, create, retrieve, update, delete"
   ],
   "a11y": [
    "The row is one link with an accessible name of method, path and summary",
    "Method is text in the Badge, never color alone",
-   "Paths do not break mid-segment; long paths wrap at slashes"
+   "Paths do not break mid-segment; long paths wrap at slashes",
+   "The selected row has aria-current=\"page\""
   ],
   "code": "custom: <a> row with shadcn Badge (method variant) + <code> path + summary.",
   "guides": [
@@ -7542,7 +7553,7 @@
   ]
  },
  "JSON Viewer": {
-  "summary": "Structured data people inspect: webhook payloads, API responses, event properties, audit details. Objects and arrays collapse.",
+  "summary": "Structured data people inspect: webhook payloads, API responses, event properties, audit details. Objects and arrays collapse. The copy action sits in the surrounding header (Card Header or panel), not in the viewer.",
   "use": [
    "Webhook payloads and API responses in a log or delivery detail",
    "Event properties in analytics or audit details",
@@ -7554,13 +7565,14 @@
    "Field changes: use Change Item"
   ],
   "anatomy": [
-   "Header: label and Copy Button Icon",
-   "Lines: chevron for objects and arrays, key, value",
-   "Values: strings, numbers and booleans in chart colors; keys in default text"
+   "Lines: chevron for objects and arrays, then key and value in mono (code) on background/muted",
+   "Values: strings chart/3, numbers chart/1, booleans in a chart color; keys and punctuation foreground/default",
+   "No header and no TEXT properties: the content is pasted per instance, one text node per line"
   ],
   "rules": [
-   "Large payloads open collapsed after the first level",
-   "Collapsed nodes show a count (\"items: [3]\")",
+   "To edit: change a line's text, then reapply the value color to the value only (keys stay foreground/default); add or remove line frames for longer or shorter payloads",
+   "Put the title and Copy in the surrounding header (Card Header action or panel header), not in the viewer",
+   "Large payloads open collapsed after the first level; collapsed nodes show a count (\"items: [3]\")",
    "Copy copies the whole payload, formatted",
    "Long strings wrap; null shows as null, never blank",
    "Mask secrets (tokens, card numbers) before they reach the viewer"
@@ -7592,7 +7604,7 @@
    "Drag handle: grip-vertical (edit mode)",
    "Title and Period",
    "Refresh, Expand and More: Button Icon ghost sm",
-   "Content slot: a chart, a Sparkline or a KPI",
+   "Content slot: fills the widget width and hugs its content height; a chart, a Sparkline, a KPI or a list",
    "Footer (Show footer): \"Updated 5 min ago\""
   ],
   "rules": [
@@ -7600,7 +7612,8 @@
    "Edit mode shows the handles and resize corner; view mode hides them",
    "Period is written on every widget; a dashboard-wide period says so once",
    "Menu: edit, duplicate, change size, remove (with Undo)",
-   "Each widget loads, fails and refreshes on its own: Skeleton, inline Alert with Retry, never a blank tile"
+   "Each widget loads, fails and refreshes on its own: Skeleton, inline Alert with Retry, never a blank tile",
+   "Widgets in one row share a height: the tallest hugs, the others fill the row so footers line up"
   ],
   "a11y": [
    "Moving and resizing work by keyboard: menu items \"Move left\", \"Move right\", \"Change size\"; the new place is announced",
@@ -7734,12 +7747,13 @@
    "A start total changed by steps: use Waterfall Chart"
   ],
   "anatomy": [
-   "Source nodes (left)",
-   "Flows: band width is the amount, colored by source",
-   "Outcome nodes (right)",
-   "Node labels with values"
+   "Source nodes (left): fixed 12 wide, pinned left, heights scale",
+   "Flows: band width is the amount, colored by source; stretch with the width, scale with the height",
+   "Outcome nodes (right): fixed 12 wide, pinned right",
+   "Node labels with values, centered on their node"
   ],
   "rules": [
+   "Resize the instance (or set it to Fill in a Chart Card) instead of redrawing; keep at least 480 x 210",
    "2-3 columns and under 12 nodes; fold small flows into \"Other\"",
    "Label every node with its value (Card €184K)",
    "Color bands by source with chart/1..8; nodes in neutral",
@@ -7828,11 +7842,12 @@
   ]
  },
  "Release Note Item": {
-  "summary": "One entry of a changelog or What's new: type badge, version and date, a title that says the benefit, two sentences on how to use it, optional screenshot and link.",
+  "summary": "One entry of a changelog or What's new: type badge, version and date, a title that says the benefit, two sentences on how to use it, optional screenshot, tagged change lines and link.",
   "use": [
    "Public changelog pages",
    "In-app What's new: the last 3-5 entries with a link to the full changelog",
-   "Release notes in a help center"
+   "Release notes in a help center",
+   "A release with several changes: Show changes with one Release Note Line per change (Block / Changelog)"
   ],
   "avoid": [
    "Version history of a document: use Version Item",
@@ -7843,24 +7858,26 @@
    "Type: Badge (New info, Improved secondary, Fixed success)",
    "Date: version · date",
    "Title: the benefit",
-   "Text: two sentences on how to use it",
+   "Text (Show text): two sentences on how to use it; off when the change lines say it all",
    "Image (Show image): Image Placeholder",
-   "Link (Show link): Button link",
-   "Text (Show text): off for one-line entries"
+   "Changes (Show changes): slot with Release Note Line instances (Type=new, improved, fixed and Text)",
+   "Link (Show link): Button link"
   ],
   "rules": [
-   "Newest first; one entry per change",
+   "Newest first; one entry per release or per change",
    "Title says the benefit for the user, not the feature name",
    "Text: two sentences: what changed and where to find it (Settings → Reminders)",
-   "Type from the variant: new, improved, fixed",
+   "Type from the variant: new, improved, fixed; for a release with lines, the type of the headline change",
+   "Changes: 2-5 lines, New first, then Improved, then Fixed; one sentence each",
    "Screenshot only when it shows where to click; link to the help article"
   ],
   "a11y": [
    "Each entry is an <article> with the title as a heading",
    "The type is text in the Badge, never color alone",
-   "Dates in a <time> element; the screenshot has alt text that says what it shows"
+   "Dates in a <time> element; the screenshot has alt text that says what it shows",
+   "Change lines are a <ul>; each type is text in its Badge"
   ],
-  "code": "custom: <article> with shadcn Badge, <time>, optional <img> and Button variant=\"link\".",
+  "code": "custom: <article> with shadcn Badge, <time>, optional <img>, a <ul> of tagged lines (Badge + text) and Button variant=\"link\".",
   "guides": [
    "skills/build-ui/patterns/content-and-docs.md",
    "skills/build-ui/components/badge.md"
@@ -7915,15 +7932,15 @@
    "Approvers of one request: use Approval Step"
   ],
   "anatomy": [
-   "Header: type icon (zap for a trigger), Type, ellipsis menu icon",
-   "Body: Title and Detail (one-line summary)",
+   "Header: type icon and type name (Trigger, Condition, Action from Type), ellipsis menu icon",
+   "Body: Title (what happens) and Detail (one-line summary of the settings, or what is missing when State=error)",
    "Port out (and in, except the trigger)"
   ],
   "rules": [
    "Steps run top to bottom; one trigger per workflow, at the top",
    "Connect with 1.5 px border/default lines; condition nodes branch to Yes and No",
    "Click selects (State=selected) and opens settings in the Side Panel",
-   "State=error says what is missing (\"Choose a recipient\"); the workflow cannot be turned on with errors",
+   "State=error says what is missing in Detail (\"Choose a recipient\"); the workflow cannot be turned on with errors",
    "Detail summarizes the settings in one line"
   ],
   "a11y": [
@@ -8226,7 +8243,7 @@
   ]
  },
  "Product Card": {
-  "summary": "A product in a grid or carousel: square photo, sale or sold-out badges, wishlist, name, variant hint, price and optional quick add.",
+  "summary": "A product in a grid or carousel: photo, sale or sold-out badges, wishlist, name, variant hint, price and optional quick add.",
   "use": [
    "Product grids and category pages (3-4 per row on desktop, 2 on mobile)",
    "Carousels of related products",
@@ -8238,12 +8255,12 @@
    "The product page itself: use Block / Product Detail"
   ],
   "anatomy": [
-   "Image Placeholder 1:1",
+   "Image (exposed Image Placeholder): Ratio 1:1 by default, 3:4 or 4:3 per instance; height follows the card width",
    "Badges: sale %, new or sold out (State)",
    "Wishlist: Button Icon ghost, top right (Show wishlist)",
    "Name: 2 lines",
    "Variant text: \"Sand · 3 colors\"",
-   "Price: sale price and struck original when State=sale",
+   "Price, Old price (State=sale shows Old price struck through)",
    "Action: Button (Show action), \"Add to cart\" or \"Notify me\" when sold out"
   ],
   "rules": [
@@ -8252,7 +8269,9 @@
    "State=sale: new price, struck original and the sale % Badge",
    "State=sold-out stays visible, image dimmed, action becomes \"Notify me\"",
    "Add to cart opens the Mini Cart, never a new page",
-   "Same photo ratio and background across a grid"
+   "Same photo ratio and background across a grid",
+   "In grids set the card to Fill in a Grid auto layout (4 columns desktop, 2 mobile); minimum width 160",
+   "Pick the photo ratio once per grid on the exposed Image, never by resizing the image layer"
   ],
   "a11y": [
    "One link for the card (on the name, stretched over the card)",
@@ -8342,9 +8361,10 @@
   ]
  },
  "Order Row": {
-  "summary": "One order in an account's order history: number, date, item count, status, total and a chevron to the order page.",
+  "summary": "One order or invoice in an account history: number, date and item count, status, total and a chevron to the order page.",
   "use": [
    "Order history in an account",
+   "Invoice history in billing settings",
    "Recent orders on an account overview",
    "A customer's orders in a support tool"
   ],
@@ -8354,23 +8374,27 @@
    "Where a delivery is: use Shipment Tracker"
   ],
   "anatomy": [
-   "Number: \"Order #10482\"",
-   "Meta: date · item count",
-   "Status Badge: processing, shipped, delivered, cancelled",
+   "Number: \"Order #10482\", or the invoice date or number",
+   "Meta: date · item count, or plan · seats",
+   "Status Badge: processing, shipped, delivered, cancelled (orders); paid, refunded (invoices)",
    "Total",
-   "Chevron right"
+   "Chevron right",
+   "State: default, hover (background/muted), selected (background/accent, the order open next to the list)"
   ],
   "rules": [
    "Newest first",
+   "Invoices use Status=paid or refunded, never an order status with a changed label",
    "Status names come from one list across email, page and support",
    "Search by order number above the list when there are more than 20",
    "The whole row opens the order page",
-   "Cancelled orders stay in the list with their total"
+   "Cancelled orders stay in the list with their total",
+   "In a list with the order detail beside it, the open order is State=selected; never a fill override"
   ],
   "a11y": [
    "The row is one link named by number, status and total (\"Order #10482, Shipped, €112.40\")",
    "Status is text in the Badge, not color alone; the chevron is aria-hidden",
-   "Dates in a <time> element"
+   "Dates in a <time> element",
+   "The selected row has aria-current=\"true\""
   ],
   "code": "custom: <a> row (flex items-center) with a shadcn Badge; <time> for the date, Intl.NumberFormat for the total.",
   "guides": [
@@ -8428,14 +8452,15 @@
    "Radio (Show radio)",
    "Name and Default Badge (Show default)",
    "Address: lines in the country's format, phone",
-   "Actions: Edit, Remove Buttons"
+   "Actions (Show actions): Edit, Remove Buttons"
   ],
   "rules": [
    "Lines in the format of the country",
    "Checkout: a radio, pick one, State=selected; account settings: no radio",
    "Add new address is the last card",
    "Remove asks to confirm (Confirm Popover)",
-   "One default address; the Default badge sits next to the name"
+   "One default address; the Default badge sits next to the name",
+   "Read-only places (order details, receipts) turn off Show actions and Show radio"
   ],
   "a11y": [
    "In checkout the cards are a radiogroup; the whole card is the label of its radio",
@@ -8462,16 +8487,17 @@
   ],
   "anatomy": [
    "Brand: \"VISA\"",
-   "Card: \"Visa ending in 4242\" and expiry",
-   "Default Badge",
+   "Card: \"Visa ending in 4242\" and expiry, one line each, cut with an ellipsis when narrow",
+   "Default Badge (Show default)",
    "Menu: Button Icon (Make default, Remove)",
-   "State: default, expired"
+   "State: default, expired (expired shows Update instead of the Badge)"
   ],
   "rules": [
    "Never show more than the last 4 digits",
    "expired says it in destructive and offers Update",
    "Removing the default asks which method replaces it",
-   "Brand marks come from the payment provider"
+   "Brand marks come from the payment provider",
+   "Show default only where the default can change (billing settings); turn it off on receipts and past orders"
   ],
   "a11y": [
    "The card reads as text (\"Visa ending in 4242, expires 08/28\"), not dots",
@@ -8536,13 +8562,13 @@
   ],
   "anatomy": [
    "Average: the number, Rating and count (\"128 reviews\")",
-   "Distribution: 5 rows of stars, bar and count"
+   "Distribution: 5 rows of stars, bar and count; each bar fill scales with the instance width"
   ],
   "rules": [
    "Each bar row filters the list to that rating",
    "Count says how many reviews it comes from",
    "Under 5 reviews, show the count only",
-   "Bars scale to the share of reviews; 5 stars on top"
+   "Bars show the share of all reviews (92 of 128 = 72% of the track); resize the fill layer to set it, it keeps the proportion when the card resizes"
   ],
   "a11y": [
    "The average reads \"4.6 out of 5, 128 reviews\"",
@@ -8593,7 +8619,7 @@
   ]
  },
  "Location Card": {
-  "summary": "One office, store or venue: city, tag, full address, phone, hours and a directions link.",
+  "summary": "One office, store or venue: optional map on top, city, tag, full address, phone, hours and a directions link.",
   "use": [
    "Contact and careers pages, in grids of 3 (Block / Offices)",
    "Next to a Map when there are several places",
@@ -8605,9 +8631,10 @@
    "An event at a place: use Event Card"
   ],
   "anatomy": [
+   "Map (Show map): Map at the top, full width, card radius on top",
    "Title row: city and tag Badge (Show tag): Headquarters, Store",
    "Address",
-   "Meta Items: phone, hours",
+   "Meta Items: phone, hours (hide the hours Meta Item when unknown)",
    "Directions: Button link"
   ],
   "rules": [
@@ -8615,14 +8642,17 @@
    "Directions opens the map app with the address",
    "Phone as a tel: link in international format",
    "Hours with days; say when a place is closed",
-   "Same fields in every card of a grid"
+   "Same fields in every card of a grid",
+   "Show map on contact and careers pages where people visit; the same setting on every card of a grid",
+   "The map pin and the written address name the same place"
   ],
   "a11y": [
    "The city is a heading; the address is in an <address> element",
    "The Directions link names the place (\"Directions to Berlin office\") and says it opens a new tab",
-   "Meta icons are aria-hidden"
+   "Meta icons are aria-hidden",
+   "The map has a title or alt (\"Map of the Berlin office\"); the written address stays the accessible content"
   ],
-  "code": "shadcn Card with <address>, a tel: link and a link to the maps URL.",
+  "code": "shadcn Card with an optional static map image on top, <address>, a tel: link and a link to the maps URL.",
   "guides": [
    "skills/build-ui/components/card.md",
    "skills/build-ui/patterns/marketing-pages.md"
@@ -8641,13 +8671,15 @@
    "One image to view large: use Lightbox"
   ],
   "anatomy": [
-   "Before image: fill on \"before\"",
-   "After image: fill on \"after\", in a crop",
-   "Divider and handle with chevrons",
-   "Before and After labels: Badges"
+   "Before image: fill on \"before\" (stretches with the component)",
+   "After image: fill on \"after\", inside \"after crop\" (the right half); both scale with the component",
+   "Hints: \"Before image\" and \"After image\" placeholders, centered in their half",
+   "Divider and handle with chevrons, centered",
+   "Before and After labels: Badges pinned to the top corners"
   ],
   "rules": [
    "Both images use the same ratio and framing",
+   "Resize the instance to any size; halves, handle and labels keep their places (constraints scale)",
    "The handle starts in the middle",
    "Labels say which side is which",
    "Drag or arrow keys move the handle; on touch only the handle drags, so the page still scrolls",
@@ -9050,7 +9082,7 @@
   ]
  },
  "Service Status Row": {
-  "summary": "One service on a status page or an admin health panel: name, uptime for the last 90 days and the current status in words with a dot.",
+  "summary": "One service on a status page or an admin health panel: name, uptime for the last 90 days, the current status in words with a dot and optional daily uptime bars.",
   "use": [
    "A public status page",
    "A health panel in admin",
@@ -9064,21 +9096,25 @@
   "anatomy": [
    "Name: ui/label",
    "Uptime (Show uptime): \"99.98% uptime\", body/small, muted",
-   "Status: Status Dot with a word (Operational, Degraded, Outage, Maintenance)"
+   "Status: Status Dot with a word (Operational, Degraded, Outage, Maintenance)",
+   "Bars (Show bars): Uptime Bars under the name line, 90 Uptime Day instances; Show labels on the nested bars for \"90 days ago\" / \"Today\""
   ],
   "rules": [
    "Order services the way customers think about the product (Web app, API, Payments), never internal system names",
    "Status is always in words; the dot supports it",
    "A status other than operational links to the incident",
    "Uptime has two decimals over the same 90 days on every row",
-   "Maintenance says until when, with the time zone, in the incident"
+   "Maintenance says until when, with the time zone, in the incident",
+   "Status pages use Show bars on every row; select a nested Uptime Day to set the state of that day",
+   "The bars and the uptime % cover the same 90 days"
   ],
   "a11y": [
    "Rows are a list or a table; the status word is read with the service name",
    "The dot is aria-hidden",
-   "The incident link names the incident, not \"here\""
+   "The incident link names the incident, not \"here\"",
+   "Each uptime day has a tooltip and label with the date and state; color is never the only signal"
   ],
-  "code": "custom row: flex justify-between with Status Dot; data from your status provider (Instatus, Better Stack, Atlassian Statuspage).",
+  "code": "custom row: flex justify-between with Status Dot, plus a row of 90 day bars with Tooltips (Uptime Bars); data from your status provider (Instatus, Better Stack, Atlassian Statuspage).",
   "guides": [
    "skills/build-ui/patterns/content-and-docs.md",
    "skills/build-ui/components/indicators.md"
@@ -9099,9 +9135,9 @@
   ],
   "anatomy": [
    "Avatar",
-   "Name: ui/label, \"(you)\" for the reader",
-   "Email: body/small, muted; member count for a group",
-   "Role: Select (editable), text (owner), \"Invited\" and when (pending)"
+   "Name: ui/label, \"(you)\" for the reader; for pending, the invited address",
+   "Email: body/small, muted; member count for a group; for pending, when they were invited",
+   "Role: Select (editable), text (owner), Invited Badge and Select (pending)"
   ],
   "rules": [
    "The role picker lists Can view, Can comment, Can edit, then Remove access at the bottom, apart",
@@ -9398,15 +9434,17 @@
    "One choice in a form: use Option Card"
   ],
   "anatomy": [
-   "Logo tile: vendor logo (Logo)",
+   "Logo tile: vendor icon (Show icon, Logo swap) or a letter (Show letter, Letter: \"St\")",
    "Name: ui/label; Category: ui/caption, muted",
    "Action: Connect Button (available), Switch (connected)",
+   "Connected badge (Show badge, connected): success Badge \"Connected\"",
    "Description: the value in one line, two at most",
-   "Footer: vendor, or last sync and Settings"
+   "Footer: Vendor (Show vendor) and Learn more link (Show link, exposed Button link), or last sync and Settings"
   ],
   "rules": [
-   "Available shows Connect (OAuth)",
-   "Connected shows a Switch, last sync and Settings",
+   "Available shows Connect (OAuth); Learn more opens the integration page",
+   "Connected shows a Switch, last sync and Settings; the Connected badge helps when cards are scanned in a grid",
+   "Use a letter tile only when no vendor logo is available; one style per grid",
    "Error says what failed and how to fix it (\"Token expired. Reconnect\")",
    "Grid of 3 on desktop, 1 on mobile; cards in a row share height",
    "Disconnecting asks for confirmation and says what stops"
@@ -9414,7 +9452,8 @@
   "a11y": [
    "The name is the card heading; Connect is named with the app (\"Connect Payments\")",
    "The Switch is labelled \"Payments enabled\"",
-   "Error is in text with an icon, not color alone"
+   "Error is in text with an icon, not color alone",
+   "Learn more is named with the app (\"Learn more about Stripe\")"
   ],
   "code": "shadcn Card size=\"sm\" with Button, Switch and Badge; Connect opens the provider OAuth flow.",
   "guides": [
@@ -9423,7 +9462,7 @@
   ]
  },
  "Permission Row": {
-  "summary": "One permission across roles in a role matrix: name, what it allows, and one checkbox per role.",
+  "summary": "One row of a role matrix: a permission with one Checkbox cell per role, the header that names the roles, or a group row. Built from Table Cells so all rows share one grid.",
   "use": [
    "A roles and permissions matrix",
    "A custom role editor",
@@ -9435,23 +9474,28 @@
    "Many permissions for one role, as a list: use Checkbox"
   ],
   "anatomy": [
-   "Text: title (ui/label) and description (ui/caption, muted)",
-   "One Checkbox per role column",
-   "Type=header: the row that names the roles"
+   "Type=permission: Title (body/small) with Description (ui/caption, muted; Show description), then one role cell per role",
+   "Role cells (role 1 to role 5): Table Cell Type=body with a centered Checkbox; 3 shown, Show role 4 and Show role 5 add columns",
+   "Changed (Show changed): outline Badge \"Changed\" after the title for an unsaved edit",
+   "Type=header: Table Cell Type=header cells with Table Header Label (Permission, then the role names)",
+   "Type=group: full-width area row, Group text (\"Invoices\") on the expanded-row background",
+   "Selected column: set the role cell to State=selected in every row (role cells are exposed)"
   ],
   "rules": [
-   "The header row names the roles; at most 5-6 role columns",
-   "Locked roles (owner, admin) show disabled checked boxes and say why",
-   "Group rows by area with Section Heading",
-   "Save changes with the Save Bar and log them in the audit log",
+   "Start with a Type=header row; group permissions by area with Type=group rows",
+   "At most 5 role columns; turn on the same Show role 4 / Show role 5 in every row so the grid stays aligned",
+   "Highlight the role being edited: its role cell State=selected in every permission row, header unchanged",
+   "Locked roles (owner) show disabled checked boxes and say why",
+   "Show changed on rows edited since the last save; save with the Save Bar and log it in the audit log",
    "A permission that needs another (approve needs view) ticks it too, and says so"
   ],
   "a11y": [
    "A real table: role names as th scope=\"col\", permission as th scope=\"row\"",
    "Each Checkbox is named by permission and role (\"Approve invoices, Accountant\")",
-   "Locked boxes explain the reason with aria-describedby"
+   "Locked boxes explain the reason with aria-describedby",
+   "The highlighted column is also named in text (\"Editing Manager\"), not only by its background"
   ],
-  "code": "shadcn Table with Checkbox cells; form state in react-hook-form, saved with the Save Bar.",
+  "code": "shadcn Table: header row of th scope=\"col\", group rows as a th colSpan, Checkbox cells; selected role column gets bg-muted. Form state in react-hook-form, saved with the Save Bar.",
   "guides": [
    "skills/build-ui/patterns/permissions-and-access.md",
    "skills/build-ui/patterns/settings-and-admin.md",
@@ -9472,7 +9516,8 @@
   ],
   "anatomy": [
    "Key icon tile",
-   "Name: ui/label, with a scope Badge",
+   "Name: ui/label",
+   "Scope (Show scope): Badge outline, exposed (set its Label: \"Read only\", \"Read and write\")",
    "Meta: created when and by whom, last used; ui/caption, muted",
    "Key: masked, monospace (\"sk_live_••••••••4f2a\")",
    "Copy: Button Icon; More: Button Icon (Rename, Roll, Revoke)"
@@ -9482,7 +9527,8 @@
    "Revoke asks for confirmation and names the key; it stops working at once",
    "Roll creates a new key, shown once, and says how long the old one keeps working",
    "Unused keys older than 90 days get a warning",
-   "Newest first; revoked keys leave the list and go to the audit log"
+   "Newest first; revoked keys leave the list and go to the audit log",
+   "Show scope when keys differ in access; hide it when every key has full access"
   ],
   "a11y": [
    "The masked key reads \"Key ending in 4f2a\"",
@@ -9508,12 +9554,13 @@
    "A list of people: use List Item"
   ],
   "anatomy": [
-   "Device icon: monitor or smartphone (Device)",
-   "Name: browser and system, with a Current Badge (\"This device\")",
+   "Device icon: monitor or smartphone (Device=desktop|mobile)",
+   "Name: browser and system; State=current adds the \"This device\" success Badge",
    "Meta: location, partial IP, last active; ui/caption, muted",
-   "Action: Sign out Button"
+   "Action: Sign out Button outline sm, disabled when State=current"
   ],
   "rules": [
+   "Any device can be the current one: set State=current on its row, State=default on the others",
    "The current device comes first, is marked, and cannot sign itself out here",
    "Then sort by last active",
    "Location is approximate (city, country); the IP is partial",
@@ -9545,14 +9592,15 @@
   ],
   "anatomy": [
    "Avatar",
-   "Name: ui/label",
-   "Role: body/small, muted",
-   "Reports: users icon and count (\"6 reports\")"
+   "Name: ui/label (State=vacant shows \"Open role\")",
+   "Role: body/small, muted (also on State=vacant: the title being hired for)",
+   "Reports: users icon and count (\"6 reports\"), not on State=vacant",
+   "State: default, selected, vacant"
   ],
   "rules": [
    "Click opens the Person Card; the reports count expands the branch",
    "Connect nodes with 1 px border/default lines",
-   "Vacant roles are dashed and say \"Open role\", linked to the Job Listing",
+   "Vacant roles are dashed, say \"Open role\" and keep the Role of the position, linked to the Job Listing",
    "Large orgs show 2-3 levels and a search",
    "Names and titles wrap to two lines at most"
   ],
@@ -9868,10 +9916,11 @@
    "Icon tile: what the job does (download, upload, send)",
    "Title: ui/label, the job and format (\"Export invoices (CSV)\")",
    "Progress bar (State=running)",
-   "Status: count and time left, the result, or where it failed; body/small, muted",
+   "Status (State=running): count and time left; Result (State=done): what is ready; Error (State=error): where it failed; body/small, muted",
    "Action: Cancel Button Icon while running; Download when done; Retry when failed"
   ],
   "rules": [
+   "Status, Result and Error are separate texts for the three States, so switching State never shows the wrong line",
    "Running shows count and time left (\"1,240 of 3,000 · about 2 min left\"); an indeterminate bar when the total is unknown",
    "Done offers the result (Download) and stays until dismissed",
    "Failed says where it stopped (\"Stopped at row 1,241: invalid date\") and offers Retry",
@@ -9953,6 +10002,110 @@
   "guides": [
    "skills/build-ui/components/ai-chat.md",
    "skills/build-ui/patterns/ai-chat.md"
+  ]
+ },
+ "Uptime Bars": {
+  "summary": "Uptime history of one service: 90 daily bars, oldest on the left, each colored by the state of that day, with an optional \"90 days ago\" / \"Today\" caption row.",
+  "use": [
+   "Under each service of a public status page (Service Status Row Show bars)",
+   "A health panel in admin that shows the last 90 days",
+   "Any daily availability history of an integration or job"
+  ],
+  "avoid": [
+   "A trend of a number over time: use a Chart or Sparkline",
+   "Today's status only: use Service Status Row without bars",
+   "Progress toward a goal: use Progress"
+  ],
+  "anatomy": [
+   "Bars: 90 Uptime Day instances (State=operational, degraded, outage, maintenance, no-data), FILL width",
+   "Caption row (Show labels): Start label \"90 days ago\", End label \"Today\", ui/caption, muted"
+  ],
+  "rules": [
+   "Always 90 days, oldest left, today right; the same period on every row of a page",
+   "Select a nested Uptime Day to set its State; keep the real degraded and outage days",
+   "Days before a service existed are no-data, not operational",
+   "Each day with an incident links to it; the tooltip says the date, the state and the incident title",
+   "Show labels on every row of a status page, or once under the last row"
+  ],
+  "a11y": [
+   "Color is never the only signal: each day has a tooltip and an accessible label (\"3 Oct 2026: degraded\")",
+   "The uptime % is also given as text next to the name",
+   "The bar row is a list; keyboard users reach days with incidents"
+  ],
+  "code": "custom: a flex row of 90 bars (flex-1 h-7 rounded-sm, bg by state) with a shadcn Tooltip per day; data from your status provider.",
+  "guides": [
+   "skills/build-ui/patterns/content-and-docs.md",
+   "skills/build-ui/components/indicators.md"
+  ]
+ },
+ "Pager Link": {
+  "summary": "Previous / next link at the end of a docs page or article: a bordered card with a caption and an arrow, then the title of the linked page.",
+  "use": [
+   "The end of a docs page, before the footer (Block / Docs Page Footer)",
+   "Moving through the articles of a guide or a course in order",
+   "Previous and next post at the end of a blog article"
+  ],
+  "avoid": [
+   "Pages of a table or list: use Pagination",
+   "Steps of a flow or form: use Stepper",
+   "Related links that are not in a sequence: use Post Card Layout=compact or List Item"
+  ],
+  "anatomy": [
+   "Caption row: chevron icon on the side of the Direction and the caption text set by variant (\"Previous\" / \"Next\"), ui/caption, muted",
+   "Title: title of the linked page, ui/label",
+   "Card: background/card, border/default, radius/xl"
+  ],
+  "rules": [
+   "Direction=previous on the left, Direction=next on the right, in two equal columns",
+   "The caption text comes from the Direction (\"Previous\" / \"Next\"); override the text layer directly only to localize it",
+   "Title is the exact title of the linked page, never \"Next page\"",
+   "On the first page show only Next, on the last only Previous; keep the empty column so Next stays on the right",
+   "The whole card is the link: State=hover and State=focus"
+  ],
+  "a11y": [
+   "Wrap both links in a nav with aria-label=\"Previous and next page\"",
+   "The link text reads \"Previous: <title>\"; the chevron is aria-hidden",
+   "Focus shows the focus ring (State=focus)"
+  ],
+  "code": "custom: <a> card (rounded-xl border p-4 hover:bg-accent focus-visible:ring) with lucide ChevronLeft / ChevronRight, inside a <nav>.",
+  "guides": [
+   "skills/build-ui/patterns/content-and-docs.md",
+   "skills/build-ui/components/pagination.md"
+  ]
+ },
+ "Image Figure": {
+  "summary": "An image with a caption under it and an optional credit, for galleries, articles and docs.",
+  "use": [
+   "Gallery grids of photos with captions (Block / Gallery Grid)",
+   "Screenshots and photos in articles and docs that need a caption",
+   "Press and case study pages that credit the photographer"
+  ],
+  "avoid": [
+   "An image without caption: use Image Placeholder",
+   "A number with a label: use Figure",
+   "A product or post with a title and actions: use Product Card or Post Card"
+  ],
+  "anatomy": [
+   "Image: exposed Image Placeholder, set its Ratio (16:9, 4:3, 1:1, 3:4, 21:9); Show caption off",
+   "Caption: what or where it is, body/small, muted",
+   "Credit (Show credit): \"Photo: Acme\", ui/caption, muted"
+  ],
+  "rules": [
+   "Set the ratio on the nested Image Placeholder; put the photo as an image fill on it",
+   "One caption style and one line length per gallery; captions are short phrases without a period",
+   "Credit only when the source must be named (stock, press, a photographer)",
+   "In masonry galleries mix 4:3 and 3:4 per column; keep column widths equal"
+  ],
+  "a11y": [
+   "Use <figure> and <figcaption>; the image still has alt text that says what it shows",
+   "Do not repeat the caption word for word in the alt text",
+   "Caption contrast is at least 4.5:1"
+  ],
+  "code": "<figure> with <img> or next/image (aspect-*, object-cover, rounded-lg) and <figcaption className=\"text-sm text-muted-foreground\">; credit in a <small>.",
+  "guides": [
+   "skills/build-ui/patterns/content-and-docs.md",
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/components/carousel.md"
   ]
  }
 }

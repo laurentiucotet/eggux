@@ -17,6 +17,7 @@ Usage guidelines only. Visual specs live in the Figma component (Rating page).
 ## Figma
 `Rating`: Size sm, default × Value 0-5; Show value, Show count, Count. Stars use
 `background/warning`; empty stars `border/input`.
+- Reviews section: Rating Summary on the left, Review Items on the right (`Block / Reviews`).
 
 ## Code
 Display: a `span` with `aria-label="Rated 4.7 out of 5"`. Input: `RadioGroup` with star icons.

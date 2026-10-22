@@ -31,6 +31,7 @@ interrupted while typing.
 ## shadcn / Figma
 `Form` + `FormField` + `FormMessage` (react-hook-form + zod) in code. In Figma, the input
 component's error variant and the `ui/caption` style for hints.
+- Put the Requirement List directly under the new password Field and list the same failed fields in the Error Summary (`Block / Account Settings Form`).
 
 ## Related components
 - Long forms: show an `Error Summary` at the top after a failed submit, with a link to each field.

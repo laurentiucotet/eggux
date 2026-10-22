@@ -9,18 +9,21 @@ Usage rules live in the guides linked under each component.
 | [Product Card](#product-card) | 3 | - |
 | [Line Item](#line-item) | 2 | - |
 | [Mini Cart](#mini-cart) | 1 | Items |
-| [Order Row](#order-row) | 4 | - |
+| [Order Row](#order-row) | 18 | - |
 | [Shipment Tracker](#shipment-tracker) | 1 | - |
 | [Address Card](#address-card) | 2 | - |
 | [Payment Method Card](#payment-method-card) | 2 | - |
 
-On the Figma page: "Stress test / Address Card", "Stress test / Line Item", "Stress test / Mini Cart", "Stress test / Order Row", "Stress test / Payment Method Card", "Stress test / Product Card", "Stress test / Shipment Tracker"
+On the Figma page: "Example / in billing", "Example / in orders", "Example / in product grid", "Example / mini cart opened from the store header", "Stress test / Address Card", "Stress test / Line Item", "Stress test / Mini Cart", "Stress test / Order Row", "Stress test / Payment Method Card", "Stress test / Product Card", "Stress test / Shipment Tracker"
 
 ## Product Card
 
 Component set · 3 variants · default size 264 × 384
 
-Product tile for grids and carousels: image 1:1, badges (sale %, new, sold out), wishlist, name, variant hint, price (sale price + struck original), optional quick add. The whole card links to the product page.
+A product in a grid or carousel: photo, sale or sold-out badges, wishlist, name, variant text, Price and Old price, optional quick add. Set the card to Fill in a Grid auto layout (min width 160); the photo height follows the width. Pick the photo ratio on the exposed Image (1:1 default, 3:4 for fashion), the same across a grid.
+
+
+Usage: eggux build-ui/patterns/commerce.md
 
 **Use for**
 
@@ -36,12 +39,12 @@ Product tile for grids and carousels: image 1:1, badges (sale %, new, sold out),
 
 **Anatomy**
 
-1. Image Placeholder 1:1
+1. Image (exposed Image Placeholder): Ratio 1:1 by default, 3:4 or 4:3 per instance; height follows the card width
 2. Badges: sale %, new or sold out (State)
 3. Wishlist: Button Icon ghost, top right (Show wishlist)
 4. Name: 2 lines
 5. Variant text: "Sand · 3 colors"
-6. Price: sale price and struck original when State=sale
+6. Price, Old price (State=sale shows Old price struck through)
 7. Action: Button (Show action), "Add to cart" or "Notify me" when sold out
 
 **Content and behavior**
@@ -52,6 +55,8 @@ Product tile for grids and carousels: image 1:1, badges (sale %, new, sold out),
 - State=sold-out stays visible, image dimmed, action becomes "Notify me"
 - Add to cart opens the Mini Cart, never a new page
 - Same photo ratio and background across a grid
+- In grids set the card to Fill in a Grid auto layout (4 columns desktop, 2 mobile); minimum width 160
+- Pick the photo ratio once per grid on the exposed Image, never by resizing the image layer
 
 **Accessibility**
 
@@ -205,13 +210,17 @@ Code: shadcn `Popover` (`Sheet` on mobile) + `Line Item`s, `Summary Row`, `Butto
 
 ## Order Row
 
-Component set · 4 variants · default size 720 × 63
+Component set · 18 variants · default size 720 × 63
 
-One order in an account's order history: number, date and item count, status, total, chevron to the order page. Newest first. Status names come from one list across email, page and support. Search by order number above the list when there are more than 20.
+One order or invoice in an account history: number, date and item count, status, total, chevron to the order page. Status: processing, shipped, delivered, cancelled for orders; paid and refunded for invoices and payments. State: default, hover, selected (the order open beside the list). Newest first. Status names come from one list across email, page and support. Search by number above the list when there are more than 20.
+
+
+Usage: eggux build-ui/patterns/commerce.md
 
 **Use for**
 
 - Order history in an account
+- Invoice history in billing settings
 - Recent orders on an account overview
 - A customer's orders in a support tool
 
@@ -223,29 +232,34 @@ One order in an account's order history: number, date and item count, status, to
 
 **Anatomy**
 
-1. Number: "Order #10482"
-2. Meta: date · item count
-3. Status Badge: processing, shipped, delivered, cancelled
+1. Number: "Order #10482", or the invoice date or number
+2. Meta: date · item count, or plan · seats
+3. Status Badge: processing, shipped, delivered, cancelled (orders); paid, refunded (invoices)
 4. Total
 5. Chevron right
+6. State: default, hover (background/muted), selected (background/accent, the order open next to the list)
 
 **Content and behavior**
 
 - Newest first
+- Invoices use Status=paid or refunded, never an order status with a changed label
 - Status names come from one list across email, page and support
 - Search by order number above the list when there are more than 20
 - The whole row opens the order page
 - Cancelled orders stay in the list with their total
+- In a list with the order detail beside it, the open order is State=selected; never a fill override
 
 **Accessibility**
 
 - The row is one link named by number, status and total ("Order #10482, Shipped, €112.40")
 - Status is text in the Badge, not color alone; the chevron is aria-hidden
 - Dates in a <time> element
+- The selected row has aria-current="true"
 
 | Variant property | Values |
 |---|---|
-| Status | processing, shipped, delivered, cancelled |
+| Status | processing, shipped, delivered, cancelled, paid, refunded |
+| State | default, hover, selected |
 
 | Property | Type | Default |
 |---|---|---|
@@ -256,7 +270,7 @@ One order in an account's order history: number, date and item count, status, to
 Built from: `Badge`. Icons: chevron-right
 
 Tokens and styles:
-- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Colors: `background/accent`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/0_5`, `spacing/3`, `spacing/4`
 - Text styles: `ui/caption`, `ui/label`
 
@@ -322,7 +336,10 @@ Code: custom header + `<ol>` of `Step` (`aria-current="step"`; carrier tracking 
 
 Component set · 2 variants · default size 320 × 154
 
-A saved address to pick or manage: name, address lines in the country's format, phone, Default badge, Edit and Remove. In checkout with a radio (pick one, Selected=true); in account settings without it. Add new address as the last card.
+A saved address to pick or manage: name, address lines in the country's format, phone, Default badge, Edit and Remove (Show actions). In checkout with a radio (pick one, State=selected); in account settings without it; read-only places (order details) turn off Show actions. Add new address as the last card.
+
+
+Usage: eggux build-ui/patterns/commerce.md
 
 **Use for**
 
@@ -341,7 +358,7 @@ A saved address to pick or manage: name, address lines in the country's format, 
 1. Radio (Show radio)
 2. Name and Default Badge (Show default)
 3. Address: lines in the country's format, phone
-4. Actions: Edit, Remove Buttons
+4. Actions (Show actions): Edit, Remove Buttons
 
 **Content and behavior**
 
@@ -350,6 +367,7 @@ A saved address to pick or manage: name, address lines in the country's format, 
 - Add new address is the last card
 - Remove asks to confirm (Confirm Popover)
 - One default address; the Default badge sits next to the name
+- Read-only places (order details, receipts) turn off Show actions and Show radio
 
 **Accessibility**
 
@@ -367,6 +385,7 @@ A saved address to pick or manage: name, address lines in the country's format, 
 | Address | text | Strada Exemplu 12, Floor 3 ⏎ 010101 Bucharest, Romania ⏎ +40 712 345 678 |
 | Show default | boolean | true |
 | Show radio | boolean | true |
+| Show actions | boolean | true |
 
 Built from: `Badge`, `Button`, `Radio`
 
@@ -384,7 +403,10 @@ Code: shadcn `RadioGroup` + `Card` items (`Label` wraps the card), `<address>`
 
 Component set · 2 variants · default size 400 × 64
 
-A saved card, bank account or wallet in billing settings or checkout: brand, last 4 digits, expiry, Default badge, menu (Make default, Remove). expired says it in destructive and offers Update. Never show more than the last 4 digits. Removing the default asks which one replaces it.
+A saved card or account: brand, last 4 digits, expiry, Default badge (Show default) and a menu. State=expired shows Update. Card and expiry cut with an ellipsis when narrow. Turn off Show default on receipts and past orders.
+
+
+Usage: eggux build-ui/patterns/commerce.md
 
 **Use for**
 
@@ -401,10 +423,10 @@ A saved card, bank account or wallet in billing settings or checkout: brand, las
 **Anatomy**
 
 1. Brand: "VISA"
-2. Card: "Visa ending in 4242" and expiry
-3. Default Badge
+2. Card: "Visa ending in 4242" and expiry, one line each, cut with an ellipsis when narrow
+3. Default Badge (Show default)
 4. Menu: Button Icon (Make default, Remove)
-5. State: default, expired
+5. State: default, expired (expired shows Update instead of the Badge)
 
 **Content and behavior**
 
@@ -412,6 +434,7 @@ A saved card, bank account or wallet in billing settings or checkout: brand, las
 - expired says it in destructive and offers Update
 - Removing the default asks which method replaces it
 - Brand marks come from the payment provider
+- Show default only where the default can change (billing settings); turn it off on receipts and past orders
 
 **Accessibility**
 
@@ -427,6 +450,7 @@ A saved card, bank account or wallet in billing settings or checkout: brand, las
 |---|---|---|
 | Card | text | Visa ending in 4242 |
 | Brand | text | VISA |
+| Show default | boolean | true |
 
 Built from: `Badge`, `Button`, `Button Icon`
 

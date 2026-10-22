@@ -161,14 +161,11 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3zc. Done (audit batch 2): Button loading, Button Icon sizes, Avatar square and xs, Sidebar Item level 2, Tab icon and vertical tabs, Menu Item description and submenu, rich Tooltip with shortcut, Progress tones, Image Placeholder 21:9 and locked ratios, Entity Card Show people, List Item without slots, five table cell parts, Pagination Compact; examples for empty state types and dialog sizes.
 3zd. Done (0.50.0): 120 new components on 46 pages, among them forms (Copy Field, Search Field, Currency, Phone, Date and Duration inputs, Form Section, Fieldset, Error Summary), navigation and overlays (Page Toolbar, Account Menu, Notification Center, Welcome Dialog, Resizable Panels, Action Sheet, FAB), data and developer tools (Metric Strip, Usage Meter, Diff Viewer, JSON Viewer, Log Row, Endpoint Row), new charts (Distribution Bar, Bullet, Radar, Sankey, Choropleth, Dashboard Widget), commerce, pricing, admin, automation, sharing, surveys and AI states; 18 new icons.
 3ze. Done (0.51.0): audit and consolidation: 6 merges, 10 wrappers turned into examples, 9 renames, naming conventions, quality fixes, about 45 blocks rebuilt on components.
+3zf. Done (0.52.0): audit gaps closed: Uptime Bars, Pager Link, Image Figure, changelog lines, plan comparison cells, Location Card map, 5-role Permission Row, 25 components extended, 10 new blocks and a real example for every standalone component.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - `Page Shell / Back office` on the Page Shells page, from the tested grid shell;
    - a Search Hero block;
-   - examples in real screens for the 0.50.0 components (their rows have generated stress tests).
-   - gaps found by the 0.51.0 audit: uptime bars in Service Status Row, a prev / next page link, an
-     image figure with caption, a product grid block, per-line tags in Release Note Item, Location
-     Card with a map, Permission Row with more than 3 roles.
 5. System: documentation site.
 
 ## What the pack covers

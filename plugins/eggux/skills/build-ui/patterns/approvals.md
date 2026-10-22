@@ -27,3 +27,4 @@ stall because nobody knows who has to act, by when, or why something was rejecte
 ## Figma
 `Approval Step` (Status: approved, current, rejected, upcoming) on the Approvals page;
 `Block / Approval Request` on the Enterprise page.
+- Rule lists and their flow: `Automation Rule` items, the opened rule as `Workflow Node`s, field mapping with `Mapping Row` (`Block / Automations`).

@@ -12,7 +12,7 @@ Usage rules live in the guides linked under each component.
 | [Resource Item](#resource-item) | 1 | Actions |
 | [File Field](#file-field) | 3 | - |
 
-On the Figma page: "Example / attach documents", "Example / downloads", "Example / invoice preview over a list", "Example / upload documents", "Stress test / File Dropzone", "Stress test / File Field", "Stress test / File Item", "Stress test / File Preview", "Stress test / Resource Item"
+On the Figma page: "Example / attach documents", "Example / downloads", "Example / invoice preview over a list", "Example / supplier onboarding documents", "Example / upload documents", "Stress test / File Dropzone", "Stress test / File Field", "Stress test / File Item", "Stress test / File Preview", "Stress test / Resource Item"
 
 ## File Dropzone
 

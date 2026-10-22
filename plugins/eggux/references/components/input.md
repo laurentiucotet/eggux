@@ -24,7 +24,7 @@ Usage rules live in the guides linked under each component.
 | [Duration Input](#duration-input) | 3 | - |
 | [Range Input](#range-input) | 2 | - |
 
-On the Figma page: "Example / approve a contract", "Example / in multi-step form", "Example / in navbar search", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Example / textarea in field", "Stress test / Copy Field", "Stress test / Currency Input", "Stress test / Date Input", "Stress test / Duration Input", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Inline Form", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Phone Input", "Stress test / Range Input", "Stress test / Search Field", "Stress test / Signature Pad", "Stress test / Textarea"
+On the Figma page: "Example / approve a contract", "Example / in account settings form", "Example / in multi-step form", "Example / in navbar search", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Example / textarea in field", "Example / workspace rules", "Stress test / Copy Field", "Stress test / Currency Input", "Stress test / Date Input", "Stress test / Duration Input", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Inline Form", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Phone Input", "Stress test / Range Input", "Stress test / Search Field", "Stress test / Signature Pad", "Stress test / Textarea"
 
 ## Input
 

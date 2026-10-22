@@ -12,8 +12,9 @@ Usage rules live in the guides linked under each component.
 | [Avatar Upload](#avatar-upload) | 4 | - |
 | [Image Compare Slider](#image-compare-slider) | 1 | - |
 | [Device Frame](#device-frame) | 2 | Screen |
+| [Image Figure](#image-figure) | 1 | - |
 
-On the Figma page: "Example / cropping a profile photo", "Example / in map section", "Example / in product card", "Example / profile settings", "Stress test / Device Frame", "Stress test / Image Compare Slider", "Stress test / Image Cropper", "Stress test / Image Cropper and Avatar Upload", "Stress test / Image Placeholder", "Stress test / Map"
+On the Figma page: "Example / before and after in a case study", "Example / cropping a profile photo", "Example / in gallery grid", "Example / in map section", "Example / in product card", "Example / profile settings", "Stress test / Device Frame", "Stress test / Image Compare Slider", "Stress test / Image Cropper", "Stress test / Image Cropper and Avatar Upload", "Stress test / Image Figure", "Stress test / Image Placeholder", "Stress test / Map"
 
 ## Image Placeholder
 
@@ -182,7 +183,10 @@ Code: `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input (Crop on the
 
 Component set · 4 variants · default size 344 × 100
 
-Profile or logo picture in settings: current avatar (initials when empty), rules (type, size), Upload or Change, Remove. Upload opens the file picker, then the Image Cropper; uploading shows progress and Cancel; errors say what to fix. Remove asks no confirmation but offers Undo in a toast. Hint wraps within 280 px.
+Profile or logo picture in settings: the avatar, a Label (Show label), a Hint with the upload rules, Upload or Change (exposed Button, set its Label, e.g. "Upload photo") and Remove (Show remove, empty and filled). State: empty (initials), filled, uploading (progress and Cancel), error (says what to fix). Upload opens the file picker, then the Image Cropper; Remove offers Undo in a toast.
+
+
+Usage: eggux build-ui/components/file-upload.md
 
 **Use for**
 
@@ -198,18 +202,21 @@ Profile or logo picture in settings: current avatar (initials when empty), rules
 **Anatomy**
 
 1. Avatar (initials when empty)
-2. Hint: type, minimum size, maximum weight
-3. Upload or Change Button
-4. Remove Button
-5. Progress and Cancel while uploading
-6. Error message
+2. Label (Show label): "Profile photo", "Company logo"
+3. Hint: type, minimum size, maximum weight (empty and filled)
+4. Upload or Change: Button outline sm, exposed (set its Label, e.g. "Upload photo")
+5. Remove (Show remove): Button ghost sm, empty and filled
+6. Progress and Cancel while uploading
+7. Error message (State=error)
 
 **Content and behavior**
 
 - State: empty, filled, uploading, error
 - Upload opens the file picker, then the Image Cropper
+- Show remove only when there is something to remove (a photo, or initials people may reset)
 - Errors say what to fix: "Choose an image under 5 MB"
 - Remove asks no confirmation and offers Undo in a toast
+- Hide the Label when the section title already names the picture
 - Hint wraps within 280 px
 
 **Accessibility**
@@ -221,6 +228,13 @@ Profile or logo picture in settings: current avatar (initials when empty), rules
 | Variant property | Values |
 |---|---|
 | State | empty, filled, uploading, error |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Profile photo |
+| Show label | boolean | true |
+| Hint | text | JPG or PNG, at least 256 × 256 px, up to 5 MB. |
+| Show remove | boolean | false |
 
 Built from: `Avatar`, `Button`, `Spinner`
 
@@ -237,7 +251,10 @@ Code: `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input (Crop on the
 
 Component · 1 variant · default size 640 × 360
 
-Two images of the same view, before and after, with a handle to drag between them: redesigns, photo edits, document versions, site changes. Drag or arrow keys move the handle; labels say which side is which. Put the images as fills on "before" and "after"; both use the same ratio and framing.
+Two images of the same view, before and after, with a handle to drag between them: redesigns, photo edits, document versions, site changes. Drag or arrow keys move the handle; labels say which side is which. Put the images as fills on "before" and "after"; both use the same ratio and framing. Resize the instance freely: both halves, hints, handle and labels scale with it.
+
+
+Usage: eggux build-ui/components/content.md
 
 **Use for**
 
@@ -253,14 +270,16 @@ Two images of the same view, before and after, with a handle to drag between the
 
 **Anatomy**
 
-1. Before image: fill on "before"
-2. After image: fill on "after", in a crop
-3. Divider and handle with chevrons
-4. Before and After labels: Badges
+1. Before image: fill on "before" (stretches with the component)
+2. After image: fill on "after", inside "after crop" (the right half); both scale with the component
+3. Hints: "Before image" and "After image" placeholders, centered in their half
+4. Divider and handle with chevrons, centered
+5. Before and After labels: Badges pinned to the top corners
 
 **Content and behavior**
 
 - Both images use the same ratio and framing
+- Resize the instance to any size; halves, handle and labels keep their places (constraints scale)
 - The handle starts in the middle
 - Labels say which side is which
 - Drag or arrow keys move the handle; on touch only the handle drags, so the page still scrolls
@@ -276,6 +295,7 @@ Built from: `Badge`. Icons: chevron-left, chevron-right, image
 
 Tokens and styles:
 - Colors: `background/default`, `background/muted`, `border/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
 - Radius: `radius/full`, `radius/lg`
 - Text styles: `ui/caption`
 - Effects: `shadow/md`
@@ -344,3 +364,57 @@ Tokens and styles:
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
 Code: custom `<figure>`: border, top bar (dots, URL), `<img>` or live component (Screenshot at 1:1)
+
+## Image Figure
+
+Component · 1 variant · default size 480 × 388
+
+An image with a caption under it (HTML figure and figcaption) for galleries, articles and docs. The Image Placeholder is exposed: set its Ratio (16:9, 4:3, 1:1, 3:4, 21:9) and put the photo as an image fill on it. Caption says what or where it is in one line, body/small muted; Show credit adds the photographer or source. Keep one caption style per gallery; use Image Placeholder alone when there is no caption. Usage: eggux build-ui/patterns/content-and-docs.md
+
+**Use for**
+
+- Gallery grids of photos with captions (Block / Gallery Grid)
+- Screenshots and photos in articles and docs that need a caption
+- Press and case study pages that credit the photographer
+
+**Not for**
+
+- An image without caption: use Image Placeholder
+- A number with a label: use Figure
+- A product or post with a title and actions: use Product Card or Post Card
+
+**Anatomy**
+
+1. Image: exposed Image Placeholder, set its Ratio (16:9, 4:3, 1:1, 3:4, 21:9); Show caption off
+2. Caption: what or where it is, body/small, muted
+3. Credit (Show credit): "Photo: Acme", ui/caption, muted
+
+**Content and behavior**
+
+- Set the ratio on the nested Image Placeholder; put the photo as an image fill on it
+- One caption style and one line length per gallery; captions are short phrases without a period
+- Credit only when the source must be named (stock, press, a photographer)
+- In masonry galleries mix 4:3 and 3:4 per column; keep column widths equal
+
+**Accessibility**
+
+- Use <figure> and <figcaption>; the image still has alt text that says what it shows
+- Do not repeat the caption word for word in the alt text
+- Caption contrast is at least 4.5:1
+
+| Property | Type | Default |
+|---|---|---|
+| Caption | text | The Bucharest office kitchen, where the team meets for lunch. |
+| Show credit | boolean | false |
+| Credit | text | Photo: Acme |
+
+Built from: `Image Placeholder`
+
+Tokens and styles:
+- Colors: `foreground/muted`
+- Spacing and size: `spacing/2`
+- Text styles: `body/small`, `ui/caption`
+
+Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
+
+Code: `<figure>` with `<img>` or `next/image` (`aspect-*`, `object-cover`, `rounded-lg`) + `<figcaption className="text-sm text-muted-foreground">` (Credit in a `<small>` inside the figcaption)

@@ -19,7 +19,7 @@ Usage rules live in the guides linked under each component.
 | [Skip Link](#skip-link) | 1 | - |
 | [Page Toolbar](#page-toolbar) | 1 | - |
 
-On the Figma page: "Example / in navbar", "Example / in page shell / app", "Example / in page shell / docs", "Example / in product detail", "Example / navbar with mega menu", "Stress test / Back Link", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Page Toolbar", "Stress test / Skip Link", "Stress test / Table of Contents", "Stress test / Top Bar"
+On the Figma page: "Example / in navbar", "Example / in page shell / app", "Example / in page shell / docs", "Example / in product detail", "Example / invoices page with skip link and toolbar", "Example / navbar with mega menu", "Stress test / Back Link", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Page Toolbar", "Stress test / Skip Link", "Stress test / Table of Contents", "Stress test / Top Bar"
 
 ## Breadcrumb
 
@@ -495,7 +495,7 @@ First focusable element of every page, hidden until it gets keyboard focus; then
 
 **Anatomy**
 
-1. Label: "Skip to main content", on a surface with border and shadow, top left
+1. Label: "Skip to main content" (or "Skip to results" before a long filter block), on a surface with border and shadow, top left
 
 **Content and behavior**
 
@@ -509,6 +509,10 @@ First focusable element of every page, hidden until it gets keyboard focus; then
 - A link to #main; the target has tabindex="-1" so it can take focus
 - Visible focus style with at least 3:1 against the page
 - Use sr-only with focus:not-sr-only; never display:none
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Skip to main content |
 
 Tokens and styles:
 - Colors: `background/primary`, `foreground/primary`

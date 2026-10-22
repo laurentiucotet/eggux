@@ -62,3 +62,4 @@ columns and rows. Details: "Tables on auto-layout grid" in `references/figma-lib
 - More cell parts: `Table Cell Link` (the record or a related object, underlined), `Table Cell Date`
   (one format per column, Show time), `Table Cell File` (icon, name, size), `Table Cell Badges`
   (Badge List with +N), `Table Cell Avatars` (Avatar Group sm). Example "table cell types".
+- Plan comparison tables use `Table Cell Check`: a check for included, a dash for excluded, the value when limits differ by plan (Block / Comparison Table).

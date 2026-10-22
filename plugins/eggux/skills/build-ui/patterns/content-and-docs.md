@@ -19,6 +19,8 @@ people and events: the Page Headers page (`marketing-pages.md` § Page headers).
   "Load more"; RSS and newsletter signup at the end.
 - Docs: left navigation by section with the current page selected, search with ⌘K, version
   switcher when several versions exist, "Edit this page" link for public docs.
+- Previous / next links at the end of a docs page are two `Pager Link`s (Direction=previous, next) in equal columns.
+- Images with a caption use `Image Figure` (set the ratio on its nested Image Placeholder; Show credit for the source).
 
 ## Help center
 Order: `Block / Navbar Search` → Help Hero → Help Categories → Help Popular Articles → Support
@@ -36,15 +38,17 @@ ending with `Block / Docs Page Footer`.
 - Feedback: "Was this page helpful?" Yes / No; after No, one optional question. Thank with a toast.
 
 ## Changelog
-- Newest first; date and version on the left; one title per release that states the benefit.
+- Newest first; version and date in the entry's meta line; one title per release that states the benefit.
 - Tag each line New, Improved or Fixed (Badge info / secondary / success). Link to the help
   article; offer email or RSS.
+- A release with several changes is one `Release Note Item` with Show changes: one `Release Note Line` per change; Show text off when the lines say it all (Block / Changelog).
 
 ## Status page
 - Overall state in one sentence on top (Alert), "Updated N minutes ago", subscribe button.
 - One row per component people recognize (Web app, API, Payments), uptime % as text plus 90 daily
   bars; color is never the only signal.
 - Incidents in plain language: what happened, impact, duration, what changed. Keep at least 90 days.
+- Each row is `Service Status Row` with Show bars: `Uptime Bars` holds 90 `Uptime Day` bars; select a day to set its State (operational, degraded, outage, maintenance, no-data).
 
 ## Related components
 - Changelog and in-app What's new entries use `Release Note Item`. Developer docs use

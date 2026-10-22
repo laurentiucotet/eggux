@@ -13,7 +13,7 @@ Usage rules live in the guides linked under each component.
 | [Countdown](#countdown) | 1 | - |
 | [Leaderboard Row](#leaderboard-row) | 2 | - |
 
-On the Figma page: "Stress test / Countdown", "Stress test / Leaderboard Row", "Stress test / Metric Strip", "Stress test / Trend Indicator", "Stress test / Usage Meter"
+On the Figma page: "Example / in billing", "Example / in executive dashboard", "Stress test / Countdown", "Stress test / Leaderboard Row", "Stress test / Metric Strip", "Stress test / Trend Indicator", "Stress test / Usage Meter"
 
 ## Trend Indicator
 
@@ -179,7 +179,10 @@ Code: `<dl class="grid grid-cols-2 md:grid-cols-4 divide-x">` with `dt` / `dd` +
 
 Component set · 3 variants · default size 320 × 60
 
-How much of a plan limit is used: seats, storage, API calls, documents per month. Label, "used of limit", bar, a hint. near from 80% (warning, say what to do), over above 100% (error, say the consequence and the date). In billing settings and near the action that uses the limit. A goal people try to reach is Progress Card.
+How much of a plan limit is used: seats, storage, API calls, documents per month. Label, Usage ("8 of 10", used of limit with the unit), bar, a hint. near from 80% (warning, say what to do), over above 100% (error, say the consequence and the date). In billing settings and near the action that uses the limit. A goal people try to reach is Progress Card.
+
+
+Usage: eggux build-ui/components/progress-and-slider.md
 
 **Use for**
 
@@ -222,6 +225,7 @@ How much of a plan limit is used: seats, storage, API calls, documents per month
 |---|---|---|
 | Label | text | Seats |
 | Show hint | boolean | true |
+| Usage | text | 6 of 10 |
 
 Built from: `Progress`
 

@@ -30,3 +30,5 @@ page (BLOCKS): Product Detail, Order Summary; examples "cart sheet" and "checkou
 - Account pages: `Order Row` for order history (newest first), `Shipment Tracker` on the order page,
   `Address Card` and `Payment Method Card` for saved addresses and payment methods (last 4 digits
   only). Reviews: `Rating Summary` above a list of `Review Item`.
+- Category page: `Block / Product Grid` (Filter Sections on the left, active Filter Chips, a grid of Product Cards that FILL, Load More); order history: `Block / Orders`; reviews: `Block / Reviews` under Product Detail.
+- Mini Cart is a popover under the header cart button.

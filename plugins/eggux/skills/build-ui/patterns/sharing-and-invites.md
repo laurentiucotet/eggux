@@ -28,3 +28,4 @@
 - Build the share dialog from `Invite Row` (top), one `Access Row` per person or group (owner first,
   pending invites marked) and `Share Link Row` (bottom, general access and Copy link). Show who is
   in the object now with `Presence Bar` next to Share.
+- A share dialog is Invite Row on top, Access Rows (owner, editors, pending) and a Share Link Row at the bottom: `Block / Share Dialog`.

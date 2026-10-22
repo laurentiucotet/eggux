@@ -17,7 +17,7 @@ Usage rules live in the guides linked under each component.
 | [Select Option](#select-option) | 6 | - |
 | [Recurrence Picker](#recurrence-picker) | 3 | - |
 
-On the Figma page: "Example / combobox open", "Example / language switch", "Example / multi-select open", "Example / role permissions", "Example / select open", "Example / share a report", "Stress test / Address Autocomplete", "Stress test / Combobox", "Stress test / People Picker and Transfer List", "Stress test / Recurrence Picker", "Stress test / Select", "Stress test / Select Option", "Stress test / Tag Input", "Stress test / Transfer List"
+On the Figma page: "Example / combobox open", "Example / customer picker in a new invoice", "Example / in account settings form", "Example / language switch", "Example / multi-select open", "Example / role permissions", "Example / select open", "Example / share a report", "Stress test / Address Autocomplete", "Stress test / Combobox", "Stress test / People Picker and Transfer List", "Stress test / Recurrence Picker", "Stress test / Select", "Stress test / Select Option", "Stress test / Tag Input", "Stress test / Transfer List"
 
 ## Select
 

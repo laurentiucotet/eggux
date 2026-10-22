@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Progress Ring](#progress-ring) | 15 | - |
 | [Background Job](#background-job) | 3 | - |
 
-On the Figma page: "Example / in onboarding checklist", "Example / uploads in progress", "Stress test / Background Job", "Stress test / Progress", "Stress test / Progress Ring"
+On the Figma page: "Example / exports panel from the top bar", "Example / in onboarding checklist", "Example / uploads in progress", "Stress test / Background Job", "Stress test / Progress", "Stress test / Progress Ring"
 
 ## Progress
 
@@ -147,11 +147,12 @@ A task that runs in the background (export, import, bulk send, report): name, pr
 1. Icon tile: what the job does (download, upload, send)
 2. Title: ui/label, the job and format ("Export invoices (CSV)")
 3. Progress bar (State=running)
-4. Status: count and time left, the result, or where it failed; body/small, muted
+4. Status (State=running): count and time left; Result (State=done): what is ready; Error (State=error): where it failed; body/small, muted
 5. Action: Cancel Button Icon while running; Download when done; Retry when failed
 
 **Content and behavior**
 
+- Status, Result and Error are separate texts for the three States, so switching State never shows the wrong line
 - Running shows count and time left ("1,240 of 3,000 · about 2 min left"); an indeterminate bar when the total is unknown
 - Done offers the result (Download) and stays until dismissed
 - Failed says where it stopped ("Stopped at row 1,241: invalid date") and offers Retry
@@ -171,6 +172,9 @@ A task that runs in the background (export, import, bulk send, report): name, pr
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Export invoices (CSV) |
+| Status | text | 640 of 1,284 · about 1 min left |
+| Result | text | 1,284 invoices · 2.4 MB · Ready |
+| Error | text | Stopped at 640 of 1,284. Connection lost. |
 
 Built from: `Button`, `Button Icon`, `Progress`. Icons: circle-alert, circle-check, download
 

@@ -9,7 +9,7 @@ Usage rules live in the guides linked under each component.
 | [Spinner](#spinner) | 6 | - |
 | [Loading Overlay](#loading-overlay) | 1 | - |
 
-On the Figma page: "Example / button loading", "Stress test / Loading Overlay", "Stress test / Spinner"
+On the Figma page: "Example / button loading", "Example / refreshing a card", "Stress test / Loading Overlay", "Stress test / Spinner"
 
 ## Spinner
 

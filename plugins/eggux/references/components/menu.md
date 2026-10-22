@@ -13,7 +13,7 @@ Usage rules live in the guides linked under each component.
 | [Menubar Trigger](#menubar-trigger) | 3 | - |
 | [Account Menu](#account-menu) | 1 | - |
 
-On the Figma page: "Example / actions menu under a header button", "Example / menu with descriptions", "Example / menubar open", "Stress test / Account Menu", "Stress test / Menu", "Stress test / Menubar"
+On the Figma page: "Example / account menu from the top bar", "Example / actions menu under a header button", "Example / menu with descriptions", "Example / menubar open", "Stress test / Account Menu", "Stress test / Menu", "Stress test / Menubar"
 
 ## Menu
 

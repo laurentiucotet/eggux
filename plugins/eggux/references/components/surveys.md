@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [NPS Survey](#nps-survey) | 2 | - |
 | [CSAT Rating](#csat-rating) | 2 | - |
 
-On the Figma page: "Stress test / CSAT Rating", "Stress test / Feedback Widget", "Stress test / NPS Survey"
+On the Figma page: "Example / quarterly customer survey", "Stress test / CSAT Rating", "Stress test / Feedback Widget", "Stress test / NPS Survey"
 
 ## Feedback Widget
 

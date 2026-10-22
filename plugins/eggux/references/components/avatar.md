@@ -11,7 +11,7 @@ Usage rules live in the guides linked under each component.
 | [Byline](#byline) | 3 | - |
 | [Presence Bar](#presence-bar) | 1 | - |
 
-On the Figma page: "Example / article meta", "Example / assignees on a project page", "Example / in record header", "Stress test / Avatar", "Stress test / Avatar Group", "Stress test / Byline", "Stress test / Presence Bar"
+On the Figma page: "Example / article meta", "Example / assignees on a project page", "Example / document header with live presence", "Example / in record header", "Stress test / Avatar", "Stress test / Avatar Group", "Stress test / Byline", "Stress test / Presence Bar"
 
 ## Avatar
 

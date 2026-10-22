@@ -8,7 +8,7 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Search Result Item](#search-result-item) | 1 | - |
 
-On the Figma page: "Stress test / Search Result Item"
+On the Figma page: "Example / help center search results", "Stress test / Search Result Item"
 
 ## Search Result Item
 
@@ -30,10 +30,10 @@ One result on a search page: where it lives (path), title that links to it, a tw
 
 **Anatomy**
 
-1. Path (Show path): where it lives, segments with Icon/chevron-right, body/small, muted
+1. Path (Show path): Path (first segment, "Help center"), Icon/chevron-right, Section (second segment, "Invoices"); body/small, muted
 2. Title: link, heading/h4
 3. Snippet: two lines around the matched words
-4. Meta (Show meta): type Badge and updated date
+4. Meta (Show meta): type Badge and Updated ("Updated 12 Oct 2026")
 
 **Content and behavior**
 
@@ -57,6 +57,7 @@ One result on a search page: where it lives (path), title that links to it, a tw
 | Show meta | boolean | true |
 | Path | text | Help center |
 | Updated | text | Updated 12 Oct 2026 |
+| Section | text | Invoices |
 
 Built from: `Badge`. Icons: chevron-right
 
