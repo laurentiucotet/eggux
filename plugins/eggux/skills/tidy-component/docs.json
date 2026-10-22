@@ -3505,6 +3505,7 @@
   ],
   "anatomy": [
    "Image 16:9 (Image Placeholder)",
+   "Horizontal: the image takes half the card width (160-640) and keeps its ratio, so the card works from a featured row down to a list in a column",
    "Category Badge, Date and reading time",
    "Title",
    "Excerpt, 3 lines max (Show excerpt)",
