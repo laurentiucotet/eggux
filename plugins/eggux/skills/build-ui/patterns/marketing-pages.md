@@ -71,6 +71,7 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
 - Maps: never the only way to find an address; add directions and opening hours; lazy-load
   interactive maps and use a static image above the fold.
 - Announcement banner: one at a time, dismissible, not for errors or outages.
+- Gallery grids use `Image Figure`; office grids use `Location Card` with Show map (Block / Offices).
 
 ## Cookie consent
 - Needed before any non-essential cookie (analytics, ads, embeds that track). Necessary cookies

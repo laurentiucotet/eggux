@@ -49,6 +49,7 @@ Usage guidelines only. Visual specs live in the Figma components.
 - No wrapping: long lines scroll horizontally. Syntax colors come from the highlighter theme.
 - Inline code inside prose: `code` style on `background/muted`, radius sm, no Code Block.
 - Figma: `Code Block` (Code Block page), Language, Code, Show header.
+- API reference pages: Endpoint Row list (State=selected on the open one), a curl Command Snippet, a JSON Viewer response, recent Log Rows and schema changes in a Diff Viewer (`Block / API Reference`).
 
 ## Table of Contents
 - Long articles and docs pages (3+ sections). Built from the h2 / h3 headings; the section in view

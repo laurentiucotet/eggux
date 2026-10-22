@@ -8,6 +8,7 @@ Usage guidelines only. Visual specs live in the Figma components (Pagination pag
 | Tables and lists where users compare, return to a position or share a page | `Pagination` |
 | Feeds, activity, search results browsed once | "Load more" button or infinite scroll |
 | Fewer than ~25 rows | Nothing; show all |
+| Moving to the previous or next page of docs or a guide | `Pager Link` |
 
 ## Rules
 - Show first, last, current ±1 and ellipsis. Current page = `active` (outline), with

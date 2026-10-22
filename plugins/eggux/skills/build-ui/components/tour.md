@@ -31,6 +31,7 @@ Usage guidelines only. Visual specs live in the Figma components (Tour page).
   slot), Show close, Show back.
 - `Hotspot`: 24 px beacon in `background/primary`.
 - Example "product tour" on the Tour page: a block dimmed with a spotlight around the target.
+- Each Annotation Pin number matches its comment in the side list.
 
 ## Code
 A small tour library (Driver.js, Shepherd, Reactour) or Radix `Popover` anchored to the

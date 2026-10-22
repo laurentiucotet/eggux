@@ -26,6 +26,7 @@
 `Skeleton`, `Progress`, spinner icon inside `Button`. See `components/skeleton.md`.
 
 Spinner, Progress and Skeleton components: `components/indicators.md`, `components/progress-and-slider.md`.
+- When a card reloads in place, cover its content (not its header) with a Loading Overlay and disable the control that triggered it.
 
 ## Related components
 - Refetching a region the user already sees uses `Loading Overlay` (old content faded, Spinner and

@@ -29,3 +29,4 @@ breakdown grid with Progress for share and a total row.
   `Bullet Chart` stacks for KPI reviews against targets.
 - Rankings (top customers, teams, products) use `Leaderboard Row`: rank, avatar, name and value,
   sorted by the value, 5-10 rows with "View all".
+- Executive dashboards use Dashboard Widgets holding Bullet Charts, Distribution Bars, Leaderboard Rows, a Countdown and Trend Indicators (`Block / Executive Dashboard`).

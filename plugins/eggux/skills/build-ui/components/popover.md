@@ -18,6 +18,7 @@ Usage guidelines only. Visual specs live in the Figma components (Popover page).
 - Never nest popovers. A Select or Combobox inside a Popover is fine.
 - Command lists: show recent or suggested items before typing, group with `Menu Label`, highlight
   the first match, show "No results found." with a next step when possible.
+- Confirm Popover opens under the button that triggered it and floats over the content; it never pushes the layout down.
 
 ## Figma
 - `Popover`: Content (native slot), popover tokens, `shadow/md`.

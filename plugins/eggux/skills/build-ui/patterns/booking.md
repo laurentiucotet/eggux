@@ -19,3 +19,4 @@ left, time slots for the chosen day on the right, footer with the chosen slot an
 - Slots are `Time Slot` instances in a grid of 3-4 per row (selected primary, taken disabled with a
   strikethrough). Booking settings list working hours with seven `Availability Row`s, the time zone
   said once above them.
+- Scheduling overview (next Meeting Card, today's Agenda Items, Availability Rows for working hours, Time Slot grid): `Block / Agenda`.

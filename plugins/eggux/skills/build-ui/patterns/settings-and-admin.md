@@ -35,3 +35,5 @@ at the bottom, with typed confirmation (`delete-confirmation.md`).
 - Admin rows: `Integration Card` for the Integrations block, `Permission Row` for the role matrix,
   `API Key Row` for API Keys and `Session Row` for signed-in devices. Onboarding checklists use
   `Task Item`.
+- `Integration Card`: use a letter tile (Show letter) only when no vendor logo is available, and the same style across the grid.
+- Account security (two-factor, sign-in alerts, SSO URL, active sessions with Sign out of all other sessions): `Block / Security`. A long settings page: `Block / Account Settings Form` (Form Sections per topic, one Error Summary on top after a failed save, one Action Bar at the end).

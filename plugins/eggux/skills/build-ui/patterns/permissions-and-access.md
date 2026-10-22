@@ -25,3 +25,4 @@
 `Block / Roles & Permissions`.
 - The role matrix is a table of `Permission Row`s (Type=header names the roles; locked roles show
   disabled checked boxes), saved with the Save Bar and logged.
+- Role matrix: `Permission Row` rows (Type=header, group, permission; Show role 4 and 5); highlight the role being edited by setting its role cell to State=selected in every row (Block / Roles & Permissions).

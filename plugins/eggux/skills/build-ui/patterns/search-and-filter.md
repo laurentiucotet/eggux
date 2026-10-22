@@ -45,6 +45,7 @@ For large lists where people need precise subsets (finance, operations, CRM):
   values, then "Show N more".
 - Pick: up to 4 common filters → chips in the Filter Bar; many attributes or browsing → side
   panel of Filter Sections; precise conditions (and / or, operators) → Filter Builder.
+- Shop listings use Filter Section in a left panel plus active Filter Chips; Faceted Filter is the popover version for toolbars.
 
 ## shadcn / Figma
 `Input` with search icon, `Popover` + `Command` for filter options, `Badge` chips, `Button variant="ghost"` for "Clear all".

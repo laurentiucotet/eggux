@@ -15,6 +15,7 @@ back-office tools, at least check that the page does not break below 768.
 - Otherwise: menu button in `Mobile Header` opens the Sidebar as a left `Sheet`.
 - Detail pages: back button + object title, no Bottom Nav; primary action in a sticky bottom bar.
 - Marketing: `Block / Navbar Mobile`; the menu is a full-screen panel with links and full-width CTAs.
+- One FAB per screen, bottom right above the Bottom Nav; an Action Sheet slides up from the bottom for the actions of one item.
 
 ## Content
 - Tables become lists: one List Item per row with the 2-3 most useful fields; the rest on the

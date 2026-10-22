@@ -11,6 +11,7 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
 - Figma: `Progress` Value 0, 25, 50, 75, 100; resize the indicator for other values.
 - Tone: success when complete, warning near a limit, error when failed; the text next to the bar
   says it too. Figma: `Progress` Tone × Value.
+- Long exports and syncs show as Background Jobs in a Popover from a top bar button, one row per job (Status, Result or Error per state).
 
 ## Slider
 - For a value on a continuous scale where approximate is fine (price range, radius, volume).
