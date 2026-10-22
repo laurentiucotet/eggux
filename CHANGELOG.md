@@ -3,6 +3,45 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.51.0
+- Audit and consolidation of the whole library (four audits: component quality, overlaps, docs
+  consistency, usage in blocks). 356 components became 339, with no lost capability.
+- Merges:
+  - `Check Item` (Mark=check, dash, x) replaces Requirement Item and Check List Item.
+  - `Feature Item` gets Marker=icon, number and replaces Step Item.
+  - `Number Input` gets Size=sm and replaces Quantity Selector.
+  - `Swatch` (Type=color, label; Size; State with unavailable) replaces Swatch and Variant Swatch.
+  - `Option Card` gets Control=radio, checkbox and replaces Checkbox Card.
+  - `Tabs` is one set with Variant=default, line, vertical (replaces Tabs Line and Tabs Vertical);
+    `Tab` Style is now Variant.
+- Removed thin wrappers, now examples built from the base component: AI Button, Theme Toggle, View
+  Switcher, Pricing Toggle, Wishlist Button, Stock Indicator, Scroll To Top, SSO Button, Welcome
+  Dialog, Language Switcher. Table Cell User stays (part of the table cell family, 200+ uses).
+- Renamed: Checklist Item to `Task Item`, Range Fields to `Range Input`, Suggestion to `Prompt
+  Suggestion`, Suggestion Review Bar to `AI Review Bar`, Job Item to `Background Job`, Tag List to
+  `Badge List`, Table Cell Tags to `Table Cell Badges`, Model Selector to `Model Picker`, TOC Item to
+  `Table of Contents Item`.
+- Conventions applied: booleans are "Show <part>" (39 renamed) and icon swaps are `Icon`, `Leading
+  icon`, `Trailing icon`; variant properties and values aligned (Trend, Level, State, Series, Type;
+  values lowercase with hyphens; outcome states done and error); same-role text properties share a
+  name (Title, Name, Description, Time, Duration).
+- Quality: default variants use Size=default (Button, Avatar, Spinner, Rating, Price, Progress Ring,
+  Section Heading); text bound in every variant; slots kept in collapsed variants (Side Panel,
+  Sidebar Double); 670 accidental clips removed; controls at 36 bound to `density/control-height`;
+  227 descriptions rewritten without HTML entities; new text and boolean properties where content
+  could not be edited (Product Card price, Trend Indicator value, Stat Card trend, Toast title and
+  description, Task Item action slot, and more).
+- Blocks migrated to components: Pricing, Pricing Single, Pricing Calculator, Comparison Table,
+  testimonials, stats, Features Split, Careers List, Job Header, Newsletter, Logo Cloud, Team, Contact
+  Cards; API Keys, Integrations, Notifications, Onboarding Checklist, Billing, Booking, Team Members,
+  Notification Preferences, Profile, Gantt; Status Page, help center blocks, Docs Page Footer,
+  Product Detail, Order Summary, cart sheet, search headers, Footer Newsletter, Announcement Banner
+  and heroes. Kept on purpose, with reasons in the audit: Testimonial Split, Offices, Gallery Grid,
+  Team List, Changelog, Roles & Permissions.
+- Docs: docs.json, rows.json, 40 guides, code mapping (every component has a row), library map
+  conventions, Figma API notes, a quieter `scan-components.js`, regenerated Docs frames on every
+  component page and the component reference.
+
 ## 0.50.0
 - 120 new components and 5 parts, built on existing primitives and tokens, each with a Figma
   description, docs entry, row on its page and generated stress test.
