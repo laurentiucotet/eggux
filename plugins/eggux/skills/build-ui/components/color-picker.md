@@ -9,8 +9,7 @@ Usage guidelines only. Visual specs live in the Figma component (Color Picker pa
 | Any color (brand settings, theme, charts) | `Color Picker` in a Popover, opened from a color field |
 
 ## Rules
-- The trigger is a color field: swatch + hex value (example "color field" on the Color Picker
-  page). Typing a valid hex updates the swatch.
+- The trigger is a color field: swatch + hex value. Typing a valid hex updates the swatch.
 - Show presets (brand or recent colors) first when users should stay on palette.
 - Hex input accepts with or without `#`, 3 or 6 digits; opacity only when the product supports
   it.
@@ -28,3 +27,6 @@ slot). Gradients in the control are raw colors by design; everything else uses t
 ## Related components
 - "Swatches only" is now `Swatch Picker`: 6-10 `Swatch`es from the chart palette, one selected, its
   name under them. Use it for labels, categories and calendars; free colors stay on `Color Picker`.
+- `Swatch` is one choice: Type=color (a dot) or label (a box with "S", "M", "L"), Size=sm (28) in
+  pickers and default (36) for product options, State default, selected or unavailable. Product
+  options on a product page use the same Swatch; see `patterns/commerce.md`.

@@ -98,7 +98,8 @@ scheduling, files, content (code block, table of contents, rich text editor), co
 pricing, metrics, developer tools (endpoints, logs, diffs, JSON), automation, admin (integrations,
 roles, API keys, sessions, SSO), sharing, notifications, surveys, Kanban, Rating, Carousel, Color
 Picker, tour, video and audio. On top: Field Presets,
-Blocks by category (AI, app, commerce, content, forms, hero, navigation, results, sections) and 7
+Blocks by category (AI, app, commerce, content, enterprise, forms, hero, navigation, page headers,
+results, sections) and 7
 Page Shells (app, marketing, auth, mobile, wizard, split view, docs), plus a Brand page with the
 logo and a theme preview. Content areas use Figma native slots.
 Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
@@ -168,11 +169,24 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 
 ## What the pack covers
 
-- **Patterns:** delete confirmation, empty state, form validation, form presets, loading states,
-  search and filter, feedback messages, unsaved changes.
-- **Components:** alert, avatar, badge (and chip), button, card, dialog, dropdown menu, input,
-  select and choice inputs, sidebar, skeleton, table, tabs and toggle group, toast, tooltip,
-  list and tree, accordion, navigation (breadcrumb, top bar, page header, navbar).
+[`skills/build-ui/index.md`](plugins/eggux/skills/build-ui/index.md) maps each screen and task
+to its shell, blocks, patterns and component guides, and lists what each guide covers.
+
+- **Patterns (31):** core flows (action feedback, bulk actions, common flows, delete confirmation,
+  unsaved changes, multi-step form), forms (form validation, form presets, auth), states (empty
+  state, loading states, errors and recovery, feedback messages, result pages, notifications),
+  app screens (record page, search and filter, settings and admin, permissions and access,
+  sharing and invites, approvals, audit log, reports, enterprise apps, booking), products (AI
+  chat, commerce, content and docs, marketing pages), mobile and writing.
+- **Component guides (38):** actions (button, dropdown menu), forms and choices (input, select,
+  date picker, color picker, file upload, rich text editor), overlays (dialog, drawer, popover,
+  tooltip, toast, tour), navigation (navigation, sidebar, tabs and toggle group, pagination,
+  stepper), data (table, charts, description list, list and tree, boards and calendars, card),
+  feedback and status (alert, badge, indicators, progress and slider, skeleton, rating), content
+  and communication (content, comments and chat, AI chat, carousel, video player, avatar,
+  accordion).
+- **Rules:** `ux-rules.md` for rules that apply everywhere; Figma conventions and the library
+  map in `references/figma-library.md`; code in `references/code-mapping.md`.
 
 ## Growing the pack
 

@@ -22,9 +22,9 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Destructive confirmations follow `patterns/delete-confirmation.md`.
 
 ## Figma
-- Built from three pieces, like shadcn: `Dialog Header` (title, description, close X),
+- Built from three pieces, like shadcn: `Dialog Header` (title, description, Show close),
   `Dialog Footer` (Actions slot) and `Dialog` with native slots Header, Content and Footer.
-- `Alert Dialog`: same pieces, Header with Close off, no Content, footer Cancel + destructive.
+- `Alert Dialog`: same pieces, Header with Show close off, no Content, footer Cancel + destructive.
 - `Sheet` and `Drawer` reuse `Dialog Header` and `Dialog Footer`; see `drawer.md`.
 - Overlay behind both: `dialog/overlay`. See the "dialog over page" example on the Dialog page.
 - Width: sm 384 for a short confirmation, default 512 for a form with a few fields, lg 672 for a
@@ -40,5 +40,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 Prefer a toast or inline message for acknowledgements that do not block the next step.
 
 ## Related components
-- A first-run tour after sign-up or a major release uses `Welcome Dialog` (2-4 steps, shown once,
-  the last step leads to the first task). Pointing at real UI uses Coachmark.
+- A first-run tour after sign-up or a major release is a plain `Dialog`: media in the Dialog
+  Header, one short step in Content, step dots and Next in the Footer (2-4 steps, shown once, the
+  last step leads to the first task). Example "welcome dialog" on the Dialog page. Pointing at
+  real UI uses Coachmark.

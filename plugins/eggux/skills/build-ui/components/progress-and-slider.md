@@ -16,8 +16,8 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
 - For a value on a continuous scale where approximate is fine (price range, radius, volume).
   Exact numbers: Input (type number) or Input + Slider together.
 - Always show the current value (and unit) next to the label; min/max under the track if unclear.
-- Range sliders for filters ("150 - 450 lei"); thumbs cannot cross.
-- Step matches the data (5 lei, 1 km). Keyboard: arrows by step, PageUp/PageDown by 10 steps.
+- Range sliders for filters ("EUR 150 - 450"); thumbs cannot cross.
+- Step matches the data (EUR 5, 1 km). Keyboard: arrows by step, PageUp/PageDown by 10 steps.
 - Figma: `Slider` Type (single, range) × State (default, focus, disabled). Move the range and thumb
   layers for other values. Example "price range".
 

@@ -23,12 +23,25 @@ its variables; read them through Figma MCP, do not copy them here.
 - Disabled only when the action is truly unavailable, with a reason nearby. Never as form validation.
 
 ## Figma
-- `Button`: `Variant` × `Size` (sm, default, lg) × `State` (default, hover, focus, disabled).
-  Properties: `Label`, `Leading icon`, `Trailing icon` (boolean + swap).
-- `Button Icon`: icon-only, 36 × 36, `Variant` × `State`, `Icon` swap. Pair it with a tooltip.
+- `Button`: `Variant` × `Size` (sm, default, lg) × `State` (default, hover, focus, disabled,
+  loading). Properties: `Label`, `Show leading icon` with the `Leading icon` swap, `Show trailing
+  icon` with the `Trailing icon` swap.
+- `Button Icon`: icon-only, `Variant` × `Size` × `State`, `Icon` swap. Size sm 32 (tables, dense
+  toolbars), default 36, lg 40 (next to lg Buttons). Pair it with a tooltip.
 - `Button` State=loading: a spinner replaces the leading icon, the width stays; label stays or
   says the action in progress ("Saving…"). Block repeat clicks while loading.
-- `Button Icon` Size sm 32 (tables, dense toolbars), default 36, lg 40 (next to lg Buttons).
+
+## Common buttons built from Button and Button Icon
+There is no separate component for these; build them from the base and keep the rules above.
+- AI action: `Button` with Show leading icon on and the `sparkles` icon; the label is a verb
+  ("Summarize"), never just "AI". Example "AI action".
+- Wishlist: `Button Icon` ghost with the `heart` icon; the label says the state ("Save to
+  wishlist", "Remove from wishlist"). Example "wishlist".
+- Scroll to top: `Button Icon` outline, Size lg, `arrow-up`, fixed bottom right on long pages.
+  Example "scroll to top".
+- Sign-in providers: `Button` outline, full width, the provider mark as the leading icon, label
+  "Continue with Google". Stacked, same order everywhere. Example "sign-in providers".
+All four examples are on the Button page.
 
 ## Client overrides
 Check `eggux/brand.md` → Overrides (for example "buttons never show icons"). In Figma, the icon

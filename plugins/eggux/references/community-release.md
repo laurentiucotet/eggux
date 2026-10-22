@@ -36,7 +36,7 @@ steps again before every new Community version.
 
 **Name:** EGG UI: design system for product and enterprise teams
 
-**Tagline:** 205 components, 109 blocks and 7 page shells. Default and Corporate themes in
+**Tagline:** More than 330 components, 110 blocks and 7 page shells. Default and Corporate themes in
 Light and Dark, data grid, approvals, audit and AI chat. Variables, native slots, shadcn/ui names.
 
 **Description:**
@@ -49,11 +49,11 @@ What is inside
 - Enterprise pack: data grid with saved views, groups, totals and bulk actions; filter
   builder; approval chain; audit log with field changes; roles and permissions matrix; report;
   long record form with save bar; organization switcher.
-- 205 components with 830 variants: forms, selection, overlays, navigation, feedback, tables
+- More than 330 components: forms, selection, overlays, navigation, feedback, tables
   on auto layout grid, charts (bar, line, donut, heatmap, gauge, treemap, funnel, scatter), dates, scheduling and Gantt, files with preview and image cropper, people picker, rich text editor, comments and
   chat, commerce, AI chat, cookie consent, tour and video.
-- 109 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero, Navigation,
-  Results, Sections), including navbar and footer variants and a help center kit (search,
+- More than 110 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero,
+  Navigation, Page Headers, Results, Sections), including navbar and footer variants and a help center kit (search,
   topics, articles, support, changelog, status), and 7 page shells (App, Marketing, Auth, Mobile, Wizard, Split View, Docs).
 - 627 variables in five collections (Content holds names and labels in English and Română): Primitives, Semantic (Light, Dark), Components and
   Density (Comfortable, Compact). 14 text styles, shadows and motion tokens.
@@ -62,7 +62,7 @@ What is inside
 - Native slots for every content area, so you fill components instead of detaching them.
 - Variant names match shadcn/ui props, so design and code speak the same words.
 - Contrast checked in both modes: text 4.5:1, controls 3:1, chart colors 3:1.
-- 79 Lucide icons as single vector layers.
+- 97 Lucide icons as single vector layers.
 
 How to start: duplicate, put your logo in Logo Mark, change primary and radius in the
 Semantic collection, then build from a page shell. The Intro page walks you through it.

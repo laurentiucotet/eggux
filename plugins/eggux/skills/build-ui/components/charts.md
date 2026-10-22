@@ -39,8 +39,9 @@ the legend showing values and percentages; to compare parts, use Bar Chart Horiz
 ## Figma
 `Bar Chart` (single, grouped, stacked), `Bar Chart Horizontal`, `Line Chart` (line, area),
 `Donut Chart` (donut, pie; segments with `arcData`, 2 px surface separators), `Heatmap` (one
-hue in 5 opacity steps + muted for zero), `Sparkline`, `Chart Legend`, `Chart Tooltip`,
-`Chart Card` (Actions and Chart slots), `Gauge` (on track, at risk, off track: status written,
+hue in 5 opacity steps + muted for zero), `Sparkline`, `Chart Legend` (rows of
+`Chart Legend Item`), `Chart Tooltip` (rows of `Chart Tooltip Row`),
+`Chart Card` (Actions and Chart slots), `Gauge` (on-track, at-risk, off-track: status written,
 not only colored; target tick), `Treemap` (tinted cells with a colored edge so labels stay
 readable in every mode). Edit bar heights and line points for real
 data. Block: `Block / Analytics` on the App page.

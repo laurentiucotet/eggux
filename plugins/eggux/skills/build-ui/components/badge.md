@@ -25,20 +25,23 @@ it everywhere. The same status never appears in two colors.
 - Do not use a badge for the primary information of a row; use it next to it.
 
 ## Figma
-- `Badge`: Variant × Shape (rounded, pill). Options: Icon, Dot (status dot before the label),
-  Count (number after the label: "Invoices 12").
+- `Badge`: Variant × Shape (rounded, pill). Options: Show icon (Icon swap), Show dot (status dot
+  before the label), Show count (number after the label: "Invoices 12").
 - `Badge Count`: number only, for sidebar items and icon buttons. Above 99 show "99+".
-- `Chip`: default, hover, focus, selected, disabled; Leading icon (check when selected), Remove.
+- `Chip`: default, hover, focus, selected, disabled; Show leading icon (Leading icon swap, check
+  when selected), Show remove.
   See the "filter chips" example.
 
-## Tag List (a few tags on one line)
+## Badge List (a few tags on one line)
 - Category, format, frequency, region of a dataset, an article or a job, under a title or in a
   card. Show 2-4 tags, then "+N" that opens the full list in a Tooltip or Popover.
 - Outline Badges for neutral labels; a status Variant only when the tag is a status. Same order
   everywhere (type, frequency, region).
 - Not for filters people remove (Chip) or a single status (Badge, Status Dot).
-- Figma: `Tag List` with a Tags slot of Badges and an exposed "+N" Badge (Show more).
+- Figma: `Badge List` with a Tags slot of Badges and an exposed "+N" Badge (Show more).
 
 ## Related components
 - Two marketing badges: `Announcement Pill` (a "New" link above a hero title, one at a time) and
   `Trust Badge` (a current certification with what backs it, linking to the trust page).
+- Stock on a product page ("In stock", "Only 3 left", "Out of stock") is a `Status Dot` with its
+  label: success, warning, error. Example "stock status" on the Badge page.

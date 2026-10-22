@@ -2,6 +2,17 @@
 // Set ROOTS to the ids of the components, component sets or frames to scan,
 // or leave it empty to scan every component and component set on the current page.
 const ROOTS = [];
+// How many items to return per finding type (counts always cover everything).
+const MAX_ITEMS = 25;
+// Layers that crop on purpose (images, media, viewers, tracks, avatars, logos). Names are
+// matched case-insensitively; a trailing * matches any suffix ("star 1", "logo mark").
+const CROP_NAMES = ['image', 'fallback', 'media', 'viewport', 'slide', 'stage', 'plot', 'track', 'star*',
+  'crop area', 'after crop', 'before', 'after', 'pad', 'saturation', 'bar', 'bars', 'map', 'tile',
+  'avatar', 'logo*', 'viewer', 'control', 'arrow', 'thumbnail'];
+const isCropName = name => {
+  const s = name.trim().toLowerCase();
+  return CROP_NAMES.some(c => c.endsWith('*') ? s.startsWith(c.slice(0, -1)) : s === c);
+};
 
 // Load hidden instance children too, or hidden icons look empty.
 figma.skipInvisibleInstanceChildren = false;
@@ -35,9 +46,14 @@ for (const r of roots) {
     if ('fills' in n && Array.isArray(n.fills) && n.fills.some(p => !ok(p))) findings.rawFill.push(`${r.name} > ${n.name}`);
     if ('strokes' in n && Array.isArray(n.strokes) && n.strokes.some(p => !ok(p))) findings.rawStroke.push(`${r.name} > ${n.name}`);
     if (n.type === 'INSTANCE') continue;
-    // createFrame() starts with clip content on. Only focus variants, image crops and scroll
-    // areas should clip; anything else hides overflow that the stress test must see.
-    if (['FRAME', 'COMPONENT', 'COMPONENT_SET'].includes(n.type) && n.clipsContent && !/State=focus/.test(n.name) && !(Array.isArray(n.fills) && n.fills.some(p => p.type === 'IMAGE')))
+    // createFrame() starts with clip content on. Only focus variants, image crops, viewers and
+    // scroll areas should clip; anything else hides overflow that the stress test must see.
+    // A frame with no children has nothing to hide, so it is not reported.
+    if (['FRAME', 'COMPONENT', 'COMPONENT_SET'].includes(n.type) && n.clipsContent
+      && n.children.length > 0
+      && !/State=focus/.test(n.name)
+      && !isCropName(n.name)
+      && !(Array.isArray(n.fills) && n.fills.some(p => p.type === 'IMAGE')))
       findings.clippingFrame.push(`${r.name} > ${n.name}`);
     if ('layoutMode' in n && n.layoutMode && !['NONE', 'GRID'].includes(n.layoutMode))
       for (const k of ['paddingLeft', 'paddingRight', 'paddingTop', 'paddingBottom', 'itemSpacing'])
@@ -48,4 +64,4 @@ for (const r of roots) {
   }
 }
 const counts = Object.fromEntries(Object.entries(findings).map(([k, v]) => [k, v.length]));
-return { roots: roots.length, checked, counts, findings: Object.fromEntries(Object.entries(findings).map(([k, v]) => [k, v.slice(0, 25)])) };
+return { roots: roots.length, checked, counts, findings: Object.fromEntries(Object.entries(findings).map(([k, v]) => [k, v.slice(0, MAX_ITEMS)])) };

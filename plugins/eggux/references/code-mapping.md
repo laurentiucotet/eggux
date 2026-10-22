@@ -11,8 +11,9 @@ later. "custom" means compose it from the listed primitives in the project.
 ## Core
 | Figma | Code | Notes |
 |---|---|---|
-| `Button`, `Button Icon` | shadcn `Button` (`size="icon"`) | `Leading icon` → icon child before the label |
-| `Button Group`, `Split Button` | shadcn `ButtonGroup` or custom flex + `DropdownMenu` | |
+| `Button` | shadcn `Button` (`variant`, `size`) | `Show leading icon` → icon child before the label; State=loading → spinner + `disabled` |
+| `Button Icon` | shadcn `Button size="icon"` with `aria-label`, wrapped in `Tooltip` | Same `variant` values as Button; tooltip text = aria-label |
+| `Button Group`, `Button Group Item`, `Split Button` | shadcn `ButtonGroup` or custom flex + `DropdownMenu` | |
 | `Action Bar` | `<div class="flex gap-2 justify-end">` of shadcn `Button` (justify-start, justify-center) | Leading button with `mr-auto`; one primary |
 | `Badge`, `Badge Count`, `Status Dot` | shadcn `Badge` (+ success, warning, info variants) | Status Dot: custom span + label |
 | `Chip`, `Tag` | custom on `Badge` + remove `Button` | |
@@ -21,31 +22,31 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Separator` | shadcn `Separator` | |
 | `Input`, `Field`, `Textarea` | shadcn `Input`, `Label`, `Textarea`, `Form` (react-hook-form) | Field = `FormItem` with label, description, message |
 | `Input Group`, `Input Addon`, `Number Input` | shadcn `InputGroup` or custom | |
-| `Input OTP` | shadcn `InputOTP` | |
+| `Input OTP`, `OTP Slot` | shadcn `InputOTP` (`InputOTPGroup`, `InputOTPSlot`) | |
 | `Select`, `Combobox`, `Tag Input` | shadcn `Select`; `Popover` + `Command` | |
 | `Checkbox`, `Radio`, `Switch` | shadcn `Checkbox`, `RadioGroup`, `Switch` | |
-| `Calendar`, `Date Picker`, `Date Range Picker` | shadcn `Calendar` (react-day-picker) in `Popover` | |
+| `Calendar`, `Calendar Day`, `Date Picker`, `Date Range Picker` | shadcn `Calendar` (react-day-picker) in `Popover` | |
 | `Time Picker` | custom `Select` of times | |
 | `Slider`, `Progress` | shadcn `Slider`, `Progress` | |
-| `Tabs`, `Toggle Group` | shadcn `Tabs`, `ToggleGroup` | |
-| `Tabs Vertical` | shadcn `Tabs` with `orientation="vertical"`, `TabsList` as `flex-col` | Mobile: a `Select` of sections |
-| `Accordion` | shadcn `Accordion` | |
+| `Tabs`, `Tab` | shadcn `Tabs` (`TabsList`, `TabsTrigger`) | Variant=line: `TabsList` with a bottom border (`border-b`); Variant=vertical: `orientation="vertical"`, `TabsList` as `flex-col`, a `Select` of sections on mobile |
+| `Toggle Group`, `Toggle Group Item` | shadcn `ToggleGroup` (`type` single or multiple) | View and theme switches: `type="single"`, view in a URL search param, theme with next-themes `setTheme` |
+| `Accordion`, `Accordion Item` | shadcn `Accordion` (`AccordionItem`) | Size=sm: smaller padding |
 | `Tooltip`, `Popover`, `Hover Card` | shadcn `Tooltip`, `Popover`, `HoverCard` | |
-| `Menu`, `Menu Item` | shadcn `DropdownMenu`, `ContextMenu` | |
-| `Command`, `Command Dialog` | shadcn `Command`, `CommandDialog` | |
-| `Dialog`, `Alert Dialog` | shadcn `Dialog`, `AlertDialog` | |
+| `Menu`, `Menu Item`, `Menu Label` | shadcn `DropdownMenu`, `ContextMenu` (`DropdownMenuLabel`, `DropdownMenuSeparator`) | |
+| `Command`, `Command Input`, `Command Dialog` | shadcn `Command`, `CommandInput`, `CommandDialog` | |
+| `Dialog`, `Dialog Header`, `Dialog Footer`, `Alert Dialog` | shadcn `Dialog` (`DialogHeader`, `DialogFooter`), `AlertDialog` | |
 | `Sheet`, `Drawer` | shadcn `Sheet`, `Drawer` (vaul) | |
 | `Side Panel` | `<aside>` in the page grid + shadcn `Collapsible` | Right `Sheet` below 1024 px; persist the collapsed state |
 | `Alert`, `Toast` | shadcn `Alert`, `Sonner` | |
-| `Card`, `Stat Card` | shadcn `Card` + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content |
-| `Skeleton`, `Spinner`, `Kbd` | shadcn `Skeleton`, `Spinner`, `Kbd` | |
-| `Pagination`, `Breadcrumb` | shadcn `Pagination`, `Breadcrumb` | |
+| `Card`, `Card Header`, `Card Footer`, `Stat Card` | shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content |
+| `Skeleton`, `Spinner`, `Kbd`, `Kbd Group` | shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) | |
+| `Pagination`, `Pagination Item`, `Breadcrumb`, `Breadcrumb Item` | shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) | In tables use `Table Pagination` |
 | `Pagination Compact` | shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNext` | |
-| `Sidebar` and parts | shadcn `Sidebar` | |
+| `Sidebar`, `Sidebar Item`, `Sidebar Group`, `Sidebar Group Label`, `Sidebar Workspace`, `Sidebar User` | shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarHeader`, `SidebarFooter`) | |
 | `Sidebar Double` | shadcn `Sidebar` `collapsible="icon"` (rail) + a second `Sidebar` (panel) | Panel opens as a left `Sheet` on mobile |
-| `Navigation Menu` parts | shadcn `NavigationMenu` | |
+| `Navigation Menu Panel`, `Navigation Menu Link`, `Nav Link` | shadcn `NavigationMenu` (`NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuTrigger`) | |
 | `Stepper`, `Step` | custom (no shadcn stepper) | |
-| `Description List`, `Timeline` | custom `dl` / `ol` | |
+| `Description List Item`, `Timeline Item` | custom `dl` with `dt` / `dd` and a Tailwind grid; custom `ol` | No shadcn component |
 | `Meta Item`, `Figure` | custom: icon + text (`text-sm text-muted-foreground`); `dl` with value and label | Figure has no trend; that is Stat Card |
 | `Summary Row` | `<dl>` row, `flex justify-between`, `tabular-nums` | Discount keeps the minus sign; Separator above the total |
 | `Setting Row` | custom row + shadcn `Switch`, `Select` or `Button` | Label and `aria-describedby` from the texts |
@@ -71,48 +72,54 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Phone Input` | react-phone-number-input (libphonenumber-js) + shadcn `Popover` + `Command` country list | Store E.164; `type="tel"`, `autocomplete="tel"` |
 | `Date Input` | react-aria `DateField` + shadcn `Popover` with `Calendar` (react-day-picker) | Segments in locale order |
 | `Duration Input` | custom: two shadcn `Input`s (`inputmode="numeric"`) with unit addons | Parse "1:30", "90", "1.5h" on blur; store minutes |
-| `Range Fields` | custom: two shadcn `InputGroup`s in a `<fieldset>`; zod `refine` min <= max | Either side may be empty |
+| `Range Input` | custom: two shadcn `InputGroup`s in a `<fieldset>`; zod `refine` min <= max | Either side may be empty |
 | `Address Autocomplete` | shadcn `Popover` + `Command` (`shouldFilter={false}`) fed by a places API (Google Places, Mapbox) | Debounce, 3 characters minimum; fills the address Fields |
 | `Select Option` | shadcn `CommandItem` / `SelectItem` with `Avatar` or icon, two text lines, check icon | Same Leading for every option in a list |
 | `Recurrence Picker` | custom: `Number Input`, `Select`, `ToggleGroup` (multiple), `RadioGroup`; rrule | Summary from `rrule.toText()` or own strings; account time zone |
-| `Language Switcher` | shadcn `DropdownMenu` + `DropdownMenuRadioGroup` (or `Select`) | Names in their own language, `lang` on each; no flags |
-| `Checkbox Card` | shadcn `Checkbox` in a `Label` styled as a `Card` | Whole card toggles; group in a `<fieldset>` |
+| `Option Card` | shadcn `RadioGroup` (Control=radio) or `Checkbox` (Control=checkbox) with a `Label` wrapping a `Card` (`has-[:checked]:ring-2`) | Whole card is the target; checkbox groups in a `<fieldset>` |
 | `File Field` | custom: hidden `input type="file"` + shadcn `Button`, file name, remove `Button` | Several files: `File Dropzone` (react-dropzone) |
-| `Swatch`, `Swatch Picker` | shadcn `RadioGroup` (or `ToggleGroup` single) of round items with chart token backgrounds | Color name as label |
+| `Swatch`, `Swatch Picker` | shadcn `RadioGroup` (or `ToggleGroup type="single"`) with custom items: a color dot (Type=color) or a label box (Type=label) | Color or option name as label; unavailable: `aria-disabled`, still focusable |
 | `Form Section` | `<section class="grid gap-6 lg:grid-cols-[280px_1fr]">` with heading, description and `FormField`s | Stacked below 1024 px; `Separator` between sections |
 | `Fieldset` | `<fieldset>` + `<legend>`; shadcn `RadioGroup` or `Checkbox` items, `FormMessage` for the group | Error belongs to the group |
 | `Error Summary` | shadcn `Alert` (destructive) with anchor links from react-hook-form `formState.errors` | Focus moves here on submit; links focus the field |
-| `Requirement List`, `Requirement Item` | custom `<ul>` of lucide icon + text, state from the zod schema | `aria-live="polite"`; nothing red before submit |
-| `View Switcher` | shadcn `ToggleGroup type="single"` with icons; view in a URL search param | Remember per person; filters survive the switch |
-| `Theme Toggle` | shadcn `ToggleGroup type="single"` + next-themes `setTheme` | System by default; no flash on load |
+| `Requirement List` | custom `<ul>` of `Check Item`s, state from the zod schema of the field | `aria-live="polite"`; nothing red before submit |
+| `Check Item` | `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status | Mark=check, dash, x |
+| `Password Strength` | custom bars + text under the shadcn `Input` | Level in text, not only color |
 | `Emoji Picker` | frimousse or emoji-mart in shadcn `Popover` | Search, recent first, 8 per row; skin tone stored per user |
 | `App Launcher` | shadcn `Popover` with a `grid-cols-3` of links | Current app `aria-current="page"`; only 4+ apps |
 | `Confirm Popover` | shadcn `Popover` (`role="alertdialog"`) + two `Button`s | Irreversible actions use `AlertDialog` |
 | `Back Link` | `Link` with `ArrowLeft`, `text-sm text-muted-foreground` | Fixed URL to the list; restore its filters and scroll |
 | `Skip Link` | `<a href="#main" class="sr-only focus:not-sr-only">` | Target has `tabindex="-1"` |
-| `Scroll To Top` | shadcn `Button size="icon" variant="outline"`, `fixed bottom-6 right-6` | Shown after two screens of scroll; moves focus to the top |
 | `Account Menu` | shadcn `DropdownMenu` with `DropdownMenuLabel` (Avatar, name, email) | Log out last after `DropdownMenuSeparator` |
 | `Show More` | shadcn `Collapsible` or `line-clamp-3` + `Button variant="link"` | `aria-expanded` on the toggle |
 | `Load More` | shadcn `Button variant="outline"` + count; TanStack Query `useInfiniteQuery` | Focus the first new item; count in `aria-live` |
 | `Shortcut Row` | custom `flex justify-between` + shadcn `Kbd` / `KbdGroup` | ⌘ on Mac, Ctrl elsewhere |
-| `Welcome Dialog` | shadcn `Dialog` with a step state | Shown once per user; Skip and Esc close it |
 | `Resizable Panels` | shadcn `Resizable` (react-resizable-panels) | `autoSaveId` remembers the split; one panel at a time on mobile |
 | `FAB` | shadcn `Button size="icon"` `rounded-full shadow-lg fixed bottom-20 right-4` | Mobile only; desktop uses a primary Button |
 | `Action Sheet` | shadcn `Drawer` (vaul) with a list of `Button`s and a separate Cancel | Desktop: `DropdownMenu` |
 | `Countdown` | custom tiles from a `useCountdown` hook (1 s interval, server end time) | `role="timer"`, `aria-live="off"`; end time in `<time datetime>` |
 | `Loading Overlay` | custom: `absolute inset-0 bg-background/60` layer + shadcn `Spinner` | `aria-busy` on the region; label in `role="status"` |
 | `Presence Bar` | shadcn `Avatar` group + `HoverCard` | Presence from Liveblocks, Yjs awareness or your websocket |
+| `List Item` | custom row (`ul` / `li`) with shadcn `Avatar` and `Badge` | Show leading and Show trailing map to optional children |
+| `Tree Item` | custom tree (`role="tree"`) with shadcn `Checkbox` and `Badge` | Arrow keys expand and collapse |
+| `Top Bar` | shadcn site header: `SidebarTrigger`, `Breadcrumb`, `Button` | |
+| `Page Header` | custom `<header>` with a heading, text and shadcn `Button` | One per page |
+| `Mobile Header` | custom header with shadcn `Button size="icon"` and `Avatar` | |
+| `Bottom Nav`, `Bottom Nav Item` | custom `<nav>` of links with `env(safe-area-inset-bottom)` | Current item `aria-current="page"` |
+| `Image Placeholder` | `<img>` or `next/image` with `aspect-ratio` and `object-cover` | |
+| `Field Preset` | `Field` (`FormItem`) + shadcn `Input` or `Select` with `type`, `inputmode` and `autocomplete` set per preset | See `skills/build-ui/patterns/form-presets.md` |
 
 ## Data and enterprise
 | Figma | Code | Notes |
 |---|---|---|
-| Table template, `Table Cell` and parts | shadcn `Table` + TanStack Table | Grid columns → column defs |
+| Table template, `Table Cell`, `Table Header Label`, `Table Cell Text`, `Table Cell Stack`, `Table Cell User` | shadcn `Table` + TanStack Table | Grid columns → column defs |
+| `Table Toolbar` | custom bar on shadcn `Table` + TanStack Table row selection | Shows "N selected" and the bulk actions |
 | `Data Grid Toolbar`, `Table Group Row` | custom on TanStack Table (grouping, aggregation, visibility) | Saved views stored per user |
 | `Filter Condition`, `Filter Group` | custom: `Select`, `Combobox`, `Input`, `Button` | Serialize to the API filter format |
 | `Filter Bar`, `Filter Chip`, `Faceted Filter`, `Facet Option` | shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) | Faceted values from `column.getFacetedUniqueValues()` (TanStack) |
 | `Filter Section` | `Collapsible` + `Checkbox` list | |
-| `Table Cell Amount`, `Status`, `Progress`, `Actions` | cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` | Amounts with `Intl.NumberFormat`, `tabular-nums` |
-| `Table Cell Link`, `Date`, `File`, `Tags`, `Avatars` | cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group | One date format per column |
+| `Table Cell Amount`, `Table Cell Status`, `Table Cell Progress`, `Table Cell Actions` | cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` | Amounts with `Intl.NumberFormat`, `tabular-nums` |
+| `Table Cell Link`, `Table Cell Date`, `Table Cell File`, `Table Cell Badges`, `Table Cell Avatars` | cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group | One date format per column |
 | `Table Pagination` | shadcn data-table pagination (`Select` for page size + `Pagination`) | |
 | `Entity Card`, `Progress Card` | shadcn `Card` with `size="sm"`; `Progress` | |
 | `Person Card` | shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`) | |
@@ -123,6 +130,11 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Save Bar` | custom sticky footer | Listen to form dirty state |
 | `Org Switcher` | `DropdownMenu` or `Popover` + `Command` | |
 | `Bar Chart`, `Line Chart`, `Sparkline` | shadcn `Chart` (Recharts) | `var(--chart-N)` |
+| `Chart Legend`, `Chart Legend Item` | shadcn `ChartLegend` with `ChartLegendContent` (Recharts) | Colors from `chartConfig` |
+| `Chart Tooltip`, `Chart Tooltip Row` | shadcn `ChartTooltip` with `ChartTooltipContent` (Recharts) | |
+| `Chart Card` | shadcn `Card` + shadcn `Chart` (Recharts) + `ToggleGroup` for the time range | |
+| `Funnel Chart` | Recharts `FunnelChart`, or plain bars with widths from the data | |
+| `Scatter Chart` | Recharts `ScatterChart` with `XAxis` and `YAxis` `type="number"` | |
 | `Donut Chart`, `Bar Chart Horizontal` | Recharts `PieChart` (`innerRadius`), `BarChart layout="vertical"` | |
 | `Heatmap` | custom CSS grid or nivo `HeatMap` | |
 | `Gauge` | Recharts `RadialBarChart` (half circle) or custom SVG arc | |
@@ -147,24 +159,25 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Mapping Row` | shadcn `Select` (or `Combobox`) + lucide `ArrowRight` + status `Badge`; react-hook-form `useFieldArray` | Auto-match by name; save the mapping as a template |
 | `Availability Row` | custom row: shadcn `Switch` + two `Select` of times + `Button size="icon"` | Ranges with `useFieldArray` (react-hook-form); merge overlaps on save |
 | `Time Slot` | shadcn `ToggleGroup type="single"` (or `RadioGroup`) of outline `Button`s | Times from the availability API; time zone above the grid |
-| `Job Item` | custom row: shadcn `Progress` + `Button` | Status by polling or server-sent events; notify when done |
-| `Checklist Item` | custom row: shadcn `Checkbox` + `Avatar` | Optimistic save with an Undo toast (Sonner) |
+| `Background Job` | custom row: shadcn `Progress` + `Button` | Status by polling or server-sent events; notify when done |
+| `Task Item` | custom row: shadcn `Checkbox` + `Avatar` | Optimistic save with an Undo toast (Sonner) |
 | `Saved View Item` | shadcn `SidebarMenuItem` + `SidebarMenuBadge` + `DropdownMenu` | View = serialized filters, sort and columns per user |
 
 ## Content, communication, AI
 | Figma | Code | Notes |
 |---|---|---|
 | `Rich Text Editor` | Tiptap (or Lexical) + shadcn `Toggle` toolbar | |
+| `Post Card` | shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link | |
 | `Code Block` | Shiki or Prism + copy `Button` | |
 | `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, larger type |
 | `Section Heading` | `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` | Heading level follows the page outline |
-| `Feature Item` | custom: lucide icon in a `bg-muted rounded-md` tile + `<h3>` + `<p>` | Icon `aria-hidden`; grid of 3 or 4 |
-| `Tag List` | `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger | |
-| `Table of Contents`, `TOC Item` | custom with scroll spy | |
+| `Feature Item` | custom: lucide icon in a `bg-muted rounded-md` tile + `<h3>` + `<p>` | Icon `aria-hidden`; grid of 3 or 4. Marker=number: an `<ol>`, number circle `rounded-full bg-muted`, `aria-hidden` |
+| `Badge List` | `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger | |
+| `Table of Contents`, `Table of Contents Item` | custom with scroll spy | |
 | `Comment`, `Comment Composer` | custom + `Textarea` | |
 | `Chat Message`, `Chat Composer`, `Typing Indicator` | custom | |
-| `Prompt Input`, `User Message`, `Assistant Message`, `Reasoning`, `Tool Call`, `Sources`, `Citation`, `Suggestion` | Vercel AI SDK + AI Elements, or assistant-ui | |
-| `Model Selector`, `Model Option`, `Context Chip`, `Agent Plan`, `Plan Step`, `Artifact Card` | AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `Badge`, `Card` | Plan steps from the agent's tool events |
+| `Prompt Input`, `User Message`, `Assistant Message`, `Reasoning`, `Tool Call`, `Sources`, `Source Item`, `Citation`, `Prompt Suggestion` | Vercel AI SDK + AI Elements, or assistant-ui | |
+| `Model Picker`, `Model Option`, `Context Chip`, `Agent Plan`, `Plan Step`, `Artifact Card` | AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `Badge`, `Card` | Plan steps from the agent's tool events |
 | `Voice Recorder` | MediaRecorder + speech-to-text API; custom UI | Ask for the microphone on first tap |
 | `Chat History Item` | shadcn `SidebarMenuItem` + `DropdownMenu` | |
 | `Response Feedback` | `Popover` or inline `Card` with `ToggleGroup` (multiple) and `Textarea` | Send with the message id |
@@ -175,7 +188,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Color Picker` | react-colorful in `Popover` | |
 | `Coachmark`, `Hotspot` | Driver.js, Shepherd or `Popover` anchored to the target | |
 | `Video Player` | native `video` or Vidstack | |
-| `Kanban` parts | dnd-kit + custom | |
+| `Kanban Card`, `Kanban Column` | dnd-kit + custom | |
 | `Calendar Event`, scheduler blocks | custom grid, or FullCalendar themed with tokens | |
 | Help center and docs blocks | page sections composed from `Input`, `Card`, `Breadcrumb`, `Button` | Search: shadcn `Command` (⌘K) or Algolia DocSearch; docs content: MDX (Nextra, Fumadocs) |
 | `Block / Status Page` uptime bars | custom flex of 90 spans with `title` and an uptime % in text | Data from your status provider (Instatus, Better Stack, Atlassian Statuspage) |
@@ -203,17 +216,13 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Reaction Bar`, `Reaction` | custom flex of shadcn `Toggle` (`aria-pressed`) + `Popover` emoji picker (emoji-mart or frimousse) |  |
 | `Thread Summary` | custom button + `Avatar` group; `Collapsible` or `Sheet` | `aria-expanded` when it opens in place |
 | `Job Listing` | custom `<li>` with a stretched `<a>` + `Badge` + `Button asChild` | Salary range with currency and period |
-| `AI Button`, `AI Loading`, `Confidence Indicator`, `Suggestion Review Bar` | shadcn `Button`, `Skeleton`, `Tooltip` + custom; Vercel AI SDK for streaming | Never apply low-confidence values automatically; store who accepted an AI value |
+| `AI Loading`, `Confidence Indicator`, `AI Review Bar` | shadcn `Skeleton`, `Tooltip`, `Button` + custom; Vercel AI SDK for streaming; review bar on Tiptap track changes or a diff of the form state | Never apply low-confidence values automatically; store who accepted an AI value |
 
 ## Commerce
 | Figma | Code | Notes |
 |---|---|---|
-| `Quantity Selector` | two shadcn `Button size="icon"` + `Input type="number" inputMode="numeric"` | min and max from stock |
-| `Stock Indicator` | `Status Dot` + text `<span>` | Per selected variant; `aria-live="polite"` on change |
-| `Wishlist Button` | shadcn `Button size="icon" variant="ghost"` + lucide `Heart` (`fill-current` when saved) | Optimistic toggle; aria-label names state and product |
-| `Variant Swatch` | shadcn `RadioGroup` (or `ToggleGroup type="single"`) with custom items | Unavailable: `aria-disabled`, still focusable |
 | `Product Card` | shadcn `Card` with an `<a>` stretched over the card, `Badge`, `Button` (icon) for wishlist | Whole card is one link; Add to cart opens the `Mini Cart` |
-| `Line Item` | custom `<li class="flex gap-4">`: `<img>`, text, `Quantity Selector`, amount, ghost `Button` | `tabular-nums`; Undo in `Sonner` toast |
+| `Line Item` | custom `<li class="flex gap-4">`: `<img>`, text, `Number Input` (Size=sm), amount, ghost `Button` | `tabular-nums`; Undo in `Sonner` toast |
 | `Mini Cart` | shadcn `Popover` (`Sheet` on mobile) + `Line Item`s, `Summary Row`, `Button`s | Auto-open 4 s without moving focus |
 | `Order Row` | `<a>` row + shadcn `Badge`, `<time>` | Status names from one shared list |
 | `Shipment Tracker` | custom header + `<ol>` of `Step` | `aria-current="step"`; carrier tracking URL |
@@ -226,14 +235,13 @@ later. "custom" means compose it from the listed primitives in the project.
 | Figma | Code | Notes |
 |---|---|---|
 | `Price` | custom: amount, `<s>` old price and period (`text-muted-foreground`) | `Intl.NumberFormat` with currency; sr-only "Was ... now ..." |
-| `Check List Item` | `<li class="flex gap-2">` with lucide `Check` or `Minus` | Icon `aria-hidden`; sr-only "Not included" |
-| `Pricing Toggle` | shadcn `ToggleGroup type="single"` + `Badge` | Period in state and URL; all prices update without reload |
-| `Plan Card` | shadcn `Card` + `Price`, `Button`, `<ul>` of `Check List Item` | Featured: `ring-2 ring-primary`, primary `Button` |
+| `Plan Card` | shadcn `Card` + `Price`, `Button`, `<ul>` of `Check Item` | Variant=featured: `ring-2 ring-primary`, primary `Button` |
 | `Announcement Pill` | `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` | One at a time |
 | `Trust Badge` | custom: lucide icon + name and detail, `<a>` to the trust page | Only current claims |
 | `Testimonial Card` | shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>` |  |
-| `Step Item` | `<ol>` of `<li>`: number circle (`rounded-full bg-muted`), `<h3>`, `<p>` | Number circle `aria-hidden` |
 | `Logo Tile` | `<li>` with `<img alt>` or inline SVG in `currentColor` | `<a>` only when it links to a case study or integration |
+| `Logo`, `Logo Mark` | inline SVG in `currentColor` (or `<img alt>` with the product name) | Logo Mark is the symbol alone |
+| `Map` | static map image or an embedded map (Mapbox, Google) | Address in text next to it |
 | `Device Frame` | custom `<figure>`: border, top bar (dots, URL), `<img>` or live component | Screenshot at 1:1 |
 
 ## Admin
@@ -243,7 +251,35 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Integration Card` | shadcn `Card size="sm"` + `Button`, `Switch`, `Badge` | Connect opens the provider OAuth flow |
 | `Permission Row` | shadcn `Table` with `Checkbox` cells | Form state in react-hook-form; save with `Save Bar`; log changes |
 | `API Key Row`, `Session Row` | custom row + `Badge`, `Button size="icon"`, `DropdownMenu`, `AlertDialog` | Full key shown once at creation; sessions from your auth provider |
-| `SSO Button` | shadcn `Button variant="outline"` `w-full` + provider mark | `signIn(provider)` in Auth.js, Clerk or WorkOS |
 | `Org Chart Node` | @xyflow/react with a dagre layout (or react-d3-tree); custom node with `Avatar` | `role="tree"` semantics for keyboard use |
 
+## Built from base components
+These have no component of their own since 0.51.0. Build them from the base component; the
+example frame on the named Figma page shows the composition.
+
+| Figma example | Code | Notes |
+|---|---|---|
+| "AI action" (Button page) | shadcn `Button` with lucide `Sparkles` before the label | A verb, never just "AI" |
+| "wishlist" (Button page) | shadcn `Button size="icon" variant="ghost"` + lucide `Heart` (`fill-current` when saved) | Optimistic toggle; aria-label names state and product |
+| "scroll to top" (Button page) | shadcn `Button size="icon" variant="outline"`, `fixed bottom-6 right-6` | Shown after two screens of scroll; moves focus to the top |
+| "sign-in providers" (Button page) | shadcn `Button variant="outline"` `w-full` + provider mark | `signIn(provider)` in Auth.js, Clerk or WorkOS |
+| "theme switch" (Toggle Group page) | shadcn `ToggleGroup type="single"` + next-themes `setTheme` | System by default; no flash on load |
+| "view switch" (Toggle Group page) | shadcn `ToggleGroup type="single"` with icons; view in a URL search param | Remember per person; filters survive the switch |
+| "billing period" (Toggle Group page) | shadcn `ToggleGroup type="single"` + `Badge` | Period in state and URL; all prices update without reload |
+| "stock status" (Badge page) | `Status Dot` + text `<span>` | Per selected variant; `aria-live="polite"` on change |
+| "welcome dialog" (Dialog page) | shadcn `Dialog` with a step state | Shown once per user; Skip and Esc close it |
+| "language switch" (Select page) | shadcn `DropdownMenu` + `DropdownMenuRadioGroup` (or `Select`) | Names in their own language, `lang` on each; no flags |
+
 Variants added in 0.49.0 map to props: Button `loading` (spinner + `disabled`), Button Icon `size` (sm, default, lg), Avatar `shape` (rounded-md for square) and xs (`size-5`), Sidebar Item level 2 (`SidebarMenuSub`), Tab with icon, Menu Item description and submenu (`DropdownMenuSub`), rich Tooltip with `Kbd`, Progress tone (indicator color class), Image Placeholder 21:9 (`aspect-[21/9]`).
+
+Property renames in 0.51.0 do not change the code. Booleans are now `Show <part>`: `Show leading
+icon` is still the icon child before the label, `Show close` the close button, `Show remove` the
+remove button. Icon swaps are named `Leading icon`, `Trailing icon` and `Icon`. Tab `Variant`
+(default, line, vertical) maps to the Tabs row above. Accordion Item and Calendar Event
+`Size=sm` replace `compact`. Toggle Group Item `selected` is `data-state="on"`. Plan Card
+`Variant=featured` is the ring and the primary Button. Notification Item `State=unread`, Address
+Card `State=selected` and Filter Section `State=expanded` (`Collapsible open`) replace the old
+booleans. Trend Indicator `Trend`, Password Strength `Level`, Calendar Event `Series`
+(`var(--chart-N)`) and `Type` on Select Option, Access Row and Share Link Row are renames only.
+Outcome values are `done` and `error` (no `complete`, no `failed`); status values use hyphens
+(`on-track`, `at-risk`, `off-track`, `in-progress`).

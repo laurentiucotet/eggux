@@ -44,6 +44,6 @@ Every action gets feedback within 100 ms. The channel depends on where the resul
   rollback and an error message).
 
 ## Figma
-`Toast` (Type default, success, error, loading; Action exposed for Undo / Open), `Button` with a
-`Spinner` while saving (example "button loading" on the Button page), `Badge` and row states for
-inline results.
+`Toast` (Type default, success, error, loading; Show action, the Button exposed for Undo / Open),
+`Button` State=loading while saving (a spinner replaces the leading icon), `Badge` and row states
+for inline results.

@@ -16,7 +16,7 @@ and inline messages: `patterns/feedback-messages.md`.
 - Up to three actions (small buttons or links) in the Actions slot, the one that resolves the
   situation first.
 - Place it above the content it concerns, not at the top of the page when it concerns one section.
-- Dismiss (x) only when the situation does not need action; remember the dismissal.
+- Show close (x) only when the situation does not need action; remember the dismissal.
 - Never stack more than one alert in the same place. Show the most important one.
 
 ## Figma

@@ -11,7 +11,7 @@ people and events: the Page Headers page (`marketing-pages.md` § Page headers).
 - Reading column ≈ 672 px (65-75 characters per line), `body/default` 16/28 for prose.
 - Hierarchy: one h1 per page; h2 for sections, h3 below; more space above headings than below.
 - Article top: category, date and reading time, title, lead (one or two sentences), author
-  (Byline, default: name and "12 Oct 2026 · 6 min read"). Tags under the title: Tag List.
+  (Byline, default: name and "12 Oct 2026 · 6 min read"). Tags under the title: `Badge List`.
 - Images have captions or alt text; code in Code Blocks; notes and warnings as inline Alerts.
 - Long pages: Table of Contents on the right; docs pages end with previous / next links and
   "Was this page helpful?".

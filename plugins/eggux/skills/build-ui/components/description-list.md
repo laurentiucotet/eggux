@@ -10,7 +10,7 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Statuses and categories are Badges in the Value slot; people are Avatar + name; long values wrap.
 - Edit: one "Edit" action per card that turns the card into a form (or opens a Sheet), not a pencil
   per row, unless rows are edited independently (inline edit, see `table.md`).
-- Figma: `Description List Item` Orientation × Label, Divider (off on the last row), Value slot.
+- Figma: `Description List Item` Orientation × Label, Show divider (off on the last row), Value slot.
 - Code: `<dl>` with `<dt>`/`<dd>` and Tailwind grid, no shadcn component.
 
 ## Meta Item (facts with an icon)
@@ -24,9 +24,9 @@ Usage guidelines only. Visual specs live in the Figma components.
 - `Layout=stacked` for 2-4 headline figures (report and study headers, key facts);
   `inline` for counts in a header ("42 articles").
 - The label reads on its own; numbers in the locale format with units; a source line when the
-  figure is a claim (Show source, or one line under the group). Divider between stacked figures.
+  figure is a claim (Show source, or one line under the group). Show divider between stacked figures.
 - No trend arrow or color: a metric compared to a period is a Stat Card.
-- Figma: `Figure` Layout × Size (default, lg); Value, Label, Source, Show source, Divider.
+- Figma: `Figure` Layout × Size (default, lg); Value, Label, Source, Show source, Show divider.
 
 ## Summary Row (money breakdowns)
 - One line of an order summary, invoice or quote total, price calculator or plan cost: label
@@ -45,5 +45,5 @@ Usage guidelines only. Visual specs live in the Figma components.
   tooltip. Group by day for long histories.
 - The Content slot holds a note excerpt, attachment or diff; link to the object when there is one.
 - Long histories: show the last 5-10 with "View all".
-- Figma: `Timeline Item` Tone × Title, Time, Description, Icon, Connector (off on the last),
+- Figma: `Timeline Item` Tone × Title, Time, Description, Icon, Show connector (off on the last),
   Content slot (Show content).

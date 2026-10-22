@@ -15,13 +15,15 @@ Usage guidelines only. Visual specs live in the Figma components.
   Import Mapping and Status Page.
 
 ## Feature Item
-- One benefit or capability: icon tile, title in 2-5 words, one or two lines of text, optional
-  link. `stacked` in grids of 3 or 4, `inline` in two-column lists and asides, `centered` under a
+- One benefit, capability or step: icon tile (Marker=icon) or step number (Marker=number), title
+  in 2-5 words, one or two lines of text, optional link. `stacked` in grids of 3 or 4, `inline` in two-column lists and asides, `centered` under a
   centered Section Header.
 - Same Layout, icon style and text length across a grid; one idea per item.
-- Plan feature lists with checks are a check list; numbers are Figure or Stat Card.
-- Figma: `Feature Item` (own page) Layout; Title, Description, Icon (swap), Show description, Show
-  link. Used in the Features, Bento Grid and Careers Benefits blocks.
+- Plan feature lists with checks are `Check Item`s; numbers are Figure or Stat Card.
+- Marker=number with the Number property for "How it works" sections (3-4 steps), only when
+  order matters.
+- Figma: `Feature Item` (own page) Layout × Marker; Title, Description, Number, Icon (swap), Show
+  description, Show link. Used in the Features, Bento Grid and Careers Benefits blocks.
 
 ## Post Card
 - Articles, news, case studies, changelog entries. Image 16:9, category + date · reading time,
@@ -38,7 +40,7 @@ Usage guidelines only. Visual specs live in the Figma components.
   heading/h3) for one strong line between sections of a long page; never two in a row.
 - Word for word, with permission, under 40 words; no quotation marks in the text. Attribution:
   name and role at the time, optional avatar.
-- Customer proof on marketing pages: the Testimonial blocks. Notes and warnings: Alert.
+- Customer proof on marketing pages: `Testimonial Card` or `Block / Testimonials`. Notes and warnings: Alert.
 - Figma: `Quote` Variant default, pull; Quote, Name, Role, Show avatar, Show attribution.
   `Block / Article` uses the default variant.
 
@@ -52,12 +54,13 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Long articles and docs pages (3+ sections). Built from the h2 / h3 headings; the section in view
   is active (scroll spy); clicking scrolls with an offset for sticky headers.
 - Sticky on the right from 1280; below that, a collapsible "On this page" at the top.
-- Figma: `TOC Item` Level (1, 2) × State, `Table of Contents` (Items slot), Navigation page.
+- Figma: `Table of Contents Item` Level (1, 2) × State, `Table of Contents` (Items slot), Navigation page.
 
 ## Related components
 - Next to `Code Block`: `Command Snippet` for a single command to copy (the $ is never copied),
-  `Diff Viewer` for changes between two versions of a text, and `JSON Viewer` for collapsible
-  payloads.
-- `Step Item` is the numbered step of a "How it works" section (3-4 steps). `Testimonial Card` is
-  customer proof in grids and carousels; `Quote` stays for quotes in running text. `Footnote`
-  explains a claim in the text with a numbered note and a back link.
+  `Diff Viewer` for changes between two versions of a text (one `Diff Line` per line), and
+  `JSON Viewer` for collapsible payloads.
+- `Image Compare Slider` shows the same view before and after, with a handle to drag between
+  the two images (retouching, redesigns, a site before and after a change).
+- `Testimonial Card` is customer proof in grids and carousels; `Quote` stays for quotes in running
+  text. `Footnote` explains a claim in the text with a numbered note and a back link.

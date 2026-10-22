@@ -17,21 +17,25 @@ Usage guidelines only. Visual specs live in the Figma component.
 - On mobile, tabs scroll horizontally; never wrap to two lines.
 
 ## Figma
-- `Tabs` (pill, shadcn) and `Tabs Line` hold `Tab` instances in a native slot. Exactly one `active`.
+- One `Tabs` set holds `Tab` instances in a native slot: Variant default (pill, shadcn), line
+  (underlined) and vertical. Each Tab uses the same Variant as its Tabs. Exactly one `active`.
 - In pill tabs, inactive text is `foreground/default`, not muted: muted text on the muted list
   fails contrast. The active tab is marked by its background and shadow.
-- Use `Tabs Line` for page-level sections, pill tabs for switching views inside a card or panel.
+- Use Variant=line for page-level sections, Variant=default for switching views inside a card or
+  panel.
 - `Tab` Show icon adds a 16 px icon before the label (Icon swap); icons on all tabs or none.
-- `Tabs Vertical`: Tab Style=vertical in a 200 wide column for settings and long forms with 4-10
-  sections; the content sits on the right. Mobile: a Select or a list that opens each section.
-  Example "settings with vertical tabs".
+- Variant=vertical: a 200 wide column for settings and long forms with 4-10 sections; the content
+  sits on the right. Mobile: a Select or a list that opens each section. Example "settings with
+  vertical tabs".
 
 ## Tabs or Toggle Group
 - Tabs switch between panels of content. Toggle Group sets a value: view mode (list / board),
   period (day / week / month), formatting. If nothing below changes except how data is shown or
   filtered, it is a Toggle Group.
 - `Toggle Group` default or outline; items can be icon-only (with accessible label and tooltip).
+  The chosen `Toggle Group Item` is State=selected.
 
 ## Related components
-- `View Switcher` (list, board, calendar) and `Theme Toggle` (light, dark, system) are ready-made
-  Toggle Groups: they set a value and keep the same content.
+- View switches (list, board, calendar) and theme switches (light, dark, system) are plain
+  `Toggle Group`s: they set a value and keep the same content. Examples "view switch" and "theme
+  switch" on the Toggle Group page.

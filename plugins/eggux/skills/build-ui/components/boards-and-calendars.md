@@ -17,13 +17,13 @@ Usage guidelines only. Visual specs live in the Figma components (Kanban, Schedu
 - For bookings, shifts, meetings and rooms. Toolbar: Today, previous / next, range title,
   Day / Week / Month, New event.
 - Show working hours by default (scroll for the rest), today marked, current-time line, weekend
-  muted. Events sized by duration; 30 min or less use the compact event.
+  muted. Events sized by duration; 30 min or less use Size=sm.
 - Event color = calendar or type (`chart/1..4`) with a legend, never the only signal; overlapping
   events sit side by side.
 - Click an empty slot to create, drag to move or resize; confirm moves that notify others.
 - Time zone visible when users or attendees can be in different zones.
 - Mobile: day view with a week strip.
-- Figma: `Calendar Event` (Size × Category) on the Scheduler page, `Block / Scheduler Week` on the
+- Figma: `Calendar Event` (Size default, sm × Series 1-4) on the Scheduler page, `Block / Scheduler Week` on the
   App page.
 
 ## Gantt (project timeline)
@@ -41,7 +41,7 @@ Usage guidelines only. Visual specs live in the Figma components (Kanban, Schedu
 - Figma: `Gantt Bar` (Status), `Gantt Milestone` on the Scheduler page; `Block / Gantt` on the App page.
 
 ## Month view
-- For planning and an overview of busy days. Up to 3 events per day (compact `Calendar Event`),
+- For planning and an overview of busy days. Up to 3 events per day (`Calendar Event` Size=sm),
   then "+N more" that opens the day in a Popover.
 - Today marked, days of other months muted, weekends muted when the product works on weekdays.
 - Click a day to open the day view or create an event; drag events between days.
@@ -49,8 +49,9 @@ Usage guidelines only. Visual specs live in the Figma components (Kanban, Schedu
 - Figma: `Block / Scheduler Month` on the App page.
 
 ## Related components
-- Switch between list, board and calendar views of the same records with `View Switcher`; keep the
-  view in the URL and keep filters on switch.
+- Switch between list, board and calendar views of the same records with a `Toggle Group`
+  (example "view switch" on the Toggle Group page); keep the view in the URL and keep filters on
+  switch.
 - Day lists outside the grid use `Agenda Item` (sorted by start, all-day on top, State=now and
   past). A meeting people are about to join uses `Meeting Card`, with Join primary from 5 minutes
   before the start.

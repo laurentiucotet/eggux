@@ -3,15 +3,15 @@
 Usage guidelines only. Visual specs live in the Figma component.
 
 ## Use
-- FAQ and optional detail (Density default).
-- Grouping controls in a side panel: filter groups, settings groups (Density compact).
+- FAQ and optional detail (Size default).
+- Grouping controls in a side panel: filter groups, settings groups (Size sm).
 - Never to hide information every user needs to complete the task.
 
 ## Filter panels
 - One Accordion Item per filter dimension (Status, Owner, Location, Date), in the order actors
   filter most.
 - Title = the dimension. Meta = Badge Count of active values in that group, or a short value
-  summary ("Last 7 days"). Leading icon only if it helps scanning; use it on all groups or none.
+  summary ("Last 7 days"). Show leading icon only if it helps scanning; use it on all groups or none.
 - Content = the controls: checkbox list (multi), radio group (single), date range, select.
   Long option lists get a search field at the top and "Show all".
 - Open by default: the groups with active filters. Panel header: "Filters" + "Clear all".
@@ -22,7 +22,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Several items may be open at once unless the content is mutually exclusive.
 
 ## Figma
-`Accordion Item` Density × State, Meta and Content native slots; `Accordion` holds items in a
+`Accordion Item` Size (default, sm) × State, Meta and Content native slots; `Accordion` holds items in a
 slot. Example: "filter panel" on the Accordion page; `Block / Filtered List` on the App blocks page.
 - One long text (a note, a bio, a description) cut to 3 lines uses `Show More`; Accordion is for
   several sections.

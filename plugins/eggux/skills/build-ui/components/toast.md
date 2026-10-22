@@ -19,7 +19,8 @@ and inline messages: `patterns/feedback-messages.md`.
 - Announce to screen readers (`aria-live="polite"`, `assertive` for errors).
 
 ## Figma
-`Toast` types: default, success, error, warning, info, loading. Edit title and description in the
-instance; turn on `Action` for Undo or View (the nested Button is exposed).
-`Close button` is off by default. Turn it on for toasts with an action, errors and toasts that
-stay longer than ~8 s; simple confirmations dismiss themselves.
+`Toast` types: default, success, error, warning, info, loading. Toast has no TEXT properties for
+the title and description: edit those text layers in the instance, and turn off
+`Show description` for one-line toasts. Turn on `Show action` for Undo or View (the nested Button
+is exposed). `Show close` is off by default. Turn it on for toasts with an action, errors and
+toasts that stay longer than ~8 s; simple confirmations dismiss themselves.

@@ -28,7 +28,7 @@ On desktop, the content of a mobile `Drawer` usually becomes a `Dialog` (short) 
   follow `patterns/unsaved-changes.md`.
 - Focus moves to the first field (or the title) on open and returns to the trigger on close.
 - Never open a Sheet from a Sheet. A Dialog on top of a Sheet is allowed only for a confirmation.
-- Filters in a Sheet or Drawer: one `Accordion Item` (compact) per group with a `Badge Count` of
+- Filters in a Sheet or Drawer: one `Accordion Item` (Size=sm) per group with a `Badge Count` of
   active options in Meta; see `accordion.md`.
 
 ## Side Panel
@@ -44,9 +44,9 @@ On desktop, the content of a mobile `Drawer` usually becomes a `Dialog` (short) 
 ## Figma
 - `Side Panel`: State expanded, collapsed; Title; slots Actions, Content, Footer (Show footer);
   Collapsible. Examples: "Editor with side panel", "Editor with collapsed side panel".
-- `Sheet`: Side right, left. `Drawer`: Handle (boolean). Both have native slots Header, Content,
+- `Sheet`: Side right, left. `Drawer`: Show handle. Both have native slots Header, Content,
   Footer, built from `Dialog Header` and `Dialog Footer`.
-- Drawer header: `Dialog Header` with Close off (the handle and outside tap close it).
+- Drawer header: `Dialog Header` with Show close off (the handle and outside tap close it).
 - Examples on the Drawer page: "sheet over list" (edit form with Field Presets) and "bottom drawer
   on mobile" (filter groups with checkboxes).
 - `Sheet` width: 384 for details and filters, 480 for forms, 640 for a record, a table or a preview;
