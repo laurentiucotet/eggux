@@ -165,7 +165,7 @@
    "Title: the situation in a few words",
    "Description: what to do about it (Show description)",
    "Actions slot: up to three small buttons or links (Show actions)",
-   "Dismiss x (Dismiss)"
+   "Dismiss x (Show close)"
   ],
   "rules": [
    "Variant matches the meaning: default, info, success, warning, destructive; always with an icon",
@@ -463,7 +463,7 @@
   "anatomy": [
    "Icon or Dot (optional)",
    "Label",
-   "Count value (Count)"
+   "Count value (Show count)"
   ],
   "rules": [
    "Text carries the meaning; color only reinforces it",
@@ -978,7 +978,7 @@
   "anatomy": [
    "Image (fill on the \"image\" layer) with video/scrim",
    "Overline (Show overline)",
-   "Headline",
+   "Title",
    "Text",
    "One action Button",
    "Carousel Indicator bars with Pause",
@@ -1297,9 +1297,9 @@
    "One choice among a few options: use Toggle Group"
   ],
   "anatomy": [
-   "Leading icon (Leading icon): calendar, or check when selected",
+   "Leading icon (Show leading icon): calendar, or check when selected",
    "Label",
-   "Remove x (Remove)"
+   "Remove x (Show remove)"
   ],
   "rules": [
    "Label is one or two words in sentence case",
@@ -1922,7 +1922,7 @@
    "Navigation menu on mobile: use a left Sheet"
   ],
   "anatomy": [
-   "Handle on top (Handle)",
+   "Handle on top (Show handle)",
    "Header slot: Dialog Header with Close off",
    "Content slot",
    "Footer slot: full-width buttons stacked, primary first"
@@ -2003,7 +2003,7 @@
   ],
   "anatomy": [
    "Leading slot: avatar, icon or a 1:1 image",
-   "Title (2 lines) and Subtitle (1 line)",
+   "Title (2 lines) and Description (1 line)",
    "Actions slot: one or two Button Icon for a direct action, like add or remove (Show actions)",
    "Menu Button Icon (Show menu)",
    "Tags slot: status and tags (Show tags)",
@@ -2016,7 +2016,7 @@
    "In a clickable card the menu is the only other control",
    "Actions slot for the one action people take on every card (add to a selection, remove, pin); everything else goes in the menu",
    "A toggled action shows its state: plus to add, check (secondary) once added, with State=selected on the card",
-   "Status in text (Badge), never color alone",
+   "Status in text (Show badge), never color alone",
    "Footer text says when it was last updated (\"Updated 2 h ago\")"
   ],
   "a11y": [
@@ -2662,7 +2662,7 @@
    "Common data (email, phone, card): use Field Preset"
   ],
   "anatomy": [
-   "Leading icon (Leading icon, Leading icon)",
+   "Leading icon (Show leading icon, Leading icon)",
    "Value or placeholder",
    "Trailing slot (Show trailing): clear, show password"
   ],
@@ -3045,10 +3045,10 @@
   "anatomy": [
    "Items slot",
    "Menu Label: group heading, not clickable",
-   "Menu Item: Leading icon, Label, Shortcut text, Checked",
+   "Menu Item: Leading icon, Label, Shortcut text (Show shortcut), Checked",
    "Separator between groups",
    "Destructive Menu Item last",
-   "Menu Item options: Show description (a muted second line), Submenu (chevron at the end)"
+   "Menu Item options: Show description (a muted second line), Show submenu (chevron at the end)"
   ],
   "rules": [
    "Items are verbs: \"Edit\", \"Duplicate\", \"Archive\"; items that open a dialog end with \"...\"",
@@ -3396,7 +3396,7 @@
    "Message: what is missing"
   ],
   "rules": [
-   "Strength: empty, weak, fair, good, strong",
+   "Level: empty, weak, fair, good, strong",
    "The level is in text and bar count, not only color",
    "Fair uses foreground/default because amber fails as a thin bar on white",
    "No composition rules beyond length; never block paste"
@@ -4090,10 +4090,10 @@
    "Mobile: open it as a left Sheet from the header"
   ],
   "anatomy": [
-   "Header slot: Sidebar Workspace (logo, Title, Subtitle, switcher)",
+   "Header slot: Sidebar Workspace (logo, Title, Description, switcher)",
    "Content slot: Sidebar Group with a Sidebar Group Label",
-   "Sidebar Item rows: Icon, Label, optional Badge and Chevron",
-   "Footer slot: Sidebar User (Avatar, Title, Subtitle, menu)",
+   "Sidebar Item rows: Icon, Label, optional Badge (Show badge) and Chevron (Show chevron)",
+   "Footer slot: Sidebar User (Avatar, Title, Description, menu)",
    "Sidebar Item Level=2: a sub-page row, no icon, label aligned with the parent label"
   ],
   "rules": [
@@ -4413,7 +4413,8 @@
    "Label (body/small, muted)",
    "Value (heading/h2, one line)",
    "Change Badge with the Trend icon: trending-up, trending-down, minus",
-   "Trend line and Footnote (Show footer)"
+   "Trend line and Footnote (Show footer)",
+   "Show change and Show trend hide the change badge and the trend row when there is no comparison"
   ],
   "rules": [
    "Trend sets the icon; edit the change and trend line per instance",
@@ -4552,7 +4553,7 @@
   "anatomy": [
    "Type=header with Table Header Label (Label, Sort, Align)",
    "Type=body with Table Cell Text, Table Cell Stack or Table Cell User",
-   "Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Tags, Avatars",
+   "Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Badges, Avatars",
    "Last column: Table Cell Actions (edit and menu)",
    "Type=expanded: one detail cell spanning all columns"
   ],
@@ -4757,7 +4758,7 @@
   ],
   "anatomy": [
    "Field container (State)",
-   "Tags slot: Tag instances (Label, Remove)",
+   "Tags slot: Tag instances (Label, Show remove)",
    "Overflow text: \"+3 more\"",
    "Typing area",
    "chevrons-up-down icon (Show chevron on)"
@@ -4898,9 +4899,9 @@
   ],
   "anatomy": [
    "Type icon: success, error, warning, info or loading",
-   "Title: one line",
-   "Description (Show description)",
-   "Action button (Action)",
+   "Title: one line (Title)",
+   "Description (Show description, Description)",
+   "Action button (Show action)",
    "Close button (Show close)"
   ],
   "rules": [
@@ -4943,13 +4944,13 @@
   "anatomy": [
    "Group (Variant: default or outline)",
    "Items slot: Toggle Group Item instances",
-   "Item: Label and/or icon (Show label, Icon, Icon)",
+   "Item: Label and/or icon (Show label, Show icon, Icon)",
    "Selected item: State=selected"
   ],
   "rules": [
    "It sets a value; if the content below changes panels, use Tabs",
    "Single choice for view mode or period; multiple for formatting",
-   "Icon-only items: Show label off, Icon on, with a tooltip",
+   "Icon-only items: Show label off, Show icon on, with a tooltip",
    "Choosing a value is a Toggle Group, not a Button Group"
   ],
   "a11y": [
@@ -4979,7 +4980,7 @@
   "anatomy": [
    "Wrench icon, or Spinner while running",
    "Title: what runs (\"Search invoices\")",
-   "Detail: the input (\"customer: Acme, status: open\")",
+   "Description: the input (\"customer: Acme, status: open\")",
    "Status Badge",
    "Chevron to open the input and the result",
    "Approve and Deny (Status=approval) or Retry (Status=error)"
@@ -4992,7 +4993,7 @@
    "The assistant cannot do what the user cannot"
   ],
   "a11y": [
-   "Status is in text (Badge), never color alone",
+   "Status is in text (Show badge), never color alone",
    "Status changes are announced politely (aria-live)",
    "Approve and Deny are buttons in reading order, reachable by keyboard"
   ],
@@ -5057,7 +5058,7 @@
    "Marketing sites: use Navbar"
   ],
   "anatomy": [
-   "Sidebar trigger (Sidebar trigger)",
+   "Sidebar trigger (Show sidebar trigger)",
    "Separator",
    "Breadcrumb slot",
    "Actions slot: search, notifications, help, user Avatar"
@@ -5129,10 +5130,10 @@
   "anatomy": [
    "Indent (16 px per Level)",
    "Chevron (Type collapsed or expanded; none for leaf)",
-   "Checkbox (Checkbox)",
-   "Icon (Icon, Icon)",
+   "Checkbox (Show checkbox)",
+   "Icon (Show icon, Icon)",
    "Label",
-   "Count (Count)"
+   "Count (Show count)"
   ],
   "rules": [
    "Type: collapsed, expanded, leaf; State: default, hover, selected; Level 0-3",
@@ -6431,7 +6432,7 @@
   "use": [
    "A checkbox or radio group with a question",
    "The parts of an address or a date",
-   "A group of Option Card (Control=checkbox)s or Option Cards"
+   "A group of Option Cards"
   ],
   "avoid": [
    "One control: use Field",
@@ -7165,7 +7166,7 @@
   ]
  },
  "Trend Indicator": {
-  "summary": "A change against a period: arrow, signed percent or amount, and what it is compared to. Direction says which way it moved; Tone says if that is good, bad or neither.",
+  "summary": "A change against a period: arrow, signed percent or amount, and what it is compared to. Trend says which way it moved; Tone says if that is good, bad or neither.",
   "use": [
    "The change under a value in a Metric Strip or a Stat Card",
    "A change next to a figure in a table row or a report header",
@@ -7177,12 +7178,12 @@
    "A status with no change: use Badge"
   ],
   "anatomy": [
-   "Icon: trending-up, trending-down or minus (from Direction)",
+   "Icon: trending-up, trending-down or minus (from Trend)",
    "Value: signed percent or amount, ui/label",
    "Comparison (Show comparison): \"vs last month\", ui/caption, muted"
   ],
   "rules": [
-   "Direction follows the data; Tone follows the meaning (costs up is negative, churn down is positive)",
+   "Trend follows the data; Tone follows the meaning (costs up is negative, churn down is positive)",
    "Always signed: +12.4%, −3.1%, 0.0% for flat; one decimal for percentages",
    "The comparison names the period (\"vs last month\", \"vs Q3\"); hide it only when the period is said once nearby",
    "Edit the value text per instance; keep the same comparison for every item in a row",
@@ -7844,7 +7845,8 @@
    "Title: the benefit",
    "Text: two sentences on how to use it",
    "Image (Show image): Image Placeholder",
-   "Link (Show link): Button link"
+   "Link (Show link): Button link",
+   "Text (Show text): off for one-line entries"
   ],
   "rules": [
    "Newest first; one entry per change",
@@ -8022,12 +8024,12 @@
    "Current plan usage in settings: use Usage Meter"
   ],
   "anatomy": [
-   "Plan name",
+   "Title",
    "Description: who it is for, one sentence",
    "Price (exposed)",
    "CTA: Button (primary when Variant=featured)",
    "Separator",
-   "Features title: \"Everything in Starter, plus:\"",
+   "Features title (Show features title): \"Everything in Starter, plus:\"",
    "Features slot: Check Items"
   ],
   "rules": [
@@ -8099,11 +8101,11 @@
   "anatomy": [
    "Icon (swap): shield-check",
    "Name: \"SOC 2 Type II\"",
-   "Detail: muted, audit date or region"
+   "Description: muted, audit date or region"
   ],
   "rules": [
    "Only claims that are current and can be shown on request",
-   "Detail says what backs it (\"Audited September 2026\", \"Data in the EU\")",
+   "Description says what backs it (\"Audited September 2026\", \"Data in the EU\")",
    "Link to the trust page",
    "Update or remove it when a certificate expires",
    "Same order everywhere; 3-5 in a row"
@@ -9060,7 +9062,7 @@
    "One integration with its settings: use Integration Card"
   ],
   "anatomy": [
-   "Service: ui/label",
+   "Name: ui/label",
    "Uptime (Show uptime): \"99.98% uptime\", body/small, muted",
    "Status: Status Dot with a word (Operational, Degraded, Outage, Maintenance)"
   ],
@@ -9361,7 +9363,7 @@
   "anatomy": [
    "Title: ui/label, with a Badge (Show badge: \"New\")",
    "Meta: team, type, work mode (\"Finance · Full-time · Hybrid\")",
-   "Details: location and posted date",
+   "Details: location and posted date (Show posted)",
    "Salary (Show salary): range with currency and period",
    "Apply: Button"
   ],
@@ -9723,6 +9725,7 @@
    "Checkbox",
    "Title: ui/label",
    "Due (Show due): ui/caption, muted; destructive when overdue",
+   "Action slot (Show action): one Button, such as Connect or Start",
    "Assignee (Show assignee): Avatar xs"
   ],
   "rules": [
@@ -9730,7 +9733,7 @@
    "Done is struck through and moves to the end",
    "Overdue says it in destructive (\"Overdue · 12 Oct\")",
    "Open items sort by due date; the title wraps to two lines at most",
-   "The row opens the task; the Checkbox only ticks"
+   "The row opens the task; the Checkbox only ticks; the action button starts the task"
   ],
   "a11y": [
    "The Checkbox is labelled by the title",
