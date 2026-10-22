@@ -18,7 +18,7 @@ On the Figma page: "Example / in notifications", "Example / navigation tree", "E
 
 Component set · 5 variants · default size 384 × 58
 
-Row in a content list (people, files, appointments). Different from Menu Item (an action in a popover) and Sidebar Item (navigation). Leading and Trailing are native slots. Show leading and Show trailing hide the slots for text-only rows.
+Row in a content list (people, files, appointments). Different from Menu Item (an action in a popover) and Sidebar Item (navigation). Leading and Trailing are native slots. Show leading and Show trailing hide the slots for text-only rows. Show divider draws a 1 px border/default line at the bottom of the row (Separator, inside the row's bottom padding): turn it on for every row but the last.
 
 **Use for**
 
@@ -39,7 +39,8 @@ Row in a content list (people, files, appointments). Different from Menu Item (a
 2. Title
 3. Description (Show description)
 4. Trailing slot: meta, Badge, chevron or one action
-5. Show leading and Show trailing hide the slots for text-only rows
+5. Divider (Show divider): Separator, 1 px border/default at the bottom edge, inside the row's bottom padding
+6. Show leading and Show trailing hide the slots for text-only rows
 
 **Content and behavior**
 
@@ -48,6 +49,7 @@ Row in a content list (people, files, appointments). Different from Menu Item (a
 - Trailing holds at most one action plus meta; more actions go in a Button Icon with a Menu
 - Every list has an empty state
 - Text-only lists (settings, links) turn Show leading off; compact lists turn Show description off
+- Divided lists: Show divider on every row but the last, list gap 0 so the line sits halfway between rows
 
 **Accessibility**
 
@@ -66,10 +68,11 @@ Row in a content list (people, files, appointments). Different from Menu Item (a
 | Show description | boolean | true |
 | Show leading | boolean | true |
 | Show trailing | boolean | true |
+| Show divider | boolean | false |
 
 Slots (fill them in the instance, never detach): `Leading`, `Trailing`
 
-Built from: `Avatar`, `Badge`. Icons: chevron-right
+Built from: `Avatar`, `Badge`, `Separator`. Icons: chevron-right
 
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `background/muted`, `foreground/accent`, `foreground/default`, `foreground/muted`
@@ -79,7 +82,7 @@ Tokens and styles:
 
 Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
 
-Code: custom row (`ul` / `li`) with shadcn `Avatar` and `Badge` (Show leading and Show trailing map to optional children)
+Code: custom row (`ul` / `li`) with shadcn `Avatar` and `Badge` (Show leading and Show trailing map to optional children. `Show divider` = `border-b` on the `li` (or `divide-y` on the `ul`), off on the last row)
 
 ## Tree Item
 

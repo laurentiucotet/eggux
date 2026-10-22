@@ -26,6 +26,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Page | Component | Variants | Properties |
 |---|---|---|---|
 | Icons | `Icon/<name>` | - | Lucide, 24 px, one `Vector` layer bound to `foreground/default`. Rescale to 16 (UI) or 12 (badge) |
+| Icons | `Icon/brand/<name>` | - | Brand logos from Simple Icons, filled, 24 px, one `Vector` bound to `foreground/default`: apple-podcasts, spotify, linkedin, youtube, github, x. Frame "Icons / Brand" |
 | Tour | `Coachmark` | Side: bottom, top, right, left | Title, Description, Step, Show media (Media slot), Show close, Show back. Arrow points at the target |
 | Tour | `Hotspot` | - | 24 px beacon that opens a Coachmark |
 | Video | `Video Player` | State: poster, playing, buffering | Duration, Time, Show subtitles. `video/*` tokens, dark in both modes |
@@ -134,7 +135,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Chat | `Typing Indicator` | - | Three dots + "… is typing" |
 | Chat | `Chat Composer` | - | Attach, message field, Send |
 | Quote | `Quote` | Variant: default (left rule), pull (centered) | Quote, Name, Role, Show avatar, Show attribution. A quotation in running content |
-| Section Heading | `Section Heading` | Size: lg (h2), default (h3), sm (h4) | Title, Description, Overline, Show overline, Show description, Show actions; Actions (native slot). Opens a section of an app or content page |
+| Section Heading | `Section Heading` | Size: lg (h2), default (h3), sm (h4) | Title, Description, Overline, Show overline, Show description, Show actions, Show icon + Icon (swap); Actions (native slot). Opens a section of an app or content page |
 | Feature Item | `Feature Item` | Layout: stacked, inline, centered. Marker: icon, number | Title, Description, Number, Icon (swap), Show description, Show link. One benefit, capability or step: icon tile or step number, title, text |
 | Rating | `Rating` | Size: sm, default. Value: 0-5 | Show value, Show count, Count. Value text edited per instance |
 | Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); Carousel Arrow (outline) and Carousel Indicator (dots); viewport clips |
@@ -174,7 +175,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Tabs | `Tabs` | Variant: default, line, vertical | Tabs (native slot of Tab instances with the same Variant). default: pill tabs in a card; line: underlined page sections; vertical: a 200 wide column for settings |
 | Toggle Group | `Toggle Group Item` | State: default, hover, selected, focus, disabled | Label, Show label, Show icon + Icon (swap) |
 | Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels. Theme, view and billing period switches are examples on this page, not components |
-| List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing. Leading, Trailing (native slots) |
+| List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing, Show divider. Leading, Trailing (native slots) |
 | List & Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Show checkbox (Checkbox exposed), Show icon + Icon (swap), Show count |
 | List & Tree | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description, Show leading; grip handle; Leading (native slot, 1:1 image 48), Trailing (native slot) |
 | Tooltip | `Tooltip` | Side: top, bottom, left, right | Label (wraps at 280), Title + Show title (rich), Show shortcut (Kbd exposed) |
@@ -188,17 +189,17 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Drawer | `Sheet` | Side: right, left | Side drawer, full height, 384 wide (480 forms, 640 record or preview). Header, Content, Footer (native slots) from Dialog Header/Footer |
 | Drawer | `Drawer` | - | Bottom drawer, top radius xl. Show handle; Header (no close), Content, Footer (native slots, stacked full-width buttons) |
 | Drawer | `Side Panel` | State: expanded (320), collapsed (48) | Inline aside, no overlay. Title, Collapsible, Show footer; Actions, Content, Footer (native slots) |
-| Card | `Card Header` | - | Title, Description, Show description, Show action. Action (native slot) |
+| Card | `Card Header` | - | Title, Description, Show description, Show action, Show icon + Icon (swap). Action (native slot) |
 | Card | `Card Footer` | - | Actions (native slot) |
 | Card | `Card` | Variant: default, outline, muted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
 | Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Trend text, Footnote, Show footer. Trend line edited per instance |
 | Card | `Option Card` | Control: radio, checkbox. State: default, hover, focus, selected, disabled | Title, Description, Show description, Show icon + Icon (swap). Selectable card: a radio for one choice, a checkbox for several; the whole card is the target |
 | Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Description (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions, Show people; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
 | Card | `Person Card` | Layout: vertical (280), horizontal (400) | Name, Role, Organization, Show organization, Show tags, Show contact, Show actions; Avatar, Tags, Contact (Meta Items), Actions (native slots) |
-| Card | `Event Card` | Layout: horizontal (640), vertical (352, image) | Title, Show tags, Show actions, Show image; Date Tile (exposed); Tags, Meta (Meta Items), Actions (native slots) |
+| Card | `Event Card` | Layout: horizontal (640), vertical (352, image). Date position: text, image (vertical: tile over the image) | Title, Show tags, Show actions, Show image; Date Tile (exposed); Tags, Meta (Meta Items), Actions (native slots) |
 | Card | `Date Tile` | Size: default (56), sm (44) | Month, Day. Part of Event Card |
 | Card | `Progress Card` | Status: on-track, at-risk, off-track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
-| Card | `Post Card` | Layout: vertical, horizontal, compact | Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact: 1:1 image 64; horizontal: image half the width, 160-640); category Badge exposed. Compact = title on 2 lines + meta, for related lists |
+| Card | `Post Card` | Layout: vertical, horizontal, compact. Size: default, sm (sm horizontal: image one third, 120-240) | Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact: 1:1 image 64; horizontal: image half the width, 160-640); category Badge exposed. Compact = title on 2 lines + meta, for related lists |
 | Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
 | Table | `Table Cell Check` | Value: included, excluded, text | Text, Note, Show note. Plan comparison value in a table cell: included (check), excluded (dash) or a text value such as "100 GB" or "Unlimited", with an optional note ("per seat"). |
 | Table | `Table Cell Link`, `Table Cell Date`, `Table Cell File`, `Table Cell Badges`, `Table Cell Avatars` | - | Content for body cells: link (underlined), date (Show time), file (icon, name, size), badges (Badge List), people (Avatar Group sm) |
@@ -278,6 +279,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Sections (blocks) | `Block / CTA Split`, `/ CTA Card`, `/ Features Split`, `/ Bento Grid` | - | CTA with image; CTA on primary; alternating feature rows; bento overview with real components |
 | Content | `Block / Blog Grid`, `/ Blog Featured`, `/ Blog Post Header`, `/ News List` | - | Blog family: latest three; featured + list; article top; dated news list |
 | Hero | `Block / Hero with Screenshot` | - | Headline, CTAs and the real product (Block / Analytics) in a browser frame |
+| Hero | `Block / Hero Prompt` | - | AI-first home hero: optional Badge, headline with an accent line in `foreground/brand`, label, Prompt Input, optional suggestions, image |
 | Navigation (blocks) | `Block / Announcement Banner`, `/ Footer Simple` | - | Banner family: one-line message on primary, dismissible; compact footer |
 | Sections (blocks) | `Block / Pricing Single`, `/ Pricing Calculator` | - | Pricing family: one plan with what is included; seat slider with tiers and live total |
 | Sections (blocks) | `Block / FAQ Grid`, `/ FAQ Centered`, `/ Stats Cards`, `/ Stats Split` | - | FAQ family: two columns of short answers; centered accordion with a contact card. Stats family: proof numbers as cards; numbers next to the story and source |

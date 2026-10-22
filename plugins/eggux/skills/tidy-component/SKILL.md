@@ -83,7 +83,7 @@ after. The script:
   row whose components it uses most (top-level instances; ties go to the row with fewer
   frames); force one with `examples` in `rows.json`;
 - generates a basic stress test where none exists (default, long and short text, options on and
-  off, narrow, each variant, Dark), marked "Generated cases"; generated frames are rebuilt on
+  off, the 1/4, 1/3 and 1/2 column widths of the 1152 container, each variant, Dark), marked "Generated cases"; generated frames are rebuilt on
   every run, so replace them with real cases when you review;
 - generates "Example / in <block>" from `block` where no example exists;
 - removes sections left empty and leaves a note in any Stress test or Examples section that is

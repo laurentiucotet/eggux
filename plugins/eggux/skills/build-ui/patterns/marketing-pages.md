@@ -7,7 +7,7 @@ grouped by family inside each page's `Blocks` section.
 | Family | Blocks | Use |
 |---|---|---|
 | Banner | Announcement Banner | One launch or event message above the Navbar, dismissible |
-| Hero | Hero Centered, Hero Split, Hero with Screenshot | Screenshot when the product sells itself; split for a human or illustrative image |
+| Hero | Hero Centered, Hero Split, Hero with Screenshot, Hero Prompt | Screenshot when the product sells itself; split for a human or illustrative image; Hero Prompt for the signed-in home of a portal or data product where people start by asking (AI search or assistant) |
 | Features | Features, Features Split, Bento Grid | Grid for 3-6 short benefits (Feature Item, stacked); split rows for deep-dives; bento for a platform overview with real components |
 | Testimonials | Testimonials, Testimonial Single, Grid, Split, Carousel | Single for one strong quote; grid for breadth; split (case study) for enterprise buyers; carousel only past six |
 | CTA | CTA, CTA Split, CTA Card | Card (primary color) once per page near the end; split with a product image mid-page |
@@ -72,6 +72,8 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
   interactive maps and use a static image above the fold.
 - Announcement banner: one at a time, dismissible, not for errors or outages.
 - Gallery grids use `Image Figure`; office grids use `Location Card` with Show map (Block / Offices).
+- Event grids with long titles: Event Card `Date position=image`.
+- Hero Prompt: Accent is the greeting, Title stays on two lines, Suggestions holds 2-4 Prompt Suggestions; submitting opens the chat or results page with the question prefilled.
 
 ## Cookie consent
 - Needed before any non-essential cookie (analytics, ads, embeds that track). Necessary cookies

@@ -53,6 +53,7 @@ Stat Card, Option Card and Post Card use the same tokens.
 - Metric cards: label (`body/small` muted), value (`heading/h2`, one line), change with direction
   in text and icon, not color alone.
 - Selectable cards (plan, delivery, billing period) use Option Card: the whole card is the target, one selected.
+- Card Header `Show icon` names the card type on dashboards; give every card in a row an icon or none.
 
 ## Figma
 - `Card` (Variant × Size × Elevation, 12 variants) = native slots Header (`Card Header`), Content (placeholder) and Footer (`Card Footer`).

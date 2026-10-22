@@ -54,6 +54,11 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
 - Start from a Page Shell; which shell, blocks and patterns fit which screen: `index.md`.
 - Data-dense desktop screens may use Density Compact (`references/tokens.md` § Density), never mobile.
 - Motion uses the `motion/*` tokens; exits faster than entries; respect reduced motion.
+- On muted surfaces (cards and panels on `background/muted`), Badge and Button use outline or
+  default, never secondary: secondary has the same color as the surface. Image Placeholder is
+  muted too: on a muted card, use the real image or put the card on `background/accent`.
+- Accent text (a highlighted headline word, inline links) uses `foreground/brand`, never a
+  `background/*` token.
 
 ## Enterprise
 - Lists people work in all day use the data grid: saved views, filters with counts, bulk

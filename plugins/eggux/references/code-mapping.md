@@ -12,6 +12,9 @@ later. "custom" means compose it from the listed primitives in the project.
 | Figma | Code | Notes |
 |---|---|---|
 | `Button` | shadcn `Button` (`variant`, `size`) | `Show leading icon` → icon child before the label; State=loading → spinner + `disabled` |
+| `Icon/database`, `Icon/bookmark`, `Icon/headphones`, `Icon/podcast` | lucide-react `Database`, `Bookmark`, `Headphones`, `Podcast` | Same as every `Icon/*`: `size-4`/`size-6`, `aria-hidden` unless it carries meaning |
+| `Icon/brand/apple-podcasts`, `Icon/brand/spotify`, `Icon/brand/linkedin`, `Icon/brand/youtube`, `Icon/brand/github`, `Icon/brand/x` | `simple-icons` (CC0) paths in an inline `<svg viewBox="0 0 24 24" fill="currentColor">`, or `react-icons/si` (`SiApplepodcasts`, `SiSpotify`, `SiLinkedin`, `SiYoutube`, `SiGithub`, `SiX`) | Filled, single color via `currentColor`; the link carries `aria-label` ("Acme on LinkedIn"), the svg is `aria-hidden`. lucide-react has no brand logos (its `Linkedin`, `Youtube`, `Github` are deprecated) |
+| `Button` (Variant=link) | shadcn `Button variant="link"` with `text-brand` instead of `text-primary` | Patch the shadcn `buttonVariants` link entry: `link: "text-brand underline-offset-4 hover:underline"` |
 | `Button Icon` | shadcn `Button size="icon"` with `aria-label`, wrapped in `Tooltip` | Same `variant` values as Button; tooltip text = aria-label |
 | `Button Group`, `Button Group Item`, `Split Button` | shadcn `ButtonGroup` or custom flex + `DropdownMenu` | |
 | `Action Bar` | `<div class="flex gap-2 justify-end">` of shadcn `Button` (justify-start, justify-center) | Leading button with `mr-auto`; one primary |
@@ -38,7 +41,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Sheet`, `Drawer` | shadcn `Sheet`, `Drawer` (vaul) | |
 | `Side Panel` | `<aside>` in the page grid + shadcn `Collapsible` | Right `Sheet` below 1024 px; persist the collapsed state |
 | `Alert`, `Toast` | shadcn `Alert`, `Sonner` | |
-| `Card`, `Card Header`, `Card Footer`, `Stat Card` | shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content |
+| `Card`, `Card Header`, `Card Footer`, `Stat Card` | shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content |
 | `Skeleton`, `Spinner`, `Kbd`, `Kbd Group` | shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) | |
 | `Pagination`, `Pagination Item`, `Breadcrumb`, `Breadcrumb Item` | shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) | In tables use `Table Pagination` |
 | `Pagination Compact` | shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNext` | |
@@ -101,7 +104,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Countdown` | custom tiles from a `useCountdown` hook (1 s interval, server end time) | `role="timer"`, `aria-live="off"`; end time in `<time datetime>` |
 | `Loading Overlay` | custom: `absolute inset-0 bg-background/60` layer + shadcn `Spinner` | `aria-busy` on the region; label in `role="status"` |
 | `Presence Bar` | shadcn `Avatar` group + `HoverCard` | Presence from Liveblocks, Yjs awareness or your websocket |
-| `List Item` | custom row (`ul` / `li`) with shadcn `Avatar` and `Badge` | Show leading and Show trailing map to optional children |
+| `List Item` | custom row (`ul` / `li`) with shadcn `Avatar` and `Badge` | Show leading and Show trailing map to optional children. `Show divider` = `border-b` on the `li` (or `divide-y` on the `ul`), off on the last row |
 | `Tree Item` | custom tree (`role="tree"`) with shadcn `Checkbox` and `Badge` | Arrow keys expand and collapse |
 | `Top Bar` | shadcn site header: `SidebarTrigger`, `Breadcrumb`, `Button` | |
 | `Page Header` | custom `<header>` with a heading, text and shadcn `Button` | One per page |
@@ -126,7 +129,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Table Cell Check` | cell renderer: lucide `Check` / `Minus` icon with `sr-only` "Included" / "Not included", or the text value; optional muted note | Plan comparison cells; excluded is a dash, never blank |
 | `Entity Card`, `Progress Card` | shadcn `Card` with `size="sm"`; `Progress` | |
 | `Person Card` | shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`) | |
-| `Event Card`, `Date Tile` | shadcn `Card` + `Badge`, `Button`; date tile as custom markup | `<time datetime>` for the date |
+| `Event Card`, `Date Tile` | shadcn `Card` + `Badge`, `Button`; date tile as custom markup | `<time datetime>` for the date. `datePosition` prop (text, image) on vertical: image = tile `absolute top-3 left-3 bg-background` inside a `relative` image wrapper |
 | `Empty State` | shadcn `Empty` (or a custom block: icon, title, description, actions) | |
 | `Approval Step` | custom on the Timeline layout | |
 | `Change Item` | custom | |
@@ -170,10 +173,10 @@ later. "custom" means compose it from the listed primitives in the project.
 | Figma | Code | Notes |
 |---|---|---|
 | `Rich Text Editor` | Tiptap (or Lexical) + shadcn `Toggle` toolbar | |
-| `Post Card` | shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link | |
+| `Post Card` | shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link | `size` prop (default, sm) via `cva`: sm = smaller gaps, `h4` title class, horizontal image `basis-1/3 min-w-[120px] max-w-[240px]` instead of half, compact image `size-12` |
 | `Code Block` | Shiki or Prism + copy `Button` | |
 | `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, larger type |
-| `Section Heading` | `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` | Heading level follows the page outline |
+| `Section Heading` | `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` | Heading level follows the page outline. Optional icon before the title (`size-6` lg, `size-5` default and sm, `aria-hidden`) |
 | `Feature Item` | custom: lucide icon in a `bg-muted rounded-md` tile + `<h3>` + `<p>` | Icon `aria-hidden`; grid of 3 or 4. Marker=number: an `<ol>`, number circle `rounded-full bg-muted`, `aria-hidden` |
 | `Badge List` | `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger | |
 | `Table of Contents`, `Table of Contents Item` | custom with scroll spy | |

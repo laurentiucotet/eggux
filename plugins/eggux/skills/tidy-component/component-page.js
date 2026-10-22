@@ -180,14 +180,16 @@ const buildStress = async (row, sec) => {
   const textKeys = Object.keys(defs).filter(k => defs[k].type === 'TEXT'), boolKeys = Object.keys(defs).filter(k => defs[k].type === 'BOOLEAN');
   const big = v0.width > 800;
   const f = F(sec, 'Stress test / ' + main.name, 'VERTICAL', '10'); pad(f, '10', '10'); f.fills = [paint('background/default')]; rad(f, 'xl');
-  await T(f, 'Generated cases: default, long and short text, options on and off, narrow, each variant with long text, Dark. Replace with real content cases when you review the component.', 'body/small', 'foreground/muted').then(t => { t.name = 'generated note'; t.resize(Math.max(480, Math.min(1200, v0.width * 2)), t.height); t.textAutoResize = 'HEIGHT'; });
+  await T(f, 'Generated cases: default, long and short text, options on and off, column widths 1/4, 1/3, 1/2, each variant with long text, Dark. Replace with real content cases when you review the component.', 'body/small', 'foreground/muted').then(t => { t.name = 'generated note'; t.resize(Math.max(480, Math.min(1200, v0.width * 2)), t.height); t.textAutoResize = 'HEIGHT'; });
   const grid = F(f, 'cases', 'HORIZONTAL', '8'); grid.layoutWrap = 'WRAP'; grid.counterAxisSpacing = 32; grid.primaryAxisSizingMode = 'FIXED'; grid.resize(big ? Math.max(1600, v0.width * 2 + 64) : 1600, 10); grid.counterAxisSizingMode = 'AUTO';
   const cell = async (label, mk) => { const c = F(grid, label, 'VERTICAL', '2'); await T(c, label, 'ui/caption', 'foreground/muted'); const n = await mk(); c.appendChild(n); return c; };
   const inst = (variant, opts = {}) => { const i = (variant || v0).createInstance(); const pr = {}; for (const k of textKeys) { if (opts.text === 'long') pr[k] = longOf(defs[k].defaultValue); if (opts.text === 'short') pr[k] = shortOf(defs[k].defaultValue); } for (const k of boolKeys) if (opts.bool !== undefined) pr[k] = opts.bool; if (Object.keys(pr).length) { try { i.setProperties(pr); } catch (e) {} } return i; };
   await cell('Default', () => inst());
   if (textKeys.length) { await cell('Long text', () => inst(null, { text: 'long' })); if (!big) await cell('Short text', () => inst(null, { text: 'short' })); }
   if (boolKeys.length && !big) { await cell('All options on', () => inst(null, { bool: true, text: 'long' })); await cell('All options off', () => inst(null, { bool: false })); }
-  if (v0.width >= 160) await cell('Narrow (50%)', () => { const i = inst(null, { text: 'long' }); i.resize(Math.max(120, Math.round(v0.width / 2)), i.height); return i; });
+  // Real column widths of the 1152 container (1/4, 1/3, 1/2); a part that keeps a fixed size shows up here.
+  for (const [label, w] of [['Column 1/4 (276)', 276], ['Column 1/3 (368)', 368], ['Column 1/2 (564)', 564]]) if (v0.width > w && v0.width >= 160) await cell(label, () => { const i = inst(null, { text: 'long' }); i.resize(w, i.height); return i; });
+  if (v0.width >= 160 && v0.width <= 276) await cell('Narrow (50%)', () => { const i = inst(null, { text: 'long' }); i.resize(Math.max(120, Math.round(v0.width / 2)), i.height); return i; });
   if (main.type === 'COMPONENT_SET' && !big) {
     const vp = Object.entries(defs).find(([k, d]) => d.type === 'VARIANT' && !/^(state|size)$/i.test(k) && d.variantOptions.length > 1) || Object.entries(defs).find(([k, d]) => d.type === 'VARIANT' && d.variantOptions.length > 1);
     if (vp) for (const opt of vp[1].variantOptions.slice(0, 6)) {

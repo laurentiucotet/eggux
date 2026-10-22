@@ -74,6 +74,9 @@ Build only after the user agrees or says to go ahead.
 - Sizes: after the last `resize()`, set hug back (`primaryAxisSizingMode = 'AUTO'`) on anything
   that should hug; blocks let their inner Card FILL so they stretch; proportional fills use
   constraints `SCALE`, not a fixed child width.
+- No fixed sizes inside a component except controls, icons and avatars: images, media and text
+  columns FILL with a min and max width so the component works in any column. Figma ignores
+  sizes set on frames inside an instance, so a fixed inner size cannot be fixed per use.
 - Default content is domain-neutral ("Acme", projects, customers, invoices) and realistic;
   domain-specific content belongs in examples.
 - Missing icon: draw it as one `Vector` in Lucide geometry (24 grid, 2 px stroke), clone an

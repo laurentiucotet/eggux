@@ -42,6 +42,7 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 2. Label
 3. Trailing icon (optional, Trailing icon)
 4. State=loading: a spinning loader replaces the leading icon; width stays
+5. Variant=link: label, icons and hover underline use foreground/brand; no fill
 
 **Content and behavior**
 
@@ -51,13 +52,14 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 - destructive only inside the confirmation step; the trigger in a list is ghost or a menu item
 - Loading (State=loading) keeps the width and the label ("Saving…" when it helps), shows the spinner and blocks repeat clicks
 - Disabled only when truly unavailable, with a reason nearby; never as form validation
+- Variant=link text and icons are foreground/brand (text-brand), never background/primary
 
 **Accessibility**
 
 - Reachable with Tab; Enter and Space activate; State=focus shows the border/ring focus ring
 - Touch target at least 44 x 44 px on mobile
 - Loading is announced ("Saving…")
-- Text meets 4.5:1 in every Variant
+- Text meets 4.5:1 in every Variant; link (foreground/brand) passes 4.5:1 on background/default, muted and card in every theme
 
 | Variant property | Values |
 |---|---|
@@ -76,7 +78,7 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 Icons: chevron-right, loader-circle, plus
 
 Tokens and styles:
-- Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`, `foreground/accent`, `foreground/default`, `foreground/destructive`, `foreground/primary`, `foreground/secondary`
+- Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`, `foreground/accent`, `foreground/brand`, `foreground/default`, `foreground/destructive`, `foreground/primary`, `foreground/secondary`
 - Spacing and size: `density/control-height`, `spacing/10`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`, `spacing/8`
 - Radius: `radius/md`
 - Text styles: `ui/label`

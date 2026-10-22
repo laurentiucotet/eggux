@@ -12,6 +12,7 @@ users recognize and recover from errors.
 | Help with what is on screen (an invoice, a project, a ticket) | Docked panel on the right, 400 wide | `Block / AI Assistant Panel` |
 | Edit or write text in place | Inline popover on the selection or field | `Block / Inline AI` |
 | One known task (summarize, classify, suggest a reply) | A button or a Prompt Suggestion next to the content, result shown inline | `Prompt Suggestion`, `Button` with sparkles |
+| Start from a question on the home page of a portal or data product | Hero with the prompt as the main entry; the answer opens the full chat page | `Block / Hero Prompt` |
 
 Prefer the smallest surface that does the job. A chat box is not a substitute for a button that
 does one thing well.
