@@ -3,6 +3,12 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.52.2
+- Post Card Layout=horizontal: the image takes half the card width (min 160, max 640) instead of a fixed
+  640, so horizontal cards work in narrow columns (found while rebuilding the Mobility Global home page).
+- Test page: `Screen / Home` rebuilt from library components in the Corporate Light theme (navbar and
+  footer in Corporate Dark).
+
 ## 0.52.1
 - Nested Buttons with text, Badges, Badge Counts and Chips are exposed in 62 components (99 instances), so
   their labels are edited from the parent's properties panel; badges whose text follows a variant of the

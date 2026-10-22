@@ -284,11 +284,12 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 **Anatomy**
 
 1. Image 16:9 (Image Placeholder)
-2. Category Badge, Date and reading time
-3. Title
-4. Excerpt, 3 lines max (Show excerpt)
-5. Author with Avatar (Show author)
-6. Compact: optional 1:1 image (Show image), Title on 2 lines, meta in Date (type · date)
+2. Horizontal: the image takes half the card width (160-640) and keeps its ratio, so the card works from a featured row down to a list in a column
+3. Category Badge, Date and reading time
+4. Title
+5. Excerpt, 3 lines max (Show excerpt)
+6. Author with Avatar (Show author)
+7. Compact: optional 1:1 image (Show image), Title on 2 lines, meta in Date (type · date)
 
 **Content and behavior**
 
