@@ -11,11 +11,11 @@ Usage rules live in the guides linked under each component.
 | [Card Footer](#card-footer) | 1 | Actions |
 | [Stat Card](#stat-card) | 3 | - |
 | [Option Card](#option-card) | 10 | - |
-| [Post Card](#post-card) | 3 | - |
+| [Post Card](#post-card) | 6 | - |
 | [Entity Card](#entity-card) | 4 | Leading, Tags, Details, Actions |
 | [Progress Card](#progress-card) | 3 | - |
 | [Person Card](#person-card) | 2 | Avatar, Tags, Contact, Actions |
-| [Event Card](#event-card) | 2 | Tags, Meta, Actions |
+| [Event Card](#event-card) | 3 | Tags, Meta, Actions |
 | [Date Tile](#date-tile) | 2 | - |
 | [Link Preview](#link-preview) | 2 | - |
 | [Location Card](#location-card) | 1 | - |
@@ -43,7 +43,7 @@ shadcn Card. Variant: default (card background and border), outline (border only
 
 **Anatomy**
 
-1. Header slot (Card Header): Title, Description, Action slot top right
+1. Header slot (Card Header): Icon (Show icon, Icon swap, 20 px), Title, Description, Action slot top right
 2. Content slot
 3. Footer slot (Card Footer): Actions slot
 
@@ -56,12 +56,14 @@ shadcn Card. Variant: default (card background and border), outline (border only
 - Footer: one primary action at most, usually none in a grid
 - Padding comes from density/card-* tokens; change the tokens, never single instances
 - Turn off Show header or Show footer when unused; never detach
+- Card Header icon: on all cards of a row or none; it names the card type, never decorates
 
 **Accessibility**
 
 - A clickable card is one link with a hover state and a focus ring
 - The Card Header Title is a heading at the right level for the page
 - Action slot Button Icons have labels and tooltips
+- The Card Header icon is decorative (aria-hidden); the Title carries the meaning
 
 | Variant property | Values |
 |---|---|
@@ -88,13 +90,13 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
 
 ## Card Header
 
 Component · 1 variant · default size 336 × 54
 
-shadcn CardHeader: CardTitle (body/large), CardDescription, CardAction (native slot).
+shadcn CardHeader: CardTitle (body/large), CardDescription, CardAction (native slot). Show icon puts a 20 px icon (Icon swap, foreground/default) before the title, centered on the title line: use it when cards on a dashboard are told apart by type (data releases, saved queries, sessions); all cards in a row either have an icon or none.
 
 | Property | Type | Default |
 |---|---|---|
@@ -102,10 +104,12 @@ shadcn CardHeader: CardTitle (body/large), CardDescription, CardAction (native s
 | Description | text | Next 7 days, all locations. |
 | Show description | boolean | true |
 | Show action | boolean | true |
+| Show icon | boolean | false |
+| Icon | instance swap | Icon/file-text |
 
 Slots (fill them in the instance, never detach): `Action`
 
-Built from: `Button Icon`
+Built from: `Button Icon`. Icons: file-text
 
 Tokens and styles:
 - Colors: `foreground/card`, `foreground/muted`
@@ -114,7 +118,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
 
 ## Card Footer
 
@@ -131,7 +135,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
 
 ## Stat Card
 
@@ -197,7 +201,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
 
 ## Option Card
 
@@ -265,9 +269,9 @@ Code: shadcn `RadioGroup` (Control=radio) or `Checkbox` (Control=checkbox) with 
 
 ## Post Card
 
-Component set · 3 variants · default size 352 × 410
+Component set · 6 variants · default size 352 × 410
 
-Article, news or case-study card: image 16:9, category + date · reading time, title, excerpt (3 lines max), author. horizontal = featured post. compact = a link row for asides and lists (related, most read, up next): title on 2 lines and meta, optional 1:1 image (Show image). The whole card links to the article.
+Article, news or case-study card: image 16:9, category + date · reading time, title, excerpt (3 lines max), author. horizontal = featured post. compact = a link row for asides and lists (related, most read, up next): title on 2 lines and meta, optional 1:1 image (Show image). Size=sm for dense grids and lists: smaller gaps, heading/h4 title; horizontal sm gives the image one third of the width (120-240 px) instead of half; compact sm has a 48 px image and a ui/label-small title. The whole card links to the article.
 
 **Use for**
 
@@ -275,6 +279,7 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 - The featured post at the top of a list: Layout=horizontal
 - News, case studies, changelog entries and carousels of posts
 - Layout=compact: related, most read and up next lists in an aside or under an article
+- Size=sm: dense grids of 4, lists in a column next to a featured story, dashboards
 
 **Not for**
 
@@ -285,11 +290,13 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 
 1. Image 16:9 (Image Placeholder)
 2. Horizontal: the image takes half the card width (160-640) and keeps its ratio, so the card works from a featured row down to a list in a column
-3. Category Badge, Date and reading time
-4. Title
-5. Excerpt, 3 lines max (Show excerpt)
-6. Author with Avatar (Show author)
-7. Compact: optional 1:1 image (Show image), Title on 2 lines, meta in Date (type · date)
+3. Horizontal Size=sm: the image takes one third of the width (120-240), text top aligned
+4. Category Badge (exposed), Date and reading time
+5. Title: heading/h4 (vertical, sm), heading/h2 (horizontal default)
+6. Excerpt, 3 lines max (Show excerpt)
+7. Author with Avatar (Show author)
+8. Compact: optional 1:1 image (Show image, 64 px, 48 px in sm), Title on 2 lines (ui/label, ui/label-small in sm), meta in Date (type · date)
+9. Size: default or sm (smaller gaps and titles) for every Layout
 
 **Content and behavior**
 
@@ -298,6 +305,8 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 - Date and reading time on one line ("12 Oct 2026 · 6 min read")
 - Cards in a grid share the same structure
 - Compact: 3-5 items per list; meta says type and date ("Guide · 12 Oct 2026"); image on all items or none
+- One Size per list or grid; sm for lists next to a featured story and for grids of 4
+- Never restyle the title per instance: switch Size instead
 
 **Accessibility**
 
@@ -308,6 +317,7 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 | Variant property | Values |
 |---|---|
 | Layout | vertical, horizontal, compact |
+| Size | default, sm |
 
 | Property | Type | Default |
 |---|---|---|
@@ -323,13 +333,13 @@ Built from: `Avatar`, `Badge`, `Image Placeholder`
 
 Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
 - Radius: `radius/lg`, `radius/md`
-- Text styles: `body/default`, `body/small`, `heading/h2`, `heading/h4`, `ui/caption`, `ui/label`
+- Text styles: `body/default`, `body/small`, `heading/h2`, `heading/h4`, `ui/caption`, `ui/label`, `ui/label-small`
 
 Guides: [content](../../skills/build-ui/components/content.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link
+Code: shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link (`size` prop (default, sm) via `cva`: sm = smaller gaps, `h4` title class, horizontal image `basis-1/3 min-w-[120px] max-w-[240px]` instead of half, compact image `size-12`)
 
 ## Entity Card
 
@@ -538,15 +548,16 @@ Code: shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`)
 
 ## Event Card
 
-Component set · 2 variants · default size 640 × 144
+Component set · 3 variants · default size 640 × 144
 
-One event, webinar or session in a list or grid: Date Tile (exposed), format badges (Tags slot), title, time with time zone and place as Meta Items (Meta slot), one action (Register, Watch recording). horizontal for agenda lists, vertical with an image for grids of 3. The whole card links to the event page; the action is the only other control. Past events: "Watch the recording" or no action, and a Recorded badge.
+One event, webinar or session in a list or grid: Date Tile (exposed), format badges (Tags slot), title, time with time zone and place as Meta Items (Meta slot), one action (Register, Watch recording). horizontal for agenda lists, vertical with an image for grids of 3. Vertical Date position=image puts the Date Tile over the top-left corner of the image (needs Show image on) so the title gets the full width; Date position=text keeps it next to the title. The whole card links to the event page; the action is the only other control. Past events: "Watch the recording" or no action, and a Recorded badge.
 
 **Use for**
 
 - Agenda and upcoming events lists (Layout=horizontal)
 - Event grids on a hub or topic page (Layout=vertical, with image)
 - Sessions of a conference day
+- Date position=image: grids where titles are long, so the title gets the full card width
 
 **Not for**
 
@@ -557,11 +568,12 @@ One event, webinar or session in a list or grid: Date Tile (exposed), format bad
 **Anatomy**
 
 1. Date Tile (exposed): month over day
-2. Tags slot: format Badges (Webinar, Online, In person)
-3. Title, 2 lines
-4. Meta slot: Meta Items for time with time zone and place
-5. Actions slot: one action (Register, Join waitlist, Watch recording)
-6. Vertical: image 16:9 on top (Show image)
+2. Date position (vertical): text = Date Tile next to the title; image = Date Tile over the top-left corner of the image, inset spacing/3, on background/default
+3. Tags slot: format Badges (Webinar, Online, In person)
+4. Title, 2 lines
+5. Meta slot: Meta Items for time with time zone and place
+6. Actions slot: one action (Register, Join waitlist, Watch recording)
+7. Vertical: image 16:9 on top (Show image)
 
 **Content and behavior**
 
@@ -570,6 +582,7 @@ One event, webinar or session in a list or grid: Date Tile (exposed), format bad
 - One action per card; the whole card links to the event page
 - Past events: Recorded badge and Watch the recording, or no action
 - Full events say it in the action (Join waitlist), never by hiding the card
+- Date position=image only with Show image on; same Date position for every card of a grid
 
 **Accessibility**
 
@@ -580,6 +593,7 @@ One event, webinar or session in a list or grid: Date Tile (exposed), format bad
 | Variant property | Values |
 |---|---|
 | Layout | horizontal, vertical |
+| Date position | text, image |
 
 | Property | Type | Default |
 |---|---|---|
@@ -600,7 +614,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: shadcn `Card` + `Badge`, `Button`; date tile as custom markup (`<time datetime>` for the date)
+Code: shadcn `Card` + `Badge`, `Button`; date tile as custom markup (`<time datetime>` for the date. `datePosition` prop (text, image) on vertical: image = tile `absolute top-3 left-3 bg-background` inside a `relative` image wrapper)
 
 ## Date Tile
 
@@ -625,7 +639,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` + `Badge`, `Button`; date tile as custom markup (`<time datetime>` for the date)
+Code: shadcn `Card` + `Badge`, `Button`; date tile as custom markup (`<time datetime>` for the date. `datePosition` prop (text, image) on vertical: image = tile `absolute top-3 left-3 bg-background` inside a `relative` image wrapper)
 
 ## Link Preview
 
