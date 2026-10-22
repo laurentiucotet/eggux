@@ -3,6 +3,34 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.52.0
+- Gaps from the 0.51.0 audit closed. New components: `Uptime Bars` (part `Uptime Day`, State operational,
+  degraded, outage, maintenance, no-data), `Pager Link` (Direction previous, next) for docs prev / next,
+  `Image Figure` (image with caption and credit); new parts `Release Note Line` (per-line New / Improved /
+  Fixed) and `Table Cell Check` (included, excluded, text) for plan comparisons.
+- Components extended, current instances unchanged: Service Status Row `Show bars`; Release Note Item
+  `Show changes` with a Changes slot (badge colors now match the docs); Location Card `Show map`;
+  Permission Row with `Type=permission|header|group`, 5 role cells (`Show role 4`, `Show role 5`) and a
+  selectable role column; Avatar Upload `Hint`, `Show remove`; Usage Meter `Usage`; API Key Row `Show
+  scope`; Order Row `paid`, `refunded` and `State=default|hover|selected`; Notification Center `Show tabs`;
+  Integration Card letter tile, Connected badge and Learn more link; Session Row `State=current` on any
+  device; Endpoint Row `State=default|hover|selected`; Workflow Node `Title`, `Detail`; Dashboard Widget
+  content fills and hugs; Payment Method Card `Show default`; Address Card `Show actions`; Product Card
+  fills its column with the image ratio exposed; Load More and Rating Summary editable and scalable;
+  Search Result Item `Section`; Background Job `Status`, `Result`, `Error`; Skip Link `Label`; Action Sheet
+  action texts and icons; Image Compare Slider and Sankey Chart resize.
+- Fixes: Access Row pending and Org Chart Node vacant texts bound to their properties; Swatch Picker
+  swatches named by color.
+- Blocks rebuilt on the new parts: Status Page, Docs Page Footer, Changelog, Gallery Grid, Offices, Roles &
+  Permissions, Comparison Table; App blocks use the new properties instead of overrides (Profile, Billing,
+  API Keys, Notifications, Integrations, Team Members).
+- New blocks: Commerce `Product Grid`, `Orders`, `Reviews`; App `Security`, `API Reference`,
+  `Automations`, `Agenda`, `Share Dialog`, `Executive Dashboard`; Forms `Account Settings Form`.
+- Every standalone component is now used by a block or a real example: 34 new example frames on 31
+  component pages.
+- Docs: docs.json, rows.json, code mapping, library map and 26 usage guides updated; Docs frames and the
+  component reference regenerated.
+
 ## 0.51.0
 - Audit and consolidation of the whole library (four audits: component quality, overlaps, docs
   consistency, usage in blocks). 356 components became 339, with no lost capability.

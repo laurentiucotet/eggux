@@ -259,6 +259,9 @@ Domain-specific needs become Field Presets or Blocks.
 | App | `Block / Analytics` | - | 4 Stat Cards + 2 Chart Cards (grouped bars, area) |
 | App | `Block / Team Members`, `/ Billing`, `/ Onboarding Checklist`, `/ Profile`, `/ API Keys`, `/ Notification Preferences` | - | Settings and admin cards, 768 wide |
 | App | `Block / Integrations` | - | Search + grid of integration cards, 1136 wide |
+| App | `Block / Security`, `/ Share Dialog` | - | Two-factor, sign-in alerts, SSO URL and active sessions; share dialog with invite, access list and link |
+| App | `Block / API Reference`, `/ Automations` | - | Endpoint list, curl snippet, JSON response, request log, schema diff; automation rules, rule flow and field mapping |
+| App | `Block / Agenda`, `/ Executive Dashboard` | - | Next meeting, today's agenda, weekly availability, time slots; dashboard widgets with bullet charts, distribution bars, leaderboard, countdown |
 | App | `Block / Gantt` | - | Project timeline: task list by phase with owners, weeks, Gantt Bars, milestones, dependencies, today line, zoom |
 | App | `Block / Kanban Board`, `/ Scheduler Week` | - | Board with columns and a dragged card; week view with toolbar, events, now line |
 | App | `Block / Scheduler Month` | - | Month grid, up to 3 events per day + "+N more", today marked |
@@ -283,12 +286,14 @@ Domain-specific needs become Field Presets or Blocks.
 | Content | `Block / Help Hero`, `/ Help Categories`, `/ Help Popular Articles`, `/ Help Article List` | - | Help center family: search hero with popular searches; topic cards with counts; popular articles; category page with topic nav, breadcrumb, dated articles |
 | Content | `Block / Support Options`, `/ Docs Page Footer`, `/ Changelog`, `/ Status Page` | - | Help center family: channels with hours and reply times; helpful vote, edit link, previous / next; dated releases with New / Improved / Fixed; status with 90-day uptime bars and incidents |
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
+| Forms | `Block / Account Settings Form` | - | Long settings form: Error Summary, Form Sections, phone, date, currency and address inputs, Fieldset, Recurrence Picker, Requirement List, Action Bar |
 | Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
 | Empty State | `Empty State` | Size: default, sm | Title, Description, Show description, Icon (swap), Show actions; Actions (native slot) |
 | Results | `Block / Result` | Type: not-found, server-error, no-access, maintenance, success | Show code; Actions (native slot) |
 | Commerce | `Product Card` | State: default, sale, sold-out | Name, Variant text, Price, Old price, Show action, Show wishlist |
 | Commerce | `Block / Product Detail` | - | Gallery, options (Toggle Group), quantity, add to cart, details accordion |
 | Commerce | `Block / Order Summary` | - | Lines, discount code, totals, pay button, trust line |
+| Commerce | `Block / Product Grid`, `/ Orders`, `/ Reviews` | - | Category listing with filters, sort, product grid and Load More; order history with tracking, address and payment; rating summary with reviews |
 | Enterprise | `Block / Filter Builder`, `/ Approval Request`, `/ Audit Log` | - | Advanced filters popover; request with details and approval chain; read-only event log with field changes |
 | Enterprise | `Block / Roles & Permissions`, `/ Report`, `/ Record Form` | - | Role matrix with Save Bar; report with KPIs, chart, breakdown; long edit form with section nav |
 | Enterprise | `Block / Import Mapping` | - | Import stepper, file column → field mapping with samples and status, problems alert, save as template |
