@@ -8,9 +8,10 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Change Item](#change-item) | 1 | - |
 | [Version Item](#version-item) | 3 | - |
-| [Release Note Item](#release-note-item) | 3 | - |
+| [Release Note Item](#release-note-item) | 3 | Changes |
+| [Release Note Line](#release-note-line) | 3 | - |
 
-On the Figma page: "Example / in audit log", "Stress test / Change Item", "Stress test / Release Note Item", "Stress test / Version Item"
+On the Figma page: "Example / in audit log", "Example / in changelog", "Example / version history of an invoice", "Stress test / Change Item", "Stress test / Release Note Item", "Stress test / Version Item"
 
 ## Change Item
 
@@ -133,13 +134,14 @@ Code: custom list with shadcn `Avatar`, `Badge`, `Button`; preview in `Diff View
 
 Component set · 3 variants · default size 640 × 205
 
-One entry of a changelog or "What's new": type badge (New, Improved, Fixed), version and date, a title that says the benefit, two sentences on how to use it, optional screenshot and link. Newest first. In-app "What's new" shows the last 3-5 with a link to the full changelog.
+One entry of a changelog or "What's new": type badge (New, Improved, Fixed), version and date, a title that says the benefit, two sentences on how to use it, optional screenshot and link. Newest first. In-app "What's new" shows the last 3-5 with a link to the full changelog. Show changes adds the Changes slot with Release Note Line instances (one tagged line each: New, Improved, Fixed) for a release with several changes; turn Show text off when the lines say it all.
 
 **Use for**
 
 - Public changelog pages
 - In-app What's new: the last 3-5 entries with a link to the full changelog
 - Release notes in a help center
+- A release with several changes: Show changes with one Release Note Line per change (Block / Changelog)
 
 **Not for**
 
@@ -152,17 +154,18 @@ One entry of a changelog or "What's new": type badge (New, Improved, Fixed), ver
 1. Type: Badge (New info, Improved secondary, Fixed success)
 2. Date: version · date
 3. Title: the benefit
-4. Text: two sentences on how to use it
+4. Text (Show text): two sentences on how to use it; off when the change lines say it all
 5. Image (Show image): Image Placeholder
-6. Link (Show link): Button link
-7. Text (Show text): off for one-line entries
+6. Changes (Show changes): slot with Release Note Line instances (Type=new, improved, fixed and Text)
+7. Link (Show link): Button link
 
 **Content and behavior**
 
-- Newest first; one entry per change
+- Newest first; one entry per release or per change
 - Title says the benefit for the user, not the feature name
 - Text: two sentences: what changed and where to find it (Settings → Reminders)
-- Type from the variant: new, improved, fixed
+- Type from the variant: new, improved, fixed; for a release with lines, the type of the headline change
+- Changes: 2-5 lines, New first, then Improved, then Fixed; one sentence each
 - Screenshot only when it shows where to click; link to the help article
 
 **Accessibility**
@@ -170,6 +173,7 @@ One entry of a changelog or "What's new": type badge (New, Improved, Fixed), ver
 - Each entry is an <article> with the title as a heading
 - The type is text in the Badge, never color alone
 - Dates in a <time> element; the screenshot has alt text that says what it shows
+- Change lines are a <ul>; each type is text in its Badge
 
 | Variant property | Values |
 |---|---|
@@ -183,8 +187,11 @@ One entry of a changelog or "What's new": type badge (New, Improved, Fixed), ver
 | Show image | boolean | false |
 | Show link | boolean | true |
 | Show text | boolean | true |
+| Show changes | boolean | false |
 
-Built from: `Badge`, `Button`, `Image Placeholder`
+Slots (fill them in the instance, never detach): `Changes`
+
+Built from: `Badge`, `Button`, `Image Placeholder`, `Release Note Line`
 
 Tokens and styles:
 - Colors: `border/default`, `foreground/default`, `foreground/muted`
@@ -194,3 +201,28 @@ Tokens and styles:
 Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
 Code: `<article>` with shadcn `Badge`, `<time>`, optional `<img>`, `Button variant="link"` (New info, Improved secondary, Fixed success)
+
+## Release Note Line
+
+Component set · 3 variants · default size 560 × 20
+
+One tagged line in a changelog entry: a Badge for the Type (New info, Improved secondary, Fixed success) and one sentence that says what changed for the user. Only used inside the Changes slot of Release Note Item (Show changes); 2-5 lines per entry, New first, then Improved, then Fixed. Usage: eggux build-ui/patterns/content-and-docs.md
+
+| Variant property | Values |
+|---|---|
+| Type | new, improved, fixed |
+
+| Property | Type | Default |
+|---|---|---|
+| Text | text | Delegate approvals to a deputy for a date range. |
+
+Built from: `Badge`
+
+Tokens and styles:
+- Colors: `foreground/default`
+- Spacing and size: `spacing/3`
+- Text styles: `body/small`
+
+Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
+
+Code: `<li>` with shadcn `Badge` + text, in a `<ul>` (Part of `Release Note Item` (Changes slot); New info, Improved secondary, Fixed success)

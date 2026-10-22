@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Accordion Item](#accordion-item) | 4 | Meta, Content |
 | [Show More](#show-more) | 2 | - |
 
-On the Figma page: "Example / filter panel", "Stress test / Accordion", "Stress test / Show More"
+On the Figma page: "Example / customer profile with show more and details", "Example / filter panel", "Stress test / Accordion", "Stress test / Show More"
 
 ## Accordion
 

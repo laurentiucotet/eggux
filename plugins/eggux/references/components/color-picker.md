@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Swatch Picker](#swatch-picker) | 1 | Swatches |
 | [Swatch](#swatch) | 9 | - |
 
-On the Figma page: "Example / color field", "Stress test / Color Picker", "Stress test / Swatch Picker"
+On the Figma page: "Example / brand colors", "Example / color field", "Stress test / Color Picker", "Stress test / Swatch Picker"
 
 ## Color Picker
 
@@ -83,12 +83,14 @@ A short set of colors for labels, categories, calendars and project avatars: 6-1
 
 **Anatomy**
 
-1. Swatches slot: 6-10 Swatches
-2. Label (Show label): the name of the selected color
+1. Swatches slot: 6-10 Swatches (Type=color, Size=sm); each Swatch Label is its color name (Blue, Orange, Teal, Amber, Pink, Green, Violet, Rose for chart/1..8)
+2. Selected Swatch: State=selected; the default selects the first, Blue (chart/1)
+3. Label (Show label): the name of the selected color, same as that Swatch's Label
 
 **Content and behavior**
 
 - 6-10 colors from the chart palette; one selected
+- The Label always names the selected swatch; when you select another swatch, change the Label too
 - Colors come from chart tokens so they stay readable in dark mode
 - Same order everywhere the palette appears
 - Show the name under the swatches; never rely on color alone

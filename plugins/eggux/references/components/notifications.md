@@ -9,7 +9,7 @@ Usage rules live in the guides linked under each component.
 | [Notification Item](#notification-item) | 2 | Actions |
 | [Notification Center](#notification-center) | 1 | Items |
 
-On the Figma page: "Stress test / Notification Center", "Stress test / Notification Item"
+On the Figma page: "Example / in notifications", "Stress test / Notification Center", "Stress test / Notification Item"
 
 ## Notification Item
 
@@ -79,7 +79,10 @@ Code: shadcn `Popover` + `Tabs` + `ScrollArea`; custom rows with `Avatar` (Bell 
 
 Component · 1 variant · default size 400 × 484
 
-The panel behind the bell in the top bar: title with Mark all as read, tabs by type, newest first, unread on top, View all at the bottom. 5-8 items, then the full page. The bell shows a Badge Count of unread items; opening the panel does not mark them read, opening an item does. Empty: "You are all caught up."
+The panel behind the bell in the top bar: title with Mark all as read, optional tabs by type (Show tabs: All, Mentions, Approvals), newest first, unread on top, View all at the bottom. Turn tabs off when there is one kind of notification. 5-8 items, then the full page. The bell shows a Badge Count of unread items; opening the panel does not mark them read, opening an item does. Empty: "You are all caught up."
+
+
+Usage: eggux build-ui/patterns/notifications.md
 
 **Use for**
 
@@ -96,7 +99,7 @@ The panel behind the bell in the top bar: title with Mark all as read, tabs by t
 **Anatomy**
 
 1. Header: title and Mark all as read (Button ghost sm)
-2. Tabs: All, Mentions, Approvals
+2. Tabs (Show tabs): All, Mentions, Approvals
 3. Items slot: Notification Items
 4. Footer: View all (Button ghost)
 
@@ -107,12 +110,17 @@ The panel behind the bell in the top bar: title with Mark all as read, tabs by t
 - Opening the panel does not mark items read; opening an item does
 - Empty: "You are all caught up."
 - Mark all as read applies to the current tab
+- Show tabs only when there are several kinds of notification; one kind needs no tabs
 
 **Accessibility**
 
 - The bell is a button with the count in its name: "Notifications, 3 unread"
 - New items are announced with aria-live="polite" on the count, never by moving focus
 - Escape closes the panel and returns focus to the bell
+
+| Property | Type | Default |
+|---|---|---|
+| Show tabs | boolean | true |
 
 Slots (fill them in the instance, never detach): `Items`
 

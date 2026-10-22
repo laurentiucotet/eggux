@@ -7,18 +7,21 @@ Usage rules live in the guides linked under each component.
 | Component | Variants | Slots |
 |---|---|---|
 | [Integration Card](#integration-card) | 3 | - |
-| [Permission Row](#permission-row) | 2 | - |
+| [Permission Row](#permission-row) | 3 | - |
 | [API Key Row](#api-key-row) | 1 | - |
-| [Session Row](#session-row) | 2 | - |
+| [Session Row](#session-row) | 4 | - |
 | [Org Chart Node](#org-chart-node) | 3 | - |
 
-On the Figma page: "Stress test / API Key Row", "Stress test / Integration Card", "Stress test / Org Chart Node", "Stress test / Permission Row", "Stress test / Session Row"
+On the Figma page: "Example / finance team org chart", "Example / in api keys", "Example / in integrations", "Example / in roles & permissions", "Example / in security", "Stress test / API Key Row", "Stress test / Integration Card", "Stress test / Org Chart Node", "Stress test / Permission Row", "Stress test / Session Row"
 
 ## Integration Card
 
 Component set · 3 variants · default size 320 × 170
 
-One app or service in an integrations directory or settings: logo, name, category, one-line value, and its state. Available shows Connect; connected shows a switch, last sync and Settings; error says what failed and how to fix it. Put the vendor logo in the Logo tile. Grid of 3 on desktop, 1 on mobile.
+One app in an integrations directory or settings: logo tile, name, category, one-line value and state. Status: available (Connect, optional Learn more link), connected (Switch, last sync, Settings, optional Connected badge), error (what failed and how to fix it). Logo is an icon swap or a letter tile (Show letter + Letter). Cards in a row share height; grid of 3 on desktop.
+
+
+Usage: eggux build-ui/patterns/settings-and-admin.md
 
 **Use for**
 
@@ -34,16 +37,18 @@ One app or service in an integrations directory or settings: logo, name, categor
 
 **Anatomy**
 
-1. Logo tile: vendor logo (Logo)
+1. Logo tile: vendor icon (Show icon, Logo swap) or a letter (Show letter, Letter: "St")
 2. Name: ui/label; Category: ui/caption, muted
 3. Action: Connect Button (available), Switch (connected)
-4. Description: the value in one line, two at most
-5. Footer: vendor, or last sync and Settings
+4. Connected badge (Show badge, connected): success Badge "Connected"
+5. Description: the value in one line, two at most
+6. Footer: Vendor (Show vendor) and Learn more link (Show link, exposed Button link), or last sync and Settings
 
 **Content and behavior**
 
-- Available shows Connect (OAuth)
-- Connected shows a Switch, last sync and Settings
+- Available shows Connect (OAuth); Learn more opens the integration page
+- Connected shows a Switch, last sync and Settings; the Connected badge helps when cards are scanned in a grid
+- Use a letter tile only when no vendor logo is available; one style per grid
 - Error says what failed and how to fix it ("Token expired. Reconnect")
 - Grid of 3 on desktop, 1 on mobile; cards in a row share height
 - Disconnecting asks for confirmation and says what stops
@@ -53,6 +58,7 @@ One app or service in an integrations directory or settings: logo, name, categor
 - The name is the card heading; Connect is named with the app ("Connect Payments")
 - The Switch is labelled "Payments enabled"
 - Error is in text with an icon, not color alone
+- Learn more is named with the app ("Learn more about Stripe")
 
 | Variant property | Values |
 |---|---|
@@ -65,8 +71,14 @@ One app or service in an integrations directory or settings: logo, name, categor
 | Description | text | Collect card payments on invoices and reconcile them automatically. |
 | Logo | instance swap | Icon/credit-card |
 | Vendor | text | By Acme Pay |
+| Show icon | boolean | true |
+| Show letter | boolean | false |
+| Letter | text | P |
+| Show badge | boolean | false |
+| Show vendor | boolean | true |
+| Show link | boolean | false |
 
-Built from: `Button`, `Status Dot`, `Switch`. Icons: credit-card
+Built from: `Badge`, `Button`, `Status Dot`, `Switch`. Icons: credit-card
 
 Tokens and styles:
 - Colors: `background/card`, `background/default`, `border/default`, `foreground/card`, `foreground/muted`
@@ -76,13 +88,16 @@ Tokens and styles:
 
 Guides: [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: shadcn `Card size="sm"` + `Button`, `Switch`, `Badge` (Connect opens the provider OAuth flow)
+Code: shadcn `Card size="sm"` + `Button`, `Switch`, `Badge` (Connect opens the provider OAuth flow; letter tile = square `Avatar` fallback; Learn more = `Button variant="link"`)
 
 ## Permission Row
 
-Component set · 2 variants · default size 720 × 63
+Component set · 3 variants · default size 720 × 55
 
-One permission across roles in a role matrix: name, what it allows, one checkbox per role. Header row names the roles. Locked roles (owner, admin) show disabled checked boxes. Group rows by area with Section Heading; save changes with the Save Bar and record them in the audit history.
+One row of a role matrix, built from Table Cells so rows, the header and group rows share one grid. Type=permission: name, optional description and one Checkbox cell per role; Type=header names the roles; Type=group is a full-width area row (Invoices, Customers). 3 role columns by default, up to 5 with Show role 4 / Show role 5. Highlight the role being edited by setting its role cell to State=selected in every row. Locked roles (owner) show disabled checked boxes. Show changed marks an unsaved change; save with the Save Bar and log it in the audit history.
+
+
+Usage: eggux build-ui/patterns/permissions-and-access.md
 
 **Use for**
 
@@ -98,16 +113,20 @@ One permission across roles in a role matrix: name, what it allows, one checkbox
 
 **Anatomy**
 
-1. Text: title (ui/label) and description (ui/caption, muted)
-2. One Checkbox per role column
-3. Type=header: the row that names the roles
+1. Type=permission: Title (body/small) with Description (ui/caption, muted; Show description), then one role cell per role
+2. Role cells (role 1 to role 5): Table Cell Type=body with a centered Checkbox; 3 shown, Show role 4 and Show role 5 add columns
+3. Changed (Show changed): outline Badge "Changed" after the title for an unsaved edit
+4. Type=header: Table Cell Type=header cells with Table Header Label (Permission, then the role names)
+5. Type=group: full-width area row, Group text ("Invoices") on the expanded-row background
+6. Selected column: set the role cell to State=selected in every row (role cells are exposed)
 
 **Content and behavior**
 
-- The header row names the roles; at most 5-6 role columns
-- Locked roles (owner, admin) show disabled checked boxes and say why
-- Group rows by area with Section Heading
-- Save changes with the Save Bar and log them in the audit log
+- Start with a Type=header row; group permissions by area with Type=group rows
+- At most 5 role columns; turn on the same Show role 4 / Show role 5 in every row so the grid stays aligned
+- Highlight the role being edited: its role cell State=selected in every permission row, header unchanged
+- Locked roles (owner) show disabled checked boxes and say why
+- Show changed on rows edited since the last save; save with the Save Bar and log it in the audit log
 - A permission that needs another (approve needs view) ticks it too, and says so
 
 **Accessibility**
@@ -115,32 +134,41 @@ One permission across roles in a role matrix: name, what it allows, one checkbox
 - A real table: role names as th scope="col", permission as th scope="row"
 - Each Checkbox is named by permission and role ("Approve invoices, Accountant")
 - Locked boxes explain the reason with aria-describedby
+- The highlighted column is also named in text ("Editing Manager"), not only by its background
 
 | Variant property | Values |
 |---|---|
-| Type | row, header |
+| Type | permission, header, group |
 
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Approve invoices |
 | Description | text | Mark invoices as approved for payment |
+| Show description | boolean | true |
+| Show changed | boolean | false |
+| Show role 4 | boolean | false |
+| Show role 5 | boolean | false |
+| Group | text | Invoices |
 
-Built from: `Checkbox`
+Built from: `Badge`, `Table Cell`
 
 Tokens and styles:
-- Colors: `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/3`, `spacing/4`
-- Text styles: `ui/caption`, `ui/label`
+- Colors: `border/default`, `foreground/default`, `foreground/muted`, `table/row-expanded`
+- Spacing and size: `density/cell-padding-y`, `spacing/0_5`, `spacing/2`, `spacing/4`
+- Text styles: `body/small`, `ui/caption`, `ui/label`
 
 Guides: [permissions-and-access](../../skills/build-ui/patterns/permissions-and-access.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: shadcn `Table` with `Checkbox` cells (Form state in react-hook-form; save with `Save Bar`; log changes)
+Code: shadcn `Table`: header `th scope="col"`, group rows `th colSpan`, `Checkbox` cells (Form state in react-hook-form; save with `Save Bar`; selected role column `bg-muted`; log changes)
 
 ## API Key Row
 
 Component · 1 variant · default size 800 × 65
 
-One API key or token in developer settings: name, scope, who created it, when it was last used, the masked key, copy and a menu (rename, roll, revoke). Show the full key once, at creation, in a Dialog with copy. Revoke asks for confirmation and names the key. Unused keys older than 90 days get a warning.
+One API key or token in developer settings: key icon, name with a scope Badge (Show scope; set its Label, e.g. "Read only"), who created it and last use, the masked key, Copy and a More menu (Rename, Roll, Revoke). Show the full key once at creation; after that only the last 4 characters. Revoke confirms and names the key.
+
+
+Usage: eggux build-ui/patterns/settings-and-admin.md
 
 **Use for**
 
@@ -157,10 +185,11 @@ One API key or token in developer settings: name, scope, who created it, when it
 **Anatomy**
 
 1. Key icon tile
-2. Name: ui/label, with a scope Badge
-3. Meta: created when and by whom, last used; ui/caption, muted
-4. Key: masked, monospace ("sk_live_••••••••4f2a")
-5. Copy: Button Icon; More: Button Icon (Rename, Roll, Revoke)
+2. Name: ui/label
+3. Scope (Show scope): Badge outline, exposed (set its Label: "Read only", "Read and write")
+4. Meta: created when and by whom, last used; ui/caption, muted
+5. Key: masked, monospace ("sk_live_••••••••4f2a")
+6. Copy: Button Icon; More: Button Icon (Rename, Roll, Revoke)
 
 **Content and behavior**
 
@@ -169,6 +198,7 @@ One API key or token in developer settings: name, scope, who created it, when it
 - Roll creates a new key, shown once, and says how long the old one keeps working
 - Unused keys older than 90 days get a warning
 - Newest first; revoked keys leave the list and go to the audit log
+- Show scope when keys differ in access; hide it when every key has full access
 
 **Accessibility**
 
@@ -181,6 +211,7 @@ One API key or token in developer settings: name, scope, who created it, when it
 | Name | text | Production server |
 | Meta | text | Created 12 Mar 2026 by Ana Popescu · Last used 2 hours ago |
 | Key | text | sk_live_••••••••4f2a |
+| Show scope | boolean | true |
 
 Built from: `Badge`, `Button Icon`. Icons: key-round
 
@@ -196,9 +227,9 @@ Code: custom row + `Badge`, `Button size="icon"`, `DropdownMenu`; `AlertDialog` 
 
 ## Session Row
 
-Component set · 2 variants · default size 720 × 63
+Component set · 4 variants · default size 720 × 63
 
-One signed-in device in security settings: device and browser, approximate location, partial IP, last active, Sign out. The current device is marked and cannot sign itself out here. End the list with "Sign out of all other sessions". New sign-ins from unknown places also go to email.
+One signed-in device in security settings: device and browser, approximate location, partial IP, last active, Sign out. State=current marks this device (Badge "This device", Sign out disabled) on any Device; the current device comes first. End the list with "Sign out of all other sessions". New sign-ins from unknown places also go to email.
 
 **Use for**
 
@@ -214,13 +245,14 @@ One signed-in device in security settings: device and browser, approximate locat
 
 **Anatomy**
 
-1. Device icon: monitor or smartphone (Device)
-2. Name: browser and system, with a Current Badge ("This device")
+1. Device icon: monitor or smartphone (Device=desktop|mobile)
+2. Name: browser and system; State=current adds the "This device" success Badge
 3. Meta: location, partial IP, last active; ui/caption, muted
-4. Action: Sign out Button
+4. Action: Sign out Button outline sm, disabled when State=current
 
 **Content and behavior**
 
+- Any device can be the current one: set State=current on its row, State=default on the others
 - The current device comes first, is marked, and cannot sign itself out here
 - Then sort by last active
 - Location is approximate (city, country); the IP is partial
@@ -236,6 +268,7 @@ One signed-in device in security settings: device and browser, approximate locat
 | Variant property | Values |
 |---|---|
 | Device | desktop, mobile |
+| State | current, default |
 
 | Property | Type | Default |
 |---|---|---|
@@ -258,7 +291,10 @@ Code: custom row + `Badge` and `Button` (Sessions from your auth provider (Auth.
 
 Component set · 3 variants · default size 220 × 150
 
-One person or open role in an org chart: photo, name, title, number of direct reports. Click opens the Person Card; the reports count expands the branch. Connect nodes with 1 px border/default lines. Vacant roles are dashed. Large orgs show 2-3 levels and a search.
+One person or open role in an org chart: avatar, name, role and direct reports. State=selected for the person in focus; State=vacant is dashed, says "Open role" and keeps the Role of the position. Connect nodes with 1 px border/default lines.
+
+
+Usage: eggux build-ui/patterns/enterprise-apps.md
 
 **Use for**
 
@@ -275,15 +311,16 @@ One person or open role in an org chart: photo, name, title, number of direct re
 **Anatomy**
 
 1. Avatar
-2. Name: ui/label
-3. Role: body/small, muted
-4. Reports: users icon and count ("6 reports")
+2. Name: ui/label (State=vacant shows "Open role")
+3. Role: body/small, muted (also on State=vacant: the title being hired for)
+4. Reports: users icon and count ("6 reports"), not on State=vacant
+5. State: default, selected, vacant
 
 **Content and behavior**
 
 - Click opens the Person Card; the reports count expands the branch
 - Connect nodes with 1 px border/default lines
-- Vacant roles are dashed and say "Open role", linked to the Job Listing
+- Vacant roles are dashed, say "Open role" and keep the Role of the position, linked to the Job Listing
 - Large orgs show 2-3 levels and a search
 - Names and titles wrap to two lines at most
 

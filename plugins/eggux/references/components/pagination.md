@@ -10,8 +10,9 @@ Usage rules live in the guides linked under each component.
 | [Pagination Item](#pagination-item) | 11 | - |
 | [Pagination Compact](#pagination-compact) | 1 | - |
 | [Load More](#load-more) | 2 | - |
+| [Pager Link](#pager-link) | 6 | - |
 
-On the Figma page: "Example / table footer", "Stress test / Load More", "Stress test / Pagination", "Stress test / Pagination Compact"
+On the Figma page: "Example / in docs page footer", "Example / in product grid", "Example / recent payments card", "Example / table footer", "Stress test / Load More", "Stress test / Pager Link", "Stress test / Pagination", "Stress test / Pagination Compact"
 
 ## Pagination
 
@@ -149,7 +150,10 @@ Code: shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNex
 
 Component set · 2 variants · default size 560 × 60
 
-End of a feed or a long list that grows in place: how many are shown out of the total, and a button that loads the next page. Keeps scroll position and moves focus to the first new item. Use for feeds, activity and search results; tables where people jump to a page use Pagination.
+End of a feed or long list that grows in place: "Showing 20 of 248 invoices" and an outline Button. The Button is exposed: set its Label to how many it loads ("Load 20 more"). State=loading disables it with a Spinner.
+
+
+Usage: eggux build-ui/components/pagination.md
 
 **Use for**
 
@@ -166,7 +170,7 @@ End of a feed or a long list that grows in place: how many are shown out of the 
 **Anatomy**
 
 1. Count: "Showing 20 of 248 invoices", body/small, muted
-2. Button: "Load 20 more", outline (State=loading shows a Spinner)
+2. Button (exposed instance): Label "Load 20 more", outline (State=loading shows a Spinner)
 
 **Content and behavior**
 
@@ -200,3 +204,62 @@ Tokens and styles:
 Guides: [pagination](../../skills/build-ui/components/pagination.md)
 
 Code: shadcn `Button variant="outline"` + count; TanStack Query `useInfiniteQuery` (Focus the first new item; count in `aria-live`)
+
+## Pager Link
+
+Component set · 6 variants · default size 376 × 74
+
+Previous / next link at the end of a docs page or article: a bordered card with a caption and an arrow on the matching side, then the title of the linked page (Title). Direction=previous sits left and reads "Previous"; Direction=next sits right and reads "Next" (override the caption text directly to localize it). Use both in a row of two equal columns, or only one on the first and last page. The whole card is the link (State=hover, focus). For pages of a table or list use Pagination. Usage: eggux build-ui/components/pagination.md
+
+**Use for**
+
+- The end of a docs page, before the footer (Block / Docs Page Footer)
+- Moving through the articles of a guide or a course in order
+- Previous and next post at the end of a blog article
+
+**Not for**
+
+- Pages of a table or list: use Pagination
+- Steps of a flow or form: use Stepper
+- Related links that are not in a sequence: use Post Card Layout=compact or List Item
+
+**Anatomy**
+
+1. Caption row: chevron icon on the side of the Direction and the caption text set by variant ("Previous" / "Next"), ui/caption, muted
+2. Title: title of the linked page, ui/label
+3. Card: background/card, border/default, radius/xl
+
+**Content and behavior**
+
+- Direction=previous on the left, Direction=next on the right, in two equal columns
+- The caption text comes from the Direction ("Previous" / "Next"); override the text layer directly only to localize it
+- Title is the exact title of the linked page, never "Next page"
+- On the first page show only Next, on the last only Previous; keep the empty column so Next stays on the right
+- The whole card is the link: State=hover and State=focus
+
+**Accessibility**
+
+- Wrap both links in a nav with aria-label="Previous and next page"
+- The link text reads "Previous: <title>"; the chevron is aria-hidden
+- Focus shows the focus ring (State=focus)
+
+| Variant property | Values |
+|---|---|
+| Direction | previous, next |
+| State | default, hover, focus |
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Approval limits by amount |
+
+Icons: chevron-left, chevron-right
+
+Tokens and styles:
+- Colors: `background/accent`, `background/card`, `border/default`, `foreground/card`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/4`, `spacing/5`
+- Radius: `radius/xl`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [pagination](../../skills/build-ui/components/pagination.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
+
+Code: `<a>` card (`rounded-xl border p-4 hover:bg-accent focus-visible:ring`) with lucide `ChevronLeft` / `ChevronRight`, two of them in a `<nav>` (Docs prev/next; for tables and lists use `Pagination`)

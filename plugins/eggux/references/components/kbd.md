@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Kbd Group](#kbd-group) | 1 | Keys |
 | [Shortcut Row](#shortcut-row) | 1 | - |
 
-On the Figma page: "Example / in comments", "Example / search with shortcut", "Stress test / Kbd", "Stress test / Kbd Group", "Stress test / Shortcut Row"
+On the Figma page: "Example / in comments", "Example / keyboard shortcuts dialog", "Example / search with shortcut", "Stress test / Kbd", "Stress test / Kbd Group", "Stress test / Shortcut Row"
 
 ## Kbd
 

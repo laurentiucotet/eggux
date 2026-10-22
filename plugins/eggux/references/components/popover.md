@@ -15,7 +15,7 @@ Usage rules live in the guides linked under each component.
 | [App Launcher](#app-launcher) | 1 | - |
 | [Confirm Popover](#confirm-popover) | 2 | - |
 
-On the Figma page: "Example / command palette over the app", "Example / person preview", "Example / quick edit from a header button", "Example / search with suggestions", "Stress test / App Launcher", "Stress test / Command", "Stress test / Command Dialog", "Stress test / Confirm Popover", "Stress test / Emoji Picker", "Stress test / Hover Card", "Stress test / Popover"
+On the Figma page: "Example / app launcher from the top bar", "Example / command palette over the app", "Example / confirm before archiving invoices", "Example / emoji picker in a comment", "Example / person preview", "Example / quick edit from a header button", "Example / search with suggestions", "Stress test / App Launcher", "Stress test / Command", "Stress test / Command Dialog", "Stress test / Confirm Popover", "Stress test / Emoji Picker", "Stress test / Hover Card", "Stress test / Popover"
 
 ## Popover
 

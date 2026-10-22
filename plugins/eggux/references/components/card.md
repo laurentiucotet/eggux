@@ -20,7 +20,7 @@ Usage rules live in the guides linked under each component.
 | [Link Preview](#link-preview) | 2 | - |
 | [Location Card](#location-card) | 1 | - |
 
-On the Figma page: "Example / customer card", "Example / events grid", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Link Preview", "Stress test / Location Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
+On the Figma page: "Example / customer card", "Example / events grid", "Example / in offices", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / shared link in a conversation", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Link Preview", "Stress test / Location Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
 
 ## Card
 
@@ -693,7 +693,7 @@ Code: shadcn `Card` in `<a target="_blank" rel="noopener">` (Open Graph metadata
 
 Component · 1 variant · default size 320 × 204
 
-One office, store or venue: city, tag (Headquarters, Store), full address, phone, hours, directions link to the map app. Grids of 3 on contact and careers pages; next to a Map when there are several. Addresses in the format of the country.
+One office, store or venue: city with an optional tag Badge (Show tag), full address, phone and hours as Meta Items, and a Get directions link. Show map adds a Map at the top of the card (full width, card radius on top) for contact and careers pages; keep the written address either way. Use the same fields in every card of a grid (Block / Offices: 3 cards with Show map). Usage: eggux build-ui/components/card.md
 
 **Use for**
 
@@ -709,10 +709,11 @@ One office, store or venue: city, tag (Headquarters, Store), full address, phone
 
 **Anatomy**
 
-1. Title row: city and tag Badge (Show tag): Headquarters, Store
-2. Address
-3. Meta Items: phone, hours
-4. Directions: Button link
+1. Map (Show map): Map at the top, full width, card radius on top
+2. Title row: city and tag Badge (Show tag): Headquarters, Store
+3. Address
+4. Meta Items: phone, hours (hide the hours Meta Item when unknown)
+5. Directions: Button link
 
 **Content and behavior**
 
@@ -721,27 +722,31 @@ One office, store or venue: city, tag (Headquarters, Store), full address, phone
 - Phone as a tel: link in international format
 - Hours with days; say when a place is closed
 - Same fields in every card of a grid
+- Show map on contact and careers pages where people visit; the same setting on every card of a grid
+- The map pin and the written address name the same place
 
 **Accessibility**
 
 - The city is a heading; the address is in an <address> element
 - The Directions link names the place ("Directions to Berlin office") and says it opens a new tab
 - Meta icons are aria-hidden
+- The map has a title or alt ("Map of the Berlin office"); the written address stays the accessible content
 
 | Property | Type | Default |
 |---|---|---|
 | City | text | Berlin |
 | Address | text | Friedrichstraße 68, 10117 Berlin, Germany |
 | Show tag | boolean | true |
+| Show map | boolean | false |
 
-Built from: `Badge`, `Button`, `Meta Item`
+Built from: `Badge`, `Button`, `Map`, `Meta Item`
 
 Tokens and styles:
 - Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`
-- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/5`
+- Spacing and size: `spacing/0`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/5`
 - Radius: `radius/xl`
 - Text styles: `body/small`, `heading/h4`
 
-Guides: [card](../../skills/build-ui/components/card.md)
+Guides: [card](../../skills/build-ui/components/card.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: shadcn `Card` + `<address>`, `tel:` link, maps link
+Code: shadcn `Card` + `<address>`, `tel:` link, maps link (Show map: a static map image or embed on top)

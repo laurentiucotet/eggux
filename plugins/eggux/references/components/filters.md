@@ -15,7 +15,7 @@ Usage rules live in the guides linked under each component.
 | [Filter Condition](#filter-condition) | 2 | - |
 | [Saved View Item](#saved-view-item) | 3 | - |
 
-On the Figma page: "Example / catalog filters", "Example / in filter builder", "Example / invoice filters", "Example / status filter options", "Stress test / Faceted Filter", "Stress test / Filter Group", "Stress test / Filter Section", "Stress test / Filters", "Stress test / Saved View Item"
+On the Figma page: "Example / catalog filters", "Example / in filter builder", "Example / invoice filters", "Example / saved views next to the invoice list", "Example / status filter options", "Stress test / Faceted Filter", "Stress test / Filter Group", "Stress test / Filter Section", "Stress test / Filters", "Stress test / Saved View Item"
 
 ## Filter Bar
 

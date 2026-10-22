@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Video Thumbnail](#video-thumbnail) | 1 | - |
 | [Audio Player](#audio-player) | 1 | - |
 
-On the Figma page: "Example / getting started video", "Stress test / Audio Player", "Stress test / Video Player", "Stress test / Video Thumbnail"
+On the Figma page: "Example / getting started video", "Example / help center videos and podcast", "Stress test / Audio Player", "Stress test / Video Player", "Stress test / Video Thumbnail"
 
 ## Video Player
 

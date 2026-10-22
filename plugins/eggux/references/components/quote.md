@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Testimonial Card](#testimonial-card) | 1 | - |
 | [Footnote](#footnote) | 1 | - |
 
-On the Figma page: "Example / pull quote between sections", "Example / quote in an article", "Stress test / Footnote", "Stress test / Quote", "Stress test / Testimonial Card"
+On the Figma page: "Example / pull quote between sections", "Example / quote in an article", "Example / report page with footnotes", "Stress test / Footnote", "Stress test / Quote", "Stress test / Testimonial Card"
 
 ## Quote
 

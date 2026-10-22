@@ -30,7 +30,7 @@ Usage rules live in the guides linked under each component.
 | [Sankey Chart](#sankey-chart) | 1 | - |
 | [Choropleth Map](#choropleth-map) | 1 | - |
 
-On the Figma page: "Example / activity by weekday and hour", "Example / cash bridge", "Example / in analytics", "Example / in bento grid", "Example / invoice flow", "Example / payment behavior", "Example / quarter target", "Example / revenue by product", "Example / spend by vendor", "Example / trend next to a metric", "Example / values on hover", "Example / volume and on-time rate", "Stress test / Bar Chart", "Stress test / Bar Chart Horizontal", "Stress test / Bullet Chart", "Stress test / Chart Card", "Stress test / Chart Legend", "Stress test / Chart Tooltip", "Stress test / Choropleth Map", "Stress test / Combo Chart", "Stress test / Dashboard Widget", "Stress test / Distribution Bar", "Stress test / Donut Chart", "Stress test / Funnel and Scatter", "Stress test / Gauge", "Stress test / Heatmap", "Stress test / Line Chart", "Stress test / Radar Chart", "Stress test / Sankey Chart", "Stress test / Scatter Chart", "Stress test / Sparkline", "Stress test / Treemap", "Stress test / Waterfall Chart"
+On the Figma page: "Example / activity by weekday and hour", "Example / cash bridge", "Example / in analytics", "Example / in bento grid", "Example / in executive dashboard", "Example / invoice flow", "Example / payment behavior", "Example / payments analytics", "Example / quarter target", "Example / revenue by product", "Example / spend by vendor", "Example / trend next to a metric", "Example / values on hover", "Example / volume and on-time rate", "Stress test / Bar Chart", "Stress test / Bar Chart Horizontal", "Stress test / Bullet Chart", "Stress test / Chart Card", "Stress test / Chart Legend", "Stress test / Chart Tooltip", "Stress test / Choropleth Map", "Stress test / Combo Chart", "Stress test / Dashboard Widget", "Stress test / Distribution Bar", "Stress test / Donut Chart", "Stress test / Funnel and Scatter", "Stress test / Gauge", "Stress test / Heatmap", "Stress test / Line Chart", "Stress test / Radar Chart", "Stress test / Sankey Chart", "Stress test / Scatter Chart", "Stress test / Sparkline", "Stress test / Treemap", "Stress test / Waterfall Chart"
 
 ## Bar Chart
 
@@ -877,9 +877,9 @@ Code: Recharts `ComposedChart`: `Bar yAxisId="left"` + `Line yAxisId="right"` (T
 
 ## Dashboard Widget
 
-Component · 1 variant · default size 480 × 297
+Component · 1 variant · default size 480 × 161
 
-A movable, resizable tile on a customizable dashboard: drag handle, title, period, refresh, expand and menu, any chart or KPI in Content, last updated. Snap to a 12-column grid; sizes 3, 4, 6 or 12 columns. Edit mode shows the handles; view mode hides them. A fixed report uses Chart Card.
+A movable, resizable tile on a customizable dashboard: drag handle, title, period, refresh, expand and menu, any chart, KPI or list in Content (fills the width, hugs the height), last updated. Snap to a 12-column grid; sizes 3, 4, 6 or 12 columns. Edit mode shows the handles; view mode hides them. A fixed report uses Chart Card.
 
 **Use for**
 
@@ -898,7 +898,7 @@ A movable, resizable tile on a customizable dashboard: drag handle, title, perio
 1. Drag handle: grip-vertical (edit mode)
 2. Title and Period
 3. Refresh, Expand and More: Button Icon ghost sm
-4. Content slot: a chart, a Sparkline or a KPI
+4. Content slot: fills the widget width and hugs its content height; a chart, a Sparkline, a KPI or a list
 5. Footer (Show footer): "Updated 5 min ago"
 
 **Content and behavior**
@@ -908,6 +908,7 @@ A movable, resizable tile on a customizable dashboard: drag handle, title, perio
 - Period is written on every widget; a dashboard-wide period says so once
 - Menu: edit, duplicate, change size, remove (with Undo)
 - Each widget loads, fails and refreshes on its own: Skeleton, inline Alert with Retry, never a blank tile
+- Widgets in one row share a height: the tallest hugs, the others fill the row so footers line up
 
 **Accessibility**
 
@@ -1114,13 +1115,14 @@ Shows how amounts flow from sources to outcomes: payment method to paid or overd
 
 **Anatomy**
 
-1. Source nodes (left)
-2. Flows: band width is the amount, colored by source
-3. Outcome nodes (right)
-4. Node labels with values
+1. Source nodes (left): fixed 12 wide, pinned left, heights scale
+2. Flows: band width is the amount, colored by source; stretch with the width, scale with the height
+3. Outcome nodes (right): fixed 12 wide, pinned right
+4. Node labels with values, centered on their node
 
 **Content and behavior**
 
+- Resize the instance (or set it to Fill in a Chart Card) instead of redrawing; keep at least 480 x 210
 - 2-3 columns and under 12 nodes; fold small flows into "Other"
 - Label every node with its value (Card €184K)
 - Color bands by source with chart/1..8; nodes in neutral

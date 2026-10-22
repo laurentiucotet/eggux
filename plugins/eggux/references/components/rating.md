@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Review Item](#review-item) | 1 | - |
 | [Rating Summary](#rating-summary) | 1 | - |
 
-On the Figma page: "Example / in testimonial carousel", "Stress test / Rating", "Stress test / Rating Summary", "Stress test / Review Item"
+On the Figma page: "Example / in reviews", "Example / in testimonial carousel", "Stress test / Rating", "Stress test / Rating Summary", "Stress test / Review Item"
 
 ## Rating
 
@@ -135,7 +135,10 @@ Code: `<article>` + `Avatar`, `Badge`, `Rating`, ghost `Button`s (Helpful: `aria
 
 Component · 1 variant · default size 480 × 104
 
-The average rating with how it splits across 1-5 stars, above the reviews. Each bar row filters the list to that rating. Count says how many reviews it comes from; under 5 reviews show the count only. Bars scale to the share of reviews; resize the fill of each track.
+Average rating with the split across 1-5 stars, above the reviews. Bar fills are the share of all reviews and scale with the instance width. Each row filters the list to that rating; under 5 reviews show the count only.
+
+
+Usage: eggux build-ui/components/rating.md
 
 **Use for**
 
@@ -152,14 +155,14 @@ The average rating with how it splits across 1-5 stars, above the reviews. Each 
 **Anatomy**
 
 1. Average: the number, Rating and count ("128 reviews")
-2. Distribution: 5 rows of stars, bar and count
+2. Distribution: 5 rows of stars, bar and count; each bar fill scales with the instance width
 
 **Content and behavior**
 
 - Each bar row filters the list to that rating
 - Count says how many reviews it comes from
 - Under 5 reviews, show the count only
-- Bars scale to the share of reviews; 5 stars on top
+- Bars show the share of all reviews (92 of 128 = 72% of the track); resize the fill layer to set it, it keeps the proportion when the card resizes
 
 **Accessibility**
 

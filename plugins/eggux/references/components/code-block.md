@@ -8,13 +8,13 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Code Block](#code-block) | 1 | - |
 | [Command Snippet](#command-snippet) | 1 | - |
-| [Endpoint Row](#endpoint-row) | 5 | - |
+| [Endpoint Row](#endpoint-row) | 15 | - |
 | [Log Row](#log-row) | 4 | - |
 | [Diff Viewer](#diff-viewer) | 1 | Lines |
 | [Diff Line](#diff-line) | 3 | - |
 | [JSON Viewer](#json-viewer) | 1 | - |
 
-On the Figma page: "Example / in article", "Stress test / Code Block", "Stress test / Command Snippet", "Stress test / Diff Viewer", "Stress test / Endpoint Row", "Stress test / JSON Viewer", "Stress test / Log Row"
+On the Figma page: "Example / in api reference", "Example / in article", "Stress test / Code Block", "Stress test / Command Snippet", "Stress test / Diff Viewer", "Stress test / Endpoint Row", "Stress test / JSON Viewer", "Stress test / Log Row"
 
 ## Code Block
 
@@ -127,9 +127,9 @@ Code: `<pre><code>` on `bg-muted` + shadcn `Button size="icon"` (`navigator.clip
 
 ## Endpoint Row
 
-Component set · 5 variants · default size 560 × 37
+Component set · 15 variants · default size 560 × 37
 
-One API endpoint in a reference list: method badge, path in mono with parameters in braces, one-line summary. The row links to the endpoint page. Methods keep the same color everywhere (GET info, POST success, PUT and PATCH warning, DELETE destructive).
+One API endpoint in a reference list: method badge, path in mono with parameters in braces, one-line summary. The row links to the endpoint page; the open endpoint is State=selected, hover shows background/muted. Methods keep the same color everywhere (GET info, POST success, PUT and PATCH warning, DELETE destructive).
 
 **Use for**
 
@@ -148,13 +148,14 @@ One API endpoint in a reference list: method badge, path in mono with parameters
 1. Method: Badge (GET info, POST success, PUT and PATCH warning, DELETE destructive)
 2. Path: mono, parameters in braces (/v1/invoices/{id})
 3. Summary: body/small, muted
+4. State: default, hover (background/muted), selected (background/accent) for the open endpoint
 
 **Content and behavior**
 
 - Methods keep the same color everywhere; the method name is always written
 - Path in mono, parameters in braces, no host
 - Summary starts with a verb: "Retrieve an invoice"
-- The whole row links to the endpoint page
+- The whole row links to the endpoint page; the open endpoint is State=selected, one per list
 - Order within a resource: list, create, retrieve, update, delete
 
 **Accessibility**
@@ -162,10 +163,12 @@ One API endpoint in a reference list: method badge, path in mono with parameters
 - The row is one link with an accessible name of method, path and summary
 - Method is text in the Badge, never color alone
 - Paths do not break mid-segment; long paths wrap at slashes
+- The selected row has aria-current="page"
 
 | Variant property | Values |
 |---|---|
 | Method | GET, POST, PUT, PATCH, DELETE |
+| State | default, hover, selected |
 
 | Property | Type | Default |
 |---|---|---|
@@ -175,7 +178,7 @@ One API endpoint in a reference list: method badge, path in mono with parameters
 Built from: `Badge`
 
 Tokens and styles:
-- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Colors: `background/accent`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/2`, `spacing/3`
 - Text styles: `body/small`, `code`
 
@@ -352,7 +355,7 @@ Code: jsdiff (`diffLines`) + custom rows; `react-diff-viewer-continued` for side
 
 Component · 1 variant · default size 480 × 198
 
-Structured data people inspect: webhook payloads, API responses, event properties, audit details. Keys in default text, strings, numbers and booleans in chart colors; objects and arrays collapse with a chevron; copy the whole payload from the header. Large payloads open collapsed after the first level.
+Structured data people inspect: webhook payloads, API responses, event properties, audit details. Keys in default text, strings, numbers and booleans in chart colors; objects and arrays collapse with a chevron. Content is pasted per instance: edit each line, then reapply the value color. Title and Copy go in the surrounding header. Large payloads open collapsed after the first level.
 
 **Use for**
 
@@ -368,14 +371,15 @@ Structured data people inspect: webhook payloads, API responses, event propertie
 
 **Anatomy**
 
-1. Header: label and Copy Button Icon
-2. Lines: chevron for objects and arrays, key, value
-3. Values: strings, numbers and booleans in chart colors; keys in default text
+1. Lines: chevron for objects and arrays, then key and value in mono (code) on background/muted
+2. Values: strings chart/3, numbers chart/1, booleans in a chart color; keys and punctuation foreground/default
+3. No header and no TEXT properties: the content is pasted per instance, one text node per line
 
 **Content and behavior**
 
-- Large payloads open collapsed after the first level
-- Collapsed nodes show a count ("items: [3]")
+- To edit: change a line's text, then reapply the value color to the value only (keys stay foreground/default); add or remove line frames for longer or shorter payloads
+- Put the title and Copy in the surrounding header (Card Header action or panel header), not in the viewer
+- Large payloads open collapsed after the first level; collapsed nodes show a count ("items: [3]")
 - Copy copies the whole payload, formatted
 - Long strings wrap; null shows as null, never blank
 - Mask secrets (tokens, card numbers) before they reach the viewer

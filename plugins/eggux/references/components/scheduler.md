@@ -14,7 +14,7 @@ Usage rules live in the guides linked under each component.
 | [Availability Row](#availability-row) | 2 | - |
 | [Time Slot](#time-slot) | 4 | - |
 
-On the Figma page: "Example / in gantt", "Example / in scheduler week", "Stress test / Agenda Item", "Stress test / Availability Row", "Stress test / Calendar Event", "Stress test / Gantt Bar", "Stress test / Meeting Card", "Stress test / Time Slot"
+On the Figma page: "Example / in agenda", "Example / in booking", "Example / in gantt", "Example / in scheduler week", "Stress test / Agenda Item", "Stress test / Availability Row", "Stress test / Calendar Event", "Stress test / Gantt Bar", "Stress test / Meeting Card", "Stress test / Time Slot"
 
 ## Calendar Event
 

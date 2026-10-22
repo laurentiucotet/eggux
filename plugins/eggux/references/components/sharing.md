@@ -10,13 +10,16 @@ Usage rules live in the guides linked under each component.
 | [Invite Row](#invite-row) | 1 | - |
 | [Share Link Row](#share-link-row) | 2 | - |
 
-On the Figma page: "Stress test / Access Row", "Stress test / Invite Row", "Stress test / Share Link Row"
+On the Figma page: "Example / in share dialog", "Example / in team members", "Stress test / Access Row", "Stress test / Invite Row", "Stress test / Share Link Row"
 
 ## Access Row
 
 Component set · 3 variants · default size 480 × 52
 
-One person or group with access to an object in a share dialog: avatar, name and email, role picker (Can view, Can comment, Can edit, Remove access at the bottom). Owner shows the role as text. pending shows Invited and when; its menu offers Resend and Cancel invite. Changes save at once with a toast.
+One person or group with access to an object in a share dialog: avatar, Name and Email, and their role. Type: editable (role Select), owner (role as text), pending (Name is the invited address, Email says when: "Invited 2 days ago", with an Invited badge). Owner first, then you, then A-Z. Changes save at once with a toast.
+
+
+Usage: eggux build-ui/patterns/sharing-and-invites.md
 
 **Use for**
 
@@ -34,9 +37,9 @@ One person or group with access to an object in a share dialog: avatar, name and
 **Anatomy**
 
 1. Avatar
-2. Name: ui/label, "(you)" for the reader
-3. Email: body/small, muted; member count for a group
-4. Role: Select (editable), text (owner), "Invited" and when (pending)
+2. Name: ui/label, "(you)" for the reader; for pending, the invited address
+3. Email: body/small, muted; member count for a group; for pending, when they were invited
+4. Role: Select (editable), text (owner), Invited Badge and Select (pending)
 
 **Content and behavior**
 

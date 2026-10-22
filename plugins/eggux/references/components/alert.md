@@ -8,8 +8,10 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Alert](#alert) | 10 | Actions |
 | [Service Status Row](#service-status-row) | 4 | - |
+| [Uptime Bars](#uptime-bars) | 1 | - |
+| [Uptime Day](#uptime-day) | 5 | - |
 
-On the Figma page: "Example / in import mapping", "Stress test / Alert", "Stress test / Service Status Row"
+On the Figma page: "Example / in import mapping", "Example / in status page", "Stress test / Alert", "Stress test / Service Status Row", "Stress test / Uptime Bars"
 
 ## Alert
 
@@ -84,7 +86,7 @@ Code: shadcn `Alert`, `Sonner`
 
 Component set · 4 variants · default size 720 × 45
 
-One service on a status page or an admin health panel: name, uptime for the last 90 days, current status in words with a dot. Status changes link to the incident. Order services the way customers think about the product, not by internal system names.
+One service on a status page or an admin health panel: name, uptime over the last 90 days and the current status in words with a Status Dot. Show bars adds Uptime Bars under the name line (90 days, select a nested Uptime Day to set its State; Show labels on the bars for "90 days ago" / "Today"). Order services the way customers think about the product; a status other than operational links to the incident. Usage: eggux build-ui/patterns/content-and-docs.md
 
 **Use for**
 
@@ -103,6 +105,7 @@ One service on a status page or an admin health panel: name, uptime for the last
 1. Name: ui/label
 2. Uptime (Show uptime): "99.98% uptime", body/small, muted
 3. Status: Status Dot with a word (Operational, Degraded, Outage, Maintenance)
+4. Bars (Show bars): Uptime Bars under the name line, 90 Uptime Day instances; Show labels on the nested bars for "90 days ago" / "Today"
 
 **Content and behavior**
 
@@ -111,12 +114,15 @@ One service on a status page or an admin health panel: name, uptime for the last
 - A status other than operational links to the incident
 - Uptime has two decimals over the same 90 days on every row
 - Maintenance says until when, with the time zone, in the incident
+- Status pages use Show bars on every row; select a nested Uptime Day to set the state of that day
+- The bars and the uptime % cover the same 90 days
 
 **Accessibility**
 
 - Rows are a list or a table; the status word is read with the service name
 - The dot is aria-hidden
 - The incident link names the incident, not "here"
+- Each uptime day has a tooltip and label with the date and state; color is never the only signal
 
 | Variant property | Values |
 |---|---|
@@ -127,8 +133,9 @@ One service on a status page or an admin health panel: name, uptime for the last
 | Name | text | Payments API |
 | Uptime | text | 99.98% uptime |
 | Show uptime | boolean | true |
+| Show bars | boolean | false |
 
-Built from: `Status Dot`
+Built from: `Status Dot`, `Uptime Bars`
 
 Tokens and styles:
 - Colors: `border/default`, `foreground/default`, `foreground/muted`
@@ -138,3 +145,75 @@ Tokens and styles:
 Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
 Code: custom row with `Status Dot`, `flex justify-between` (Data from your status provider; link non-operational states to the incident)
+
+## Uptime Bars
+
+Component · 1 variant · default size 720 × 56
+
+Uptime history of one service: 90 Uptime Day bars, oldest on the left, with an optional caption row (Show labels: "90 days ago" and "Today"). Select a nested Uptime Day to set its State (operational, degraded, outage, maintenance, no-data). Every day with an incident links to it; the tooltip says the date and what happened. Used under the name line of Service Status Row (Show bars). Usage: eggux build-ui/patterns/content-and-docs.md
+
+**Use for**
+
+- Under each service of a public status page (Service Status Row Show bars)
+- A health panel in admin that shows the last 90 days
+- Any daily availability history of an integration or job
+
+**Not for**
+
+- A trend of a number over time: use a Chart or Sparkline
+- Today's status only: use Service Status Row without bars
+- Progress toward a goal: use Progress
+
+**Anatomy**
+
+1. Bars: 90 Uptime Day instances (State=operational, degraded, outage, maintenance, no-data), FILL width
+2. Caption row (Show labels): Start label "90 days ago", End label "Today", ui/caption, muted
+
+**Content and behavior**
+
+- Always 90 days, oldest left, today right; the same period on every row of a page
+- Select a nested Uptime Day to set its State; keep the real degraded and outage days
+- Days before a service existed are no-data, not operational
+- Each day with an incident links to it; the tooltip says the date, the state and the incident title
+- Show labels on every row of a status page, or once under the last row
+
+**Accessibility**
+
+- Color is never the only signal: each day has a tooltip and an accessible label ("3 Oct 2026: degraded")
+- The uptime % is also given as text next to the name
+- The bar row is a list; keyboard users reach days with incidents
+
+| Property | Type | Default |
+|---|---|---|
+| Start label | text | 90 days ago |
+| End label | text | Today |
+| Show labels | boolean | true |
+
+Built from: `Uptime Day`
+
+Tokens and styles:
+- Colors: `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`
+- Text styles: `ui/caption`
+
+Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
+
+Code: flex row of 90 bars (`flex-1 h-7 rounded-sm`, `bg-success` / `bg-warning` / `bg-destructive` / `bg-info` / `bg-border` by state) with a shadcn `Tooltip` per day; caption "90 days ago" / "Today" (Each day has an accessible label with date and state)
+
+## Uptime Day
+
+Component set · 5 variants · default size 8 × 28
+
+One day in Uptime Bars. State sets the color: operational (success), degraded (warning), outage (destructive), maintenance (info), no-data (muted, before the service existed). Only used inside Uptime Bars: select the nested day to change its State. Usage: eggux build-ui/patterns/content-and-docs.md
+
+| Variant property | Values |
+|---|---|
+| State | operational, degraded, outage, maintenance, no-data |
+
+Tokens and styles:
+- Colors: `background/destructive`, `background/info`, `background/success`, `background/warning`, `border/input`
+- Radius: `radius/sm`
+
+Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
+
+Code: flex row of 90 bars (`flex-1 h-7 rounded-sm`, `bg-success` / `bg-warning` / `bg-destructive` / `bg-info` / `bg-border` by state) with a shadcn `Tooltip` per day; caption "90 days ago" / "Today" (Each day has an accessible label with date and state)

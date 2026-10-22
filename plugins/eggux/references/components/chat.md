@@ -14,7 +14,7 @@ Usage rules live in the guides linked under each component.
 | [Reaction](#reaction) | 2 | - |
 | [Thread Summary](#thread-summary) | 1 | - |
 
-On the Figma page: "Example / in conversation", "Stress test / Chat Composer", "Stress test / Chat Message", "Stress test / Mention Chip", "Stress test / Reaction Bar", "Stress test / Thread Summary", "Stress test / Typing Indicator"
+On the Figma page: "Example / in conversation", "Example / team thread with mentions and reactions", "Stress test / Chat Composer", "Stress test / Chat Message", "Stress test / Mention Chip", "Stress test / Reaction Bar", "Stress test / Thread Summary", "Stress test / Typing Indicator"
 
 ## Chat Message
 

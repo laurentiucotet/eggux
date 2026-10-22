@@ -20,9 +20,9 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Accordion](accordion.md) | Accordion, Accordion Item, Show More |
 | [Admin](admin.md) | Integration Card, Permission Row, API Key Row, Session Row, Org Chart Node |
 | [AI Chat](ai-chat.md) | Prompt Input, Attachment, User Message, Assistant Message, Reasoning, Tool Call, Sources, Source Item, Citation, Prompt Suggestion, Model Picker, Model Option, Chat History Item, Context Chip, Response Feedback, Voice Recorder, Agent Plan, Plan Step, Artifact Card, AI Summary, AI Notice, AI Suggestion, AI Loading, Confidence Indicator, AI Review Bar |
-| [Alert](alert.md) | Alert, Service Status Row |
+| [Alert](alert.md) | Alert, Service Status Row, Uptime Bars, Uptime Day |
 | [Approvals](approvals.md) | Approval Step |
-| [Audit](audit.md) | Change Item, Version Item, Release Note Item |
+| [Audit](audit.md) | Change Item, Version Item, Release Note Item, Release Note Line |
 | [Automation](automation.md) | Automation Rule, Workflow Node, Mapping Row |
 | [Avatar](avatar.md) | Avatar, Avatar Group, Byline, Presence Bar |
 | [Badge](badge.md) | Badge, Badge Count, Status Dot, Badge List, Announcement Pill, Trust Badge |
@@ -48,7 +48,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Filters](filters.md) | Filter Bar, Filter Chip, Faceted Filter, Facet Option, Filter Section, Filter Group, Filter Condition, Saved View Item |
 | [Form Layout](form-layout.md) | Form Section, Fieldset, Error Summary, Requirement List, Check Item |
 | [Form Presets](form-presets.md) | Field Preset |
-| [Image](image.md) | Image Placeholder, Map, Image Cropper, Avatar Upload, Image Compare Slider, Device Frame |
+| [Image](image.md) | Image Placeholder, Map, Image Cropper, Avatar Upload, Image Compare Slider, Device Frame, Image Figure |
 | [Input](input.md) | Input, Field, Password Strength, Textarea, Input Group, Input Addon, Number Input, Inline Edit, Signature Pad, Copy Field, Search Field, Inline Form, Currency Input, Phone Input, Date Input, Duration Input, Range Input |
 | [Input OTP](input-otp.md) | Input OTP, OTP Slot |
 | [Kanban](kanban.md) | Kanban Card, Kanban Column |
@@ -59,7 +59,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Mobile](mobile.md) | Mobile Header, Bottom Nav, Bottom Nav Item, FAB, Action Sheet |
 | [Navigation](navigation.md) | Breadcrumb, Breadcrumb Item, Top Bar, Page Header, Nav Link, Navigation Menu Panel, Navigation Menu Link, Table of Contents, Table of Contents Item, Back Link, Skip Link, Page Toolbar |
 | [Notifications](notifications.md) | Notification Item, Notification Center |
-| [Pagination](pagination.md) | Pagination, Pagination Item, Pagination Compact, Load More |
+| [Pagination](pagination.md) | Pagination, Pagination Item, Pagination Compact, Load More, Pager Link |
 | [Popover](popover.md) | Popover, Command, Command Input, Command Dialog, Hover Card, Emoji Picker, App Launcher, Confirm Popover |
 | [Pricing](pricing.md) | Price, Plan Card |
 | [Progress](progress.md) | Progress, Progress Ring, Background Job |
@@ -80,7 +80,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Spinner](spinner.md) | Spinner, Loading Overlay |
 | [Stepper](stepper.md) | Stepper, Step |
 | [Surveys](surveys.md) | Feedback Widget, NPS Survey, CSAT Rating |
-| [Table](table.md) | Table Cell, Table Header Label, Table Cell Text, Table Cell Stack, Table Cell User, Table Cell Amount, Table Cell Status, Table Cell Progress, Table Cell Actions, Table Cell Link, Table Cell Date, Table Cell File, Table Cell Badges, Table Cell Avatars, Table Toolbar, Data Grid Toolbar, Table Group Row, Table Pagination |
+| [Table](table.md) | Table Cell, Table Header Label, Table Cell Text, Table Cell Stack, Table Cell User, Table Cell Amount, Table Cell Status, Table Cell Progress, Table Cell Actions, Table Cell Link, Table Cell Date, Table Cell File, Table Cell Badges, Table Cell Avatars, Table Cell Check, Table Toolbar, Data Grid Toolbar, Table Group Row, Table Pagination |
 | [Tabs](tabs.md) | Tab, Tabs |
 | [Timeline](timeline.md) | Timeline Item |
 | [Toast](toast.md) | Toast |
@@ -89,4 +89,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tour](tour.md) | Coachmark, Hotspot, Annotation Pin |
 | [Video](video.md) | Video Player, Video Thumbnail, Audio Player |
 
-339 components on 71 pages.
+345 components on 71 pages.

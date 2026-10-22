@@ -20,6 +20,7 @@ Usage rules live in the guides linked under each component.
 | [Table Cell File](#table-cell-file) | 1 | - |
 | [Table Cell Badges](#table-cell-badges) | 1 | - |
 | [Table Cell Avatars](#table-cell-avatars) | 1 | - |
+| [Table Cell Check](#table-cell-check) | 3 | - |
 | [Table Toolbar](#table-toolbar) | 1 | Actions |
 | [Data Grid Toolbar](#data-grid-toolbar) | 1 | Start, End |
 | [Table Group Row](#table-group-row) | 1 | - |
@@ -50,8 +51,9 @@ Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row use
 1. Type=header with Table Header Label (Label, Sort, Align)
 2. Type=body with Table Cell Text, Table Cell Stack or Table Cell User
 3. Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Badges, Avatars
-4. Last column: Table Cell Actions (edit and menu)
-5. Type=expanded: one detail cell spanning all columns
+4. Plan comparison values: Table Cell Check (Value=included|excluded|text, Text, Note)
+5. Last column: Table Cell Actions (edit and menu)
+6. Type=expanded: one detail cell spanning all columns
 
 **Content and behavior**
 
@@ -63,6 +65,7 @@ Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row use
 - Inline edit only for fields changed often: State=editing, State=error in the cell
 - One date format per column (Table Cell Date); time under it only when it matters
 - Links in a cell (Table Cell Link) go where the row goes; one link per row besides the row
+- Comparison tables: Table Cell Check centered in plan columns; excluded is a dash, never blank
 
 **Accessibility**
 
@@ -70,6 +73,7 @@ Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row use
 - Sortable headers are buttons reachable with the keyboard
 - Row icon buttons have a tooltip and an aria-label with the row: "Edit invoice INV-1041"
 - Row checkboxes have labels: "Select INV-1041"
+- Table Cell Check icons read "Included" or "Not included" (visually hidden text)
 
 | Variant property | Values |
 |---|---|
@@ -349,6 +353,36 @@ Built from: `Avatar Group`
 Guides: [table](../../skills/build-ui/components/table.md)
 
 Code: cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group (One date format per column)
+
+## Table Cell Check
+
+Component set · 3 variants · default size 16 × 20
+
+Plan comparison value in a table cell: included (check), excluded (dash) or a text value such as "100 GB" or "Unlimited", with an optional note ("per seat"). Use it in pricing comparison tables and feature matrices; center it in plan columns. Excluded shows a dash, never a blank cell; a value is better than a check when the limit differs by plan. Screen readers get "Included" or "Not included", not the icon.
+
+
+Usage: eggux build-ui/components/table.md
+
+| Variant property | Values |
+|---|---|
+| Value | included, excluded, text |
+
+| Property | Type | Default |
+|---|---|---|
+| Text | text | Unlimited |
+| Note | text | per seat |
+| Show note | boolean | false |
+
+Icons: check, minus
+
+Tokens and styles:
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
+- Text styles: `body/small`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: cell renderer: lucide `Check` / `Minus` icon with `sr-only` "Included" / "Not included", or the text value; optional muted note (Plan comparison cells; excluded is a dash, never blank)
 
 ## Table Toolbar
 
