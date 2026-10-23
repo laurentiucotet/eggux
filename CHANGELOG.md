@@ -3,6 +3,12 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.53.1
+- Test page: `Block / Navbar Mobility Global` is a set with `Viewport=desktop|mobile` and
+  `Menu=closed|open` (390 wide mobile header; full-screen menu with the five sections as List
+  Items, account, Help, Notifications and AI Concierge), plus an example in Corporate Dark.
+- build-ui: the client navbar is built with its mobile variants from the start.
+
 ## 0.53.0
 Lessons from rebuilding the Mobility Global home page from the library.
 - New token `foreground/brand` (`--brand`): text and icons in the brand color (accent headline

@@ -59,7 +59,10 @@ competitor, a mock from another tool):
    text and inline links use `foreground/brand`; never put `background/*` tokens on text.
 3. **Client header and footer are components.** The first screen of a client turns its navbar
    and footer into `Block / Navbar <client>` and a Footer block instance with the client content;
-   later screens use instances, never copied frames.
+   later screens use instances, never copied frames. The navbar set has `Viewport=desktop|mobile`
+   and `Menu=closed|open` from the start: mobile is the logo, one or two key actions and the menu
+   button; the open menu lists the same sections as List Items (chevron for submenus, the current
+   one selected), the account row and the main action at the bottom.
 4. **Build section by section**, screenshot each one, and fix before the next.
 5. **Overrides are findings.** A text style changed on an instance, a hidden layer that should be
    a boolean, a size that cannot be set: list each one as a library gap and suggest
