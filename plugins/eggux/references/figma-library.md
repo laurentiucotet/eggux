@@ -175,9 +175,9 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Tabs | `Tabs` | Variant: default, line, vertical | Tabs (native slot of Tab instances with the same Variant). default: pill tabs in a card; line: underlined page sections; vertical: a 200 wide column for settings |
 | Toggle Group | `Toggle Group Item` | State: default, hover, selected, focus, disabled | Label, Show label, Show icon + Icon (swap) |
 | Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels. Theme, view and billing period switches are examples on this page, not components |
-| List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing, Show divider. Leading, Trailing (native slots) |
-| List & Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Show checkbox (Checkbox exposed), Show icon + Icon (swap), Show count |
-| List & Tree | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description, Show leading; grip handle; Leading (native slot, 1:1 image 48), Trailing (native slot) |
+| List | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing, Show divider. Leading, Trailing (native slots) |
+| Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Show checkbox (Checkbox exposed), Show icon + Icon (swap), Show count |
+| List | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description, Show leading; grip handle; Leading (native slot, 1:1 image 48), Trailing (native slot) |
 | Tooltip | `Tooltip` | Side: top, bottom, left, right | Label (wraps at 280), Title + Show title (rich), Show shortcut (Kbd exposed) |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
 | Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner | Title, Description, Show description, Actions (native slot) + Show actions, Show close |
@@ -376,8 +376,8 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Input | `Range Input` | State: default, error | Min, Max, Unit. Two fields for a minimum and a maximum: price or amount filters, typed date ranges, quantities. |
 | Input | `Search Field` | State: default, focus, filled | Placeholder, Query, Show shortcut. Search box for a list, a table or the whole app: search icon, a placeholder that names what is searched, a shortcut hint and clear. |
 | Kbd | `Shortcut Row` | - | Action. One keyboard shortcut in the shortcuts dialog or a help page: what it does, then the keys. |
-| List & Tree | `Task Item` | State: open, done, overdue | Title, Due, Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
-| List & Tree | `Job Listing` | - | Title, Meta, Location, Posted, Salary, Show badge, Show salary. One open role in a careers list: title, team, type and work mode, location, posted date, salary range and Apply. |
+| List | `Task Item` | State: open, done, overdue | Title, Due, Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
+| List | `Job Listing` | - | Title, Meta, Location, Posted, Salary, Show badge, Show salary. One open role in a careers list: title, team, type and work mode, location, posted date, salary range and Apply. |
 | Menu | `Account Menu` | - | Name, Email. The menu behind the signed-in person's avatar: name and email, personal settings, and Log out. |
 | Metrics | `Countdown` | - | Days, Hours, Minutes, Seconds, Show seconds. Time left until a deadline people act on: an offer, a webinar start, a payment due, a session that expires. |
 | Metrics | `Leaderboard Row` | State: default, current | Rank, Name, Value. A ranked person or team: rank, avatar, name and value. |
