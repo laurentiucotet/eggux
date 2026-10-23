@@ -3,14 +3,19 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.53.2
+- Removed the client test screens (home, search results, article, showcase, back office screens),
+  their navbar component and examples. The test page is now "Test / Shells" and keeps only the
+  generic back office grid shell (`Page Shell / Back office (test)`) and its four test instances.
+
 ## 0.53.1
-- Test page: `Block / Navbar Mobility Global` is a set with `Viewport=desktop|mobile` and
+- Test page: the client navbar of the test (since removed) became a set with `Viewport=desktop|mobile` and
   `Menu=closed|open` (390 wide mobile header; full-screen menu with the five sections as List
   Items, account, Help, Notifications and AI Concierge), plus an example in Corporate Dark.
 - build-ui: the client navbar is built with its mobile variants from the start.
 
 ## 0.53.0
-Lessons from rebuilding the Mobility Global home page from the library.
+Lessons from rebuilding a client home page from the library (a test, since removed).
 - New token `foreground/brand` (`--brand`): text and icons in the brand color (accent headline
   words, inline links). Light neutral/900, Dark neutral/200, Corporate Light blue/700, Corporate
   Dark blue/400; at least 4.5:1 on default, muted and card in every mode. Button link and the
@@ -23,7 +28,7 @@ Lessons from rebuilding the Mobility Global home page from the library.
   Card vertical `Date position=image` (date tile over the image).
 - New block `Block / Hero Prompt` (Hero page): AI-first home hero with an accent line, Prompt
   Input, suggestions and an image.
-- Test page: `Block / Navbar Mobility Global` replaces the copied navbars on 5 screens (and a
+- Test page: a client navbar component replaced the copied navbars on 5 screens (and a
   spacer bug that added 64 px); `Screen / Home` uses all of the above.
 - Skills: build-ui gets "Reproduce a reference screen" (inventory and gaps before building, theme
   from the reference, client header and footer as components, overrides are findings, compare
@@ -34,7 +39,7 @@ Lessons from rebuilding the Mobility Global home page from the library.
 
 ## 0.52.2
 - Post Card Layout=horizontal: the image takes half the card width (min 160, max 640) instead of a fixed
-  640, so horizontal cards work in narrow columns (found while rebuilding the Mobility Global home page).
+  640, so horizontal cards work in narrow columns (found while rebuilding a client home page).
 - Test page: `Screen / Home` rebuilt from library components in the Corporate Light theme (navbar and
   footer in Corporate Dark).
 
@@ -245,7 +250,7 @@ Lessons from rebuilding the Mobility Global home page from the library.
 ## 0.44.0
 - New block page Page Headers: `Block / Header Detail`, `Header Listing`, `Header Search
   Results`, `Header Profile`, `Header Event`, `Header Topic`, `Header Report`, `Header Simple`,
-  with examples "topic page" and "event page". Generalized from the Mobility Global test
+  with examples "topic page" and "event page". Generalized from a client test
   screens, domain-neutral content.
 - `Post Card` Layout=compact (title on 2 lines, meta, optional 1:1 image) for related, most read
   and up next lists; the Article test screen uses it.
@@ -269,7 +274,7 @@ Lessons from rebuilding the Mobility Global home page from the library.
 - `Sortable List Item`: Leading slot (Show leading) with a 1:1 image, 48 px.
 - Docs, stress tests and examples for the four rows (tidy-component); guides for sidebar,
   drawer, card, list and tree, enterprise apps; code-mapping rows for the new components.
-- Test page "Test / Mobility Global": `Page Shell / Back office (test)`, a grid shell
+- Test page (now "Test / Shells"): `Page Shell / Back office (test)`, a grid shell
   (navigation and aside columns hug their content, body scrolls, actions fixed at the bottom),
   tested at 1440 and 1280, with collapsed navigation and panel, and as a list.
 - component-page.js leaves viewport examples (clipped `Example /` screens) and GRID frames
@@ -279,7 +284,7 @@ Lessons from rebuilding the Mobility Global home page from the library.
 ## 0.42.2
 - Figma API notes: grid row sizes must be set to hug after the cells are added; switching
   `layoutMode` keeps the old sizing modes; a growing child is FIXED until set back to hug.
-  Found while rebuilding three Mobility Global back office and showcase screens with the library.
+  Found while rebuilding three client back office and showcase screens with the library.
 
 ## 0.42.1
 - Fixed stress test frames that stopped growing with their content (an auto-layout frame built

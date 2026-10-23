@@ -527,7 +527,7 @@ which screen: `skills/build-ui/index.md`):
 - Split View: App shell with List (384, resizable) and Detail slots for mail, chat, tickets, files.
 - Docs: header with search, left navigation, reading column, table of contents.
 - Wizard: focused flow without sidebar: step counter, Save and exit, progress, sticky Back / Continue.
-- Back office on a grid (test, page "Test / Mobility Global": `Page Shell / Back office (test)`, not
+- Back office on a grid (test, page "Test / Shells": `Page Shell / Back office (test)`, not
   yet on the Page Shells page): Navigation column hugs Sidebar or Sidebar Double, Header (Top Bar +
   Page Header), Body with Main (flex) and Aside (hugs a Side Panel), Actions bar fixed at the
   bottom; only the Body scrolls. Variants Aside on / off, Show actions.
