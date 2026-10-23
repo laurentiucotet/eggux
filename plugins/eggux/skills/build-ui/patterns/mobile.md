@@ -1,7 +1,7 @@
 # Mobile and responsive
 
 Design mobile for every screen that field staff, customers or end users use on the phone; for
-back-office tools, at least check that the page does not break below 768.
+admin panels, at least check that the page does not break below 768.
 
 ## Breakpoints (Tailwind)
 | Width | Layout |

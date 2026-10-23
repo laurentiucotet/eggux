@@ -15,7 +15,7 @@ Usage rules live in the guides linked under each component.
 | [Org Switcher](#org-switcher) | 1 | - |
 | [Sidebar Double](#sidebar-double) | 2 | Rail header, Rail, Rail footer, Panel actions, Panel |
 
-On the Figma page: "Example / Back office list with double sidebar", "Example / Double sidebar collapsed", "Example / app shell", "Example / switch organization", "Examples / stat cards", "Stress test / Org Switcher", "Stress test / Sidebar", "Stress test / Sidebar Double", "Template / invoices table (grid)"
+On the Figma page: "Example / Admin panel list with double sidebar", "Example / Double sidebar collapsed", "Example / app shell", "Example / switch organization", "Examples / stat cards", "Stress test / Org Switcher", "Stress test / Sidebar", "Stress test / Sidebar Double", "Template / invoices table (grid)"
 
 ## Sidebar
 
@@ -263,7 +263,7 @@ Two-level app navigation: an icon rail for sections (Rail header, Rail, Rail foo
 
 **Use for**
 
-- Back offices and admin apps with several sections of 5+ pages each
+- Admin panels and internal apps with several sections of 5+ pages each
 - Products where people switch sections often and need the section's pages in view
 - Content management: one rail item per content area, its types in the panel
 

@@ -21,7 +21,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 | Navigation | Use |
 |---|---|
 | `Sidebar` | One level, up to ~12 destinations in a few groups |
-| `Sidebar Double` | Several sections with 5+ pages each (back offices, CMS, admin): an icon rail for the sections, a panel for the pages of the active section |
+| `Sidebar Double` | Several sections with 5+ pages each (admin panels, CMS): an icon rail for the sections, a panel for the pages of the active section |
 
 - Sidebar Double: one active rail item (the section) and one active panel item (the page). The
   panel title repeats the section name; Panel actions hold one or two Button Icon for the
@@ -40,7 +40,7 @@ Uses the `sidebar/*` tokens. See the "app shell" example on the Sidebar page.
 `Sidebar Double` (Mode expanded 288 / collapsed 48) with slots Rail header, Rail, Rail footer
 (collapsed `Sidebar Workspace`, `Sidebar Item`, `Sidebar User`), the Panel title text, Panel
 actions and Panel (`Sidebar Group`). Mode=collapsed keeps the Panel slot as a hidden layer, so
-its content survives a switch back to expanded. Examples: "Back office list with double sidebar"
+its content survives a switch back to expanded. Examples: "Admin panel list with double sidebar"
 and "Double sidebar collapsed".
 - `Sidebar Item` Level=2 for sub-pages: no icon, label aligned with the parent label; only under an
   expanded parent with Show chevron on, one level deep.

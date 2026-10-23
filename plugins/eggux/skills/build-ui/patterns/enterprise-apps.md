@@ -1,14 +1,14 @@
 # Pattern: enterprise and corporate apps
 
-**Problem:** internal tools, back office and B2B products look and behave like a startup
+**Problem:** internal tools, admin panels and B2B products look and behave like a startup
 landing page: too much air, too few rows, no audit trail, no way to share a filtered view.
 **Heuristic:** efficiency of use, consistency and standards, user control, error prevention.
 
 ## Start here
 - Theme: `Corporate Light` (or `Corporate Dark`) on Semantic and Components, `Compact` on
   Density, for the whole app shell. Default theme stays for marketing and consumer flows.
-- Shell: App shell; Sidebar with Org Switcher when users belong to several entities. Back
-  offices and CMS: `Page Shell / Back office` (Sidebar Double when there are several sections of
+- Shell: App shell; Sidebar with Org Switcher when users belong to several entities. Admin
+  panels and CMS: `Page Shell / Admin Panel` (Sidebar Double when there are several sections of
   many pages each). Editors: Aside=on with a Side Panel for the object's summary, actions fixed
   at the bottom; lists: Aside=off.
 - Page grid: navigation column hugs the sidebar, Main flexes, the aside column hugs the Side
