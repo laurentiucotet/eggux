@@ -13,9 +13,10 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/project-files.md` for the folder conventi
    and stop unless the user asks to reset a specific file. Never overwrite existing files.
 2. Ask only for what you cannot find:
    - client name
-   - the client's Figma file URL (a duplicate of the EGG UI v2 master library). If they have
-     not duplicated it yet, tell them to duplicate
-     `https://www.figma.com/design/BufvaVkSh9vMWPye117Ucd/EGG-UI---v2` and send the new link.
+   - the client's Figma file URL (a copy of the EGG UI library). If they have not made one yet,
+     tell them to open the Community file `https://www.figma.com/community/file/1694044412384019384`, click "Open in Figma" to duplicate it into
+     their workspace, and send the new link. (Maintainers with access can duplicate the master
+     file `https://www.figma.com/design/BufvaVkSh9vMWPye117Ucd/EGG-UI---v2` instead.)
 3. Copy every file from the `templates/` folder next to this SKILL.md into `eggux/`, filling
    the client name, the Figma URL and today's date in the frontmatter.
 4. Finish with the next step in one line: run `/eggux:discovery` with interview notes, or

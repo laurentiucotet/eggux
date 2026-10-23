@@ -9,7 +9,15 @@ themes (Default and Corporate, each Light and Dark), an enterprise pack (data gr
 builder, approvals, audit log, roles and permissions, reports) and a validated chart palette,
 motion and density tokens.
 
-Figma master library: [EGG UI v2](https://www.figma.com/design/BufvaVkSh9vMWPye117Ucd/EGG-UI---v2)
+**Get the Figma library:** [EGG UI on Figma Community](https://www.figma.com/community/file/1694044412384019384). Duplicate it into your
+workspace and start from there; client files start as a copy of it.
+
+Master file (maintainers): [EGG UI v2](https://www.figma.com/design/BufvaVkSh9vMWPye117Ucd/EGG-UI---v2).
+
+At a glance: 345 components on 72 pages, 128 blocks, 8 page shells, 628 variables in five
+collections (Default and Corporate themes, Light and Dark, Density, Content in English and
+Română), 14 text styles, 101 Lucide icons and 6 brand icons. The plugin adds 12 skills, 31
+patterns and 38 component guides.
 
 ## Install
 
@@ -21,7 +29,8 @@ claude plugin install eggux@eggux
 Inside a session: `/plugin marketplace add laurentiucotet/eggux`, then `/plugin install eggux@eggux`.
 Update later with `claude plugin marketplace update eggux`.
 
-The skills that touch Figma need the Figma MCP server connected.
+The skills that touch Figma need the Figma MCP server connected. Start a client file from the
+[Community library](https://www.figma.com/community/file/1694044412384019384) so the component names, variables and pages match what the skills expect.
 
 ### Client decisions
 Each client project keeps `eggux/decisions.md`. Write a request in its Inbox, one line with date,
@@ -90,8 +99,8 @@ express: when to use what, behavior, rules.
 
 ## Figma library status
 
-EGG UI v2 has foundations (variables, text and effect styles, density, motion, chart palette),
-97 Lucide icons and components for actions, forms, selection, overlays, navigation, feedback,
+EGG UI v2 ([Community file](https://www.figma.com/community/file/1694044412384019384)) has foundations (variables, text and effect styles, density,
+motion, chart palette, a `foreground/brand` text token), 101 Lucide icons and 6 brand icons, and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
 (comments, chat, reactions, mentions), AI chat and AI states, commerce (product, cart, orders, account),
@@ -99,8 +108,8 @@ pricing, metrics, developer tools (endpoints, logs, diffs, JSON), automation, ad
 roles, API keys, sessions, SSO), sharing, notifications, surveys, Kanban, Rating, Carousel, Color
 Picker, tour, video and audio. On top: Field Presets,
 Blocks by category (AI, app, commerce, content, enterprise, forms, hero, navigation, page headers,
-results, sections) and 7
-Page Shells (app, marketing, auth, mobile, wizard, split view, docs), plus a Brand page with the
+results, sections) and 8
+Page Shells (app, marketing, auth, mobile, wizard, split view, docs, back office), plus a Brand page with the
 logo and a theme preview. Content areas use Figma native slots.
 Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
 Per-component reference (generated from Figma): [`plugins/eggux/references/components/`](plugins/eggux/references/components/README.md).
@@ -125,8 +134,8 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3g. Done: Corporate theme (Corporate Light / Dark modes) and enterprise pack: data grid with
    saved views, groups and totals, Filter Builder, Approvals, Audit Log, Roles & Permissions,
    Report, Record Form, Save Bar, Org Switcher; dense examples and a theme comparison.
-3f. Done: Community preparation: Cover, Intro, Foundations pages, neutral content audit,
-   listing copy in [`references/community-release.md`](plugins/eggux/references/community-release.md).
+3f. Done: published on [Figma Community](https://www.figma.com/community/file/1694044412384019384): Cover, Intro, Foundations pages, neutral content
+   audit, listing copy in [`references/community-release.md`](plugins/eggux/references/community-release.md).
 3h. Done: Donut / Pie, Bar Chart Horizontal, Heatmap; Import Mapping; Figma → code mapping
    ([`references/code-mapping.md`](plugins/eggux/references/code-mapping.md)) and
    [`CHANGELOG.md`](CHANGELOG.md).
@@ -164,6 +173,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3zf. Done (0.52.0): audit gaps closed: Uptime Bars, Pager Link, Image Figure, changelog lines, plan comparison cells, Location Card map, 5-role Permission Row, 25 components extended, 10 new blocks and a real example for every standalone component.
 3zg. Done (0.53.0): lessons from a client home page rebuild test: `foreground/brand` token, card and section icons, list dividers, small Post Cards, event date on image, Hero Prompt block, brand icons; build-ui reproduces reference screens with a gap inventory and fidelity review.
 3zh. Done (0.54.0): `Page Shell / Back office` on the Page Shells page (grid shell for back office and CMS screens, Aside on / off), with four examples; the test page is gone.
+3zi. Done (0.55.0): Search Result Item with 8 types (page, record, person, file, media, product, event, answer) and per-type properties; Scroll Area content slot; separate List and Tree pages.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - a Search Hero block;
