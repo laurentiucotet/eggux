@@ -1,12 +1,12 @@
 # Scroll Area
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-23 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Scroll Area](#scroll-area) | 2 | - |
+| [Scroll Area](#scroll-area) | 2 | Content |
 
 On the Figma page: "Example / release notes panel", "Stress test / Scroll Area"
 
@@ -14,7 +14,7 @@ On the Figma page: "Example / release notes panel", "Stress test / Scroll Area"
 
 Component set · 2 variants · default size 320 × 240
 
-A region that scrolls inside the page (shadcn Scroll Area): long lists in a popover, a sidebar, a table body with a fixed header, a row of cards. Clips its content on purpose and shows a thin scrollbar (thumb on border/default, wider on hover). Keep the page itself as the main scroll; never nest two scroll areas in one direction.
+Content is a native slot: put the list, rows or cards in it in the instance; the viewport clips it and the scrollbar shows that more exists.
 
 **Use for**
 
@@ -32,7 +32,7 @@ A region that scrolls inside the page (shadcn Scroll Area): long lists in a popo
 **Anatomy**
 
 1. Viewport: clips the content on purpose
-2. Content
+2. Content (native slot): the list, rows or cards; vertical fills the width, horizontal fills the height
 3. Scrollbar track
 4. Thumb: border/default, wider on hover
 
@@ -42,6 +42,7 @@ A region that scrolls inside the page (shadcn Scroll Area): long lists in a popo
 - Never nest two scroll areas in the same direction
 - Show that more content exists: a cut item, a fade or the scrollbar
 - Give it a fixed or max height; it clips its content on purpose
+- Fill the Content slot in the instance; never detach to change what scrolls
 
 **Accessibility**
 
@@ -53,6 +54,8 @@ A region that scrolls inside the page (shadcn Scroll Area): long lists in a popo
 |---|---|
 | Orientation | vertical, horizontal |
 
+Slots (fill them in the instance, never detach): `Content`
+
 Tokens and styles:
 - Colors: `background/default`, `background/muted`, `border/default`, `foreground/default`
 - Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`
@@ -61,4 +64,4 @@ Tokens and styles:
 
 Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
 
-Code: shadcn `ScrollArea`, `ScrollBar orientation="horizontal"`
+Code: shadcn `ScrollArea`, `ScrollBar orientation="horizontal"` (The Content slot is the `ScrollArea` children)

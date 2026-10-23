@@ -1,6 +1,6 @@
 # Component reference
 
-One file per component page of the EGG UI master library, generated on 2026-10-22.
+One file per component page of the EGG UI master library, generated on 2026-10-23.
 Each component lists its variants, properties with defaults, slots, the components and icons
 it is built from, the tokens and styles it uses, its usage guides and its code mapping. Main
 components also list when to use them, anatomy, rules and accessibility from
@@ -53,7 +53,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Input OTP](input-otp.md) | Input OTP, OTP Slot |
 | [Kanban](kanban.md) | Kanban Card, Kanban Column |
 | [Kbd](kbd.md) | Kbd, Kbd Group, Shortcut Row |
-| [List & Tree](list-and-tree.md) | List Item, Tree Item, Sortable List Item, Task Item, Job Listing |
+| [List](list.md) | List Item, Sortable List Item, Task Item, Job Listing |
 | [Menu](menu.md) | Menu, Menu Item, Menu Label, Menubar, Menubar Trigger, Account Menu |
 | [Metrics](metrics.md) | Trend Indicator, Metric Strip, Metric Strip Item, Usage Meter, Countdown, Leaderboard Row |
 | [Mobile](mobile.md) | Mobile Header, Bottom Nav, Bottom Nav Item, FAB, Action Sheet |
@@ -87,6 +87,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Toggle Group](toggle-group.md) | Toggle Group, Toggle Group Item |
 | [Tooltip](tooltip.md) | Tooltip |
 | [Tour](tour.md) | Coachmark, Hotspot, Annotation Pin |
+| [Tree](tree.md) | Tree Item |
 | [Video](video.md) | Video Player, Video Thumbnail, Audio Player |
 
-345 components on 71 pages.
+345 components on 72 pages.
