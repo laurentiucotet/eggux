@@ -3,6 +3,19 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.55.0
+- `Search Result Item` is a set with `Type=page|record|person|file|media|product|event|answer`.
+  Type=page is the former component (instances unchanged). Each type has its own text
+  properties (record Record, Record details; person Name, Role, Email; file File name, File
+  details, Owner; media Media title, Media summary, Media details; product Product, Product
+  summary; event Event, When and where; answer Question, Answer, Sources slot); pick the Type
+  first. Two examples: mixed results with an answer on top, and results tabbed by type.
+- `Scroll Area`: the content is a native `Content` slot (vertical fills the width, horizontal
+  fills the height); existing instances keep their content.
+- The "List & Tree" page is split into "List" (List Item, Sortable List Item, Task Item, Job
+  Listing) and "Tree" (Tree Item); component reference, rows and library map follow.
+- Guides: search-and-filter, ai-chat (AI answer above results) and commerce (product search).
+
 ## 0.54.0
 - New `Page Shell / Back office` on the Page Shells page, from the tested grid shell: Navigation,
   Header, Main, Aside and Actions slots; `Aside=on|off`; `Show actions`. Navigation and aside hug

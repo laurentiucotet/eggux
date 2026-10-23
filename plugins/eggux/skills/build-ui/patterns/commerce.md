@@ -32,3 +32,4 @@ page (BLOCKS): Product Detail, Order Summary; examples "cart sheet" and "checkou
   only). Reviews: `Rating Summary` above a list of `Review Item`.
 - Category page: `Block / Product Grid` (Filter Sections on the left, active Filter Chips, a grid of Product Cards that FILL, Load More); order history: `Block / Orders`; reviews: `Block / Reviews` under Product Detail.
 - Mini Cart is a popover under the header cart button.
+- Shop search results use `Search Result Item` Type=product; category listings stay on Product Card grids.

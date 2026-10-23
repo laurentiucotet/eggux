@@ -92,7 +92,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
 | Selection controls | `Setting Row` | - | Title, Description, Show description, Show divider; Control (native slot: Switch, Select, Button) |
-| Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Clips its content; thin scrollbar on border/default |
+| Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Content (native slot); clips its content; thin scrollbar on border/default |
 | Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
 | Select | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
 | Select | `Tag` | State: default, disabled | Label, Show remove |
@@ -408,7 +408,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Scheduler | `Availability Row` | State: available, unavailable | Day. Working hours for one weekday in booking and team settings: on/off Switch, the day, one or more time ranges and a button to add a range. |
 | Scheduler | `Meeting Card` | State: upcoming, live | Title. A meeting people are about to join: title, time with time zone, place or video link, who is invited, Join and Details. |
 | Scheduler | `Time Slot` | State: default, hover, selected, disabled | Time. One bookable start time in a booking flow, shown in a grid under the chosen day. |
-| Search | `Search Result Item` | - | Title, Snippet, Show path, Show meta, Path, Updated, Section. One result on a search page: where it lives (path), title that links to it, a two-line snippet around the matched words, type and date. |
+| Search | `Search Result Item` | Type: page, record, person, file, media, product, event, answer | One result on a search page. Text properties are per type (pick the Type first): page Title, Snippet, Path, Section, Updated; record Record, Record details; person Name, Role, Email; file File name, File details, Owner; media Media title, Media summary, Media details; product Product, Product summary; event Event, When and where; answer Question, Answer, Sources (slot). Show path, Show meta, Show action, Show feedback, Icon (swap) |
 | Select | `Address Autocomplete` | - | Query, Show suggestions. Address field with suggestions as people type; a pick fills the address fields below it. |
 | Select | `Recurrence Picker` | Frequency: daily, weekly, monthly | Show summary. How often something repeats: interval and unit, the days or the day, when it ends, and a summary sentence. |
 | Select | `Select Option` | Type: icon, avatar, none. State: default, highlighted | Title, Description, Show description, Checked, Icon. A rich option in a Select, Combobox or Menu list: icon or avatar, title, a muted second line and a check when selected. |

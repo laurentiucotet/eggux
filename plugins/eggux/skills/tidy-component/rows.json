@@ -1504,7 +1504,9 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / help center search results"
+    "Example / help center search results",
+    "Example / search results all types",
+    "Example / search results tabbed by type"
    ]
   }
  ],

@@ -78,6 +78,7 @@ does one thing well.
   answers and summaries, same words everywhere.
 - Use `sparkles` for AI entry points and AI-made content only.
 - AI-filled fields: AI Suggestion with a Confidence Indicator next to each value, and an AI Review Bar to move between them.
+- An AI answer above search results is `Search Result Item` Type=answer (label, Question, Answer, Sources, feedback), shown only when it is grounded in sources.
 
 ## Errors and limits
 - A failed answer keeps the partial text, says what happened and offers Retry
