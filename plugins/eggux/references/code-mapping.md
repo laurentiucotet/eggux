@@ -64,7 +64,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Signature Pad` | `signature_pad` (or `react-signature-canvas`) in a bordered canvas | Typed fallback; store PNG/SVG + timestamp |
 | `Sortable List Item` | `@dnd-kit/sortable` with keyboard sensor and announcements | Drag handle = `useSortable` listeners |
 | `Progress Ring` | SVG circle with `stroke-dasharray` (or Radix Progress) | `role="progressbar"`, `aria-valuenow` |
-| `Scroll Area` | shadcn `ScrollArea`, `ScrollBar orientation="horizontal"` | |
+| `Scroll Area` | shadcn `ScrollArea`, `ScrollBar orientation="horizontal"` | The Content slot is the `ScrollArea` children |
 | `File Preview` | `react-pdf` (pdf.js) for PDF, `<img>` for images, in `Sheet` or `Dialog` | Unsupported types: download link |
 | `Image Cropper`, `Avatar Upload` | `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input | Crop on the client, upload the result |
 | `Menubar`, `Menubar Trigger` | shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`) | |
@@ -200,7 +200,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Block / Status Page` uptime bars | custom flex of 90 spans with `title` and an uptime % in text | Data from your status provider (Instatus, Better Stack, Atlassian Statuspage) |
 | `Block / Navbar Mega Menu` | shadcn `NavigationMenu` with `NavigationMenuContent` | |
 | `Notification Item`, `Notification Center` | shadcn `Popover` + `Tabs` + `ScrollArea`; custom rows with `Avatar` | Bell `Button` + `Badge`; opening an item marks it read |
-| `Search Result Item` | custom `<li>`: path, `<a>` heading, `line-clamp-2` snippet, `Badge` | Matched terms in `<mark>` |
+| `Search Result Item` | custom `<li>` with a `type` switch (page, record, person, file, media, product, event, answer): page = breadcrumb, `<a>` heading, `line-clamp-2` snippet, `Badge`; others = leading `Avatar`, icon tile, video poster, image or date tile, a `line-clamp-2` title, one details line; `Badge`, `Button`, Price, `Rating`; answer = muted `Card` with source links | Matched terms in `<mark>`; one `type` per result; at most one answer, first; Figma text props are per type (Record, Name, File name, Product, Event, Question...) |
 | `Annotation Pin` | custom absolutely positioned `Button` + shadcn `Popover` | Store positions as percentages of the image |
 | `Social Share` | shadcn `Button size="icon"`; `navigator.clipboard`, `mailto:`, `navigator.share`, network share URLs | Copy link confirms with Sonner; official network logos |
 | `Command Snippet` | `<pre><code>` on `bg-muted` + shadcn `Button size="icon"` (`navigator.clipboard.writeText`) | Prompt `$` is `select-none aria-hidden`, never copied |

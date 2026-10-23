@@ -1122,16 +1122,11 @@
    ]
   }
  ],
- "List & Tree": [
+ "List": [
   {
    "main": "List Item",
    "helpers": [],
    "block": "92:1352"
-  },
-  {
-   "main": "Tree Item",
-   "helpers": [],
-   "block": "138:1552"
   },
   {
    "main": "Sortable List Item",
@@ -1509,7 +1504,9 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / help center search results"
+    "Example / help center search results",
+    "Example / search results all types",
+    "Example / search results tabbed by type"
    ]
   }
  ],
@@ -1817,6 +1814,13 @@
    "examples": [
     "Example / design review with annotation pins"
    ]
+  }
+ ],
+ "Tree": [
+  {
+   "main": "Tree Item",
+   "helpers": [],
+   "block": "138:1552"
   }
  ],
  "Video": [

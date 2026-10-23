@@ -3958,7 +3958,7 @@
   ],
   "anatomy": [
    "Viewport: clips the content on purpose",
-   "Content",
+   "Content (native slot): the list, rows or cards; vertical fills the width, horizontal fills the height",
    "Scrollbar track",
    "Thumb: border/default, wider on hover"
   ],
@@ -3966,7 +3966,8 @@
    "The page stays the main scroll",
    "Never nest two scroll areas in the same direction",
    "Show that more content exists: a cut item, a fade or the scrollbar",
-   "Give it a fixed or max height; it clips its content on purpose"
+   "Give it a fixed or max height; it clips its content on purpose",
+   "Fill the Content slot in the instance; never detach to change what scrolls"
   ],
   "a11y": [
    "Keyboard scrolling keeps working: arrows, Page Up, Page Down",
@@ -6879,39 +6880,53 @@
   ]
  },
  "Search Result Item": {
-  "summary": "One result on a search page: path, title link, a two-line snippet with the matched words, type and date.",
+  "summary": "One result on a search page, 640 wide. Type says what was found: page, record, person, file, media, product, event or a featured answer; each shows the parts people need to pick the right result.",
   "use": [
-   "Search results pages for help centers and docs",
-   "Global search across records (customers, invoices, articles)",
-   "Results grouped by type"
+   "Search results pages for help centers and docs (Type=page)",
+   "Global search across the app: records, people and files in one list or in tabs",
+   "Search on content and shop sites: videos (media), products, events",
+   "One featured or AI answer above the results (Type=answer)"
   ],
   "avoid": [
    "Suggestions while typing: use Command Dialog",
    "A list of records to manage: use a table of Table Cells or List Items",
+   "Product grids and catalog listings: use Product Card",
+   "Agenda or event listings: use Event Card",
    "Related links under an article: use Post Card"
   ],
   "anatomy": [
-   "Path (Show path): Path (first segment, \"Help center\"), Icon/chevron-right, Section (second segment, \"Invoices\"); body/small, muted",
-   "Title: link, heading/h4",
-   "Snippet: two lines around the matched words",
-   "Meta (Show meta): type Badge and Updated (\"Updated 12 Oct 2026\")"
+   "Type=page: Path (Show path): Path, Icon/chevron-right, Section; Title (body/large, 2 lines); Snippet (body/small, 2 lines, matched words bold); meta (Show meta): type Badge and Updated",
+   "Type=record: icon tile (Icon swap, 40, background/muted); Record (title, 2 lines) with a status Badge (exposed); Record details (Show meta): \"Invoice · €1,240.00 · Due 30 Oct 2026 · Updated 12 Oct\"",
+   "Type=person: Avatar lg (exposed: Initials or photo); Name; Role (role and team, 2 lines); Email (Show meta); action (Show action): outline Button sm \"Message\" (exposed)",
+   "Type=file: icon tile (Icon swap: file type); File name; meta (Show meta): File details (\"PDF · 2.4 MB · Updated 12 Oct\"), owner Avatar xs (exposed) and Owner; download (Show action): ghost Button Icon",
+   "Type=media: Video Thumbnail 160 x 90 with duration (exposed); Media title; Media summary (2 lines); Media details (Show meta): \"Video · Acme Academy · Updated 12 Oct 2026\"",
+   "Type=product: Image Placeholder 1:1, 80; Product; Price sm (exposed); Rating sm with count (exposed, Show meta); Product summary (2 lines)",
+   "Type=event: Date Tile (exposed); Event with a format Badge (exposed, \"Webinar\"); When and where (Show meta): date, time with time zone, place",
+   "Type=answer: muted card (background/muted, radius/lg, spacing/4); label: AI Notice label (exposed, \"AI answer\", or a Badge \"Best answer\"); Question; Answer (body/default, 4 lines); Sources slot (Source Items or Citations); feedback (Show feedback): \"Was this helpful?\" and thumbs up / down",
+   "Each type has its own text properties; Title, Snippet, Path, Section and Updated belong to page only. Show meta, Show action and Icon are shared"
   ],
   "rules": [
-   "Bold the matched terms in the title and snippet",
-   "Snippet is cut to two lines around the first match",
-   "Records can show their status Badge in meta",
-   "Group results by type when there are several kinds",
+   "One Type per result: pick the one that matches what opens on click",
+   "Pick the Type before typing text: text properties are per type, so text does not carry over when you switch",
+   "Group results by type with a heading per group, or tab by type (All, Pages, People, Files with counts); inside a tab use one Type",
+   "At most one answer, always first, and only when it is grounded in sources people can open",
+   "Never mix widths or densities in one list; keep the same Show path and Show meta choice for every row of a group",
+   "Titles wrap to 2 lines, snippets and summaries to 2 (Answer to 4), then ellipsis; bold the matched terms",
+   "Records show their status Badge; files show format and size before people click; people show role and team",
    "No results: Empty State that repeats the query and suggests other words"
   ],
   "a11y": [
-   "Results are a list; each title is a link and a heading",
+   "Results are a list; each title is a link and a heading; the leading visual is decorative (alt=\"\") unless it adds information",
    "Matched terms use <mark> (or strong), with contrast that does not rely on color alone",
-   "The result count is announced in a live region when the query changes"
+   "The result count is announced in a live region when the query or tab changes",
+   "Row actions (Message, download, feedback) are separate buttons whose labels name the result (\"Download Q3 revenue report, PDF, 2.4 MB\")",
+   "The answer is a region labeled \"AI answer\" with its sources as links"
   ],
-  "code": "custom: <li> with breadcrumb text, an <a> heading, a <p class=\"line-clamp-2\"> and Badge; highlights with <mark>.",
+  "code": "custom: <li> per result with a type switch; page = breadcrumb, <a> heading, <p class=\"line-clamp-2\">, Badge; leading Avatar, Badge, Button, Price, Rating from the system; answer = Card (muted) with sources as links.",
   "guides": [
    "skills/build-ui/patterns/search-and-filter.md",
-   "skills/build-ui/patterns/content-and-docs.md"
+   "skills/build-ui/patterns/content-and-docs.md",
+   "skills/build-ui/components/ai-chat.md"
   ]
  },
  "Show More": {

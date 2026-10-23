@@ -28,7 +28,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 
 ## Figma
 `List Item` has native slots Leading and Trailing. `Tree Item` Type × State × Level; Show
-checkbox (the Checkbox is exposed), Show count, Show icon with the Icon swap. Examples: permissions tree, navigation tree on the List & Tree page.
+checkbox (the Checkbox is exposed), Show count, Show icon with the Icon swap. Examples: permissions tree, navigation tree on the Tree page.
 
 ## Sortable List Item
 - Lists people reorder: columns of a view, form fields, steps, priorities. Show the order

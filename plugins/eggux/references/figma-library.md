@@ -92,7 +92,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
 | Selection controls | `Setting Row` | - | Title, Description, Show description, Show divider; Control (native slot: Switch, Select, Button) |
-| Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Clips its content; thin scrollbar on border/default |
+| Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Content (native slot); clips its content; thin scrollbar on border/default |
 | Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
 | Select | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
 | Select | `Tag` | State: default, disabled | Label, Show remove |
@@ -175,9 +175,9 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Tabs | `Tabs` | Variant: default, line, vertical | Tabs (native slot of Tab instances with the same Variant). default: pill tabs in a card; line: underlined page sections; vertical: a 200 wide column for settings |
 | Toggle Group | `Toggle Group Item` | State: default, hover, selected, focus, disabled | Label, Show label, Show icon + Icon (swap) |
 | Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels. Theme, view and billing period switches are examples on this page, not components |
-| List & Tree | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing, Show divider. Leading, Trailing (native slots) |
-| List & Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Show checkbox (Checkbox exposed), Show icon + Icon (swap), Show count |
-| List & Tree | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description, Show leading; grip handle; Leading (native slot, 1:1 image 48), Trailing (native slot) |
+| List | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing, Show divider. Leading, Trailing (native slots) |
+| Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Show checkbox (Checkbox exposed), Show icon + Icon (swap), Show count |
+| List | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description, Show leading; grip handle; Leading (native slot, 1:1 image 48), Trailing (native slot) |
 | Tooltip | `Tooltip` | Side: top, bottom, left, right | Label (wraps at 280), Title + Show title (rich), Show shortcut (Kbd exposed) |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
 | Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner | Title, Description, Show description, Actions (native slot) + Show actions, Show close |
@@ -376,8 +376,8 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Input | `Range Input` | State: default, error | Min, Max, Unit. Two fields for a minimum and a maximum: price or amount filters, typed date ranges, quantities. |
 | Input | `Search Field` | State: default, focus, filled | Placeholder, Query, Show shortcut. Search box for a list, a table or the whole app: search icon, a placeholder that names what is searched, a shortcut hint and clear. |
 | Kbd | `Shortcut Row` | - | Action. One keyboard shortcut in the shortcuts dialog or a help page: what it does, then the keys. |
-| List & Tree | `Task Item` | State: open, done, overdue | Title, Due, Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
-| List & Tree | `Job Listing` | - | Title, Meta, Location, Posted, Salary, Show badge, Show salary. One open role in a careers list: title, team, type and work mode, location, posted date, salary range and Apply. |
+| List | `Task Item` | State: open, done, overdue | Title, Due, Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
+| List | `Job Listing` | - | Title, Meta, Location, Posted, Salary, Show badge, Show salary. One open role in a careers list: title, team, type and work mode, location, posted date, salary range and Apply. |
 | Menu | `Account Menu` | - | Name, Email. The menu behind the signed-in person's avatar: name and email, personal settings, and Log out. |
 | Metrics | `Countdown` | - | Days, Hours, Minutes, Seconds, Show seconds. Time left until a deadline people act on: an offer, a webinar start, a payment due, a session that expires. |
 | Metrics | `Leaderboard Row` | State: default, current | Rank, Name, Value. A ranked person or team: rank, avatar, name and value. |
@@ -408,7 +408,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Scheduler | `Availability Row` | State: available, unavailable | Day. Working hours for one weekday in booking and team settings: on/off Switch, the day, one or more time ranges and a button to add a range. |
 | Scheduler | `Meeting Card` | State: upcoming, live | Title. A meeting people are about to join: title, time with time zone, place or video link, who is invited, Join and Details. |
 | Scheduler | `Time Slot` | State: default, hover, selected, disabled | Time. One bookable start time in a booking flow, shown in a grid under the chosen day. |
-| Search | `Search Result Item` | - | Title, Snippet, Show path, Show meta, Path, Updated, Section. One result on a search page: where it lives (path), title that links to it, a two-line snippet around the matched words, type and date. |
+| Search | `Search Result Item` | Type: page, record, person, file, media, product, event, answer | One result on a search page. Text properties are per type (pick the Type first): page Title, Snippet, Path, Section, Updated; record Record, Record details; person Name, Role, Email; file File name, File details, Owner; media Media title, Media summary, Media details; product Product, Product summary; event Event, When and where; answer Question, Answer, Sources (slot). Show path, Show meta, Show action, Show feedback, Icon (swap) |
 | Select | `Address Autocomplete` | - | Query, Show suggestions. Address field with suggestions as people type; a pick fills the address fields below it. |
 | Select | `Recurrence Picker` | Frequency: daily, weekly, monthly | Show summary. How often something repeats: interval and unit, the days or the day, when it ends, and a summary sentence. |
 | Select | `Select Option` | Type: icon, avatar, none. State: default, highlighted | Title, Description, Show description, Checked, Icon. A rich option in a Select, Combobox or Menu list: icon or avatar, title, a muted second line and a check when selected. |
