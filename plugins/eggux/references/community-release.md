@@ -42,7 +42,7 @@ Light and Dark, data grid, approvals, audit and AI chat. Variables, native slots
 
 **Description:**
 EGG UI is a complete design system for product and enterprise teams: SaaS, internal tools,
-back office, finance, commerce, content and AI products.
+admin panels, finance, commerce, content and AI products.
 
 What is inside
 - Two themes, four modes: Default (Light, Dark) and Corporate (Light, Dark), plus Density
@@ -55,7 +55,7 @@ What is inside
   chat, commerce, AI chat, cookie consent, tour and video.
 - 128 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero,
   Navigation, Page Headers, Results, Sections), including navbar and footer variants and a help center kit (search,
-  topics, articles, support, changelog, status), and 8 page shells (App, Marketing, Auth, Mobile, Wizard, Split View, Docs, Back office).
+  topics, articles, support, changelog, status), and 8 page shells (App, Marketing, Auth, Mobile, Wizard, Split View, Docs, Admin Panel).
 - 628 variables in five collections (Content holds names and labels in English and Română): Primitives, Semantic (Light, Dark), Components and
   Density (Comfortable, Compact). 14 text styles, shadows and motion tokens.
 - AI chat kit: prompt input, user and assistant messages, reasoning, tool calls with

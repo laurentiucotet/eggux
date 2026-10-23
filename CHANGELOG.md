@@ -3,10 +3,16 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.55.2
+- `Page Shell / Back office` is now `Page Shell / Admin Panel`; "back office" is replaced by
+  "admin panel" in the Figma file (shell, Sidebar example, Intro texts with current counts) and
+  in every guide, reference and record. The shell has no examples on the Page Shells page.
+- README no longer links the master file; init points only to the Community file.
+
 ## 0.55.1
 - README: link to the Figma Community file (https://www.figma.com/community/file/1694044412384019384),
   current counts (345 components, 128 blocks, 8 page shells, 628 variables, 101 + 6 icons),
-  Back office shell and 0.55.0 in the roadmap.
+  Admin Panel shell and 0.55.0 in the roadmap.
 - init asks clients to duplicate the Community file; library map and Community listing copy
   link it and carry the current counts.
 
@@ -24,18 +30,18 @@ EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 - Guides: search-and-filter, ai-chat (AI answer above results) and commerce (product search).
 
 ## 0.54.0
-- New `Page Shell / Back office` on the Page Shells page, from the tested grid shell: Navigation,
+- New `Page Shell / Admin Panel` on the Page Shells page, from the tested grid shell: Navigation,
   Header, Main, Aside and Actions slots; `Aside=on|off`; `Show actions`. Navigation and aside hug
   their content, Main flexes, the actions bar stays at the bottom and only the Body scrolls.
-- Its four test instances are now examples on the Page Shells page ("back office editor", at 1280,
-  with navigation collapsed, "back office list"); the "Test / Shells" page is removed.
-- build-ui index and enterprise-apps pattern point back office and CMS screens to the new shell;
+- Its four test instances are now examples on the Page Shells page ("admin panel editor", at 1280,
+  with navigation collapsed, "admin panel list"); the "Test / Shells" page is removed.
+- build-ui index and enterprise-apps pattern point admin panel and CMS screens to the new shell;
   library map and README updated.
 
 ## 0.53.2
-- Removed the client test screens (home, search results, article, showcase, back office screens),
+- Removed the client test screens (home, search results, article, showcase, admin panel screens),
   their navbar component and examples. The test page is now "Test / Shells" and keeps only the
-  generic back office grid shell (`Page Shell / Back office (test)`) and its four test instances.
+  generic admin panel grid shell (`Page Shell / Admin Panel (test)`) and its four test instances.
 
 ## 0.53.1
 - Test page: the client navbar of the test (since removed) became a set with `Viewport=desktop|mobile` and
@@ -288,8 +294,8 @@ Lessons from rebuilding a client home page from the library (a test, since remov
 
 ## 0.43.1
 - figma-library.md lists Side Panel and Sidebar Double, the new Entity Card and Sortable List
-  Item slots, and the tested back office grid shell.
-- build-ui index: a Back office / CMS screen row; drawer and sidebar guides list the new
+  Item slots, and the tested admin panel grid shell.
+- build-ui index: an Admin panel / CMS screen row; drawer and sidebar guides list the new
   components.
 - README roadmap: open library gaps found while rebuilding real screens.
 
@@ -303,7 +309,7 @@ Lessons from rebuilding a client home page from the library (a test, since remov
 - `Sortable List Item`: Leading slot (Show leading) with a 1:1 image, 48 px.
 - Docs, stress tests and examples for the four rows (tidy-component); guides for sidebar,
   drawer, card, list and tree, enterprise apps; code-mapping rows for the new components.
-- Test page (now "Test / Shells"): `Page Shell / Back office (test)`, a grid shell
+- Test page (now "Test / Shells"): `Page Shell / Admin Panel (test)`, a grid shell
   (navigation and aside columns hug their content, body scrolls, actions fixed at the bottom),
   tested at 1440 and 1280, with collapsed navigation and panel, and as a list.
 - component-page.js leaves viewport examples (clipped `Example /` screens) and GRID frames
@@ -313,7 +319,7 @@ Lessons from rebuilding a client home page from the library (a test, since remov
 ## 0.42.2
 - Figma API notes: grid row sizes must be set to hug after the cells are added; switching
   `layoutMode` keeps the old sizing modes; a growing child is FIXED until set back to hug.
-  Found while rebuilding three client back office and showcase screens with the library.
+  Found while rebuilding three client admin panel and showcase screens with the library.
 
 ## 0.42.1
 - Fixed stress test frames that stopped growing with their content (an auto-layout frame built

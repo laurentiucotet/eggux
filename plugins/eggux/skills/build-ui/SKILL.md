@@ -40,7 +40,7 @@ If a client file is missing, say which skill creates it and continue with base r
 - **Copy:** the client's terminology and voice, real-looking content, never lorem ipsum. Replace
   the library's neutral defaults ("Acme", "Website redesign") with the client's content.
 - **States:** default, empty, loading and error for every screen; validation errors for forms.
-- **Theme:** Corporate modes (+ Density Compact) for enterprise, back office and data-heavy
+- **Theme:** Corporate modes (+ Density Compact) for enterprise, admin panel and data-heavy
   products; Default modes otherwise, unless `brand.md` says which. See
   `patterns/enterprise-apps.md`.
 - **Responsive:** desktop first unless the actor works on the phone; mobile follows

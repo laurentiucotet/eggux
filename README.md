@@ -4,15 +4,13 @@ A Claude Code plugin for running client UI projects on a shadcn-based design sys
 discovery, brand intake into Figma, building UI from the library, a decision log and UX review.
 
 EGG UI is a generalist design system, complete enough for any product (SaaS, e-commerce,
-fintech, booking, content, internal tools, back office), with domain-neutral components, two
+fintech, booking, content, internal tools, admin panels), with domain-neutral components, two
 themes (Default and Corporate, each Light and Dark), an enterprise pack (data grid, filter
 builder, approvals, audit log, roles and permissions, reports) and a validated chart palette,
 motion and density tokens.
 
 **Get the Figma library:** [EGG UI on Figma Community](https://www.figma.com/community/file/1694044412384019384). Duplicate it into your
 workspace and start from there; client files start as a copy of it.
-
-Master file (maintainers): [EGG UI v2](https://www.figma.com/design/BufvaVkSh9vMWPye117Ucd/EGG-UI---v2).
 
 At a glance: 345 components on 72 pages, 128 blocks, 8 page shells, 628 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
@@ -109,7 +107,7 @@ roles, API keys, sessions, SSO), sharing, notifications, surveys, Kanban, Rating
 Picker, tour, video and audio. On top: Field Presets,
 Blocks by category (AI, app, commerce, content, enterprise, forms, hero, navigation, page headers,
 results, sections) and 8
-Page Shells (app, marketing, auth, mobile, wizard, split view, docs, back office), plus a Brand page with the
+Page Shells (app, marketing, auth, mobile, wizard, split view, docs, admin panel), plus a Brand page with the
 logo and a theme preview. Content areas use Figma native slots.
 Inventory and conventions: [`plugins/eggux/references/figma-library.md`](plugins/eggux/references/figma-library.md).
 Per-component reference (generated from Figma): [`plugins/eggux/references/components/`](plugins/eggux/references/components/README.md).
@@ -161,7 +159,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3t. Done: generated per-component reference (`references/components/`).
 3u. Done: people picker, transfer list, inline edit, signature pad, sortable list, progress ring, scroll area, file preview, image cropper, avatar upload, menubar, cookie consent, funnel and scatter charts.
 3v. Done: `/eggux:tidy-component` and the component page row (Docs, Component, Stress test, Examples); all 57 component pages (151 rows) with generated docs, stress tests and contextual examples.
-3w. Done: back office shell test (grid page shell); Side Panel, Sidebar Double; Entity Card Actions slot; Sortable List Item 1:1 Leading image.
+3w. Done: admin panel shell test (grid page shell); Side Panel, Sidebar Double; Entity Card Actions slot; Sortable List Item 1:1 Leading image.
 3x. Done: Page Headers blocks (detail, listing, search results, profile, event, topic, report, simple); Post Card compact.
 3y. Done: Meta Item, Figure, Setting Row, Person Card; Tab counts.
 3z. Done: Event Card and Date Tile, Resource Item, Quote.
@@ -172,7 +170,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3ze. Done (0.51.0): audit and consolidation: 6 merges, 10 wrappers turned into examples, 9 renames, naming conventions, quality fixes, about 45 blocks rebuilt on components.
 3zf. Done (0.52.0): audit gaps closed: Uptime Bars, Pager Link, Image Figure, changelog lines, plan comparison cells, Location Card map, 5-role Permission Row, 25 components extended, 10 new blocks and a real example for every standalone component.
 3zg. Done (0.53.0): lessons from a client home page rebuild test: `foreground/brand` token, card and section icons, list dividers, small Post Cards, event date on image, Hero Prompt block, brand icons; build-ui reproduces reference screens with a gap inventory and fidelity review.
-3zh. Done (0.54.0): `Page Shell / Back office` on the Page Shells page (grid shell for back office and CMS screens, Aside on / off), with four examples; the test page is gone.
+3zh. Done (0.54.0): `Page Shell / Admin Panel` on the Page Shells page (grid shell for admin panel and CMS screens, Aside on / off); the test page is gone.
 3zi. Done (0.55.0): Search Result Item with 8 types (page, record, person, file, media, product, event, answer) and per-type properties; Scroll Area content slot; separate List and Tree pages.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:

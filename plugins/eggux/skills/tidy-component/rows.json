@@ -1635,7 +1635,7 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / Back office list with double sidebar",
+    "Example / Admin panel list with double sidebar",
     "Example / Double sidebar collapsed"
    ]
   },
