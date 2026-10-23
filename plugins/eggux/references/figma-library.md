@@ -1,6 +1,6 @@
 # EGG UI v2: what exists in Figma
 
-Inventory of the master library (`BufvaVkSh9vMWPye117Ucd`). Client files start as a duplicate,
+Inventory of the master library (`BufvaVkSh9vMWPye117Ucd`, published as [EGG UI on Figma Community](https://www.figma.com/community/file/1694044412384019384)). Client files start as a duplicate,
 so the same names exist there. Use instances of these; build something new only when nothing
 fits, and say so. When this list and the file disagree, the file wins: update this list.
 Full per-component detail (every property with its default, slots, parts, tokens, guides, code)

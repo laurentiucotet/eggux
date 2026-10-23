@@ -3,6 +3,13 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.55.1
+- README: link to the Figma Community file (https://www.figma.com/community/file/1694044412384019384),
+  current counts (345 components, 128 blocks, 8 page shells, 628 variables, 101 + 6 icons),
+  Back office shell and 0.55.0 in the roadmap.
+- init asks clients to duplicate the Community file; library map and Community listing copy
+  link it and carry the current counts.
+
 ## 0.55.0
 - `Search Result Item` is a set with `Type=page|record|person|file|media|product|event|answer`.
   Type=page is the former component (instances unchanged). Each type has its own text

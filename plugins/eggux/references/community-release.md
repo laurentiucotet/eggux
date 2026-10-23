@@ -30,13 +30,14 @@ steps again before every new Community version.
 5. Optional carousel images: export the Cover, "Example / theme comparison" and
    "Example / enterprise invoices" (Enterprise page), the "AI chat app" example (AI page) and
    the Foundations page top at 1920 x 1080.
-6. After publishing, link the Community page in the README.
+6. Done: the Community page is [EGG UI](https://www.figma.com/community/file/1694044412384019384), linked from the README. Publish a new version
+   from the master file after each release and keep the counts below current.
 
 ## Listing copy
 
 **Name:** EGG UI: design system for product and enterprise teams
 
-**Tagline:** More than 330 components, 110 blocks and 7 page shells. Default and Corporate themes in
+**Tagline:** 345 components, 128 blocks and 8 page shells. Default and Corporate themes in
 Light and Dark, data grid, approvals, audit and AI chat. Variables, native slots, shadcn/ui names.
 
 **Description:**
@@ -49,13 +50,13 @@ What is inside
 - Enterprise pack: data grid with saved views, groups, totals and bulk actions; filter
   builder; approval chain; audit log with field changes; roles and permissions matrix; report;
   long record form with save bar; organization switcher.
-- More than 330 components: forms, selection, overlays, navigation, feedback, tables
+- 345 components: forms, selection, overlays, navigation, feedback, tables
   on auto layout grid, charts (bar, line, donut, heatmap, gauge, treemap, funnel, scatter), dates, scheduling and Gantt, files with preview and image cropper, people picker, rich text editor, comments and
   chat, commerce, AI chat, cookie consent, tour and video.
-- More than 110 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero,
+- 128 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero,
   Navigation, Page Headers, Results, Sections), including navbar and footer variants and a help center kit (search,
-  topics, articles, support, changelog, status), and 7 page shells (App, Marketing, Auth, Mobile, Wizard, Split View, Docs).
-- 627 variables in five collections (Content holds names and labels in English and Română): Primitives, Semantic (Light, Dark), Components and
+  topics, articles, support, changelog, status), and 8 page shells (App, Marketing, Auth, Mobile, Wizard, Split View, Docs, Back office).
+- 628 variables in five collections (Content holds names and labels in English and Română): Primitives, Semantic (Light, Dark), Components and
   Density (Comfortable, Compact). 14 text styles, shadows and motion tokens.
 - AI chat kit: prompt input, user and assistant messages, reasoning, tool calls with
   approval, sources and citations, suggestions, assistant panel, inline AI.
