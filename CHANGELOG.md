@@ -3,6 +3,15 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.54.0
+- New `Page Shell / Back office` on the Page Shells page, from the tested grid shell: Navigation,
+  Header, Main, Aside and Actions slots; `Aside=on|off`; `Show actions`. Navigation and aside hug
+  their content, Main flexes, the actions bar stays at the bottom and only the Body scrolls.
+- Its four test instances are now examples on the Page Shells page ("back office editor", at 1280,
+  with navigation collapsed, "back office list"); the "Test / Shells" page is removed.
+- build-ui index and enterprise-apps pattern point back office and CMS screens to the new shell;
+  library map and README updated.
+
 ## 0.53.2
 - Removed the client test screens (home, search results, article, showcase, back office screens),
   their navbar component and examples. The test page is now "Test / Shells" and keeps only the

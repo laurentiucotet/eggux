@@ -253,6 +253,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Page Shells | `Page Shell / Wizard` | - | Logo, Step text, Save and exit, Progress, Page (native slot, 672), Back / Continue |
 | Page Shells | `Page Shell / Split View` | - | Sidebar + Top Bar; List (384) and Detail (native slots); resize handle |
 | Page Shells | `Page Shell / Docs` | - | Header with search; Nav and Content (native slots); Table of Contents exposed |
+| Page Shells | `Page Shell / Back office` | Aside: on, off | Navigation, Header, Main, Aside, Actions (native slots); Show actions. Grid: navigation and aside hug, Main flexes, actions fixed at the bottom, only the Body scrolls |
 | Brand | `Logo Mark` | - | The one place to put the client symbol; used by Logo and Sidebar Workspace |
 | Brand | `Logo` | Type: mark, wordmark, full | Name |
 | Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed |
@@ -527,10 +528,10 @@ which screen: `skills/build-ui/index.md`):
 - Split View: App shell with List (384, resizable) and Detail slots for mail, chat, tickets, files.
 - Docs: header with search, left navigation, reading column, table of contents.
 - Wizard: focused flow without sidebar: step counter, Save and exit, progress, sticky Back / Continue.
-- Back office on a grid (test, page "Test / Shells": `Page Shell / Back office (test)`, not
-  yet on the Page Shells page): Navigation column hugs Sidebar or Sidebar Double, Header (Top Bar +
-  Page Header), Body with Main (flex) and Aside (hugs a Side Panel), Actions bar fixed at the
-  bottom; only the Body scrolls. Variants Aside on / off, Show actions.
+- Back office (`Page Shell / Back office`, a grid): Navigation column hugs Sidebar or Sidebar
+  Double, Header (Top Bar + Page Header), Body with Main (flex) and Aside (hugs a Side Panel),
+  Actions bar fixed at the bottom; only the Body scrolls. Variants Aside on / off, Show actions.
+  Examples: "back office editor" (also at 1280 and with navigation collapsed), "back office list".
 - Mobile (< 768): Mobile Header + Page + Bottom Nav. The App Sidebar opens from the menu button
   as a left Sheet ("mobile menu open"); marketing pages use `Block / Navbar Mobile`. See
   `build-ui/patterns/mobile.md`.
@@ -585,8 +586,7 @@ and "billing period" (Toggle Group page), "stock status" (Badge page), "welcome 
 page) and "language switch" (Select page). Copy the example; there is no component to insert.
 
 ## Not built yet
-Open gaps from the README roadmap: `Page Shell / Back office` on the Page Shells page (from the
-tested grid shell), a Search Hero block, and examples in real screens for the 0.50.0 components
+Open gaps from the README roadmap: a Search Hero block, and examples in real screens for the 0.50.0 components
 (their rows have generated stress tests). Icons: the 97 Lucide icons stay; the team may switch
 to Phosphor (flatten each icon to one `Vector` layer so swaps keep their color). When something
 is missing, compose from the components above, tokens and text styles, and flag it.

@@ -163,9 +163,9 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3ze. Done (0.51.0): audit and consolidation: 6 merges, 10 wrappers turned into examples, 9 renames, naming conventions, quality fixes, about 45 blocks rebuilt on components.
 3zf. Done (0.52.0): audit gaps closed: Uptime Bars, Pager Link, Image Figure, changelog lines, plan comparison cells, Location Card map, 5-role Permission Row, 25 components extended, 10 new blocks and a real example for every standalone component.
 3zg. Done (0.53.0): lessons from a client home page rebuild test: `foreground/brand` token, card and section icons, list dividers, small Post Cards, event date on image, Hero Prompt block, brand icons; build-ui reproduces reference screens with a gap inventory and fidelity review.
+3zh. Done (0.54.0): `Page Shell / Back office` on the Page Shells page (grid shell for back office and CMS screens, Aside on / off), with four examples; the test page is gone.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
-   - `Page Shell / Back office` on the Page Shells page, from the tested grid shell;
    - a Search Hero block;
 5. System: documentation site.
 
