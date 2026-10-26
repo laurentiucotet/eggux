@@ -3,6 +3,26 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.60.0
+Blocks wave 2 (audit 2): the library has 245 blocks.
+- Sections: Features with Code, Use Cases, Us vs Them, Press Mentions (fictional press logos), CTA
+  with Form, CTA App Download, Pricing Usage-based, Pricing Enterprise Banner, Testimonial Wall,
+  Testimonial Video, Stats with Image, Team Cards Social, FAQ with Categories, Book a Demo, Timeline
+  Section, Case Study Grid, Case Study Header.
+- Content, Navigation, Forms: Legal Page, Content with Image, Navbar Flyout, Waitlist (default,
+  joined), Workspace Setup, Invite Team Step, Plan Select Step.
+- App: Finance Dashboard, Support Dashboard, Grouped Table, People Directory, Empty States Set,
+  File Manager, Scheduler Day, Inbox, Team Chat, Support Chat Widget, Activity Feed, Invoice Detail,
+  Plan Checkout, Plan and Usage, Workspace Settings, Appearance Settings, Invite Members Dialog.
+- Commerce and AI: Product List Simple, Product Detail Image Grid, Product Specs, Checkout
+  Multi-step, Order Detail, Write a Review, AI Document Review, AI Generate, AI Settings.
+- Enterprise: Org Chart, Approval Inbox, Workflow Builder, Version History, User Directory.
+- Page examples: Case study, Careers, Blog index, Legal, Mobile landing (390), Data table page, File
+  manager, Team chat, Order detail, Agent run, User directory (Corporate Light + Compact).
+- New icon `folder`.
+- Guides (index, marketing, commerce, content, settings, chat, AI, approvals, audit log, enterprise
+  and more) and the library map cover every new block.
+
 ## 0.59.0
 Defect fixes found while composing pages, and the first part of blocks wave 2.
 - Feature Item holds an exposed `Icon Tile` (Icon and Style set on the tile); all 92 instances kept
