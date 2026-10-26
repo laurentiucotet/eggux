@@ -107,6 +107,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   parent) and back in (`insertChild`): ids and property references stay.
 
 ## Icons
+- Icon stroke follows size like lucide-react: stroke = 2 x size / 24 (16 px 1.33, 14 px 1.17, 20 px 1.67).
+  `rescale()` keeps that; `resize()` keeps stroke 2 and the icon looks bold. After `resize()`, set the
+  vectors' `strokeWeight` to 2 x width / 24 in the main component so instances inherit.
 - Keep every icon one layer named `Vector`, or swapped icons come out partly in the default color.
 - An INSTANCE_SWAP property on a node forces its default on every variant: do not bind the swap
   when variants need different icons.
