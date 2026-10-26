@@ -133,6 +133,7 @@ Current tokens:
 | `icon-tile/brand-fg` | `foreground/brand` | Icon Tile Style=brand icon, 5.6:1 or more |
 | `icon-tile/gradient-start`, `icon-tile/gradient-end` | Light `neutral/700` to `900`, Dark `neutral/200` to `400`, Corporate `blue/600` to `800`, Showcase `brand/500` to `700` | Icon Tile Style=gradient; icon `foreground/primary` |
 | `gradient/primary-transparent`, `gradient/chart-3-transparent` | `background/primary`, `chart/3` at `opacity/0` | End stops of the gradient styles, so fades keep the hue |
+| `gradient/background-transparent` | `background/default` at `opacity/0` | End stop of edge fades over the page (Logo Marquee), so the fade keeps the surface color |
 
 Naming: `<component>/<property>`,
 for example `button/radius`, `card/muted-background`. Sizes that change with density live in

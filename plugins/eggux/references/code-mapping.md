@@ -43,7 +43,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Alert`, `Toast` | shadcn `Alert`, `Sonner` | |
 | `Card`, `Card Header`, `Card Footer`, `Stat Card` | shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content |
 | `Stat Card` | shadcn `Card` + custom content; change = `Badge` soft variant by direction; optional sparkline = Recharts `LineChart` without axes, `var(--chart-1)` | Up soft-success, down soft-destructive, flat soft-neutral; swap on the instance when up is bad; sparkline `aria-hidden` |
-| `Skeleton`, `Spinner`, `Kbd`, `Kbd Group` | shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) | |
+| `Skeleton`, `Spinner`, `Kbd`, `Kbd Group` | shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) | Kbd text `text-foreground` (not `text-muted-foreground`): muted text on `bg-muted` is 4.35:1 in Light |
 | `Pagination`, `Pagination Item`, `Breadcrumb`, `Breadcrumb Item` | shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) | In tables use `Table Pagination` |
 | `Pagination Compact` | shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNext` | |
 | `Pager Link` | `<a>` card (`rounded-xl border p-4 hover:bg-accent focus-visible:ring`) with lucide `ChevronLeft` / `ChevronRight`, two of them in a `<nav>` | Docs prev/next; for tables and lists use `Pagination` |
@@ -67,12 +67,12 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Progress Ring` | SVG circle with `stroke-dasharray` (or Radix Progress) | `role="progressbar"`, `aria-valuenow` |
 | `Scroll Area` | shadcn `ScrollArea`, `ScrollBar orientation="horizontal"` | The Content slot is the `ScrollArea` children |
 | `File Preview` | `react-pdf` (pdf.js) for PDF, `<img>` for images, in `Sheet` or `Dialog` | Unsupported types: download link |
-| `Image Cropper`, `Avatar Upload` | `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input | Crop on the client, upload the result |
+| `Image Cropper`, `Avatar Upload` | `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input | Crop on the client, upload the result. Shape=square is `Avatar` with `rounded-md` for workspace and company logos |
 | `Menubar`, `Menubar Trigger` | shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`) | |
 | `Cookie Consent` | custom banner / card + shadcn `Dialog` with `Switch`es; or a CMP (Cookiebot, Osano) styled to match | Load scripts only after consent |
 | `Copy Field` | shadcn `InputGroup` with a `readOnly` Input (`font-mono`) + Copy `Button`; `navigator.clipboard.writeText` | copied state 2 s, no toast; mask secrets until Reveal |
 | `Search Field` | shadcn `InputGroup` (`type="search"`) + search icon, `Kbd`, clear `Button` | Debounce ~300 ms; global search opens `CommandDialog` |
-| `Inline Form` | `<form class="flex gap-2">` with shadcn `Input` + `Button` (react-hook-form + zod) | Keep the value on error |
+| `Inline Form` | `<form class="flex gap-2">` with shadcn `Input` + `Button` (react-hook-form + zod) | Keep the value on error. Tone=on-primary: `Button variant="secondary"`, hint and messages `text-primary-foreground` |
 | `Currency Input` | shadcn `InputGroup` with a `Select` of ISO codes + `Input`; react-number-format or `Intl.NumberFormat` | Store minor units + ISO code; one currency: Input Group prefix |
 | `Phone Input` | react-phone-number-input (libphonenumber-js) + shadcn `Popover` + `Command` country list | Store E.164; `type="tel"`, `autocomplete="tel"` |
 | `Date Input` | react-aria `DateField` + shadcn `Popover` with `Calendar` (react-day-picker) | Segments in locale order |
@@ -109,7 +109,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Tree Item` | custom tree (`role="tree"`) with shadcn `Checkbox` and `Badge` | Arrow keys expand and collapse |
 | `Top Bar` | shadcn site header: `SidebarTrigger`, `Breadcrumb`, `Button` | |
 | `Page Header` | custom `<header>` with a heading, text and shadcn `Button` | One per page |
-| `Mobile Header` | custom header with shadcn `Button size="icon"` and `Avatar` | |
+| `Mobile Header` | custom header with shadcn `Button size="icon"` and `Avatar`; Type=brand renders the product `Logo` (link to home) in place of the back button and title | Entry screens (sign in, sign up) use brand |
 | `Bottom Nav`, `Bottom Nav Item` | custom `<nav>` of links with `env(safe-area-inset-bottom)` | Current item `aria-current="page"` |
 | `Image Placeholder` | `<img>` or `next/image` with `aspect-ratio` and `object-cover` | `Show image` = render the image; off = muted box with a dot background and lucide `Image` icon (loading or missing image). The `Image` swap picks a sample photo: replace with the real `src` and alt |
 | `Logo / *` (Northwind, Lumora, Orbitly, Fieldstone, Kestrel, Quintra, Halcyon, Brightpath, Corvid, Meridian, Tidewater, Vireo) | inline SVG (`fill="currentColor"`, height 32, `role="img"` + `aria-label="<Name>"`) exported from the Brand page | Fictional sample logos for mockups only; ship real customer logos with permission |
@@ -180,7 +180,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Code Block` | Shiki or Prism + copy `Button` | |
 | `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, larger type |
 | `Section Heading` | `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` | Heading level follows the page outline. Optional icon before the title (`size-6` lg, `size-5` default and sm, `aria-hidden`) |
-| `Feature Item` | custom: lucide icon in a `bg-muted rounded-md` tile + `<h3>` + `<p>` | Icon `aria-hidden`; grid of 3 or 4. Marker=number: an `<ol>`, number circle `rounded-full bg-muted`, `aria-hidden` |
+| `Feature Item` | custom: `Icon Tile` (lucide icon in a `size-10 rounded-md` tile, Style neutral `bg-muted` by default) + `<h3>` + `<p>` | Icon `aria-hidden`; grid of 3 or 4. Tile Style follows the nested Icon Tile (brand: `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`). Layout=card: wrap in shadcn `Card` (`rounded-xl border bg-card p-6 gap-4`); link as `Button variant="link"`. Marker=number: an `<ol>`, number circle `rounded-full bg-primary text-primary-foreground`, `aria-hidden` |
 | `Badge List` | `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger | |
 | `Table of Contents`, `Table of Contents Item` | custom with scroll spy | |
 | `Comment`, `Comment Composer` | custom + `Textarea` | |
@@ -196,7 +196,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Rating` | custom `RadioGroup` | |
 | `Color Picker` | react-colorful in `Popover` | |
 | `Coachmark`, `Hotspot` | Driver.js, Shepherd or `Popover` anchored to the target | |
-| `Video Player` | native `video` or Vidstack | |
+| `Video Player` | native `video` or Vidstack | Size=lg: play button `size-24` (96 px) for hero and full-width players |
 | `Kanban Card`, `Kanban Column` | dnd-kit + custom | |
 | `Calendar Event`, scheduler blocks | custom grid, or FullCalendar themed with tokens | |
 | Help center and docs blocks | page sections composed from `Input`, `Card`, `Breadcrumb`, `Button` | Search: shadcn `Command` (⌘K) or Algolia DocSearch; docs content: MDX (Nextra, Fumadocs) |
@@ -411,6 +411,8 @@ New style values added to existing components in 0.58.0 (the default value keeps
 
 | Figma | Code | Notes |
 |---|---|---|
+| `Comparison Table` | `<table>` with shadcn `Table` parts; header cells with `Price` (sm) and `Button` (sm); cells with lucide `Check` / `Minus` and `sr-only` text | Plans=3 or 4 columns; used by `Block / Comparison Table` (3) and `Block / Pricing with Comparison` (4) |
+| `Figure` | `<dl>` with `dd` (value) and `dt` (label) | Tone=on-primary: `text-primary-foreground` on value, label and source |
 | `Alert` (Style=soft) | shadcn `Alert` with a cva `style: "soft"`: `border-0 bg-[var(--badge-soft-X-bg)] [&>svg]:text-[var(--badge-soft-X-fg)]`, title `text-[var(--badge-soft-X-fg)]`, description `text-foreground` (X = neutral for default, destructive, success, warning, info) | Same tint tokens as Badge soft; one Style per product |
 | `Alert` (Style=accent) | shadcn `Alert` with `style: "accent"`: `bg-card border border-l-4 border-l-X` (`border-l-muted-foreground`, `border-l-destructive`, `border-l-success`, `border-l-warning`, `border-l-info`); icon and title `text-X`, warning title `text-[var(--badge-soft-warning-fg)]` | Banner: `border-0 border-b border-l-4 rounded-none` |
 | `Toast` (Style=inverted) | Sonner `<Toaster invert />`, or `toastOptions={{ classNames: { toast: "bg-foreground text-background border-0", description: "text-background/80" } }}` | Icons take `currentColor` (monochrome); flips to a light toast in dark mode |
@@ -444,7 +446,7 @@ New style values added to existing components in 0.58.0 (the default value keeps
 | `Plan Card` | shadcn `Card` + `Price`, `Button`, `<ul>` of `Check Item` | Variant=featured: `ring-2 ring-primary`, primary `Button`. Variant=inverted: `bg-foreground text-background`, description and checks `text-background/70`, `Button variant="secondary"`. Variant=compact: `flex items-center gap-6 px-6 py-4` (name + description `flex-1`, Price, outline Button), no feature list |
 | `Testimonial Card` | shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>`; `cva` `variant` (default, featured, logo, minimal) | featured: `grid md:grid-cols-[280px_1fr] overflow-hidden p-0`, `<img class="h-full object-cover">`, quote `text-2xl font-semibold`, logo `<img class="h-8">`; logo: logo `<img class="h-8">` above the quote; minimal: no Card, bare `<figure>` with `text-lg` quote |
 | `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, `text-2xl`; large: centered `text-5xl font-extrabold tracking-tight max-w-3xl mx-auto`, decorative quote mark `aria-hidden` |
-| `Feature Item` | custom: lucide icon in a `bg-muted rounded-md` tile + `<h3>` + `<p>` | Layout=card: wrap in shadcn `Card` (`rounded-xl border bg-card p-6 gap-4`); link as `Button variant="link"` |
+| `Feature Item` | custom: `Icon Tile` (lucide icon in a `size-10 rounded-md` tile, Style neutral `bg-muted` by default) + `<h3>` + `<p>` | Icon `aria-hidden`; grid of 3 or 4. Tile Style follows the nested Icon Tile (brand: `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`). Layout=card: wrap in shadcn `Card` (`rounded-xl border bg-card p-6 gap-4`); link as `Button variant="link"`. Marker=number: an `<ol>`, number circle `rounded-full bg-primary text-primary-foreground`, `aria-hidden` |
 | `Post Card` | shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link | Layout=overlay: `relative aspect-[4/5] overflow-hidden rounded-xl`, `<img class="absolute inset-0 size-full object-cover">`, text panel `absolute inset-x-0 bottom-0 bg-black/60 text-white p-6` with a `h-16 bg-gradient-to-b from-transparent to-black/60` strip above it (tokens `media/scrim`, `media/scrim-fade`, `media/foreground`) |
 | `Product Card` | shadcn `Card` with an `<a>` stretched over the card, `Badge`, `Button` (icon) for wishlist | Layout=horizontal: `flex gap-4`, image `size-30 shrink-0 rounded-lg`, no wishlist; Layout=overlay: `relative aspect-[3/4] overflow-hidden rounded-lg`, info panel `absolute bottom-0 inset-x-0 bg-black/60 text-white p-4` with a gradient strip, no action button |
 | `Person Card` | shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`) | Layout=photo: no Card surface; `<img class="aspect-[4/5] w-full rounded-xl object-cover" alt="">` above the name (`h3`), role and organization |

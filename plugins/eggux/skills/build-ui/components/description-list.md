@@ -26,7 +26,9 @@ Usage guidelines only. Visual specs live in the Figma components.
 - The label reads on its own; numbers in the locale format with units; a source line when the
   figure is a claim (Show source, or one line under the group). Show divider between stacked figures.
 - No trend arrow or color: a metric compared to a period is a Stat Card.
-- Figma: `Figure` Layout × Size (default, lg); Value, Label, Source, Show source, Show divider.
+- Figure on a primary band: Tone=on-primary; keep text alignment as the only override.
+- Figma: `Figure` Layout × Size (default, lg) × Tone (default, on-primary); Value, Label, Source,
+  Show source, Show divider.
 
 ## Summary Row (money breakdowns)
 - One line of an order summary, invoice or quote total, price calculator or plan cost: label

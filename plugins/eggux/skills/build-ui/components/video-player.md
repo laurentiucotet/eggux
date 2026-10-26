@@ -14,11 +14,14 @@ Usage guidelines only. Visual specs live in the Figma component (Video page).
 - Keyboard: Space or K play / pause, arrows seek 5 s, M mute, F fullscreen, C captions.
 - Ratio 16:9 unless the content is vertical (9:16 for mobile stories). Rounded corners
   `radius/xl` inside cards and pages.
+- Size=lg for players 960 wide and up (heroes, full-width sections); Size=default in cards, docs
+  and dialogs.
 - Colors use `video/*` tokens: the player stays dark in Light and Dark mode.
 
 ## Figma
-`Video Player`: State poster, playing, buffering; Duration, Time, Show subtitles. Put the
-poster or frame as image fill on the `frame` layer.
+`Video Player`: State poster, playing, buffering; Size default, lg (1152 x 648, 96 px play
+button); Duration, Time, Show subtitles. Put the poster or frame as image fill on the `frame`
+layer.
 
 ## Code
 Native `<video>` with custom controls, or a player (Vidstack, Plyr) for HLS and captions.

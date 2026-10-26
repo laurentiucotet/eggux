@@ -73,8 +73,9 @@ Pick one `Input` Style per form, and give `Select` the same Style.
 ## Related components
 - Specialized inputs: `Copy Field` for values people copy (keys, links), `Search Field` for
   searching a list or the app, `Inline Form` for one field and one button (newsletter, coupon,
-  invite). For typed values with a format: `Currency Input` (amount with ISO code), `Phone Input`
-  (country code, E.164), `Duration Input` (hours and minutes) and `Range Input` (min and max).
+  invite; on a primary band or card set Tone=on-primary, no manual overrides). For typed values
+  with a format: `Currency Input` (amount with ISO code), `Phone Input` (country code, E.164),
+  `Duration Input` (hours and minutes) and `Range Input` (min and max).
 - New-password fields: `Password Strength` under the Field (Level and what is missing, in text)
   and a `Requirement List` of `Check Item`s (Mark=check when met, dash while pending, x only after
   a submit). See `patterns/auth.md`.

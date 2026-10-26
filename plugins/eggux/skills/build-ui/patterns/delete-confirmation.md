@@ -27,7 +27,8 @@ Prefer undo over confirmation when the system can support it.
 
 ## shadcn / Figma
 `AlertDialog` + `Button variant="destructive"`; `Toast`/`Sonner` for undo.
-- Type to confirm: `Block / Delete Confirmation` (Alert Dialog destructive with a Field under the
-  header; Delete stays disabled until the name matches).
+- Type to confirm: `Block / Delete Confirmation` (Alert Dialog destructive; Delete stays disabled
+  until the name matches). Put the type-to-confirm Field in the Alert Dialog Content slot (Show
+  content), never in the Header.
 - Delete account: a `Block / Danger Zone` row opens an Alert Dialog destructive with typed DELETE and
   the password; screens SCREENS / Account, Delete account.
