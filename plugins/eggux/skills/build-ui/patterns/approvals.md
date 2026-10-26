@@ -25,6 +25,9 @@ stall because nobody knows who has to act, by when, or why something was rejecte
   amount and age, with bulk approve only for low-risk types.
 - Agent actions that send, pay or delete use Tool Call Status=approval and wait; see
   `Block / Agent Task Run`.
+- Approver queue: `Block / Approval Inbox`, oldest first, list 384 left and the open request
+  right; approval flow editor: `Block / Workflow Builder` (canvas + Side Panel for the selected
+  step).
 
 ## Figma
 `Approval Step` (Status: approved, current, rejected, upcoming) on the Approvals page;

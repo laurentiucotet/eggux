@@ -41,6 +41,8 @@ at the bottom, with typed confirmation (`delete-confirmation.md`).
 - Account pages (My profile, public profile, activity, connected accounts, delete account) reuse the
   same block with account tabs; the entry is the Account Menu on the Sidebar User. Screens: SCREENS /
   Account.
+- Users page: `Block / User Directory`; status as soft Badges with a short note, sign-in method
+  and two-factor as their own columns, bulk actions in the Table Toolbar.
 
 ## Related components
 - Settings pages with fields use `Form Section` (title and description on the left, fields on the

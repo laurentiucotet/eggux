@@ -18,6 +18,8 @@ when and from where, and to undo mistakes with evidence.
   exports, deletions, settings and security changes, API key changes.
 - Show a short "History" tab on record pages filtered to that record; the full log lives in
   admin settings.
+- Document or configuration history: `Block / Version History` (Version Items left, Diff Viewer of
+  the selected version against current right; Restore makes a new version).
 
 ## Figma
 `Change Item` on the Audit page; `Block / Audit Log` on the Enterprise page (Data Grid Toolbar

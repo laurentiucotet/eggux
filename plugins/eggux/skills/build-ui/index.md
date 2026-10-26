@@ -10,12 +10,13 @@ component guides it names. Names are Figma components; inventory in
 |---|---|---|---|---|
 | List / table of objects | App | Data Table (toolbar, selection, pagination), Grouped Table (rows grouped by status or owner, with subtotals), Stacked List, Grid List, Filtered List, Empty Page (examples "invoices with filters", "Data table page") | search-and-filter, empty-state, loading-states | table, pagination, badge, list-and-tree, card (Entity Card for grids) |
 | Large list people work in (invoices, orders, tickets) | App, Corporate + Compact | Template / data grid (enterprise), Filter Builder (example "enterprise invoices") | enterprise-apps, search-and-filter | table |
-| Request that needs sign-off | App | Approval Request | approvals, enterprise-apps | description-list, file-upload |
-| Who changed what | App (admin) | Audit Log | audit-log | table |
+| Request that needs sign-off | App | Approval Request, Approval Inbox (approver queue), Workflow Builder (approval flow editor) | approvals, enterprise-apps | description-list, file-upload |
+| Who changed what | App (admin) | Audit Log, Version History (documents, contracts, configuration) | audit-log | table |
 | Activity on a project or record | App | Activity Feed | audit-log, record-page | description-list (Timeline Item), list-and-tree, comments-and-chat |
 | Company or workspace directory | App | People Directory | search-and-filter | card (Person Card), avatar, input (Search Field) |
 | Documents and files area | App | File Manager (example "File manager") | search-and-filter, empty-state | list-and-tree (Tree Item), file-upload, navigation (Breadcrumb) |
-| Roles and access | App (admin) | Roles & Permissions | settings-and-admin, unsaved-changes | table, select |
+| Roles and access, users | App (admin) | Roles & Permissions, User Directory (example "User directory page", Corporate Light + Compact) | settings-and-admin, unsaved-changes | table, select |
+| Org chart, reporting lines | App | Org Chart | enterprise-apps | list-and-tree, avatar |
 | Periodic numbers for decisions | App | Report | reports | charts, card, table |
 | Edit a long record | App | Record Form | record-page, unsaved-changes, form-validation | input, select |
 | Import data (CSV, XLSX) | Wizard or App | Import Mapping | enterprise-apps (§ Import), multi-step-form | file-upload, stepper, table |
