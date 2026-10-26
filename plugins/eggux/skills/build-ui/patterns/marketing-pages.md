@@ -91,6 +91,8 @@ Examples in the Examples section of the Sections page (pricing, about, contact).
   value; mobile shows one plan at a time.
 - Sections alternate background only when it helps scanning (`background/default` / `muted`).
 - Testimonials: real name, role and company (Byline); specific results beat praise; no stock photos.
+  One `Testimonial Card` Variant=featured above a grid of default or logo cards; minimal quotes for
+  a quiet row under a hero.
 - Hero, CTA and page header buttons sit in an Action Bar (start, or center under centered text);
   one primary.
 - Maps: never the only way to find an address; add directions and opening hours; lazy-load
@@ -131,10 +133,17 @@ Examples in the Examples section of the Sections page (pricing, about, contact).
 ## Related components
 - Use `Countdown` only for real deadlines (offer end, webinar start, registration close), always
   with the exact date, time zone and what happens at zero. Never reset it to create urgency.
-- Pricing blocks are built from `Plan Card` (2-4 side by side, one Variant=featured), `Price`,
+  Style=default (muted tiles) for banners, cards and checkout; boxed for hero sections, launch and
+  webinar pages on a muted or image background; inline for tight spaces (a sticky bar, a table
+  cell, a resend-code line). One Style per page.
+- Pricing blocks are built from `Plan Card` (2-4 side by side, one recommended plan as
+  Variant=featured or inverted, never both; Variant=compact rows for 4+ plans and add-ons), `Price`,
   `Check Item` (5-8 per plan) and a `Toggle Group` for monthly or yearly with a success Badge for
   the saving (example "billing period" on the Toggle Group page). Logo Cloud uses `Logo Tile` in
-  one muted color; testimonial blocks use `Testimonial Card`.
+  one muted color; testimonial blocks use `Testimonial Card`. `Price` Size=xl once per page, in a
+  pricing hero or a single-offer section.
 - Above a hero title, one `Announcement Pill` links to the newest launch. "How it works" sections
   use `Feature Item` Marker=number (3-4 steps). Certifications in footers, pricing and security
   sections use `Trust Badge`; product screenshots sit in a `Device Frame`, one frame style per page.
+- `Feature Item` Layout=card for feature grids on muted or busy sections, or when each item links
+  to its own page; the whole grid uses card. Stacked stays the default for short benefits.

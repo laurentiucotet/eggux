@@ -7,10 +7,14 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Start at a meaningful root (not "Home" when the sidebar already does that job), collapse the
   middle into an ellipsis item past 4 levels, never wrap.
 - The last item matches the page title.
+- Style=background (a light pill track) on marketing, docs and help pages, on `background/default`,
+  never on muted sections. Style=default elsewhere.
 
 ## Top Bar (app)
 - Sidebar trigger, Breadcrumb, then global actions on the right: search, notifications, help,
   user menu. Page-specific actions belong in the Page Header, not here.
+- Style=floating (inset 12, rounded bar with a small shadow) for product headers on a muted
+  canvas; Style=default elsewhere.
 
 ## Page Header (app)
 - One per page: title (heading/h3, the only h3 at that level), one-sentence description, page
@@ -23,8 +27,8 @@ Usage guidelines only. Visual specs live in the Figma components.
 - On mobile the links move into a Sheet; the CTA stays visible.
 
 ## Figma
-Navigation page: `Breadcrumb Item` (Show separator off on the last), `Breadcrumb`, `Top Bar`
-(Show sidebar trigger), `Page Header`, `Nav Link` (Show chevron when it opens a menu). Blocks /
+Navigation page: `Breadcrumb Item` (Show separator off on the last), `Breadcrumb` (Style), `Top
+Bar` (Style; Show sidebar trigger), `Page Header`, `Nav Link` (Show chevron when it opens a menu). Blocks /
 Navigation: Navbar, Footer. Page Shells use them.
 
 ## Navigation Menu (mega menu)

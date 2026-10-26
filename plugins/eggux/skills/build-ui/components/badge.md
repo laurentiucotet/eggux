@@ -6,6 +6,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Status of an object (Paid, Overdue, Draft), a category, or a count.
 - Not clickable. For filters and selections use `Chip` (its remove x is a button labeled
   "Remove <value>").
+- Tags and categories that people can remove or click use `Chip` with a soft Tone (info, success,
+  warning, neutral); a status nobody changes stays a Badge. Example "Chip styles".
 
 ## Status variants
 Map each status of an object to one variant once, in `objects.md` or `decisions.md`, and reuse
@@ -31,7 +33,8 @@ it everywhere. The same status never appears in two colors.
   before the label), Show count (number after the label: "Invoices 12").
 - `Badge Count`: number only, for sidebar items and icon buttons. Above 99 show "99+".
 - `Chip`: default, hover, focus, selected, disabled; Show leading icon (Leading icon swap, check
-  when selected), Show remove.
+  when selected), Show remove. Tone default, soft-info, soft-success, soft-warning, soft-neutral
+  (selected only on default).
   See the "filter chips" example.
 
 ## Badge List (a few tags on one line)

@@ -20,9 +20,11 @@ Usage guidelines only. Visual specs live in the Figma component.
 ## Rules
 - The whole trigger row toggles; keyboard: Enter/Space toggles, arrows move between items.
 - Several items may be open at once unless the content is mutually exclusive.
+- Style=card (separate bordered cards, gap 12) with Icon=plus for marketing FAQs and help
+  centers; Style=default with the chevron in apps, panels and filters. One Style per list.
 
 ## Figma
-`Accordion Item` Size (default, sm) × State, Meta and Content native slots; `Accordion` holds items in a
-slot. Example: "filter panel" on the Accordion page; `Block / Filtered List` on the App blocks page.
+`Accordion Item` Size (default, sm) × State × Style (default, card) × Icon (chevron, plus), Meta and
+Content native slots; `Accordion` Style (default, card) holds items of the same Style in a slot. Example: "filter panel" on the Accordion page; `Block / Filtered List` on the App blocks page. Example "Accordion styles".
 - One long text (a note, a bio, a description) cut to 3 lines uses `Show More`; Accordion is for
   several sections.

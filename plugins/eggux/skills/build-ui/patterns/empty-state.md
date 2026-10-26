@@ -20,8 +20,12 @@
 
 ## Component
 `Empty State` (Empty State page): Size default for pages and large cards, sm inside tables,
-cards and panels; Icon (swap), Title, Description, Actions slot. Examples: `Example / no
-results` (Table page), stress test with long text and title only.
+cards and panels; Media icon or image; Icon (swap), Title, Description, Actions slot. Examples:
+`Example / no results` (Table page), stress test with long text and title only.
+- Media=icon is the default. Media=image (a 16:9 Image Placeholder above the title, decorative)
+  only for first run and onboarding: first-run pages and empty dashboards where a picture shows
+  the value of the first action. The image never hides or replaces the title and action. No
+  results, error and no access always use Media=icon. Example "Empty State styles".
 - The example "empty state types" on the Empty State page shows the five cases with their icon,
   copy and actions: no data yet (inbox; create, import), no results (search; clear filters), error
   (circle-alert; try again), no access (lock; request access), first run (sparkles; set up).

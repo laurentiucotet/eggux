@@ -22,7 +22,8 @@ the `image` layer of the instance. `Status` shows the online dot.
 - Same size inside a group. Figma: `Avatar Group` Size (sm, default, lg) with an `Avatars` slot;
   each avatar has a 2 px `background/default` ring on its `fallback` layer. Show label adds a
   muted line after the stack ("Maintained by 3 analysts"); it says who they are or how many, not
-  the names already shown.
+  the names already shown. Show names ("Ana, Mihai and 3 others") says who; Show label says what.
+  Both truncate with an ellipsis on one line; the full list goes in the Tooltip.
 
 ## Byline (one person, named)
 - Who wrote, said or owns something: Avatar, name, one detail line (role and company, or date ·

@@ -11,6 +11,8 @@ Payment blocks are on Forms; success page is `Block / Result`; the store back of
 ## Rules
 - Product Card: image 1:1, name, variant hint, price; sale = new price + struck original + % badge;
   sold out stays visible with "Notify me". The whole card links to the product.
+- Product Card Layout: `vertical` in grids; `horizontal` (image left) for search lists, wishlists
+  and cart suggestions; `overlay` (text on the photo) for editorial tiles without quick add.
 - Product Detail: gallery, name, price, rating, short description, options as Toggle Group
   (unavailable options disabled, not hidden), quantity + Add to cart, delivery promise, details
   in Accordion. Show the selected option name in the label ("Color: Sand").

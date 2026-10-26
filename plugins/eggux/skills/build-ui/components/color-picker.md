@@ -30,3 +30,5 @@ slot). Gradients in the control are raw colors by design; everything else uses t
 - `Swatch` is one choice: Type=color (a dot) or label (a box with "S", "M", "L"), Size=sm (28) in
   pickers and default (36) for product options, State default, selected or unavailable. Product
   options on a product page use the same Swatch; see `patterns/commerce.md`.
+- `Swatch` Show name puts the name under it ("Sand", "Forest", "Medium"): on product pages,
+  on all swatches of a group or none.

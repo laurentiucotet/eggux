@@ -12,6 +12,8 @@ admin panels, at least check that the page does not break below 768.
 
 ## Navigation
 - App with 3-5 daily destinations: `Bottom Nav` with one `Bottom Nav Item` each; everything else under "More" or the menu.
+- `Bottom Nav` Style=floating (a pill above the safe area) for consumer apps with full-bleed content;
+  keep the content padded so the last row clears the pill. Style=default elsewhere.
 - Otherwise: menu button in `Mobile Header` opens the Sidebar as a left `Sheet`.
 - Detail pages: back button + object title, no Bottom Nav; primary action in a sticky bottom bar.
 - Marketing: `Block / Navbar Mobile`; the menu is a full-screen panel with links and full-width CTAs.
