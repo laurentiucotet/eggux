@@ -58,7 +58,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Button | `Button Group` | - | Items (native slot) |
 | Button | `Action Bar` | Align: end, start, center | Show divider, Show leading; Leading, Actions (native slots). The row of buttons that ends a form, a step or a hero |
 | Button | `Split Button` | Variant: default, outline | Label; chevron opens a Menu |
-| Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info. Shape: rounded, pill | Label; Show icon + Icon (swap); Show dot; Show count + Count value |
+| Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info, soft-success, soft-warning, soft-destructive, soft-info, soft-neutral. Shape: rounded, pill | Label; Show icon + Icon (swap); Show dot; Show count + Count value |
 | Badge | `Badge Count` | Variant: default, secondary, destructive, outline | Count (numeric bubble for nav items and icon buttons) |
 | Badge | `Status Dot` | Status: success, warning, error, info, neutral | Label, Show label |
 | Badge | `Badge List` | - | Show more; Tags (native slot) of Badges + "+N" Badge (exposed). A few tags on one line |
@@ -192,7 +192,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Card | `Card Header` | - | Title, Description, Show description, Show action, Show icon + Icon (swap). Action (native slot) |
 | Card | `Card Footer` | - | Actions (native slot) |
 | Card | `Card` | Variant: default, outline, muted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
-| Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Trend text, Footnote, Show footer. Trend line edited per instance |
+| Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Trend text, Footnote, Show footer, Show sparkline. Change badge soft by direction; trend line edited per instance |
 | Card | `Option Card` | Control: radio, checkbox. State: default, hover, focus, selected, disabled | Title, Description, Show description, Show icon + Icon (swap). Selectable card: a radio for one choice, a checkbox for several; the whole card is the target |
 | Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Description (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions, Show people; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
 | Card | `Person Card` | Layout: vertical (280), horizontal (400) | Name, Role, Organization, Show organization, Show tags, Show contact, Show actions; Avatar, Tags, Contact (Meta Items), Actions (native slots) |
@@ -386,7 +386,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Metrics | `Leaderboard Row` | State: default, current | Rank, Name, Value. A ranked person or team: rank, avatar, name and value. |
 | Metrics | `Metric Strip` | - | Metrics (slot). A row of 3-5 key figures at the top of a dashboard, report or record page, lighter than Stat Cards: label, value, trend, dividers between. |
 | Metrics | `Metric Strip Item` | - | Label, Value, Show trend, Show divider. One figure in a Metric Strip: label, value and an optional Trend Indicator. |
-| Metrics | `Trend Indicator` | Trend: up, down, flat. Tone: positive, negative, neutral | Value, Comparison, Show comparison. A change against a period: arrow, signed percent or amount, and what it is compared to. Trend says which way it moved; Tone says if that is good, bad or neither. |
+| Metrics | `Trend Indicator` | Trend: up, down, flat. Tone: positive, negative, neutral. Style: text, badge | Value, Comparison, Show comparison. A change against a period: arrow, signed percent or amount, and what it is compared to. Trend says which way it moved; Tone says if that is good, bad or neither. |
 | Metrics | `Usage Meter` | Level: normal, near, over | Label, Show hint. How much of a plan limit is used: seats, storage, API calls, documents per month. Label, used of limit, bar and a hint. |
 | Mobile | `Action Sheet` | - | Title, Description, Show header, Action 1, Action 1 icon, Action 2, Action 2 icon, Action 3, Action 3 icon, Destructive action, Destructive action icon, Cancel. A short list of actions for one item on mobile, rising from the bottom: share, duplicate, download, delete. |
 | Mobile | `FAB` | Type: icon, extended | Label, Icon. Floating action button for the one main action on a mobile screen: new invoice, compose, add. |

@@ -35,6 +35,7 @@ the legend showing values and percentages; to compare parts, use Bar Chart Horiz
 - Empty: say why and what to do ("No sales yet in this period"); loading: Skeleton in the chart's
   shape; error: inline Alert with retry.
 - Dark mode uses the same tokens; check the chart on `background/card`.
+- Stacked bars start with chart/1 at the base, like every other chart; one dashboard uses chart/1 to chart/6 so series stay distinct.
 
 ## Figma
 `Bar Chart` (single, grouped, stacked), `Bar Chart Horizontal`, `Line Chart` (line, area),

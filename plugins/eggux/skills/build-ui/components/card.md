@@ -54,6 +54,7 @@ Stat Card, Option Card and Post Card use the same tokens.
   in text and icon, not color alone.
 - Selectable cards (plan, delivery, billing period) use Option Card: the whole card is the target, one selected.
 - Card Header `Show icon` names the card type on dashboards; give every card in a row an icon or none.
+- Stat Card: the change badge is soft and follows the direction (up success, down destructive, flat neutral; swap when up is bad); `Show sparkline` adds a chart/1 trend under the value.
 
 ## Figma
 - `Card` (Variant × Size × Elevation, 12 variants) = native slots Header (`Card Header`), Content (placeholder) and Footer (`Card Footer`).
