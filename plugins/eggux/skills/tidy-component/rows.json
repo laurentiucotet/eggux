@@ -864,6 +864,75 @@
    "block": "144:3001"
   }
  ],
+ "Email": [
+  {
+   "main": "Email / Header",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Hero",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Button",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Content",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Code",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Details",
+   "helpers": [
+    "Email / Details Row"
+   ],
+   "block": null
+  },
+  {
+   "main": "Email / Line Items",
+   "helpers": [
+    "Email / Line Item",
+    "Email / Total Row"
+   ],
+   "block": null
+  },
+  {
+   "main": "Email / Callout",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Divider",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Stats",
+   "helpers": [
+    "Email / Stat"
+   ],
+   "block": null
+  },
+  {
+   "main": "Email / Article",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Footer",
+   "helpers": [],
+   "block": null
+  }
+ ],
  "Empty State": [
   {
    "main": "Empty State",

@@ -490,6 +490,18 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Commerce (blocks) | `Block / Shopping Cart Page` | - | Title, Subtitle, Note, Show note, Show continue shopping, Recommendations title, Show recommendations; Items (native slot: Line Item cart + Separator), Recommendations (native slot: Product Cards). Order Summary with lines hidden, totals and Checkout |
 | Commerce (blocks) | `Block / Checkout Single Page` | - | Title, Subtitle, Terms, Delivery title, Show breadcrumb, Show sign in, Show newsletter opt-in. Contact (Field, opt-in Checkbox), Block / Address, billing same as delivery, delivery method radio Option Cards, Block / Payment, Order Summary with lines and "Pay €159.30" |
 | Commerce (blocks) | `Block / Order Confirmation` | - | Eyebrow, Title, Description, Order number, Order date, Billing, Help, Show tracker; Items (native slot: Line Item summary). Icon Tile, Shipment Tracker, Summary Rows to the amount paid, Address Card, Payment Method Card, Continue shopping |
+| Email | `Email / Header` | - | Logo (swap: Logo, Logo / *), Show preheader link, Preheader link ("View in browser"). Transparent, sits on the muted canvas |
+| Email | `Email / Hero` | - | Title (heading/h2), Text, Show text, Eyebrow, Show eyebrow, Show image (Image Placeholder 16:9, exposed) |
+| Email | `Email / Button` | Align: left, center | Label. Solid `background/primary` pill (`button/radius`), 44 px, bulletproof in code |
+| Email | `Email / Content` | - | Heading, Show heading, Text (body/default 16) |
+| Email | `Email / Code` | - | Label, Code (Roboto Mono 36, `font/mono`), Hint, Show hint |
+| Email | `Email / Details` | - | Title, Show title; Rows (native slot) of `Email / Details Row` (Label, Value) |
+| Email | `Email / Line Items` | - | Title, Show title; Items (slot) of `Email / Line Item` (Name, Meta, Amount, Show image, exposed Image); Totals (slot) of `Email / Total Row` (Type: default, total; Label, Amount) |
+| Email | `Email / Callout` | Tone: default, info, success, warning, destructive | Title, Show title, Text, Show icon. `badge/soft-*` tints, text foreground/default |
+| Email | `Email / Divider` | - | Separator inside 40 px side padding |
+| Email | `Email / Stats` | - | Items (slot) of `Email / Stat` (Value, Label, Change, Show change) |
+| Email | `Email / Article` | - | Title, Text, Link, Show image (Image Placeholder 4:3, exposed) |
+| Email | `Email / Footer` | - | Address, Reason, Show social (LinkedIn, X, YouTube, GitHub), Show preferences, Show unsubscribe |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,
@@ -502,6 +514,22 @@ text-quote, link, external-link, share-2, heading, code, git-branch, sparkles, z
 refresh-cw, square, paperclip, globe, wrench, mic, message-square, square-pen, play, pause,
 volume-2, maximize, captions, image, shield-check, key-round, lock, eye, pin, grip-vertical, sun,
 moon (97).
+
+## Screens
+The SCREENS group (after BLOCKS) holds complete screens and templates to copy whole: pages Account,
+Auth, Emails, Settings. Each flow is a Figma section with `Screen / <Flow> / <Step> / Desktop` and `/ Mobile` frames
+left to right in flow order (emails: `Screen / Email / <Name>`).
+
+| Page | Flow | Screens | Built from |
+|---|---|---|---|
+| Emails | Account | `Screen / Email / Welcome` (+ `/ Dark`), `Verify email`, `Sign-in link`, `Password reset` (+ `/ Dark`), `Password changed`, `Invitation` | Email / Header (Logo / Orbitly), Hero (image on Welcome), Content, Button, Code (Verify), Details (sign-in request, password change, invite), Callout (default, warning), Footer (security: no social, no unsubscribe) |
+| Emails | Billing | `Screen / Email / Invoice`, `Payment receipt`, `Payment failed`, `Trial ending` | Email / Header, Hero, Details, Line Items (Line Item, Total Row), Callout warning (Payment failed), Stats (Trial ending), Content, Button, Footer |
+| Emails | Marketing | `Screen / Email / Weekly summary` | Email / Header (View in browser on), Hero with eyebrow, Stats (3 Stat), Button, Divider, Hero with image (h3 title, feature), Content link, 3 Article, Footer with unsubscribe |
+| Emails | Commerce | `Screen / Email / Order confirmation` | Email / Header (Logo / Tidewater), Hero, Details (order, delivery), Line Items with product photos (`Image / Product / 01, 03, 07`), Button, Content, Footer (Tidewater address) |
+
+Every template: 720 wide frame on `section/muted-background` (padding 40 top and bottom) holding a 600 wide "Email"
+column: Header, a "Body" frame (`background/card`, radius/lg, padding 40 top and bottom, gap 24) with the parts, Footer.
+Explicit modes Semantic and Components Light (Dark on the two Dark copies), Density Comfortable.
 
 ## Conventions used
 - Variant values use the shadcn prop values (`Variant=outline`, `Size=sm`), so Figma maps 1:1 to code.

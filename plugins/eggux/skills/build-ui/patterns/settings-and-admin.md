@@ -23,6 +23,8 @@ section" on the Selection controls page and `Block / Settings Section`.
 
 Destructive settings (delete workspace, transfer ownership) live in a separate "Danger zone" card
 at the bottom, with typed confirmation (`delete-confirmation.md`).
+- Billing emails (invoice, receipt, payment failed, trial ending) use the Emails page templates with
+  Email / Details and Email / Line Items (email.md).
 
 ## Related components
 - Settings pages with fields use `Form Section` (title and description on the left, fields on the

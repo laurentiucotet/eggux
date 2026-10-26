@@ -384,6 +384,28 @@ Showcase theme (`Showcase Light`, `Showcase Dark` modes) in `globals.css`:
 }
 ```
 
+## Email (React Email)
+New table section for references/code-mapping.md: "## Email (React Email)". Emails are built with
+`@react-email/components` (table-based HTML with inline styles), not shadcn. Tokens are resolved to hex at build time
+(email clients do not support CSS variables); one theme object per brand (Light, plus a `prefers-color-scheme: dark`
+style block for clients that support it).
+
+| Figma | Code | Notes |
+|---|---|---|
+| Template frame `Screen / Email / *` (muted canvas + 600 body) | `Html`, `Head`, `Preview`, `Body` (background section/muted-background), `Container` (maxWidth 600) | `Preview` holds the preheader text (inbox preview, 40 to 90 characters); `Tailwind` wrapper optional |
+| `Email / Header` | `Section` + `Row` with `Column` `Img` (logo, `alt` = company name, height 32) and `Column` `Link` "View in browser" | Logo as a hosted PNG at 2x; SVG is not supported in Gmail and Outlook |
+| `Email / Hero` | `Section` with optional `Img` (width 520, rounded), `Text` eyebrow, `Heading as="h1"`, `Text` | One h1 per email; same words as the subject |
+| `Email / Button` | `Button` (`href`, padding 12px 24px, borderRadius 9999, background primary, color primary-foreground, fontWeight 600) | Renders a bulletproof padded link (works with images off, MSO padding hack included); Align=center: wrap in `Section` with `textAlign: "center"` |
+| `Email / Content` | `Section` with optional `Heading as="h2"` and `Text` (16/28); links with `Link` | Fallback URL under a button goes here as plain text + `Link` |
+| `Email / Code` | `Section` (background muted, borderRadius 12, padding 24, textAlign center) with `Text` label and `Text` (fontFamily monospace, fontSize 36, letterSpacing 10) | Code also in the subject line; never an image |
+| `Email / Details`, `Email / Details Row` | `Section` (border, borderRadius 8, padding "12px 20px") with one `Row` per line: `Column` `Text` label + `Column align="right"` `Text` value | Tables carry `role="presentation"` (React Email adds it) |
+| `Email / Line Items`, `Email / Line Item`, `Email / Total Row` | `Section` with `Row` per item: `Column` `Img` (64 x 64), `Column` `Text` name + meta, `Column align="right"` `Text` amount; `Hr`; `Row` per total | Total row bold 18; amounts formatted with `Intl.NumberFormat` and the currency |
+| `Email / Callout` | `Section` (backgroundColor tone tint as solid hex, borderRadius 8, padding 16) with `Row`: `Column` `Img` icon 20 + `Column` `Text` title and `Text` body | Use solid hex tints (rgba is unreliable in Outlook); icon PNG, `alt=""` |
+| `Email / Divider` | `Hr` (borderColor border, margin "0 40px") | |
+| `Email / Stats`, `Email / Stat` | `Row` with up to three `Column` cells (background muted, border, borderRadius 8, padding 16): `Text` value, `Text` label, `Text` change | Cells stack under 480 px with a media query in `Head` |
+| `Email / Article` | `Row`: `Column` `Img` (160 x 120) + `Column` `Heading as="h3"`, `Text`, `Link` | Whole title links to the article too |
+| `Email / Footer` | `Section` (textAlign center) with `Row` of `Link` + `Img` social icons (20 px), `Text` address, `Text` reason, `Link` preferences, `Link` unsubscribe | Also send the `List-Unsubscribe` and `List-Unsubscribe-Post` headers for marketing mail |
+
 ## Admin
 | Figma | Code | Notes |
 |---|---|---|

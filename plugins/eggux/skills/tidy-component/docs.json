@@ -10393,5 +10393,358 @@
   "guides": [
    "skills/build-ui/patterns/commerce.md"
   ]
+ },
+ "Email / Header": {
+  "summary": "Top of an email, outside the card: the sender's logo and an optional \"View in browser\" link.",
+  "use": [
+   "First part of every email template",
+   "Newsletters and long emails with the browser link on"
+  ],
+  "avoid": [
+   "Navigation menus or several links: an email header holds the logo only",
+   "Inside the card: it sits on the muted canvas above it"
+  ],
+  "anatomy": [
+   "Logo (swap): any Logo or Logo / *, 32 px high",
+   "Preheader link (Show preheader link): ui/caption, foreground/muted, underlined, right",
+   "Container: 600 wide, padding 32 top, 24 bottom, 40 sides, transparent"
+  ],
+  "rules": [
+   "Use the brand logo of the sender (Logo / Orbitly for Orbitly, Logo / Tidewater for the store)",
+   "Transactional emails leave the browser link off",
+   "Logo links to the product home page"
+  ],
+  "a11y": [
+   "Logo image has alt text with the company name (\"Orbitly\")",
+   "Browser link text says where it goes",
+   "foreground/muted on section/muted-background is 4.5:1 or more"
+  ],
+  "code": "@react-email/components Section + Row with Img (logo, alt=\"Orbitly\", height 32) and an optional Link \"View in browser\" in the right Column",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Hero": {
+  "summary": "Opening of the email body: what happened, in one heading and one or two sentences, with an optional eyebrow and image.",
+  "use": [
+   "First part inside the card of every email",
+   "Announcements and newsletters with Show image on"
+  ],
+  "avoid": [
+   "Images in security emails (password, sign-in, verification)",
+   "Long paragraphs: put them in Email / Content"
+  ],
+  "anatomy": [
+   "Image (Show image): Image Placeholder 16:9, 520 wide, exposed, any Image / *",
+   "Eyebrow (Show eyebrow): ui/overline, foreground/brand",
+   "Title: heading/h2, foreground/default",
+   "Text (Show text): body/default, foreground/muted",
+   "Container: 600 wide, 40 px side padding, gap 16"
+  ],
+  "rules": [
+   "Title says the news or the task in sentence case, no exclamation marks",
+   "Text gives the one fact needed next: amount, date, who, how long a link works",
+   "The subject line and the Title say the same thing"
+  ],
+  "a11y": [
+   "Title is the email's only h1",
+   "Image has alt text, or empty alt when decorative",
+   "Never put text inside the image"
+  ],
+  "code": "@react-email/components Section with Img (optional), Text (eyebrow), Heading as=\"h1\" and Text",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Button": {
+  "summary": "The one call to action of an email: a solid primary pill, 44 px tall, built as a bulletproof button (a padded link, not an image).",
+  "use": [
+   "The main action of every transactional email: verify, sign in, reset, pay, accept",
+   "Once per email"
+  ],
+  "avoid": [
+   "Two buttons side by side: put the second action as a text link in Email / Content",
+   "Images of buttons: they disappear when images are off"
+  ],
+  "anatomy": [
+   "Align (variant): left, center",
+   "Button: background/primary, radius button/radius, height 44, padding 24 sides",
+   "Label: ui/label, foreground/primary"
+  ],
+  "rules": [
+   "Label is verb + object and matches the page it opens (\"Reset password\")",
+   "Under links that expire, add the plain URL in Email / Content for people whose client blocks buttons",
+   "Align left in text emails; center in short welcome or announcement emails"
+  ],
+  "a11y": [
+   "It is a link (a element), not a button",
+   "Label 5:1 or more on background/primary in every theme",
+   "44 px tall tap target"
+  ],
+  "code": "@react-email/components Button (href, style: background var primary, color primary-foreground, borderRadius 9999, padding \"12px 24px\", fontWeight 600)",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Content": {
+  "summary": "A block of body text with an optional heading: explanations, next steps, fallback links and sign-offs.",
+  "use": [
+   "Paragraphs after the Hero",
+   "The plain URL under a button",
+   "Sign-off (\"The Orbitly team\") and help line"
+  ],
+  "avoid": [
+   "Key facts like amount or due date: use Email / Details",
+   "Warnings: use Email / Callout"
+  ],
+  "anatomy": [
+   "Heading (Show heading): heading/h4, foreground/default",
+   "Text: body/default 16, foreground/default",
+   "Container: 600 wide, 40 px side padding, gap 8"
+  ],
+  "rules": [
+   "Two or three sentences per block; stack blocks rather than writing walls of text",
+   "Links are underlined and say where they go",
+   "No \"click here\", no exclamation marks"
+  ],
+  "a11y": [
+   "Heading is h2 in code",
+   "16 px text, line height 28",
+   "Contrast foreground/default on background/card 15:1 or more"
+  ],
+  "code": "@react-email/components Section with Heading as=\"h2\" (optional) and Text; links with Link",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Code": {
+  "summary": "A one-time code in large monospace digits on a muted box, with how long it is valid.",
+  "use": [
+   "Email verification, sign-in codes and two-step confirmation"
+  ],
+  "avoid": [
+   "Passwords or secrets that stay valid: never email them",
+   "Codes longer than 8 characters: send a link instead"
+  ],
+  "anatomy": [
+   "Box: background/muted, radius/lg, padding 24",
+   "Label: ui/label, foreground/default",
+   "Code: Roboto Mono SemiBold 36 (font/mono), letter spacing 10, foreground/default",
+   "Hint (Show hint): body/small, foreground/muted, under the box"
+  ],
+  "rules": [
+   "Six digits, no spaces inside, so copy and paste works",
+   "Hint says when the code expires and what to do if the reader did not ask for it",
+   "Put the code in the subject line too (\"482916 is your Orbitly code\")"
+  ],
+  "a11y": [
+   "Code is real text, never an image",
+   "In code, wrap it in a container that screen readers read as one string",
+   "Contrast foreground/default on background/muted 15:1 or more"
+  ],
+  "code": "@react-email/components Section (background muted, borderRadius 12, padding 24) with Text label and Text code (fontFamily monospace, fontSize 36, letterSpacing 10)",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/auth.md"
+  ]
+ },
+ "Email / Details": {
+  "summary": "Key facts as label and value rows in a light bordered box: invoice number, amount, due date, device and location, delivery address.",
+  "use": [
+   "Invoices, receipts and payment failures",
+   "Security notices (device, location, time)",
+   "Invitations (workspace, role, invited by) and orders (number, delivery)"
+  ],
+  "avoid": [
+   "Purchased items with amounts: use Email / Line Items",
+   "More than six rows: link to the page instead"
+  ],
+  "anatomy": [
+   "Title (Show title): heading/h4",
+   "Rows (slot): Email / Details Row (Label body/small foreground/muted, Value ui/label right)",
+   "Box: card/muted-background, border/default 1 px, radius/md, padding 12 and 20"
+  ],
+  "rules": [
+   "Most important row first (amount or what changed)",
+   "Exact values: currency symbol, full dates for legal facts, times with time zone",
+   "Same labels as in the product (\"Invoice number\", not \"Ref\")"
+  ],
+  "a11y": [
+   "In code a two-column table with role=\"presentation\" or a definition list",
+   "Label and value read in order, left to right"
+  ],
+  "code": "@react-email/components Section (border, borderRadius 8, padding) with Row and Column per line (Text label, Text value align right)",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Line Items": {
+  "summary": "What was bought or billed, with the sums: invoices, receipts and order confirmations.",
+  "use": [
+   "Invoice and receipt lines with subtotal, VAT and total",
+   "Order confirmations with product photos (Line Item Show image)"
+  ],
+  "avoid": [
+   "Facts without amounts: use Email / Details",
+   "More than 10 lines: summarize and link to the full invoice"
+  ],
+  "anatomy": [
+   "Title (Show title): heading/h4",
+   "Items (slot): Email / Line Item (Image 64 px when Show image, Name ui/label, Meta body/small muted, Amount right), bottom rule border/default",
+   "Totals (slot): Email / Total Row, Type default (body/small) and Type total (body/large, top rule)"
+  ],
+  "rules": [
+   "Amounts right-aligned with the same decimals and the currency symbol",
+   "Meta says quantity, size or period (\"2 × €18.00\", \"Size M\")",
+   "One Type=total row, last"
+  ],
+  "a11y": [
+   "In code a table with role=\"presentation\"; the total is also stated in words in the Hero text",
+   "Product photos have alt text with the product name"
+  ],
+  "code": "@react-email/components Section with Row/Column per item (Img, Text name and meta, Text amount align right), Hr, then Row/Column per total",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Email / Callout": {
+  "summary": "A tinted notice box inside the body for something the reader must know that is not the main action.",
+  "use": [
+   "\"If this was not you\" in security emails",
+   "Retry dates after a failed payment",
+   "Read-only or deadline warnings"
+  ],
+  "avoid": [
+   "The main message of the email: that is the Hero",
+   "More than one callout per email"
+  ],
+  "anatomy": [
+   "Tone (variant): default, info, success, warning, destructive",
+   "Box: badge/soft-* background (background/muted for default), radius/md, padding 16, gap 12",
+   "Icon (Show icon): 20 px, matching badge/soft-*-fg",
+   "Title (Show title): ui/label; Text: body/small, both foreground/default"
+  ],
+  "rules": [
+   "Title short, Text one or two sentences with the fix",
+   "The message must make sense without the color",
+   "warning for deadlines and \"was this not you\" notices; destructive only for a blocked account or data loss"
+  ],
+  "a11y": [
+   "Icon is decorative (empty alt); the Title carries the meaning",
+   "Text stays foreground/default on the tint: 12:1 or more"
+  ],
+  "code": "@react-email/components Section (backgroundColor tint, borderRadius 8, padding 16) with Row: Column Img icon (20 px) + Column Text title and Text body",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/notifications.md"
+  ]
+ },
+ "Email / Divider": {
+  "summary": "A 1 px border/default rule across the body column, between groups of content.",
+  "use": [
+   "Between the summary and the details",
+   "Between articles in a newsletter"
+  ],
+  "avoid": [
+   "Between every block: spacing already separates them"
+  ],
+  "anatomy": [
+   "Separator (horizontal, Spacing none) inside 40 px side padding"
+  ],
+  "rules": [
+   "At most two or three per email"
+  ],
+  "a11y": [
+   "Decorative"
+  ],
+  "code": "@react-email/components Hr (borderColor border, margin 0)",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Stats": {
+  "summary": "Two or three key numbers side by side for digests and reports.",
+  "use": [
+   "Weekly summaries, usage reports, trial recaps"
+  ],
+  "avoid": [
+   "More than three figures",
+   "Charts: they render as images and break in dark mode"
+  ],
+  "anatomy": [
+   "Items (slot): Email / Stat, Value heading/h3, Label body/small muted, Change (Show change) ui/label-small in badge/soft-success-fg",
+   "Cell: card/muted-background, border/default, radius/md, padding 16"
+  ],
+  "rules": [
+   "Every figure says its period",
+   "Link to the full report from the email's one button"
+  ],
+  "a11y": [
+   "Cells stack on narrow screens in code",
+   "Change is also written in words (\"+12% on last week\"), never color alone"
+  ],
+  "code": "@react-email/components Row with three Column cells (Text value, Text label, Text change)",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Email / Article": {
+  "summary": "A teaser for an article, guide or release note in newsletters: thumbnail, title, one sentence and a link.",
+  "use": [
+   "Newsletters and digests, 2 to 4 in a row with Email / Divider between"
+  ],
+  "avoid": [
+   "Transactional emails"
+  ],
+  "anatomy": [
+   "Image (Show image): Image Placeholder 4:3, 160 x 120, exposed",
+   "Title: body/large, foreground/default",
+   "Text: body/small, foreground/muted",
+   "Link: ui/label, foreground/brand, underlined"
+  ],
+  "rules": [
+   "Link names the destination (\"Read the guide\"), never \"click here\"",
+   "One sentence of text"
+  ],
+  "a11y": [
+   "Thumbnail alt text or empty when the title says it all",
+   "Whole title also links to the article"
+  ],
+  "code": "@react-email/components Row: Column Img (160 wide) + Column Heading as=\"h3\", Text, Link",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Email / Footer": {
+  "summary": "Bottom of every email, outside the card: social links, postal address, why the reader got the email, preferences and unsubscribe links.",
+  "use": [
+   "Last part of every email"
+  ],
+  "avoid": [
+   "Marketing content or extra calls to action"
+  ],
+  "anatomy": [
+   "Social (Show social): LinkedIn, X, YouTube, GitHub marks, 20 px, foreground/muted",
+   "Address: body/small, foreground/muted, centered",
+   "Reason: body/small, foreground/muted, centered",
+   "Links: Preferences (Show preferences), Unsubscribe (Show unsubscribe), underlined"
+  ],
+  "rules": [
+   "Address and Reason on every email (anti-spam law)",
+   "Unsubscribe on marketing and digests; off for security, receipts and invoices, which keep Email preferences",
+   "Social links off on security emails"
+  ],
+  "a11y": [
+   "Social links have accessible names (\"Orbitly on LinkedIn\")",
+   "foreground/muted on section/muted-background 4.5:1 or more"
+  ],
+  "code": "@react-email/components Section with Row of Link+Img social icons, Text address, Text reason, Link preferences and Link unsubscribe (List-Unsubscribe header in the send)",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/notifications.md"
+  ]
  }
 }

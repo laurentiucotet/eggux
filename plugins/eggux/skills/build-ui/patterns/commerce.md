@@ -54,6 +54,8 @@ Payment blocks are on Forms; success page is `Block / Result`; the store back of
   (`Show notify`) even with quick add off.
 - Sale prices sit on `background/default` or the muted section band, never on `background/muted`
   (red on it drops to 4.43:1 in Light).
+- The order confirmation email repeats the order number, items with photos, totals and delivery
+  address (`Screen / Email / Order confirmation`).
 
 ## Related components
 - Checkout addresses use `Address Autocomplete` with manual entry; coupon codes use `Inline Form`;

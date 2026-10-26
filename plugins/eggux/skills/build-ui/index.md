@@ -52,6 +52,7 @@ component guides it names. Names are Figma components; inventory in
 | AI on a screen (copilot panel, inline edit) | current shell | AI Assistant Panel, Inline AI | ai-chat | ai-chat, popover |
 | AI summary or suggested values on a record or form | current shell | example "AI on a record page" (AI Summary, AI Suggestion, AI Notice) | ai-chat, forms | ai-chat, card |
 | Agent doing a multi-step task, agent run page | App or panel | Agent Task Run (run page); example "agent at work" (Agent Plan, Artifact Card, Tool Call approval) | ai-chat, approvals, notifications | ai-chat |
+| Transactional email (welcome, verify, sign-in link, reset, security notice, invite, invoice, receipt, payment failed, trial ending, digest, order confirmation) | Email template (600 column on a muted canvas; copy a `Screen / Email / *` from the Emails page) | Email / Header, Hero, Content, Button, Code, Details, Line Items, Callout, Stats, Article, Divider, Footer | email, auth, notifications, writing | (Email page) |
 
 ## By interaction
 
