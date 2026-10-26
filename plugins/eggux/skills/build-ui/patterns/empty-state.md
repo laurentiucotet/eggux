@@ -29,6 +29,8 @@ cards and panels; Media icon or image; Icon (swap), Title, Description, Actions 
 - The example "empty state types" on the Empty State page shows the five cases with their icon,
   copy and actions: no data yet (inbox; create, import), no results (search; clear filters), error
   (circle-alert; try again), no access (lock; request access), first run (sparkles; set up).
+- `Block / Empty States Set` (App page) shows the three empty reasons (no results, no access,
+  first use with an image) and Size=sm inside a table or card; copy one state, not the set.
 
 ## Layout
 Centered inside the area the content would occupy, not the whole page. Text styles:

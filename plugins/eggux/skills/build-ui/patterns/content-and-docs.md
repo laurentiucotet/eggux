@@ -2,10 +2,11 @@
 
 Blocks on the Content page (Blog family: Blog Grid, Blog Featured, Blog Post Header, News List,
 Blog List, Article; Help center family: Help Hero, Help Categories, Help Popular Articles, Help
-Article List, Support Options, Docs Page Footer, Changelog, Status Page) and `Page Shell / Docs`.
-Example: `Example / Help center` on the Content page. Page tops for hubs, topics, search,
-people and events: the Page Headers page (`marketing-pages.md` § Page headers). Related links:
-`Post Card` Layout=compact.
+Article List, Support Options, Docs Page Footer, Changelog, Status Page; Prose family: Legal Page,
+Content with Image) and `Page Shell / Docs`. Examples: `Example / Help center` and
+`Example / Legal page` on the Content page, `Example / Blog index page` on the Sections page.
+Page tops for hubs, topics, search, people and events: the Page Headers page (`marketing-pages.md`
+§ Page headers). Related links: `Post Card` Layout=compact.
 
 ## Rules
 - Reading column ≈ 672 px (65-75 characters per line), `body/default` 16/28 for prose.
@@ -21,6 +22,13 @@ people and events: the Page Headers page (`marketing-pages.md` § Page headers).
   switcher when several versions exist, "Edit this page" link for public docs.
 - Previous / next links at the end of a docs page are two `Pager Link`s (Direction=previous, next) in equal columns.
 - Images with a caption use `Image Figure` (set the ratio on its nested Image Placeholder; Show credit for the source).
+- To explain one idea with a picture inside a long page use `Block / Content with Image`: at most
+  one pull Quote, caption every image.
+
+## Legal and policy pages
+Navbar, `Block / Legal Page`, Footer (`Example / Legal page`). The block holds Header Simple, a
+Table of Contents on the left and a 720 reading column with numbered h3 sections; put a
+short-version Alert first, and keep the date and the contact always visible.
 
 ## Help center
 Order: `Block / Navbar Search` → Help Hero → Help Categories → Help Popular Articles → Support

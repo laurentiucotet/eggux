@@ -44,4 +44,6 @@ drawer with filters on the Drawer page.
   one item open an `Action Sheet` (2-6 actions, destructive last, Cancel apart); content and forms
   go in a Drawer.
 - App download links use `Store Badge` (App Store first, then Google Play), never a generic
-  Button. A mobile app landing page leads with `Block / Hero with Phone` (`marketing-pages.md`).
+  Button. A mobile app landing page leads with `Block / Hero with Phone` and closes with
+  `Block / CTA App Download` (`marketing-pages.md`). A landing page at 390: `Example / Mobile
+  landing page` on the Hero page.

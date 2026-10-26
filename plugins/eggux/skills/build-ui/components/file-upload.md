@@ -51,5 +51,8 @@ Usage guidelines only. Visual specs live in the Figma components (File Upload pa
   centered; min width 320).
 
 ## Related components
+- A documents area starts from `Block / File Manager` (example "File manager" on the App page):
+  folder Tree, Breadcrumb, folders then files newest first, uploads in the list with progress, a
+  dropzone that names the target folder.
 - One file inside a form (contract, logo, CSV) uses `File Field`: Choose file, name and size,
   remove. Several files or drag and drop stay on `File Dropzone` with `File Item`s.

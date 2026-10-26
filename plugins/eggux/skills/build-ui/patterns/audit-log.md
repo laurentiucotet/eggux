@@ -18,6 +18,8 @@ when and from where, and to undo mistakes with evidence.
   exports, deletions, settings and security changes, API key changes.
 - Show a short "History" tab on record pages filtered to that record; the full log lives in
   admin settings.
+- Document or configuration history: `Block / Version History` (Version Items left, Diff Viewer of
+  the selected version against current right; Restore makes a new version).
 
 ## Figma
 `Change Item` on the Audit page; `Block / Audit Log` on the Enterprise page (Data Grid Toolbar
@@ -25,3 +27,5 @@ when and from where, and to undo mistakes with evidence.
 - Document and configuration history uses `Version Item` (newest first, current marked, Restore
   creates a new version) with a `Diff Viewer` preview. Technical event streams use `Log Row`, with
   the payload in a `JSON Viewer`; these are not the audit log.
+- Activity tab of a project or record: `Block / Activity Feed`. Use `Block / Audit Log` when
+  people filter by actor and export.

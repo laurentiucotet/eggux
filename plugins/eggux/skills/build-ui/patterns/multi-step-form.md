@@ -20,6 +20,7 @@ in the card footer. 768 wide.
 Long or blocking flows (onboarding, setup, checkout, import) use `Page Shell / Wizard`: no sidebar,
 step counter, "Save and exit", progress bar, sticky Back / Continue, content 672 wide. Short flows
 inside the app keep the App shell and use `Block / Multi-step Form` with a Stepper.
-- Product onboarding after sign-up: `Page Shell / Wizard` with `Block / Welcome Role Select` as
-  step 1, then workspace, invite team, plan or trial, done; every step skippable. See SCREENS /
-  Auth, Onboarding.
+- Product onboarding after sign-up: `Page Shell / Wizard` with `Block / Welcome Role Select`,
+  `Workspace Setup`, `Invite Team Step` and `Plan Select Step` (Forms page), then done. Turn Show
+  progress and Show actions off on the steps inside the shell. Every step is skippable except the
+  workspace name. See SCREENS / Auth, Onboarding.

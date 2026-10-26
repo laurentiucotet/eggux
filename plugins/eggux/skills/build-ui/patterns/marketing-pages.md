@@ -8,23 +8,24 @@ grouped by family inside each page's `Blocks` section.
 |---|---|---|
 | Banner | Announcement Banner, Banner with Action, Banner Countdown, Banner Floating | Announcement Banner for site-wide news on primary, above the Navbar; Banner with Action for events and notices on the muted band; Banner Countdown only for a real dated offer; Banner Floating at the bottom for a launch. One banner at a time, dismissible |
 | Hero | Hero Centered, Hero Split, Hero with Screenshot, Hero with Logo Cloud, Hero with Form, Hero with Phone, Hero Full-bleed Image, Hero with Video, Hero with Stats, Hero Image Collage, Hero Prompt | Pick by what sells the product: the screen (with Screenshot; with Logo Cloud adds customer logos), a human or illustrative image (Split), a brand photo (Full-bleed Image), people (Image Collage, for people-centered products), a product tour (with Video), scale and track record (with Stats), one email field (with Form), a mobile app (with Phone, store badges). Hero Prompt for the signed-in home of a portal or data product where people start by asking (AI search or assistant). All 11 side by side in `Example / Hero showcase` (Hero page) |
-| Logo Cloud | Logo Cloud, Logo Grid, Logos Split, Logo Marquee | Marquee right under the hero; Grid as its own customers section; Split for partners or investors with one sentence of context |
-| Features | Features, Features Split, Bento Grid, Bento Grid 2, Features with Screenshot, Features Tabs, How It Works, Feature Checklist, Integrations Grid | Grid for 3-6 short benefits (Feature Item, stacked); split rows for deep-dives; Bento Grid and Bento Grid 2 for a platform overview with real components; with Screenshot for one area proved by its screen; Tabs for 3-5 areas of one product; How It Works for a setup or process in 3-4 steps; Checklist for what every plan includes; Integrations Grid for "does it work with our tools" |
+| Logo Cloud | Logo Cloud, Logo Grid, Logos Split, Logo Marquee, Press Mentions | Marquee right under the hero; Grid as its own customers section; Split for partners or investors with one sentence of context; Press Mentions when real articles exist: a short quote, writer, publication, month and a link per article, press mastheads as `Logo / Press / *` in Logo Tiles |
+| Features | Features, Features Split, Bento Grid, Bento Grid 2, Features with Screenshot, Features Tabs, How It Works, Feature Checklist, Integrations Grid, Features with Code, Use Cases, Us vs Them | Grid for 3-6 short benefits (Feature Item, stacked); split rows for deep-dives; Bento Grid and Bento Grid 2 for a platform overview with real components; with Screenshot for one area proved by its screen; Tabs for 3-5 areas of one product; How It Works for a setup or process in 3-4 steps; Checklist for what every plan includes; Integrations Grid for "does it work with our tools"; Features with Code for API, SDK and developer pages (a sample that runs, under 15 lines); Use Cases for 3-4 teams or industries, each linking to its page; Us vs Them for one honest comparison with alternatives, by category of tool with no competitor names, sources and date in the note |
 | Trust | Security and Compliance, Trust Strip | Security and Compliance on enterprise and finance pages before Pricing (controls and the certifications you hold); Trust Strip as a one-line reassurance row under a store hero or above the footer |
-| Testimonials | Testimonials, Testimonial Single, Grid, Split, Carousel | Single for one strong quote; grid for breadth; split (case study) for enterprise buyers; carousel only past six |
-| CTA | CTA, CTA Split, CTA Card, CTA with Screenshot | Card (primary color) once per page near the end; split with a product image mid-page; with Screenshot when the product is the argument (once per page, it counts as the decorated band) |
+| Testimonials | Testimonials, Testimonial Single, Grid, Split, Carousel, Wall, Video | Single for one strong quote; grid for breadth; split (case study) for enterprise buyers; carousel only past six; Wall for a customers or reviews page (featured story, then a masonry of 7 cards); Video when a customer recorded the story (the quote is a line from the video, plus 3 result figures) |
+| CTA | CTA, CTA Split, CTA Card, CTA with Screenshot, CTA with Form, CTA App Download | Card (primary color) once per page near the end; split with a product image mid-page; with Screenshot when the product is the argument (once per page, it counts as the decorated band); with Form when the next step is signing up with an email (trial or waitlist); App Download to close a page about a mobile app (both store badges, QR for desktop) |
 | Newsletter | Newsletter, Newsletter Split, Newsletter Card | Strip in content pages; Split with benefits and a photo; Card as the closing band of a blog |
-| Contact | Contact, Contact Cards, Contact with Map, Offices, Map Section | Cards for channels; map variants only when people visit; always the written address next to a map |
+| Contact | Contact, Contact Cards, Contact with Map, Offices, Map Section, Book a Demo | Cards for channels; map variants only when people visit; always the written address next to a map; Book a Demo for B2B sales pages: pitch, 3 or 4 benefits, one testimonial and logos left, a short form right (name, work email, company, size, country; the rest optional) |
 | Blog (Content page) | Blog Grid, Blog Featured, Blog Post Header, News List, Blog List, Article | Grid on the homepage; featured for a blog index; news list for corporate newsrooms |
-| Pricing | Pricing, Pricing Single, Pricing Calculator, Comparison Table, Pricing with Comparison | One plan: Single; usage-based: Calculator with the exact math; several plans: Pricing then Comparison; the pricing page itself: Pricing with Comparison (cards, then the collapsible full table, same plan order) |
-| FAQ | FAQ, FAQ Grid, FAQ Centered | Grid when answers are 1-2 sentences; accordion for longer answers; end with a contact option |
-| Stats | Stats, Stats Cards, Stats Split, Stats Brand Band | Real numbers with their period and source; Split when the method matters; Brand Band once per page, white figures on primary, always with the source |
-| Team | Team, Team Grid, Team List | Grid with photos for the company page; List with bios for leadership and investors |
-| About | About Hero, Mission with Figures, Our Story, Values | The About page, in this order, then Team, a testimonial, partners (Logos Split) and a CTA |
+| Pricing | Pricing, Pricing Single, Pricing Calculator, Pricing Usage-based, Comparison Table, Pricing with Comparison, Pricing Enterprise Banner | One plan: Single; usage-based: Calculator with the exact math, or Pricing Usage-based when the price grows with volume (tiers and an estimate that adds up); several plans: Pricing then Comparison; the pricing page itself: Pricing with Comparison (cards, then the collapsible full table, same plan order); Enterprise: Pricing Enterprise Banner under the plan cards instead of a fourth Enterprise card |
+| FAQ | FAQ, FAQ Grid, FAQ Centered, FAQ with Categories | Grid when answers are 1-2 sentences; accordion for longer answers; end with a contact option; with Categories once there are more than ten questions: topics on the left (Table of Contents), card accordions on the right, a help card under the topics |
+| Stats | Stats, Stats Cards, Stats Split, Stats Brand Band, Stats with Image | Real numbers with their period and source; Split when the method matters; Brand Band once per page, white figures on primary, always with the source; with Image for 4 figures with sources next to a tall photo, when numbers need context |
+| Team | Team, Team Grid, Team List, Team Cards Social | Grid with photos for the company page; List with bios for leadership and investors; Cards Social for leadership on about and careers pages: 4 or 8 photo Person Cards with LinkedIn, X, GitHub and mail buttons |
+| About | About Hero, Mission with Figures, Our Story, Values, Timeline Section | The About page, in this order, then Team, a testimonial, partners (Logos Split) and a CTA; Timeline Section for 3 to 5 milestones on about, careers or investor pages |
+| Case studies | Case Study Grid, Case Study Header | Grid as the customers index or as "More stories" under a story (3 items); Header as the top of a story page: logo, result as the title, 3 figures, company facts |
 | Page headers (Page Headers page) | Header Detail, Header Listing, Header Search Results, Header Profile, Header Event, Header Topic, Header Report, Header Simple | Top of inner pages, by page type: see § Page headers. Landing pages use Hero |
 | Careers | Careers List, Careers Benefits, Job Header | List grouped by department with counts; benefits as facts; job page header with salary range |
 | Gallery | Gallery Grid, Gallery Mosaic | Grid for places and events; Mosaic for a property, product or venue detail page |
-| Navbar | Navbar, Navbar Centered, Navbar Search, Navbar Mega Menu, Navbar Mobile | Default for most sites; Centered for brand-led sites with few links; Search for docs and help; Mega Menu past 7 top-level links or for several products |
+| Navbar | Navbar, Navbar Centered, Navbar Search, Navbar Mega Menu, Navbar Flyout, Navbar Mobile | Default for most sites; Centered for brand-led sites with few links; Search for docs and help; Mega Menu past 7 top-level links or for several products in grouped columns; Navbar Flyout for one menu of 4 to 8 products (a Navigation Menu Panel with icons and one featured card) |
 | Help center (Content page) | Help Hero, Help Categories, Help Popular Articles, Help Article List, Support Options, Docs Page Footer, Changelog, Status Page | See content-and-docs |
 | Footer | Footer, Footer Simple, Footer Newsletter, Footer Corporate, Footer Centered | Simple for few pages; columns for large sites; Newsletter when updates matter; Corporate for enterprise (legal, certifications, status, language); Centered for landing pages and microsites |
 
@@ -65,16 +66,27 @@ Light), `Meridian Enterprise` (Corporate Light), `Lumora AI product` (Showcase D
 one decorative device and real imagery; start a landing page by copying the closest one.
 
 ## Typical order (other pages)
-Examples in the Examples section of the Sections page (pricing, about, contact).
-- Pricing: Navbar, Pricing with Comparison, Logo Marquee, Testimonial Grid, FAQ, CTA with
-  Screenshot, Footer (`Example / Pricing page`).
+Examples in the Examples section of the Sections page (pricing, about, contact, case study,
+careers, blog index).
+- Pricing: Navbar, Pricing with Comparison (or Pricing Usage-based), Pricing Enterprise Banner,
+  Logo Marquee, Testimonial Grid, FAQ, CTA with Screenshot, Footer (`Example / Pricing page`).
 - About: Navbar, About Hero, Mission with Figures, Our Story, Values, Team Grid, Testimonial
   Single, Logos Split, CTA Card, Footer (`Example / About page`).
 - Contact: Navbar, Contact Cards, Contact with Map, Offices, FAQ Grid, Newsletter Card, Footer
   (`Example / Contact page`).
 - Security or trust: Hero Centered, Security and Compliance, Trust Strip, FAQ, CTA Card.
-- Mobile app: Navbar, Hero with Phone, Features, Testimonials, CTA, Footer (`mobile.md` for the
-  store badges).
+- Mobile app: Navbar, Hero with Phone, Features, Testimonials, CTA App Download, Footer
+  (`mobile.md` for the store badges).
+- Developer or API: Navbar, Hero Centered, Features with Code, Integrations Grid, FAQ, CTA with
+  Form, Footer.
+- Book a demo: Navbar, Book a Demo, Logo Marquee, FAQ, Footer.
+- Customers: Navbar, Logo Grid, Case Study Grid, Testimonial Wall, Footer.
+- Case study: Navbar, Case Study Header, Article (the story), Testimonial Video, Case Study Grid
+  (3), CTA Card, Footer (`Example / Case study page`).
+- Careers: Navbar, About Hero, Careers Benefits, Team Cards Social, Timeline Section, Careers
+  List, Footer (`Example / Careers page`).
+- Blog index: Navbar, Blog Featured, Blog Grid, Blog List with pagination, Newsletter Card, Footer
+  (`Example / Blog index page`).
 
 ## Rules
 - One primary CTA repeated (same label) in Hero, Pricing and the final CTA band.
@@ -91,6 +103,10 @@ Examples in the Examples section of the Sections page (pricing, about, contact).
   value; mobile shows one plan at a time. On pricing pages use `Comparison Table` Plans=3 or 4 to
   match the plan cards, in the same order.
 - Sections alternate background only when it helps scanning (`background/default` / `muted`).
+- Comparisons and press quotes must be true and dated: name the sources, link the article, never
+  invent a mention or a competitor's price.
+- A case study states the result in the title and repeats it as numbers; the same numbers appear
+  in the header, the grid card and any video testimonial of that customer.
 - Testimonials: real name, role and company (Byline); specific results beat praise; no stock photos.
   One `Testimonial Card` Variant=featured above a grid of default or logo cards; minimal quotes for
   a quiet row under a hero.

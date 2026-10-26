@@ -34,3 +34,7 @@ breakdown grid with Progress for share and a total row.
   `Block / Sales Pipeline` and a store back office from `Block / Commerce Admin` (App page;
   examples "SaaS metrics dashboard" and "Commerce admin"); keep one period for the screen and
   make shares add up to the total.
+- Start a finance home from `Block / Finance Dashboard` (cash flow Waterfall, invoices
+  Distribution Bars, overdue list) and a help desk home from `Block / Support Dashboard` (SLA
+  Gauge, volume Heatmap, satisfaction, breaching tickets); a falling metric that is good keeps a
+  positive tone.

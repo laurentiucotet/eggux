@@ -46,6 +46,7 @@ landing page: too much air, too few rows, no audit trail, no way to share a filt
 - Dates, numbers and currency follow the user's locale; amounts show their currency.
 - Every screen has a permission-aware empty state: "You do not have access to invoices.
   Ask an admin" instead of a blank page.
+- Org chart: `Block / Org Chart`, at most 3 levels, vacant roles stay in the tree.
 
 ## Import
 - Steps: Upload (CSV, XLSX; size and row limits shown), Map columns, Review, Import.

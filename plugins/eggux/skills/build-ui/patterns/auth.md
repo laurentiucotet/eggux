@@ -15,6 +15,8 @@ Two-Factor, Accept Invite. Shell: `Page Shell / Auth`.
 - Invites: show who invited, to what and with which role; email fixed from the invite; expired
   invite → explain and offer "Ask for a new invite".
 - After success: sign the user in, land where they were going, confirm with a toast.
+- Pre-launch: `Block / Waitlist` (Forms page, a whole page on its own); after sign-up show
+  State=joined with the real position and a referral link, never a fake count.
 - Errors inline under the field (`form-validation.md`); rate-limit messages say when to retry.
 - Every auth email (verify, sign-in link, reset, password changed) starts from its template on the
   Emails page: one button, the code or link lifetime, a fallback URL and a "not you?" callout

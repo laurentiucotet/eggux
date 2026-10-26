@@ -12,9 +12,14 @@ full 1136 (integrations). Navigation between settings sections: Sidebar group or
 | API Keys | Masked keys, full key shown once at creation with Copy; created / last used; revoke with confirmation |
 | Integrations | Search; cards with logo, benefit, status; Connect (OAuth) or Settings + on/off |
 | Onboarding Checklist | 3-6 steps to first value, progress, one highlighted next step, dismissible; steps complete automatically |
-
 | Roles & Permissions | Roles list with member counts; permission matrix grouped by resource (rows) × roles (columns); Owner column locked; edited role highlighted; Save Bar; changes logged |
 | Org Switcher | In the Sidebar Workspace: current org with a check, role and plan, search over 5 orgs, create and manage at the bottom; switching keeps the user on the same kind of page |
+| Workspace Settings | The General tab, with Danger Zone last |
+| Appearance Settings | The Appearance tab; saves on change with a Toast and no Save Bar |
+| Plan and Usage | The Billing tab, above Billing |
+| Plan Checkout | Upgrading; the Total and the pay button show the same amount |
+| AI Settings | The AI tab: model defaults, data controls (training opt-in off by default, retention), memory with a destructive clear |
+| Invite Members Dialog | Inviting people to the workspace (`sharing-and-invites.md`) |
 
 Settings sections: one `Setting Row` per setting (title, what changes, control on the right:
 Switch for on/off, Select for a choice, Button for Change or Connect); Show divider off on the last
@@ -36,12 +41,15 @@ at the bottom, with typed confirmation (`delete-confirmation.md`).
 - Account pages (My profile, public profile, activity, connected accounts, delete account) reuse the
   same block with account tabs; the entry is the Account Menu on the Sidebar User. Screens: SCREENS /
   Account.
+- Users page: `Block / User Directory`; status as soft Badges with a short note, sign-in method
+  and two-factor as their own columns, bulk actions in the Table Toolbar.
 
 ## Related components
 - Settings pages with fields use `Form Section` (title and description on the left, fields on the
-  right) and one Save. API keys and webhook URLs use `Copy Field`. Appearance settings use a
-  `Toggle Group` for the theme (light, dark, system) and a `Select` for the language: examples
-  "theme switch" on the Toggle Group page and "language switch" on the Select page.
+  right) and one Save. API keys and webhook URLs use `Copy Field`. Appearance settings use Option Cards
+  for the theme (light, dark, system; `Block / Appearance Settings`), a segmented Toggle Group for
+  density and a `Select` for the language; a compact theme control is the "theme switch" example
+  on the Toggle Group page.
 - Billing and Team Members show each plan limit with a `Usage Meter` (near from 80% with what to do,
   over above 100% with the consequence and date). Rules lists use `Automation Rule`: one sentence
   per rule, a Switch to pause it and how often it ran.
