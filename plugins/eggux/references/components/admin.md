@@ -1,6 +1,6 @@
 # Admin
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -249,6 +249,7 @@ One signed-in device in security settings: device and browser, approximate locat
 2. Name: browser and system; State=current adds the "This device" success Badge
 3. Meta: location, partial IP, last active; ui/caption, muted
 4. Action: Sign out Button outline sm, disabled when State=current
+5. State: default, current; any Device can be the current one
 
 **Content and behavior**
 
@@ -291,7 +292,7 @@ Code: custom row + `Badge` and `Button` (Sessions from your auth provider (Auth.
 
 Component set · 3 variants · default size 220 × 150
 
-One person or open role in an org chart: avatar, name, role and direct reports. State=selected for the person in focus; State=vacant is dashed, says "Open role" and keeps the Role of the position. Connect nodes with 1 px border/default lines.
+One person or open role in an org chart: avatar, name, role and direct reports. State=selected for the person in focus; State=vacant is dashed: the title is the Vacancy ("Open role"), the secondary line shows the Role of the position and the Hiring status ("Hiring", "Interviewing", "Offer out"). Connect nodes with 1 px border/default lines.
 
 
 Usage: eggux build-ui/patterns/enterprise-apps.md
@@ -311,16 +312,17 @@ Usage: eggux build-ui/patterns/enterprise-apps.md
 **Anatomy**
 
 1. Avatar
-2. Name: ui/label; on State=vacant the Vacancy text ("Open role") takes its place
-3. Role: body/small, muted (also on State=vacant: the title being hired for)
-4. Reports: users icon and count ("6 reports"), not on State=vacant
-5. State: default, selected, vacant
+2. Name: ui/label; on State=vacant the Vacancy text ("Open role") is the title
+3. Role: body/small, muted; on State=vacant the title being hired for, followed by the Hiring status
+4. Hiring status (State=vacant): "Hiring", "Interviewing", "Offer out", body/small, muted
+5. Reports: users icon and count ("6 reports"), not on State=vacant
+6. State: default, selected, vacant
 
 **Content and behavior**
 
 - Click opens the Person Card; the reports count expands the branch
 - Connect nodes with 1 px border/default lines
-- Vacant roles are dashed, say "Open role" (Vacancy) and keep the Role of the position, linked to the Job Listing
+- Vacant roles are dashed, titled "Open role" (Vacancy); the secondary line is Role and Hiring status ("Head of Platform · Hiring"), linked to the Job Listing
 - Large orgs show 2-3 levels and a search
 - Names and titles wrap to two lines at most
 
@@ -340,6 +342,7 @@ Usage: eggux build-ui/patterns/enterprise-apps.md
 | Role | text | Head of Finance |
 | Reports | text | 6 reports |
 | Vacancy | text | Open role |
+| Hiring status | text | Hiring |
 
 Built from: `Avatar`. Icons: plus, users
 

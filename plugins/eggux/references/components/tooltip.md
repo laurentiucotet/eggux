@@ -61,6 +61,7 @@ Usage: eggux build-ui/components/tooltip.md
 - Shows on keyboard focus; Escape hides it
 - Tied to the trigger with aria-describedby, or its text is the button's aria-label
 - Text on background/primary (default) and on background/popover (light) meets 4.5:1
+- The shortcut Kbd uses foreground/default text on background/muted (4.5:1 or more) in both Variants
 
 | Variant property | Values |
 |---|---|

@@ -1,6 +1,6 @@
 # Form Layout
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -10,9 +10,9 @@ Usage rules live in the guides linked under each component.
 | [Fieldset](#fieldset) | 2 | Options |
 | [Error Summary](#error-summary) | 1 | Errors |
 | [Requirement List](#requirement-list) | 1 | Items |
-| [Check Item](#check-item) | 3 | - |
+| [Check Item](#check-item) | 9 | - |
 
-On the Figma page: "Example / in account settings form", "Stress test / Error Summary", "Stress test / Fieldset", "Stress test / Form Section", "Stress test / Requirement List"
+On the Figma page: "Example / Check Item tones", "Example / in account settings form", "Stress test / Error Summary", "Stress test / Fieldset", "Stress test / Form Section", "Stress test / Requirement List"
 
 ## Form Section
 
@@ -249,9 +249,12 @@ Code: custom `<ul>` of `Check Item`s, state from the zod schema of the field (`a
 
 ## Check Item
 
-Component set · 3 variants · default size 168 × 20
+Component set · 9 variants · default size 163 × 20
 
 One line with a mark: check (met, included), dash (pending, not included) or x (failed after a submit). Used in Requirement List (password and publish rules) and in Plan Card feature lists. Label is one line; keep the order people read or fix them in.
+
+
+Tone: default; on-primary on primary bands and cards (label and mark in foreground/primary, 5.2:1); inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner: label and mark in background/default, dash in background/muted). The mark is one color in both tones so it keeps 3:1 in every theme. Never override the colors by hand.
 
 **Use for**
 
@@ -269,6 +272,7 @@ One line with a mark: check (met, included), dash (pending, not included) or x (
 
 1. Mark: circle-check (Mark=check), dash (Mark=dash), x (Mark=x)
 2. Label: one line, muted when Mark=dash
+3. Tone: default, on-primary (label and mark in foreground/primary), inverted (label and mark in background/default; dash in background/muted)
 
 **Content and behavior**
 
@@ -276,16 +280,19 @@ One line with a mark: check (met, included), dash (pending, not included) or x (
 - One line per item; lead with the benefit or the rule ("At least 12 characters")
 - In plans, list what is included first and keep the same order across plans
 - In Requirement List the marks update as people type; nothing turns x before a submit
+- Tone=on-primary on primary bands and cards, Tone=inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner); never recolor the label or the mark by hand
 
 **Accessibility**
 
 - The mark is aria-hidden; the meaning is in text ("included", "not included", "met", "not met yet")
 - Lists are ul elements
 - Contrast of muted labels stays at 4.5:1
+- In the on-primary and inverted tones the mark has the label color (foreground/primary 5.2:1 on primary; background/default over 14:1 on inverted), because the success green falls under 3:1 on an inverted card in Dark
 
 | Variant property | Values |
 |---|---|
 | Mark | check, dash, x |
+| Tone | default, on-primary, inverted |
 
 | Property | Type | Default |
 |---|---|---|
@@ -294,10 +301,10 @@ One line with a mark: check (met, included), dash (pending, not included) or x (
 Icons: circle-check, minus, x
 
 Tokens and styles:
-- Colors: `foreground/default`, `foreground/muted`
+- Colors: `background/default`, `background/muted`, `foreground/default`, `foreground/muted`, `foreground/primary`
 - Spacing and size: `spacing/2`
 - Text styles: `body/small`
 
 Guides: [content](../../skills/build-ui/components/content.md), [input](../../skills/build-ui/components/input.md), [auth](../../skills/build-ui/patterns/auth.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status (Mark=check, dash, x)
+Code: `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status (Mark=check, dash, x. Tone=on-primary: label and icon `text-primary-foreground`; Tone=inverted: `text-background`, dash `text-muted`)

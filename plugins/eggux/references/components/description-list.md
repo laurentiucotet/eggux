@@ -1,6 +1,6 @@
 # Description List
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -8,7 +8,7 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Description List Item](#description-list-item) | 2 | Value |
 | [Meta Item](#meta-item) | 1 | - |
-| [Figure](#figure) | 4 | - |
+| [Figure](#figure) | 8 | - |
 | [Summary Row](#summary-row) | 3 | - |
 
 On the Figma page: "Example / event facts", "Example / in billing", "Example / invoice totals", "Example / report figures", "Stress test / Description List Item", "Stress test / Figure", "Stress test / Meta Item", "Stress test / Summary Row"
@@ -74,7 +74,7 @@ Code: custom `dl` with `dt` / `dd` and a Tailwind grid; custom `ol` (No shadcn c
 
 ## Meta Item
 
-Component · 1 variant · default size 229 × 20
+Component · 1 variant · default size 225 × 20
 
 One fact with an icon: date and time, place, people, length, size, contact. Use in headers, cards and list rows; line up several in a row (gap 24) or a column (gap 8). Text is body/small, muted; the icon says the kind of fact, never decoration. Links: put the Meta Item in a link, the label stays the same color.
 
@@ -128,9 +128,9 @@ Code: custom: icon + text (`text-sm text-muted-foreground`); `dl` with value and
 
 ## Figure
 
-Component set · 4 variants · default size 240 × 56
+Component set · 8 variants · default size 240 × 56
 
-A number with what it counts: stacked (value over label, optional source and divider) for report headers, dashboards without trends and key facts; inline (value then label on one baseline) for counts in a profile or header ("42 articles"). Every figure has a label that reads on its own; add the source when the number is a claim. A metric compared to a period goes in Stat Card.
+A number with what it counts: stacked (value over label, optional source and divider) for report headers, dashboards without trends and key facts; inline (value then label on one baseline) for counts in a profile or header ("42 articles"). Every figure has a label that reads on its own; add the source when the number is a claim. A metric compared to a period goes in Stat Card. Tone=on-primary sets value, label and source in foreground/primary for primary bands (Stats Brand Band), so no color overrides are needed.
 
 **Use for**
 
@@ -150,6 +150,7 @@ A number with what it counts: stacked (value over label, optional source and div
 2. Label: body/small, muted
 3. Source (stacked, Show source)
 4. Divider (stacked)
+5. Tone: default, on-primary (value, label and source in foreground/primary)
 
 **Content and behavior**
 
@@ -158,16 +159,19 @@ A number with what it counts: stacked (value over label, optional source and div
 - Add the source when the figure is a claim; one source line under a group is enough
 - Numbers in the locale format with units (€18,500, 47 days, 62%)
 - No trend arrows or colors here: that is Stat Card
+- Tone=on-primary on primary bands (Block / Stats Brand Band); keep text alignment as the only override
 
 **Accessibility**
 
 - Value and label are read together as one phrase
 - Do not round in a way that changes the meaning; the exact value in a tooltip when rounded
+- Tone=on-primary text is 5.2:1 Light and Dark, 6.7:1 Corporate Light on background/primary
 
 | Variant property | Values |
 |---|---|
 | Layout | stacked, inline |
 | Size | default, lg |
+| Tone | default, on-primary |
 
 | Property | Type | Default |
 |---|---|---|
@@ -180,7 +184,7 @@ A number with what it counts: stacked (value over label, optional source and div
 Built from: `Separator`
 
 Tokens and styles:
-- Colors: `foreground/default`, `foreground/muted`
+- Colors: `foreground/default`, `foreground/muted`, `foreground/primary`
 - Spacing and size: `spacing/0`, `spacing/1`, `spacing/1_5`
 - Text styles: `body/small`, `heading/h2`, `heading/h3`, `heading/h4`, `ui/caption`
 

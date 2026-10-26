@@ -16,7 +16,7 @@ On the Figma page: "Example / Quote styles", "Example / Testimonial Card styles"
 
 Component set · 3 variants · default size 672 × 64
 
-A quotation in running content. Variant: default (left rule, body/large) inside an article or case study; pull (centered, heading/h3, quote mark) to break up a long page with one strong line; large (centered, display size, quote mark) for one quote that is a page section on its own, such as the proof section of a landing page. Attribution: name and role, optional avatar. Quote real people with permission, word for word; no quotation marks in the text, the component adds the emphasis. Keep a large quote under 20 words and use it once per page. Customer quotes in grids use Testimonial Card.
+A quotation in running content. Variant: default (left rule, body/large) inside an article or case study; pull (centered, heading/h3, quote mark) to break up a long page with one strong line; large (centered, display size, quote mark) for one quote that is a page section on its own, such as the proof section of a landing page. Attribution: name and role, optional avatar. Quote real people with permission, word for word; no quotation marks in the text, the component adds the emphasis. Keep a large quote under 20 words and use it once per page. Customer quotes in grids use Testimonial Card. Name and Role wrap at narrow widths (default: Role fills the rest of the line next to the name and wraps there; pull and large: the attribution wraps at 280).
 
 
 Usage: eggux build-ui/components/content.md
@@ -38,7 +38,7 @@ Usage: eggux build-ui/components/content.md
 
 1. Rule on the left (default) or a quote mark (pull, large: display/xl mark)
 2. Quote text: body/large (default), heading/h3 (pull), display (large, 720 wide)
-3. Attribution: Avatar (Show avatar), Name, Role (Show attribution)
+3. Attribution: Avatar (Show avatar), Name, Role (Show attribution). default: the row fills the width and Role fills the rest of the line next to the name and wraps there; pull and large: name and role wrap at 280 so the centered attribution fits a phone
 
 **Content and behavior**
 
@@ -47,6 +47,7 @@ Usage: eggux build-ui/components/content.md
 - Variant=large once per page, under 20 words, with generous space above and below
 - Attribution names the person and their role at the time
 - Under 40 words; longer passages stay in the body text
+- Narrow columns (cards, mobile): keep the full role; it wraps, never truncate it or resize the text layers
 
 **Accessibility**
 

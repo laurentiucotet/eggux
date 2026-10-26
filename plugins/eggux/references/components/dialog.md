@@ -1,6 +1,6 @@
 # Dialog
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -9,7 +9,7 @@ Usage rules live in the guides linked under each component.
 | [Dialog](#dialog) | 1 | Header, Content, Footer |
 | [Dialog Header](#dialog-header) | 1 | Media |
 | [Dialog Footer](#dialog-footer) | 1 | Actions |
-| [Alert Dialog](#alert-dialog) | 3 | Header, Footer |
+| [Alert Dialog](#alert-dialog) | 3 | Header, Footer, Content |
 
 On the Figma page: "Example / delete confirmation over a list", "Example / dialog over page", "Example / dialog sizes", "Example / welcome dialog", "Stress test / Alert Dialog", "Stress test / Dialog"
 
@@ -126,7 +126,13 @@ Code: shadcn `Dialog` (`DialogHeader`, `DialogFooter`), `AlertDialog`
 
 Component set · 3 variants · default size 512 × 158
 
-shadcn AlertDialog presets. confirm = a decision with consequences; destructive = irreversible, action named with its verb; acknowledge = one button, the user only needs to know. No close button, no outside click; focus on Cancel (or the only button). Usage: eggux build-ui/patterns/delete-confirmation.md
+shadcn AlertDialog presets. confirm = a decision with consequences; destructive = irreversible, action named with its verb; acknowledge = one button, the user only needs to know. No close button, no outside click; focus on Cancel (or the only button).
+
+
+Header slot: Dialog Header (status icon in its Media slot). Content slot (Show content, off by default) sits between header and footer: the type-to-confirm Field, a list of what is lost, an opt-in Checkbox. Footer slot: Dialog Footer with Cancel and the action.
+
+
+Usage: eggux build-ui/patterns/delete-confirmation.md
 
 **Use for**
 
@@ -139,13 +145,14 @@ shadcn AlertDialog presets. confirm = a decision with consequences; destructive 
 
 - Restorable actions: act at once and offer Undo in a toast
 - Information that does not block the next step: use a toast or inline Alert
-- A task with fields: use Dialog
+- A task with several fields: use Dialog
 
 **Anatomy**
 
 1. Overlay (dialog/overlay)
 2. Header slot: Dialog Header with Close off, title as a question, description
-3. Footer slot: Cancel outline left, action verb right (destructive variant when destructive)
+3. Content slot (Show content, off by default): type-to-confirm Field, what is lost, an opt-in Checkbox
+4. Footer slot: Cancel outline left, action verb right (destructive variant when destructive)
 
 **Content and behavior**
 
@@ -153,7 +160,7 @@ shadcn AlertDialog presets. confirm = a decision with consequences; destructive 
 - Body says what is lost and "This can't be undone." when true
 - Buttons are verbs ("Delete project"), never Yes / No
 - No close button and no close on outside click
-- High impact (account, project, bulk data): type the name to confirm
+- High impact (account, project, bulk data): type the name to confirm, in the Content slot (Show content); the action stays disabled until it matches
 - On failure the dialog stays open with the error
 
 **Accessibility**
@@ -166,14 +173,19 @@ shadcn AlertDialog presets. confirm = a decision with consequences; destructive 
 |---|---|
 | Type | confirm, destructive, acknowledge |
 
-Slots (fill them in the instance, never detach): `Header`, `Footer`
+| Property | Type | Default |
+|---|---|---|
+| Show content | boolean | false |
+
+Slots (fill them in the instance, never detach): `Header`, `Footer`, `Content`
 
 Built from: `Dialog Footer`, `Dialog Header`
 
 Tokens and styles:
-- Colors: `background/default`, `border/default`
+- Colors: `background/default`, `background/muted`, `border/default`, `foreground/muted`
 - Spacing and size: `layout/container/lg`, `spacing/4`, `spacing/6`
-- Radius: `radius/lg`
+- Radius: `radius/lg`, `radius/md`
+- Text styles: `ui/caption`
 - Effects: `shadow/lg`
 
 Guides: [dialog](../../skills/build-ui/components/dialog.md), [popover](../../skills/build-ui/components/popover.md)

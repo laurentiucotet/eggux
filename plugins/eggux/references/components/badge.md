@@ -11,9 +11,9 @@ Usage rules live in the guides linked under each component.
 | [Status Dot](#status-dot) | 5 | - |
 | [Badge List](#badge-list) | 1 | Tags |
 | [Announcement Pill](#announcement-pill) | 1 | - |
-| [Trust Badge](#trust-badge) | 1 | - |
+| [Trust Badge](#trust-badge) | 3 | - |
 
-On the Figma page: "Example / dataset header", "Example / filter panel", "Example / in announcement banner", "Example / in filtered list", "Example / stock status", "Stress test / Announcement Pill", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Badge List", "Stress test / Status Dot", "Stress test / Trust Badge"
+On the Figma page: "Example / Trust Badge tones", "Example / dataset header", "Example / filter panel", "Example / in announcement banner", "Example / in filtered list", "Example / stock status", "Stress test / Announcement Pill", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Badge List", "Stress test / Status Dot", "Stress test / Trust Badge"
 
 ## Badge
 
@@ -82,7 +82,7 @@ Tokens and styles:
 - Radius: `radius/full`, `radius/md`
 - Text styles: `ui/label-small`
 
-Guides: [badge](../../skills/build-ui/components/badge.md), [card](../../skills/build-ui/components/card.md), [indicators](../../skills/build-ui/components/indicators.md), [table](../../skills/build-ui/components/table.md), [action-feedback](../../skills/build-ui/patterns/action-feedback.md), [permissions-and-access](../../skills/build-ui/patterns/permissions-and-access.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+Guides: [badge](../../skills/build-ui/components/badge.md), [card](../../skills/build-ui/components/card.md), [content](../../skills/build-ui/components/content.md), [indicators](../../skills/build-ui/components/indicators.md), [table](../../skills/build-ui/components/table.md), [action-feedback](../../skills/build-ui/patterns/action-feedback.md), [permissions-and-access](../../skills/build-ui/patterns/permissions-and-access.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; one style per table)
 
@@ -299,9 +299,15 @@ Code: `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` (One 
 
 ## Trust Badge
 
-Component · 1 variant · default size 199 × 54
+Component set · 3 variants · default size 199 × 54
 
 A certification or compliance claim: SOC 2, ISO 27001, GDPR, PCI DSS. Name and what backs it (audit date, region). Only claims that are current and can be shown on request; link to the trust page. In footers, pricing and security sections, sign-up pages for enterprise buyers.
+
+
+Tone: default on page and card backgrounds; on-primary on primary bands and cards (name, detail, icon and border in foreground/primary, 5.2:1 Light and Dark, 6.7:1 Corporate Light); inverted on inverted cards such as Plan Card inverted and Pricing Enterprise Banner (text and icon in background/default, detail in background/muted). Never override the colors by hand.
+
+
+Usage: eggux build-ui/components/badge.md
 
 **Use for**
 
@@ -321,6 +327,7 @@ A certification or compliance claim: SOC 2, ISO 27001, GDPR, PCI DSS. Name and w
 1. Icon (swap): shield-check
 2. Name: "SOC 2 Type II"
 3. Description: muted, audit date or region
+4. Tone: default, on-primary (name, detail, icon and border in foreground/primary), inverted (name and icon in background/default, detail in background/muted, border/default)
 
 **Content and behavior**
 
@@ -330,12 +337,18 @@ A certification or compliance claim: SOC 2, ISO 27001, GDPR, PCI DSS. Name and w
 - Update or remove it when a certificate expires
 - Same order everywhere; 3-5 in a row
 - Name and Description wrap inside the border when the badge is narrower than its text; set Fill in rows of equal badges
+- Tone=on-primary on primary bands and cards, Tone=inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner); never override the colors by hand
 
 **Accessibility**
 
 - The icon is aria-hidden; name and detail are text, not part of an image
 - When linked, the link names the claim ("SOC 2 Type II report")
 - The muted detail meets 4.5:1
+- on-primary: foreground/primary on background/primary is 5.2:1 Light and Dark, 6.7:1 Corporate Light; inverted: background/default and background/muted on foreground/default are over 14:1 in every theme
+
+| Variant property | Values |
+|---|---|
+| Tone | default, on-primary, inverted |
 
 | Property | Type | Default |
 |---|---|---|
@@ -346,11 +359,11 @@ A certification or compliance claim: SOC 2, ISO 27001, GDPR, PCI DSS. Name and w
 Icons: shield-check
 
 Tokens and styles:
-- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Colors: `background/default`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`, `foreground/primary`
 - Spacing and size: `spacing/2`, `spacing/3`
 - Radius: `radius/md`
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: custom: lucide icon + name and detail, `<a>` to the trust page (Only current claims)
+Code: custom: lucide icon + name and detail, `<a>` to the trust page (Only current claims. Tone=on-primary: `text-primary-foreground border-primary-foreground`; Tone=inverted: `text-background border-border`, detail `text-muted` (on `bg-foreground` cards))

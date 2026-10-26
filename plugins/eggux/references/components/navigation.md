@@ -175,7 +175,10 @@ Code: shadcn site header: `SidebarTrigger`, `Breadcrumb`, `Button`
 
 Component · 1 variant · default size 1136 × 56
 
-Title of a page inside the app shell: one h3 per page (heading/h3), short description, page actions slot.
+Title of a page inside the app shell with a short description and the page actions. Top of every app page (lists, settings, reports). Title (heading/h3) matches the last Breadcrumb item; Description is one sentence (Show description); Actions slot holds the page actions, primary last. Show actions: turn off when the page has no page-level action (a read-only report, a settings section). Global actions (search, notifications) go in the Top Bar.
+
+
+Usage: eggux build-ui/components/navigation.md
 
 **Use for**
 
@@ -192,7 +195,7 @@ Title of a page inside the app shell: one h3 per page (heading/h3), short descri
 
 1. Title (heading/h3)
 2. Description (Show description)
-3. Actions slot, primary last
+3. Actions slot (Show actions), primary last
 
 **Content and behavior**
 
@@ -200,6 +203,7 @@ Title of a page inside the app shell: one h3 per page (heading/h3), short descri
 - Description is one sentence
 - Title matches the last Breadcrumb item
 - Tabs for sub-views go right under it
+- Turn Show actions off when the page has no page-level action; never leave an empty slot
 
 **Accessibility**
 
@@ -211,6 +215,7 @@ Title of a page inside the app shell: one h3 per page (heading/h3), short descri
 | Title | text | Projects |
 | Description | text | All projects across your workspace. |
 | Show description | boolean | true |
+| Show actions | boolean | true |
 
 Slots (fill them in the instance, never detach): `Actions`
 
@@ -386,9 +391,10 @@ On-page navigation for long articles and docs, sticky on the right from 1280 wid
 
 **Anatomy**
 
-1. Items slot of Table of Contents Items
-2. Table of Contents Item Level 1 (h2) and Level 2 (h3)
-3. Active Table of Contents Item with primary left bar
+1. Title: "On this page" (TEXT; "Other policies", "In this guide", "Topics" for other lists)
+2. Items slot of Table of Contents Items
+3. Table of Contents Item Level 1 (h2) and Level 2 (h3)
+4. Active Table of Contents Item with primary left bar
 
 **Content and behavior**
 
@@ -396,12 +402,17 @@ On-page navigation for long articles and docs, sticky on the right from 1280 wid
 - Table of Contents Item State: default, hover, active; active = the section in view (scroll spy)
 - Clicking scrolls with an offset for sticky headers
 - Labels match the heading text
+- Title names the list: "On this page" for headings of the page, another title for lists of other pages ("Other policies")
 
 **Accessibility**
 
 - nav with aria-label="On this page"
 - Active item has aria-current="true"
 - Links move focus to the heading they target
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | On this page |
 
 Slots (fill them in the instance, never detach): `Items`
 

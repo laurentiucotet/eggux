@@ -32,7 +32,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Calendar](calendar.md) | Calendar, Calendar Day, Date Picker, Time Picker, Date Range Picker |
 | [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Progress Card, Person Card, Event Card, Date Tile, Link Preview, Location Card |
 | [Carousel](carousel.md) | Carousel, Carousel Arrow, Carousel Indicator, Carousel Slide, Carousel Gallery, Carousel Thumbnail, Carousel Hero, Lightbox |
-| [Chart](chart.md) | Bar Chart, Bar Chart Horizontal, Line Chart, Sparkline, Donut Chart, Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart, Chart Legend, Chart Legend Item, Chart Tooltip, Chart Tooltip Row, Chart Card, Waterfall Chart, Combo Chart, Dashboard Widget, Distribution Bar, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map |
+| [Chart](chart.md) | Bar Chart, Bar Chart Horizontal, Line Chart, Sparkline, Donut Chart, Heatmap, Gauge, Gauge Target, Treemap, Funnel Chart, Scatter Chart, Chart Legend, Chart Legend Item, Chart Tooltip, Chart Tooltip Row, Chart Card, Waterfall Chart, Combo Chart, Dashboard Widget, Distribution Bar, Distribution Segment, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map |
 | [Chat](chat.md) | Chat Message, Typing Indicator, Chat Composer, Mention Chip, Reaction Bar, Reaction, Thread Summary |
 | [Chip](chip.md) | Chip |
 | [Code Block](code-block.md) | Code Block, Command Snippet, Endpoint Row, Log Row, Diff Viewer, Diff Line, JSON Viewer |
@@ -58,12 +58,12 @@ components also list when to use them, anatomy, rules and accessibility from
 | [List](list.md) | List Item, Sortable List Item, Task Item, Job Listing |
 | [Menu](menu.md) | Menu, Menu Item, Menu Label, Menubar, Menubar Trigger, Account Menu |
 | [Metrics](metrics.md) | Trend Indicator, Metric Strip, Metric Strip Item, Usage Meter, Countdown, Leaderboard Row |
-| [Mobile](mobile.md) | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge |
+| [Mobile](mobile.md) | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge, QR Code |
 | [Navigation](navigation.md) | Breadcrumb Item, Breadcrumb, Top Bar, Page Header, Nav Link, Navigation Menu Panel, Navigation Menu Link, Table of Contents, Table of Contents Item, Back Link, Skip Link, Page Toolbar |
 | [Notifications](notifications.md) | Notification Item, Notification Center |
 | [Pagination](pagination.md) | Pagination Item, Pagination, Pagination Compact, Load More, Pager Link |
 | [Popover](popover.md) | Popover, Command, Command Input, Command Dialog, Hover Card, Emoji Picker, App Launcher, Confirm Popover |
-| [Pricing](pricing.md) | Price, Plan Card |
+| [Pricing](pricing.md) | Price, Plan Card, Comparison Table |
 | [Progress](progress.md) | Progress, Progress Segment, Progress Ring, Background Job |
 | [Quote](quote.md) | Quote, Testimonial Card, Footnote |
 | [Rating](rating.md) | Rating, Review Item, Rating Summary |
@@ -92,4 +92,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tree](tree.md) | Tree Item |
 | [Video](video.md) | Video Player, Video Thumbnail, Audio Player |
 
-381 components on 74 pages.
+385 components on 74 pages.

@@ -1,6 +1,6 @@
 # Tree
 
-Generated from the EGG UI master library on 2026-10-23 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -14,7 +14,7 @@ On the Figma page: "Example / navigation tree", "Example / permissions tree", "S
 
 Component set · 36 variants · default size 256 × 32
 
-Row of a tree (navigation, folders, permissions). Type: collapsed, expanded, leaf. Level 0-3 sets the indent (16 px per level). Checkbox (exposed) for multi-select trees: a parent shows indeterminate when some children are checked.
+Row of a tree (navigation, folders, permissions). Type: collapsed, expanded, leaf. Level 0-3 sets the indent (16 px per level). Checkbox (exposed) for multi-select trees: a parent shows indeterminate when some children are checked. Show count shows a Badge Count; the Badge Count is exposed, so set its Count in the panel (unread, items to review).
 
 **Use for**
 
@@ -34,7 +34,7 @@ Row of a tree (navigation, folders, permissions). Type: collapsed, expanded, lea
 3. Checkbox (Show checkbox)
 4. Icon (Show icon, Icon)
 5. Label
-6. Count (Show count)
+6. Count (Show count): Badge Count, exposed; set its Count in the panel
 
 **Content and behavior**
 

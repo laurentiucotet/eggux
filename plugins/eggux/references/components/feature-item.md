@@ -15,7 +15,7 @@ On the Figma page: "Example / Feature Item styles", "Example / features in a gri
 
 Component set · 8 variants · default size 352 × 124
 
-One benefit, capability or step: icon tile or step number, short title, one or two lines of text, optional link. Layout: stacked in grids of 3 or 4; inline in two-column lists and narrow asides; centered under a centered Section Heading; card (bordered card with padding, the same tile, title, text and optional link) when the grid sits on a muted or busy section, or when each item links to its own page (Show link). Same Layout, icon style and text length across a grid. Plan feature lists use Check Items, not Feature Items. Marker=number replaces the icon with a step number for "How it works" rows (3-4 steps, only when order matters).
+One benefit, capability or step: icon tile or step number, short title, one or two lines of text, optional link. Layout: stacked in grids of 3 or 4; inline in two-column lists and narrow asides; centered under a centered Section Heading; card (bordered card with padding, the same tile, title, text and optional link) when the grid sits on a muted or busy section, or when each item links to its own page (Show link). Marker=icon holds an exposed Icon Tile: set its Icon and Style on the nested tile (neutral by default, brand for the one accent grid on a page). Same Layout, tile Style and text length across a grid. Plan feature lists use Check Items, not Feature Items. Marker=number replaces the tile with a step number for "How it works" rows (3-4 steps, only when order matters).
 
 
 Usage: eggux build-ui/patterns/marketing-pages.md
@@ -39,15 +39,18 @@ Usage: eggux build-ui/patterns/marketing-pages.md
 **Anatomy**
 
 1. Layout: stacked, inline, centered, card
-2. Marker: icon tile (Marker=icon, Icon swap; neutral tile 40, background/muted, radius/md) or step number circle (Marker=number, Number)
-3. Title: body/large
-4. Description (Show description)
-5. Link (Show link): Button link
-6. Card (Layout=card): background/card, border/default, radius/xl, padding spacing/6, gap spacing/4
+2. Marker=icon: Icon Tile instance (exposed; Size=default 40, Style neutral by default). Pick Icon and Style (neutral, brand, gradient, outline) on the nested tile
+3. Marker=number: step number circle 40 (background/primary, radius/full, Number)
+4. Title: body/large
+5. Description (Show description)
+6. Link (Show link): Button link
+7. Card (Layout=card): background/card, border/default, radius/xl, padding spacing/6, gap spacing/4
 
 **Content and behavior**
 
-- Same Layout, icon style and text length across a grid
+- Same Layout, tile Style and text length across a grid
+- Tile Style=neutral by default; brand for the one accent grid on a page; gradient only for one highlighted item; never mix Styles in a grid
+- Set the tile Style on the nested Icon Tile, never by overriding the tile fill or icon color
 - Layout=card for the whole grid or none; cards in a row share height (Fill in a grid)
 - Title in 2-5 words; description in one or two lines
 - One idea per item; no bullet lists inside
@@ -70,22 +73,21 @@ Usage: eggux build-ui/patterns/marketing-pages.md
 |---|---|---|
 | Title | text | Approvals in one place |
 | Description | text | Route each invoice to the right person and see who approved what, and when. |
-| Icon | instance swap | Icon/sparkles |
 | Show description | boolean | true |
 | Show link | boolean | false |
 | Number | text | 1 |
 
-Built from: `Button`. Icons: sparkles
+Built from: `Button`, `Icon Tile`
 
 Tokens and styles:
-- Colors: `background/card`, `background/muted`, `background/primary`, `border/default`, `foreground/default`, `foreground/muted`, `foreground/primary`
+- Colors: `background/card`, `background/primary`, `border/default`, `foreground/default`, `foreground/muted`, `foreground/primary`
 - Spacing and size: `spacing/1`, `spacing/10`, `spacing/3`, `spacing/4`, `spacing/6`
-- Radius: `radius/full`, `radius/md`, `radius/xl`
+- Radius: `radius/full`, `radius/xl`
 - Text styles: `body/large`, `body/small`, `ui/label`
 
 Guides: [content](../../skills/build-ui/components/content.md), [stepper](../../skills/build-ui/components/stepper.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: custom: lucide icon in a `bg-muted rounded-md` tile + `<h3>` + `<p>` (Icon `aria-hidden`; grid of 3 or 4. Marker=number: an `<ol>`, number circle `rounded-full bg-muted`, `aria-hidden`)
+Code: custom: `Icon Tile` (lucide icon in a `size-10 rounded-md` tile, Style neutral `bg-muted` by default) + `<h3>` + `<p>` (Icon `aria-hidden`; grid of 3 or 4. Tile Style follows the nested Icon Tile (brand: `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`). Layout=card: wrap in shadcn `Card` (`rounded-xl border bg-card p-6 gap-4`); link as `Button variant="link"`. Marker=number: an `<ol>`, number circle `rounded-full bg-primary text-primary-foreground`, `aria-hidden`)
 
 ## Icon Tile
 

@@ -1,6 +1,6 @@
 # Table
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -23,7 +23,7 @@ Usage rules live in the guides linked under each component.
 | [Table Cell Check](#table-cell-check) | 3 | - |
 | [Table Toolbar](#table-toolbar) | 1 | Actions |
 | [Data Grid Toolbar](#data-grid-toolbar) | 1 | Start, End |
-| [Table Group Row](#table-group-row) | 1 | - |
+| [Table Group Row](#table-group-row) | 2 | - |
 | [Table Pagination](#table-pagination) | 1 | - |
 
 On the Figma page: "Example / bulk actions on invoices", "Example / density comparison", "Example / in audit log", "Example / inline edit and column resize", "Example / invoice list footer", "Example / invoices grouped by status", "Example / invoices with filters", "Example / no results", "Example / table cell types", "Stress test / Data Grid Toolbar", "Stress test / Table Group Row", "Stress test / Table Pagination", "Stress test / Table Toolbar", "Stress test / Table cells", "Template / data grid (enterprise)", "Template / invoices table (grid)"
@@ -50,7 +50,7 @@ Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row use
 
 1. Type=header with Table Header Label (Label, Sort, Align)
 2. Type=body with Table Cell Text, Table Cell Stack or Table Cell User
-3. Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Badges, Avatars
+3. Rich body content: Table Cell Amount, Status (Badge + Note that fills the cell and ends with an ellipsis), Progress, Link, Date, File, Badges, Avatars
 4. Plan comparison values: Table Cell Check (Value=included|excluded|text, Text, Note)
 5. Last column: Table Cell Actions (edit and menu)
 6. Type=expanded: one detail cell spanning all columns
@@ -66,6 +66,7 @@ Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row use
 - One date format per column (Table Cell Date); time under it only when it matters
 - Links in a cell (Table Cell Link) go where the row goes; one link per row besides the row
 - Comparison tables: Table Cell Check centered in plan columns; excluded is a dash, never blank
+- Table Cell Status: set it to FILL in the cell so a long Note truncates with an ellipsis; hugging, the note shows in full
 
 **Accessibility**
 
@@ -202,11 +203,11 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`)
+Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`; Table Cell Status note `min-w-0 truncate` so it fills the cell)
 
 ## Table Cell Status
 
-Component · 1 variant · default size 134 × 20
+Component · 1 variant · default size 133 × 20
 
 Status in a table cell: Badge (exposed: pick Variant and Label) and an optional note ("12 days", "since Oct 3"). One status per row; the label names the state, color supports it.
 
@@ -224,11 +225,11 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`)
+Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`; Table Cell Status note `min-w-0 truncate` so it fills the cell)
 
 ## Table Cell Progress
 
-Component · 1 variant · default size 136 × 20
+Component · 1 variant · default size 138 × 20
 
 Progress in a table cell: bar (exposed Progress, pick Value) and the number as text, so the value is readable without the bar. 96 wide bar; use whole percents.
 
@@ -245,7 +246,7 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`)
+Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`; Table Cell Status note `min-w-0 truncate` so it fills the cell)
 
 ## Table Cell Actions
 
@@ -265,7 +266,7 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`)
+Code: cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` (Amounts with `Intl.NumberFormat`, `tabular-nums`; Table Cell Status note `min-w-0 truncate` so it fills the cell)
 
 ## Table Cell Link
 
@@ -485,13 +486,13 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-Code: custom on TanStack Table (grouping, aggregation, visibility) (Saved views stored per user)
+Code: custom on TanStack Table (grouping, aggregation, visibility) (Saved views stored per user. Table Group Row State=expanded / collapsed = `row.getIsExpanded()`, chevron-down / chevron-right with `aria-expanded`)
 
 ## Table Group Row
 
-Component · 1 variant · default size 1200 × 20
+Component set · 2 variants · default size 1200 × 20
 
-Content of a group header row: put it in a Table Cell Type=expanded that spans all columns. Chevron collapses the group; count and subtotal summarize it.
+Content of a group header row: put it in a Table Cell Type=expanded that spans all columns. State=expanded (chevron-down) or collapsed (chevron-right): the chevron collapses the group; count and subtotal summarize it.
 
 **Use for**
 
@@ -506,7 +507,7 @@ Content of a group header row: put it in a Table Cell Type=expanded that spans a
 
 **Anatomy**
 
-1. chevron-down: collapses the group
+1. Chevron: chevron-down on State=expanded, chevron-right on State=collapsed
 2. Label: "Overdue"
 3. Count: Badge Count
 4. Subtotal (Show subtotal)
@@ -514,14 +515,19 @@ Content of a group header row: put it in a Table Cell Type=expanded that spans a
 **Content and behavior**
 
 - Put it in a Table Cell Type=expanded that spans all columns
+- State: expanded (rows below), collapsed (rows hidden, chevron right); never swap the chevron by hand
 - The chevron collapses and expands the group
 - Count and subtotal summarize the group; the subtotal uses the column's number format
 - Grouping is chosen with Group by in the Data Grid Toolbar
 
 **Accessibility**
 
-- The chevron is a button with aria-expanded and a label: "Collapse Overdue"
+- The chevron is a button with aria-expanded (true on expanded) and a label: "Collapse Overdue" or "Expand Paid"
 - Count and subtotal are text, read together with the label
+
+| Variant property | Values |
+|---|---|
+| State | expanded, collapsed |
 
 | Property | Type | Default |
 |---|---|---|
@@ -529,7 +535,7 @@ Content of a group header row: put it in a Table Cell Type=expanded that spans a
 | Subtotal | text | Subtotal €5,620.00 |
 | Show subtotal | boolean | true |
 
-Built from: `Badge Count`. Icons: chevron-down
+Built from: `Badge Count`. Icons: chevron-down, chevron-right
 
 Tokens and styles:
 - Colors: `foreground/default`
@@ -538,7 +544,7 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-Code: custom on TanStack Table (grouping, aggregation, visibility) (Saved views stored per user)
+Code: custom on TanStack Table (grouping, aggregation, visibility) (Saved views stored per user. Table Group Row State=expanded / collapsed = `row.getIsExpanded()`, chevron-down / chevron-right with `aria-expanded`)
 
 ## Table Pagination
 

@@ -1,12 +1,12 @@
 # Chat
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Chat Message](#chat-message) | 2 | - |
+| [Chat Message](#chat-message) | 4 | - |
 | [Typing Indicator](#typing-indicator) | 1 | - |
 | [Chat Composer](#chat-composer) | 1 | - |
 | [Mention Chip](#mention-chip) | 2 | - |
@@ -18,15 +18,16 @@ On the Figma page: "Example / in conversation", "Example / team thread with ment
 
 ## Chat Message
 
-Component set · 2 variants · default size 640 × 56
+Component set · 4 variants · default size 640 × 56
 
-One chat message. incoming: avatar + muted bubble on the left; outgoing: primary bubble on the right with delivery status (Sent, Delivered, Read). Bubbles max 440 wide; consecutive messages from the same person group (avatar and time only on the last).
+One chat message. incoming: avatar + muted bubble on the left; outgoing: primary bubble on the right with delivery status (Sent, Delivered, Read). Size=default: bubbles max 440 wide; Size=compact: max 300, for panels and widgets under 480 wide. Text wraps by itself, never add manual line breaks; consecutive messages from the same person group (avatar and time only on the last).
 
 **Use for**
 
 - Support, team or buyer and seller conversations
 - Direction=incoming for others, outgoing for the current user
 - Show meta on the last message of a group (time, delivery status)
+- Size=compact in panels and widgets under 480 wide (support widget, side panel)
 
 **Not for**
 
@@ -37,13 +38,14 @@ One chat message. incoming: avatar + muted bubble on the left; outgoing: primary
 **Anatomy**
 
 1. Avatar (incoming, last message of a group)
-2. Bubble: muted for incoming, primary for outgoing
-3. Text
+2. Bubble: muted for incoming, primary for outgoing; max 440 (Size=default) or 300 (Size=compact)
+3. Text: wraps by itself at the bubble max width
 4. Meta: Time and delivery status Sent, Delivered, Read (Show meta)
 
 **Content and behavior**
 
-- Bubbles max 440 wide
+- Size=default: bubbles max 440 wide; Size=compact: max 300, for panels under 480 wide
+- Never break lines by hand: short text hugs, long text wraps at the max width
 - Consecutive messages from one sender group: avatar and time only on the last
 - Delivery status on the last outgoing message
 - Day separators: Today, Yesterday, then the date
@@ -59,6 +61,7 @@ One chat message. incoming: avatar + muted bubble on the left; outgoing: primary
 | Variant property | Values |
 |---|---|
 | Direction | incoming, outgoing |
+| Size | default, compact |
 
 | Property | Type | Default |
 |---|---|---|
@@ -76,11 +79,11 @@ Tokens and styles:
 
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
 
-Code: custom
+Code: custom (Chat Message Size=default `max-w-[440px]`, Size=compact `max-w-[300px]` (panels under 480); text wraps, no manual breaks)
 
 ## Typing Indicator
 
-Component · 1 variant · default size 148 × 100
+Component · 1 variant · default size 146 × 100
 
 Shown while the other person types; dots pulse in sequence (motion/ease/linear). Hide after 5 s without input.
 
@@ -122,7 +125,7 @@ Tokens and styles:
 
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
 
-Code: custom
+Code: custom (Chat Message Size=default `max-w-[440px]`, Size=compact `max-w-[300px]` (panels under 480); text wraps, no manual breaks)
 
 ## Chat Composer
 
@@ -168,11 +171,11 @@ Tokens and styles:
 
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md), [rich-text-editor](../../skills/build-ui/components/rich-text-editor.md)
 
-Code: custom
+Code: custom (Chat Message Size=default `max-w-[440px]`, Size=compact `max-w-[300px]` (panels under 480); text wraps, no manual breaks)
 
 ## Mention Chip
 
-Component set · 2 variants · default size 82 × 24
+Component set · 2 variants · default size 79 × 24
 
 A person mentioned in text (comments, chat, notes): @ and the name on a tinted chip, inline with the text. Mentions of the reader (you) stand out in warning. Hover shows a Hover Card; the mention notifies the person. Typed with @ and picked from a list of people with access.
 
@@ -226,7 +229,7 @@ Code: Tiptap `Mention` extension + `Command` list; rendered as `<a>` (Mention no
 
 ## Reaction Bar
 
-Component · 1 variant · default size 178 × 32
+Component · 1 variant · default size 176 × 32
 
 Reactions under a comment or message: one Reaction per emoji with its count, then a button that opens the Emoji Picker. Tapping a Reaction adds or removes the reader's own. Hover lists who reacted. Keep reactions for acknowledgement; decisions still go in a reply.
 
@@ -274,7 +277,7 @@ Code: custom flex of shadcn `Toggle` (`aria-pressed`) + `Popover` emoji picker (
 
 ## Reaction
 
-Component set · 2 variants · default size 46 × 28
+Component set · 2 variants · default size 45 × 28
 
 One emoji reaction with its count; reacted when the reader added it. Part of Reaction Bar.
 
@@ -323,9 +326,9 @@ Code: custom flex of shadcn `Toggle` (`aria-pressed`) + `Popover` emoji picker (
 
 ## Thread Summary
 
-Component · 1 variant · default size 254 × 24
+Component · 1 variant · default size 249 × 24
 
-Collapsed replies under a comment or message: who replied, how many, when the last one came. Opens the thread in place or in a side panel. Unread replies make the count bold with a dot.
+Collapsed replies under a comment or message: who replied (photo Avatars in an exposed Avatar Group; set an Avatar to Type=initials when there is no photo), how many, when the last one came. Opens the thread in place or in a side panel. Unread replies make the count bold with a dot.
 
 **Use for**
 
@@ -341,7 +344,7 @@ Collapsed replies under a comment or message: who replied, how many, when the la
 
 **Anatomy**
 
-1. Repliers: Avatar Group, up to 3
+1. Repliers: Avatar Group (exposed), up to 3 photo Avatars (Type=image) and a "+N" Avatar
 2. Replies: "3 replies", ui/label, link color
 3. Last: "Last reply 2 h ago", ui/caption, muted
 
@@ -351,6 +354,7 @@ Collapsed replies under a comment or message: who replied, how many, when the la
 - Unread replies make the count bold with a dot
 - Count uses singular and plural ("1 reply", "3 replies")
 - Last reply time is relative; the exact time shows on hover
+- Photos by default; set an Avatar to Type=initials when a person has no photo
 
 **Accessibility**
 

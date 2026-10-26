@@ -6,26 +6,28 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Mobile Header](#mobile-header) | 2 | Leading, Trailing |
+| [Mobile Header](#mobile-header) | 3 | Leading, Trailing |
 | [Bottom Nav Item](#bottom-nav-item) | 2 | - |
 | [Bottom Nav](#bottom-nav) | 2 | Items |
 | [FAB](#fab) | 2 | - |
 | [Action Sheet](#action-sheet) | 1 | - |
 | [Store Badge](#store-badge) | 2 | - |
+| [QR Code](#qr-code) | 3 | - |
 
-On the Figma page: "Example / Bottom Nav styles", "Example / in hero with phone", "Example / in page shell / mobile", "Example / invoices on mobile", "Stress test / Action Sheet", "Stress test / Bottom Nav", "Stress test / FAB", "Stress test / Mobile Header", "Stress test / Store Badge"
+On the Figma page: "Example / Bottom Nav styles", "Example / in cta app download", "Example / in hero with phone", "Example / in page shell / mobile", "Example / invoices on mobile", "Stress test / Action Sheet", "Stress test / Bottom Nav", "Stress test / FAB", "Stress test / Mobile Header", "Stress test / QR Code", "Stress test / Store Badge"
 
 ## Mobile Header
 
-Component set · 2 variants · default size 390 × 56
+Component set · 3 variants · default size 390 × 56
 
-Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail: back + object title + actions. Title is the page or object name, truncated to one line. 56 high; add the safe-area inset on top in code.
+Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail: back + object title + actions. brand: the Logo (swap) on entry screens such as sign in and sign up, nothing to go back to; Trailing can hold one link or button. Title is the page or object name, truncated to one line. 56 high; add the safe-area inset on top in code.
 
 **Use for**
 
 - Every mobile app screen
 - Detail pages with back, object title and actions
 - Mobile list pages with search and a menu
+- Entry screens with nothing to go back to (sign in, sign up): Type=brand
 
 **Not for**
 
@@ -34,14 +36,16 @@ Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail
 
 **Anatomy**
 
-1. Leading slot: menu (app) or back (detail)
-2. Title
-3. Trailing slot: notifications and Avatar, or actions
+1. Leading slot: menu (app) or back (detail); hidden in brand
+2. Title (app, detail)
+3. Logo (brand): Logo swap
+4. Trailing slot: notifications and Avatar, or actions; in brand empty or one link
 
 **Content and behavior**
 
 - Type app: menu + page title + notifications or avatar
 - Type detail: back + object title + actions
+- Type brand: the Logo on entry screens (sign in, sign up, invite); later steps of a flow use detail with back and the flow name
 - Title is the page or object name, truncated to one line
 - Height 56; add the safe-area inset on top in code
 - The menu button opens the Sidebar as a left Sheet
@@ -51,18 +55,20 @@ Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail
 - Icon buttons have labels: "Open menu", "Back to customers"
 - Touch targets at least 44 x 44
 - Title is the page heading for screen readers
+- In brand the Logo links home and has the product name as its label
 
 | Variant property | Values |
 |---|---|
-| Type | app, detail |
+| Type | app, detail, brand |
 
 | Property | Type | Default |
 |---|---|---|
 | Title | text | Customers |
+| Logo | instance swap | Type=full |
 
 Slots (fill them in the instance, never detach): `Leading`, `Trailing`
 
-Built from: `Avatar`, `Button Icon`
+Built from: `Avatar`, `Button Icon`, `Logo`
 
 Tokens and styles:
 - Colors: `background/default`, `border/default`, `foreground/default`
@@ -71,7 +77,7 @@ Tokens and styles:
 
 Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
 
-Code: custom header with shadcn `Button size="icon"` and `Avatar`
+Code: custom header with shadcn `Button size="icon"` and `Avatar`; Type=brand renders the product `Logo` (link to home) in place of the back button and title (Entry screens (sign in, sign up) use brand)
 
 ## Bottom Nav Item
 
@@ -344,3 +350,56 @@ Tokens and styles:
 - Text styles: `heading/h4`, `ui/caption`
 
 Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
+
+## QR Code
+
+Component set · 3 variants · default size 128 × 128
+
+A sample QR code on a card tile (background/card, modules in foreground/card, radius/lg), for app download sections, printed handouts and sign-in on another device. Size: sm 96, default 128, lg 160 (the quiet zone grows with the size). The pattern is sample artwork and does not scan: replace it with the real generated code (SVG) before shipping. In code keep the real code dark on a light tile in every theme, because many scanners read inverted codes poorly. Always put the action in text next to it ("Scan to get the app") plus a link or store badges for people who cannot scan.
+
+
+Usage: eggux build-ui/patterns/marketing-pages.md
+
+**Use for**
+
+- Next to store badges in an app download section (Block / CTA App Download)
+- Printed handouts, event badges and posters that link to a page
+- Sign in or pair on another device (TV, desktop app)
+
+**Not for**
+
+- As the only way to reach the link: always add a link or store badges
+- On a phone screen that people would have to scan with the same phone
+- Decoration or a pattern
+
+**Anatomy**
+
+1. Tile: background/card, bound radius, padding is the quiet zone (sm 8, default 12, lg 16)
+2. modules: one vector of sample QR modules in foreground/card, scales with the size
+3. Size: sm 96, default 128, lg 160
+
+**Content and behavior**
+
+- The pattern is sample artwork and does not scan: replace it with the real generated code (SVG) before shipping
+- Put the action in text next to it ("Scan to get the app") and a caption that says what opens
+- In code keep the code dark on a light tile in every theme; scanners read inverted codes poorly
+- Default (128) in sections, sm (96) beside small text, lg (160) for print or a TV pairing screen
+
+**Accessibility**
+
+- The image has alt text that says where it leads ("QR code to the Acme app in the App Store")
+- Offer the same link as text or buttons next to it
+- Contrast between modules and tile stays above 4.5:1
+
+| Variant property | Values |
+|---|---|
+| Size | default, sm, lg |
+
+Tokens and styles:
+- Colors: `background/card`, `foreground/card`
+- Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`
+- Radius: `radius/lg`
+
+Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
+
+Code: `qrcode.react` `<QRCodeSVG value={url} size={128} marginSize={2} />` (or a generated SVG) in a `rounded-xl bg-card p-3` tile (Size=sm 96, default 128, lg 160; the Figma pattern is sample art; keep the real code dark on light in every theme; alt text names the destination)

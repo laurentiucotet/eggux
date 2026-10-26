@@ -184,7 +184,7 @@ Code: `<dl class="grid grid-cols-2 md:grid-cols-4 divide-x">` with `dt` / `dd` +
 
 Component set · 3 variants · default size 320 × 60
 
-How much of a plan limit is used: seats, storage, API calls, documents per month. Label, Usage ("8 of 10", used of limit with the unit), bar, a hint. near from 80% (warning, say what to do), over above 100% (error, say the consequence and the date). In billing settings and near the action that uses the limit. A goal people try to reach is Progress Card.
+How much of a plan limit is used: seats, storage, API calls, documents per month. Label, Usage ("8 of 10", used of limit with the unit), bar, a hint. near from 80% (warning, say what to do), over above 100% (error, say the consequence and the date). In billing settings and near the action that uses the limit. A goal people try to reach is Progress Card. The bar is the exposed Progress: set its Value (0 to 100 in steps of 10, plus 25 and 75) to match the numbers; Level sets the tone.
 
 
 Usage: eggux build-ui/components/progress-and-slider.md
@@ -205,11 +205,12 @@ Usage: eggux build-ui/components/progress-and-slider.md
 
 1. Label: "Seats"
 2. Usage: "8 of 10", tabular
-3. Bar: Progress (tone from Level)
+3. Bar: Progress (exposed; tone from Level, set Value to match the numbers)
 4. Hint (Show hint): what to do, or the consequence and the date
 
 **Content and behavior**
 
+- Set the bar Value to the nearest step of the real share (0 to 100 by 10, plus 25 and 75): 11 of 12 is 90, 42 of 100 GB is 40
 - Level=near from 80%: warning tone and say what to do ("Upgrade or remove members")
 - Level=over above 100%: error tone, say the consequence and the date ("Uploads pause on 1 Nov")
 - Usage shows used and limit with the unit ("4.2 of 5 GB"); unlimited plans show the count and no bar
@@ -241,7 +242,7 @@ Tokens and styles:
 
 Guides: [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: shadcn `Progress` with a tone class + label row (`role="meter"`, `aria-valuenow`, `aria-valuemax`; near from 80%, over above 100%)
+Code: shadcn `Progress` with a tone class + label row (`role="meter"`, `aria-valuenow`, `aria-valuemax`; near from 80%, over above 100%; the exposed bar's Value is the used share rounded to the nearest step)
 
 ## Countdown
 

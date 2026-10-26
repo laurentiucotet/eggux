@@ -1,6 +1,6 @@
 # Save Bar
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -14,7 +14,10 @@ On the Figma page: "Example / in roles & permissions", "Stress test / Save Bar"
 
 Component set · 3 variants · default size 720 × 54
 
-Sticky bar at the bottom of a long form or settings page while there are unsaved changes. Discard asks first when changes are large; Save validates and scrolls to the first error. Leaving the page triggers patterns/unsaved-changes.
+Sticky bar at the bottom of a long form or settings page while there are unsaved changes. Message (State=default) says what is unsaved ("3 unsaved changes"); Error (State=error) says what to fix; saving shows "Saving…". Discard asks first when changes are large; Save validates and scrolls to the first error. Leaving the page triggers patterns/unsaved-changes.
+
+
+Usage: eggux build-ui/patterns/unsaved-changes.md
 
 **Use for**
 
@@ -30,10 +33,11 @@ Sticky bar at the bottom of a long form or settings page while there are unsaved
 
 **Anatomy**
 
-1. Message: count of changes ("3 unsaved changes")
-2. Error icon and message (State=error)
-3. Discard button
-4. Save button, with a Spinner in State=saving
+1. Message (State=default): what is unsaved ("3 unsaved changes")
+2. Error (State=error): icon and what failed
+3. Saving… with a Spinner (State=saving)
+4. Discard button
+5. Save button, disabled while saving
 
 **Content and behavior**
 
@@ -52,6 +56,11 @@ Sticky bar at the bottom of a long form or settings page while there are unsaved
 | Variant property | Values |
 |---|---|
 | State | default, saving, error |
+
+| Property | Type | Default |
+|---|---|---|
+| Message | text | Unsaved changes |
+| Error | text | Couldn't save. Check the highlighted fields. |
 
 Built from: `Button`, `Spinner`. Icons: circle-alert
 

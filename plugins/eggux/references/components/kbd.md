@@ -1,6 +1,6 @@
 # Kbd
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -16,7 +16,7 @@ On the Figma page: "Example / in comments", "Example / keyboard shortcuts dialog
 
 Component · 1 variant · default size 20 × 20
 
-One keyboard key (shadcn Kbd). Use in menus, tooltips and help: "⌘ K". Mac symbols ⌘ ⌥ ⇧ ⌃, Windows "Ctrl"; show the user's platform.
+One keyboard key (shadcn Kbd). Use in menus, tooltips and help: "⌘ K". Mac symbols ⌘ ⌥ ⇧ ⌃, Windows "Ctrl"; show the user's platform. Key text is foreground/default on background/muted (4.5:1 in every theme; muted text on the muted key fell to 4.35:1 in Light).
 
 **Use for**
 
@@ -31,8 +31,8 @@ One keyboard key (shadcn Kbd). Use in menus, tooltips and help: "⌘ K". Mac sym
 
 **Anatomy**
 
-1. Key surface (muted background, border)
-2. Key label (Key): symbol or name
+1. Key surface (background/muted, border)
+2. Key label (Key): symbol or name, foreground/default
 3. Used next to a menu label or in a Tooltip
 
 **Content and behavior**
@@ -44,21 +44,21 @@ One keyboard key (shadcn Kbd). Use in menus, tooltips and help: "⌘ K". Mac sym
 **Accessibility**
 
 - Use the <kbd> element; symbols get readable names ("Command")
-- Text contrast at least 4.5:1 on the key background
+- Key text is foreground/default on background/muted: 18:1 Light, 14.5:1 Dark, 16.3:1 Corporate Light (foreground/muted was 4.35:1 in Light)
 
 | Property | Type | Default |
 |---|---|---|
 | Key | text | ⌘ |
 
 Tokens and styles:
-- Colors: `background/muted`, `foreground/muted`
+- Colors: `background/muted`, `foreground/default`
 - Spacing and size: `spacing/1`, `spacing/5`
 - Radius: `radius/sm`
 - Text styles: `ui/label-small`
 
 Guides: [indicators](../../skills/build-ui/components/indicators.md)
 
-Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`)
+Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) (Kbd text `text-foreground` (not `text-muted-foreground`): muted text on `bg-muted` is 4.35:1 in Light)
 
 ## Kbd Group
 
@@ -103,7 +103,7 @@ Tokens and styles:
 
 Guides: [indicators](../../skills/build-ui/components/indicators.md)
 
-Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`)
+Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) (Kbd text `text-foreground` (not `text-muted-foreground`): muted text on `bg-muted` is 4.35:1 in Light)
 
 ## Shortcut Row
 

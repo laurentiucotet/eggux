@@ -1,12 +1,12 @@
 # AI Chat
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Prompt Input](#prompt-input) | 4 | Attachments, Tools |
+| [Prompt Input](#prompt-input) | 8 | Attachments, Tools |
 | [Attachment](#attachment) | 4 | - |
 | [User Message](#user-message) | 1 | - |
 | [Assistant Message](#assistant-message) | 3 | Content |
@@ -36,9 +36,9 @@ On the Figma page: "Example / AI on a record page", "Example / agent at work", "
 
 ## Prompt Input
 
-Component set · 4 variants · default size 768 × 118
+Component set · 8 variants · default size 768 × 118
 
-Main input of an AI chat: grows with the text, attachments above, tools and model on the left, voice and send on the right. Enter sends, Shift+Enter new line. While the answer streams, send becomes stop. Send disabled while empty.
+Main input of an AI chat: grows with the text, attachments above, tools and model on the left, voice and send on the right. Enter sends, Shift+Enter new line. While the answer streams, send becomes stop. Send disabled while empty. Content=placeholder shows the Placeholder (send disabled), Content=filled shows the Value (send enabled) in any State: a draft left in the field is State=default, Content=filled.
 
 **Use for**
 
@@ -55,7 +55,7 @@ Main input of an AI chat: grows with the text, attachments above, tools and mode
 **Anatomy**
 
 1. Attachments slot above the text: Attachment and Context Chip (Show attachments)
-2. Text area with Placeholder or Value
+2. Text area: Placeholder (Content=placeholder) or Value (Content=filled)
 3. Tools slot on the left: tools and Model Picker (Show tools)
 4. Voice Button Icon on the right (Show voice)
 5. Send Button Icon (arrow-up); Stop (square) while State=streaming
@@ -65,6 +65,7 @@ Main input of an AI chat: grows with the text, attachments above, tools and mode
 - Enter sends, Shift+Enter adds a new line
 - Grows to about 8 lines, then scrolls
 - Send is disabled while the field is empty
+- Content=placeholder or filled works with every State: a draft left in an unfocused field is State=default, Content=filled; Send is enabled only when filled
 - State=streaming: Send becomes Stop; Stop keeps what was generated so far
 - Hide Tools and voice where they do not apply (panel, inline)
 - Never a blank box alone: pair the empty chat with 3-4 starter Suggestions
@@ -80,6 +81,7 @@ Main input of an AI chat: grows with the text, attachments above, tools and mode
 | Variant property | Values |
 |---|---|
 | State | default, focus, streaming, disabled |
+| Content | placeholder, filled |
 
 | Property | Type | Default |
 |---|---|---|
@@ -101,7 +103,7 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: Vercel AI SDK + AI Elements, or assistant-ui
+Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled)
 
 ## Attachment
 
@@ -184,7 +186,7 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: Vercel AI SDK + AI Elements, or assistant-ui
+Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled)
 
 ## Assistant Message
 
@@ -248,7 +250,7 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: Vercel AI SDK + AI Elements, or assistant-ui
+Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled)
 
 ## Reasoning
 
@@ -306,13 +308,16 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: Vercel AI SDK + AI Elements, or assistant-ui
+Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled)
 
 ## Tool Call
 
 Component set · 4 variants · default size 720 × 62
 
-An action the assistant takes (search, create, send). Shows what runs and with which input; done collapses, error explains and offers Retry. approval: actions that change data, spend money or contact people wait for the user (Approve / Deny).
+An action the assistant takes (search, create, send). Shows what runs and with which input (Title, Description); done collapses, error explains (Error message) and offers Retry. approval: actions that change data, spend money or contact people wait for the user (Approve / Deny); Approval message says exactly what will happen (recipient, amount, record). Status badges are soft Badges.
+
+
+Usage: eggux build-ui/components/ai-chat.md
 
 **Use for**
 
@@ -330,9 +335,10 @@ An action the assistant takes (search, create, send). Shows what runs and with w
 1. Wrench icon, or Spinner while running
 2. Title: what runs ("Search invoices")
 3. Description: the input ("customer: Acme, status: open")
-4. Status Badge
+4. Status Badge: soft-success (done), soft-destructive (error), soft-warning (approval)
 5. Chevron to open the input and the result
-6. Approve and Deny (Status=approval) or Retry (Status=error)
+6. Error message (Status=error): what failed, then Retry
+7. Approval message (Status=approval): what will happen, to whom, then Deny and Approve
 
 **Content and behavior**
 
@@ -356,6 +362,8 @@ An action the assistant takes (search, create, send). Shows what runs and with w
 |---|---|---|
 | Title | text | Search invoices |
 | Description | text | customer: Acme, status: open |
+| Approval message | text | The assistant wants to send the reminder for INV-1024 to billing@acme.com. Review the draft before approving. |
+| Error message | text | The invoices service did not respond in 30 s. |
 
 Built from: `Badge`, `Button`, `Spinner`. Icons: chevron-down, wrench
 
@@ -367,13 +375,16 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: Vercel AI SDK + AI Elements, or assistant-ui
+Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled)
 
 ## Sources
 
 Component · 1 variant · default size 720 × 128
 
 Sources behind an answer, under the text. Collapsed: favicons + "3 sources"; open: list of Source Items. Every factual claim from a source gets a Citation.
+
+
+Favicon 1 to 3: the Letter of the first three Source Items in Items, in the same order, so the collapsed row matches the list.
 
 **Use for**
 
@@ -388,13 +399,14 @@ Sources behind an answer, under the text. Collapsed: favicons + "3 sources"; ope
 
 **Anatomy**
 
-1. Favicons and Label ("3 sources") when collapsed
+1. Favicons (Favicon 1, Favicon 2, Favicon 3) and Label ("3 sources") when collapsed
 2. Chevron-down
-3. Items slot: Source Items with Number, favicon or initial, Title and Domain (Show list)
+3. Items slot: Source Items with Number, Letter (favicon initial), Title and Domain (Show list)
 4. Citations in the text, numbered like the Source Items
 
 **Content and behavior**
 
+- Favicon 1 to 3 repeat the Letter of the first three Source Items, in the same order
 - Every factual claim from a source gets a Citation with its Source Item number
 - A Source Item opens the source in a new tab
 - List only sources the user can open
@@ -410,6 +422,9 @@ Sources behind an answer, under the text. Collapsed: favicons + "3 sources"; ope
 |---|---|---|
 | Label | text | 3 sources |
 | Show list | boolean | true |
+| Favicon 1 | text | B |
+| Favicon 2 | text | D |
+| Favicon 3 | text | C |
 
 Slots (fill them in the instance, never detach): `Items`
 
@@ -423,19 +438,51 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: Vercel AI SDK + AI Elements, or assistant-ui
+Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled)
 
 ## Source Item
 
 Component · 1 variant · default size 320 × 48
 
-One source used in an answer: number (matches the Citation), favicon or initial, title, domain. Opens the source in a new tab; hover = accent background.
+One source in the Sources list under an answer: Number (matches the Citation), Letter (the favicon: first letter of the site or app), Title and Domain. Opens the source in a new tab.
+
+
+Usage: eggux build-ui/components/ai-chat.md
+
+**Use for**
+
+- Inside the Items slot of Sources
+- Under an AI Summary or an assistant answer
+
+**Not for**
+
+- A marker after one claim: use Citation
+- Search results: use Search Result Item
+
+**Anatomy**
+
+1. Number: matches the Citation
+2. Letter: favicon initial of the site or app
+3. Title
+4. Domain
+
+**Content and behavior**
+
+- Letter is the first letter of the site or app name
+- Sources repeats the first three Letters in its collapsed row
+- Opens the source in a new tab
+
+**Accessibility**
+
+- The item is a link named by its title and domain; it says it opens a new tab
+- The favicon letter is decorative (aria-hidden)
 
 | Property | Type | Default |
 |---|---|---|
 | Number | text | 1 |
 | Title | text | Invoice INV-1024 |
 | Domain | text | billing.acme.com |
+| Letter | text | B |
 
 Tokens and styles:
 - Colors: `background/muted`, `foreground/default`, `foreground/muted`
@@ -445,7 +492,7 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md)
 
-Code: Vercel AI SDK + AI Elements, or assistant-ui
+Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled)
 
 ## Citation
 
@@ -465,11 +512,11 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: Vercel AI SDK + AI Elements, or assistant-ui
+Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled)
 
 ## Prompt Suggestion
 
-Component set · 2 variants · default size 195 × 32
+Component set · 2 variants · default size 194 × 32
 
 Starter prompt or follow-up. chip: under the input or after an answer (2-4 follow-ups). card: empty state, 4 tasks the assistant does well. Click fills the input (or sends, for follow-ups).
 
@@ -522,7 +569,7 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 
-Code: Vercel AI SDK + AI Elements, or assistant-ui
+Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled)
 
 ## Model Picker
 
@@ -672,7 +719,7 @@ Code: shadcn `SidebarMenuItem` + `DropdownMenu`
 
 ## Context Chip
 
-Component set · 3 variants · default size 127 × 24
+Component set · 3 variants · default size 130 × 24
 
 What the assistant will use, shown in the Prompt Input (Attachments slot) or above a message: a file, a record (INV-1041) or a person. Each type has its own text property (File, Record, Person). Users add with @ or the paperclip and remove with x. The current page or record is added by default and says so. Labels truncate at 180.
 
@@ -1157,7 +1204,7 @@ Code: custom on `Card`, `Input`, `Badge` (Store who accepted an AI value and whe
 
 Component · 1 variant · default size 560 × 152
 
-Placeholder while AI writes an answer or a summary in place: what it is doing now ("Reading 12 invoices"), shimmer lines in the shape of the result, step and time left, Stop. Replace the status text as steps change; stream text into place as soon as it arrives. Under 1 second, show nothing.
+Placeholder while AI writes an answer or a summary in place: what it is doing now ("Reading 12 invoices"), shimmer lines in the shape of the result, step and time left, Stop. Replace the status text as steps change; stream text into place as soon as it arrives. Under 1 second, show nothing. The shimmer lines are proportional (full, 92% and 60% of the width), so the block fits any width from about 240.
 
 **Use for**
 
@@ -1175,7 +1222,7 @@ Placeholder while AI writes an answer or a summary in place: what it is doing no
 **Anatomy**
 
 1. Status row: sparkles icon, status ("Reading 12 invoices…"), Stop Button (Show stop)
-2. Lines: shimmer in the shape of the result
+2. Lines: shimmer in the shape of the result, full, 92% and 60% of the width (they scale with the block)
 3. Progress (Show progress): step and time left, ui/caption, muted
 
 **Content and behavior**
@@ -1185,6 +1232,7 @@ Placeholder while AI writes an answer or a summary in place: what it is doing no
 - Under 1 second, show nothing
 - Stop keeps what arrived and says it stopped
 - Time left only when it is known
+- Works at any width from about 240; set the instance to FILL in its container
 
 **Accessibility**
 
@@ -1213,7 +1261,7 @@ Code: shadcn `Skeleton`, `Tooltip`, `Button` + custom; Vercel AI SDK for streami
 
 ## Confidence Indicator
 
-Component set · 3 variants · default size 137 × 16
+Component set · 3 variants · default size 139 × 16
 
 Says how sure the AI is about an extracted value, match or answer: high, medium, low. Put it next to the value; the info icon opens a Tooltip with why (source found, partial match, guess). Low confidence asks people to check and never auto-applies. Use 3 levels; never show raw percentages.
 
@@ -1271,7 +1319,7 @@ Code: shadcn `Skeleton`, `Tooltip`, `Button` + custom; Vercel AI SDK for streami
 
 ## AI Review Bar
 
-Component · 1 variant · default size 690 × 50
+Component · 1 variant · default size 691 × 50
 
 Floating bar for reviewing AI edits in a document or form one by one: position, previous and next, accept or reject the current one, accept or reject all. Each suggestion shows inline as AI Suggestion. Keyboard: Tab next, Enter accept, Backspace reject. Accept all asks once when changes are many.
 
