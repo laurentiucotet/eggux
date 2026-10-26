@@ -25,8 +25,8 @@ Usage guidelines only. Visual specs live in the Figma components.
   order matters.
 - `Layout=card` (bordered card around each item) for feature grids on muted or busy sections, or
   when each item links to its own page; the whole grid uses card.
-- Figma: `Feature Item` (own page) Layout (stacked, inline, centered, card) × Marker; Title, Description, Number, Icon (swap), Show
-  description, Show link. Used in the Features, Bento Grid and Careers Benefits blocks.
+- Figma: `Feature Item` (own page) Layout (stacked, inline, centered, card) × Marker; Title, Description, Number, Show
+  description, Show link; Marker=icon holds an exposed Icon Tile (Icon and Style set on the tile). Used in the Features, Bento Grid and Careers Benefits blocks.
 
 ## Post Card
 - Articles, news, case studies, changelog entries. Image 16:9, category + date · reading time,
