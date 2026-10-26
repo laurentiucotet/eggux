@@ -3,6 +3,51 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.58.0
+Steps 3 and 4 of the de-wireframe plan (audit 2), a new default theme, and the SCREENS group.
+- Theme: the default Light and Dark modes are the EGG identity: `blue/600` primary, pill buttons and
+  single-line fields (`button/radius`, `input/radius`), 12 px cards, Plus Jakarta Sans, pure
+  neutrals. Corporate keeps slate, Inter and 4 px. Light primary hover is `blue/700`.
+- Showcase: `color/brand/*` ramp and `Showcase Light` / `Showcase Dark` modes (violet rebrand demo);
+  gradient paint styles (`gradient/brand-glow`, `hero-mesh`, `surface-fade`, `brand-text`); page
+  Background (`Background / Grid`, `Dots`, `Glow`, `Beam`); `Icon Tile`. Four full showcase pages
+  (Orbitly SaaS, Meridian Enterprise, Lumora AI product, Tidewater store and product page); new
+  Cover (Light and Dark) and Intro. Product screenshots re-rendered in the new theme.
+- Contrast: `section/muted-background` for full-width bands (muted text 4.54:1 in Light), CTA and
+  Newsletter panels on `card/muted-background`.
+- Block fixes: Logo swap on navbars and footers, CTA Card `Show decoration`, Hero Centered and Hero
+  Prompt `Show background fill`, Hero Prompt actions, Section Header overline in brand, Product Card
+  `Show rating` and `Show notify`, Carousel Hero auto layout, aligned Stats, Approval Step time,
+  Announcement Banner link and dismiss, Trust Badge wrapping, Review Item verified badge. Real and
+  pop-culture company names replaced with the library's fictional names.
+- Icons: every icon under 24 px now has stroke 2 x size / 24 like lucide-react (1,410 fixed).
+- 62 new blocks: 7 heroes; Features with Screenshot, Features Tabs, How It Works, Bento Grid 2,
+  Feature Checklist, Integrations Grid; Security and Compliance, Trust Strip; Logo Grid, Logos
+  Split, Logo Marquee; CTA with Screenshot; Newsletter Split and Card; Pricing with Comparison;
+  Stats Brand Band; About Hero, Our Story, Values, Mission with Figures; Banner Floating, Countdown
+  and with Action; AI Search Answer, Agent Task Run; SaaS Metrics, Sales Pipeline, Commerce Admin,
+  Project Overview, Home Today; Data Table, Stacked List, Grid List; Create Record Dialog, Delete
+  Confirmation, Record Preview Sheet, Command Palette, Upgrade Dialog; Store Navbar, Store Footer,
+  Storefront Hero, Category Tiles, Promo Section, Incentives, Product Carousel, Category Filters,
+  Product Quick View, Shopping Cart Page, Checkout Single Page, Order Confirmation; Sign In Split,
+  Sign Up Split, Welcome Role Select; Settings Page with Tabs, Danger Zone. Page examples: Hero
+  showcase, Pricing, About, Contact, AI search, SaaS metrics dashboard, Commerce admin, Storefront
+  home, Category, Product and Cart pages.
+- 42 style alternatives on existing components: Button soft, Input filled and floating label,
+  Select filled, Search Field lg, Toggle Group segmented, Tabs pills and boxed, Switch description
+  and sizes, Slider value and marks; Alert soft and accent, Toast inverted, Spinner dots; Quote
+  large, Testimonial Card minimal, logo and featured, Feature Item card, Card inverted, Stat Card
+  compact and horizontal, Post Card overlay, Person Card photo, Plan Card inverted and compact,
+  Product Card horizontal and overlay; Accordion card and plus icon, Pagination simple and dots,
+  Breadcrumb background, Top Bar and Bottom Nav floating, Avatar Group names, Timeline card and
+  alternating, Chip soft tones, Swatch name, Price xl. New components: Store Badge, Payment Method
+  Mark, 16 `Email / *` parts.
+- SCREENS group (after BLOCKS): Auth (48 screens: sign in, sign up, magic link, password reset,
+  two-factor, accept invite, onboarding; desktop and mobile), Account and Settings (32 screens),
+  Emails (14 templates). New guide `patterns/email.md`.
+- Guides, index, library map, code mapping and tokens updated for all of the above. The Docs frames
+  on the changed component pages and `references/components/` are regenerated in the next release.
+
 ## 0.57.0
 Step 2 of the de-wireframe plan (audit 2): color, depth and fuller content.
 - `Badge`: 10 soft variants (`soft-success`, `soft-warning`, `soft-destructive`, `soft-info`,

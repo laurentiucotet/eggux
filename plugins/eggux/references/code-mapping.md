@@ -254,6 +254,201 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Logo`, `Logo Mark` | inline SVG in `currentColor` (or `<img alt>` with the product name) | Logo Mark is the symbol alone |
 | `Map` | static map image or an embedded map (Mapbox, Google) | Address in text next to it |
 | `Device Frame` | custom `<figure>`: border, top bar (dots, URL), `<img>` or live component | Screenshot at 1:1 |
+| `Icon Tile` | custom `<div class="flex size-10 items-center justify-center rounded-md">` + lucide icon (`size-5`, `aria-hidden`) | Size: sm `size-8` + `size-4` icon, default `size-10` + `size-5`, lg `size-12 rounded-lg` + `size-6`. Style: neutral `bg-muted text-foreground`; brand `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`; gradient `bg-linear-to-br from-[var(--icon-tile-gradient-start)] to-[var(--icon-tile-gradient-end)] text-primary-foreground`; outline `border text-muted-foreground`. Decorative |
+| `Background / Grid` | custom absolutely positioned `div` (`absolute inset-0 -z-10 pointer-events-none`, `aria-hidden`) | `bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-60`; `Fade` = `[mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]` |
+| `Background / Dots` | custom absolutely positioned `div` (`aria-hidden`) | `bg-[radial-gradient(var(--muted-foreground)_0.75px,transparent_0.75px)] bg-[size:24px_24px] opacity-50`; `Fade` = same radial mask as Grid |
+| `Background / Glow` | custom absolutely positioned `div` (`aria-hidden`) | `rounded-full blur-3xl bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--primary)_35%,transparent),transparent)]`; Position: top `left-1/2 -top-[560px] w-[1240px] h-[800px] -translate-x-1/2`, center centered `w-[1000px] h-[640px]`, bottom-right `-right-[200px] -bottom-[340px] w-[1000px] h-[760px]` |
+| `Background / Beam` | custom `overflow-hidden` wrapper with 3 rotated `div`s (`aria-hidden`) | Each beam `rotate-[35deg] bg-linear-to-b from-primary/20 to-transparent blur-2xl`, widths 64-160 px, opacity 12-22% |
+
+
+Default, Corporate and Showcase themes in `globals.css` (EGG default: blue primary, pill controls, 12 px cards,
+Plus Jakarta Sans; Corporate keeps Inter and 4 px):
+
+```css
+:root {
+  --primary: var(--color-blue-600);
+  --primary-foreground: var(--color-white);
+  --ring: var(--color-blue-600);
+  --brand: var(--color-blue-700);
+  --accent: var(--color-blue-50);
+  --sidebar-primary: var(--color-blue-600);
+  --sidebar-primary-foreground: var(--color-white);
+  --button-primary-hover: var(--color-blue-700);
+  --radius: 0.75rem;              /* 12 px, Figma radius/base */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);     /* cards 12 px */
+  --button-radius: 9999px;        /* pill */
+  --input-radius: 9999px;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+.dark {
+  --primary: var(--color-blue-600);
+  --primary-foreground: var(--color-white);
+  --ring: var(--color-blue-500);
+  --brand: var(--color-blue-400);
+  --accent: var(--color-neutral-800);   /* dark accent stays neutral */
+  --sidebar-primary: var(--color-blue-600);
+  --sidebar-primary-foreground: var(--color-white);
+  --button-primary-hover: color-mix(in oklab, var(--primary) 90%, transparent);
+}
+/* Corporate: keep the existing slate block, plus: */
+.theme-corporate {
+  --primary: var(--color-blue-700);
+  --primary-foreground: var(--color-white);
+  --ring: var(--color-blue-600);
+  --brand: var(--color-blue-700);
+  --accent: var(--color-blue-50);
+  --sidebar-primary: var(--color-blue-700);
+  --sidebar-primary-foreground: var(--color-white);
+  --button-primary-hover: color-mix(in oklab, var(--primary) 90%, transparent);
+  --radius: 0.25rem;              /* 4 px */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: var(--radius);
+  --radius-xl: 6px;
+  --button-radius: var(--radius-md);
+  --input-radius: var(--radius-md);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+.dark.theme-corporate {
+  --primary: var(--color-blue-600);
+  --ring: var(--color-blue-500);
+  --brand: var(--color-blue-400);
+  --accent: var(--color-slate-800);
+  --sidebar-primary: var(--color-blue-600);
+}
+/* Showcase: existing block, change --radius-xl and the hover; pill and font come from :root */
+.theme-showcase {
+  /* ...existing violet values... */
+  --radius: 0.75rem;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);     /* was 16px */
+  --button-primary-hover: color-mix(in oklab, var(--primary) 90%, transparent);
+}
+@theme inline {
+  --color-brand: var(--brand);
+  --radius-button: var(--button-radius);   /* rounded-button */
+  --radius-input: var(--input-radius);     /* rounded-input */
+}
+/* --font-sans is set per theme above; do not also define it in @theme inline (that would be circular).
+   Tailwind's font-sans and the body font read it from :root, .theme-corporate. */
+```
+
+Pill buttons in code (one place each, never per instance):
+- `components/ui/button.tsx`: in the cva base and in the `sm`, `lg`, `icon*` sizes replace `rounded-md` with `rounded-button`; default variant `hover:bg-primary/90` -> `hover:bg-[var(--button-primary-hover)]`. Pagination, Calendar nav and anything built on `buttonVariants` follow.
+- `toggle.tsx`, `toggle-group.tsx`: `rounded-md` -> `rounded-button` (group outer corners: `first:rounded-l-button last:rounded-r-button`).
+- `tabs.tsx` (default list only): TabsList `rounded-lg` -> `rounded-button`, TabsTrigger `rounded-md` -> `rounded-button`.
+- `input.tsx`, `select.tsx` (SelectTrigger), `input-group.tsx` (add `overflow-hidden`), Combobox and Date Picker triggers: `rounded-md` -> `rounded-input`. Textarea keeps `rounded-md`.
+- Card keeps `rounded-xl` (= 12 px through `--radius-xl`).
+
+Section bands: `--section-muted-background` is `var(--color-neutral-50)` in `:root`, `var(--muted)` in `.dark`
+and the Corporate theme; add `--color-section-muted: var(--section-muted-background)` to `@theme inline`
+and use `bg-section-muted` on full-width sections (never `bg-muted`, muted text fails 4.5:1 on it in Light).
+
+Showcase theme (`Showcase Light`, `Showcase Dark` modes) in `globals.css`:
+
+```css
+/* Showcase theme: violet brand ramp = Tailwind violet (color/brand/* in Figma) */
+.theme-showcase {
+  --primary: var(--color-violet-600);
+  --primary-foreground: var(--color-white);
+  --ring: var(--color-violet-600);
+  --brand: var(--color-violet-700);
+  --accent: var(--color-violet-50);
+  --chart-1: var(--color-violet-600);
+  --chart-7: var(--color-blue-600);
+  --sidebar-primary: var(--color-violet-600);
+  --sidebar-primary-foreground: var(--color-white);
+  --icon-tile-gradient-start: var(--color-violet-500);
+  --icon-tile-gradient-end: var(--color-violet-700);
+  --radius: 0.75rem;   /* 12 px */
+  --radius-sm: 6px;    /* Figma radius/sm in Showcase */
+  --radius-md: 8px;
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+}
+.dark.theme-showcase {
+  --primary: var(--color-violet-600);
+  --primary-foreground: var(--color-white);
+  --ring: var(--color-violet-500);
+  --brand: var(--color-violet-400);
+  --accent: var(--color-neutral-800); /* dark accent stays neutral */
+  --chart-1: var(--color-violet-400);
+  --chart-7: var(--color-blue-500);
+  --sidebar-primary: var(--color-violet-600);
+  --sidebar-primary-foreground: var(--color-white);
+}
+```
+
+## Email (React Email)
+New table section for references/code-mapping.md: "## Email (React Email)". Emails are built with
+`@react-email/components` (table-based HTML with inline styles), not shadcn. Tokens are resolved to hex at build time
+(email clients do not support CSS variables); one theme object per brand (Light, plus a `prefers-color-scheme: dark`
+style block for clients that support it).
+
+| Figma | Code | Notes |
+|---|---|---|
+| Template frame `Screen / Email / *` (muted canvas + 600 body) | `Html`, `Head`, `Preview`, `Body` (background section/muted-background), `Container` (maxWidth 600) | `Preview` holds the preheader text (inbox preview, 40 to 90 characters); `Tailwind` wrapper optional |
+| `Email / Header` | `Section` + `Row` with `Column` `Img` (logo, `alt` = company name, height 32) and `Column` `Link` "View in browser" | Logo as a hosted PNG at 2x; SVG is not supported in Gmail and Outlook |
+| `Email / Hero` | `Section` with optional `Img` (width 520, rounded), `Text` eyebrow, `Heading as="h1"`, `Text` | One h1 per email; same words as the subject |
+| `Email / Button` | `Button` (`href`, padding 12px 24px, borderRadius 9999, background primary, color primary-foreground, fontWeight 600) | Renders a bulletproof padded link (works with images off, MSO padding hack included); Align=center: wrap in `Section` with `textAlign: "center"` |
+| `Email / Content` | `Section` with optional `Heading as="h2"` and `Text` (16/28); links with `Link` | Fallback URL under a button goes here as plain text + `Link` |
+| `Email / Code` | `Section` (background muted, borderRadius 12, padding 24, textAlign center) with `Text` label and `Text` (fontFamily monospace, fontSize 36, letterSpacing 10) | Code also in the subject line; never an image |
+| `Email / Details`, `Email / Details Row` | `Section` (border, borderRadius 8, padding "12px 20px") with one `Row` per line: `Column` `Text` label + `Column align="right"` `Text` value | Tables carry `role="presentation"` (React Email adds it) |
+| `Email / Line Items`, `Email / Line Item`, `Email / Total Row` | `Section` with `Row` per item: `Column` `Img` (64 x 64), `Column` `Text` name + meta, `Column align="right"` `Text` amount; `Hr`; `Row` per total | Total row bold 18; amounts formatted with `Intl.NumberFormat` and the currency |
+| `Email / Callout` | `Section` (backgroundColor tone tint as solid hex, borderRadius 8, padding 16) with `Row`: `Column` `Img` icon 20 + `Column` `Text` title and `Text` body | Use solid hex tints (rgba is unreliable in Outlook); icon PNG, `alt=""` |
+| `Email / Divider` | `Hr` (borderColor border, margin "0 40px") | |
+| `Email / Stats`, `Email / Stat` | `Row` with up to three `Column` cells (background muted, border, borderRadius 8, padding 16): `Text` value, `Text` label, `Text` change | Cells stack under 480 px with a media query in `Head` |
+| `Email / Article` | `Row`: `Column` `Img` (160 x 120) + `Column` `Heading as="h3"`, `Text`, `Link` | Whole title links to the article too |
+| `Email / Footer` | `Section` (textAlign center) with `Row` of `Link` + `Img` social icons (20 px), `Text` address, `Text` reason, `Link` preferences, `Link` unsubscribe | Also send the `List-Unsubscribe` and `List-Unsubscribe-Post` headers for marketing mail |
+
+## Style alternatives
+New style values added to existing components in 0.58.0 (the default value keeps the shadcn look).
+
+| Figma | Code | Notes |
+|---|---|---|
+| `Alert` (Style=soft) | shadcn `Alert` with a cva `style: "soft"`: `border-0 bg-[var(--badge-soft-X-bg)] [&>svg]:text-[var(--badge-soft-X-fg)]`, title `text-[var(--badge-soft-X-fg)]`, description `text-foreground` (X = neutral for default, destructive, success, warning, info) | Same tint tokens as Badge soft; one Style per product |
+| `Alert` (Style=accent) | shadcn `Alert` with `style: "accent"`: `bg-card border border-l-4 border-l-X` (`border-l-muted-foreground`, `border-l-destructive`, `border-l-success`, `border-l-warning`, `border-l-info`); icon and title `text-X`, warning title `text-[var(--badge-soft-warning-fg)]` | Banner: `border-0 border-b border-l-4 rounded-none` |
+| `Toast` (Style=inverted) | Sonner `<Toaster invert />`, or `toastOptions={{ classNames: { toast: "bg-foreground text-background border-0", description: "text-background/80" } }}` | Icons take `currentColor` (monochrome); flips to a light toast in dark mode |
+| `Spinner` (Type=dots) | `<span role="status" class="inline-flex gap-1">` of three `<span class="size-1 rounded-full bg-current animate-pulse [animation-delay:0ms|200ms|400ms]">` (`size-2` at lg); `text-muted-foreground` for Tone=muted | Hidden text "Loading" or "Acme Assistant is writing"; `motion-reduce:animate-none` |
+| `Accordion` (Style=card), `Accordion Item` (Style=card) | shadcn `Accordion className="space-y-3"`, `AccordionItem className="rounded-xl border bg-background px-4 last:border-b"` (border on all sides instead of `border-b`) | `rounded-xl` = `radius/base` (theme radius). Use on marketing FAQs and help pages |
+| `Accordion Item` (Icon=plus) | shadcn `AccordionTrigger` with lucide `Plus` / `Minus` instead of `ChevronDown`: `<Plus className="size-4 group-data-[state=open]:hidden" /><Minus className="size-4 hidden group-data-[state=open]:block" />` (trigger `className="group [&>svg]:rotate-0"`) | Icons `aria-hidden`; state comes from `aria-expanded` |
+| `Pagination` (Style=simple) | shadcn `Pagination` with `PaginationPrevious`, `<span className="text-sm text-muted-foreground">Page 2 of 10</span>`, `PaginationNext` | Disabled ends: `aria-disabled="true" className="pointer-events-none opacity-50"` |
+| `Pagination` (Style=dots) | shadcn `Carousel` dots: one `<button aria-label="Go to slide n" aria-current>` per position, `size-2 rounded-full bg-muted-foreground/30`, active `w-5 bg-primary` | Same part as `Carousel Indicator` Type=dots; onboarding and carousels only |
+| `Breadcrumb` (Style=background) | shadcn `Breadcrumb` with `BreadcrumbList className="w-fit rounded-[var(--button-radius)] bg-[var(--card-muted-background)] px-3 py-1.5"` | Track token `card/muted-background` (gray-50): `bg-muted` gives only 4.35:1 for the muted links in Light. Use on `background`, not on muted sections |
+| `Top Bar` (Style=floating) | `<header className="sticky top-0 z-40 p-3"><div className="flex h-14 items-center gap-2 rounded-[var(--button-radius)] border bg-background px-2.5 shadow-sm">` with `SidebarTrigger`, `Breadcrumb`, actions | Page content gets `pt-20` (bar + inset) when the header overlays it |
+| `Bottom Nav` (Style=floating) | `<nav className="fixed inset-x-4 bottom-[calc(env(safe-area-inset-bottom)+8px)] flex rounded-[var(--button-radius)] border bg-background px-2 py-1 shadow-md">` of links | Scroll area gets bottom padding of bar + inset; `aria-current="page"` on the active link |
+| `Avatar Group` (Show names) | shadcn `Avatar` group + `<span className="truncate text-sm font-medium max-w-60">Ana, Mihai and 3 others</span>` | Label: `truncate text-sm text-muted-foreground max-w-60`; sm uses `text-xs`, `max-w-[200px]`; full list in `Tooltip` |
+| `Timeline Item` (Layout=card) | custom `ol` item: dot rail + `<div className="rounded-xl border bg-background p-4">` with title, time, description, content | `mb-4` between cards |
+| `Timeline Item` (Layout=alternating-left, alternating-right) | custom `ol className="grid grid-cols-[1fr_auto_1fr] gap-x-4"`; odd items: content `text-right` in column 1, time in column 3; even items mirrored | Below `md`: fall back to Layout=default (single column) |
+| `Chip` (Tone=soft-info, soft-success, soft-warning, soft-neutral) | custom on `Badge`: `className="h-8 rounded-full px-3 border border-transparent bg-[var(--badge-soft-info-bg)] text-[var(--badge-soft-info-fg)] hover:border-current"` (same for success, warning, neutral) | Tags and categories; selected filter state stays on Tone=default |
+| `Swatch` (Show name) | shadcn `RadioGroupItem` inside `<label className="flex flex-col items-center gap-1.5">` with the dot and `<span className="text-xs text-muted-foreground">Sand</span>` | The name is the radio's accessible label |
+| `Price` (Size=xl) | custom Price: amount `text-6xl font-extrabold tracking-tight tabular-nums`, period and old price `text-base text-muted-foreground` | Once per page, pricing hero or single-offer section |
+| `Button` (Variant=soft) | shadcn `Button variant="soft"`; add to `buttonVariants`: `soft: "bg-primary/10 text-brand hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30"` | Tokens `button/soft-bg` = `var(--button-soft-bg)`, `button/soft-hover` = `var(--button-soft-hover)`; text `text-brand`, never `text-primary`. No shadow |
+| `Button Icon` (Variant=soft) | shadcn `Button variant="soft" size="icon"` with `aria-label`, wrapped in `Tooltip` | Same `buttonVariants.soft` entry as Button |
+| `Input` (Style=filled) | shadcn `Input className="bg-muted border-transparent shadow-none focus-visible:border-ring"` | Placeholder `placeholder:text-[var(--input-filled-muted-foreground)]` (neutral-600 in light). Error keeps `aria-invalid:border-destructive` |
+| `Input` (Style=floating) | custom: `relative` wrapper, `Input className="peer h-12 pt-5 px-4" placeholder=" "` + `Label className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all peer-focus:top-3 peer-focus:text-xs peer-focus:text-brand peer-[:not(:placeholder-shown)]:top-3 peer-[:not(:placeholder-shown)]:text-xs"` | Label stays the accessible name (`htmlFor`). In a `FormItem` without `FormLabel` (Field Show label off), keep `FormDescription` and `FormMessage` |
+| `Field` (Show label=false) | `FormItem` without `FormLabel` | Only with a control that has its own visible label (Input Style=floating) |
+| `Select` (Style=filled) | shadcn `SelectTrigger className="bg-muted border-transparent shadow-none focus-visible:border-ring"` | Same placeholder token as Input filled (`data-[placeholder]:text-[var(--input-filled-muted-foreground)]`) |
+| `Search Field` (Size=lg) | shadcn `InputGroup className="h-12 text-base max-w-[480px]"` (`type="search"`), search and clear icons `size-5` | Heroes and help centers; Kbd unchanged |
+| `Toggle Group` (Variant=segmented), `Toggle Group Item` (Variant=segmented) | shadcn `ToggleGroup type="single" className="bg-muted p-1 rounded-full gap-1"`, items `className="h-7 px-3 rounded-full data-[state=on]:bg-background data-[state=on]:shadow-xs hover:bg-background/50"` | Hover token `toggle-group/segmented-hover` = `var(--toggle-group-segmented-hover)` (background at 50%). Sets a value; panels use Tabs |
+| `Tabs` (Variant=pills), `Tab` (Variant=pills) | shadcn `TabsList className="bg-transparent p-0 gap-2"`, `TabsTrigger className="h-8 rounded-full px-3 text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none"` | Use on background or card surfaces only |
+| `Tabs` (Variant=boxed), `Tab` (Variant=boxed) | shadcn `TabsList className="h-auto w-full justify-start rounded-none border-b bg-transparent p-0"`, `TabsTrigger className="-mb-px h-9 rounded-none rounded-t-md border border-transparent px-4 text-muted-foreground data-[state=active]:border-border data-[state=active]:border-b-background data-[state=active]:bg-background data-[state=active]:text-foreground"`, `TabsContent className="mt-0 rounded-b-md border border-t-0 p-4"` | Panel slot = `TabsContent` |
+| `Switch` (Size, Show description) | shadcn `Switch`; sm `className="h-4 w-7 [&>span]:size-3 [&>span]:data-[state=checked]:translate-x-3"`, lg `className="h-6 w-11 [&>span]:size-5 [&>span]:data-[state=checked]:translate-x-5"`; description `<p id=… className="text-sm text-muted-foreground">` with `aria-describedby` | Wrapper `flex items-start gap-2`; sm description `text-xs` |
+| `Slider` (Show value, Show marks) | shadcn `Slider`; value: `Tooltip` (open while dragging) or an absolutely positioned span at `left: {pct}%` over each thumb; marks: `<div className="flex justify-between text-xs text-muted-foreground">` under the track | `aria-valuetext` carries the unit; the bubble repeats it |
+| `Card` | shadcn `Card` + `cva`: `variant` (default, outline, muted, inverted), `size` (default, sm), `elevated` | Variant=inverted: `bg-foreground text-background border-foreground`; secondary text `text-background/70`; Buttons inside `variant="secondary"` or `"outline"`, never default. One inverted card per view |
+| `Plan Card` | shadcn `Card` + `Price`, `Button`, `<ul>` of `Check Item` | Variant=featured: `ring-2 ring-primary`, primary `Button`. Variant=inverted: `bg-foreground text-background`, description and checks `text-background/70`, `Button variant="secondary"`. Variant=compact: `flex items-center gap-6 px-6 py-4` (name + description `flex-1`, Price, outline Button), no feature list |
+| `Testimonial Card` | shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>`; `cva` `variant` (default, featured, logo, minimal) | featured: `grid md:grid-cols-[280px_1fr] overflow-hidden p-0`, `<img class="h-full object-cover">`, quote `text-2xl font-semibold`, logo `<img class="h-8">`; logo: logo `<img class="h-8">` above the quote; minimal: no Card, bare `<figure>` with `text-lg` quote |
+| `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, `text-2xl`; large: centered `text-5xl font-extrabold tracking-tight max-w-3xl mx-auto`, decorative quote mark `aria-hidden` |
+| `Feature Item` | custom: lucide icon in a `bg-muted rounded-md` tile + `<h3>` + `<p>` | Layout=card: wrap in shadcn `Card` (`rounded-xl border bg-card p-6 gap-4`); link as `Button variant="link"` |
+| `Post Card` | shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link | Layout=overlay: `relative aspect-[4/5] overflow-hidden rounded-xl`, `<img class="absolute inset-0 size-full object-cover">`, text panel `absolute inset-x-0 bottom-0 bg-black/60 text-white p-6` with a `h-16 bg-gradient-to-b from-transparent to-black/60` strip above it (tokens `media/scrim`, `media/scrim-fade`, `media/foreground`) |
+| `Product Card` | shadcn `Card` with an `<a>` stretched over the card, `Badge`, `Button` (icon) for wishlist | Layout=horizontal: `flex gap-4`, image `size-30 shrink-0 rounded-lg`, no wishlist; Layout=overlay: `relative aspect-[3/4] overflow-hidden rounded-lg`, info panel `absolute bottom-0 inset-x-0 bg-black/60 text-white p-4` with a gradient strip, no action button |
+| `Person Card` | shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`) | Layout=photo: no Card surface; `<img class="aspect-[4/5] w-full rounded-xl object-cover" alt="">` above the name (`h3`), role and organization |
+| `Stat Card` | shadcn `Card` + custom content; change = `Badge` soft variant by direction; sparkline = Recharts `LineChart` without axes, `var(--chart-1)` | Layout=compact: `flex items-center gap-3 p-4` with an Icon Tile (`size-10 rounded-md bg-primary/10 text-primary`), value `text-2xl`, no footer; Layout=horizontal: `flex items-end justify-between gap-4`, sparkline `w-30 h-12 aria-hidden` right of the value, footer below |
 
 ## Admin
 | Figma | Code | Notes |

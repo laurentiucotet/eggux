@@ -23,6 +23,15 @@ section" on the Selection controls page and `Block / Settings Section`.
 
 Destructive settings (delete workspace, transfer ownership) live in a separate "Danger zone" card
 at the bottom, with typed confirmation (`delete-confirmation.md`).
+- Billing emails (invoice, receipt, payment failed, trial ending) use the Emails page templates with
+  Email / Details and Email / Line Items (email.md).
+- Start a settings page from `Block / Settings Page with Tabs` (Page Header, line Tabs, Sections slot
+  960 wide, Save Bar) and put the area's blocks in Sections; finish with `Block / Danger Zone`. Full
+  screens: SCREENS / Settings (General, Members, Notifications, Security, Billing, API keys,
+  Integrations, Appearance).
+- Account pages (My profile, public profile, activity, connected accounts, delete account) reuse the
+  same block with account tabs; the entry is the Account Menu on the Sidebar User. Screens: SCREENS /
+  Account.
 
 ## Related components
 - Settings pages with fields use `Form Section` (title and description on the left, fields on the

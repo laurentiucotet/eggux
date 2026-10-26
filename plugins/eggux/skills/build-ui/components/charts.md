@@ -36,6 +36,8 @@ the legend showing values and percentages; to compare parts, use Bar Chart Horiz
   shape; error: inline Alert with retry.
 - Dark mode uses the same tokens; check the chart on `background/card`.
 - Stacked bars start with chart/1 at the base, like every other chart; one dashboard uses chart/1 to chart/6 so series stay distinct.
+- Give each chart on a dashboard its own `chart/N` color, and keep one color per measure across
+  cards (revenue chart/1 in the Stat Card sparkline and the Line Chart).
 
 ## Figma
 `Bar Chart` (single, grouped, stacked), `Bar Chart Horizontal`, `Line Chart` (line, area),
@@ -44,8 +46,9 @@ hue in 5 opacity steps + muted for zero), `Sparkline`, `Chart Legend` (rows of
 `Chart Legend Item`), `Chart Tooltip` (rows of `Chart Tooltip Row`),
 `Chart Card` (Actions and Chart slots), `Gauge` (on-track, at-risk, off-track: status written,
 not only colored; target tick), `Treemap` (tinted cells with a colored edge so labels stay
-readable in every mode). Edit bar heights and line points for real
-data. Block: `Block / Analytics` on the App page.
+readable in every mode). In instances, chart lines and bars keep the master shape, so pick data
+that matches it or detach only in client files. Funnel Chart bars: set the track padding to set
+the share. Blocks: `Block / Analytics` and the dashboard blocks on the App page.
 - Radar, Sankey and Choropleth go inside a Chart Card Chart slot; turn off Show legend when the chart labels itself (Sankey, Choropleth).
 
 ## Funnel and Scatter

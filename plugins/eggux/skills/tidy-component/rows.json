@@ -5,7 +5,10 @@
    "helpers": [
     "Accordion Item"
    ],
-   "block": "76:433"
+   "block": "76:433",
+   "examples": [
+    "Example / Accordion styles"
+   ]
   },
   {
    "main": "Show More",
@@ -170,7 +173,10 @@
   {
    "main": "Alert",
    "helpers": [],
-   "block": "189:5652"
+   "block": "189:5652",
+   "examples": [
+    "Example / Alert styles"
+   ]
   },
   {
    "main": "Service Status Row",
@@ -240,7 +246,10 @@
   {
    "main": "Avatar Group",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Avatar Group styles"
+   ]
   },
   {
    "main": "Byline",
@@ -257,6 +266,34 @@
    "examples": [
     "Example / document header with live presence"
    ]
+  }
+ ],
+ "Background": [
+  {
+   "main": "Background / Grid",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / hero with background"
+   ]
+  },
+  {
+   "main": "Background / Dots",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Background / Glow",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / hero with background"
+   ]
+  },
+  {
+   "main": "Background / Beam",
+   "helpers": [],
+   "block": null
   }
  ],
  "Badge": [
@@ -298,7 +335,10 @@
   {
    "main": "Button",
    "helpers": [],
-   "block": "72:3"
+   "block": "72:3",
+   "examples": [
+    "Example / Button styles"
+   ]
   },
   {
    "main": "Button Icon",
@@ -365,12 +405,18 @@
     "Card Header",
     "Card Footer"
    ],
-   "block": "117:410"
+   "block": "117:410",
+   "examples": [
+    "Example / Card styles"
+   ]
   },
   {
    "main": "Stat Card",
    "helpers": [],
-   "block": "109:1790"
+   "block": "109:1790",
+   "examples": [
+    "Example / Stat Card styles"
+   ]
   },
   {
    "main": "Option Card",
@@ -380,7 +426,10 @@
   {
    "main": "Post Card",
    "helpers": [],
-   "block": "200:1069"
+   "block": "200:1069",
+   "examples": [
+    "Example / Post Card styles"
+   ]
   },
   {
    "main": "Entity Card",
@@ -392,7 +441,8 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / people directory"
+    "Example / people directory",
+    "Example / Person Card styles"
    ]
   },
   {
@@ -629,7 +679,10 @@
   {
    "main": "Chip",
    "helpers": [],
-   "block": "213:1104"
+   "block": "213:1104",
+   "examples": [
+    "Example / Chip styles"
+   ]
   }
  ],
  "Code Block": [
@@ -682,7 +735,8 @@
    ],
    "block": null,
    "examples": [
-    "Example / brand colors"
+    "Example / brand colors",
+    "Example / Swatch styles"
    ]
   }
  ],
@@ -690,7 +744,10 @@
   {
    "main": "Product Card",
    "helpers": [],
-   "block": "550:79685"
+   "block": "550:79685",
+   "examples": [
+    "Example / Product Card styles"
+   ]
   },
   {
    "main": "Line Item",
@@ -724,6 +781,14 @@
    "main": "Payment Method Card",
    "helpers": [],
    "block": "550:81608"
+  },
+  {
+   "main": "Payment Method Mark",
+   "helpers": [],
+   "block": "693:108930",
+   "examples": [
+    "Example / payment methods"
+   ]
   }
  ],
  "Cookie Consent": [
@@ -828,6 +893,75 @@
    "block": "144:3001"
   }
  ],
+ "Email": [
+  {
+   "main": "Email / Header",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Hero",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Button",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Content",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Code",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Details",
+   "helpers": [
+    "Email / Details Row"
+   ],
+   "block": null
+  },
+  {
+   "main": "Email / Line Items",
+   "helpers": [
+    "Email / Line Item",
+    "Email / Total Row"
+   ],
+   "block": null
+  },
+  {
+   "main": "Email / Callout",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Divider",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Stats",
+   "helpers": [
+    "Email / Stat"
+   ],
+   "block": null
+  },
+  {
+   "main": "Email / Article",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Email / Footer",
+   "helpers": [],
+   "block": null
+  }
+ ],
  "Empty State": [
   {
    "main": "Empty State",
@@ -844,8 +978,14 @@
    "helpers": [],
    "block": "73:12",
    "examples": [
-    "Example / features in a grid"
+    "Example / features in a grid",
+    "Example / Feature Item styles"
    ]
+  },
+  {
+   "main": "Icon Tile",
+   "helpers": [],
+   "block": null
   }
  ],
  "File Upload": [
@@ -992,12 +1132,18 @@
   {
    "main": "Input",
    "helpers": [],
-   "block": "212:862"
+   "block": "212:862",
+   "examples": [
+    "Example / Input styles"
+   ]
   },
   {
    "main": "Field",
    "helpers": [],
-   "block": "117:410"
+   "block": "117:410",
+   "examples": [
+    "Example / Input styles"
+   ]
   },
   {
    "main": "Password Strength",
@@ -1042,7 +1188,10 @@
   {
    "main": "Search Field",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Search Field styles"
+   ]
   },
   {
    "main": "Inline Form",
@@ -1212,7 +1361,10 @@
    "helpers": [
     "Bottom Nav Item"
    ],
-   "block": "96:480"
+   "block": "96:480",
+   "examples": [
+    "Example / Bottom Nav styles"
+   ]
   },
   {
    "main": "FAB",
@@ -1229,6 +1381,11 @@
    "examples": [
     "Example / invoices on mobile"
    ]
+  },
+  {
+   "main": "Store Badge",
+   "helpers": [],
+   "block": "693:106153"
   }
  ],
  "Navigation": [
@@ -1237,12 +1394,18 @@
    "helpers": [
     "Breadcrumb Item"
    ],
-   "block": "126:82"
+   "block": "126:82",
+   "examples": [
+    "Example / Breadcrumb styles"
+   ]
   },
   {
    "main": "Top Bar",
    "helpers": [],
-   "block": "77:314"
+   "block": "77:314",
+   "examples": [
+    "Example / Top Bar styles"
+   ]
   },
   {
    "main": "Page Header",
@@ -1308,7 +1471,10 @@
    "helpers": [
     "Pagination Item"
    ],
-   "block": "138:3"
+   "block": "138:3",
+   "examples": [
+    "Example / Pagination styles"
+   ]
   },
   {
    "main": "Pagination Compact",
@@ -1381,12 +1547,18 @@
   {
    "main": "Price",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Price styles"
+   ]
   },
   {
    "main": "Plan Card",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Plan Card styles"
+   ]
   }
  ],
  "Progress": [
@@ -1416,13 +1588,17 @@
    "block": "138:209",
    "examples": [
     "Example / quote in an article",
-    "Example / pull quote between sections"
+    "Example / pull quote between sections",
+    "Example / Quote styles"
    ]
   },
   {
    "main": "Testimonial Card",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Testimonial Card styles"
+   ]
   },
   {
    "main": "Footnote",
@@ -1524,7 +1700,10 @@
   {
    "main": "Select",
    "helpers": [],
-   "block": "67:2442"
+   "block": "67:2442",
+   "examples": [
+    "Example / Select styles"
+   ]
   },
   {
    "main": "Combobox",
@@ -1583,7 +1762,10 @@
   {
    "main": "Switch",
    "helpers": [],
-   "block": "79:3"
+   "block": "79:3",
+   "examples": [
+    "Example / Switch styles"
+   ]
   },
   {
    "main": "Setting Row",
@@ -1656,7 +1838,10 @@
   {
    "main": "Slider",
    "helpers": [],
-   "block": "205:1650"
+   "block": "205:1650",
+   "examples": [
+    "Example / Slider styles"
+   ]
   }
  ],
  "Spinner": [
@@ -1759,7 +1944,8 @@
    ],
    "block": "92:949",
    "examples": [
-    "Example / tabs with counts"
+    "Example / tabs with counts",
+    "Example / Tabs styles"
    ]
   }
  ],
@@ -1767,14 +1953,20 @@
   {
    "main": "Timeline Item",
    "helpers": [],
-   "block": "92:1018"
+   "block": "92:1018",
+   "examples": [
+    "Example / Timeline Item styles"
+   ]
   }
  ],
  "Toast": [
   {
    "main": "Toast",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Toast styles"
+   ]
   }
  ],
  "Toggle Group": [
@@ -1783,7 +1975,10 @@
    "helpers": [
     "Toggle Group Item"
    ],
-   "block": "141:2756"
+   "block": "141:2756",
+   "examples": [
+    "Example / Toggle Group styles"
+   ]
   }
  ],
  "Tooltip": [

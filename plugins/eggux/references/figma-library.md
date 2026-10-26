@@ -137,6 +137,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Quote | `Quote` | Variant: default (left rule), pull (centered) | Quote, Name, Role, Show avatar, Show attribution. A quotation in running content |
 | Section Heading | `Section Heading` | Size: lg (h2), default (h3), sm (h4) | Title, Description, Overline, Show overline, Show description, Show actions, Show icon + Icon (swap); Actions (native slot). Opens a section of an app or content page |
 | Feature Item | `Feature Item` | Layout: stacked, inline, centered. Marker: icon, number | Title, Description, Number, Icon (swap), Show description, Show link. One benefit, capability or step: icon tile or step number, title, text |
+| Feature Item | `Icon Tile` | Style: neutral, brand, gradient, outline. Size: sm 32, default 40, lg 48 | Icon (swap). A rounded square with one icon for feature, step and bento grids; one Style per grid |
 | Rating | `Rating` | Size: sm, default. Value: 0-5 | Show value, Show count, Count. Value text edited per instance |
 | Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); Carousel Arrow (outline) and Carousel Indicator (dots); viewport clips |
 | Carousel | `Carousel Arrow` | Variant: outline, overlay. Direction: previous, next. State: default, hover, focus, disabled | Round 36 (outline) or 40 with shadow (overlay) |
@@ -247,7 +248,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 1:1, 3:4 | Show caption, Show image + Image (swap: Image / * from the Imagery page). Without an image: dot pattern and an image icon. Ratio locked: FILL keeps the height in proportion |
 | Image | `Image Cropper` | Shape: square, circle | Image layer (fill), scrim, selection that stays centered, zoom Slider, rotate, Cancel, Save |
 | Image | `Avatar Upload` | State: empty, filled, uploading, error | Label, Show label, Hint, Show remove. Profile or logo picture in settings: the avatar, a Label (Show label), a Hint with the upload rules, Upload or Change (exposed Button, set its Label, e.g. |
-| Sections (blocks) | `Section Header` | Align: center, left | Overline, Title (heading/h2), Description |
+| Sections (blocks) | `Section Header` | Align: center, left | Overline (`foreground/brand` in both Align values; do not override), Title (heading/h2), Description |
 | Page Shells | `Page Shell / App`, `/ Marketing`, `/ Auth` | - | Page (native slot); Sidebar and Top Bar exposed in App |
 | Page Shells | `Page Shell / Mobile` | - | 390 x 844. Mobile Header + Page (native slot) + Bottom Nav (exposed, `Bottom nav` boolean) |
 | Page Shells | `Page Shell / Wizard` | - | Logo, Step text, Save and exit, Progress, Page (native slot, 672), Back / Continue |
@@ -326,6 +327,10 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Automation | `Mapping Row` | Status: mapped, unmapped, error | Source, Sample. Maps one source column or field to a target field during import or sync setup: source with a sample, arrow, target Select and status. |
 | Automation | `Workflow Node` | Type: trigger, condition, action. State: default, selected, error | Title, Detail. One step on an automation or approval canvas: trigger, condition (branches) or action. |
 | Avatar | `Presence Bar` | - | Who else has this document, record or board open right now: a live dot and their avatars. |
+| Background | `Background / Grid` | - | Fade. 40 px grid lines in `border/default` at 60% with a radial fade; decorative, at the back of a hero or CTA band |
+| Background | `Background / Dots` | - | Fade. 24 px dot pattern in `foreground/muted` at 50% |
+| Background | `Background / Glow` | Position: top, center, bottom-right | Blurred ellipse in `gradient/brand-glow`; follows the primary color of the mode |
+| Background | `Background / Beam` | - | Three soft diagonal beams in the primary color |
 | Badge | `Announcement Pill` | - | Label, Show tag. A short link above a hero title to the newest launch: "New" tag, one line, arrow. |
 | Badge | `Trust Badge` | - | Name, Description, Icon. A certification or compliance claim with what backs it: SOC 2, ISO 27001, GDPR, PCI DSS. |
 | Brand | `Logo Tile` | Style: bordered, plain (logo at 70%) | Logo (swap: Logo / *). A customer or partner logo in a tile for logo clouds, integration grids and case study lists. |
@@ -425,6 +430,83 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Tour | `Annotation Pin` | State: default, active, resolved | Number. A numbered marker on a design, document or screenshot where a comment lives. |
 | Video | `Audio Player` | - | Title, Time, Duration. Plays one audio file: podcast episode, voice message, recorded call. |
 | Video | `Video Thumbnail` | - | Show duration. A video before it plays: poster frame, play button and duration. |
+| Hero | `Block / Hero with Logo Cloud` | - | Announcement Pill, display Title with accent, Description, Action Bar (2 CTAs), browser Device Frame (exposed) with `Image / Screenshot / Invoices`, Logo caption + Logos slot (6 Logo Tile plain); Show announcement, Show screenshot, Show logos |
+| Hero | `Block / Hero with Form` | - | Eyebrow, display Title with accent, Description, Inline Form (exposed, "Start free" + hint), social proof (Avatar Group with photos + Rating 4.9), 4:3 Image (exposed, `Image / Office / 03`); Show eyebrow, Show social proof |
+| Hero | `Block / Hero with Phone` | - | Eyebrow, display Title with accent, Description, Stores (`Store Badge` App Store + Google Play), Rating 4.8 (12,400 ratings), phone Device Frame (exposed) with a Page Shell / Mobile list screen, cropped in a `section/muted-background` panel; Show eyebrow, Show rating |
+| Hero | `Block / Hero Full-bleed Image` | - | 1440 x 720 photo (Image exposed, `Image / City / 01`), `video/scrim` layer, transparent Navbar (exposed, Dark mode), Announcement Pill, white Title and Description (`video/foreground`, 4.9:1 over the brightest pixel), 2 CTAs; Show announcement, Show navbar |
+| Hero | `Block / Hero with Video` | - | Announcement Pill, display Title with accent, Description, Action Bar, Video Player (State=poster, exposed, 1152 x 648, office photo poster, 3:12, shadow/xl); Show announcement, Show actions |
+| Hero | `Block / Hero with Stats` | - | Eyebrow + display Title with accent left, Description + Action Bar right, 21:9 Image (exposed, `Image / Office / 05`), Metric Strip with 4 figures (€2.4B, 38,000, 11 h, 99.99%); Show eyebrow, Show image |
+| Hero | `Block / Hero Image Collage` | - | Eyebrow, display Title with accent, Description, Action Bar, social proof (Avatar Group + Rating 4.9), Collage of 5 staggered Image Placeholders (3:4 and 1:1, people and offices, all exposed); Show eyebrow, Show social proof |
+| Mobile | `Store Badge` | Store: app-store, google-play | Store mark, small line and store name; follows the theme (dark badge in Light, light in Dark). Used by Hero with Phone |
+| Sections (blocks) | `Block / Features with Screenshot` | - | Section Header Align=left (exposed), Items (native slot: 4 Feature Items Layout=inline, Marker=icon), Show actions (exposed primary Button + link Button), Device Frame browser (exposed, shadow/xl) with `Image / Screenshot / Approval` |
+| Sections (blocks) | `Block / Features Tabs` | - | Section Header center (exposed), Tabs Variant=line (exposed, 4 Tabs with icons), Panel title, Panel description, Show panel link (exposed outline Button), Device Frame browser 1152 (exposed, shadow/xl) with `Image / Screenshot / Invoices` |
+| Sections (blocks) | `Block / How It Works` | - | Muted band. Section Header center (exposed), Steps (native slot: 3 step cards, Feature Item Marker=number + example strip of outline and soft Badges), Show actions (exposed Buttons) |
+| Sections (blocks) | `Block / Bento Grid 2` | - | Section Header center (exposed); 5 tiles: Chart Card (exposed, area Line Chart), Answers (AI Summary), Projects (2 Kanban Cards), Team (Avatar Group with photos, Team label, role Badges), Invoices (rows with soft status Badges). TEXT per tile: <Tile> title, <Tile> description |
+| Sections (blocks) | `Block / Feature Checklist` | - | Image Placeholder 4:3 (exposed, Image / Office / 03), Section Header left (exposed), Items (native slot: 8 Check Items, two columns), Show actions (exposed Buttons) |
+| Sections (blocks) | `Block / Integrations Grid` | - | Muted band. Section Header center (exposed), Logos (native slot: 12 Logo Tiles bordered, 4 per row, fictional `Logo / *`), Note, Show footer (exposed outline Button + link) |
+| Sections (blocks) | `Block / Security and Compliance` | - | Trust family. Section Header left (exposed), Show actions (security pack + trust center Buttons), Controls (native slot: 6 items, Icon Tile neutral + title + sentence), Show certifications + Badges (native slot: 4 Trust Badges) |
+| Sections (blocks) | `Block / Trust Strip` | - | Trust family. Badges (native slot: 4 Trust Badges: delivery, returns, secure checkout, repairs), 1440 x 182, no heading |
+| Sections (blocks) | `Block / Logo Grid` | - | Logo Cloud family: Section Header (exposed), Logos (slot: 8 `Logo Tile` bordered, 4 per row), Action (exposed Button link), Show action |
+| Sections (blocks) | `Block / Logos Split` | - | Logo Cloud family: Eyebrow, Title, Description, Show eyebrow, Show action, Action (exposed); Logos (slot: 6 `Logo Tile` plain on a muted panel, 3 per row) |
+| Sections (blocks) | `Block / Logo Marquee` | - | Logo Cloud family: Caption, Show caption; Logos (slot: 10 `Logo Tile` plain in one row, clipped at 1440 with faded edges) |
+| Sections (blocks) | `Block / CTA with Screenshot` | - | CTA family: primary band, Eyebrow, Title, Description, Note, Show eyebrow, Show proof, Show note; Primary action and Secondary action (exposed Buttons); Device Frame (exposed, browser with `Image / Screenshot / Dashboard`, cropped) |
+| Sections (blocks) | `Block / Newsletter Split` | - | Newsletter family: Eyebrow, Title, Description, Show eyebrow, Show image; Benefits (slot: 3 Check Items); Inline Form and Image (exposed, `Image / Office / 03`) |
+| Sections (blocks) | `Block / Newsletter Card` | - | Newsletter family: primary card with shadow, Title, Description, Subscribers, Show badge, Show proof; Badge and Inline Form (exposed, secondary button, white hint); Avatar Group with photos |
+| Sections (blocks) | `Block / Pricing with Comparison` | - | Pricing family: Section Header (exposed), billing Toggle Group with saving Badge (Show billing period), Plans (slot: 4 Plan Cards, one featured), Comparison toggle (exposed Button), full comparison table with 4 plan columns (Show comparison), Note, Show note |
+| Sections (blocks) | `Block / Stats Brand Band` | - | Stats family: full-width primary band, Title, Description, Source, Show header, Show source; Figures (slot: 4 `Figure` lg, white, centered) |
+| Sections (blocks) | `Block / About Hero` | - | About family: Eyebrow, Title (`display/lg` with accent), Description, Show eyebrow; Images (slot: 4 Image Placeholders, Person, Office, City photos) |
+| Sections (blocks) | `Block / Our Story` | - | About family: muted band, Eyebrow, Title, Description, Milestones title, Show eyebrow, Show image; Image Figure (exposed); Milestones (slot: 5 Timeline Items in a card) |
+| Sections (blocks) | `Block / Values` | - | About family: Section Header (exposed); Values (slot: 6 Feature Items stacked with brand icon tiles, 3 per row) |
+| Sections (blocks) | `Block / Mission with Figures` | - | About family: Eyebrow, Title, Description, Show eyebrow, Show image; Figures (slot: 4 `Figure` lg with dividers, 2 per row); Image (exposed, 1:1 `Image / City / 01`) |
+| Navigation (blocks) | `Block / Banner Floating` | - | Banner family. 1440 wide, transparent, 24 px padding; elevated card (1040, shadow/lg) with Icon Tile, Title, Description, Secondary action and Primary action Buttons, dismiss. Title, Description; Show icon, Show secondary action, Dismiss; Icon Tile, Primary action, Secondary action exposed |
+| Navigation (blocks) | `Block / Banner Countdown` | - | Banner family. Promo bar on background/primary: sale Badge, Title, Description (terms with end date), Countdown, Primary action, dismiss. Title, Description; Show badge, Show description, Dismiss; Badge, Countdown, Primary action exposed |
+| Navigation (blocks) | `Block / Banner with Action` | - | Banner family. Quiet top bar on section/muted-background with bottom border: soft-info Badge, Message, link Action, dismiss. Message; Show badge, Dismiss; Badge, Action exposed |
+| AI | `Block / AI Search Answer` | - | 960 wide. Search Field (filled query), scope Chips + Result count, AI Summary "AI overview" with cited paragraphs, list and Sources (4 Source Items), Results title, Results (native slot) of Search Result Items (page, record, file, person) with Separators. Show filters, Show answer, Show results header, Results title, Result count; Search Field and AI Summary exposed |
+| AI | `Block / Agent Task Run` | - | 960 wide. Run Title, Meta, status Badge (soft-warning "Waiting for approval"), Task card (Avatar + task text), Agent Plan (5 Plan Steps, Progress 75), Activity (native slot) of Tool Calls ending with Status=approval, Results (native slot) of Artifact Cards (document, table). Title, Meta, Task, Activity title, Results title; Show task, Show activity, Show results; Agent Plan and Status exposed |
+| App | `Block / SaaS Metrics Dashboard` | - | 1136 wide. Metric Strip (MRR, net new MRR, active subscriptions, ARPU, MRR churn with Trend Indicators); Chart Cards: trials and activation (Combo Chart), MRR by plan (Donut), trial to paid (Funnel, chart/5), churned MRR by reason (Bar Chart Horizontal, chart/6). Numbers add up |
+| App | `Block / Sales Pipeline` | - | 1136 wide. Metric Strip of stage value and deal count (Lead, Qualified, Proposal, Negotiation, Won this quarter); stage conversion Funnel (chart/3) in a Chart Card; top reps as Leaderboard Rows with photo avatars in a Card; largest open deals table of Table Cells (Stack, User, soft stage Badge, Amount, Date, Progress) |
+| App | `Block / Commerce Admin` | - | 1136 wide. Four Stat Cards (revenue, orders, average order value, conversion rate; sparklines on three, soft change Badges); revenue area Line Chart; top products Bar Chart Horizontal (chart/3); recent orders as Order Rows with soft status Badges in a Card; sales by channel Donut |
+| App | `Block / Project Overview` | - | Project name, Meta. 1136 wide. Header with soft status Badge and Avatar Group with photos; four Progress Cards (tasks, budget, milestones, hours; soft status Badges); compact timeline of Gantt Bars with a Gantt Milestone and today line; tasks due this week as Task Items with photo assignees |
+| App | `Block / Home Today` | - | Greeting, Day summary. 1136 wide. AI Summary of the day; Today (Agenda Items: past, now, upcoming, colored by calendar), Tasks (Task Items, overdue first) and Notifications (Notification Items with photo avatars) in three Cards |
+| App | `Block / Data Table` | - | Show toolbar, Show active filters, Show selection bar, Show pagination; Page Header exposed (Title, Description, Actions). Invoices list page, 1136: Page Header with New invoice, Data Grid Toolbar (saved view, search, Filters 3, Columns, Sort, Export), active filter chips, table card with Table Toolbar "2 selected" (Export, Mark as paid, Delete), GRID of Table Cells (checkbox, number, Table Cell User, Table Cell Stack, soft status Badge, issued, due, amount right aligned, Table Cell Actions), 10 rows with 2 selected, Table Pagination |
+| App | `Block / Stacked List` | - | Items (native slot of List Items), Show header, Show load more; Card Header exposed. Projects list, 1136: Card Header with New project, bordered list of 7 List Items (photo Avatar, title, one line of meta, Avatar Group sm, soft status Badge, row menu), Load More |
+| App | `Block / Grid List` | - | Cards (native slot, wraps), Show filters, Show load more; Page Header exposed. Customers, 1136: Page Header (Import, Add customer), Filter Bar (search, Sort, grid or list Toggle Group, filter chips, Clear all), 6 Entity Cards in 3 columns (initials logo, meta, soft status and plan Badges, three facts, people photos), Load More |
+| App | `Block / Create Record Dialog` | - | Dialog and Dialog Header exposed. 1440x900: Page Shell / App with Block / Data Table behind dialog/overlay; Dialog lg 672 "New invoice": Combobox, Input, two Date Pickers with hint, Select, Currency Input, Textarea, Checkbox; Cancel, Save as draft, Create invoice |
+| App | `Block / Delete Confirmation` | - | Alert Dialog and Dialog Header exposed. 1440x900: Page Shell / App with Block / Stacked List behind dialog/overlay; Alert Dialog Type=destructive "Delete project?" naming what is lost, Field "Type Website redesign to confirm" with the Input filled (focus); Cancel, Delete project |
+| App | `Block / Record Preview Sheet` | - | Sheet and Dialog Header exposed. 1440x900: Page Shell / App with Block / Data Table behind dialog/overlay; Sheet 640 right "INV-1047": Figure lg amount, soft Badge Overdue + Meta Item due date, 6 Description List Items, Activity with 4 Timeline Items (warning, default, primary, default); Open invoice, Send reminder |
+| App | `Block / Command Palette` | - | Command Dialog exposed (Items slot). 1440x900: Page Shell / App with Block / Grid List behind dialog/overlay; Command Dialog at 140 from the top: Suggestions (Create invoice highlighted, ⌘N), Recent (3 records), Go to (Dashboard G D, Invoices G I, Settings ⌘,), Menu Labels, Separators, key hints |
+| App | `Block / Upgrade Dialog` | - | Dialog and Dialog Header exposed. 1440x900: Page Shell / App with Block / Stacked List behind dialog/overlay; Dialog 768 "Upgrade to add more projects" (10 of 10 projects), Monthly / Yearly Toggle Group, Plan Card Starter (Current plan, disabled) and Plan Card featured Business (€24 per user / month, Upgrade to Business) with Check Items; Maybe later, Compare all plans |
+| App | `Block / Data Table`, `/ Stacked List`, `/ Grid List` | - | Lists family: invoices table page with toolbar, filter chips, selection bar and pagination; projects as List Items with people, status and menu; customers as Entity Cards in 3 columns with Filter Bar and Load More |
+| App | `Block / Create Record Dialog`, `/ Delete Confirmation`, `/ Record Preview Sheet`, `/ Command Palette`, `/ Upgrade Dialog` | - | Overlays family, 1440x900 screens (Page Shell / App + list block behind `dialog/overlay`): create form dialog; type-to-confirm destructive Alert Dialog; Sheet 640 record preview with timeline; ⌘K Command Dialog; plan limit dialog with two Plan Cards |
+| Commerce | `Block / Store Navbar` | - | Logo (swap), Show promo bar, Show search, Show wishlist, Show cart count. Promo bar (Announcement Banner), logo, six category links (Nav Link), Search Field "Search products", account and wishlist Button Icons, cart Button Icon with Badge Count (exposed) |
+| Commerce | `Block / Store Footer` | - | Logo (swap), Show newsletter, Newsletter title, Newsletter text, Address, Show payment methods, Payment methods (slot), Show country selector, Copyright. Newsletter card with Inline Form, address, four link columns (Shop, Help, Company, Legal), Payment Method Marks, copyright with VAT note, country and currency Select |
+| Commerce | `Block / Storefront Hero` | - | Eyebrow, Title, Description, Rating text, Show rating, Show categories, Show secondary action. Full-height lifestyle photo (Image Placeholder 1:1, exposed) with a floating rating card, display/lg headline, two shop Buttons, three category links (Navigation Menu Link) |
+| Commerce | `Block / Category Tiles` | - | Show header, Show action, Tiles (slot). Section Header + View all link, four 3:4 photo tiles with name and style count, on `section/muted-background` |
+| Commerce | `Block / Promo Section` | - | Title, Description, Countdown label, Fine print, Show badge, Show countdown, Show secondary action, Show fine print. Soft destructive Badge with the end date, offer headline, Countdown, two Buttons, fine print, lifestyle photo |
+| Commerce | `Block / Incentives` | - | Items (slot). Four Trust Badges: free delivery, 30-day returns, 2-year warranty, support hours |
+| Commerce | `Block / Product Carousel` | - | Products (slot), Show action, Show arrows. Section Header, Shop all link, previous / next Carousel Arrows, row of five Product Cards with Show rating on, fifth cut at the edge |
+| Commerce (blocks) | `Block / Category Filters` | Layout: sidebar (1440), drawer (390) | Title, Count, Show breadcrumb, Show active filters, Show load more; Results (native slot, Product Cards 258 wide, 3 per row). Sidebar: breadcrumb, title and count, Sort by Select, Filter Sections (Category with counts, Price as range Slider + Range Input, Color Swatch Picker, Size Swatches, Availability, collapsed Material and Brand), active Filter Chips + Clear all, Load More. Drawer: Sheet with Sort, the same Filter Sections, Clear all and "Show 32 products" |
+| Commerce (blocks) | `Block / Product Quick View` | - | Name, Description, Color label, Size label, Show badges, Show rating, Show size, Show details link; Carousel Gallery (exposed). 880-wide dialog surface (Dialog tokens): gallery, soft badges, price with old price, rating, color and size Swatches, quantity, Add to cart, wishlist, stock and delivery, View full details |
+| Commerce (blocks) | `Block / Shopping Cart Page` | - | Title, Subtitle, Note, Show note, Show continue shopping, Recommendations title, Show recommendations; Items (native slot: Line Item cart + Separator), Recommendations (native slot: Product Cards). Order Summary with lines hidden, totals and Checkout |
+| Commerce (blocks) | `Block / Checkout Single Page` | - | Title, Subtitle, Terms, Delivery title, Show breadcrumb, Show sign in, Show newsletter opt-in. Contact (Field, opt-in Checkbox), Block / Address, billing same as delivery, delivery method radio Option Cards, Block / Payment, Order Summary with lines and "Pay €159.30" |
+| Commerce (blocks) | `Block / Order Confirmation` | - | Eyebrow, Title, Description, Order number, Order date, Billing, Help, Show tracker; Items (native slot: Line Item summary). Icon Tile, Shipment Tracker, Summary Rows to the amount paid, Address Card, Payment Method Card, Continue shopping |
+| Email | `Email / Header` | - | Logo (swap: Logo, Logo / *), Show preheader link, Preheader link ("View in browser"). Transparent, sits on the muted canvas |
+| Email | `Email / Hero` | - | Title (heading/h2), Text, Show text, Eyebrow, Show eyebrow, Show image (Image Placeholder 16:9, exposed) |
+| Email | `Email / Button` | Align: left, center | Label. Solid `background/primary` pill (`button/radius`), 44 px, bulletproof in code |
+| Email | `Email / Content` | - | Heading, Show heading, Text (body/default 16) |
+| Email | `Email / Code` | - | Label, Code (Roboto Mono 36, `font/mono`), Hint, Show hint |
+| Email | `Email / Details` | - | Title, Show title; Rows (native slot) of `Email / Details Row` (Label, Value) |
+| Email | `Email / Line Items` | - | Title, Show title; Items (slot) of `Email / Line Item` (Name, Meta, Amount, Show image, exposed Image); Totals (slot) of `Email / Total Row` (Type: default, total; Label, Amount) |
+| Email | `Email / Callout` | Tone: default, info, success, warning, destructive | Title, Show title, Text, Show icon. `badge/soft-*` tints, text foreground/default |
+| Email | `Email / Divider` | - | Separator inside 40 px side padding |
+| Email | `Email / Stats` | - | Items (slot) of `Email / Stat` (Value, Label, Change, Show change) |
+| Email | `Email / Article` | - | Title, Text, Link, Show image (Image Placeholder 4:3, exposed) |
+| Email | `Email / Footer` | - | Address, Reason, Show social (LinkedIn, X, YouTube, GitHub), Show preferences, Show unsubscribe |
+| Forms | `Block / Sign In Split` | - | 1440 x 900. Left: Logo (exposed), Form (native slot, default `Block / Sign In`), Footer text + Show footer. Right: full-height photo (Image Placeholder exposed, `Image / Office / 06`, swap to `Image / Screenshot / *` for a product screen) in a radius/xl panel with a Testimonial Card (exposed, shadow/lg) at the bottom; Show testimonial |
+| Forms | `Block / Sign Up Split` | - | 1440 x 900. Left: Logo (exposed), Form (native slot, default `Block / Sign Up`), Footer + Show footer. Right on `section/muted-background`: Title, Description, Benefits (native slot, 4 Check Items), Logos caption + Logos (native slot, 6 plain Logo Tiles), Show logos |
+| Forms | `Block / Welcome Role Select` | - | 672 wide (the Wizard Page slot). Step + Progress (Show progress), Title, Description, Role question + 6 radio Option Cards with icons in 2 columns, Team question + 5 compact Option Cards, Skip for now / Continue (Show actions) |
+| App | `Block / Settings Page with Tabs` | - | 1136 wide, no fill, gap spacing/6. Page Header "Settings" (exposed, Actions slot empty), line Tabs (exposed): General (active), Members (count 10), Notifications, Security, Billing, API keys, Integrations, Appearance; Sections (native slot, 960 wide) with two Form Sections Layout=side: "Workspace" (Workspace name, Logo Avatar Upload square initials, Workspace URL Input Group "app.orbitly.io/") and "Language and region" (Language, Time zone, Currency, Week starts on Selects); Save Bar (exposed, 960, "2 unsaved changes"). Show save bar, Show tabs |
+| App | `Block / Danger Zone` | - | 960 wide. Card (exposed) with destructive border and title "Danger zone", description, Setting Rows: Transfer ownership (outline Button), Delete workspace (destructive Button) with counts and the 30-day grace period. Put last in a settings page; the button opens an Alert Dialog with typed confirmation |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,
@@ -437,6 +519,43 @@ text-quote, link, external-link, share-2, heading, code, git-branch, sparkles, z
 refresh-cw, square, paperclip, globe, wrench, mic, message-square, square-pen, play, pause,
 volume-2, maximize, captions, image, shield-check, key-round, lock, eye, pin, grip-vertical, sun,
 moon (97).
+
+## Screens
+The SCREENS group (after BLOCKS) holds complete screens and templates to copy whole: pages Account,
+Auth, Emails, Settings. Each flow is a Figma section with `Screen / <Flow> / <Step> / Desktop` and `/ Mobile` frames
+left to right in flow order (emails: `Screen / Email / <Name>`).
+
+| Page | Flow | Screens | Built from |
+|---|---|---|---|
+| Account | My profile | Account menu, View, Edit, Validation errors, Saved (Desktop); View, Edit (Mobile) | Page Shell / App, Settings Page with Tabs relabeled as account tabs (Profile, Public profile, Activity, Connected accounts, Privacy and data), Account Menu, Cards with Avatar, Badges, Description List Items, Timeline Items; Block / Profile, Error Summary, Field error states, Toast; Page Shell / Mobile with Bottom Nav |
+| Account | Public profile | Preview | Account tabs, Alert info, Block / Header Profile, Featured work Card with Image / Abstract, Screenshot, Office |
+| Account | Notifications | Inbox (Desktop, Mobile), All caught up | Page Header, line Tabs with counts, Notification Items grouped by day in Cards (Reply, Approve / Review actions), Empty State; mobile Bottom Nav Inbox active |
+| Account | Activity history | History | Account tabs, search Input + Selects + Export CSV, Timeline Items with Change Items, Load More |
+| Account | Connected accounts | Accounts and devices | Account tabs, Cards of Setting Rows (sign-in methods, connected apps), Session Rows, Sign out of all other sessions |
+| Account | Delete account | Danger zone, Confirm | Account tabs, Your data card (Export data, profile visibility Switch), Block / Danger Zone (Leave workspace, Delete account), Alert Dialog destructive with typed DELETE and password |
+| Auth | Sign in | Default (Google + SSO buttons), Error: wrong password, SSO; each Desktop + Mobile, Light and Dark side by side | `Block / Sign In Split` (Form slot: `Block / Sign In`), `Page Shell / Mobile` + `Block / Sign In`, Alert destructive, `Logo / Orbitly` |
+| Auth | Sign up | Default, Validation errors (email, password, Requirement List), Verify email (6-digit code) | `Block / Sign Up Split` (Form slot: Sign Up, then Two-Factor retitled), Requirement List, Password Strength, Input OTP, `Page Shell / Mobile` |
+| Auth | Magic link | Request, Check your email | `Page Shell / Auth` + Forgot Password and Check Email (retitled), `Page Shell / Mobile` |
+| Auth | Password reset | Forgot password, Check email, Set new password (Requirement List), Password updated | `Page Shell / Auth` + Forgot Password, Check Email, Reset Password, Check Email (success icon), `Page Shell / Mobile` |
+| Auth | Two-factor | Authenticator code, Recovery code | `Page Shell / Auth` + Two-Factor (Input OTP; Field for the recovery code), `Page Shell / Mobile` |
+| Auth | Accept invite | Accept invite (email fixed from the invite), Invite expired | `Page Shell / Auth` + Accept Invite, Check Email (clock icon), `Page Shell / Mobile` |
+| Auth | Onboarding | Welcome: role and team size, Workspace (logo, name, URL, currency), Invite team (rows + invite link), Plan: start trial, Done | `Page Shell / Wizard` + `Block / Welcome Role Select`, Avatar Upload, Field + Input Group, Select, Input, Copy Field, Plan Card, Icon Tile, Check Item; mobile on `Page Shell / Mobile` with Progress and Option Cards |
+| Emails | Account | `Screen / Email / Welcome` (+ `/ Dark`), `Verify email`, `Sign-in link`, `Password reset` (+ `/ Dark`), `Password changed`, `Invitation` | Email / Header (Logo / Orbitly), Hero (image on Welcome), Content, Button, Code (Verify), Details (sign-in request, password change, invite), Callout (default, warning), Footer (security: no social, no unsubscribe) |
+| Emails | Billing | `Screen / Email / Invoice`, `Payment receipt`, `Payment failed`, `Trial ending` | Email / Header, Hero, Details, Line Items (Line Item, Total Row), Callout warning (Payment failed), Stats (Trial ending), Content, Button, Footer |
+| Emails | Marketing | `Screen / Email / Weekly summary` | Email / Header (View in browser on), Hero with eyebrow, Stats (3 Stat), Button, Divider, Hero with image (h3 title, feature), Content link, 3 Article, Footer with unsubscribe |
+| Emails | Commerce | `Screen / Email / Order confirmation` | Email / Header (Logo / Tidewater), Hero, Details (order, delivery), Line Items with product photos (`Image / Product / 01, 03, 07`), Button, Content, Footer (Tidewater address) |
+| Settings | General | Unsaved changes (Desktop, Mobile), Saved (Desktop, plus Dark and Corporate Light) | Page Shell / App (Orbitly sidebar), Block / Settings Page with Tabs, Block / Danger Zone, Save Bar, Toast success; mobile: Page Shell / Mobile detail, Form Section stacked, sticky Discard / Save changes bar |
+| Settings | Members | Team, Invite (dialog) | Settings Page with Tabs, Block / Team Members, Roles card (Setting Rows + Badge), Dialog with Textarea emails, Role Select, Usage Meter near |
+| Settings | Notifications | Preferences (Desktop with toast, Mobile) | Settings Page with Tabs, Block / Notification Preferences, Alert info (security emails always on), Toast; mobile Setting Rows with Switches grouped by topic |
+| Settings | Security | Overview, Change password (dialog) | Settings Page with Tabs, Password Card, Block / Security (two-factor, sign-in alerts, SSO URL, sessions), Dialog with Password Strength |
+| Settings | Billing | Plan and invoices | Settings Page with Tabs, Block / Billing (plan, usage meters, payment method, billing email, invoices) |
+| Settings | API keys | Keys, Key created (shown once) | Settings Page with Tabs, Block / API Keys, Alert info; Dialog with Alert warning and Copy Field State=copied |
+| Settings | Integrations | Directory | Settings Page with Tabs, Block / Integrations |
+| Settings | Appearance | Theme and density | Settings Page with Tabs, Form Sections with Option Cards radio (Light, Dark, System; Comfortable, Compact), Language and Date format Selects, Toast (saves on change) |
+
+Every template: 720 wide frame on `section/muted-background` (padding 40 top and bottom) holding a 600 wide "Email"
+column: Header, a "Body" frame (`background/card`, radius/lg, padding 40 top and bottom, gap 24) with the parts, Footer.
+Explicit modes Semantic and Components Light (Dark on the two Dark copies), Density Comfortable.
 
 ## Conventions used
 - Variant values use the shadcn prop values (`Variant=outline`, `Size=sm`), so Figma maps 1:1 to code.
@@ -540,7 +659,9 @@ which screen: `skills/build-ui/index.md`):
 
 ## Pages
 The file opens with Cover (1920 x 1080 thumbnail), Intro (getting started, credits, changelog),
-Foundations (tokens shown as swatches, type, spacing, radius, elevation, motion), Brand and Imagery.
+Showcase (four full pages: SaaS in Showcase Light, enterprise in Corporate Light, AI product in
+Showcase Dark, a store in Light), Foundations (tokens shown as swatches, type, spacing, radius,
+elevation, motion, brand ramp and gradients), Brand and Imagery.
 Brand has a second Theme preview in Corporate Light, a Content panel (brand strings bound to the `Content` collection) and an English / Română comparison of the invoices example. Then two groups of pages, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
 categories and Page Shells). Block pages have no prefix. `Navigation` exists in both sections:
 the first holds the components (Breadcrumb, Top Bar), the second the Navbar and Footer blocks.
@@ -587,8 +708,15 @@ Since 0.51.0 some former components are examples built from base components: "AI
 and "billing period" (Toggle Group page), "stock status" (Badge page), "welcome dialog" (Dialog
 page) and "language switch" (Select page). Copy the example; there is no component to insert.
 
+Full pages added in 0.58.0 (copy them whole): Hero showcase (all heroes, Hero page); Pricing,
+About and Contact pages (Sections); AI search page (AI); SaaS metrics dashboard in Light and Dark
+and Commerce admin (App); Storefront home, Category, Product and Cart pages (Commerce); and the
+four showcase pages on Showcase (Orbitly SaaS, Meridian Enterprise, Lumora AI product, Tidewater
+store and product page). Overlay blocks on App (Create Record Dialog, Delete Confirmation, Record
+Preview Sheet, Command Palette, Upgrade Dialog) show the overlay over a dimmed app screen.
+
 ## Not built yet
 Open gaps from the README roadmap: a Search Hero block, and examples in real screens for the 0.50.0 components
-(their rows have generated stress tests). Icons: the 97 Lucide icons stay; the team may switch
+(their rows have generated stress tests). Icons: the 101 Lucide icons stay; the team may switch
 to Phosphor (flatten each icon to one `Vector` layer so swaps keep their color). When something
 is missing, compose from the components above, tokens and text styles, and flag it.

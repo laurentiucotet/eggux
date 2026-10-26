@@ -10,6 +10,8 @@
 - The invite email names who invited them and to what; accepting lands in the workspace,
   with sign-up only if needed (`Block / Accept Invite`).
 - Seat limits are shown before sending, not after.
+- The invite email uses `Screen / Email / Invitation`: who invited, to what, with which role, when
+  it expires.
 
 ## Share an object
 - Share dialog: people with access (avatar, name, role per person, remove), add people with a

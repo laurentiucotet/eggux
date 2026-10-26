@@ -73,11 +73,12 @@
   ]
  },
  "Accordion": {
-  "summary": "A stack of Accordion Items that show and hide sections of content under a title row.",
+  "summary": "A stack of Accordion Items that show and hide sections of content under a title row. Style=default divides items with lines; Style=card shows each item as a separate bordered card with a gap.",
   "use": [
    "FAQ and optional detail (Density default)",
    "Filter groups in a side panel, Sheet or Drawer (Density compact)",
-   "Settings groups in a side panel"
+   "Settings groups in a side panel",
+   "Style=card: marketing FAQs, help centers and pricing pages, often on a muted section background"
   ],
   "avoid": [
    "Information every user needs to finish the task: show it on the page",
@@ -85,8 +86,9 @@
    "Steps in a fixed order: use Stepper"
   ],
   "anatomy": [
-   "Items slot of Accordion Items",
-   "Trigger row: Leading icon (optional), Title, Meta slot (Show meta), chevron",
+   "Style: default (divider lines), card (separate cards, gap spacing/3)",
+   "Items slot of Accordion Items (use items of the same Style)",
+   "Trigger row: Leading icon (optional), Title, Meta slot (Show meta), chevron or plus/minus (Icon)",
    "Content slot, shown when State=expanded"
   ],
   "rules": [
@@ -94,14 +96,17 @@
    "Several items may be open at once unless the content is mutually exclusive",
    "Filters: Title is the dimension; Meta is a Badge Count of active values or a short summary",
    "Show leading icon on all items or none",
-   "Groups with active filters are open by default"
+   "Groups with active filters are open by default",
+   "Style=default in apps, panels and filters; Style=card on marketing and help pages",
+   "Match the item Style to the Accordion Style; never mix both in one list",
+   "Icon=plus (plus/minus) is for marketing FAQs; keep the chevron in apps"
   ],
   "a11y": [
    "Enter or Space toggles; arrow keys move between items",
    "The trigger is a button with aria-expanded and aria-controls",
    "Keyboard focus shows the border/ring focus ring on the trigger row"
   ],
-  "code": "shadcn Accordion (type=\"multiple\" when several items can be open).",
+  "code": "shadcn Accordion (type=\"multiple\" when several items can be open). Style=card: Accordion className=\"space-y-3\", AccordionItem className=\"rounded-xl border bg-background px-4\" (no border-b).",
   "guides": [
    "skills/build-ui/components/accordion.md",
    "skills/build-ui/components/drawer.md",
@@ -153,7 +158,9 @@
    "States such as trial ends in 3 days, read-only access, sync failed",
    "Layout=inline: a card above the content it concerns",
    "Layout=banner: full width at the top of a page or panel (maintenance, read-only mode)",
-   "Notes and warnings inside documentation content"
+   "Notes and warnings inside documentation content",
+   "Style=soft: calmer tint for docs callouts, onboarding notes and pages with several alerts",
+   "Style=accent: a card with a 4 px status bar on the left for dense settings pages, lists and logs"
   ],
   "avoid": [
    "Confirming an action that just happened: use Toast",
@@ -165,7 +172,8 @@
    "Title: the situation in a few words",
    "Description: what to do about it (Show description)",
    "Actions slot: up to three small buttons or links (Show actions)",
-   "Dismiss x (Show close)"
+   "Dismiss x (Show close)",
+   "Style: default (bordered card), soft (badge/soft-* tint fill, no border; icon and title in badge/soft-*-fg, description foreground/default), accent (card + border/default, 4 px accent bar on the left in the status color; neutral uses foreground/muted)"
   ],
   "rules": [
    "Variant matches the meaning: default, info, success, warning, destructive; always with an icon",
@@ -173,14 +181,16 @@
    "The action that resolves the situation comes first",
    "Dismiss only when no action is needed; remember the dismissal",
    "Never stack more than one alert in the same place; show the most important one",
-   "Say what happened, then what to do; no blame, no \"Oops\""
+   "Say what happened, then what to do; no blame, no \"Oops\"",
+   "One Style per product; Variant still carries the meaning in every Style",
+   "Style=soft and accent warning use badge/soft-warning-fg for icon and title (amber text fails on white); the amber accent bar is decorative"
   ],
   "a11y": [
    "An alert that appears after load uses role=\"alert\" (destructive) or role=\"status\"",
    "Meaning is in icon and text, never color alone",
    "Dismiss x has an accessible label and is reachable by keyboard"
   ],
-  "code": "shadcn Alert (toasts are Sonner).",
+  "code": "shadcn Alert (toasts are Sonner). Style=soft and accent are className variants, see code-mapping.",
   "guides": [
    "skills/build-ui/components/alert.md",
    "skills/build-ui/components/card.md",
@@ -246,7 +256,7 @@
    "Name",
    "Role and rule (\"Finance manager · approves over €10,000\")",
    "Status Badge",
-   "Time",
+   "Time: drives the time line in every Status (\"22 Oct 2026, 10:30\", \"Assigned 2 h ago · due tomorrow\", \"After Finance\")",
    "Comment (Show comment)"
   ],
   "rules": [
@@ -255,7 +265,8 @@
    "Status=rejected always has a reason; Approve takes an optional comment",
    "Last step: Connector off",
    "Changing the request resets the steps that depend on what changed, and says so",
-   "Every decision is an audit log entry"
+   "Every decision is an audit log entry",
+   "Set the time line through the Time property in every Status; never type over the layer"
   ],
   "a11y": [
    "The chain is an ordered list; each step reads name, role, status and time",
@@ -382,11 +393,12 @@
   ]
  },
  "Avatar Group": {
-  "summary": "Stacked avatars for assignees, participants or the people something is shared with, with an optional label.",
+  "summary": "Stacked avatars for assignees, participants or the people something is shared with, with optional names and a label.",
   "use": [
    "Assignees on a card or a table row",
    "Participants of a project",
-   "\"Shared with\" in sharing dialogs"
+   "\"Shared with\" in sharing dialogs",
+   "Show names: who is in the group at a glance (\"Ana, Mihai and 3 others\")"
   ],
   "avoid": [
    "One person: use Avatar with the name",
@@ -396,20 +408,23 @@
    "Avatars slot: 3-5 Avatars of one size, overlapping",
    "Ring: 2 px background/default around each Avatar",
    "+N for the rest, opens the full list",
-   "Label (Show label): body/small, muted (\"Maintained by 3 analysts\")"
+   "Names (Show names): ui/label (ui/label-small in sm), foreground, one line, ellipsis",
+   "Label (Show label): body/small (ui/caption in sm), muted, one line, ellipsis"
   ],
   "rules": [
    "Show 3-5 avatars, then \"+N\"",
    "Same size inside a group: sm, default or lg",
    "Full list in a Tooltip (names) or a Popover (names and actions)",
-   "Label says who they are or how many, not the names already shown"
+   "Label says who they are or how many, not the names already shown",
+   "Names lists the first two or three names and \"and N others\"; it matches the avatars shown",
+   "Names and Label truncate with an ellipsis at their max width (200 sm, 240 default and lg); the full list goes in the Tooltip"
   ],
   "a11y": [
    "The group has a name with the count (\"5 assignees\")",
    "+N is focusable and opens the full list",
    "The Tooltip also shows on keyboard focus"
   ],
-  "code": "shadcn Avatar; group with negative margin + ring.",
+  "code": "shadcn Avatar; group with negative margin + ring. Names: <span className=\"truncate text-sm font-medium max-w-60\">.",
   "guides": [
    "skills/build-ui/components/avatar.md",
    "skills/build-ui/patterns/sharing-and-invites.md"
@@ -612,49 +627,54 @@
   ]
  },
  "Bottom Nav": {
-  "summary": "Bottom navigation for mobile apps with 3-5 top-level destinations used daily.",
+  "summary": "Bottom navigation for mobile apps with 3-5 top-level destinations used daily. Style=floating lifts it into a pill above the safe area.",
   "use": [
    "Mobile apps with 3-5 daily destinations",
    "Field and customer apps used mostly on the phone",
-   "Customer apps: Home, Orders, Messages, Account"
+   "Customer apps: Home, Orders, Messages, Account",
+   "Style=floating: consumer apps with full-bleed content (maps, media, feeds) that should show around the bar"
   ],
   "avoid": [
    "More than 5 destinations or rare ones: use the Mobile Header menu with a Sheet",
    "Detail pages and flows: hide it; use back in Mobile Header"
   ],
   "anatomy": [
+   "Style: default (full width, top border), floating (pill bar inset spacing/4, border, button/radius, shadow/md)",
    "Items slot of Bottom Nav Items",
    "Bottom Nav Item: Icon (20) and Label",
-   "Bottom safe-area padding"
+   "Bottom safe-area padding (outside the pill in Style=floating)"
   ],
   "rules": [
    "3-5 items; everything else under \"More\" or the menu",
    "Bottom Nav Item State: default, active; active = foreground, others muted",
    "Padding bottom = home-indicator safe area",
-   "Hide it on detail pages and while typing"
+   "Hide it on detail pages and while typing",
+   "Style=floating: content scrolls under the bar; leave bottom padding so the last row is not hidden"
   ],
   "a11y": [
    "Each item has a visible label, not only an icon",
    "Active item has aria-current=\"page\"",
    "The whole cell is the touch target (min 48 x 48)"
   ],
-  "code": "custom nav of links with env(safe-area-inset-bottom).",
+  "code": "custom nav of links with env(safe-area-inset-bottom). Style=floating: <nav className=\"fixed inset-x-4 bottom-[calc(env(safe-area-inset-bottom)+8px)] rounded-full border bg-background px-2 shadow-md\">.",
   "guides": [
    "skills/build-ui/patterns/mobile.md"
   ]
  },
  "Breadcrumb": {
-  "summary": "Path from a meaningful root to the current page (shadcn Breadcrumb).",
+  "summary": "Path from a meaningful root to the current page (shadcn Breadcrumb). Style=background puts the items in a muted pill track.",
   "use": [
    "Record and nested pages in an app: Customers > Acme",
    "Docs and help centers with sections",
-   "Settings sub-pages: Settings > Billing > Invoices"
+   "Settings sub-pages: Settings > Billing > Invoices",
+   "Style=background: marketing pages, docs and help centers, above a busy header or an image band"
   ],
   "avoid": [
    "Flat apps with one level: no breadcrumb",
    "Steps of a flow: use Stepper"
   ],
   "anatomy": [
+   "Style: default (no surface), background (card/muted-background pill track, button/radius, padding spacing/3 x spacing/1_5)",
    "Items slot",
    "Breadcrumb Item link: ancestor page",
    "Separator (chevron)",
@@ -666,23 +686,26 @@
    "Collapse the middle with an ellipsis item past 4 levels; it opens a menu",
    "Never wrap",
    "The last item matches the page title",
-   "Start at a meaningful root, not \"Home\" when the sidebar already does that"
+   "Start at a meaningful root, not \"Home\" when the sidebar already does that",
+   "Style=default in apps (Top Bar, Page Header); Style=background on marketing and docs pages, one per page",
+   "Style=background sits on background/default; on a muted section use Style=default (the track would disappear and the muted links drop below 4.5:1)"
   ],
   "a11y": [
    "nav with aria-label=\"Breadcrumb\"",
    "Current item has aria-current=\"page\"",
    "Ellipsis is a labeled button: \"Show path\""
   ],
-  "code": "shadcn Breadcrumb.",
+  "code": "shadcn Breadcrumb. Style=background: BreadcrumbList className=\"w-fit rounded-[var(--button-radius)] bg-[var(--card-muted-background)] px-3 py-1.5\".",
   "guides": [
    "skills/build-ui/components/navigation.md",
    "skills/build-ui/patterns/record-page.md"
   ]
  },
  "Button": {
-  "summary": "Triggers an action: a labeled button in six variants and three sizes.",
+  "summary": "Triggers an action: a labeled button in seven variants and three sizes.",
   "use": [
    "The single main action of a view or dialog: Variant=default",
+   "A brand-colored action that must not compete with the main one (Add line item, Import CSV, a call to action on a card): Variant=soft",
    "Alternative actions: secondary; Cancel and back: outline",
    "Toolbar and low-emphasis actions in dense UI: ghost",
    "The confirming action of a destructive flow: destructive; text-like navigation in content: link"
@@ -698,7 +721,8 @@
    "Label",
    "Trailing icon (optional, Trailing icon)",
    "State=loading: a spinning loader replaces the leading icon; width stays",
-   "Variant=link: label, icons and hover underline use foreground/brand; no fill"
+   "Variant=link: label, icons and hover underline use foreground/brand; no fill",
+   "Variant=soft: fill button/soft-bg (background/primary at 10%, 20% in dark), hover button/soft-hover (one step stronger); label and icons foreground/brand; no shadow"
   ],
   "rules": [
    "One Variant=default per view or dialog",
@@ -707,15 +731,19 @@
    "destructive only inside the confirmation step; the trigger in a list is ghost or a menu item",
    "Loading (State=loading) keeps the width and the label (\"Saving…\" when it helps), shows the spinner and blocks repeat clicks",
    "Disabled only when truly unavailable, with a reason nearby; never as form validation",
-   "Variant=link text and icons are foreground/brand (text-brand), never background/primary"
+   "Variant=link text and icons are foreground/brand (text-brand), never background/primary",
+   "soft is quieter than default and louder than secondary: use it for the second most important action, or several equal brand actions in one card",
+   "Never two soft Buttons next to one default Button in the same group; pick soft or secondary for the group",
+   "soft text and icons are foreground/brand, never background/primary"
   ],
   "a11y": [
    "Reachable with Tab; Enter and Space activate; State=focus shows the border/ring focus ring",
    "Touch target at least 44 x 44 px on mobile",
    "Loading is announced (\"Saving…\")",
-   "Text meets 4.5:1 in every Variant; link (foreground/brand) passes 4.5:1 on background/default, muted and card in every theme"
+   "Text meets 4.5:1 in every Variant; link (foreground/brand) passes 4.5:1 on background/default, muted and card in every theme",
+   "soft: foreground/brand on button/soft-bg is 5.8:1 Light, 6.7:1 Dark, 5.7:1 Corporate Light; on hover 5.1, 5.9, 4.9. The fill boundary is about 1.2:1, so the label carries the meaning, as for ghost"
   ],
-  "code": "shadcn Button (variant, size); Leading icon is an icon child before the label. variant=\"link\" uses text-brand (var(--brand)) instead of text-primary.",
+  "code": "shadcn Button (variant, size); Leading icon is an icon child before the label. variant=\"link\" uses text-brand (var(--brand)) instead of text-primary. Add variant soft to buttonVariants: \"bg-primary/10 text-brand hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30\".",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/patterns/action-feedback.md",
@@ -769,7 +797,7 @@
   ],
   "anatomy": [
    "Icon (instance swap, default ellipsis)",
-   "Container in the chosen Variant: Size sm 32, default 36, lg 40",
+   "Container in the chosen Variant (default, secondary, outline, ghost, destructive, soft): Size sm 32, default 36, lg 40",
    "Tooltip with the same text as the accessible label"
   ],
   "rules": [
@@ -777,14 +805,16 @@
    "Variant rules match Button: one default per view, destructive only in a confirmation",
    "ghost in toolbars and dense UI",
    "Copy turns the icon into a check for 2 s with the label \"Copied\"; no toast",
-   "Size matches the Buttons next to it: sm in tables and dense toolbars, lg next to lg Buttons in heroes"
+   "Size matches the Buttons next to it: sm in tables and dense toolbars, lg next to lg Buttons in heroes",
+   "Variant=soft (button/soft-bg, foreground/brand icon) next to soft Buttons, or for a brand-colored icon action without a solid fill"
   ],
   "a11y": [
    "aria-label in code, same text as the tooltip",
    "The tooltip shows on hover and on keyboard focus",
-   "Icon meets 3:1; touch target at least 44 x 44 px on mobile"
+   "Icon meets 3:1; touch target at least 44 x 44 px on mobile",
+   "soft icon: foreground/brand on button/soft-bg meets 3:1 in every theme (5.7:1 or more)"
   ],
-  "code": "shadcn Button size=\"icon\" with aria-label, wrapped in Tooltip.",
+  "code": "shadcn Button size=\"icon\" with aria-label, wrapped in Tooltip. Variant soft uses the same buttonVariants entry as Button.",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/components/tooltip.md",
@@ -870,6 +900,7 @@
    "Content about one object or topic, set apart from the page",
    "Variant=outline inside panels, dialogs and long lists of cards",
    "Variant=muted for secondary or summary information and placeholders",
+   "Variant=inverted for the one card that must stand out on a page (an upgrade offer, a key summary)",
    "Size=sm for grids of many cards, sidebars and dashboards"
   ],
   "avoid": [
@@ -878,27 +909,32 @@
    "Groups inside a card: use spacing or a Separator, never a nested card"
   ],
   "anatomy": [
+   "Variant: default (background/card + border/default), outline (border only), muted (background/muted), inverted (foreground/default surface, background/default text)",
    "Header slot (Card Header): Icon (Show icon, Icon swap, 20 px), Title, Description, Action slot top right",
    "Content slot",
-   "Footer slot (Card Footer): Actions slot"
+   "Footer slot (Card Footer): Actions slot",
+   "Inverted default slot content is recolored: titles background/default, descriptions background/default at opacity/70, ghost icons background/default"
   ],
   "rules": [
    "Never nest cards in cards",
    "Elevation=true only for one card that must stand out or floats; never a whole grid",
+   "Variant=inverted on one card per view, never a whole grid; it flips to a near-white card in Dark",
    "One variant per group of cards; equal height and structure per row",
    "Whole card clickable only with one destination; otherwise the title is the link",
    "Footer: one primary action at most, usually none in a grid",
    "Padding comes from density/card-* tokens; change the tokens, never single instances",
    "Turn off Show header or Show footer when unused; never detach",
-   "Card Header icon: on all cards of a row or none; it names the card type, never decorates"
+   "Card Header icon: on all cards of a row or none; it names the card type, never decorates",
+   "Content you place in an inverted card's slots uses inverted colors: text background/default (opacity/70 for secondary), Buttons secondary or outline, never default (primary is under 3:1 on the inverted surface in Corporate)"
   ],
   "a11y": [
    "A clickable card is one link with a hover state and a focus ring",
    "The Card Header Title is a heading at the right level for the page",
    "Action slot Button Icons have labels and tooltips",
-   "The Card Header icon is decorative (aria-hidden); the Title carries the meaning"
+   "The Card Header icon is decorative (aria-hidden); the Title carries the meaning",
+   "Inverted text is background/default on foreground/default: 19.8:1 Light, 19.0:1 Dark, 17.9:1 Corporate Light; secondary text at 70% stays above 7:1"
   ],
-  "code": "shadcn Card + cva: variant (default, outline, muted), size (default, sm), elevated (shadow-md). CardHeader icon: optional Lucide icon (size-5) before CardTitle.",
+  "code": "shadcn Card + cva: variant (default, outline, muted, inverted = bg-foreground text-background border-foreground), size (default, sm), elevated (shadow-md). CardHeader icon: optional Lucide icon (size-5) before CardTitle.",
   "guides": [
    "skills/build-ui/components/card.md"
   ]
@@ -993,8 +1029,9 @@
   ],
   "anatomy": [
    "Image (fill on the \"image\" layer) with video/scrim",
+   "Content area: auto layout, padding 64 top, 128 bottom, 144 sides, content up to 640 wide",
    "Overline (Show overline)",
-   "Title",
+   "Title: display/lg, 1-2 lines",
    "Text",
    "One action Button",
    "Carousel Indicator bars with Pause",
@@ -1005,6 +1042,7 @@
    "No auto-advance with reduced motion",
    "Bars always come with Pause",
    "One action per slide",
+   "Title in 2 lines at most; the content area keeps 64 above and clears the bars below",
    "White text on video/scrim keeps 4.5:1 on any photo",
    "The image clips on purpose; never detach"
   ],
@@ -1301,27 +1339,33 @@
   ]
  },
  "Chip": {
-  "summary": "Pill for filters and multi-selection; selected marks an active filter and Remove clears it.",
+  "summary": "Pill for filters, multi-selection and tags; Tone gives tags and categories a soft color.",
   "use": [
    "Quick filters above a list (\"This week\", \"Unpaid\")",
    "Multi-select options shown as toggles",
-   "Active filter values that can be cleared with Remove"
+   "Active filter values that can be cleared with Remove",
+   "Tone=soft-info, soft-success, soft-warning, soft-neutral: tags and categories on cards and records (\"Design\", \"Approved\")"
   ],
   "avoid": [
    "A status or category that is not clickable: use Badge",
    "A field filter with several values in a Filter Bar: use Filter Chip",
-   "One choice among a few options: use Toggle Group"
+   "One choice among a few options: use Toggle Group",
+   "A tone that means a status nobody can change: use Badge Variant=soft-*"
   ],
   "anatomy": [
+   "Tone: default, soft-info, soft-success, soft-warning, soft-neutral (badge/soft-*-bg fill, badge/soft-*-fg text and icons)",
    "Leading icon (Show leading icon): calendar, or check when selected",
    "Label",
-   "Remove x (Show remove)"
+   "Remove x (Show remove)",
+   "State: default, hover, focus, selected, disabled (soft tones: default, hover, focus, disabled)"
   ],
   "rules": [
    "Label is one or two words in sentence case",
    "State=selected marks an active filter; with Show leading icon on, the icon becomes a check",
    "Selected is shown by the check and fill, not by color alone",
-   "Show \"Clear all\" when more than one filter is active"
+   "Show \"Clear all\" when more than one filter is active",
+   "Soft tones are for tags and categories, not for filter state: a selected filter stays Tone=default, State=selected",
+   "Use the tone by meaning (success = done or approved, warning = needs attention, info = type or topic, neutral = other), and keep it the same for the same tag everywhere"
   ],
   "a11y": [
    "A selectable chip is a toggle button with aria-pressed",
@@ -1329,7 +1373,7 @@
    "Focus state is visible (border/ring)",
    "Touch targets at least 44 x 44 on mobile"
   ],
-  "code": "Custom on shadcn Badge + remove Button.",
+  "code": "Custom on shadcn Badge + remove Button. Soft tones: className=\"bg-[var(--badge-soft-info-bg)] text-[var(--badge-soft-info-fg)] border-transparent\" (same for success, warning, neutral); hover border-current.",
   "guides": [
    "skills/build-ui/components/badge.md",
    "skills/build-ui/patterns/search-and-filter.md"
@@ -2092,7 +2136,7 @@
    "Values edited in place on a detail page: use Inline Edit"
   ],
   "anatomy": [
-   "Label",
+   "Label (Show label, on by default)",
    "Control slot (default Input)",
    "Hint (Show hint) or Error with circle-alert icon"
   ],
@@ -2101,12 +2145,14 @@
    "State: default, error, disabled",
    "Error replaces the hint, says what is wrong and how to fix it: \"Enter an email address like name@example.com\"",
    "Validate on blur; once in error, re-validate on every change",
-   "Error text uses background/destructive with an icon, not color alone"
+   "Error text uses background/destructive with an icon, not color alone",
+   "Show label off only when the control carries its own visible label (Input Style=floating); hint and error stay under it"
   ],
   "a11y": [
    "Label is tied to the control (for / id)",
    "Hint and error linked with aria-describedby; aria-invalid on error",
-   "On submit, focus moves to the first invalid field"
+   "On submit, focus moves to the first invalid field",
+   "With Show label off the control's own label must stay visible and be tied to the control"
   ],
   "code": "shadcn Form: Field = FormItem with FormLabel, FormDescription, FormMessage (react-hook-form + zod).",
   "guides": [
@@ -2672,20 +2718,26 @@
   ]
  },
  "Input": {
-  "summary": "Single-line text field (shadcn Input), used inside a Field for label, hint and error.",
+  "summary": "Single-line text field (shadcn Input), used inside a Field for label, hint and error. Style: default (outlined), filled or floating label.",
   "use": [
    "Short free text: names, titles, email, search",
    "Search above a list, with the search Leading icon",
-   "Any form control inside Field"
+   "Any form control inside Field",
+   "Style=filled: dense or card-heavy screens, filters and settings where many outlined boxes look busy",
+   "Style=floating: short public forms (sign-up, checkout, contact) where the label sits inside the field to save height"
   ],
   "avoid": [
    "Text longer than one line: use Textarea",
    "Choosing from a list: use Select or Combobox",
    "Fixed prefix or suffix (https://, EUR, %): use Input Group",
-   "Common data (email, phone, card): use Field Preset"
+   "Common data (email, phone, card): use Field Preset",
+   "Mixing Styles in one form: pick one Style per form",
+   "Style=floating for long or dense forms, or with long labels: use default with the label above"
   ],
   "anatomy": [
+   "Style: default (border/input, shadow/xs), filled (background/muted fill, no border until focus or error), floating (48 high, Label inside)",
    "Leading icon (Show leading icon, Leading icon)",
+   "Label (floating only): rests in the middle in body/small; moves up in ui/caption on focus or when Content=filled; foreground/brand on focus, background/destructive on error",
    "Value or placeholder",
    "Trailing slot (Show trailing): clear, show password"
   ],
@@ -2694,14 +2746,20 @@
    "State: default, focus, error, disabled",
    "Width suggests the expected length",
    "Pick the narrowest type and set autocomplete in code",
-   "Never clear what the user typed after an error"
+   "Never clear what the user typed after an error",
+   "Style=filled: placeholder and secondary text use input/filled-muted-foreground (neutral/600 in light modes) because foreground/muted is 4.35:1 on background/muted",
+   "Style=filled on background/default or background/card only; on a muted surface the fill disappears",
+   "Style=floating: put it in a Field with Show label off so the hint and the error stay; the Label is the visible label, never a placeholder only",
+   "Style=floating with focus and no value shows the floated Label and the placeholder"
   ],
   "a11y": [
    "Always has a visible label through Field; icon-only search fields need aria-label",
    "Focus ring uses border/ring; border contrast at least 3:1",
-   "Error is linked with aria-describedby and aria-invalid"
+   "Error is linked with aria-describedby and aria-invalid",
+   "Style=filled: the fill is about 1.1:1 against the page (1.3:1 Dark), like the default border (1.3:1 Light); the visible label identifies the field, and focus adds a border/ring border and ring (4.7:1 on the fill)",
+   "Style=floating: the Label is the accessible name (label for/id); it stays visible when the field has a value; label text is 4.7:1 or more in every theme"
   ],
-  "code": "shadcn Input, Label, Form (react-hook-form).",
+  "code": "shadcn Input, Label, Form (react-hook-form). Style=filled: className \"bg-muted border-transparent shadow-none focus-visible:border-ring\". Style=floating: a relative wrapper with a peer Input (h-12 pt-5, placeholder=\" \") and a Label that moves with peer-placeholder-shown / peer-focus classes.",
   "guides": [
    "skills/build-ui/components/input.md",
    "skills/build-ui/patterns/form-validation.md",
@@ -3365,23 +3423,25 @@
   ]
  },
  "Pagination": {
-  "summary": "Page navigation for long tables and lists. People move between pages, return to a position and share a page.",
+  "summary": "Page navigation for long tables and lists (Style=numbered), with a short previous / next form (Style=simple) and position dots for carousels and onboarding (Style=dots).",
   "use": [
    "Tables and lists where people compare, return to a position or share a page link",
    "More than ~25 rows that are not virtualized",
-   "Under a table, inside Table Pagination with the range and rows per page"
+   "Under a table, inside Table Pagination with the range and rows per page",
+   "Style=simple: article lists, search results and mobile, where people only step forward and back",
+   "Style=dots: onboarding steps, carousels and image galleries with up to ~7 positions"
   ],
   "avoid": [
    "Feeds, activity and search results browsed once: use Load More or infinite scroll",
    "Fewer than ~25 rows: show them all, no pagination",
-   "Steps of a flow: use Stepper"
+   "Steps of a flow: use Stepper",
+   "Style=dots for data lists: people cannot jump or see the count"
   ],
   "anatomy": [
-   "Previous: Pagination Item Type=previous",
-   "Pages: Pagination Item Type=page, the current one in State=active",
-   "Gaps: Pagination Item Type=ellipsis",
-   "Next: Pagination Item Type=next",
-   "Items slot that holds the Pagination Items"
+   "Style: numbered (default), simple, dots",
+   "numbered: Items slot with Pagination Items (previous, pages, ellipsis, next); current page State=active",
+   "simple: Pagination Item previous (exposed), Label \"Page 2 of 10\" (body/small, muted), Pagination Item next (exposed)",
+   "dots: Carousel Indicator Type=dots (exposed); the Items slot is hidden in simple and dots"
   ],
   "rules": [
    "Show first, last, current ±1 and an ellipsis for each gap",
@@ -3390,7 +3450,9 @@
    "In tables, pair it with the total and a rows-per-page Select: use Table Pagination",
    "Filters, sort and page live in the URL; changing filters resets to page 1",
    "Mobile: Previous and Next as icons only, plus \"Page 2 of 25\"",
-   "Narrow places (a card, a side panel, mobile): Pagination Compact with \"Page 2 of 12\""
+   "Narrow places (a card, a side panel, mobile): Pagination Compact with \"Page 2 of 12\"",
+   "Style=simple: disable previous on the first page and next on the last (exposed items, State=disabled)",
+   "Style=dots: one dot per position, the current one active; pair with swipe and arrows, never as the only control in a data list"
   ],
   "a11y": [
    "Wrap it in a nav with aria-label=\"Pagination\"",
@@ -3398,7 +3460,7 @@
    "Icon-only Previous and Next have labels: \"Previous page\", \"Next page\"",
    "Every item is reachable with Tab and shows the focus ring (State=focus)"
   ],
-  "code": "shadcn Pagination. In tables use the shadcn data-table pagination (see Table Pagination).",
+  "code": "shadcn Pagination. Style=simple: PaginationPrevious, a <span className=\"text-sm text-muted-foreground\">Page 2 of 10</span>, PaginationNext. Style=dots: the Carousel dots (buttons with aria-label \"Go to slide n\").",
   "guides": [
    "skills/build-ui/components/pagination.md",
    "skills/build-ui/components/table.md"
@@ -3518,6 +3580,7 @@
   "use": [
    "Blog grids of 3: Layout=vertical",
    "The featured post at the top of a list: Layout=horizontal",
+   "Layout=overlay: one lead story, a hero grid of covers or a carousel where the photo carries the post",
    "News, case studies, changelog entries and carousels of posts",
    "Layout=compact: related, most read and up next lists in an aside or under an article",
    "Size=sm: dense grids of 4, lists in a column next to a featured story, dashboards"
@@ -3535,7 +3598,8 @@
    "Excerpt, 3 lines max (Show excerpt)",
    "Author with Avatar (Show author)",
    "Compact: optional 1:1 image (Show image, 64 px, 48 px in sm), Title on 2 lines (ui/label, ui/label-small in sm), meta in Date (type · date)",
-   "Size: default or sm (smaller gaps and titles) for every Layout"
+   "Size: default or sm (smaller gaps and titles) for every Layout",
+   "Overlay: full-bleed photo (exposed Image Placeholder, 1:1 in default and 4:3 in sm so the locked ratio covers the card, centered crop, Show image on, default Image / Cover / 02), a 64 px media/scrim-fade to media/scrim gradient, then a media/scrim panel with category Badge, date, title and author in media/foreground; no excerpt; 352 x 440 (sm 352 x 320), radius/xl, clips"
   ],
   "rules": [
    "The whole card is one link to the article",
@@ -3544,14 +3608,16 @@
    "Cards in a grid share the same structure",
    "Compact: 3-5 items per list; meta says type and date (\"Guide · 12 Oct 2026\"); image on all items or none",
    "One Size per list or grid; sm for lists next to a featured story and for grids of 4",
-   "Never restyle the title per instance: switch Size instead"
+   "Never restyle the title per instance: switch Size instead",
+   "Overlay text sits only on the solid media/scrim panel, never on the fade; choose photos with the subject in the top half"
   ],
   "a11y": [
    "One link per card; the Title is the link text",
    "The image has alt text, or alt=\"\" when decorative",
-   "Focus ring around the whole card"
+   "Focus ring around the whole card",
+   "Overlay text is media/foreground on media/scrim (black 60%): 5.7:1 even over a white pixel, in every theme"
   ],
-  "code": "shadcn Card with image, Badge and Avatar, wrapped in one link; size (default, sm) via cva: gaps, title class, image basis-1/3 min-w-[120px] max-w-[240px] in horizontal sm.",
+  "code": "shadcn Card with image, Badge and Avatar, wrapped in one link; size (default, sm) via cva: gaps, title class, image basis-1/3 min-w-[120px] max-w-[240px] in horizontal sm. Overlay: relative aspect-[4/5] overflow-hidden rounded-xl, <img> absolute inset-0 object-cover, text panel absolute bottom-0 bg-black/60 text-white with a bg-gradient-to-b from-transparent to-black/60 strip above.",
   "guides": [
    "skills/build-ui/components/content.md",
    "skills/build-ui/components/card.md",
@@ -4000,7 +4066,8 @@
   "use": [
    "One choice from 6-15 options in a form",
    "Inside Field, for the label, description and error",
-   "Rows per page in Table Pagination"
+   "Rows per page in Table Pagination",
+   "Style=filled in forms that use Input Style=filled"
   ],
   "avoid": [
    "2-5 options worth seeing: use Radio",
@@ -4010,6 +4077,7 @@
   ],
   "anatomy": [
    "Label (from Field)",
+   "Style: default (border/input) or filled (background/muted fill, no border until focus or error; placeholder in input/filled-muted-foreground)",
    "Trigger with Value: placeholder or filled (Content)",
    "chevron-down icon",
    "Open: Menu under the trigger, Checked on the selected Menu Item",
@@ -4020,15 +4088,17 @@
    "Options in a meaningful order: frequency, sequence, then alphabetical",
    "Option labels are short and parallel; the placeholder is an example, not a label",
    "Disabled options stay visible, with the reason when possible",
-   "State=error marks the trigger; the message comes from Field"
+   "State=error marks the trigger; the message comes from Field",
+   "Use the same Style as the other controls in the form"
   ],
   "a11y": [
    "The visible label is tied to the trigger",
    "Enter, Space or arrows open; arrows move, Enter selects, Escape closes",
    "Typing a letter jumps to the matching option",
-   "Focus ring in border/ring (State=focus)"
+   "Focus ring in border/ring (State=focus)",
+   "Style=filled: placeholder 7:1 on the fill (input/filled-muted-foreground); focus ring 4.7:1 on the fill"
   ],
-  "code": "shadcn Select.",
+  "code": "shadcn Select. Style=filled: SelectTrigger className \"bg-muted border-transparent shadow-none focus-visible:border-ring\".",
   "guides": [
    "skills/build-ui/components/select.md",
    "skills/build-ui/components/dropdown-menu.md",
@@ -4240,20 +4310,26 @@
    "Track: background/muted",
    "Range: background/primary",
    "Thumb, or two for Type=range",
-   "Min and max labels under the track, when useful"
+   "Min and max labels under the track, when useful",
+   "Value bubble (Show value): a Tooltip Side=top (exposed, set its Label) over each thumb; draws 37 px above the 16 px box",
+   "Marks (Show marks): Min label, Mid label, Max label under the track, centered on the thumb ends; draws 24 px below the box"
   ],
   "rules": [
    "Always show the current value and unit next to the label",
    "Step matches the data: 5 EUR, 1 km",
    "Range thumbs cannot cross",
-   "Exact values: pair it with an Input (type number)"
+   "Exact values: pair it with an Input (type number)",
+   "Show value while dragging, or always when the exact value matters; keep the value next to the label too",
+   "Show marks for scales people read (0, 250, 500 EUR); three labels, units on the ends only if they fit",
+   "Leave 40 px above and 24 px below the Slider when Show value or Show marks is on; they overflow the component box"
   ],
   "a11y": [
    "Arrows move by one step, Page Up and Page Down by 10 steps",
    "Each thumb has a name: \"Minimum price\", \"Maximum price\"",
-   "aria-valuetext includes the unit: \"150 EUR\""
+   "aria-valuetext includes the unit: \"150 EUR\"",
+   "The bubble repeats aria-valuetext; it is not the only place the value is shown. Mark labels are foreground/muted, 4.7:1 or more"
   ],
-  "code": "shadcn Slider.",
+  "code": "shadcn Slider. Show value: a Tooltip or a positioned span over each thumb (left: value%), Show marks: a flex justify-between row of labels under the track.",
   "guides": [
    "skills/build-ui/components/progress-and-slider.md"
   ]
@@ -4367,15 +4443,18 @@
   "use": [
    "Waits under ~3 s",
    "Inside a button while it works: \"Saving…\" + disabled",
-   "One row, field or small area that is loading"
+   "One row, field or small area that is loading",
+   "Type=dots: typing and AI-writing indicators in chat, soft waits inside a sentence"
   ],
   "avoid": [
    "Content loading: use Skeleton",
    "Known progress: use Progress",
-   "Long jobs: run in the background and notify when done"
+   "Long jobs: run in the background and notify when done",
+   "Type=dots inside a Button: use Type=default"
   ],
   "anatomy": [
-   "loader-circle icon, rotating linear, 1 s per turn",
+   "Type=default: loader-circle icon, rotating linear, 1 s per turn",
+   "Type=dots: three dots (4 px; 8 px at lg) pulsing in turn, drawn at 100, 70 and 40% opacity",
    "Size: sm, default, lg; Tone: muted, default",
    "Optional text next to it: \"Saving…\""
   ],
@@ -4384,13 +4463,14 @@
    "One spinner per region, never several at once",
    "Size: sm 16 for inline and buttons, default 20, lg 32 for an empty region",
    "Tone=muted on quiet surfaces, Tone=default next to body text",
-   "Reduced motion: pulse the opacity instead of rotating"
+   "Reduced motion: pulse the opacity instead of rotating",
+   "Type=dots pulse 0.2 s apart; reduced motion keeps them static"
   ],
   "a11y": [
    "role=\"status\" with hidden text: \"Loading invoices\"",
    "A busy button is disabled and keeps its accessible name"
   ],
-  "code": "shadcn Spinner.",
+  "code": "shadcn Spinner; Type=dots is three spans with a staggered animate-pulse (see code-mapping).",
   "guides": [
    "skills/build-ui/components/indicators.md",
    "skills/build-ui/components/button.md",
@@ -4436,24 +4516,29 @@
   "use": [
    "One number people check (revenue this month)",
    "A row of key metrics at the top of a report or dashboard",
-   "Dashboard sections next to a Chart Card"
+   "Dashboard sections next to a Chart Card",
+   "Layout=compact: dense rows, sidebars and mobile dashboards",
+   "Layout=horizontal: when the shape of the trend matters next to the number"
   ],
   "avoid": [
    "A trend people need to read over time: use a chart in a Chart Card",
    "A goal against a target: use Progress Card"
   ],
   "anatomy": [
+   "Layout: vertical (default), compact, horizontal",
    "Label (body/small, muted)",
-   "Value (heading/h2, one line)",
+   "Value (heading/h2 in vertical and horizontal, heading/h3 in compact; one line)",
    "Change Badge (Show change), soft by Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus",
-   "Sparkline (Show sparkline, off by default): Sparkline in chart/1 under the value",
-   "Trend line and Footnote (Show footer)",
+   "Sparkline (vertical: Show sparkline, off by default, under the value; horizontal: always on, 120 x 48, right of the value)",
+   "Trend line and Footnote (Show footer; vertical and horizontal)",
+   "Icon Tile (compact): exposed, Style=brand, Size default; set Icon and Style on the instance",
    "Show change and Show trend hide the change badge and the trend row when there is no comparison"
   ],
   "rules": [
    "Trend sets the icon and the change badge tone; edit the change and trend line per instance",
    "When up is bad (costs, churn), switch the change badge Variant to soft-destructive on the instance",
    "Direction is shown by icon and sign, never color alone",
+   "One Layout per row; compact rows keep the same Icon Tile Style",
    "Show sparkline on all cards of a row or none; same period in each",
    "Value stays on one line; amounts in the locale format (€48,250)",
    "The Footnote says what it is compared to",
@@ -4466,7 +4551,7 @@
    "The sparkline is decorative (aria-hidden); the change text carries the meaning",
    "Change badge text meets 4.5:1 in every mode (soft badge tokens)"
   ],
-  "code": "shadcn Card + cva (variant, size, elevated); Stat Card is custom content; change = Badge soft variant; sparkline = Recharts LineChart without axes, var(--chart-1).",
+  "code": "shadcn Card + custom content; change = Badge soft variant; sparkline = Recharts LineChart without axes, var(--chart-1). Layout compact: flex items-center gap-3 p-4 with an Icon Tile; horizontal: flex items-end justify-between with the sparkline w-30 h-12.",
   "guides": [
    "skills/build-ui/components/card.md",
    "skills/build-ui/components/charts.md",
@@ -4547,7 +4632,8 @@
   "use": [
    "Settings that take effect at once: notifications, a feature on or off",
    "Enabling or pausing an integration",
-   "Lists of preferences on settings pages without a Save button"
+   "Lists of preferences on settings pages without a Save button",
+   "Size=sm in dense tables and toolbars; Size=lg in touch-first and mobile settings"
   ],
   "avoid": [
    "Inside a form that saves on submit: use Checkbox",
@@ -4556,24 +4642,29 @@
   "anatomy": [
    "Track: background/primary when Checked=true",
    "Thumb",
-   "Label (Label, Show label)"
+   "Label (Label, Show label)",
+   "Description (Show description, off by default): body/small in foreground/muted (ui/caption at sm) under the label",
+   "Size: sm 28 x 16 (ui/label-small), default 36 x 20, lg 44 x 24"
   ],
   "rules": [
    "Applies immediately; the change itself is the feedback, no toast",
    "On failure, restore the old value and show an inline error",
    "The label names the setting, not the action: \"Email notifications\"",
-   "Temporarily unavailable: State=disabled with the reason"
+   "Temporarily unavailable: State=disabled with the reason",
+   "Show description says what the setting does or what it costs, in one sentence; the switch aligns to the first line",
+   "Use one Size per list; match the Size of the Buttons and fields around it"
   ],
   "a11y": [
    "role=\"switch\" with aria-checked; Space toggles",
    "The label is tied to the control; Show label off needs an aria-label",
-   "Thumb and track meet 3:1 in both states; focus ring in border/ring"
+   "Thumb and track meet 3:1 in both states; focus ring in border/ring",
+   "Description is linked with aria-describedby; foreground/muted is 4.7:1 Light, 7.9:1 Dark"
   ],
-  "code": "shadcn Switch.",
+  "code": "shadcn Switch with Label; description as a p with aria-describedby. Size: sm \"h-4 w-7\" thumb size-3, lg \"h-6 w-11\" thumb size-5.",
   "guides": [
-   "skills/build-ui/components/select.md",
+   "skills/build-ui/patterns/settings-and-admin.md",
    "skills/build-ui/patterns/action-feedback.md",
-   "skills/build-ui/patterns/settings-and-admin.md"
+   "skills/build-ui/components/select.md"
   ]
  },
  "Table Cell": {
@@ -4753,11 +4844,13 @@
   ]
  },
  "Tabs": {
-  "summary": "Tabs that switch between views: pill tabs in a card (Variant=default), underlined page sections (Variant=line) or a column for settings with many sections (Variant=vertical).",
+  "summary": "Tabs that switch between views: pill tabs in a card track (default), underlined page sections (line), a settings column (vertical), bare pills (pills) or folder tabs on a bordered panel (boxed).",
   "use": [
    "Views inside a card or panel (Variant=default)",
    "Sections of a record page under its header (Variant=line)",
-   "Settings and long forms with 4-10 sections (Variant=vertical)"
+   "Settings and long forms with 4-10 sections (Variant=vertical)",
+   "Filters of one list shown as tabs on a page without a card (Variant=pills): All, Paid, Overdue",
+   "Content that should read as one bordered unit with its tabs, such as code samples or a settings panel (Variant=boxed)"
   ],
   "avoid": [
    "Steps in a sequence: use Stepper",
@@ -4765,22 +4858,26 @@
    "Setting a value (view mode, period): use Toggle Group"
   ],
   "anatomy": [
-   "Tabs slot: Tab instances with the matching Tab Variant (default, line, vertical)",
-   "Active Tab: background and shadow (default), underline in background/primary (line), background/muted (vertical)",
-   "Count: Show count on Tab adds a Badge Count after the label"
+   "Tabs slot: Tab instances with the matching Tab Variant (default, line, vertical, pills, boxed)",
+   "Active Tab: background and shadow (default), underline in background/primary (line), background/muted (vertical), background/primary fill with foreground/primary text (pills), border/default on three sides and background/default (boxed)",
+   "Count: Show count on Tab adds a Badge Count after the label",
+   "Variant=boxed: header row (Tabs slot + a rest line in border/default) and a Panel slot with border/default on the sides and bottom, padding density/card-padding-sm"
   ],
   "rules": [
    "2-6 tabs horizontally, up to 10 vertically; labels are one or two words, nouns",
    "Exactly one active tab, matching the content shown",
    "Variant=line spans the full width with a bottom border; vertical is 200 wide with the content on the right",
-   "More tabs than fit on mobile: switch to a Select"
+   "More tabs than fit on mobile: switch to a Select",
+   "pills: no track; use on background/default or background/card, never on muted surfaces (inactive text is foreground/muted)",
+   "boxed: the active tab covers the panel's top line; put the panel content in the Panel slot, not under the component"
   ],
   "a11y": [
    "Tab list role; arrow keys move between tabs, Tab moves into the panel",
    "The active tab has aria-selected; each panel is labeled by its tab",
-   "Focus ring visible on Tab State=focus"
+   "Focus ring visible on Tab State=focus",
+   "pills: active text 5.2:1 Light, 5.2:1 Dark, 6.7:1 Corporate Light; inactive foreground/muted 4.7:1 or more on the page"
   ],
-  "code": "shadcn Tabs; Variant=line with TabsList variant line (border-b), vertical with orientation=\"vertical\" and TabsList flex-col.",
+  "code": "shadcn Tabs; Variant=line with TabsList variant line (border-b), vertical with orientation=\"vertical\" and TabsList flex-col. pills: TabsList \"bg-transparent gap-2\", TabsTrigger \"rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground\". boxed: TabsList \"border-b w-full justify-start\", TabsTrigger \"rounded-t-md border border-transparent data-[state=active]:border-border data-[state=active]:border-b-background -mb-px\", TabsContent \"border border-t-0 rounded-b-md p-4\".",
   "guides": [
    "skills/build-ui/components/tabs.md"
   ]
@@ -4887,38 +4984,45 @@
   ]
  },
  "Timeline Item": {
-  "summary": "One event in an activity history: record history, audit trail, order tracking.",
+  "summary": "One event in an activity history: record history, audit trail, order tracking. Layout=card puts the content in a card; Layout=alternating-left and alternating-right place it on either side of a center line.",
   "use": [
    "Activity column on a record page",
    "Order or shipment tracking",
-   "Changes made by the system, listed in order"
+   "Changes made by the system, listed in order",
+   "Layout=card: events with a note, attachment or diff in the Content slot",
+   "Layout=alternating-left / alternating-right: milestones and company history on marketing pages"
   ],
   "avoid": [
    "Conversations between people: use Comment",
    "Filterable change history: use the Audit Log with Change Item",
-   "Steps the user still has to complete: use Stepper"
+   "Steps the user still has to complete: use Stepper",
+   "Alternating layouts in apps or below 768: use Layout=default"
   ],
   "anatomy": [
+   "Layout: default, card, alternating-left, alternating-right. Tone: default, primary, success, warning, destructive",
    "Icon in a circle colored by Tone (Icon)",
-   "Connector line to the next item",
+   "Connector line to the next item (Show connector)",
    "Title: what happened",
-   "Time: \"2 h ago\"",
+   "Time: \"2 h ago\" (in alternating layouts on the other side of the line)",
    "Description: who and where (Show description)",
-   "Content slot: note excerpt, attachment or diff (Show content)"
+   "Content slot: note excerpt, attachment or diff (Show content)",
+   "card: Title, Time, Description and Content in a bordered card (radius/base, padding spacing/4)"
   ],
   "rules": [
    "Newest first; one event per item",
    "Tone marks the outcome: success, destructive (failed), primary (created), default (info)",
    "Time is relative under 24 h, then absolute (\"22 Oct, 10:30\"); full timestamp in a tooltip",
    "Connector off on the last item",
-   "Long histories: the last 5-10 with \"View all\"; group by day"
+   "Long histories: the last 5-10 with \"View all\"; group by day",
+   "Alternating: switch alternating-left and alternating-right item by item, starting with left",
+   "One Layout per timeline (alternating counts as one)"
   ],
   "a11y": [
    "The timeline is an ordered list",
    "The outcome is in the Title text, not only in the Tone color",
    "The time element carries the full timestamp in its datetime attribute"
   ],
-  "code": "custom ol (code mapping: Description List, Timeline = custom dl / ol).",
+  "code": "custom ol (code mapping: Description List, Timeline = custom dl / ol). Card: li content in a Card (rounded-xl border p-4). Alternating: grid grid-cols-[1fr_auto_1fr] with odd items in column 1 and even items in column 3; stack to Layout=default below md.",
   "guides": [
    "skills/build-ui/components/description-list.md",
    "skills/build-ui/components/comments-and-chat.md",
@@ -4931,7 +5035,8 @@
    "Confirming an action whose result is out of view: \"Invoice INV-1048 created\"",
    "Undo for restorable deletes and archives",
    "Background events: export ready, import done",
-   "Bulk results with counts: \"18 sent, 2 failed\""
+   "Bulk results with counts: \"18 sent, 2 failed\"",
+   "Style=inverted: dark toast in Light (light in Dark) when toasts sit over busy or white content: editors, maps, media"
   ],
   "avoid": [
    "The result is visible where the user is: the change itself is the feedback",
@@ -4943,7 +5048,8 @@
    "Title: one line (Title)",
    "Description (Show description, Description)",
    "Action button (Show action)",
-   "Close button (Show close)"
+   "Close button (Show close)",
+   "Style: default (popover surface, border, shadow/lg) or inverted (foreground/default fill, text and icons background/default, description and close at opacity/80, no border)"
   ],
   "rules": [
    "One line, past tense, names the object: \"Invoice #1042 sent\", not \"Success!\"",
@@ -4951,14 +5057,16 @@
    "Auto-dismiss after 4-6 s, 8-10 s with an action; pause on hover and focus",
    "Show close off by default; on for toasts with an action, errors and long durations",
    "Errors that block the goal also show inline",
-   "Same position everywhere: bottom right, top center on mobile"
+   "Same position everywhere: bottom right, top center on mobile",
+   "Style=inverted icons are monochrome; the icon shape and the words carry the type",
+   "One Style per product; never mix default and inverted toasts in one stack"
   ],
   "a11y": [
    "aria-live=\"polite\"; \"assertive\" for errors",
    "Timers pause on focus, so the action can be reached with the keyboard",
    "Nothing appears only in a toast"
   ],
-  "code": "shadcn Sonner.",
+  "code": "shadcn Sonner; Style=inverted is <Toaster invert /> (or toast classNames bg-foreground text-background).",
   "guides": [
    "skills/build-ui/components/toast.md",
    "skills/build-ui/patterns/action-feedback.md",
@@ -4970,12 +5078,13 @@
   ]
  },
  "Toggle Group": {
-  "summary": "Group of toggle buttons that sets a value: view mode, period, text style.",
+  "summary": "Group of toggle buttons that sets a value: view mode, period, text style. Variant default, outline or segmented.",
   "use": [
    "View mode: list / board",
    "Period: day / week / month",
    "Formatting in a Rich Text Editor toolbar",
-   "Product options such as size on a product page"
+   "Product options such as size on a product page",
+   "Variant=segmented: 2-4 short options on one track, such as a period or a monthly / yearly billing switch"
   ],
   "avoid": [
    "Switching panels of content: use Tabs",
@@ -4983,23 +5092,27 @@
    "Many options: use Select"
   ],
   "anatomy": [
-   "Group (Variant: default or outline)",
-   "Items slot: Toggle Group Item instances",
+   "Group (Variant: default, outline or segmented)",
+   "Items slot: Toggle Group Item instances with the matching Item Variant (default for default and outline, segmented for segmented)",
    "Item: Label and/or icon (Show label, Show icon, Icon)",
-   "Selected item: State=selected"
+   "Selected item: State=selected (background/accent; segmented: background/default with shadow/xs)",
+   "Segmented track: background/muted, padding spacing/1, items 28 high"
   ],
   "rules": [
    "It sets a value; if the content below changes panels, use Tabs",
    "Single choice for view mode or period; multiple for formatting",
    "Icon-only items: Show label off, Show icon on, with a tooltip",
-   "Choosing a value is a Toggle Group, not a Button Group"
+   "Choosing a value is a Toggle Group, not a Button Group",
+   "segmented looks like Tabs Variant=default; it still sets a value, it never switches panels",
+   "segmented: at most 4 items with one or two words each; more options: use Select"
   ],
   "a11y": [
    "Arrow keys move between items; Space or Enter toggles",
    "Selected state is exposed (aria-checked for single, aria-pressed for multiple)",
-   "Icon-only items have an aria-label that matches the tooltip"
+   "Icon-only items have an aria-label that matches the tooltip",
+   "segmented: labels are foreground/default on the track (18:1 Light, 14.5:1 Dark); the selected pill differs from the track by fill (1.1:1) and shadow, so the selected state is also exposed with aria-checked"
   ],
-  "code": "shadcn ToggleGroup (type single or multiple).",
+  "code": "shadcn ToggleGroup (type single or multiple). Variant=segmented: ToggleGroup className \"bg-muted p-1 rounded-full\", items \"h-7 px-3 data-[state=on]:bg-background data-[state=on]:shadow-xs\".",
   "guides": [
    "skills/build-ui/components/tabs.md",
    "skills/build-ui/components/rich-text-editor.md",
@@ -5087,11 +5200,12 @@
   ]
  },
  "Top Bar": {
-  "summary": "App top bar (shadcn site header) with sidebar trigger, Breadcrumb and global actions, above the page content.",
+  "summary": "App top bar (shadcn site header) with sidebar trigger, Breadcrumb and global actions. Style=floating makes it a rounded, bordered pill with shadow/sm, inset from the edges.",
   "use": [
    "Every page of the App page shell from 1024",
    "Global actions: search, notifications, help, user menu",
-   "The App page shell above the Page Header"
+   "The App page shell above the Page Header",
+   "Style=floating: product marketing headers and app pages on a muted canvas where the header floats over content"
   ],
   "avoid": [
    "Page-specific actions: use Page Header",
@@ -5099,6 +5213,7 @@
    "Marketing sites: use Navbar"
   ],
   "anatomy": [
+   "Style: default (full width, bottom border), floating (inset spacing/3, bar with border, button/radius and shadow/sm)",
    "Sidebar trigger (Show sidebar trigger)",
    "Separator",
    "Breadcrumb slot",
@@ -5107,14 +5222,16 @@
   "rules": [
    "The Breadcrumb shows list to object: \"Customers > Acme\"",
    "Only global actions on the right",
-   "Search opens the Command Dialog (⌘K / Ctrl K) and stays a visible button"
+   "Search opens the Command Dialog (⌘K / Ctrl K) and stays a visible button",
+   "Style=floating: keep it sticky with the inset; content scrolls under it, so give the page a top padding of the bar height plus the inset",
+   "One Style per product; do not mix floating and default between pages"
   ],
   "a11y": [
    "Header landmark; icon buttons have labels: \"Toggle sidebar\", \"Notifications\"",
    "Unread count is announced with the notifications label",
    "Tab order: sidebar trigger, breadcrumb, actions"
   ],
-  "code": "shadcn site header (SidebarTrigger, Breadcrumb, Button).",
+  "code": "shadcn site header (SidebarTrigger, Breadcrumb, Button). Style=floating: <header className=\"sticky top-0 z-40 p-3\"><div className=\"flex h-14 items-center gap-2 rounded-full border bg-background px-2.5 shadow-sm\">.",
   "guides": [
    "skills/build-ui/components/navigation.md",
    "skills/build-ui/components/popover.md",
@@ -5552,6 +5669,7 @@
   "use": [
    "Experts, authors and speakers on a content or product page",
    "Contacts on a record or account page",
+   "Layout=photo: team, speaker and leadership pages where faces matter",
    "Team directories and \"Who to talk to\" sections"
   ],
   "avoid": [
@@ -5560,25 +5678,28 @@
    "Avatar and name in a table: use Table Cell User"
   ],
   "anatomy": [
-   "Avatar slot: photo or initials",
+   "Layout: vertical (280), horizontal (400), photo (280, no card surface)",
+   "Avatar slot: photo or initials (hidden in photo)",
+   "Photo (Layout=photo): exposed Image Placeholder 3:4, 280 x 350, radius/xl, default Image / Person / 05",
    "Name (heading/h4), Role, Organization (Show organization)",
    "Tags slot: expertise as Badges (Show tags)",
    "Contact slot: Meta Items with mail, phone, link (Show contact)",
    "Actions slot: View profile, Follow (Show actions)"
   ],
   "rules": [
-   "vertical in grids of 3-4, horizontal in asides and lists",
+   "vertical in grids of 3-4, horizontal in asides and lists, photo on team and speaker pages",
    "Role says what they do here; Organization only when people come from several",
+   "Photo layout: real photos with the same crop, light and background across the grid; turn Show tags and Show contact off unless the page is a directory",
    "Contact details people copy are plain text",
    "Two tags at most; the rest on the profile",
-   "Photos square-cropped, same style across the grid"
+   "Photos square-cropped or 4:5, same style across the grid"
   ],
   "a11y": [
    "The name is the card heading at the page's level",
    "Email and phone are links (mailto:, tel:)",
    "A photo has the person's name as alt, or alt=\"\" when the name is next to it"
   ],
-  "code": "shadcn Card with Avatar, Badge and links.",
+  "code": "shadcn Card with Avatar, Badge and links; Layout=photo: no Card, an <img> aspect-[4/5] rounded-xl object-cover above the name.",
   "guides": [
    "skills/build-ui/components/card.md"
   ]
@@ -5661,11 +5782,12 @@
   ]
  },
  "Quote": {
-  "summary": "A quotation in running content: default with a left rule inside an article, pull to break up a long page.",
+  "summary": "A quotation in running content: default with a left rule inside an article, pull to break up a long page, large for one quote that is a section on its own.",
   "use": [
    "A sentence from a person quoted in an article or case study",
    "One strong line between sections of a long page (Variant=pull)",
-   "An expert's view next to data"
+   "An expert's view next to data",
+   "One quote as its own page section, such as the proof section of a landing page (Variant=large)"
   ],
   "avoid": [
    "Customer proof on a marketing page: use Testimonial Card or Block / Testimonials",
@@ -5673,13 +5795,14 @@
    "Code or commands: use Code Block"
   ],
   "anatomy": [
-   "Rule on the left (default) or a quote mark (pull)",
-   "Quote text: body/large (default), heading/h3 (pull)",
+   "Rule on the left (default) or a quote mark (pull, large: display/xl mark)",
+   "Quote text: body/large (default), heading/h3 (pull), display (large, 720 wide)",
    "Attribution: Avatar (Show avatar), Name, Role (Show attribution)"
   ],
   "rules": [
    "Word for word, with permission; no quotation marks in the text",
    "One pull quote per page section, never two in a row",
+   "Variant=large once per page, under 20 words, with generous space above and below",
    "Attribution names the person and their role at the time",
    "Under 40 words; longer passages stay in the body text"
   ],
@@ -5688,7 +5811,7 @@
    "The quote mark is decorative",
    "Text contrast as body text, never muted"
   ],
-  "code": "<figure><blockquote> with <figcaption>; Tailwind border-l-2 for the default variant.",
+  "code": "<figure><blockquote> with <figcaption>; Tailwind border-l-2 for the default variant; pull text-2xl centered; large text-5xl font-extrabold centered max-w-3xl.",
   "guides": [
    "skills/build-ui/components/content.md",
    "skills/build-ui/patterns/content-and-docs.md"
@@ -5813,6 +5936,7 @@
    "Feature grids of 3 or 4 on marketing pages",
    "Benefits on a careers page",
    "What a plan or product does, in a two-column list (Layout=inline)",
+   "Layout=card: a grid on a muted or busy section, or items that each link to their own page",
    "Under a centered Section Header (Layout=centered)",
    "\"How it works\" sections with numbered steps (Marker=number)"
   ],
@@ -5823,24 +5947,28 @@
    "Steps people do in the product (a wizard): use Stepper"
   ],
   "anatomy": [
-   "Marker: icon tile (Marker=icon, Icon swap) or step number circle (Marker=number, Number)",
+   "Layout: stacked, inline, centered, card",
+   "Marker: icon tile (Marker=icon, Icon swap; neutral tile 40, background/muted, radius/md) or step number circle (Marker=number, Number)",
    "Title: body/large",
    "Description (Show description)",
-   "Link (Show link): Button link"
+   "Link (Show link): Button link",
+   "Card (Layout=card): background/card, border/default, radius/xl, padding spacing/6, gap spacing/4"
   ],
   "rules": [
    "Same Layout, icon style and text length across a grid",
+   "Layout=card for the whole grid or none; cards in a row share height (Fill in a grid)",
    "Title in 2-5 words; description in one or two lines",
    "One idea per item; no bullet lists inside",
    "Link only when there is a page that explains more",
-   "Marker=number only when order matters (\"How it works\", 3-4 steps); otherwise Marker=icon"
+   "Marker=number only when order matters (\"How it works\", 3-4 steps); otherwise Marker=icon",
+   "Layout=card with Show link when every item has its own page; the card is not clickable as a whole unless the link is the only action"
   ],
   "a11y": [
    "The icon is decorative (aria-hidden)",
    "The title is a heading one level below the section title",
    "Link text names the destination, not only \"Learn more\" when several sit together"
   ],
-  "code": "<div> with an icon, <h3> and <p>; grid of 3 or 4 columns.",
+  "code": "<div> with an icon, <h3> and <p>; grid of 3 or 4 columns. Layout=card: shadcn Card (rounded-xl border bg-card p-6 gap-4) around the same content.",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/components/content.md"
@@ -6025,7 +6153,8 @@
   "use": [
    "Filtering one list or table as people type",
    "The search of a Filter Bar or a Top Bar",
-   "Global search that opens Command Dialog on click or with the shortcut"
+   "Global search that opens Command Dialog on click or with the shortcut",
+   "Size=lg: the main search of a hero, a help center or an empty search page"
   ],
   "avoid": [
    "Search with filters, sort and views: use Filter Bar",
@@ -6033,6 +6162,7 @@
    "Free text that is not a query: use Input"
   ],
   "anatomy": [
+   "Size: default 36 high (body/small, 16 px icons, 320 wide) or lg 48 high (body/default, 20 px icons, 480 wide)",
    "Search icon",
    "Placeholder (\"Search invoices\") or Query",
    "Clear (x), once there is a query",
@@ -6044,14 +6174,15 @@
    "Results update as people type, with a debounce of about 300 ms; Esc clears",
    "Clear shows only when there is a query; the shortcut hides while typing",
    "Global search opens Command Dialog; filtering one list stays inline. Keep the query in the URL",
-   "No results: Empty State that names the query"
+   "No results: Empty State that names the query",
+   "Size=lg only where search is the main action of the view; toolbars, Filter Bar and Top Bar use default"
   ],
   "a11y": [
    "role=\"search\" on the wrapper and an aria-label that says what it searches when there is no visible label",
    "Clear is a button with aria-label=\"Clear search\"",
    "The result count is announced in a live region as it changes"
   ],
-  "code": "shadcn InputGroup (type=\"search\") with a search icon, Kbd and a clear Button; global search opens CommandDialog (cmdk).",
+  "code": "shadcn InputGroup (type=\"search\") with a search icon, Kbd and a clear Button; global search opens CommandDialog (cmdk). Size=lg: className \"h-12 text-base\" on the group, icons size-5.",
   "guides": [
    "skills/build-ui/patterns/search-and-filter.md",
    "skills/build-ui/components/input.md"
@@ -6374,11 +6505,12 @@
   ]
  },
  "Swatch": {
-  "summary": "One choice of a color or a short label: a color dot (Type=color) or a box with a label like S, M, L (Type=label), with selected and unavailable states.",
+  "summary": "One choice of a color or a short label: a color dot (Type=color) or a box with a label like S, M, L (Type=label), with selected and unavailable states and an optional name under it.",
   "use": [
    "Colors in Swatch Picker (Size=sm)",
    "Product colors and sizes on a product page (Size=default)",
-   "Material or finish choices"
+   "Material or finish choices",
+   "Show name: product colors and finishes where the name matters (\"Sand\", \"Forest\"), and sizes with a longer name"
   ],
   "avoid": [
    "Any color, typed or picked freely: use Color Picker",
@@ -6388,20 +6520,22 @@
   "anatomy": [
    "Color: a dot filled with a token or the product color (Type=color)",
    "Label: \"M\" (Type=label)",
-   "Ring when State=selected; faded when unavailable"
+   "Ring when State=selected; faded when unavailable",
+   "Name (Show name): ui/caption, muted, centered under the swatch"
   ],
   "rules": [
    "Override the fill of the \"color\" layer with a chart, brand or product color token, never a raw hex in the library",
    "Group swatches under a label that names the choice and the value (\"Color: Sand\")",
    "Unavailable options stay visible and focusable, faded, with \"out of stock\" in their name",
-   "Size=sm (28) in pickers, default (36) for product options"
+   "Size=sm (28) in pickers, default (36) for product options",
+   "Show name on all swatches of a group or none; with names off, show the selected name next to the group label (\"Color: Sand\")"
   ],
   "a11y": [
    "A radio group: each swatch is a radio with the color or option name as its label",
    "Selected is announced; unavailable has aria-disabled and stays in the tab order",
    "The ring has 3:1 contrast on light and dark backgrounds"
   ],
-  "code": "shadcn RadioGroup (or ToggleGroup type=\"single\") with custom items: a color dot or a label box.",
+  "code": "shadcn RadioGroup (or ToggleGroup type=\"single\") with custom items: a color dot or a label box. Show name: <span className=\"text-xs text-muted-foreground\"> under the dot inside the label.",
   "guides": [
    "skills/build-ui/components/color-picker.md",
    "skills/build-ui/patterns/commerce.md"
@@ -7317,7 +7451,8 @@
    "Same period for every item, said once nearby (\"Last 30 days\" in the header)",
    "Most important figure first, in the same order on every visit",
    "Items share the width equally; on narrow screens wrap to two columns, no horizontal scroll",
-   "Loading: Skeleton in each value; no data: \"No data\" in muted text, never 0"
+   "Loading: Skeleton in each value; no data: \"No data\" in muted text, never 0",
+   "Items fill the row height, so values stay aligned and dividers stay full height when an item has Show trend off"
   ],
   "a11y": [
    "Code as a <dl> with one dt and dd per figure",
@@ -8049,11 +8184,12 @@
   ]
  },
  "Price": {
-  "summary": "A price as people compare it: amount with currency, period, and the old price struck through during a discount.",
+  "summary": "A price as people compare it: amount with currency, period, and the old price struck through during a discount. Size=xl is the display price for pricing heroes.",
   "use": [
    "Plan Card prices (Size=default)",
    "Product Card and Line Item prices (Size=sm)",
    "A single-plan pricing page (Size=lg)",
+   "Pricing heroes and single-offer landing pages (Size=xl)",
    "Add-ons and one-time fees in a list"
   ],
   "avoid": [
@@ -8062,24 +8198,25 @@
    "A price people type: use Currency Input"
   ],
   "anatomy": [
-   "Old price (Show old price): struck through, muted",
-   "Amount: with the currency symbol, the largest text",
-   "Period (Show period): muted, \"per seat / month\", \"one-time\"",
-   "Size: sm, default, lg"
+   "Old price (Show old price): struck through, muted (body/default in xl)",
+   "Amount: with the currency symbol, the largest text (display/lg, 60, in xl)",
+   "Period (Show period): muted, \"per seat / month\", \"one-time\" (body/default in xl)",
+   "Size: sm, default, lg, xl"
   ],
   "rules": [
    "Amounts in the locale format of the market (€29, €1,290)",
    "Period names the unit and the interval; yearly prices shown per month say \"billed yearly\"",
    "Say whether VAT is included near the price",
    "Old price only during a real discount, with the end date nearby",
-   "Prices compared side by side use the same Size"
+   "Prices compared side by side use the same Size",
+   "Size=xl once per page, in a hero or a single-offer section; comparisons use default"
   ],
   "a11y": [
    "The old price is announced as such (\"Was €35, now €29\"): <s> alone is not read by most screen readers",
    "Amount and period read as one phrase (\"€29 per seat per month\")",
    "The muted period and old price meet 4.5:1"
   ],
-  "code": "custom: <span> amount, <s> old price and a period in text-muted-foreground; Intl.NumberFormat with currency, tabular-nums.",
+  "code": "custom: <span> amount, <s> old price and a period in text-muted-foreground; Intl.NumberFormat with currency, tabular-nums. Size=xl: amount text-6xl font-extrabold tracking-tight, period text-base.",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/patterns/commerce.md"
@@ -8090,7 +8227,9 @@
   "use": [
    "Block / Pricing with 2-4 plans side by side",
    "Plan choice in billing settings and upgrade dialogs",
-   "One recommended plan next to a short comparison"
+   "One recommended plan next to a short comparison",
+   "Variant=inverted: the recommended plan when a border is not enough (dark pricing sections stay default)",
+   "Variant=compact: 4+ plans, add-ons, seat packs or credits in a list"
   ],
   "avoid": [
    "The detailed feature comparison: use Block / Comparison Table",
@@ -8099,28 +8238,35 @@
    "Current plan usage in settings: use Usage Meter"
   ],
   "anatomy": [
+   "Variant: default, featured, inverted, compact",
    "Title",
    "Description: who it is for, one sentence",
    "Price (exposed)",
-   "CTA: Button (primary when Variant=featured)",
-   "Separator",
-   "Features title (Show features title): \"Everything in Starter, plus:\"",
-   "Features slot: Check Items"
+   "CTA: Button (outline in default and compact, primary in featured, secondary in inverted)",
+   "Separator (not in compact)",
+   "Features title (Show features title): \"Everything in Starter, plus:\" (not in compact)",
+   "Features slot: Check Items (hidden in compact)",
+   "Inverted: foreground/default surface, background/default text, description and Check Items at opacity/70 or background/default",
+   "Compact: one row, 720 wide: name and description (fill), Price, CTA; padding spacing/4 x spacing/6"
   ],
   "rules": [
-   "Variant=featured on one recommended plan only, with the primary button",
+   "One recommended plan only: Variant=featured or Variant=inverted, never both on a page",
+   "featured on light sections with the primary button; inverted keeps the secondary button (primary is under 3:1 on the inverted surface in Corporate)",
    "2-4 plans, cheapest first, the same order of features",
+   "Variant=compact for 4 or more options or add-ons, stacked in a list with the same width; link to the comparison table for features",
    "Enterprise says \"Contact sales\" instead of a price",
    "CTA labels match across the page (\"Start free trial\"); one primary per section",
    "Features title says what the plan adds to the one before",
-   "Cards in a row share height; buttons and prices align"
+   "Cards in a row share height; buttons and prices align",
+   "Check Items placed in an inverted card's Features slot use background/default text and icon"
   ],
   "a11y": [
    "The plan name is a heading one level below the section title",
    "The CTA names the plan (\"Start free trial, Business plan\") with aria-label or aria-describedby",
-   "The recommended plan says it in text, not only with the border"
+   "The recommended plan says it in text, not only with the border",
+   "Inverted text 19.8:1 Light, 19.0:1 Dark, 17.9:1 Corporate Light; it flips to a near-white card in Dark"
   ],
-  "code": "shadcn Card with Price, Button and a <ul> of Check Items; featured with ring-2 ring-primary.",
+  "code": "shadcn Card with Price, Button and a <ul> of Check Items; featured with ring-2 ring-primary; inverted bg-foreground text-background with Button variant=\"secondary\"; compact flex items-center gap-6 py-4 px-6 without the list.",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/components/card.md"
@@ -8183,7 +8329,8 @@
    "Description says what backs it (\"Audited September 2026\", \"Data in the EU\")",
    "Link to the trust page",
    "Update or remove it when a certificate expires",
-   "Same order everywhere; 3-5 in a row"
+   "Same order everywhere; 3-5 in a row",
+   "Name and Description wrap inside the border when the badge is narrower than its text; set Fill in rows of equal badges"
   ],
   "a11y": [
    "The icon is aria-hidden; name and detail are text, not part of an image",
@@ -8197,10 +8344,12 @@
   ]
  },
  "Testimonial Card": {
-  "summary": "One customer quote as a card for testimonial grids and carousels: optional rating, the quote with a specific result, Byline.",
+  "summary": "One customer quote for testimonial sections: a card for grids and carousels, a featured story with a photo, a logo card or a minimal quote without a card.",
   "use": [
-   "Block / Testimonial Grid and Testimonial Carousel",
-   "Next to a pricing or sign-up section",
+   "Variant=default: Block / Testimonial Grid and Testimonial Carousel, next to a pricing or sign-up section",
+   "Variant=featured: one lead story above a grid or on a case study page (large photo or the customer's image, Logo, heading-size quote)",
+   "Variant=logo: when the company name sells more than the person (Logo / * mark above the quote)",
+   "Variant=minimal: a quiet row of quotes under a hero or next to a sign-up form, no card",
    "Case study lists"
   ],
   "avoid": [
@@ -8209,23 +8358,31 @@
    "One large quote for a section: use Block / Testimonial Single"
   ],
   "anatomy": [
-   "Rating (Show rating)",
-   "Quote: 2-4 lines",
-   "Byline: Avatar, name, role and company"
+   "Variant: default, minimal, logo, featured",
+   "Rating (Show rating): default only",
+   "Logo (swap: Logo / *, default Northwind): logo and featured",
+   "Image (Show image, exposed Image Placeholder 3:4, 280 wide, default Image / Person / 03): featured only; turn it off for a logo-only featured card",
+   "Quote: body/default (default, logo), body/large (minimal), heading/h3 (featured); 2-4 lines",
+   "Byline (exposed): Avatar, name, role and company",
+   "Surface: card with border/default and radius/xl (default, logo, featured); none (minimal)"
   ],
   "rules": [
    "Real people with permission; name, role and company",
    "Specific results beat praise (\"closed the books four days faster\")",
-   "Same length across a grid (2-4 lines)",
+   "Same Variant and length across a grid (2-4 lines)",
+   "One featured card per section, above or beside a grid of default or logo cards",
+   "Logo only with the customer's written permission to use their mark",
+   "Minimal quotes sit on the page background; never put them inside another card",
    "Rating only when it comes with the quote from the same customer",
    "Real photos or initials; no stock photos"
   ],
   "a11y": [
    "Code as <figure> with <blockquote> and the Byline in <figcaption>",
    "Rating has aria-label=\"Rated 5 out of 5\"",
+   "The Logo has the company name as alt text; the featured photo has alt=\"\" when the Byline names the person",
    "In a carousel, one card per slide with a pause control"
   ],
-  "code": "shadcn Card with <figure><blockquote> and a Byline in <figcaption>.",
+  "code": "shadcn Card with <figure><blockquote> and a Byline in <figcaption>; variant via cva: featured = grid md:grid-cols-[280px_1fr] with an <img> and text-2xl quote, logo = <img> logo above the quote, minimal = no Card (bare <figure>).",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/components/content.md"
@@ -8303,11 +8460,12 @@
   ]
  },
  "Product Card": {
-  "summary": "A product in a grid or carousel: photo, sale or sold-out badges, wishlist, name, variant hint, price and optional quick add.",
+  "summary": "A product in a grid, carousel or list: photo, sale or sold-out badges, wishlist, name, variant hint, price and optional quick add; horizontal for lists, overlay for editorial tiles.",
   "use": [
-   "Product grids and category pages (3-4 per row on desktop, 2 on mobile)",
+   "Product grids and category pages (3-4 per row on desktop, 2 on mobile): Layout=vertical",
    "Carousels of related products",
-   "Product search results"
+   "Product search results, wishlists, recently viewed and cart suggestions: Layout=horizontal",
+   "Editorial grids, lookbooks and category tiles where the photo sells: Layout=overlay"
   ],
   "avoid": [
    "Articles and case studies: use Post Card",
@@ -8315,15 +8473,20 @@
    "The product page itself: use Block / Product Detail"
   ],
   "anatomy": [
+   "Layout: vertical (default), horizontal (400 wide, 120 px photo left), overlay (264 x 352, text over the photo)",
    "Image (exposed Image Placeholder): Ratio 1:1 by default, 3:4 or 4:3 per instance; height follows the card width",
    "Badges: sale %, new or sold out (State)",
    "Wishlist: Button Icon ghost, top right (Show wishlist)",
    "Name: 2 lines",
    "Variant text: \"Sand · 3 colors\"",
+   "Rating (Show rating, off by default): exposed Rating sm with Count (\"(128)\"), set Value and Count on the instance",
    "Price, Old price (State=sale shows Old price struck through)",
-   "Action: Button (Show action), \"Add to cart\" or \"Notify me\" when sold out"
+   "Action: Button (Show action) \"Add to cart\"; State=sold-out shows \"Notify me\" with its own Show notify, independent of Show action",
+   "Horizontal: no wishlist; details column with name, variant text, rating, price and the action (hug)",
+   "Overlay: media/scrim-fade to media/scrim gradient and a media/scrim panel with name, variant text and price in media/foreground; wishlist and badges stay on the photo; no action or Notify me"
   ],
   "rules": [
+   "One Layout per grid or list; overlay only where the photo is the point and there is no quick add",
    "The whole card opens the product; Wishlist and the action button are the only other controls",
    "Name in 2 lines at most, then cut",
    "State=sale: new price, struck original and the sale % Badge",
@@ -8331,14 +8494,17 @@
    "Add to cart opens the Mini Cart, never a new page",
    "Same photo ratio and background across a grid",
    "In grids set the card to Fill in a Grid auto layout (4 columns desktop, 2 mobile); minimum width 160",
-   "Pick the photo ratio once per grid on the exposed Image, never by resizing the image layer"
+   "Pick the photo ratio once per grid on the exposed Image, never by resizing the image layer",
+   "Show rating on every card of a grid or on none; the count is the number of reviews",
+   "Sold out keeps Notify me even when quick add (Show action) is off in the grid; turn Show notify off only when there is no restock"
   ],
   "a11y": [
    "One link for the card (on the name, stretched over the card)",
    "Wishlist and Add to cart are separate buttons with the product name in their labels",
-   "The image alt is empty when the name sits next to it; the price reads old and new"
+   "The image alt is empty when the name sits next to it; the price reads old and new",
+   "Overlay text is media/foreground on media/scrim (black 60%): 5.7:1 over the brightest pixel"
   ],
-  "code": "shadcn Card with an <a> on the name (after:absolute after:inset-0), Badge, Button size=\"icon\" for wishlist, Button for the action.",
+  "code": "shadcn Card with an <a> on the name (after:absolute after:inset-0), Badge, Button size=\"icon\" for wishlist, Button for the action. Layout via cva: horizontal = flex gap-4 with a size-30 image; overlay = relative aspect-[3/4] with an absolute bottom panel bg-black/60 text-white and a gradient strip.",
   "guides": [
    "skills/build-ui/patterns/commerce.md",
    "skills/build-ui/components/card.md"
@@ -8583,7 +8749,7 @@
    "Asking for satisfaction: use CSAT Rating"
   ],
   "anatomy": [
-   "Header: Avatar, name, Verified Badge (Show verified), date",
+   "Header: Avatar, name, Verified Badge soft-success (Show verified), date",
    "Rating sm",
    "Title",
    "Text",
@@ -10168,6 +10334,607 @@
    "skills/build-ui/patterns/content-and-docs.md",
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/components/carousel.md"
+  ]
+ },
+ "Icon Tile": {
+  "summary": "A rounded square holding one Lucide icon, the marker for a feature, step, stat or bento card.",
+  "use": [
+   "Feature grids and benefit lists on marketing pages",
+   "Bento cards and \"How it works\" rows that lead with an icon",
+   "Help categories, support options and contact methods",
+   "Stats or KPI cards that need a small visual anchor"
+  ],
+  "avoid": [
+   "Status or meaning: use Badge or Status Dot (the tile is decorative)",
+   "Clickable icon buttons: use Button Icon",
+   "People or companies: use Avatar or Logo",
+   "Numbered steps where order matters: use Feature Item Marker=number"
+  ],
+  "anatomy": [
+   "Tile: rounded square, Size=default 40 (radius/md), sm 32 (radius/md), lg 48 (radius/lg)",
+   "Icon (Icon swap): Lucide icon, 20 / 16 / 24 px, default Icon/sparkles",
+   "Style=neutral (default): background/muted fill, foreground/default icon",
+   "Style=brand: icon-tile/brand-bg fill (background/primary at 10% light, 20% dark), icon-tile/brand-fg icon (foreground/brand)",
+   "Style=gradient: linear icon-tile/gradient-start to icon-tile/gradient-end, foreground/primary icon",
+   "Style=outline: no fill, border/default ring (border-width/DEFAULT), foreground/muted icon"
+  ],
+  "rules": [
+   "One Style per grid; gradient for one hero feature or one highlighted step only",
+   "Same Size across a grid: default in feature grids, sm in dense lists, lg in bento cards",
+   "Pick icons from one family (Lucide) with the same stroke weight",
+   "brand and gradient follow the theme: violet in Showcase, near black in Default, blue in Corporate"
+  ],
+  "a11y": [
+   "The icon is decorative next to a title: aria-hidden on the svg",
+   "Icon contrast 3:1 or more in every mode (lowest: gradient start 4.2:1 in Showcase)",
+   "Never the only carrier of meaning; the title says what it is"
+  ],
+  "code": "<div class=\"flex size-10 items-center justify-center rounded-md bg-muted\"><Icon class=\"size-5\" aria-hidden /></div>; brand: bg-[var(--icon-tile-brand-bg)] text-brand; gradient: bg-linear-to-br from-[var(--icon-tile-gradient-start)] to-[var(--icon-tile-gradient-end)] text-primary-foreground; outline: border text-muted-foreground.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/components/content.md"
+  ]
+ },
+ "Background / Grid": {
+  "summary": "A decorative square grid of 1 px lines behind a hero or feature section, fading toward the edges.",
+  "use": [
+   "Behind a centered hero headline (with Background / Glow)",
+   "Behind a feature or developer-tool section that needs a technical feel",
+   "Behind a CTA band"
+  ],
+  "avoid": [
+   "More than one decorative device on a page: pick Grid, Dots, Glow or Beam",
+   "Behind dense content, tables or forms",
+   "Inside cards or app screens"
+  ],
+  "anatomy": [
+   "Lines: one vector of 1 px lines in border/default at 60%, 40 px cells, 1920 x 1080, centered and clipped",
+   "Fade mask (Fade): an alpha mask with a radial fade, scales with the frame; off shows the full grid"
+  ],
+  "rules": [
+   "Put it at the back of the section: first child, Absolute position, constraints Left and right + Top (or Scale)",
+   "Default size 1440 x 800; stretch it up to 1920 x 1080 and the cells stay square",
+   "No text or meaning inside; it is decoration only",
+   "Keep body copy short over it; muted text crossing a line reads 4.3:1 on that pixel row in Light"
+  ],
+  "a11y": [
+   "Decorative: aria-hidden, no role",
+   "Text over it keeps 4.5:1 against the plain page between the lines",
+   "Respect forced colors: hide it in high contrast mode"
+  ],
+  "code": "Absolutely positioned div behind the section: bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-60 with mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%) (Fade); aria-hidden.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Background / Dots": {
+  "summary": "A decorative dot pattern (1.5 px dots, 24 px pitch) behind a hero, feature or CTA section, fading toward the edges.",
+  "use": [
+   "Behind a hero or a feature section as a quieter alternative to the grid",
+   "Behind a CTA band or a testimonial highlight"
+  ],
+  "avoid": [
+   "More than one decorative device on a page",
+   "Behind dense content, tables or forms",
+   "Inside cards or app screens"
+  ],
+  "anatomy": [
+   "Dots: one vector of round dots in foreground/muted at 50%, 24 px pitch, 1920 x 1080, centered and clipped",
+   "Fade mask (Fade): an alpha mask with a radial fade; off shows the full pattern"
+  ],
+  "rules": [
+   "Put it at the back of the section: first child, Absolute position, constraints Left and right + Top (or Scale)",
+   "Default size 1440 x 800; the pitch stays even up to 1920 x 1080",
+   "No text inside; decoration only"
+  ],
+  "a11y": [
+   "Decorative: aria-hidden, no role",
+   "Text over it keeps 4.5:1: the dots are 1.5 px and low contrast"
+  ],
+  "code": "Absolutely positioned div: bg-[radial-gradient(var(--muted-foreground)_0.75px,transparent_0.75px)] bg-[size:24px_24px] opacity-50, mask-image radial-gradient for Fade; aria-hidden.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Background / Glow": {
+  "summary": "One large blurred ellipse in the primary color (gradient/brand-glow) that lights a hero, a product shot or a CTA corner.",
+  "use": [
+   "Position=top: a soft light above a hero headline",
+   "Position=center: behind a product screenshot, a pricing card or a device frame",
+   "Position=bottom-right: a corner accent in a CTA band or footer lead-in"
+  ],
+  "avoid": [
+   "Body text on the glow core: muted text needs a background within about 6% of the page",
+   "More than one glow per page (Grid + Glow together count as one hero treatment)",
+   "App screens and dashboards"
+  ],
+  "anatomy": [
+   "Glow: one ellipse with the gradient/brand-glow style (background/primary 35% to transparent) and blur/3xl, constraints Scale",
+   "Position: top (default), center, bottom-right"
+  ],
+  "rules": [
+   "Put it at the back of the section, above Grid or Dots if you combine them, Absolute position, constraints Left and right + Top (or Scale)",
+   "The color follows the theme: violet in Showcase, gray in Default, blue in Corporate",
+   "Keep the subtitle and body copy outside the bright part; top is tuned so a centered hero subtitle sits on the plain page"
+  ],
+  "a11y": [
+   "Decorative: aria-hidden",
+   "Measured in the hero example: subtitle on the plain page (4.74:1 Showcase Light, 7.85:1 Showcase Dark); headline 14:1 or more"
+  ],
+  "code": "Absolutely positioned div: size and position per variant, rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--primary)_35%,transparent),transparent)] blur-3xl; aria-hidden; pointer-events-none.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Background / Beam": {
+  "summary": "Two or three thin diagonal light beams in the primary color entering from the top, a subtle accent for a hero or CTA band.",
+  "use": [
+   "Behind a left-aligned hero (Hero Split): the beams sit in the middle and right",
+   "Behind a CTA band or a launch announcement"
+  ],
+  "avoid": [
+   "Behind centered body text",
+   "With another decorative device on the same page",
+   "App screens"
+  ],
+  "anatomy": [
+   "Beam 1-3: rectangles rotated 35 degrees, linear background/primary to gradient/primary-transparent at 12-22% alpha, blur/2xl, constraints Scale"
+  ],
+  "rules": [
+   "Put it at the back of the section: Absolute position, constraints Left and right + Top (or Scale)",
+   "Keep body text off the bright upper end of a beam",
+   "The color follows the theme"
+  ],
+  "a11y": [
+   "Decorative: aria-hidden"
+  ],
+  "code": "Absolutely positioned divs rotated 35deg with bg-linear-to-b from-primary/20 to-transparent blur-2xl inside an overflow-hidden wrapper; aria-hidden.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Store Badge": {
+  "summary": "App store download badge: store mark, a small line and the store name. Follows the theme: dark badge in Light, light badge in Dark.",
+  "use": [
+   "Under a mobile app hero (Block / Hero with Phone)",
+   "In a footer or download section that links to the store listings"
+  ],
+  "avoid": [
+   "As a generic button or for web sign-up: use Button",
+   "Recoloring it or changing the store text"
+  ],
+  "anatomy": [
+   "Store (variant): app-store, google-play",
+   "glyph: Apple or Google Play mark, 24 px, background/default",
+   "label: ui/caption, \"Download on the\" or \"Get it on\"",
+   "store: heading/h4, \"App Store\" or \"Google Play\"",
+   "Container: foreground/default fill, border/default 1 px, radius/lg"
+  ],
+  "rules": [
+   "App Store first, then Google Play, same height, 8 to 12 px apart",
+   "Keep the store text as the stores write it; translate only with the store's localized badge",
+   "Link each badge to its listing"
+  ],
+  "a11y": [
+   "It is a link: accessible name \"Download on the App Store\" or \"Get it on Google Play\"",
+   "Glyph is decorative (aria-hidden)",
+   "Contrast follows foreground/default and background/default (16:1 or more)"
+  ],
+  "code": "<a href={appStoreUrl} aria-label=\"Download on the App Store\"><img src=\"/badges/app-store.svg\" alt=\"\" height={40} /></a> (use the official badge artwork in code)",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/patterns/mobile.md"
+  ]
+ },
+ "Payment Method Mark": {
+  "summary": "A small card-shaped mark that names one accepted payment method in text.",
+  "use": [
+   "A row of accepted methods in the store footer",
+   "Under the pay button or in the cart summary"
+  ],
+  "avoid": [
+   "Choosing how to pay: use Option Card or Payment Method Card",
+   "Drawing real brand logos in the library"
+  ],
+  "anatomy": [
+   "Container: 24 high, min 40 wide, border/default, background/card, radius/sm",
+   "Name (TEXT): the method, ui/label-small"
+  ],
+  "rules": [
+   "One mark per method, 8 px apart, only methods the market accepts",
+   "The name stays text; the product swaps in each provider's official artwork under its brand rules"
+  ],
+  "a11y": [
+   "Give the row a label such as \"Accepted payment methods\"; each mark reads as its name"
+  ],
+  "code": "<span class=\"inline-flex h-6 min-w-10 items-center justify-center rounded-sm border bg-card px-2 text-xs font-medium\">Visa</span>",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Email / Header": {
+  "summary": "Top of an email, outside the card: the sender's logo and an optional \"View in browser\" link.",
+  "use": [
+   "First part of every email template",
+   "Newsletters and long emails with the browser link on"
+  ],
+  "avoid": [
+   "Navigation menus or several links: an email header holds the logo only",
+   "Inside the card: it sits on the muted canvas above it"
+  ],
+  "anatomy": [
+   "Logo (swap): any Logo or Logo / *, 32 px high",
+   "Preheader link (Show preheader link): ui/caption, foreground/muted, underlined, right",
+   "Container: 600 wide, padding 32 top, 24 bottom, 40 sides, transparent"
+  ],
+  "rules": [
+   "Use the brand logo of the sender (Logo / Orbitly for Orbitly, Logo / Tidewater for the store)",
+   "Transactional emails leave the browser link off",
+   "Logo links to the product home page"
+  ],
+  "a11y": [
+   "Logo image has alt text with the company name (\"Orbitly\")",
+   "Browser link text says where it goes",
+   "foreground/muted on section/muted-background is 4.5:1 or more"
+  ],
+  "code": "@react-email/components Section + Row with Img (logo, alt=\"Orbitly\", height 32) and an optional Link \"View in browser\" in the right Column",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Hero": {
+  "summary": "Opening of the email body: what happened, in one heading and one or two sentences, with an optional eyebrow and image.",
+  "use": [
+   "First part inside the card of every email",
+   "Announcements and newsletters with Show image on"
+  ],
+  "avoid": [
+   "Images in security emails (password, sign-in, verification)",
+   "Long paragraphs: put them in Email / Content"
+  ],
+  "anatomy": [
+   "Image (Show image): Image Placeholder 16:9, 520 wide, exposed, any Image / *",
+   "Eyebrow (Show eyebrow): ui/overline, foreground/brand",
+   "Title: heading/h2, foreground/default",
+   "Text (Show text): body/default, foreground/muted",
+   "Container: 600 wide, 40 px side padding, gap 16"
+  ],
+  "rules": [
+   "Title says the news or the task in sentence case, no exclamation marks",
+   "Text gives the one fact needed next: amount, date, who, how long a link works",
+   "The subject line and the Title say the same thing"
+  ],
+  "a11y": [
+   "Title is the email's only h1",
+   "Image has alt text, or empty alt when decorative",
+   "Never put text inside the image"
+  ],
+  "code": "@react-email/components Section with Img (optional), Text (eyebrow), Heading as=\"h1\" and Text",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Button": {
+  "summary": "The one call to action of an email: a solid primary pill, 44 px tall, built as a bulletproof button (a padded link, not an image).",
+  "use": [
+   "The main action of every transactional email: verify, sign in, reset, pay, accept",
+   "Once per email"
+  ],
+  "avoid": [
+   "Two buttons side by side: put the second action as a text link in Email / Content",
+   "Images of buttons: they disappear when images are off"
+  ],
+  "anatomy": [
+   "Align (variant): left, center",
+   "Button: background/primary, radius button/radius, height 44, padding 24 sides",
+   "Label: ui/label, foreground/primary"
+  ],
+  "rules": [
+   "Label is verb + object and matches the page it opens (\"Reset password\")",
+   "Under links that expire, add the plain URL in Email / Content for people whose client blocks buttons",
+   "Align left in text emails; center in short welcome or announcement emails"
+  ],
+  "a11y": [
+   "It is a link (a element), not a button",
+   "Label 5:1 or more on background/primary in every theme",
+   "44 px tall tap target"
+  ],
+  "code": "@react-email/components Button (href, style: background var primary, color primary-foreground, borderRadius 9999, padding \"12px 24px\", fontWeight 600)",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Content": {
+  "summary": "A block of body text with an optional heading: explanations, next steps, fallback links and sign-offs.",
+  "use": [
+   "Paragraphs after the Hero",
+   "The plain URL under a button",
+   "Sign-off (\"The Orbitly team\") and help line"
+  ],
+  "avoid": [
+   "Key facts like amount or due date: use Email / Details",
+   "Warnings: use Email / Callout"
+  ],
+  "anatomy": [
+   "Heading (Show heading): heading/h4, foreground/default",
+   "Text: body/default 16, foreground/default",
+   "Container: 600 wide, 40 px side padding, gap 8"
+  ],
+  "rules": [
+   "Two or three sentences per block; stack blocks rather than writing walls of text",
+   "Links are underlined and say where they go",
+   "No \"click here\", no exclamation marks"
+  ],
+  "a11y": [
+   "Heading is h2 in code",
+   "16 px text, line height 28",
+   "Contrast foreground/default on background/card 15:1 or more"
+  ],
+  "code": "@react-email/components Section with Heading as=\"h2\" (optional) and Text; links with Link",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Code": {
+  "summary": "A one-time code in large monospace digits on a muted box, with how long it is valid.",
+  "use": [
+   "Email verification, sign-in codes and two-step confirmation"
+  ],
+  "avoid": [
+   "Passwords or secrets that stay valid: never email them",
+   "Codes longer than 8 characters: send a link instead"
+  ],
+  "anatomy": [
+   "Box: background/muted, radius/lg, padding 24",
+   "Label: ui/label, foreground/default",
+   "Code: Roboto Mono SemiBold 36 (font/mono), letter spacing 10, foreground/default",
+   "Hint (Show hint): body/small, foreground/muted, under the box"
+  ],
+  "rules": [
+   "Six digits, no spaces inside, so copy and paste works",
+   "Hint says when the code expires and what to do if the reader did not ask for it",
+   "Put the code in the subject line too (\"482916 is your Orbitly code\")"
+  ],
+  "a11y": [
+   "Code is real text, never an image",
+   "In code, wrap it in a container that screen readers read as one string",
+   "Contrast foreground/default on background/muted 15:1 or more"
+  ],
+  "code": "@react-email/components Section (background muted, borderRadius 12, padding 24) with Text label and Text code (fontFamily monospace, fontSize 36, letterSpacing 10)",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/auth.md"
+  ]
+ },
+ "Email / Details": {
+  "summary": "Key facts as label and value rows in a light bordered box: invoice number, amount, due date, device and location, delivery address.",
+  "use": [
+   "Invoices, receipts and payment failures",
+   "Security notices (device, location, time)",
+   "Invitations (workspace, role, invited by) and orders (number, delivery)"
+  ],
+  "avoid": [
+   "Purchased items with amounts: use Email / Line Items",
+   "More than six rows: link to the page instead"
+  ],
+  "anatomy": [
+   "Title (Show title): heading/h4",
+   "Rows (slot): Email / Details Row (Label body/small foreground/muted, Value ui/label right)",
+   "Box: card/muted-background, border/default 1 px, radius/md, padding 12 and 20"
+  ],
+  "rules": [
+   "Most important row first (amount or what changed)",
+   "Exact values: currency symbol, full dates for legal facts, times with time zone",
+   "Same labels as in the product (\"Invoice number\", not \"Ref\")"
+  ],
+  "a11y": [
+   "In code a two-column table with role=\"presentation\" or a definition list",
+   "Label and value read in order, left to right"
+  ],
+  "code": "@react-email/components Section (border, borderRadius 8, padding) with Row and Column per line (Text label, Text value align right)",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Line Items": {
+  "summary": "What was bought or billed, with the sums: invoices, receipts and order confirmations.",
+  "use": [
+   "Invoice and receipt lines with subtotal, VAT and total",
+   "Order confirmations with product photos (Line Item Show image)"
+  ],
+  "avoid": [
+   "Facts without amounts: use Email / Details",
+   "More than 10 lines: summarize and link to the full invoice"
+  ],
+  "anatomy": [
+   "Title (Show title): heading/h4",
+   "Items (slot): Email / Line Item (Image 64 px when Show image, Name ui/label, Meta body/small muted, Amount right), bottom rule border/default",
+   "Totals (slot): Email / Total Row, Type default (body/small) and Type total (body/large, top rule)"
+  ],
+  "rules": [
+   "Amounts right-aligned with the same decimals and the currency symbol",
+   "Meta says quantity, size or period (\"2 × €18.00\", \"Size M\")",
+   "One Type=total row, last"
+  ],
+  "a11y": [
+   "In code a table with role=\"presentation\"; the total is also stated in words in the Hero text",
+   "Product photos have alt text with the product name"
+  ],
+  "code": "@react-email/components Section with Row/Column per item (Img, Text name and meta, Text amount align right), Hr, then Row/Column per total",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/commerce.md"
+  ]
+ },
+ "Email / Callout": {
+  "summary": "A tinted notice box inside the body for something the reader must know that is not the main action.",
+  "use": [
+   "\"If this was not you\" in security emails",
+   "Retry dates after a failed payment",
+   "Read-only or deadline warnings"
+  ],
+  "avoid": [
+   "The main message of the email: that is the Hero",
+   "More than one callout per email"
+  ],
+  "anatomy": [
+   "Tone (variant): default, info, success, warning, destructive",
+   "Box: badge/soft-* background (background/muted for default), radius/md, padding 16, gap 12",
+   "Icon (Show icon): 20 px, matching badge/soft-*-fg",
+   "Title (Show title): ui/label; Text: body/small, both foreground/default"
+  ],
+  "rules": [
+   "Title short, Text one or two sentences with the fix",
+   "The message must make sense without the color",
+   "warning for deadlines and \"was this not you\" notices; destructive only for a blocked account or data loss"
+  ],
+  "a11y": [
+   "Icon is decorative (empty alt); the Title carries the meaning",
+   "Text stays foreground/default on the tint: 12:1 or more"
+  ],
+  "code": "@react-email/components Section (backgroundColor tint, borderRadius 8, padding 16) with Row: Column Img icon (20 px) + Column Text title and Text body",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/notifications.md"
+  ]
+ },
+ "Email / Divider": {
+  "summary": "A 1 px border/default rule across the body column, between groups of content.",
+  "use": [
+   "Between the summary and the details",
+   "Between articles in a newsletter"
+  ],
+  "avoid": [
+   "Between every block: spacing already separates them"
+  ],
+  "anatomy": [
+   "Separator (horizontal, Spacing none) inside 40 px side padding"
+  ],
+  "rules": [
+   "At most two or three per email"
+  ],
+  "a11y": [
+   "Decorative"
+  ],
+  "code": "@react-email/components Hr (borderColor border, margin 0)",
+  "guides": [
+   "skills/build-ui/patterns/email.md"
+  ]
+ },
+ "Email / Stats": {
+  "summary": "Two or three key numbers side by side for digests and reports.",
+  "use": [
+   "Weekly summaries, usage reports, trial recaps"
+  ],
+  "avoid": [
+   "More than three figures",
+   "Charts: they render as images and break in dark mode"
+  ],
+  "anatomy": [
+   "Items (slot): Email / Stat, Value heading/h3, Label body/small muted, Change (Show change) ui/label-small in badge/soft-success-fg",
+   "Cell: card/muted-background, border/default, radius/md, padding 16"
+  ],
+  "rules": [
+   "Every figure says its period",
+   "Link to the full report from the email's one button"
+  ],
+  "a11y": [
+   "Cells stack on narrow screens in code",
+   "Change is also written in words (\"+12% on last week\"), never color alone"
+  ],
+  "code": "@react-email/components Row with three Column cells (Text value, Text label, Text change)",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Email / Article": {
+  "summary": "A teaser for an article, guide or release note in newsletters: thumbnail, title, one sentence and a link.",
+  "use": [
+   "Newsletters and digests, 2 to 4 in a row with Email / Divider between"
+  ],
+  "avoid": [
+   "Transactional emails"
+  ],
+  "anatomy": [
+   "Image (Show image): Image Placeholder 4:3, 160 x 120, exposed",
+   "Title: body/large, foreground/default",
+   "Text: body/small, foreground/muted",
+   "Link: ui/label, foreground/brand, underlined"
+  ],
+  "rules": [
+   "Link names the destination (\"Read the guide\"), never \"click here\"",
+   "One sentence of text"
+  ],
+  "a11y": [
+   "Thumbnail alt text or empty when the title says it all",
+   "Whole title also links to the article"
+  ],
+  "code": "@react-email/components Row: Column Img (160 wide) + Column Heading as=\"h3\", Text, Link",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Email / Footer": {
+  "summary": "Bottom of every email, outside the card: social links, postal address, why the reader got the email, preferences and unsubscribe links.",
+  "use": [
+   "Last part of every email"
+  ],
+  "avoid": [
+   "Marketing content or extra calls to action"
+  ],
+  "anatomy": [
+   "Social (Show social): LinkedIn, X, YouTube, GitHub marks, 20 px, foreground/muted",
+   "Address: body/small, foreground/muted, centered",
+   "Reason: body/small, foreground/muted, centered",
+   "Links: Preferences (Show preferences), Unsubscribe (Show unsubscribe), underlined"
+  ],
+  "rules": [
+   "Address and Reason on every email (anti-spam law)",
+   "Unsubscribe on marketing and digests; off for security, receipts and invoices, which keep Email preferences",
+   "Social links off on security emails"
+  ],
+  "a11y": [
+   "Social links have accessible names (\"Orbitly on LinkedIn\")",
+   "foreground/muted on section/muted-background 4.5:1 or more"
+  ],
+  "code": "@react-email/components Section with Row of Link+Img social icons, Text address, Text reason, Link preferences and Link unsubscribe (List-Unsubscribe header in the send)",
+  "guides": [
+   "skills/build-ui/patterns/email.md",
+   "skills/build-ui/patterns/notifications.md"
+  ]
+ },
+ "Accordion Item": {
+  "summary": "One collapsible row of an Accordion: title row that toggles, Content slot shown when expanded.",
+  "use": [
+   "Inside Accordion only",
+   "FAQ questions, settings groups, filter groups in a panel"
+  ],
+  "avoid": [
+   "On its own as a disclosure in running text: use Show More",
+   "Switching between views: use Tabs"
+  ],
+  "anatomy": [
+   "Size: default, sm. State: collapsed, expanded",
+   "Style: default (bottom divider), card (border on all sides, radius/base, background/default, padding spacing/4; sm spacing/3)",
+   "Icon: chevron (down when collapsed, up when expanded), plus (plus when collapsed, minus when expanded)",
+   "Leading icon (Show leading icon), Title, Meta slot (Show meta)",
+   "Content slot (visible when expanded)"
+  ],
+  "rules": [
+   "Same Style, Icon and Size on every item of one Accordion",
+   "Style=card goes inside Accordion Style=card (gap spacing/3)",
+   "Icon=plus is for marketing FAQs; apps keep the chevron",
+   "Title is a question or a group name, one line where possible"
+  ],
+  "a11y": [
+   "The trigger is a button with aria-expanded and aria-controls",
+   "Plus and minus icons are decorative (aria-hidden); the state comes from aria-expanded"
+  ],
+  "code": "shadcn AccordionItem. Style=card: className=\"rounded-xl border bg-background px-4 border-b-0\" plus border. Icon=plus: replace ChevronDown in AccordionTrigger with Plus / Minus switched by data-state.",
+  "guides": [
+   "skills/build-ui/components/accordion.md"
   ]
  }
 }

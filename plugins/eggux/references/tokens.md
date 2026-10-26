@@ -10,8 +10,8 @@ code when a token exists for it.
 | Tier | Figma collection | Modes | Who uses it |
 |---|---|---|---|
 | 1. Primitives | `Primitives` | Value | Only other variables. Colors are hidden from pickers |
-| 2. Semantic | `Semantic` | Light, Dark | Designs and components. This is the brand layer |
-| 3. Components | `Components` | Light, Dark | One component that must deviate from the semantic rule |
+| 2. Semantic | `Semantic` | Light, Dark, Corporate Light, Corporate Dark, Showcase Light, Showcase Dark | Designs and components. This is the brand layer |
+| 3. Components | `Components` | Same six modes | One component that must deviate from the semantic rule |
 
 Rules:
 - A Semantic value is always an alias to a Primitive (optionally color alias + `opacity/*`). No raw values.
@@ -23,10 +23,10 @@ Rules:
 
 | Group | Content |
 |---|---|
-| `color/<hue>/<50-950>`, `color/white`, `color/black` | Tailwind palette. Brand ramps go in `color/brand/<50-950>` |
+| `color/<hue>/<50-950>`, `color/white`, `color/black` | Tailwind palette. `color/brand/<50-950>` is the brand ramp (Tailwind violet in the master, used only by the Showcase modes); a client rebrand replaces its 11 values |
 | `spacing/<0..96>` | Tailwind spacing scale in px (`spacing/4` = 16) |
 | `radius/<none,sm,DEFAULT,md,lg,xl,2xl,3xl,full>` | Only `none` and `full` are visible in pickers |
-| `type/family/<sans,serif,mono>` | Font family names |
+| `type/family/<sans,serif,mono,jakarta>` | Font family names; `font/sans` aliases `jakarta` (Plus Jakarta Sans) in Light, Dark and Showcase, `sans` (Inter) in Corporate |
 | `type/weight/*`, `type/size/*`, `type/leading/*`, `type/tracking/*` | Type scales |
 | `shadow/*` | Tailwind shadow values, bound to the `shadow/*` effect styles |
 | `layout/breakpoint/*`, `layout/container/*` | Breakpoints and container widths |
@@ -51,7 +51,7 @@ Figma and code map 1:1.
 | `background/warning` | `--warning` | Extension |
 | `background/info` | `--info` | Extension |
 | `foreground/<same names>` | `--foreground`, `--<name>-foreground` | Text and icons on the matching background |
-| `foreground/brand` | `--brand` | Text and icons in the brand color on the page: accent words in a headline, inline links, `Button` link. Never put `background/primary` on text. Light `neutral/900`, Dark `neutral/200`, Corporate Light `blue/700`, Corporate Dark `blue/400`; at least 4.5:1 on default, muted and card. Tailwind v4: `--color-brand: var(--brand)` in `@theme inline`, then `text-brand` |
+| `foreground/brand` | `--brand` | Text and icons in the brand color on the page: accent words in a headline, inline links, `Button` link. Never put `background/primary` on text. Light `blue/700`, Dark `blue/400` (same in Corporate), Showcase brand/700 and brand/400; at least 4.5:1 on default, muted and card. Tailwind v4: `--color-brand: var(--brand)` in `@theme inline`, then `text-brand` |
 | `border/default` | `--border` | |
 | `border/input` | `--input` | |
 | `border/ring` | `--ring` | Focus ring, usually follows the brand |
@@ -73,8 +73,9 @@ Both uses must pass 4.5:1. Run `/eggux:audit-tokens` to check all pairs.
 ### Themes (Semantic and Components modes)
 | Mode | Look | Use |
 |---|---|---|
-| `Light`, `Dark` | shadcn neutral, primary near black, 8 px radius | Consumer, marketing, startup SaaS |
-| `Corporate Light`, `Corporate Dark` | `color/blue/700` primary (`blue/600` in Dark), slate neutrals, `radius/base` 4 px, `border/input` slate/500, `foreground/muted` slate/600 | Enterprise, internal tools, finance, regulated industries |
+| `Light`, `Dark` | EGG default: `color/blue/600` primary with white text (5.17:1), `foreground/brand` blue/700 (blue/400 Dark), ring blue/600 (blue/500 Dark), `background/accent` blue/50 (Light), pill buttons and single-line fields (`button/radius`, `input/radius` = `radius/full`), `radius/base` 12 px for cards (sm 6, md 8), Plus Jakarta Sans, pure neutrals | Consumer, marketing, SaaS, the library default |
+| `Corporate Light`, `Corporate Dark` | `color/blue/700` primary (`blue/600` in Dark), slate neutrals, Inter, square controls (`button/radius`, `input/radius` 4 px), `radius/base` 4 px, `border/input` slate/500, `foreground/muted` slate/600 | Enterprise, internal tools, finance, regulated industries |
+| `Showcase Light`, `Showcase Dark` | `color/brand/600` primary with white text (5.7:1), `foreground/brand` brand/700 (brand/400 Dark), `border/ring` brand/600 (brand/500 Dark), `background/accent` brand/50 (Light only), `chart/1` brand/600 (brand/400 Dark), `chart/7` blue, `sidebar/primary` brand/600, `radius/base` 12 px (sm 6, md 8, xl 12), pill controls and Plus Jakarta Sans like Light/Dark; neutral surfaces as Light/Dark | Demo rebrand for the Cover, Intro and Showcase pages only; never the library default. Shows how a client brand re-aliases the same tokens |
 
 Set Semantic and Components to the same mode on a frame. Corporate also sets the sidebar
 (`sidebar/*`) and `button/destructive-hover`. Pair Corporate with Density `Compact` for
@@ -89,7 +90,9 @@ fix them in its own file.
 | Pair | Ratio | How to work with it |
 |---|---|---|
 | `background/warning` as text on the page (Light) | 2.15 | Never use warning as text color. Warning messages use the filled style (`background/warning` + `foreground/warning`) |
-| `foreground/muted` on `background/muted` (Light) | 4.35 | Do not put muted text on muted surfaces; use `foreground/default` there |
+| `foreground/muted` on `background/muted` (Light) | 4.35 | Do not put muted text on `background/muted`; full-width bands use `section/muted-background`, muted cards and panels `card/muted-background` (both 4.54:1); chips and tiles use `foreground/default` |
+| `background/destructive` as text on muted (Corporate Dark) | 3.89 | Sale prices and error text on default or card |
+| `chart/1`, `chart/2` on muted (Dark, Corporate Dark) | 2.9 | Put charts in a Card, never straight on a muted band |
 | `border/input` on the page (Light 1.26, Dark 1.77) | below 3:1 | The input is still identified by its label and shadow. Clients with strict WCAG 1.4.11 needs re-alias it to `color/neutral/400`+ |
 
 ## Components (`Components`)
@@ -100,7 +103,13 @@ Current tokens:
 |---|---|---|
 | `sidebar/*` | From shadcn | Sidebar surfaces |
 | `chart/1..8` | Tailwind steps, same in Light and Dark (see Data visualization) | Chart series, fixed order |
-| `button/primary-hover` | `background/primary` at `opacity/90` | shadcn `hover:bg-primary/90` |
+| `button/primary-hover` | Light `color/blue/700`; other modes `background/primary` at `opacity/90` | Light needs the darker step for white text (4.32:1 at 90%) |
+| `button/radius` | Light, Dark, Showcase `radius/full`; Corporate `radius/md` (4 px) | Button, Button Icon, Button Group, Split Button, Toggle, Toggle Group, Pagination, default Tabs. CSS `--button-radius`, Tailwind `rounded-button` |
+| `input/radius` | Light, Dark, Showcase `radius/full`; Corporate `radius/md` | Single-line fields: Input, Select trigger, Combobox, Date Picker trigger, Search Field, Input Group, Number Input, Inline Form. Textarea keeps `radius/md`. CSS `--input-radius`, Tailwind `rounded-input` |
+| `button/soft-bg`, `button/soft-hover` | `background/primary` at `opacity/10` and `opacity/20` (light modes), `opacity/20` and `opacity/30` (dark modes) | Button and Button Icon Variant=soft; text `foreground/brand` (5.7:1 or more) |
+| `input/filled-muted-foreground` | Light, Showcase Light `color/neutral/600`; other modes `foreground/muted` | Placeholder and trailing text in Input and Select Style=filled (muted text is 4.35:1 on the muted fill) |
+| `toggle-group/segmented-hover` | `background/default` at `opacity/50` | Toggle Group Variant=segmented item hover on the muted track |
+| `media/scrim`, `media/scrim-fade`, `media/foreground` | `video/scrim` (black at `opacity/60`), transparent black, `video/foreground` (white) | Text over photos in Post Card and Product Card Layout=overlay: 5.7:1 over a white pixel |
 | `button/secondary-hover` | `background/secondary` at `opacity/80` | shadcn `hover:bg-secondary/80` |
 | `button/destructive-hover` | Light `color/red/700`, Dark `background/destructive` at `opacity/90` | 90% opacity failed 4.5:1 in Light |
 | `dialog/overlay` | `color/black` at `opacity/50` | shadcn `bg-black/50` behind Dialog and Alert Dialog |
@@ -119,6 +128,11 @@ Current tokens:
 | `video/track` | `color/white` at `opacity/30` | Unplayed part of the progress bar |
 | `video/scrim` | `color/black` at `opacity/60` | Play button, duration and subtitle backgrounds |
 | `card/muted-background` | Light `color/neutral/50`; Dark, Corporate `background/muted` | Card Variant=muted; neutral/50 keeps muted text at 4.5:1 in Light |
+| `section/muted-background` | Light, Showcase Light `color/neutral/50`; Dark, Showcase Dark, Corporate `background/muted` | Full-width section band that alternates with `background/default`; muted text 4.54:1 in Light. CSS `--section-muted-background`, Tailwind `bg-section-muted` |
+| `icon-tile/brand-bg` | `background/primary` at `opacity/10` (light modes), `opacity/20` (dark modes) | Icon Tile Style=brand fill |
+| `icon-tile/brand-fg` | `foreground/brand` | Icon Tile Style=brand icon, 5.6:1 or more |
+| `icon-tile/gradient-start`, `icon-tile/gradient-end` | Light `neutral/700` to `900`, Dark `neutral/200` to `400`, Corporate `blue/600` to `800`, Showcase `brand/500` to `700` | Icon Tile Style=gradient; icon `foreground/primary` |
+| `gradient/primary-transparent`, `gradient/chart-3-transparent` | `background/primary`, `chart/3` at `opacity/0` | End stops of the gradient styles, so fades keep the hue |
 
 Naming: `<component>/<property>`,
 for example `button/radius`, `card/muted-background`. Sizes that change with density live in
@@ -148,7 +162,8 @@ When a component needs a token:
 Validated (OKLCH lightness band, chroma floor, CVD ΔE under protanopia/deuteranopia, normal-vision
 ΔE, contrast) on `background/default` and `background/card` in Light and Dark: worst adjacent
 CVD ΔE 20.0, normal-vision 26.1, every slot ≥ 3:1. The first 3 slots also pass all-pairs (ΔE 14.7),
-so scatter plots and maps use at most 3 series. The shadcn defaults it replaced failed (two
+so scatter plots and maps use at most 3 series. The Showcase modes set `chart/1` to the brand
+and `chart/7` to blue so the eight series stay distinct hues. The shadcn defaults it replaced failed (two
 adjacent ambers, ΔE 8.0).
 
 Rules:
@@ -163,6 +178,21 @@ Rules:
 - A client brand that changes the palette re-runs `/eggux:audit-tokens` (every `chart/N` at 3:1
   on page and card, in every mode) and checks that neighbours stay distinguishable for color
   blindness before shipping.
+
+## Gradient styles
+
+Paint styles whose stops are bound to variables, so they follow the mode:
+
+| Style | Paints | Use |
+|---|---|---|
+| `gradient/brand-glow` | radial, `background/primary` to `gradient/primary-transparent`, paint opacity 0.35 | `Background / Glow`, a glow behind one hero or CTA |
+| `gradient/hero-mesh` | three radials: primary 0.22, `chart/3` 0.16, primary 0.10 | Cover and showcase hero backgrounds |
+| `gradient/surface-fade` | linear, `background/muted` to `background/default` | A section that fades into the next |
+| `gradient/brand-text` | linear, `foreground/brand` to `chart/2` | One accent phrase in a display headline; display sizes only (the chart/2 end is 3.8:1 in Showcase Dark) |
+
+A bound stop takes the variable's alpha (Figma sets it to 1), so strength is the paint opacity
+and fades end on a `gradient/*-transparent` token. CSS: `bg-radial`, `bg-linear-*` with
+`color-mix(in oklab, var(--primary) 35%, transparent)`.
 
 ## Motion
 

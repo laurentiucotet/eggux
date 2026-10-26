@@ -8,7 +8,7 @@ component guides it names. Names are Figma components; inventory in
 
 | Screen | Shell | Blocks | Patterns | Component guides |
 |---|---|---|---|---|
-| List / table of objects | App | Filtered List, Empty Page (example "invoices with filters") | search-and-filter, empty-state, loading-states | table, pagination, badge, list-and-tree, card (Entity Card for grids) |
+| List / table of objects | App | Data Table (toolbar, selection, pagination), Stacked List, Grid List, Filtered List, Empty Page (example "invoices with filters") | search-and-filter, empty-state, loading-states | table, pagination, badge, list-and-tree, card (Entity Card for grids) |
 | Large list people work in (invoices, orders, tickets) | App, Corporate + Compact | Template / data grid (enterprise), Filter Builder (example "enterprise invoices") | enterprise-apps, search-and-filter | table |
 | Request that needs sign-off | App | Approval Request | approvals, enterprise-apps | description-list, file-upload |
 | Who changed what | App (admin) | Audit Log | audit-log | table |
@@ -17,32 +17,42 @@ component guides it names. Names are Figma components; inventory in
 | Edit a long record | App | Record Form | record-page, unsaved-changes, form-validation | input, select |
 | Import data (CSV, XLSX) | Wizard or App | Import Mapping | enterprise-apps (§ Import), multi-step-form | file-upload, stepper, table |
 | One object (detail) | App | Record Header, Record Detail | record-page | description-list, tabs, navigation |
-| Dashboard | App | Analytics | loading-states, empty-state | charts, card, indicators |
+| Dashboard | App | Analytics, SaaS Metrics Dashboard, Commerce Admin, Sales Pipeline, Project Overview, Home Today, Executive Dashboard (examples "SaaS metrics dashboard", "Commerce admin") | reports, loading-states, empty-state | charts, card, indicators |
+| Personal home after sign-in | App (no Page Header) | Home Today | notifications, ai-chat | boards-and-calendars (Agenda Item), list-and-tree (Task Item), ai-chat (AI Summary), card |
+| Project home | App | Project Overview, Gantt for the full plan | record-page | boards-and-calendars, card (Progress Card), avatar, progress-and-slider |
 | Admin panel, CMS (lists and editors of content) | Admin Panel (grid: Sidebar or Sidebar Double, Aside=on with a Side Panel beside editors, Aside=off for lists, actions bar fixed at the bottom) | Data table, Forms blocks | enterprise-apps, unsaved-changes | sidebar, drawer (Side Panel), table, card (Entity Card actions), list-and-tree (Sortable List Item) |
-| Settings, admin | App | Profile, Team Members, Billing, Notification Preferences, API Keys, Integrations, Settings Section | settings-and-admin, unsaved-changes, delete-confirmation | input, select, card |
+| Settings, admin, account (profile, notifications inbox, activity, sessions, delete account) | App | Settings Page with Tabs, Danger Zone, Profile, Team Members, Billing, Notification Preferences, API Keys, Integrations, Settings Section; starting screens on SCREENS / Settings and SCREENS / Account | settings-and-admin, unsaved-changes, delete-confirmation | input, select, card |
 | Inbox, chat, tickets, files | Split View | Conversation (example "inbox") | search-and-filter, empty-state | navigation (split view), list-and-tree, comments-and-chat |
 | Discussion on an object (task, document, invoice) | App (record page) | Comments | record-page | comments-and-chat, rich-text-editor |
 | Create / edit form | App, or Sheet / Dialog over a list | Forms blocks, Field Presets | form-validation, form-presets, unsaved-changes | input, select, date-picker, file-upload, dialog, drawer |
-| Long or blocking flow (onboarding, setup, import) | Wizard | Multi-step Form, Onboarding Checklist | multi-step-form | stepper, progress-and-slider |
-| Sign in, sign up, reset, 2FA, invite | Auth | Sign In, Sign Up, Forgot Password, Check Email, Reset Password, Two-Factor, Accept Invite | auth, form-presets | input (OTP) |
-| Marketing page | Marketing | Announcement Banner, Navbar, Navbar Mobile, Hero (Centered, Split, with Screenshot, Prompt), Logo Cloud, Features (grid, Split, Bento), Stats, Testimonials (Single, Grid, Split, Carousel), Pricing, Comparison Table, FAQ, CTA (band, Split, Card), Newsletter, Team, Contact (Cards, with Map, Offices, Map Section), Navbar (Centered, Search, Mega Menu), Footer (Simple, Newsletter, Corporate, Centered) | marketing-pages, mobile | navigation (mega menu), card, accordion, carousel |
+| Dialog, sheet or palette over a list (create, delete, preview, ⌘K, upgrade) | App | Create Record Dialog, Delete Confirmation, Record Preview Sheet, Command Palette, Upgrade Dialog | common-flows, delete-confirmation, record-page, permissions-and-access, enterprise-apps | dialog, drawer, popover (Command Dialog), card (Plan Card) |
+| Long or blocking flow (onboarding, setup, import) | Wizard | Multi-step Form, Onboarding Checklist, Welcome Role Select (starting screens: SCREENS / Auth, Onboarding) | multi-step-form | stepper, progress-and-slider |
+| Sign in, sign up, reset, 2FA, invite, onboarding | Auth | Sign In Split, Sign Up Split, Sign In, Sign Up, Forgot Password, Check Email, Reset Password, Two-Factor, Accept Invite, Welcome Role Select; starting screens on SCREENS / Auth | auth, form-presets, multi-step-form | input (OTP) |
+| Marketing page | Marketing | Banners (Announcement, with Action, Countdown, Floating), Navbar, Navbar Mobile, Hero (Centered, Split, with Screenshot, Prompt, with Logo Cloud, with Form, with Phone, Full-bleed Image, with Video, with Stats, Image Collage; all in example "Hero showcase"), Logo Cloud (Grid, Split, Marquee), Features (grid, Split, Bento, Bento Grid 2, with Screenshot, Tabs, How It Works, Checklist, Integrations Grid), Trust (Security and Compliance, Trust Strip), Stats (Cards, Split, Brand Band), Testimonials (Single, Grid, Split, Carousel), Pricing, Comparison Table, FAQ, CTA (band, Split, Card, with Screenshot), Newsletter (Split, Card), Team, Contact (Cards, with Map, Offices, Map Section), Navbar (Centered, Search, Mega Menu), Footer (Simple, Newsletter, Corporate, Centered) | marketing-pages, mobile | navigation (mega menu), card, accordion, carousel |
+| Mobile app landing page | Marketing | Navbar, Hero with Phone, Features, Testimonials, CTA, Footer | marketing-pages, mobile | (Store Badge) |
+| Pricing page | Marketing | Pricing with Comparison, Logo Marquee, Testimonial Grid, FAQ, CTA with Screenshot (example "Pricing page") | marketing-pages | card (Plan Card), tabs (Toggle Group), accordion |
+| About page | Marketing | About Hero, Mission with Figures, Our Story, Values, Team Grid, Testimonial Single, Logos Split, CTA Card (example "About page") | marketing-pages | description-list (Figure, Timeline Item), content (Feature Item), avatar |
+| Security or trust page | Marketing | Hero Centered, Security and Compliance, Trust Strip, FAQ, CTA Card | marketing-pages | badge (Trust Badge) |
 | Blog, article, newsroom | Marketing | Blog Grid, Blog Featured, Blog List, Blog Post Header, Article, News List | content-and-docs | content (Post Card, Code Block, Table of Contents) |
 | Inner page of a content or product site (detail, hub, search results, person, event, topic, report, legal) | Marketing | Header Detail, Header Listing, Header Search Results, Header Profile, Header Event, Header Topic, Header Report, Header Simple (Page Headers page), then Article, Blog List or sections | marketing-pages (§ Page headers), content-and-docs | content (Post Card compact for related links, Table of Contents), chip, badge |
 | Careers, jobs | Marketing | Careers List, Careers Benefits, Job Header, Article | marketing-pages | badge, chip |
 | Project plan with dates and dependencies | App | Gantt | (none) | boards-and-calendars |
-| Contact, locations | Marketing | Contact Cards, Contact with Map, Offices, Map Section | marketing-pages | input, image (Map) |
+| Contact page, locations | Marketing | Contact Cards, Contact with Map, Offices, Map Section, FAQ Grid (example "Contact page") | marketing-pages | input, image (Map) |
 | Documentation, help center | Docs, Marketing | Navbar Search, Help Hero, Help Categories, Help Popular Articles, Help Article List, Support Options, Docs Page Footer (examples "docs page", "Help center") | content-and-docs | content, navigation |
 | Changelog, status page | Marketing | Changelog, Status Page | content-and-docs | badge, alert |
 | Board (stages) | App | Kanban Board | search-and-filter | boards-and-calendars |
 | Calendar, schedule | App | Scheduler Week, Scheduler Month, Booking | booking | boards-and-calendars, date-picker |
-| Shop: product, cart, checkout | Marketing | Product Card, Product Detail, Order Summary, Address, Payment | commerce, form-presets | select (multi), input (number, group), drawer, carousel, rating |
+| Store home | Marketing | Store Navbar, Storefront Hero, Incentives, Product Carousel, Category Tiles, Promo Section, Testimonial Grid (store reviews), Store Footer (example "Storefront home") | commerce, marketing-pages | card (Product Card), carousel, badge (Trust Badge) |
+| Shop: category, product, cart, checkout | Marketing | Store Navbar, Category Filters, Product Grid, Product Detail, Product Quick View, Shopping Cart Page, Checkout Single Page, Order Confirmation, Order Summary, Address, Payment, Store Footer (examples "Category page", "Product page", "Cart page") | commerce, search-and-filter, form-presets | select (multi), input (number, group), drawer, carousel, rating, card (Product Card) |
 | Pick a date and time | App or Marketing | Booking | booking | date-picker |
 | Error, empty, success page | the current shell | Result | result-pages, empty-state | |
 | Mobile screen | Mobile | Navbar Mobile | mobile | drawer, navigation |
+| AI search results page | App | AI Search Answer, Load More (example "AI search page") | search-and-filter, ai-chat | ai-chat (AI Summary, Citation, Sources), pagination |
 | AI assistant (chat page) | App (history in Sidebar) | AI Chat Empty, AI Conversation (example "AI chat app") | ai-chat, empty-state | ai-chat, comments-and-chat |
 | AI on a screen (copilot panel, inline edit) | current shell | AI Assistant Panel, Inline AI | ai-chat | ai-chat, popover |
 | AI summary or suggested values on a record or form | current shell | example "AI on a record page" (AI Summary, AI Suggestion, AI Notice) | ai-chat, forms | ai-chat, card |
-| Agent doing a multi-step task | App or panel | example "agent at work" (Agent Plan, Artifact Card, Tool Call approval) | ai-chat, notifications | ai-chat |
+| Agent doing a multi-step task, agent run page | App or panel | Agent Task Run (run page); example "agent at work" (Agent Plan, Artifact Card, Tool Call approval) | ai-chat, approvals, notifications | ai-chat |
+| Transactional email (welcome, verify, sign-in link, reset, security notice, invite, invoice, receipt, payment failed, trial ending, digest, order confirmation) | Email template (600 column on a muted canvas; copy a `Screen / Email / *` from the Emails page) | Email / Header, Hero, Content, Button, Code, Details, Line Items, Callout, Stats, Article, Divider, Footer | email, auth, notifications, writing | (Email page) |
 
 ## By interaction
 

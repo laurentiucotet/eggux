@@ -79,6 +79,8 @@ Build only after the user agrees or says to go ahead.
   sizes set on frames inside an instance, so a fixed inner size cannot be fixed per use.
 - Default content is domain-neutral ("Acme", projects, customers, invoices) and realistic;
   domain-specific content belongs in examples.
+- Icons under 24 px: scale them (stroke = 2 x size / 24), never `resize()` with the 2 px stroke
+  left; a bold icon next to the Button icons is a defect.
 - Missing icon: draw it as one `Vector` in Lucide geometry (24 grid, 2 px stroke), clone an
   existing icon component for the frame, and add it to the Icons frame.
 - New pages go in A-Z order inside their section (COMPONENTS or BLOCKS), names without prefix.

@@ -25,6 +25,10 @@ matters.
 - Never notify users about their own actions.
 - Batch bursts ("Elena and 4 others commented").
 - Preferences per event and channel (`Block / Notification Preferences`); security emails stay on.
+- Email layouts come from the Email components and the Emails page templates; security emails have
+  no unsubscribe link (email.md).
+- Inbox page: Page Header with Mark all as read, line Tabs with counts, Notification Items grouped by
+  day in Cards, Empty State "all caught up"; screens SCREENS / Account, Notifications.
 
 ## Figma
 `Block / Notifications` (popover), `Badge Count`, `Toast`, `Block / Notification Preferences`.
