@@ -246,7 +246,7 @@
    "Name",
    "Role and rule (\"Finance manager · approves over €10,000\")",
    "Status Badge",
-   "Time",
+   "Time: drives the time line in every Status (\"22 Oct 2026, 10:30\", \"Assigned 2 h ago · due tomorrow\", \"After Finance\")",
    "Comment (Show comment)"
   ],
   "rules": [
@@ -255,7 +255,8 @@
    "Status=rejected always has a reason; Approve takes an optional comment",
    "Last step: Connector off",
    "Changing the request resets the steps that depend on what changed, and says so",
-   "Every decision is an audit log entry"
+   "Every decision is an audit log entry",
+   "Set the time line through the Time property in every Status; never type over the layer"
   ],
   "a11y": [
    "The chain is an ordered list; each step reads name, role, status and time",
@@ -993,8 +994,9 @@
   ],
   "anatomy": [
    "Image (fill on the \"image\" layer) with video/scrim",
+   "Content area: auto layout, padding 64 top, 128 bottom, 144 sides, content up to 640 wide",
    "Overline (Show overline)",
-   "Title",
+   "Title: display/lg, 1-2 lines",
    "Text",
    "One action Button",
    "Carousel Indicator bars with Pause",
@@ -1005,6 +1007,7 @@
    "No auto-advance with reduced motion",
    "Bars always come with Pause",
    "One action per slide",
+   "Title in 2 lines at most; the content area keeps 64 above and clears the bars below",
    "White text on video/scrim keeps 4.5:1 on any photo",
    "The image clips on purpose; never detach"
   ],
@@ -7317,7 +7320,8 @@
    "Same period for every item, said once nearby (\"Last 30 days\" in the header)",
    "Most important figure first, in the same order on every visit",
    "Items share the width equally; on narrow screens wrap to two columns, no horizontal scroll",
-   "Loading: Skeleton in each value; no data: \"No data\" in muted text, never 0"
+   "Loading: Skeleton in each value; no data: \"No data\" in muted text, never 0",
+   "Items fill the row height, so values stay aligned and dividers stay full height when an item has Show trend off"
   ],
   "a11y": [
    "Code as a <dl> with one dt and dd per figure",
@@ -8183,7 +8187,8 @@
    "Description says what backs it (\"Audited September 2026\", \"Data in the EU\")",
    "Link to the trust page",
    "Update or remove it when a certificate expires",
-   "Same order everywhere; 3-5 in a row"
+   "Same order everywhere; 3-5 in a row",
+   "Name and Description wrap inside the border when the badge is narrower than its text; set Fill in rows of equal badges"
   ],
   "a11y": [
    "The icon is aria-hidden; name and detail are text, not part of an image",
@@ -8320,8 +8325,9 @@
    "Wishlist: Button Icon ghost, top right (Show wishlist)",
    "Name: 2 lines",
    "Variant text: \"Sand · 3 colors\"",
+   "Rating (Show rating, off by default): exposed Rating sm with Count (\"(128)\"), set Value and Count on the instance",
    "Price, Old price (State=sale shows Old price struck through)",
-   "Action: Button (Show action), \"Add to cart\" or \"Notify me\" when sold out"
+   "Action: Button (Show action) \"Add to cart\"; State=sold-out shows \"Notify me\" with its own Show notify, independent of Show action"
   ],
   "rules": [
    "The whole card opens the product; Wishlist and the action button are the only other controls",
@@ -8331,7 +8337,9 @@
    "Add to cart opens the Mini Cart, never a new page",
    "Same photo ratio and background across a grid",
    "In grids set the card to Fill in a Grid auto layout (4 columns desktop, 2 mobile); minimum width 160",
-   "Pick the photo ratio once per grid on the exposed Image, never by resizing the image layer"
+   "Pick the photo ratio once per grid on the exposed Image, never by resizing the image layer",
+   "Show rating on every card of a grid or on none; the count is the number of reviews",
+   "Sold out keeps Notify me even when quick add (Show action) is off in the grid; turn Show notify off only when there is no restock"
   ],
   "a11y": [
    "One link for the card (on the name, stretched over the card)",
@@ -8583,7 +8591,7 @@
    "Asking for satisfaction: use CSAT Rating"
   ],
   "anatomy": [
-   "Header: Avatar, name, Verified Badge (Show verified), date",
+   "Header: Avatar, name, Verified Badge soft-success (Show verified), date",
    "Rating sm",
    "Title",
    "Text",

@@ -9,6 +9,10 @@
 - Repeated names and labels come from the `Content` collection (`references/content.md`): bind
   them, never retype "Save" or the company name.
 - Sentence case for everything: titles, buttons, menu items, labels.
+- Sample companies in library content come from the Logo set (Northwind, Lumora, Orbitly,
+  Fieldstone, Kestrel, Quintra, Halcyon, Brightpath, Corvid, Meridian, Tidewater, Vireo) or Acme;
+  never real or pop-culture companies. Real names only as functional references (SSO providers,
+  payment methods, "Continue with Google").
 
 ## Labels
 - Buttons: verb + object ("Create invoice", "Send reminder"); the same action has the same

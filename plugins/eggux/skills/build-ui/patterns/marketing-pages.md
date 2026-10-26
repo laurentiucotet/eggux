@@ -87,6 +87,9 @@ one decorative device and real imagery; start a landing page by copying the clos
 - To show a client's brand on a pitch or cover, set the frame to their mode; the `Showcase Light` / `Showcase Dark` modes and the pages on Showcase show what a rebrand does to the same blocks.
 - Every CTA gets a secondary action and a proof row (Avatar Group with photos and a Rating with a count).
 - After swapping `Image / Screenshot / *` in a Device Frame, reset the image height to the new ratio; the old aspect lock crops it.
+- To put a Background behind a hero, turn off `Show background fill` on Hero Centered (and `Show panel fill` on Hero Prompt) instead of clearing fills.
+- A block with its own decoration (CTA Card glow) counts toward the one-device rule; turn `Show decoration` off when the page has a Background.
+- Set the brand with the `Logo` property on Navbar and Footer blocks (any `Logo / *` or the client logo).
 - Keep a hero `Background / Grid` at about 30% layer opacity so muted text over grid lines stays 4.5:1.
 - Never hide items inside a block's grid to change the count (the grid keeps its rows); pick the block whose count fits.
 - In the Default neutral theme `foreground/brand` is near black, so an accent phrase disappears; use a second headline line in `foreground/muted` or let photography carry the page.

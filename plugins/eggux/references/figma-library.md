@@ -248,7 +248,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 1:1, 3:4 | Show caption, Show image + Image (swap: Image / * from the Imagery page). Without an image: dot pattern and an image icon. Ratio locked: FILL keeps the height in proportion |
 | Image | `Image Cropper` | Shape: square, circle | Image layer (fill), scrim, selection that stays centered, zoom Slider, rotate, Cancel, Save |
 | Image | `Avatar Upload` | State: empty, filled, uploading, error | Label, Show label, Hint, Show remove. Profile or logo picture in settings: the avatar, a Label (Show label), a Hint with the upload rules, Upload or Change (exposed Button, set its Label, e.g. |
-| Sections (blocks) | `Section Header` | Align: center, left | Overline, Title (heading/h2), Description |
+| Sections (blocks) | `Section Header` | Align: center, left | Overline (`foreground/brand` in both Align values; do not override), Title (heading/h2), Description |
 | Page Shells | `Page Shell / App`, `/ Marketing`, `/ Auth` | - | Page (native slot); Sidebar and Top Bar exposed in App |
 | Page Shells | `Page Shell / Mobile` | - | 390 x 844. Mobile Header + Page (native slot) + Bottom Nav (exposed, `Bottom nav` boolean) |
 | Page Shells | `Page Shell / Wizard` | - | Logo, Step text, Save and exit, Progress, Page (native slot, 672), Back / Continue |

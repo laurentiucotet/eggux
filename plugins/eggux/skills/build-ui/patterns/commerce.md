@@ -22,6 +22,8 @@ page (BLOCKS): Product Detail, Order Summary; examples "cart sheet" and "checkou
   (Product Cards with ratings), one promo band, category tiles with photos, a featured collection
   with a lifestyle photo, reviews with photos, Newsletter with a first-order code, a service strip
   (Trust Badges), Footer with payment methods. Example: `Example / Showcase / Tidewater store`.
+- Turn on `Show rating` on every Product Card of a grid or on none; sold-out cards keep Notify me
+  (`Show notify`) even with quick add off.
 - Sale prices sit on `background/default` or the muted section band, never on `background/muted`
   (red on it drops to 4.43:1 in Light).
 
