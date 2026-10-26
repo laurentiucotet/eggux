@@ -55,6 +55,11 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
 9. Contact (when sales talk to every customer)
 10. Footer
 
+Full examples on the Showcase page of the library: `Example / Showcase / Orbitly SaaS` (Showcase
+Light), `Meridian Enterprise` (Corporate Light), `Lumora AI product` (Showcase Dark) and
+`Tidewater store` with its product page (Light). Each alternates default and muted bands, uses
+one decorative device and real imagery; start a landing page by copying the closest one.
+
 ## Rules
 - One primary CTA repeated (same label) in Hero, Pricing and the final CTA band.
 - Each section answers one question; its Section Header title says the answer, not the topic.
@@ -81,6 +86,12 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
 - Feature, step and bento icons sit in an `Icon Tile`: neutral by default, brand for one accent grid, gradient for one highlighted item; one Style per grid. In a Features block instance, override the icon frame fill with `icon-tile/brand-bg` and the icon with `icon-tile/brand-fg`.
 - To show a client's brand on a pitch or cover, set the frame to their mode; the `Showcase Light` / `Showcase Dark` modes and the pages on Showcase show what a rebrand does to the same blocks.
 - Every CTA gets a secondary action and a proof row (Avatar Group with photos and a Rating with a count).
+- After swapping `Image / Screenshot / *` in a Device Frame, reset the image height to the new ratio; the old aspect lock crops it.
+- Keep a hero `Background / Grid` at about 30% layer opacity so muted text over grid lines stays 4.5:1.
+- Never hide items inside a block's grid to change the count (the grid keeps its rows); pick the block whose count fits.
+- In the Default neutral theme `foreground/brand` is near black, so an accent phrase disappears; use a second headline line in `foreground/muted` or let photography carry the page.
+- On a full-bleed photo hero keep the text white over the block scrim and measure the brightest pixel under it (4.5:1); skip the accent phrase there.
+- In dark modes alternate `background/default` and the muted band per section and keep cards on `background/card`; light product screenshots become the brightest area, so give them a Device Frame and space around.
 
 ## Cookie consent
 - Needed before any non-essential cookie (analytics, ads, embeds that track). Necessary cookies

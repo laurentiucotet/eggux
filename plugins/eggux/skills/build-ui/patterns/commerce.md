@@ -18,6 +18,13 @@ page (BLOCKS): Product Detail, Order Summary; examples "cart sheet" and "checkou
   Separator above).
 - After payment: `Block / Result` success with the order number, email confirmation, next steps.
 
+- Store home order: Announcement Banner, Navbar with cart, photo hero, proof stats, bestsellers
+  (Product Cards with ratings), one promo band, category tiles with photos, a featured collection
+  with a lifestyle photo, reviews with photos, Newsletter with a first-order code, a service strip
+  (Trust Badges), Footer with payment methods. Example: `Example / Showcase / Tidewater store`.
+- Sale prices sit on `background/default` or the muted section band, never on `background/muted`
+  (red on it drops to 4.43:1 in Light).
+
 ## Related components
 - Checkout addresses use `Address Autocomplete` with manual entry; coupon codes use `Inline Form`;
   prices and limits with a currency use `Currency Input`.
