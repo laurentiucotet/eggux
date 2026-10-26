@@ -1,6 +1,6 @@
 # Popover
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -64,6 +64,7 @@ Tokens and styles:
 - Spacing and size: `spacing/2`, `spacing/4`, `spacing/72`
 - Radius: `radius/md`
 - Text styles: `body/small`, `ui/label`
+- Effects: `shadow/md`
 
 Guides: [color-picker](../../skills/build-ui/components/color-picker.md), [date-picker](../../skills/build-ui/components/date-picker.md), [popover](../../skills/build-ui/components/popover.md), [tooltip](../../skills/build-ui/components/tooltip.md), [tour](../../skills/build-ui/components/tour.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
@@ -122,6 +123,7 @@ Tokens and styles:
 - Spacing and size: `spacing/1`, `spacing/6`
 - Radius: `radius/md`
 - Text styles: `body/small`
+- Effects: `shadow/md`
 
 Guides: [popover](../../skills/build-ui/components/popover.md), [select](../../skills/build-ui/components/select.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
@@ -250,6 +252,7 @@ Tokens and styles:
 - Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/4`, `spacing/80`
 - Radius: `radius/md`
 - Text styles: `body/small`, `ui/caption`, `ui/label`
+- Effects: `shadow/md`
 
 Guides: [popover](../../skills/build-ui/components/popover.md)
 
@@ -302,6 +305,7 @@ Tokens and styles:
 - Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`
 - Radius: `radius/md`, `radius/sm`
 - Text styles: `body/lead`, `ui/caption`
+- Effects: `shadow/md`
 
 Guides: [popover](../../skills/build-ui/components/popover.md)
 
@@ -352,6 +356,7 @@ Tokens and styles:
 - Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/3`
 - Radius: `radius/lg`, `radius/md`
 - Text styles: `ui/caption`, `ui/label`
+- Effects: `shadow/md`
 
 Guides: [popover](../../skills/build-ui/components/popover.md)
 
@@ -411,6 +416,7 @@ Tokens and styles:
 - Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
 - Radius: `radius/md`
 - Text styles: `body/small`, `ui/label`
+- Effects: `shadow/md`
 
 Guides: [popover](../../skills/build-ui/components/popover.md)
 

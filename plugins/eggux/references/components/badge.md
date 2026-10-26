@@ -1,12 +1,12 @@
 # Badge
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Badge](#badge) | 14 | - |
+| [Badge](#badge) | 24 | - |
 | [Badge Count](#badge-count) | 4 | - |
 | [Status Dot](#status-dot) | 5 | - |
 | [Badge List](#badge-list) | 1 | Tags |
@@ -17,15 +17,16 @@ On the Figma page: "Example / dataset header", "Example / filter panel", "Exampl
 
 ## Badge
 
-Component set · 14 variants · default size 53 × 20
+Component set · 24 variants · default size 53 × 20
 
-shadcn Badge plus EGG status variants. Shape: rounded (default) or pill. Options: Icon, Dot (status dot), Count (number after the label). Text carries the meaning; map each status to one variant. Usage: eggux build-ui/components/badge.md
+shadcn Badge plus EGG status variants. Solid: default, secondary, destructive, outline, success, warning, info. Soft (tinted fill, colored text, calm color for tables and lists): soft-success, soft-warning, soft-destructive, soft-info, soft-neutral; their colors come from badge/soft-{status}-bg and badge/soft-{status}-fg (4.5:1 or more in every mode). Shape: rounded (default) or pill. Options: Icon, Dot (status dot), Count (number after the label). Text carries the meaning; map each status to one variant and use one style (solid or soft) per table. Usage: eggux build-ui/components/badge.md
 
 **Use for**
 
 - Status of an object (Paid, Overdue, Draft) next to its name
 - Category of an item
 - A count after a label (Count on: "Invoices 12")
+- Variant=soft-* for statuses repeated down a table or list (Paid, Pending, Overdue), so the page gets calm color
 
 **Not for**
 
@@ -35,28 +36,33 @@ shadcn Badge plus EGG status variants. Shape: rounded (default) or pill. Options
 
 **Anatomy**
 
-1. Icon or Dot (optional)
-2. Label
-3. Count value (Show count)
+1. Variant: solid default, secondary, destructive, outline, success, warning, info; soft soft-success, soft-warning, soft-destructive, soft-info, soft-neutral
+2. Shape: rounded or pill
+3. Icon (Show icon, Icon swap) or Dot (Show dot), in the label color
+4. Label
+5. Count value (Show count)
 
 **Content and behavior**
 
 - Text carries the meaning; color only reinforces it
 - One or two words, sentence case
 - Map each status to one Variant once and reuse it; a status never appears in two colors
-- Neutral: secondary or outline; done: success; pending: warning; failed: destructive; new: info
+- Neutral: secondary, outline or soft-neutral; done: success; pending: warning; failed: destructive; new: info
+- One style per table or list: all solid or all soft
+- Soft colors come from badge/soft-*-bg (status color at opacity 10 in Light, 20 in Dark) and badge/soft-*-fg; never recolor by hand
 - Not clickable
 - Next to the primary information of a row, never instead of it
 
 **Accessibility**
 
-- Label meets 4.5:1 on every Variant; warning uses dark text
+- Label meets 4.5:1 on every Variant; warning uses dark text (solid) or amber/800 (soft)
+- Soft labels measured 5.5 to 11 : 1 in Light, Dark, Corporate Light and Corporate Dark
 - Never a color or dot alone
 - Not focusable: it is static text
 
 | Variant property | Values |
 |---|---|
-| Variant | default, secondary, destructive, outline, success, warning, info |
+| Variant | default, secondary, destructive, outline, success, warning, info, soft-success, soft-warning, soft-destructive, soft-info, soft-neutral |
 | Shape | rounded, pill |
 
 | Property | Type | Default |
@@ -71,14 +77,14 @@ shadcn Badge plus EGG status variants. Shape: rounded (default) or pill. Options
 Icons: check
 
 Tokens and styles:
-- Colors: `background/destructive`, `background/info`, `background/primary`, `background/secondary`, `background/success`, `background/warning`, `border/default`, `foreground/default`, `foreground/destructive`, `foreground/info`, `foreground/primary`, `foreground/secondary`, `foreground/success`, `foreground/warning`
+- Colors: `background/destructive`, `background/info`, `background/primary`, `background/secondary`, `background/success`, `background/warning`, `badge/soft-destructive-bg`, `badge/soft-destructive-fg`, `badge/soft-info-bg`, `badge/soft-info-fg`, `badge/soft-neutral-bg`, `badge/soft-neutral-fg`, `badge/soft-success-bg`, `badge/soft-success-fg`, `badge/soft-warning-bg`, `badge/soft-warning-fg`, `border/default`, `foreground/default`, `foreground/destructive`, `foreground/info`, `foreground/primary`, `foreground/secondary`, `foreground/success`, `foreground/warning`
 - Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`
 - Radius: `radius/full`, `radius/md`
 - Text styles: `ui/label-small`
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [card](../../skills/build-ui/components/card.md), [indicators](../../skills/build-ui/components/indicators.md), [table](../../skills/build-ui/components/table.md), [action-feedback](../../skills/build-ui/patterns/action-feedback.md), [permissions-and-access](../../skills/build-ui/patterns/permissions-and-access.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
-Code: shadcn `Badge` (+ success, warning, info variants) (Status Dot: custom span + label)
+Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; one style per table)
 
 ## Badge Count
 
@@ -131,7 +137,7 @@ Tokens and styles:
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [drawer](../../skills/build-ui/components/drawer.md), [notifications](../../skills/build-ui/patterns/notifications.md)
 
-Code: shadcn `Badge` (+ success, warning, info variants) (Status Dot: custom span + label)
+Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; one style per table)
 
 ## Status Dot
 
@@ -184,7 +190,7 @@ Tokens and styles:
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [indicators](../../skills/build-ui/components/indicators.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: shadcn `Badge` (+ success, warning, info variants) (Status Dot: custom span + label)
+Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; one style per table)
 
 ## Badge List
 

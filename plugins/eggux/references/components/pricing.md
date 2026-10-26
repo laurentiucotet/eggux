@@ -1,6 +1,6 @@
 # Pricing
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -136,6 +136,7 @@ Tokens and styles:
 - Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/5`, `spacing/6`
 - Radius: `radius/xl`
 - Text styles: `body/small`, `heading/h4`, `ui/label`
+- Effects: `shadow/lg`
 
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 

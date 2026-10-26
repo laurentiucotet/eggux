@@ -1,6 +1,6 @@
 # Menu
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -250,6 +250,7 @@ Tokens and styles:
 - Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`
 - Radius: `radius/md`
 - Text styles: `ui/caption`, `ui/label`
+- Effects: `shadow/md`
 
 Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md)
 
