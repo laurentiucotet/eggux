@@ -59,6 +59,7 @@ When a rule needs explanation, move the detail into a pattern and keep one line 
   muted too: on a muted card, use the real image or put the card on `background/accent`.
 - Accent text (a highlighted headline word, inline links) uses `foreground/brand`, never a
   `background/*` token.
+- Imagery: sample photos and logos in the library are placeholders for real content; replace them before shipping, give every meaningful image alt text, and keep 4.5:1 for text over images.
 
 ## Enterprise
 - Lists people work in all day use the data grid: saved views, filters with counts, bulk

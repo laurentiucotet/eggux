@@ -14,6 +14,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 the `image` layer of the instance. `Status` shows the online dot.
 - Shape: circle for people, square for companies, workspaces and apps (one shape per list).
   Size xs (20) for inline mentions and dense table cells.
+- Type=image with a face from the `Photo` swap (Image / Person / *) makes people real in testimonials, teams and comments; the faces are samples: ship the person's photo, or initials when there is none. Never repeat one face in one block.
 
 ## Avatar Group
 - For assignees, participants, "shared with". Show 3-5 avatars, then "+N".

@@ -38,6 +38,7 @@ with Image Placeholders, Carousel Slides, Product Cards, Post Cards or testimoni
 viewport clips on purpose. Put photos as fill on the `image` layer (Gallery, Hero) or on the
 nested Image Placeholder. `Stress test / Carousel` covers long headlines, big counters and no
 thumbnails.
+- Slides use Image Placeholder with `Show image` on and a photo from the Imagery page; never repeat one photo in a carousel.
 
 ## Code
 shadcn `Carousel` (Embla); thumbnails with Embla's thumbs pattern; Lightbox as a `Dialog`

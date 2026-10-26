@@ -20,7 +20,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Action Bar` | `<div class="flex gap-2 justify-end">` of shadcn `Button` (justify-start, justify-center) | Leading button with `mr-auto`; one primary |
 | `Badge`, `Badge Count`, `Status Dot` | shadcn `Badge` (+ success, warning, info variants) | Status Dot: custom span + label |
 | `Chip`, `Tag` | custom on `Badge` + remove `Button` | |
-| `Avatar`, `Avatar Group` | shadcn `Avatar` | Group: negative margin + ring |
+| `Avatar`, `Avatar Group` | shadcn `Avatar` | `Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`. Group: negative margin + ring |
 | `Byline` | shadcn `Avatar` + name and detail (`flex items-center gap-3`) | Name links to the profile; dates in `<time>` |
 | `Separator` | shadcn `Separator` | |
 | `Input`, `Field`, `Textarea` | shadcn `Input`, `Label`, `Textarea`, `Form` (react-hook-form) | Field = `FormItem` with label, description, message |
@@ -110,7 +110,9 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Page Header` | custom `<header>` with a heading, text and shadcn `Button` | One per page |
 | `Mobile Header` | custom header with shadcn `Button size="icon"` and `Avatar` | |
 | `Bottom Nav`, `Bottom Nav Item` | custom `<nav>` of links with `env(safe-area-inset-bottom)` | Current item `aria-current="page"` |
-| `Image Placeholder` | `<img>` or `next/image` with `aspect-ratio` and `object-cover` | |
+| `Image Placeholder` | `<img>` or `next/image` with `aspect-ratio` and `object-cover` | `Show image` = render the image; off = muted box with a dot background and lucide `Image` icon (loading or missing image). The `Image` swap picks a sample photo: replace with the real `src` and alt |
+| `Logo / *` (Northwind, Lumora, Orbitly, Fieldstone, Kestrel, Quintra, Halcyon, Brightpath, Corvid, Meridian, Tidewater, Vireo) | inline SVG (`fill="currentColor"`, height 32, `role="img"` + `aria-label="<Name>"`) exported from the Brand page | Fictional sample logos for mockups only; ship real customer logos with permission |
+| `Image / Person / *`, `Image / Product / *`, `Image / Office / *`, `Image / Cover / *`, `Image / Abstract / *`, `Image / City / *` | none: sample content | Unsplash License sample photos on the Imagery page, not part of the CC BY 4.0 file license. Replace with project images (`src` + alt); never ship them |
 | `Image Figure` | `<figure>` with `<img>` or `next/image` (`aspect-*`, `object-cover`, `rounded-lg`) + `<figcaption className="text-sm text-muted-foreground">` | Credit in a `<small>` inside the figcaption |
 | `Field Preset` | `Field` (`FormItem`) + shadcn `Input` or `Select` with `type`, `inputmode` and `autocomplete` set per preset | See `skills/build-ui/patterns/form-presets.md` |
 
@@ -247,7 +249,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Announcement Pill` | `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` | One at a time |
 | `Trust Badge` | custom: lucide icon + name and detail, `<a>` to the trust page | Only current claims |
 | `Testimonial Card` | shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>` |  |
-| `Logo Tile` | `<li>` with `<img alt>` or inline SVG in `currentColor` | `<a>` only when it links to a case study or integration |
+| `Logo Tile` | `<li>` with `<img alt>` or inline SVG in `currentColor` (`text-foreground`, `opacity-70` for Style=plain) | Logo is an instance swap; `<a>` only when it links to a case study or integration; alt = company name |
 | `Logo`, `Logo Mark` | inline SVG in `currentColor` (or `<img alt>` with the product name) | Logo Mark is the symbol alone |
 | `Map` | static map image or an embedded map (Mapbox, Google) | Address in text next to it |
 | `Device Frame` | custom `<figure>`: border, top bar (dots, URL), `<img>` or live component | Screenshot at 1:1 |
