@@ -900,6 +900,7 @@
    "Content about one object or topic, set apart from the page",
    "Variant=outline inside panels, dialogs and long lists of cards",
    "Variant=muted for secondary or summary information and placeholders",
+   "Variant=inverted for the one card that must stand out on a page (an upgrade offer, a key summary)",
    "Size=sm for grids of many cards, sidebars and dashboards"
   ],
   "avoid": [
@@ -908,27 +909,32 @@
    "Groups inside a card: use spacing or a Separator, never a nested card"
   ],
   "anatomy": [
+   "Variant: default (background/card + border/default), outline (border only), muted (background/muted), inverted (foreground/default surface, background/default text)",
    "Header slot (Card Header): Icon (Show icon, Icon swap, 20 px), Title, Description, Action slot top right",
    "Content slot",
-   "Footer slot (Card Footer): Actions slot"
+   "Footer slot (Card Footer): Actions slot",
+   "Inverted default slot content is recolored: titles background/default, descriptions background/default at opacity/70, ghost icons background/default"
   ],
   "rules": [
    "Never nest cards in cards",
    "Elevation=true only for one card that must stand out or floats; never a whole grid",
+   "Variant=inverted on one card per view, never a whole grid; it flips to a near-white card in Dark",
    "One variant per group of cards; equal height and structure per row",
    "Whole card clickable only with one destination; otherwise the title is the link",
    "Footer: one primary action at most, usually none in a grid",
    "Padding comes from density/card-* tokens; change the tokens, never single instances",
    "Turn off Show header or Show footer when unused; never detach",
-   "Card Header icon: on all cards of a row or none; it names the card type, never decorates"
+   "Card Header icon: on all cards of a row or none; it names the card type, never decorates",
+   "Content you place in an inverted card's slots uses inverted colors: text background/default (opacity/70 for secondary), Buttons secondary or outline, never default (primary is under 3:1 on the inverted surface in Corporate)"
   ],
   "a11y": [
    "A clickable card is one link with a hover state and a focus ring",
    "The Card Header Title is a heading at the right level for the page",
    "Action slot Button Icons have labels and tooltips",
-   "The Card Header icon is decorative (aria-hidden); the Title carries the meaning"
+   "The Card Header icon is decorative (aria-hidden); the Title carries the meaning",
+   "Inverted text is background/default on foreground/default: 19.8:1 Light, 19.0:1 Dark, 17.9:1 Corporate Light; secondary text at 70% stays above 7:1"
   ],
-  "code": "shadcn Card + cva: variant (default, outline, muted), size (default, sm), elevated (shadow-md). CardHeader icon: optional Lucide icon (size-5) before CardTitle.",
+  "code": "shadcn Card + cva: variant (default, outline, muted, inverted = bg-foreground text-background border-foreground), size (default, sm), elevated (shadow-md). CardHeader icon: optional Lucide icon (size-5) before CardTitle.",
   "guides": [
    "skills/build-ui/components/card.md"
   ]
@@ -3574,6 +3580,7 @@
   "use": [
    "Blog grids of 3: Layout=vertical",
    "The featured post at the top of a list: Layout=horizontal",
+   "Layout=overlay: one lead story, a hero grid of covers or a carousel where the photo carries the post",
    "News, case studies, changelog entries and carousels of posts",
    "Layout=compact: related, most read and up next lists in an aside or under an article",
    "Size=sm: dense grids of 4, lists in a column next to a featured story, dashboards"
@@ -3591,7 +3598,8 @@
    "Excerpt, 3 lines max (Show excerpt)",
    "Author with Avatar (Show author)",
    "Compact: optional 1:1 image (Show image, 64 px, 48 px in sm), Title on 2 lines (ui/label, ui/label-small in sm), meta in Date (type · date)",
-   "Size: default or sm (smaller gaps and titles) for every Layout"
+   "Size: default or sm (smaller gaps and titles) for every Layout",
+   "Overlay: full-bleed photo (exposed Image Placeholder, 1:1 in default and 4:3 in sm so the locked ratio covers the card, centered crop, Show image on, default Image / Cover / 02), a 64 px media/scrim-fade to media/scrim gradient, then a media/scrim panel with category Badge, date, title and author in media/foreground; no excerpt; 352 x 440 (sm 352 x 320), radius/xl, clips"
   ],
   "rules": [
    "The whole card is one link to the article",
@@ -3600,14 +3608,16 @@
    "Cards in a grid share the same structure",
    "Compact: 3-5 items per list; meta says type and date (\"Guide · 12 Oct 2026\"); image on all items or none",
    "One Size per list or grid; sm for lists next to a featured story and for grids of 4",
-   "Never restyle the title per instance: switch Size instead"
+   "Never restyle the title per instance: switch Size instead",
+   "Overlay text sits only on the solid media/scrim panel, never on the fade; choose photos with the subject in the top half"
   ],
   "a11y": [
    "One link per card; the Title is the link text",
    "The image has alt text, or alt=\"\" when decorative",
-   "Focus ring around the whole card"
+   "Focus ring around the whole card",
+   "Overlay text is media/foreground on media/scrim (black 60%): 5.7:1 even over a white pixel, in every theme"
   ],
-  "code": "shadcn Card with image, Badge and Avatar, wrapped in one link; size (default, sm) via cva: gaps, title class, image basis-1/3 min-w-[120px] max-w-[240px] in horizontal sm.",
+  "code": "shadcn Card with image, Badge and Avatar, wrapped in one link; size (default, sm) via cva: gaps, title class, image basis-1/3 min-w-[120px] max-w-[240px] in horizontal sm. Overlay: relative aspect-[4/5] overflow-hidden rounded-xl, <img> absolute inset-0 object-cover, text panel absolute bottom-0 bg-black/60 text-white with a bg-gradient-to-b from-transparent to-black/60 strip above.",
   "guides": [
    "skills/build-ui/components/content.md",
    "skills/build-ui/components/card.md",
@@ -4506,24 +4516,29 @@
   "use": [
    "One number people check (revenue this month)",
    "A row of key metrics at the top of a report or dashboard",
-   "Dashboard sections next to a Chart Card"
+   "Dashboard sections next to a Chart Card",
+   "Layout=compact: dense rows, sidebars and mobile dashboards",
+   "Layout=horizontal: when the shape of the trend matters next to the number"
   ],
   "avoid": [
    "A trend people need to read over time: use a chart in a Chart Card",
    "A goal against a target: use Progress Card"
   ],
   "anatomy": [
+   "Layout: vertical (default), compact, horizontal",
    "Label (body/small, muted)",
-   "Value (heading/h2, one line)",
+   "Value (heading/h2 in vertical and horizontal, heading/h3 in compact; one line)",
    "Change Badge (Show change), soft by Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus",
-   "Sparkline (Show sparkline, off by default): Sparkline in chart/1 under the value",
-   "Trend line and Footnote (Show footer)",
+   "Sparkline (vertical: Show sparkline, off by default, under the value; horizontal: always on, 120 x 48, right of the value)",
+   "Trend line and Footnote (Show footer; vertical and horizontal)",
+   "Icon Tile (compact): exposed, Style=brand, Size default; set Icon and Style on the instance",
    "Show change and Show trend hide the change badge and the trend row when there is no comparison"
   ],
   "rules": [
    "Trend sets the icon and the change badge tone; edit the change and trend line per instance",
    "When up is bad (costs, churn), switch the change badge Variant to soft-destructive on the instance",
    "Direction is shown by icon and sign, never color alone",
+   "One Layout per row; compact rows keep the same Icon Tile Style",
    "Show sparkline on all cards of a row or none; same period in each",
    "Value stays on one line; amounts in the locale format (€48,250)",
    "The Footnote says what it is compared to",
@@ -4536,7 +4551,7 @@
    "The sparkline is decorative (aria-hidden); the change text carries the meaning",
    "Change badge text meets 4.5:1 in every mode (soft badge tokens)"
   ],
-  "code": "shadcn Card + cva (variant, size, elevated); Stat Card is custom content; change = Badge soft variant; sparkline = Recharts LineChart without axes, var(--chart-1).",
+  "code": "shadcn Card + custom content; change = Badge soft variant; sparkline = Recharts LineChart without axes, var(--chart-1). Layout compact: flex items-center gap-3 p-4 with an Icon Tile; horizontal: flex items-end justify-between with the sparkline w-30 h-12.",
   "guides": [
    "skills/build-ui/components/card.md",
    "skills/build-ui/components/charts.md",
@@ -5654,6 +5669,7 @@
   "use": [
    "Experts, authors and speakers on a content or product page",
    "Contacts on a record or account page",
+   "Layout=photo: team, speaker and leadership pages where faces matter",
    "Team directories and \"Who to talk to\" sections"
   ],
   "avoid": [
@@ -5662,25 +5678,28 @@
    "Avatar and name in a table: use Table Cell User"
   ],
   "anatomy": [
-   "Avatar slot: photo or initials",
+   "Layout: vertical (280), horizontal (400), photo (280, no card surface)",
+   "Avatar slot: photo or initials (hidden in photo)",
+   "Photo (Layout=photo): exposed Image Placeholder 3:4, 280 x 350, radius/xl, default Image / Person / 05",
    "Name (heading/h4), Role, Organization (Show organization)",
    "Tags slot: expertise as Badges (Show tags)",
    "Contact slot: Meta Items with mail, phone, link (Show contact)",
    "Actions slot: View profile, Follow (Show actions)"
   ],
   "rules": [
-   "vertical in grids of 3-4, horizontal in asides and lists",
+   "vertical in grids of 3-4, horizontal in asides and lists, photo on team and speaker pages",
    "Role says what they do here; Organization only when people come from several",
+   "Photo layout: real photos with the same crop, light and background across the grid; turn Show tags and Show contact off unless the page is a directory",
    "Contact details people copy are plain text",
    "Two tags at most; the rest on the profile",
-   "Photos square-cropped, same style across the grid"
+   "Photos square-cropped or 4:5, same style across the grid"
   ],
   "a11y": [
    "The name is the card heading at the page's level",
    "Email and phone are links (mailto:, tel:)",
    "A photo has the person's name as alt, or alt=\"\" when the name is next to it"
   ],
-  "code": "shadcn Card with Avatar, Badge and links.",
+  "code": "shadcn Card with Avatar, Badge and links; Layout=photo: no Card, an <img> aspect-[4/5] rounded-xl object-cover above the name.",
   "guides": [
    "skills/build-ui/components/card.md"
   ]
@@ -5763,11 +5782,12 @@
   ]
  },
  "Quote": {
-  "summary": "A quotation in running content: default with a left rule inside an article, pull to break up a long page.",
+  "summary": "A quotation in running content: default with a left rule inside an article, pull to break up a long page, large for one quote that is a section on its own.",
   "use": [
    "A sentence from a person quoted in an article or case study",
    "One strong line between sections of a long page (Variant=pull)",
-   "An expert's view next to data"
+   "An expert's view next to data",
+   "One quote as its own page section, such as the proof section of a landing page (Variant=large)"
   ],
   "avoid": [
    "Customer proof on a marketing page: use Testimonial Card or Block / Testimonials",
@@ -5775,13 +5795,14 @@
    "Code or commands: use Code Block"
   ],
   "anatomy": [
-   "Rule on the left (default) or a quote mark (pull)",
-   "Quote text: body/large (default), heading/h3 (pull)",
+   "Rule on the left (default) or a quote mark (pull, large: display/xl mark)",
+   "Quote text: body/large (default), heading/h3 (pull), display (large, 720 wide)",
    "Attribution: Avatar (Show avatar), Name, Role (Show attribution)"
   ],
   "rules": [
    "Word for word, with permission; no quotation marks in the text",
    "One pull quote per page section, never two in a row",
+   "Variant=large once per page, under 20 words, with generous space above and below",
    "Attribution names the person and their role at the time",
    "Under 40 words; longer passages stay in the body text"
   ],
@@ -5790,7 +5811,7 @@
    "The quote mark is decorative",
    "Text contrast as body text, never muted"
   ],
-  "code": "<figure><blockquote> with <figcaption>; Tailwind border-l-2 for the default variant.",
+  "code": "<figure><blockquote> with <figcaption>; Tailwind border-l-2 for the default variant; pull text-2xl centered; large text-5xl font-extrabold centered max-w-3xl.",
   "guides": [
    "skills/build-ui/components/content.md",
    "skills/build-ui/patterns/content-and-docs.md"
@@ -5915,6 +5936,7 @@
    "Feature grids of 3 or 4 on marketing pages",
    "Benefits on a careers page",
    "What a plan or product does, in a two-column list (Layout=inline)",
+   "Layout=card: a grid on a muted or busy section, or items that each link to their own page",
    "Under a centered Section Header (Layout=centered)",
    "\"How it works\" sections with numbered steps (Marker=number)"
   ],
@@ -5925,24 +5947,28 @@
    "Steps people do in the product (a wizard): use Stepper"
   ],
   "anatomy": [
-   "Marker: icon tile (Marker=icon, Icon swap) or step number circle (Marker=number, Number)",
+   "Layout: stacked, inline, centered, card",
+   "Marker: icon tile (Marker=icon, Icon swap; neutral tile 40, background/muted, radius/md) or step number circle (Marker=number, Number)",
    "Title: body/large",
    "Description (Show description)",
-   "Link (Show link): Button link"
+   "Link (Show link): Button link",
+   "Card (Layout=card): background/card, border/default, radius/xl, padding spacing/6, gap spacing/4"
   ],
   "rules": [
    "Same Layout, icon style and text length across a grid",
+   "Layout=card for the whole grid or none; cards in a row share height (Fill in a grid)",
    "Title in 2-5 words; description in one or two lines",
    "One idea per item; no bullet lists inside",
    "Link only when there is a page that explains more",
-   "Marker=number only when order matters (\"How it works\", 3-4 steps); otherwise Marker=icon"
+   "Marker=number only when order matters (\"How it works\", 3-4 steps); otherwise Marker=icon",
+   "Layout=card with Show link when every item has its own page; the card is not clickable as a whole unless the link is the only action"
   ],
   "a11y": [
    "The icon is decorative (aria-hidden)",
    "The title is a heading one level below the section title",
    "Link text names the destination, not only \"Learn more\" when several sit together"
   ],
-  "code": "<div> with an icon, <h3> and <p>; grid of 3 or 4 columns.",
+  "code": "<div> with an icon, <h3> and <p>; grid of 3 or 4 columns. Layout=card: shadcn Card (rounded-xl border bg-card p-6 gap-4) around the same content.",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/components/content.md"
@@ -8201,7 +8227,9 @@
   "use": [
    "Block / Pricing with 2-4 plans side by side",
    "Plan choice in billing settings and upgrade dialogs",
-   "One recommended plan next to a short comparison"
+   "One recommended plan next to a short comparison",
+   "Variant=inverted: the recommended plan when a border is not enough (dark pricing sections stay default)",
+   "Variant=compact: 4+ plans, add-ons, seat packs or credits in a list"
   ],
   "avoid": [
    "The detailed feature comparison: use Block / Comparison Table",
@@ -8210,28 +8238,35 @@
    "Current plan usage in settings: use Usage Meter"
   ],
   "anatomy": [
+   "Variant: default, featured, inverted, compact",
    "Title",
    "Description: who it is for, one sentence",
    "Price (exposed)",
-   "CTA: Button (primary when Variant=featured)",
-   "Separator",
-   "Features title (Show features title): \"Everything in Starter, plus:\"",
-   "Features slot: Check Items"
+   "CTA: Button (outline in default and compact, primary in featured, secondary in inverted)",
+   "Separator (not in compact)",
+   "Features title (Show features title): \"Everything in Starter, plus:\" (not in compact)",
+   "Features slot: Check Items (hidden in compact)",
+   "Inverted: foreground/default surface, background/default text, description and Check Items at opacity/70 or background/default",
+   "Compact: one row, 720 wide: name and description (fill), Price, CTA; padding spacing/4 x spacing/6"
   ],
   "rules": [
-   "Variant=featured on one recommended plan only, with the primary button",
+   "One recommended plan only: Variant=featured or Variant=inverted, never both on a page",
+   "featured on light sections with the primary button; inverted keeps the secondary button (primary is under 3:1 on the inverted surface in Corporate)",
    "2-4 plans, cheapest first, the same order of features",
+   "Variant=compact for 4 or more options or add-ons, stacked in a list with the same width; link to the comparison table for features",
    "Enterprise says \"Contact sales\" instead of a price",
    "CTA labels match across the page (\"Start free trial\"); one primary per section",
    "Features title says what the plan adds to the one before",
-   "Cards in a row share height; buttons and prices align"
+   "Cards in a row share height; buttons and prices align",
+   "Check Items placed in an inverted card's Features slot use background/default text and icon"
   ],
   "a11y": [
    "The plan name is a heading one level below the section title",
    "The CTA names the plan (\"Start free trial, Business plan\") with aria-label or aria-describedby",
-   "The recommended plan says it in text, not only with the border"
+   "The recommended plan says it in text, not only with the border",
+   "Inverted text 19.8:1 Light, 19.0:1 Dark, 17.9:1 Corporate Light; it flips to a near-white card in Dark"
   ],
-  "code": "shadcn Card with Price, Button and a <ul> of Check Items; featured with ring-2 ring-primary.",
+  "code": "shadcn Card with Price, Button and a <ul> of Check Items; featured with ring-2 ring-primary; inverted bg-foreground text-background with Button variant=\"secondary\"; compact flex items-center gap-6 py-4 px-6 without the list.",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/components/card.md"
@@ -8309,10 +8344,12 @@
   ]
  },
  "Testimonial Card": {
-  "summary": "One customer quote as a card for testimonial grids and carousels: optional rating, the quote with a specific result, Byline.",
+  "summary": "One customer quote for testimonial sections: a card for grids and carousels, a featured story with a photo, a logo card or a minimal quote without a card.",
   "use": [
-   "Block / Testimonial Grid and Testimonial Carousel",
-   "Next to a pricing or sign-up section",
+   "Variant=default: Block / Testimonial Grid and Testimonial Carousel, next to a pricing or sign-up section",
+   "Variant=featured: one lead story above a grid or on a case study page (large photo or the customer's image, Logo, heading-size quote)",
+   "Variant=logo: when the company name sells more than the person (Logo / * mark above the quote)",
+   "Variant=minimal: a quiet row of quotes under a hero or next to a sign-up form, no card",
    "Case study lists"
   ],
   "avoid": [
@@ -8321,23 +8358,31 @@
    "One large quote for a section: use Block / Testimonial Single"
   ],
   "anatomy": [
-   "Rating (Show rating)",
-   "Quote: 2-4 lines",
-   "Byline: Avatar, name, role and company"
+   "Variant: default, minimal, logo, featured",
+   "Rating (Show rating): default only",
+   "Logo (swap: Logo / *, default Northwind): logo and featured",
+   "Image (Show image, exposed Image Placeholder 3:4, 280 wide, default Image / Person / 03): featured only; turn it off for a logo-only featured card",
+   "Quote: body/default (default, logo), body/large (minimal), heading/h3 (featured); 2-4 lines",
+   "Byline (exposed): Avatar, name, role and company",
+   "Surface: card with border/default and radius/xl (default, logo, featured); none (minimal)"
   ],
   "rules": [
    "Real people with permission; name, role and company",
    "Specific results beat praise (\"closed the books four days faster\")",
-   "Same length across a grid (2-4 lines)",
+   "Same Variant and length across a grid (2-4 lines)",
+   "One featured card per section, above or beside a grid of default or logo cards",
+   "Logo only with the customer's written permission to use their mark",
+   "Minimal quotes sit on the page background; never put them inside another card",
    "Rating only when it comes with the quote from the same customer",
    "Real photos or initials; no stock photos"
   ],
   "a11y": [
    "Code as <figure> with <blockquote> and the Byline in <figcaption>",
    "Rating has aria-label=\"Rated 5 out of 5\"",
+   "The Logo has the company name as alt text; the featured photo has alt=\"\" when the Byline names the person",
    "In a carousel, one card per slide with a pause control"
   ],
-  "code": "shadcn Card with <figure><blockquote> and a Byline in <figcaption>.",
+  "code": "shadcn Card with <figure><blockquote> and a Byline in <figcaption>; variant via cva: featured = grid md:grid-cols-[280px_1fr] with an <img> and text-2xl quote, logo = <img> logo above the quote, minimal = no Card (bare <figure>).",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/components/content.md"
@@ -8415,11 +8460,12 @@
   ]
  },
  "Product Card": {
-  "summary": "A product in a grid or carousel: photo, sale or sold-out badges, wishlist, name, variant hint, price and optional quick add.",
+  "summary": "A product in a grid, carousel or list: photo, sale or sold-out badges, wishlist, name, variant hint, price and optional quick add; horizontal for lists, overlay for editorial tiles.",
   "use": [
-   "Product grids and category pages (3-4 per row on desktop, 2 on mobile)",
+   "Product grids and category pages (3-4 per row on desktop, 2 on mobile): Layout=vertical",
    "Carousels of related products",
-   "Product search results"
+   "Product search results, wishlists, recently viewed and cart suggestions: Layout=horizontal",
+   "Editorial grids, lookbooks and category tiles where the photo sells: Layout=overlay"
   ],
   "avoid": [
    "Articles and case studies: use Post Card",
@@ -8427,6 +8473,7 @@
    "The product page itself: use Block / Product Detail"
   ],
   "anatomy": [
+   "Layout: vertical (default), horizontal (400 wide, 120 px photo left), overlay (264 x 352, text over the photo)",
    "Image (exposed Image Placeholder): Ratio 1:1 by default, 3:4 or 4:3 per instance; height follows the card width",
    "Badges: sale %, new or sold out (State)",
    "Wishlist: Button Icon ghost, top right (Show wishlist)",
@@ -8434,9 +8481,12 @@
    "Variant text: \"Sand · 3 colors\"",
    "Rating (Show rating, off by default): exposed Rating sm with Count (\"(128)\"), set Value and Count on the instance",
    "Price, Old price (State=sale shows Old price struck through)",
-   "Action: Button (Show action) \"Add to cart\"; State=sold-out shows \"Notify me\" with its own Show notify, independent of Show action"
+   "Action: Button (Show action) \"Add to cart\"; State=sold-out shows \"Notify me\" with its own Show notify, independent of Show action",
+   "Horizontal: no wishlist; details column with name, variant text, rating, price and the action (hug)",
+   "Overlay: media/scrim-fade to media/scrim gradient and a media/scrim panel with name, variant text and price in media/foreground; wishlist and badges stay on the photo; no action or Notify me"
   ],
   "rules": [
+   "One Layout per grid or list; overlay only where the photo is the point and there is no quick add",
    "The whole card opens the product; Wishlist and the action button are the only other controls",
    "Name in 2 lines at most, then cut",
    "State=sale: new price, struck original and the sale % Badge",
@@ -8451,9 +8501,10 @@
   "a11y": [
    "One link for the card (on the name, stretched over the card)",
    "Wishlist and Add to cart are separate buttons with the product name in their labels",
-   "The image alt is empty when the name sits next to it; the price reads old and new"
+   "The image alt is empty when the name sits next to it; the price reads old and new",
+   "Overlay text is media/foreground on media/scrim (black 60%): 5.7:1 over the brightest pixel"
   ],
-  "code": "shadcn Card with an <a> on the name (after:absolute after:inset-0), Badge, Button size=\"icon\" for wishlist, Button for the action.",
+  "code": "shadcn Card with an <a> on the name (after:absolute after:inset-0), Badge, Button size=\"icon\" for wishlist, Button for the action. Layout via cva: horizontal = flex gap-4 with a size-30 image; overlay = relative aspect-[3/4] with an absolute bottom panel bg-black/60 text-white and a gradient strip.",
   "guides": [
    "skills/build-ui/patterns/commerce.md",
    "skills/build-ui/components/card.md"

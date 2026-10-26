@@ -405,12 +405,18 @@
     "Card Header",
     "Card Footer"
    ],
-   "block": "117:410"
+   "block": "117:410",
+   "examples": [
+    "Example / Card styles"
+   ]
   },
   {
    "main": "Stat Card",
    "helpers": [],
-   "block": "109:1790"
+   "block": "109:1790",
+   "examples": [
+    "Example / Stat Card styles"
+   ]
   },
   {
    "main": "Option Card",
@@ -420,7 +426,10 @@
   {
    "main": "Post Card",
    "helpers": [],
-   "block": "200:1069"
+   "block": "200:1069",
+   "examples": [
+    "Example / Post Card styles"
+   ]
   },
   {
    "main": "Entity Card",
@@ -432,7 +441,8 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / people directory"
+    "Example / people directory",
+    "Example / Person Card styles"
    ]
   },
   {
@@ -734,7 +744,10 @@
   {
    "main": "Product Card",
    "helpers": [],
-   "block": "550:79685"
+   "block": "550:79685",
+   "examples": [
+    "Example / Product Card styles"
+   ]
   },
   {
    "main": "Line Item",
@@ -965,7 +978,8 @@
    "helpers": [],
    "block": "73:12",
    "examples": [
-    "Example / features in a grid"
+    "Example / features in a grid",
+    "Example / Feature Item styles"
    ]
   },
   {
@@ -1541,7 +1555,10 @@
   {
    "main": "Plan Card",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Plan Card styles"
+   ]
   }
  ],
  "Progress": [
@@ -1571,13 +1588,17 @@
    "block": "138:209",
    "examples": [
     "Example / quote in an article",
-    "Example / pull quote between sections"
+    "Example / pull quote between sections",
+    "Example / Quote styles"
    ]
   },
   {
    "main": "Testimonial Card",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Testimonial Card styles"
+   ]
   },
   {
    "main": "Footnote",

@@ -13,10 +13,11 @@ motion and density tokens.
 **Get the Figma library:** [EGG UI on Figma Community](https://www.figma.com/community/file/1694044412384019384). Duplicate it into your
 workspace and start from there; client files start as a copy of it.
 
-At a glance: 345 components on 72 pages, 128 blocks, 8 page shells, 638 variables in five
+At a glance: 366 components on 74 pages, 190 blocks, 8 page shells, 93 complete screens and
+email templates (SCREENS: Auth, Account, Settings, Emails), 4 full showcase pages, 666 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
-Română), 16 text styles, 101 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
-images (49 photos, 7 product screenshots). The plugin adds 12 skills, 31
+Română), 16 text styles, 4 gradient styles, 101 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
+images (49 photos, 7 product screenshots). The plugin adds 12 skills, 32
 patterns and 38 component guides.
 
 ## Install
@@ -174,6 +175,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3zg. Done (0.53.0): lessons from a client home page rebuild test: `foreground/brand` token, card and section icons, list dividers, small Post Cards, event date on image, Hero Prompt block, brand icons; build-ui reproduces reference screens with a gap inventory and fidelity review.
 3zh. Done (0.54.0): `Page Shell / Admin Panel` on the Page Shells page (grid shell for admin panel and CMS screens, Aside on / off); the test page is gone.
 3zi. Done (0.55.0): Search Result Item with 8 types (page, record, person, file, media, product, event, answer) and per-type properties; Scroll Area content slot; separate List and Tree pages.
+3zj. Done (0.56.0 to 0.58.0): de-wireframe program from audit 2: sample imagery and logos; soft badges, colored metrics, shadows, display type; EGG default theme (blue primary, pill controls, 12 px cards, Plus Jakarta Sans); Showcase modes, gradients, Background decorations and Icon Tile; four showcase pages and a new Cover; 62 new blocks with page examples; 42 style alternatives on existing components; SCREENS group with auth, account, settings and email templates.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - a Search Hero block;
@@ -184,12 +186,12 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 [`skills/build-ui/index.md`](plugins/eggux/skills/build-ui/index.md) maps each screen and task
 to its shell, blocks, patterns and component guides, and lists what each guide covers.
 
-- **Patterns (31):** core flows (action feedback, bulk actions, common flows, delete confirmation,
+- **Patterns (32):** core flows (action feedback, bulk actions, common flows, delete confirmation,
   unsaved changes, multi-step form), forms (form validation, form presets, auth), states (empty
   state, loading states, errors and recovery, feedback messages, result pages, notifications),
   app screens (record page, search and filter, settings and admin, permissions and access,
   sharing and invites, approvals, audit log, reports, enterprise apps, booking), products (AI
-  chat, commerce, content and docs, marketing pages), mobile and writing.
+  chat, commerce, content and docs, marketing pages, email), mobile and writing.
 - **Component guides (38):** actions (button, dropdown menu), forms and choices (input, select,
   date picker, color picker, file upload, rich text editor), overlays (dialog, drawer, popover,
   tooltip, toast, tour), navigation (navigation, sidebar, tabs and toggle group, pagination,

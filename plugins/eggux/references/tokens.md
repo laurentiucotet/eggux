@@ -109,6 +109,7 @@ Current tokens:
 | `button/soft-bg`, `button/soft-hover` | `background/primary` at `opacity/10` and `opacity/20` (light modes), `opacity/20` and `opacity/30` (dark modes) | Button and Button Icon Variant=soft; text `foreground/brand` (5.7:1 or more) |
 | `input/filled-muted-foreground` | Light, Showcase Light `color/neutral/600`; other modes `foreground/muted` | Placeholder and trailing text in Input and Select Style=filled (muted text is 4.35:1 on the muted fill) |
 | `toggle-group/segmented-hover` | `background/default` at `opacity/50` | Toggle Group Variant=segmented item hover on the muted track |
+| `media/scrim`, `media/scrim-fade`, `media/foreground` | `video/scrim` (black at `opacity/60`), transparent black, `video/foreground` (white) | Text over photos in Post Card and Product Card Layout=overlay: 5.7:1 over a white pixel |
 | `button/secondary-hover` | `background/secondary` at `opacity/80` | shadcn `hover:bg-secondary/80` |
 | `button/destructive-hover` | Light `color/red/700`, Dark `background/destructive` at `opacity/90` | 90% opacity failed 4.5:1 in Light |
 | `dialog/overlay` | `color/black` at `opacity/50` | shadcn `bg-black/50` behind Dialog and Alert Dialog |
