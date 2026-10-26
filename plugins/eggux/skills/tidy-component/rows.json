@@ -328,7 +328,10 @@
   {
    "main": "Trust Badge",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Trust Badge tones"
+   ]
   }
  ],
  "Button": [
@@ -1390,6 +1393,11 @@
    "main": "Store Badge",
    "helpers": [],
    "block": "693:106153"
+  },
+  {
+   "main": "QR Code",
+   "helpers": [],
+   "block": "810:138722"
   }
  ],
  "Navigation": [

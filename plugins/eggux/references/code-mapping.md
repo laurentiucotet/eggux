@@ -30,7 +30,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Checkbox`, `Radio`, `Switch` | shadcn `Checkbox`, `RadioGroup`, `Switch` | |
 | `Calendar`, `Calendar Day`, `Date Picker`, `Date Range Picker` | shadcn `Calendar` (react-day-picker) in `Popover` | |
 | `Time Picker` | custom `Select` of times | |
-| `Slider`, `Progress` | shadcn `Slider`, `Progress` | |
+| `Slider`, `Progress` | shadcn `Slider`, `Progress` | Slider Value (0, 25, 50, 75, 100) = `value` as a percent of `max` |
 | `Tabs`, `Tab` | shadcn `Tabs` (`TabsList`, `TabsTrigger`) | Variant=line: `TabsList` with a bottom border (`border-b`); Variant=vertical: `orientation="vertical"`, `TabsList` as `flex-col`, a `Select` of sections on mobile |
 | `Toggle Group`, `Toggle Group Item` | shadcn `ToggleGroup` (`type` single or multiple) | View and theme switches: `type="single"`, view in a URL search param, theme with next-themes `setTheme` |
 | `Accordion`, `Accordion Item` | shadcn `Accordion` (`AccordionItem`) | Size=sm: smaller padding |
@@ -88,7 +88,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Fieldset` | `<fieldset>` + `<legend>`; shadcn `RadioGroup` or `Checkbox` items, `FormMessage` for the group | Error belongs to the group |
 | `Error Summary` | shadcn `Alert` (destructive) with anchor links from react-hook-form `formState.errors` | Focus moves here on submit; links focus the field |
 | `Requirement List` | custom `<ul>` of `Check Item`s, state from the zod schema of the field | `aria-live="polite"`; nothing red before submit |
-| `Check Item` | `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status | Mark=check, dash, x |
+| `Check Item` | `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status | Mark=check, dash, x. Tone=on-primary: label and icon `text-primary-foreground`; Tone=inverted: `text-background`, dash `text-muted` |
 | `Password Strength` | custom bars + text under the shadcn `Input` | Level in text, not only color |
 | `Emoji Picker` | frimousse or emoji-mart in shadcn `Popover` | Search, recent first, 8 per row; skin tone stored per user |
 | `App Launcher` | shadcn `Popover` with a `grid-cols-3` of links | Current app `aria-current="page"`; only 4+ apps |
@@ -193,7 +193,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `AI Summary`, `AI Suggestion`, `AI Notice` | custom on `Card`, `Input`, `Badge` | Store who accepted an AI value and when |
 | `File Dropzone`, `File Item`, `Attachment` | react-dropzone + custom | |
 | `Resource Item` | custom row + `Button` (ghost icon) with `<a download>` | Label names the file, format and size |
-| `Rating` | custom `RadioGroup` | |
+| `Rating` | custom `RadioGroup` | Score is the shown number (one decimal), Value the filled stars. Size=lg: stars `size-8`, value `text-lg font-semibold`, for review forms |
 | `Color Picker` | react-colorful in `Popover` | |
 | `Coachmark`, `Hotspot` | Driver.js, Shepherd or `Popover` anchored to the target | |
 | `Video Player` | native `video` or Vidstack | Size=lg: play button `size-24` (96 px) for hero and full-width players |
@@ -248,7 +248,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Price` | custom: amount, `<s>` old price and period (`text-muted-foreground`) | `Intl.NumberFormat` with currency; sr-only "Was ... now ..." |
 | `Plan Card` | shadcn `Card` + `Price`, `Button`, `<ul>` of `Check Item` | Variant=featured: `ring-2 ring-primary`, primary `Button` |
 | `Announcement Pill` | `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` | One at a time |
-| `Trust Badge` | custom: lucide icon + name and detail, `<a>` to the trust page | Only current claims |
+| `Trust Badge` | custom: lucide icon + name and detail, `<a>` to the trust page | Only current claims. Tone=on-primary: `text-primary-foreground border-primary-foreground`; Tone=inverted: `text-background border-border`, detail `text-muted` (on `bg-foreground` cards) |
 | `Testimonial Card` | shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>` |  |
 | `Logo Tile` | `<li>` with `<img alt>` or inline SVG in `currentColor` (`text-foreground`, `opacity-70` for Style=plain) | Logo is an instance swap; `<a>` only when it links to a case study or integration; alt = company name |
 | `Logo`, `Logo Mark` | inline SVG in `currentColor` (or `<img alt>` with the product name) | Logo Mark is the symbol alone |
@@ -411,6 +411,7 @@ New style values added to existing components in 0.58.0 (the default value keeps
 
 | Figma | Code | Notes |
 |---|---|---|
+| `QR Code` | `qrcode.react` `<QRCodeSVG value={url} size={128} marginSize={2} />` (or a generated SVG) in a `rounded-xl bg-card p-3` tile | Size=sm 96, default 128, lg 160; the Figma pattern is sample art; keep the real code dark on light in every theme; alt text names the destination |
 | `Comparison Table` | `<table>` with shadcn `Table` parts; header cells with `Price` (sm) and `Button` (sm); cells with lucide `Check` / `Minus` and `sr-only` text | Plans=3 or 4 columns; used by `Block / Comparison Table` (3) and `Block / Pricing with Comparison` (4) |
 | `Figure` | `<dl>` with `dd` (value) and `dt` (label) | Tone=on-primary: `text-primary-foreground` on value, label and source |
 | `Alert` (Style=soft) | shadcn `Alert` with a cva `style: "soft"`: `border-0 bg-[var(--badge-soft-X-bg)] [&>svg]:text-[var(--badge-soft-X-fg)]`, title `text-[var(--badge-soft-X-fg)]`, description `text-foreground` (X = neutral for default, destructive, success, warning, info) | Same tint tokens as Badge soft; one Style per product |

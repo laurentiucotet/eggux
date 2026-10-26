@@ -724,7 +724,7 @@
    "Label",
    "Trailing icon (optional, Trailing icon)",
    "State=loading: a spinning loader replaces the leading icon; width stays",
-   "Variant=link: label, icons and hover underline use foreground/brand; no fill",
+   "Variant=link: label, icons and hover underline use foreground/brand; no fill and no side padding in every Size, so the text lines up with the text column above it",
    "Variant=soft: fill button/soft-bg (background/primary at 10%, 20% in dark), hover button/soft-hover (one step stronger); label and icons foreground/brand; no shadow"
   ],
   "rules": [
@@ -737,7 +737,8 @@
    "Variant=link text and icons are foreground/brand (text-brand), never background/primary",
    "soft is quieter than default and louder than secondary: use it for the second most important action, or several equal brand actions in one card",
    "Never two soft Buttons next to one default Button in the same group; pick soft or secondary for the group",
-   "soft text and icons are foreground/brand, never background/primary"
+   "soft text and icons are foreground/brand, never background/primary",
+   "Variant=link has no side padding: place it in the text column, never add padding back by hand; the focus ring hugs the label"
   ],
   "a11y": [
    "Reachable with Tab; Enter and Space activate; State=focus shows the border/ring focus ring",
@@ -2669,7 +2670,8 @@
    "Image swap (Image): any component from the Imagery page (Image / Person, Product, Office, Cover, Abstract, City); default Image / Office / 01",
    "Pattern: dot grid on background/muted, dots in border/default, shown when there is no image",
    "Hint (Show caption): centered Lucide image icon in foreground/muted",
-   "Corner radius and clipping come from the placeholder, not from the image"
+   "Corner radius and clipping come from the placeholder, not from the image",
+   "ratio: a transparent layer at Fill width with a locked aspect ratio; it sets the height, so the height follows any width (fixed, Fill or resized)"
   ],
   "rules": [
    "Turn Show image on and pick the photo in the Image swap; never paste a raster fill over the instance",
@@ -2677,7 +2679,8 @@
    "Pick photos that match the content next to them: Person for team cards, Product for shop cards, Office, Cover or City for posts, events and galleries",
    "No two cards in one grid use the same photo; one ratio per carousel or grid; 21:9 for wide banners and page header images",
    "Show image off is the loading or missing-image state: keep the dot pattern and the icon, no fake text",
-   "Text over a photo needs a scrim or a solid surface behind it"
+   "Text over a photo needs a scrim or a solid surface behind it",
+   "Change the width only; the height follows the Ratio. For a different crop pick another Ratio (21:9 for banners); a fixed height crops the image and is only for full-bleed media that must cover a box"
   ],
   "a11y": [
    "Meaningful images have alt text that says what the photo shows; decorative ones have empty alt",
@@ -3608,7 +3611,7 @@
    "Image 16:9 (Image Placeholder)",
    "Horizontal: the image takes half the card width (160-640) and keeps its ratio, so the card works from a featured row down to a list in a column",
    "Horizontal Size=sm: the image takes one third of the width (120-240), text top aligned",
-   "Category Badge (exposed), Date and reading time",
+   "Category Badge (layer Badge, exposed: set its Label and Variant from the instance panel), Date and reading time",
    "Title: heading/h4 (vertical, sm), heading/h2 (horizontal default)",
    "Excerpt, 3 lines max (Show excerpt)",
    "Author with Avatar (Show author)",
@@ -3833,7 +3836,7 @@
   "use": [
    "Average rating on a product or a review summary: \"4.7 (128)\"",
    "Rating input in a review or feedback form",
-   "Size=sm in cards and lists, Size=default in detail pages and forms",
+   "Size=sm in cards and lists, Size=default in detail pages, Size=lg (32 px stars) as the input of a review form",
    "Style=badge: the score in tight places: product cards, search results, tables, map pins"
   ],
   "avoid": [
@@ -3845,8 +3848,9 @@
   "anatomy": [
    "Style=default: five stars, filled in background/warning, empty in border/input",
    "Style=badge: one star and the score in a soft amber badge (badge/soft-warning-bg, star and text badge/soft-warning-fg, radius/md)",
-   "Value: the number (Show value; always shown in Style=badge)",
-   "Score: the number in Style=badge (TEXT, one decimal)",
+   "Value: the filled stars (variant 0-5)",
+   "Score: the number shown next to the stars (Show value) and in Style=badge; TEXT, one decimal",
+   "Size: sm (14 px stars), default (20), lg (32, value in body/large, count in body/small; Style=default only)",
    "Count: number of ratings (Show count, Count)"
   ],
   "rules": [
@@ -3855,7 +3859,8 @@
    "As input, hover previews the value; a second click on the same star does not clear it",
    "Offer a Clear link only when zero is allowed",
    "Ask for a comment after a low rating, not before",
-   "Style=badge: type the score in Score; Value has no effect there"
+   "Type the number in Score in every Style; Value only sets the filled stars, so a 4.6 average shows Value=5 (or 4) and Score 4.6",
+   "Review forms use Size=lg; never scale a Rating instance"
   ],
   "a11y": [
    "Display: one element with aria-label=\"Rated 4.7 out of 5\"",
@@ -4339,7 +4344,8 @@
    "Thumb, or two for Type=range: a fixed 16 px knob centered in a wrapper that moves with the value, so it stays round at any width",
    "Min and max labels under the track, when useful",
    "Value bubble (Show value): a Tooltip Side=top (exposed, set its Label) over each thumb; draws 37 px above the 16 px box",
-   "Marks (Show marks): Min label, Mid label, Max label under the track, centered on the thumb ends; draws 24 px below the box"
+   "Marks (Show marks): Min label, Mid label, Max label under the track, centered on the thumb ends; draws 24 px below the box",
+   "Value (Type=single): 0, 25, 50 (default), 75, 100; places the thumb and the range like Progress Value"
   ],
   "rules": [
    "Always show the current value and unit next to the label",
@@ -4349,7 +4355,9 @@
    "Show value while dragging, or always when the exact value matters; keep the value next to the label too",
    "Show marks for scales people read (0, 250, 500 EUR); three labels, units on the ends only if they fit",
    "Leave 40 px above and 24 px below the Slider when Show value or Show marks is on; they overflow the component box",
-   "Stretch the Slider (FILL or any width): the thumbs keep their size and follow the value; never resize the thumb itself"
+   "Stretch the Slider (FILL or any width): the thumbs keep their size and follow the value; never resize the thumb itself",
+   "Pick the Value nearest to the real number; for another value or for Type=range, move the thumb wrapper and resize the range layer to the thumb center (never resize the thumb)",
+   "Keep the shown number, the marks and Value in step (2,500 on a 0 to 5,000 scale = Value=50)"
   ],
   "a11y": [
    "Arrows move by one step, Page Up and Page Down by 10 steps",
@@ -4357,7 +4365,7 @@
    "aria-valuetext includes the unit: \"150 EUR\"",
    "The bubble repeats aria-valuetext; it is not the only place the value is shown. Mark labels are foreground/muted, 4.7:1 or more"
   ],
-  "code": "shadcn Slider. Show value: a Tooltip or a positioned span over each thumb (left: value%), Show marks: a flex justify-between row of labels under the track.",
+  "code": "shadcn Slider. Show value: a Tooltip or a positioned span over each thumb (left: value%), Show marks: a flex justify-between row of labels under the track. Figma Value maps to the value prop as a percent of max.",
   "guides": [
    "skills/build-ui/components/progress-and-slider.md"
   ]
@@ -4856,6 +4864,7 @@
    "Navigation between pages: use Sidebar or Breadcrumb"
   ],
   "anatomy": [
+   "Title: \"On this page\" (TEXT; \"Other policies\", \"In this guide\", \"Topics\" for other lists)",
    "Items slot of Table of Contents Items",
    "Table of Contents Item Level 1 (h2) and Level 2 (h3)",
    "Active Table of Contents Item with primary left bar"
@@ -4864,7 +4873,8 @@
    "Sticky on the right from 1280 wide; below that a collapsible \"On this page\" at the top",
    "Table of Contents Item State: default, hover, active; active = the section in view (scroll spy)",
    "Clicking scrolls with an offset for sticky headers",
-   "Labels match the heading text"
+   "Labels match the heading text",
+   "Title names the list: \"On this page\" for headings of the page, another title for lists of other pages (\"Other policies\")"
   ],
   "a11y": [
    "nav with aria-label=\"On this page\"",
@@ -5040,7 +5050,7 @@
    "Time: \"2 h ago\" (in alternating layouts on the other side of the line)",
    "Description: who and where (Show description)",
    "Content slot: note excerpt, attachment or diff (Show content)",
-   "card: Title, Time, Description and Content in a bordered card (radius/base, padding spacing/4)"
+   "card: Title, Time, Description and Content in a bordered card (radius/base, padding spacing/4); the header wraps, so Time moves under the Title when the card is narrower than about 200 px (Title keeps at least 120 px)"
   ],
   "rules": [
    "Newest first; one event per item",
@@ -5049,7 +5059,8 @@
    "Connector off on the last item",
    "Long histories: the last 5-10 with \"View all\"; group by day",
    "Alternating: switch alternating-left and alternating-right item by item, starting with left",
-   "One Layout per timeline (alternating counts as one)"
+   "One Layout per timeline (alternating counts as one)",
+   "Layout=card in narrow columns (5 per row on a 1152 container): keep titles to 2 or 3 words per line; never resize the title layer"
   ],
   "a11y": [
    "The timeline is an ordered list",
@@ -5841,14 +5852,15 @@
   "anatomy": [
    "Rule on the left (default) or a quote mark (pull, large: display/xl mark)",
    "Quote text: body/large (default), heading/h3 (pull), display (large, 720 wide)",
-   "Attribution: Avatar (Show avatar), Name, Role (Show attribution)"
+   "Attribution: Avatar (Show avatar), Name, Role (Show attribution). default: the row fills the width and Role fills the rest of the line next to the name and wraps there; pull and large: name and role wrap at 280 so the centered attribution fits a phone"
   ],
   "rules": [
    "Word for word, with permission; no quotation marks in the text",
    "One pull quote per page section, never two in a row",
    "Variant=large once per page, under 20 words, with generous space above and below",
    "Attribution names the person and their role at the time",
-   "Under 40 words; longer passages stay in the body text"
+   "Under 40 words; longer passages stay in the body text",
+   "Narrow columns (cards, mobile): keep the full role; it wraps, never truncate it or resize the text layers"
   ],
   "a11y": [
    "Code as blockquote with a figcaption for the attribution",
@@ -8378,7 +8390,8 @@
   "anatomy": [
    "Icon (swap): shield-check",
    "Name: \"SOC 2 Type II\"",
-   "Description: muted, audit date or region"
+   "Description: muted, audit date or region",
+   "Tone: default, on-primary (name, detail, icon and border in foreground/primary), inverted (name and icon in background/default, detail in background/muted, border/default)"
   ],
   "rules": [
    "Only claims that are current and can be shown on request",
@@ -8386,12 +8399,14 @@
    "Link to the trust page",
    "Update or remove it when a certificate expires",
    "Same order everywhere; 3-5 in a row",
-   "Name and Description wrap inside the border when the badge is narrower than its text; set Fill in rows of equal badges"
+   "Name and Description wrap inside the border when the badge is narrower than its text; set Fill in rows of equal badges",
+   "Tone=on-primary on primary bands and cards, Tone=inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner); never override the colors by hand"
   ],
   "a11y": [
    "The icon is aria-hidden; name and detail are text, not part of an image",
    "When linked, the link names the claim (\"SOC 2 Type II report\")",
-   "The muted detail meets 4.5:1"
+   "The muted detail meets 4.5:1",
+   "on-primary: foreground/primary on background/primary is 5.2:1 Light and Dark, 6.7:1 Corporate Light; inverted: background/default and background/muted on foreground/default are over 14:1 in every theme"
   ],
   "code": "custom: lucide icon and two lines of text in a bordered <div>; an <a> when it links to the trust page.",
   "guides": [
@@ -8533,7 +8548,7 @@
   "anatomy": [
    "Layout: vertical (default), horizontal (400 wide, 120 px photo left), overlay (264 x 352, text over the photo)",
    "Image (exposed Image Placeholder): Ratio 1:1 by default, 3:4 or 4:3 per instance; height follows the card width",
-   "Badges: sale %, new or sold out (State)",
+   "Badges: Discount (State=sale, exposed Badge: set its Label, \"-20%\", \"-35%\") or Sold out badge (State=sold-out)",
    "Wishlist: Button Icon ghost, top right (Show wishlist)",
    "Name: 2 lines",
    "Variant text: \"Sand · 3 colors\"",
@@ -8547,7 +8562,7 @@
    "One Layout per grid or list; overlay only where the photo is the point and there is no quick add",
    "The whole card opens the product; Wishlist and the action button are the only other controls",
    "Name in 2 lines at most, then cut",
-   "State=sale: new price, struck original and the sale % Badge",
+   "State=sale: new price, struck original and the Discount Badge with the real percentage (set its Label on the exposed Discount; it does not change by itself)",
    "State=sold-out stays visible, image dimmed, action becomes \"Notify me\"",
    "Add to cart opens the Mini Cart, never a new page",
    "Same photo ratio and background across a grid",
@@ -10024,18 +10039,21 @@
   ],
   "anatomy": [
    "Mark: circle-check (Mark=check), dash (Mark=dash), x (Mark=x)",
-   "Label: one line, muted when Mark=dash"
+   "Label: one line, muted when Mark=dash",
+   "Tone: default, on-primary (label and mark in foreground/primary), inverted (label and mark in background/default; dash in background/muted)"
   ],
   "rules": [
    "Mark=check for met or included, dash for pending or not included, x only after a submit failed",
    "One line per item; lead with the benefit or the rule (\"At least 12 characters\")",
    "In plans, list what is included first and keep the same order across plans",
-   "In Requirement List the marks update as people type; nothing turns x before a submit"
+   "In Requirement List the marks update as people type; nothing turns x before a submit",
+   "Tone=on-primary on primary bands and cards, Tone=inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner); never recolor the label or the mark by hand"
   ],
   "a11y": [
    "The mark is aria-hidden; the meaning is in text (\"included\", \"not included\", \"met\", \"not met yet\")",
    "Lists are ul elements",
-   "Contrast of muted labels stays at 4.5:1"
+   "Contrast of muted labels stays at 4.5:1",
+   "In the on-primary and inverted tones the mark has the label color (foreground/primary 5.2:1 on primary; background/default over 14:1 on inverted), because the success green falls under 3:1 on an inverted card in Dark"
   ],
   "code": "<li class=\"flex gap-2\"> with a lucide CircleCheck, Minus or X (aria-hidden) and an sr-only status.",
   "guides": [
@@ -11061,6 +11079,40 @@
   "code": "<table> with shadcn Table parts; header cells hold Price and Button; cells use lucide Check and Minus with sr-only text.",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "QR Code": {
+  "summary": "A sample QR code on a card tile for app download sections, handouts and signing in on another device.",
+  "use": [
+   "Next to store badges in an app download section (Block / CTA App Download)",
+   "Printed handouts, event badges and posters that link to a page",
+   "Sign in or pair on another device (TV, desktop app)"
+  ],
+  "avoid": [
+   "As the only way to reach the link: always add a link or store badges",
+   "On a phone screen that people would have to scan with the same phone",
+   "Decoration or a pattern"
+  ],
+  "anatomy": [
+   "Tile: background/card, bound radius, padding is the quiet zone (sm 8, default 12, lg 16)",
+   "modules: one vector of sample QR modules in foreground/card, scales with the size",
+   "Size: sm 96, default 128, lg 160"
+  ],
+  "rules": [
+   "The pattern is sample artwork and does not scan: replace it with the real generated code (SVG) before shipping",
+   "Put the action in text next to it (\"Scan to get the app\") and a caption that says what opens",
+   "In code keep the code dark on a light tile in every theme; scanners read inverted codes poorly",
+   "Default (128) in sections, sm (96) beside small text, lg (160) for print or a TV pairing screen"
+  ],
+  "a11y": [
+   "The image has alt text that says where it leads (\"QR code to the Acme app in the App Store\")",
+   "Offer the same link as text or buttons next to it",
+   "Contrast between modules and tile stays above 4.5:1"
+  ],
+  "code": "qrcode.react (<QRCodeSVG value={url} size={128} marginSize={2} />) inside a rounded bg-card tile; or a generated SVG.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/patterns/mobile.md"
   ]
  }
 }
