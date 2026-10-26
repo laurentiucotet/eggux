@@ -7,7 +7,9 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Content loading uses Skeleton; known progress uses Progress (`loading-states.md`).
 - Show it after ~300 ms to avoid flicker; one spinner per region, never several at once.
 - Sizes: sm 16 (inline, buttons), default 20, lg 32 (empty region). `role="status"` + hidden text.
-- Figma: `Spinner` Size × Tone; "button loading" example (Button disabled + loader icon).
+- Type=dots (three pulsing dots) for typing and AI-writing indicators in chat; never inside a
+  Button (use Type=default there).
+- Figma: `Spinner` Size × Tone × Type; "button loading" example (Button disabled + loader icon).
 
 ## Status Dot
 - State of a system, service, integration or person: Online, Degraded, Down, Syncing, Offline.

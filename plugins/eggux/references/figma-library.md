@@ -52,8 +52,8 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | AI Chat | `AI Summary` | State: ready, generating, error | Title, Meta, Show feedback, Show disclaimer; Content (native slot) |
 | AI Chat | `AI Suggestion` | State: suggested, accepted | Label, Value, Reason, Note; Accept / Dismiss; accepted shows the AI label |
 | AI Chat | `AI Notice` | Type: label, disclaimer | Label, Disclaimer |
-| Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link. Size: sm, default, lg. State: default, hover, focus, disabled, loading (spinner instead of the leading icon) | Label; Show leading icon + Leading icon (swap), Show trailing icon + Trailing icon (swap) |
-| Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive. Size: sm 32, default 36, lg 40. State: default, hover, focus, disabled | Icon (swap) |
+| Button | `Button` | Variant: default, secondary, outline, ghost, destructive, link, soft. Size: sm, default, lg. State: default, hover, focus, disabled, loading (spinner instead of the leading icon) | Label; Show leading icon + Leading icon (swap), Show trailing icon + Trailing icon (swap) |
+| Button | `Button Icon` | Variant: default, secondary, outline, ghost, destructive, soft. Size: sm 32, default 36, lg 40. State: default, hover, focus, disabled | Icon (swap) |
 | Button | `Button Group Item` | Position: first, middle, last. State: default, hover, focus, disabled | Label, Show label, Show icon + Icon (swap) |
 | Button | `Button Group` | - | Items (native slot) |
 | Button | `Action Bar` | Align: end, start, center | Show divider, Show leading; Leading, Actions (native slots). The row of buttons that ends a form, a step or a hero |
@@ -62,14 +62,14 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Badge | `Badge Count` | Variant: default, secondary, destructive, outline | Count (numeric bubble for nav items and icon buttons) |
 | Badge | `Status Dot` | Status: success, warning, error, info, neutral | Label, Show label |
 | Badge | `Badge List` | - | Show more; Tags (native slot) of Badges + "+N" Badge (exposed). A few tags on one line |
-| Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Show leading icon + Leading icon (swap), Show remove |
+| Chip | `Chip` | State: default, hover, focus, selected, disabled. Tone: default, soft-info, soft-success, soft-warning, soft-neutral (selected only on default) | Label, Show leading icon + Leading icon (swap), Show remove |
 | Avatar | `Avatar` | Type: initials, image. Size: xs 20, sm 24, default 32, lg 40, xl 48. Shape: circle (people), square (companies, apps) | Initials, Show status (online dot), Photo (swap, Type=image: Image / Person / *) |
-| Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar; Label + Show label ("Maintained by 3 analysts") |
+| Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar; Label + Show label ("Maintained by 3 analysts"); Names + Show names ("Ana, Mihai and 3 others"). Label and names truncate on one line |
 | Avatar | `Byline` | Size: sm, default, lg | Name, Description, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
-| Input | `Input` | State: default, focus, error, disabled. Content: placeholder, filled | Value; Show leading icon + Leading icon (swap); Trailing (native slot) + Show trailing |
+| Input | `Input` | Style: default, filled, floating. State: default, focus, error, disabled. Content: placeholder, filled | Value; Label (floating); Show leading icon + Leading icon (swap); Trailing (native slot) + Show trailing |
 | Input | `Password Strength` | Level: empty, weak, fair, good, strong | Meter + message under a new-password field |
-| Input | `Field` | State: default, error, disabled | Label, Hint, Show hint, Error. Control (native slot, default Input) |
+| Input | `Field` | State: default, error, disabled | Label, Show label, Hint, Show hint, Error. Control (native slot, default Input) |
 | Input | `Textarea` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Min height 64, grows with content; put it in a Field |
 | Input | `Input Addon` | Position: start, end | Text |
 | Input | `Input Group` | State: default, focus, error, disabled | Value, Show start, Show end; Start, End (native slots) |
@@ -80,20 +80,21 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Input OTP | `Input OTP` | Length: 4, 6 | Groups of OTP Slots (3 + 3 with separator) |
 | Kbd | `Kbd` | - | Key |
 | Kbd | `Kbd Group` | - | Keys (native slot) |
-| Spinner | `Spinner` | Size: sm 16, default 20, lg 32. Tone: muted, default | Loader icon; rotate in code |
+| Spinner | `Spinner` | Size: sm 16, default 20, lg 32. Tone: muted, default. Type: default, dots | Loader icon; rotate in code. dots: three pulsing dots for typing and AI writing |
 | File Upload | `File Dropzone` | State: default, drag-over, error, disabled | Title (not in drag-over), Hint, Error (error state); Browse button exposed |
 | File Upload | `File Item` | State: uploading, done, error | File name; Progress, cancel/remove, Retry |
 | File Upload | `Resource Item` | - | Icon (swap), Name, Meta, Show divider; Actions (native slot). A file people download or open |
 | File Upload | `File Preview` | State: ready, loading, unavailable | File name, Meta; zoom, download, close; page thumbnails; page count. Page area clips |
-| Progress | `Progress` | Tone: default, success, warning, error. Value: 0, 25, 50, 75, 100 | Resize the indicator for other values |
+| Progress | `Progress` | Tone: default, success, warning, error. Value: 0, 25, 50, 75, 100. Type: default, segmented | Resize the indicator for other values. segmented: Segments (native slot) of Progress Segment instances |
+| Progress | `Progress Segment` | State: complete, upcoming. Tone: default, success, warning, error | One segment of Progress Type=segmented; only inside its Segments slot, FILL width |
 | Progress | `Progress Ring` | Size: sm, default, lg. Value: 0, 25, 50, 75, 100 | Show label (percent inside on default and lg) |
-| Slider | `Slider` | Type: single, range. State: default, focus, disabled | Move range and thumbs for other values |
+| Slider | `Slider` | Type: single, range. State: default, focus, disabled | Move range and thumbs for other values. Show value (Tooltip over each thumb), Show marks + Min label, Mid label, Max label |
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
-| Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled | Label, Show label |
+| Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled. Size: default, sm, lg | Label, Show label, Description, Show description |
 | Selection controls | `Setting Row` | - | Title, Description, Show description, Show divider; Control (native slot: Switch, Select, Button) |
 | Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Content (native slot); clips its content; thin scrollbar on border/default |
-| Select | `Select` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
+| Select | `Select` | Style: default, filled. State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
 | Select | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
 | Select | `Tag` | State: default, disabled | Label, Show remove |
 | Select | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Show chevron |
@@ -134,11 +135,11 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Chat | `Chat Message` | Direction: incoming, outgoing | Text, Time, Show meta (time + delivery status) |
 | Chat | `Typing Indicator` | - | Three dots + "… is typing" |
 | Chat | `Chat Composer` | - | Attach, message field, Send |
-| Quote | `Quote` | Variant: default (left rule), pull (centered) | Quote, Name, Role, Show avatar, Show attribution. A quotation in running content |
+| Quote | `Quote` | Variant: default (left rule), pull (centered), large (display size, one per page) | Quote, Name, Role, Show avatar, Show attribution. A quotation in running content |
 | Section Heading | `Section Heading` | Size: lg (h2), default (h3), sm (h4) | Title, Description, Overline, Show overline, Show description, Show actions, Show icon + Icon (swap); Actions (native slot). Opens a section of an app or content page |
-| Feature Item | `Feature Item` | Layout: stacked, inline, centered. Marker: icon, number | Title, Description, Number, Icon (swap), Show description, Show link. One benefit, capability or step: icon tile or step number, title, text |
+| Feature Item | `Feature Item` | Layout: stacked, inline, centered, card. Marker: icon, number | Title, Description, Number, Icon (swap), Show description, Show link. One benefit, capability or step: icon tile or step number, title, text |
 | Feature Item | `Icon Tile` | Style: neutral, brand, gradient, outline. Size: sm 32, default 40, lg 48 | Icon (swap). A rounded square with one icon for feature, step and bento grids; one Style per grid |
-| Rating | `Rating` | Size: sm, default. Value: 0-5 | Show value, Show count, Count. Value text edited per instance |
+| Rating | `Rating` | Size: sm, default. Value: 0-5. Style: default, badge | Show value, Show count, Count, Score (badge). Value text edited per instance |
 | Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); Carousel Arrow (outline) and Carousel Indicator (dots); viewport clips |
 | Carousel | `Carousel Arrow` | Variant: outline, overlay. Direction: previous, next. State: default, hover, focus, disabled | Round 36 (outline) or 40 with shadow (overlay) |
 | Carousel | `Carousel Indicator` | Type: dots, bars, counter. Tone: default, overlay | Counter; bars include Pause |
@@ -155,15 +156,15 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Scheduler | `Gantt Milestone` | - | Label; diamond on the date |
 | Scheduler | `Calendar Event` | Size: default, sm. Series: 1-4 | Title, Time |
 | Pagination | `Pagination Item` | Type: page, previous, next, ellipsis. State: default, hover, active, focus, disabled | Label (page) |
-| Pagination | `Pagination` | - | Items (native slot) |
+| Pagination | `Pagination` | Style: numbered, simple, dots | Items (native slot, numbered); Label (simple, "Page 2 of 10"); dots: Carousel Indicator |
 | Pagination | `Pagination Compact` | - | Label ("Page 2 of 12"); previous and next Button Icon sm (exposed) |
-| Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error | Title, Description, Show description, Number, Show connector |
-| Stepper | `Stepper` | - | Steps (native slot) |
+| Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error. Style: default, dots | Title, Description, Show description, Number, Show connector |
+| Stepper | `Stepper` | Orientation: horizontal, vertical. Style: default, dots | Steps (native slot, Steps with the same Orientation and Style) |
 | Description List | `Description List Item` | Orientation: horizontal, vertical | Label, Show divider; Value (native slot) |
 | Description List | `Meta Item` | - | Icon (swap, 16, muted), Label, Show icon. One fact: date, place, people, contact |
 | Description List | `Figure` | Layout: stacked, inline. Size: default, lg | Value, Label, Source, Show source, Show divider. A number with what it counts; no trend |
 | Description List | `Summary Row` | Variant: default, discount, total | Label, Value. One line of a money breakdown, amount right aligned |
-| Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive | Title, Time, Description, Show description, Icon (swap), Show connector; Content (native slot) + Show content |
+| Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive. Layout: default, card, alternating-left, alternating-right | Title, Time, Description, Show description, Icon (swap), Show connector; Content (native slot) + Show content |
 | Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Show leading icon + Leading icon (swap), Show shortcut + Shortcut text, Checked, Description + Show description, Show submenu (chevron) |
 | Menu | `Menu Label` | - | Label |
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
@@ -171,18 +172,18 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Menu | `Menubar` | - | Menus (native slot of Menubar Triggers); opens a Menu below the trigger |
 | Mobile | `Mobile Header` | Type: app, detail | Title; Leading, Trailing (native slots) |
 | Mobile | `Bottom Nav Item` | State: default, active | Label, Icon (swap) |
-| Mobile | `Bottom Nav` | - | Items (native slot), 3-5 items, safe-area padding |
-| Tabs | `Tab` | Variant: default, line, vertical. State: default, active, focus, disabled | Label, Show count (Badge Count exposed), Icon (swap) + Show icon |
-| Tabs | `Tabs` | Variant: default, line, vertical | Tabs (native slot of Tab instances with the same Variant). default: pill tabs in a card; line: underlined page sections; vertical: a 200 wide column for settings |
-| Toggle Group | `Toggle Group Item` | State: default, hover, selected, focus, disabled | Label, Show label, Show icon + Icon (swap) |
-| Toggle Group | `Toggle Group` | Variant: default, outline | Items (native slot). Sets a value; Tabs switch panels. Theme, view and billing period switches are examples on this page, not components |
+| Mobile | `Bottom Nav` | Style: default, floating | Items (native slot), 3-5 items, safe-area padding |
+| Tabs | `Tab` | Variant: default, line, vertical, pills, boxed. State: default, active, focus, disabled | Label, Show count (Badge Count exposed), Icon (swap) + Show icon |
+| Tabs | `Tabs` | Variant: default, line, vertical, pills, boxed | Tabs (native slot of Tab instances with the same Variant). default: pill tabs in a card; line: underlined page sections; vertical: a 200 wide column for settings; pills: list filters, active tab filled; boxed: tabs and Panel (native slot) in one bordered unit |
+| Toggle Group | `Toggle Group Item` | Variant: default, segmented. State: default, hover, selected, focus, disabled | Label, Show label, Show icon + Icon (swap) |
+| Toggle Group | `Toggle Group` | Variant: default, outline, segmented | Items (native slot). Sets a value; Tabs switch panels. Theme, view and billing period switches are examples on this page, not components |
 | List | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing, Show divider. Leading, Trailing (native slots) |
 | Tree | `Tree Item` | Type: collapsed, expanded, leaf. State: default, hover, selected. Level: 0-3 | Label, Show checkbox (Checkbox exposed), Show icon + Icon (swap), Show count |
 | List | `Sortable List Item` | State: default, hover, dragging, drop-target | Label, Description, Show description, Show leading; grip handle; Leading (native slot, 1:1 image 48), Trailing (native slot) |
-| Tooltip | `Tooltip` | Side: top, bottom, left, right | Label (wraps at 280), Title + Show title (rich), Show shortcut (Kbd exposed) |
+| Tooltip | `Tooltip` | Side: top, bottom, left, right. Variant: default, light | Label (wraps at 280), Title + Show title (rich), Show shortcut (Kbd exposed) |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
-| Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner | Title, Description, Show description, Actions (native slot) + Show actions, Show close |
-| Toast | `Toast` | Type: default, success, error, warning, info, loading | Show description, Show action (nested Button exposed), Show close (off by default). Title and description text edited per instance (no TEXT properties) |
+| Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner. Style: default, soft, accent | Title, Description, Show description, Actions (native slot) + Show actions, Show close |
+| Toast | `Toast` | Type: default, success, error, warning, info, loading. Style: default, inverted | Show description, Show action (nested Button exposed), Show close (off by default). Title and description text edited per instance (no TEXT properties) |
 | Dialog | `Dialog Header` | - | Title, Description, Show description, Show close. Media (native slot) + Show media |
 | Dialog | `Dialog Footer` | - | Actions (native slot) |
 | Dialog | `Dialog` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer. Width sm 384, default 512, lg 672, xl 896 (resize) |
@@ -192,15 +193,15 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Drawer | `Side Panel` | State: expanded (320), collapsed (48) | Inline aside, no overlay. Title, Collapsible, Show footer; Actions, Content, Footer (native slots) |
 | Card | `Card Header` | - | Title, Description, Show description, Show action, Show icon + Icon (swap). Action (native slot) |
 | Card | `Card Footer` | - | Actions (native slot) |
-| Card | `Card` | Variant: default, outline, muted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
-| Card | `Stat Card` | Trend: up, down, neutral | Label, Value, Trend text, Footnote, Show footer, Show sparkline. Change badge soft by direction; trend line edited per instance |
+| Card | `Card` | Variant: default, outline, muted, inverted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
+| Card | `Stat Card` | Trend: up, down, neutral. Layout: vertical, compact, horizontal | Label, Value, Trend text, Footnote, Show footer, Show sparkline. Change badge soft by direction; trend line edited per instance |
 | Card | `Option Card` | Control: radio, checkbox. State: default, hover, focus, selected, disabled | Title, Description, Show description, Show icon + Icon (swap). Selectable card: a radio for one choice, a checkbox for several; the whole card is the target |
 | Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Description (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions, Show people; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
-| Card | `Person Card` | Layout: vertical (280), horizontal (400) | Name, Role, Organization, Show organization, Show tags, Show contact, Show actions; Avatar, Tags, Contact (Meta Items), Actions (native slots) |
+| Card | `Person Card` | Layout: vertical (280), horizontal (400), photo (280, 3:4 photo) | Name, Role, Organization, Show organization, Show tags, Show contact, Show actions; Avatar, Tags, Contact (Meta Items), Actions (native slots) |
 | Card | `Event Card` | Layout: horizontal (640), vertical (352, image). Date position: text, image (vertical: tile over the image) | Title, Show tags, Show actions, Show image; Date Tile (exposed); Tags, Meta (Meta Items), Actions (native slots) |
 | Card | `Date Tile` | Size: default (56), sm (44) | Month, Day. Part of Event Card |
 | Card | `Progress Card` | Status: on-track, at-risk, off-track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
-| Card | `Post Card` | Layout: vertical, horizontal, compact. Size: default, sm (sm horizontal: image one third, 120-240) | Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact: 1:1 image 64; horizontal: image half the width, 160-640); category Badge exposed. Compact = title on 2 lines + meta, for related lists |
+| Card | `Post Card` | Layout: vertical, horizontal, compact, overlay. Size: default, sm (sm horizontal: image one third, 120-240) | Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact: 1:1 image 64; horizontal: image half the width, 160-640); category Badge exposed. Compact = title on 2 lines + meta, for related lists |
 | Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
 | Table | `Table Cell Check` | Value: included, excluded, text | Text, Note, Show note. Plan comparison value in a table cell: included (check), excluded (dash) or a text value such as "100 GB" or "Unlimited", with an optional note ("per seat"). |
 | Table | `Table Cell Link`, `Table Cell Date`, `Table Cell File`, `Table Cell Badges`, `Table Cell Avatars` | - | Content for body cells: link (underlined), date (Show time), file (icon, name, size), badges (Badge List), people (Avatar Group sm) |
@@ -234,16 +235,16 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Sidebar | `Sidebar` | Mode: expanded (256), collapsed (48) | Header, Content, Footer (native slots) |
 | Sidebar | `Sidebar Double` | Mode: expanded (288: rail 48 + panel 240), collapsed (48) | Panel title; Rail header, Rail, Rail footer, Panel actions, Panel (native slots) |
 | Navigation | `Breadcrumb Item` | Type: link, current, ellipsis. State: default, hover (link) | Label, Show separator |
-| Navigation | `Breadcrumb` | - | Items (native slot) |
-| Navigation | `Top Bar` | - | Show sidebar trigger; Breadcrumb, Actions (native slots) |
+| Navigation | `Breadcrumb` | Style: default, background | Items (native slot) |
+| Navigation | `Top Bar` | Style: default, floating | Show sidebar trigger; Breadcrumb, Actions (native slots) |
 | Navigation | `Page Header` | - | Title (heading/h3), Description, Show description; Actions (native slot) |
 | Navigation | `Nav Link` | State: default, hover, active | Label, Show chevron (marketing navbar) |
 | Navigation | `Navigation Menu Link` | State: default, hover | Title, Description, Show icon, Icon (swap) |
 | Navigation | `Navigation Menu Panel` | - | Links, Featured (native slots), Show featured |
 | Navigation | `Table of Contents Item` | Level: 1, 2. State: default, hover, active | Label |
 | Navigation | `Table of Contents` | - | Items (native slot) |
-| Accordion | `Accordion Item` | Size: default, sm. State: collapsed, expanded | Title, Show leading icon + Leading icon (swap), Show meta; Meta, Content (native slots) |
-| Accordion | `Accordion` | - | Items (native slot) |
+| Accordion | `Accordion Item` | Size: default, sm. State: collapsed, expanded. Style: default, card. Icon: chevron, plus | Title, Show leading icon + Leading icon (swap), Show meta; Meta, Content (native slots) |
+| Accordion | `Accordion` | Style: default, card | Items (native slot) |
 | Image | `Map` | - | Label, Address, Show label, Show controls, Show pin. Roads scale, pin stays centered; put a static map image as fill in production |
 | Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 1:1, 3:4 | Show caption, Show image + Image (swap: Image / * from the Imagery page). Without an image: dot pattern and an image icon. Ratio locked: FILL keeps the height in proportion |
 | Image | `Image Cropper` | Shape: square, circle | Image layer (fill), scrim, selection that stays centered, zoom Slider, rotate, Cancel, Save |
@@ -297,9 +298,9 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
 | Forms | `Block / Account Settings Form` | - | Long settings form: Error Summary, Form Sections, phone, date, currency and address inputs, Fieldset, Recurrence Picker, Requirement List, Action Bar |
 | Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
-| Empty State | `Empty State` | Size: default, sm | Title, Description, Show description, Icon (swap), Show actions; Actions (native slot) |
+| Empty State | `Empty State` | Size: default, sm. Media: icon, image | Title, Description, Show description, Icon (swap), Show actions; Actions (native slot) |
 | Results | `Block / Result` | Type: not-found, server-error, no-access, maintenance, success | Show code; Actions (native slot) |
-| Commerce | `Product Card` | State: default, sale, sold-out | Name, Variant text, Show action, Show wishlist, Price, Old price. A product in a grid or carousel: photo, sale or sold-out badges, wishlist, name, variant text, Price and Old price, optional quick add. |
+| Commerce | `Product Card` | Layout: vertical, horizontal, overlay. State: default, sale, sold-out | Name, Variant text, Show action, Show wishlist, Price, Old price. A product in a grid or carousel: photo, sale or sold-out badges, wishlist, name, variant text, Price and Old price, optional quick add. |
 | Commerce | `Block / Product Detail` | - | Gallery, options (Toggle Group), quantity, add to cart, details accordion |
 | Commerce | `Block / Order Summary` | - | Lines, discount code, totals, pay button, trust line |
 | Commerce | `Block / Product Grid`, `/ Orders`, `/ Reviews` | - | Category listing with filters, sort, product grid and Load More; order history with tracking, address and payment; rating summary with reviews |
@@ -356,7 +357,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Code Block | `Endpoint Row` | Method: GET, POST, PUT, PATCH, DELETE. State: default, hover, selected | Path, Summary. One API endpoint in a reference list: method badge, path in mono with parameters in braces, one-line summary. |
 | Code Block | `JSON Viewer` | - | Structured data people inspect: webhook payloads, API responses, event properties, audit details. |
 | Code Block | `Log Row` | Level: debug, info, warn, error | Time, Message. One line of a log or event stream: time with milliseconds, level and message in mono. |
-| Color Picker | `Swatch` | Type: color, label. Size: default, sm. State: default, selected, unavailable | Label. One choice: a color dot (Type=color) or a box with a short label like S, M, L (Type=label). Size=sm (28) in Swatch Picker, default (36) for product options; ring when selected, faded when unavailable. |
+| Color Picker | `Swatch` | Type: color, label. Size: default, sm. State: default, selected, unavailable | Label, Name, Show name. One choice: a color dot (Type=color) or a box with a short label like S, M, L (Type=label). Size=sm (28) in Swatch Picker, default (36) for product options; ring when selected, faded when unavailable. |
 | Color Picker | `Swatch Picker` | - | Label, Show label, Swatches (slot). A short set of colors for labels, categories, calendars and project avatars: 6-10 Swatches from the chart palette in the Swatches slot, one selected, its name under them. |
 | Commerce | `Address Card` | State: default, selected | Name, Address, Show default, Show radio, Show actions. A saved address to pick or manage: name, address lines in the country's format, phone, Default badge, Edit and Remove (Show actions). |
 | Commerce | `Line Item` | Layout: cart, summary | Name, Variant, Quantity, Total; Number Input sm (cart). One product in a cart, checkout summary, order or invoice: image, name, variant, quantity and line total. |
@@ -382,12 +383,12 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Input | `Inline Form` | State: default, error, success | Hint, Error, Success message, Show hint. One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag. |
 | Input | `Phone Input` | State: default, focus, error, disabled | Country, Number. Phone number with a country code picker; formats as people type and stores the number in E.164. |
 | Input | `Range Input` | State: default, error | Min, Max, Unit. Two fields for a minimum and a maximum: price or amount filters, typed date ranges, quantities. |
-| Input | `Search Field` | State: default, focus, filled | Placeholder, Query, Show shortcut. Search box for a list, a table or the whole app: search icon, a placeholder that names what is searched, a shortcut hint and clear. |
+| Input | `Search Field` | State: default, focus, filled. Size: default, lg | Placeholder, Query, Show shortcut. Search box for a list, a table or the whole app: search icon, a placeholder that names what is searched, a shortcut hint and clear. |
 | Kbd | `Shortcut Row` | - | Action. One keyboard shortcut in the shortcuts dialog or a help page: what it does, then the keys. |
 | List | `Task Item` | State: open, done, overdue | Title, Due, Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
 | List | `Job Listing` | - | Title, Meta, Location, Posted, Salary, Show badge, Show salary. One open role in a careers list: title, team, type and work mode, location, posted date, salary range and Apply. |
 | Menu | `Account Menu` | - | Name, Email. The menu behind the signed-in person's avatar: name and email, personal settings, and Log out. |
-| Metrics | `Countdown` | - | Days, Hours, Minutes, Seconds, Show seconds. Time left until a deadline people act on: an offer, a webinar start, a payment due, a session that expires. |
+| Metrics | `Countdown` | Style: default, boxed, inline | Days, Hours, Minutes, Seconds, Show seconds. Time left until a deadline people act on: an offer, a webinar start, a payment due, a session that expires. |
 | Metrics | `Leaderboard Row` | State: default, current | Rank, Name, Value. A ranked person or team: rank, avatar, name and value. |
 | Metrics | `Metric Strip` | - | Metrics (slot). A row of 3-5 key figures at the top of a dashboard, report or record page, lighter than Stat Cards: label, value, trend, dividers between. |
 | Metrics | `Metric Strip Item` | - | Label, Value, Show trend, Show divider. One figure in a Metric Strip: label, value and an optional Trend Indicator. |
@@ -405,11 +406,11 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Popover | `App Launcher` | - | Grid of the products in a suite, opened from a layout-grid Button Icon in the top bar. |
 | Popover | `Confirm Popover` | Tone: default, destructive | Title, Description. A small confirmation next to the button that triggered it, for actions with some cost that do not need a dialog. |
 | Popover | `Emoji Picker` | - | Searchable grid of emoji for reactions, a status or a workspace icon, opened in a Popover. |
-| Pricing | `Plan Card` | Variant: default, featured | Title, Description, Features title, Features (slot). One plan in a pricing section: name, who it is for, Price, the main action and what it adds as Check Items. |
-| Pricing | `Price` | Size: sm, default, lg | Amount, Old price, Period, Show old price, Show period. A price as people compare it: amount with currency, period, and the old price struck through during a discount. |
+| Pricing | `Plan Card` | Variant: default, featured, inverted, compact | Title, Description, Features title, Features (slot). One plan in a pricing section: name, who it is for, Price, the main action and what it adds as Check Items. |
+| Pricing | `Price` | Size: sm, default, lg, xl | Amount, Old price, Period, Show old price, Show period. A price as people compare it: amount with currency, period, and the old price struck through during a discount. |
 | Progress | `Background Job` | State: running, done, error | Title, Status, Result, Error. A task that runs in the background (export, import, bulk send, report): name, progress with count and time left, cancel; done offers the result (Download); failed says where it stopped and offers Retry. |
 | Quote | `Footnote` | - | Number, Text, Show back link. A numbered note at the end of an article, report or pricing page that explains a claim in the text. |
-| Quote | `Testimonial Card` | - | Quote, Show rating. One customer quote as a card for testimonial grids and carousels: optional rating, the quote with a specific result, Byline. |
+| Quote | `Testimonial Card` | Variant: default, minimal, logo, featured | Quote, Show rating, Logo (swap), Show image (featured). One customer quote as a card for testimonial grids and carousels: optional rating, the quote with a specific result, Byline. |
 | Rating | `Rating Summary` | - | Average, Count. Average rating with the split across 1-5 stars, above the reviews. |
 | Rating | `Review Item` | - | Name, Date, Title, Text, Show verified, Show helpful. One customer review: who, verified purchase, date, stars, a title, the text and Helpful votes. |
 | Scheduler | `Agenda Item` | State: upcoming, now, past | Title, Start, End, Meta. One event in a day agenda: start and end time, a color bar for the calendar, title, place and people. |

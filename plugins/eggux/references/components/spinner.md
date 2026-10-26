@@ -1,39 +1,48 @@
 # Spinner
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Spinner](#spinner) | 6 | - |
+| [Spinner](#spinner) | 12 | - |
 | [Loading Overlay](#loading-overlay) | 1 | - |
 
-On the Figma page: "Example / button loading", "Example / refreshing a card", "Stress test / Loading Overlay", "Stress test / Spinner"
+On the Figma page: "Example / Spinner styles", "Example / button loading", "Example / refreshing a card", "Stress test / Loading Overlay", "Stress test / Spinner"
 
 ## Spinner
 
-Component set · 6 variants · default size 20 × 20
+Component set · 12 variants · default size 20 × 20
 
 Indeterminate loading (shadcn Spinner). Rotates linear, 1 s per turn (motion/ease/linear). Use for waits under ~3 s or inside buttons ("Saving…" + disabled); content loads use Skeleton, known progress uses Progress. Respect prefers-reduced-motion (pulse opacity instead).
+
+
+Type: default (rotating loader ring; buttons, inline status, panels), dots (three dots that pulse in turn, 0.2 s apart; typing and AI-writing indicators in chat, and soft waits inside text). Dots are drawn at 100, 70 and 40% opacity to show the pulse; never use dots inside a Button.
+
+
+Usage: eggux build-ui/components/indicators.md
 
 **Use for**
 
 - Waits under ~3 s
 - Inside a button while it works: "Saving…" + disabled
 - One row, field or small area that is loading
+- Type=dots: typing and AI-writing indicators in chat, soft waits inside a sentence
 
 **Not for**
 
 - Content loading: use Skeleton
 - Known progress: use Progress
 - Long jobs: run in the background and notify when done
+- Type=dots inside a Button: use Type=default
 
 **Anatomy**
 
-1. loader-circle icon, rotating linear, 1 s per turn
-2. Size: sm, default, lg; Tone: muted, default
-3. Optional text next to it: "Saving…"
+1. Type=default: loader-circle icon, rotating linear, 1 s per turn
+2. Type=dots: three dots (4 px; 8 px at lg) pulsing in turn, drawn at 100, 70 and 40% opacity
+3. Size: sm, default, lg; Tone: muted, default
+4. Optional text next to it: "Saving…"
 
 **Content and behavior**
 
@@ -42,6 +51,7 @@ Indeterminate loading (shadcn Spinner). Rotates linear, 1 s per turn (motion/eas
 - Size: sm 16 for inline and buttons, default 20, lg 32 for an empty region
 - Tone=muted on quiet surfaces, Tone=default next to body text
 - Reduced motion: pulse the opacity instead of rotating
+- Type=dots pulse 0.2 s apart; reduced motion keeps them static
 
 **Accessibility**
 
@@ -52,11 +62,14 @@ Indeterminate loading (shadcn Spinner). Rotates linear, 1 s per turn (motion/eas
 |---|---|
 | Size | sm, default, lg |
 | Tone | muted, default |
+| Type | default, dots |
 
 Icons: loader-circle
 
 Tokens and styles:
-- Spacing and size: `spacing/4`, `spacing/5`, `spacing/8`
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/4`, `spacing/5`, `spacing/8`
+- Radius: `radius/full`
 
 Guides: [indicators](../../skills/build-ui/components/indicators.md)
 

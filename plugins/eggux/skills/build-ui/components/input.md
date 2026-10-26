@@ -14,6 +14,20 @@ Label (`ui/label`) → input → hint or error (`ui/caption`). The label is alwa
 - Group related fields (address, date range) and keep one column on mobile.
 - Autofill: set the correct `autocomplete` attribute in code.
 
+## Style
+Pick one `Input` Style per form, and give `Select` the same Style.
+
+| Style | Use |
+|---|---|
+| `default` | Outlined; most forms |
+| `filled` | Muted fill, border on focus; dense screens |
+| `floating` | Label inside the box, 48 high; short public forms |
+
+- Floating: put the Input in a `Field` with `Show label` off, so the hint and error stay. Type the
+  label in the Input's `Label` property; it floats on focus and when filled.
+- Never mix filled and outlined controls in one form.
+- Figma: `Input` Style × State × Content; `Field` Show label. Example "Input styles" on the Input page.
+
 ## Textarea
 - Use for free text longer than one line: notes, descriptions, messages, reasons.
 - Height shows the expected length (3-5 rows); it grows with content up to a max, then scrolls.

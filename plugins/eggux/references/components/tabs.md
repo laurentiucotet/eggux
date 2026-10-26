@@ -1,25 +1,28 @@
 # Tabs
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Tab](#tab) | 12 | - |
-| [Tabs](#tabs) | 3 | Tabs |
+| [Tab](#tab) | 20 | - |
+| [Tabs](#tabs) | 5 | Tabs, Panel |
 
-On the Figma page: "Example / settings with vertical tabs", "Example / tabs with counts", "Stress test / Tabs"
+On the Figma page: "Example / Tabs styles", "Example / settings with vertical tabs", "Example / tabs with counts", "Stress test / Tabs"
 
 ## Tab
 
-Component set · 12 variants · default size 88 × 28
+Component set · 20 variants · default size 89 × 28
 
-Tab trigger. Put inside Tabs, with the same Variant as the Tabs. "default" is shadcn TabsTrigger (inactive text uses foreground/default: muted on muted fails contrast). "line" for page-level sections. Show count adds a Badge Count (exposed) after the label for the number of items behind the tab ("Guides 64"); write the number in the badge, never in the label. "vertical": full-width rows for Tabs Variant=vertical. Show icon adds a 16 px icon before the label. Usage: eggux build-ui/components/tabs.md
+Tab trigger. Put inside Tabs, with the same Variant as the Tabs. "default" is shadcn TabsTrigger (inactive text uses foreground/default: muted on muted fails contrast). "line" for page-level sections. "vertical": full-width rows for Tabs Variant=vertical. "pills": 32 high, active background/primary with foreground/primary, inactive foreground/muted. "boxed": folder tab, active has border/default on three sides and background/default and covers the panel line. Show count adds a Badge Count (exposed) after the label; write the number in the badge, never in the label. Show icon adds a 16 px icon before the label.
+
+
+Usage: eggux build-ui/components/tabs.md
 
 | Variant property | Values |
 |---|---|
-| Variant | line, vertical, default |
+| Variant | line, vertical, default, pills, boxed |
 | State | default, active, focus, disabled |
 
 | Property | Type | Default |
@@ -32,9 +35,9 @@ Tab trigger. Put inside Tabs, with the same Variant as the Tabs. "default" is sh
 Built from: `Badge Count`. Icons: house
 
 Tokens and styles:
-- Colors: `background/default`, `background/muted`, `background/primary`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/3`, `spacing/7`, `spacing/8`, `spacing/9`
-- Radius: `radius/md`
+- Colors: `background/default`, `background/muted`, `background/primary`, `border/default`, `foreground/default`, `foreground/muted`, `foreground/primary`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/3`, `spacing/4`, `spacing/7`, `spacing/8`, `spacing/9`
+- Radius: `button/radius`, `radius/md`
 - Text styles: `ui/label`
 - Effects: `shadow/sm`
 
@@ -44,15 +47,20 @@ Code: shadcn `Tabs` (`TabsList`, `TabsTrigger`) (Variant=line: `TabsList` with a
 
 ## Tabs
 
-Component set · 3 variants · default size 263 × 36
+Component set · 5 variants · default size 266 × 36
 
-Tab list with a Tabs slot of Tab instances. Variant=default is the pill style for switching views in a card or a toolbar; line for page-level sections under a header; vertical for settings pages with many sections (use Tab Variant=vertical inside). One Tab active at a time; arrow keys move between tabs. More than 6 tabs or long labels on mobile: use a Select.
+Tab list with a Tabs slot of Tab instances (same Variant inside). default: pill tabs in a muted track for views in a card or toolbar; line: page-level sections under a header; vertical: settings pages with many sections; pills: bare pill tabs without a track, active filled with background/primary, for list filters on background or card; boxed: folder tabs on a bordered panel, put the content in the Panel slot. One Tab active at a time; arrow keys move between tabs. More than 6 tabs or long labels on mobile: use a Select.
+
+
+Usage: eggux build-ui/components/tabs.md
 
 **Use for**
 
 - Views inside a card or panel (Variant=default)
 - Sections of a record page under its header (Variant=line)
 - Settings and long forms with 4-10 sections (Variant=vertical)
+- Filters of one list shown as tabs on a page without a card (Variant=pills): All, Paid, Overdue
+- Content that should read as one bordered unit with its tabs, such as code samples or a settings panel (Variant=boxed)
 
 **Not for**
 
@@ -62,9 +70,10 @@ Tab list with a Tabs slot of Tab instances. Variant=default is the pill style fo
 
 **Anatomy**
 
-1. Tabs slot: Tab instances with the matching Tab Variant (default, line, vertical)
-2. Active Tab: background and shadow (default), underline in background/primary (line), background/muted (vertical)
+1. Tabs slot: Tab instances with the matching Tab Variant (default, line, vertical, pills, boxed)
+2. Active Tab: background and shadow (default), underline in background/primary (line), background/muted (vertical), background/primary fill with foreground/primary text (pills), border/default on three sides and background/default (boxed)
 3. Count: Show count on Tab adds a Badge Count after the label
+4. Variant=boxed: header row (Tabs slot + a rest line in border/default) and a Panel slot with border/default on the sides and bottom, padding density/card-padding-sm
 
 **Content and behavior**
 
@@ -72,25 +81,29 @@ Tab list with a Tabs slot of Tab instances. Variant=default is the pill style fo
 - Exactly one active tab, matching the content shown
 - Variant=line spans the full width with a bottom border; vertical is 200 wide with the content on the right
 - More tabs than fit on mobile: switch to a Select
+- pills: no track; use on background/default or background/card, never on muted surfaces (inactive text is foreground/muted)
+- boxed: the active tab covers the panel's top line; put the panel content in the Panel slot, not under the component
 
 **Accessibility**
 
 - Tab list role; arrow keys move between tabs, Tab moves into the panel
 - The active tab has aria-selected; each panel is labeled by its tab
 - Focus ring visible on Tab State=focus
+- pills: active text 5.2:1 Light, 5.2:1 Dark, 6.7:1 Corporate Light; inactive foreground/muted 4.7:1 or more on the page
 
 | Variant property | Values |
 |---|---|
-| Variant | default, line, vertical |
+| Variant | default, line, vertical, pills, boxed |
 
-Slots (fill them in the instance, never detach): `Tabs`
+Slots (fill them in the instance, never detach): `Tabs`, `Panel`
 
 Built from: `Tab`
 
 Tokens and styles:
-- Colors: `background/muted`, `border/default`
-- Spacing and size: `spacing/1`, `spacing/4`
-- Radius: `radius/lg`
+- Colors: `background/default`, `background/muted`, `border/default`, `foreground/muted`
+- Spacing and size: `density/card-padding-sm`, `spacing/1`, `spacing/2`, `spacing/4`
+- Radius: `button/radius`
+- Text styles: `body/small`
 
 Guides: [tabs](../../skills/build-ui/components/tabs.md)
 

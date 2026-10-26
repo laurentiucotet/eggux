@@ -45,5 +45,7 @@ Usage guidelines only. Visual specs live in the Figma components.
   tooltip. Group by day for long histories.
 - The Content slot holds a note excerpt, attachment or diff; link to the object when there is one.
 - Long histories: show the last 5-10 with "View all".
-- Figma: `Timeline Item` Tone × Title, Time, Description, Icon, Show connector (off on the last),
+- Layout=default in activity feeds. Layout=card for events with notes or files. alternating-left
+  and alternating-right, alternated item by item, for milestones on marketing pages from 768 up.
+- Figma: `Timeline Item` Tone × Layout × Title, Time, Description, Icon, Show connector (off on the last),
   Content slot (Show content).

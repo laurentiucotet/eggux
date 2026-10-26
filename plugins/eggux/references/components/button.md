@@ -1,30 +1,40 @@
 # Button
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Button](#button) | 90 | - |
-| [Button Icon](#button-icon) | 60 | - |
+| [Button](#button) | 105 | - |
+| [Button Icon](#button-icon) | 72 | - |
 | [Button Group](#button-group) | 1 | Items |
 | [Button Group Item](#button-group-item) | 12 | - |
 | [Split Button](#split-button) | 2 | - |
 | [Action Bar](#action-bar) | 3 | Leading, Actions |
 | [Social Share](#social-share) | 1 | - |
 
-On the Figma page: "Example / AI action", "Example / form footer", "Example / record actions", "Example / scroll to top", "Example / share row at the end of an article", "Example / sign-in providers", "Example / split button open", "Example / wishlist", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Social Share", "Stress test / Split Button"
+On the Figma page: "Example / AI action", "Example / Button styles", "Example / form footer", "Example / record actions", "Example / scroll to top", "Example / share row at the end of an article", "Example / sign-in providers", "Example / split button open", "Example / wishlist", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Social Share", "Stress test / Split Button"
 
 ## Button
 
-Component set · 90 variants · default size 77 × 36
+Component set · 105 variants · default size 78 × 36
 
-shadcn Button. One "default" (primary) per view; "destructive" only inside a confirmation step. Label is a verb. Usage: eggux build-ui/components/button.md State=loading: spinner instead of the leading icon, same width; blocks repeat clicks.
+shadcn Button. One "default" (primary) per view; "destructive" only inside a confirmation step. Label is a verb.
+
+
+Variant=soft: a primary tint (button/soft-bg, hover button/soft-hover) with foreground/brand text. Use it for brand-colored secondary actions that must not compete with the one default button: Add line item, Import CSV, a call to action on a card. Quieter than default, louder than secondary.
+
+
+State=loading: spinner instead of the leading icon, same width; blocks repeat clicks.
+
+
+Usage: eggux build-ui/components/button.md
 
 **Use for**
 
 - The single main action of a view or dialog: Variant=default
+- A brand-colored action that must not compete with the main one (Add line item, Import CSV, a call to action on a card): Variant=soft
 - Alternative actions: secondary; Cancel and back: outline
 - Toolbar and low-emphasis actions in dense UI: ghost
 - The confirming action of a destructive flow: destructive; text-like navigation in content: link
@@ -43,6 +53,7 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 3. Trailing icon (optional, Trailing icon)
 4. State=loading: a spinning loader replaces the leading icon; width stays
 5. Variant=link: label, icons and hover underline use foreground/brand; no fill
+6. Variant=soft: fill button/soft-bg (background/primary at 10%, 20% in dark), hover button/soft-hover (one step stronger); label and icons foreground/brand; no shadow
 
 **Content and behavior**
 
@@ -53,6 +64,9 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 - Loading (State=loading) keeps the width and the label ("Saving…" when it helps), shows the spinner and blocks repeat clicks
 - Disabled only when truly unavailable, with a reason nearby; never as form validation
 - Variant=link text and icons are foreground/brand (text-brand), never background/primary
+- soft is quieter than default and louder than secondary: use it for the second most important action, or several equal brand actions in one card
+- Never two soft Buttons next to one default Button in the same group; pick soft or secondary for the group
+- soft text and icons are foreground/brand, never background/primary
 
 **Accessibility**
 
@@ -60,10 +74,11 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 - Touch target at least 44 x 44 px on mobile
 - Loading is announced ("Saving…")
 - Text meets 4.5:1 in every Variant; link (foreground/brand) passes 4.5:1 on background/default, muted and card in every theme
+- soft: foreground/brand on button/soft-bg is 5.8:1 Light, 6.7:1 Dark, 5.7:1 Corporate Light; on hover 5.1, 5.9, 4.9. The fill boundary is about 1.2:1, so the label carries the meaning, as for ghost
 
 | Variant property | Values |
 |---|---|
-| Variant | default, secondary, outline, ghost, destructive, link |
+| Variant | default, secondary, outline, ghost, destructive, link, soft |
 | Size | sm, default, lg |
 | State | default, hover, focus, disabled, loading |
 
@@ -78,9 +93,9 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 Icons: chevron-right, loader-circle, plus
 
 Tokens and styles:
-- Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`, `foreground/accent`, `foreground/brand`, `foreground/default`, `foreground/destructive`, `foreground/primary`, `foreground/secondary`
+- Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`, `button/soft-bg`, `button/soft-hover`, `foreground/accent`, `foreground/brand`, `foreground/default`, `foreground/destructive`, `foreground/primary`, `foreground/secondary`
 - Spacing and size: `density/control-height`, `spacing/10`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`, `spacing/8`
-- Radius: `radius/md`
+- Radius: `button/radius`
 - Text styles: `ui/label`
 - Effects: `shadow/xs`
 
@@ -90,9 +105,12 @@ Code: shadcn `Button` (`variant`, `size`) (`Show leading icon` → icon child be
 
 ## Button Icon
 
-Component set · 60 variants · default size 36 × 36
+Component set · 72 variants · default size 36 × 36
 
-Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label in code and a tooltip with the same text. Usage: eggux build-ui/components/button.md, tooltip.md Size: sm 32 (tables, dense toolbars), default 36, lg 40 (next to lg Buttons).
+Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label in code and a tooltip with the same text. Size: sm 32 (tables, dense toolbars), default 36, lg 40 (next to lg Buttons). Variant=soft (button/soft-bg, foreground/brand icon) next to soft Buttons or for a brand-colored icon action without a solid fill.
+
+
+Usage: eggux build-ui/components/button.md, tooltip.md
 
 **Use for**
 
@@ -108,7 +126,7 @@ Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label i
 **Anatomy**
 
 1. Icon (instance swap, default ellipsis)
-2. Container in the chosen Variant: Size sm 32, default 36, lg 40
+2. Container in the chosen Variant (default, secondary, outline, ghost, destructive, soft): Size sm 32, default 36, lg 40
 3. Tooltip with the same text as the accessible label
 
 **Content and behavior**
@@ -118,16 +136,18 @@ Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label i
 - ghost in toolbars and dense UI
 - Copy turns the icon into a check for 2 s with the label "Copied"; no toast
 - Size matches the Buttons next to it: sm in tables and dense toolbars, lg next to lg Buttons in heroes
+- Variant=soft (button/soft-bg, foreground/brand icon) next to soft Buttons, or for a brand-colored icon action without a solid fill
 
 **Accessibility**
 
 - aria-label in code, same text as the tooltip
 - The tooltip shows on hover and on keyboard focus
 - Icon meets 3:1; touch target at least 44 x 44 px on mobile
+- soft icon: foreground/brand on button/soft-bg meets 3:1 in every theme (5.7:1 or more)
 
 | Variant property | Values |
 |---|---|
-| Variant | default, secondary, outline, ghost, destructive |
+| Variant | default, secondary, outline, ghost, destructive, soft |
 | Size | default, sm, lg |
 | State | default, hover, focus, disabled |
 
@@ -138,9 +158,9 @@ Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label i
 Icons: ellipsis
 
 Tokens and styles:
-- Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`
+- Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`, `button/soft-bg`, `button/soft-hover`
 - Spacing and size: `density/control-height`, `spacing/10`, `spacing/8`
-- Radius: `radius/md`
+- Radius: `button/radius`
 - Effects: `shadow/xs`
 
 Guides: [button](../../skills/build-ui/components/button.md), [carousel](../../skills/build-ui/components/carousel.md), [navigation](../../skills/build-ui/components/navigation.md), [commerce](../../skills/build-ui/patterns/commerce.md)
@@ -215,7 +235,7 @@ Icons: pencil
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `border/input`, `foreground/accent`, `foreground/default`
 - Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `button/radius`
 - Text styles: `ui/label`
 
 Guides: [button](../../skills/build-ui/components/button.md)
@@ -272,7 +292,7 @@ Icons: chevron-down
 Tokens and styles:
 - Colors: `background/default`, `background/primary`, `border/input`, `foreground/default`, `foreground/primary`
 - Spacing and size: `border-width/DEFAULT`, `density/control-height`, `spacing/3`, `spacing/4`, `spacing/9`
-- Radius: `radius/md`
+- Radius: `button/radius`
 - Text styles: `ui/label`
 
 Guides: [button](../../skills/build-ui/components/button.md)

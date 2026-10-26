@@ -1,20 +1,26 @@
 # Tooltip
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Tooltip](#tooltip) | 4 | - |
+| [Tooltip](#tooltip) | 8 | - |
 
-On the Figma page: "Example / icon button with tooltip", "Example / rich tooltip and shortcut", "Stress test / Tooltip"
+On the Figma page: "Example / Tooltip styles", "Example / icon button with tooltip", "Example / rich tooltip and shortcut", "Stress test / Tooltip"
 
 ## Tooltip
 
-Component set · 4 variants · default size 115 × 33
+Component set · 8 variants · default size 115 × 33
 
-shadcn Tooltip. Side = where the tooltip sits relative to its trigger. Plain text, one line (or a title and up to three lines when rich); same text as the accessible label of icon-only buttons. Usage: eggux build-ui/components/tooltip.md Rich: Show title adds a title, text wraps at 280. Show shortcut adds a Kbd (exposed) after the text.
+shadcn Tooltip. Side = where the tooltip sits relative to its trigger. Plain text, one line (or a title and up to three lines when rich); same text as the accessible label of icon-only buttons. Rich: Show title adds a title, text wraps at 280. Show shortcut adds a Kbd (exposed) after the text.
+
+
+Variant: default (primary fill, the standard), light (popover surface with border and shadow/md, bordered arrow; for dense data screens, charts and editors where a filled tooltip is too loud, and on dark or colored areas). Use one Variant per product.
+
+
+Usage: eggux build-ui/components/tooltip.md
 
 **Use for**
 
@@ -22,6 +28,7 @@ shadcn Tooltip. Side = where the tooltip sits relative to its trigger. Plain tex
 - A one-line hint on a control
 - Full timestamp on a relative time, or the full text of a truncated label
 - Reason a control is disabled and how to fix it
+- Variant=light: dense data screens, charts and editors where a filled tooltip is too loud, and over dark or colored areas
 
 **Not for**
 
@@ -37,6 +44,7 @@ shadcn Tooltip. Side = where the tooltip sits relative to its trigger. Plain tex
 3. Label: plain text, wraps at 280
 4. Kbd (Show shortcut, exposed): the keyboard shortcut
 5. Arrow pointing at the trigger (Side)
+6. Variant: default (background/primary fill) or light (background/popover, border/default 1 px, shadow/md, bordered arrow; text foreground/popover)
 
 **Content and behavior**
 
@@ -46,16 +54,18 @@ shadcn Tooltip. Side = where the tooltip sits relative to its trigger. Plain tex
 - Never holds information needed to finish the task
 - Touch has no hover: the content must also be reachable another way
 - Show the shortcut when the action has one (Search ⌘K)
+- One Variant per product
 
 **Accessibility**
 
 - Shows on keyboard focus; Escape hides it
 - Tied to the trigger with aria-describedby, or its text is the button's aria-label
-- Text on background/primary meets 4.5:1
+- Text on background/primary (default) and on background/popover (light) meets 4.5:1
 
 | Variant property | Values |
 |---|---|
 | Side | top, bottom, left, right |
+| Variant | default, light |
 
 | Property | Type | Default |
 |---|---|---|
@@ -67,10 +77,11 @@ shadcn Tooltip. Side = where the tooltip sits relative to its trigger. Plain tex
 Built from: `Kbd`
 
 Tokens and styles:
-- Colors: `background/primary`, `foreground/primary`
-- Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Colors: `background/popover`, `background/primary`, `border/default`, `foreground/popover`, `foreground/primary`
+- Spacing and size: `border-width/DEFAULT`, `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
 - Radius: `radius/md`
 - Text styles: `ui/caption`, `ui/label`
+- Effects: `shadow/md`
 
 Guides: [popover](../../skills/build-ui/components/popover.md), [tooltip](../../skills/build-ui/components/tooltip.md), [tour](../../skills/build-ui/components/tour.md), [permissions-and-access](../../skills/build-ui/patterns/permissions-and-access.md)
 

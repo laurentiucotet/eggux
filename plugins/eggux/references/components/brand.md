@@ -61,7 +61,7 @@ Tokens and styles:
 - Spacing and size: `spacing/2`
 - Text styles: `body/large`
 
-Guides: [navigation](../../skills/build-ui/components/navigation.md)
+Guides: [navigation](../../skills/build-ui/components/navigation.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
 Code: inline SVG in `currentColor` (or `<img alt>` with the product name) (Logo Mark is the symbol alone)
 

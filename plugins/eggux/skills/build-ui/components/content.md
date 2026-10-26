@@ -23,7 +23,9 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Plan feature lists with checks are `Check Item`s; numbers are Figure or Stat Card.
 - Marker=number with the Number property for "How it works" sections (3-4 steps), only when
   order matters.
-- Figma: `Feature Item` (own page) Layout × Marker; Title, Description, Number, Icon (swap), Show
+- `Layout=card` (bordered card around each item) for feature grids on muted or busy sections, or
+  when each item links to its own page; the whole grid uses card.
+- Figma: `Feature Item` (own page) Layout (stacked, inline, centered, card) × Marker; Title, Description, Number, Icon (swap), Show
   description, Show link. Used in the Features, Bento Grid and Careers Benefits blocks.
 
 ## Post Card
@@ -36,14 +38,18 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Figma: `Post Card` (Card page), Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact); Badge
   exposed for the category.
 - `Size=sm` for grids of 4 and for lists next to a featured story; never restyle the title on an instance.
+- `Layout=overlay` for one lead story or a cover carousel: the photo fills the card and the text
+  sits on `media/scrim` (black 60%), 5.7:1 over any photo. No excerpt. Example "Post Card styles".
 
 ## Quote
 - `default` (left rule, body/large) inside an article or case study; `pull` (centered,
   heading/h3) for one strong line between sections of a long page; never two in a row.
+- `large` (display size, 720 wide) is one quote as its own section, such as proof under a hero;
+  once per page, under 20 words.
 - Word for word, with permission, under 40 words; no quotation marks in the text. Attribution:
   name and role at the time, optional avatar.
 - Customer proof on marketing pages: `Testimonial Card` or `Block / Testimonials`. Notes and warnings: Alert.
-- Figma: `Quote` Variant default, pull; Quote, Name, Role, Show avatar, Show attribution.
+- Figma: `Quote` Variant default, pull, large; Quote, Name, Role, Show avatar, Show attribution.
   `Block / Article` uses the default variant.
 
 ## Code Block

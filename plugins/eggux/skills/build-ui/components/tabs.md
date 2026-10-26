@@ -18,11 +18,15 @@ Usage guidelines only. Visual specs live in the Figma component.
 
 ## Figma
 - One `Tabs` set holds `Tab` instances in a native slot: Variant default (pill, shadcn), line
-  (underlined) and vertical. Each Tab uses the same Variant as its Tabs. Exactly one `active`.
+  (underlined), vertical, pills and boxed. Each Tab uses the same Variant as its Tabs. Exactly one
+  `active`.
 - In pill tabs, inactive text is `foreground/default`, not muted: muted text on the muted list
   fails contrast. The active tab is marked by its background and shadow.
 - Use Variant=line for page-level sections, Variant=default for switching views inside a card or
   panel.
+- Variant=pills (no track, the active tab filled with primary) for list filters on a page, with
+  counts when useful. Variant=boxed when the tabs and their panel form one bordered unit: the
+  content goes in the Tabs `Panel` slot. Example "Tabs styles".
 - `Tab` Show icon adds a 16 px icon before the label (Icon swap); icons on all tabs or none.
 - Variant=vertical: a 200 wide column for settings and long forms with 4-10 sections; the content
   sits on the right. Mobile: a Select or a list that opens each section. Example "settings with
@@ -32,8 +36,10 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Tabs switch between panels of content. Toggle Group sets a value: view mode (list / board),
   period (day / week / month), formatting. If nothing below changes except how data is shown or
   filtered, it is a Toggle Group.
-- `Toggle Group` default or outline; items can be icon-only (with accessible label and tooltip).
-  The chosen `Toggle Group Item` is State=selected.
+- `Toggle Group` default, outline or segmented; items can be icon-only (with accessible label and
+  tooltip). The chosen `Toggle Group Item` is State=selected; items use the Variant of their group.
+- Variant=segmented (a muted track, the selected item raised) looks like Tabs default but sets a
+  value: periods on a chart card, Monthly / Yearly on pricing. Example "Toggle Group styles".
 
 ## Related components
 - View switches (list, board, calendar) and theme switches (light, dark, system) are plain

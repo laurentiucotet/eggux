@@ -3,6 +3,18 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.58.1
+- Style alternatives finished: Progress segmented (`Progress Segment` helper), Empty State
+  `Media=image`, Tooltip light, Rating badge, Countdown as a set (default, boxed, inline; unit
+  labels now 4.54:1 on `card/muted-background`), Step dots and Stepper `Orientation` / `Style`,
+  Spinner example.
+- Docs frames rebuilt on 34 changed component pages; `references/components/` regenerated for them
+  (new: background.md, email.md).
+- Component guides say when to use each new style (one style per list, form or page);
+  figma-library.md rows list the new variants and properties.
+- App and Forms block pages reflowed like the other block pages (families stacked, 2 or 3 column
+  grids, Examples to the right).
+
 ## 0.58.0
 Steps 3 and 4 of the de-wireframe plan (audit 2), a new default theme, and the SCREENS group.
 - Theme: the default Light and Dark modes are the EGG identity: `blue/600` primary, pill buttons and

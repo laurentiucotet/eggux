@@ -21,6 +21,10 @@ Switch for on/off, Select for a choice, Button for Change or Connect); Show divi
 row. Switches save at once unless the section has its own Save button. Example: "settings
 section" on the Selection controls page and `Block / Settings Section`.
 
+A `Switch` with its own label uses `Show description` for settings that need one sentence of
+consequence. Size=sm in dense tables and toolbars, lg in mobile settings, default elsewhere; one
+Size per list. Example "Switch styles".
+
 Destructive settings (delete workspace, transfer ownership) live in a separate "Danger zone" card
 at the bottom, with typed confirmation (`delete-confirmation.md`).
 - Billing emails (invoice, receipt, payment failed, trial ending) use the Emails page templates with

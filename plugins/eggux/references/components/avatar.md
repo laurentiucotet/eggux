@@ -11,7 +11,7 @@ Usage rules live in the guides linked under each component.
 | [Byline](#byline) | 3 | - |
 | [Presence Bar](#presence-bar) | 1 | - |
 
-On the Figma page: "Example / article meta", "Example / assignees on a project page", "Example / document header with live presence", "Example / in record header", "Stress test / Avatar", "Stress test / Avatar Group", "Stress test / Byline", "Stress test / Presence Bar"
+On the Figma page: "Example / Avatar Group styles", "Example / article meta", "Example / assignees on a project page", "Example / document header with live presence", "Example / in record header", "Stress test / Avatar", "Stress test / Avatar Group", "Stress test / Byline", "Stress test / Presence Bar"
 
 ## Avatar
 
@@ -84,13 +84,14 @@ Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sampl
 
 Component set · 3 variants · default size 78 × 24
 
-Stacked avatars for assignees, participants, shared with. Show 3-5 and "+N"; the full list goes in a Tooltip or Popover.
+Stacked avatars for assignees, participants, shared with. Show 3-5 and "+N"; the full list goes in a Tooltip or Popover. Show names adds who they are next to the avatars ("Ana, Mihai and 3 others", foreground, medium); Show label adds what they are ("Maintained by 3 analysts", muted). Both stay on one line and end with an ellipsis at 200 (sm) or 240 (default, lg). Usage: eggux build-ui/components/avatar.md
 
 **Use for**
 
 - Assignees on a card or a table row
 - Participants of a project
 - "Shared with" in sharing dialogs
+- Show names: who is in the group at a glance ("Ana, Mihai and 3 others")
 
 **Not for**
 
@@ -102,7 +103,8 @@ Stacked avatars for assignees, participants, shared with. Show 3-5 and "+N"; the
 1. Avatars slot: 3-5 Avatars of one size, overlapping
 2. Ring: 2 px background/default around each Avatar
 3. +N for the rest, opens the full list
-4. Label (Show label): body/small, muted ("Maintained by 3 analysts")
+4. Names (Show names): ui/label (ui/label-small in sm), foreground, one line, ellipsis
+5. Label (Show label): body/small (ui/caption in sm), muted, one line, ellipsis
 
 **Content and behavior**
 
@@ -110,6 +112,8 @@ Stacked avatars for assignees, participants, shared with. Show 3-5 and "+N"; the
 - Same size inside a group: sm, default or lg
 - Full list in a Tooltip (names) or a Popover (names and actions)
 - Label says who they are or how many, not the names already shown
+- Names lists the first two or three names and "and N others"; it matches the avatars shown
+- Names and Label truncate with an ellipsis at their max width (200 sm, 240 default and lg); the full list goes in the Tooltip
 
 **Accessibility**
 
@@ -125,15 +129,17 @@ Stacked avatars for assignees, participants, shared with. Show 3-5 and "+N"; the
 |---|---|---|
 | Label | text | Maintained by 3 analysts |
 | Show label | boolean | false |
+| Names | text | Ana, Mihai and 3 others |
+| Show names | boolean | false |
 
 Slots (fill them in the instance, never detach): `Avatars`
 
 Built from: `Avatar`
 
 Tokens and styles:
-- Colors: `foreground/muted`
+- Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/2`, `spacing/3`
-- Text styles: `body/small`, `ui/caption`
+- Text styles: `body/small`, `ui/caption`, `ui/label`, `ui/label-small`
 
 Guides: [avatar](../../skills/build-ui/components/avatar.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
 
@@ -141,7 +147,7 @@ Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sampl
 
 ## Byline
 
-Component set · 3 variants · default size 168 × 36
+Component set · 3 variants · default size 169 × 36
 
 Who wrote, said or owns something: Avatar, name and one detail (role and company, or date and reading time). sm in dense grids and list rows, default under article titles and on cards, lg under testimonials and quotes. The name links to the profile when there is one. Several people: Avatar Group with a label; a full profile card: Person Card.
 
@@ -201,7 +207,7 @@ Code: shadcn `Avatar` + name and detail (`flex items-center gap-3`) (Name links 
 
 ## Presence Bar
 
-Component · 1 variant · default size 258 × 24
+Component · 1 variant · default size 254 × 24
 
 Who else has this document, record or board open right now: a live dot, their avatars, a short sentence. Top right of the editor, next to Share. Hovering an avatar shows the name and what they are looking at; clicking it jumps there. Only shows when someone else is present.
 

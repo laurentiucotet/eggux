@@ -10,14 +10,14 @@ Usage rules live in the guides linked under each component.
 | [Metric Strip](#metric-strip) | 1 | Metrics |
 | [Metric Strip Item](#metric-strip-item) | 1 | - |
 | [Usage Meter](#usage-meter) | 3 | - |
-| [Countdown](#countdown) | 1 | - |
+| [Countdown](#countdown) | 3 | - |
 | [Leaderboard Row](#leaderboard-row) | 2 | - |
 
-On the Figma page: "Example / in billing", "Example / in executive dashboard", "Stress test / Countdown", "Stress test / Leaderboard Row", "Stress test / Metric Strip", "Stress test / Trend Indicator", "Stress test / Usage Meter"
+On the Figma page: "Example / Countdown styles", "Example / in billing", "Example / in executive dashboard", "Stress test / Countdown", "Stress test / Leaderboard Row", "Stress test / Metric Strip", "Stress test / Trend Indicator", "Stress test / Usage Meter"
 
 ## Trend Indicator
 
-Component set · 18 variants · default size 141 × 20
+Component set · 18 variants · default size 140 × 20
 
 A change against a period: arrow, signed percent or amount, and what it is compared to. Direction is up, down or flat; Tone says if that is good (positive), bad (negative) or neither, so rising costs can be up and negative. Style=text colors the arrow and value; Style=badge puts them in a soft Badge (soft-success, soft-destructive, soft-neutral by Tone) for KPI tiles and tables; edit its label on the exposed Badge. The sign and the words carry the meaning; color only supports it. Edit the value text per instance.
 
@@ -108,6 +108,7 @@ A row of 3-5 key figures at the top of a dashboard, report or record page, light
 - Most important figure first, in the same order on every visit
 - Items share the width equally; on narrow screens wrap to two columns, no horizontal scroll
 - Loading: Skeleton in each value; no data: "No data" in muted text, never 0
+- Items fill the row height, so values stay aligned and dividers stay full height when an item has Show trend off
 
 **Accessibility**
 
@@ -244,15 +245,23 @@ Code: shadcn `Progress` with a tone class + label row (`role="meter"`, `aria-val
 
 ## Countdown
 
-Component · 1 variant · default size 280 × 66
+Component set · 3 variants · default size 280 × 66
 
 Time left until a deadline people act on: an offer, a webinar start, a payment due, a session that expires. Days, hours, minutes; seconds only in the last hour. Always say what happens at zero next to it, and the exact date and time zone. Screen readers get the end time, not a ticking value.
+
+
+Style: default (each unit on a quiet muted tile; banners, cards, checkout), boxed (each unit in a card tile with border and shadow, larger digits; hero sections, launch and webinar pages on a muted or image background), inline (digits and units in one row with colons, no tiles; tight spaces such as a sticky bar, a table cell or a resend-code line).
+
+
+Usage: eggux build-ui/patterns/marketing-pages.md
 
 **Use for**
 
 - A real deadline: offer ends, registration closes, webinar starts
 - A payment due or a session that expires
 - A resend code timer (short form, minutes and seconds)
+- Style=boxed: hero sections, launch and webinar pages on a muted or image background
+- Style=inline: tight spaces such as a sticky bar, a table cell or a resend-code line
 
 **Not for**
 
@@ -266,6 +275,7 @@ Time left until a deadline people act on: an offer, a webinar start, a payment d
 2. Hours tile
 3. Minutes tile
 4. Seconds tile (Show seconds)
+5. Style: default (card/muted-background tiles), boxed (background/card tiles with border/default, shadow/xs, radius/lg, heading/h2 digits), inline (no tiles, colons between units; the last colon follows Show seconds)
 
 **Content and behavior**
 
@@ -274,12 +284,18 @@ Time left until a deadline people act on: an offer, a webinar start, a payment d
 - Two digits per tile (02, 14); drop the days tile when it is 00
 - At zero, replace it with the outcome ("Registration closed") and remove the action it promoted
 - Count from the server time, never only the device clock
+- One Style per page
 
 **Accessibility**
 
 - Screen readers get the end time, not a ticking value: role="timer" with aria-live="off" and a <time datetime> label
 - Announce once at a meaningful step (5 minutes left) for session expiry, with a way to extend
 - No flashing or color pulse in the last seconds
+- Unit labels in foreground/muted keep 4.5:1 on their tile (card/muted-background, not background/muted)
+
+| Variant property | Values |
+|---|---|
+| Style | default, boxed, inline |
 
 | Property | Type | Default |
 |---|---|---|
@@ -290,10 +306,11 @@ Time left until a deadline people act on: an offer, a webinar start, a payment d
 | Show seconds | boolean | true |
 
 Tokens and styles:
-- Colors: `background/muted`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
-- Text styles: `heading/h3`, `ui/caption`
+- Colors: `background/card`, `border/default`, `card/muted-background`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`
+- Radius: `radius/lg`, `radius/md`
+- Text styles: `heading/h2`, `heading/h3`, `ui/caption`
+- Effects: `shadow/xs`
 
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 

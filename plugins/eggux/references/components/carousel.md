@@ -1,6 +1,6 @@
 # Carousel
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -257,12 +257,13 @@ Full-width rotating banner (homepages, campaigns): image (fill on the "image" la
 **Anatomy**
 
 1. Image (fill on the "image" layer) with video/scrim
-2. Overline (Show overline)
-3. Title
-4. Text
-5. One action Button
-6. Carousel Indicator bars with Pause
-7. Carousel Arrow, overlay, previous and next
+2. Content area: auto layout, padding 64 top, 128 bottom, 144 sides, content up to 640 wide
+3. Overline (Show overline)
+4. Title: display/lg, 1-2 lines
+5. Text
+6. One action Button
+7. Carousel Indicator bars with Pause
+8. Carousel Arrow, overlay, previous and next
 
 **Content and behavior**
 
@@ -270,6 +271,7 @@ Full-width rotating banner (homepages, campaigns): image (fill on the "image" la
 - No auto-advance with reduced motion
 - Bars always come with Pause
 - One action per slide
+- Title in 2 lines at most; the content area keeps 64 above and clears the bars below
 - White text on video/scrim keeps 4.5:1 on any photo
 - The image clips on purpose; never detach
 
@@ -291,8 +293,8 @@ Built from: `Button`, `Carousel Arrow`, `Carousel Indicator`
 
 Tokens and styles:
 - Colors: `background/muted`, `video/foreground`, `video/scrim`
-- Spacing and size: `spacing/3`, `spacing/6`
-- Text styles: `body/lead`, `heading/h1`, `ui/overline`
+- Spacing and size: `spacing/16`, `spacing/3`, `spacing/32`, `spacing/36`, `spacing/6`
+- Text styles: `body/lead`, `display/lg`, `ui/overline`
 
 Guides: [carousel](../../skills/build-ui/components/carousel.md)
 

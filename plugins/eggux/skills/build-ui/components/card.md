@@ -18,6 +18,7 @@ Header (title `body/large`, optional description `body/small` muted, optional ac
 | `default` | Card background, border | Most cards |
 | `outline` | No fill, border | Cards inside a panel, a dialog or another surface; long lists of cards |
 | `muted` | Tinted (`card/muted-background`), no border | Secondary or summary information, empty and placeholder cards, side notes |
+| `inverted` | `bg-foreground text-background` (near white in Dark) | One card per view that must stand out |
 
 | Elevation | Looks | Use |
 |---|---|---|
@@ -55,12 +56,17 @@ Stat Card, Option Card and Post Card use the same tokens.
 - Selectable cards (plan, delivery, billing period) use Option Card: the whole card is the target, one selected.
 - Card Header `Show icon` names the card type on dashboards; give every card in a row an icon or none.
 - Stat Card: the change badge is soft and follows the direction (up success, down destructive, flat neutral; swap when up is bad); `Show sparkline` adds a chart/1 trend under the value.
+- Stat Card Layout: `vertical` (default), `compact` (Icon Tile + value) for dense rows and
+  sidebars, `horizontal` (sparkline on the right) when the trend shape matters. One Layout per row.
+- Inverted Card: inside it use `background/default` text and `secondary` or `outline` Buttons,
+  never `default`. Content already placed in a slot keeps its own colors when an instance is
+  switched to inverted: recolor it.
 
 ## Figma
-- `Card` (Variant × Size × Elevation, 12 variants) = native slots Header (`Card Header`), Content (placeholder) and Footer (`Card Footer`).
+- `Card` (Variant × Size × Elevation, 16 variants) = native slots Header (`Card Header`), Content (placeholder) and Footer (`Card Footer`).
   Fill the slots in the instance; never detach. Turn off Show header / Show footer when unused.
 - `Card Header` has its own Action slot (top right): Button Icon with a menu, a Badge, a Select.
-- `Stat Card` (Trend up, down, neutral) for dashboards; `Option Card` for selectable options.
+- `Stat Card` (Trend up, down, neutral × Layout vertical, compact, horizontal) for dashboards; `Option Card` for selectable options.
 - `Entity Card` for one object in a grid or board (customer, project, vendor): leading avatar or
   icon, title (2 lines), subtitle (1 line), menu, tags, 2-4 details, footer with people and last
   update. Fill Details with the attributes marked "card" in `objects.md`. Leading takes a 1:1
@@ -70,7 +76,9 @@ Stat Card, Option Card and Post Card use the same tokens.
   menu.
 - `Person Card` for one person (author, expert, speaker, contact): Avatar, Name, Role,
   Organization, expertise Badges, contact as Meta Items, optional actions. `vertical` in grids of
-  3-4, `horizontal` in asides. A record with details and status stays an Entity Card.
+  3-4, `horizontal` in asides. `photo` (a 3:4 photo above name and role, no surface) for team and
+  speaker pages; turn Show tags and Show contact off unless it is a directory. A record with
+  details and status stays an Entity Card.
 - `Event Card` for one event in a list (`horizontal`) or grid (`vertical`, with image):
   `Date Tile`, format badges, title, time with time zone and place as Meta Items, one action (Register,
   Join waitlist, Watch recording). Sorted by date; past events in their own list.
