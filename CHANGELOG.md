@@ -3,6 +3,33 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.59.0
+Defect fixes found while composing pages, and the first part of blocks wave 2.
+- Feature Item holds an exposed `Icon Tile` (Icon and Style set on the tile); all 92 instances kept
+  their icon and look. Breaking for files that set Feature Item's old `Icon` property: pick the icon
+  again on the nested tile.
+- Marketing and media: Device Frame screens fill the width and keep the image ratio; Features Split
+  and Stats get `Show header` (Stats values heading/h1); FAQ answers in every item; Hero Split
+  `Media=screenshot|image` and `Show trust`; Hero Prompt stacked with a 960 Device Frame; Block /
+  Navbar is a set with `Style=default|on-image` and `Show cart`; Video Player `Size=lg`; Inline Form
+  and Figure `Tone=on-primary`; Logo Tile bordered fill; Logo Marquee fades on the new
+  `gradient/background-transparent`; new `Comparison Table` component with `Plans=3|4`.
+- Forms and app: Password Strength asks only for length; Field Preset error and hint per type;
+  Page Shell / Wizard `Show back`; Mobile Header `Type=brand`; Avatar Upload `Shape=square`; Save
+  Bar `Message` and `Error`; Header Profile works from 768 to 1152; Slider thumbs stay round at any
+  width; soft badges in Tool Call, Search Result Item, Order Row, Progress Card; Tool Call
+  `Approval message`, `Error message`; Page Header `Show actions`; Sources favicons follow their
+  items (`Source Item` Letter); Task Item due date bound; Alert Dialog `Content` slot; Kbd text
+  18:1.
+- Wave 2 blocks (part 1): Features with Code, Use Cases, Us vs Them, Press Mentions (6 fictional
+  `Logo / Press / *` mastheads), CTA with Form, CTA App Download, Pricing Usage-based, Pricing
+  Enterprise Banner; Legal Page, Content with Image and `Example / Legal page`; Navbar Flyout;
+  Waitlist (default, joined), Workspace Setup, Invite Team Step, Plan Select Step.
+- Guides, library map, code mapping, tokens and API notes updated for all of the above.
+- Still in progress in Figma (next release): the rest of wave 2 (testimonials and case studies,
+  app dashboards and lists, communication and billing, commerce and AI, enterprise), the mobile
+  landing example, and Docs frames for the changed component pages.
+
 ## 0.58.1
 - Style alternatives finished: Progress segmented (`Progress Segment` helper), Empty State
   `Media=image`, Tooltip light, Rating badge, Countdown as a set (default, boxed, inline; unit

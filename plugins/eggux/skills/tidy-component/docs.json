@@ -8484,7 +8484,8 @@
   "use": [
    "Block / Logo Cloud right after the Hero",
    "Partner and customer grids",
-   "Case study lists by customer"
+   "Case study lists by customer",
+   "\"Also featured in\" press rows (Block / Press Mentions) with Logo / Press / *"
   ],
   "avoid": [
    "Your own brand in the Navbar: use Logo",
@@ -8492,7 +8493,7 @@
    "Certifications: use Trust Badge"
   ],
   "anatomy": [
-   "Logo (Logo): instance swap, default Logo / Northwind, preferred Logo / * (12 fictional sample logos on the Brand page)",
+   "Logo (Logo): instance swap, default Logo / Northwind, preferred Logo / * (12 fictional sample customer logos) and Logo / Press / * (6 fictional sample press mastheads: The Ledger Review, Northbeam Daily, Margin Weekly, Tallyline, Counting House, Fieldnote Business), all on the Brand page",
    "Style: bordered (tile on background/card with border, logo at full strength), plain (no fill or border, logo at 70% opacity)",
    "Tile: 72 high, hugs the logo with spacing/6 side padding, at least 160 wide, logo centered"
   ],
@@ -8503,7 +8504,8 @@
    "Grayscale in clouds: one color (foreground/default) dimmed by Style=plain, never brand colors per logo",
    "Every tile in a row shows a different logo",
    "Link only when the tile leads to a case study or an integration",
-   "4-8 per row on desktop, 2-3 on mobile"
+   "4-8 per row on desktop, 2-3 on mobile",
+   "Press logos (Logo / Press / *) only for publications that really covered you, each linked to its article; replace the fictional mastheads with the real ones (with permission)"
   ],
   "a11y": [
    "The logo has the company name as alt (the name after \"Logo / \"); there is no visible name text",
