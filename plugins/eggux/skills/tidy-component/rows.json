@@ -335,7 +335,10 @@
   {
    "main": "Button",
    "helpers": [],
-   "block": "72:3"
+   "block": "72:3",
+   "examples": [
+    "Example / Button styles"
+   ]
   },
   {
    "main": "Button Icon",
@@ -1115,12 +1118,18 @@
   {
    "main": "Input",
    "helpers": [],
-   "block": "212:862"
+   "block": "212:862",
+   "examples": [
+    "Example / Input styles"
+   ]
   },
   {
    "main": "Field",
    "helpers": [],
-   "block": "117:410"
+   "block": "117:410",
+   "examples": [
+    "Example / Input styles"
+   ]
   },
   {
    "main": "Password Strength",
@@ -1165,7 +1174,10 @@
   {
    "main": "Search Field",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Search Field styles"
+   ]
   },
   {
    "main": "Inline Form",
@@ -1667,7 +1679,10 @@
   {
    "main": "Select",
    "helpers": [],
-   "block": "67:2442"
+   "block": "67:2442",
+   "examples": [
+    "Example / Select styles"
+   ]
   },
   {
    "main": "Combobox",
@@ -1726,7 +1741,10 @@
   {
    "main": "Switch",
    "helpers": [],
-   "block": "79:3"
+   "block": "79:3",
+   "examples": [
+    "Example / Switch styles"
+   ]
   },
   {
    "main": "Setting Row",
@@ -1799,7 +1817,10 @@
   {
    "main": "Slider",
    "helpers": [],
-   "block": "205:1650"
+   "block": "205:1650",
+   "examples": [
+    "Example / Slider styles"
+   ]
   }
  ],
  "Spinner": [
@@ -1902,7 +1923,8 @@
    ],
    "block": "92:949",
    "examples": [
-    "Example / tabs with counts"
+    "Example / tabs with counts",
+    "Example / Tabs styles"
    ]
   }
  ],
@@ -1932,7 +1954,10 @@
    "helpers": [
     "Toggle Group Item"
    ],
-   "block": "141:2756"
+   "block": "141:2756",
+   "examples": [
+    "Example / Toggle Group styles"
+   ]
   }
  ],
  "Tooltip": [

@@ -106,6 +106,9 @@ Current tokens:
 | `button/primary-hover` | Light `color/blue/700`; other modes `background/primary` at `opacity/90` | Light needs the darker step for white text (4.32:1 at 90%) |
 | `button/radius` | Light, Dark, Showcase `radius/full`; Corporate `radius/md` (4 px) | Button, Button Icon, Button Group, Split Button, Toggle, Toggle Group, Pagination, default Tabs. CSS `--button-radius`, Tailwind `rounded-button` |
 | `input/radius` | Light, Dark, Showcase `radius/full`; Corporate `radius/md` | Single-line fields: Input, Select trigger, Combobox, Date Picker trigger, Search Field, Input Group, Number Input, Inline Form. Textarea keeps `radius/md`. CSS `--input-radius`, Tailwind `rounded-input` |
+| `button/soft-bg`, `button/soft-hover` | `background/primary` at `opacity/10` and `opacity/20` (light modes), `opacity/20` and `opacity/30` (dark modes) | Button and Button Icon Variant=soft; text `foreground/brand` (5.7:1 or more) |
+| `input/filled-muted-foreground` | Light, Showcase Light `color/neutral/600`; other modes `foreground/muted` | Placeholder and trailing text in Input and Select Style=filled (muted text is 4.35:1 on the muted fill) |
+| `toggle-group/segmented-hover` | `background/default` at `opacity/50` | Toggle Group Variant=segmented item hover on the muted track |
 | `button/secondary-hover` | `background/secondary` at `opacity/80` | shadcn `hover:bg-secondary/80` |
 | `button/destructive-hover` | Light `color/red/700`, Dark `background/destructive` at `opacity/90` | 90% opacity failed 4.5:1 in Light |
 | `dialog/overlay` | `color/black` at `opacity/50` | shadcn `bg-black/50` behind Dialog and Alert Dialog |

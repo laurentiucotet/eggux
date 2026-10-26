@@ -702,9 +702,10 @@
   ]
  },
  "Button": {
-  "summary": "Triggers an action: a labeled button in six variants and three sizes.",
+  "summary": "Triggers an action: a labeled button in seven variants and three sizes.",
   "use": [
    "The single main action of a view or dialog: Variant=default",
+   "A brand-colored action that must not compete with the main one (Add line item, Import CSV, a call to action on a card): Variant=soft",
    "Alternative actions: secondary; Cancel and back: outline",
    "Toolbar and low-emphasis actions in dense UI: ghost",
    "The confirming action of a destructive flow: destructive; text-like navigation in content: link"
@@ -720,7 +721,8 @@
    "Label",
    "Trailing icon (optional, Trailing icon)",
    "State=loading: a spinning loader replaces the leading icon; width stays",
-   "Variant=link: label, icons and hover underline use foreground/brand; no fill"
+   "Variant=link: label, icons and hover underline use foreground/brand; no fill",
+   "Variant=soft: fill button/soft-bg (background/primary at 10%, 20% in dark), hover button/soft-hover (one step stronger); label and icons foreground/brand; no shadow"
   ],
   "rules": [
    "One Variant=default per view or dialog",
@@ -729,15 +731,19 @@
    "destructive only inside the confirmation step; the trigger in a list is ghost or a menu item",
    "Loading (State=loading) keeps the width and the label (\"Saving…\" when it helps), shows the spinner and blocks repeat clicks",
    "Disabled only when truly unavailable, with a reason nearby; never as form validation",
-   "Variant=link text and icons are foreground/brand (text-brand), never background/primary"
+   "Variant=link text and icons are foreground/brand (text-brand), never background/primary",
+   "soft is quieter than default and louder than secondary: use it for the second most important action, or several equal brand actions in one card",
+   "Never two soft Buttons next to one default Button in the same group; pick soft or secondary for the group",
+   "soft text and icons are foreground/brand, never background/primary"
   ],
   "a11y": [
    "Reachable with Tab; Enter and Space activate; State=focus shows the border/ring focus ring",
    "Touch target at least 44 x 44 px on mobile",
    "Loading is announced (\"Saving…\")",
-   "Text meets 4.5:1 in every Variant; link (foreground/brand) passes 4.5:1 on background/default, muted and card in every theme"
+   "Text meets 4.5:1 in every Variant; link (foreground/brand) passes 4.5:1 on background/default, muted and card in every theme",
+   "soft: foreground/brand on button/soft-bg is 5.8:1 Light, 6.7:1 Dark, 5.7:1 Corporate Light; on hover 5.1, 5.9, 4.9. The fill boundary is about 1.2:1, so the label carries the meaning, as for ghost"
   ],
-  "code": "shadcn Button (variant, size); Leading icon is an icon child before the label. variant=\"link\" uses text-brand (var(--brand)) instead of text-primary.",
+  "code": "shadcn Button (variant, size); Leading icon is an icon child before the label. variant=\"link\" uses text-brand (var(--brand)) instead of text-primary. Add variant soft to buttonVariants: \"bg-primary/10 text-brand hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30\".",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/patterns/action-feedback.md",
@@ -791,7 +797,7 @@
   ],
   "anatomy": [
    "Icon (instance swap, default ellipsis)",
-   "Container in the chosen Variant: Size sm 32, default 36, lg 40",
+   "Container in the chosen Variant (default, secondary, outline, ghost, destructive, soft): Size sm 32, default 36, lg 40",
    "Tooltip with the same text as the accessible label"
   ],
   "rules": [
@@ -799,14 +805,16 @@
    "Variant rules match Button: one default per view, destructive only in a confirmation",
    "ghost in toolbars and dense UI",
    "Copy turns the icon into a check for 2 s with the label \"Copied\"; no toast",
-   "Size matches the Buttons next to it: sm in tables and dense toolbars, lg next to lg Buttons in heroes"
+   "Size matches the Buttons next to it: sm in tables and dense toolbars, lg next to lg Buttons in heroes",
+   "Variant=soft (button/soft-bg, foreground/brand icon) next to soft Buttons, or for a brand-colored icon action without a solid fill"
   ],
   "a11y": [
    "aria-label in code, same text as the tooltip",
    "The tooltip shows on hover and on keyboard focus",
-   "Icon meets 3:1; touch target at least 44 x 44 px on mobile"
+   "Icon meets 3:1; touch target at least 44 x 44 px on mobile",
+   "soft icon: foreground/brand on button/soft-bg meets 3:1 in every theme (5.7:1 or more)"
   ],
-  "code": "shadcn Button size=\"icon\" with aria-label, wrapped in Tooltip.",
+  "code": "shadcn Button size=\"icon\" with aria-label, wrapped in Tooltip. Variant soft uses the same buttonVariants entry as Button.",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/components/tooltip.md",
@@ -2122,7 +2130,7 @@
    "Values edited in place on a detail page: use Inline Edit"
   ],
   "anatomy": [
-   "Label",
+   "Label (Show label, on by default)",
    "Control slot (default Input)",
    "Hint (Show hint) or Error with circle-alert icon"
   ],
@@ -2131,12 +2139,14 @@
    "State: default, error, disabled",
    "Error replaces the hint, says what is wrong and how to fix it: \"Enter an email address like name@example.com\"",
    "Validate on blur; once in error, re-validate on every change",
-   "Error text uses background/destructive with an icon, not color alone"
+   "Error text uses background/destructive with an icon, not color alone",
+   "Show label off only when the control carries its own visible label (Input Style=floating); hint and error stay under it"
   ],
   "a11y": [
    "Label is tied to the control (for / id)",
    "Hint and error linked with aria-describedby; aria-invalid on error",
-   "On submit, focus moves to the first invalid field"
+   "On submit, focus moves to the first invalid field",
+   "With Show label off the control's own label must stay visible and be tied to the control"
   ],
   "code": "shadcn Form: Field = FormItem with FormLabel, FormDescription, FormMessage (react-hook-form + zod).",
   "guides": [
@@ -2702,20 +2712,26 @@
   ]
  },
  "Input": {
-  "summary": "Single-line text field (shadcn Input), used inside a Field for label, hint and error.",
+  "summary": "Single-line text field (shadcn Input), used inside a Field for label, hint and error. Style: default (outlined), filled or floating label.",
   "use": [
    "Short free text: names, titles, email, search",
    "Search above a list, with the search Leading icon",
-   "Any form control inside Field"
+   "Any form control inside Field",
+   "Style=filled: dense or card-heavy screens, filters and settings where many outlined boxes look busy",
+   "Style=floating: short public forms (sign-up, checkout, contact) where the label sits inside the field to save height"
   ],
   "avoid": [
    "Text longer than one line: use Textarea",
    "Choosing from a list: use Select or Combobox",
    "Fixed prefix or suffix (https://, EUR, %): use Input Group",
-   "Common data (email, phone, card): use Field Preset"
+   "Common data (email, phone, card): use Field Preset",
+   "Mixing Styles in one form: pick one Style per form",
+   "Style=floating for long or dense forms, or with long labels: use default with the label above"
   ],
   "anatomy": [
+   "Style: default (border/input, shadow/xs), filled (background/muted fill, no border until focus or error), floating (48 high, Label inside)",
    "Leading icon (Show leading icon, Leading icon)",
+   "Label (floating only): rests in the middle in body/small; moves up in ui/caption on focus or when Content=filled; foreground/brand on focus, background/destructive on error",
    "Value or placeholder",
    "Trailing slot (Show trailing): clear, show password"
   ],
@@ -2724,14 +2740,20 @@
    "State: default, focus, error, disabled",
    "Width suggests the expected length",
    "Pick the narrowest type and set autocomplete in code",
-   "Never clear what the user typed after an error"
+   "Never clear what the user typed after an error",
+   "Style=filled: placeholder and secondary text use input/filled-muted-foreground (neutral/600 in light modes) because foreground/muted is 4.35:1 on background/muted",
+   "Style=filled on background/default or background/card only; on a muted surface the fill disappears",
+   "Style=floating: put it in a Field with Show label off so the hint and the error stay; the Label is the visible label, never a placeholder only",
+   "Style=floating with focus and no value shows the floated Label and the placeholder"
   ],
   "a11y": [
    "Always has a visible label through Field; icon-only search fields need aria-label",
    "Focus ring uses border/ring; border contrast at least 3:1",
-   "Error is linked with aria-describedby and aria-invalid"
+   "Error is linked with aria-describedby and aria-invalid",
+   "Style=filled: the fill is about 1.1:1 against the page (1.3:1 Dark), like the default border (1.3:1 Light); the visible label identifies the field, and focus adds a border/ring border and ring (4.7:1 on the fill)",
+   "Style=floating: the Label is the accessible name (label for/id); it stays visible when the field has a value; label text is 4.7:1 or more in every theme"
   ],
-  "code": "shadcn Input, Label, Form (react-hook-form).",
+  "code": "shadcn Input, Label, Form (react-hook-form). Style=filled: className \"bg-muted border-transparent shadow-none focus-visible:border-ring\". Style=floating: a relative wrapper with a peer Input (h-12 pt-5, placeholder=\" \") and a Label that moves with peer-placeholder-shown / peer-focus classes.",
   "guides": [
    "skills/build-ui/components/input.md",
    "skills/build-ui/patterns/form-validation.md",
@@ -4034,7 +4056,8 @@
   "use": [
    "One choice from 6-15 options in a form",
    "Inside Field, for the label, description and error",
-   "Rows per page in Table Pagination"
+   "Rows per page in Table Pagination",
+   "Style=filled in forms that use Input Style=filled"
   ],
   "avoid": [
    "2-5 options worth seeing: use Radio",
@@ -4044,6 +4067,7 @@
   ],
   "anatomy": [
    "Label (from Field)",
+   "Style: default (border/input) or filled (background/muted fill, no border until focus or error; placeholder in input/filled-muted-foreground)",
    "Trigger with Value: placeholder or filled (Content)",
    "chevron-down icon",
    "Open: Menu under the trigger, Checked on the selected Menu Item",
@@ -4054,15 +4078,17 @@
    "Options in a meaningful order: frequency, sequence, then alphabetical",
    "Option labels are short and parallel; the placeholder is an example, not a label",
    "Disabled options stay visible, with the reason when possible",
-   "State=error marks the trigger; the message comes from Field"
+   "State=error marks the trigger; the message comes from Field",
+   "Use the same Style as the other controls in the form"
   ],
   "a11y": [
    "The visible label is tied to the trigger",
    "Enter, Space or arrows open; arrows move, Enter selects, Escape closes",
    "Typing a letter jumps to the matching option",
-   "Focus ring in border/ring (State=focus)"
+   "Focus ring in border/ring (State=focus)",
+   "Style=filled: placeholder 7:1 on the fill (input/filled-muted-foreground); focus ring 4.7:1 on the fill"
   ],
-  "code": "shadcn Select.",
+  "code": "shadcn Select. Style=filled: SelectTrigger className \"bg-muted border-transparent shadow-none focus-visible:border-ring\".",
   "guides": [
    "skills/build-ui/components/select.md",
    "skills/build-ui/components/dropdown-menu.md",
@@ -4274,20 +4300,26 @@
    "Track: background/muted",
    "Range: background/primary",
    "Thumb, or two for Type=range",
-   "Min and max labels under the track, when useful"
+   "Min and max labels under the track, when useful",
+   "Value bubble (Show value): a Tooltip Side=top (exposed, set its Label) over each thumb; draws 37 px above the 16 px box",
+   "Marks (Show marks): Min label, Mid label, Max label under the track, centered on the thumb ends; draws 24 px below the box"
   ],
   "rules": [
    "Always show the current value and unit next to the label",
    "Step matches the data: 5 EUR, 1 km",
    "Range thumbs cannot cross",
-   "Exact values: pair it with an Input (type number)"
+   "Exact values: pair it with an Input (type number)",
+   "Show value while dragging, or always when the exact value matters; keep the value next to the label too",
+   "Show marks for scales people read (0, 250, 500 EUR); three labels, units on the ends only if they fit",
+   "Leave 40 px above and 24 px below the Slider when Show value or Show marks is on; they overflow the component box"
   ],
   "a11y": [
    "Arrows move by one step, Page Up and Page Down by 10 steps",
    "Each thumb has a name: \"Minimum price\", \"Maximum price\"",
-   "aria-valuetext includes the unit: \"150 EUR\""
+   "aria-valuetext includes the unit: \"150 EUR\"",
+   "The bubble repeats aria-valuetext; it is not the only place the value is shown. Mark labels are foreground/muted, 4.7:1 or more"
   ],
-  "code": "shadcn Slider.",
+  "code": "shadcn Slider. Show value: a Tooltip or a positioned span over each thumb (left: value%), Show marks: a flex justify-between row of labels under the track.",
   "guides": [
    "skills/build-ui/components/progress-and-slider.md"
   ]
@@ -4585,7 +4617,8 @@
   "use": [
    "Settings that take effect at once: notifications, a feature on or off",
    "Enabling or pausing an integration",
-   "Lists of preferences on settings pages without a Save button"
+   "Lists of preferences on settings pages without a Save button",
+   "Size=sm in dense tables and toolbars; Size=lg in touch-first and mobile settings"
   ],
   "avoid": [
    "Inside a form that saves on submit: use Checkbox",
@@ -4594,24 +4627,29 @@
   "anatomy": [
    "Track: background/primary when Checked=true",
    "Thumb",
-   "Label (Label, Show label)"
+   "Label (Label, Show label)",
+   "Description (Show description, off by default): body/small in foreground/muted (ui/caption at sm) under the label",
+   "Size: sm 28 x 16 (ui/label-small), default 36 x 20, lg 44 x 24"
   ],
   "rules": [
    "Applies immediately; the change itself is the feedback, no toast",
    "On failure, restore the old value and show an inline error",
    "The label names the setting, not the action: \"Email notifications\"",
-   "Temporarily unavailable: State=disabled with the reason"
+   "Temporarily unavailable: State=disabled with the reason",
+   "Show description says what the setting does or what it costs, in one sentence; the switch aligns to the first line",
+   "Use one Size per list; match the Size of the Buttons and fields around it"
   ],
   "a11y": [
    "role=\"switch\" with aria-checked; Space toggles",
    "The label is tied to the control; Show label off needs an aria-label",
-   "Thumb and track meet 3:1 in both states; focus ring in border/ring"
+   "Thumb and track meet 3:1 in both states; focus ring in border/ring",
+   "Description is linked with aria-describedby; foreground/muted is 4.7:1 Light, 7.9:1 Dark"
   ],
-  "code": "shadcn Switch.",
+  "code": "shadcn Switch with Label; description as a p with aria-describedby. Size: sm \"h-4 w-7\" thumb size-3, lg \"h-6 w-11\" thumb size-5.",
   "guides": [
-   "skills/build-ui/components/select.md",
+   "skills/build-ui/patterns/settings-and-admin.md",
    "skills/build-ui/patterns/action-feedback.md",
-   "skills/build-ui/patterns/settings-and-admin.md"
+   "skills/build-ui/components/select.md"
   ]
  },
  "Table Cell": {
@@ -4791,11 +4829,13 @@
   ]
  },
  "Tabs": {
-  "summary": "Tabs that switch between views: pill tabs in a card (Variant=default), underlined page sections (Variant=line) or a column for settings with many sections (Variant=vertical).",
+  "summary": "Tabs that switch between views: pill tabs in a card track (default), underlined page sections (line), a settings column (vertical), bare pills (pills) or folder tabs on a bordered panel (boxed).",
   "use": [
    "Views inside a card or panel (Variant=default)",
    "Sections of a record page under its header (Variant=line)",
-   "Settings and long forms with 4-10 sections (Variant=vertical)"
+   "Settings and long forms with 4-10 sections (Variant=vertical)",
+   "Filters of one list shown as tabs on a page without a card (Variant=pills): All, Paid, Overdue",
+   "Content that should read as one bordered unit with its tabs, such as code samples or a settings panel (Variant=boxed)"
   ],
   "avoid": [
    "Steps in a sequence: use Stepper",
@@ -4803,22 +4843,26 @@
    "Setting a value (view mode, period): use Toggle Group"
   ],
   "anatomy": [
-   "Tabs slot: Tab instances with the matching Tab Variant (default, line, vertical)",
-   "Active Tab: background and shadow (default), underline in background/primary (line), background/muted (vertical)",
-   "Count: Show count on Tab adds a Badge Count after the label"
+   "Tabs slot: Tab instances with the matching Tab Variant (default, line, vertical, pills, boxed)",
+   "Active Tab: background and shadow (default), underline in background/primary (line), background/muted (vertical), background/primary fill with foreground/primary text (pills), border/default on three sides and background/default (boxed)",
+   "Count: Show count on Tab adds a Badge Count after the label",
+   "Variant=boxed: header row (Tabs slot + a rest line in border/default) and a Panel slot with border/default on the sides and bottom, padding density/card-padding-sm"
   ],
   "rules": [
    "2-6 tabs horizontally, up to 10 vertically; labels are one or two words, nouns",
    "Exactly one active tab, matching the content shown",
    "Variant=line spans the full width with a bottom border; vertical is 200 wide with the content on the right",
-   "More tabs than fit on mobile: switch to a Select"
+   "More tabs than fit on mobile: switch to a Select",
+   "pills: no track; use on background/default or background/card, never on muted surfaces (inactive text is foreground/muted)",
+   "boxed: the active tab covers the panel's top line; put the panel content in the Panel slot, not under the component"
   ],
   "a11y": [
    "Tab list role; arrow keys move between tabs, Tab moves into the panel",
    "The active tab has aria-selected; each panel is labeled by its tab",
-   "Focus ring visible on Tab State=focus"
+   "Focus ring visible on Tab State=focus",
+   "pills: active text 5.2:1 Light, 5.2:1 Dark, 6.7:1 Corporate Light; inactive foreground/muted 4.7:1 or more on the page"
   ],
-  "code": "shadcn Tabs; Variant=line with TabsList variant line (border-b), vertical with orientation=\"vertical\" and TabsList flex-col.",
+  "code": "shadcn Tabs; Variant=line with TabsList variant line (border-b), vertical with orientation=\"vertical\" and TabsList flex-col. pills: TabsList \"bg-transparent gap-2\", TabsTrigger \"rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground\". boxed: TabsList \"border-b w-full justify-start\", TabsTrigger \"rounded-t-md border border-transparent data-[state=active]:border-border data-[state=active]:border-b-background -mb-px\", TabsContent \"border border-t-0 rounded-b-md p-4\".",
   "guides": [
    "skills/build-ui/components/tabs.md"
   ]
@@ -5019,12 +5063,13 @@
   ]
  },
  "Toggle Group": {
-  "summary": "Group of toggle buttons that sets a value: view mode, period, text style.",
+  "summary": "Group of toggle buttons that sets a value: view mode, period, text style. Variant default, outline or segmented.",
   "use": [
    "View mode: list / board",
    "Period: day / week / month",
    "Formatting in a Rich Text Editor toolbar",
-   "Product options such as size on a product page"
+   "Product options such as size on a product page",
+   "Variant=segmented: 2-4 short options on one track, such as a period or a monthly / yearly billing switch"
   ],
   "avoid": [
    "Switching panels of content: use Tabs",
@@ -5032,23 +5077,27 @@
    "Many options: use Select"
   ],
   "anatomy": [
-   "Group (Variant: default or outline)",
-   "Items slot: Toggle Group Item instances",
+   "Group (Variant: default, outline or segmented)",
+   "Items slot: Toggle Group Item instances with the matching Item Variant (default for default and outline, segmented for segmented)",
    "Item: Label and/or icon (Show label, Show icon, Icon)",
-   "Selected item: State=selected"
+   "Selected item: State=selected (background/accent; segmented: background/default with shadow/xs)",
+   "Segmented track: background/muted, padding spacing/1, items 28 high"
   ],
   "rules": [
    "It sets a value; if the content below changes panels, use Tabs",
    "Single choice for view mode or period; multiple for formatting",
    "Icon-only items: Show label off, Show icon on, with a tooltip",
-   "Choosing a value is a Toggle Group, not a Button Group"
+   "Choosing a value is a Toggle Group, not a Button Group",
+   "segmented looks like Tabs Variant=default; it still sets a value, it never switches panels",
+   "segmented: at most 4 items with one or two words each; more options: use Select"
   ],
   "a11y": [
    "Arrow keys move between items; Space or Enter toggles",
    "Selected state is exposed (aria-checked for single, aria-pressed for multiple)",
-   "Icon-only items have an aria-label that matches the tooltip"
+   "Icon-only items have an aria-label that matches the tooltip",
+   "segmented: labels are foreground/default on the track (18:1 Light, 14.5:1 Dark); the selected pill differs from the track by fill (1.1:1) and shadow, so the selected state is also exposed with aria-checked"
   ],
-  "code": "shadcn ToggleGroup (type single or multiple).",
+  "code": "shadcn ToggleGroup (type single or multiple). Variant=segmented: ToggleGroup className \"bg-muted p-1 rounded-full\", items \"h-7 px-3 data-[state=on]:bg-background data-[state=on]:shadow-xs\".",
   "guides": [
    "skills/build-ui/components/tabs.md",
    "skills/build-ui/components/rich-text-editor.md",
@@ -6078,7 +6127,8 @@
   "use": [
    "Filtering one list or table as people type",
    "The search of a Filter Bar or a Top Bar",
-   "Global search that opens Command Dialog on click or with the shortcut"
+   "Global search that opens Command Dialog on click or with the shortcut",
+   "Size=lg: the main search of a hero, a help center or an empty search page"
   ],
   "avoid": [
    "Search with filters, sort and views: use Filter Bar",
@@ -6086,6 +6136,7 @@
    "Free text that is not a query: use Input"
   ],
   "anatomy": [
+   "Size: default 36 high (body/small, 16 px icons, 320 wide) or lg 48 high (body/default, 20 px icons, 480 wide)",
    "Search icon",
    "Placeholder (\"Search invoices\") or Query",
    "Clear (x), once there is a query",
@@ -6097,14 +6148,15 @@
    "Results update as people type, with a debounce of about 300 ms; Esc clears",
    "Clear shows only when there is a query; the shortcut hides while typing",
    "Global search opens Command Dialog; filtering one list stays inline. Keep the query in the URL",
-   "No results: Empty State that names the query"
+   "No results: Empty State that names the query",
+   "Size=lg only where search is the main action of the view; toolbars, Filter Bar and Top Bar use default"
   ],
   "a11y": [
    "role=\"search\" on the wrapper and an aria-label that says what it searches when there is no visible label",
    "Clear is a button with aria-label=\"Clear search\"",
    "The result count is announced in a live region as it changes"
   ],
-  "code": "shadcn InputGroup (type=\"search\") with a search icon, Kbd and a clear Button; global search opens CommandDialog (cmdk).",
+  "code": "shadcn InputGroup (type=\"search\") with a search icon, Kbd and a clear Button; global search opens CommandDialog (cmdk). Size=lg: className \"h-12 text-base\" on the group, icons size-5.",
   "guides": [
    "skills/build-ui/patterns/search-and-filter.md",
    "skills/build-ui/components/input.md"
