@@ -63,7 +63,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Badge | `Status Dot` | Status: success, warning, error, info, neutral | Label, Show label |
 | Badge | `Badge List` | - | Show more; Tags (native slot) of Badges + "+N" Badge (exposed). A few tags on one line |
 | Chip | `Chip` | State: default, hover, focus, selected, disabled | Label, Show leading icon + Leading icon (swap), Show remove |
-| Avatar | `Avatar` | Type: initials, image. Size: xs 20, sm 24, default 32, lg 40, xl 48. Shape: circle (people), square (companies, apps) | Initials, Show status (online dot). Photo = image fill on the `image` layer |
+| Avatar | `Avatar` | Type: initials, image. Size: xs 20, sm 24, default 32, lg 40, xl 48. Shape: circle (people), square (companies, apps) | Initials, Show status (online dot), Photo (swap, Type=image: Image / Person / *) |
 | Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar; Label + Show label ("Maintained by 3 analysts") |
 | Avatar | `Byline` | Size: sm, default, lg | Name, Description, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
@@ -244,7 +244,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Accordion | `Accordion Item` | Size: default, sm. State: collapsed, expanded | Title, Show leading icon + Leading icon (swap), Show meta; Meta, Content (native slots) |
 | Accordion | `Accordion` | - | Items (native slot) |
 | Image | `Map` | - | Label, Address, Show label, Show controls, Show pin. Roads scale, pin stays centered; put a static map image as fill in production |
-| Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 1:1, 3:4 | Show caption. Put the photo as image fill on the instance. Ratio locked: FILL keeps the height in proportion |
+| Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 1:1, 3:4 | Show caption, Show image + Image (swap: Image / * from the Imagery page). Without an image: dot pattern and an image icon. Ratio locked: FILL keeps the height in proportion |
 | Image | `Image Cropper` | Shape: square, circle | Image layer (fill), scrim, selection that stays centered, zoom Slider, rotate, Cancel, Save |
 | Image | `Avatar Upload` | State: empty, filled, uploading, error | Label, Show label, Hint, Show remove. Profile or logo picture in settings: the avatar, a Label (Show label), a Hint with the upload rules, Upload or Change (exposed Button, set its Label, e.g. |
 | Sections (blocks) | `Section Header` | Align: center, left | Overline, Title (heading/h2), Description |
@@ -328,7 +328,10 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Avatar | `Presence Bar` | - | Who else has this document, record or board open right now: a live dot and their avatars. |
 | Badge | `Announcement Pill` | - | Label, Show tag. A short link above a hero title to the newest launch: "New" tag, one line, arrow. |
 | Badge | `Trust Badge` | - | Name, Description, Icon. A certification or compliance claim with what backs it: SOC 2, ISO 27001, GDPR, PCI DSS. |
-| Brand | `Logo Tile` | Style: bordered, plain | Name. A customer or partner logo in a tile for logo clouds, integration grids and case study lists. |
+| Brand | `Logo Tile` | Style: bordered, plain (logo at 70%) | Logo (swap: Logo / *). A customer or partner logo in a tile for logo clouds, integration grids and case study lists. |
+| Brand | `Logo / <Name>` | - | 12 fictional sample logos (Northwind, Lumora, Orbitly, Fieldstone, Kestrel, Quintra, Halcyon, Brightpath, Corvid, Meridian, Tidewater, Vireo), 32 high, bound to foreground/default |
+| Imagery | `Image / Person, Product, Office, Cover, Abstract, City / NN` | - | 49 sample photos (Unsplash License, not covered by CC BY 4.0; replace them), image fill FILL. Used through the Image Placeholder `Image` swap and the Avatar `Photo` swap |
+| Imagery | `Image / Screenshot / <What>` | - | 7 product screenshots rendered from blocks (Dashboard, AI chat, Kanban, Invoices, Approval, Product page, Audit Log), light theme; inside a Device Frame for hero and feature visuals |
 | Button | `Social Share` | - | Label, Show label, Show networks. Share buttons for a public page: copy link, email, the system share sheet and up to three networks. |
 | Card | `Link Preview` | Layout: horizontal, vertical | Domain, Title, Description, Show image. A pasted URL shown as a card in comments, chat, notes and editors: site, title, description and image from the page metadata. |
 | Card | `Location Card` | - | City, Address, Show tag, Show map. One office, store or venue: city with an optional tag Badge (Show tag), full address, phone and hours as Meta Items, and a Get directions link. |
@@ -513,7 +516,7 @@ checkbox and actions, flex for content), rows that hug their content.
 - Put `Table Toolbar` above the grid while rows are selected.
 
 ## Brand page
-`Brand` holds Logo Mark, Logo, Logo Tile (customer and partner logos for logo clouds) and a
+`Imagery` (after Brand) holds the sample photos and product screenshots, with credits. `Brand` holds Logo Mark, Logo, Logo Tile, 12 fictional `Logo / *` marks for logo clouds and a
 Theme preview (color roles, type scale, radius, a few components) bound to Semantic tokens. To brand a client file: replace the glyph in Logo Mark,
 re-alias Semantic tokens (`/eggux:brand-intake`), check the preview in Light and Dark.
 
@@ -537,7 +540,7 @@ which screen: `skills/build-ui/index.md`):
 
 ## Pages
 The file opens with Cover (1920 x 1080 thumbnail), Intro (getting started, credits, changelog),
-Foundations (tokens shown as swatches, type, spacing, radius, elevation, motion) and Brand.
+Foundations (tokens shown as swatches, type, spacing, radius, elevation, motion), Brand and Imagery.
 Brand has a second Theme preview in Corporate Light, a Content panel (brand strings bound to the `Content` collection) and an English / Română comparison of the invoices example. Then two groups of pages, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
 categories and Page Shells). Block pages have no prefix. `Navigation` exists in both sections:
 the first holds the components (Breadcrumb, Top Bar), the second the Navbar and Footer blocks.

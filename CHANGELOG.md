@@ -3,6 +3,23 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.56.0
+Step 1 of the de-wireframe plan (audit 2): real imagery and logos.
+- New page "Imagery" (after Brand): 49 sample photos as components (`Image / Person` 18,
+  `Product` 7, `Office` 8, `Cover` 6, `Abstract` 5, `City` 5; Unsplash License, not covered by
+  CC BY 4.0, credits on the page) and 7 product screenshots rendered from blocks
+  (`Image / Screenshot / Dashboard, AI chat, Kanban, Invoices, Approval, Product page, Audit Log`).
+- `Image Placeholder`: `Show image` + `Image` swap; without an image it shows a dot pattern and an
+  image icon instead of the "Image 16:9" text.
+- `Avatar`: Type=image shows a face from the new `Photo` swap.
+- 12 fictional logos (`Logo / Northwind` ... `Logo / Vireo`) on Brand; `Logo Tile` shows a `Logo`
+  swap (the generic icon and Name are gone; plain style at 70%).
+- Blocks: photos in about 25 blocks and 25 examples (testimonials, team, galleries, blog,
+  changelog, product, comments, chat, kanban, page headers); product screenshots in Device
+  Frames in Hero Centered, Hero Split, Hero Prompt, Features Split and CTA Split; Logo Cloud with
+  six different logos. Fixed: Hero Prompt gray-on-gray image, Product Detail breadcrumb.
+- Guides: avatar, carousel, marketing-pages and ux-rules on sample imagery.
+
 ## 0.55.2
 - `Page Shell / Back office` is now `Page Shell / Admin Panel`; "back office" is replaced by
   "admin panel" in the Figma file (shell, Sidebar example, Intro texts with current counts) and

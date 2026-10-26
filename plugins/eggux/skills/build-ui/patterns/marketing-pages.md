@@ -74,6 +74,7 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
 - Gallery grids use `Image Figure`; office grids use `Location Card` with Show map (Block / Offices).
 - Event grids with long titles: Event Card `Date position=image`.
 - Hero Prompt: Accent is the greeting, Title stays on two lines, Suggestions holds 2-4 Prompt Suggestions; submitting opens the chat or results page with the question prefilled.
+- No gray boxes on a finished page: hero and feature visuals are product screenshots (`Image / Screenshot / *` in a Device Frame); people, places and products use the Imagery photos (Image Placeholder `Show image`, Avatar Type=image); logo clouds use `Logo Tile` with a different `Logo / *` per tile. All are samples to replace with the client's own.
 
 ## Cookie consent
 - Needed before any non-essential cookie (analytics, ads, embeds that track). Necessary cookies
