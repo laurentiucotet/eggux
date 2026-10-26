@@ -502,6 +502,9 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Email | `Email / Stats` | - | Items (slot) of `Email / Stat` (Value, Label, Change, Show change) |
 | Email | `Email / Article` | - | Title, Text, Link, Show image (Image Placeholder 4:3, exposed) |
 | Email | `Email / Footer` | - | Address, Reason, Show social (LinkedIn, X, YouTube, GitHub), Show preferences, Show unsubscribe |
+| Forms | `Block / Sign In Split` | - | 1440 x 900. Left: Logo (exposed), Form (native slot, default `Block / Sign In`), Footer text + Show footer. Right: full-height photo (Image Placeholder exposed, `Image / Office / 06`, swap to `Image / Screenshot / *` for a product screen) in a radius/xl panel with a Testimonial Card (exposed, shadow/lg) at the bottom; Show testimonial |
+| Forms | `Block / Sign Up Split` | - | 1440 x 900. Left: Logo (exposed), Form (native slot, default `Block / Sign Up`), Footer + Show footer. Right on `section/muted-background`: Title, Description, Benefits (native slot, 4 Check Items), Logos caption + Logos (native slot, 6 plain Logo Tiles), Show logos |
+| Forms | `Block / Welcome Role Select` | - | 672 wide (the Wizard Page slot). Step + Progress (Show progress), Title, Description, Role question + 6 radio Option Cards with icons in 2 columns, Team question + 5 compact Option Cards, Skip for now / Continue (Show actions) |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,
@@ -522,6 +525,13 @@ left to right in flow order (emails: `Screen / Email / <Name>`).
 
 | Page | Flow | Screens | Built from |
 |---|---|---|---|
+| Auth | Sign in | Default (Google + SSO buttons), Error: wrong password, SSO; each Desktop + Mobile, Light and Dark side by side | `Block / Sign In Split` (Form slot: `Block / Sign In`), `Page Shell / Mobile` + `Block / Sign In`, Alert destructive, `Logo / Orbitly` |
+| Auth | Sign up | Default, Validation errors (email, password, Requirement List), Verify email (6-digit code) | `Block / Sign Up Split` (Form slot: Sign Up, then Two-Factor retitled), Requirement List, Password Strength, Input OTP, `Page Shell / Mobile` |
+| Auth | Magic link | Request, Check your email | `Page Shell / Auth` + Forgot Password and Check Email (retitled), `Page Shell / Mobile` |
+| Auth | Password reset | Forgot password, Check email, Set new password (Requirement List), Password updated | `Page Shell / Auth` + Forgot Password, Check Email, Reset Password, Check Email (success icon), `Page Shell / Mobile` |
+| Auth | Two-factor | Authenticator code, Recovery code | `Page Shell / Auth` + Two-Factor (Input OTP; Field for the recovery code), `Page Shell / Mobile` |
+| Auth | Accept invite | Accept invite (email fixed from the invite), Invite expired | `Page Shell / Auth` + Accept Invite, Check Email (clock icon), `Page Shell / Mobile` |
+| Auth | Onboarding | Welcome: role and team size, Workspace (logo, name, URL, currency), Invite team (rows + invite link), Plan: start trial, Done | `Page Shell / Wizard` + `Block / Welcome Role Select`, Avatar Upload, Field + Input Group, Select, Input, Copy Field, Plan Card, Icon Tile, Check Item; mobile on `Page Shell / Mobile` with Progress and Option Cards |
 | Emails | Account | `Screen / Email / Welcome` (+ `/ Dark`), `Verify email`, `Sign-in link`, `Password reset` (+ `/ Dark`), `Password changed`, `Invitation` | Email / Header (Logo / Orbitly), Hero (image on Welcome), Content, Button, Code (Verify), Details (sign-in request, password change, invite), Callout (default, warning), Footer (security: no social, no unsubscribe) |
 | Emails | Billing | `Screen / Email / Invoice`, `Payment receipt`, `Payment failed`, `Trial ending` | Email / Header, Hero, Details, Line Items (Line Item, Total Row), Callout warning (Payment failed), Stats (Trial ending), Content, Button, Footer |
 | Emails | Marketing | `Screen / Email / Weekly summary` | Email / Header (View in browser on), Hero with eyebrow, Stats (3 Stat), Button, Divider, Hero with image (h3 title, feature), Content link, 3 Article, Footer with unsubscribe |

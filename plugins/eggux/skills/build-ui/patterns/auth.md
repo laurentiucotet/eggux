@@ -18,6 +18,15 @@ Two-Factor, Accept Invite. Shell: `Page Shell / Auth`.
 - Every auth email (verify, sign-in link, reset, password changed) starts from its template on the
   Emails page: one button, the code or link lifetime, a fallback URL and a "not you?" callout
   (email.md).
+- Desktop sign in and sign up use `Block / Sign In Split` or `Block / Sign Up Split`; put the next
+  step's card (code, check email) in the same Form slot so the page does not jump. Other steps use
+  `Page Shell / Auth`.
+- Wrong credentials: one destructive Alert at the top of the card ("Email or password is incorrect")
+  with the lockout rule, input kept, never a per-field message that tells which one is wrong.
+- On mobile the auth card loses its border and fills the width (24 px margins); entry screens show
+  the logo in the Mobile Header, later steps a back button and the flow name.
+- Complete flows to copy: SCREENS / Auth (Sign in in Light and Dark, Sign up, Magic link, Password
+  reset, Two-factor, Accept invite, Onboarding), desktop and mobile.
 
 ## Related components
 - Show password rules as a `Requirement List` of `Check Item`s under the new-password field: each
