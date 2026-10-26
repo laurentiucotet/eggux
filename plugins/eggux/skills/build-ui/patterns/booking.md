@@ -20,3 +20,6 @@ left, time slots for the chosen day on the right, footer with the chosen slot an
   strikethrough). Booking settings list working hours with seven `Availability Row`s, the time zone
   said once above them.
 - Scheduling overview (next Meeting Card, today's Agenda Items, Availability Rows for working hours, Time Slot grid): `Block / Agenda`.
+- When several people or rooms share a day, use `Block / Scheduler Day`: one column per resource,
+  48 px per hour, Calendar Event Size=sm for 30 minutes, out-of-office on
+  `section/muted-background`.

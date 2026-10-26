@@ -69,3 +69,6 @@ For large lists where people need precise subsets (finance, operations, CRM):
 - Start a list page from `Block / Data Table` (compare and act in bulk), `Block / Stacked List`
   (a few facts and one status per row) or `Block / Grid List` (records known by name or
   picture); all three on the App page.
+- Group a long list by status or owner with `Block / Grouped Table` (Table Group Row with count
+  and subtotal, total row); look people up with `Block / People Directory` (search, team and
+  office filters, A to Z groups).

@@ -24,7 +24,7 @@ Usage guidelines only. Visual specs live in the Figma components (Chat page) and
 
 ## Chat
 - Incoming on the left with avatar and muted bubble; outgoing on the right with the primary
-  bubble. Bubbles max ~480 wide.
+  bubble. Bubbles max 440 wide.
 - Group consecutive messages from one sender: one avatar and one time for the group.
 - Day separators ("Today", "Yesterday", date). Delivery status on the last outgoing message
   (Sent, Delivered, Read).
@@ -39,7 +39,11 @@ Usage guidelines only. Visual specs live in the Figma components (Chat page) and
 ## Figma
 - `Comment`: Type comment, reply × State default, resolved; Name, Time, Text, Show actions.
 - `Comment Composer`, `Chat Composer`, `Typing Indicator`: single components.
-- `Chat Message`: Direction incoming, outgoing; Text, Time, Show meta.
+- `Chat Message`: Direction incoming, outgoing; Text, Time, Show meta. Bubbles grow up to 440
+  wide: in panels under 480 wide, keep messages short or break the lines yourself.
+- Team chat: `Block / Team Chat` (example "Team chat"). Customer messaging: `Block / Inbox`.
+  In-app help: `Block / Support Chat Widget` (View=home, chat), launcher bottom right, 24 from the
+  edges. All three on the App page.
 
 ## Code
 Comments and chat are lists: render with virtualization past a few hundred items. Announce new

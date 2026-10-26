@@ -28,3 +28,5 @@ changed the record last.
 Example "record page" on the App blocks page; `Block / Record Form` on the Enterprise page.
 - To check a record without leaving the list, open `Block / Record Preview Sheet` (Sheet 640: key
   facts, Description List, timeline, one primary action, Open for the full page).
+- Invoice page: `Block / Invoice Detail`, a printable document; hide the toolbar in print; lines,
+  VAT and amount due add up.

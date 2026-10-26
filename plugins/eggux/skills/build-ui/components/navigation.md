@@ -37,6 +37,8 @@ cart), Footer. Page Shells use them.
 - For marketing sites with more than ~5 destinations under one top-level item (Product, Solutions).
 - Panel: 2 columns of `Navigation Menu Link` (icon, title, one-line benefit) + optional featured
   card. Up to ~8 links; group by what visitors want to do.
+- One menu of 4 to 8 products: `Block / Navbar Flyout` (Navigation Menu Panel with icons and one
+  featured card); grouped columns: `Block / Navbar Mega Menu`.
 - Opens on hover with a short delay and on click/Enter; Escape closes; the top item stays a link
   to an overview page. Mobile: the same links in the full-screen menu, grouped.
 - Figma: `Navigation Menu Link` (State; Title, Description, Icon), `Navigation Menu Panel` (Links,

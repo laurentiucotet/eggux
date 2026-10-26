@@ -13,6 +13,8 @@ users recognize and recover from errors.
 | Edit or write text in place | Inline popover on the selection or field | `Block / Inline AI` |
 | One known task (summarize, classify, suggest a reply) | A button or a Prompt Suggestion next to the content, result shown inline | `Prompt Suggestion`, `Button` with sparkles |
 | Start from a question on the home page of a portal or data product | Hero with the prompt as the main entry; the answer opens the full chat page | `Block / Hero Prompt` |
+| AI proposes edits to a document a person owns | One AI Suggestion per change under its paragraph, the AI Review Bar to step through them; never apply silently | `Block / AI Document Review` |
+| Create images, documents or charts from a prompt | The prompt stays editable above the results, AI Loading in the shape of the result, generated output labeled | `Block / AI Generate` |
 
 Prefer the smallest surface that does the job. A chat box is not a substitute for a button that
 does one thing well.
@@ -64,6 +66,7 @@ does one thing well.
   it in a side canvas or its page. Each run makes a new version.
 - For a long-running agent task start from `Block / Agent Task Run`: plan with steps, Tool Calls
   in Activity, an approval Tool Call before anything is sent, partial results as Artifact Cards.
+  Example "Agent run page" (Page Shell / App with the block in the Page slot).
 
 ## Context
 - Show what the assistant will use as `Context Chip`s in the input: the current record or page
@@ -79,6 +82,8 @@ does one thing well.
 - `AI Notice`: the "AI generated" label on content written by AI, and one disclaimer line under
   answers and summaries, same words everywhere.
 - Use `sparkles` for AI entry points and AI-made content only.
+- AI settings (model defaults, data controls, memory): `Block / AI Settings` as the AI tab of the
+  settings page (`settings-and-admin.md`).
 - AI-filled fields: AI Suggestion with a Confidence Indicator next to each value, and an AI Review Bar to move between them.
 - An AI answer above search results is `Search Result Item` Type=answer (label, Question, Answer, Sources, feedback), shown only when it is grounded in sources. A full AI overview with results under it is `Block / AI Search Answer` (`search-and-filter.md`).
 

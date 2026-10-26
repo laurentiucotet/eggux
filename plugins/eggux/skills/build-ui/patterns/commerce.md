@@ -2,11 +2,27 @@
 
 Components on the Commerce page (COMPONENTS): Product Card and the parts below. Blocks on the Commerce
 page (BLOCKS): the Storefront family (Store Navbar, Storefront Hero, Category Tiles, Promo Section,
-Incentives, Product Carousel, Store Footer), Category Filters, Product Grid, Product Detail, Product
-Quick View, Shopping Cart Page, Checkout Single Page, Order Confirmation, Order Summary; examples "cart sheet",
-"checkout page", "Storefront home", "Category page", "Product page", "Cart page". Address and
+Incentives, Product Carousel, Store Footer), Product List Simple, Category Filters, Product Grid,
+Product Detail, Product Detail Image Grid, Product Specs, Product Quick View, Shopping Cart Page,
+Checkout Single Page, Checkout Multi-step, Order Confirmation, Order Summary, Order Detail, Write a
+Review; examples "cart sheet", "checkout page", "Storefront home", "Category page", "Product
+page", "Cart page", "Order detail page". Address and
 Payment blocks are on Forms; success page is `Block / Result`; the store back office is
 `Block / Commerce Admin` on the App page.
+
+## Which block
+- Product List Simple for a short collection of 8-12 products without filters (home, campaign);
+  Category Filters when shoppers must narrow down; Product Carousel for one row.
+- Product Detail Image Grid when photos sell (apparel, shoes, devices): 2 x 2 gallery and a sticky
+  buy box; Product Detail for a compact page with one image and thumbnails. Add Product Specs
+  under it for technical products.
+- Checkout Multi-step when checkout needs separate steps (B2B, account creation, review before
+  paying); Checkout Single Page for short guest checkouts. Keep the Order Summary visible on every
+  step.
+- Order Detail is the page behind each Order Row in the account: status, tracker, items, totals
+  that add up, addresses, payment and the return deadline (`Example / Order detail page`). Write a
+  Review opens from the delivered order: rating first, fit only for sized products, at most 3
+  highlights.
 
 ## Rules
 - Product Card: image 1:1, name, variant hint, price; sale = new price + struck original + % badge;
