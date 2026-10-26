@@ -1,23 +1,29 @@
 # Alert
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Alert](#alert) | 10 | Actions |
+| [Alert](#alert) | 30 | Actions |
 | [Service Status Row](#service-status-row) | 4 | - |
 | [Uptime Bars](#uptime-bars) | 1 | - |
 | [Uptime Day](#uptime-day) | 5 | - |
 
-On the Figma page: "Example / in import mapping", "Example / in status page", "Stress test / Alert", "Stress test / Service Status Row", "Stress test / Uptime Bars"
+On the Figma page: "Example / Alert styles", "Example / in status page", "Stress test / Alert", "Stress test / Service Status Row", "Stress test / Uptime Bars"
 
 ## Alert
 
-Component set · 10 variants · default size 480 × 68
+Component set · 30 variants · default size 480 × 68
 
-Persistent message about a page or section. Layout inline (card above the content) or banner (full width, top of page or panel). Options: Actions (native slot), Dismiss. Warning uses the filled style. Usage: eggux build-ui/components/alert.md
+Persistent message about a page or section. Layout inline (card above the content) or banner (full width, top of page or panel). Options: Actions (native slot), Dismiss. Warning uses the filled style in Style=default.
+
+
+Style: default (bordered card, the standard look), soft (status tint fill like Badge soft, colored icon and title; calmer, for docs callouts, onboarding notes and pages with several alerts), accent (card with a 4 px status bar on the left; for dense settings pages, lists and logs where tint is too loud). Use one Style per product.
+
+
+Usage: eggux build-ui/components/alert.md
 
 **Use for**
 
@@ -25,6 +31,8 @@ Persistent message about a page or section. Layout inline (card above the conten
 - Layout=inline: a card above the content it concerns
 - Layout=banner: full width at the top of a page or panel (maintenance, read-only mode)
 - Notes and warnings inside documentation content
+- Style=soft: calmer tint for docs callouts, onboarding notes and pages with several alerts
+- Style=accent: a card with a 4 px status bar on the left for dense settings pages, lists and logs
 
 **Not for**
 
@@ -39,6 +47,7 @@ Persistent message about a page or section. Layout inline (card above the conten
 3. Description: what to do about it (Show description)
 4. Actions slot: up to three small buttons or links (Show actions)
 5. Dismiss x (Show close)
+6. Style: default (bordered card), soft (badge/soft-* tint fill, no border; icon and title in badge/soft-*-fg, description foreground/default), accent (card + border/default, 4 px accent bar on the left in the status color; neutral uses foreground/muted)
 
 **Content and behavior**
 
@@ -48,6 +57,8 @@ Persistent message about a page or section. Layout inline (card above the conten
 - Dismiss only when no action is needed; remember the dismissal
 - Never stack more than one alert in the same place; show the most important one
 - Say what happened, then what to do; no blame, no "Oops"
+- One Style per product; Variant still carries the meaning in every Style
+- Style=soft and accent warning use badge/soft-warning-fg for icon and title (amber text fails on white); the amber accent bar is decorative
 
 **Accessibility**
 
@@ -59,6 +70,7 @@ Persistent message about a page or section. Layout inline (card above the conten
 |---|---|
 | Variant | default, destructive, success, warning, info |
 | Layout | inline, banner |
+| Style | default, soft, accent |
 
 | Property | Type | Default |
 |---|---|---|
@@ -73,8 +85,8 @@ Slots (fill them in the instance, never detach): `Actions`
 Built from: `Button`. Icons: circle-alert, circle-check, info, triangle-alert, x
 
 Tokens and styles:
-- Colors: `background/card`, `background/destructive`, `background/info`, `background/success`, `background/warning`, `border/default`, `foreground/card`, `foreground/muted`, `foreground/warning`
-- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`
+- Colors: `background/card`, `background/destructive`, `background/info`, `background/success`, `background/warning`, `badge/soft-destructive-bg`, `badge/soft-destructive-fg`, `badge/soft-info-bg`, `badge/soft-info-fg`, `badge/soft-neutral-bg`, `badge/soft-neutral-fg`, `badge/soft-success-bg`, `badge/soft-success-fg`, `badge/soft-warning-bg`, `badge/soft-warning-fg`, `border/default`, `foreground/card`, `foreground/default`, `foreground/muted`, `foreground/warning`
+- Spacing and size: `border-width/4`, `spacing/0_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`
 - Radius: `radius/lg`, `radius/sm`
 - Text styles: `body/small`, `ui/label`
 

@@ -1,12 +1,12 @@
 # Select
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Select](#select) | 8 | - |
+| [Select](#select) | 16 | - |
 | [Combobox](#combobox) | 8 | - |
 | [Tag Input](#tag-input) | 4 | Tags |
 | [Tag](#tag) | 2 | - |
@@ -17,19 +17,26 @@ Usage rules live in the guides linked under each component.
 | [Select Option](#select-option) | 6 | - |
 | [Recurrence Picker](#recurrence-picker) | 3 | - |
 
-On the Figma page: "Example / combobox open", "Example / customer picker in a new invoice", "Example / in account settings form", "Example / language switch", "Example / multi-select open", "Example / role permissions", "Example / select open", "Example / share a report", "Stress test / Address Autocomplete", "Stress test / Combobox", "Stress test / People Picker and Transfer List", "Stress test / Recurrence Picker", "Stress test / Select", "Stress test / Select Option", "Stress test / Tag Input", "Stress test / Transfer List"
+On the Figma page: "Example / Select styles", "Example / combobox open", "Example / customer picker in a new invoice", "Example / in account settings form", "Example / language switch", "Example / multi-select open", "Example / role permissions", "Example / select open", "Example / share a report", "Stress test / Address Autocomplete", "Stress test / Combobox", "Stress test / People Picker and Transfer List", "Stress test / Recurrence Picker", "Stress test / Select", "Stress test / Select Option", "Stress test / Tag Input", "Stress test / Transfer List"
 
 ## Select
 
-Component set · 8 variants · default size 240 × 36
+Component set · 16 variants · default size 240 × 36
 
-shadcn Select trigger. 6-15 options, single choice. Open state: Select (focus) + Menu with Checked on the selected item. Use inside Field for label and errors. Usage: eggux build-ui/components/select.md
+shadcn Select trigger. 6-15 options, single choice. Open state: Select (focus) + Menu with Checked on the selected item. Use inside Field for label and errors.
+
+
+Style: default (outlined) or filled (background/muted fill, no border until focus or error, placeholder in input/filled-muted-foreground). Use the same Style as the other controls of the form.
+
+
+Usage: eggux build-ui/components/select.md
 
 **Use for**
 
 - One choice from 6-15 options in a form
 - Inside Field, for the label, description and error
 - Rows per page in Table Pagination
+- Style=filled in forms that use Input Style=filled
 
 **Not for**
 
@@ -41,10 +48,11 @@ shadcn Select trigger. 6-15 options, single choice. Open state: Select (focus) +
 **Anatomy**
 
 1. Label (from Field)
-2. Trigger with Value: placeholder or filled (Content)
-3. chevron-down icon
-4. Open: Menu under the trigger, Checked on the selected Menu Item
-5. Error message (from Field)
+2. Style: default (border/input) or filled (background/muted fill, no border until focus or error; placeholder in input/filled-muted-foreground)
+3. Trigger with Value: placeholder or filled (Content)
+4. chevron-down icon
+5. Open: Menu under the trigger, Checked on the selected Menu Item
+6. Error message (from Field)
 
 **Content and behavior**
 
@@ -53,6 +61,7 @@ shadcn Select trigger. 6-15 options, single choice. Open state: Select (focus) +
 - Option labels are short and parallel; the placeholder is an example, not a label
 - Disabled options stay visible, with the reason when possible
 - State=error marks the trigger; the message comes from Field
+- Use the same Style as the other controls in the form
 
 **Accessibility**
 
@@ -60,9 +69,11 @@ shadcn Select trigger. 6-15 options, single choice. Open state: Select (focus) +
 - Enter, Space or arrows open; arrows move, Enter selects, Escape closes
 - Typing a letter jumps to the matching option
 - Focus ring in border/ring (State=focus)
+- Style=filled: placeholder 7:1 on the fill (input/filled-muted-foreground); focus ring 4.7:1 on the fill
 
 | Variant property | Values |
 |---|---|
+| Style | default, filled |
 | State | default, focus, error, disabled |
 | Content | placeholder, filled |
 
@@ -73,13 +84,13 @@ shadcn Select trigger. 6-15 options, single choice. Open state: Select (focus) +
 Icons: chevron-down
 
 Tokens and styles:
-- Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
+- Colors: `background/default`, `background/destructive`, `background/muted`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`, `input/filled-muted-foreground`
 - Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`
 - Effects: `shadow/xs`
 
-Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [select](../../skills/build-ui/components/select.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
+Guides: [dropdown-menu](../../skills/build-ui/components/dropdown-menu.md), [input](../../skills/build-ui/components/input.md), [select](../../skills/build-ui/components/select.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
 
 Code: shadcn `Select`; `Popover` + `Command`
 
@@ -137,7 +148,7 @@ Icons: chevrons-up-down
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
 - Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`
 
 Guides: [popover](../../skills/build-ui/components/popover.md), [select](../../skills/build-ui/components/select.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
@@ -208,7 +219,7 @@ Code: shadcn `Select`; `Popover` + `Command`
 
 ## Tag
 
-Component set · 2 variants · default size 72 × 24
+Component set · 2 variants · default size 73 × 24
 
 Removable value inside Tag Input and multi-select (secondary bg, 24 high). For filters outside a field use Chip.
 
@@ -288,7 +299,7 @@ Built from: `Button`, `Command Input`, `Context Chip`, `Person Option`, `Separat
 Tokens and styles:
 - Colors: `background/default`, `background/popover`, `border/default`, `border/input`, `border/ring`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`
-- Radius: `radius/md`
+- Radius: `input/radius`, `radius/md`
 - Text styles: `body/small`
 - Effects: `shadow/md`
 
@@ -431,7 +442,7 @@ Icons: map-pin
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `background/popover`, `border/default`, `border/ring`, `foreground/default`, `foreground/muted`
 - Spacing and size: `density/control-height`, `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`, `radius/sm`
+- Radius: `input/radius`, `radius/md`, `radius/sm`
 - Text styles: `body/small`, `ui/caption`, `ui/label`
 
 Guides: [select](../../skills/build-ui/components/select.md), [commerce](../../skills/build-ui/patterns/commerce.md)

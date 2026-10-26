@@ -1,6 +1,6 @@
 # Color Picker
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -10,7 +10,7 @@ Usage rules live in the guides linked under each component.
 | [Swatch Picker](#swatch-picker) | 1 | Swatches |
 | [Swatch](#swatch) | 9 | - |
 
-On the Figma page: "Example / brand colors", "Example / color field", "Stress test / Color Picker", "Stress test / Swatch Picker"
+On the Figma page: "Example / Swatch styles", "Example / brand colors", "Example / color field", "Stress test / Color Picker", "Stress test / Swatch Picker"
 
 ## Color Picker
 
@@ -123,13 +123,14 @@ Code: shadcn `RadioGroup` (or `ToggleGroup type="single"`) with custom items: a 
 
 Component set · 9 variants · default size 36 × 36
 
-One choice of a color or a short label (size, option). Type=color: a dot of the color, override the fill of the "color" layer with a chart or brand token; Size=sm (28) in Swatch Picker, default (36) for product options. Type=label: a short text like S, M, L. State=selected shows a ring; unavailable is faded and stays focusable with "out of stock" in its name.
+One choice of a color or a short label (size, option). Type=color: a dot of the color, override the fill of the "color" layer with a chart or brand token; Size=sm (28) in Swatch Picker, default (36) for product options. Type=label: a short text like S, M, L. State=selected shows a ring; unavailable is faded and stays focusable with "out of stock" in its name. Show name adds the color or size name under the swatch (Name, ui/caption, muted): use it on all swatches of a group or none. Usage: eggux build-ui/components/color-picker.md
 
 **Use for**
 
 - Colors in Swatch Picker (Size=sm)
 - Product colors and sizes on a product page (Size=default)
 - Material or finish choices
+- Show name: product colors and finishes where the name matters ("Sand", "Forest"), and sizes with a longer name
 
 **Not for**
 
@@ -142,6 +143,7 @@ One choice of a color or a short label (size, option). Type=color: a dot of the 
 1. Color: a dot filled with a token or the product color (Type=color)
 2. Label: "M" (Type=label)
 3. Ring when State=selected; faded when unavailable
+4. Name (Show name): ui/caption, muted, centered under the swatch
 
 **Content and behavior**
 
@@ -149,6 +151,7 @@ One choice of a color or a short label (size, option). Type=color: a dot of the 
 - Group swatches under a label that names the choice and the value ("Color: Sand")
 - Unavailable options stay visible and focusable, faded, with "out of stock" in their name
 - Size=sm (28) in pickers, default (36) for product options
+- Show name on all swatches of a group or none; with names off, show the selected name next to the group label ("Color: Sand")
 
 **Accessibility**
 
@@ -165,12 +168,14 @@ One choice of a color or a short label (size, option). Type=color: a dot of the 
 | Property | Type | Default |
 |---|---|---|
 | Label | text | M |
+| Name | text | Sand |
+| Show name | boolean | false |
 
 Tokens and styles:
 - Colors: `border/default`, `border/input`, `chart/2`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/3`
+- Spacing and size: `spacing/1_5`, `spacing/3`
 - Radius: `radius/full`, `radius/md`
-- Text styles: `ui/label`
+- Text styles: `ui/caption`, `ui/label`
 
 Guides: [color-picker](../../skills/build-ui/components/color-picker.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 

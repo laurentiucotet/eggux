@@ -1,12 +1,12 @@
 # Input
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Input](#input) | 8 | Trailing |
+| [Input](#input) | 24 | Trailing |
 | [Field](#field) | 3 | Control |
 | [Password Strength](#password-strength) | 5 | - |
 | [Textarea](#textarea) | 8 | - |
@@ -16,7 +16,7 @@ Usage rules live in the guides linked under each component.
 | [Inline Edit](#inline-edit) | 5 | - |
 | [Signature Pad](#signature-pad) | 2 | - |
 | [Copy Field](#copy-field) | 2 | - |
-| [Search Field](#search-field) | 3 | - |
+| [Search Field](#search-field) | 6 | - |
 | [Inline Form](#inline-form) | 3 | - |
 | [Currency Input](#currency-input) | 4 | - |
 | [Phone Input](#phone-input) | 4 | - |
@@ -24,19 +24,27 @@ Usage rules live in the guides linked under each component.
 | [Duration Input](#duration-input) | 3 | - |
 | [Range Input](#range-input) | 2 | - |
 
-On the Figma page: "Example / approve a contract", "Example / in account settings form", "Example / in multi-step form", "Example / in navbar search", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Example / textarea in field", "Example / workspace rules", "Stress test / Copy Field", "Stress test / Currency Input", "Stress test / Date Input", "Stress test / Duration Input", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Inline Form", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Phone Input", "Stress test / Range Input", "Stress test / Search Field", "Stress test / Signature Pad", "Stress test / Textarea"
+On the Figma page: "Example / Input styles", "Example / Search Field styles", "Example / approve a contract", "Example / in account settings form", "Example / in multi-step form", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Example / textarea in field", "Example / workspace rules", "Stress test / Copy Field", "Stress test / Currency Input", "Stress test / Date Input", "Stress test / Duration Input", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Inline Form", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Phone Input", "Stress test / Range Input", "Stress test / Search Field", "Stress test / Signature Pad", "Stress test / Textarea"
 
 ## Input
 
-Component set · 8 variants · default size 320 × 36
+Component set · 24 variants · default size 320 × 36
 
-shadcn Input. Content=placeholder shows an example value in foreground/muted, never the label. Use inside Field for label, hint and error. Usage: eggux build-ui/components/input.md
+shadcn Input. Content=placeholder shows an example value, never the label. Use inside Field for label, hint and error.
+
+
+Style: default (outlined, the standard); filled (background/muted fill, no border until focus or error; for dense or card-heavy screens; placeholder in input/filled-muted-foreground); floating (48 high, the Label sits inside and moves up on focus or once there is a value; for short public forms like sign-up and checkout; put it in a Field with Show label off). One Style per form.
+
+
+Usage: eggux build-ui/components/input.md
 
 **Use for**
 
 - Short free text: names, titles, email, search
 - Search above a list, with the search Leading icon
 - Any form control inside Field
+- Style=filled: dense or card-heavy screens, filters and settings where many outlined boxes look busy
+- Style=floating: short public forms (sign-up, checkout, contact) where the label sits inside the field to save height
 
 **Not for**
 
@@ -44,12 +52,16 @@ shadcn Input. Content=placeholder shows an example value in foreground/muted, ne
 - Choosing from a list: use Select or Combobox
 - Fixed prefix or suffix (https://, EUR, %): use Input Group
 - Common data (email, phone, card): use Field Preset
+- Mixing Styles in one form: pick one Style per form
+- Style=floating for long or dense forms, or with long labels: use default with the label above
 
 **Anatomy**
 
-1. Leading icon (Show leading icon, Leading icon)
-2. Value or placeholder
-3. Trailing slot (Show trailing): clear, show password
+1. Style: default (border/input, shadow/xs), filled (background/muted fill, no border until focus or error), floating (48 high, Label inside)
+2. Leading icon (Show leading icon, Leading icon)
+3. Label (floating only): rests in the middle in body/small; moves up in ui/caption on focus or when Content=filled; foreground/brand on focus, background/destructive on error
+4. Value or placeholder
+5. Trailing slot (Show trailing): clear, show password
 
 **Content and behavior**
 
@@ -58,15 +70,22 @@ shadcn Input. Content=placeholder shows an example value in foreground/muted, ne
 - Width suggests the expected length
 - Pick the narrowest type and set autocomplete in code
 - Never clear what the user typed after an error
+- Style=filled: placeholder and secondary text use input/filled-muted-foreground (neutral/600 in light modes) because foreground/muted is 4.35:1 on background/muted
+- Style=filled on background/default or background/card only; on a muted surface the fill disappears
+- Style=floating: put it in a Field with Show label off so the hint and the error stay; the Label is the visible label, never a placeholder only
+- Style=floating with focus and no value shows the floated Label and the placeholder
 
 **Accessibility**
 
 - Always has a visible label through Field; icon-only search fields need aria-label
 - Focus ring uses border/ring; border contrast at least 3:1
 - Error is linked with aria-describedby and aria-invalid
+- Style=filled: the fill is about 1.1:1 against the page (1.3:1 Dark), like the default border (1.3:1 Light); the visible label identifies the field, and focus adds a border/ring border and ring (4.7:1 on the fill)
+- Style=floating: the Label is the accessible name (label for/id); it stays visible when the field has a value; label text is 4.7:1 or more in every theme
 
 | Variant property | Values |
 |---|---|
+| Style | default, filled, floating |
 | State | default, focus, error, disabled |
 | Content | placeholder, filled |
 
@@ -76,19 +95,20 @@ shadcn Input. Content=placeholder shows an example value in foreground/muted, ne
 | Show leading icon | boolean | false |
 | Leading icon | instance swap | Icon/search |
 | Show trailing | boolean | false |
+| Label | text | Email |
 
 Slots (fill them in the instance, never detach): `Trailing`
 
 Icons: search
 
 Tokens and styles:
-- Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
-- Spacing and size: `density/control-height`, `spacing/1_5`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
-- Text styles: `body/small`, `ui/label`
+- Colors: `background/default`, `background/destructive`, `background/muted`, `border/input`, `border/ring`, `foreground/brand`, `foreground/default`, `foreground/muted`, `input/filled-muted-foreground`
+- Spacing and size: `density/control-height`, `spacing/12`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
+- Radius: `input/radius`
+- Text styles: `body/small`, `ui/caption`, `ui/label`
 - Effects: `shadow/xs`
 
-Guides: [input](../../skills/build-ui/components/input.md), [rich-text-editor](../../skills/build-ui/components/rich-text-editor.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+Guides: [input](../../skills/build-ui/components/input.md), [rich-text-editor](../../skills/build-ui/components/rich-text-editor.md), [select](../../skills/build-ui/components/select.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: shadcn `Input`, `Label`, `Textarea`, `Form` (react-hook-form) (Field = `FormItem` with label, description, message)
 
@@ -96,7 +116,10 @@ Code: shadcn `Input`, `Label`, `Textarea`, `Form` (react-hook-form) (Field = `Fo
 
 Component set · 3 variants · default size 320 × 88
 
-Label + Control (native slot, default Input) + hint or error. Label always visible. Error text uses background/destructive with an icon. Usage: eggux build-ui/patterns/form-validation.md
+Label + Control (native slot, default Input) + hint or error. Label always visible: Show label off only when the control has its own visible label (Input Style=floating). Error text uses background/destructive with an icon.
+
+
+Usage: eggux build-ui/patterns/form-validation.md
 
 **Use for**
 
@@ -111,7 +134,7 @@ Label + Control (native slot, default Input) + hint or error. Label always visib
 
 **Anatomy**
 
-1. Label
+1. Label (Show label, on by default)
 2. Control slot (default Input)
 3. Hint (Show hint) or Error with circle-alert icon
 
@@ -122,12 +145,14 @@ Label + Control (native slot, default Input) + hint or error. Label always visib
 - Error replaces the hint, says what is wrong and how to fix it: "Enter an email address like name@example.com"
 - Validate on blur; once in error, re-validate on every change
 - Error text uses background/destructive with an icon, not color alone
+- Show label off only when the control carries its own visible label (Input Style=floating); hint and error stay under it
 
 **Accessibility**
 
 - Label is tied to the control (for / id)
 - Hint and error linked with aria-describedby; aria-invalid on error
 - On submit, focus moves to the first invalid field
+- With Show label off the control's own label must stay visible and be tied to the control
 
 | Variant property | Values |
 |---|---|
@@ -139,6 +164,7 @@ Label + Control (native slot, default Input) + hint or error. Label always visib
 | Hint | text | We send receipts and account notices here. |
 | Show hint | boolean | true |
 | Error | text | Enter an email address like name@example.com |
+| Show label | boolean | true |
 
 Slots (fill them in the instance, never detach): `Control`
 
@@ -310,7 +336,7 @@ Built from: `Input Addon`
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`
 - Spacing and size: `density/control-height`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`
 
 Guides: [color-picker](../../skills/build-ui/components/color-picker.md), [input](../../skills/build-ui/components/input.md)
@@ -319,7 +345,7 @@ Code: shadcn `InputGroup` or custom
 
 ## Input Addon
 
-Component set · 2 variants · default size 74 × 36
+Component set · 2 variants · default size 77 × 36
 
 Text or icon attached to an Input Group: protocol, domain, unit, currency, @. Muted background, divider toward the field.
 
@@ -393,7 +419,7 @@ Icons: minus, plus
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`
 - Spacing and size: `density/control-height`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`
 
 Guides: [input](../../skills/build-ui/components/input.md), [commerce](../../skills/build-ui/patterns/commerce.md)
@@ -567,7 +593,7 @@ Built from: `Button`
 Tokens and styles:
 - Colors: `background/muted`, `border/input`, `foreground/default`
 - Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `code`
 
 Guides: [input](../../skills/build-ui/components/input.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
@@ -576,15 +602,22 @@ Code: shadcn `InputGroup` with a `readOnly` Input (`font-mono`) + Copy `Button`;
 
 ## Search Field
 
-Component set · 3 variants · default size 320 × 36
+Component set · 6 variants · default size 320 × 36
 
-Search box for a list, a table or the whole app: search icon, placeholder that names what is searched ("Search invoices"), ⌘K hint (Show shortcut), clear (x) once there is a query. Results update as people type (debounce ~300 ms); Esc clears. Global search opens Command Dialog; filtering one list stays inline.
+Search box for a list, a table or the whole app: search icon, placeholder that names what is searched ("Search invoices"), ⌘K hint (Show shortcut), clear (x) once there is a query. Results update as people type (debounce about 300 ms); Esc clears. Global search opens Command Dialog; filtering one list stays inline.
+
+
+Size: default (36) in toolbars, Filter Bar and Top Bar; lg (48, body/default, 20 px icons, 480 wide) for heroes and help centers where search is the main action.
+
+
+Usage: eggux build-ui/patterns/search-and-filter.md
 
 **Use for**
 
 - Filtering one list or table as people type
 - The search of a Filter Bar or a Top Bar
 - Global search that opens Command Dialog on click or with the shortcut
+- Size=lg: the main search of a hero, a help center or an empty search page
 
 **Not for**
 
@@ -594,10 +627,11 @@ Search box for a list, a table or the whole app: search icon, placeholder that n
 
 **Anatomy**
 
-1. Search icon
-2. Placeholder ("Search invoices") or Query
-3. Clear (x), once there is a query
-4. Shortcut: Kbd "⌘K" (Show shortcut)
+1. Size: default 36 high (body/small, 16 px icons, 320 wide) or lg 48 high (body/default, 20 px icons, 480 wide)
+2. Search icon
+3. Placeholder ("Search invoices") or Query
+4. Clear (x), once there is a query
+5. Shortcut: Kbd "⌘K" (Show shortcut)
 
 **Content and behavior**
 
@@ -607,6 +641,7 @@ Search box for a list, a table or the whole app: search icon, placeholder that n
 - Clear shows only when there is a query; the shortcut hides while typing
 - Global search opens Command Dialog; filtering one list stays inline. Keep the query in the URL
 - No results: Empty State that names the query
+- Size=lg only where search is the main action of the view; toolbars, Filter Bar and Top Bar use default
 
 **Accessibility**
 
@@ -616,6 +651,7 @@ Search box for a list, a table or the whole app: search icon, placeholder that n
 
 | Variant property | Values |
 |---|---|
+| Size | default, lg |
 | State | default, focus, filled |
 
 | Property | Type | Default |
@@ -628,9 +664,9 @@ Built from: `Kbd`. Icons: search, x
 
 Tokens and styles:
 - Colors: `background/default`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
-- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
-- Text styles: `body/small`
+- Spacing and size: `density/control-height`, `spacing/12`, `spacing/2`, `spacing/3`, `spacing/4`
+- Radius: `input/radius`
+- Text styles: `body/default`, `body/small`
 
 Guides: [input](../../skills/build-ui/components/input.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
@@ -748,7 +784,7 @@ Icons: chevron-down
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`
 - Spacing and size: `density/control-height`, `spacing/0`, `spacing/1`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`, `ui/label`
 
 Guides: [input](../../skills/build-ui/components/input.md), [commerce](../../skills/build-ui/patterns/commerce.md)
@@ -806,7 +842,7 @@ Icons: chevron-down
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`
 - Spacing and size: `density/control-height`, `spacing/0`, `spacing/1`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`, `ui/label`
 
 Guides: [input](../../skills/build-ui/components/input.md)
@@ -866,7 +902,7 @@ Icons: calendar
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
 - Spacing and size: `density/control-height`, `spacing/0_5`, `spacing/1`, `spacing/3`
-- Radius: `radius/md`, `radius/sm`
+- Radius: `input/radius`, `radius/sm`
 - Text styles: `body/small`
 
 Guides: [date-picker](../../skills/build-ui/components/date-picker.md)
@@ -922,7 +958,7 @@ A length of time in hours and minutes: time entries, SLAs, reminders, meeting le
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
 - Spacing and size: `density/control-height`, `spacing/1`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`
 
 Guides: [input](../../skills/build-ui/components/input.md)
@@ -980,7 +1016,7 @@ Two fields for a minimum and a maximum: price or amount filters, date ranges typ
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `foreground/default`, `foreground/muted`
 - Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`
 
 Guides: [input](../../skills/build-ui/components/input.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)

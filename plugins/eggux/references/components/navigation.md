@@ -1,14 +1,14 @@
 # Navigation
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Breadcrumb](#breadcrumb) | 1 | Items |
 | [Breadcrumb Item](#breadcrumb-item) | 4 | - |
-| [Top Bar](#top-bar) | 1 | Breadcrumb, Actions |
+| [Breadcrumb](#breadcrumb) | 2 | Items |
+| [Top Bar](#top-bar) | 2 | Breadcrumb, Actions |
 | [Page Header](#page-header) | 1 | Actions |
 | [Nav Link](#nav-link) | 3 | - |
 | [Navigation Menu Panel](#navigation-menu-panel) | 1 | Links, Featured |
@@ -19,61 +19,11 @@ Usage rules live in the guides linked under each component.
 | [Skip Link](#skip-link) | 1 | - |
 | [Page Toolbar](#page-toolbar) | 1 | - |
 
-On the Figma page: "Example / in navbar", "Example / in page shell / app", "Example / in page shell / docs", "Example / in product detail", "Example / invoices page with skip link and toolbar", "Example / navbar with mega menu", "Stress test / Back Link", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Page Toolbar", "Stress test / Skip Link", "Stress test / Table of Contents", "Stress test / Top Bar"
-
-## Breadcrumb
-
-Component · 1 variant · default size 261 × 20
-
-shadcn Breadcrumb. Show the path from a meaningful root; collapse the middle with an ellipsis item when it has more than 4 levels.
-
-**Use for**
-
-- Record and nested pages in an app: Customers > Acme
-- Docs and help centers with sections
-- Settings sub-pages: Settings > Billing > Invoices
-
-**Not for**
-
-- Flat apps with one level: no breadcrumb
-- Steps of a flow: use Stepper
-
-**Anatomy**
-
-1. Items slot
-2. Breadcrumb Item link: ancestor page
-3. Separator (chevron)
-4. Breadcrumb Item ellipsis: collapsed middle levels
-5. Breadcrumb Item current: this page
-
-**Content and behavior**
-
-- Every item but the last is a link; current is not a link and has Separator off
-- Collapse the middle with an ellipsis item past 4 levels; it opens a menu
-- Never wrap
-- The last item matches the page title
-- Start at a meaningful root, not "Home" when the sidebar already does that
-
-**Accessibility**
-
-- nav with aria-label="Breadcrumb"
-- Current item has aria-current="page"
-- Ellipsis is a labeled button: "Show path"
-
-Slots (fill them in the instance, never detach): `Items`
-
-Built from: `Breadcrumb Item`
-
-Tokens and styles:
-- Spacing and size: `spacing/1_5`
-
-Guides: [navigation](../../skills/build-ui/components/navigation.md)
-
-Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (In tables use `Table Pagination`)
+On the Figma page: "Example / Breadcrumb styles", "Example / Top Bar styles", "Example / in navbar", "Example / in page shell / app", "Example / in page shell / docs", "Example / invoices page with skip link and toolbar", "Example / navbar with mega menu", "Stress test / Back Link", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Page Toolbar", "Stress test / Skip Link", "Stress test / Table of Contents", "Stress test / Top Bar"
 
 ## Breadcrumb Item
 
-Component set · 4 variants · default size 74 × 20
+Component set · 4 variants · default size 76 × 20
 
 shadcn BreadcrumbItem. link = ancestor page; current = this page (not a link, Separator off); ellipsis = collapsed middle levels (opens a menu).
 
@@ -98,17 +48,78 @@ Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
 Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (In tables use `Table Pagination`)
 
+## Breadcrumb
+
+Component set · 2 variants · default size 266 × 20
+
+Path from a meaningful root to the current page (shadcn Breadcrumb). Style=default: plain links on the page background, for app top bars and page headers. Style=background: the items sit in a pill track (card/muted-background, button/radius), for marketing pages, docs and help centers where the path needs its own surface above a busy header. Use it on background/default, not on muted sections. Items slot holds Breadcrumb Items; the current item has Show separator off. Usage: eggux build-ui/components/navigation.md
+
+**Use for**
+
+- Record and nested pages in an app: Customers > Acme
+- Docs and help centers with sections
+- Settings sub-pages: Settings > Billing > Invoices
+- Style=background: marketing pages, docs and help centers, above a busy header or an image band
+
+**Not for**
+
+- Flat apps with one level: no breadcrumb
+- Steps of a flow: use Stepper
+
+**Anatomy**
+
+1. Style: default (no surface), background (card/muted-background pill track, button/radius, padding spacing/3 x spacing/1_5)
+2. Items slot
+3. Breadcrumb Item link: ancestor page
+4. Separator (chevron)
+5. Breadcrumb Item ellipsis: collapsed middle levels
+6. Breadcrumb Item current: this page
+
+**Content and behavior**
+
+- Every item but the last is a link; current is not a link and has Separator off
+- Collapse the middle with an ellipsis item past 4 levels; it opens a menu
+- Never wrap
+- The last item matches the page title
+- Start at a meaningful root, not "Home" when the sidebar already does that
+- Style=default in apps (Top Bar, Page Header); Style=background on marketing and docs pages, one per page
+- Style=background sits on background/default; on a muted section use Style=default (the track would disappear and the muted links drop below 4.5:1)
+
+**Accessibility**
+
+- nav with aria-label="Breadcrumb"
+- Current item has aria-current="page"
+- Ellipsis is a labeled button: "Show path"
+
+| Variant property | Values |
+|---|---|
+| Style | default, background |
+
+Slots (fill them in the instance, never detach): `Items`
+
+Built from: `Breadcrumb Item`
+
+Tokens and styles:
+- Colors: `card/muted-background`
+- Spacing and size: `spacing/1_5`, `spacing/3`
+- Radius: `button/radius`
+
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (In tables use `Table Pagination`)
+
 ## Top Bar
 
-Component · 1 variant · default size 1184 × 56
+Component set · 2 variants · default size 1184 × 56
 
-App top bar (shadcn site header): sidebar trigger, Breadcrumb slot, Actions slot. Sits above the page content in the App page shell.
+App top bar (shadcn site header) with sidebar trigger, Breadcrumb and global actions. Style=default: full-width bar with a bottom border, for the App page shell. Style=floating: the bar is a rounded pill with a border and shadow/sm, inset spacing/3 from the edges, for product marketing headers and apps on a muted canvas where the header floats over the content. Usage: eggux build-ui/components/navigation.md
 
 **Use for**
 
 - Every page of the App page shell from 1024
 - Global actions: search, notifications, help, user menu
 - The App page shell above the Page Header
+- Style=floating: product marketing headers and app pages on a muted canvas where the header floats over content
 
 **Not for**
 
@@ -118,22 +129,29 @@ App top bar (shadcn site header): sidebar trigger, Breadcrumb slot, Actions slot
 
 **Anatomy**
 
-1. Sidebar trigger (Show sidebar trigger)
-2. Separator
-3. Breadcrumb slot
-4. Actions slot: search, notifications, help, user Avatar
+1. Style: default (full width, bottom border), floating (inset spacing/3, bar with border, button/radius and shadow/sm)
+2. Sidebar trigger (Show sidebar trigger)
+3. Separator
+4. Breadcrumb slot
+5. Actions slot: search, notifications, help, user Avatar
 
 **Content and behavior**
 
 - The Breadcrumb shows list to object: "Customers > Acme"
 - Only global actions on the right
 - Search opens the Command Dialog (⌘K / Ctrl K) and stays a visible button
+- Style=floating: keep it sticky with the inset; content scrolls under it, so give the page a top padding of the bar height plus the inset
+- One Style per product; do not mix floating and default between pages
 
 **Accessibility**
 
 - Header landmark; icon buttons have labels: "Toggle sidebar", "Notifications"
 - Unread count is announced with the notifications label
 - Tab order: sidebar trigger, breadcrumb, actions
+
+| Variant property | Values |
+|---|---|
+| Style | default, floating |
 
 | Property | Type | Default |
 |---|---|---|
@@ -145,7 +163,9 @@ Built from: `Avatar`, `Breadcrumb`, `Button Icon`, `Separator`
 
 Tokens and styles:
 - Colors: `background/default`, `border/default`
-- Spacing and size: `spacing/14`, `spacing/2`, `spacing/4`
+- Spacing and size: `spacing/14`, `spacing/2`, `spacing/2_5`, `spacing/3`, `spacing/4`
+- Radius: `button/radius`
+- Effects: `shadow/sm`
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
@@ -422,7 +442,7 @@ Code: custom with scroll spy
 
 ## Back Link
 
-Component set · 2 variants · default size 98 × 20
+Component set · 2 variants · default size 96 × 20
 
 Way back to the list a record came from, above the page title: "← All invoices". Names the destination, never "Back". Keeps the list's filters and scroll position. Deep hierarchies use Breadcrumb instead.
 
@@ -477,7 +497,7 @@ Code: `Link` with `ArrowLeft`, `text-sm text-muted-foreground` (Fixed URL to the
 
 ## Skip Link
 
-Component · 1 variant · default size 170 × 36
+Component · 1 variant · default size 169 × 36
 
 First focusable element of every page, hidden until it gets keyboard focus; then it shows top left and jumps to the main content. Add one per repeated block that is long (a sidebar of 30 links). Required for keyboard users; never remove it.
 

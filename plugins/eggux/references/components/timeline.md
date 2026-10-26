@@ -1,41 +1,46 @@
 # Timeline
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Timeline Item](#timeline-item) | 5 | Content |
+| [Timeline Item](#timeline-item) | 20 | Content |
 
-On the Figma page: "Example / activity", "Stress test / Timeline Item"
+On the Figma page: "Example / Timeline Item styles", "Example / activity", "Stress test / Timeline Item"
 
 ## Timeline Item
 
-Component set · 5 variants · default size 480 × 70
+Component set · 20 variants · default size 480 × 70
 
-One event in an activity history (record history, audit log, order tracking). Newest first. Tone marks the outcome, not decoration. Connector off on the last item. Time relative under 24 h, absolute after ("22 Oct, 10:30"); full timestamp in a tooltip.
+One event in an activity history (record history, audit log, order tracking). Newest first. Tone marks the outcome, not decoration. Connector off on the last item. Time relative under 24 h, absolute after ("22 Oct, 10:30"); full timestamp in a tooltip. Layout=default: compact list for record pages. Layout=card: title, time, description and Content in a bordered card, for events with notes or attachments. Layout=alternating-left / alternating-right: content on one side of a center line and the time on the other; alternate them item by item for milestones and company history on marketing pages (768 and up). Usage: eggux build-ui/components/description-list.md
 
 **Use for**
 
 - Activity column on a record page
 - Order or shipment tracking
 - Changes made by the system, listed in order
+- Layout=card: events with a note, attachment or diff in the Content slot
+- Layout=alternating-left / alternating-right: milestones and company history on marketing pages
 
 **Not for**
 
 - Conversations between people: use Comment
 - Filterable change history: use the Audit Log with Change Item
 - Steps the user still has to complete: use Stepper
+- Alternating layouts in apps or below 768: use Layout=default
 
 **Anatomy**
 
-1. Icon in a circle colored by Tone (Icon)
-2. Connector line to the next item
-3. Title: what happened
-4. Time: "2 h ago"
-5. Description: who and where (Show description)
-6. Content slot: note excerpt, attachment or diff (Show content)
+1. Layout: default, card, alternating-left, alternating-right. Tone: default, primary, success, warning, destructive
+2. Icon in a circle colored by Tone (Icon)
+3. Connector line to the next item (Show connector)
+4. Title: what happened
+5. Time: "2 h ago" (in alternating layouts on the other side of the line)
+6. Description: who and where (Show description)
+7. Content slot: note excerpt, attachment or diff (Show content)
+8. card: Title, Time, Description and Content in a bordered card (radius/base, padding spacing/4)
 
 **Content and behavior**
 
@@ -44,6 +49,8 @@ One event in an activity history (record history, audit log, order tracking). Ne
 - Time is relative under 24 h, then absolute ("22 Oct, 10:30"); full timestamp in a tooltip
 - Connector off on the last item
 - Long histories: the last 5-10 with "View all"; group by day
+- Alternating: switch alternating-left and alternating-right item by item, starting with left
+- One Layout per timeline (alternating counts as one)
 
 **Accessibility**
 
@@ -54,6 +61,7 @@ One event in an activity history (record history, audit log, order tracking). Ne
 | Variant property | Values |
 |---|---|
 | Tone | default, primary, success, warning, destructive |
+| Layout | default, card, alternating-left, alternating-right |
 
 | Property | Type | Default |
 |---|---|---|
@@ -70,9 +78,9 @@ Slots (fill them in the instance, never detach): `Content`
 Icons: clock
 
 Tokens and styles:
-- Colors: `background/destructive`, `background/muted`, `background/primary`, `background/success`, `background/warning`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `border-width/DEFAULT`, `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/6`
-- Radius: `radius/full`
+- Colors: `background/default`, `background/destructive`, `background/muted`, `background/primary`, `background/success`, `background/warning`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `border-width/DEFAULT`, `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`
+- Radius: `radius/base`, `radius/full`
 - Text styles: `body/small`, `ui/caption`, `ui/label`
 
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md), [description-list](../../skills/build-ui/components/description-list.md)

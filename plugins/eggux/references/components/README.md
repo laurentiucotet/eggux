@@ -17,7 +17,7 @@ components also list when to use them, anatomy, rules and accessibility from
 
 | Page | Components |
 |---|---|
-| [Accordion](accordion.md) | Accordion, Accordion Item, Show More |
+| [Accordion](accordion.md) | Accordion Item, Accordion, Show More |
 | [Admin](admin.md) | Integration Card, Permission Row, API Key Row, Session Row, Org Chart Node |
 | [AI Chat](ai-chat.md) | Prompt Input, Attachment, User Message, Assistant Message, Reasoning, Tool Call, Sources, Source Item, Citation, Prompt Suggestion, Model Picker, Model Option, Chat History Item, Context Chip, Response Feedback, Voice Recorder, Agent Plan, Plan Step, Artifact Card, AI Summary, AI Notice, AI Suggestion, AI Loading, Confidence Indicator, AI Review Bar |
 | [Alert](alert.md) | Alert, Service Status Row, Uptime Bars, Uptime Day |
@@ -25,6 +25,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Audit](audit.md) | Change Item, Version Item, Release Note Item, Release Note Line |
 | [Automation](automation.md) | Automation Rule, Workflow Node, Mapping Row |
 | [Avatar](avatar.md) | Avatar, Avatar Group, Byline, Presence Bar |
+| [Background](background.md) | Background / Grid, Background / Dots, Background / Glow, Background / Beam |
 | [Badge](badge.md) | Badge, Badge Count, Status Dot, Badge List, Announcement Pill, Trust Badge |
 | [Brand](brand.md) | Logo Mark, Logo, Logo Tile, Logo / Northwind, Logo / Lumora, Logo / Orbitly, Logo / Fieldstone, Logo / Kestrel, Logo / Quintra, Logo / Halcyon, Logo / Brightpath, Logo / Corvid, Logo / Meridian, Logo / Tidewater, Logo / Vireo |
 | [Button](button.md) | Button, Button Icon, Button Group, Button Group Item, Split Button, Action Bar, Social Share |
@@ -36,14 +37,15 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Chip](chip.md) | Chip |
 | [Code Block](code-block.md) | Code Block, Command Snippet, Endpoint Row, Log Row, Diff Viewer, Diff Line, JSON Viewer |
 | [Color Picker](color-picker.md) | Color Picker, Swatch Picker, Swatch |
-| [Commerce](commerce.md) | Product Card, Line Item, Mini Cart, Order Row, Shipment Tracker, Address Card, Payment Method Card |
+| [Commerce](commerce.md) | Product Card, Line Item, Mini Cart, Order Row, Shipment Tracker, Address Card, Payment Method Card, Payment Method Mark |
 | [Cookie Consent](cookie-consent.md) | Cookie Consent |
 | [Description List](description-list.md) | Description List Item, Meta Item, Figure, Summary Row |
 | [Dialog](dialog.md) | Dialog, Dialog Header, Dialog Footer, Alert Dialog |
 | [Drawer](drawer.md) | Sheet, Drawer, Side Panel, Resizable Panels |
 | [Editor](editor.md) | Rich Text Editor, Comment, Comment Composer |
+| [Email](email.md) | Email / Header, Email / Hero, Email / Button, Email / Content, Email / Code, Email / Details, Email / Details Row, Email / Line Items, Email / Line Item, Email / Total Row, Email / Callout, Email / Divider, Email / Stats, Email / Stat, Email / Article, Email / Footer |
 | [Empty State](empty-state.md) | Empty State |
-| [Feature Item](feature-item.md) | Feature Item |
+| [Feature Item](feature-item.md) | Feature Item, Icon Tile |
 | [File Upload](file-upload.md) | File Dropzone, File Item, File Preview, Resource Item, File Field |
 | [Filters](filters.md) | Filter Bar, Filter Chip, Faceted Filter, Facet Option, Filter Section, Filter Group, Filter Condition, Saved View Item |
 | [Form Layout](form-layout.md) | Form Section, Fieldset, Error Summary, Requirement List, Check Item |
@@ -56,13 +58,13 @@ components also list when to use them, anatomy, rules and accessibility from
 | [List](list.md) | List Item, Sortable List Item, Task Item, Job Listing |
 | [Menu](menu.md) | Menu, Menu Item, Menu Label, Menubar, Menubar Trigger, Account Menu |
 | [Metrics](metrics.md) | Trend Indicator, Metric Strip, Metric Strip Item, Usage Meter, Countdown, Leaderboard Row |
-| [Mobile](mobile.md) | Mobile Header, Bottom Nav, Bottom Nav Item, FAB, Action Sheet |
-| [Navigation](navigation.md) | Breadcrumb, Breadcrumb Item, Top Bar, Page Header, Nav Link, Navigation Menu Panel, Navigation Menu Link, Table of Contents, Table of Contents Item, Back Link, Skip Link, Page Toolbar |
+| [Mobile](mobile.md) | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge |
+| [Navigation](navigation.md) | Breadcrumb Item, Breadcrumb, Top Bar, Page Header, Nav Link, Navigation Menu Panel, Navigation Menu Link, Table of Contents, Table of Contents Item, Back Link, Skip Link, Page Toolbar |
 | [Notifications](notifications.md) | Notification Item, Notification Center |
-| [Pagination](pagination.md) | Pagination, Pagination Item, Pagination Compact, Load More, Pager Link |
+| [Pagination](pagination.md) | Pagination Item, Pagination, Pagination Compact, Load More, Pager Link |
 | [Popover](popover.md) | Popover, Command, Command Input, Command Dialog, Hover Card, Emoji Picker, App Launcher, Confirm Popover |
 | [Pricing](pricing.md) | Price, Plan Card |
-| [Progress](progress.md) | Progress, Progress Ring, Background Job |
+| [Progress](progress.md) | Progress, Progress Segment, Progress Ring, Background Job |
 | [Quote](quote.md) | Quote, Testimonial Card, Footnote |
 | [Rating](rating.md) | Rating, Review Item, Rating Summary |
 | [Save Bar](save-bar.md) | Save Bar |
@@ -78,7 +80,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Skeleton](skeleton.md) | Skeleton |
 | [Slider](slider.md) | Slider |
 | [Spinner](spinner.md) | Spinner, Loading Overlay |
-| [Stepper](stepper.md) | Stepper, Step |
+| [Stepper](stepper.md) | Step, Stepper |
 | [Surveys](surveys.md) | Feedback Widget, NPS Survey, CSAT Rating |
 | [Table](table.md) | Table Cell, Table Header Label, Table Cell Text, Table Cell Stack, Table Cell User, Table Cell Amount, Table Cell Status, Table Cell Progress, Table Cell Actions, Table Cell Link, Table Cell Date, Table Cell File, Table Cell Badges, Table Cell Avatars, Table Cell Check, Table Toolbar, Data Grid Toolbar, Table Group Row, Table Pagination |
 | [Tabs](tabs.md) | Tab, Tabs |
@@ -90,4 +92,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tree](tree.md) | Tree Item |
 | [Video](video.md) | Video Player, Video Thumbnail, Audio Player |
 
-357 components on 72 pages.
+381 components on 74 pages.

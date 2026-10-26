@@ -1,40 +1,50 @@
 # Rating
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Rating](#rating) | 12 | - |
+| [Rating](#rating) | 24 | - |
 | [Review Item](#review-item) | 1 | - |
 | [Rating Summary](#rating-summary) | 1 | - |
 
-On the Figma page: "Example / in reviews", "Example / in testimonial carousel", "Stress test / Rating", "Stress test / Rating Summary", "Stress test / Review Item"
+On the Figma page: "Example / Rating styles", "Example / in reviews", "Stress test / Rating", "Stress test / Rating Summary", "Stress test / Review Item"
 
 ## Rating
 
-Component set · 12 variants · default size 116 × 20
+Component set · 24 variants · default size 116 × 20
 
 Star rating, display (reviews, products) or input (feedback). Filled stars in background/warning; always show the number too ("4.7 (128)"), color is not the only signal. As input: radio group of 5, hover previews, half stars only for display.
+
+
+Style: default (five stars, display or input), badge (one star and the numeric score in a soft amber badge, e.g. "4.8"; display only, for dense cards, search results, tables and map pins). In Style=badge type the score in Score (one decimal) and Value has no effect; Show count adds "(128)".
+
+
+Usage: eggux build-ui/components/rating.md
 
 **Use for**
 
 - Average rating on a product or a review summary: "4.7 (128)"
 - Rating input in a review or feedback form
 - Size=sm in cards and lists, Size=default in detail pages and forms
+- Style=badge: the score in tight places: product cards, search results, tables, map pins
 
 **Not for**
 
 - Satisfaction surveys: thumbs up / down or a labeled 1-5 scale often reads better
 - NPS: 0-10 buttons
 - Status or priority: use Badge
+- Style=badge as input: it is display only
 
 **Anatomy**
 
-1. Five stars: filled in background/warning, empty in border/input
-2. Value: the number (Show value)
-3. Count: number of ratings (Show count, Count)
+1. Style=default: five stars, filled in background/warning, empty in border/input
+2. Style=badge: one star and the score in a soft amber badge (badge/soft-warning-bg, star and text badge/soft-warning-fg, radius/md)
+3. Value: the number (Show value; always shown in Style=badge)
+4. Score: the number in Style=badge (TEXT, one decimal)
+5. Count: number of ratings (Show count, Count)
 
 **Content and behavior**
 
@@ -43,28 +53,33 @@ Star rating, display (reviews, products) or input (feedback). Filled stars in ba
 - As input, hover previews the value; a second click on the same star does not clear it
 - Offer a Clear link only when zero is allowed
 - Ask for a comment after a low rating, not before
+- Style=badge: type the score in Score; Value has no effect there
 
 **Accessibility**
 
 - Display: one element with aria-label="Rated 4.7 out of 5"
 - Input: a radio group of 5, each labeled "4 of 5 stars"; arrow keys change the value
 - Empty star outlines meet 3:1 against the background
+- Style=badge: one element with aria-label="Rated 4.8 out of 5, 128 reviews"; the star is aria-hidden
 
 | Variant property | Values |
 |---|---|
 | Size | sm, default |
 | Value | 0, 1, 2, 3, 4, 5 |
+| Style | default, badge |
 
 | Property | Type | Default |
 |---|---|---|
 | Show value | boolean | false |
 | Show count | boolean | false |
 | Count | text | (128) |
+| Score | text | 4.8 |
 
 Tokens and styles:
-- Colors: `background/warning`, `border/input`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/3_5`, `spacing/5`
-- Text styles: `ui/caption`, `ui/label`
+- Colors: `background/warning`, `badge/soft-warning-bg`, `badge/soft-warning-fg`, `border/input`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/3_5`, `spacing/5`
+- Radius: `radius/md`
+- Text styles: `ui/caption`, `ui/label`, `ui/label-small`
 
 Guides: [rating](../../skills/build-ui/components/rating.md)
 
@@ -90,7 +105,7 @@ One customer review: who, verified purchase, date, stars, a title and the text, 
 
 **Anatomy**
 
-1. Header: Avatar, name, Verified Badge (Show verified), date
+1. Header: Avatar, name, Verified Badge soft-success (Show verified), date
 2. Rating sm
 3. Title
 4. Text

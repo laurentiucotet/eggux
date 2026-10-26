@@ -1,20 +1,26 @@
 # Empty State
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Empty State](#empty-state) | 2 | Actions |
+| [Empty State](#empty-state) | 4 | Actions |
 
-On the Figma page: "Example / empty state types", "Example / first invoice", "Stress test / Empty State"
+On the Figma page: "Example / Empty State styles", "Example / empty state types", "Example / first invoice", "Stress test / Empty State"
 
 ## Empty State
 
-Component set · 2 variants · default size 400 × 286
+Component set · 4 variants · default size 400 × 286
 
-What to show when there is nothing: first use (explain and offer the first action), no results (say why and offer "Clear filters"), no access (say who can grant it), error (say what failed and offer Retry). Size default for pages and large cards, sm inside tables, cards and panels. Icon matches the object; never an illustration that hides the message. Five cases with their own icon and action: no data yet, no results, error, no access, first run (see "empty state types").
+What to show when there is nothing: first use (explain and offer the first action), no results (say why and offer "Clear filters"), no access (say who can grant it), error (say what failed and offer Retry). Size default for pages and large cards, sm inside tables, cards and panels. Five cases with their own icon and action: no data yet, no results, error, no access, first run (see "empty state types").
+
+
+Media: icon (icon tile, the default; lists, tables, panels and every error or no-access case), image (an Image Placeholder above the title, exposed, for a photo or illustration; first-run pages and empty dashboards where a picture shows the value of the first action). The image never replaces the title and action, and stays decorative.
+
+
+Usage: eggux build-ui/patterns/empty-state.md
 
 **Use for**
 
@@ -23,6 +29,7 @@ What to show when there is nothing: first use (explain and offer the first actio
 - No access: say who can grant it
 - Error: say what failed and offer Retry
 - Size=default for pages and large cards, sm inside tables, cards and panels
+- Media=image: first-run pages and empty dashboards where a photo or illustration shows the value of the first action
 
 **Not for**
 
@@ -32,20 +39,22 @@ What to show when there is nothing: first use (explain and offer the first actio
 
 **Anatomy**
 
-1. Icon (swap) that matches the object
-2. Title ("No invoices yet")
-3. Description, one sentence (Show description)
-4. Actions slot (Show actions)
+1. Media=icon: icon tile with an Icon (swap) that matches the object
+2. Media=image: Image Placeholder 16:9 (exposed) above the title; swap the Image
+3. Title ("No invoices yet")
+4. Description, one sentence (Show description)
+5. Actions slot (Show actions)
 
 **Content and behavior**
 
 - Every list and table has one
 - Action only when the user may create; use the object's create label
 - Centered in the area the content would occupy, not the whole page
-- Never an illustration that hides the message
+- Media=image only for first run and onboarding; never an image that hides or replaces the title and action
 - Inside a table: Size=sm under the header row
 - Cleared (inbox zero): a short positive line, no action
 - Five cases, each with its own icon and action (see "empty state types"): no data yet (create, import), no results (clear filters), error (try again), no access (request access), first run (set up)
+- No results, error and no access always use Media=icon
 
 **Accessibility**
 
@@ -53,10 +62,12 @@ What to show when there is nothing: first use (explain and offer the first actio
 - The icon is decorative (aria-hidden)
 - Actions are buttons reachable by keyboard
 - Description in foreground/muted keeps 4.5:1
+- The image is decorative (empty alt) unless it carries information
 
 | Variant property | Values |
 |---|---|
 | Size | default, sm |
+| Media | icon, image |
 
 | Property | Type | Default |
 |---|---|---|
@@ -68,7 +79,7 @@ What to show when there is nothing: first use (explain and offer the first actio
 
 Slots (fill them in the instance, never detach): `Actions`
 
-Built from: `Button`. Icons: inbox
+Built from: `Button`, `Image Placeholder`. Icons: inbox
 
 Tokens and styles:
 - Colors: `background/muted`, `foreground/default`, `foreground/muted`

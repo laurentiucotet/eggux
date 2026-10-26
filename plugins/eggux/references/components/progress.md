@@ -1,22 +1,29 @@
 # Progress
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Progress](#progress) | 20 | - |
+| [Progress](#progress) | 40 | Segments |
+| [Progress Segment](#progress-segment) | 8 | - |
 | [Progress Ring](#progress-ring) | 15 | - |
 | [Background Job](#background-job) | 3 | - |
 
-On the Figma page: "Example / exports panel from the top bar", "Example / in onboarding checklist", "Example / uploads in progress", "Stress test / Background Job", "Stress test / Progress", "Stress test / Progress Ring"
+On the Figma page: "Example / Progress styles", "Example / exports panel from the top bar", "Example / uploads in progress", "Stress test / Background Job", "Stress test / Progress", "Stress test / Progress Ring"
 
 ## Progress
 
-Component set · 20 variants · default size 320 × 8
+Component set · 40 variants · default size 320 × 8
 
 Determinate progress (shadcn Progress): uploads, imports, multi-step completion. Indicator width = value; resize the indicator for other values. Show the number or "3 of 5" next to it. Unknown duration: use a Spinner or Skeleton instead. Tone: default, success (complete), warning (near a limit), error (failed); the text next to it says it too.
+
+
+Type: default (continuous bar for a share of work: uploads, imports, quotas), segmented (one segment per step for a count of steps: onboarding, setup checklists, a multi-step form on mobile). Segmented holds Progress Segment instances in the Segments slot: 4 by default (Value 25 = 1 of 4 complete); add or remove segments for 4 to 10 steps and set each State. For a circular indicator use Progress Ring.
+
+
+Usage: eggux build-ui/components/progress-and-slider.md
 
 **Use for**
 
@@ -24,6 +31,7 @@ Determinate progress (shadcn Progress): uploads, imports, multi-step completion.
 - Completion of a profile or setup ("3 of 5")
 - Bulk actions that run longer than ~2 s
 - A value per row, inside Table Cell Progress
+- Type=segmented: a count of steps (onboarding, setup checklist, a multi-step form on mobile), 4 to 10 segments
 
 **Not for**
 
@@ -31,6 +39,7 @@ Determinate progress (shadcn Progress): uploads, imports, multi-step completion.
 - Content loading: use Skeleton
 - Steps people move through: use Stepper
 - Picking a value: use Slider
+- A circular indicator: use Progress Ring
 
 **Anatomy**
 
@@ -38,6 +47,7 @@ Determinate progress (shadcn Progress): uploads, imports, multi-step completion.
 2. Indicator: background/primary, width = value
 3. Value text next to it: percent or "3 of 5"
 4. Tone: default, success, warning, error (indicator color)
+5. Type=segmented: Segments (native slot) with Progress Segment instances (State complete or upcoming, Tone), 4 px gap, each FILL width
 
 **Content and behavior**
 
@@ -46,6 +56,8 @@ Determinate progress (shadcn Progress): uploads, imports, multi-step completion.
 - Value variants are 0, 25, 50, 75, 100; resize the indicator for other values
 - Jobs over ~10 s run in the background, with a toast or notification when done
 - Tone shows the outcome, not the amount: success when complete, warning near a limit, error when failed; the text says it too
+- Type=segmented: one segment per step; Value sets 0 to 4 of 4 complete, add or remove segments for 4 to 10 steps and set each State
+- Segmented progress still shows the count in text ("Step 2 of 4")
 
 **Accessibility**
 
@@ -57,15 +69,40 @@ Determinate progress (shadcn Progress): uploads, imports, multi-step completion.
 |---|---|
 | Tone | default, success, warning, error |
 | Value | 0, 25, 50, 75, 100 |
+| Type | default, segmented |
+
+Slots (fill them in the instance, never detach): `Segments`
+
+Built from: `Progress Segment`
+
+Tokens and styles:
+- Colors: `background/destructive`, `background/muted`, `background/primary`, `background/success`, `background/warning`
+- Spacing and size: `spacing/1`, `spacing/2`
+- Radius: `radius/full`
+
+Guides: [progress-and-slider](../../skills/build-ui/components/progress-and-slider.md), [bulk-actions](../../skills/build-ui/patterns/bulk-actions.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
+
+Code: shadcn `Slider`, `Progress`
+
+## Progress Segment
+
+Component set · 8 variants · default size 64 × 8
+
+One segment of Progress Type=segmented. State: complete (Tone color) or upcoming (background/muted). Used only inside the Segments slot of Progress; set FILL width so segments share the track. Usage: eggux build-ui/components/progress-and-slider.md
+
+| Variant property | Values |
+|---|---|
+| State | complete, upcoming |
+| Tone | default, success, warning, error |
 
 Tokens and styles:
 - Colors: `background/destructive`, `background/muted`, `background/primary`, `background/success`, `background/warning`
 - Spacing and size: `spacing/2`
 - Radius: `radius/full`
 
-Guides: [progress-and-slider](../../skills/build-ui/components/progress-and-slider.md), [bulk-actions](../../skills/build-ui/patterns/bulk-actions.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
+Guides: [progress-and-slider](../../skills/build-ui/components/progress-and-slider.md)
 
-Code: shadcn `Slider`, `Progress`
+Code: `<div class="flex gap-1" role="progressbar" aria-valuenow={done} aria-valuemax={total}>` of `total` × `<div class="h-2 flex-1 rounded-full bg-primary">` (complete; `bg-success`, `bg-warning`, `bg-destructive` by tone) or `bg-muted` (upcoming) (4 to 10 segments; label "Step 2 of 4" next to it. Circular progress is `Progress Ring`)
 
 ## Progress Ring
 

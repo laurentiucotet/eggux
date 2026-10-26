@@ -17,7 +17,7 @@ On the Figma page: "Example / dataset header", "Example / filter panel", "Exampl
 
 ## Badge
 
-Component set · 24 variants · default size 53 × 20
+Component set · 24 variants · default size 55 × 20
 
 shadcn Badge plus EGG status variants. Solid: default, secondary, destructive, outline, success, warning, info. Soft (tinted fill, colored text, calm color for tables and lists): soft-success, soft-warning, soft-destructive, soft-info, soft-neutral; their colors come from badge/soft-{status}-bg and badge/soft-{status}-fg (4.5:1 or more in every mode). Shape: rounded (default) or pill. Options: Icon, Dot (status dot), Count (number after the label). Text carries the meaning; map each status to one variant and use one style (solid or soft) per table. Usage: eggux build-ui/components/badge.md
 
@@ -141,7 +141,7 @@ Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warn
 
 ## Status Dot
 
-Component set · 5 variants · default size 58 × 20
+Component set · 5 variants · default size 60 × 20
 
 State of a system, service or person in text flow and tables (Online, Down, Syncing). Always with a label; dot alone only where the label is right next to it (avatar status). For a label inside a pill use Badge with Dot.
 
@@ -194,7 +194,7 @@ Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warn
 
 ## Badge List
 
-Component · 1 variant · default size 244 × 22
+Component · 1 variant · default size 243 × 22
 
 A few tags or labels on one line with "+N" for the rest: category, status, region, format. Badges go in the Tags slot (outline for neutral labels, a status Variant only when it means something); the +N Badge opens the full list in a Tooltip or Popover. Show 2-4, keep labels to one or two words. Filters people remove use Chip; a single status uses Badge or Status Dot.
 
@@ -299,7 +299,7 @@ Code: `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` (One 
 
 ## Trust Badge
 
-Component · 1 variant · default size 197 × 54
+Component · 1 variant · default size 199 × 54
 
 A certification or compliance claim: SOC 2, ISO 27001, GDPR, PCI DSS. Name and what backs it (audit date, region). Only claims that are current and can be shown on request; link to the trust page. In footers, pricing and security sections, sign-up pages for enterprise buyers.
 
@@ -329,6 +329,7 @@ A certification or compliance claim: SOC 2, ISO 27001, GDPR, PCI DSS. Name and w
 - Link to the trust page
 - Update or remove it when a certificate expires
 - Same order everywhere; 3-5 in a row
+- Name and Description wrap inside the border when the badge is narrower than its text; set Fill in rows of equal badges
 
 **Accessibility**
 

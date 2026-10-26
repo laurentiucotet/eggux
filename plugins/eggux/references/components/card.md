@@ -6,33 +6,37 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Card](#card) | 12 | Header, Content, Footer |
+| [Card](#card) | 16 | Header, Content, Footer |
 | [Card Header](#card-header) | 1 | Action |
 | [Card Footer](#card-footer) | 1 | Actions |
-| [Stat Card](#stat-card) | 3 | - |
+| [Stat Card](#stat-card) | 9 | - |
 | [Option Card](#option-card) | 10 | - |
-| [Post Card](#post-card) | 6 | - |
+| [Post Card](#post-card) | 8 | - |
 | [Entity Card](#entity-card) | 4 | Leading, Tags, Details, Actions |
 | [Progress Card](#progress-card) | 3 | - |
-| [Person Card](#person-card) | 2 | Avatar, Tags, Contact, Actions |
+| [Person Card](#person-card) | 3 | Avatar, Tags, Contact, Actions |
 | [Event Card](#event-card) | 3 | Tags, Meta, Actions |
 | [Date Tile](#date-tile) | 2 | - |
 | [Link Preview](#link-preview) | 2 | - |
 | [Location Card](#location-card) | 1 | - |
 
-On the Figma page: "Example / customer card", "Example / events grid", "Example / in offices", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / shared link in a conversation", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Link Preview", "Stress test / Location Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
+On the Figma page: "Example / Card styles", "Example / Person Card styles", "Example / Post Card styles", "Example / Stat Card styles", "Example / customer card", "Example / events grid", "Example / in offices", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / shared link in a conversation", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Link Preview", "Stress test / Location Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
 
 ## Card
 
-Component set · 12 variants · default size 384 × 308
+Component set · 16 variants · default size 384 × 308
 
-shadcn Card. Variant: default (card background and border), outline (border only; inside panels and long lists), muted (tinted, no border; secondary or summary information). Size: default (padding and gap 24, 16 in Compact), sm (16, 12 in Compact). Elevation: false (flat) or true (shadow md; an outline card gets the card background so the shadow has a surface). Use Elevation for one card that must stand out or floats over content, never for a whole grid. Header, Content and Footer are native slots with their own side padding, so a slot set to padding 0 runs edge to edge. Padding and gap come from density/card-*; change those tokens for a product-wide decision. A card with its own anatomy (Stat Card, Option Card, Post Card) is a separate component built on Card.
+shadcn Card. Variant: default (card background and border); outline (border only; inside panels and long lists); muted (tinted, no border; secondary or summary information); inverted (foreground/default surface with background/default text, near black in Light and near white in Dark) for the one card that must stand out on a page, such as an upgrade offer or a key summary, never a whole grid. Size: default (padding and gap 24, 16 in Compact), sm (16, 12 in Compact). Elevation: false (flat) or true (shadow md; an outline card gets the card background so the shadow has a surface). Use Elevation for one card that must stand out or floats over content, never for a whole grid. Header, Content and Footer are native slots with their own side padding, so a slot set to padding 0 runs edge to edge. Content you place in an inverted card's slots must use inverted colors: text background/default (70% opacity for secondary text), Buttons secondary or outline, never the primary default (under 3:1 in Corporate). Padding and gap come from density/card-*; change those tokens for a product-wide decision. A card with its own anatomy (Stat Card, Option Card, Post Card) is a separate component built on Card.
+
+
+Usage: eggux build-ui/components/card.md
 
 **Use for**
 
 - Content about one object or topic, set apart from the page
 - Variant=outline inside panels, dialogs and long lists of cards
 - Variant=muted for secondary or summary information and placeholders
+- Variant=inverted for the one card that must stand out on a page (an upgrade offer, a key summary)
 - Size=sm for grids of many cards, sidebars and dashboards
 
 **Not for**
@@ -43,20 +47,24 @@ shadcn Card. Variant: default (card background and border), outline (border only
 
 **Anatomy**
 
-1. Header slot (Card Header): Icon (Show icon, Icon swap, 20 px), Title, Description, Action slot top right
-2. Content slot
-3. Footer slot (Card Footer): Actions slot
+1. Variant: default (background/card + border/default), outline (border only), muted (background/muted), inverted (foreground/default surface, background/default text)
+2. Header slot (Card Header): Icon (Show icon, Icon swap, 20 px), Title, Description, Action slot top right
+3. Content slot
+4. Footer slot (Card Footer): Actions slot
+5. Inverted default slot content is recolored: titles background/default, descriptions background/default at opacity/70, ghost icons background/default
 
 **Content and behavior**
 
 - Never nest cards in cards
 - Elevation=true only for one card that must stand out or floats; never a whole grid
+- Variant=inverted on one card per view, never a whole grid; it flips to a near-white card in Dark
 - One variant per group of cards; equal height and structure per row
 - Whole card clickable only with one destination; otherwise the title is the link
 - Footer: one primary action at most, usually none in a grid
 - Padding comes from density/card-* tokens; change the tokens, never single instances
 - Turn off Show header or Show footer when unused; never detach
 - Card Header icon: on all cards of a row or none; it names the card type, never decorates
+- Content you place in an inverted card's slots uses inverted colors: text background/default (opacity/70 for secondary), Buttons secondary or outline, never default (primary is under 3:1 on the inverted surface in Corporate)
 
 **Accessibility**
 
@@ -64,10 +72,11 @@ shadcn Card. Variant: default (card background and border), outline (border only
 - The Card Header Title is a heading at the right level for the page
 - Action slot Button Icons have labels and tooltips
 - The Card Header icon is decorative (aria-hidden); the Title carries the meaning
+- Inverted text is background/default on foreground/default: 19.8:1 Light, 19.0:1 Dark, 17.9:1 Corporate Light; secondary text at 70% stays above 7:1
 
 | Variant property | Values |
 |---|---|
-| Variant | default, outline, muted |
+| Variant | default, outline, muted, inverted |
 | Size | default, sm |
 | Elevation | false, true |
 
@@ -82,7 +91,7 @@ Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
 Built from: `Card Footer`, `Card Header`
 
 Tokens and styles:
-- Colors: `background/card`, `background/muted`, `border/default`, `card/muted-background`, `foreground/muted`
+- Colors: `background/card`, `background/default`, `background/muted`, `border/default`, `card/muted-background`, `foreground/default`, `foreground/muted`
 - Spacing and size: `density/card-gap`, `density/card-gap-sm`, `density/card-padding`, `density/card-padding-sm`, `spacing/4`, `spacing/96`
 - Radius: `radius/md`, `radius/xl`
 - Text styles: `ui/caption`
@@ -139,15 +148,20 @@ Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default
 
 ## Stat Card
 
-Component set · 3 variants · default size 288 × 172
+Component set · 9 variants · default size 288 × 172
 
-Metric card (shadcn dashboard section card). Trend sets the icon and the change badge tone: up = soft-success, down = soft-destructive, neutral = soft-neutral (for a metric where up is bad, swap the badge Variant on the instance). Show sparkline (off by default) adds a Sparkline in chart/1 under the value. The change and trend line are edited per instance. Direction is shown by icon and sign, never color alone. Usage: eggux build-ui/components/card.md
+Metric card (shadcn dashboard section card). Layout: vertical (default: label, change badge, value, optional sparkline, trend line and footnote) for dashboard rows; compact (Icon Tile, label, change badge and value in one row, no footer) for dense rows, sidebars and mobile; horizontal (label, value and change on the left, a Sparkline on the right, footer below) when the shape of the trend matters next to the number. Trend sets the icon, the change badge tone (up = soft-success, down = soft-destructive, neutral = soft-neutral) and the sparkline; for a metric where up is bad, swap the badge Variant on the instance. The compact Icon Tile is exposed: set its Icon and Style on the instance, the same across a row. Direction is shown by icon and sign, never color alone. One Layout per row.
+
+
+Usage: eggux build-ui/components/card.md
 
 **Use for**
 
 - One number people check (revenue this month)
 - A row of key metrics at the top of a report or dashboard
 - Dashboard sections next to a Chart Card
+- Layout=compact: dense rows, sidebars and mobile dashboards
+- Layout=horizontal: when the shape of the trend matters next to the number
 
 **Not for**
 
@@ -156,18 +170,21 @@ Metric card (shadcn dashboard section card). Trend sets the icon and the change 
 
 **Anatomy**
 
-1. Label (body/small, muted)
-2. Value (heading/h2, one line)
-3. Change Badge (Show change), soft by Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus
-4. Sparkline (Show sparkline, off by default): Sparkline in chart/1 under the value
-5. Trend line and Footnote (Show footer)
-6. Show change and Show trend hide the change badge and the trend row when there is no comparison
+1. Layout: vertical (default), compact, horizontal
+2. Label (body/small, muted)
+3. Value (heading/h2 in vertical and horizontal, heading/h3 in compact; one line)
+4. Change Badge (Show change), soft by Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus
+5. Sparkline (vertical: Show sparkline, off by default, under the value; horizontal: always on, 120 x 48, right of the value)
+6. Trend line and Footnote (Show footer; vertical and horizontal)
+7. Icon Tile (compact): exposed, Style=brand, Size default; set Icon and Style on the instance
+8. Show change and Show trend hide the change badge and the trend row when there is no comparison
 
 **Content and behavior**
 
 - Trend sets the icon and the change badge tone; edit the change and trend line per instance
 - When up is bad (costs, churn), switch the change badge Variant to soft-destructive on the instance
 - Direction is shown by icon and sign, never color alone
+- One Layout per row; compact rows keep the same Icon Tile Style
 - Show sparkline on all cards of a row or none; same period in each
 - Value stays on one line; amounts in the locale format (€48,250)
 - The Footnote says what it is compared to
@@ -184,6 +201,7 @@ Metric card (shadcn dashboard section card). Trend sets the icon and the change 
 | Variant property | Values |
 |---|---|
 | Trend | up, down, neutral |
+| Layout | vertical, compact, horizontal |
 
 | Property | Type | Default |
 |---|---|---|
@@ -196,13 +214,13 @@ Metric card (shadcn dashboard section card). Trend sets the icon and the change 
 | Show trend | boolean | true |
 | Show sparkline | boolean | false |
 
-Built from: `Badge`, `Sparkline`. Icons: minus, trending-down, trending-up
+Built from: `Badge`, `Icon Tile`, `Sparkline`. Icons: minus, trending-down, trending-up
 
 Tokens and styles:
 - Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`
-- Spacing and size: `density/card-padding`, `spacing/1_5`, `spacing/2`, `spacing/4`, `spacing/72`
+- Spacing and size: `density/card-padding`, `density/card-padding-sm`, `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/72`, `spacing/96`
 - Radius: `radius/xl`
-- Text styles: `body/small`, `heading/h2`, `ui/caption`, `ui/label`
+- Text styles: `body/small`, `heading/h2`, `heading/h3`, `ui/caption`, `ui/label`
 - Effects: `shadow/sm`
 
 Guides: [card](../../skills/build-ui/components/card.md)
@@ -275,14 +293,18 @@ Code: shadcn `RadioGroup` (Control=radio) or `Checkbox` (Control=checkbox) with 
 
 ## Post Card
 
-Component set · 6 variants · default size 352 × 410
+Component set · 8 variants · default size 352 × 410
 
-Article, news or case-study card: image 16:9, category + date · reading time, title, excerpt (3 lines max), author. horizontal = featured post. compact = a link row for asides and lists (related, most read, up next): title on 2 lines and meta, optional 1:1 image (Show image). Size=sm for dense grids and lists: smaller gaps, heading/h4 title; horizontal sm gives the image one third of the width (120-240 px) instead of half; compact sm has a 48 px image and a ui/label-small title. The whole card links to the article.
+Article, news or case-study card: image 16:9, category + date · reading time, title, excerpt (3 lines max), author. Layout: vertical for blog grids of 3; horizontal for the featured post; compact for a link row in asides and lists (related, most read, up next): title on 2 lines and meta, optional 1:1 image (Show image); overlay (title, category, date and author over a full-bleed photo on a media/scrim panel, no excerpt) for one lead story, a hero grid or a carousel of covers where the photo carries the post. Overlay text is media/foreground on media/scrim (black 60%), 5.7:1 over the brightest pixel; pick a photo whose subject sits in the top half. Size=sm for dense grids and lists: smaller gaps, heading/h4 title, overlay 320 tall; horizontal sm gives the image one third of the width (120-240 px) instead of half; compact sm has a 48 px image and a ui/label-small title. The whole card links to the article.
+
+
+Usage: eggux build-ui/components/card.md
 
 **Use for**
 
 - Blog grids of 3: Layout=vertical
 - The featured post at the top of a list: Layout=horizontal
+- Layout=overlay: one lead story, a hero grid of covers or a carousel where the photo carries the post
 - News, case studies, changelog entries and carousels of posts
 - Layout=compact: related, most read and up next lists in an aside or under an article
 - Size=sm: dense grids of 4, lists in a column next to a featured story, dashboards
@@ -303,6 +325,7 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 7. Author with Avatar (Show author)
 8. Compact: optional 1:1 image (Show image, 64 px, 48 px in sm), Title on 2 lines (ui/label, ui/label-small in sm), meta in Date (type · date)
 9. Size: default or sm (smaller gaps and titles) for every Layout
+10. Overlay: full-bleed photo (exposed Image Placeholder, 1:1 in default and 4:3 in sm so the locked ratio covers the card, centered crop, Show image on, default Image / Cover / 02), a 64 px media/scrim-fade to media/scrim gradient, then a media/scrim panel with category Badge, date, title and author in media/foreground; no excerpt; 352 x 440 (sm 352 x 320), radius/xl, clips
 
 **Content and behavior**
 
@@ -313,16 +336,18 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 - Compact: 3-5 items per list; meta says type and date ("Guide · 12 Oct 2026"); image on all items or none
 - One Size per list or grid; sm for lists next to a featured story and for grids of 4
 - Never restyle the title per instance: switch Size instead
+- Overlay text sits only on the solid media/scrim panel, never on the fade; choose photos with the subject in the top half
 
 **Accessibility**
 
 - One link per card; the Title is the link text
 - The image has alt text, or alt="" when decorative
 - Focus ring around the whole card
+- Overlay text is media/foreground on media/scrim (black 60%): 5.7:1 even over a white pixel, in every theme
 
 | Variant property | Values |
 |---|---|
-| Layout | vertical, horizontal, compact |
+| Layout | vertical, horizontal, compact, overlay |
 | Size | default, sm |
 
 | Property | Type | Default |
@@ -338,9 +363,9 @@ Article, news or case-study card: image 16:9, category + date · reading time, t
 Built from: `Avatar`, `Badge`, `Image Placeholder`
 
 Tokens and styles:
-- Colors: `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
-- Radius: `radius/lg`, `radius/md`
+- Colors: `foreground/default`, `foreground/muted`, `media/foreground`, `media/scrim`
+- Spacing and size: `spacing/0`, `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`, `spacing/8`
+- Radius: `radius/lg`, `radius/md`, `radius/xl`
 - Text styles: `body/default`, `body/small`, `heading/h2`, `heading/h4`, `ui/caption`, `ui/label`, `ui/label-small`
 
 Guides: [content](../../skills/build-ui/components/content.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
@@ -486,14 +511,18 @@ Code: shadcn `Card` with `size="sm"`; `Progress`
 
 ## Person Card
 
-Component set · 2 variants · default size 280 × 266
+Component set · 3 variants · default size 280 × 266
 
-One person: author, expert, speaker, contact or team member. Avatar slot (photo or initials), Name, Role, Organization, expertise as Badges (Tags slot), contact as Meta Items (Contact slot: email, phone, link), optional actions (View profile, Follow). vertical in grids of 3-4; horizontal in asides and lists. Contact details people copy are plain text, not hidden behind a button. A record with details and status goes in Entity Card.
+One person: author, expert, speaker, contact or team member. Layout: vertical (avatar, name, role, organization, expertise tags, contact) in grids of 3-4; horizontal in asides and lists; photo (a large 4:5 portrait tile with name, role and organization below, no card surface) for team, speaker and leadership pages where faces matter. Avatar slot (photo or initials) in vertical and horizontal; photo uses the exposed Image Placeholder (pick the Image on the instance) and keeps the Avatar slot hidden. Tags, Contact and Actions are native slots with Show booleans; on photo cards turn Show tags and Show contact off unless the page is a directory. Same Layout and photo crop across a grid.
+
+
+Usage: eggux build-ui/components/card.md
 
 **Use for**
 
 - Experts, authors and speakers on a content or product page
 - Contacts on a record or account page
+- Layout=photo: team, speaker and leadership pages where faces matter
 - Team directories and "Who to talk to" sections
 
 **Not for**
@@ -504,19 +533,22 @@ One person: author, expert, speaker, contact or team member. Avatar slot (photo 
 
 **Anatomy**
 
-1. Avatar slot: photo or initials
-2. Name (heading/h4), Role, Organization (Show organization)
-3. Tags slot: expertise as Badges (Show tags)
-4. Contact slot: Meta Items with mail, phone, link (Show contact)
-5. Actions slot: View profile, Follow (Show actions)
+1. Layout: vertical (280), horizontal (400), photo (280, no card surface)
+2. Avatar slot: photo or initials (hidden in photo)
+3. Photo (Layout=photo): exposed Image Placeholder 3:4, 280 x 350, radius/xl, default Image / Person / 05
+4. Name (heading/h4), Role, Organization (Show organization)
+5. Tags slot: expertise as Badges (Show tags)
+6. Contact slot: Meta Items with mail, phone, link (Show contact)
+7. Actions slot: View profile, Follow (Show actions)
 
 **Content and behavior**
 
-- vertical in grids of 3-4, horizontal in asides and lists
+- vertical in grids of 3-4, horizontal in asides and lists, photo on team and speaker pages
 - Role says what they do here; Organization only when people come from several
+- Photo layout: real photos with the same crop, light and background across the grid; turn Show tags and Show contact off unless the page is a directory
 - Contact details people copy are plain text
 - Two tags at most; the rest on the profile
-- Photos square-cropped, same style across the grid
+- Photos square-cropped or 4:5, same style across the grid
 
 **Accessibility**
 
@@ -526,7 +558,7 @@ One person: author, expert, speaker, contact or team member. Avatar slot (photo 
 
 | Variant property | Values |
 |---|---|
-| Layout | vertical, horizontal |
+| Layout | vertical, horizontal, photo |
 
 | Property | Type | Default |
 |---|---|---|
@@ -540,11 +572,11 @@ One person: author, expert, speaker, contact or team member. Avatar slot (photo 
 
 Slots (fill them in the instance, never detach): `Avatar`, `Tags`, `Contact`, `Actions`
 
-Built from: `Avatar`, `Badge`, `Button`, `Meta Item`
+Built from: `Avatar`, `Badge`, `Button`, `Image Placeholder`, `Meta Item`
 
 Tokens and styles:
 - Colors: `background/card`, `border/default`, `foreground/card`, `foreground/default`, `foreground/muted`
-- Spacing and size: `density/card-gap-sm`, `density/card-padding-sm`, `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Spacing and size: `density/card-gap-sm`, `density/card-padding-sm`, `spacing/0`, `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
 - Radius: `radius/xl`
 - Text styles: `body/small`, `heading/h4`
 

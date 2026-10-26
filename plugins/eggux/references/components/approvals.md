@@ -1,6 +1,6 @@
 # Approvals
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -34,7 +34,7 @@ One approver in a chain: marker, name, role and rule, status, time, comment. cur
 2. Name
 3. Role and rule ("Finance manager · approves over €10,000")
 4. Status Badge
-5. Time
+5. Time: drives the time line in every Status ("22 Oct 2026, 10:30", "Assigned 2 h ago · due tomorrow", "After Finance")
 6. Comment (Show comment)
 
 **Content and behavior**
@@ -45,6 +45,7 @@ One approver in a chain: marker, name, role and rule, status, time, comment. cur
 - Last step: Connector off
 - Changing the request resets the steps that depend on what changed, and says so
 - Every decision is an audit log entry
+- Set the time line through the Time property in every Status; never type over the layer
 
 **Accessibility**
 

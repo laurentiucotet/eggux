@@ -1,72 +1,18 @@
 # Pagination
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Pagination](#pagination) | 1 | Items |
 | [Pagination Item](#pagination-item) | 11 | - |
+| [Pagination](#pagination) | 3 | Items |
 | [Pagination Compact](#pagination-compact) | 1 | - |
 | [Load More](#load-more) | 2 | - |
 | [Pager Link](#pager-link) | 6 | - |
 
-On the Figma page: "Example / in docs page footer", "Example / in product grid", "Example / recent payments card", "Example / table footer", "Stress test / Load More", "Stress test / Pager Link", "Stress test / Pagination", "Stress test / Pagination Compact"
-
-## Pagination
-
-Component · 1 variant · default size 386 × 36
-
-Page navigation for long lists and tables. Show first, last, current ±1 and ellipsis. For feeds prefer "Load more"; for tables pair it with the row count and rows-per-page Select.
-
-**Use for**
-
-- Tables and lists where people compare, return to a position or share a page link
-- More than ~25 rows that are not virtualized
-- Under a table, inside Table Pagination with the range and rows per page
-
-**Not for**
-
-- Feeds, activity and search results browsed once: use Load More or infinite scroll
-- Fewer than ~25 rows: show them all, no pagination
-- Steps of a flow: use Stepper
-
-**Anatomy**
-
-1. Previous: Pagination Item Type=previous
-2. Pages: Pagination Item Type=page, the current one in State=active
-3. Gaps: Pagination Item Type=ellipsis
-4. Next: Pagination Item Type=next
-5. Items slot that holds the Pagination Items
-
-**Content and behavior**
-
-- Show first, last, current ±1 and an ellipsis for each gap
-- Exactly one page in State=active (outline): the current page
-- Previous and Next are disabled on the first and last page, never hidden
-- In tables, pair it with the total and a rows-per-page Select: use Table Pagination
-- Filters, sort and page live in the URL; changing filters resets to page 1
-- Mobile: Previous and Next as icons only, plus "Page 2 of 25"
-- Narrow places (a card, a side panel, mobile): Pagination Compact with "Page 2 of 12"
-
-**Accessibility**
-
-- Wrap it in a nav with aria-label="Pagination"
-- The current page has aria-current="page"
-- Icon-only Previous and Next have labels: "Previous page", "Next page"
-- Every item is reachable with Tab and shows the focus ring (State=focus)
-
-Slots (fill them in the instance, never detach): `Items`
-
-Built from: `Pagination Item`
-
-Tokens and styles:
-- Spacing and size: `spacing/1`
-
-Guides: [pagination](../../skills/build-ui/components/pagination.md)
-
-Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (In tables use `Table Pagination`)
+On the Figma page: "Example / Pagination styles", "Example / in docs page footer", "Example / in product grid", "Example / recent payments card", "Example / table footer", "Stress test / Load More", "Stress test / Pager Link", "Stress test / Pagination", "Stress test / Pagination Compact"
 
 ## Pagination Item
 
@@ -88,8 +34,76 @@ Icons: chevron-left, chevron-right, ellipsis
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `border/input`, `foreground/accent`, `foreground/default`
 - Spacing and size: `spacing/1`, `spacing/2`, `spacing/2_5`, `spacing/4`, `spacing/9`
-- Radius: `radius/md`
+- Radius: `button/radius`
 - Text styles: `ui/label`
+
+Guides: [pagination](../../skills/build-ui/components/pagination.md)
+
+Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (In tables use `Table Pagination`)
+
+## Pagination
+
+Component set · 3 variants · default size 386 × 36
+
+Page navigation. Style=numbered (default): previous, pages with the current one active, ellipsis and next, for tables and long lists people jump around in; show first, last, current ±1. Style=simple: Previous, "Page 2 of 10" (Label) and Next, for articles, search results and mobile lists where people only step forward and back; disable Previous on the first page and Next on the last (exposed items). Style=dots: Carousel Indicator dots for onboarding and carousels, never for data lists. For feeds prefer Load More; in tables use Table Pagination. Usage: eggux build-ui/components/pagination.md
+
+**Use for**
+
+- Tables and lists where people compare, return to a position or share a page link
+- More than ~25 rows that are not virtualized
+- Under a table, inside Table Pagination with the range and rows per page
+- Style=simple: article lists, search results and mobile, where people only step forward and back
+- Style=dots: onboarding steps, carousels and image galleries with up to ~7 positions
+
+**Not for**
+
+- Feeds, activity and search results browsed once: use Load More or infinite scroll
+- Fewer than ~25 rows: show them all, no pagination
+- Steps of a flow: use Stepper
+- Style=dots for data lists: people cannot jump or see the count
+
+**Anatomy**
+
+1. Style: numbered (default), simple, dots
+2. numbered: Items slot with Pagination Items (previous, pages, ellipsis, next); current page State=active
+3. simple: Pagination Item previous (exposed), Label "Page 2 of 10" (body/small, muted), Pagination Item next (exposed)
+4. dots: Carousel Indicator Type=dots (exposed); the Items slot is hidden in simple and dots
+
+**Content and behavior**
+
+- Show first, last, current ±1 and an ellipsis for each gap
+- Exactly one page in State=active (outline): the current page
+- Previous and Next are disabled on the first and last page, never hidden
+- In tables, pair it with the total and a rows-per-page Select: use Table Pagination
+- Filters, sort and page live in the URL; changing filters resets to page 1
+- Mobile: Previous and Next as icons only, plus "Page 2 of 25"
+- Narrow places (a card, a side panel, mobile): Pagination Compact with "Page 2 of 12"
+- Style=simple: disable previous on the first page and next on the last (exposed items, State=disabled)
+- Style=dots: one dot per position, the current one active; pair with swipe and arrows, never as the only control in a data list
+
+**Accessibility**
+
+- Wrap it in a nav with aria-label="Pagination"
+- The current page has aria-current="page"
+- Icon-only Previous and Next have labels: "Previous page", "Next page"
+- Every item is reachable with Tab and shows the focus ring (State=focus)
+
+| Variant property | Values |
+|---|---|
+| Style | numbered, simple, dots |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Page 2 of 10 |
+
+Slots (fill them in the instance, never detach): `Items`
+
+Built from: `Carousel Indicator`, `Pagination Item`
+
+Tokens and styles:
+- Colors: `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`
+- Text styles: `body/small`
 
 Guides: [pagination](../../skills/build-ui/components/pagination.md)
 
@@ -97,7 +111,7 @@ Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (I
 
 ## Pagination Compact
 
-Component · 1 variant · default size 163 × 32
+Component · 1 variant · default size 158 × 32
 
 Previous and next with "Page 2 of 12" for narrow places: a card, a side panel, mobile, a table in a dashboard. Disable previous on the first page and next on the last (exposed Button Icons, State=disabled). Large lists with jumps use Pagination.
 

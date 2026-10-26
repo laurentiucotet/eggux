@@ -1,18 +1,19 @@
 # Mobile
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
 | [Mobile Header](#mobile-header) | 2 | Leading, Trailing |
-| [Bottom Nav](#bottom-nav) | 1 | Items |
 | [Bottom Nav Item](#bottom-nav-item) | 2 | - |
+| [Bottom Nav](#bottom-nav) | 2 | Items |
 | [FAB](#fab) | 2 | - |
 | [Action Sheet](#action-sheet) | 1 | - |
+| [Store Badge](#store-badge) | 2 | - |
 
-On the Figma page: "Example / in page shell / mobile", "Example / invoices on mobile", "Stress test / Action Sheet", "Stress test / Bottom Nav", "Stress test / FAB", "Stress test / Mobile Header"
+On the Figma page: "Example / Bottom Nav styles", "Example / in hero with phone", "Example / in page shell / mobile", "Example / invoices on mobile", "Stress test / Action Sheet", "Stress test / Bottom Nav", "Stress test / FAB", "Stress test / Mobile Header", "Stress test / Store Badge"
 
 ## Mobile Header
 
@@ -72,54 +73,6 @@ Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
 
 Code: custom header with shadcn `Button size="icon"` and `Avatar`
 
-## Bottom Nav
-
-Component · 1 variant · default size 390 × 81
-
-Bottom navigation for mobile apps with 3-5 top-level destinations used daily. Padding bottom = home-indicator safe area. Hide it on detail pages and while typing.
-
-**Use for**
-
-- Mobile apps with 3-5 daily destinations
-- Field and customer apps used mostly on the phone
-- Customer apps: Home, Orders, Messages, Account
-
-**Not for**
-
-- More than 5 destinations or rare ones: use the Mobile Header menu with a Sheet
-- Detail pages and flows: hide it; use back in Mobile Header
-
-**Anatomy**
-
-1. Items slot of Bottom Nav Items
-2. Bottom Nav Item: Icon (20) and Label
-3. Bottom safe-area padding
-
-**Content and behavior**
-
-- 3-5 items; everything else under "More" or the menu
-- Bottom Nav Item State: default, active; active = foreground, others muted
-- Padding bottom = home-indicator safe area
-- Hide it on detail pages and while typing
-
-**Accessibility**
-
-- Each item has a visible label, not only an icon
-- Active item has aria-current="page"
-- The whole cell is the touch target (min 48 x 48)
-
-Slots (fill them in the instance, never detach): `Items`
-
-Built from: `Bottom Nav Item`
-
-Tokens and styles:
-- Colors: `background/default`, `border/default`
-- Spacing and size: `spacing/2`, `spacing/6`
-
-Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
-
-Code: custom `<nav>` of links with `env(safe-area-inset-bottom)` (Current item `aria-current="page"`)
-
 ## Bottom Nav Item
 
 Component set · 2 variants · default size 78 × 56
@@ -141,6 +94,63 @@ Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1`, `spacing/14`
 - Text styles: `ui/caption`, `ui/label-small`
+
+Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
+
+Code: custom `<nav>` of links with `env(safe-area-inset-bottom)` (Current item `aria-current="page"`)
+
+## Bottom Nav
+
+Component set · 2 variants · default size 390 × 81
+
+Bottom navigation for mobile apps with 3-5 top-level destinations used daily. Style=default: full-width bar with a top border and the safe-area padding inside. Style=floating: the items sit in a pill with a border and shadow/md, inset spacing/4 from the sides and lifted above the safe area, for consumer apps with full-bleed content (maps, media, feeds) that should show around the bar. Items slot holds 3-5 Bottom Nav Items. Usage: eggux build-ui/patterns/mobile.md
+
+**Use for**
+
+- Mobile apps with 3-5 daily destinations
+- Field and customer apps used mostly on the phone
+- Customer apps: Home, Orders, Messages, Account
+- Style=floating: consumer apps with full-bleed content (maps, media, feeds) that should show around the bar
+
+**Not for**
+
+- More than 5 destinations or rare ones: use the Mobile Header menu with a Sheet
+- Detail pages and flows: hide it; use back in Mobile Header
+
+**Anatomy**
+
+1. Style: default (full width, top border), floating (pill bar inset spacing/4, border, button/radius, shadow/md)
+2. Items slot of Bottom Nav Items
+3. Bottom Nav Item: Icon (20) and Label
+4. Bottom safe-area padding (outside the pill in Style=floating)
+
+**Content and behavior**
+
+- 3-5 items; everything else under "More" or the menu
+- Bottom Nav Item State: default, active; active = foreground, others muted
+- Padding bottom = home-indicator safe area
+- Hide it on detail pages and while typing
+- Style=floating: content scrolls under the bar; leave bottom padding so the last row is not hidden
+
+**Accessibility**
+
+- Each item has a visible label, not only an icon
+- Active item has aria-current="page"
+- The whole cell is the touch target (min 48 x 48)
+
+| Variant property | Values |
+|---|---|
+| Style | default, floating |
+
+Slots (fill them in the instance, never detach): `Items`
+
+Built from: `Bottom Nav Item`
+
+Tokens and styles:
+- Colors: `background/default`, `border/default`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`, `spacing/6`
+- Radius: `button/radius`
+- Effects: `shadow/md`
 
 Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
 
@@ -271,3 +281,66 @@ Tokens and styles:
 Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
 
 Code: shadcn `Drawer` (vaul) with a list of `Button`s and a separate Cancel (Desktop: `DropdownMenu`)
+
+## Store Badge
+
+Component set · 2 variants · default size 163 × 58
+
+App store download badge: the store mark, a small line ("Download on the", "Get it on") and the store name. Follows the theme: dark badge in Light, light badge in Dark.
+
+
+Use under a mobile app hero or in a footer, side by side (App Store first), linking to the store listing.
+
+
+Avoid as a generic button or for web sign-up: use Button.
+
+
+Rules
+One badge per store, same height, 8 to 12 px apart.
+Keep the store text as the stores write it; translate the small line only with the store's localized badge.
+Link each badge to the listing; the accessible name is the store, e.g. "Download on the App Store".
+
+
+Usage: eggux build-ui/patterns/mobile.md
+
+**Use for**
+
+- Under a mobile app hero (Block / Hero with Phone)
+- In a footer or download section that links to the store listings
+
+**Not for**
+
+- As a generic button or for web sign-up: use Button
+- Recoloring it or changing the store text
+
+**Anatomy**
+
+1. Store (variant): app-store, google-play
+2. glyph: Apple or Google Play mark, 24 px, background/default
+3. label: ui/caption, "Download on the" or "Get it on"
+4. store: heading/h4, "App Store" or "Google Play"
+5. Container: foreground/default fill, border/default 1 px, radius/lg
+
+**Content and behavior**
+
+- App Store first, then Google Play, same height, 8 to 12 px apart
+- Keep the store text as the stores write it; translate only with the store's localized badge
+- Link each badge to its listing
+
+**Accessibility**
+
+- It is a link: accessible name "Download on the App Store" or "Get it on Google Play"
+- Glyph is decorative (aria-hidden)
+- Contrast follows foreground/default and background/default (16:1 or more)
+
+| Variant property | Values |
+|---|---|
+| Store | app-store, google-play |
+
+Tokens and styles:
+- Colors: `background/default`, `border/default`, `foreground/default`
+- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/4`
+- Radius: `radius/lg`
+- Text styles: `heading/h4`, `ui/caption`
+
+Guides: [mobile](../../skills/build-ui/patterns/mobile.md)

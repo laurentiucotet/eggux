@@ -1,6 +1,6 @@
 # Selection controls
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -8,14 +8,14 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Checkbox](#checkbox) | 12 | - |
 | [Radio](#radio) | 8 | - |
-| [Switch](#switch) | 6 | - |
+| [Switch](#switch) | 18 | - |
 | [Setting Row](#setting-row) | 1 | Control |
 
-On the Figma page: "Example / billing period", "Example / in settings section", "Example / in two-factor", "Example / settings section", "Stress test / Checkbox", "Stress test / Radio", "Stress test / Setting Row", "Stress test / Switch"
+On the Figma page: "Example / Switch styles", "Example / billing period", "Example / in two-factor", "Example / settings section", "Stress test / Checkbox", "Stress test / Radio", "Stress test / Setting Row", "Stress test / Switch"
 
 ## Checkbox
 
-Component set · 12 variants · default size 198 × 20
+Component set · 12 variants · default size 199 × 20
 
 shadcn Checkbox with label. Inside forms that save on submit. Indeterminate only for "select all" over a partial selection. Usage: eggux build-ui/components/select.md
 
@@ -77,7 +77,7 @@ Code: shadcn `Checkbox`, `RadioGroup`, `Switch`
 
 ## Radio
 
-Component set · 8 variants · default size 87 × 20
+Component set · 8 variants · default size 86 × 20
 
 shadcn RadioGroup item with label. 2-5 options worth seeing, single choice. Usage: eggux build-ui/components/select.md
 
@@ -137,15 +137,19 @@ Code: shadcn `Checkbox`, `RadioGroup`, `Switch`
 
 ## Switch
 
-Component set · 6 variants · default size 167 × 20
+Component set · 18 variants · default size 167 × 20
 
-shadcn Switch with label. Applies immediately and shows the result; inside a form that saves on submit use Checkbox. Usage: eggux build-ui/components/select.md
+shadcn Switch. On/off control that applies at once; the label names the setting, not the action. Show description adds a second line in foreground/muted that says what the setting does; the switch aligns to the first line. Size: default (36 x 20) for settings pages, sm (28 x 16, ui/label-small) in dense tables and toolbars, lg (44 x 24) for touch-first and mobile settings. One Size per list.
+
+
+Usage: eggux build-ui/patterns/settings-and-admin.md
 
 **Use for**
 
 - Settings that take effect at once: notifications, a feature on or off
 - Enabling or pausing an integration
 - Lists of preferences on settings pages without a Save button
+- Size=sm in dense tables and toolbars; Size=lg in touch-first and mobile settings
 
 **Not for**
 
@@ -157,6 +161,8 @@ shadcn Switch with label. Applies immediately and shows the result; inside a for
 1. Track: background/primary when Checked=true
 2. Thumb
 3. Label (Label, Show label)
+4. Description (Show description, off by default): body/small in foreground/muted (ui/caption at sm) under the label
+5. Size: sm 28 x 16 (ui/label-small), default 36 x 20, lg 44 x 24
 
 **Content and behavior**
 
@@ -164,31 +170,37 @@ shadcn Switch with label. Applies immediately and shows the result; inside a for
 - On failure, restore the old value and show an inline error
 - The label names the setting, not the action: "Email notifications"
 - Temporarily unavailable: State=disabled with the reason
+- Show description says what the setting does or what it costs, in one sentence; the switch aligns to the first line
+- Use one Size per list; match the Size of the Buttons and fields around it
 
 **Accessibility**
 
 - role="switch" with aria-checked; Space toggles
 - The label is tied to the control; Show label off needs an aria-label
 - Thumb and track meet 3:1 in both states; focus ring in border/ring
+- Description is linked with aria-describedby; foreground/muted is 4.7:1 Light, 7.9:1 Dark
 
 | Variant property | Values |
 |---|---|
 | Checked | false, true |
+| Size | default, sm, lg |
 | State | default, focus, disabled |
 
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Email notifications |
 | Show label | boolean | true |
+| Description | text | Get an email when a customer pays an invoice. |
+| Show description | boolean | false |
 
 Tokens and styles:
-- Colors: `background/default`, `background/primary`, `border/input`, `foreground/default`, `switch/thumb-unchecked`
-- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/4`, `spacing/5`, `spacing/9`
+- Colors: `background/default`, `background/primary`, `border/input`, `foreground/default`, `foreground/muted`, `switch/thumb-unchecked`
+- Spacing and size: `spacing/0_5`, `spacing/11`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/5`, `spacing/6`, `spacing/7`, `spacing/9`
 - Radius: `radius/full`
-- Text styles: `ui/label`
+- Text styles: `body/small`, `ui/caption`, `ui/label`, `ui/label-small`
 - Effects: `shadow/sm`, `shadow/xs`
 
-Guides: [select](../../skills/build-ui/components/select.md)
+Guides: [select](../../skills/build-ui/components/select.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
 Code: shadcn `Checkbox`, `RadioGroup`, `Switch`
 

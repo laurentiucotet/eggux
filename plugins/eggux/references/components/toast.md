@@ -1,20 +1,26 @@
 # Toast
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Toast](#toast) | 6 | - |
+| [Toast](#toast) | 12 | - |
 
-On the Figma page: "Example / toast after sending an invoice", "Stress test / Toast"
+On the Figma page: "Example / Toast styles", "Example / toast after sending an invoice", "Stress test / Toast"
 
 ## Toast
 
-Component set · 6 variants · default size 384 × 76
+Component set · 12 variants · default size 384 × 76
 
-Sonner toast. One line, past tense, names the object. At most one action ("Undo", "View"). Close button off by default; turn it on for toasts with an action, errors and long durations. Errors that block the goal also show inline. Usage: eggux build-ui/components/toast.md
+Sonner toast. One line, past tense, names the object. At most one action ("Undo", "View"). Close button off by default; turn it on for toasts with an action, errors and long durations. Errors that block the goal also show inline.
+
+
+Style: default (popover surface with border, the standard), inverted (dark surface in Light: foreground/default fill, background/default text and icons; it flips to a light toast in Dark). Use inverted when toasts sit over busy or white content and must stand out (editors, maps, media), and keep one Style per product. Inverted icons are monochrome: the icon shape and the words carry the type.
+
+
+Usage: eggux build-ui/components/toast.md
 
 **Use for**
 
@@ -22,6 +28,7 @@ Sonner toast. One line, past tense, names the object. At most one action ("Undo"
 - Undo for restorable deletes and archives
 - Background events: export ready, import done
 - Bulk results with counts: "18 sent, 2 failed"
+- Style=inverted: dark toast in Light (light in Dark) when toasts sit over busy or white content: editors, maps, media
 
 **Not for**
 
@@ -36,6 +43,7 @@ Sonner toast. One line, past tense, names the object. At most one action ("Undo"
 3. Description (Show description, Description)
 4. Action button (Show action)
 5. Close button (Show close)
+6. Style: default (popover surface, border, shadow/lg) or inverted (foreground/default fill, text and icons background/default, description and close at opacity/80, no border)
 
 **Content and behavior**
 
@@ -45,6 +53,8 @@ Sonner toast. One line, past tense, names the object. At most one action ("Undo"
 - Show close off by default; on for toasts with an action, errors and long durations
 - Errors that block the goal also show inline
 - Same position everywhere: bottom right, top center on mobile
+- Style=inverted icons are monochrome; the icon shape and the words carry the type
+- One Style per product; never mix default and inverted toasts in one stack
 
 **Accessibility**
 
@@ -55,6 +65,7 @@ Sonner toast. One line, past tense, names the object. At most one action ("Undo"
 | Variant property | Values |
 |---|---|
 | Type | default, success, error, warning, info, loading |
+| Style | default, inverted |
 
 | Property | Type | Default |
 |---|---|---|
@@ -67,7 +78,7 @@ Sonner toast. One line, past tense, names the object. At most one action ("Undo"
 Built from: `Button`. Icons: circle-alert, circle-check, info, loader-circle, triangle-alert, x
 
 Tokens and styles:
-- Colors: `background/popover`, `border/default`, `foreground/muted`, `foreground/popover`
+- Colors: `background/default`, `background/popover`, `border/default`, `foreground/default`, `foreground/muted`, `foreground/popover`
 - Spacing and size: `spacing/0_5`, `spacing/3`, `spacing/4`, `spacing/6`, `spacing/96`
 - Radius: `radius/md`, `radius/sm`
 - Text styles: `body/small`, `ui/label`
