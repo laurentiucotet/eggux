@@ -150,7 +150,7 @@ Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default
 
 Component set · 9 variants · default size 288 × 172
 
-Metric card (shadcn dashboard section card). Layout: vertical (default: label, change badge, value, optional sparkline, trend line and footnote) for dashboard rows; compact (Icon Tile, label, change badge and value in one row, no footer) for dense rows, sidebars and mobile; horizontal (label, value and change on the left, a Sparkline on the right, footer below) when the shape of the trend matters next to the number. Trend sets the icon, the change badge tone (up = soft-success, down = soft-destructive, neutral = soft-neutral) and the sparkline; for a metric where up is bad, swap the badge Variant on the instance. The compact Icon Tile is exposed: set its Icon and Style on the instance, the same across a row. Direction is shown by icon and sign, never color alone. One Layout per row.
+Metric card (shadcn dashboard section card). Layout: vertical (default: label, change badge, value, optional sparkline, trend line and footnote) for dashboard rows; compact (Icon Tile, label, change badge and value in one row, no footer) for dense rows, sidebars and mobile; horizontal (label, value and change on the left, a Sparkline on the right, footer below) when the shape of the trend matters next to the number. Trend sets the icon, the change badge tone (up = soft-success, down = soft-destructive, neutral = soft-neutral) and the sparkline; the change Badge is exposed: set its Label and Variant on the instance, independent of Trend. When down is good (churn, costs, response time) keep Trend=down for the icon and set the badge Variant to soft-success; when up is bad, Trend=up with soft-destructive. The compact Icon Tile is exposed: set its Icon and Style on the instance, the same across a row. Direction is shown by icon and sign, never color alone. One Layout per row.
 
 
 Usage: eggux build-ui/components/card.md
@@ -173,7 +173,7 @@ Usage: eggux build-ui/components/card.md
 1. Layout: vertical (default), compact, horizontal
 2. Label (body/small, muted)
 3. Value (heading/h2 in vertical and horizontal, heading/h3 in compact; one line)
-4. Change Badge (Show change), soft by Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus
+4. Change Badge (Show change): exposed Badge; set its Label ("+12.5%") and Variant on the instance. Default tone follows Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus
 5. Sparkline (vertical: Show sparkline, off by default, under the value; horizontal: always on, 120 x 48, right of the value)
 6. Trend line and Footnote (Show footer; vertical and horizontal)
 7. Icon Tile (compact): exposed, Style=brand, Size default; set Icon and Style on the instance
@@ -181,11 +181,12 @@ Usage: eggux build-ui/components/card.md
 
 **Content and behavior**
 
-- Trend sets the icon and the change badge tone; edit the change and trend line per instance
-- When up is bad (costs, churn), switch the change badge Variant to soft-destructive on the instance
+- Trend sets the icon, the sparkline and the default badge tone; edit the badge Label and the trend line per instance
+- Tone follows meaning, not direction: when down is good (churn, costs, response time) keep Trend=down and set the badge Variant to soft-success; when up is bad, Trend=up with soft-destructive
 - Direction is shown by icon and sign, never color alone
 - One Layout per row; compact rows keep the same Icon Tile Style
 - Show sparkline on all cards of a row or none; same period in each
+- Numbers in the locale format of the page: +12.5% and €48,250 in English, never a decimal comma next to a thousands comma
 - Value stays on one line; amounts in the locale format (€48,250)
 - The Footnote says what it is compared to
 - Cards in a row share structure and height
@@ -209,7 +210,7 @@ Usage: eggux build-ui/components/card.md
 | Value | text | €48,250 |
 | Footnote | text | Compared to October 2026 |
 | Show footer | boolean | true |
-| Trend text | text | 12,5% vs last month |
+| Trend text | text | 12.5% vs last month |
 | Show change | boolean | true |
 | Show trend | boolean | true |
 | Show sparkline | boolean | false |
@@ -295,7 +296,7 @@ Code: shadcn `RadioGroup` (Control=radio) or `Checkbox` (Control=checkbox) with 
 
 Component set · 8 variants · default size 352 × 410
 
-Article, news or case-study card: image 16:9, category + date · reading time, title, excerpt (3 lines max), author. Layout: vertical for blog grids of 3; horizontal for the featured post; compact for a link row in asides and lists (related, most read, up next): title on 2 lines and meta, optional 1:1 image (Show image); overlay (title, category, date and author over a full-bleed photo on a media/scrim panel, no excerpt) for one lead story, a hero grid or a carousel of covers where the photo carries the post. Overlay text is media/foreground on media/scrim (black 60%), 5.7:1 over the brightest pixel; pick a photo whose subject sits in the top half. Size=sm for dense grids and lists: smaller gaps, heading/h4 title, overlay 320 tall; horizontal sm gives the image one third of the width (120-240 px) instead of half; compact sm has a 48 px image and a ui/label-small title. The whole card links to the article.
+Article, news or case-study card: image 16:9, category + date · reading time, title, excerpt (3 lines max), author. Layout: vertical for blog grids of 3; horizontal for the featured post; compact for a link row in asides and lists (related, most read, up next): title on 2 lines and meta, optional 1:1 image (Show image); overlay (title, category, date and author over a full-bleed photo on a media/scrim panel, no excerpt) for one lead story, a hero grid or a carousel of covers where the photo carries the post. Overlay text is media/foreground on media/scrim (black 60%), 5.7:1 over the brightest pixel; pick a photo whose subject sits in the top half. Size=sm for dense grids and lists: smaller gaps, heading/h4 title, overlay 320 tall; horizontal sm gives the image one third of the width (120-240 px) instead of half; compact sm has a 48 px image and a ui/label-small title. The whole card links to the article. The category Badge (layer Badge, exposed) is set from the instance panel: Label and Variant.
 
 
 Usage: eggux build-ui/components/card.md
@@ -319,7 +320,7 @@ Usage: eggux build-ui/components/card.md
 1. Image 16:9 (Image Placeholder)
 2. Horizontal: the image takes half the card width (160-640) and keeps its ratio, so the card works from a featured row down to a list in a column
 3. Horizontal Size=sm: the image takes one third of the width (120-240), text top aligned
-4. Category Badge (exposed), Date and reading time
+4. Category Badge (layer Badge, exposed: set its Label and Variant from the instance panel), Date and reading time
 5. Title: heading/h4 (vertical, sm), heading/h2 (horizontal default)
 6. Excerpt, 3 lines max (Show excerpt)
 7. Author with Avatar (Show author)
@@ -468,7 +469,7 @@ A goal against its target (revenue, budget, quota, completion): label, status ba
 **Anatomy**
 
 1. Label
-2. Status Badge: on-track, at-risk, off-track
+2. Status Badge (soft): on-track soft-success, at-risk soft-warning, off-track soft-destructive
 3. Value and Target ("€48,250 of €60,000")
 4. Progress bar (exposed Progress, set Value)
 5. Footnote: percent and time left

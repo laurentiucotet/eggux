@@ -8,7 +8,8 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
   ("Importing 1 240 rows…"). See `patterns/loading-states.md`.
 - Show the number or the remaining count next to the bar; never only color.
 - Long jobs (> 10 s) run in the background with a toast or notification when done.
-- Figma: `Progress` Value 0, 25, 50, 75, 100; resize the indicator for other values.
+- Figma: `Progress` Value goes 0 to 100 in steps of 10, plus 25 and 75 (Type=segmented keeps 0, 25,
+  50, 75, 100). In a Usage Meter set the exposed bar's Value to the nearest step of the real share.
 - Tone: success when complete, warning near a limit, error when failed; the text next to the bar
   says it too. Figma: `Progress` Tone × Value.
 - Long exports and syncs show as Background Jobs in a Popover from a top bar button, one row per job (Status, Result or Error per state).
@@ -25,9 +26,11 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
 - Always show the current value (and unit) next to the label; min/max under the track if unclear.
 - Range sliders for filters ("EUR 150 - 450"); thumbs cannot cross.
 - Step matches the data (EUR 5, 1 km). Keyboard: arrows by step, PageUp/PageDown by 10 steps.
-- Figma: `Slider` Type (single, range) × State (default, focus, disabled). Move the range and thumb
-  layers for other values. Example "price range". The Slider stretches to any width (FILL); the
-  thumbs stay 16 px and follow the value, so never resize a thumb.
+- Figma: `Slider` Type (single, range) × State (default, focus, disabled) × Value (0, 25, 50, 75,
+  100; Type=single). Value places the thumb: keep the number, the marks and Value in step.
+  Type=range is Value=50 only; move the thumb wrappers for other values. Example "price range".
+  The Slider stretches to any width (FILL); the thumbs stay 16 px and follow the value, so never
+  resize a thumb.
 - `Show value` puts a value bubble over each thumb for exact readings while dragging; `Show marks`
   adds min, mid and max labels under the track (Min label, Mid label, Max label) for scales people
   read. Both draw outside the slider box: leave 40 px above and 24 px below. Example "Slider styles".

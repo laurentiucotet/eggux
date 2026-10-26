@@ -11,8 +11,9 @@ Usage rules live in the guides linked under each component.
 | [Line Chart](#line-chart) | 2 | - |
 | [Sparkline](#sparkline) | 2 | - |
 | [Donut Chart](#donut-chart) | 2 | - |
-| [Heatmap](#heatmap) | 1 | - |
+| [Heatmap](#heatmap) | 3 | - |
 | [Gauge](#gauge) | 3 | - |
+| [Gauge Target](#gauge-target) | 8 | - |
 | [Treemap](#treemap) | 1 | - |
 | [Funnel Chart](#funnel-chart) | 1 | - |
 | [Scatter Chart](#scatter-chart) | 2 | - |
@@ -24,7 +25,8 @@ Usage rules live in the guides linked under each component.
 | [Waterfall Chart](#waterfall-chart) | 1 | - |
 | [Combo Chart](#combo-chart) | 1 | - |
 | [Dashboard Widget](#dashboard-widget) | 1 | Content |
-| [Distribution Bar](#distribution-bar) | 1 | - |
+| [Distribution Bar](#distribution-bar) | 1 | Segments |
+| [Distribution Segment](#distribution-segment) | 8 | - |
 | [Bullet Chart](#bullet-chart) | 1 | - |
 | [Radar Chart](#radar-chart) | 1 | - |
 | [Sankey Chart](#sankey-chart) | 1 | - |
@@ -302,9 +304,15 @@ Code: Recharts `PieChart` (`innerRadius`), `BarChart layout="vertical"`
 
 ## Heatmap
 
-Component · 1 variant · default size 416 × 268
+Component set · 3 variants · default size 416 × 268
 
 Intensity over two dimensions (weekday × hour, team × week). One hue (chart/1) in 5 steps of opacity plus muted for zero; legend from fewer to more; tooltip with the exact value on hover. Never use red/green scales.
+
+
+Data: three preset shapes (default, late-peak, weekdays-only). For real data, in client files detach the instance and set each cell to one of the 5 opacity steps of chart/1 (or background/muted for zero); in the library edit the cells in the main. Row and column labels can be overridden as text.
+
+
+Usage: eggux build-ui/components/charts.md
 
 **Use for**
 
@@ -320,11 +328,12 @@ Intensity over two dimensions (weekday × hour, team × week). One hue (chart/1)
 
 **Anatomy**
 
-1. Row labels
-2. Column labels
-3. Cells: chart/1 in 5 opacity steps, background/muted for zero
-4. Legend from fewer to more
-5. Chart Tooltip with the exact value on hover
+1. Data: default, late-peak, weekdays-only (preset shapes)
+2. Row labels
+3. Column labels
+4. Cells: chart/1 in 5 opacity steps, background/muted for zero
+5. Legend from fewer to more
+6. Chart Tooltip with the exact value on hover
 
 **Content and behavior**
 
@@ -332,12 +341,17 @@ Intensity over two dimensions (weekday × hour, team × week). One hue (chart/1)
 - Never use red/green scales
 - The legend reads from fewer to more
 - Exact value on hover, never only the shade
+- Pick the Data shape closest to the story; for real data, detach in client files and set each cell to a step (or muted for zero)
 
 **Accessibility**
 
 - Table view for screen readers and exact values
 - Shade is never the only carrier: values are in the tooltip and the table
 - Zero cells (muted) stay distinct from the lowest step in light and dark mode
+
+| Variant property | Values |
+|---|---|
+| Data | default, late-peak, weekdays-only |
 
 Tokens and styles:
 - Colors: `background/muted`, `chart/1`, `foreground/muted`
@@ -353,7 +367,10 @@ Code: custom CSS grid or nivo `HeatMap`
 
 Component set · 3 variants · default size 240 × 176
 
-Progress of one number toward a target (quota, budget, SLA). Status is written, not only colored (On track, At risk, Off track); the tick marks the target. Use sparingly: a Progress bar or Stat Card is clearer in tables and dashboards with many numbers.
+Progress of one number toward a target (quota, budget, SLA). Status is written, not only colored (On track, At risk, Off track). Set Value, Label, Min, Max and Target label in the panel; place the tick with the exposed "target" (Target 50 to 95%); set the value arc on the "value" ellipse (Sweep = share x 50%, start 180°). Use sparingly: a Progress bar or Stat Card is clearer in tables and dashboards with many numbers.
+
+
+Usage: eggux build-ui/components/charts.md
 
 **Use for**
 
@@ -370,15 +387,17 @@ Progress of one number toward a target (quota, budget, SLA). Status is written, 
 **Anatomy**
 
 1. Label ("Q4 revenue vs target")
-2. Half-circle track and fill
-3. Target tick
-4. Value
-5. Status text: On track, At risk, Off track
+2. Half-circle track and "value" arc (set the arc per instance: Sweep = share x 50%)
+3. Target tick: exposed Gauge Target, Target 50, 60, 70, 75, 80 (default), 85, 90, 95
+4. Value ("72%")
+5. Status text: On track, At risk, Off track (follows Status)
+6. Axis: Min ("€0"), Target label ("Target €2.0M of €2.5M"), Max ("€2.5M")
 
 **Content and behavior**
 
 - Status is written, not only colored
-- The tick marks the target
+- Set Value, the value arc and the Target tick together so they agree
+- Target label says the target in words and units; Min and Max name the scale
 - Status tone follows Status: on-track, at-risk (warning), off-track (destructive)
 - Use sparingly
 
@@ -394,6 +413,12 @@ Progress of one number toward a target (quota, budget, SLA). Status is written, 
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Q4 revenue vs target |
+| Value | text | 72% |
+| Min | text | €0 |
+| Target label | text | Target €2.0M of €2.5M |
+| Max | text | €2.5M |
+
+Built from: `Gauge Target`
 
 Tokens and styles:
 - Colors: `background/destructive`, `background/muted`, `background/warning`, `chart/1`, `foreground/default`, `foreground/muted`
@@ -403,6 +428,24 @@ Tokens and styles:
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
 Code: Recharts `RadialBarChart` (half circle) or custom SVG arc
+
+## Gauge Target
+
+Component set · 8 variants · default size 240 × 128
+
+Part of Gauge: the target tick, placed at 50 to 95% of the arc. Do not use alone: on a Gauge instance, select the exposed "target" and set Target.
+
+
+Usage: eggux build-ui/components/charts.md
+
+| Variant property | Values |
+|---|---|
+| Target | 50, 60, 70, 75, 80, 85, 90, 95 |
+
+Tokens and styles:
+- Colors: `foreground/default`
+
+Code: part of `Gauge`: the target tick, a short line at angle 180° + 180° x target on the arc (SVG line or a Recharts `ReferenceDot`) (Target 50-95; not used alone)
 
 ## Treemap
 
@@ -560,7 +603,7 @@ Code: Recharts `ScatterChart` with `XAxis` and `YAxis` `type="number"`
 
 ## Chart Legend
 
-Component · 1 variant · default size 187 × 16
+Component · 1 variant · default size 190 × 16
 
 Legend row above or below the plot. Clicking an item isolates the series in code.
 
@@ -713,7 +756,10 @@ Code: shadcn `ChartTooltip` with `ChartTooltipContent` (Recharts)
 
 Component · 1 variant · default size 640 × 474
 
-Card around one chart (shadcn chart card): title says what is measured, description the period; time range in Actions; legend for 2+ series; footer states the insight in words. Every chart needs a table view in code.
+A chart in a card: Title, Description, Actions (native slot, e.g. a Toggle Group), Chart (native slot, any chart component), an exposed Chart Legend and an optional footer with Insight and Note. The legend items sit in the Items slot of the Chart Legend: keep one item per series and remove the rest for a one- or two-series chart, or turn Show legend off when the title already names the single series.
+
+
+Usage: eggux build-ui/components/charts.md
 
 **Use for**
 
@@ -733,13 +779,13 @@ Card around one chart (shadcn chart card): title says what is measured, descript
 2. Description: the period and unit
 3. Actions slot: time range Toggle Group
 4. Chart slot: Bar Chart, Line Chart or another chart
-5. Chart Legend (Show legend)
+5. Chart Legend (exposed, Show legend): its Items slot holds one Chart Legend Item per series
 6. Footer with Insight and Note (Show footer)
 
 **Content and behavior**
 
 - Title says what is measured ("Revenue vs costs"), never "Chart"
-- Legend on for 2 or more series, off for one
+- Legend on for 2 or more series with one item per series (remove items from the legend's Items slot); off for one series
 - Footer states the insight in words ("Profit up 21% vs last half-year")
 - Every chart has a table view in code
 - Empty: say why; loading: Skeleton in the chart shape; error: inline Alert with retry
@@ -780,6 +826,12 @@ Component · 1 variant · default size 640 × 284
 
 Waterfall (Recharts BarChart with stacked invisible offsets): how a starting total becomes an ending total through ups and downs, such as opening to closing cash, budget to actual, revenue to profit. Totals in color/neutral/400, increases color/blue/600, decreases color/red/600 (the diverging arms, not series slots); 4 px radius at the data end; a 1 px connector at each running total; every step labelled with its signed value (+€86K, −€64K). Steps in the order they happen, at most 8; fold small ones into "Other". Legend: Increase, Decrease, Total.
 
+
+Change the data: bars, labels and connectors are drawn in the main, not properties. In client files detach the instance and edit bar heights, labels and connectors (keep the scale on the y axis); in the library edit the bars in the main. Step names and value labels can be overridden as text without detaching.
+
+
+Usage: eggux build-ui/components/charts.md
+
 **Use for**
 
 - Opening to closing cash or balance
@@ -808,6 +860,7 @@ Waterfall (Recharts BarChart with stacked invisible offsets): how a starting tot
 - Increase and decrease use the diverging arms, never series slots; say in the legend which is which
 - At most 8 steps; fold the small ones into "Other"
 - The footer says the result in a sentence ("€14K above opening")
+- Bars are drawn in the main, not properties: to change the data, detach the instance in client files and edit bar heights, labels and connectors; step names and value labels can be overridden as text
 
 **Accessibility**
 
@@ -959,14 +1012,15 @@ Parts of one whole as a single 100% bar: invoices by status, budget by category,
 **Anatomy**
 
 1. Header: Title and Total
-2. Bar: 2-6 segments, chart/1..6
-3. Legend (Show legend): swatch, label, share
+2. Segments (slot): 2-6 Distribution Segment parts, Color chart-1..chart-6 in order (chart-7, chart-8 only to match an entity color used elsewhere)
+3. Legend (Show legend): swatch, label, share; wraps to more lines when narrow; items 5 and 6 are hidden, show them for 5-6 parts
 
 **Content and behavior**
 
 - 2-6 segments in a fixed order, largest or most important first; the rest in "Other"
-- Segment colors follow the entity (chart/1..6) and stay the same across pages
-- Legend shows the share (42%); hover a segment for the count
+- Set each share in the Segments slot: give a segment a fixed width of share x bar width and keep the last one on Fill so the bar stays full (with the Plugin API, layoutGrow = share keeps it proportional)
+- Segment colors follow the entity (chart/1..6), match the legend swatches and stay the same across pages
+- Legend shows the share (42%); hover a segment for the count; show or hide legend items to match the segments
 - 2 px gap between segments; tiny segments keep a 4 px minimum width
 - Shares add to 100%; round the largest to fix rounding
 
@@ -982,8 +1036,12 @@ Parts of one whole as a single 100% bar: invoices by status, budget by category,
 | Total | text | 1,284 total |
 | Show legend | boolean | true |
 
+Slots (fill them in the instance, never detach): `Segments`
+
+Built from: `Distribution Segment`
+
 Tokens and styles:
-- Colors: `chart/1`, `chart/2`, `chart/3`, `chart/4`, `foreground/default`, `foreground/muted`
+- Colors: `chart/1`, `chart/2`, `chart/3`, `chart/4`, `chart/5`, `chart/6`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
 - Radius: `radius/full`, `radius/sm`
 - Text styles: `ui/caption`, `ui/label`
@@ -991,6 +1049,26 @@ Tokens and styles:
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
 Code: flex row of segments (width from the share) + legend `<ul>`; or Recharts `BarChart layout="vertical"` stacked to 100% (`var(--chart-N)` per entity; 2-6 segments)
+
+## Distribution Segment
+
+Component set · 8 variants · default size 100 × 12
+
+Part of Distribution Bar: one segment of the 100% bar, Color chart-1 to chart-8 (use chart-1 to chart-6 in order; later ones only to match an entity color used elsewhere). Lives in the Distribution Bar Segments slot; set its share with the width (share x bar width) and keep the last segment on Fill. Min width 4.
+
+
+Usage: eggux build-ui/components/charts.md
+
+| Variant property | Values |
+|---|---|
+| Color | chart-1, chart-2, chart-3, chart-4, chart-5, chart-6, chart-7, chart-8 |
+
+Tokens and styles:
+- Colors: `chart/1`, `chart/2`, `chart/3`, `chart/4`, `chart/5`, `chart/6`, `chart/7`, `chart/8`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: part of `Distribution Bar`: one `<div>` in the flex row, `flex-grow: share` (or `width: share%`), `min-width: 4px`, background `var(--chart-N)` (Color chart-1..chart-8)
 
 ## Bullet Chart
 

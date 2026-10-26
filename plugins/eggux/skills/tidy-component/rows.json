@@ -328,7 +328,10 @@
   {
    "main": "Trust Badge",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Trust Badge tones"
+   ]
   }
  ],
  "Button": [
@@ -539,7 +542,9 @@
   },
   {
    "main": "Gauge",
-   "helpers": [],
+   "helpers": [
+    "Gauge Target"
+   ],
    "block": null
   },
   {
@@ -599,7 +604,9 @@
   },
   {
    "main": "Distribution Bar",
-   "helpers": [],
+   "helpers": [
+    "Distribution Segment"
+   ],
    "block": "550:82029"
   },
   {
@@ -1079,7 +1086,10 @@
    "helpers": [
     "Check Item"
    ],
-   "block": "550:33533"
+   "block": "550:33533",
+   "examples": [
+    "Example / Check Item tones"
+   ]
   }
  ],
  "Form Presets": [
@@ -1390,6 +1400,11 @@
    "main": "Store Badge",
    "helpers": [],
    "block": "693:106153"
+  },
+  {
+   "main": "QR Code",
+   "helpers": [],
+   "block": "810:138722"
   }
  ],
  "Navigation": [

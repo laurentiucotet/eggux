@@ -1,12 +1,12 @@
 # Video
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Video Player](#video-player) | 3 | - |
+| [Video Player](#video-player) | 6 | - |
 | [Video Thumbnail](#video-thumbnail) | 1 | - |
 | [Audio Player](#audio-player) | 1 | - |
 
@@ -14,9 +14,12 @@ On the Figma page: "Example / getting started video", "Example / help center vid
 
 ## Video Player
 
-Component set · 3 variants · default size 720 × 405
+Component set · 6 variants · default size 720 × 405
 
-Inline video (tutorials, product demos, lessons). poster: frame, play button, duration; playing: controls appear on hover or tap and hide after 3 s; buffering: spinner over the frame. Colors use video/* tokens (same in Light and Dark). Captions available for every video with speech; never autoplay with sound.
+Video player for marketing pages, docs and help articles: poster image (16:9 Image Placeholder, swap the photo), centered play button, Duration chip; playing and buffering states show the control bar with progress and Time. Size=default (64 px play button) up to about 800 wide; Size=lg (96 px play button, 1152 x 648) for hero and full-width players. Dark in both modes (video/* tokens).
+
+
+Usage: eggux build-ui/components/video-player.md
 
 **Use for**
 
@@ -38,6 +41,7 @@ Inline video (tutorials, product demos, lessons). poster: frame, play button, du
 5. Controls: play / pause, volume, captions, settings, fullscreen
 6. Subtitles above the controls on video/scrim (Show subtitles)
 7. Spinner over the frame (State=buffering)
+8. Size: default (64 px play button and spinner, up to about 800 wide), lg (96 px play button, 1152 x 648)
 
 **Content and behavior**
 
@@ -46,6 +50,7 @@ Inline video (tutorials, product demos, lessons). poster: frame, play button, du
 - Controls show on hover or tap and hide after ~3 s of playback
 - Captions for every video with speech; transcript for tutorials and long videos
 - Errors keep the poster, with a message and Retry
+- Size=lg for hero and full-width players (960 wide and up), Size=default in cards, docs and dialogs
 - Ratio 16:9 unless the content is vertical; radius/xl in cards and pages
 - video/* tokens: the player stays dark in Light and Dark mode
 
@@ -58,6 +63,7 @@ Inline video (tutorials, product demos, lessons). poster: frame, play button, du
 | Variant property | Values |
 |---|---|
 | State | poster, playing, buffering |
+| Size | default, lg |
 
 | Property | Type | Default |
 |---|---|---|
@@ -75,7 +81,7 @@ Tokens and styles:
 
 Guides: [video-player](../../skills/build-ui/components/video-player.md)
 
-Code: native `video` or Vidstack
+Code: native `video` or Vidstack (Size=lg: play button `size-24` (96 px) for hero and full-width players)
 
 ## Video Thumbnail
 

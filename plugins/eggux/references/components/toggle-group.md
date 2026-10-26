@@ -15,7 +15,7 @@ On the Figma page: "Example / Toggle Group styles", "Example / billing period", 
 
 Component set · 3 variants · default size 177 × 36
 
-Group of Toggle Group Items that sets a value: view mode, period, text style. Variant: default (selected item in background/accent), outline (bordered group), segmented (one pill track on background/muted, the selected item a raised background/default pill with shadow/xs; put Toggle Group Item Variant=segmented in the Items slot). segmented is for 2-4 short options such as a period or a monthly / yearly switch. It sets a value; switching panels is Tabs.
+Group of Toggle Group Items that sets a value: view mode, period, text style. Variant: default (selected item in background/accent), outline (bordered group), segmented (one pill track on background/muted, the selected item a raised background/default pill with shadow/xs; put Toggle Group Item Variant=segmented in the Items slot). segmented is for 2-4 short options such as a period or a monthly / yearly switch. It sets a value; switching panels is Tabs. Full width segmented: set the group to FILL and its items to FILL; items share the track equally. In a hugging group keep items on HUG.
 
 
 Usage: eggux build-ui/components/tabs.md
@@ -40,7 +40,7 @@ Usage: eggux build-ui/components/tabs.md
 2. Items slot: Toggle Group Item instances with the matching Item Variant (default for default and outline, segmented for segmented)
 3. Item: Label and/or icon (Show label, Show icon, Icon)
 4. Selected item: State=selected (background/accent; segmented: background/default with shadow/xs)
-5. Segmented track: background/muted, padding spacing/1, items 28 high
+5. Segmented track: background/muted, padding spacing/1, items 28 high; the Items slot fills the track
 
 **Content and behavior**
 
@@ -50,6 +50,7 @@ Usage: eggux build-ui/components/tabs.md
 - Choosing a value is a Toggle Group, not a Button Group
 - segmented looks like Tabs Variant=default; it still sets a value, it never switches panels
 - segmented: at most 4 items with one or two words each; more options: use Select
+- Full width segmented: Toggle Group FILL and every item FILL, items share the track equally; in a hugging group keep items on HUG
 
 **Accessibility**
 
@@ -72,7 +73,7 @@ Tokens and styles:
 - Radius: `button/radius`
 - Effects: `shadow/xs`
 
-Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md), [navigation](../../skills/build-ui/components/navigation.md), [tabs](../../skills/build-ui/components/tabs.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
+Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md), [navigation](../../skills/build-ui/components/navigation.md), [tabs](../../skills/build-ui/components/tabs.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
 Code: shadcn `ToggleGroup` (`type` single or multiple) (View and theme switches: `type="single"`, view in a URL search param, theme with next-themes `setTheme`)
 

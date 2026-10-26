@@ -14,7 +14,7 @@ On the Figma page: "Example / Timeline Item styles", "Example / activity", "Stre
 
 Component set · 20 variants · default size 480 × 70
 
-One event in an activity history (record history, audit log, order tracking). Newest first. Tone marks the outcome, not decoration. Connector off on the last item. Time relative under 24 h, absolute after ("22 Oct, 10:30"); full timestamp in a tooltip. Layout=default: compact list for record pages. Layout=card: title, time, description and Content in a bordered card, for events with notes or attachments. Layout=alternating-left / alternating-right: content on one side of a center line and the time on the other; alternate them item by item for milestones and company history on marketing pages (768 and up). Usage: eggux build-ui/components/description-list.md
+One event in an activity history (record history, audit log, order tracking). Newest first. Tone marks the outcome, not decoration. Connector off on the last item. Time relative under 24 h, absolute after ("22 Oct, 10:30"); full timestamp in a tooltip. Layout=default: compact list for record pages. Layout=card: title, time, description and Content in a bordered card, for events with notes or attachments. Layout=alternating-left / alternating-right: content on one side of a center line and the time on the other; alternate them item by item for milestones and company history on marketing pages (768 and up). Layout=card: the Time moves under the Title when the card is narrower than about 200 px, so the title keeps at least 120 px. Usage: eggux build-ui/components/description-list.md
 
 **Use for**
 
@@ -40,7 +40,7 @@ One event in an activity history (record history, audit log, order tracking). Ne
 5. Time: "2 h ago" (in alternating layouts on the other side of the line)
 6. Description: who and where (Show description)
 7. Content slot: note excerpt, attachment or diff (Show content)
-8. card: Title, Time, Description and Content in a bordered card (radius/base, padding spacing/4)
+8. card: Title, Time, Description and Content in a bordered card (radius/base, padding spacing/4); the header wraps, so Time moves under the Title when the card is narrower than about 200 px (Title keeps at least 120 px)
 
 **Content and behavior**
 
@@ -51,6 +51,7 @@ One event in an activity history (record history, audit log, order tracking). Ne
 - Long histories: the last 5-10 with "View all"; group by day
 - Alternating: switch alternating-left and alternating-right item by item, starting with left
 - One Layout per timeline (alternating counts as one)
+- Layout=card in narrow columns (5 per row on a 1152 container): keep titles to 2 or 3 words per line; never resize the title layer
 
 **Accessibility**
 

@@ -6,7 +6,7 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Progress](#progress) | 40 | Segments |
+| [Progress](#progress) | 72 | Segments |
 | [Progress Segment](#progress-segment) | 8 | - |
 | [Progress Ring](#progress-ring) | 15 | - |
 | [Background Job](#background-job) | 3 | - |
@@ -15,9 +15,9 @@ On the Figma page: "Example / Progress styles", "Example / exports panel from th
 
 ## Progress
 
-Component set · 40 variants · default size 320 × 8
+Component set · 72 variants · default size 320 × 8
 
-Determinate progress (shadcn Progress): uploads, imports, multi-step completion. Indicator width = value; resize the indicator for other values. Show the number or "3 of 5" next to it. Unknown duration: use a Spinner or Skeleton instead. Tone: default, success (complete), warning (near a limit), error (failed); the text next to it says it too.
+Determinate progress (shadcn Progress): uploads, imports, multi-step completion. Value sets the indicator width: 0 to 100 in steps of 10, plus 25 and 75 (Type=default; segmented uses 0, 25, 50, 75, 100). Pick the nearest step to the real number. Show the number or "3 of 5" next to it. Unknown duration: use a Spinner or Skeleton instead. Tone: default, success (complete), warning (near a limit), error (failed); the text next to it says it too.
 
 
 Type: default (continuous bar for a share of work: uploads, imports, quotas), segmented (one segment per step for a count of steps: onboarding, setup checklists, a multi-step form on mobile). Segmented holds Progress Segment instances in the Segments slot: 4 by default (Value 25 = 1 of 4 complete); add or remove segments for 4 to 10 steps and set each State. For a circular indicator use Progress Ring.
@@ -44,7 +44,7 @@ Usage: eggux build-ui/components/progress-and-slider.md
 **Anatomy**
 
 1. Track: background/muted, radius/full
-2. Indicator: background/primary, width = value
+2. Indicator: background/primary, width = Value (0 to 100 by 10, plus 25 and 75)
 3. Value text next to it: percent or "3 of 5"
 4. Tone: default, success, warning, error (indicator color)
 5. Type=segmented: Segments (native slot) with Progress Segment instances (State complete or upcoming, Tone), 4 px gap, each FILL width
@@ -53,7 +53,7 @@ Usage: eggux build-ui/components/progress-and-slider.md
 
 - Determinate only: the share must be known
 - Always show the number or the remaining count next to the bar; never only color
-- Value variants are 0, 25, 50, 75, 100; resize the indicator for other values
+- Value variants (Type=default): 0 to 100 in steps of 10, plus 25 and 75; pick the nearest step to the real share
 - Jobs over ~10 s run in the background, with a toast or notification when done
 - Tone shows the outcome, not the amount: success when complete, warning near a limit, error when failed; the text says it too
 - Type=segmented: one segment per step; Value sets 0 to 4 of 4 complete, add or remove segments for 4 to 10 steps and set each State
@@ -68,7 +68,7 @@ Usage: eggux build-ui/components/progress-and-slider.md
 | Variant property | Values |
 |---|---|
 | Tone | default, success, warning, error |
-| Value | 0, 25, 50, 75, 100 |
+| Value | 0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100 |
 | Type | default, segmented |
 
 Slots (fill them in the instance, never detach): `Segments`
@@ -82,7 +82,7 @@ Tokens and styles:
 
 Guides: [progress-and-slider](../../skills/build-ui/components/progress-and-slider.md), [bulk-actions](../../skills/build-ui/patterns/bulk-actions.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
 
-Code: shadcn `Slider`, `Progress`
+Code: shadcn `Slider`, `Progress` (Slider Value (0, 25, 50, 75, 100) = `value` as a percent of `max`. Progress Value (Type=default): 0 to 100 in steps of 10, plus 25 and 75 = `value`)
 
 ## Progress Segment
 

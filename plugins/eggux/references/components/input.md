@@ -17,7 +17,7 @@ Usage rules live in the guides linked under each component.
 | [Signature Pad](#signature-pad) | 2 | - |
 | [Copy Field](#copy-field) | 2 | - |
 | [Search Field](#search-field) | 6 | - |
-| [Inline Form](#inline-form) | 3 | - |
+| [Inline Form](#inline-form) | 6 | - |
 | [Currency Input](#currency-input) | 4 | - |
 | [Phone Input](#phone-input) | 4 | - |
 | [Date Input](#date-input) | 4 | - |
@@ -183,7 +183,10 @@ Code: shadcn `Input`, `Label`, `Textarea`, `Form` (react-hook-form) (Field = `Fo
 
 Component set · 5 variants · default size 288 × 42
 
-Strength meter under a new-password Field. Message says what is missing; the level is in text and bar count, not only color. Fair uses foreground/default because amber fails as a thin bar on white.
+Strength meter under a new-password Field. Level: empty, weak, fair, good, strong. The only rule is length (8 or more characters, no composition rules, see patterns/auth.md): the message asks for a longer password, never for numbers or symbols. The level is in text and bar count, not only color. Fair uses foreground/default because amber fails as a thin bar on white.
+
+
+Usage: eggux build-ui/patterns/auth.md
 
 **Use for**
 
@@ -200,11 +203,13 @@ Strength meter under a new-password Field. Message says what is missing; the lev
 
 1. Bar segments
 2. Level in text
-3. Message: what is missing
+3. Message: asks for a longer password when weak or fair
 
 **Content and behavior**
 
 - Level: empty, weak, fair, good, strong
+- Length is the only rule (8 or more characters): messages never ask for numbers, symbols or cases (patterns/auth.md)
+- Default copy: empty "Use at least 8 characters. A longer phrase is stronger.", weak "Weak: make it longer.", fair "Fair: a few more characters make it stronger."
 - The level is in text and bar count, not only color
 - Fair uses foreground/default because amber fails as a thin bar on white
 - No composition rules beyond length; never block paste
@@ -674,9 +679,12 @@ Code: shadcn `InputGroup` (`type="search"`) + search icon, `Kbd`, clear `Button`
 
 ## Inline Form
 
-Component set · 3 variants · default size 400 × 62
+Component set · 6 variants · default size 400 × 62
 
-One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag. Input and Button are exposed (set the placeholder and the verb). error keeps the value and says how to fix it; success replaces the hint with what happens next. Two or more fields need a form.
+One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag. The Input and the Button are exposed, so the placeholder and the button label change from the instance panel. State=error and State=success replace the hint with a message. Tone=on-primary is for primary bands and cards: secondary button and hint, error and success text in foreground/primary (5.2:1 on background/primary); the input keeps its own surface.
+
+
+Usage: eggux build-ui/components/input.md
 
 **Use for**
 
@@ -694,12 +702,14 @@ One field and one button on a line: newsletter sign-up, coupon code, invite by e
 **Anatomy**
 
 1. Input (exposed): placeholder with an example value
-2. Button (exposed): the verb ("Subscribe", "Apply", "Invite")
+2. Button (exposed): the verb ("Subscribe", "Apply", "Invite"); change Label from the instance panel
 3. Hint (Show hint), Error or Success message under the row
+4. Tone: default, on-primary (secondary Button; hint, error and success text in foreground/primary)
 
 **Content and behavior**
 
 - State: default, error, success
+- Tone=on-primary on primary bands and cards (Newsletter Card, CTA bands); never override the button variant or text colors by hand
 - The button says what happens: a verb, never "Submit"
 - Error keeps the value and says how to fix it: "Enter an email address like name@company.com."
 - Success replaces the hint with what happens next; clear the input only when people add several items
@@ -710,10 +720,12 @@ One field and one button on a line: newsletter sign-up, coupon code, invite by e
 - The input has a visible label or an aria-label ("Email address")
 - It is a form: Enter submits
 - Error and success messages are linked with aria-describedby and announced in a live region
+- On primary bands the hint and messages use foreground/primary: 5.2:1 Light and Dark, 6.7:1 Corporate Light on background/primary
 
 | Variant property | Values |
 |---|---|
 | State | default, error, success |
+| Tone | default, on-primary |
 
 | Property | Type | Default |
 |---|---|---|
@@ -725,13 +737,13 @@ One field and one button on a line: newsletter sign-up, coupon code, invite by e
 Built from: `Button`, `Input`
 
 Tokens and styles:
-- Colors: `background/destructive`, `background/success`, `foreground/muted`
+- Colors: `background/destructive`, `background/success`, `foreground/muted`, `foreground/primary`
 - Spacing and size: `spacing/1_5`, `spacing/2`
 - Text styles: `body/small`
 
 Guides: [input](../../skills/build-ui/components/input.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: `<form class="flex gap-2">` with shadcn `Input` + `Button` (react-hook-form + zod) (Keep the value on error)
+Code: `<form class="flex gap-2">` with shadcn `Input` + `Button` (react-hook-form + zod) (Keep the value on error. Tone=on-primary: `Button variant="secondary"`, hint and messages `text-primary-foreground`)
 
 ## Currency Input
 

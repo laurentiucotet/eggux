@@ -1,6 +1,6 @@
 # List
 
-Generated from the EGG UI master library on 2026-10-23 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -156,6 +156,9 @@ Component set · 3 variants · default size 480 × 54
 
 One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date, assignee. done is struck through and moves to the end; overdue says it in destructive. Ticking it saves at once and can be undone. Several steps people must do in order: Stepper.
 
+
+Due drives the date in every State; for overdue write it as "Overdue · was due 10 Nov" (the overdue state colors it red).
+
 **Use for**
 
 - An onboarding checklist
@@ -172,7 +175,7 @@ One task in a checklist (onboarding, a project, a record's to-dos): checkbox, ti
 
 1. Checkbox
 2. Title: ui/label
-3. Due (Show due): ui/caption, muted; destructive when overdue
+3. Due (Show due): ui/caption, muted; destructive in State=overdue; the same Due text in every State
 4. Action slot (Show action): one Button, such as Connect or Start
 5. Assignee (Show assignee): Avatar xs
 
@@ -180,7 +183,7 @@ One task in a checklist (onboarding, a project, a record's to-dos): checkbox, ti
 
 - Ticking saves at once and can be undone (toast with Undo)
 - Done is struck through and moves to the end
-- Overdue says it in destructive ("Overdue · 12 Oct")
+- Overdue says it in destructive: write Due as "Overdue · was due 10 Nov" when you switch to State=overdue
 - Open items sort by due date; the title wraps to two lines at most
 - The row opens the task; the Checkbox only ticks; the action button starts the task
 

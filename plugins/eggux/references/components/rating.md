@@ -6,7 +6,7 @@ Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Rating](#rating) | 24 | - |
+| [Rating](#rating) | 30 | - |
 | [Review Item](#review-item) | 1 | - |
 | [Rating Summary](#rating-summary) | 1 | - |
 
@@ -14,12 +14,12 @@ On the Figma page: "Example / Rating styles", "Example / in reviews", "Stress te
 
 ## Rating
 
-Component set · 24 variants · default size 116 × 20
+Component set · 30 variants · default size 116 × 20
 
 Star rating, display (reviews, products) or input (feedback). Filled stars in background/warning; always show the number too ("4.7 (128)"), color is not the only signal. As input: radio group of 5, hover previews, half stars only for display.
 
 
-Style: default (five stars, display or input), badge (one star and the numeric score in a soft amber badge, e.g. "4.8"; display only, for dense cards, search results, tables and map pins). In Style=badge type the score in Score (one decimal) and Value has no effect; Show count adds "(128)".
+Style: default (five stars, display or input), badge (one star and the numeric score in a soft amber badge, e.g. "4.8"; display only, for dense cards, search results, tables and map pins). Type the number in Score (one decimal) in both Styles: Value sets the filled stars, Score the number shown with Show value (and in Style=badge); Show count adds "(128)". Size: sm in cards and lists, default in detail pages, lg (32 px stars) as the input of a review form.
 
 
 Usage: eggux build-ui/components/rating.md
@@ -28,7 +28,7 @@ Usage: eggux build-ui/components/rating.md
 
 - Average rating on a product or a review summary: "4.7 (128)"
 - Rating input in a review or feedback form
-- Size=sm in cards and lists, Size=default in detail pages and forms
+- Size=sm in cards and lists, Size=default in detail pages, Size=lg (32 px stars) as the input of a review form
 - Style=badge: the score in tight places: product cards, search results, tables, map pins
 
 **Not for**
@@ -42,9 +42,10 @@ Usage: eggux build-ui/components/rating.md
 
 1. Style=default: five stars, filled in background/warning, empty in border/input
 2. Style=badge: one star and the score in a soft amber badge (badge/soft-warning-bg, star and text badge/soft-warning-fg, radius/md)
-3. Value: the number (Show value; always shown in Style=badge)
-4. Score: the number in Style=badge (TEXT, one decimal)
-5. Count: number of ratings (Show count, Count)
+3. Value: the filled stars (variant 0-5)
+4. Score: the number shown next to the stars (Show value) and in Style=badge; TEXT, one decimal
+5. Size: sm (14 px stars), default (20), lg (32, value in body/large, count in body/small; Style=default only)
+6. Count: number of ratings (Show count, Count)
 
 **Content and behavior**
 
@@ -53,7 +54,8 @@ Usage: eggux build-ui/components/rating.md
 - As input, hover previews the value; a second click on the same star does not clear it
 - Offer a Clear link only when zero is allowed
 - Ask for a comment after a low rating, not before
-- Style=badge: type the score in Score; Value has no effect there
+- Type the number in Score in every Style; Value only sets the filled stars, so a 4.6 average shows Value=5 (or 4) and Score 4.6
+- Review forms use Size=lg; never scale a Rating instance
 
 **Accessibility**
 
@@ -64,7 +66,7 @@ Usage: eggux build-ui/components/rating.md
 
 | Variant property | Values |
 |---|---|
-| Size | sm, default |
+| Size | sm, default, lg |
 | Value | 0, 1, 2, 3, 4, 5 |
 | Style | default, badge |
 
@@ -77,13 +79,13 @@ Usage: eggux build-ui/components/rating.md
 
 Tokens and styles:
 - Colors: `background/warning`, `badge/soft-warning-bg`, `badge/soft-warning-fg`, `border/input`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/3_5`, `spacing/5`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/3_5`, `spacing/5`, `spacing/8`
 - Radius: `radius/md`
-- Text styles: `ui/caption`, `ui/label`, `ui/label-small`
+- Text styles: `body/large`, `body/small`, `ui/caption`, `ui/label`, `ui/label-small`
 
 Guides: [rating](../../skills/build-ui/components/rating.md)
 
-Code: custom `RadioGroup`
+Code: custom `RadioGroup` (Score is the shown number (one decimal), Value the filled stars. Size=lg: stars `size-8`, value `text-lg font-semibold`, for review forms)
 
 ## Review Item
 

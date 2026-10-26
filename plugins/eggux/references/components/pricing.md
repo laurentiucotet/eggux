@@ -8,8 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Price](#price) | 4 | - |
 | [Plan Card](#plan-card) | 4 | Features |
+| [Comparison Table](#comparison-table) | 2 | - |
 
-On the Figma page: "Example / Plan Card styles", "Example / Price styles", "Stress test / Plan Card", "Stress test / Price"
+On the Figma page: "Example / Plan Card styles", "Example / Price styles", "Example / in pricing with comparison", "Stress test / Comparison Table", "Stress test / Plan Card", "Stress test / Price"
 
 ## Price
 
@@ -155,3 +156,61 @@ Tokens and styles:
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
 Code: shadcn `Card` + `Price`, `Button`, `<ul>` of `Check Item` (Variant=featured: `ring-2 ring-primary`, primary `Button`)
+
+## Comparison Table
+
+Component set · 2 variants · default size 1152 × 748
+
+Plan comparison table for pricing pages: a header row per plan (name, Price, action) and feature rows grouped under section labels, with Table Cell Check marks or short values. Use Plans=3 or Plans=4 to match the plan cards above it; edit labels and values in place, and hide rows you do not need.
+
+
+Usage: eggux build-ui/patterns/marketing-pages.md
+
+**Use for**
+
+- Under the plan cards in Block / Pricing with Comparison (Plans=4)
+- Block / Comparison Table on its own pricing or plans page (Plans=3)
+- Any page that compares 3 or 4 plans feature by feature
+
+**Not for**
+
+- Choosing a plan at a glance: use Plan Card
+- Comparing products or records with many columns: use Table
+- One plan with what is included: use Block / Pricing Single
+
+**Anatomy**
+
+1. Plans: 3 (label column 432, plan columns 240), 4 (label column 352, plan columns 200)
+2. Header row: plan name (with an optional Badge), Price sm and a sm Button per plan
+3. Section rows: an overline label ("Core", "Collaboration", "Security")
+4. Feature rows: label and one Table Cell Check per plan (check, dash or a short value)
+5. Rows divided by border/default
+
+**Content and behavior**
+
+- Plans matches the number of plan cards above it, in the same order
+- Same feature order and wording as the plan cards
+- Use a check or a dash for yes and no; a short value ("100 GB", "Unlimited") when it differs
+- Hide rows you do not need; keep at least one row per section
+- One primary button in the header: the recommended plan
+
+**Accessibility**
+
+- Code it as a <table> with plan names as column headers (scope="col") and feature labels as row headers (scope="row")
+- Check and dash cells have text for screen readers ("Included", "Not included")
+- Section labels are row headers that span the table
+
+| Variant property | Values |
+|---|---|
+| Plans | 3, 4 |
+
+Built from: `Badge`, `Button`, `Price`, `Table Cell Check`
+
+Tokens and styles:
+- Colors: `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `layout/container/6xl`, `spacing/2`, `spacing/4`, `spacing/60`
+- Text styles: `body/small`, `ui/label`, `ui/overline`
+
+Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
+
+Code: `<table>` with shadcn `Table` parts; header cells with `Price` (sm) and `Button` (sm); cells with lucide `Check` / `Minus` and `sr-only` text (Plans=3 or 4 columns; used by `Block / Comparison Table` (3) and `Block / Pricing with Comparison` (4))

@@ -21,7 +21,7 @@ On the Figma page: "Example / Product Card styles", "Example / in billing", "Exa
 
 Component set · 9 variants · default size 264 × 384
 
-A product in a grid, carousel or list: photo, sale or sold-out badges, wishlist, name, variant text, Price and Old price, optional quick add. Layout: vertical (default) for product grids, set the card to Fill in a Grid auto layout (min width 160), the photo height follows the width; horizontal (120 px photo left, details and action right, no wishlist) for search result lists, wishlists, recently viewed and cart suggestions; overlay (name, variant text and price over the photo on a media/scrim panel, wishlist on the photo, no action button) for editorial grids, lookbooks and category tiles where the photo sells. Pick the photo ratio on the exposed Image (1:1 default, 3:4 for fashion), the same across a grid. Overlay text is media/foreground on media/scrim, 5.7:1 over the brightest pixel. One Layout per grid.
+A product in a grid, carousel or list: photo, sale or sold-out badges, wishlist, name, variant text, Price and Old price, optional quick add. Layout: vertical (default) for product grids, set the card to Fill in a Grid auto layout (min width 160), the photo height follows the width; horizontal (120 px photo left, details and action right, no wishlist) for search result lists, wishlists, recently viewed and cart suggestions; overlay (name, variant text and price over the photo on a media/scrim panel, wishlist on the photo, no action button) for editorial grids, lookbooks and category tiles where the photo sells. Pick the photo ratio on the exposed Image (1:1 default, 3:4 for fashion), the same across a grid. Overlay text is media/foreground on media/scrim, 5.7:1 over the brightest pixel. One Layout per grid. State=sale: set the percentage on the Discount Badge (exposed, its Label in the instance panel: "-20%", "-35%"); it is not a text property because a text property cannot reach into a nested Badge.
 
 
 Usage: eggux build-ui/patterns/commerce.md
@@ -43,7 +43,7 @@ Usage: eggux build-ui/patterns/commerce.md
 
 1. Layout: vertical (default), horizontal (400 wide, 120 px photo left), overlay (264 x 352, text over the photo)
 2. Image (exposed Image Placeholder): Ratio 1:1 by default, 3:4 or 4:3 per instance; height follows the card width
-3. Badges: sale %, new or sold out (State)
+3. Badges: Discount (State=sale, exposed Badge: set its Label, "-20%", "-35%") or Sold out badge (State=sold-out)
 4. Wishlist: Button Icon ghost, top right (Show wishlist)
 5. Name: 2 lines
 6. Variant text: "Sand · 3 colors"
@@ -58,7 +58,7 @@ Usage: eggux build-ui/patterns/commerce.md
 - One Layout per grid or list; overlay only where the photo is the point and there is no quick add
 - The whole card opens the product; Wishlist and the action button are the only other controls
 - Name in 2 lines at most, then cut
-- State=sale: new price, struck original and the sale % Badge
+- State=sale: new price, struck original and the Discount Badge with the real percentage (set its Label on the exposed Discount; it does not change by itself)
 - State=sold-out stays visible, image dimmed, action becomes "Notify me"
 - Add to cart opens the Mini Cart, never a new page
 - Same photo ratio and background across a grid
@@ -230,6 +230,9 @@ One order or invoice in an account history: number, date and item count, status,
 
 Usage: eggux build-ui/patterns/commerce.md
 
+
+Status uses soft Badges: processing neutral, shipped info, delivered and paid success, cancelled destructive, refunded outline.
+
 **Use for**
 
 - Order history in an account
@@ -247,7 +250,7 @@ Usage: eggux build-ui/patterns/commerce.md
 
 1. Number: "Order #10482", or the invoice date or number
 2. Meta: date · item count, or plan · seats
-3. Status Badge: processing, shipped, delivered, cancelled (orders); paid, refunded (invoices)
+3. Status Badge (soft): processing soft-neutral, shipped soft-info, delivered and paid soft-success, cancelled soft-destructive, refunded outline
 4. Total
 5. Chevron right
 6. State: default, hover (background/muted), selected (background/accent, the order open next to the list)
@@ -295,7 +298,7 @@ Code: `<a>` row + shadcn `Badge`, `<time>` (Status names from one shared list)
 
 Component · 1 variant · default size 640 × 144
 
-Where an order is: the expected day first, carrier and tracking number, then the steps with dates (Ordered, Shipped, Out for delivery, Delivered). Problems (delayed, returned) replace the step with an error and say what happens next. Link to the carrier for the full scan history.
+Where an order is: the expected day first, carrier and tracking number, then the steps with dates (Ordered, Shipped, Out for delivery, Delivered). Problems (delayed, returned) replace the step with an error and say what happens next. Link to the carrier for the full scan history. The four Steps are exposed: set each Title, Description (date and time) and State in the panel.
 
 **Use for**
 
@@ -312,11 +315,12 @@ Where an order is: the expected day first, carrier and tracking number, then the
 **Anatomy**
 
 1. Header: package icon, ETA, carrier · tracking number, Track Button
-2. Steps: Ordered, Shipped, Out for delivery, Delivered, with dates
+2. Steps: four exposed Step instances (Ordered step, Shipped step, Out for delivery step, Delivered step): set Title, Description (date and time) and State in the panel
 
 **Content and behavior**
 
 - The expected day comes first ("Arriving Thursday, 14 Nov")
+- Step dates go in each Step's Description ("10 Nov, 14:02", "Expected by 18:00"); keep one date format across the steps
 - Problems (delayed, returned) replace the step with an error and say what happens next
 - Track links to the carrier for the full scan history
 - The tracking number can be copied

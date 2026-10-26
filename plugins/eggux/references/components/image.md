@@ -9,7 +9,7 @@ Usage rules live in the guides linked under each component.
 | [Image Placeholder](#image-placeholder) | 5 | - |
 | [Map](#map) | 1 | - |
 | [Image Cropper](#image-cropper) | 2 | - |
-| [Avatar Upload](#avatar-upload) | 4 | - |
+| [Avatar Upload](#avatar-upload) | 8 | - |
 | [Image Compare Slider](#image-compare-slider) | 1 | - |
 | [Device Frame](#device-frame) | 2 | Screen |
 | [Image Figure](#image-figure) | 1 | - |
@@ -20,7 +20,7 @@ On the Figma page: "Example / before and after in a case study", "Example / crop
 
 Component set · 5 variants · default size 640 × 360
 
-Image area with a fixed ratio (Ratio 16:9, 4:3, 1:1, 3:4, 21:9) for photos, covers and screenshots in cards, carousels and marketing sections. Show image on shows the photo picked in the Image swap (any Image / * component from the Imagery page; it covers and crops to the ratio). Off: muted background with a dot pattern and a centered image icon (Show caption toggles the icon). Sample photos are placeholders: replace them with your own images and give meaningful images alt text. Usage: eggux build-ui/components/carousel.md
+Image area with a fixed ratio (Ratio 16:9, 4:3, 1:1, 3:4, 21:9) for photos, covers and screenshots in cards, carousels and marketing sections. Show image on shows the photo picked in the Image swap (any Image / * component from the Imagery page; it covers and crops to the ratio). Off: muted background with a dot pattern and a centered image icon (Show caption toggles the icon). Sample photos are placeholders: replace them with your own images and give meaningful images alt text. Height follows width: a transparent ratio layer at Fill width with a locked aspect ratio sets the height, so a fixed width, Fill or a resize keeps the Ratio. For a crop of another height, pick another Ratio (21:9 for banners) rather than resizing the height. Usage: eggux build-ui/components/carousel.md
 
 **Use for**
 
@@ -42,6 +42,7 @@ Image area with a fixed ratio (Ratio 16:9, 4:3, 1:1, 3:4, 21:9) for photos, cove
 4. Pattern: dot grid on background/muted, dots in border/default, shown when there is no image
 5. Hint (Show caption): centered Lucide image icon in foreground/muted
 6. Corner radius and clipping come from the placeholder, not from the image
+7. ratio: a transparent layer at Fill width with a locked aspect ratio; it sets the height, so the height follows any width (fixed, Fill or resized)
 
 **Content and behavior**
 
@@ -51,6 +52,7 @@ Image area with a fixed ratio (Ratio 16:9, 4:3, 1:1, 3:4, 21:9) for photos, cove
 - No two cards in one grid use the same photo; one ratio per carousel or grid; 21:9 for wide banners and page header images
 - Show image off is the loading or missing-image state: keep the dot pattern and the icon, no fake text
 - Text over a photo needs a scrim or a solid surface behind it
+- Change the width only; the height follows the Ratio. For a different crop pick another Ratio (21:9 for banners); a fixed height crops the image and is only for full-bleed media that must cover a box
 
 **Accessibility**
 
@@ -187,21 +189,21 @@ Tokens and styles:
 
 Guides: [file-upload](../../skills/build-ui/components/file-upload.md)
 
-Code: `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input (Crop on the client, upload the result)
+Code: `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input (Crop on the client, upload the result. Shape=square is `Avatar` with `rounded-md` for workspace and company logos)
 
 ## Avatar Upload
 
-Component set · 4 variants · default size 344 × 100
+Component set · 8 variants · default size 344 × 100
 
-Profile or logo picture in settings: the avatar, a Label (Show label), a Hint with the upload rules, Upload or Change (exposed Button, set its Label, e.g. "Upload photo") and Remove (Show remove, empty and filled). State: empty (initials), filled, uploading (progress and Cancel), error (says what to fix). Upload opens the file picker, then the Image Cropper; Remove offers Undo in a toast.
+Profile or logo picture in settings: the avatar, a Label (Show label), a Hint with the upload rules, Upload or Change (exposed Button, set its Label, e.g. "Upload photo") and Remove (Show remove, empty and filled). Shape: circle (a person) or square (a workspace or company logo; empty shows muted initials, filled shows the logo (drawn as initials on the brand color, replace with the real mark); set Label to "Workspace logo"). State: empty (initials), filled, uploading (progress and Cancel), error (says what to fix). Upload opens the file picker, then the Image Cropper; Remove offers Undo in a toast.
 
 
 Usage: eggux build-ui/components/file-upload.md
 
 **Use for**
 
-- Profile picture in account settings
-- Organization or project logo
+- Profile picture in account settings (Shape=circle)
+- Organization, workspace or project logo (Shape=square)
 - Team, customer or workspace pictures edited by an admin
 
 **Not for**
@@ -211,7 +213,7 @@ Usage: eggux build-ui/components/file-upload.md
 
 **Anatomy**
 
-1. Avatar (initials when empty)
+1. Avatar: Shape circle (a person) or square (a workspace or company logo); initials when empty
 2. Label (Show label): "Profile photo", "Company logo"
 3. Hint: type, minimum size, maximum weight (empty and filled)
 4. Upload or Change: Button outline sm, exposed (set its Label, e.g. "Upload photo")
@@ -221,6 +223,8 @@ Usage: eggux build-ui/components/file-upload.md
 
 **Content and behavior**
 
+- Shape: circle for people, square for workspaces and companies; square filled shows the logo (drawn as initials on background/primary until replaced)
+- Square: set Label to "Workspace logo" or "Company logo" and the Hint to the logo rules (PNG or SVG, square)
 - State: empty, filled, uploading, error
 - Upload opens the file picker, then the Image Cropper
 - Show remove only when there is something to remove (a photo, or initials people may reset)
@@ -238,6 +242,7 @@ Usage: eggux build-ui/components/file-upload.md
 | Variant property | Values |
 |---|---|
 | State | empty, filled, uploading, error |
+| Shape | circle, square |
 
 | Property | Type | Default |
 |---|---|---|
@@ -255,7 +260,7 @@ Tokens and styles:
 
 Guides: [file-upload](../../skills/build-ui/components/file-upload.md)
 
-Code: `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input (Crop on the client, upload the result)
+Code: `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input (Crop on the client, upload the result. Shape=square is `Avatar` with `rounded-md` for workspace and company logos)
 
 ## Image Compare Slider
 
@@ -318,7 +323,10 @@ Code: react-compare-slider, or `clip-path` + `<input type="range">` (Handle `rol
 
 Component set · 2 variants · default size 960 × 582
 
-A browser window or a phone around a product screenshot for marketing pages, docs and case studies. Put a real screen (a block or an image) in the Screen slot at 1:1; never stretch it. One frame style per page. Inside the product, show the UI itself, not a frame.
+A browser window or a phone around a product screenshot for marketing pages, docs and case studies. Address sets the URL; Screen (native slot) holds the screen. Put an Image / Screenshot / * in Screen at Fill width: its height follows the image ratio, so swapping to another screenshot or resizing the frame never crops it. A photo or a live screen (Page Shell / Mobile) works too. Do not resize the screen by hand; resize the Device Frame.
+
+
+Usage: eggux build-ui/patterns/marketing-pages.md
 
 **Use for**
 
@@ -336,12 +344,13 @@ A browser window or a phone around a product screenshot for marketing pages, doc
 
 1. Chrome: three dots and the address bar with lock icon (Device=browser)
 2. Address: "app.acme.com/invoices"
-3. Screen slot: an Image / Screenshot / ... instance (FILL width, ratio locked) or a live block at 1:1
+3. Screen slot: an Image / Screenshot / ... instance at Fill width; its height hugs the image ratio (inner ratio layer), or a live block at 1:1
 4. Device: browser, phone
 
 **Content and behavior**
 
-- A real screen, never stretched: screenshots keep their ratio
+- A real screen, never stretched or cropped: Image / Screenshot / * hug their height from the image ratio, so a swap or a new frame width keeps the whole screen
+- Resize the Device Frame, never the screen inside it; set a fixed screen height only to crop on purpose
 - One frame style per page
 - The address matches the screen
 - Realistic content (Acme, invoices), no placeholder text

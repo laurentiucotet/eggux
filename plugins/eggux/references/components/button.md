@@ -26,7 +26,7 @@ shadcn Button. One "default" (primary) per view; "destructive" only inside a con
 Variant=soft: a primary tint (button/soft-bg, hover button/soft-hover) with foreground/brand text. Use it for brand-colored secondary actions that must not compete with the one default button: Add line item, Import CSV, a call to action on a card. Quieter than default, louder than secondary.
 
 
-State=loading: spinner instead of the leading icon, same width; blocks repeat clicks.
+State=loading: spinner instead of the leading icon, same width; blocks repeat clicks. Variant=link has no side padding in every Size, so its text lines up with the text column; the focus ring stays.
 
 
 Usage: eggux build-ui/components/button.md
@@ -52,7 +52,7 @@ Usage: eggux build-ui/components/button.md
 2. Label
 3. Trailing icon (optional, Trailing icon)
 4. State=loading: a spinning loader replaces the leading icon; width stays
-5. Variant=link: label, icons and hover underline use foreground/brand; no fill
+5. Variant=link: label, icons and hover underline use foreground/brand; no fill and no side padding in every Size, so the text lines up with the text column above it
 6. Variant=soft: fill button/soft-bg (background/primary at 10%, 20% in dark), hover button/soft-hover (one step stronger); label and icons foreground/brand; no shadow
 
 **Content and behavior**
@@ -67,6 +67,7 @@ Usage: eggux build-ui/components/button.md
 - soft is quieter than default and louder than secondary: use it for the second most important action, or several equal brand actions in one card
 - Never two soft Buttons next to one default Button in the same group; pick soft or secondary for the group
 - soft text and icons are foreground/brand, never background/primary
+- Variant=link has no side padding: place it in the text column, never add padding back by hand; the focus ring hugs the label
 
 **Accessibility**
 
@@ -94,7 +95,7 @@ Icons: chevron-right, loader-circle, plus
 
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`, `button/soft-bg`, `button/soft-hover`, `foreground/accent`, `foreground/brand`, `foreground/default`, `foreground/destructive`, `foreground/primary`, `foreground/secondary`
-- Spacing and size: `density/control-height`, `spacing/10`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`, `spacing/8`
+- Spacing and size: `density/control-height`, `spacing/0`, `spacing/10`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`, `spacing/8`
 - Radius: `button/radius`
 - Text styles: `ui/label`
 - Effects: `shadow/xs`

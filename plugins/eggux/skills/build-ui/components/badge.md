@@ -47,6 +47,7 @@ it everywhere. The same status never appears in two colors.
 
 ## Related components
 - Two marketing badges: `Announcement Pill` (a "New" link above a hero title, one at a time) and
-  `Trust Badge` (a current certification with what backs it, linking to the trust page).
+  `Trust Badge` (a current certification with what backs it, linking to the trust page). On a
+  primary band use Tone=on-primary, on an inverted card Tone=inverted; never recolor by hand.
 - Stock on a product page ("In stock", "Only 3 left", "Out of stock") is a `Status Dot` with its
   label: success, warning, error. Example "stock status" on the Badge page.

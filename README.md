@@ -16,7 +16,7 @@ workspace and start from there; client files start as a copy of it.
 At a glance: 367 components on 74 pages, 245 blocks, 8 page shells, 93 complete screens and
 email templates (SCREENS: Auth, Account, Settings, Emails), 4 full showcase pages, 667 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
-Română), 16 text styles, 4 gradient styles, 101 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
+Română), 16 text styles, 4 gradient styles, 110 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
 images (49 photos, 7 product screenshots). The plugin adds 12 skills, 32
 patterns and 38 component guides.
 
@@ -101,7 +101,7 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 ([Community file](https://www.figma.com/community/file/1694044412384019384)) has foundations (variables, text and effect styles, density,
-motion, chart palette, a `foreground/brand` text token), 101 Lucide icons and 6 brand icons, and components for actions, forms, selection, overlays, navigation, feedback,
+motion, chart palette, a `foreground/brand` text token), 110 Lucide icons and 6 brand icons, and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
 (comments, chat, reactions, mentions), AI chat and AI states, commerce (product, cart, orders, account),

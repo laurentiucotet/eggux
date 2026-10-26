@@ -1,6 +1,6 @@
 # Search
 
-Generated from the EGG UI master library on 2026-10-23 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -48,7 +48,7 @@ Usage: eggux build-ui/patterns/search-and-filter.md
 **Anatomy**
 
 1. Type=page: Path (Show path): Path, Icon/chevron-right, Section; Title (body/large, 2 lines); Snippet (body/small, 2 lines, matched words bold); meta (Show meta): type Badge and Updated
-2. Type=record: icon tile (Icon swap, 40, background/muted); Record (title, 2 lines) with a status Badge (exposed); Record details (Show meta): "Invoice · €1,240.00 · Due 30 Oct 2026 · Updated 12 Oct"
+2. Type=record: icon tile (Icon swap, 40, background/muted); Record (title, 2 lines) with a soft status Badge (exposed, soft-warning "Overdue" by default); Record details (Show meta): "Invoice · €1,240.00 · Due 30 Oct 2026 · Updated 12 Oct"
 3. Type=person: Avatar lg (exposed: Initials or photo); Name; Role (role and team, 2 lines); Email (Show meta); action (Show action): outline Button sm "Message" (exposed)
 4. Type=file: icon tile (Icon swap: file type); File name; meta (Show meta): File details ("PDF · 2.4 MB · Updated 12 Oct"), owner Avatar xs (exposed) and Owner; download (Show action): ghost Button Icon
 5. Type=media: Video Thumbnail 160 x 90 with duration (exposed); Media title; Media summary (2 lines); Media details (Show meta): "Video · Acme Academy · Updated 12 Oct 2026"
@@ -65,6 +65,7 @@ Usage: eggux build-ui/patterns/search-and-filter.md
 - At most one answer, always first, and only when it is grounded in sources people can open
 - Never mix widths or densities in one list; keep the same Show path and Show meta choice for every row of a group
 - Titles wrap to 2 lines, snippets and summaries to 2 (Answer to 4), then ellipsis; bold the matched terms
+- Status Badges in results are the soft variants (soft-success, soft-warning, soft-destructive, soft-info, soft-neutral), never solid
 - Records show their status Badge; files show format and size before people click; people show role and team
 - No results: Empty State that repeats the query and suggests other words
 

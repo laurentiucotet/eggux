@@ -3,6 +3,26 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.60.1
+The remaining defects found while building wave 2.
+- Marketing and content: Trust Badge and Check Item `Tone=default|on-primary|inverted`; Quote
+  attribution wraps; Button link has no side padding; new `QR Code` (96, 128, 160) in CTA App
+  Download; Rating number follows `Score` and `Size=lg`; Timeline Item card wraps cleanly (Timeline
+  Section shows 5 milestones); Table of Contents `Title`; Post Card `Badge` exposed; Block / Article
+  and Testimonial Grid properties; Image Placeholder height follows width; Product Card `Discount`
+  badge exposed; Slider `Value` 0 to 100; distinct icons on the mobile landing page.
+- App: Chat Message `Size=compact`; Danger Zone button label; Thread Summary photos; Usage Meter bar
+  exposed and Progress values 10 to 90; Toggle Group segmented works on Fill; Field Preset country
+  placeholder; Tree Item count; Table Group Row `State`; Table Cell Status note fills; Org Chart Node
+  `Hiring status`; Page Shell / App hugs content (minimum 900); Prompt Input `Content`; AI Loading
+  scales; Scheduler Week fill; Address and Order Summary properties; Shipment Tracker steps exposed.
+- Charts and icons: Gauge texts and a `Gauge Target` helper (50 to 95); Distribution Bar `Segments`
+  slot with `Distribution Segment` and a wrapping legend; Stat Card change badge documented and
+  decimal points in defaults; Heatmap `Data` variant; 8 new icons (send, receipt, reply, user-plus,
+  palette, languages, hash, printer), 110 in total.
+- Docs frames rebuilt on 33 component pages and `references/components/` regenerated for them;
+  guides, library map, code mapping and API notes updated.
+
 ## 0.60.0
 Blocks wave 2 (audit 2): the library has 245 blocks.
 - Sections: Features with Code, Use Cases, Us vs Them, Press Mentions (fictional press logos), CTA

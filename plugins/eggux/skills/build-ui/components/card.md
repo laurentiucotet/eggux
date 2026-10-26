@@ -55,7 +55,9 @@ Stat Card, Option Card and Post Card use the same tokens.
   in text and icon, not color alone.
 - Selectable cards (plan, delivery, billing period) use Option Card: the whole card is the target, one selected.
 - Card Header `Show icon` names the card type on dashboards; give every card in a row an icon or none.
-- Stat Card: the change badge is soft and follows the direction (up success, down destructive, flat neutral; swap when up is bad); `Show sparkline` adds a chart/1 trend under the value.
+- Stat Card: the change Badge is exposed: set its Label and Variant per instance. It is soft and its
+  tone follows meaning (up success, down destructive, flat neutral; churn down = soft-success).
+  Trend sets the icon and sparkline; `Show sparkline` adds a chart/1 trend under the value.
 - Stat Card Layout: `vertical` (default), `compact` (Icon Tile + value) for dense rows and
   sidebars, `horizontal` (sparkline on the right) when the trend shape matters. One Layout per row.
 - Inverted Card: inside it use `background/default` text and `secondary` or `outline` Buttons,

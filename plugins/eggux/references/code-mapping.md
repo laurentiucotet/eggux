@@ -30,7 +30,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Checkbox`, `Radio`, `Switch` | shadcn `Checkbox`, `RadioGroup`, `Switch` | |
 | `Calendar`, `Calendar Day`, `Date Picker`, `Date Range Picker` | shadcn `Calendar` (react-day-picker) in `Popover` | |
 | `Time Picker` | custom `Select` of times | |
-| `Slider`, `Progress` | shadcn `Slider`, `Progress` | |
+| `Slider`, `Progress` | shadcn `Slider`, `Progress` | Slider Value (0, 25, 50, 75, 100) = `value` as a percent of `max`. Progress Value (Type=default): 0 to 100 in steps of 10, plus 25 and 75 = `value` |
 | `Tabs`, `Tab` | shadcn `Tabs` (`TabsList`, `TabsTrigger`) | Variant=line: `TabsList` with a bottom border (`border-b`); Variant=vertical: `orientation="vertical"`, `TabsList` as `flex-col`, a `Select` of sections on mobile |
 | `Toggle Group`, `Toggle Group Item` | shadcn `ToggleGroup` (`type` single or multiple) | View and theme switches: `type="single"`, view in a URL search param, theme with next-themes `setTheme` |
 | `Accordion`, `Accordion Item` | shadcn `Accordion` (`AccordionItem`) | Size=sm: smaller padding |
@@ -88,7 +88,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Fieldset` | `<fieldset>` + `<legend>`; shadcn `RadioGroup` or `Checkbox` items, `FormMessage` for the group | Error belongs to the group |
 | `Error Summary` | shadcn `Alert` (destructive) with anchor links from react-hook-form `formState.errors` | Focus moves here on submit; links focus the field |
 | `Requirement List` | custom `<ul>` of `Check Item`s, state from the zod schema of the field | `aria-live="polite"`; nothing red before submit |
-| `Check Item` | `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status | Mark=check, dash, x |
+| `Check Item` | `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status | Mark=check, dash, x. Tone=on-primary: label and icon `text-primary-foreground`; Tone=inverted: `text-background`, dash `text-muted` |
 | `Password Strength` | custom bars + text under the shadcn `Input` | Level in text, not only color |
 | `Emoji Picker` | frimousse or emoji-mart in shadcn `Popover` | Search, recent first, 8 per row; skin tone stored per user |
 | `App Launcher` | shadcn `Popover` with a `grid-cols-3` of links | Current app `aria-current="page"`; only 4+ apps |
@@ -122,11 +122,11 @@ later. "custom" means compose it from the listed primitives in the project.
 |---|---|---|
 | Table template, `Table Cell`, `Table Header Label`, `Table Cell Text`, `Table Cell Stack`, `Table Cell User` | shadcn `Table` + TanStack Table | Grid columns → column defs |
 | `Table Toolbar` | custom bar on shadcn `Table` + TanStack Table row selection | Shows "N selected" and the bulk actions |
-| `Data Grid Toolbar`, `Table Group Row` | custom on TanStack Table (grouping, aggregation, visibility) | Saved views stored per user |
+| `Data Grid Toolbar`, `Table Group Row` | custom on TanStack Table (grouping, aggregation, visibility) | Saved views stored per user. Table Group Row State=expanded / collapsed = `row.getIsExpanded()`, chevron-down / chevron-right with `aria-expanded` |
 | `Filter Condition`, `Filter Group` | custom: `Select`, `Combobox`, `Input`, `Button` | Serialize to the API filter format |
 | `Filter Bar`, `Filter Chip`, `Faceted Filter`, `Facet Option` | shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) | Faceted values from `column.getFacetedUniqueValues()` (TanStack) |
 | `Filter Section` | `Collapsible` + `Checkbox` list | |
-| `Table Cell Amount`, `Table Cell Status`, `Table Cell Progress`, `Table Cell Actions` | cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` | Amounts with `Intl.NumberFormat`, `tabular-nums` |
+| `Table Cell Amount`, `Table Cell Status`, `Table Cell Progress`, `Table Cell Actions` | cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` | Amounts with `Intl.NumberFormat`, `tabular-nums`; Table Cell Status note `min-w-0 truncate` so it fills the cell |
 | `Table Cell Link`, `Table Cell Date`, `Table Cell File`, `Table Cell Badges`, `Table Cell Avatars` | cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group | One date format per column |
 | `Table Pagination` | shadcn data-table pagination (`Select` for page size + `Pagination`) | |
 | `Table Cell Check` | cell renderer: lucide `Check` / `Minus` icon with `sr-only` "Included" / "Not included", or the text value; optional muted note | Plan comparison cells; excluded is a dash, never blank |
@@ -154,7 +154,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Page Toolbar` | custom flex: `Input`, `Button` + `Badge`, `ToggleGroup`, primary `Button` | Swapped for Table Toolbar while rows are selected; state in the URL |
 | `Trend Indicator` | custom: lucide `TrendingUp` / `TrendingDown` / `Minus` + `<span class="tabular-nums">`; Style=badge wraps both in a soft `Badge` | Direction from the data, tone from the meaning (`text-success`, `text-destructive`, `text-muted-foreground`, or the soft Badge of that tone); hidden "Up" / "Down" text |
 | `Metric Strip`, `Metric Strip Item` | `<dl class="grid grid-cols-2 md:grid-cols-4 divide-x">` with `dt` / `dd` + `Trend Indicator` | 3-5 items; one period said once nearby |
-| `Usage Meter` | shadcn `Progress` with a tone class + label row | `role="meter"`, `aria-valuenow`, `aria-valuemax`; near from 80%, over above 100% |
+| `Usage Meter` | shadcn `Progress` with a tone class + label row | `role="meter"`, `aria-valuenow`, `aria-valuemax`; near from 80%, over above 100%; the exposed bar's Value is the used share rounded to the nearest step |
 | `Leaderboard Row` | `<ol>` of rows with shadcn `Avatar`, `tabular-nums` value | Current row `aria-current="true"` and `bg-accent` |
 | `Dashboard Widget` | react-grid-layout (12 cols, `draggableHandle`) with shadcn `Card` per item | Sizes 3, 4, 6, 12 columns; save the layout per user |
 | `Distribution Bar` | flex row of segments (width from the share) + legend `<ul>`; or Recharts `BarChart layout="vertical"` stacked to 100% | `var(--chart-N)` per entity; 2-6 segments |
@@ -184,8 +184,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Badge List` | `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger | |
 | `Table of Contents`, `Table of Contents Item` | custom with scroll spy | |
 | `Comment`, `Comment Composer` | custom + `Textarea` | |
-| `Chat Message`, `Chat Composer`, `Typing Indicator` | custom | |
-| `Prompt Input`, `User Message`, `Assistant Message`, `Reasoning`, `Tool Call`, `Sources`, `Source Item`, `Citation`, `Prompt Suggestion` | Vercel AI SDK + AI Elements, or assistant-ui | |
+| `Chat Message`, `Chat Composer`, `Typing Indicator` | custom | Chat Message Size=default `max-w-[440px]`, Size=compact `max-w-[300px]` (panels under 480); text wraps, no manual breaks |
+| `Prompt Input`, `User Message`, `Assistant Message`, `Reasoning`, `Tool Call`, `Sources`, `Source Item`, `Citation`, `Prompt Suggestion` | Vercel AI SDK + AI Elements, or assistant-ui | Prompt Input Content=placeholder or filled follows the textarea value; Send enabled only when filled |
 | `Model Picker`, `Model Option`, `Context Chip`, `Agent Plan`, `Plan Step`, `Artifact Card` | AI Elements (model select, task, artifact) or custom on `DropdownMenu`, `Badge`, `Card` | Plan steps from the agent's tool events |
 | `Voice Recorder` | MediaRecorder + speech-to-text API; custom UI | Ask for the microphone on first tap |
 | `Chat History Item` | shadcn `SidebarMenuItem` + `DropdownMenu` | |
@@ -193,7 +193,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `AI Summary`, `AI Suggestion`, `AI Notice` | custom on `Card`, `Input`, `Badge` | Store who accepted an AI value and when |
 | `File Dropzone`, `File Item`, `Attachment` | react-dropzone + custom | |
 | `Resource Item` | custom row + `Button` (ghost icon) with `<a download>` | Label names the file, format and size |
-| `Rating` | custom `RadioGroup` | |
+| `Rating` | custom `RadioGroup` | Score is the shown number (one decimal), Value the filled stars. Size=lg: stars `size-8`, value `text-lg font-semibold`, for review forms |
 | `Color Picker` | react-colorful in `Popover` | |
 | `Coachmark`, `Hotspot` | Driver.js, Shepherd or `Popover` anchored to the target | |
 | `Video Player` | native `video` or Vidstack | Size=lg: play button `size-24` (96 px) for hero and full-width players |
@@ -248,7 +248,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Price` | custom: amount, `<s>` old price and period (`text-muted-foreground`) | `Intl.NumberFormat` with currency; sr-only "Was ... now ..." |
 | `Plan Card` | shadcn `Card` + `Price`, `Button`, `<ul>` of `Check Item` | Variant=featured: `ring-2 ring-primary`, primary `Button` |
 | `Announcement Pill` | `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` | One at a time |
-| `Trust Badge` | custom: lucide icon + name and detail, `<a>` to the trust page | Only current claims |
+| `Trust Badge` | custom: lucide icon + name and detail, `<a>` to the trust page | Only current claims. Tone=on-primary: `text-primary-foreground border-primary-foreground`; Tone=inverted: `text-background border-border`, detail `text-muted` (on `bg-foreground` cards) |
 | `Testimonial Card` | shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>` |  |
 | `Logo Tile` | `<li>` with `<img alt>` or inline SVG in `currentColor` (`text-foreground`, `opacity-70` for Style=plain) | Logo is an instance swap; `<a>` only when it links to a case study or integration; alt = company name |
 | `Logo`, `Logo Mark` | inline SVG in `currentColor` (or `<img alt>` with the product name) | Logo Mark is the symbol alone |
@@ -411,6 +411,9 @@ New style values added to existing components in 0.58.0 (the default value keeps
 
 | Figma | Code | Notes |
 |---|---|---|
+| `Gauge Target` | part of `Gauge`: the target tick, a short line at angle 180° + 180° x target on the arc (SVG line or a Recharts `ReferenceDot`) | Target 50-95; not used alone |
+| `Distribution Segment` | part of `Distribution Bar`: one `<div>` in the flex row, `flex-grow: share` (or `width: share%`), `min-width: 4px`, background `var(--chart-N)` | Color chart-1..chart-8 |
+| `QR Code` | `qrcode.react` `<QRCodeSVG value={url} size={128} marginSize={2} />` (or a generated SVG) in a `rounded-xl bg-card p-3` tile | Size=sm 96, default 128, lg 160; the Figma pattern is sample art; keep the real code dark on light in every theme; alt text names the destination |
 | `Comparison Table` | `<table>` with shadcn `Table` parts; header cells with `Price` (sm) and `Button` (sm); cells with lucide `Check` / `Minus` and `sr-only` text | Plans=3 or 4 columns; used by `Block / Comparison Table` (3) and `Block / Pricing with Comparison` (4) |
 | `Figure` | `<dl>` with `dd` (value) and `dt` (label) | Tone=on-primary: `text-primary-foreground` on value, label and source |
 | `Alert` (Style=soft) | shadcn `Alert` with a cva `style: "soft"`: `border-0 bg-[var(--badge-soft-X-bg)] [&>svg]:text-[var(--badge-soft-X-fg)]`, title `text-[var(--badge-soft-X-fg)]`, description `text-foreground` (X = neutral for default, destructive, success, warning, info) | Same tint tokens as Badge soft; one Style per product |

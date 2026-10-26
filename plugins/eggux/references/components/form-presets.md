@@ -1,6 +1,6 @@
 # Form Presets
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -14,7 +14,7 @@ On the Figma page: "Example / in forgot password", "Stress test / Field Preset"
 
 Component set · 10 variants · default size 320 × 64
 
-Ready-made fields built from Field + Input/Select (they follow every change to those). In code set the matching type, inputmode and autocomplete: email, current-password, new-password, tel, cc-number, cc-exp, cc-csc, postal-code, country-name, address-level1. The nested Field is exposed for states and errors.
+Ready-made fields built from Field + Input/Select (they follow every change to those). In code set the matching type, inputmode and autocomplete: email, current-password, new-password, tel, cc-number, cc-exp, cc-csc, postal-code, country-name, address-level1. The nested Field is exposed for states and errors. country shows the placeholder "Select a country" until a value is picked (set the nested Select to Content=filled and its Value).
 
 **Use for**
 
@@ -31,11 +31,13 @@ Ready-made fields built from Field + Input/Select (they follow every change to t
 
 1. Field label
 2. Control: Input or Select for the Type
-3. Hint or error (nested Field exposed)
+3. Hint and Error: each Type has its own default text (nested Field exposed)
 
 **Content and behavior**
 
 - Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region
+- Each Type sets its own Error and Hint defaults (password "Enter your password", new-password "Use at least 8 characters", phone with the country code, card fields, postal code, country, county); rewrite them in the client's words, never leave another type's text
+- country shows the placeholder "Select a country" by default; for a filled form set the nested Select to Content=filled with the country as Value
 - In code set the matching type, inputmode and autocomplete (email, tel, cc-number, postal-code...)
 - Change the label to the client's terminology; keep the preset behavior
 - password never blocks paste; new-password pairs with Password Strength
