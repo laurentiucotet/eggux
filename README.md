@@ -5,7 +5,8 @@ discovery, brand intake into Figma, building UI from the library, a decision log
 
 EGG UI is a generalist design system, complete enough for any product (SaaS, e-commerce,
 fintech, booking, content, internal tools, admin panels), with domain-neutral components, two
-themes (Default and Corporate, each Light and Dark), an enterprise pack (data grid, filter
+themes (Default: blue primary, pill controls, 12 px cards and Plus Jakarta Sans; Corporate:
+slate, square and Inter; each Light and Dark) plus a Showcase rebrand demo, an enterprise pack (data grid, filter
 builder, approvals, audit log, roles and permissions, reports) and a validated chart palette,
 motion and density tokens.
 

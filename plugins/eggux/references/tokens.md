@@ -26,7 +26,7 @@ Rules:
 | `color/<hue>/<50-950>`, `color/white`, `color/black` | Tailwind palette. `color/brand/<50-950>` is the brand ramp (Tailwind violet in the master, used only by the Showcase modes); a client rebrand replaces its 11 values |
 | `spacing/<0..96>` | Tailwind spacing scale in px (`spacing/4` = 16) |
 | `radius/<none,sm,DEFAULT,md,lg,xl,2xl,3xl,full>` | Only `none` and `full` are visible in pickers |
-| `type/family/<sans,serif,mono>` | Font family names |
+| `type/family/<sans,serif,mono,jakarta>` | Font family names; `font/sans` aliases `jakarta` (Plus Jakarta Sans) in Light, Dark and Showcase, `sans` (Inter) in Corporate |
 | `type/weight/*`, `type/size/*`, `type/leading/*`, `type/tracking/*` | Type scales |
 | `shadow/*` | Tailwind shadow values, bound to the `shadow/*` effect styles |
 | `layout/breakpoint/*`, `layout/container/*` | Breakpoints and container widths |
@@ -51,7 +51,7 @@ Figma and code map 1:1.
 | `background/warning` | `--warning` | Extension |
 | `background/info` | `--info` | Extension |
 | `foreground/<same names>` | `--foreground`, `--<name>-foreground` | Text and icons on the matching background |
-| `foreground/brand` | `--brand` | Text and icons in the brand color on the page: accent words in a headline, inline links, `Button` link. Never put `background/primary` on text. Light `neutral/900`, Dark `neutral/200`, Corporate Light `blue/700`, Corporate Dark `blue/400`; at least 4.5:1 on default, muted and card. Tailwind v4: `--color-brand: var(--brand)` in `@theme inline`, then `text-brand` |
+| `foreground/brand` | `--brand` | Text and icons in the brand color on the page: accent words in a headline, inline links, `Button` link. Never put `background/primary` on text. Light `blue/700`, Dark `blue/400` (same in Corporate), Showcase brand/700 and brand/400; at least 4.5:1 on default, muted and card. Tailwind v4: `--color-brand: var(--brand)` in `@theme inline`, then `text-brand` |
 | `border/default` | `--border` | |
 | `border/input` | `--input` | |
 | `border/ring` | `--ring` | Focus ring, usually follows the brand |
@@ -73,9 +73,9 @@ Both uses must pass 4.5:1. Run `/eggux:audit-tokens` to check all pairs.
 ### Themes (Semantic and Components modes)
 | Mode | Look | Use |
 |---|---|---|
-| `Light`, `Dark` | shadcn neutral, primary near black, 8 px radius | Consumer, marketing, startup SaaS |
-| `Corporate Light`, `Corporate Dark` | `color/blue/700` primary (`blue/600` in Dark), slate neutrals, `radius/base` 4 px, `border/input` slate/500, `foreground/muted` slate/600 | Enterprise, internal tools, finance, regulated industries |
-| `Showcase Light`, `Showcase Dark` | `color/brand/600` primary with white text (5.7:1), `foreground/brand` brand/700 (brand/400 Dark), `border/ring` brand/600 (brand/500 Dark), `background/accent` brand/50 (Light only), `chart/1` brand/600 (brand/400 Dark), `chart/7` blue, `sidebar/primary` brand/600, `radius/base` 12 px (sm 6, md 8, xl 16); neutral surfaces as Light/Dark | Demo rebrand for the Cover, Intro and Showcase pages only; never the library default. Shows how a client brand re-aliases the same tokens |
+| `Light`, `Dark` | EGG default: `color/blue/600` primary with white text (5.17:1), `foreground/brand` blue/700 (blue/400 Dark), ring blue/600 (blue/500 Dark), `background/accent` blue/50 (Light), pill buttons and single-line fields (`button/radius`, `input/radius` = `radius/full`), `radius/base` 12 px for cards (sm 6, md 8), Plus Jakarta Sans, pure neutrals | Consumer, marketing, SaaS, the library default |
+| `Corporate Light`, `Corporate Dark` | `color/blue/700` primary (`blue/600` in Dark), slate neutrals, Inter, square controls (`button/radius`, `input/radius` 4 px), `radius/base` 4 px, `border/input` slate/500, `foreground/muted` slate/600 | Enterprise, internal tools, finance, regulated industries |
+| `Showcase Light`, `Showcase Dark` | `color/brand/600` primary with white text (5.7:1), `foreground/brand` brand/700 (brand/400 Dark), `border/ring` brand/600 (brand/500 Dark), `background/accent` brand/50 (Light only), `chart/1` brand/600 (brand/400 Dark), `chart/7` blue, `sidebar/primary` brand/600, `radius/base` 12 px (sm 6, md 8, xl 12), pill controls and Plus Jakarta Sans like Light/Dark; neutral surfaces as Light/Dark | Demo rebrand for the Cover, Intro and Showcase pages only; never the library default. Shows how a client brand re-aliases the same tokens |
 
 Set Semantic and Components to the same mode on a frame. Corporate also sets the sidebar
 (`sidebar/*`) and `button/destructive-hover`. Pair Corporate with Density `Compact` for
@@ -103,7 +103,9 @@ Current tokens:
 |---|---|---|
 | `sidebar/*` | From shadcn | Sidebar surfaces |
 | `chart/1..8` | Tailwind steps, same in Light and Dark (see Data visualization) | Chart series, fixed order |
-| `button/primary-hover` | `background/primary` at `opacity/90` | shadcn `hover:bg-primary/90` |
+| `button/primary-hover` | Light `color/blue/700`; other modes `background/primary` at `opacity/90` | Light needs the darker step for white text (4.32:1 at 90%) |
+| `button/radius` | Light, Dark, Showcase `radius/full`; Corporate `radius/md` (4 px) | Button, Button Icon, Button Group, Split Button, Toggle, Toggle Group, Pagination, default Tabs. CSS `--button-radius`, Tailwind `rounded-button` |
+| `input/radius` | Light, Dark, Showcase `radius/full`; Corporate `radius/md` | Single-line fields: Input, Select trigger, Combobox, Date Picker trigger, Search Field, Input Group, Number Input, Inline Form. Textarea keeps `radius/md`. CSS `--input-radius`, Tailwind `rounded-input` |
 | `button/secondary-hover` | `background/secondary` at `opacity/80` | shadcn `hover:bg-secondary/80` |
 | `button/destructive-hover` | Light `color/red/700`, Dark `background/destructive` at `opacity/90` | 90% opacity failed 4.5:1 in Light |
 | `dialog/overlay` | `color/black` at `opacity/50` | shadcn `bg-black/50` behind Dialog and Alert Dialog |

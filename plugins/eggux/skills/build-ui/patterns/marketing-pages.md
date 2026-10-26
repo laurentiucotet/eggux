@@ -92,7 +92,6 @@ one decorative device and real imagery; start a landing page by copying the clos
 - Set the brand with the `Logo` property on Navbar and Footer blocks (any `Logo / *` or the client logo).
 - Keep a hero `Background / Grid` at about 30% layer opacity so muted text over grid lines stays 4.5:1.
 - Never hide items inside a block's grid to change the count (the grid keeps its rows); pick the block whose count fits.
-- In the Default neutral theme `foreground/brand` is near black, so an accent phrase disappears; use a second headline line in `foreground/muted` or let photography carry the page.
 - On a full-bleed photo hero keep the text white over the block scrim and measure the brightest pixel under it (4.5:1); skip the accent phrase there.
 - In dark modes alternate `background/default` and `section/muted-background` per section and keep cards on `background/card`; light product screenshots become the brightest area, so give them a Device Frame and space around.
 
