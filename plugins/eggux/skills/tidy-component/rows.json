@@ -1082,7 +1082,10 @@
    "helpers": [
     "Check Item"
    ],
-   "block": "550:33533"
+   "block": "550:33533",
+   "examples": [
+    "Example / Check Item tones"
+   ]
   }
  ],
  "Form Presets": [
