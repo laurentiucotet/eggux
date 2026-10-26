@@ -411,6 +411,8 @@ New style values added to existing components in 0.58.0 (the default value keeps
 
 | Figma | Code | Notes |
 |---|---|---|
+| `Gauge Target` | part of `Gauge`: the target tick, a short line at angle 180° + 180° x target on the arc (SVG line or a Recharts `ReferenceDot`) | Target 50-95; not used alone |
+| `Distribution Segment` | part of `Distribution Bar`: one `<div>` in the flex row, `flex-grow: share` (or `width: share%`), `min-width: 4px`, background `var(--chart-N)` | Color chart-1..chart-8 |
 | `QR Code` | `qrcode.react` `<QRCodeSVG value={url} size={128} marginSize={2} />` (or a generated SVG) in a `rounded-xl bg-card p-3` tile | Size=sm 96, default 128, lg 160; the Figma pattern is sample art; keep the real code dark on light in every theme; alt text names the destination |
 | `Comparison Table` | `<table>` with shadcn `Table` parts; header cells with `Price` (sm) and `Button` (sm); cells with lucide `Check` / `Minus` and `sr-only` text | Plans=3 or 4 columns; used by `Block / Comparison Table` (3) and `Block / Pricing with Comparison` (4) |
 | `Figure` | `<dl>` with `dd` (value) and `dt` (label) | Tone=on-primary: `text-primary-foreground` on value, label and source |

@@ -542,7 +542,9 @@
   },
   {
    "main": "Gauge",
-   "helpers": [],
+   "helpers": [
+    "Gauge Target"
+   ],
    "block": null
   },
   {
@@ -602,7 +604,9 @@
   },
   {
    "main": "Distribution Bar",
-   "helpers": [],
+   "helpers": [
+    "Distribution Segment"
+   ],
    "block": "550:82029"
   },
   {

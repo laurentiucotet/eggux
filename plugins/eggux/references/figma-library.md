@@ -580,7 +580,8 @@ thumbs-down, shopping-bag, package, credit-card, bold, italic, underline, list, 
 text-quote, link, external-link, share-2, heading, code, git-branch, sparkles, zap, lightbulb,
 refresh-cw, square, paperclip, globe, wrench, mic, message-square, square-pen, play, pause,
 volume-2, maximize, captions, image, shield-check, key-round, lock, eye, pin, grip-vertical, sun,
-moon, folder.
+moon, folder, send, receipt, reply, user-plus, palette, languages, hash, printer,
+database, bookmark, headphones, podcast.
 
 ## Screens
 The SCREENS group (after BLOCKS) holds complete screens and templates to copy whole: pages Account,

@@ -2499,14 +2499,16 @@
   ],
   "anatomy": [
    "Label (\"Q4 revenue vs target\")",
-   "Half-circle track and fill",
-   "Target tick",
-   "Value",
-   "Status text: On track, At risk, Off track"
+   "Half-circle track and \"value\" arc (set the arc per instance: Sweep = share x 50%)",
+   "Target tick: exposed Gauge Target, Target 50, 60, 70, 75, 80 (default), 85, 90, 95",
+   "Value (\"72%\")",
+   "Status text: On track, At risk, Off track (follows Status)",
+   "Axis: Min (\"€0\"), Target label (\"Target €2.0M of €2.5M\"), Max (\"€2.5M\")"
   ],
   "rules": [
    "Status is written, not only colored",
-   "The tick marks the target",
+   "Set Value, the value arc and the Target tick together so they agree",
+   "Target label says the target in words and units; Min and Max name the scale",
    "Status tone follows Status: on-track, at-risk (warning), off-track (destructive)",
    "Use sparingly"
   ],
@@ -2532,6 +2534,7 @@
    "Exact values matter: use a table of Table Cells"
   ],
   "anatomy": [
+   "Data: default, late-peak, weekdays-only (preset shapes)",
    "Row labels",
    "Column labels",
    "Cells: chart/1 in 5 opacity steps, background/muted for zero",
@@ -2542,7 +2545,8 @@
    "One hue only (chart/1) in 5 opacity steps, plus muted for zero",
    "Never use red/green scales",
    "The legend reads from fewer to more",
-   "Exact value on hover, never only the shade"
+   "Exact value on hover, never only the shade",
+   "Pick the Data shape closest to the story; for real data, detach in client files and set each cell to a step (or muted for zero)"
   ],
   "a11y": [
    "Table view for screen readers and exact values",
@@ -4569,18 +4573,19 @@
    "Layout: vertical (default), compact, horizontal",
    "Label (body/small, muted)",
    "Value (heading/h2 in vertical and horizontal, heading/h3 in compact; one line)",
-   "Change Badge (Show change), soft by Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus",
+   "Change Badge (Show change): exposed Badge; set its Label (\"+12.5%\") and Variant on the instance. Default tone follows Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus",
    "Sparkline (vertical: Show sparkline, off by default, under the value; horizontal: always on, 120 x 48, right of the value)",
    "Trend line and Footnote (Show footer; vertical and horizontal)",
    "Icon Tile (compact): exposed, Style=brand, Size default; set Icon and Style on the instance",
    "Show change and Show trend hide the change badge and the trend row when there is no comparison"
   ],
   "rules": [
-   "Trend sets the icon and the change badge tone; edit the change and trend line per instance",
-   "When up is bad (costs, churn), switch the change badge Variant to soft-destructive on the instance",
+   "Trend sets the icon, the sparkline and the default badge tone; edit the badge Label and the trend line per instance",
+   "Tone follows meaning, not direction: when down is good (churn, costs, response time) keep Trend=down and set the badge Variant to soft-success; when up is bad, Trend=up with soft-destructive",
    "Direction is shown by icon and sign, never color alone",
    "One Layout per row; compact rows keep the same Icon Tile Style",
    "Show sparkline on all cards of a row or none; same period in each",
+   "Numbers in the locale format of the page: +12.5% and €48,250 in English, never a decimal comma next to a thousands comma",
    "Value stays on one line; amounts in the locale format (€48,250)",
    "The Footnote says what it is compared to",
    "Cards in a row share structure and height"
@@ -5905,7 +5910,8 @@
    "Every bar has its signed value (+€86K, −€64K); totals without a sign",
    "Increase and decrease use the diverging arms, never series slots; say in the legend which is which",
    "At most 8 steps; fold the small ones into \"Other\"",
-   "The footer says the result in a sentence (\"€14K above opening\")"
+   "The footer says the result in a sentence (\"€14K above opening\")",
+   "Bars are drawn in the main, not properties: to change the data, detach the instance in client files and edit bar heights, labels and connectors; step names and value labels can be overridden as text"
   ],
   "a11y": [
    "Color is not the only cue: signs on the labels and the legend",
@@ -7910,13 +7916,14 @@
   ],
   "anatomy": [
    "Header: Title and Total",
-   "Bar: 2-6 segments, chart/1..6",
-   "Legend (Show legend): swatch, label, share"
+   "Segments (slot): 2-6 Distribution Segment parts, Color chart-1..chart-6 in order (chart-7, chart-8 only to match an entity color used elsewhere)",
+   "Legend (Show legend): swatch, label, share; wraps to more lines when narrow; items 5 and 6 are hidden, show them for 5-6 parts"
   ],
   "rules": [
    "2-6 segments in a fixed order, largest or most important first; the rest in \"Other\"",
-   "Segment colors follow the entity (chart/1..6) and stay the same across pages",
-   "Legend shows the share (42%); hover a segment for the count",
+   "Set each share in the Segments slot: give a segment a fixed width of share x bar width and keep the last one on Fill so the bar stays full (with the Plugin API, layoutGrow = share keeps it proportional)",
+   "Segment colors follow the entity (chart/1..6), match the legend swatches and stay the same across pages",
+   "Legend shows the share (42%); hover a segment for the count; show or hide legend items to match the segments",
    "2 px gap between segments; tiny segments keep a 4 px minimum width",
    "Shares add to 100%; round the largest to fix rounding"
   ],
@@ -7925,7 +7932,7 @@
    "Segments are focusable with a Tooltip that has the count; or the bar is aria-hidden and the legend is a list",
    "Adjacent segments keep 3:1 against each other or the gap separates them"
   ],
-  "code": "custom: flex row of segments with width from the share + legend <ul>; or Recharts BarChart layout=\"vertical\" stacked to 100%.",
+  "code": "custom: flex row of segments with width from the share (flex-grow: share) + legend <ul>; or Recharts BarChart layout=\"vertical\" stacked to 100%.",
   "guides": [
    "skills/build-ui/components/charts.md"
   ]
