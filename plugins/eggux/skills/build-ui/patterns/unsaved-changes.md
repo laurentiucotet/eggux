@@ -27,3 +27,5 @@ Do not mix both in the same form.
 ## shadcn / Figma
 `AlertDialog` for the discard prompt. Long forms and settings: `Save Bar` (default, saving,
 error) sticky at the bottom while there are changes, with a count ("3 unsaved changes"). See `components/dialog.md`.
+- Example: SCREENS / Settings, General (unsaved changes with the Save Bar count, saved with a success
+  toast; mobile uses a sticky Discard / Save changes bar).

@@ -29,3 +29,5 @@ Prefer undo over confirmation when the system can support it.
 `AlertDialog` + `Button variant="destructive"`; `Toast`/`Sonner` for undo.
 - Type to confirm: `Block / Delete Confirmation` (Alert Dialog destructive with a Field under the
   header; Delete stays disabled until the name matches).
+- Delete account: a `Block / Danger Zone` row opens an Alert Dialog destructive with typed DELETE and
+  the password; screens SCREENS / Account, Delete account.

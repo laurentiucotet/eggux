@@ -505,6 +505,8 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Forms | `Block / Sign In Split` | - | 1440 x 900. Left: Logo (exposed), Form (native slot, default `Block / Sign In`), Footer text + Show footer. Right: full-height photo (Image Placeholder exposed, `Image / Office / 06`, swap to `Image / Screenshot / *` for a product screen) in a radius/xl panel with a Testimonial Card (exposed, shadow/lg) at the bottom; Show testimonial |
 | Forms | `Block / Sign Up Split` | - | 1440 x 900. Left: Logo (exposed), Form (native slot, default `Block / Sign Up`), Footer + Show footer. Right on `section/muted-background`: Title, Description, Benefits (native slot, 4 Check Items), Logos caption + Logos (native slot, 6 plain Logo Tiles), Show logos |
 | Forms | `Block / Welcome Role Select` | - | 672 wide (the Wizard Page slot). Step + Progress (Show progress), Title, Description, Role question + 6 radio Option Cards with icons in 2 columns, Team question + 5 compact Option Cards, Skip for now / Continue (Show actions) |
+| App | `Block / Settings Page with Tabs` | - | 1136 wide, no fill, gap spacing/6. Page Header "Settings" (exposed, Actions slot empty), line Tabs (exposed): General (active), Members (count 10), Notifications, Security, Billing, API keys, Integrations, Appearance; Sections (native slot, 960 wide) with two Form Sections Layout=side: "Workspace" (Workspace name, Logo Avatar Upload square initials, Workspace URL Input Group "app.orbitly.io/") and "Language and region" (Language, Time zone, Currency, Week starts on Selects); Save Bar (exposed, 960, "2 unsaved changes"). Show save bar, Show tabs |
+| App | `Block / Danger Zone` | - | 960 wide. Card (exposed) with destructive border and title "Danger zone", description, Setting Rows: Transfer ownership (outline Button), Delete workspace (destructive Button) with counts and the 30-day grace period. Put last in a settings page; the button opens an Alert Dialog with typed confirmation |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,
@@ -525,6 +527,12 @@ left to right in flow order (emails: `Screen / Email / <Name>`).
 
 | Page | Flow | Screens | Built from |
 |---|---|---|---|
+| Account | My profile | Account menu, View, Edit, Validation errors, Saved (Desktop); View, Edit (Mobile) | Page Shell / App, Settings Page with Tabs relabeled as account tabs (Profile, Public profile, Activity, Connected accounts, Privacy and data), Account Menu, Cards with Avatar, Badges, Description List Items, Timeline Items; Block / Profile, Error Summary, Field error states, Toast; Page Shell / Mobile with Bottom Nav |
+| Account | Public profile | Preview | Account tabs, Alert info, Block / Header Profile, Featured work Card with Image / Abstract, Screenshot, Office |
+| Account | Notifications | Inbox (Desktop, Mobile), All caught up | Page Header, line Tabs with counts, Notification Items grouped by day in Cards (Reply, Approve / Review actions), Empty State; mobile Bottom Nav Inbox active |
+| Account | Activity history | History | Account tabs, search Input + Selects + Export CSV, Timeline Items with Change Items, Load More |
+| Account | Connected accounts | Accounts and devices | Account tabs, Cards of Setting Rows (sign-in methods, connected apps), Session Rows, Sign out of all other sessions |
+| Account | Delete account | Danger zone, Confirm | Account tabs, Your data card (Export data, profile visibility Switch), Block / Danger Zone (Leave workspace, Delete account), Alert Dialog destructive with typed DELETE and password |
 | Auth | Sign in | Default (Google + SSO buttons), Error: wrong password, SSO; each Desktop + Mobile, Light and Dark side by side | `Block / Sign In Split` (Form slot: `Block / Sign In`), `Page Shell / Mobile` + `Block / Sign In`, Alert destructive, `Logo / Orbitly` |
 | Auth | Sign up | Default, Validation errors (email, password, Requirement List), Verify email (6-digit code) | `Block / Sign Up Split` (Form slot: Sign Up, then Two-Factor retitled), Requirement List, Password Strength, Input OTP, `Page Shell / Mobile` |
 | Auth | Magic link | Request, Check your email | `Page Shell / Auth` + Forgot Password and Check Email (retitled), `Page Shell / Mobile` |
@@ -536,6 +544,14 @@ left to right in flow order (emails: `Screen / Email / <Name>`).
 | Emails | Billing | `Screen / Email / Invoice`, `Payment receipt`, `Payment failed`, `Trial ending` | Email / Header, Hero, Details, Line Items (Line Item, Total Row), Callout warning (Payment failed), Stats (Trial ending), Content, Button, Footer |
 | Emails | Marketing | `Screen / Email / Weekly summary` | Email / Header (View in browser on), Hero with eyebrow, Stats (3 Stat), Button, Divider, Hero with image (h3 title, feature), Content link, 3 Article, Footer with unsubscribe |
 | Emails | Commerce | `Screen / Email / Order confirmation` | Email / Header (Logo / Tidewater), Hero, Details (order, delivery), Line Items with product photos (`Image / Product / 01, 03, 07`), Button, Content, Footer (Tidewater address) |
+| Settings | General | Unsaved changes (Desktop, Mobile), Saved (Desktop, plus Dark and Corporate Light) | Page Shell / App (Orbitly sidebar), Block / Settings Page with Tabs, Block / Danger Zone, Save Bar, Toast success; mobile: Page Shell / Mobile detail, Form Section stacked, sticky Discard / Save changes bar |
+| Settings | Members | Team, Invite (dialog) | Settings Page with Tabs, Block / Team Members, Roles card (Setting Rows + Badge), Dialog with Textarea emails, Role Select, Usage Meter near |
+| Settings | Notifications | Preferences (Desktop with toast, Mobile) | Settings Page with Tabs, Block / Notification Preferences, Alert info (security emails always on), Toast; mobile Setting Rows with Switches grouped by topic |
+| Settings | Security | Overview, Change password (dialog) | Settings Page with Tabs, Password Card, Block / Security (two-factor, sign-in alerts, SSO URL, sessions), Dialog with Password Strength |
+| Settings | Billing | Plan and invoices | Settings Page with Tabs, Block / Billing (plan, usage meters, payment method, billing email, invoices) |
+| Settings | API keys | Keys, Key created (shown once) | Settings Page with Tabs, Block / API Keys, Alert info; Dialog with Alert warning and Copy Field State=copied |
+| Settings | Integrations | Directory | Settings Page with Tabs, Block / Integrations |
+| Settings | Appearance | Theme and density | Settings Page with Tabs, Form Sections with Option Cards radio (Light, Dark, System; Comfortable, Compact), Language and Date format Selects, Toast (saves on change) |
 
 Every template: 720 wide frame on `section/muted-background` (padding 40 top and bottom) holding a 600 wide "Email"
 column: Header, a "Body" frame (`background/card`, radius/lg, padding 40 top and bottom, gap 24) with the parts, Footer.
