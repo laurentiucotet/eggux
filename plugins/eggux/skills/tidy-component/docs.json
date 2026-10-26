@@ -2014,7 +2014,8 @@
    "No results: say what was searched and offer \"Clear filters\"",
    "No access: say who can grant it",
    "Error: say what failed and offer Retry",
-   "Size=default for pages and large cards, sm inside tables, cards and panels"
+   "Size=default for pages and large cards, sm inside tables, cards and panels",
+   "Media=image: first-run pages and empty dashboards where a photo or illustration shows the value of the first action"
   ],
   "avoid": [
    "Loading: use Skeleton in the shape of the content",
@@ -2022,7 +2023,8 @@
    "Field errors: inline message under the field"
   ],
   "anatomy": [
-   "Icon (swap) that matches the object",
+   "Media=icon: icon tile with an Icon (swap) that matches the object",
+   "Media=image: Image Placeholder 16:9 (exposed) above the title; swap the Image",
    "Title (\"No invoices yet\")",
    "Description, one sentence (Show description)",
    "Actions slot (Show actions)"
@@ -2031,16 +2033,18 @@
    "Every list and table has one",
    "Action only when the user may create; use the object's create label",
    "Centered in the area the content would occupy, not the whole page",
-   "Never an illustration that hides the message",
+   "Media=image only for first run and onboarding; never an image that hides or replaces the title and action",
    "Inside a table: Size=sm under the header row",
    "Cleared (inbox zero): a short positive line, no action",
-   "Five cases, each with its own icon and action (see \"empty state types\"): no data yet (create, import), no results (clear filters), error (try again), no access (request access), first run (set up)"
+   "Five cases, each with its own icon and action (see \"empty state types\"): no data yet (create, import), no results (clear filters), error (try again), no access (request access), first run (set up)",
+   "No results, error and no access always use Media=icon"
   ],
   "a11y": [
    "The title is a heading at the right level",
    "The icon is decorative (aria-hidden)",
    "Actions are buttons reachable by keyboard",
-   "Description in foreground/muted keeps 4.5:1"
+   "Description in foreground/muted keeps 4.5:1",
+   "The image is decorative (empty alt) unless it carries information"
   ],
   "code": "shadcn Empty (or a custom block: icon, title, description, actions).",
   "guides": [
@@ -3630,33 +3634,38 @@
    "Uploads, imports and exports of known size",
    "Completion of a profile or setup (\"3 of 5\")",
    "Bulk actions that run longer than ~2 s",
-   "A value per row, inside Table Cell Progress"
+   "A value per row, inside Table Cell Progress",
+   "Type=segmented: a count of steps (onboarding, setup checklist, a multi-step form on mobile), 4 to 10 segments"
   ],
   "avoid": [
    "Unknown duration under ~3 s: use Spinner",
    "Content loading: use Skeleton",
    "Steps people move through: use Stepper",
-   "Picking a value: use Slider"
+   "Picking a value: use Slider",
+   "A circular indicator: use Progress Ring"
   ],
   "anatomy": [
    "Track: background/muted, radius/full",
    "Indicator: background/primary, width = value",
    "Value text next to it: percent or \"3 of 5\"",
-   "Tone: default, success, warning, error (indicator color)"
+   "Tone: default, success, warning, error (indicator color)",
+   "Type=segmented: Segments (native slot) with Progress Segment instances (State complete or upcoming, Tone), 4 px gap, each FILL width"
   ],
   "rules": [
    "Determinate only: the share must be known",
    "Always show the number or the remaining count next to the bar; never only color",
    "Value variants are 0, 25, 50, 75, 100; resize the indicator for other values",
    "Jobs over ~10 s run in the background, with a toast or notification when done",
-   "Tone shows the outcome, not the amount: success when complete, warning near a limit, error when failed; the text says it too"
+   "Tone shows the outcome, not the amount: success when complete, warning near a limit, error when failed; the text says it too",
+   "Type=segmented: one segment per step; Value sets 0 to 4 of 4 complete, add or remove segments for 4 to 10 steps and set each State",
+   "Segmented progress still shows the count in text (\"Step 2 of 4\")"
   ],
   "a11y": [
    "role=\"progressbar\" with aria-valuenow, aria-valuemin and aria-valuemax",
    "The accessible name says what is progressing (\"Uploading invoices.csv\")",
    "Announce completion when it matters"
   ],
-  "code": "shadcn Progress.",
+  "code": "shadcn Progress; Type=segmented is a flex row of divs (see code-mapping).",
   "guides": [
    "skills/build-ui/components/progress-and-slider.md",
    "skills/build-ui/components/skeleton.md",
@@ -3813,16 +3822,20 @@
   "use": [
    "Average rating on a product or a review summary: \"4.7 (128)\"",
    "Rating input in a review or feedback form",
-   "Size=sm in cards and lists, Size=default in detail pages and forms"
+   "Size=sm in cards and lists, Size=default in detail pages and forms",
+   "Style=badge: the score in tight places: product cards, search results, tables, map pins"
   ],
   "avoid": [
    "Satisfaction surveys: thumbs up / down or a labeled 1-5 scale often reads better",
    "NPS: 0-10 buttons",
-   "Status or priority: use Badge"
+   "Status or priority: use Badge",
+   "Style=badge as input: it is display only"
   ],
   "anatomy": [
-   "Five stars: filled in background/warning, empty in border/input",
-   "Value: the number (Show value)",
+   "Style=default: five stars, filled in background/warning, empty in border/input",
+   "Style=badge: one star and the score in a soft amber badge (badge/soft-warning-bg, star and text badge/soft-warning-fg, radius/md)",
+   "Value: the number (Show value; always shown in Style=badge)",
+   "Score: the number in Style=badge (TEXT, one decimal)",
    "Count: number of ratings (Show count, Count)"
   ],
   "rules": [
@@ -3830,14 +3843,16 @@
    "Half stars only when displaying averages; input is whole stars",
    "As input, hover previews the value; a second click on the same star does not clear it",
    "Offer a Clear link only when zero is allowed",
-   "Ask for a comment after a low rating, not before"
+   "Ask for a comment after a low rating, not before",
+   "Style=badge: type the score in Score; Value has no effect there"
   ],
   "a11y": [
    "Display: one element with aria-label=\"Rated 4.7 out of 5\"",
    "Input: a radio group of 5, each labeled \"4 of 5 stars\"; arrow keys change the value",
-   "Empty star outlines meet 3:1 against the background"
+   "Empty star outlines meet 3:1 against the background",
+   "Style=badge: one element with aria-label=\"Rated 4.8 out of 5, 128 reviews\"; the star is aria-hidden"
   ],
-  "code": "custom RadioGroup with star icons; the display is a span with an aria-label.",
+  "code": "custom RadioGroup with star icons; the display is a span with an aria-label. Style=badge is a Badge-like span (see code-mapping).",
   "guides": [
    "skills/build-ui/components/rating.md",
    "skills/build-ui/patterns/commerce.md"
@@ -4595,7 +4610,9 @@
   "use": [
    "Multi-step forms and wizards where order matters: onboarding, checkout",
    "3-6 steps",
-   "On top of Block / Multi-step Form, one Card per step"
+   "On top of Block / Multi-step Form, one Card per step",
+   "Orientation=vertical: in a side column next to a long form, or as a setup checklist",
+   "Style=dots: onboarding, carousels of steps and mobile flows, always with a \"Step 2 of 4\" label"
   ],
   "avoid": [
    "2 steps: use one page or a Dialog",
@@ -4603,8 +4620,9 @@
    "Mobile: \"Step 2 of 3 · Plan\" and a Progress bar"
   ],
   "anatomy": [
-   "Steps slot: Step instances",
-   "Indicator: Number, check when completed, x when error",
+   "Steps slot: Step instances with the same Orientation and Style",
+   "Indicator: Number, check when completed, x when error (Style=default)",
+   "Style=dots: 8 px dot (current: 24 px pill horizontal, ring vertical; upcoming foreground/muted)",
    "Title",
    "Description (Show description)",
    "Connector to the next step, off on the last"
@@ -4614,12 +4632,14 @@
    "Exactly one Step is current",
    "Completed steps show a check and are clickable; upcoming steps are not",
    "Validate each step before moving on; an invalid step that was left shows error",
-   "Keep entered data when going back; the last step is a review"
+   "Keep entered data when going back; the last step is a review",
+   "Style=dots horizontal hides the step names: show the current title and \"Step 2 of 4\" next to it"
   ],
   "a11y": [
    "An ordered list; the current step has aria-current=\"step\"",
    "Step state is in text for screen readers (\"Completed\", \"Error\")",
-   "Moving to a step moves focus to its heading"
+   "Moving to a step moves focus to its heading",
+   "Style=dots: each dot has an accessible name (\"Step 2 of 4, current\")"
   ],
   "code": "custom (no shadcn stepper).",
   "guides": [
@@ -5163,7 +5183,8 @@
    "Name of every icon-only button",
    "A one-line hint on a control",
    "Full timestamp on a relative time, or the full text of a truncated label",
-   "Reason a control is disabled and how to fix it"
+   "Reason a control is disabled and how to fix it",
+   "Variant=light: dense data screens, charts and editors where a filled tooltip is too loud, and over dark or colored areas"
   ],
   "avoid": [
    "Interactive content: use Popover",
@@ -5176,7 +5197,8 @@
    "Title (Show title): ui/label, for a rich tooltip",
    "Label: plain text, wraps at 280",
    "Kbd (Show shortcut, exposed): the keyboard shortcut",
-   "Arrow pointing at the trigger (Side)"
+   "Arrow pointing at the trigger (Side)",
+   "Variant: default (background/primary fill) or light (background/popover, border/default 1 px, shadow/md, bordered arrow; text foreground/popover)"
   ],
   "rules": [
    "Same text as the accessible label of the icon-only button",
@@ -5184,14 +5206,15 @@
    "Appears on hover and on keyboard focus, after a short delay",
    "Never holds information needed to finish the task",
    "Touch has no hover: the content must also be reachable another way",
-   "Show the shortcut when the action has one (Search ⌘K)"
+   "Show the shortcut when the action has one (Search ⌘K)",
+   "One Variant per product"
   ],
   "a11y": [
    "Shows on keyboard focus; Escape hides it",
    "Tied to the trigger with aria-describedby, or its text is the button's aria-label",
-   "Text on background/primary meets 4.5:1"
+   "Text on background/primary (default) and on background/popover (light) meets 4.5:1"
   ],
-  "code": "shadcn Tooltip.",
+  "code": "shadcn Tooltip; Variant=light is TooltipContent className (see code-mapping).",
   "guides": [
    "skills/build-ui/components/tooltip.md",
    "skills/build-ui/components/popover.md",
@@ -7506,7 +7529,9 @@
   "use": [
    "A real deadline: offer ends, registration closes, webinar starts",
    "A payment due or a session that expires",
-   "A resend code timer (short form, minutes and seconds)"
+   "A resend code timer (short form, minutes and seconds)",
+   "Style=boxed: hero sections, launch and webinar pages on a muted or image background",
+   "Style=inline: tight spaces such as a sticky bar, a table cell or a resend-code line"
   ],
   "avoid": [
    "Fake urgency that resets: use Meta Item with the real date, or nothing",
@@ -7517,19 +7542,22 @@
    "Days tile: value and unit",
    "Hours tile",
    "Minutes tile",
-   "Seconds tile (Show seconds)"
+   "Seconds tile (Show seconds)",
+   "Style: default (card/muted-background tiles), boxed (background/card tiles with border/default, shadow/xs, radius/lg, heading/h2 digits), inline (no tiles, colons between units; the last colon follows Show seconds)"
   ],
   "rules": [
    "Days, hours, minutes; seconds only in the last hour (Show seconds)",
    "Always say what happens at zero next to it, with the exact date and time zone (\"Offer ends 24 Oct, 18:00 CEST\")",
    "Two digits per tile (02, 14); drop the days tile when it is 00",
    "At zero, replace it with the outcome (\"Registration closed\") and remove the action it promoted",
-   "Count from the server time, never only the device clock"
+   "Count from the server time, never only the device clock",
+   "One Style per page"
   ],
   "a11y": [
    "Screen readers get the end time, not a ticking value: role=\"timer\" with aria-live=\"off\" and a <time datetime> label",
    "Announce once at a meaningful step (5 minutes left) for session expiry, with a way to extend",
-   "No flashing or color pulse in the last seconds"
+   "No flashing or color pulse in the last seconds",
+   "Unit labels in foreground/muted keep 4.5:1 on their tile (card/muted-background, not background/muted)"
   ],
   "code": "custom: tiles from a useCountdown hook (setInterval 1 s, server end time); <time datetime> for the deadline.",
   "guides": [
