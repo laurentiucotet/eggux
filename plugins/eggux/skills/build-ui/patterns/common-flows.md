@@ -7,7 +7,8 @@ Each flow lists its steps, the patterns and blocks it uses, the feedback and the
 ## Create object
 1. List → "New <object>" (primary button in the Page Header).
 2. Form: Sheet or Dialog for up to ~8 fields, a page or Wizard for more (`form-validation.md`,
-   `multi-step-form.md`).
+   `multi-step-form.md`). In a dialog: `Block / Create Record Dialog` (Dialog lg, two columns of
+   fields, prefilled values, Cancel, Save as draft, Create <object>).
 3. Save → validation inline; on success the feedback from `action-feedback.md` (Create).
 - Failure: server error keeps the form; duplicates are caught before save ("A customer with
   this VAT ID exists. Open it").

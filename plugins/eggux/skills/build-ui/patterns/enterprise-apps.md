@@ -64,3 +64,4 @@ Corporate + Compact) and "theme comparison" (Default vs Corporate). Template:
 - The Map columns step uses one `Mapping Row` per source column: sample value, target Select, status
   (mapped, skipped, error), with a summary of counts above. Multi-step automations and approval
   flows use `Workflow Node` on a canvas (@xyflow/react).
+- Command palette ⌘K: `Block / Command Palette` (Suggestions, Recent, Go to, shortcuts in Kbd).

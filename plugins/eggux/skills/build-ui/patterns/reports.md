@@ -30,3 +30,7 @@ breakdown grid with Progress for share and a total row.
 - Rankings (top customers, teams, products) use `Leaderboard Row`: rank, avatar, name and value,
   sorted by the value, 5-10 rows with "View all".
 - Executive dashboards use Dashboard Widgets holding Bullet Charts, Distribution Bars, Leaderboard Rows, a Countdown and Trend Indicators (`Block / Executive Dashboard`).
+- Start a subscription dashboard from `Block / SaaS Metrics Dashboard`, a CRM home from
+  `Block / Sales Pipeline` and a store back office from `Block / Commerce Admin` (App page;
+  examples "SaaS metrics dashboard" and "Commerce admin"); keep one period for the screen and
+  make shares add up to the total.

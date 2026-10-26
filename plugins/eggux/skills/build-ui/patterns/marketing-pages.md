@@ -6,17 +6,21 @@ grouped by family inside each page's `Blocks` section.
 ## Which block
 | Family | Blocks | Use |
 |---|---|---|
-| Banner | Announcement Banner | One launch or event message above the Navbar, dismissible |
-| Hero | Hero Centered, Hero Split, Hero with Screenshot, Hero Prompt | Screenshot when the product sells itself; split for a human or illustrative image; Hero Prompt for the signed-in home of a portal or data product where people start by asking (AI search or assistant) |
-| Features | Features, Features Split, Bento Grid | Grid for 3-6 short benefits (Feature Item, stacked); split rows for deep-dives; bento for a platform overview with real components |
+| Banner | Announcement Banner, Banner with Action, Banner Countdown, Banner Floating | Announcement Banner for site-wide news on primary, above the Navbar; Banner with Action for events and notices on the muted band; Banner Countdown only for a real dated offer; Banner Floating at the bottom for a launch. One banner at a time, dismissible |
+| Hero | Hero Centered, Hero Split, Hero with Screenshot, Hero with Logo Cloud, Hero with Form, Hero with Phone, Hero Full-bleed Image, Hero with Video, Hero with Stats, Hero Image Collage, Hero Prompt | Pick by what sells the product: the screen (with Screenshot; with Logo Cloud adds customer logos), a human or illustrative image (Split), a brand photo (Full-bleed Image), people (Image Collage, for people-centered products), a product tour (with Video), scale and track record (with Stats), one email field (with Form), a mobile app (with Phone, store badges). Hero Prompt for the signed-in home of a portal or data product where people start by asking (AI search or assistant). All 11 side by side in `Example / Hero showcase` (Hero page) |
+| Logo Cloud | Logo Cloud, Logo Grid, Logos Split, Logo Marquee | Marquee right under the hero; Grid as its own customers section; Split for partners or investors with one sentence of context |
+| Features | Features, Features Split, Bento Grid, Bento Grid 2, Features with Screenshot, Features Tabs, How It Works, Feature Checklist, Integrations Grid | Grid for 3-6 short benefits (Feature Item, stacked); split rows for deep-dives; Bento Grid and Bento Grid 2 for a platform overview with real components; with Screenshot for one area proved by its screen; Tabs for 3-5 areas of one product; How It Works for a setup or process in 3-4 steps; Checklist for what every plan includes; Integrations Grid for "does it work with our tools" |
+| Trust | Security and Compliance, Trust Strip | Security and Compliance on enterprise and finance pages before Pricing (controls and the certifications you hold); Trust Strip as a one-line reassurance row under a store hero or above the footer |
 | Testimonials | Testimonials, Testimonial Single, Grid, Split, Carousel | Single for one strong quote; grid for breadth; split (case study) for enterprise buyers; carousel only past six |
-| CTA | CTA, CTA Split, CTA Card | Card (primary color) once per page near the end; split with a product image mid-page |
+| CTA | CTA, CTA Split, CTA Card, CTA with Screenshot | Card (primary color) once per page near the end; split with a product image mid-page; with Screenshot when the product is the argument (once per page, it counts as the decorated band) |
+| Newsletter | Newsletter, Newsletter Split, Newsletter Card | Strip in content pages; Split with benefits and a photo; Card as the closing band of a blog |
 | Contact | Contact, Contact Cards, Contact with Map, Offices, Map Section | Cards for channels; map variants only when people visit; always the written address next to a map |
 | Blog (Content page) | Blog Grid, Blog Featured, Blog Post Header, News List, Blog List, Article | Grid on the homepage; featured for a blog index; news list for corporate newsrooms |
-| Pricing | Pricing, Pricing Single, Pricing Calculator, Comparison Table | One plan: Single; usage-based: Calculator with the exact math; several plans: Pricing then Comparison |
+| Pricing | Pricing, Pricing Single, Pricing Calculator, Comparison Table, Pricing with Comparison | One plan: Single; usage-based: Calculator with the exact math; several plans: Pricing then Comparison; the pricing page itself: Pricing with Comparison (cards, then the collapsible full table, same plan order) |
 | FAQ | FAQ, FAQ Grid, FAQ Centered | Grid when answers are 1-2 sentences; accordion for longer answers; end with a contact option |
-| Stats | Stats, Stats Cards, Stats Split | Real numbers with their period and source; Split when the method matters |
+| Stats | Stats, Stats Cards, Stats Split, Stats Brand Band | Real numbers with their period and source; Split when the method matters; Brand Band once per page, white figures on primary, always with the source |
 | Team | Team, Team Grid, Team List | Grid with photos for the company page; List with bios for leadership and investors |
+| About | About Hero, Mission with Figures, Our Story, Values | The About page, in this order, then Team, a testimonial, partners (Logos Split) and a CTA |
 | Page headers (Page Headers page) | Header Detail, Header Listing, Header Search Results, Header Profile, Header Event, Header Topic, Header Report, Header Simple | Top of inner pages, by page type: see § Page headers. Landing pages use Hero |
 | Careers | Careers List, Careers Benefits, Job Header | List grouped by department with counts; benefits as facts; job page header with salary range |
 | Gallery | Gallery Grid, Gallery Mosaic | Grid for places and events; Mosaic for a property, product or venue detail page |
@@ -47,8 +51,8 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
 1. Navbar (Navbar Mobile below 768; mega menu panels open on click, close on Escape)
 2. Hero: one promise, one primary CTA, one secondary
 3. Logo Cloud: proof right after the promise
-4. Features (3-6), Stats
-5. Testimonials
+4. Features (3-6), How It Works, Stats
+5. Testimonials; Security and Compliance for enterprise buyers
 6. Pricing, then Comparison Table for the details
 7. FAQ
 8. CTA band, Newsletter
@@ -60,10 +64,26 @@ Light), `Meridian Enterprise` (Corporate Light), `Lumora AI product` (Showcase D
 `Tidewater store` with its product page (Light). Each alternates default and muted bands, uses
 one decorative device and real imagery; start a landing page by copying the closest one.
 
+## Typical order (other pages)
+Examples in the Examples section of the Sections page (pricing, about, contact).
+- Pricing: Navbar, Pricing with Comparison, Logo Marquee, Testimonial Grid, FAQ, CTA with
+  Screenshot, Footer (`Example / Pricing page`).
+- About: Navbar, About Hero, Mission with Figures, Our Story, Values, Team Grid, Testimonial
+  Single, Logos Split, CTA Card, Footer (`Example / About page`).
+- Contact: Navbar, Contact Cards, Contact with Map, Offices, FAQ Grid, Newsletter Card, Footer
+  (`Example / Contact page`).
+- Security or trust: Hero Centered, Security and Compliance, Trust Strip, FAQ, CTA Card.
+- Mobile app: Navbar, Hero with Phone, Features, Testimonials, CTA, Footer (`mobile.md` for the
+  store badges).
+
 ## Rules
 - One primary CTA repeated (same label) in Hero, Pricing and the final CTA band.
 - Each section answers one question; its Section Header title says the answer, not the topic.
 - Logos in one muted color; real customers only, with permission.
+- Integrations Grid shows only tools the product really integrates with, as `Logo / *` swaps in
+  Logo Tiles; inside the product, use Block / Integrations with connect states.
+- Trust Badges name the certificate and what backs it (audit date, scope); never a badge without
+  the report behind it.
 - Team: real photos or initials, name and role; link to bios only if they exist.
 - Contact: response time promise, direct channels, short form (name, email, topic, message);
   inline success with what happens next.
@@ -75,7 +95,7 @@ one decorative device and real imagery; start a landing page by copying the clos
   one primary.
 - Maps: never the only way to find an address; add directions and opening hours; lazy-load
   interactive maps and use a static image above the fold.
-- Announcement banner: one at a time, dismissible, not for errors or outages.
+- Banners: one at a time, dismissible, not for errors or outages.
 - Gallery grids use `Image Figure`; office grids use `Location Card` with Show map (Block / Offices).
 - Event grids with long titles: Event Card `Date position=image`.
 - Hero Prompt: Accent is the greeting, Title stays on two lines, Suggestions holds 2-4 Prompt Suggestions; submitting opens the chat or results page with the question prefilled.
@@ -86,6 +106,8 @@ one decorative device and real imagery; start a landing page by copying the clos
 - Feature, step and bento icons sit in an `Icon Tile`: neutral by default, brand for one accent grid, gradient for one highlighted item; one Style per grid. In a Features block instance, override the icon frame fill with `icon-tile/brand-bg` and the icon with `icon-tile/brand-fg`.
 - To show a client's brand on a pitch or cover, set the frame to their mode; the `Showcase Light` / `Showcase Dark` modes and the pages on Showcase show what a rebrand does to the same blocks.
 - Every CTA gets a secondary action and a proof row (Avatar Group with photos and a Rating with a count).
+- On a primary band or card, use Inline Form with its button set to secondary and the hint in
+  `foreground/primary`; Figures and captions use `foreground/primary`.
 - After swapping `Image / Screenshot / *` in a Device Frame, reset the image height to the new ratio; the old aspect lock crops it.
 - To put a Background behind a hero, turn off `Show background fill` on Hero Centered (and `Show panel fill` on Hero Prompt) instead of clearing fills.
 - A block with its own decoration (CTA Card glow) counts toward the one-device rule; turn `Show decoration` off when the page has a Background.

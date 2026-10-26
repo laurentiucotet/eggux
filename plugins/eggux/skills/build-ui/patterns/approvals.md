@@ -23,6 +23,8 @@ stall because nobody knows who has to act, by when, or why something was rejecte
 - Every decision is an audit log entry (`audit-log.md`).
 - Inbox for approvers: a list or data grid of requests waiting for them, filterable by type,
   amount and age, with bulk approve only for low-risk types.
+- Agent actions that send, pay or delete use Tool Call Status=approval and wait; see
+  `Block / Agent Task Run`.
 
 ## Figma
 `Approval Step` (Status: approved, current, rejected, upcoming) on the Approvals page;

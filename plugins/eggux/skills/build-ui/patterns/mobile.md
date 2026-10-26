@@ -39,3 +39,5 @@ drawer with filters on the Drawer page.
 - The one main action on a mobile screen is a `FAB` (bottom right, above the Bottom Nav). Actions on
   one item open an `Action Sheet` (2-6 actions, destructive last, Cancel apart); content and forms
   go in a Drawer.
+- App download links use `Store Badge` (App Store first, then Google Play), never a generic
+  Button. A mobile app landing page leads with `Block / Hero with Phone` (`marketing-pages.md`).

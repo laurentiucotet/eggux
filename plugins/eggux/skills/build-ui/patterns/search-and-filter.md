@@ -46,7 +46,12 @@ For large lists where people need precise subsets (finance, operations, CRM):
 - Pick: up to 4 common filters → chips in the Filter Bar; many attributes or browsing → side
   panel of Filter Sections; precise conditions (and / or, operators) → Filter Builder.
 - Shop listings use Filter Section in a left panel plus active Filter Chips; Faceted Filter is the popover version for toolbars.
+  `Block / Category Filters` puts the price filter as a range Slider over a Range Input and colors
+  and sizes as Swatches inside Filter Sections.
 - `Search Result Item` has a Type per kind of result (page, record, person, file, media, product, event, answer): one Type per row, group or tab results by type with counts, and at most one answer, first.
+- For an AI answer above results start from `Block / AI Search Answer` (AI page): every claim has
+  a Citation, results stay below the answer, hide the answer when there are no good sources.
+  Example "AI search page".
 
 ## shadcn / Figma
 `Input` with search icon, `Popover` + `Command` for filter options, `Badge` chips, `Button variant="ghost"` for "Clear all".
@@ -59,3 +64,6 @@ For large lists where people need precise subsets (finance, operations, CRM):
   `Page Toolbar` when filters sit behind one Filters button.
 - Saved views are listed with `Saved View Item` (personal first, then shared; the active one
   highlighted); the Filter Bar offers "Save view" when filters change.
+- Start a list page from `Block / Data Table` (compare and act in bulk), `Block / Stacked List`
+  (a few facts and one status per row) or `Block / Grid List` (records known by name or
+  picture); all three on the App page.
