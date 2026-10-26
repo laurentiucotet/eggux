@@ -29,15 +29,15 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Icons | `Icon/brand/<name>` | - | Brand logos from Simple Icons, filled, 24 px, one `Vector` bound to `foreground/default`: apple-podcasts, spotify, linkedin, youtube, github, x. Frame "Icons / Brand" |
 | Tour | `Coachmark` | Side: bottom, top, right, left | Title, Description, Step, Show media (Media slot), Show close, Show back. Arrow points at the target |
 | Tour | `Hotspot` | - | 24 px beacon that opens a Coachmark |
-| Video | `Video Player` | State: poster, playing, buffering | Duration, Time, Show subtitles. `video/*` tokens, dark in both modes |
+| Video | `Video Player` | State: poster, playing, buffering. Size: default, lg (1152 x 648, 96 px play button and spinner) | Duration, Time, Show subtitles. `video/*` tokens, dark in both modes. lg for players 960 wide and up |
 | AI Chat | `Prompt Input` | State: default, focus, streaming, disabled | Placeholder, Value, Show attachments, Show tools, Show voice; Attachments, Tools (native slots). Send becomes Stop while streaming |
 | AI Chat | `Attachment` | Type: file, image. State: default, uploading, error | Name, Meta, Show remove |
 | AI Chat | `User Message` | - | Text, Show actions (copy, edit). Bubble hugs, max 576 |
 | AI Chat | `Assistant Message` | State: default, streaming, error | Content (native slot), Show actions (copy, regenerate, good, bad) |
 | AI Chat | `Reasoning` | State: running, collapsed, expanded | Label, Status, Details |
-| AI Chat | `Tool Call` | Status: running, done, error, approval | Title, Description; approval has Deny / Approve |
-| AI Chat | `Source Item` | - | Number, Title, Domain |
-| AI Chat | `Sources` | - | Label, Show list; Items (native slot) |
+| AI Chat | `Tool Call` | Status: running, done, error, approval | Title, Description, Approval message (approval), Error message (error); approval has Deny / Approve. Status Badges soft: done soft-success, error soft-destructive, approval soft-warning |
+| AI Chat | `Source Item` | - | Number, Letter (favicon initial), Title, Domain |
+| AI Chat | `Sources` | - | Label, Favicon 1, Favicon 2, Favicon 3 (the Letters of the first three Source Items), Show list; Items (native slot) |
 | AI Chat | `Citation` | - | Label |
 | AI Chat | `Prompt Suggestion` | Layout: chip, card | Label, Description, Icon (card) |
 | AI Chat | `Model Picker` | State: default, hover, focus | Model. Sparkles + name + chevron; opens Model Options |
@@ -68,7 +68,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Avatar | `Byline` | Size: sm, default, lg | Name, Description, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
 | Input | `Input` | Style: default, filled, floating. State: default, focus, error, disabled. Content: placeholder, filled | Value; Label (floating); Show leading icon + Leading icon (swap); Trailing (native slot) + Show trailing |
-| Input | `Password Strength` | Level: empty, weak, fair, good, strong | Meter + message under a new-password field |
+| Input | `Password Strength` | Level: empty, weak, fair, good, strong | Meter + message under a new-password field. Messages ask only for length ("Weak: make it longer.") |
 | Input | `Field` | State: default, error, disabled | Label, Show label, Hint, Show hint, Error. Control (native slot, default Input) |
 | Input | `Textarea` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Min height 64, grows with content; put it in a Field |
 | Input | `Input Addon` | Position: start, end | Text |
@@ -78,7 +78,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Input | `Signature Pad` | State: empty, signed | Pad (clips the stroke), baseline, Clear, Type instead; signer and time when signed |
 | Input OTP | `OTP Slot` | Position: first, middle, last. State: empty, filled, active, error | Digit |
 | Input OTP | `Input OTP` | Length: 4, 6 | Groups of OTP Slots (3 + 3 with separator) |
-| Kbd | `Kbd` | - | Key |
+| Kbd | `Kbd` | - | Key (`foreground/default` on `background/muted`) |
 | Kbd | `Kbd Group` | - | Keys (native slot) |
 | Spinner | `Spinner` | Size: sm 16, default 20, lg 32. Tone: muted, default. Type: default, dots | Loader icon; rotate in code. dots: three pulsing dots for typing and AI writing |
 | File Upload | `File Dropzone` | State: default, drag-over, error, disabled | Title (not in drag-over), Hint, Error (error state); Browse button exposed |
@@ -88,7 +88,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Progress | `Progress` | Tone: default, success, warning, error. Value: 0, 25, 50, 75, 100. Type: default, segmented | Resize the indicator for other values. segmented: Segments (native slot) of Progress Segment instances |
 | Progress | `Progress Segment` | State: complete, upcoming. Tone: default, success, warning, error | One segment of Progress Type=segmented; only inside its Segments slot, FILL width |
 | Progress | `Progress Ring` | Size: sm, default, lg. Value: 0, 25, 50, 75, 100 | Show label (percent inside on default and lg) |
-| Slider | `Slider` | Type: single, range. State: default, focus, disabled | Move range and thumbs for other values. Show value (Tooltip over each thumb), Show marks + Min label, Mid label, Max label |
+| Slider | `Slider` | Type: single, range. State: default, focus, disabled | Move range and thumbs for other values. Stretches to any width; the thumbs stay 16 px and follow the value. Show value (Tooltip over each thumb), Show marks + Min label, Mid label, Max label |
 | Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled. Size: default, sm, lg | Label, Show label, Description, Show description |
@@ -127,7 +127,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Chart | `Chart Legend` | - | Items (native slot) |
 | Chart | `Chart Tooltip Row` | Series: 1-8 | Label, Value |
 | Chart | `Chart Tooltip` | - | Title; Rows (native slot) |
-| Chart | `Chart Card` | - | Title, Description, Insight, Note, Show legend, Show footer; Actions, Chart (native slots); Legend exposed |
+| Chart | `Chart Card` | - | Title, Description, Insight, Note, Show legend, Show footer; Actions, Chart (native slots); Legend exposed (one Chart Legend Item per series in its Items slot; remove the extras) |
 | Code Block | `Code Block` | - | Language, Code, Show header; Copy button |
 | Editor | `Rich Text Editor` | State: default, focus | Toolbar (heading, bold, italic, underline, lists, quote, link); Content (native slot), Show footer (hint + counter) |
 | Editor | `Comment` | Type: comment, reply. State: default, resolved | Name, Time, Text, Show actions; Avatar exposed |
@@ -162,7 +162,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Stepper | `Stepper` | Orientation: horizontal, vertical. Style: default, dots | Steps (native slot, Steps with the same Orientation and Style) |
 | Description List | `Description List Item` | Orientation: horizontal, vertical | Label, Show divider; Value (native slot) |
 | Description List | `Meta Item` | - | Icon (swap, 16, muted), Label, Show icon. One fact: date, place, people, contact |
-| Description List | `Figure` | Layout: stacked, inline. Size: default, lg | Value, Label, Source, Show source, Show divider. A number with what it counts; no trend |
+| Description List | `Figure` | Layout: stacked, inline. Size: default, lg. Tone: default, on-primary (text in `foreground/primary`) | Value, Label, Source, Show source, Show divider. A number with what it counts; no trend. on-primary on primary bands |
 | Description List | `Summary Row` | Variant: default, discount, total | Label, Value. One line of a money breakdown, amount right aligned |
 | Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive. Layout: default, card, alternating-left, alternating-right | Title, Time, Description, Show description, Icon (swap), Show connector; Content (native slot) + Show content |
 | Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Show leading icon + Leading icon (swap), Show shortcut + Shortcut text, Checked, Description + Show description, Show submenu (chevron) |
@@ -170,7 +170,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
 | Menu | `Menubar Trigger` | State: default, hover, open | Label |
 | Menu | `Menubar` | - | Menus (native slot of Menubar Triggers); opens a Menu below the trigger |
-| Mobile | `Mobile Header` | Type: app, detail | Title; Leading, Trailing (native slots) |
+| Mobile | `Mobile Header` | Type: app, detail, brand | Title (app, detail), Logo (swap, brand: entry screens); Leading, Trailing (native slots; Leading hidden in brand) |
 | Mobile | `Bottom Nav Item` | State: default, active | Label, Icon (swap) |
 | Mobile | `Bottom Nav` | Style: default, floating | Items (native slot), 3-5 items, safe-area padding |
 | Tabs | `Tab` | Variant: default, line, vertical, pills, boxed. State: default, active, focus, disabled | Label, Show count (Badge Count exposed), Icon (swap) + Show icon |
@@ -183,11 +183,11 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Tooltip | `Tooltip` | Side: top, bottom, left, right. Variant: default, light | Label (wraps at 280), Title + Show title (rich), Show shortcut (Kbd exposed) |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
 | Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner. Style: default, soft, accent | Title, Description, Show description, Actions (native slot) + Show actions, Show close |
-| Toast | `Toast` | Type: default, success, error, warning, info, loading. Style: default, inverted | Show description, Show action (nested Button exposed), Show close (off by default). Title and description text edited per instance (no TEXT properties) |
+| Toast | `Toast` | Type: default, success, error, warning, info, loading. Style: default, inverted | Title, Description, Show description, Show action (nested Button exposed), Show close (off by default) |
 | Dialog | `Dialog Header` | - | Title, Description, Show description, Show close. Media (native slot) + Show media |
 | Dialog | `Dialog Footer` | - | Actions (native slot) |
 | Dialog | `Dialog` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer. Width sm 384, default 512, lg 672, xl 896 (resize) |
-| Dialog | `Alert Dialog` | Type: confirm, destructive, acknowledge | Header, Footer (native slots). Status icon in the header Media slot |
+| Dialog | `Alert Dialog` | Type: confirm, destructive, acknowledge | Header, Content, Footer (native slots); Show content (off by default; type-to-confirm Field, what is lost). Status icon in the header Media slot |
 | Drawer | `Sheet` | Side: right, left | Side drawer, full height, 384 wide (480 forms, 640 record or preview). Header, Content, Footer (native slots) from Dialog Header/Footer |
 | Drawer | `Drawer` | - | Bottom drawer, top radius xl. Show handle; Header (no close), Content, Footer (native slots, stacked full-width buttons) |
 | Drawer | `Side Panel` | State: expanded (320), collapsed (48) | Inline aside, no overlay. Title, Collapsible, Show footer; Actions, Content, Footer (native slots) |
@@ -226,7 +226,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Filters | `Filter Section` | State: expanded, collapsed | Title, Show selected count, Show more; Options (native slot). For filter side panels |
 | Approvals | `Approval Step` | Status: approved, current, rejected, upcoming | Name, Role, Time, Comment, Show comment, Show connector |
 | Audit | `Change Item` | - | Field, Old, New |
-| Save Bar | `Save Bar` | State: default, saving, error | Sticky bar with message, Discard, Save changes |
+| Save Bar | `Save Bar` | State: default, saving, error | Message (default, "Unsaved changes"; set the count), Error (error). Sticky bar with the message, Discard, Save changes; Saving… while saving |
 | Sidebar | `Org Switcher` | - | Organization list with role and plan, search, create, manage |
 | Sidebar | `Sidebar Item` | Level: 1, 2 (sub-page, no icon; expanded only). Mode: expanded, collapsed. State: default, hover, active, disabled | Label, Icon (swap), Show badge (Badge Count, exposed), Show chevron |
 | Sidebar | `Sidebar Group Label` | - | Label |
@@ -237,7 +237,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Navigation | `Breadcrumb Item` | Type: link, current, ellipsis. State: default, hover (link) | Label, Show separator |
 | Navigation | `Breadcrumb` | Style: default, background | Items (native slot) |
 | Navigation | `Top Bar` | Style: default, floating | Show sidebar trigger; Breadcrumb, Actions (native slots) |
-| Navigation | `Page Header` | - | Title (heading/h3), Description, Show description; Actions (native slot) |
+| Navigation | `Page Header` | - | Title (heading/h3), Description, Show description, Show actions; Actions (native slot) |
 | Navigation | `Nav Link` | State: default, hover, active | Label, Show chevron (marketing navbar) |
 | Navigation | `Navigation Menu Link` | State: default, hover | Title, Description, Show icon, Icon (swap) |
 | Navigation | `Navigation Menu Panel` | - | Links, Featured (native slots), Show featured |
@@ -248,21 +248,24 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Image | `Map` | - | Label, Address, Show label, Show controls, Show pin. Roads scale, pin stays centered; put a static map image as fill in production |
 | Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 1:1, 3:4 | Show caption, Show image + Image (swap: Image / * from the Imagery page). Without an image: dot pattern and an image icon. Ratio locked: FILL keeps the height in proportion |
 | Image | `Image Cropper` | Shape: square, circle | Image layer (fill), scrim, selection that stays centered, zoom Slider, rotate, Cancel, Save |
-| Image | `Avatar Upload` | State: empty, filled, uploading, error | Label, Show label, Hint, Show remove. Profile or logo picture in settings: the avatar, a Label (Show label), a Hint with the upload rules, Upload or Change (exposed Button, set its Label, e.g. |
+| Image | `Avatar Upload` | Shape: circle (people), square (workspaces, companies). State: empty, filled, uploading, error | Label, Show label, Hint, Show remove; Upload or Change (exposed Button, set its Label). Profile or logo picture in settings; square sets Label to "Workspace logo" |
 | Sections (blocks) | `Section Header` | Align: center, left | Overline (`foreground/brand` in both Align values; do not override), Title (heading/h2), Description |
 | Page Shells | `Page Shell / App`, `/ Marketing`, `/ Auth` | - | Page (native slot); Sidebar and Top Bar exposed in App |
 | Page Shells | `Page Shell / Mobile` | - | 390 x 844. Mobile Header + Page (native slot) + Bottom Nav (exposed, `Bottom nav` boolean) |
-| Page Shells | `Page Shell / Wizard` | - | Logo, Step text, Save and exit, Progress, Page (native slot, 672), Back / Continue |
+| Page Shells | `Page Shell / Wizard` | - | Logo, Step text, Save and exit, Progress, Page (native slot, 672), Back / Continue; Show back (Continue stays on the right) |
 | Page Shells | `Page Shell / Split View` | - | Sidebar + Top Bar; List (384) and Detail (native slots); resize handle |
 | Page Shells | `Page Shell / Docs` | - | Header with search; Nav and Content (native slots); Table of Contents exposed |
 | Page Shells | `Page Shell / Admin Panel` | Aside: on, off | Navigation, Header, Main, Aside, Actions (native slots); Show actions. Grid: navigation and aside hug, Main flexes, actions fixed at the bottom, only the Body scrolls |
 | Brand | `Logo Mark` | - | The one place to put the client symbol; used by Logo and Sidebar Workspace |
 | Brand | `Logo` | Type: mark, wordmark, full | Name |
-| Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed |
+| Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed. Each Type sets its own Hint and Error |
 | Forms | `Block / Sign In`, `/ Sign Up`, `/ Payment`, `/ Address` | - | Card + Field Presets + Buttons |
-| Navigation (blocks) | `Block / Navbar`, `Block / Footer` | - | Logo, Nav Links, CTAs; footer link columns |
-| Hero | `Block / Hero Centered`, `Block / Hero Split` | - | Badge, display headline, lead, CTAs, Image Placeholder |
-| Sections | `Block / Features`, `/ Stats`, `/ CTA`, `/ Pricing`, `/ Testimonials`, `/ FAQ` | - | Section Header + Cards, grid, Toggle Group, Accordion |
+| Navigation (blocks) | `Block / Navbar` | Style: default, on-image (no fill or border; text and icons on `video/foreground`, for full-bleed photo and video heroes) | Logo (swap), Show cart (ghost cart Button Icon with Badge Count, exposed); Nav Links, CTAs |
+| Navigation (blocks) | `Block / Footer` | - | Logo, footer link columns |
+| Hero | `Block / Hero Centered` | - | Badge, display headline, lead, CTAs, Image Placeholder |
+| Hero | `Block / Hero Split` | Media: screenshot (Device Frame, exposed), image (4:3 Image, exposed) | Badge, display headline, lead, CTAs; Show trust (Trust badges native slot under the actions, 2 Trust Badges) |
+| Sections | `Block / Features`, `/ CTA`, `/ Pricing`, `/ Testimonials`, `/ FAQ` | - | Section Header + Cards, grid, Toggle Group, Accordion |
+| Sections | `Block / Stats` | - | Show header (Section Header center, exposed); Metric Strip with 4 values in heading/h1 |
 | App | `Block / Settings Section`, `/ Empty Page`, `/ Filtered List` | - | Settings row, first-use page, filter panel + list |
 | App | `Block / Record Header`, `/ Record Detail`, `/ Notifications`, `/ Booking` | - | Record page header with tabs; details + activity; notifications popover; calendar + time slots |
 | App | `Block / Analytics` | - | 4 Stat Cards + 2 Chart Cards (grouped bars, area) |
@@ -275,14 +278,15 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | App | `Block / Kanban Board`, `/ Scheduler Week` | - | Board with columns and a dragged card; week view with toolbar, events, now line |
 | App | `Block / Scheduler Month` | - | Month grid, up to 3 events per day + "+N more", today marked |
 | App | `Block / Comments`, `/ Conversation` | - | Comment thread with replies, resolved comment and composer; chat with header, day separator, grouped messages, typing, composer |
-| Page Headers | `Block / Header Detail`, `/ Header Listing`, `/ Header Search Results`, `/ Header Profile`, `/ Header Event`, `/ Header Topic`, `/ Header Report`, `/ Header Simple` | - | Tops of inner pages: detail (product, dataset, service) with people and media; listing hub with type switch and search; search results with tabs and sort; person; event with date, place and speakers; topic with subtopic chips; report with three figures; plain page (legal, about). Examples: topic page, event page |
+| Page Headers | `Block / Header Detail`, `/ Header Listing`, `/ Header Search Results`, `/ Header Profile`, `/ Header Event`, `/ Header Topic`, `/ Header Report`, `/ Header Simple` | - | Tops of inner pages: detail (product, dataset, service) with people and media; listing hub with type switch and search; search results with tabs and sort; person (Header Profile stretches: side padding spacing/8, container max 1152, Action Bar hugs its buttons); event with date, place and speakers; topic with subtopic chips; report with three figures; plain page (legal, about). Examples: topic page, event page |
 | Content | `Block / Blog List`, `/ Article` | - | Featured + grid of Post Cards + pagination; reading column with prose and TOC |
 | Sections (blocks) | `Block / Contact Cards`, `/ Contact with Map`, `/ Offices`, `/ Map Section` | - | Contact family: channel cards; form + map + address; office cards with maps; full-width map with overlay card |
 | Sections (blocks) | `Block / Testimonial Single`, `/ Testimonial Grid`, `/ Testimonial Split`, `/ Testimonial Carousel` | - | Testimonials family: one quote; six cards with ratings; case study with results; carousel |
-| Sections (blocks) | `Block / CTA Split`, `/ CTA Card`, `/ Features Split`, `/ Bento Grid` | - | CTA with image; CTA on primary; alternating feature rows; bento overview with real components |
+| Sections (blocks) | `Block / CTA Split`, `/ CTA Card`, `/ Bento Grid` | - | CTA with image; CTA on primary; bento overview with real components |
+| Sections (blocks) | `Block / Features Split` | - | Alternating feature rows: text 448 and Device Frame 640 (5/7); Show header (Section Header center, exposed) |
 | Content | `Block / Blog Grid`, `/ Blog Featured`, `/ Blog Post Header`, `/ News List` | - | Blog family: latest three; featured + list; article top; dated news list |
 | Hero | `Block / Hero with Screenshot` | - | Headline, CTAs and the real product (Block / Analytics) in a browser frame |
-| Hero | `Block / Hero Prompt` | - | AI-first home hero: optional Badge, headline with an accent line in `foreground/brand`, label, Prompt Input, optional suggestions, image |
+| Hero | `Block / Hero Prompt` | - | AI-first home hero: content centered at 864 (optional Badge, headline with an accent line in `foreground/brand`, label, Prompt Input, optional suggestions, Action Bar center), then Show image: Device Frame 960 (exposed) |
 | Navigation (blocks) | `Block / Announcement Banner`, `/ Footer Simple` | - | Banner family: one-line message on primary, dismissible; compact footer |
 | Sections (blocks) | `Block / Pricing Single`, `/ Pricing Calculator` | - | Pricing family: one plan with what is included; seat slider with tiers and live total |
 | Sections (blocks) | `Block / FAQ Grid`, `/ FAQ Centered`, `/ Stats Cards`, `/ Stats Split` | - | FAQ family: two columns of short answers; centered accordion with a contact card. Stats family: proof numbers as cards; numbers next to the story and source |
@@ -334,10 +338,10 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Background | `Background / Beam` | - | Three soft diagonal beams in the primary color |
 | Badge | `Announcement Pill` | - | Label, Show tag. A short link above a hero title to the newest launch: "New" tag, one line, arrow. |
 | Badge | `Trust Badge` | - | Name, Description, Icon. A certification or compliance claim with what backs it: SOC 2, ISO 27001, GDPR, PCI DSS. |
-| Brand | `Logo Tile` | Style: bordered, plain (logo at 70%) | Logo (swap: Logo / *). A customer or partner logo in a tile for logo clouds, integration grids and case study lists. |
+| Brand | `Logo Tile` | Style: bordered (`background/card` with border), plain (no fill, logo at 70%) | Logo (swap: Logo / *). A customer or partner logo in a tile for logo clouds, integration grids and case study lists. |
 | Brand | `Logo / <Name>` | - | 12 fictional sample logos (Northwind, Lumora, Orbitly, Fieldstone, Kestrel, Quintra, Halcyon, Brightpath, Corvid, Meridian, Tidewater, Vireo), 32 high, bound to foreground/default |
 | Imagery | `Image / Person, Product, Office, Cover, Abstract, City / NN` | - | 49 sample photos (Unsplash License, not covered by CC BY 4.0; replace them), image fill FILL. Used through the Image Placeholder `Image` swap and the Avatar `Photo` swap |
-| Imagery | `Image / Screenshot / <What>` | - | 7 product screenshots rendered from blocks (Dashboard, AI chat, Kanban, Invoices, Approval, Product page, Audit Log), light theme; inside a Device Frame for hero and feature visuals |
+| Imagery | `Image / Screenshot / <What>` | - | 7 product screenshots rendered from blocks (Dashboard, AI chat, Kanban, Invoices, Approval, Product page, Audit Log), light theme; inside a Device Frame for hero and feature visuals. 960 wide, height hugs a locked-ratio layer, so a swap or resize keeps the whole screen |
 | Button | `Social Share` | - | Label, Show label, Show networks. Share buttons for a public page: copy link, email, the system share sheet and up to three networks. |
 | Card | `Link Preview` | Layout: horizontal, vertical | Domain, Title, Description, Show image. A pasted URL shown as a card in comments, chat, notes and editors: site, title, description and image from the page metadata. |
 | Card | `Location Card` | - | City, Address, Show tag, Show map. One office, store or venue: city with an optional tag Badge (Show tag), full address, phone and hours as Meta Items, and a Get directions link. |
@@ -373,19 +377,19 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Form Layout | `Form Section` | Layout: side, stacked | Title, Description, Show description, Show divider, Fields (slot). One group of a long form or settings page: title and a sentence on the left, the fields on the right. |
 | Form Layout | `Check Item` | Mark: check, dash, x | Label. One line with a mark: check when met or included, dash when pending or not included, x after a failed submit. Part of Requirement List; also the feature list of Plan Card. |
 | Form Layout | `Requirement List` | - | Title, Show title, Items (slot of Check Items). Rules checked live while people type or before they publish: password rules, import checks, what a listing needs. |
-| Image | `Device Frame` | Device: browser, phone | Address, Screen (slot). A browser window or a phone around a product screenshot for marketing pages, docs and case studies. |
+| Image | `Device Frame` | Device: browser, phone | Address, Screen (slot: an `Image / Screenshot / *` at Fill width; its height follows the image. Resize the frame, never the screen). A browser window or a phone around a product screenshot for marketing pages, docs and case studies. |
 | Image | `Image Compare Slider` | - | Two images of the same view, before and after, with a handle to drag between them: redesigns, photo edits, document versions, site changes. |
 | Image | `Image Figure` | - | Caption, Show credit, Credit. An image with a caption under it (HTML figure and figcaption) for galleries, articles and docs. |
 | Input | `Copy Field` | State: default, copied | Value. A read-only value people copy and paste elsewhere: API key, invite link, webhook URL, reference code. |
 | Input | `Currency Input` | State: default, focus, error, disabled | Amount, Currency. An amount with its currency: a currency picker on the left and the amount right-aligned in the locale format. |
 | Input | `Date Input` | State: default, focus, error, disabled | Day, Month, Year. A date people type in day, month and year segments, with a calendar button that opens Date Picker. |
 | Input | `Duration Input` | State: default, focus, error | Hours, Minutes. A length of time in hours and minutes for time entries, SLAs, reminders and meeting length. |
-| Input | `Inline Form` | State: default, error, success | Hint, Error, Success message, Show hint. One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag. |
+| Input | `Inline Form` | State: default, error, success. Tone: default, on-primary (secondary Button; hint, error and success in `foreground/primary`) | Hint, Error, Success message, Show hint; Button exposed (set its Label). One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag. |
 | Input | `Phone Input` | State: default, focus, error, disabled | Country, Number. Phone number with a country code picker; formats as people type and stores the number in E.164. |
 | Input | `Range Input` | State: default, error | Min, Max, Unit. Two fields for a minimum and a maximum: price or amount filters, typed date ranges, quantities. |
 | Input | `Search Field` | State: default, focus, filled. Size: default, lg | Placeholder, Query, Show shortcut. Search box for a list, a table or the whole app: search icon, a placeholder that names what is searched, a shortcut hint and clear. |
 | Kbd | `Shortcut Row` | - | Action. One keyboard shortcut in the shortcuts dialog or a help page: what it does, then the keys. |
-| List | `Task Item` | State: open, done, overdue | Title, Due, Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
+| List | `Task Item` | State: open, done, overdue | Title, Due (bound in every State; overdue writes "Overdue · was due …"), Show due, Show assignee. One task in a checklist (onboarding, a project, a record's to-dos): checkbox, title, due date and assignee. |
 | List | `Job Listing` | - | Title, Meta, Location, Posted, Salary, Show badge, Show salary. One open role in a careers list: title, team, type and work mode, location, posted date, salary range and Apply. |
 | Menu | `Account Menu` | - | Name, Email. The menu behind the signed-in person's avatar: name and email, personal settings, and Log out. |
 | Metrics | `Countdown` | Style: default, boxed, inline | Days, Hours, Minutes, Seconds, Show seconds. Time left until a deadline people act on: an offer, a webinar start, a payment due, a session that expires. |
@@ -407,6 +411,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Popover | `Confirm Popover` | Tone: default, destructive | Title, Description. A small confirmation next to the button that triggered it, for actions with some cost that do not need a dialog. |
 | Popover | `Emoji Picker` | - | Searchable grid of emoji for reactions, a status or a workspace icon, opened in a Popover. |
 | Pricing | `Plan Card` | Variant: default, featured, inverted, compact | Title, Description, Features title, Features (slot). One plan in a pricing section: name, who it is for, Price, the main action and what it adds as Check Items. |
+| Pricing | `Comparison Table` | Plans: 3 (label column 432, plan columns 240), 4 (label 352, plans 200) | Header row per plan (name, optional Badge, Price sm, sm Button), section label rows, feature rows of Table Cell Check. Plans matches the plan cards above it; used by Block / Comparison Table (3) and Pricing with Comparison (4) |
 | Pricing | `Price` | Size: sm, default, lg, xl | Amount, Old price, Period, Show old price, Show period. A price as people compare it: amount with currency, period, and the old price struck through during a discount. |
 | Progress | `Background Job` | State: running, done, error | Title, Status, Result, Error. A task that runs in the background (export, import, bulk send, report): name, progress with count and time left, cancel; done offers the result (Download); failed says where it stopped and offers Retry. |
 | Quote | `Footnote` | - | Number, Text, Show back link. A numbered note at the end of an article, report or pricing page that explains a claim in the text. |
@@ -434,8 +439,8 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Hero | `Block / Hero with Logo Cloud` | - | Announcement Pill, display Title with accent, Description, Action Bar (2 CTAs), browser Device Frame (exposed) with `Image / Screenshot / Invoices`, Logo caption + Logos slot (6 Logo Tile plain); Show announcement, Show screenshot, Show logos |
 | Hero | `Block / Hero with Form` | - | Eyebrow, display Title with accent, Description, Inline Form (exposed, "Start free" + hint), social proof (Avatar Group with photos + Rating 4.9), 4:3 Image (exposed, `Image / Office / 03`); Show eyebrow, Show social proof |
 | Hero | `Block / Hero with Phone` | - | Eyebrow, display Title with accent, Description, Stores (`Store Badge` App Store + Google Play), Rating 4.8 (12,400 ratings), phone Device Frame (exposed) with a Page Shell / Mobile list screen, cropped in a `section/muted-background` panel; Show eyebrow, Show rating |
-| Hero | `Block / Hero Full-bleed Image` | - | 1440 x 720 photo (Image exposed, `Image / City / 01`), `video/scrim` layer, transparent Navbar (exposed, Dark mode), Announcement Pill, white Title and Description (`video/foreground`, 4.9:1 over the brightest pixel), 2 CTAs; Show announcement, Show navbar |
-| Hero | `Block / Hero with Video` | - | Announcement Pill, display Title with accent, Description, Action Bar, Video Player (State=poster, exposed, 1152 x 648, office photo poster, 3:12, shadow/xl); Show announcement, Show actions |
+| Hero | `Block / Hero Full-bleed Image` | - | 1440 x 720 photo (Image exposed, `Image / City / 01`), `video/scrim` layer, Navbar Style=on-image (exposed), Announcement Pill, white Title and Description (`video/foreground`, 4.9:1 over the brightest pixel), 2 CTAs; Show announcement, Show navbar |
+| Hero | `Block / Hero with Video` | - | Announcement Pill, display Title with accent, Description, Action Bar, Video Player (State=poster, Size=lg, exposed, 1152 x 648, office photo poster, 3:12, shadow/xl); Show announcement, Show actions |
 | Hero | `Block / Hero with Stats` | - | Eyebrow + display Title with accent left, Description + Action Bar right, 21:9 Image (exposed, `Image / Office / 05`), Metric Strip with 4 figures (€2.4B, 38,000, 11 h, 99.99%); Show eyebrow, Show image |
 | Hero | `Block / Hero Image Collage` | - | Eyebrow, display Title with accent, Description, Action Bar, social proof (Avatar Group + Rating 4.9), Collage of 5 staggered Image Placeholders (3:4 and 1:1, people and offices, all exposed); Show eyebrow, Show social proof |
 | Mobile | `Store Badge` | Store: app-store, google-play | Store mark, small line and store name; follows the theme (dark badge in Light, light in Dark). Used by Hero with Phone |
@@ -449,12 +454,12 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Sections (blocks) | `Block / Trust Strip` | - | Trust family. Badges (native slot: 4 Trust Badges: delivery, returns, secure checkout, repairs), 1440 x 182, no heading |
 | Sections (blocks) | `Block / Logo Grid` | - | Logo Cloud family: Section Header (exposed), Logos (slot: 8 `Logo Tile` bordered, 4 per row), Action (exposed Button link), Show action |
 | Sections (blocks) | `Block / Logos Split` | - | Logo Cloud family: Eyebrow, Title, Description, Show eyebrow, Show action, Action (exposed); Logos (slot: 6 `Logo Tile` plain on a muted panel, 3 per row) |
-| Sections (blocks) | `Block / Logo Marquee` | - | Logo Cloud family: Caption, Show caption; Logos (slot: 10 `Logo Tile` plain in one row, clipped at 1440 with faded edges) |
+| Sections (blocks) | `Block / Logo Marquee` | - | Logo Cloud family: Caption, Show caption; Logos (slot: 10 `Logo Tile` plain in one row, clipped at 1440 with faded edges: `fade left` and `fade right` on `gradient/background-transparent`) |
 | Sections (blocks) | `Block / CTA with Screenshot` | - | CTA family: primary band, Eyebrow, Title, Description, Note, Show eyebrow, Show proof, Show note; Primary action and Secondary action (exposed Buttons); Device Frame (exposed, browser with `Image / Screenshot / Dashboard`, cropped) |
 | Sections (blocks) | `Block / Newsletter Split` | - | Newsletter family: Eyebrow, Title, Description, Show eyebrow, Show image; Benefits (slot: 3 Check Items); Inline Form and Image (exposed, `Image / Office / 03`) |
-| Sections (blocks) | `Block / Newsletter Card` | - | Newsletter family: primary card with shadow, Title, Description, Subscribers, Show badge, Show proof; Badge and Inline Form (exposed, secondary button, white hint); Avatar Group with photos |
-| Sections (blocks) | `Block / Pricing with Comparison` | - | Pricing family: Section Header (exposed), billing Toggle Group with saving Badge (Show billing period), Plans (slot: 4 Plan Cards, one featured), Comparison toggle (exposed Button), full comparison table with 4 plan columns (Show comparison), Note, Show note |
-| Sections (blocks) | `Block / Stats Brand Band` | - | Stats family: full-width primary band, Title, Description, Source, Show header, Show source; Figures (slot: 4 `Figure` lg, white, centered) |
+| Sections (blocks) | `Block / Newsletter Card` | - | Newsletter family: primary card with shadow, Title, Description, Subscribers, Show badge, Show proof; Badge and Inline Form (exposed, Tone=on-primary); Avatar Group with photos |
+| Sections (blocks) | `Block / Pricing with Comparison` | - | Pricing family: Section Header (exposed), billing Toggle Group with saving Badge (Show billing period), Plans (slot: 4 Plan Cards, one featured), Comparison toggle (exposed Button), Comparison Table Plans=4 (Show comparison), Note, Show note |
+| Sections (blocks) | `Block / Stats Brand Band` | - | Stats family: full-width primary band, Title, Description, Source, Show header, Show source; Figures (slot: 4 `Figure` lg Tone=on-primary, centered) |
 | Sections (blocks) | `Block / About Hero` | - | About family: Eyebrow, Title (`display/lg` with accent), Description, Show eyebrow; Images (slot: 4 Image Placeholders, Person, Office, City photos) |
 | Sections (blocks) | `Block / Our Story` | - | About family: muted band, Eyebrow, Title, Description, Milestones title, Show eyebrow, Show image; Image Figure (exposed); Milestones (slot: 5 Timeline Items in a card) |
 | Sections (blocks) | `Block / Values` | - | About family: Section Header (exposed); Values (slot: 6 Feature Items stacked with brand icon tiles, 3 per row) |
@@ -564,10 +569,10 @@ Explicit modes Semantic and Components Light (Dark on the two Dark copies), Dens
 - Variant property names come from one list: Variant, Size, State, Type, Status, Layout, Level,
   Position, Side, Shape, Tone, Content, Ratio, Device, Provider, Step, Frequency, Method, Trend,
   Series, Key, Align, Mark, Marker, Control, Mode, Orientation, Value, Direction, Length, Spacing,
-  Sort, Elevation. Tab no longer uses `Style`: it is `Variant`, like Tabs. `Checked`, `Selected` and
-  `Expanded` are variant properties only where a component has both a state axis and a selection
-  axis (Checkbox `Checked` × State, Model Option `Selected` × State); otherwise selection is a
-  State value.
+  Sort, Elevation, Media, Plans. Tab no longer uses `Style`: it is `Variant`, like Tabs.
+  `Checked`, `Selected` and `Expanded` are variant properties only where a component has both a
+  state axis and a selection axis (Checkbox `Checked` × State, Model Option `Selected` × State);
+  otherwise selection is a State value.
 - Values are lowercase with hyphens (`on-track`, `in-progress`, `drag-over`). Only `Method` keeps
   uppercase HTTP verbs (GET, POST).
 - One vocabulary for outcomes: `pending`, `running`, `done`, `error` (no `complete`, no `failed`).
