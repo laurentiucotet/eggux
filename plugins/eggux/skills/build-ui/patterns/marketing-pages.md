@@ -88,7 +88,8 @@ Examples in the Examples section of the Sections page (pricing, about, contact).
 - Contact: response time promise, direct channels, short form (name, email, topic, message);
   inline success with what happens next.
 - Comparison Table: plans as columns (recommended marked), features grouped, check / dash /
-  value; mobile shows one plan at a time.
+  value; mobile shows one plan at a time. On pricing pages use `Comparison Table` Plans=3 or 4 to
+  match the plan cards, in the same order.
 - Sections alternate background only when it helps scanning (`background/default` / `muted`).
 - Testimonials: real name, role and company (Byline); specific results beat praise; no stock photos.
   One `Testimonial Card` Variant=featured above a grid of default or logo cards; minimal quotes for
@@ -100,6 +101,8 @@ Examples in the Examples section of the Sections page (pricing, about, contact).
 - Banners: one at a time, dismissible, not for errors or outages.
 - Gallery grids use `Image Figure`; office grids use `Location Card` with Show map (Block / Offices).
 - Event grids with long titles: Event Card `Date position=image`.
+- Block / Hero Split: Media=image for a photo, Media=screenshot for a Device Frame; Show trust for
+  Trust Badges under the actions.
 - Hero Prompt: Accent is the greeting, Title stays on two lines, Suggestions holds 2-4 Prompt Suggestions; submitting opens the chat or results page with the question prefilled.
 - No gray boxes on a finished page: hero and feature visuals are product screenshots (`Image / Screenshot / *` in a Device Frame); people, places and products use the Imagery photos (Image Placeholder `Show image`, Avatar Type=image); logo clouds use `Logo Tile` with a different `Logo / *` per tile. All are samples to replace with the client's own.
 - Hero headlines use `display/lg` with one accent phrase in `foreground/brand`; section titles use `heading/h1`, eyebrows `foreground/brand`.
@@ -108,15 +111,20 @@ Examples in the Examples section of the Sections page (pricing, about, contact).
 - Feature, step and bento icons sit in an `Icon Tile`: neutral by default, brand for one accent grid, gradient for one highlighted item; one Style per grid. Feature Item holds an exposed Icon Tile: set Style=brand (or gradient) on the nested tile; do not override the tile fill or icon color.
 - To show a client's brand on a pitch or cover, set the frame to their mode; the `Showcase Light` / `Showcase Dark` modes and the pages on Showcase show what a rebrand does to the same blocks.
 - Every CTA gets a secondary action and a proof row (Avatar Group with photos and a Rating with a count).
-- On a primary band or card, use Inline Form with its button set to secondary and the hint in
-  `foreground/primary`; Figures and captions use `foreground/primary`.
-- After swapping `Image / Screenshot / *` in a Device Frame, reset the image height to the new ratio; the old aspect lock crops it.
+- On a primary band or card, use Inline Form and Figure Tone=on-primary (secondary button, text in
+  `foreground/primary`), no manual overrides; captions use `foreground/primary`.
+- Device Frame: put an `Image / Screenshot / *` in Screen at Fill width and resize the frame, never
+  the screen; the height follows the image. Set a fixed screen height only to crop on purpose.
 - To put a Background behind a hero, turn off `Show background fill` on Hero Centered (and `Show panel fill` on Hero Prompt) instead of clearing fills.
 - A block with its own decoration (CTA Card glow) counts toward the one-device rule; turn `Show decoration` off when the page has a Background.
 - Set the brand with the `Logo` property on Navbar and Footer blocks (any `Logo / *` or the client logo).
 - Keep a hero `Background / Grid` at about 30% layer opacity so muted text over grid lines stays 4.5:1.
 - Never hide items inside a block's grid to change the count (the grid keeps its rows); pick the block whose count fits.
 - On a full-bleed photo hero keep the text white over the block scrim and measure the brightest pixel under it (4.5:1); skip the accent phrase there.
+- Over a full-bleed photo or video use Block / Navbar Style=on-image (white on `video/scrim`)
+  instead of a Dark mode override; turn on Show cart for shops.
+- Logo Marquee fades use `gradient/background-transparent`; on a muted band rebind the fades to
+  the band color.
 - In dark modes alternate `background/default` and `section/muted-background` per section and keep cards on `background/card`; light product screenshots become the brightest area, so give them a Device Frame and space around.
 
 ## Cookie consent

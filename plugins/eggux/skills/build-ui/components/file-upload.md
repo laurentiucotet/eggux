@@ -41,11 +41,14 @@ Usage guidelines only. Visual specs live in the Figma components (File Upload pa
 ## Avatar Upload and Image Cropper
 - Profile and logo pictures in settings: current avatar (initials when empty), the rules (type,
   minimum size, maximum weight), Upload or Change, Remove (Undo in a toast, no confirm).
+- Workspace and company logos use `Avatar Upload` Shape=square with Label "Workspace logo" (or
+  "Company logo") and a Hint with the logo rules; people use Shape=circle.
 - After picking a file, open the `Image Cropper` with the target shape (circle for avatars);
   drag to move, slider or scroll to zoom, arrow keys and +/- for keyboard users. Save uploads.
 - Errors say what to fix ("Choose an image under 5 MB").
-- Figma: `Avatar Upload` State empty, filled, uploading, error; `Image Cropper` Shape square,
-  circle (image as fill on the "image" layer; the selection stays centered; min width 320).
+- Figma: `Avatar Upload` Shape circle, square × State empty, filled, uploading, error; `Image
+  Cropper` Shape square, circle (image as fill on the "image" layer; the selection stays
+  centered; min width 320).
 
 ## Related components
 - One file inside a form (contract, logo, CSV) uses `File Field`: Choose file, name and size,

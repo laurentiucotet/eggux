@@ -8,7 +8,8 @@ Two-Factor, Accept Invite. Shell: `Page Shell / Auth`.
 - Never reveal whether an account exists: same message after "Send reset link" for any email.
 - Links expire (say how long); offer resend after a countdown; always a way back to sign in.
 - Passwords: new-password preset with strength meter, "Show" toggle, paste allowed, no
-  composition rules beyond length; confirm field only on reset.
+  composition rules beyond length; confirm field only on reset. Password Strength messages only
+  ask for length ("make it longer"); Field Preset password types have their own error text.
 - Two-factor: Input OTP with `autocomplete="one-time-code"`, auto-submit on the last digit,
   recovery code alternative, "trust this device" opt-in.
 - Invites: show who invited, to what and with which role; email fixed from the invite; expired
@@ -23,8 +24,8 @@ Two-Factor, Accept Invite. Shell: `Page Shell / Auth`.
   `Page Shell / Auth`.
 - Wrong credentials: one destructive Alert at the top of the card ("Email or password is incorrect")
   with the lockout rule, input kept, never a per-field message that tells which one is wrong.
-- On mobile the auth card loses its border and fills the width (24 px margins); entry screens show
-  the logo in the Mobile Header, later steps a back button and the flow name.
+- On mobile the auth card loses its border and fills the width (24 px margins); entry screens use
+  Mobile Header Type=brand (Logo), later steps Type=detail with back and the flow name.
 - Complete flows to copy: SCREENS / Auth (Sign in in Light and Dark, Sign up, Magic link, Password
   reset, Two-factor, Accept invite, Onboarding), desktop and mobile.
 

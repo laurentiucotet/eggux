@@ -19,6 +19,7 @@ Usage guidelines only. Visual specs live in the Figma components.
 ## Page Header (app)
 - One per page: title (heading/h3, the only h3 at that level), one-sentence description, page
   actions with the primary last. Tabs for sub-views go right under it.
+- Turn Show actions off when the page has no page action; never leave an empty Actions slot.
 
 ## Navbar (marketing)
 - Logo, 4-6 links (chevron when it opens a menu), sign in + one primary CTA.
@@ -28,8 +29,9 @@ Usage guidelines only. Visual specs live in the Figma components.
 
 ## Figma
 Navigation page: `Breadcrumb Item` (Show separator off on the last), `Breadcrumb` (Style), `Top
-Bar` (Style; Show sidebar trigger), `Page Header`, `Nav Link` (Show chevron when it opens a menu). Blocks /
-Navigation: Navbar, Footer. Page Shells use them.
+Bar` (Style; Show sidebar trigger), `Page Header` (Show description, Show actions), `Nav Link`
+(Show chevron when it opens a menu). Blocks / Navigation: Navbar (Style default, on-image; Show
+cart), Footer. Page Shells use them.
 
 ## Navigation Menu (mega menu)
 - For marketing sites with more than ~5 destinations under one top-level item (Product, Solutions).

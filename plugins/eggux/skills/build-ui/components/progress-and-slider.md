@@ -26,7 +26,8 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
 - Range sliders for filters ("EUR 150 - 450"); thumbs cannot cross.
 - Step matches the data (EUR 5, 1 km). Keyboard: arrows by step, PageUp/PageDown by 10 steps.
 - Figma: `Slider` Type (single, range) × State (default, focus, disabled). Move the range and thumb
-  layers for other values. Example "price range".
+  layers for other values. Example "price range". The Slider stretches to any width (FILL); the
+  thumbs stay 16 px and follow the value, so never resize a thumb.
 - `Show value` puts a value bubble over each thumb for exact readings while dragging; `Show marks`
   adds min, mid and max labels under the track (Min label, Mid label, Max label) for scales people
   read. Both draw outside the slider box: leave 40 px above and 24 px below. Example "Slider styles".

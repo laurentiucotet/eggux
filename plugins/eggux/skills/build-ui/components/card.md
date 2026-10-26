@@ -61,6 +61,8 @@ Stat Card, Option Card and Post Card use the same tokens.
 - Inverted Card: inside it use `background/default` text and `secondary` or `outline` Buttons,
   never `default`. Content already placed in a slot keeps its own colors when an instance is
   switched to inverted: recolor it.
+- Red text on a card (the Danger zone title) is `background/destructive`; `foreground/destructive`
+  is only for text on a red fill.
 
 ## Figma
 - `Card` (Variant × Size × Elevation, 16 variants) = native slots Header (`Card Header`), Content (placeholder) and Footer (`Card Footer`).

@@ -28,6 +28,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - `resize()` on a frame with `layoutMode = 'NONE'` applies its children's constraints: STRETCH and
   SCALE children change size, MAX children move. Set constraints first, or resize the children
   after, when they must stay as they are.
+- A part that must keep its size while its parent stretches (a slider thumb): a SCALE wrapper with
+  a fixed child set to CENTER.
+- Test a stretched component with FILL in an auto-layout parent: `resize()` on an instance does
+  not scale nested SCALE frames the way FILL does.
 
 ## Slots
 - `component.createSlot()` creates a SLOT node and a `SLOT` property; the key is in
@@ -73,6 +77,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   after its property (`Content`, `Footer`). Find slots by type and name or position.
 - Fill an instance slot before moving that instance into another instance's slot; references to
   nested nodes are invalid after the move.
+- Moving a node between two slots of the same instance with `appendChild` leaves stale ids in
+  `children`. Clone it into the target slot and remove the original.
+- An empty SLOT hugs to 100 x 100: give it a hidden child so it hugs to its content size.
 
 ## Instances and properties
 - To replace a nested part driven by an INSTANCE_SWAP with a component that has its own swap: inventory
@@ -135,6 +142,8 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Write component descriptions with `descriptionMarkdown`. Setting `description` stores quotes
   as `&quot;`, which then shows literally in the published description and in the generated
   reference. All descriptions were rewritten this way in 0.51.0.
+- `descriptionMarkdown` can read back empty while `description` has text. Read `description`
+  before rewriting a description, or the old text is lost.
 - Setting `fontName` on a text with a text style detaches the style. Pick another text style
   (`ui/label` for a medium weight) instead.
 - Load every font a text style uses (`Roboto Mono SemiBold` for `code`) before writing text.

@@ -24,7 +24,8 @@ the legend showing values and percentages; to compare parts, use Bar Chart Horiz
 ## Rules
 - Title says what is measured, description the period and unit; footer states the insight.
 - Series colors `chart/1..8` in order; color follows the entity, never its rank.
-- Legend always for 2+ series, none for one. Label selectively: the end value or the extreme.
+- Legend always for 2+ series, none for one: one item per series in the Chart Legend Items
+  slot; remove the extra items. Label selectively: the end value or the extreme.
 - Text (labels, values, legend) uses text tokens, never the series color.
 - One y axis (Combo Chart is the one exception), starting at 0 for bars; round ticks (0, 15K, 30K); compact numbers (48.2K).
 - Thin marks: bars ≤ 24 px with 4 px radius at the data end; lines 2 px; 2 px gaps between

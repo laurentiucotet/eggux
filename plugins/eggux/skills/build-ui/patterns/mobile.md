@@ -16,6 +16,8 @@ admin panels, at least check that the page does not break below 768.
   keep the content padded so the last row clears the pill. Style=default elsewhere.
 - Otherwise: menu button in `Mobile Header` opens the Sidebar as a left `Sheet`.
 - Detail pages: back button + object title, no Bottom Nav; primary action in a sticky bottom bar.
+- Entry screens (sign in, sign up, invite) use `Mobile Header` Type=brand (Logo); later steps use
+  Type=detail with back and the flow name.
 - Marketing: `Block / Navbar Mobile`; the menu is a full-screen panel with links and full-width CTAs.
 - One FAB per screen, bottom right above the Bottom Nav; an Action Sheet slides up from the bottom for the actions of one item.
 
