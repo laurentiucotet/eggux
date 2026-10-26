@@ -18,6 +18,7 @@ it everywhere. The same status never appears in two colors.
 | Needs attention, pending | `warning` (filled, dark text) |
 | Failed, overdue, blocked | `destructive` |
 | Informational, new | `info` |
+- Statuses repeated in tables and lists use the soft variants (soft-success, soft-warning, soft-destructive, soft-info, soft-neutral); a solid variant only for the one status that must stand out. One style per table.
 
 ## Rules
 - The text carries the meaning; color only reinforces it.

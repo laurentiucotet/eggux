@@ -1,6 +1,6 @@
 # Image
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -20,36 +20,43 @@ On the Figma page: "Example / before and after in a case study", "Example / crop
 
 Component set · 5 variants · default size 640 × 360
 
-Image area with a fixed ratio. Put the photo or screenshot as an image fill on the instance (Fill) and turn the caption off. Resize keeps the ratio. Ratio 21:9 for wide banners. The ratio is locked: set the instance to FILL and the height follows.
+Image area with a fixed ratio (Ratio 16:9, 4:3, 1:1, 3:4, 21:9) for photos, covers and screenshots in cards, carousels and marketing sections. Show image on shows the photo picked in the Image swap (any Image / * component from the Imagery page; it covers and crops to the ratio). Off: muted background with a dot pattern and a centered image icon (Show caption toggles the icon). Sample photos are placeholders: replace them with your own images and give meaningful images alt text. Usage: eggux build-ui/components/carousel.md
 
 **Use for**
 
-- Photos, screenshots and covers in cards, carousels and marketing sections
-- Layouts where the final image is not ready yet
-- Product, post and testimonial cards with one image ratio
+- Photos, screenshots and covers in cards, carousels, galleries and marketing sections
+- Team photos, product shots and blog covers with one ratio per grid
+- Layouts where the final image is not ready yet (Show image off)
 
 **Not for**
 
-- People or organizations: use Avatar
+- People next to their name in lists, comments and bylines: use Avatar
 - Locations: use Map
 - Icons and illustrations: use the icon set
 
 **Anatomy**
 
-1. Image area (image as Fill on the instance)
-2. Muted background (background/muted) until the image is set
-3. Caption (Show caption)
+1. Ratio: 16:9, 4:3, 1:1, 3:4, 21:9 (variant); the ratio is also in the hint layer name
+2. Image (Show image, off by default): nested Image / * instance that covers the whole area and crops to the ratio
+3. Image swap (Image): any component from the Imagery page (Image / Person, Product, Office, Cover, Abstract, City); default Image / Office / 01
+4. Pattern: dot grid on background/muted, dots in border/default, shown when there is no image
+5. Hint (Show caption): centered Lucide image icon in foreground/muted
+6. Corner radius and clipping come from the placeholder, not from the image
 
 **Content and behavior**
 
-- Ratio: 21:9, 16:9, 4:3, 1:1, 3:4; the ratio is locked, so FILL keeps the height in proportion
-- Put the real image as an image fill and turn the caption off
-- One ratio per carousel or grid; 21:9 for wide banners and page header images
+- Turn Show image on and pick the photo in the Image swap; never paste a raster fill over the instance
+- The Image / * photos are sample content (Unsplash License, not covered by the CC BY 4.0 license of the file): replace them with your own images before shipping
+- Pick photos that match the content next to them: Person for team cards, Product for shop cards, Office, Cover or City for posts, events and galleries
+- No two cards in one grid use the same photo; one ratio per carousel or grid; 21:9 for wide banners and page header images
+- Show image off is the loading or missing-image state: keep the dot pattern and the icon, no fake text
+- Text over a photo needs a scrim or a solid surface behind it
 
 **Accessibility**
 
-- Meaningful images have alt text; decorative ones have empty alt
+- Meaningful images have alt text that says what the photo shows; decorative ones have empty alt
 - Text over an image keeps 4.5:1 contrast
+- The no-image hint icon is decorative (aria-hidden)
 
 | Variant property | Values |
 |---|---|
@@ -58,15 +65,18 @@ Image area with a fixed ratio. Put the photo or screenshot as an image fill on t
 | Property | Type | Default |
 |---|---|---|
 | Show caption | boolean | true |
+| Show image | boolean | false |
+| Image | instance swap | Image / Office / 01 |
+
+Built from: `Image / Office / 01`. Icons: image
 
 Tokens and styles:
-- Colors: `background/muted`, `foreground/muted`
+- Colors: `background/muted`, `border/default`
 - Radius: `radius/lg`
-- Text styles: `ui/caption`
 
 Guides: [carousel](../../skills/build-ui/components/carousel.md)
 
-Code: `<img>` or `next/image` with `aspect-ratio` and `object-cover`
+Code: `<img>` or `next/image` with `aspect-ratio` and `object-cover` (`Show image` = render the image; off = muted box with a dot background and lucide `Image` icon (loading or missing image). The `Image` swap picks a sample photo: replace with the real `src` and alt)
 
 ## Map
 
@@ -312,8 +322,8 @@ A browser window or a phone around a product screenshot for marketing pages, doc
 
 **Use for**
 
-- Block / Hero with Screenshot
-- Feature rows in Block / Features Split
+- Block / Hero with Screenshot, Hero Centered, Hero Split, Hero Prompt
+- Feature rows in Block / Features Split and the media panel of Block / CTA Split
 - Docs and case studies
 
 **Not for**
@@ -326,15 +336,16 @@ A browser window or a phone around a product screenshot for marketing pages, doc
 
 1. Chrome: three dots and the address bar with lock icon (Device=browser)
 2. Address: "app.acme.com/invoices"
-3. Screen slot: a block or an image at 1:1
+3. Screen slot: an Image / Screenshot / ... instance (FILL width, ratio locked) or a live block at 1:1
 4. Device: browser, phone
 
 **Content and behavior**
 
-- A real screen at 1:1; never stretch it
+- A real screen, never stretched: screenshots keep their ratio
 - One frame style per page
 - The address matches the screen
 - Realistic content (Acme, invoices), no placeholder text
+- Prefer an Image / Screenshot component on marketing pages; a live block only when it must stay editable
 
 **Accessibility**
 
@@ -359,7 +370,7 @@ Tokens and styles:
 - Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
 - Radius: `radius/full`, `radius/lg`
 - Text styles: `ui/caption`
-- Effects: `shadow/lg`
+- Effects: `shadow/xl`
 
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 

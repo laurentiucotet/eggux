@@ -1,6 +1,6 @@
 # Component reference
 
-One file per component page of the EGG UI master library, generated on 2026-10-23.
+One file per component page of the EGG UI master library, generated on 2026-10-26.
 Each component lists its variants, properties with defaults, slots, the components and icons
 it is built from, the tokens and styles it uses, its usage guides and its code mapping. Main
 components also list when to use them, anatomy, rules and accessibility from
@@ -26,7 +26,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Automation](automation.md) | Automation Rule, Workflow Node, Mapping Row |
 | [Avatar](avatar.md) | Avatar, Avatar Group, Byline, Presence Bar |
 | [Badge](badge.md) | Badge, Badge Count, Status Dot, Badge List, Announcement Pill, Trust Badge |
-| [Brand](brand.md) | Logo Mark, Logo, Logo Tile |
+| [Brand](brand.md) | Logo Mark, Logo, Logo Tile, Logo / Northwind, Logo / Lumora, Logo / Orbitly, Logo / Fieldstone, Logo / Kestrel, Logo / Quintra, Logo / Halcyon, Logo / Brightpath, Logo / Corvid, Logo / Meridian, Logo / Tidewater, Logo / Vireo |
 | [Button](button.md) | Button, Button Icon, Button Group, Button Group Item, Split Button, Action Bar, Social Share |
 | [Calendar](calendar.md) | Calendar, Calendar Day, Date Picker, Time Picker, Date Range Picker |
 | [Card](card.md) | Card, Card Header, Card Footer, Stat Card, Option Card, Post Card, Entity Card, Progress Card, Person Card, Event Card, Date Tile, Link Preview, Location Card |
@@ -90,4 +90,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tree](tree.md) | Tree Item |
 | [Video](video.md) | Video Player, Video Thumbnail, Audio Player |
 
-345 components on 72 pages.
+357 components on 72 pages.

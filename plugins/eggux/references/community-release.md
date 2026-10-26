@@ -56,8 +56,8 @@ What is inside
 - 128 blocks by category (AI, App, Commerce, Content, Enterprise, Forms, Hero,
   Navigation, Page Headers, Results, Sections), including navbar and footer variants and a help center kit (search,
   topics, articles, support, changelog, status), and 8 page shells (App, Marketing, Auth, Mobile, Wizard, Split View, Docs, Admin Panel).
-- 628 variables in five collections (Content holds names and labels in English and Română): Primitives, Semantic (Light, Dark), Components and
-  Density (Comfortable, Compact). 14 text styles, shadows and motion tokens.
+- 638 variables in five collections (Content holds names and labels in English and Română): Primitives, Semantic (Light, Dark), Components and
+  Density (Comfortable, Compact). 16 text styles, shadows and motion tokens.
 - AI chat kit: prompt input, user and assistant messages, reasoning, tool calls with
   approval, sources and citations, suggestions, assistant panel, inline AI.
 - Native slots for every content area, so you fill components instead of detaching them.

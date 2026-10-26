@@ -107,6 +107,13 @@ Current tokens:
 | `table/row-hover` | `background/muted` at `opacity/50` | shadcn `hover:bg-muted/50` |
 | `table/row-expanded` | `background/muted` at `opacity/30` | Detail row under an expanded table row |
 | `switch/thumb-unchecked` | Light `background/default`, Dark `foreground/default` | Thumb stays visible on the dark track |
+| `badge/soft-{success,warning,destructive,info}-bg` | `background/{tone}` at `opacity/10` (Light, Corporate Light), `opacity/20` (Dark, Corporate Dark) | Badge soft fill |
+| `badge/soft-neutral-bg` | `foreground/default` at `opacity/10` | Badge soft-neutral fill |
+| `badge/soft-success-fg` | Light `color/green/800`, Dark `color/green/400` (Corporate same) | 6.2 / 7.2 : 1 on the soft fill |
+| `badge/soft-warning-fg` | Light `color/amber/800`, Dark `color/amber/300` | 6.6 / 7.9 : 1 |
+| `badge/soft-destructive-fg` | Light `color/red/700`, Dark `color/red/300` | 5.5 / 6.9 : 1 |
+| `badge/soft-info-fg` | Light `color/blue/700`, Dark `color/blue/300` | 5.7 / 7.6 : 1 |
+| `badge/soft-neutral-fg` | Light `color/neutral/700`, Dark `color/neutral/300`; Corporate `color/slate/700` / `color/slate/300` | 8.4 / 9.2 : 1 |
 | `video/background` | `color/black`, same in Light and Dark | Video Player surface behind the frame |
 | `video/foreground` | `color/white` | Icons, time and subtitles over video |
 | `video/track` | `color/white` at `opacity/30` | Unplayed part of the progress bar |
@@ -209,7 +216,9 @@ Contextual, bound to `font/*` and type primitives. Use these, never raw size/wei
 
 | Style | Use |
 |---|---|
-| `display` | Hero, marketing headline |
+| `display` | Marketing section headline, page hero inside an app (48) |
+| `display/lg` | Hero headline on marketing pages (60); one per page |
+| `display/xl` | Oversized hero or cover headline (72); rarely, one per page |
 | `heading/h1` ... `heading/h4` | Page and section titles. One `h1` per screen |
 | `body/lead` | Intro paragraph under a page title |
 | `body/large` | Emphasized short text |

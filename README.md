@@ -12,9 +12,10 @@ motion and density tokens.
 **Get the Figma library:** [EGG UI on Figma Community](https://www.figma.com/community/file/1694044412384019384). Duplicate it into your
 workspace and start from there; client files start as a copy of it.
 
-At a glance: 345 components on 72 pages, 128 blocks, 8 page shells, 628 variables in five
+At a glance: 345 components on 72 pages, 128 blocks, 8 page shells, 638 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
-Română), 14 text styles, 101 Lucide icons and 6 brand icons. The plugin adds 12 skills, 31
+Română), 16 text styles, 101 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
+images (49 photos, 7 product screenshots). The plugin adds 12 skills, 31
 patterns and 38 component guides.
 
 ## Install

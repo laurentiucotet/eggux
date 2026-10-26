@@ -18,7 +18,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Button Icon` | shadcn `Button size="icon"` with `aria-label`, wrapped in `Tooltip` | Same `variant` values as Button; tooltip text = aria-label |
 | `Button Group`, `Button Group Item`, `Split Button` | shadcn `ButtonGroup` or custom flex + `DropdownMenu` | |
 | `Action Bar` | `<div class="flex gap-2 justify-end">` of shadcn `Button` (justify-start, justify-center) | Leading button with `mr-auto`; one primary |
-| `Badge`, `Badge Count`, `Status Dot` | shadcn `Badge` (+ success, warning, info variants) | Status Dot: custom span + label |
+| `Badge`, `Badge Count`, `Status Dot` | shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`) | Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; one style per table |
 | `Chip`, `Tag` | custom on `Badge` + remove `Button` | |
 | `Avatar`, `Avatar Group` | shadcn `Avatar` | `Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`. Group: negative margin + ring |
 | `Byline` | shadcn `Avatar` + name and detail (`flex items-center gap-3`) | Name links to the profile; dates in `<time>` |
@@ -42,6 +42,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Side Panel` | `<aside>` in the page grid + shadcn `Collapsible` | Right `Sheet` below 1024 px; persist the collapsed state |
 | `Alert`, `Toast` | shadcn `Alert`, `Sonner` | |
 | `Card`, `Card Header`, `Card Footer`, `Stat Card` | shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content |
+| `Stat Card` | shadcn `Card` + custom content; change = `Badge` soft variant by direction; optional sparkline = Recharts `LineChart` without axes, `var(--chart-1)` | Up soft-success, down soft-destructive, flat soft-neutral; swap on the instance when up is bad; sparkline `aria-hidden` |
 | `Skeleton`, `Spinner`, `Kbd`, `Kbd Group` | shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) | |
 | `Pagination`, `Pagination Item`, `Breadcrumb`, `Breadcrumb Item` | shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) | In tables use `Table Pagination` |
 | `Pagination Compact` | shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNext` | |
@@ -151,7 +152,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Treemap` | Recharts `Treemap` with a custom cell renderer | |
 | `Gantt Bar`, `Gantt Milestone`, Gantt block | SVAR Gantt, Frappe Gantt, or a custom grid with dnd-kit | |
 | `Page Toolbar` | custom flex: `Input`, `Button` + `Badge`, `ToggleGroup`, primary `Button` | Swapped for Table Toolbar while rows are selected; state in the URL |
-| `Trend Indicator` | custom: lucide `TrendingUp` / `TrendingDown` / `Minus` + `<span class="tabular-nums">` | Direction from the data, tone from the meaning (`text-success`, `text-destructive`, `text-muted-foreground`); hidden "Up" / "Down" text |
+| `Trend Indicator` | custom: lucide `TrendingUp` / `TrendingDown` / `Minus` + `<span class="tabular-nums">`; Style=badge wraps both in a soft `Badge` | Direction from the data, tone from the meaning (`text-success`, `text-destructive`, `text-muted-foreground`, or the soft Badge of that tone); hidden "Up" / "Down" text |
 | `Metric Strip`, `Metric Strip Item` | `<dl class="grid grid-cols-2 md:grid-cols-4 divide-x">` with `dt` / `dd` + `Trend Indicator` | 3-5 items; one period said once nearby |
 | `Usage Meter` | shadcn `Progress` with a tone class + label row | `role="meter"`, `aria-valuenow`, `aria-valuemax`; near from 80%, over above 100% |
 | `Leaderboard Row` | `<ol>` of rows with shadcn `Avatar`, `tabular-nums` value | Current row `aria-current="true"` and `bg-accent` |

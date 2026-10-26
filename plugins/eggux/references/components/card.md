@@ -1,6 +1,6 @@
 # Card
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -139,9 +139,9 @@ Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default
 
 ## Stat Card
 
-Component set · 3 variants · default size 288 × 174
+Component set · 3 variants · default size 288 × 172
 
-Metric card (shadcn dashboard section card). Trend sets the icon; the change and trend line are edited per instance. Direction is shown by icon and text, never color alone.
+Metric card (shadcn dashboard section card). Trend sets the icon and the change badge tone: up = soft-success, down = soft-destructive, neutral = soft-neutral (for a metric where up is bad, swap the badge Variant on the instance). Show sparkline (off by default) adds a Sparkline in chart/1 under the value. The change and trend line are edited per instance. Direction is shown by icon and sign, never color alone. Usage: eggux build-ui/components/card.md
 
 **Use for**
 
@@ -158,14 +158,17 @@ Metric card (shadcn dashboard section card). Trend sets the icon; the change and
 
 1. Label (body/small, muted)
 2. Value (heading/h2, one line)
-3. Change Badge with the Trend icon: trending-up, trending-down, minus
-4. Trend line and Footnote (Show footer)
-5. Show change and Show trend hide the change badge and the trend row when there is no comparison
+3. Change Badge (Show change), soft by Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus
+4. Sparkline (Show sparkline, off by default): Sparkline in chart/1 under the value
+5. Trend line and Footnote (Show footer)
+6. Show change and Show trend hide the change badge and the trend row when there is no comparison
 
 **Content and behavior**
 
-- Trend sets the icon; edit the change and trend line per instance
-- Direction is shown by icon and text, never color alone
+- Trend sets the icon and the change badge tone; edit the change and trend line per instance
+- When up is bad (costs, churn), switch the change badge Variant to soft-destructive on the instance
+- Direction is shown by icon and sign, never color alone
+- Show sparkline on all cards of a row or none; same period in each
 - Value stays on one line; amounts in the locale format (€48,250)
 - The Footnote says what it is compared to
 - Cards in a row share structure and height
@@ -175,6 +178,8 @@ Metric card (shadcn dashboard section card). Trend sets the icon; the change and
 - The change reads as text ("Up 12% compared to September")
 - Label and value are read together
 - The Footnote meets 4.5:1
+- The sparkline is decorative (aria-hidden); the change text carries the meaning
+- Change badge text meets 4.5:1 in every mode (soft badge tokens)
 
 | Variant property | Values |
 |---|---|
@@ -189,8 +194,9 @@ Metric card (shadcn dashboard section card). Trend sets the icon; the change and
 | Trend text | text | 12,5% vs last month |
 | Show change | boolean | true |
 | Show trend | boolean | true |
+| Show sparkline | boolean | false |
 
-Built from: `Badge`. Icons: minus, trending-down, trending-up
+Built from: `Badge`, `Sparkline`. Icons: minus, trending-down, trending-up
 
 Tokens and styles:
 - Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`

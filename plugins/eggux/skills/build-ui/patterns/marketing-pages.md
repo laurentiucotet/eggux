@@ -75,6 +75,9 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
 - Event grids with long titles: Event Card `Date position=image`.
 - Hero Prompt: Accent is the greeting, Title stays on two lines, Suggestions holds 2-4 Prompt Suggestions; submitting opens the chat or results page with the question prefilled.
 - No gray boxes on a finished page: hero and feature visuals are product screenshots (`Image / Screenshot / *` in a Device Frame); people, places and products use the Imagery photos (Image Placeholder `Show image`, Avatar Type=image); logo clouds use `Logo Tile` with a different `Logo / *` per tile. All are samples to replace with the client's own.
+- Hero headlines use `display/lg` with one accent phrase in `foreground/brand`; section titles use `heading/h1`, eyebrows `foreground/brand`.
+- Put Stats, Logo Cloud, Testimonial Grid or FAQ on `background/muted` between default sections; at most one decorative device (pattern or glow) per block.
+- Every CTA gets a secondary action and a proof row (Avatar Group with photos and a Rating with a count).
 
 ## Cookie consent
 - Needed before any non-essential cookie (analytics, ads, embeds that track). Necessary cookies

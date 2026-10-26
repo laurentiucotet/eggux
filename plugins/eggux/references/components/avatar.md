@@ -1,6 +1,6 @@
 # Avatar
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -17,35 +17,38 @@ On the Figma page: "Example / article meta", "Example / assignees on a project p
 
 Component set · 20 variants · default size 32 × 32
 
-shadcn Avatar. Type=image: put the photo as an image fill on the "image" layer of the instance; the user icon is only a placeholder. Type=initials is the fallback (two letters). Status = online dot. Always pair with the person's name in text nearby or as accessible label. Shape: circle for people, square for companies, workspaces and apps. Size xs (20) for inline mentions and dense cells.
+shadcn Avatar. Type=initials (default, two letters) is the fallback; Type=image shows the photo picked in the Photo swap (Image / Person / * from the Imagery page), clipped to the shape. The sample faces are placeholders: replace them with real photos, and use a different person for each avatar in a list. Status = online dot. Always pair with the person's name in text nearby or as accessible label. Shape: circle for people, square for companies, workspaces and apps. Size xs (20) for inline mentions and dense cells. Usage: eggux build-ui/components/avatar.md
 
 **Use for**
 
 - People in lists, tables, comments, headers and cards
 - Size sm in tables and dense lists, default in lists and sidebars, lg and xl on profiles
-- Owners and assignees on Entity Cards, Post Card authors
+- Owners and assignees on Entity Cards, Post Card authors, testimonial and team blocks
 
 **Not for**
 
 - Several people in little space: use Avatar Group
 - State of a system or service: use Status Dot
-- Companies and objects without a photo: use an icon
+- Large team or product photos: use Image Placeholder with Show image
+- Companies and objects without a photo: use an icon or Shape=square initials
 
 **Anatomy**
 
-1. Image fill on the image layer (Type=image) or Initials (Type=initials)
-2. User icon placeholder, only when there is no name
-3. Status: online dot
-4. Shape: circle for people, square (radius md, lg on lg and xl) for companies, workspaces and apps
-5. Size xs (20) for inline mentions and dense table cells
+1. Type: initials (default) or image
+2. Initials (Type=initials): two letters on background/muted
+3. Photo swap (Photo, Type=image): nested Image / Person / * instance clipped to the shape; default Image / Person / 01
+4. Status (Show status): online dot
+5. Shape: circle for people, square (radius md, lg on lg and xl) for companies, workspaces and apps
+6. Size: xs (20), sm (24), default (32), lg (40), xl (48)
 
 **Content and behavior**
 
 - Always next to the person's name, or with the name as accessible label; never the only identifier
-- Photo when available; two initials as fallback
-- Status dot only when presence matters to the task
-- Same size within a list or group
-- Square only for organizations and apps, never for people; one shape per list
+- Type=image with a Photo when a photo exists; initials stay the default and the fallback
+- The Image / Person photos are sample faces (Unsplash License, not covered by the CC BY 4.0 license of the file): replace them with real photos
+- Pick a photo that fits the name, use a different person for each avatar in a block, and the same photo for the same person within it
+- Overflow avatars (+3) and organizations stay initials
+- Status dot only when presence matters to the task; same size within a list or group; one shape per list
 
 **Accessibility**
 
@@ -63,8 +66,9 @@ shadcn Avatar. Type=image: put the photo as an image fill on the "image" layer o
 |---|---|---|
 | Initials | text | AP |
 | Show status | boolean | false |
+| Photo | instance swap | Image / Person / 01 |
 
-Icons: user
+Built from: `Image / Person / 01`. Icons: user
 
 Tokens and styles:
 - Colors: `background/default`, `background/muted`, `background/success`, `foreground/default`
@@ -74,7 +78,7 @@ Tokens and styles:
 
 Guides: [avatar](../../skills/build-ui/components/avatar.md)
 
-Code: shadcn `Avatar` (Group: negative margin + ring)
+Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`. Group: negative margin + ring)
 
 ## Avatar Group
 
@@ -133,7 +137,7 @@ Tokens and styles:
 
 Guides: [avatar](../../skills/build-ui/components/avatar.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
 
-Code: shadcn `Avatar` (Group: negative margin + ring)
+Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`. Group: negative margin + ring)
 
 ## Byline
 

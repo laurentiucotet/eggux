@@ -1,6 +1,6 @@
 # Chart
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -36,7 +36,7 @@ On the Figma page: "Example / activity by weekday and hour", "Example / cash bri
 
 Component set · 3 variants · default size 560 × 240
 
-Vertical bars (shadcn Chart / Recharts BarChart). Bars max 24 wide, 4 px radius at the data end only, 2 px surface gap between touching bars and stacked segments. single = one series in chart/1 (no legend); grouped = up to 4 series; stacked = part-to-whole. Edit bar heights for real data; y ticks round (0, 15K, 30K).
+Vertical bars (shadcn Chart / Recharts BarChart). Bars max 24 wide, 4 px radius at the data end only, 2 px surface gap between touching bars and stacked segments. single = one series in chart/1 (no legend); grouped = up to 4 series; stacked = part-to-whole, series 1 (chart/1) at the base, series 2 (chart/2) on top. Edit bar heights for real data; y ticks round (0, 15K, 30K).
 
 **Use for**
 
@@ -64,7 +64,7 @@ Vertical bars (shadcn Chart / Recharts BarChart). Bars max 24 wide, 4 px radius 
 
 - One y axis, starting at 0 (two axes only in Combo Chart)
 - 2 px surface gap between touching bars and stacked segments
-- Series colors chart/1..8 in order; color follows the entity, never its rank
+- Series colors chart/1..8 in order, also in stacked bars (series 1 at the base); color follows the entity, never its rank
 - Labels and values use text tokens, never the series color
 - Compact numbers (48.2K); edit bar heights for real data
 - Empty: say why ("No sales yet in this period"); loading: Skeleton in the chart shape
@@ -223,6 +223,7 @@ Trend without axes for stat cards and table cells (12 points). Direction is told
 - No axes, labels or legend
 - Direction is told by the delta text, not by color
 - Same period for every sparkline in a column or row of cards
+- Stretch it to the card width; the end dot stays on the last point
 
 **Accessibility**
 

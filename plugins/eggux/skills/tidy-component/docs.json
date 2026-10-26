@@ -455,11 +455,12 @@
   ]
  },
  "Badge": {
-  "summary": "A short label for the status of an object, a category or a count.",
+  "summary": "A short label for the status of an object, a category or a count, as a solid or a soft (tinted) pill.",
   "use": [
    "Status of an object (Paid, Overdue, Draft) next to its name",
    "Category of an item",
-   "A count after a label (Count on: \"Invoices 12\")"
+   "A count after a label (Count on: \"Invoices 12\")",
+   "Variant=soft-* for statuses repeated down a table or list (Paid, Pending, Overdue), so the page gets calm color"
   ],
   "avoid": [
    "Filters and selections: use Chip",
@@ -467,7 +468,9 @@
    "State of a system or person in text flow: use Status Dot"
   ],
   "anatomy": [
-   "Icon or Dot (optional)",
+   "Variant: solid default, secondary, destructive, outline, success, warning, info; soft soft-success, soft-warning, soft-destructive, soft-info, soft-neutral",
+   "Shape: rounded or pill",
+   "Icon (Show icon, Icon swap) or Dot (Show dot), in the label color",
    "Label",
    "Count value (Show count)"
   ],
@@ -475,16 +478,19 @@
    "Text carries the meaning; color only reinforces it",
    "One or two words, sentence case",
    "Map each status to one Variant once and reuse it; a status never appears in two colors",
-   "Neutral: secondary or outline; done: success; pending: warning; failed: destructive; new: info",
+   "Neutral: secondary, outline or soft-neutral; done: success; pending: warning; failed: destructive; new: info",
+   "One style per table or list: all solid or all soft",
+   "Soft colors come from badge/soft-*-bg (status color at opacity 10 in Light, 20 in Dark) and badge/soft-*-fg; never recolor by hand",
    "Not clickable",
    "Next to the primary information of a row, never instead of it"
   ],
   "a11y": [
-   "Label meets 4.5:1 on every Variant; warning uses dark text",
+   "Label meets 4.5:1 on every Variant; warning uses dark text (solid) or amber/800 (soft)",
+   "Soft labels measured 5.5 to 11 : 1 in Light, Dark, Corporate Light and Corporate Dark",
    "Never a color or dot alone",
    "Not focusable: it is static text"
   ],
-  "code": "shadcn Badge (+ success, warning, info variants).",
+  "code": "shadcn Badge (+ success, warning, info variants; soft-* variants use bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]).",
   "guides": [
    "skills/build-ui/components/badge.md",
    "skills/build-ui/components/table.md",
@@ -554,7 +560,7 @@
   "rules": [
    "One y axis, starting at 0 (two axes only in Combo Chart)",
    "2 px surface gap between touching bars and stacked segments",
-   "Series colors chart/1..8 in order; color follows the entity, never its rank",
+   "Series colors chart/1..8 in order, also in stacked bars (series 1 at the base); color follows the entity, never its rank",
    "Labels and values use text tokens, never the series color",
    "Compact numbers (48.2K); edit bar heights for real data",
    "Empty: say why (\"No sales yet in this period\"); loading: Skeleton in the chart shape"
@@ -4344,7 +4350,8 @@
   "rules": [
    "No axes, labels or legend",
    "Direction is told by the delta text, not by color",
-   "Same period for every sparkline in a column or row of cards"
+   "Same period for every sparkline in a column or row of cards",
+   "Stretch it to the card width; the end dot stays on the last point"
   ],
   "a11y": [
    "The delta text carries the meaning; the line is decorative (aria-hidden)",
@@ -4438,13 +4445,16 @@
   "anatomy": [
    "Label (body/small, muted)",
    "Value (heading/h2, one line)",
-   "Change Badge with the Trend icon: trending-up, trending-down, minus",
+   "Change Badge (Show change), soft by Trend: up soft-success, down soft-destructive, neutral soft-neutral; icon trending-up, trending-down, minus",
+   "Sparkline (Show sparkline, off by default): Sparkline in chart/1 under the value",
    "Trend line and Footnote (Show footer)",
    "Show change and Show trend hide the change badge and the trend row when there is no comparison"
   ],
   "rules": [
-   "Trend sets the icon; edit the change and trend line per instance",
-   "Direction is shown by icon and text, never color alone",
+   "Trend sets the icon and the change badge tone; edit the change and trend line per instance",
+   "When up is bad (costs, churn), switch the change badge Variant to soft-destructive on the instance",
+   "Direction is shown by icon and sign, never color alone",
+   "Show sparkline on all cards of a row or none; same period in each",
    "Value stays on one line; amounts in the locale format (€48,250)",
    "The Footnote says what it is compared to",
    "Cards in a row share structure and height"
@@ -4452,9 +4462,11 @@
   "a11y": [
    "The change reads as text (\"Up 12% compared to September\")",
    "Label and value are read together",
-   "The Footnote meets 4.5:1"
+   "The Footnote meets 4.5:1",
+   "The sparkline is decorative (aria-hidden); the change text carries the meaning",
+   "Change badge text meets 4.5:1 in every mode (soft badge tokens)"
   ],
-  "code": "shadcn Card + cva (variant, size, elevated); Stat Card is custom content.",
+  "code": "shadcn Card + cva (variant, size, elevated); Stat Card is custom content; change = Badge soft variant; sparkline = Recharts LineChart without axes, var(--chart-1).",
   "guides": [
    "skills/build-ui/components/card.md",
    "skills/build-ui/components/charts.md",
@@ -7222,7 +7234,8 @@
   "use": [
    "The change under a value in a Metric Strip or a Stat Card",
    "A change next to a figure in a table row or a report header",
-   "Rising costs or churn: Trend=up with Tone=negative"
+   "Rising costs or churn: Trend=up with Tone=negative",
+   "Style=badge inside KPI tiles and table cells, where a pill reads better than colored text"
   ],
   "avoid": [
    "A trend people read over time: use Sparkline or Line Chart",
@@ -7230,8 +7243,9 @@
    "A status with no change: use Badge"
   ],
   "anatomy": [
+   "Style: text (colored icon and value) or badge (icon and value in a soft Badge: soft-success, soft-destructive, soft-neutral by Tone)",
    "Icon: trending-up, trending-down or minus (from Trend)",
-   "Value: signed percent or amount, ui/label",
+   "Value: signed percent or amount, ui/label (Style=badge: the Badge Label, edited on the exposed Badge)",
    "Comparison (Show comparison): \"vs last month\", ui/caption, muted"
   ],
   "rules": [
@@ -7239,14 +7253,15 @@
    "Always signed: +12.4%, −3.1%, 0.0% for flat; one decimal for percentages",
    "The comparison names the period (\"vs last month\", \"vs Q3\"); hide it only when the period is said once nearby",
    "Edit the value text per instance; keep the same comparison for every item in a row",
-   "Neutral tone when the change is too small to matter, or when up and down mean nothing good or bad"
+   "Neutral tone when the change is too small to matter, or when up and down mean nothing good or bad",
+   "One Style per row of metrics"
   ],
   "a11y": [
    "The sign and the words carry the meaning; color only supports it",
    "The icon is decorative (aria-hidden); read as \"Up 12.4% vs last month\" with a visually hidden \"Up\" or \"Down\"",
    "Positive and negative text keeps 4.5:1 on card and page in every mode"
   ],
-  "code": "custom: lucide TrendingUp, TrendingDown or Minus + <span class=\"tabular-nums\">; tone as text-success, text-destructive or text-muted-foreground.",
+  "code": "custom: lucide TrendingUp, TrendingDown or Minus + <span class=\"tabular-nums\">; tone as text-success, text-destructive or text-muted-foreground. Style=badge: shadcn Badge soft variant with the icon inside.",
   "guides": [
    "skills/build-ui/components/charts.md",
    "skills/build-ui/patterns/reports.md"

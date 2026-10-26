@@ -1,12 +1,12 @@
 # Metrics
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Trend Indicator](#trend-indicator) | 9 | - |
+| [Trend Indicator](#trend-indicator) | 18 | - |
 | [Metric Strip](#metric-strip) | 1 | Metrics |
 | [Metric Strip Item](#metric-strip-item) | 1 | - |
 | [Usage Meter](#usage-meter) | 3 | - |
@@ -17,15 +17,16 @@ On the Figma page: "Example / in billing", "Example / in executive dashboard", "
 
 ## Trend Indicator
 
-Component set · 9 variants · default size 141 × 20
+Component set · 18 variants · default size 141 × 20
 
-A change against a period: arrow, signed percent or amount, and what it is compared to. Direction is up, down or flat; Tone says if that is good (positive), bad (negative) or neither, so rising costs can be up and negative. The sign and the words carry the meaning; color only supports it. Edit the value text per instance.
+A change against a period: arrow, signed percent or amount, and what it is compared to. Direction is up, down or flat; Tone says if that is good (positive), bad (negative) or neither, so rising costs can be up and negative. Style=text colors the arrow and value; Style=badge puts them in a soft Badge (soft-success, soft-destructive, soft-neutral by Tone) for KPI tiles and tables; edit its label on the exposed Badge. The sign and the words carry the meaning; color only supports it. Edit the value text per instance.
 
 **Use for**
 
 - The change under a value in a Metric Strip or a Stat Card
 - A change next to a figure in a table row or a report header
 - Rising costs or churn: Trend=up with Tone=negative
+- Style=badge inside KPI tiles and table cells, where a pill reads better than colored text
 
 **Not for**
 
@@ -35,9 +36,10 @@ A change against a period: arrow, signed percent or amount, and what it is compa
 
 **Anatomy**
 
-1. Icon: trending-up, trending-down or minus (from Trend)
-2. Value: signed percent or amount, ui/label
-3. Comparison (Show comparison): "vs last month", ui/caption, muted
+1. Style: text (colored icon and value) or badge (icon and value in a soft Badge: soft-success, soft-destructive, soft-neutral by Tone)
+2. Icon: trending-up, trending-down or minus (from Trend)
+3. Value: signed percent or amount, ui/label (Style=badge: the Badge Label, edited on the exposed Badge)
+4. Comparison (Show comparison): "vs last month", ui/caption, muted
 
 **Content and behavior**
 
@@ -46,6 +48,7 @@ A change against a period: arrow, signed percent or amount, and what it is compa
 - The comparison names the period ("vs last month", "vs Q3"); hide it only when the period is said once nearby
 - Edit the value text per instance; keep the same comparison for every item in a row
 - Neutral tone when the change is too small to matter, or when up and down mean nothing good or bad
+- One Style per row of metrics
 
 **Accessibility**
 
@@ -57,6 +60,7 @@ A change against a period: arrow, signed percent or amount, and what it is compa
 |---|---|
 | Trend | up, down, flat |
 | Tone | positive, negative, neutral |
+| Style | text, badge |
 
 | Property | Type | Default |
 |---|---|---|
@@ -64,7 +68,7 @@ A change against a period: arrow, signed percent or amount, and what it is compa
 | Show comparison | boolean | true |
 | Value | text | 12.4% |
 
-Icons: minus, trending-down, trending-up
+Built from: `Badge`. Icons: minus, trending-down, trending-up
 
 Tokens and styles:
 - Colors: `background/destructive`, `background/success`, `foreground/muted`
@@ -73,7 +77,7 @@ Tokens and styles:
 
 Guides: [reports](../../skills/build-ui/patterns/reports.md)
 
-Code: custom: lucide `TrendingUp` / `TrendingDown` / `Minus` + `<span class="tabular-nums">` (Direction from the data, tone from the meaning (`text-success`, `text-destructive`, `text-muted-foreground`); hidden "Up" / "Down" text)
+Code: custom: lucide `TrendingUp` / `TrendingDown` / `Minus` + `<span class="tabular-nums">`; Style=badge wraps both in a soft `Badge` (Direction from the data, tone from the meaning (`text-success`, `text-destructive`, `text-muted-foreground`, or the soft Badge of that tone); hidden "Up" / "Down" text)
 
 ## Metric Strip
 

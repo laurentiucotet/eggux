@@ -35,11 +35,16 @@ If a client file is missing, say which skill creates it and continue with base r
   Mobile) → Blocks → Field Presets → components. Use instances and fill slots; never detach. In
   code, use the shadcn components already in the project. Build something new only when nothing
   fits, say so, and suggest `/eggux:new-component` if it will repeat.
+  The Page Shells page has `Example / <shell> filled` instances that show a full composition;
+  the shell components keep their slots empty for assembly.
 - **Tokens only.** Fills, strokes, radius, spacing, sizes and text styles bound to variables and
   styles. A raw value is a defect unless no token exists; then flag it.
 - **Copy:** the client's terminology and voice, real-looking content, never lorem ipsum. Replace
   the library's neutral defaults ("Acme", "Website redesign") with the client's content.
 - **States:** default, empty, loading and error for every screen; validation errors for forms.
+- **Status and numbers:** status in lists and tables uses soft badges (`Variant=soft-*`); keep
+  at most one solid badge per screen, for the item that needs attention. Dashboards turn on
+  `Show sparkline` on 2 to 4 Stat Cards and give each chart its own `chart/N` series.
 - **Theme:** Corporate modes (+ Density Compact) for enterprise, admin panel and data-heavy
   products; Default modes otherwise, unless `brand.md` says which. See
   `patterns/enterprise-apps.md`.
