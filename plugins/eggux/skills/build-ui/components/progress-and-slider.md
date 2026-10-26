@@ -12,6 +12,12 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
 - Tone: success when complete, warning near a limit, error when failed; the text next to the bar
   says it too. Figma: `Progress` Tone × Value.
 - Long exports and syncs show as Background Jobs in a Popover from a top bar button, one row per job (Status, Result or Error per state).
+- Type=segmented for a count of steps (onboarding, a setup checklist, a multi-step form on mobile):
+  one segment per step, 4 to 10, and the count in text next to it ("Step 2 of 4"). Type=default for
+  a share of work (uploads, imports, quotas). Circular progress is `Progress Ring`.
+- Figma: Type=segmented holds `Progress Segment` instances (State complete or upcoming, Tone) in the
+  Segments slot; Value sets 0 to 4 of 4 complete. Add or remove segments and set each State for
+  other counts. Example "Progress styles".
 
 ## Slider
 - For a value on a continuous scale where approximate is fine (price range, radius, volume).
@@ -21,6 +27,9 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
 - Step matches the data (EUR 5, 1 km). Keyboard: arrows by step, PageUp/PageDown by 10 steps.
 - Figma: `Slider` Type (single, range) × State (default, focus, disabled). Move the range and thumb
   layers for other values. Example "price range".
+- `Show value` puts a value bubble over each thumb for exact readings while dragging; `Show marks`
+  adds min, mid and max labels under the track (Min label, Mid label, Max label) for scales people
+  read. Both draw outside the slider box: leave 40 px above and 24 px below. Example "Slider styles".
 
 ## Progress Ring
 - Same rules as Progress, for compact places: an upload in a list, setup completion in a card,

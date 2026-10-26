@@ -10,8 +10,9 @@ and inline messages: `patterns/feedback-messages.md`.
 
 ## Rules
 - Variant matches the meaning: `default`, `info`, `success`, `warning`, `destructive`. Always with an icon.
-- `warning` is a filled banner (`background/warning` + `foreground/warning`) because amber fails
-  contrast as text on white. The others are outlined cards with colored icon and title.
+- In Style=default, `warning` is a filled banner (`background/warning` + `foreground/warning`)
+  because amber fails contrast as text on white. The others are outlined cards with colored icon
+  and title.
 - Title states the situation in a few words; description says what to do about it.
 - Up to three actions (small buttons or links) in the Actions slot, the one that resolves the
   situation first.
@@ -19,6 +20,13 @@ and inline messages: `patterns/feedback-messages.md`.
 - Show close (x) only when the situation does not need action; remember the dismissal.
 - Never stack more than one alert in the same place. Show the most important one.
 
+## Style
+- `default`: outlined card (filled for warning), the standard.
+- `soft`: tinted fill, no border; for calm notes and docs callouts.
+- `accent`: card with a 4 px status bar on the left; for dense settings pages and lists.
+- One Style per product; Variant still carries the meaning.
+
 ## Figma
-`Alert` Variant × Layout. `inline` is a card above the content it concerns; `banner` spans the
-page or panel width (trial ending, maintenance, read-only mode). Actions is a native slot.
+`Alert` Variant × Layout × Style. `inline` is a card above the content it concerns; `banner` spans
+the page or panel width (trial ending, maintenance, read-only mode). Actions is a native slot.
+Example "Alert styles".

@@ -17,9 +17,12 @@ and inline messages: `patterns/feedback-messages.md`.
 - Never put information in a toast that the user cannot find again elsewhere.
 - Position stays the same across the product (default bottom right, top center on mobile).
 - Announce to screen readers (`aria-live="polite"`, `assertive` for errors).
+- Style=inverted (`<Toaster invert />`) when toasts sit over busy or white content; default
+  elsewhere. Icons are monochrome there, so the words must name the outcome.
 
 ## Figma
-`Toast` types: default, success, error, warning, info, loading. Toast has no TEXT properties for
+`Toast` types: default, success, error, warning, info, loading; Style default or inverted
+(example "Toast styles"). Toast has no TEXT properties for
 the title and description: edit those text layers in the instance, and turn off
 `Show description` for one-line toasts. Turn on `Show action` for Undo or View (the nested Button
 is exposed). `Show close` is off by default. Turn it on for toasts with an action, errors and

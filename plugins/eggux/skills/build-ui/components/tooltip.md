@@ -20,6 +20,9 @@ Usage guidelines only. Visual specs live in the Figma component.
 ## Figma
 `Tooltip` with `Side` = where it sits relative to the trigger (the arrow points at the trigger).
 See the "icon button with tooltip" example.
+- Variant=default (primary fill) is the standard. Variant=light (popover surface, border, shadow)
+  for dense data screens, charts and editors where a filled tooltip is too loud, and over dark or
+  colored areas. One Variant per product. Example "Tooltip styles".
 - Show shortcut adds a Kbd after the text ("Search ⌘K"). Show title makes a rich tooltip: a title
   and up to three lines, wrapping at 280. Still no links or buttons: those need a Popover. Example
   "rich tooltip and shortcut".

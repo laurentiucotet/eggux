@@ -59,6 +59,8 @@ For large lists where people need precise subsets (finance, operations, CRM):
 ## Related components
 - The search box is `Search Field` (placeholder names what is searched, clear, ⌘K hint). Min and max
   filters (price, amount) use `Range Input`, next to a range Slider when people scan values.
+- `Search Field` Size=lg (48 high) only where search is the main action (a hero, a help center);
+  toolbars and lists use default.
 - Search pages list `Search Result Item`s (path, title link, two-line snippet with the matched words
   in bold, type and date), grouped by type when there are several kinds. List pages use
   `Page Toolbar` when filters sit behind one Filters button.

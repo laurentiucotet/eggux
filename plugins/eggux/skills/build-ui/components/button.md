@@ -12,6 +12,7 @@ its variables; read them through Figma MCP, do not copy them here.
 | `ghost` | Toolbar actions, low-emphasis actions in dense UI |
 | `destructive` | The confirming action of a destructive flow, inside a confirmation |
 | `link` | Navigation that looks like text, inside content |
+| `soft` | Brand-colored secondary actions next to one `default` (tinted primary fill, brand text) |
 
 ## Rules
 - One `default` button per view or dialog.
@@ -22,13 +23,15 @@ its variables; read them through Figma MCP, do not copy them here.
 - Loading: keep the width, show a spinner, block repeat clicks.
 - Disabled only when the action is truly unavailable, with a reason nearby. Never as form validation.
 - On a muted card or panel, secondary actions are `outline`, never `secondary` (same color as the surface). `link` text uses `foreground/brand`.
+- The other actions of a group use `soft` or `secondary`: pick one for the whole group.
 
 ## Figma
 - `Button`: `Variant` × `Size` (sm, default, lg) × `State` (default, hover, focus, disabled,
   loading). Properties: `Label`, `Show leading icon` with the `Leading icon` swap, `Show trailing
   icon` with the `Trailing icon` swap.
 - `Button Icon`: icon-only, `Variant` × `Size` × `State`, `Icon` swap. Size sm 32 (tables, dense
-  toolbars), default 36, lg 40 (next to lg Buttons). Pair it with a tooltip.
+  toolbars), default 36, lg 40 (next to lg Buttons). Pair it with a tooltip. It has `soft` too,
+  for icon actions next to soft Buttons. Example "Button styles".
 - `Button` State=loading: a spinner replaces the leading icon, the width stays; label stays or
   says the action in progress ("Saving…"). Block repeat clicks while loading.
 

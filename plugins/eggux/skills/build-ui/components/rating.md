@@ -13,14 +13,18 @@ Usage guidelines only. Visual specs live in the Figma component (Rating page).
 - For satisfaction surveys, thumbs up / down or a 1-5 scale with labels often reads better than
   stars; NPS uses 0-10 buttons.
 - Sizes: `sm` in cards and lists, `default` in detail pages and forms.
+- Style=badge (one star and the score in a soft amber badge, "4.8") for the score in tight places:
+  product cards, search results, tables, map pins. Display only; input uses Style=default.
 
 ## Figma
-`Rating`: Size sm, default × Value 0-5; Show value, Show count, Count. Stars use
-`background/warning`; empty stars `border/input`.
+`Rating`: Size sm, default × Value 0-5 × Style (default, badge); Show value, Show count, Count.
+Stars use `background/warning`; empty stars `border/input`. In Style=badge type the score in
+`Score`; Value has no effect there. Example "Rating styles".
 - Reviews section: Rating Summary on the left, Review Items on the right (`Block / Reviews`).
 
 ## Code
 Display: a `span` with `aria-label="Rated 4.7 out of 5"`. Input: `RadioGroup` with star icons.
+Style=badge: one element with `aria-label="Rated 4.8 out of 5, 128 reviews"`, the star `aria-hidden`.
 
 ## Related components
 - Above a review list, `Rating Summary` shows the average and the 1-5 split; each row filters the

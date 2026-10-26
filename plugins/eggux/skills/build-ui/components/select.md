@@ -29,6 +29,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 ## Figma
 - `Select` is the trigger. For the open state, place a `Menu` under it and set `Checked` on the
   selected `Menu Item`. See the "select open" example.
+- `Select` Style default or filled: filled matches `Input` Style=filled. Use the form's Input Style;
+  never mix filled and outlined controls in one form. Example "Select styles".
 - `Checkbox`, `Radio`, `Switch` include their label (`Show label` to hide it). Error state marks
   the control; the message comes from `Field` or text under the group.
 - `Combobox` is the searchable trigger (chevrons-up-down). Open state: `Combobox` (focus) +

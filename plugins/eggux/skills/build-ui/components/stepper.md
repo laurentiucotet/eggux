@@ -16,10 +16,17 @@ Usage guidelines only. Visual specs live in the Figma components (Stepper page).
   ("Start subscription").
 - Mobile: "Step 2 of 3 · Plan" + a progress bar instead of the full stepper.
 
+## Style and orientation
+- Style=default (numbered circles with titles) when people need the step names to orient.
+- Style=dots for onboarding, carousels of steps and mobile flows, always with a "Step 2 of 4"
+  label. Horizontal dots hide the step names: show the current title next to them.
+- Orientation=vertical in a side column next to a long form, or as a setup checklist.
+
 ## Figma
-`Step` Orientation (horizontal, vertical) × State (completed, current, upcoming, error) with
-Title, Description, Number, Show connector. `Stepper` has a `Steps` slot: steps with a connector
-FILL, the last one HUG with Show connector off.
+`Step` Orientation (horizontal, vertical) × State (completed, current, upcoming, error) × Style
+(default, dots) with Title, Description, Number, Show connector. `Stepper` Orientation × Style has a
+`Steps` slot: steps with the same Orientation and Style, a connector FILL, the last one HUG with
+Show connector off. Example "Stepper styles".
 - Steps on a marketing or onboarding page that people only read use `Feature Item`
   Marker=number; delivery progress of an order uses `Shipment Tracker`. Stepper stays for steps
   people do in the product.
