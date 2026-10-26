@@ -752,6 +752,14 @@
    "main": "Payment Method Card",
    "helpers": [],
    "block": "550:81608"
+  },
+  {
+   "main": "Payment Method Mark",
+   "helpers": [],
+   "block": "693:108930",
+   "examples": [
+    "Example / payment methods"
+   ]
   }
  ],
  "Cookie Consent": [
@@ -1262,6 +1270,11 @@
    "examples": [
     "Example / invoices on mobile"
    ]
+  },
+  {
+   "main": "Store Badge",
+   "helpers": [],
+   "block": "693:106153"
   }
  ],
  "Navigation": [

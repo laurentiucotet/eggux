@@ -10334,5 +10334,64 @@
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md"
   ]
+ },
+ "Store Badge": {
+  "summary": "App store download badge: store mark, a small line and the store name. Follows the theme: dark badge in Light, light badge in Dark.",
+  "use": [
+   "Under a mobile app hero (Block / Hero with Phone)",
+   "In a footer or download section that links to the store listings"
+  ],
+  "avoid": [
+   "As a generic button or for web sign-up: use Button",
+   "Recoloring it or changing the store text"
+  ],
+  "anatomy": [
+   "Store (variant): app-store, google-play",
+   "glyph: Apple or Google Play mark, 24 px, background/default",
+   "label: ui/caption, \"Download on the\" or \"Get it on\"",
+   "store: heading/h4, \"App Store\" or \"Google Play\"",
+   "Container: foreground/default fill, border/default 1 px, radius/lg"
+  ],
+  "rules": [
+   "App Store first, then Google Play, same height, 8 to 12 px apart",
+   "Keep the store text as the stores write it; translate only with the store's localized badge",
+   "Link each badge to its listing"
+  ],
+  "a11y": [
+   "It is a link: accessible name \"Download on the App Store\" or \"Get it on Google Play\"",
+   "Glyph is decorative (aria-hidden)",
+   "Contrast follows foreground/default and background/default (16:1 or more)"
+  ],
+  "code": "<a href={appStoreUrl} aria-label=\"Download on the App Store\"><img src=\"/badges/app-store.svg\" alt=\"\" height={40} /></a> (use the official badge artwork in code)",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/patterns/mobile.md"
+  ]
+ },
+ "Payment Method Mark": {
+  "summary": "A small card-shaped mark that names one accepted payment method in text.",
+  "use": [
+   "A row of accepted methods in the store footer",
+   "Under the pay button or in the cart summary"
+  ],
+  "avoid": [
+   "Choosing how to pay: use Option Card or Payment Method Card",
+   "Drawing real brand logos in the library"
+  ],
+  "anatomy": [
+   "Container: 24 high, min 40 wide, border/default, background/card, radius/sm",
+   "Name (TEXT): the method, ui/label-small"
+  ],
+  "rules": [
+   "One mark per method, 8 px apart, only methods the market accepts",
+   "The name stays text; the product swaps in each provider's official artwork under its brand rules"
+  ],
+  "a11y": [
+   "Give the row a label such as \"Accepted payment methods\"; each mark reads as its name"
+  ],
+  "code": "<span class=\"inline-flex h-6 min-w-10 items-center justify-center rounded-sm border bg-card px-2 text-xs font-medium\">Visa</span>",
+  "guides": [
+   "skills/build-ui/patterns/commerce.md"
+  ]
  }
 }
