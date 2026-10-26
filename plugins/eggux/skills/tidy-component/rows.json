@@ -5,7 +5,10 @@
    "helpers": [
     "Accordion Item"
    ],
-   "block": "76:433"
+   "block": "76:433",
+   "examples": [
+    "Example / Accordion styles"
+   ]
   },
   {
    "main": "Show More",
@@ -243,7 +246,10 @@
   {
    "main": "Avatar Group",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Avatar Group styles"
+   ]
   },
   {
    "main": "Byline",
@@ -660,7 +666,10 @@
   {
    "main": "Chip",
    "helpers": [],
-   "block": "213:1104"
+   "block": "213:1104",
+   "examples": [
+    "Example / Chip styles"
+   ]
   }
  ],
  "Code Block": [
@@ -713,7 +722,8 @@
    ],
    "block": null,
    "examples": [
-    "Example / brand colors"
+    "Example / brand colors",
+    "Example / Swatch styles"
    ]
   }
  ],
@@ -1325,7 +1335,10 @@
    "helpers": [
     "Bottom Nav Item"
    ],
-   "block": "96:480"
+   "block": "96:480",
+   "examples": [
+    "Example / Bottom Nav styles"
+   ]
   },
   {
    "main": "FAB",
@@ -1355,12 +1368,18 @@
    "helpers": [
     "Breadcrumb Item"
    ],
-   "block": "126:82"
+   "block": "126:82",
+   "examples": [
+    "Example / Breadcrumb styles"
+   ]
   },
   {
    "main": "Top Bar",
    "helpers": [],
-   "block": "77:314"
+   "block": "77:314",
+   "examples": [
+    "Example / Top Bar styles"
+   ]
   },
   {
    "main": "Page Header",
@@ -1426,7 +1445,10 @@
    "helpers": [
     "Pagination Item"
    ],
-   "block": "138:3"
+   "block": "138:3",
+   "examples": [
+    "Example / Pagination styles"
+   ]
   },
   {
    "main": "Pagination Compact",
@@ -1499,7 +1521,10 @@
   {
    "main": "Price",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Price styles"
+   ]
   },
   {
    "main": "Plan Card",
@@ -1885,7 +1910,10 @@
   {
    "main": "Timeline Item",
    "helpers": [],
-   "block": "92:1018"
+   "block": "92:1018",
+   "examples": [
+    "Example / Timeline Item styles"
+   ]
   }
  ],
  "Toast": [

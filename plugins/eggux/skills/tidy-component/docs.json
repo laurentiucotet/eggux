@@ -73,11 +73,12 @@
   ]
  },
  "Accordion": {
-  "summary": "A stack of Accordion Items that show and hide sections of content under a title row.",
+  "summary": "A stack of Accordion Items that show and hide sections of content under a title row. Style=default divides items with lines; Style=card shows each item as a separate bordered card with a gap.",
   "use": [
    "FAQ and optional detail (Density default)",
    "Filter groups in a side panel, Sheet or Drawer (Density compact)",
-   "Settings groups in a side panel"
+   "Settings groups in a side panel",
+   "Style=card: marketing FAQs, help centers and pricing pages, often on a muted section background"
   ],
   "avoid": [
    "Information every user needs to finish the task: show it on the page",
@@ -85,8 +86,9 @@
    "Steps in a fixed order: use Stepper"
   ],
   "anatomy": [
-   "Items slot of Accordion Items",
-   "Trigger row: Leading icon (optional), Title, Meta slot (Show meta), chevron",
+   "Style: default (divider lines), card (separate cards, gap spacing/3)",
+   "Items slot of Accordion Items (use items of the same Style)",
+   "Trigger row: Leading icon (optional), Title, Meta slot (Show meta), chevron or plus/minus (Icon)",
    "Content slot, shown when State=expanded"
   ],
   "rules": [
@@ -94,14 +96,17 @@
    "Several items may be open at once unless the content is mutually exclusive",
    "Filters: Title is the dimension; Meta is a Badge Count of active values or a short summary",
    "Show leading icon on all items or none",
-   "Groups with active filters are open by default"
+   "Groups with active filters are open by default",
+   "Style=default in apps, panels and filters; Style=card on marketing and help pages",
+   "Match the item Style to the Accordion Style; never mix both in one list",
+   "Icon=plus (plus/minus) is for marketing FAQs; keep the chevron in apps"
   ],
   "a11y": [
    "Enter or Space toggles; arrow keys move between items",
    "The trigger is a button with aria-expanded and aria-controls",
    "Keyboard focus shows the border/ring focus ring on the trigger row"
   ],
-  "code": "shadcn Accordion (type=\"multiple\" when several items can be open).",
+  "code": "shadcn Accordion (type=\"multiple\" when several items can be open). Style=card: Accordion className=\"space-y-3\", AccordionItem className=\"rounded-xl border bg-background px-4\" (no border-b).",
   "guides": [
    "skills/build-ui/components/accordion.md",
    "skills/build-ui/components/drawer.md",
@@ -388,11 +393,12 @@
   ]
  },
  "Avatar Group": {
-  "summary": "Stacked avatars for assignees, participants or the people something is shared with, with an optional label.",
+  "summary": "Stacked avatars for assignees, participants or the people something is shared with, with optional names and a label.",
   "use": [
    "Assignees on a card or a table row",
    "Participants of a project",
-   "\"Shared with\" in sharing dialogs"
+   "\"Shared with\" in sharing dialogs",
+   "Show names: who is in the group at a glance (\"Ana, Mihai and 3 others\")"
   ],
   "avoid": [
    "One person: use Avatar with the name",
@@ -402,20 +408,23 @@
    "Avatars slot: 3-5 Avatars of one size, overlapping",
    "Ring: 2 px background/default around each Avatar",
    "+N for the rest, opens the full list",
-   "Label (Show label): body/small, muted (\"Maintained by 3 analysts\")"
+   "Names (Show names): ui/label (ui/label-small in sm), foreground, one line, ellipsis",
+   "Label (Show label): body/small (ui/caption in sm), muted, one line, ellipsis"
   ],
   "rules": [
    "Show 3-5 avatars, then \"+N\"",
    "Same size inside a group: sm, default or lg",
    "Full list in a Tooltip (names) or a Popover (names and actions)",
-   "Label says who they are or how many, not the names already shown"
+   "Label says who they are or how many, not the names already shown",
+   "Names lists the first two or three names and \"and N others\"; it matches the avatars shown",
+   "Names and Label truncate with an ellipsis at their max width (200 sm, 240 default and lg); the full list goes in the Tooltip"
   ],
   "a11y": [
    "The group has a name with the count (\"5 assignees\")",
    "+N is focusable and opens the full list",
    "The Tooltip also shows on keyboard focus"
   ],
-  "code": "shadcn Avatar; group with negative margin + ring.",
+  "code": "shadcn Avatar; group with negative margin + ring. Names: <span className=\"truncate text-sm font-medium max-w-60\">.",
   "guides": [
    "skills/build-ui/components/avatar.md",
    "skills/build-ui/patterns/sharing-and-invites.md"
@@ -618,49 +627,54 @@
   ]
  },
  "Bottom Nav": {
-  "summary": "Bottom navigation for mobile apps with 3-5 top-level destinations used daily.",
+  "summary": "Bottom navigation for mobile apps with 3-5 top-level destinations used daily. Style=floating lifts it into a pill above the safe area.",
   "use": [
    "Mobile apps with 3-5 daily destinations",
    "Field and customer apps used mostly on the phone",
-   "Customer apps: Home, Orders, Messages, Account"
+   "Customer apps: Home, Orders, Messages, Account",
+   "Style=floating: consumer apps with full-bleed content (maps, media, feeds) that should show around the bar"
   ],
   "avoid": [
    "More than 5 destinations or rare ones: use the Mobile Header menu with a Sheet",
    "Detail pages and flows: hide it; use back in Mobile Header"
   ],
   "anatomy": [
+   "Style: default (full width, top border), floating (pill bar inset spacing/4, border, button/radius, shadow/md)",
    "Items slot of Bottom Nav Items",
    "Bottom Nav Item: Icon (20) and Label",
-   "Bottom safe-area padding"
+   "Bottom safe-area padding (outside the pill in Style=floating)"
   ],
   "rules": [
    "3-5 items; everything else under \"More\" or the menu",
    "Bottom Nav Item State: default, active; active = foreground, others muted",
    "Padding bottom = home-indicator safe area",
-   "Hide it on detail pages and while typing"
+   "Hide it on detail pages and while typing",
+   "Style=floating: content scrolls under the bar; leave bottom padding so the last row is not hidden"
   ],
   "a11y": [
    "Each item has a visible label, not only an icon",
    "Active item has aria-current=\"page\"",
    "The whole cell is the touch target (min 48 x 48)"
   ],
-  "code": "custom nav of links with env(safe-area-inset-bottom).",
+  "code": "custom nav of links with env(safe-area-inset-bottom). Style=floating: <nav className=\"fixed inset-x-4 bottom-[calc(env(safe-area-inset-bottom)+8px)] rounded-full border bg-background px-2 shadow-md\">.",
   "guides": [
    "skills/build-ui/patterns/mobile.md"
   ]
  },
  "Breadcrumb": {
-  "summary": "Path from a meaningful root to the current page (shadcn Breadcrumb).",
+  "summary": "Path from a meaningful root to the current page (shadcn Breadcrumb). Style=background puts the items in a muted pill track.",
   "use": [
    "Record and nested pages in an app: Customers > Acme",
    "Docs and help centers with sections",
-   "Settings sub-pages: Settings > Billing > Invoices"
+   "Settings sub-pages: Settings > Billing > Invoices",
+   "Style=background: marketing pages, docs and help centers, above a busy header or an image band"
   ],
   "avoid": [
    "Flat apps with one level: no breadcrumb",
    "Steps of a flow: use Stepper"
   ],
   "anatomy": [
+   "Style: default (no surface), background (card/muted-background pill track, button/radius, padding spacing/3 x spacing/1_5)",
    "Items slot",
    "Breadcrumb Item link: ancestor page",
    "Separator (chevron)",
@@ -672,14 +686,16 @@
    "Collapse the middle with an ellipsis item past 4 levels; it opens a menu",
    "Never wrap",
    "The last item matches the page title",
-   "Start at a meaningful root, not \"Home\" when the sidebar already does that"
+   "Start at a meaningful root, not \"Home\" when the sidebar already does that",
+   "Style=default in apps (Top Bar, Page Header); Style=background on marketing and docs pages, one per page",
+   "Style=background sits on background/default; on a muted section use Style=default (the track would disappear and the muted links drop below 4.5:1)"
   ],
   "a11y": [
    "nav with aria-label=\"Breadcrumb\"",
    "Current item has aria-current=\"page\"",
    "Ellipsis is a labeled button: \"Show path\""
   ],
-  "code": "shadcn Breadcrumb.",
+  "code": "shadcn Breadcrumb. Style=background: BreadcrumbList className=\"w-fit rounded-[var(--button-radius)] bg-[var(--card-muted-background)] px-3 py-1.5\".",
   "guides": [
    "skills/build-ui/components/navigation.md",
    "skills/build-ui/patterns/record-page.md"
@@ -1309,27 +1325,33 @@
   ]
  },
  "Chip": {
-  "summary": "Pill for filters and multi-selection; selected marks an active filter and Remove clears it.",
+  "summary": "Pill for filters, multi-selection and tags; Tone gives tags and categories a soft color.",
   "use": [
    "Quick filters above a list (\"This week\", \"Unpaid\")",
    "Multi-select options shown as toggles",
-   "Active filter values that can be cleared with Remove"
+   "Active filter values that can be cleared with Remove",
+   "Tone=soft-info, soft-success, soft-warning, soft-neutral: tags and categories on cards and records (\"Design\", \"Approved\")"
   ],
   "avoid": [
    "A status or category that is not clickable: use Badge",
    "A field filter with several values in a Filter Bar: use Filter Chip",
-   "One choice among a few options: use Toggle Group"
+   "One choice among a few options: use Toggle Group",
+   "A tone that means a status nobody can change: use Badge Variant=soft-*"
   ],
   "anatomy": [
+   "Tone: default, soft-info, soft-success, soft-warning, soft-neutral (badge/soft-*-bg fill, badge/soft-*-fg text and icons)",
    "Leading icon (Show leading icon): calendar, or check when selected",
    "Label",
-   "Remove x (Show remove)"
+   "Remove x (Show remove)",
+   "State: default, hover, focus, selected, disabled (soft tones: default, hover, focus, disabled)"
   ],
   "rules": [
    "Label is one or two words in sentence case",
    "State=selected marks an active filter; with Show leading icon on, the icon becomes a check",
    "Selected is shown by the check and fill, not by color alone",
-   "Show \"Clear all\" when more than one filter is active"
+   "Show \"Clear all\" when more than one filter is active",
+   "Soft tones are for tags and categories, not for filter state: a selected filter stays Tone=default, State=selected",
+   "Use the tone by meaning (success = done or approved, warning = needs attention, info = type or topic, neutral = other), and keep it the same for the same tag everywhere"
   ],
   "a11y": [
    "A selectable chip is a toggle button with aria-pressed",
@@ -1337,7 +1359,7 @@
    "Focus state is visible (border/ring)",
    "Touch targets at least 44 x 44 on mobile"
   ],
-  "code": "Custom on shadcn Badge + remove Button.",
+  "code": "Custom on shadcn Badge + remove Button. Soft tones: className=\"bg-[var(--badge-soft-info-bg)] text-[var(--badge-soft-info-fg)] border-transparent\" (same for success, warning, neutral); hover border-current.",
   "guides": [
    "skills/build-ui/components/badge.md",
    "skills/build-ui/patterns/search-and-filter.md"
@@ -3373,23 +3395,25 @@
   ]
  },
  "Pagination": {
-  "summary": "Page navigation for long tables and lists. People move between pages, return to a position and share a page.",
+  "summary": "Page navigation for long tables and lists (Style=numbered), with a short previous / next form (Style=simple) and position dots for carousels and onboarding (Style=dots).",
   "use": [
    "Tables and lists where people compare, return to a position or share a page link",
    "More than ~25 rows that are not virtualized",
-   "Under a table, inside Table Pagination with the range and rows per page"
+   "Under a table, inside Table Pagination with the range and rows per page",
+   "Style=simple: article lists, search results and mobile, where people only step forward and back",
+   "Style=dots: onboarding steps, carousels and image galleries with up to ~7 positions"
   ],
   "avoid": [
    "Feeds, activity and search results browsed once: use Load More or infinite scroll",
    "Fewer than ~25 rows: show them all, no pagination",
-   "Steps of a flow: use Stepper"
+   "Steps of a flow: use Stepper",
+   "Style=dots for data lists: people cannot jump or see the count"
   ],
   "anatomy": [
-   "Previous: Pagination Item Type=previous",
-   "Pages: Pagination Item Type=page, the current one in State=active",
-   "Gaps: Pagination Item Type=ellipsis",
-   "Next: Pagination Item Type=next",
-   "Items slot that holds the Pagination Items"
+   "Style: numbered (default), simple, dots",
+   "numbered: Items slot with Pagination Items (previous, pages, ellipsis, next); current page State=active",
+   "simple: Pagination Item previous (exposed), Label \"Page 2 of 10\" (body/small, muted), Pagination Item next (exposed)",
+   "dots: Carousel Indicator Type=dots (exposed); the Items slot is hidden in simple and dots"
   ],
   "rules": [
    "Show first, last, current ±1 and an ellipsis for each gap",
@@ -3398,7 +3422,9 @@
    "In tables, pair it with the total and a rows-per-page Select: use Table Pagination",
    "Filters, sort and page live in the URL; changing filters resets to page 1",
    "Mobile: Previous and Next as icons only, plus \"Page 2 of 25\"",
-   "Narrow places (a card, a side panel, mobile): Pagination Compact with \"Page 2 of 12\""
+   "Narrow places (a card, a side panel, mobile): Pagination Compact with \"Page 2 of 12\"",
+   "Style=simple: disable previous on the first page and next on the last (exposed items, State=disabled)",
+   "Style=dots: one dot per position, the current one active; pair with swipe and arrows, never as the only control in a data list"
   ],
   "a11y": [
    "Wrap it in a nav with aria-label=\"Pagination\"",
@@ -3406,7 +3432,7 @@
    "Icon-only Previous and Next have labels: \"Previous page\", \"Next page\"",
    "Every item is reachable with Tab and shows the focus ring (State=focus)"
   ],
-  "code": "shadcn Pagination. In tables use the shadcn data-table pagination (see Table Pagination).",
+  "code": "shadcn Pagination. Style=simple: PaginationPrevious, a <span className=\"text-sm text-muted-foreground\">Page 2 of 10</span>, PaginationNext. Style=dots: the Carousel dots (buttons with aria-label \"Go to slide n\").",
   "guides": [
    "skills/build-ui/components/pagination.md",
    "skills/build-ui/components/table.md"
@@ -4899,38 +4925,45 @@
   ]
  },
  "Timeline Item": {
-  "summary": "One event in an activity history: record history, audit trail, order tracking.",
+  "summary": "One event in an activity history: record history, audit trail, order tracking. Layout=card puts the content in a card; Layout=alternating-left and alternating-right place it on either side of a center line.",
   "use": [
    "Activity column on a record page",
    "Order or shipment tracking",
-   "Changes made by the system, listed in order"
+   "Changes made by the system, listed in order",
+   "Layout=card: events with a note, attachment or diff in the Content slot",
+   "Layout=alternating-left / alternating-right: milestones and company history on marketing pages"
   ],
   "avoid": [
    "Conversations between people: use Comment",
    "Filterable change history: use the Audit Log with Change Item",
-   "Steps the user still has to complete: use Stepper"
+   "Steps the user still has to complete: use Stepper",
+   "Alternating layouts in apps or below 768: use Layout=default"
   ],
   "anatomy": [
+   "Layout: default, card, alternating-left, alternating-right. Tone: default, primary, success, warning, destructive",
    "Icon in a circle colored by Tone (Icon)",
-   "Connector line to the next item",
+   "Connector line to the next item (Show connector)",
    "Title: what happened",
-   "Time: \"2 h ago\"",
+   "Time: \"2 h ago\" (in alternating layouts on the other side of the line)",
    "Description: who and where (Show description)",
-   "Content slot: note excerpt, attachment or diff (Show content)"
+   "Content slot: note excerpt, attachment or diff (Show content)",
+   "card: Title, Time, Description and Content in a bordered card (radius/base, padding spacing/4)"
   ],
   "rules": [
    "Newest first; one event per item",
    "Tone marks the outcome: success, destructive (failed), primary (created), default (info)",
    "Time is relative under 24 h, then absolute (\"22 Oct, 10:30\"); full timestamp in a tooltip",
    "Connector off on the last item",
-   "Long histories: the last 5-10 with \"View all\"; group by day"
+   "Long histories: the last 5-10 with \"View all\"; group by day",
+   "Alternating: switch alternating-left and alternating-right item by item, starting with left",
+   "One Layout per timeline (alternating counts as one)"
   ],
   "a11y": [
    "The timeline is an ordered list",
    "The outcome is in the Title text, not only in the Tone color",
    "The time element carries the full timestamp in its datetime attribute"
   ],
-  "code": "custom ol (code mapping: Description List, Timeline = custom dl / ol).",
+  "code": "custom ol (code mapping: Description List, Timeline = custom dl / ol). Card: li content in a Card (rounded-xl border p-4). Alternating: grid grid-cols-[1fr_auto_1fr] with odd items in column 1 and even items in column 3; stack to Layout=default below md.",
   "guides": [
    "skills/build-ui/components/description-list.md",
    "skills/build-ui/components/comments-and-chat.md",
@@ -5103,11 +5136,12 @@
   ]
  },
  "Top Bar": {
-  "summary": "App top bar (shadcn site header) with sidebar trigger, Breadcrumb and global actions, above the page content.",
+  "summary": "App top bar (shadcn site header) with sidebar trigger, Breadcrumb and global actions. Style=floating makes it a rounded, bordered pill with shadow/sm, inset from the edges.",
   "use": [
    "Every page of the App page shell from 1024",
    "Global actions: search, notifications, help, user menu",
-   "The App page shell above the Page Header"
+   "The App page shell above the Page Header",
+   "Style=floating: product marketing headers and app pages on a muted canvas where the header floats over content"
   ],
   "avoid": [
    "Page-specific actions: use Page Header",
@@ -5115,6 +5149,7 @@
    "Marketing sites: use Navbar"
   ],
   "anatomy": [
+   "Style: default (full width, bottom border), floating (inset spacing/3, bar with border, button/radius and shadow/sm)",
    "Sidebar trigger (Show sidebar trigger)",
    "Separator",
    "Breadcrumb slot",
@@ -5123,14 +5158,16 @@
   "rules": [
    "The Breadcrumb shows list to object: \"Customers > Acme\"",
    "Only global actions on the right",
-   "Search opens the Command Dialog (⌘K / Ctrl K) and stays a visible button"
+   "Search opens the Command Dialog (⌘K / Ctrl K) and stays a visible button",
+   "Style=floating: keep it sticky with the inset; content scrolls under it, so give the page a top padding of the bar height plus the inset",
+   "One Style per product; do not mix floating and default between pages"
   ],
   "a11y": [
    "Header landmark; icon buttons have labels: \"Toggle sidebar\", \"Notifications\"",
    "Unread count is announced with the notifications label",
    "Tab order: sidebar trigger, breadcrumb, actions"
   ],
-  "code": "shadcn site header (SidebarTrigger, Breadcrumb, Button).",
+  "code": "shadcn site header (SidebarTrigger, Breadcrumb, Button). Style=floating: <header className=\"sticky top-0 z-40 p-3\"><div className=\"flex h-14 items-center gap-2 rounded-full border bg-background px-2.5 shadow-sm\">.",
   "guides": [
    "skills/build-ui/components/navigation.md",
    "skills/build-ui/components/popover.md",
@@ -6390,11 +6427,12 @@
   ]
  },
  "Swatch": {
-  "summary": "One choice of a color or a short label: a color dot (Type=color) or a box with a label like S, M, L (Type=label), with selected and unavailable states.",
+  "summary": "One choice of a color or a short label: a color dot (Type=color) or a box with a label like S, M, L (Type=label), with selected and unavailable states and an optional name under it.",
   "use": [
    "Colors in Swatch Picker (Size=sm)",
    "Product colors and sizes on a product page (Size=default)",
-   "Material or finish choices"
+   "Material or finish choices",
+   "Show name: product colors and finishes where the name matters (\"Sand\", \"Forest\"), and sizes with a longer name"
   ],
   "avoid": [
    "Any color, typed or picked freely: use Color Picker",
@@ -6404,20 +6442,22 @@
   "anatomy": [
    "Color: a dot filled with a token or the product color (Type=color)",
    "Label: \"M\" (Type=label)",
-   "Ring when State=selected; faded when unavailable"
+   "Ring when State=selected; faded when unavailable",
+   "Name (Show name): ui/caption, muted, centered under the swatch"
   ],
   "rules": [
    "Override the fill of the \"color\" layer with a chart, brand or product color token, never a raw hex in the library",
    "Group swatches under a label that names the choice and the value (\"Color: Sand\")",
    "Unavailable options stay visible and focusable, faded, with \"out of stock\" in their name",
-   "Size=sm (28) in pickers, default (36) for product options"
+   "Size=sm (28) in pickers, default (36) for product options",
+   "Show name on all swatches of a group or none; with names off, show the selected name next to the group label (\"Color: Sand\")"
   ],
   "a11y": [
    "A radio group: each swatch is a radio with the color or option name as its label",
    "Selected is announced; unavailable has aria-disabled and stays in the tab order",
    "The ring has 3:1 contrast on light and dark backgrounds"
   ],
-  "code": "shadcn RadioGroup (or ToggleGroup type=\"single\") with custom items: a color dot or a label box.",
+  "code": "shadcn RadioGroup (or ToggleGroup type=\"single\") with custom items: a color dot or a label box. Show name: <span className=\"text-xs text-muted-foreground\"> under the dot inside the label.",
   "guides": [
    "skills/build-ui/components/color-picker.md",
    "skills/build-ui/patterns/commerce.md"
@@ -8066,11 +8106,12 @@
   ]
  },
  "Price": {
-  "summary": "A price as people compare it: amount with currency, period, and the old price struck through during a discount.",
+  "summary": "A price as people compare it: amount with currency, period, and the old price struck through during a discount. Size=xl is the display price for pricing heroes.",
   "use": [
    "Plan Card prices (Size=default)",
    "Product Card and Line Item prices (Size=sm)",
    "A single-plan pricing page (Size=lg)",
+   "Pricing heroes and single-offer landing pages (Size=xl)",
    "Add-ons and one-time fees in a list"
   ],
   "avoid": [
@@ -8079,24 +8120,25 @@
    "A price people type: use Currency Input"
   ],
   "anatomy": [
-   "Old price (Show old price): struck through, muted",
-   "Amount: with the currency symbol, the largest text",
-   "Period (Show period): muted, \"per seat / month\", \"one-time\"",
-   "Size: sm, default, lg"
+   "Old price (Show old price): struck through, muted (body/default in xl)",
+   "Amount: with the currency symbol, the largest text (display/lg, 60, in xl)",
+   "Period (Show period): muted, \"per seat / month\", \"one-time\" (body/default in xl)",
+   "Size: sm, default, lg, xl"
   ],
   "rules": [
    "Amounts in the locale format of the market (€29, €1,290)",
    "Period names the unit and the interval; yearly prices shown per month say \"billed yearly\"",
    "Say whether VAT is included near the price",
    "Old price only during a real discount, with the end date nearby",
-   "Prices compared side by side use the same Size"
+   "Prices compared side by side use the same Size",
+   "Size=xl once per page, in a hero or a single-offer section; comparisons use default"
   ],
   "a11y": [
    "The old price is announced as such (\"Was €35, now €29\"): <s> alone is not read by most screen readers",
    "Amount and period read as one phrase (\"€29 per seat per month\")",
    "The muted period and old price meet 4.5:1"
   ],
-  "code": "custom: <span> amount, <s> old price and a period in text-muted-foreground; Intl.NumberFormat with currency, tabular-nums.",
+  "code": "custom: <span> amount, <s> old price and a period in text-muted-foreground; Intl.NumberFormat with currency, tabular-nums. Size=xl: amount text-6xl font-extrabold tracking-tight, period text-base.",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/patterns/commerce.md"
@@ -10758,6 +10800,38 @@
   "guides": [
    "skills/build-ui/patterns/email.md",
    "skills/build-ui/patterns/notifications.md"
+  ]
+ },
+ "Accordion Item": {
+  "summary": "One collapsible row of an Accordion: title row that toggles, Content slot shown when expanded.",
+  "use": [
+   "Inside Accordion only",
+   "FAQ questions, settings groups, filter groups in a panel"
+  ],
+  "avoid": [
+   "On its own as a disclosure in running text: use Show More",
+   "Switching between views: use Tabs"
+  ],
+  "anatomy": [
+   "Size: default, sm. State: collapsed, expanded",
+   "Style: default (bottom divider), card (border on all sides, radius/base, background/default, padding spacing/4; sm spacing/3)",
+   "Icon: chevron (down when collapsed, up when expanded), plus (plus when collapsed, minus when expanded)",
+   "Leading icon (Show leading icon), Title, Meta slot (Show meta)",
+   "Content slot (visible when expanded)"
+  ],
+  "rules": [
+   "Same Style, Icon and Size on every item of one Accordion",
+   "Style=card goes inside Accordion Style=card (gap spacing/3)",
+   "Icon=plus is for marketing FAQs; apps keep the chevron",
+   "Title is a question or a group name, one line where possible"
+  ],
+  "a11y": [
+   "The trigger is a button with aria-expanded and aria-controls",
+   "Plus and minus icons are decorative (aria-hidden); the state comes from aria-expanded"
+  ],
+  "code": "shadcn AccordionItem. Style=card: className=\"rounded-xl border bg-background px-4 border-b-0\" plus border. Icon=plus: replace ChevronDown in AccordionTrigger with Plus / Minus switched by data-state.",
+  "guides": [
+   "skills/build-ui/components/accordion.md"
   ]
  }
 }
