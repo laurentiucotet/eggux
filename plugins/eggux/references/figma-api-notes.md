@@ -32,6 +32,7 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   a fixed child set to CENTER.
 - Test a stretched component with FILL in an auto-layout parent: `resize()` on an instance does
   not scale nested SCALE frames the way FILL does.
+- `layoutGrow` takes weights (62/21/11/6): FILL children share the space in proportion.
 
 ## Slots
 - `component.createSlot()` creates a SLOT node and a `SLOT` property; the key is in
@@ -105,6 +106,8 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Scanning blocks: call `await instance.getMainComponentAsync()` on each instance before walking
   into it. Until the main component is loaded, `findAll` does not see the content placed in the
   instance's slots, so a scan reports too few nested instances.
+- `getInstancesAsync()` returns an instance that sits in another instance's slot as a raw node
+  with a null parent and no children. Work on its I-path id instead.
 - A stroke cannot be bound to a boolean. For an optional divider, add a 1 px frame bound to
   `border/default` and bind its `visible`.
 - TEXT properties share text styling across variants; per-variant decoration (underline) has to

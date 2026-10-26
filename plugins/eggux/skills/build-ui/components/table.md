@@ -33,6 +33,7 @@ For lists people work in all day (invoices, orders, tickets, users, assets).
 - Saved views: name, owner, shared or private; the view keeps columns, filters, sort and
   grouping. "Unsaved changes to this view" with Save / Save as new.
 - Group rows (`Table Group Row` in an expanded cell): label, count, subtotal, collapsible.
+  Collapsed groups use State=collapsed.
 - Totals row at the bottom on `background/muted`, strong text.
 - Pin the identifying columns (checkbox, id) on horizontal scroll; header sticky on vertical
   scroll.
@@ -48,8 +49,9 @@ columns and rows. Details: "Tables on auto-layout grid" in `references/figma-lib
 - Cells: `Table Cell` (header, body, expanded × default, hover, selected) with a Content slot.
 - Content: `Table Header Label` (sorting), `Table Cell Text`, `Table Cell Stack`,
   `Table Cell User`, `Table Cell Amount` (right-aligned, note or change), `Table Cell Status`
-  (Badge + note), `Table Cell Progress` (bar + percent), `Table Cell Actions` (edit + menu,
-  last column), Checkbox without label, Button Icon (expand).
+  (Badge + note; set it to FILL so a long note ends with an ellipsis), `Table Cell Progress`
+  (bar + percent), `Table Cell Actions` (edit + menu, last column), Checkbox without label, Button
+  Icon (expand).
 - Under the table: `Table Pagination` (range with total, rows per page, pages). Under 900 px
   turn off rows per page.
 - Above the table: `Filter Bar` (see `patterns/search-and-filter.md`).

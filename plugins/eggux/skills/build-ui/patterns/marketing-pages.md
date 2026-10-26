@@ -127,8 +127,9 @@ careers, blog index).
 - Feature, step and bento icons sit in an `Icon Tile`: neutral by default, brand for one accent grid, gradient for one highlighted item; one Style per grid. Feature Item holds an exposed Icon Tile: set Style=brand (or gradient) on the nested tile; do not override the tile fill or icon color.
 - To show a client's brand on a pitch or cover, set the frame to their mode; the `Showcase Light` / `Showcase Dark` modes and the pages on Showcase show what a rebrand does to the same blocks.
 - Every CTA gets a secondary action and a proof row (Avatar Group with photos and a Rating with a count).
-- On a primary band or card, use Inline Form and Figure Tone=on-primary (secondary button, text in
-  `foreground/primary`), no manual overrides; captions use `foreground/primary`.
+- On a primary band or card, use Inline Form, Figure, Check Item and Trust Badge Tone=on-primary
+  (secondary button, text in `foreground/primary`), no manual overrides; captions use
+  `foreground/primary`. On an inverted card, Check Items and Trust Badges use Tone=inverted.
 - Device Frame: put an `Image / Screenshot / *` in Screen at Fill width and resize the frame, never
   the screen; the height follows the image. Set a fixed screen height only to crop on purpose.
 - To put a Background behind a hero, turn off `Show background fill` on Hero Centered (and `Show panel fill` on Hero Prompt) instead of clearing fills.
@@ -142,6 +143,11 @@ careers, blog index).
 - Logo Marquee fades use `gradient/background-transparent`; on a muted band rebind the fades to
   the band color.
 - In dark modes alternate `background/default` and `section/muted-background` per section and keep cards on `background/card`; light product screenshots become the brightest area, so give them a Device Frame and space around.
+- App download: a `QR Code` (Size=default, 128) next to the store badges, with a text action;
+  replace the sample pattern with the real code.
+- Equal card heights in a row come from the layout: a Grid auto layout, or cards on Fill height in
+  a horizontal row (`items-stretch` or CSS grid in code). Push actions to the bottom with a spacer
+  on Fill. Never set card heights by hand.
 
 ## Cookie consent
 - Needed before any non-essential cookie (analytics, ads, embeds that track). Necessary cookies

@@ -14,6 +14,8 @@ Usage guidelines only. Visual specs live in the Figma component (Carousel page).
 - Swipe on touch, arrow keys when focused. Buttons disabled at the ends unless it loops.
 - Product gallery: thumbnails under or beside the main image instead of dots.
 - Slides keep the same size; images use one ratio (`Image Placeholder` 16:9, 4:3 or 1:1).
+- Image Placeholder: change only the width; the height follows the Ratio. Pick another Ratio
+  instead of resizing the height.
 
 ## Which one
 | Need | Component |

@@ -39,8 +39,9 @@ Usage guidelines only. Visual specs live in the Figma components (Chat page) and
 ## Figma
 - `Comment`: Type comment, reply × State default, resolved; Name, Time, Text, Show actions.
 - `Comment Composer`, `Chat Composer`, `Typing Indicator`: single components.
-- `Chat Message`: Direction incoming, outgoing; Text, Time, Show meta. Bubbles grow up to 440
-  wide: in panels under 480 wide, keep messages short or break the lines yourself.
+- `Chat Message`: Direction incoming, outgoing × Size default, compact; Text, Time, Show meta.
+  Short text hugs, long text wraps; bubbles grow up to 440 wide. In panels under 480 wide use
+  Size=compact (bubble max 300); never break lines by hand.
 - Team chat: `Block / Team Chat` (example "Team chat"). Customer messaging: `Block / Inbox`.
   In-app help: `Block / Support Chat Widget` (View=home, chat), launcher bottom right, 24 from the
   edges. All three on the App page.

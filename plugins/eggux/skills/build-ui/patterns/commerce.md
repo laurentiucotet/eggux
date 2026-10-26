@@ -26,7 +26,8 @@ Payment blocks are on Forms; success page is `Block / Result`; the store back of
 
 ## Rules
 - Product Card: image 1:1, name, variant hint, price; sale = new price + struck original + % badge;
-  sold out stays visible with "Notify me". The whole card links to the product.
+  sold out stays visible with "Notify me". The whole card links to the product. Set the sale
+  percentage on the exposed `Discount` Badge.
 - Product Card Layout: `vertical` in grids; `horizontal` (image left) for search lists, wishlists
   and cart suggestions; `overlay` (text on the photo) for editorial tiles without quick add.
 - Product Detail: gallery, name, price, rating, short description, options as Toggle Group
@@ -44,6 +45,8 @@ Payment blocks are on Forms; success page is `Block / Result`; the store back of
   Order Summary sticky on the right; the pay button shows the amount ("Pay €95.00"). On one
   page: `Block / Checkout Single Page`; the pay button, the payment description and the Total
   show the same amount; opt-in unchecked by default.
+- `Block / Order Summary`: set Title, the exposed Summary Rows (Subtotal, Shipping, VAT, Total) and
+  the Pay button. Turn Show pay button off on checkout steps that have their own Continue.
 - Localize Field Preset defaults (postal-code hint, region label) to the shop's market.
 - Prices: currency and tax rules of the market; totals add up visibly; no surprise fees at the end.
   Each line of a summary is a Summary Row (discount in success with a minus sign, total last with a
@@ -84,7 +87,8 @@ Payment blocks are on Forms; success page is `Block / Result`; the store back of
   "Color: Sand". Quantity is a `Number Input` (Size=sm in Line Item). Stock is a `Status Dot`
   with its label (example "stock status" on the Badge page). Save for later is a `Button Icon`
   ghost with the heart icon (example "wishlist" on the Button page).
-- Account pages: `Order Row` for order history (newest first), `Shipment Tracker` on the order page,
+- Account pages: `Order Row` for order history (newest first), `Shipment Tracker` on the order page
+  (set each date in its exposed Step),
   `Address Card` and `Payment Method Card` for saved addresses and payment methods (last 4 digits
   only). Reviews: `Rating Summary` above a list of `Review Item`.
 - Category page: `Block / Category Filters` (sidebar on desktop, Layout=drawer on phones with a

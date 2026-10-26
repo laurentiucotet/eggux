@@ -51,8 +51,13 @@ readable in every mode). In instances, chart lines and bars keep the master shap
 that matches it or detach only in client files. Funnel Chart bars: set the track padding to set
 the share. Blocks: `Block / Analytics` and the dashboard blocks on the App page.
 - Radar, Sankey and Choropleth go inside a Chart Card Chart slot; turn off Show legend when the chart labels itself (Sankey, Choropleth).
-- Gauge: set the value with the "value" ellipse arc (start + span x share) and the value text; the
-  target tick stays at 80%, so write the target in the axis label.
+- Gauge: set Value, Min, Max and Target label in the panel, pick the tick with the exposed
+  target's Target (50 to 95), and set the value arc on the "value" ellipse (Sweep = share x 50%) so
+  all three agree.
+- Distribution Bar: set shares in the Segments slot (`Distribution Segment`, Color chart-N): fixed
+  width = share x bar width, last segment on Fill. Show legend items 5 and 6 for more parts.
+- Heatmap Data: default, late-peak, weekdays-only. Other Waterfall and Heatmap data change only by
+  detaching in client files.
 
 ## Funnel and Scatter
 - `Funnel Chart`: drop-off between ordered steps (created → sent → viewed → paid). Each stage

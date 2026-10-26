@@ -36,7 +36,7 @@ Usage guidelines only. Visual specs live in the Figma components.
   title on 2 lines, meta in Date ("Guide · 12 Oct 2026"), optional 1:1 image (Show image) on all
   items or none; 3-5 items.
 - Figma: `Post Card` (Card page), Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact); Badge
-  exposed for the category.
+  (layer `Badge`) exposed for the category: set its Label.
 - `Size=sm` for grids of 4 and for lists next to a featured story; never restyle the title on an instance.
 - `Layout=overlay` for one lead story or a cover carousel: the photo fills the card and the text
   sits on `media/scrim` (black 60%), 5.7:1 over any photo. No excerpt. Example "Post Card styles".
@@ -64,6 +64,7 @@ Usage guidelines only. Visual specs live in the Figma components.
   is active (scroll spy); clicking scrolls with an offset for sticky headers.
 - Sticky on the right from 1280; below that, a collapsible "On this page" at the top.
 - Figma: `Table of Contents Item` Level (1, 2) × State, `Table of Contents` (Items slot), Navigation page.
+- `Title` names the list ("On this page", "Other policies").
 
 ## Related components
 - Next to `Code Block`: `Command Snippet` for a single command to copy (the $ is never copied),

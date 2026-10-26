@@ -40,6 +40,8 @@ Usage guidelines only. Visual specs live in the Figma component.
   tooltip). The chosen `Toggle Group Item` is State=selected; items use the Variant of their group.
 - Variant=segmented (a muted track, the selected item raised) looks like Tabs default but sets a
   value: periods on a chart card, Monthly / Yearly on pricing. Example "Toggle Group styles".
+- Full width segmented Toggle Group: set the group and its items to FILL, so items share the
+  track. In a hugging group keep items on HUG.
 
 ## Related components
 - View switches (list, board, calendar) and theme switches (light, dark, system) are plain

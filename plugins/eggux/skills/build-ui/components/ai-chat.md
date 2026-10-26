@@ -5,7 +5,7 @@ which surface and the behavior rules: `patterns/ai-chat.md`.
 
 | Component | Variants | Use |
 |---|---|---|
-| `Prompt Input` | State: default, focus, streaming, disabled | Main input: Attachments and Tools slots, voice, send (stop while streaming) |
+| `Prompt Input` | State: default, focus, streaming, disabled. Content: placeholder, filled | Main input: Attachments and Tools slots, voice, send (stop while streaming) |
 | `Attachment` | Type: file, image. State: default, uploading, error | File in the input or above a user message |
 | `User Message` | - | Muted bubble on the right, hugs short text, max 576 |
 | `Assistant Message` | State: default, streaming, error | Full-width answer with a small avatar; Content slot; copy, regenerate, good, bad |
@@ -32,7 +32,8 @@ which surface and the behavior rules: `patterns/ai-chat.md`.
 - The conversation column is 768 (`layout/container/3xl`); in the panel everything is FILL.
 - Message actions appear on hover on desktop and always on touch. Each icon button has a
   tooltip: Copy, Regenerate, Good response, Bad response, Edit.
-- Prompt Input: hide Tools and voice where they do not apply (panel, inline).
+- Prompt Input: hide Tools and voice where they do not apply (panel, inline). A draft left in the
+  input is State=default, Content=filled.
 - Icons: `sparkles` marks AI (use it for AI entry points, not decoration), `square` is Stop,
   `arrow-up` is Send.
 

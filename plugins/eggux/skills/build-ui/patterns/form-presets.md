@@ -15,7 +15,7 @@ project, with missing input types, autocomplete and formats, which costs users t
 | card-expiry | `autocomplete="cc-exp"` | Format MM / YY as the user types |
 | card-cvc | `inputmode="numeric"` `autocomplete="cc-csc"` | 3 or 4 digits; say where to find it |
 | postal-code | `autocomplete="postal-code"` | Width fits the format; format hint below |
-| country | `autocomplete="country-name"` | Select (Combobox for long lists); preselect the user's country |
+| country | `autocomplete="country-name"` | Select (Combobox for long lists); preselect the user's country. Figma shows "Select a country" until filled; set the nested Select to Content=filled for a filled form |
 | region | `autocomplete="address-level1"` | Options depend on the country |
 
 ## Rules
