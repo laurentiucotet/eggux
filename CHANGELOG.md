@@ -3,6 +3,32 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.57.0
+Step 2 of the de-wireframe plan (audit 2): color, depth and fuller content.
+- `Badge`: 10 soft variants (`soft-success`, `soft-warning`, `soft-destructive`, `soft-info`,
+  `soft-neutral` x rounded / pill) on new `badge/soft-*-bg` and `-fg` tokens (4.5:1 or more in all
+  four modes).
+- `Stat Card`: the change badge is soft and follows the trend; new `Show sparkline`.
+  `Trend Indicator`: new `Style=badge`. `Sparkline` end dot stays at the line end when stretched.
+- Elevation: Plan Card featured gets `shadow/lg`, Device Frame `shadow/xl`; raw shadows on Popover,
+  Command, Hover Card, Emoji Picker, App Launcher, Confirm Popover, Account Menu and Map now use
+  `shadow/md`. Bar Chart stacked starts at `chart/1`.
+- Text styles `display/lg` (60) and `display/xl` (72); Foundations shows them and the elevation
+  rules.
+- Marketing blocks: hero headlines in `display/lg` with one accent phrase in `foreground/brand`;
+  Stats, Logo Cloud, Testimonials and FAQ on `background/muted`; CTAs with a secondary action and a
+  proof row; Features with 9 items, FAQ 7, Logo Cloud 8, Careers 8 roles, Blog List with varied
+  authors, footers with 4 columns.
+- App blocks: soft status badges in about 30 blocks and examples; sparklines and distinct
+  `chart/N` series in Analytics, Report, Executive Dashboard and the dashboard example; Kanban with
+  13 varied cards, Filtered List 9 rows plus pagination, Notifications 7 items in Today / Earlier,
+  Team Members 9 rows, photo avatars in Audit Log and Orders. Record Detail no longer names a real
+  clinic.
+- Page Shells: five `Example / <shell> filled` instances (App, Split View, Wizard, Docs, Admin
+  Panel); the shell components keep empty slots.
+- Guides: badge, card, charts, marketing-pages and build-ui (soft status, sparklines, filled
+  shell examples); tokens and code mapping for the new tokens and variants.
+
 ## 0.56.0
 Step 1 of the de-wireframe plan (audit 2): real imagery and logos.
 - New page "Imagery" (after Brand): 49 sample photos as components (`Image / Person` 18,
