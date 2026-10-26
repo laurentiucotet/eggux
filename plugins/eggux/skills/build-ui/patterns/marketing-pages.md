@@ -81,7 +81,7 @@ one decorative device and real imagery; start a landing page by copying the clos
 - Hero Prompt: Accent is the greeting, Title stays on two lines, Suggestions holds 2-4 Prompt Suggestions; submitting opens the chat or results page with the question prefilled.
 - No gray boxes on a finished page: hero and feature visuals are product screenshots (`Image / Screenshot / *` in a Device Frame); people, places and products use the Imagery photos (Image Placeholder `Show image`, Avatar Type=image); logo clouds use `Logo Tile` with a different `Logo / *` per tile. All are samples to replace with the client's own.
 - Hero headlines use `display/lg` with one accent phrase in `foreground/brand`; section titles use `heading/h1`, eyebrows `foreground/brand`.
-- Put Stats, Logo Cloud, Testimonial Grid or FAQ on `background/muted` between default sections.
+- Put Stats, Logo Cloud, Testimonial Grid or FAQ on `section/muted-background` between default sections (Light neutral/50 keeps muted text at 4.5:1). Never use `background/muted` for a full-width band.
 - One decorative device per page: a `Background / Grid`, `Dots`, `Glow` or `Beam` (Grid + Glow together count as one hero treatment) as the first child of the hero or one CTA band, absolute positioned, stretched, aria-hidden. Never behind dense content; keep body text off the glow core and beam heads, and check muted text stays 4.5:1 over it.
 - Feature, step and bento icons sit in an `Icon Tile`: neutral by default, brand for one accent grid, gradient for one highlighted item; one Style per grid. In a Features block instance, override the icon frame fill with `icon-tile/brand-bg` and the icon with `icon-tile/brand-fg`.
 - To show a client's brand on a pitch or cover, set the frame to their mode; the `Showcase Light` / `Showcase Dark` modes and the pages on Showcase show what a rebrand does to the same blocks.
@@ -91,7 +91,7 @@ one decorative device and real imagery; start a landing page by copying the clos
 - Never hide items inside a block's grid to change the count (the grid keeps its rows); pick the block whose count fits.
 - In the Default neutral theme `foreground/brand` is near black, so an accent phrase disappears; use a second headline line in `foreground/muted` or let photography carry the page.
 - On a full-bleed photo hero keep the text white over the block scrim and measure the brightest pixel under it (4.5:1); skip the accent phrase there.
-- In dark modes alternate `background/default` and the muted band per section and keep cards on `background/card`; light product screenshots become the brightest area, so give them a Device Frame and space around.
+- In dark modes alternate `background/default` and `section/muted-background` per section and keep cards on `background/card`; light product screenshots become the brightest area, so give them a Device Frame and space around.
 
 ## Cookie consent
 - Needed before any non-essential cookie (analytics, ads, embeds that track). Necessary cookies

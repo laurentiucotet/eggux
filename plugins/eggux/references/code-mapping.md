@@ -261,6 +261,10 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Background / Beam` | custom `overflow-hidden` wrapper with 3 rotated `div`s (`aria-hidden`) | Each beam `rotate-[35deg] bg-linear-to-b from-primary/20 to-transparent blur-2xl`, widths 64-160 px, opacity 12-22% |
 
 
+Section bands: `--section-muted-background` is `var(--color-neutral-50)` in `:root`, `var(--muted)` in `.dark`
+and the Corporate theme; add `--color-section-muted: var(--section-muted-background)` to `@theme inline`
+and use `bg-section-muted` on full-width sections (never `bg-muted`, muted text fails 4.5:1 on it in Light).
+
 Showcase theme (`Showcase Light`, `Showcase Dark` modes) in `globals.css`:
 
 ```css

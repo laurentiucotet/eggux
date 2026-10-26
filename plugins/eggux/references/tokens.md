@@ -90,7 +90,9 @@ fix them in its own file.
 | Pair | Ratio | How to work with it |
 |---|---|---|
 | `background/warning` as text on the page (Light) | 2.15 | Never use warning as text color. Warning messages use the filled style (`background/warning` + `foreground/warning`) |
-| `foreground/muted` on `background/muted` (Light) | 4.35 | Do not put muted text on muted surfaces; use `foreground/default` there |
+| `foreground/muted` on `background/muted` (Light) | 4.35 | Do not put muted text on `background/muted`; full-width bands use `section/muted-background`, muted cards and panels `card/muted-background` (both 4.54:1); chips and tiles use `foreground/default` |
+| `background/destructive` as text on muted (Corporate Dark) | 3.89 | Sale prices and error text on default or card |
+| `chart/1`, `chart/2` on muted (Dark, Corporate Dark) | 2.9 | Put charts in a Card, never straight on a muted band |
 | `border/input` on the page (Light 1.26, Dark 1.77) | below 3:1 | The input is still identified by its label and shadow. Clients with strict WCAG 1.4.11 needs re-alias it to `color/neutral/400`+ |
 
 ## Components (`Components`)
@@ -120,6 +122,7 @@ Current tokens:
 | `video/track` | `color/white` at `opacity/30` | Unplayed part of the progress bar |
 | `video/scrim` | `color/black` at `opacity/60` | Play button, duration and subtitle backgrounds |
 | `card/muted-background` | Light `color/neutral/50`; Dark, Corporate `background/muted` | Card Variant=muted; neutral/50 keeps muted text at 4.5:1 in Light |
+| `section/muted-background` | Light, Showcase Light `color/neutral/50`; Dark, Showcase Dark, Corporate `background/muted` | Full-width section band that alternates with `background/default`; muted text 4.54:1 in Light. CSS `--section-muted-background`, Tailwind `bg-section-muted` |
 | `icon-tile/brand-bg` | `background/primary` at `opacity/10` (light modes), `opacity/20` (dark modes) | Icon Tile Style=brand fill |
 | `icon-tile/brand-fg` | `foreground/brand` | Icon Tile Style=brand icon, 5.6:1 or more |
 | `icon-tile/gradient-start`, `icon-tile/gradient-end` | Light `neutral/700` to `900`, Dark `neutral/200` to `400`, Corporate `blue/600` to `800`, Showcase `brand/500` to `700` | Icon Tile Style=gradient; icon `foreground/primary` |
