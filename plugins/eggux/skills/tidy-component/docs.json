@@ -5971,14 +5971,17 @@
   ],
   "anatomy": [
    "Layout: stacked, inline, centered, card",
-   "Marker: icon tile (Marker=icon, Icon swap; neutral tile 40, background/muted, radius/md) or step number circle (Marker=number, Number)",
+   "Marker=icon: Icon Tile instance (exposed; Size=default 40, Style neutral by default). Pick Icon and Style (neutral, brand, gradient, outline) on the nested tile",
+   "Marker=number: step number circle 40 (background/primary, radius/full, Number)",
    "Title: body/large",
    "Description (Show description)",
    "Link (Show link): Button link",
    "Card (Layout=card): background/card, border/default, radius/xl, padding spacing/6, gap spacing/4"
   ],
   "rules": [
-   "Same Layout, icon style and text length across a grid",
+   "Same Layout, tile Style and text length across a grid",
+   "Tile Style=neutral by default; brand for the one accent grid on a page; gradient only for one highlighted item; never mix Styles in a grid",
+   "Set the tile Style on the nested Icon Tile, never by overriding the tile fill or icon color",
    "Layout=card for the whole grid or none; cards in a row share height (Fill in a grid)",
    "Title in 2-5 words; description in one or two lines",
    "One idea per item; no bullet lists inside",
@@ -5991,7 +5994,7 @@
    "The title is a heading one level below the section title",
    "Link text names the destination, not only \"Learn more\" when several sit together"
   ],
-  "code": "<div> with an icon, <h3> and <p>; grid of 3 or 4 columns. Layout=card: shadcn Card (rounded-xl border bg-card p-6 gap-4) around the same content.",
+  "code": "<div> with an Icon Tile, <h3> and <p>; grid of 3 or 4 columns. Layout=card: shadcn Card (rounded-xl border bg-card p-6 gap-4) around the same content.",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/components/content.md"

@@ -75,6 +75,10 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   nested nodes are invalid after the move.
 
 ## Instances and properties
+- To replace a nested part driven by an INSTANCE_SWAP with a component that has its own swap: inventory
+  each instance's icon and look, swap the part for an exposed instance, delete the old property, then set
+  Style and Icon on each nested instance shallow first (block mains before their instances), only where it
+  differs.
 - Renaming a slot node renames its SLOT property and changes the key: references in clones point at
   the old key and leave orphan properties. Rename the property (`editComponentProperty`), not the node,
   and delete orphans after cloning variants.

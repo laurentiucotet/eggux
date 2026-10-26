@@ -137,7 +137,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Chat | `Chat Composer` | - | Attach, message field, Send |
 | Quote | `Quote` | Variant: default (left rule), pull (centered), large (display size, one per page) | Quote, Name, Role, Show avatar, Show attribution. A quotation in running content |
 | Section Heading | `Section Heading` | Size: lg (h2), default (h3), sm (h4) | Title, Description, Overline, Show overline, Show description, Show actions, Show icon + Icon (swap); Actions (native slot). Opens a section of an app or content page |
-| Feature Item | `Feature Item` | Layout: stacked, inline, centered, card. Marker: icon, number | Title, Description, Number, Icon (swap), Show description, Show link. One benefit, capability or step: icon tile or step number, title, text |
+| Feature Item | `Feature Item` | Layout: stacked, inline, centered, card. Marker: icon, number | Title, Description, Number, Show description, Show link; Marker=icon holds an exposed Icon Tile (Icon and Style set on the tile). One benefit, capability or step: icon tile or step number, title, text |
 | Feature Item | `Icon Tile` | Style: neutral, brand, gradient, outline. Size: sm 32, default 40, lg 48 | Icon (swap). A rounded square with one icon for feature, step and bento grids; one Style per grid |
 | Rating | `Rating` | Size: sm, default. Value: 0-5. Style: default, badge | Show value, Show count, Count, Score (badge). Value text edited per instance |
 | Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); Carousel Arrow (outline) and Carousel Indicator (dots); viewport clips |

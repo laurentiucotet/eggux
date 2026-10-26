@@ -105,7 +105,7 @@ Examples in the Examples section of the Sections page (pricing, about, contact).
 - Hero headlines use `display/lg` with one accent phrase in `foreground/brand`; section titles use `heading/h1`, eyebrows `foreground/brand`.
 - Put Stats, Logo Cloud, Testimonial Grid or FAQ on `section/muted-background` between default sections (Light neutral/50 keeps muted text at 4.5:1). Never use `background/muted` for a full-width band.
 - One decorative device per page: a `Background / Grid`, `Dots`, `Glow` or `Beam` (Grid + Glow together count as one hero treatment) as the first child of the hero or one CTA band, absolute positioned, stretched, aria-hidden. Never behind dense content; keep body text off the glow core and beam heads, and check muted text stays 4.5:1 over it.
-- Feature, step and bento icons sit in an `Icon Tile`: neutral by default, brand for one accent grid, gradient for one highlighted item; one Style per grid. In a Features block instance, override the icon frame fill with `icon-tile/brand-bg` and the icon with `icon-tile/brand-fg`.
+- Feature, step and bento icons sit in an `Icon Tile`: neutral by default, brand for one accent grid, gradient for one highlighted item; one Style per grid. Feature Item holds an exposed Icon Tile: set Style=brand (or gradient) on the nested tile; do not override the tile fill or icon color.
 - To show a client's brand on a pitch or cover, set the frame to their mode; the `Showcase Light` / `Showcase Dark` modes and the pages on Showcase show what a rebrand does to the same blocks.
 - Every CTA gets a secondary action and a proof row (Avatar Group with photos and a Rating with a count).
 - On a primary band or card, use Inline Form with its button set to secondary and the hint in
