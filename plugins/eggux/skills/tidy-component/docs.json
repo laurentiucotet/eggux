@@ -153,7 +153,9 @@
    "States such as trial ends in 3 days, read-only access, sync failed",
    "Layout=inline: a card above the content it concerns",
    "Layout=banner: full width at the top of a page or panel (maintenance, read-only mode)",
-   "Notes and warnings inside documentation content"
+   "Notes and warnings inside documentation content",
+   "Style=soft: calmer tint for docs callouts, onboarding notes and pages with several alerts",
+   "Style=accent: a card with a 4 px status bar on the left for dense settings pages, lists and logs"
   ],
   "avoid": [
    "Confirming an action that just happened: use Toast",
@@ -165,7 +167,8 @@
    "Title: the situation in a few words",
    "Description: what to do about it (Show description)",
    "Actions slot: up to three small buttons or links (Show actions)",
-   "Dismiss x (Show close)"
+   "Dismiss x (Show close)",
+   "Style: default (bordered card), soft (badge/soft-* tint fill, no border; icon and title in badge/soft-*-fg, description foreground/default), accent (card + border/default, 4 px accent bar on the left in the status color; neutral uses foreground/muted)"
   ],
   "rules": [
    "Variant matches the meaning: default, info, success, warning, destructive; always with an icon",
@@ -173,14 +176,16 @@
    "The action that resolves the situation comes first",
    "Dismiss only when no action is needed; remember the dismissal",
    "Never stack more than one alert in the same place; show the most important one",
-   "Say what happened, then what to do; no blame, no \"Oops\""
+   "Say what happened, then what to do; no blame, no \"Oops\"",
+   "One Style per product; Variant still carries the meaning in every Style",
+   "Style=soft and accent warning use badge/soft-warning-fg for icon and title (amber text fails on white); the amber accent bar is decorative"
   ],
   "a11y": [
    "An alert that appears after load uses role=\"alert\" (destructive) or role=\"status\"",
    "Meaning is in icon and text, never color alone",
    "Dismiss x has an accessible label and is reachable by keyboard"
   ],
-  "code": "shadcn Alert (toasts are Sonner).",
+  "code": "shadcn Alert (toasts are Sonner). Style=soft and accent are className variants, see code-mapping.",
   "guides": [
    "skills/build-ui/components/alert.md",
    "skills/build-ui/components/card.md",
@@ -4370,15 +4375,18 @@
   "use": [
    "Waits under ~3 s",
    "Inside a button while it works: \"Saving…\" + disabled",
-   "One row, field or small area that is loading"
+   "One row, field or small area that is loading",
+   "Type=dots: typing and AI-writing indicators in chat, soft waits inside a sentence"
   ],
   "avoid": [
    "Content loading: use Skeleton",
    "Known progress: use Progress",
-   "Long jobs: run in the background and notify when done"
+   "Long jobs: run in the background and notify when done",
+   "Type=dots inside a Button: use Type=default"
   ],
   "anatomy": [
-   "loader-circle icon, rotating linear, 1 s per turn",
+   "Type=default: loader-circle icon, rotating linear, 1 s per turn",
+   "Type=dots: three dots (4 px; 8 px at lg) pulsing in turn, drawn at 100, 70 and 40% opacity",
    "Size: sm, default, lg; Tone: muted, default",
    "Optional text next to it: \"Saving…\""
   ],
@@ -4387,13 +4395,14 @@
    "One spinner per region, never several at once",
    "Size: sm 16 for inline and buttons, default 20, lg 32 for an empty region",
    "Tone=muted on quiet surfaces, Tone=default next to body text",
-   "Reduced motion: pulse the opacity instead of rotating"
+   "Reduced motion: pulse the opacity instead of rotating",
+   "Type=dots pulse 0.2 s apart; reduced motion keeps them static"
   ],
   "a11y": [
    "role=\"status\" with hidden text: \"Loading invoices\"",
    "A busy button is disabled and keeps its accessible name"
   ],
-  "code": "shadcn Spinner.",
+  "code": "shadcn Spinner; Type=dots is three spans with a staggered animate-pulse (see code-mapping).",
   "guides": [
    "skills/build-ui/components/indicators.md",
    "skills/build-ui/components/button.md",
@@ -4934,7 +4943,8 @@
    "Confirming an action whose result is out of view: \"Invoice INV-1048 created\"",
    "Undo for restorable deletes and archives",
    "Background events: export ready, import done",
-   "Bulk results with counts: \"18 sent, 2 failed\""
+   "Bulk results with counts: \"18 sent, 2 failed\"",
+   "Style=inverted: dark toast in Light (light in Dark) when toasts sit over busy or white content: editors, maps, media"
   ],
   "avoid": [
    "The result is visible where the user is: the change itself is the feedback",
@@ -4946,7 +4956,8 @@
    "Title: one line (Title)",
    "Description (Show description, Description)",
    "Action button (Show action)",
-   "Close button (Show close)"
+   "Close button (Show close)",
+   "Style: default (popover surface, border, shadow/lg) or inverted (foreground/default fill, text and icons background/default, description and close at opacity/80, no border)"
   ],
   "rules": [
    "One line, past tense, names the object: \"Invoice #1042 sent\", not \"Success!\"",
@@ -4954,14 +4965,16 @@
    "Auto-dismiss after 4-6 s, 8-10 s with an action; pause on hover and focus",
    "Show close off by default; on for toasts with an action, errors and long durations",
    "Errors that block the goal also show inline",
-   "Same position everywhere: bottom right, top center on mobile"
+   "Same position everywhere: bottom right, top center on mobile",
+   "Style=inverted icons are monochrome; the icon shape and the words carry the type",
+   "One Style per product; never mix default and inverted toasts in one stack"
   ],
   "a11y": [
    "aria-live=\"polite\"; \"assertive\" for errors",
    "Timers pause on focus, so the action can be reached with the keyboard",
    "Nothing appears only in a toast"
   ],
-  "code": "shadcn Sonner.",
+  "code": "shadcn Sonner; Style=inverted is <Toaster invert /> (or toast classNames bg-foreground text-background).",
   "guides": [
    "skills/build-ui/components/toast.md",
    "skills/build-ui/patterns/action-feedback.md",

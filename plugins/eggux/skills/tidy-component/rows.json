@@ -170,7 +170,10 @@
   {
    "main": "Alert",
    "helpers": [],
-   "block": "189:5652"
+   "block": "189:5652",
+   "examples": [
+    "Example / Alert styles"
+   ]
   },
   {
    "main": "Service Status Row",
@@ -1889,7 +1892,10 @@
   {
    "main": "Toast",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Toast styles"
+   ]
   }
  ],
  "Toggle Group": [

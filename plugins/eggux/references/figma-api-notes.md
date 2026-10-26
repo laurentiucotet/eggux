@@ -75,6 +75,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   nested nodes are invalid after the move.
 
 ## Instances and properties
+- Renaming a slot node renames its SLOT property and changes the key: references in clones point at
+  the old key and leave orphan properties. Rename the property (`editComponentProperty`), not the node,
+  and delete orphans after cloning variants.
 - Changing a property, variant or text inside a nested instance can re-create its sibling
   nodes. When editing several, re-query after each change instead of looping over a stale list.
 - `isExposedInstance = true` only after the nested instance is inside the component, and only

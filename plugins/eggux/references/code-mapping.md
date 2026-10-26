@@ -406,6 +406,16 @@ style block for clients that support it).
 | `Email / Article` | `Row`: `Column` `Img` (160 x 120) + `Column` `Heading as="h3"`, `Text`, `Link` | Whole title links to the article too |
 | `Email / Footer` | `Section` (textAlign center) with `Row` of `Link` + `Img` social icons (20 px), `Text` address, `Text` reason, `Link` preferences, `Link` unsubscribe | Also send the `List-Unsubscribe` and `List-Unsubscribe-Post` headers for marketing mail |
 
+## Style alternatives
+New style values added to existing components in 0.58.0 (the default value keeps the shadcn look).
+
+| Figma | Code | Notes |
+|---|---|---|
+| `Alert` (Style=soft) | shadcn `Alert` with a cva `style: "soft"`: `border-0 bg-[var(--badge-soft-X-bg)] [&>svg]:text-[var(--badge-soft-X-fg)]`, title `text-[var(--badge-soft-X-fg)]`, description `text-foreground` (X = neutral for default, destructive, success, warning, info) | Same tint tokens as Badge soft; one Style per product |
+| `Alert` (Style=accent) | shadcn `Alert` with `style: "accent"`: `bg-card border border-l-4 border-l-X` (`border-l-muted-foreground`, `border-l-destructive`, `border-l-success`, `border-l-warning`, `border-l-info`); icon and title `text-X`, warning title `text-[var(--badge-soft-warning-fg)]` | Banner: `border-0 border-b border-l-4 rounded-none` |
+| `Toast` (Style=inverted) | Sonner `<Toaster invert />`, or `toastOptions={{ classNames: { toast: "bg-foreground text-background border-0", description: "text-background/80" } }}` | Icons take `currentColor` (monochrome); flips to a light toast in dark mode |
+| `Spinner` (Type=dots) | `<span role="status" class="inline-flex gap-1">` of three `<span class="size-1 rounded-full bg-current animate-pulse [animation-delay:0ms|200ms|400ms]">` (`size-2` at lg); `text-muted-foreground` for Tone=muted | Hidden text "Loading" or "Acme Assistant is writing"; `motion-reduce:animate-none` |
+
 ## Admin
 | Figma | Code | Notes |
 |---|---|---|
