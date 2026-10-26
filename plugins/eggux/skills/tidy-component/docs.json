@@ -1113,12 +1113,12 @@
    "Description: the period and unit",
    "Actions slot: time range Toggle Group",
    "Chart slot: Bar Chart, Line Chart or another chart",
-   "Chart Legend (Show legend)",
+   "Chart Legend (exposed, Show legend): its Items slot holds one Chart Legend Item per series",
    "Footer with Insight and Note (Show footer)"
   ],
   "rules": [
    "Title says what is measured (\"Revenue vs costs\"), never \"Chart\"",
-   "Legend on for 2 or more series, off for one",
+   "Legend on for 2 or more series with one item per series (remove items from the legend's Items slot); off for one series",
    "Footer states the insight in words (\"Profit up 21% vs last half-year\")",
    "Every chart has a table view in code",
    "Empty: say why; loading: Skeleton in the chart shape; error: inline Alert with retry",
@@ -5466,7 +5466,8 @@
    "Time: \"1:24 / 4:05\"",
    "Controls: play / pause, volume, captions, settings, fullscreen",
    "Subtitles above the controls on video/scrim (Show subtitles)",
-   "Spinner over the frame (State=buffering)"
+   "Spinner over the frame (State=buffering)",
+   "Size: default (64 px play button and spinner, up to about 800 wide), lg (96 px play button, 1152 x 648)"
   ],
   "rules": [
    "Poster first: a meaningful frame, a large play button and the duration",
@@ -5474,6 +5475,7 @@
    "Controls show on hover or tap and hide after ~3 s of playback",
    "Captions for every video with speech; transcript for tutorials and long videos",
    "Errors keep the poster, with a message and Retry",
+   "Size=lg for hero and full-width players (960 wide and up), Size=default in cards, docs and dialogs",
    "Ratio 16:9 unless the content is vertical; radius/xl in cards and pages",
    "video/* tokens: the player stays dark in Light and Dark mode"
   ],
@@ -5647,18 +5649,21 @@
    "Value: heading/h3 (stacked) or h4 (inline); lg one step larger",
    "Label: body/small, muted",
    "Source (stacked, Show source)",
-   "Divider (stacked)"
+   "Divider (stacked)",
+   "Tone: default, on-primary (value, label and source in foreground/primary)"
   ],
   "rules": [
    "Layout=stacked for 2-4 headline figures; inline for counts in a line",
    "The label reads on its own (\"average time to get paid\", not \"time\")",
    "Add the source when the figure is a claim; one source line under a group is enough",
    "Numbers in the locale format with units (€18,500, 47 days, 62%)",
-   "No trend arrows or colors here: that is Stat Card"
+   "No trend arrows or colors here: that is Stat Card",
+   "Tone=on-primary on primary bands (Block / Stats Brand Band); keep text alignment as the only override"
   ],
   "a11y": [
    "Value and label are read together as one phrase",
-   "Do not round in a way that changes the meaning; the exact value in a tooltip when rounded"
+   "Do not round in a way that changes the meaning; the exact value in a tooltip when rounded",
+   "Tone=on-primary text is 5.2:1 Light and Dark, 6.7:1 Corporate Light on background/primary"
   ],
   "code": "Custom: dl with dd (value) and dt (label), or a span pair inline.",
   "guides": [
@@ -6245,11 +6250,13 @@
   ],
   "anatomy": [
    "Input (exposed): placeholder with an example value",
-   "Button (exposed): the verb (\"Subscribe\", \"Apply\", \"Invite\")",
-   "Hint (Show hint), Error or Success message under the row"
+   "Button (exposed): the verb (\"Subscribe\", \"Apply\", \"Invite\"); change Label from the instance panel",
+   "Hint (Show hint), Error or Success message under the row",
+   "Tone: default, on-primary (secondary Button; hint, error and success text in foreground/primary)"
   ],
   "rules": [
    "State: default, error, success",
+   "Tone=on-primary on primary bands and cards (Newsletter Card, CTA bands); never override the button variant or text colors by hand",
    "The button says what happens: a verb, never \"Submit\"",
    "Error keeps the value and says how to fix it: \"Enter an email address like name@company.com.\"",
    "Success replaces the hint with what happens next; clear the input only when people add several items",
@@ -6258,7 +6265,8 @@
   "a11y": [
    "The input has a visible label or an aria-label (\"Email address\")",
    "It is a form: Enter submits",
-   "Error and success messages are linked with aria-describedby and announced in a live region"
+   "Error and success messages are linked with aria-describedby and announced in a live region",
+   "On primary bands the hint and messages use foreground/primary: 5.2:1 Light and Dark, 6.7:1 Corporate Light on background/primary"
   ],
   "code": "<form class=\"flex gap-2\"> with shadcn Input and Button (react-hook-form + zod).",
   "guides": [
@@ -8485,7 +8493,7 @@
   ],
   "anatomy": [
    "Logo (Logo): instance swap, default Logo / Northwind, preferred Logo / * (12 fictional sample logos on the Brand page)",
-   "Style: bordered (tile with border, logo at full strength), plain (no border, logo at 70% opacity)",
+   "Style: bordered (tile on background/card with border, logo at full strength), plain (no fill or border, logo at 70% opacity)",
    "Tile: 72 high, hugs the logo with spacing/6 side padding, at least 160 wide, logo centered"
   ],
   "rules": [
@@ -8985,11 +8993,12 @@
   "anatomy": [
    "Chrome: three dots and the address bar with lock icon (Device=browser)",
    "Address: \"app.acme.com/invoices\"",
-   "Screen slot: an Image / Screenshot / ... instance (FILL width, ratio locked) or a live block at 1:1",
+   "Screen slot: an Image / Screenshot / ... instance at Fill width; its height hugs the image ratio (inner ratio layer), or a live block at 1:1",
    "Device: browser, phone"
   ],
   "rules": [
-   "A real screen, never stretched: screenshots keep their ratio",
+   "A real screen, never stretched or cropped: Image / Screenshot / * hug their height from the image ratio, so a swap or a new frame width keeps the whole screen",
+   "Resize the Device Frame, never the screen inside it; set a fixed screen height only to crop on purpose",
    "One frame style per page",
    "The address matches the screen",
    "Realistic content (Acme, invoices), no placeholder text",
@@ -11014,6 +11023,42 @@
   "guides": [
    "skills/build-ui/components/ai-chat.md",
    "skills/build-ui/patterns/ai-chat.md"
+  ]
+ },
+ "Comparison Table": {
+  "summary": "Plan comparison table for pricing pages: a header row per plan and feature rows grouped under section labels.",
+  "use": [
+   "Under the plan cards in Block / Pricing with Comparison (Plans=4)",
+   "Block / Comparison Table on its own pricing or plans page (Plans=3)",
+   "Any page that compares 3 or 4 plans feature by feature"
+  ],
+  "avoid": [
+   "Choosing a plan at a glance: use Plan Card",
+   "Comparing products or records with many columns: use Table",
+   "One plan with what is included: use Block / Pricing Single"
+  ],
+  "anatomy": [
+   "Plans: 3 (label column 432, plan columns 240), 4 (label column 352, plan columns 200)",
+   "Header row: plan name (with an optional Badge), Price sm and a sm Button per plan",
+   "Section rows: an overline label (\"Core\", \"Collaboration\", \"Security\")",
+   "Feature rows: label and one Table Cell Check per plan (check, dash or a short value)",
+   "Rows divided by border/default"
+  ],
+  "rules": [
+   "Plans matches the number of plan cards above it, in the same order",
+   "Same feature order and wording as the plan cards",
+   "Use a check or a dash for yes and no; a short value (\"100 GB\", \"Unlimited\") when it differs",
+   "Hide rows you do not need; keep at least one row per section",
+   "One primary button in the header: the recommended plan"
+  ],
+  "a11y": [
+   "Code it as a <table> with plan names as column headers (scope=\"col\") and feature labels as row headers (scope=\"row\")",
+   "Check and dash cells have text for screen readers (\"Included\", \"Not included\")",
+   "Section labels are row headers that span the table"
+  ],
+  "code": "<table> with shadcn Table parts; header cells hold Price and Button; cells use lucide Check and Minus with sr-only text.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
   ]
  }
 }
