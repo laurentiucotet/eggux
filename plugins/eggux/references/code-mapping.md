@@ -43,7 +43,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Alert`, `Toast` | shadcn `Alert`, `Sonner` | |
 | `Card`, `Card Header`, `Card Footer`, `Stat Card` | shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content |
 | `Stat Card` | shadcn `Card` + custom content; change = `Badge` soft variant by direction; optional sparkline = Recharts `LineChart` without axes, `var(--chart-1)` | Up soft-success, down soft-destructive, flat soft-neutral; swap on the instance when up is bad; sparkline `aria-hidden` |
-| `Skeleton`, `Spinner`, `Kbd`, `Kbd Group` | shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) | |
+| `Skeleton`, `Spinner`, `Kbd`, `Kbd Group` | shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) | Kbd text `text-foreground` (not `text-muted-foreground`): muted text on `bg-muted` is 4.35:1 in Light |
 | `Pagination`, `Pagination Item`, `Breadcrumb`, `Breadcrumb Item` | shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) | In tables use `Table Pagination` |
 | `Pagination Compact` | shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNext` | |
 | `Pager Link` | `<a>` card (`rounded-xl border p-4 hover:bg-accent focus-visible:ring`) with lucide `ChevronLeft` / `ChevronRight`, two of them in a `<nav>` | Docs prev/next; for tables and lists use `Pagination` |
@@ -67,7 +67,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Progress Ring` | SVG circle with `stroke-dasharray` (or Radix Progress) | `role="progressbar"`, `aria-valuenow` |
 | `Scroll Area` | shadcn `ScrollArea`, `ScrollBar orientation="horizontal"` | The Content slot is the `ScrollArea` children |
 | `File Preview` | `react-pdf` (pdf.js) for PDF, `<img>` for images, in `Sheet` or `Dialog` | Unsupported types: download link |
-| `Image Cropper`, `Avatar Upload` | `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input | Crop on the client, upload the result |
+| `Image Cropper`, `Avatar Upload` | `react-easy-crop` in a `Dialog`; shadcn `Avatar` + file input | Crop on the client, upload the result. Shape=square is `Avatar` with `rounded-md` for workspace and company logos |
 | `Menubar`, `Menubar Trigger` | shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent`) | |
 | `Cookie Consent` | custom banner / card + shadcn `Dialog` with `Switch`es; or a CMP (Cookiebot, Osano) styled to match | Load scripts only after consent |
 | `Copy Field` | shadcn `InputGroup` with a `readOnly` Input (`font-mono`) + Copy `Button`; `navigator.clipboard.writeText` | copied state 2 s, no toast; mask secrets until Reveal |
@@ -109,7 +109,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Tree Item` | custom tree (`role="tree"`) with shadcn `Checkbox` and `Badge` | Arrow keys expand and collapse |
 | `Top Bar` | shadcn site header: `SidebarTrigger`, `Breadcrumb`, `Button` | |
 | `Page Header` | custom `<header>` with a heading, text and shadcn `Button` | One per page |
-| `Mobile Header` | custom header with shadcn `Button size="icon"` and `Avatar` | |
+| `Mobile Header` | custom header with shadcn `Button size="icon"` and `Avatar`; Type=brand renders the product `Logo` (link to home) in place of the back button and title | Entry screens (sign in, sign up) use brand |
 | `Bottom Nav`, `Bottom Nav Item` | custom `<nav>` of links with `env(safe-area-inset-bottom)` | Current item `aria-current="page"` |
 | `Image Placeholder` | `<img>` or `next/image` with `aspect-ratio` and `object-cover` | `Show image` = render the image; off = muted box with a dot background and lucide `Image` icon (loading or missing image). The `Image` swap picks a sample photo: replace with the real `src` and alt |
 | `Logo / *` (Northwind, Lumora, Orbitly, Fieldstone, Kestrel, Quintra, Halcyon, Brightpath, Corvid, Meridian, Tidewater, Vireo) | inline SVG (`fill="currentColor"`, height 32, `role="img"` + `aria-label="<Name>"`) exported from the Brand page | Fictional sample logos for mockups only; ship real customer logos with permission |

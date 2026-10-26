@@ -211,11 +211,12 @@
   "avoid": [
    "Restorable actions: act at once and offer Undo in a toast",
    "Information that does not block the next step: use a toast or inline Alert",
-   "A task with fields: use Dialog"
+   "A task with several fields: use Dialog"
   ],
   "anatomy": [
    "Overlay (dialog/overlay)",
    "Header slot: Dialog Header with Close off, title as a question, description",
+   "Content slot (Show content, off by default): type-to-confirm Field, what is lost, an opt-in Checkbox",
    "Footer slot: Cancel outline left, action verb right (destructive variant when destructive)"
   ],
   "rules": [
@@ -223,7 +224,7 @@
    "Body says what is lost and \"This can't be undone.\" when true",
    "Buttons are verbs (\"Delete project\"), never Yes / No",
    "No close button and no close on outside click",
-   "High impact (account, project, bulk data): type the name to confirm",
+   "High impact (account, project, bulk data): type the name to confirm, in the Content slot (Show content); the action stays disabled until it matches",
    "On failure the dialog stays open with the error"
   ],
   "a11y": [
@@ -433,8 +434,8 @@
  "Avatar Upload": {
   "summary": "Profile or logo picture in settings: the current avatar, the upload rules, Upload or Change and Remove.",
   "use": [
-   "Profile picture in account settings",
-   "Organization or project logo",
+   "Profile picture in account settings (Shape=circle)",
+   "Organization, workspace or project logo (Shape=square)",
    "Team, customer or workspace pictures edited by an admin"
   ],
   "avoid": [
@@ -442,7 +443,7 @@
    "Showing a person or organization without editing: use Avatar"
   ],
   "anatomy": [
-   "Avatar (initials when empty)",
+   "Avatar: Shape circle (a person) or square (a workspace or company logo); initials when empty",
    "Label (Show label): \"Profile photo\", \"Company logo\"",
    "Hint: type, minimum size, maximum weight (empty and filled)",
    "Upload or Change: Button outline sm, exposed (set its Label, e.g. \"Upload photo\")",
@@ -451,6 +452,8 @@
    "Error message (State=error)"
   ],
   "rules": [
+   "Shape: circle for people, square for workspaces and companies; square filled shows the logo (drawn as initials on background/primary until replaced)",
+   "Square: set Label to \"Workspace logo\" or \"Company logo\" and the Hint to the logo rules (PNG or SVG, square)",
    "State: empty, filled, uploading, error",
    "Upload opens the file picker, then the Image Cropper",
    "Show remove only when there is something to remove (a photo, or initials people may reset)",
@@ -2178,10 +2181,11 @@
   "anatomy": [
    "Field label",
    "Control: Input or Select for the Type",
-   "Hint or error (nested Field exposed)"
+   "Hint and Error: each Type has its own default text (nested Field exposed)"
   ],
   "rules": [
    "Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region",
+   "Each Type sets its own Error and Hint defaults (password \"Enter your password\", new-password \"Use at least 8 characters\", phone with the country code, card fields, postal code, country, county); rewrite them in the client's words, never leave another type's text",
    "In code set the matching type, inputmode and autocomplete (email, tel, cc-number, postal-code...)",
    "Change the label to the client's terminology; keep the preset behavior",
    "password never blocks paste; new-password pairs with Password Strength",
@@ -2919,8 +2923,8 @@
    "Inline code in prose: use the code style"
   ],
   "anatomy": [
-   "Key surface (muted background, border)",
-   "Key label (Key): symbol or name",
+   "Key surface (background/muted, border)",
+   "Key label (Key): symbol or name, foreground/default",
    "Used next to a menu label or in a Tooltip"
   ],
   "rules": [
@@ -2930,7 +2934,7 @@
   ],
   "a11y": [
    "Use the <kbd> element; symbols get readable names (\"Command\")",
-   "Text contrast at least 4.5:1 on the key background"
+   "Key text is foreground/default on background/muted: 18:1 Light, 14.5:1 Dark, 16.3:1 Corporate Light (foreground/muted was 4.35:1 in Light)"
   ],
   "code": "shadcn Kbd.",
   "guides": [
@@ -3191,24 +3195,27 @@
   ]
  },
  "Mobile Header": {
-  "summary": "Top bar on mobile (under 768) with the page or object title and the main controls.",
+  "summary": "Top bar on mobile (under 768) with the page or object title and the main controls, or the logo on entry screens.",
   "use": [
    "Every mobile app screen",
    "Detail pages with back, object title and actions",
-   "Mobile list pages with search and a menu"
+   "Mobile list pages with search and a menu",
+   "Entry screens with nothing to go back to (sign in, sign up): Type=brand"
   ],
   "avoid": [
    "Desktop and tablet app shell: use Top Bar",
    "Marketing sites: use Block / Navbar Mobile"
   ],
   "anatomy": [
-   "Leading slot: menu (app) or back (detail)",
-   "Title",
-   "Trailing slot: notifications and Avatar, or actions"
+   "Leading slot: menu (app) or back (detail); hidden in brand",
+   "Title (app, detail)",
+   "Logo (brand): Logo swap",
+   "Trailing slot: notifications and Avatar, or actions; in brand empty or one link"
   ],
   "rules": [
    "Type app: menu + page title + notifications or avatar",
    "Type detail: back + object title + actions",
+   "Type brand: the Logo on entry screens (sign in, sign up, invite); later steps of a flow use detail with back and the flow name",
    "Title is the page or object name, truncated to one line",
    "Height 56; add the safe-area inset on top in code",
    "The menu button opens the Sidebar as a left Sheet"
@@ -3216,7 +3223,8 @@
   "a11y": [
    "Icon buttons have labels: \"Open menu\", \"Back to customers\"",
    "Touch targets at least 44 x 44",
-   "Title is the page heading for screen readers"
+   "Title is the page heading for screen readers",
+   "In brand the Logo links home and has the product name as its label"
   ],
   "code": "custom header with shadcn Button (size=\"icon\") and Avatar.",
   "guides": [
@@ -3408,13 +3416,14 @@
   "anatomy": [
    "Title (heading/h3)",
    "Description (Show description)",
-   "Actions slot, primary last"
+   "Actions slot (Show actions), primary last"
   ],
   "rules": [
    "One per page; the title is the only h3 at that level",
    "Description is one sentence",
    "Title matches the last Breadcrumb item",
-   "Tabs for sub-views go right under it"
+   "Tabs for sub-views go right under it",
+   "Turn Show actions off when the page has no page-level action; never leave an empty slot"
   ],
   "a11y": [
    "Title is the page heading; keep heading levels in order",
@@ -3484,10 +3493,12 @@
   "anatomy": [
    "Bar segments",
    "Level in text",
-   "Message: what is missing"
+   "Message: asks for a longer password when weak or fair"
   ],
   "rules": [
    "Level: empty, weak, fair, good, strong",
+   "Length is the only rule (8 or more characters): messages never ask for numbers, symbols or cases (patterns/auth.md)",
+   "Default copy: empty \"Use at least 8 characters. A longer phrase is stronger.\", weak \"Weak: make it longer.\", fair \"Fair: a few more characters make it stronger.\"",
    "The level is in text and bar count, not only color",
    "Fair uses foreground/default because amber fails as a thin bar on white",
    "No composition rules beyond length; never block paste"
@@ -3686,7 +3697,7 @@
   ],
   "anatomy": [
    "Label",
-   "Status Badge: on-track, at-risk, off-track",
+   "Status Badge (soft): on-track soft-success, at-risk soft-warning, off-track soft-destructive",
    "Value and Target (\"€48,250 of €60,000\")",
    "Progress bar (exposed Progress, set Value)",
    "Footnote: percent and time left"
@@ -3979,10 +3990,11 @@
    "Never mix autosave and a Save Bar in the same form"
   ],
   "anatomy": [
-   "Message: count of changes (\"3 unsaved changes\")",
-   "Error icon and message (State=error)",
+   "Message (State=default): what is unsaved (\"3 unsaved changes\")",
+   "Error (State=error): icon and what failed",
+   "Saving… with a Spinner (State=saving)",
    "Discard button",
-   "Save button, with a Spinner in State=saving"
+   "Save button, disabled while saving"
   ],
   "rules": [
    "Shown only while the form is dirty: values differ from the saved ones",
@@ -4324,7 +4336,7 @@
    "Label with the current value and unit",
    "Track: background/muted",
    "Range: background/primary",
-   "Thumb, or two for Type=range",
+   "Thumb, or two for Type=range: a fixed 16 px knob centered in a wrapper that moves with the value, so it stays round at any width",
    "Min and max labels under the track, when useful",
    "Value bubble (Show value): a Tooltip Side=top (exposed, set its Label) over each thumb; draws 37 px above the 16 px box",
    "Marks (Show marks): Min label, Mid label, Max label under the track, centered on the thumb ends; draws 24 px below the box"
@@ -4336,7 +4348,8 @@
    "Exact values: pair it with an Input (type number)",
    "Show value while dragging, or always when the exact value matters; keep the value next to the label too",
    "Show marks for scales people read (0, 250, 500 EUR); three labels, units on the ends only if they fit",
-   "Leave 40 px above and 24 px below the Slider when Show value or Show marks is on; they overflow the component box"
+   "Leave 40 px above and 24 px below the Slider when Show value or Show marks is on; they overflow the component box",
+   "Stretch the Slider (FILL or any width): the thumbs keep their size and follow the value; never resize the thumb itself"
   ],
   "a11y": [
    "Arrows move by one step, Page Up and Page Down by 10 steps",
@@ -4399,12 +4412,13 @@
    "Records the user will act on: link them in the text"
   ],
   "anatomy": [
-   "Favicons and Label (\"3 sources\") when collapsed",
+   "Favicons (Favicon 1, Favicon 2, Favicon 3) and Label (\"3 sources\") when collapsed",
    "Chevron-down",
-   "Items slot: Source Items with Number, favicon or initial, Title and Domain (Show list)",
+   "Items slot: Source Items with Number, Letter (favicon initial), Title and Domain (Show list)",
    "Citations in the text, numbered like the Source Items"
   ],
   "rules": [
+   "Favicon 1 to 3 repeat the Letter of the first three Source Items, in the same order",
    "Every factual claim from a source gets a Citation with its Source Item number",
    "A Source Item opens the source in a new tab",
    "List only sources the user can open",
@@ -5155,9 +5169,10 @@
    "Wrench icon, or Spinner while running",
    "Title: what runs (\"Search invoices\")",
    "Description: the input (\"customer: Acme, status: open\")",
-   "Status Badge",
+   "Status Badge: soft-success (done), soft-destructive (error), soft-warning (approval)",
    "Chevron to open the input and the result",
-   "Approve and Deny (Status=approval) or Retry (Status=error)"
+   "Error message (Status=error): what failed, then Retry",
+   "Approval message (Status=approval): what will happen, to whom, then Deny and Approve"
   ],
   "rules": [
    "Reading is free; writing asks: changes, messages, payments and hard-to-undo actions use Status=approval",
@@ -5212,7 +5227,8 @@
   "a11y": [
    "Shows on keyboard focus; Escape hides it",
    "Tied to the trigger with aria-describedby, or its text is the button's aria-label",
-   "Text on background/primary (default) and on background/popover (light) meets 4.5:1"
+   "Text on background/primary (default) and on background/popover (light) meets 4.5:1",
+   "The shortcut Kbd uses foreground/default text on background/muted (4.5:1 or more) in both Variants"
   ],
   "code": "shadcn Tooltip; Variant=light is TooltipContent className (see code-mapping).",
   "guides": [
@@ -7078,7 +7094,7 @@
   ],
   "anatomy": [
    "Type=page: Path (Show path): Path, Icon/chevron-right, Section; Title (body/large, 2 lines); Snippet (body/small, 2 lines, matched words bold); meta (Show meta): type Badge and Updated",
-   "Type=record: icon tile (Icon swap, 40, background/muted); Record (title, 2 lines) with a status Badge (exposed); Record details (Show meta): \"Invoice · €1,240.00 · Due 30 Oct 2026 · Updated 12 Oct\"",
+   "Type=record: icon tile (Icon swap, 40, background/muted); Record (title, 2 lines) with a soft status Badge (exposed, soft-warning \"Overdue\" by default); Record details (Show meta): \"Invoice · €1,240.00 · Due 30 Oct 2026 · Updated 12 Oct\"",
    "Type=person: Avatar lg (exposed: Initials or photo); Name; Role (role and team, 2 lines); Email (Show meta); action (Show action): outline Button sm \"Message\" (exposed)",
    "Type=file: icon tile (Icon swap: file type); File name; meta (Show meta): File details (\"PDF · 2.4 MB · Updated 12 Oct\"), owner Avatar xs (exposed) and Owner; download (Show action): ghost Button Icon",
    "Type=media: Video Thumbnail 160 x 90 with duration (exposed); Media title; Media summary (2 lines); Media details (Show meta): \"Video · Acme Academy · Updated 12 Oct 2026\"",
@@ -7094,6 +7110,7 @@
    "At most one answer, always first, and only when it is grounded in sources people can open",
    "Never mix widths or densities in one list; keep the same Show path and Show meta choice for every row of a group",
    "Titles wrap to 2 lines, snippets and summaries to 2 (Answer to 4), then ellipsis; bold the matched terms",
+   "Status Badges in results are the soft variants (soft-success, soft-warning, soft-destructive, soft-info, soft-neutral), never solid",
    "Records show their status Badge; files show format and size before people click; people show role and team",
    "No results: Empty State that repeats the query and suggests other words"
   ],
@@ -8633,7 +8650,7 @@
   "anatomy": [
    "Number: \"Order #10482\", or the invoice date or number",
    "Meta: date · item count, or plan · seats",
-   "Status Badge: processing, shipped, delivered, cancelled (orders); paid, refunded (invoices)",
+   "Status Badge (soft): processing soft-neutral, shipped soft-info, delivered and paid soft-success, cancelled soft-destructive, refunded outline",
    "Total",
    "Chevron right",
    "State: default, hover (background/muted), selected (background/accent, the order open next to the list)"
@@ -10031,14 +10048,14 @@
   "anatomy": [
    "Checkbox",
    "Title: ui/label",
-   "Due (Show due): ui/caption, muted; destructive when overdue",
+   "Due (Show due): ui/caption, muted; destructive in State=overdue; the same Due text in every State",
    "Action slot (Show action): one Button, such as Connect or Start",
    "Assignee (Show assignee): Avatar xs"
   ],
   "rules": [
    "Ticking saves at once and can be undone (toast with Undo)",
    "Done is struck through and moves to the end",
-   "Overdue says it in destructive (\"Overdue · 12 Oct\")",
+   "Overdue says it in destructive: write Due as \"Overdue · was due 10 Nov\" when you switch to State=overdue",
    "Open items sort by due date; the title wraps to two lines at most",
    "The row opens the task; the Checkbox only ticks; the action button starts the task"
   ],
@@ -10966,6 +10983,37 @@
   "code": "shadcn AccordionItem. Style=card: className=\"rounded-xl border bg-background px-4 border-b-0\" plus border. Icon=plus: replace ChevronDown in AccordionTrigger with Plus / Minus switched by data-state.",
   "guides": [
    "skills/build-ui/components/accordion.md"
+  ]
+ },
+ "Source Item": {
+  "summary": "One source in the Sources list: number, favicon initial, title and domain.",
+  "use": [
+   "Inside the Items slot of Sources",
+   "Under an AI Summary or an assistant answer"
+  ],
+  "avoid": [
+   "A marker after one claim: use Citation",
+   "Search results: use Search Result Item"
+  ],
+  "anatomy": [
+   "Number: matches the Citation",
+   "Letter: favicon initial of the site or app",
+   "Title",
+   "Domain"
+  ],
+  "rules": [
+   "Letter is the first letter of the site or app name",
+   "Sources repeats the first three Letters in its collapsed row",
+   "Opens the source in a new tab"
+  ],
+  "a11y": [
+   "The item is a link named by its title and domain; it says it opens a new tab",
+   "The favicon letter is decorative (aria-hidden)"
+  ],
+  "code": "Vercel AI SDK + AI Elements (Source), or assistant-ui.",
+  "guides": [
+   "skills/build-ui/components/ai-chat.md",
+   "skills/build-ui/patterns/ai-chat.md"
   ]
  }
 }
