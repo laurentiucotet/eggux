@@ -756,7 +756,7 @@ Since 0.51.0 some former components are examples built from base components: "AI
 and "billing period" (Toggle Group page), "stock status" (Badge page), "welcome dialog" (Dialog
 page) and "language switch" (Select page). Copy the example; there is no component to insert.
 
-Full pages added in 0.58.0 (copy them whole): Hero showcase (all heroes, Hero page); Pricing,
+Full pages added in 0.58.0 (copy them whole): Hero showcase (all heroes) and Mobile landing page (390) on the Hero page; Pricing,
 About, Contact, Case study, Careers and Blog index pages (Sections); AI search page (AI); Legal page (Content); SaaS metrics dashboard in Light and Dark,
 Commerce admin, Team chat, Data table page and File manager (App); Storefront home, Category, Product and Cart pages (Commerce); and the
 four showcase pages on Showcase (Orbitly SaaS, Meridian Enterprise, Lumora AI product, Tidewater
