@@ -1274,7 +1274,8 @@
   "use": [
    "Support, team or buyer and seller conversations",
    "Direction=incoming for others, outgoing for the current user",
-   "Show meta on the last message of a group (time, delivery status)"
+   "Show meta on the last message of a group (time, delivery status)",
+   "Size=compact in panels and widgets under 480 wide (support widget, side panel)"
   ],
   "avoid": [
    "Discussion attached to an object, read later: use Comment",
@@ -1283,12 +1284,13 @@
   ],
   "anatomy": [
    "Avatar (incoming, last message of a group)",
-   "Bubble: muted for incoming, primary for outgoing",
-   "Text",
+   "Bubble: muted for incoming, primary for outgoing; max 440 (Size=default) or 300 (Size=compact)",
+   "Text: wraps by itself at the bubble max width",
    "Meta: Time and delivery status Sent, Delivered, Read (Show meta)"
   ],
   "rules": [
-   "Bubbles max 440 wide",
+   "Size=default: bubbles max 440 wide; Size=compact: max 300, for panels under 480 wide",
+   "Never break lines by hand: short text hugs, long text wraps at the max width",
    "Consecutive messages from one sender group: avatar and time only on the last",
    "Delivery status on the last outgoing message",
    "Day separators: Today, Yesterday, then the date",
@@ -2187,6 +2189,7 @@
   "rules": [
    "Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region",
    "Each Type sets its own Error and Hint defaults (password \"Enter your password\", new-password \"Use at least 8 characters\", phone with the country code, card fields, postal code, country, county); rewrite them in the client's words, never leave another type's text",
+   "country shows the placeholder \"Select a country\" by default; for a filled form set the nested Select to Content=filled with the country as Value",
    "In code set the matching type, inputmode and autocomplete (email, tel, cc-number, postal-code...)",
    "Change the label to the client's terminology; keep the preset behavior",
    "password never blocks paste; new-password pairs with Password Strength",
@@ -3660,7 +3663,7 @@
   ],
   "anatomy": [
    "Track: background/muted, radius/full",
-   "Indicator: background/primary, width = value",
+   "Indicator: background/primary, width = Value (0 to 100 by 10, plus 25 and 75)",
    "Value text next to it: percent or \"3 of 5\"",
    "Tone: default, success, warning, error (indicator color)",
    "Type=segmented: Segments (native slot) with Progress Segment instances (State complete or upcoming, Tone), 4 px gap, each FILL width"
@@ -3668,7 +3671,7 @@
   "rules": [
    "Determinate only: the share must be known",
    "Always show the number or the remaining count next to the bar; never only color",
-   "Value variants are 0, 25, 50, 75, 100; resize the indicator for other values",
+   "Value variants (Type=default): 0 to 100 in steps of 10, plus 25 and 75; pick the nearest step to the real share",
    "Jobs over ~10 s run in the background, with a toast or notification when done",
    "Tone shows the outcome, not the amount: success when complete, warning near a limit, error when failed; the text says it too",
    "Type=segmented: one segment per step; Value sets 0 to 4 of 4 complete, add or remove segments for 4 to 10 steps and set each State",
@@ -3769,7 +3772,7 @@
   ],
   "anatomy": [
    "Attachments slot above the text: Attachment and Context Chip (Show attachments)",
-   "Text area with Placeholder or Value",
+   "Text area: Placeholder (Content=placeholder) or Value (Content=filled)",
    "Tools slot on the left: tools and Model Picker (Show tools)",
    "Voice Button Icon on the right (Show voice)",
    "Send Button Icon (arrow-up); Stop (square) while State=streaming"
@@ -3778,6 +3781,7 @@
    "Enter sends, Shift+Enter adds a new line",
    "Grows to about 8 lines, then scrolls",
    "Send is disabled while the field is empty",
+   "Content=placeholder or filled works with every State: a draft left in an unfocused field is State=default, Content=filled; Send is enabled only when filled",
    "State=streaming: Send becomes Stop; Stop keeps what was generated so far",
    "Hide Tools and voice where they do not apply (panel, inline)",
    "Never a blank box alone: pair the empty chat with 3-4 starter Suggestions",
@@ -4724,7 +4728,7 @@
   "anatomy": [
    "Type=header with Table Header Label (Label, Sort, Align)",
    "Type=body with Table Cell Text, Table Cell Stack or Table Cell User",
-   "Rich body content: Table Cell Amount, Status, Progress, Link, Date, File, Badges, Avatars",
+   "Rich body content: Table Cell Amount, Status (Badge + Note that fills the cell and ends with an ellipsis), Progress, Link, Date, File, Badges, Avatars",
    "Plan comparison values: Table Cell Check (Value=included|excluded|text, Text, Note)",
    "Last column: Table Cell Actions (edit and menu)",
    "Type=expanded: one detail cell spanning all columns"
@@ -4738,7 +4742,8 @@
    "Inline edit only for fields changed often: State=editing, State=error in the cell",
    "One date format per column (Table Cell Date); time under it only when it matters",
    "Links in a cell (Table Cell Link) go where the row goes; one link per row besides the row",
-   "Comparison tables: Table Cell Check centered in plan columns; excluded is a dash, never blank"
+   "Comparison tables: Table Cell Check centered in plan columns; excluded is a dash, never blank",
+   "Table Cell Status: set it to FILL in the cell so a long Note truncates with an ellipsis; hugging, the note shows in full"
   ],
   "a11y": [
    "Header cells are th; the sorted column has aria-sort",
@@ -4754,7 +4759,7 @@
   ]
  },
  "Table Group Row": {
-  "summary": "Header of a group in a data grid: label, count and subtotal, collapsible.",
+  "summary": "Header of a group in a data grid: label, count and subtotal, expanded or collapsed.",
   "use": [
    "Data grids grouped by status, owner or customer",
    "Groups that need a subtotal, such as amounts in EUR",
@@ -4765,19 +4770,20 @@
    "Detail of one row: use Table Cell Type=expanded with the detail"
   ],
   "anatomy": [
-   "chevron-down: collapses the group",
+   "Chevron: chevron-down on State=expanded, chevron-right on State=collapsed",
    "Label: \"Overdue\"",
    "Count: Badge Count",
    "Subtotal (Show subtotal)"
   ],
   "rules": [
    "Put it in a Table Cell Type=expanded that spans all columns",
+   "State: expanded (rows below), collapsed (rows hidden, chevron right); never swap the chevron by hand",
    "The chevron collapses and expands the group",
    "Count and subtotal summarize the group; the subtotal uses the column's number format",
    "Grouping is chosen with Group by in the Data Grid Toolbar"
   ],
   "a11y": [
-   "The chevron is a button with aria-expanded and a label: \"Collapse Overdue\"",
+   "The chevron is a button with aria-expanded (true on expanded) and a label: \"Collapse Overdue\" or \"Expand Paid\"",
    "Count and subtotal are text, read together with the label"
   ],
   "code": "custom on TanStack Table (grouping, aggregation).",
@@ -5141,7 +5147,7 @@
    "Items slot: Toggle Group Item instances with the matching Item Variant (default for default and outline, segmented for segmented)",
    "Item: Label and/or icon (Show label, Show icon, Icon)",
    "Selected item: State=selected (background/accent; segmented: background/default with shadow/xs)",
-   "Segmented track: background/muted, padding spacing/1, items 28 high"
+   "Segmented track: background/muted, padding spacing/1, items 28 high; the Items slot fills the track"
   ],
   "rules": [
    "It sets a value; if the content below changes panels, use Tabs",
@@ -5149,7 +5155,8 @@
    "Icon-only items: Show label off, Show icon on, with a tooltip",
    "Choosing a value is a Toggle Group, not a Button Group",
    "segmented looks like Tabs Variant=default; it still sets a value, it never switches panels",
-   "segmented: at most 4 items with one or two words each; more options: use Select"
+   "segmented: at most 4 items with one or two words each; more options: use Select",
+   "Full width segmented: Toggle Group FILL and every item FILL, items share the track equally; in a hugging group keep items on HUG"
   ],
   "a11y": [
    "Arrow keys move between items; Space or Enter toggles",
@@ -5341,7 +5348,7 @@
    "Checkbox (Show checkbox)",
    "Icon (Show icon, Icon)",
    "Label",
-   "Count (Show count)"
+   "Count (Show count): Badge Count, exposed; set its Count in the panel"
   ],
   "rules": [
    "Type: collapsed, expanded, leaf; State: default, hover, selected; Level 0-3",
@@ -7543,10 +7550,11 @@
   "anatomy": [
    "Label: \"Seats\"",
    "Usage: \"8 of 10\", tabular",
-   "Bar: Progress (tone from Level)",
+   "Bar: Progress (exposed; tone from Level, set Value to match the numbers)",
    "Hint (Show hint): what to do, or the consequence and the date"
   ],
   "rules": [
+   "Set the bar Value to the nearest step of the real share (0 to 100 by 10, plus 25 and 75): 11 of 12 is 90, 42 of 100 GB is 40",
    "Level=near from 80%: warning tone and say what to do (\"Upgrade or remove members\")",
    "Level=over above 100%: error tone, say the consequence and the date (\"Uploads pause on 1 Nov\")",
    "Usage shows used and limit with the unit (\"4.2 of 5 GB\"); unlimited plans show the count and no bar",
@@ -8715,10 +8723,11 @@
   ],
   "anatomy": [
    "Header: package icon, ETA, carrier · tracking number, Track Button",
-   "Steps: Ordered, Shipped, Out for delivery, Delivered, with dates"
+   "Steps: four exposed Step instances (Ordered step, Shipped step, Out for delivery step, Delivered step): set Title, Description (date and time) and State in the panel"
   ],
   "rules": [
    "The expected day comes first (\"Arriving Thursday, 14 Nov\")",
+   "Step dates go in each Step's Description (\"10 Nov, 14:02\", \"Expected by 18:00\"); keep one date format across the steps",
    "Problems (delayed, returned) replace the step with an error and say what happens next",
    "Track links to the carrier for the full scan history",
    "The tracking number can be copied",
@@ -9665,7 +9674,7 @@
    "Who has access: use Avatar Group"
   ],
   "anatomy": [
-   "Repliers: Avatar Group, up to 3",
+   "Repliers: Avatar Group (exposed), up to 3 photo Avatars (Type=image) and a \"+N\" Avatar",
    "Replies: \"3 replies\", ui/label, link color",
    "Last: \"Last reply 2 h ago\", ui/caption, muted"
   ],
@@ -9673,7 +9682,8 @@
    "Opens the thread in place or in a side panel",
    "Unread replies make the count bold with a dot",
    "Count uses singular and plural (\"1 reply\", \"3 replies\")",
-   "Last reply time is relative; the exact time shows on hover"
+   "Last reply time is relative; the exact time shows on hover",
+   "Photos by default; set an Avatar to Type=initials when a person has no photo"
   ],
   "a11y": [
    "A button with aria-expanded when it opens in place",
@@ -9894,15 +9904,16 @@
   ],
   "anatomy": [
    "Avatar",
-   "Name: ui/label; on State=vacant the Vacancy text (\"Open role\") takes its place",
-   "Role: body/small, muted (also on State=vacant: the title being hired for)",
+   "Name: ui/label; on State=vacant the Vacancy text (\"Open role\") is the title",
+   "Role: body/small, muted; on State=vacant the title being hired for, followed by the Hiring status",
+   "Hiring status (State=vacant): \"Hiring\", \"Interviewing\", \"Offer out\", body/small, muted",
    "Reports: users icon and count (\"6 reports\"), not on State=vacant",
    "State: default, selected, vacant"
   ],
   "rules": [
    "Click opens the Person Card; the reports count expands the branch",
    "Connect nodes with 1 px border/default lines",
-   "Vacant roles are dashed, say \"Open role\" (Vacancy) and keep the Role of the position, linked to the Job Listing",
+   "Vacant roles are dashed, titled \"Open role\" (Vacancy); the secondary line is Role and Hiring status (\"Head of Platform · Hiring\"), linked to the Job Listing",
    "Large orgs show 2-3 levels and a search",
    "Names and titles wrap to two lines at most"
   ],
@@ -9932,7 +9943,7 @@
   ],
   "anatomy": [
    "Status row: sparkles icon, status (\"Reading 12 invoices…\"), Stop Button (Show stop)",
-   "Lines: shimmer in the shape of the result",
+   "Lines: shimmer in the shape of the result, full, 92% and 60% of the width (they scale with the block)",
    "Progress (Show progress): step and time left, ui/caption, muted"
   ],
   "rules": [
@@ -9940,7 +9951,8 @@
    "Stream text into place as soon as it arrives",
    "Under 1 second, show nothing",
    "Stop keeps what arrived and says it stopped",
-   "Time left only when it is known"
+   "Time left only when it is known",
+   "Works at any width from about 240; set the instance to FILL in its container"
   ],
   "a11y": [
    "Status text is in role=\"status\" (aria-live=\"polite\"), updated per step, not per token",
