@@ -10169,5 +10169,162 @@
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/components/carousel.md"
   ]
+ },
+ "Icon Tile": {
+  "summary": "A rounded square holding one Lucide icon, the marker for a feature, step, stat or bento card.",
+  "use": [
+   "Feature grids and benefit lists on marketing pages",
+   "Bento cards and \"How it works\" rows that lead with an icon",
+   "Help categories, support options and contact methods",
+   "Stats or KPI cards that need a small visual anchor"
+  ],
+  "avoid": [
+   "Status or meaning: use Badge or Status Dot (the tile is decorative)",
+   "Clickable icon buttons: use Button Icon",
+   "People or companies: use Avatar or Logo",
+   "Numbered steps where order matters: use Feature Item Marker=number"
+  ],
+  "anatomy": [
+   "Tile: rounded square, Size=default 40 (radius/md), sm 32 (radius/md), lg 48 (radius/lg)",
+   "Icon (Icon swap): Lucide icon, 20 / 16 / 24 px, default Icon/sparkles",
+   "Style=neutral (default): background/muted fill, foreground/default icon",
+   "Style=brand: icon-tile/brand-bg fill (background/primary at 10% light, 20% dark), icon-tile/brand-fg icon (foreground/brand)",
+   "Style=gradient: linear icon-tile/gradient-start to icon-tile/gradient-end, foreground/primary icon",
+   "Style=outline: no fill, border/default ring (border-width/DEFAULT), foreground/muted icon"
+  ],
+  "rules": [
+   "One Style per grid; gradient for one hero feature or one highlighted step only",
+   "Same Size across a grid: default in feature grids, sm in dense lists, lg in bento cards",
+   "Pick icons from one family (Lucide) with the same stroke weight",
+   "brand and gradient follow the theme: violet in Showcase, near black in Default, blue in Corporate"
+  ],
+  "a11y": [
+   "The icon is decorative next to a title: aria-hidden on the svg",
+   "Icon contrast 3:1 or more in every mode (lowest: gradient start 4.2:1 in Showcase)",
+   "Never the only carrier of meaning; the title says what it is"
+  ],
+  "code": "<div class=\"flex size-10 items-center justify-center rounded-md bg-muted\"><Icon class=\"size-5\" aria-hidden /></div>; brand: bg-[var(--icon-tile-brand-bg)] text-brand; gradient: bg-linear-to-br from-[var(--icon-tile-gradient-start)] to-[var(--icon-tile-gradient-end)] text-primary-foreground; outline: border text-muted-foreground.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md",
+   "skills/build-ui/components/content.md"
+  ]
+ },
+ "Background / Grid": {
+  "summary": "A decorative square grid of 1 px lines behind a hero or feature section, fading toward the edges.",
+  "use": [
+   "Behind a centered hero headline (with Background / Glow)",
+   "Behind a feature or developer-tool section that needs a technical feel",
+   "Behind a CTA band"
+  ],
+  "avoid": [
+   "More than one decorative device on a page: pick Grid, Dots, Glow or Beam",
+   "Behind dense content, tables or forms",
+   "Inside cards or app screens"
+  ],
+  "anatomy": [
+   "Lines: one vector of 1 px lines in border/default at 60%, 40 px cells, 1920 x 1080, centered and clipped",
+   "Fade mask (Fade): an alpha mask with a radial fade, scales with the frame; off shows the full grid"
+  ],
+  "rules": [
+   "Put it at the back of the section: first child, Absolute position, constraints Left and right + Top (or Scale)",
+   "Default size 1440 x 800; stretch it up to 1920 x 1080 and the cells stay square",
+   "No text or meaning inside; it is decoration only",
+   "Keep body copy short over it; muted text crossing a line reads 4.3:1 on that pixel row in Light"
+  ],
+  "a11y": [
+   "Decorative: aria-hidden, no role",
+   "Text over it keeps 4.5:1 against the plain page between the lines",
+   "Respect forced colors: hide it in high contrast mode"
+  ],
+  "code": "Absolutely positioned div behind the section: bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-60 with mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%) (Fade); aria-hidden.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Background / Dots": {
+  "summary": "A decorative dot pattern (1.5 px dots, 24 px pitch) behind a hero, feature or CTA section, fading toward the edges.",
+  "use": [
+   "Behind a hero or a feature section as a quieter alternative to the grid",
+   "Behind a CTA band or a testimonial highlight"
+  ],
+  "avoid": [
+   "More than one decorative device on a page",
+   "Behind dense content, tables or forms",
+   "Inside cards or app screens"
+  ],
+  "anatomy": [
+   "Dots: one vector of round dots in foreground/muted at 50%, 24 px pitch, 1920 x 1080, centered and clipped",
+   "Fade mask (Fade): an alpha mask with a radial fade; off shows the full pattern"
+  ],
+  "rules": [
+   "Put it at the back of the section: first child, Absolute position, constraints Left and right + Top (or Scale)",
+   "Default size 1440 x 800; the pitch stays even up to 1920 x 1080",
+   "No text inside; decoration only"
+  ],
+  "a11y": [
+   "Decorative: aria-hidden, no role",
+   "Text over it keeps 4.5:1: the dots are 1.5 px and low contrast"
+  ],
+  "code": "Absolutely positioned div: bg-[radial-gradient(var(--muted-foreground)_0.75px,transparent_0.75px)] bg-[size:24px_24px] opacity-50, mask-image radial-gradient for Fade; aria-hidden.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Background / Glow": {
+  "summary": "One large blurred ellipse in the primary color (gradient/brand-glow) that lights a hero, a product shot or a CTA corner.",
+  "use": [
+   "Position=top: a soft light above a hero headline",
+   "Position=center: behind a product screenshot, a pricing card or a device frame",
+   "Position=bottom-right: a corner accent in a CTA band or footer lead-in"
+  ],
+  "avoid": [
+   "Body text on the glow core: muted text needs a background within about 6% of the page",
+   "More than one glow per page (Grid + Glow together count as one hero treatment)",
+   "App screens and dashboards"
+  ],
+  "anatomy": [
+   "Glow: one ellipse with the gradient/brand-glow style (background/primary 35% to transparent) and blur/3xl, constraints Scale",
+   "Position: top (default), center, bottom-right"
+  ],
+  "rules": [
+   "Put it at the back of the section, above Grid or Dots if you combine them, Absolute position, constraints Left and right + Top (or Scale)",
+   "The color follows the theme: violet in Showcase, gray in Default, blue in Corporate",
+   "Keep the subtitle and body copy outside the bright part; top is tuned so a centered hero subtitle sits on the plain page"
+  ],
+  "a11y": [
+   "Decorative: aria-hidden",
+   "Measured in the hero example: subtitle on the plain page (4.74:1 Showcase Light, 7.85:1 Showcase Dark); headline 14:1 or more"
+  ],
+  "code": "Absolutely positioned div: size and position per variant, rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--primary)_35%,transparent),transparent)] blur-3xl; aria-hidden; pointer-events-none.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
+ },
+ "Background / Beam": {
+  "summary": "Two or three thin diagonal light beams in the primary color entering from the top, a subtle accent for a hero or CTA band.",
+  "use": [
+   "Behind a left-aligned hero (Hero Split): the beams sit in the middle and right",
+   "Behind a CTA band or a launch announcement"
+  ],
+  "avoid": [
+   "Behind centered body text",
+   "With another decorative device on the same page",
+   "App screens"
+  ],
+  "anatomy": [
+   "Beam 1-3: rectangles rotated 35 degrees, linear background/primary to gradient/primary-transparent at 12-22% alpha, blur/2xl, constraints Scale"
+  ],
+  "rules": [
+   "Put it at the back of the section: Absolute position, constraints Left and right + Top (or Scale)",
+   "Keep body text off the bright upper end of a beam",
+   "The color follows the theme"
+  ],
+  "a11y": [
+   "Decorative: aria-hidden"
+  ],
+  "code": "Absolutely positioned divs rotated 35deg with bg-linear-to-b from-primary/20 to-transparent blur-2xl inside an overflow-hidden wrapper; aria-hidden.",
+  "guides": [
+   "skills/build-ui/patterns/marketing-pages.md"
+  ]
  }
 }

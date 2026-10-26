@@ -259,6 +259,34 @@
    ]
   }
  ],
+ "Background": [
+  {
+   "main": "Background / Grid",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / hero with background"
+   ]
+  },
+  {
+   "main": "Background / Dots",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Background / Glow",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / hero with background"
+   ]
+  },
+  {
+   "main": "Background / Beam",
+   "helpers": [],
+   "block": null
+  }
+ ],
  "Badge": [
   {
    "main": "Badge",
@@ -846,6 +874,11 @@
    "examples": [
     "Example / features in a grid"
    ]
+  },
+  {
+   "main": "Icon Tile",
+   "helpers": [],
+   "block": null
   }
  ],
  "File Upload": [

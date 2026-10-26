@@ -137,6 +137,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Quote | `Quote` | Variant: default (left rule), pull (centered) | Quote, Name, Role, Show avatar, Show attribution. A quotation in running content |
 | Section Heading | `Section Heading` | Size: lg (h2), default (h3), sm (h4) | Title, Description, Overline, Show overline, Show description, Show actions, Show icon + Icon (swap); Actions (native slot). Opens a section of an app or content page |
 | Feature Item | `Feature Item` | Layout: stacked, inline, centered. Marker: icon, number | Title, Description, Number, Icon (swap), Show description, Show link. One benefit, capability or step: icon tile or step number, title, text |
+| Feature Item | `Icon Tile` | Style: neutral, brand, gradient, outline. Size: sm 32, default 40, lg 48 | Icon (swap). A rounded square with one icon for feature, step and bento grids; one Style per grid |
 | Rating | `Rating` | Size: sm, default. Value: 0-5 | Show value, Show count, Count. Value text edited per instance |
 | Carousel | `Carousel` | Type: single (720), multiple (1152) | Slides (native slot); Carousel Arrow (outline) and Carousel Indicator (dots); viewport clips |
 | Carousel | `Carousel Arrow` | Variant: outline, overlay. Direction: previous, next. State: default, hover, focus, disabled | Round 36 (outline) or 40 with shadow (overlay) |
@@ -326,6 +327,10 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Automation | `Mapping Row` | Status: mapped, unmapped, error | Source, Sample. Maps one source column or field to a target field during import or sync setup: source with a sample, arrow, target Select and status. |
 | Automation | `Workflow Node` | Type: trigger, condition, action. State: default, selected, error | Title, Detail. One step on an automation or approval canvas: trigger, condition (branches) or action. |
 | Avatar | `Presence Bar` | - | Who else has this document, record or board open right now: a live dot and their avatars. |
+| Background | `Background / Grid` | - | Fade. 40 px grid lines in `border/default` at 60% with a radial fade; decorative, at the back of a hero or CTA band |
+| Background | `Background / Dots` | - | Fade. 24 px dot pattern in `foreground/muted` at 50% |
+| Background | `Background / Glow` | Position: top, center, bottom-right | Blurred ellipse in `gradient/brand-glow`; follows the primary color of the mode |
+| Background | `Background / Beam` | - | Three soft diagonal beams in the primary color |
 | Badge | `Announcement Pill` | - | Label, Show tag. A short link above a hero title to the newest launch: "New" tag, one line, arrow. |
 | Badge | `Trust Badge` | - | Name, Description, Icon. A certification or compliance claim with what backs it: SOC 2, ISO 27001, GDPR, PCI DSS. |
 | Brand | `Logo Tile` | Style: bordered, plain (logo at 70%) | Logo (swap: Logo / *). A customer or partner logo in a tile for logo clouds, integration grids and case study lists. |
@@ -540,7 +545,9 @@ which screen: `skills/build-ui/index.md`):
 
 ## Pages
 The file opens with Cover (1920 x 1080 thumbnail), Intro (getting started, credits, changelog),
-Foundations (tokens shown as swatches, type, spacing, radius, elevation, motion), Brand and Imagery.
+Showcase (four full pages: SaaS in Showcase Light, enterprise in Corporate Light, AI product in
+Showcase Dark, a store in Light), Foundations (tokens shown as swatches, type, spacing, radius,
+elevation, motion, brand ramp and gradients), Brand and Imagery.
 Brand has a second Theme preview in Corporate Light, a Content panel (brand strings bound to the `Content` collection) and an English / Română comparison of the invoices example. Then two groups of pages, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
 categories and Page Shells). Block pages have no prefix. `Navigation` exists in both sections:
 the first holds the components (Breadcrumb, Top Bar), the second the Navbar and Footer blocks.

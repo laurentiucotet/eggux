@@ -254,6 +254,47 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Logo`, `Logo Mark` | inline SVG in `currentColor` (or `<img alt>` with the product name) | Logo Mark is the symbol alone |
 | `Map` | static map image or an embedded map (Mapbox, Google) | Address in text next to it |
 | `Device Frame` | custom `<figure>`: border, top bar (dots, URL), `<img>` or live component | Screenshot at 1:1 |
+| `Icon Tile` | custom `<div class="flex size-10 items-center justify-center rounded-md">` + lucide icon (`size-5`, `aria-hidden`) | Size: sm `size-8` + `size-4` icon, default `size-10` + `size-5`, lg `size-12 rounded-lg` + `size-6`. Style: neutral `bg-muted text-foreground`; brand `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`; gradient `bg-linear-to-br from-[var(--icon-tile-gradient-start)] to-[var(--icon-tile-gradient-end)] text-primary-foreground`; outline `border text-muted-foreground`. Decorative |
+| `Background / Grid` | custom absolutely positioned `div` (`absolute inset-0 -z-10 pointer-events-none`, `aria-hidden`) | `bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-60`; `Fade` = `[mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]` |
+| `Background / Dots` | custom absolutely positioned `div` (`aria-hidden`) | `bg-[radial-gradient(var(--muted-foreground)_0.75px,transparent_0.75px)] bg-[size:24px_24px] opacity-50`; `Fade` = same radial mask as Grid |
+| `Background / Glow` | custom absolutely positioned `div` (`aria-hidden`) | `rounded-full blur-3xl bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--primary)_35%,transparent),transparent)]`; Position: top `left-1/2 -top-[560px] w-[1240px] h-[800px] -translate-x-1/2`, center centered `w-[1000px] h-[640px]`, bottom-right `-right-[200px] -bottom-[340px] w-[1000px] h-[760px]` |
+| `Background / Beam` | custom `overflow-hidden` wrapper with 3 rotated `div`s (`aria-hidden`) | Each beam `rotate-[35deg] bg-linear-to-b from-primary/20 to-transparent blur-2xl`, widths 64-160 px, opacity 12-22% |
+
+
+Showcase theme (`Showcase Light`, `Showcase Dark` modes) in `globals.css`:
+
+```css
+/* Showcase theme: violet brand ramp = Tailwind violet (color/brand/* in Figma) */
+.theme-showcase {
+  --primary: var(--color-violet-600);
+  --primary-foreground: var(--color-white);
+  --ring: var(--color-violet-600);
+  --brand: var(--color-violet-700);
+  --accent: var(--color-violet-50);
+  --chart-1: var(--color-violet-600);
+  --chart-7: var(--color-blue-600);
+  --sidebar-primary: var(--color-violet-600);
+  --sidebar-primary-foreground: var(--color-white);
+  --icon-tile-gradient-start: var(--color-violet-500);
+  --icon-tile-gradient-end: var(--color-violet-700);
+  --radius: 0.75rem;   /* 12 px */
+  --radius-sm: 6px;    /* Figma radius/sm in Showcase */
+  --radius-md: 8px;
+  --radius-lg: var(--radius);
+  --radius-xl: 16px;
+}
+.dark.theme-showcase {
+  --primary: var(--color-violet-600);
+  --primary-foreground: var(--color-white);
+  --ring: var(--color-violet-500);
+  --brand: var(--color-violet-400);
+  --accent: var(--color-neutral-800); /* dark accent stays neutral */
+  --chart-1: var(--color-violet-400);
+  --chart-7: var(--color-blue-500);
+  --sidebar-primary: var(--color-violet-600);
+  --sidebar-primary-foreground: var(--color-white);
+}
+```
 
 ## Admin
 | Figma | Code | Notes |

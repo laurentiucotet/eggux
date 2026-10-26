@@ -10,8 +10,8 @@ code when a token exists for it.
 | Tier | Figma collection | Modes | Who uses it |
 |---|---|---|---|
 | 1. Primitives | `Primitives` | Value | Only other variables. Colors are hidden from pickers |
-| 2. Semantic | `Semantic` | Light, Dark | Designs and components. This is the brand layer |
-| 3. Components | `Components` | Light, Dark | One component that must deviate from the semantic rule |
+| 2. Semantic | `Semantic` | Light, Dark, Corporate Light, Corporate Dark, Showcase Light, Showcase Dark | Designs and components. This is the brand layer |
+| 3. Components | `Components` | Same six modes | One component that must deviate from the semantic rule |
 
 Rules:
 - A Semantic value is always an alias to a Primitive (optionally color alias + `opacity/*`). No raw values.
@@ -23,7 +23,7 @@ Rules:
 
 | Group | Content |
 |---|---|
-| `color/<hue>/<50-950>`, `color/white`, `color/black` | Tailwind palette. Brand ramps go in `color/brand/<50-950>` |
+| `color/<hue>/<50-950>`, `color/white`, `color/black` | Tailwind palette. `color/brand/<50-950>` is the brand ramp (Tailwind violet in the master, used only by the Showcase modes); a client rebrand replaces its 11 values |
 | `spacing/<0..96>` | Tailwind spacing scale in px (`spacing/4` = 16) |
 | `radius/<none,sm,DEFAULT,md,lg,xl,2xl,3xl,full>` | Only `none` and `full` are visible in pickers |
 | `type/family/<sans,serif,mono>` | Font family names |
@@ -75,6 +75,7 @@ Both uses must pass 4.5:1. Run `/eggux:audit-tokens` to check all pairs.
 |---|---|---|
 | `Light`, `Dark` | shadcn neutral, primary near black, 8 px radius | Consumer, marketing, startup SaaS |
 | `Corporate Light`, `Corporate Dark` | `color/blue/700` primary (`blue/600` in Dark), slate neutrals, `radius/base` 4 px, `border/input` slate/500, `foreground/muted` slate/600 | Enterprise, internal tools, finance, regulated industries |
+| `Showcase Light`, `Showcase Dark` | `color/brand/600` primary with white text (5.7:1), `foreground/brand` brand/700 (brand/400 Dark), `border/ring` brand/600 (brand/500 Dark), `background/accent` brand/50 (Light only), `chart/1` brand/600 (brand/400 Dark), `chart/7` blue, `sidebar/primary` brand/600, `radius/base` 12 px (sm 6, md 8, xl 16); neutral surfaces as Light/Dark | Demo rebrand for the Cover, Intro and Showcase pages only; never the library default. Shows how a client brand re-aliases the same tokens |
 
 Set Semantic and Components to the same mode on a frame. Corporate also sets the sidebar
 (`sidebar/*`) and `button/destructive-hover`. Pair Corporate with Density `Compact` for
@@ -119,6 +120,10 @@ Current tokens:
 | `video/track` | `color/white` at `opacity/30` | Unplayed part of the progress bar |
 | `video/scrim` | `color/black` at `opacity/60` | Play button, duration and subtitle backgrounds |
 | `card/muted-background` | Light `color/neutral/50`; Dark, Corporate `background/muted` | Card Variant=muted; neutral/50 keeps muted text at 4.5:1 in Light |
+| `icon-tile/brand-bg` | `background/primary` at `opacity/10` (light modes), `opacity/20` (dark modes) | Icon Tile Style=brand fill |
+| `icon-tile/brand-fg` | `foreground/brand` | Icon Tile Style=brand icon, 5.6:1 or more |
+| `icon-tile/gradient-start`, `icon-tile/gradient-end` | Light `neutral/700` to `900`, Dark `neutral/200` to `400`, Corporate `blue/600` to `800`, Showcase `brand/500` to `700` | Icon Tile Style=gradient; icon `foreground/primary` |
+| `gradient/primary-transparent`, `gradient/chart-3-transparent` | `background/primary`, `chart/3` at `opacity/0` | End stops of the gradient styles, so fades keep the hue |
 
 Naming: `<component>/<property>`,
 for example `button/radius`, `card/muted-background`. Sizes that change with density live in
@@ -148,7 +153,8 @@ When a component needs a token:
 Validated (OKLCH lightness band, chroma floor, CVD ΔE under protanopia/deuteranopia, normal-vision
 ΔE, contrast) on `background/default` and `background/card` in Light and Dark: worst adjacent
 CVD ΔE 20.0, normal-vision 26.1, every slot ≥ 3:1. The first 3 slots also pass all-pairs (ΔE 14.7),
-so scatter plots and maps use at most 3 series. The shadcn defaults it replaced failed (two
+so scatter plots and maps use at most 3 series. The Showcase modes set `chart/1` to the brand
+and `chart/7` to blue so the eight series stay distinct hues. The shadcn defaults it replaced failed (two
 adjacent ambers, ΔE 8.0).
 
 Rules:
@@ -163,6 +169,21 @@ Rules:
 - A client brand that changes the palette re-runs `/eggux:audit-tokens` (every `chart/N` at 3:1
   on page and card, in every mode) and checks that neighbours stay distinguishable for color
   blindness before shipping.
+
+## Gradient styles
+
+Paint styles whose stops are bound to variables, so they follow the mode:
+
+| Style | Paints | Use |
+|---|---|---|
+| `gradient/brand-glow` | radial, `background/primary` to `gradient/primary-transparent`, paint opacity 0.35 | `Background / Glow`, a glow behind one hero or CTA |
+| `gradient/hero-mesh` | three radials: primary 0.22, `chart/3` 0.16, primary 0.10 | Cover and showcase hero backgrounds |
+| `gradient/surface-fade` | linear, `background/muted` to `background/default` | A section that fades into the next |
+| `gradient/brand-text` | linear, `foreground/brand` to `chart/2` | One accent phrase in a display headline; display sizes only (the chart/2 end is 3.8:1 in Showcase Dark) |
+
+A bound stop takes the variable's alpha (Figma sets it to 1), so strength is the paint opacity
+and fades end on a `gradient/*-transparent` token. CSS: `bg-radial`, `bg-linear-*` with
+`color-mix(in oklab, var(--primary) 35%, transparent)`.
 
 ## Motion
 

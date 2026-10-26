@@ -76,7 +76,10 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
 - Hero Prompt: Accent is the greeting, Title stays on two lines, Suggestions holds 2-4 Prompt Suggestions; submitting opens the chat or results page with the question prefilled.
 - No gray boxes on a finished page: hero and feature visuals are product screenshots (`Image / Screenshot / *` in a Device Frame); people, places and products use the Imagery photos (Image Placeholder `Show image`, Avatar Type=image); logo clouds use `Logo Tile` with a different `Logo / *` per tile. All are samples to replace with the client's own.
 - Hero headlines use `display/lg` with one accent phrase in `foreground/brand`; section titles use `heading/h1`, eyebrows `foreground/brand`.
-- Put Stats, Logo Cloud, Testimonial Grid or FAQ on `background/muted` between default sections; at most one decorative device (pattern or glow) per block.
+- Put Stats, Logo Cloud, Testimonial Grid or FAQ on `background/muted` between default sections.
+- One decorative device per page: a `Background / Grid`, `Dots`, `Glow` or `Beam` (Grid + Glow together count as one hero treatment) as the first child of the hero or one CTA band, absolute positioned, stretched, aria-hidden. Never behind dense content; keep body text off the glow core and beam heads, and check muted text stays 4.5:1 over it.
+- Feature, step and bento icons sit in an `Icon Tile`: neutral by default, brand for one accent grid, gradient for one highlighted item; one Style per grid. In a Features block instance, override the icon frame fill with `icon-tile/brand-bg` and the icon with `icon-tile/brand-fg`.
+- To show a client's brand on a pitch or cover, set the frame to their mode; the `Showcase Light` / `Showcase Dark` modes and the pages on Showcase show what a rebrand does to the same blocks.
 - Every CTA gets a secondary action and a proof row (Avatar Group with photos and a Rating with a count).
 
 ## Cookie consent
