@@ -1,6 +1,6 @@
 # File Upload
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -46,6 +46,7 @@ Drop area + "Browse files" button for uploads. The whole area is clickable and k
 - State drag-over while a file is dragged over; error after a rejected drop; disabled when no upload is allowed
 - Upload starts on selection; submit waits for uploads or says what is pending
 - With a limit, show the total: "3 of 5 files"
+- Resize: title and hint fill the width, centered, up to 2 lines each with ellipsis
 
 **Accessibility**
 

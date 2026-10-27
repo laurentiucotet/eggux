@@ -1,6 +1,6 @@
 # Form Layout
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -19,6 +19,7 @@ On the Figma page: "Example / Check Item tones", "Example / in account settings 
 Component set · 2 variants · default size 960 × 225
 
 One group of a long form or settings page: title and a sentence on the left (280), the fields on the right (Fields slot). side from 1024 px, stacked on narrow screens and in sheets. Group fields the way people think about them (billing, contact, security); 2-6 fields per section; divider between sections. One Save for the page, in a Save Bar or Action Bar.
+Layout=side needs at least 640; in narrower columns (1/2, 1/3, 1/4, phones) use Layout=stacked.
 
 **Use for**
 
@@ -45,6 +46,8 @@ One group of a long form or settings page: title and a sentence on the left (280
 - Description says what the fields are for or when changes apply
 - Divider between sections, off on the last one
 - One Save for the page, in a Save Bar or Action Bar
+- Resize: Layout=side needs at least 640 (heading 280 + fields); below that use Layout=stacked, where heading and fields fill the width
+- Title up to 2 lines with ellipsis, description wraps
 
 **Accessibility**
 
@@ -74,7 +77,7 @@ Tokens and styles:
 
 Guides: [form-validation](../../skills/build-ui/patterns/form-validation.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: `<section class="grid gap-6 lg:grid-cols-[280px_1fr]">` with heading, description and `FormField`s (Stacked below 1024 px; `Separator` between sections)
+Code: `Layout=side`: `@container` grid `@min-[640px]:grid-cols-[280px_1fr]`, stacked below 640 (Same component in code; the container query replaces the variant switch)
 
 ## Fieldset
 
@@ -168,6 +171,7 @@ At the top of a long form after a failed submit: how many fields need a fix and 
 - Each link names the field and the fix, the same message the field shows inline
 - Links in the order of the fields on the page
 - The count updates as fields are fixed; the summary disappears when all are fixed
+- Resize: the error list fills the width; each error link wraps to at most 2 lines with ellipsis
 
 **Accessibility**
 
@@ -191,7 +195,7 @@ Tokens and styles:
 
 Guides: [form-validation](../../skills/build-ui/patterns/form-validation.md)
 
-Code: shadcn `Alert` (destructive) with anchor links from react-hook-form `formState.errors` (Focus moves here on submit; links focus the field)
+Code: list `w-full`; each link `line-clamp-2`
 
 ## Requirement List
 
@@ -222,6 +226,7 @@ Rules checked live while people type or before they publish: password rules, imp
 - Nothing turns red before a submit; pending stays neutral
 - Under 6 rules, in the order people fix them
 - Rules are positive and short: "At least 12 characters"
+- Resize: the title fills and wraps to 2 lines; requirement items hug their text
 
 **Accessibility**
 

@@ -1,6 +1,6 @@
 # Alert
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -128,6 +128,8 @@ One service on a status page or an admin health panel: name, uptime over the las
 - Maintenance says until when, with the time zone, in the incident
 - Status pages use Show bars on every row; select a nested Uptime Day to set the state of that day
 - The bars and the uptime % cover the same 90 days
+- Service fills (min 128) and truncates to 1 line; uptime hugs up to 160 and truncates
+- Wraps: in a narrow column uptime and status drop under the service name (row gap 4)
 
 **Accessibility**
 
@@ -151,12 +153,12 @@ Built from: `Status Dot`, `Uptime Bars`
 
 Tokens and styles:
 - Colors: `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/3`, `spacing/4`
+- Spacing and size: `spacing/1`, `spacing/3`, `spacing/4`
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
-Code: custom row with `Status Dot`, `flex justify-between` (Data from your status provider; link non-operational states to the incident)
+Code: custom row (head `flex flex-wrap gap-y-1`; service `min-w-32 flex-1 truncate`; uptime `max-w-40 truncate`)
 
 ## Uptime Bars
 
@@ -188,6 +190,7 @@ Uptime history of one service: 90 Uptime Day bars, oldest on the left, with an o
 - Days before a service existed are no-data, not operational
 - Each day with an incident links to it; the tooltip says the date, the state and the incident title
 - Show labels on every row of a status page, or once under the last row
+- Bars share the width; the start and end labels stay on 1 line (end label hugs up to 96)
 
 **Accessibility**
 

@@ -1,6 +1,6 @@
 # Avatar
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -49,6 +49,7 @@ shadcn Avatar. Type=initials (default, two letters) is the fallback; Type=image 
 - Pick a photo that fits the name, use a different person for each avatar in a block, and the same photo for the same person within it
 - Overflow avatars (+3) and organizations stay initials
 - Status dot only when presence matters to the task; same size within a list or group; one shape per list
+- Initials stay inside the circle: 1 line, centered, clipped by the circle, ellipsis for anything longer than 2 letters
 
 **Accessibility**
 
@@ -114,6 +115,7 @@ Stacked avatars for assignees, participants, shared with. Show 3-5 and "+N"; the
 - Label says who they are or how many, not the names already shown
 - Names lists the first two or three names and "and N others"; it matches the avatars shown
 - Names and Label truncate with an ellipsis at their max width (200 sm, 240 default and lg); the full list goes in the Tooltip
+- Names and Label fill the space left after the avatars and truncate; they never push the group past its column
 
 **Accessibility**
 
@@ -176,6 +178,7 @@ Who wrote, said or owns something: Avatar, name and one detail (role and company
 - Detail is one line: role, company or date · reading time
 - Size follows the context: sm in dense grids, default under titles, lg under testimonials
 - The name links to the profile when there is one
+- Name and detail: 1 line with ellipsis; the byline hugs its text and truncates when its column is narrower
 
 **Accessibility**
 
@@ -235,6 +238,7 @@ Who else has this document, record or board open right now: a live dot, their av
 - Hovering an avatar shows the name and what they are looking at; clicking jumps there
 - Up to 4 avatars, then +N; each person keeps the same color as their cursor
 - People who leave disappear; idle people fade
+- The avatar group fills the bar and its label truncates; the live dot keeps its size
 
 **Accessibility**
 

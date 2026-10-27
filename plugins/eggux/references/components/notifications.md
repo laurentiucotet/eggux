@@ -1,6 +1,6 @@
 # Notifications
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -44,6 +44,7 @@ One notification: who (Avatar) did what to which object, when and where, and an 
 - The whole row opens the object and marks it read
 - Actions only for what people can do from the list (Approve, View invoice); at most two
 - System notifications without a person use an icon Avatar
+- Resize: the text column fills (at least 128); message 3 lines and meta 1 line, then an ellipsis
 
 **Accessibility**
 
@@ -82,6 +83,9 @@ Component · 1 variant · default size 400 × 484
 The panel behind the bell in the top bar: title with Mark all as read, optional tabs by type (Show tabs: All, Mentions, Approvals), newest first, unread on top, View all at the bottom. Turn tabs off when there is one kind of notification. 5-8 items, then the full page. The bell shows a Badge Count of unread items; opening the panel does not mark them read, opening an item does. Empty: "You are all caught up."
 
 
+Needs at least 288; on phones show it full width in a Sheet.
+
+
 Usage: eggux build-ui/patterns/notifications.md
 
 **Use for**
@@ -111,6 +115,7 @@ Usage: eggux build-ui/patterns/notifications.md
 - Empty: "You are all caught up."
 - Mark all as read applies to the current tab
 - Show tabs only when there are several kinds of notification; one kind needs no tabs
+- Resize: the title truncates to 1 line; needs at least 288, on phones show it full width in a Sheet
 
 **Accessibility**
 

@@ -1,6 +1,6 @@
 # Carousel
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -242,6 +242,9 @@ Component · 1 variant · default size 1440 × 560
 
 Full-width rotating banner (homepages, campaigns): image (fill on the "image" layer) with scrim, overline, headline, text, one action; bars show timing with Pause; overlay arrows. Use only when slides are equally important; one strong static hero converts better. Auto-advance 6-8 s, pause on hover and focus, no auto-advance with reduced motion. Clips the image on purpose.
 
+
+Width: content and controls align to a centered 1152 container with 24 side padding; needs at least 768. On phones use a single static hero.
+
 **Use for**
 
 - Homepage or campaign banner with 2 or more slides of equal importance
@@ -257,13 +260,14 @@ Full-width rotating banner (homepages, campaigns): image (fill on the "image" la
 **Anatomy**
 
 1. Image (fill on the "image" layer) with video/scrim
-2. Content area: auto layout, padding 64 top, 128 bottom, 144 sides, content up to 640 wide
+2. Content area: padding 64 top, 128 bottom, 24 sides; container up to 1152 centered; content up to 640 wide
 3. Overline (Show overline)
 4. Title: display/lg, 1-2 lines
 5. Text
 6. One action Button
 7. Carousel Indicator bars with Pause
 8. Carousel Arrow, overlay, previous and next
+9. Controls row: Carousel Indicator left, arrows right, in the same 1152 container
 
 **Content and behavior**
 
@@ -274,6 +278,8 @@ Full-width rotating banner (homepages, campaigns): image (fill on the "image" la
 - Title in 2 lines at most; the content area keeps 64 above and clears the bars below
 - White text on video/scrim keeps 4.5:1 on any photo
 - The image clips on purpose; never detach
+- Resize: content and controls align to a centered container up to 1152 wide with 24 side padding (144 at 1440); minimum width 768, on phones use a single static hero
+- Overline 1 line, Title and Text up to 3 lines, all with ellipsis
 
 **Accessibility**
 
@@ -293,12 +299,12 @@ Built from: `Button`, `Carousel Arrow`, `Carousel Indicator`
 
 Tokens and styles:
 - Colors: `background/muted`, `video/foreground`, `video/scrim`
-- Spacing and size: `spacing/16`, `spacing/3`, `spacing/32`, `spacing/36`, `spacing/6`
+- Spacing and size: `spacing/16`, `spacing/3`, `spacing/32`, `spacing/6`
 - Text styles: `body/lead`, `display/lg`, `ui/overline`
 
 Guides: [carousel](../../skills/build-ui/components/carousel.md)
 
-Code: Embla with Autoplay plugin, pause on hover and focus
+Code: Embla with Autoplay (`min-w-[768px]` (phones: static hero); content and controls in `mx-auto max-w-[1152px] px-6`; overline `truncate`, title and text `line-clamp-3`)
 
 ## Lightbox
 
@@ -333,6 +339,7 @@ Full-screen viewer for images (gallery, attachments, documents as images): count
 - Colors from video/* tokens, the same in every mode
 - Pinch and double tap zoom on touch
 - Arrows disabled at the first and last image unless it loops
+- Resize: the title fills the top bar, 1 line with ellipsis
 
 **Accessibility**
 
@@ -356,4 +363,4 @@ Tokens and styles:
 
 Guides: [carousel](../../skills/build-ui/components/carousel.md)
 
-Code: yet-another-react-lightbox or PhotoSwipe, or a `Dialog` (Esc, arrows, focus trap)
+Code: Radix Dialog full screen (title `flex-1 min-w-0 truncate`)

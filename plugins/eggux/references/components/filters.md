@@ -1,6 +1,6 @@
 # Filters
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -95,7 +95,7 @@ Icons: chevron-down, plus, x
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `border/input`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/1_5`, `spacing/3`, `spacing/8`
-- Radius: `radius/md`
+- Radius: `button/radius`
 - Text styles: `body/small`, `ui/label`
 
 Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
@@ -150,7 +150,7 @@ Built from: `Button`, `Command Input`, `Facet Option`, `Separator`
 Tokens and styles:
 - Colors: `background/popover`, `border/default`
 - Spacing and size: `spacing/1`
-- Radius: `radius/md`
+- Radius: `button/radius`
 - Effects: `shadow/md`
 
 Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
@@ -278,6 +278,7 @@ Nested group of conditions joined by the same and / or, on a muted background. O
 - Operators follow the field type: text, number and money, date, sets
 - Value control follows the field: Tag Input for sets, Date Range Picker for dates, Number Input for amounts
 - Live result count; Apply in the builder footer; active conditions show as chips under the toolbar
+- Resize: each Filter Condition wraps: Where, field and operator keep their width, the value fills (min 144); below about 760 the operator and value move to a second line
 
 **Accessibility**
 

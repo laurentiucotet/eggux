@@ -1,6 +1,6 @@
 # Surveys
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -45,6 +45,7 @@ A one-tap question at the end of a help article, an AI answer or a finished task
 - After an answer, the comment is optional; after No it asks what was missing
 - Send the answer with the page and version so it can be acted on
 - Thanks replaces the widget in place; no dialog
+- Resize: question and thanks texts fill and wrap to 2 lines with an ellipsis; the answer buttons hug
 
 **Accessibility**
 

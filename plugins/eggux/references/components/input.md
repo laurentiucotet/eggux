@@ -1,6 +1,6 @@
 # Input
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -146,6 +146,7 @@ Usage: eggux build-ui/patterns/form-validation.md
 - Validate on blur; once in error, re-validate on every change
 - Error text uses background/destructive with an icon, not color alone
 - Show label off only when the control carries its own visible label (Input Style=floating); hint and error stay under it
+- Resize: label and hint fill the width and wrap (label up to 2 lines); the control fills
 
 **Accessibility**
 
@@ -317,6 +318,7 @@ Input with attached addons (shadcn Input Group). Use when a fixed prefix/suffix 
 - Input Addon Position: start or end; muted background, divider toward the field
 - State: default, focus, error, disabled
 - Amounts are right-aligned in tables
+- Resize: the value fills between the addons and stays on 1 line with ellipsis; addons keep their width
 
 **Accessibility**
 
@@ -524,6 +526,7 @@ Draw a signature for approvals, contracts and deliveries: the pad (clips the str
 - After signing, show who signed and when
 - Store the image with the timestamp and the document version
 - Name the signing method in the decision log; legal weight depends on the country
+- Resize: the hint stretches with the pad (32 from each edge), centered, up to 2 lines with ellipsis
 
 **Accessibility**
 
@@ -750,6 +753,7 @@ Code: `<form class="flex gap-2">` with shadcn `Input` + `Button` (react-hook-for
 Component set · 4 variants · default size 240 × 36
 
 An amount with its currency: invoice lines, budgets, prices, limits. Currency picker on the left (ISO code), amount right-aligned in the locale format with two decimals, formatted on blur. Accept typed separators of the locale; never let the currency change silently. One currency for the whole form: hide the picker and show the code as a fixed prefix.
+Needs at least 160: the currency code caps at 96 and the amount truncates.
 
 **Use for**
 
@@ -775,6 +779,7 @@ An amount with its currency: invoice lines, budgets, prices, limits. Currency pi
 - Never change the currency silently: changing it keeps the amount and asks before converting
 - Errors name the limit: "Enter an amount up to EUR 10,000.00"
 - Store the amount in minor units with the ISO code
+- Resize: min width 160; the currency picker hugs up to 96 with its code on 1 line; the amount fills and truncates
 
 **Accessibility**
 
@@ -833,6 +838,7 @@ Phone number with a country code picker (searchable list, country name and code)
 - Accept pasted numbers with the + prefix and set the country from them
 - Store in E.164 (+40712345678); show it formatted for the country
 - Ask for a phone number only when it is used, and say what for in the hint
+- Resize: the country picker hugs up to 112 with its code on 1 line; the number fills and stays on 1 line with ellipsis
 
 **Accessibility**
 
@@ -866,6 +872,7 @@ Code: react-phone-number-input (libphonenumber-js) + shadcn `Popover` + `Command
 Component set · 4 variants · default size 200 × 36
 
 A date people type: day, month and year segments in the locale order, with a calendar button that opens Date Picker. Use it for known dates (birth date, invoice date, contract start) where typing is faster than picking. Arrow keys change a segment; empty segments show DD, MM, YYYY in muted. Errors name the rule ("Date must be after 1 Jan 2026").
+Needs at least 160: segments keep their width and a value that does not fit ends with an ellipsis.
 
 **Use for**
 
@@ -892,6 +899,7 @@ A date people type: day, month and year segments in the locale order, with a cal
 - Arrow keys change the focused segment; typing a full segment moves to the next
 - Validate on blur; errors name the rule: "Date must be after 1 Jan 2026"
 - Pasting a full date fills all segments
+- Resize: min width 160; day, month and year segments keep their width and truncate a value that does not fit
 
 **Accessibility**
 
@@ -926,6 +934,7 @@ Code: react-aria `DateField` + shadcn `Popover` with `Calendar` (react-day-picke
 Component set · 3 variants · default size 200 × 36
 
 A length of time in hours and minutes: time entries, SLAs, reminders, meeting length. Accept "1:30", "90" (minutes) and "1.5h" and normalize on blur. Minutes above 59 roll into hours. Days only when the task needs them (lead times): add a third segment.
+Needs at least 160: values and units keep their width and end with an ellipsis when too long.
 
 **Use for**
 
@@ -951,6 +960,7 @@ A length of time in hours and minutes: time entries, SLAs, reminders, meeting le
 - Minutes above 59 roll into hours
 - Add a days segment only when the task needs it (lead times)
 - Store minutes as one number; errors name the limit ("Up to 24 h per entry")
+- Resize: min width 160; values (max 24) and units (max 28) hug and truncate with ellipsis
 
 **Accessibility**
 
@@ -1008,6 +1018,7 @@ Two fields for a minimum and a maximum: price or amount filters, date ranges typ
 - Error when min is above max; say it once under the pair: "Minimum must be lower than the maximum"
 - Same unit and format on both sides; format on blur
 - In filters, apply on blur or Enter, not on every key
+- Resize: the two fields share the width; units hug up to 32 and values stay on 1 line with ellipsis
 
 **Accessibility**
 
@@ -1033,4 +1044,4 @@ Tokens and styles:
 
 Guides: [input](../../skills/build-ui/components/input.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
-Code: custom: two shadcn `InputGroup`s in a `<fieldset>`; zod `refine` min <= max (Either side may be empty)
+Code: each field `min-w-0 flex-1`; unit `max-w-8 truncate shrink-0`; value `truncate`

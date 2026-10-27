@@ -1,6 +1,6 @@
 # Sharing
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -17,6 +17,9 @@ On the Figma page: "Example / in share dialog", "Example / in team members", "St
 Component set · 3 variants · default size 480 × 52
 
 One person or group with access to an object in a share dialog: avatar, Name and Email, and their role. Type: editable (role Select), owner (role as text), pending (Name is the invited address, Email says when: "Invited 2 days ago", with an Invited badge). Owner first, then you, then A-Z. Changes save at once with a toast.
+
+
+Needs at least 320; name and email truncate with an ellipsis.
 
 
 Usage: eggux build-ui/patterns/sharing-and-invites.md
@@ -47,6 +50,8 @@ Usage: eggux build-ui/patterns/sharing-and-invites.md
 - Owner shows the role as text; owner first, then you, then the rest A-Z
 - Pending shows "Invited 2 days ago"; its menu offers Resend and Cancel invite
 - Changes save at once with a toast; removing your own access asks to confirm
+- Resize: name and email fill and truncate to 1 line (who column at least 128); avatar and role Select keep their size
+- Needs at least 320
 
 **Accessibility**
 
@@ -72,7 +77,7 @@ Tokens and styles:
 
 Guides: [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
 
-Code: shadcn `Avatar`, `Select`, `Popover` + `Command` (combobox with chips), `Button` (Copy with `navigator.clipboard.writeText`; validate emails with zod)
+Code: custom (`min-w-80`; who column `min-w-32 flex-1`, name and email `truncate`; avatar and Select `shrink-0`)
 
 ## Invite Row
 

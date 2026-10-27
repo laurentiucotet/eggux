@@ -1,6 +1,6 @@
 # Pagination
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -45,7 +45,13 @@ Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (I
 
 Component set · 3 variants · default size 386 × 36
 
-Page navigation. Style=numbered (default): previous, pages with the current one active, ellipsis and next, for tables and long lists people jump around in; show first, last, current ±1. Style=simple: Previous, "Page 2 of 10" (Label) and Next, for articles, search results and mobile lists where people only step forward and back; disable Previous on the first page and Next on the last (exposed items). Style=dots: Carousel Indicator dots for onboarding and carousels, never for data lists. For feeds prefer Load More; in tables use Table Pagination. Usage: eggux build-ui/components/pagination.md
+Page navigation. Style=numbered (default): previous, pages with the current one active, ellipsis and next, for tables and long lists people jump around in; show first, last, current ±1. Style=simple: Previous, "Page 2 of 10" (Label) and Next, for articles, search results and mobile lists where people only step forward and back; disable Previous on the first page and Next on the last (exposed items). Style=dots: Carousel Indicator dots for onboarding and carousels, never for data lists. For feeds prefer Load More; in tables use Table Pagination.
+
+
+Never narrower than its items (numbered 386, simple 278, dots 76); in narrow places use Pagination Compact or Style=simple.
+
+
+Usage: eggux build-ui/components/pagination.md
 
 **Use for**
 
@@ -80,6 +86,7 @@ Page navigation. Style=numbered (default): previous, pages with the current one 
 - Narrow places (a card, a side panel, mobile): Pagination Compact with "Page 2 of 12"
 - Style=simple: disable previous on the first page and next on the last (exposed items, State=disabled)
 - Style=dots: one dot per position, the current one active; pair with swipe and arrows, never as the only control in a data list
+- Never narrower than its items (numbered 386, simple 278, dots 76): the minimum width is set; in narrow places use Pagination Compact or Style=simple
 
 **Accessibility**
 
@@ -193,6 +200,7 @@ Usage: eggux build-ui/components/pagination.md
 - Keep the scroll position and move focus to the first new item
 - Loading keeps the button width and disables it
 - On error, keep the loaded items and show Retry
+- Resize: the count fills, centered, up to 2 lines with an ellipsis; the button hugs
 
 **Accessibility**
 
@@ -217,7 +225,7 @@ Tokens and styles:
 
 Guides: [pagination](../../skills/build-ui/components/pagination.md)
 
-Code: shadcn `Button variant="outline"` + count; TanStack Query `useInfiniteQuery` (Focus the first new item; count in `aria-live`)
+Code: custom (Count `w-full text-center line-clamp-2`)
 
 ## Pager Link
 

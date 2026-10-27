@@ -1,6 +1,6 @@
 # Description List
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -45,6 +45,7 @@ Label-value pair for record details (shadcn has no component; dl/dt/dd in code).
 - Values never repeat the label; long values wrap
 - One Edit action per card, not a pencil per row
 - Fill the Value slot in the instance; never detach
+- Resize: horizontal keeps the 160 label column; label and value wrap (value fills); vertical label and value fill the width
 
 **Accessibility**
 
@@ -65,7 +66,7 @@ Slots (fill them in the instance, never detach): `Value`
 
 Tokens and styles:
 - Colors: `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `border-width/DEFAULT`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/40`
+- Spacing and size: `border-width/DEFAULT`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
 - Text styles: `body/small`, `ui/label`
 
 Guides: [description-list](../../skills/build-ui/components/description-list.md)
@@ -102,6 +103,7 @@ One fact with an icon: date and time, place, people, length, size, contact. Use 
 - In a row gap 24, in a column gap 8; 4 items at most
 - Dates with time zone, places with the city
 - A link keeps the label color; underline on hover
+- Resize: hugs its label inline; the label caps at 280, 1 line with ellipsis. Keep labels short in narrow columns (it does not shrink below its text)
 
 **Accessibility**
 
@@ -160,6 +162,7 @@ A number with what it counts: stacked (value over label, optional source and div
 - Numbers in the locale format with units (€18,500, 47 days, 62%)
 - No trend arrows or colors here: that is Stat Card
 - Tone=on-primary on primary bands (Block / Stats Brand Band); keep text alignment as the only override
+- Resize: value up to 2 lines, label up to 3, source up to 2, all with ellipsis
 
 **Accessibility**
 

@@ -1,6 +1,6 @@
 # Save Bar
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -46,6 +46,7 @@ Usage: eggux build-ui/patterns/unsaved-changes.md
 - Discard asks first when the changes are large
 - Leaving the page with changes asks "Discard changes?" (Keep editing, Discard)
 - After saving, the bar hides, the form is clean and a toast confirms
+- Resize: the message fills (at least 160, 2 lines with an ellipsis); the row wraps, so under about 400 Discard and Save drop under the message
 
 **Accessibility**
 
@@ -72,4 +73,4 @@ Tokens and styles:
 
 Guides: [common-flows](../../skills/build-ui/patterns/common-flows.md), [record-page](../../skills/build-ui/patterns/record-page.md), [unsaved-changes](../../skills/build-ui/patterns/unsaved-changes.md)
 
-Code: custom sticky footer (Listen to form dirty state)
+Code: custom sticky footer (`flex flex-wrap gap-2`; message `min-w-40 flex-1 line-clamp-2`)

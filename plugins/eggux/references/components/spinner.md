@@ -1,6 +1,6 @@
 # Spinner
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -73,7 +73,7 @@ Tokens and styles:
 
 Guides: [indicators](../../skills/build-ui/components/indicators.md)
 
-Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`)
+Code: shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) (Kbd text `text-foreground` (not `text-muted-foreground`): muted text on `bg-muted` is 4.35:1 in Light)
 
 ## Loading Overlay
 
@@ -107,6 +107,7 @@ Covers one region while its content reloads (a table after a filter change, a ch
 - The label says what loads ("Loading invoices…")
 - The covered region is not interactive; the rest of the page stays usable
 - A failed load replaces it with an error Empty State in the same area, with "Try again"
+- Resize: the overlay stretches; the message spans the width minus 24 on each side, centered, label 2 lines with an ellipsis
 
 **Accessibility**
 
@@ -129,4 +130,4 @@ Tokens and styles:
 
 Guides: [loading-states](../../skills/build-ui/patterns/loading-states.md)
 
-Code: custom: `absolute inset-0 bg-background/60` layer + shadcn `Spinner` (`aria-busy` on the region; label in `role="status"`)
+Code: custom overlay (Message `inset-x-6 text-center line-clamp-2`)

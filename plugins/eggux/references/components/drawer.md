@@ -1,6 +1,6 @@
 # Drawer
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -45,6 +45,7 @@ Side drawer (shadcn Sheet). Full height, 384 wide. Use for editing or inspecting
 - Never open a Sheet from a Sheet; a Dialog on top only for a confirmation
 - Outside click and Esc close it; unsaved input follows the unsaved changes pattern
 - Filters: one compact Accordion Item per group with a Badge Count of active options
+- Minimum width 320 (set on both sides)
 
 **Accessibility**
 
@@ -126,7 +127,7 @@ Tokens and styles:
 - Text styles: `ui/caption`
 - Effects: `shadow/lg`
 
-Guides: [dialog](../../skills/build-ui/components/dialog.md), [drawer](../../skills/build-ui/components/drawer.md), [tour](../../skills/build-ui/components/tour.md), [mobile](../../skills/build-ui/patterns/mobile.md)
+Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md), [dialog](../../skills/build-ui/components/dialog.md), [drawer](../../skills/build-ui/components/drawer.md), [tour](../../skills/build-ui/components/tour.md), [mobile](../../skills/build-ui/patterns/mobile.md)
 
 Code: shadcn `Sheet`, `Drawer` (vaul)
 
@@ -135,6 +136,9 @@ Code: shadcn `Sheet`, `Drawer` (vaul)
 Component set · 2 variants · default size 320 × 327
 
 Inline panel beside the page content (an Aside): details, properties or a preview of the object being edited. Header: Title, Actions slot, collapse button (Collapsible). Content slot; optional Footer slot. Collapsed: 48 wide, expand button and vertical title. Use Sheet when the panel opens over the page. Code: an <aside> in the page grid with a collapsible state (shadcn Collapsible).
+
+
+Width: expanded needs at least 240; collapsed is a 48 rail with the title rotated and capped at 200.
 
 **Use for**
 
@@ -162,6 +166,7 @@ Inline panel beside the page content (an Aside): details, properties or a previe
 - Content reads top to bottom; no tabs inside a Side Panel
 - Collapsed state is remembered per user and page
 - Below 1024 px open it as a right Sheet instead
+- Resize: expanded needs at least 240, title 1 line with ellipsis, slot content fills; collapsed is a 48 rail with the rotated title capped at 200
 
 **Accessibility**
 
@@ -191,13 +196,16 @@ Tokens and styles:
 
 Guides: [drawer](../../skills/build-ui/components/drawer.md)
 
-Code: `<aside>` in the page grid + shadcn `Collapsible` (Right `Sheet` below 1024 px; persist the collapsed state)
+Code: `<aside>` (expanded `min-w-60`, title `truncate`; collapsed rail title `max-h-[200px] truncate` (vertical writing mode))
 
 ## Resizable Panels
 
 Component · 1 variant · default size 960 × 400
 
 Two panels with a handle to drag the split: list and detail, editor and preview, code and output. Each panel has a minimum width; double-click the handle to reset. The split is remembered per person. Keyboard: focus the handle and use arrows. On narrow screens show one panel at a time.
+
+
+Width: the start panel keeps its width, the end panel fills; needs at least 480.
 
 **Use for**
 
@@ -224,6 +232,7 @@ Two panels with a handle to drag the split: list and detail, editor and preview,
 - The split is remembered per person
 - On narrow screens show one panel at a time with a way back
 - A panel can collapse to a rail when dragged past its minimum
+- Resize: the start panel keeps its width, the end panel fills; needs at least 480
 
 **Accessibility**
 
@@ -243,4 +252,4 @@ Tokens and styles:
 
 Guides: [drawer](../../skills/build-ui/components/drawer.md)
 
-Code: shadcn `Resizable` (react-resizable-panels) (`autoSaveId` remembers the split; one panel at a time on mobile)
+Code: shadcn `Resizable` (`min-w-[480px]`; end panel `flex-1 min-w-0`)

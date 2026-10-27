@@ -1,6 +1,6 @@
 # AI Chat
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -140,6 +140,9 @@ Component · 1 variant · default size 768 × 48
 
 A message the user sent: muted bubble on the right, max 576 wide, hugs short text. Actions (copy, edit and resend) on hover. Attachments go above the bubble.
 
+
+The bubble hugs the message up to 576 and wraps there. In a panel narrower than 600, set the bubble to Fill in the instance so long messages wrap at the panel width.
+
 **Use for**
 
 - Every message the person sends in an AI chat
@@ -164,6 +167,7 @@ A message the user sent: muted bubble on the right, max 576 wide, hugs short tex
 - Actions show on hover on desktop and always on touch
 - Edit and resend continues the conversation from that message
 - The user's message is never lost, even when the answer fails
+- Bubble hugs up to 576 and wraps there; in a panel narrower than 600 set the bubble to Fill in the instance so long messages wrap at the panel width
 
 **Accessibility**
 
@@ -282,6 +286,7 @@ The model's thinking, collapsed by default. running: spinner + "Thinking…"; do
 - Collapsed by default when done; the person opens it
 - Label says how long it took ("Thought for 12 s")
 - Details is a summary that explains; never show raw chain of thought as the answer
+- Header hugs up to 240 and the status or label truncates to 1 line; the chevron stays next to it
 
 **Accessibility**
 
@@ -411,6 +416,8 @@ Favicon 1 to 3: the Letter of the first three Source Items in Items, in the same
 - A Source Item opens the source in a new tab
 - List only sources the user can open
 - Citation hover shows a Hover Card with the source; click opens it
+- Header label: 1 line with ellipsis; favicon letters stay inside their tile
+- Source Items fill the row between 240 and 384 and wrap: two per row at 720, one per row under about 500
 
 **Accessibility**
 
@@ -471,6 +478,7 @@ Usage: eggux build-ui/components/ai-chat.md
 - Letter is the first letter of the site or app name
 - Sources repeats the first three Letters in its collapsed row
 - Opens the source in a new tab
+- Title and domain: 1 line with ellipsis; the item fills its slot between 240 and 384
 
 **Accessibility**
 
@@ -543,6 +551,7 @@ Starter prompt or follow-up. chip: under the input or after an answer (2-4 follo
 - Follow-ups: 2-4 chips, only when the next step is predictable
 - Click fills the input; follow-up chips send at once
 - Label is short: "Summarize open invoices"
+- Chip hugs its label; when the chip is narrower than the label, the label truncates to 1 line (card: 2 lines)
 
 **Accessibility**
 
@@ -687,6 +696,7 @@ One conversation in the history list (Sidebar or a panel): title from the first 
 - State=active marks the open conversation
 - Delete offers Undo
 - Search the list when there are more than about 20 conversations; New chat at the top
+- Title and time: 1 line with ellipsis; the item works down to 128 wide
 
 **Accessibility**
 
@@ -922,6 +932,7 @@ A multi-step task the assistant runs: title, where it is and time left, Stop, pr
 - A failed step says what failed and what happens next; the plan never stops silently
 - Background tasks say so and notify when done
 - After it finishes, keep the plan in the conversation, collapsed to its result
+- Title wraps; status line: 1 line with ellipsis; Stop keeps its size
 
 **Accessibility**
 
@@ -1079,6 +1090,8 @@ AI summary on a record or report page: what matters now, in 2-4 sentences with n
 - State=generating shows what it reads; State=error says what failed and offers Try again
 - Regenerate keeps the previous version until the new one is ready
 - The disclaimer uses the same words everywhere
+- Content text: up to 6 lines, then ellipsis; long answers go to Show More
+- Disclaimer fills the width and wraps; it never truncates
 
 **Accessibility**
 
@@ -1170,6 +1183,7 @@ A value the AI proposes for a form field: dashed tinted box with the value, the 
 - Low confidence says so in the Reason
 - Several suggestions: "Accept all" at the top, still one by one below
 - Store who accepted the value and when
+- Label and value fill the width; label 1 line with ellipsis; actions stay at their size
 
 **Accessibility**
 
@@ -1233,6 +1247,7 @@ Placeholder while AI writes an answer or a summary in place: what it is doing no
 - Stop keeps what arrived and says it stopped
 - Time left only when it is known
 - Works at any width from about 240; set the instance to FILL in its container
+- Status and progress: 1 line with ellipsis; Stop keeps its size
 
 **Accessibility**
 
@@ -1319,7 +1334,7 @@ Code: shadcn `Skeleton`, `Tooltip`, `Button` + custom; Vercel AI SDK for streami
 
 ## AI Review Bar
 
-Component · 1 variant · default size 691 × 50
+Component · 1 variant · default size 698 × 50
 
 Floating bar for reviewing AI edits in a document or form one by one: position, previous and next, accept or reject the current one, accept or reject all. Each suggestion shows inline as AI Suggestion. Keyboard: Tab next, Enter accept, Backspace reject. Accept all asks once when changes are many.
 
@@ -1350,6 +1365,7 @@ Floating bar for reviewing AI edits in a document or form one by one: position, 
 - Accept all asks once when the changes are many
 - Floats at the bottom center of the document until all are reviewed
 - Accepted changes can be undone; at the end the bar sums up and leaves
+- Wraps: below about 700 the actions drop to a second row (row gap 8); the count fills the space left (min 128) and truncates to 1 line
 
 **Accessibility**
 

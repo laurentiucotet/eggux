@@ -1,6 +1,6 @@
 # Button
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -174,6 +174,9 @@ Component · 1 variant · default size 240 × 36
 
 Related actions joined in one control (shadcn Button Group): Edit / Duplicate / Archive, prev / next, zoom - / +. For choosing a value use Toggle Group; for one main action + options use Split Button.
 
+
+Hugs its items and never shrinks below them (80 per item); long item labels truncate. When the group does not fit, use a Select or a Dropdown Menu.
+
 **Use for**
 
 - 2-5 related actions of equal weight
@@ -198,6 +201,7 @@ Related actions joined in one control (shadcn Button Group): Edit / Duplicate / 
 - Positions follow the order: first, middle, last
 - Icon-only items always have a tooltip
 - Never use it to set a value
+- Hugs its items and never shrinks below them (80 per item); item labels truncate to 1 line; when it does not fit, use a Select or a Dropdown Menu
 
 **Accessibility**
 
@@ -393,6 +397,7 @@ Share buttons for a public page: copy link, email, the system share sheet, and u
 - Replace the letter marks with the networks' official logos in product
 - The system share button shows only where the browser supports it
 - Shared links open with a title, description and image (Open Graph)
+- Label truncates to 1 line when space runs out; the share buttons keep their size
 
 **Accessibility**
 

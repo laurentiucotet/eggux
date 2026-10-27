@@ -1,6 +1,6 @@
 # Pricing
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -47,6 +47,7 @@ A price as people compare it: amount with currency, period, and the old price st
 - Old price only during a real discount, with the end date nearby
 - Prices compared side by side use the same Size
 - Size=xl once per page, in a hero or a single-offer section; comparisons use default
+- Resize: the amount never wraps or truncates; the period fills what is left and truncates to 1 line. Give the Price at least the amount's width
 
 **Accessibility**
 
@@ -73,7 +74,7 @@ Tokens and styles:
 
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: custom: amount, `<s>` old price and period (`text-muted-foreground`) (`Intl.NumberFormat` with currency; sr-only "Was ... now ...")
+Code: custom flex row (Amount `whitespace-nowrap shrink-0`; period `min-w-0 truncate`)
 
 ## Plan Card
 
@@ -123,6 +124,7 @@ Usage: eggux build-ui/patterns/marketing-pages.md
 - Features title says what the plan adds to the one before
 - Cards in a row share height; buttons and prices align
 - Check Items placed in an inverted card's Features slot use background/default text and icon
+- Resize: the features title wraps to 2 lines with an ellipsis; Price and the features keep their width
 
 **Accessibility**
 
@@ -164,6 +166,9 @@ Component set · 2 variants · default size 1152 × 748
 Plan comparison table for pricing pages: a header row per plan (name, Price, action) and feature rows grouped under section labels, with Table Cell Check marks or short values. Use Plans=3 or Plans=4 to match the plan cards above it; edit labels and values in place, and hide rows you do not need.
 
 
+Needs at least 768 wide (Plans=3) or 1024 (Plans=4); plan columns never go under 192. Below that, stack Plan Cards.
+
+
 Usage: eggux build-ui/patterns/marketing-pages.md
 
 **Use for**
@@ -180,7 +185,7 @@ Usage: eggux build-ui/patterns/marketing-pages.md
 
 **Anatomy**
 
-1. Plans: 3 (label column 432, plan columns 240), 4 (label column 352, plan columns 200)
+1. Plans: 3 (label column 432, plan columns 240), 4 (label column 352, plan columns 200); all columns FILL in that proportion with a 192 minimum (label 256 with 4 plans)
 2. Header row: plan name (with an optional Badge), Price sm and a sm Button per plan
 3. Section rows: an overline label ("Core", "Collaboration", "Security")
 4. Feature rows: label and one Table Cell Check per plan (check, dash or a short value)
@@ -193,6 +198,8 @@ Usage: eggux build-ui/patterns/marketing-pages.md
 - Use a check or a dash for yes and no; a short value ("100 GB", "Unlimited") when it differs
 - Hide rows you do not need; keep at least one row per section
 - One primary button in the header: the recommended plan
+- Resize: label and plan columns fill in proportion (432/240, or 352/200 with 4 plans); plan columns never go under 192, the label column under 192 (256 with 4 plans) and feature labels wrap
+- Needs at least 768 (Plans=3) or 1024 (Plans=4); below that, stack Plan Cards
 
 **Accessibility**
 
@@ -208,9 +215,9 @@ Built from: `Badge`, `Button`, `Price`, `Table Cell Check`
 
 Tokens and styles:
 - Colors: `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `layout/container/6xl`, `spacing/2`, `spacing/4`, `spacing/60`
+- Spacing and size: `layout/container/6xl`, `spacing/2`, `spacing/4`
 - Text styles: `body/small`, `ui/label`, `ui/overline`
 
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: `<table>` with shadcn `Table` parts; header cells with `Price` (sm) and `Button` (sm); cells with lucide `Check` / `Minus` and `sr-only` text (Plans=3 or 4 columns; used by `Block / Comparison Table` (3) and `Block / Pricing with Comparison` (4))
+Code: `<table>` with shadcn `Table` parts, wrapped in `min-w-[768px]` (Plans=3) or `min-w-[1024px]` (Plans=4) (Plan columns `min-w-48`; feature labels wrap; below `md` render stacked Plan Cards instead (`hidden md:table` / `md:hidden`))

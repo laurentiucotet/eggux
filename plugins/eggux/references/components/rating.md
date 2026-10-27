@@ -1,6 +1,6 @@
 # Rating
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -120,6 +120,7 @@ One customer review: who, verified purchase, date, stars, a title and the text, 
 - Never edit what customers wrote; company replies sit under the review
 - Verified only when the purchase is confirmed
 - Dates as day, month, year ("3 Oct 2026")
+- Resize: the name fills and truncates to 1 line; the Verified badge and the date hug up to 128; title 2 lines, text 4 lines with an ellipsis (link to the full review)
 
 **Accessibility**
 
@@ -146,7 +147,7 @@ Tokens and styles:
 
 Guides: [rating](../../skills/build-ui/components/rating.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: `<article>` + `Avatar`, `Badge`, `Rating`, ghost `Button`s (Helpful: `aria-pressed`)
+Code: custom (Name `min-w-0 flex-1 truncate`; badge and date `max-w-32 truncate shrink-0`; title `line-clamp-2`; text `line-clamp-4` with a Read more link)
 
 ## Rating Summary
 
@@ -180,6 +181,7 @@ Usage: eggux build-ui/components/rating.md
 - Count says how many reviews it comes from
 - Under 5 reviews, show the count only
 - Bars show the share of all reviews (92 of 128 = 72% of the track); resize the fill layer to set it, it keeps the proportion when the card resizes
+- Resize: the average column hugs up to 160 (value 1 line, count 2 lines, then ellipsis); the distribution fills and never goes under 192, so under about 340 it wraps below the average
 
 **Accessibility**
 
@@ -196,10 +198,10 @@ Built from: `Rating`
 
 Tokens and styles:
 - Colors: `background/muted`, `background/warning`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/8`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/4`, `spacing/8`
 - Radius: `radius/full`
 - Text styles: `display`, `ui/caption`
 
 Guides: [rating](../../skills/build-ui/components/rating.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: custom: `Rating` + rows of shadcn `Progress` in `Button`s (Rows set the star filter)
+Code: custom `flex flex-wrap gap-x-8 gap-y-4` (Average column `max-w-40`, value `truncate`, count `line-clamp-2`; distribution `flex-1 min-w-48`)

@@ -1,6 +1,6 @@
 # Color Picker
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -17,6 +17,9 @@ On the Figma page: "Example / Swatch styles", "Example / brand colors", "Example
 Component · 1 variant · default size 264 × 294
 
 Pick any color (brand settings, labels, charts): saturation area, hue slider, hex input with opacity, swatches. Show presets first when users should stay on palette. Gradients are part of the control (not tokens).
+
+
+Width: parts stretch with the picker; needs at least 240.
 
 **Use for**
 
@@ -43,6 +46,7 @@ Pick any color (brand settings, labels, charts): saturation area, hue slider, he
 - Opacity only when the product supports it
 - When the color sits behind text, check contrast and warn below the field
 - Gradients in the control are raw colors by design; the rest uses tokens
+- Resize: saturation, hue, input and swatches stretch with the picker; needs at least 240
 
 **Accessibility**
 
@@ -62,7 +66,7 @@ Tokens and styles:
 
 Guides: [color-picker](../../skills/build-ui/components/color-picker.md)
 
-Code: react-colorful in `Popover`
+Code: react-colorful + Input Group (`min-w-[240px]`, parts `w-full`)
 
 ## Swatch Picker
 
@@ -94,6 +98,7 @@ A short set of colors for labels, categories, calendars and project avatars: 6-1
 - Colors come from chart tokens so they stay readable in dark mode
 - Same order everywhere the palette appears
 - Show the name under the swatches; never rely on color alone
+- Resize: swatches wrap to more rows (row gap 4); the color name truncates to 1 line
 
 **Accessibility**
 

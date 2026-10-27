@@ -1,6 +1,6 @@
 # Audit
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -43,6 +43,8 @@ One field changed in an audit entry: field, old value, new value. Empty old valu
 - Sensitive values are masked (••••)
 - Read only: never edit or delete entries from the UI
 - Dates and amounts follow the locale format
+- Old and new values hug up to 240 and truncate to 1 line; field label up to 2 lines
+- Wraps: when the row is narrow the new value drops to the next line (row gap 4)
 
 **Accessibility**
 
@@ -60,13 +62,13 @@ Icons: arrow-right
 
 Tokens and styles:
 - Colors: `background/accent`, `background/muted`, `foreground/accent`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/3`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/3`
 - Radius: `radius/sm`
 - Text styles: `body/small`, `ui/caption`
 
 Guides: [audit-log](../../skills/build-ui/patterns/audit-log.md), [errors-and-recovery](../../skills/build-ui/patterns/errors-and-recovery.md)
 
-Code: custom
+Code: custom row (`flex flex-wrap gap-y-1`; old / new value chips `max-w-60 truncate`; field `line-clamp-2`)
 
 ## Version Item
 
@@ -101,6 +103,7 @@ One saved version in a version history panel: who, when, what changed, and Resto
 - Restoring creates a new version; it never deletes the newer ones
 - Summary says what changed in one line; autosaved versions say "Autosave"
 - Group autosaves by session or day when there are many
+- Version name fills and truncates to 1 line, the Current badge sits at the end of the row (max 128); meta 1 line, summary 2 lines
 
 **Accessibility**
 
@@ -167,6 +170,7 @@ One entry of a changelog or "What's new": type badge (New, Improved, Fixed), ver
 - Type from the variant: new, improved, fixed; for a release with lines, the type of the headline change
 - Changes: 2-5 lines, New first, then Improved, then Fixed; one sentence each
 - Screenshot only when it shows where to click; link to the help article
+- Title up to 2 lines, text up to 4 lines, date 1 line, with ellipsis; the full note opens from the link
 
 **Accessibility**
 

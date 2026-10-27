@@ -1,6 +1,6 @@
 # Metrics
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -49,6 +49,7 @@ A change against a period: arrow, signed percent or amount, and what it is compa
 - Edit the value text per instance; keep the same comparison for every item in a row
 - Neutral tone when the change is too small to matter, or when up and down mean nothing good or bad
 - One Style per row of metrics
+- Resize: hugs on its own; when its parent is narrow (Fill) the comparison wraps under the change
 
 **Accessibility**
 
@@ -72,7 +73,7 @@ Built from: `Badge`. Icons: minus, trending-down, trending-up
 
 Tokens and styles:
 - Colors: `background/destructive`, `background/success`, `foreground/muted`
-- Spacing and size: `spacing/1`
+- Spacing and size: `spacing/0_5`, `spacing/1`
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [reports](../../skills/build-ui/patterns/reports.md)
@@ -109,6 +110,7 @@ A row of 3-5 key figures at the top of a dashboard, report or record page, light
 - Items share the width equally; on narrow screens wrap to two columns, no horizontal scroll
 - Loading: Skeleton in each value; no data: "No data" in muted text, never 0
 - Items fill the row height, so values stay aligned and dividers stay full height when an item has Show trend off
+- Resize: the Metrics row wraps and each item is at least 128 wide: all in one row on desktop, 2 per row in a 1/4 column; inside an item the trend comparison drops under the change when narrow
 
 **Accessibility**
 
@@ -122,7 +124,7 @@ Built from: `Metric Strip Item`
 
 Tokens and styles:
 - Colors: `border/default`
-- Spacing and size: `spacing/4`
+- Spacing and size: `spacing/0`, `spacing/4`
 
 Guides: [reports](../../skills/build-ui/patterns/reports.md)
 
@@ -156,6 +158,7 @@ One figure in a Metric Strip: label, value, optional Trend Indicator (exposed). 
 - Value stays on one line; amounts in the locale format and compact (€1.84M)
 - Label is a noun of one to three words, sentence case
 - Show trend on all items in a strip or on none
+- Resize: min width 128; label and value fill; the Trend Indicator fills and wraps its comparison under the change
 
 **Accessibility**
 
@@ -216,6 +219,7 @@ Usage: eggux build-ui/components/progress-and-slider.md
 - Usage shows used and limit with the unit ("4.2 of 5 GB"); unlimited plans show the count and no bar
 - Say when the count resets for monthly limits ("Resets 1 Nov")
 - Offer the fix in the hint or next to it: Upgrade, Buy more, Manage
+- Resize: the top row wraps: label fills (min 120, 2 lines), usage hugs up to 160 on 1 line and moves under the label when narrow; hint up to 3 lines
 
 **Accessibility**
 
@@ -237,12 +241,12 @@ Built from: `Progress`
 
 Tokens and styles:
 - Colors: `background/destructive`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/2`
+- Spacing and size: `spacing/0_5`, `spacing/2`
 - Text styles: `body/small`, `ui/caption`, `ui/label`
 
 Guides: [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: shadcn `Progress` with a tone class + label row (`role="meter"`, `aria-valuenow`, `aria-valuemax`; near from 80%, over above 100%; the exposed bar's Value is the used share rounded to the nearest step)
+Code: top row `flex flex-wrap`; label `min-w-30 flex-1 line-clamp-2`; usage `truncate max-w-40`; hint `line-clamp-3`
 
 ## Countdown
 
@@ -286,6 +290,7 @@ Usage: eggux build-ui/patterns/marketing-pages.md
 - At zero, replace it with the outcome ("Registration closed") and remove the action it promoted
 - Count from the server time, never only the device clock
 - One Style per page
+- Resize: tiles keep their width; numbers and units stay on 1 line inside the tile with ellipsis
 
 **Accessibility**
 
@@ -315,7 +320,7 @@ Tokens and styles:
 
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: custom tiles from a `useCountdown` hook (1 s interval, server end time) (`role="timer"`, `aria-live="off"`; end time in `<time datetime>`)
+Code: tile values and units `truncate text-center` (Tiles keep their width)
 
 ## Leaderboard Row
 
@@ -350,6 +355,7 @@ A ranked person or team: rank, avatar, name, value. Top 5-10 plus the viewer's o
 - Ties share a rank (1, 2, 2, 4)
 - Say the period and the measure above the list ("Paid revenue, Q4")
 - Long names truncate with a Tooltip; value never truncates
+- Resize: rank keeps its 20 column (1 line), the name fills (min 80) with ellipsis, the value hugs up to 88 on 1 line
 
 **Accessibility**
 
@@ -377,4 +383,4 @@ Tokens and styles:
 
 Guides: [reports](../../skills/build-ui/patterns/reports.md)
 
-Code: `<ol>` of rows with shadcn `Avatar`, `tabular-nums` value (Current row `aria-current="true"` and `bg-accent`)
+Code: rank `w-5 truncate`; name `min-w-20 flex-1 truncate`; value `max-w-22 truncate tabular-nums`

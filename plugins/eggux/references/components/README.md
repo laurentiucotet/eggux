@@ -1,6 +1,6 @@
 # Component reference
 
-One file per component page of the EGG UI master library, generated on 2026-10-26.
+One file per component page of the EGG UI master library, generated on 2026-10-27.
 Each component lists its variants, properties with defaults, slots, the components and icons
 it is built from, the tokens and styles it uses, its usage guides and its code mapping. Main
 components also list when to use them, anatomy, rules and accessibility from
@@ -42,7 +42,7 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Description List](description-list.md) | Description List Item, Meta Item, Figure, Summary Row |
 | [Dialog](dialog.md) | Dialog, Dialog Header, Dialog Footer, Alert Dialog |
 | [Drawer](drawer.md) | Sheet, Drawer, Side Panel, Resizable Panels |
-| [Editor](editor.md) | Rich Text Editor, Comment, Comment Composer |
+| [Editor](editor.md) | Rich Text Editor, Comment, Comment Composer, Selection Toolbar, Comment Highlight, Comment Thread, Comments Panel |
 | [Email](email.md) | Email / Header, Email / Hero, Email / Button, Email / Content, Email / Code, Email / Details, Email / Details Row, Email / Line Items, Email / Line Item, Email / Total Row, Email / Callout, Email / Divider, Email / Stats, Email / Stat, Email / Article, Email / Footer |
 | [Empty State](empty-state.md) | Empty State |
 | [Feature Item](feature-item.md) | Feature Item, Icon Tile |
@@ -92,4 +92,4 @@ components also list when to use them, anatomy, rules and accessibility from
 | [Tree](tree.md) | Tree Item |
 | [Video](video.md) | Video Player, Video Thumbnail, Audio Player |
 
-385 components on 74 pages.
+389 components on 74 pages.

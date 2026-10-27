@@ -1,6 +1,6 @@
 # Quote
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -48,6 +48,7 @@ Usage: eggux build-ui/components/content.md
 - Attribution names the person and their role at the time
 - Under 40 words; longer passages stay in the body text
 - Narrow columns (cards, mobile): keep the full role; it wraps, never truncate it or resize the text layers
+- Resize: the quote text wraps without a limit (never cut a quote); the name hugs up to 192 with an ellipsis, the role wraps to 2 lines
 
 **Accessibility**
 
@@ -76,7 +77,7 @@ Tokens and styles:
 
 Guides: [content](../../skills/build-ui/components/content.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: `<figure><blockquote>` + `<figcaption>` (Default: `border-l-2`; pull: centered, larger type)
+Code: custom `<figure>` (Name `max-w-48 truncate`; role `line-clamp-2`; quote text never clamped)
 
 ## Testimonial Card
 
@@ -121,6 +122,7 @@ Usage: eggux build-ui/components/content.md
 - Minimal quotes sit on the page background; never put them inside another card
 - Rating only when it comes with the quote from the same customer
 - Real photos or initials; no stock photos
+- Resize: the quote wraps to 6 lines with an ellipsis; keep quotes under about 200 characters
 
 **Accessibility**
 
@@ -150,7 +152,7 @@ Tokens and styles:
 
 Guides: [content](../../skills/build-ui/components/content.md), [rating](../../skills/build-ui/components/rating.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>`
+Code: custom (Quote `line-clamp-6`)
 
 ## Footnote
 

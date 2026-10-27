@@ -1,6 +1,6 @@
 # Tour
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -17,6 +17,9 @@ On the Figma page: "Example / design review with annotation pins", "Example / fi
 Component set · 4 variants · default size 320 × 165
 
 One step of a product tour or a single feature tip, anchored to the element it explains. Side = where it sits relative to the target; the arrow points at the target. Title says the benefit, description one or two lines, step counter, Back / Next (last step: Done). Always closable.
+
+
+Width 240 to 320; the step text truncates.
 
 **Use for**
 
@@ -49,6 +52,7 @@ One step of a product tour or a single feature tip, anchored to the element it e
 - Media only when a picture explains faster than words
 - Remember progress per user; never repeat a finished tour
 - Mobile: a bottom Drawer step, no arrow
+- Resize: fixed width you can change between 240 and 320; title and description wrap; the step text fills and truncates; Back and Next keep their size
 
 **Accessibility**
 
@@ -156,6 +160,7 @@ A numbered marker placed on a design, document or screenshot where a comment liv
 - Click opens the thread in a Popover or the side panel; State=active is the open one
 - Resolved pins fade and show a check
 - Pins that overlap move apart and stay clickable
+- Resize: hugs its number with 6 side padding, at least 28 wide (32 when active); long numbers grow into a pill
 
 **Accessibility**
 
@@ -175,9 +180,10 @@ Icons: check
 
 Tokens and styles:
 - Colors: `background/default`, `background/muted`, `background/primary`, `foreground/primary`
+- Spacing and size: `spacing/1_5`
 - Text styles: `ui/caption`
 - Effects: `shadow/lg`, `shadow/md`
 
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
 
-Code: custom absolutely positioned `Button` + shadcn `Popover` (Store positions as percentages of the image)
+Code: custom (`inline-flex min-w-7 px-1.5 rounded-full` (grows into a pill))

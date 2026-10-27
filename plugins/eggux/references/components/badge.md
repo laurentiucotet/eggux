@@ -1,6 +1,6 @@
 # Badge
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -52,6 +52,7 @@ shadcn Badge plus EGG status variants. Solid: default, secondary, destructive, o
 - Soft colors come from badge/soft-*-bg (status color at opacity 10 in Light, 20 in Dark) and badge/soft-*-fg; never recolor by hand
 - Not clickable
 - Next to the primary information of a row, never instead of it
+- Hugs its label up to 256 (maxWidth spacing/64), then the label truncates to 1 line with ellipsis; parents can set a smaller max (scope 160, Current 128)
 
 **Accessibility**
 
@@ -221,6 +222,7 @@ A few tags or labels on one line with "+N" for the rest: category, status, regio
 - One or two words per tag, sentence case
 - Status colors only when the tag means a status
 - Same order everywhere (type, frequency, region)
+- Badges wrap to more lines when the list is narrower than its badges (row gap as the badge gap); +N stays at the end of the first row
 
 **Accessibility**
 
@@ -241,7 +243,7 @@ Tokens and styles:
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
-Code: `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger
+Code: `Badge` list (`flex flex-wrap gap-1`; +N `shrink-0`)
 
 ## Announcement Pill
 
@@ -273,6 +275,7 @@ A short link above a hero title to the newest launch: "New" tag, one line, arrow
 - Label is one line (about 40 characters) and says what is new
 - Tag says "New" or "Beta", nothing louder
 - Never for errors or outages
+- Hugs its text; in a narrower column the text truncates to 1 line; tag and arrow keep their size
 
 **Accessibility**
 
@@ -338,6 +341,7 @@ Usage: eggux build-ui/components/badge.md
 - Same order everywhere; 3-5 in a row
 - Name and Description wrap inside the border when the badge is narrower than its text; set Fill in rows of equal badges
 - Tone=on-primary on primary bands and cards, Tone=inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner); never override the colors by hand
+- Name and detail: up to 2 lines each with ellipsis
 
 **Accessibility**
 
@@ -366,4 +370,4 @@ Tokens and styles:
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: custom: lucide icon + name and detail, `<a>` to the trust page (Only current claims. Tone=on-primary: `text-primary-foreground border-primary-foreground`; Tone=inverted: `text-background border-border`, detail `text-muted` (on `bg-foreground` cards))
+Code: custom (name and detail `line-clamp-2`)

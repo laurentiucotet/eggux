@@ -1,6 +1,6 @@
 # Navigation
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -84,6 +84,7 @@ Path from a meaningful root to the current page (shadcn Breadcrumb). Style=defau
 - Start at a meaningful root, not "Home" when the sidebar already does that
 - Style=default in apps (Top Bar, Page Header); Style=background on marketing and docs pages, one per page
 - Style=background sits on background/default; on a muted section use Style=default (the track would disappear and the muted links drop below 4.5:1)
+- Resize: hugs its items; when the space is narrower the items wrap to a second line (row gap 4); collapse middle items with an ellipsis item for deep paths
 
 **Accessibility**
 
@@ -101,7 +102,7 @@ Built from: `Breadcrumb Item`
 
 Tokens and styles:
 - Colors: `card/muted-background`
-- Spacing and size: `spacing/1_5`, `spacing/3`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/3`
 - Radius: `button/radius`
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md)
@@ -113,6 +114,7 @@ Code: shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) (I
 Component set · 2 variants · default size 1184 × 56
 
 App top bar (shadcn site header) with sidebar trigger, Breadcrumb and global actions. Style=default: full-width bar with a bottom border, for the App page shell. Style=floating: the bar is a rounded pill with a border and shadow/sm, inset spacing/3 from the edges, for product marketing headers and apps on a muted canvas where the header floats over the content. Usage: eggux build-ui/components/navigation.md
+Needs at least 320; the breadcrumb wraps to a second line when space is short.
 
 **Use for**
 
@@ -142,6 +144,7 @@ App top bar (shadcn site header) with sidebar trigger, Breadcrumb and global act
 - Search opens the Command Dialog (⌘K / Ctrl K) and stays a visible button
 - Style=floating: keep it sticky with the inset; content scrolls under it, so give the page a top padding of the bar height plus the inset
 - One Style per product; do not mix floating and default between pages
+- Resize: min width 320; the breadcrumb fills its slot and wraps when space is short; trigger and actions keep their size
 
 **Accessibility**
 
@@ -169,7 +172,7 @@ Tokens and styles:
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
-Code: shadcn site header: `SidebarTrigger`, `Breadcrumb`, `Button`
+Code: `min-w-80`; breadcrumb `min-w-0 flex-1`
 
 ## Page Header
 
@@ -204,6 +207,7 @@ Usage: eggux build-ui/components/navigation.md
 - Title matches the last Breadcrumb item
 - Tabs for sub-views go right under it
 - Turn Show actions off when the page has no page-level action; never leave an empty slot
+- Resize: the header wraps: text fills (min 240), actions move under it in narrow columns; title and description up to 2 lines with ellipsis
 
 **Accessibility**
 
@@ -223,12 +227,12 @@ Built from: `Button`
 
 Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
 - Text styles: `body/small`, `heading/h3`
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
-Code: custom `<header>` with a heading, text and shadcn `Button` (One per page)
+Code: `flex flex-wrap gap-3`; text `min-w-60 flex-1`; title and description `line-clamp-2` (Actions wrap under the text)
 
 ## Nav Link
 
@@ -293,6 +297,7 @@ Code: shadcn `NavigationMenu` (`NavigationMenuContent`, `NavigationMenuLink`, `N
 Component · 1 variant · default size 834 × 260
 
 Mega menu panel under a Nav Link with its chevron (shadcn Navigation Menu). Opens on hover with a small delay and on click/Enter; Escape closes. Group links by what users want to do, not by internal team names.
+Needs at least 640; links reflow to one column below about 800. On phones put the links in a Sheet.
 
 **Use for**
 
@@ -318,6 +323,8 @@ Mega menu panel under a Nav Link with its chevron (shadcn Navigation Menu). Open
 - Navigation Menu Link description says what the user gets, not what the product is
 - Opens on hover with a small delay and on click or Enter
 - Mobile: the same links grouped in the full-screen menu
+- Resize: min width 640; links fill and wrap (each link at least 240), 2 columns at 834 and 1 below about 800; the featured card keeps 240
+- On phones put the links in a Sheet
 
 **Accessibility**
 
@@ -403,6 +410,7 @@ On-page navigation for long articles and docs, sticky on the right from 1280 wid
 - Clicking scrolls with an offset for sticky headers
 - Labels match the heading text
 - Title names the list: "On this page" for headings of the page, another title for lists of other pages ("Other policies")
+- Resize: the title fills and wraps to 2 lines with ellipsis; items fill
 
 **Accessibility**
 
@@ -534,6 +542,7 @@ First focusable element of every page, hidden until it gets keyboard focus; then
 - Hidden until focused, then shown top left above everything
 - Moves focus to the main content (the <main> landmark or the page title)
 - Add one per long repeated block; never remove it
+- Resize: hugs its label up to 320, then the label wraps (2 lines) centered
 
 **Accessibility**
 
@@ -553,7 +562,7 @@ Tokens and styles:
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md)
 
-Code: `<a href="#main" class="sr-only focus:not-sr-only">` (Target has `tabindex="-1"`)
+Code: `max-w-80 text-center`
 
 ## Page Toolbar
 
@@ -588,6 +597,7 @@ The row between a list page title and the list: search and Filters (with the act
 - Search, filters and view live in the URL
 - While rows are selected, Table Toolbar takes its place
 - On narrow screens search takes the full row and the rest wraps below
+- Resize: the toolbar wraps: the start group fills (min 256) with search between 128 and 320, the end group moves to a second line in narrow columns
 
 **Accessibility**
 
@@ -609,4 +619,4 @@ Tokens and styles:
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
-Code: custom flex: `Input`, `Button` + `Badge`, `ToggleGroup`, primary `Button` (Swapped for Table Toolbar while rows are selected; state in the URL)
+Code: `flex flex-wrap gap-2`; start `min-w-64 flex-1`; search `min-w-32 max-w-80 flex-1` (End group wraps to a second line)

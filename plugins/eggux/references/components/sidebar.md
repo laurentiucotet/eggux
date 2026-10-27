@@ -1,6 +1,6 @@
 # Sidebar
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -22,6 +22,9 @@ On the Figma page: "Example / Admin panel list with double sidebar", "Example / 
 Component set · 2 variants · default size 256 × 720
 
 shadcn Sidebar (uses sidebar/* tokens). Header, Content and Footer are native slots. Mode: expanded 256 / collapsed 48 (icon only, labels in tooltips). One active item per sidebar.
+
+
+Mode=expanded needs at least 240, Mode=collapsed 48; narrower than that use Mode=collapsed or a Sheet.
 
 **Use for**
 
@@ -52,6 +55,7 @@ shadcn Sidebar (uses sidebar/* tokens). Header, Content and Footer are native sl
 - Mode expanded 256, collapsed 48: icons only, labels in tooltips
 - Mobile: a Sheet opened from the header trigger (panel-left)
 - Level 2 only under an expanded parent with a Chevron; one level deep at most
+- Minimum width: Mode=expanded 240, Mode=collapsed 48; narrower than 240 use Mode=collapsed or the mobile Sheet
 
 **Accessibility**
 
@@ -211,6 +215,9 @@ Component · 1 variant · default size 288 × 283
 
 Switch between organizations, tenants or workspaces from the Sidebar Workspace. Shows the current one with a check, role and plan, search when there are more than 5, and create / manage at the bottom. Switching reloads data and keeps the user on the same kind of page.
 
+
+Needs at least 192; organization names, roles and actions truncate with an ellipsis.
+
 **Use for**
 
 - Users who belong to several companies, tenants or workspaces
@@ -236,6 +243,8 @@ Switch between organizations, tenants or workspaces from the Sidebar Workspace. 
 - Search appears when there are more than 5
 - Switching reloads data and keeps the user on the same kind of page
 - No toast after switching; the new organization's page is the feedback
+- Resize: organization name, role line and action labels fill and truncate to 1 line
+- Needs at least 192
 
 **Accessibility**
 
@@ -253,13 +262,16 @@ Tokens and styles:
 
 Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
 
-Code: `DropdownMenu` or `Popover` + `Command`
+Code: `DropdownMenu` content (`min-w-48`; names, roles and action labels `truncate`)
 
 ## Sidebar Double
 
 Component set · 2 variants · default size 288 × 720
 
 Two-level app navigation: an icon rail for sections (Rail header, Rail, Rail footer slots) and a panel for the pages of the active section, with a header (Panel title, Panel actions slot) and the Panel slot for Sidebar Groups. Collapsed shows the rail only. Use when sections have many pages each; one level fits in Sidebar. Code: shadcn Sidebar with collapsible="icon" for the rail plus a second Sidebar for the panel.
+
+
+Mode=expanded needs at least 288, Mode=collapsed 48.
 
 **Use for**
 
@@ -288,6 +300,7 @@ Two-level app navigation: an icon rail for sections (Rail header, Rail, Rail foo
 - Panel title repeats the rail item's name
 - Panel actions only for the section (add a page or an item), one or two Button Icon
 - Rail icons have Tooltips with the section name
+- Minimum width: Mode=expanded 288 (rail 48 and panel 240), Mode=collapsed 48
 
 **Accessibility**
 
@@ -315,4 +328,4 @@ Tokens and styles:
 
 Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
 
-Code: shadcn `Sidebar` `collapsible="icon"` (rail) + a second `Sidebar` (panel) (Panel opens as a left `Sheet` on mobile)
+Code: shadcn `Sidebar` (rail + panel) (Expanded `min-w-72`)

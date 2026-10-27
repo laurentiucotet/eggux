@@ -1,6 +1,6 @@
 # Table
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -415,6 +415,7 @@ Bulk action bar shown above the table while rows are selected: "N selected" + ac
 - After selecting a page, offer "Select all 1,284 invoices"
 - Destructive bulk actions confirm with the count
 - One toast reports the result with counts and failures: "18 sent, 2 failed"
+- Resize: the selection text fills (at least 128, 1 line); the row wraps, so in narrow tables the Actions drop under it
 
 **Accessibility**
 
@@ -437,13 +438,16 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md), [bulk-actions](../../skills/build-ui/patterns/bulk-actions.md)
 
-Code: custom bar on shadcn `Table` + TanStack Table row selection (Shows "N selected" and the bulk actions)
+Code: custom (`flex flex-wrap gap-2`; selection `min-w-32 flex-1 truncate`)
 
 ## Data Grid Toolbar
 
 Component · 1 variant · default size 1200 × 36
 
 Toolbar above a data grid: saved views, search, filters with active count, columns, group by, export. While rows are selected, show Table Toolbar (bulk actions) in its place.
+
+
+Needs at least 512; the End slot wraps under the Start slot when both do not fit.
 
 **Use for**
 
@@ -470,6 +474,8 @@ Toolbar above a data grid: saved views, search, filters with active count, colum
 - Filters show the active count; active filters appear as chips
 - Export exports the current view
 - Search, filters and sort are kept in the URL
+- Resize: the row wraps; when Start and End do not fit, the End slot drops under the Start slot
+- Needs at least 512; in narrower places keep search and a Filters button only
 
 **Accessibility**
 
@@ -519,6 +525,7 @@ Content of a group header row: put it in a Table Cell Type=expanded that spans a
 - The chevron collapses and expands the group
 - Count and subtotal summarize the group; the subtotal uses the column's number format
 - Grouping is chosen with Group by in the Data Grid Toolbar
+- Resize: the label fills (at least 48, 1 line with an ellipsis); the count hugs; the subtotal hugs up to 160 with an ellipsis
 
 **Accessibility**
 
@@ -552,6 +559,9 @@ Component · 1 variant · default size 1040 × 60
 
 Under a table: range with the total and the object name, rows per page (10, 20, 50, 100), Pagination. Keep it when there is one page (range only), so the total is always visible.
 
+
+Needs at least 448; when the row is too narrow, Pagination wraps to its own line.
+
 **Use for**
 
 - Under every paginated table or data grid
@@ -575,6 +585,8 @@ Under a table: range with the total and the object name, rows per page (10, 20, 
 - Rows per page: 10, 20, 50, 100
 - Under 900 px, turn off Show rows per page
 - Changing filters resets to page 1
+- Resize: the range fills (at least 160, 1 line with an ellipsis); the row wraps, so under about 800 Pagination drops to its own line
+- Needs at least 448
 
 **Accessibility**
 
@@ -596,4 +608,4 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-Code: shadcn data-table pagination (`Select` for page size + `Pagination`)
+Code: shadcn data-table pagination (Container `flex flex-wrap gap-y-3 min-w-[448px]`; range `min-w-40 flex-1 truncate`)

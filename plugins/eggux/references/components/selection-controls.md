@@ -1,6 +1,6 @@
 # Selection controls
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -44,6 +44,7 @@ shadcn Checkbox with label. Inside forms that save on submit. Indeterminate only
 - A consent checkbox says what the user agrees to, not "I agree"
 - Never pre-tick consent or anything with consequences
 - State=error marks the box; the message comes from Field
+- Resize: the label hugs, and wraps under its own width when the checkbox is narrower than the text; the box keeps its size
 
 **Accessibility**
 
@@ -172,6 +173,7 @@ Usage: eggux build-ui/patterns/settings-and-admin.md
 - Temporarily unavailable: State=disabled with the reason
 - Show description says what the setting does or what it costs, in one sentence; the switch aligns to the first line
 - Use one Size per list; match the Size of the Buttons and fields around it
+- Resize: the text column fills; label 2 lines and description 3 lines, then an ellipsis; the switch keeps its size
 
 **Accessibility**
 
