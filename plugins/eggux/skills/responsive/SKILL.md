@@ -29,6 +29,11 @@ For each auto-layout row and column in the component, decide and write down:
 | Icons, avatars, thumbnails | Fixed size; images FILL with a ratio, min and max width |
 | Groups of trailing items | Wrap (`layoutWrap = 'WRAP'` with row gap) or move under the main column below a breakpoint |
 
+Some components have a real minimum (a calendar, a comparison table, a data grid toolbar, a
+chart with a legend): set `minWidth` on every variant of the component instead of squeezing it.
+The tidy script then tests it at `Min width (N)` and skips narrower cells, and the doc says where
+it fits ("needs at least 320; in a 1/4 column use the compact variant").
+
 Then pick the narrow behavior: shrink (truncate), wrap (trailing items drop to a new line) or
 stack (a `Layout=stacked` or `Size=compact` variant for widths under about 400). Rows in tables
 and lists usually truncate; cards wrap; headers and toolbars stack or hide secondary actions.
