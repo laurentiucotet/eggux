@@ -3,6 +3,28 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.61.0
+Responsive components and inline comments.
+- New skill `/eggux:responsive`: a resize contract per component (what fills, hugs or stays fixed,
+  min and max widths, truncation, wrapping, stacking), `check.js` that measures stress tests
+  (squeezed, runaway, overflowing, clipped and tall text) and fix recipes. new-component,
+  update-component, tidy-component and review call it. The tidy script's generated stress test
+  stops at a component's `minWidth` and adds a `Min width (N)` cell.
+- Library audit and fixes: 154 components with 954 width breaks before, 14 with 25 deliberate
+  findings after (long quotes and emails grow, amounts never wrap, Tabs and Toggle Group hug their
+  items, Scroll Area clips). About 110 components fixed (text fills with line limits and ellipsis,
+  max widths on badges and values, wrapping rows, Badge max width 256, Avatar initials stay inside);
+  about 45 got a documented minimum width (Comparison Table 768 / 1024, Date Range Picker 658,
+  Carousel Hero 768, Data Grid Toolbar 512, Sidebar 240, Calendar 250, Email parts 320 and more).
+  Every changed component has resize rules in its docs and a resize row in the code mapping.
+- Inline comments on selected text: `Selection Toolbar`, `Comment Highlight` (open, active,
+  selected, resolved; a text decoration highlight that stays editable), `Comment Thread` (default,
+  active, resolved), `Comments Panel` (threads, empty), tokens `comment/highlight`,
+  `comment/highlight-active`, `comment/selection`; `Block / Document with Comments` (Content page);
+  new SCREENS page Documents with the commenting flow (reading, text selected, writing, posted and
+  replied, resolved; desktop, mobile, Dark).
+- Docs frames rebuilt on 51 component pages and `references/components/` regenerated.
+
 ## 0.60.1
 The remaining defects found while building wave 2.
 - Marketing and content: Trust Badge and Check Item `Tone=default|on-primary|inverted`; Quote
