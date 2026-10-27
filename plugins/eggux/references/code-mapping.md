@@ -77,16 +77,16 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Phone Input` | react-phone-number-input (libphonenumber-js) + shadcn `Popover` + `Command` country list | Store E.164; `type="tel"`, `autocomplete="tel"` |
 | `Date Input` | react-aria `DateField` + shadcn `Popover` with `Calendar` (react-day-picker) | Segments in locale order |
 | `Duration Input` | custom: two shadcn `Input`s (`inputmode="numeric"`) with unit addons | Parse "1:30", "90", "1.5h" on blur; store minutes |
-| `Range Input` | custom: two shadcn `InputGroup`s in a `<fieldset>`; zod `refine` min <= max | Either side may be empty |
+| `Range Input` | each field `min-w-0 flex-1`; unit `max-w-8 truncate shrink-0`; value `truncate` | |
 | `Address Autocomplete` | shadcn `Popover` + `Command` (`shouldFilter={false}`) fed by a places API (Google Places, Mapbox) | Debounce, 3 characters minimum; fills the address Fields |
 | `Select Option` | shadcn `CommandItem` / `SelectItem` with `Avatar` or icon, two text lines, check icon | Same Leading for every option in a list |
 | `Recurrence Picker` | custom: `Number Input`, `Select`, `ToggleGroup` (multiple), `RadioGroup`; rrule | Summary from `rrule.toText()` or own strings; account time zone |
 | `Option Card` | shadcn `RadioGroup` (Control=radio) or `Checkbox` (Control=checkbox) with a `Label` wrapping a `Card` (`has-[:checked]:ring-2`) | Whole card is the target; checkbox groups in a `<fieldset>` |
 | `File Field` | custom: hidden `input type="file"` + shadcn `Button`, file name, remove `Button` | Several files: `File Dropzone` (react-dropzone) |
 | `Swatch`, `Swatch Picker` | shadcn `RadioGroup` (or `ToggleGroup type="single"`) with custom items: a color dot (Type=color) or a label box (Type=label) | Color or option name as label; unavailable: `aria-disabled`, still focusable |
-| `Form Section` | `<section class="grid gap-6 lg:grid-cols-[280px_1fr]">` with heading, description and `FormField`s | Stacked below 1024 px; `Separator` between sections |
+| `Form Section` | `Layout=side`: `@container` grid `@min-[640px]:grid-cols-[280px_1fr]`, stacked below 640 | Same component in code; the container query replaces the variant switch |
 | `Fieldset` | `<fieldset>` + `<legend>`; shadcn `RadioGroup` or `Checkbox` items, `FormMessage` for the group | Error belongs to the group |
-| `Error Summary` | shadcn `Alert` (destructive) with anchor links from react-hook-form `formState.errors` | Focus moves here on submit; links focus the field |
+| `Error Summary` | list `w-full`; each link `line-clamp-2` | |
 | `Requirement List` | custom `<ul>` of `Check Item`s, state from the zod schema of the field | `aria-live="polite"`; nothing red before submit |
 | `Check Item` | `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status | Mark=check, dash, x. Tone=on-primary: label and icon `text-primary-foreground`; Tone=inverted: `text-background`, dash `text-muted` |
 | `Password Strength` | custom bars + text under the shadcn `Input` | Level in text, not only color |
@@ -94,21 +94,21 @@ later. "custom" means compose it from the listed primitives in the project.
 | `App Launcher` | shadcn `Popover` with a `grid-cols-3` of links | Current app `aria-current="page"`; only 4+ apps |
 | `Confirm Popover` | shadcn `Popover` (`role="alertdialog"`) + two `Button`s | Irreversible actions use `AlertDialog` |
 | `Back Link` | `Link` with `ArrowLeft`, `text-sm text-muted-foreground` | Fixed URL to the list; restore its filters and scroll |
-| `Skip Link` | `<a href="#main" class="sr-only focus:not-sr-only">` | Target has `tabindex="-1"` |
+| `Skip Link` | `max-w-80 text-center` | |
 | `Account Menu` | shadcn `DropdownMenu` with `DropdownMenuLabel` (Avatar, name, email) | Log out last after `DropdownMenuSeparator` |
 | `Show More` | shadcn `Collapsible` or `line-clamp-3` + `Button variant="link"` | `aria-expanded` on the toggle |
 | `Load More` | shadcn `Button variant="outline"` + count; TanStack Query `useInfiniteQuery` | Focus the first new item; count in `aria-live` |
 | `Shortcut Row` | custom `flex justify-between` + shadcn `Kbd` / `KbdGroup` | ⌘ on Mac, Ctrl elsewhere |
 | `Resizable Panels` | shadcn `Resizable` (react-resizable-panels) | `autoSaveId` remembers the split; one panel at a time on mobile |
 | `FAB` | shadcn `Button size="icon"` `rounded-full shadow-lg fixed bottom-20 right-4` | Mobile only; desktop uses a primary Button |
-| `Action Sheet` | shadcn `Drawer` (vaul) with a list of `Button`s and a separate Cancel | Desktop: `DropdownMenu` |
-| `Countdown` | custom tiles from a `useCountdown` hook (1 s interval, server end time) | `role="timer"`, `aria-live="off"`; end time in `<time datetime>` |
+| `Action Sheet` | title `line-clamp-2`, description `line-clamp-3`, action labels `min-w-0 flex-1 truncate` | |
+| `Countdown` | tile values and units `truncate text-center` | Tiles keep their width |
 | `Loading Overlay` | custom: `absolute inset-0 bg-background/60` layer + shadcn `Spinner` | `aria-busy` on the region; label in `role="status"` |
 | `Presence Bar` | shadcn `Avatar` group + `HoverCard` | Presence from Liveblocks, Yjs awareness or your websocket |
 | `List Item` | custom row (`ul` / `li`) with shadcn `Avatar` and `Badge` | Show leading and Show trailing map to optional children. `Show divider` = `border-b` on the `li` (or `divide-y` on the `ul`), off on the last row |
 | `Tree Item` | custom tree (`role="tree"`) with shadcn `Checkbox` and `Badge` | Arrow keys expand and collapse |
-| `Top Bar` | shadcn site header: `SidebarTrigger`, `Breadcrumb`, `Button` | |
-| `Page Header` | custom `<header>` with a heading, text and shadcn `Button` | One per page |
+| `Top Bar` | `min-w-80`; breadcrumb `min-w-0 flex-1` | |
+| `Page Header` | `flex flex-wrap gap-3`; text `min-w-60 flex-1`; title and description `line-clamp-2` | Actions wrap under the text |
 | `Mobile Header` | custom header with shadcn `Button size="icon"` and `Avatar`; Type=brand renders the product `Logo` (link to home) in place of the back button and title | Entry screens (sign in, sign up) use brand |
 | `Bottom Nav`, `Bottom Nav Item` | custom `<nav>` of links with `env(safe-area-inset-bottom)` | Current item `aria-current="page"` |
 | `Image Placeholder` | `<img>` or `next/image` with `aspect-ratio` and `object-cover` | `Show image` = render the image; off = muted box with a dot background and lucide `Image` icon (loading or missing image). The `Image` swap picks a sample photo: replace with the real `src` and alt |
@@ -151,11 +151,11 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Combo Chart` | Recharts `ComposedChart`: `Bar yAxisId="left"` + `Line yAxisId="right"` | Two `YAxis`, both from 0 |
 | `Treemap` | Recharts `Treemap` with a custom cell renderer | |
 | `Gantt Bar`, `Gantt Milestone`, Gantt block | SVAR Gantt, Frappe Gantt, or a custom grid with dnd-kit | |
-| `Page Toolbar` | custom flex: `Input`, `Button` + `Badge`, `ToggleGroup`, primary `Button` | Swapped for Table Toolbar while rows are selected; state in the URL |
+| `Page Toolbar` | `flex flex-wrap gap-2`; start `min-w-64 flex-1`; search `min-w-32 max-w-80 flex-1` | End group wraps to a second line |
 | `Trend Indicator` | custom: lucide `TrendingUp` / `TrendingDown` / `Minus` + `<span class="tabular-nums">`; Style=badge wraps both in a soft `Badge` | Direction from the data, tone from the meaning (`text-success`, `text-destructive`, `text-muted-foreground`, or the soft Badge of that tone); hidden "Up" / "Down" text |
 | `Metric Strip`, `Metric Strip Item` | `<dl class="grid grid-cols-2 md:grid-cols-4 divide-x">` with `dt` / `dd` + `Trend Indicator` | 3-5 items; one period said once nearby |
-| `Usage Meter` | shadcn `Progress` with a tone class + label row | `role="meter"`, `aria-valuenow`, `aria-valuemax`; near from 80%, over above 100%; the exposed bar's Value is the used share rounded to the nearest step |
-| `Leaderboard Row` | `<ol>` of rows with shadcn `Avatar`, `tabular-nums` value | Current row `aria-current="true"` and `bg-accent` |
+| `Usage Meter` | top row `flex flex-wrap`; label `min-w-30 flex-1 line-clamp-2`; usage `truncate max-w-40`; hint `line-clamp-3` | |
+| `Leaderboard Row` | rank `w-5 truncate`; name `min-w-20 flex-1 truncate`; value `max-w-22 truncate tabular-nums` | |
 | `Dashboard Widget` | react-grid-layout (12 cols, `draggableHandle`) with shadcn `Card` per item | Sizes 3, 4, 6, 12 columns; save the layout per user |
 | `Distribution Bar` | flex row of segments (width from the share) + legend `<ul>`; or Recharts `BarChart layout="vertical"` stacked to 100% | `var(--chart-N)` per entity; 2-6 segments |
 | `Bullet Chart` | Recharts `BarChart layout="vertical"`: stacked range bars, thin value `Bar`, `ReferenceLine` for the target; or custom SVG | Same scale for stacked bullets |
@@ -175,7 +175,7 @@ later. "custom" means compose it from the listed primitives in the project.
 ## Content, communication, AI
 | Figma | Code | Notes |
 |---|---|---|
-| `Rich Text Editor` | Tiptap (or Lexical) + shadcn `Toggle` toolbar | |
+| `Rich Text Editor` | footer `flex gap-2`; hint `min-w-0 flex-1 line-clamp-2`; count `shrink-0 tabular-nums` | |
 | `Post Card` | shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link | `size` prop (default, sm) via `cva`: sm = smaller gaps, `h4` title class, horizontal image `basis-1/3 min-w-[120px] max-w-[240px]` instead of half, compact image `size-12` |
 | `Code Block` | Shiki or Prism + copy `Button` | |
 | `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, larger type |
@@ -197,7 +197,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Color Picker` | react-colorful in `Popover` | |
 | `Coachmark`, `Hotspot` | Driver.js, Shepherd or `Popover` anchored to the target | |
 | `Video Player` | native `video` or Vidstack | Size=lg: play button `size-24` (96 px) for hero and full-width players |
-| `Kanban Card`, `Kanban Column` | dnd-kit + custom | |
+| `Kanban Card`, `Kanban Column` | card `min-w-56`, labels `flex flex-wrap`, title `line-clamp-3`, due `truncate max-w-20`; column `min-w-64 shrink-0`, title `min-w-0 flex-1 truncate` | Board scrolls horizontally (`overflow-x-auto`) |
 | `Calendar Event`, scheduler blocks | custom grid, or FullCalendar themed with tokens | |
 | Help center and docs blocks | page sections composed from `Input`, `Card`, `Breadcrumb`, `Button` | Search: shadcn `Command` (⌘K) or Algolia DocSearch; docs content: MDX (Nextra, Fumadocs) |
 | `Block / Status Page` uptime bars | custom flex of 90 spans with `title` and an uptime % in text | Data from your status provider (Instatus, Better Stack, Atlassian Statuspage) |
@@ -226,7 +226,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Mention Chip` | Tiptap `Mention` extension + `Command` list; rendered as `<a>` | Mention notifies once; reader mentions use the warning tint |
 | `Reaction Bar`, `Reaction` | custom flex of shadcn `Toggle` (`aria-pressed`) + `Popover` emoji picker (emoji-mart or frimousse) |  |
 | `Thread Summary` | custom button + `Avatar` group; `Collapsible` or `Sheet` | `aria-expanded` when it opens in place |
-| `Job Listing` | custom `<li>` with a stretched `<a>` + `Badge` + `Button asChild` | Salary range with currency and period |
+| `Job Listing` | row `flex flex-wrap gap-3`; body `min-w-60 flex-1`; title and meta `line-clamp-2`; salary `truncate max-w-56` | End group wraps under the body |
 | `AI Loading`, `Confidence Indicator`, `AI Review Bar` | shadcn `Skeleton`, `Tooltip`, `Button` + custom; Vercel AI SDK for streaming; review bar on Tiptap track changes or a diff of the form state | Never apply low-confidence values automatically; store who accepted an AI value |
 
 ## Commerce
@@ -252,8 +252,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Testimonial Card` | shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>` |  |
 | `Logo Tile` | `<li>` with `<img alt>` or inline SVG in `currentColor` (`text-foreground`, `opacity-70` for Style=plain) | Logo is an instance swap; `<a>` only when it links to a case study or integration; alt = company name |
 | `Logo`, `Logo Mark` | inline SVG in `currentColor` (or `<img alt>` with the product name) | Logo Mark is the symbol alone |
-| `Map` | static map image or an embedded map (Mapbox, Google) | Address in text next to it |
-| `Device Frame` | custom `<figure>`: border, top bar (dots, URL), `<img>` or live component | Screenshot at 1:1 |
+| `Map` | pin label `max-w-48`, title and address `truncate` | |
+| `Device Frame` | address `min-w-0 flex-1 truncate` | |
 | `Icon Tile` | custom `<div class="flex size-10 items-center justify-center rounded-md">` + lucide icon (`size-5`, `aria-hidden`) | Size: sm `size-8` + `size-4` icon, default `size-10` + `size-5`, lg `size-12 rounded-lg` + `size-6`. Style: neutral `bg-muted text-foreground`; brand `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`; gradient `bg-linear-to-br from-[var(--icon-tile-gradient-start)] to-[var(--icon-tile-gradient-end)] text-primary-foreground`; outline `border text-muted-foreground`. Decorative |
 | `Background / Grid` | custom absolutely positioned `div` (`absolute inset-0 -z-10 pointer-events-none`, `aria-hidden`) | `bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-60`; `Fade` = `[mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]` |
 | `Background / Dots` | custom absolutely positioned `div` (`aria-hidden`) | `bg-[radial-gradient(var(--muted-foreground)_0.75px,transparent_0.75px)] bg-[size:24px_24px] opacity-50`; `Fade` = same radial mask as Grid |
@@ -395,15 +395,15 @@ style block for clients that support it).
 | Template frame `Screen / Email / *` (muted canvas + 600 body) | `Html`, `Head`, `Preview`, `Body` (background section/muted-background), `Container` (maxWidth 600) | `Preview` holds the preheader text (inbox preview, 40 to 90 characters); `Tailwind` wrapper optional |
 | `Email / Header` | `Section` + `Row` with `Column` `Img` (logo, `alt` = company name, height 32) and `Column` `Link` "View in browser" | Logo as a hosted PNG at 2x; SVG is not supported in Gmail and Outlook |
 | `Email / Hero` | `Section` with optional `Img` (width 520, rounded), `Text` eyebrow, `Heading as="h1"`, `Text` | One h1 per email; same words as the subject |
-| `Email / Button` | `Button` (`href`, padding 12px 24px, borderRadius 9999, background primary, color primary-foreground, fontWeight 600) | Renders a bulletproof padded link (works with images off, MSO padding hack included); Align=center: wrap in `Section` with `textAlign: "center"` |
+| `Email / Button` | `Button` with `maxWidth: 240`, `whiteSpace: nowrap`, `overflow: hidden`, `textOverflow: ellipsis` | Keep labels short; the template is at least 320 wide |
 | `Email / Content` | `Section` with optional `Heading as="h2"` and `Text` (16/28); links with `Link` | Fallback URL under a button goes here as plain text + `Link` |
 | `Email / Code` | `Section` (background muted, borderRadius 12, padding 24, textAlign center) with `Text` label and `Text` (fontFamily monospace, fontSize 36, letterSpacing 10) | Code also in the subject line; never an image |
 | `Email / Details`, `Email / Details Row` | `Section` (border, borderRadius 8, padding "12px 20px") with one `Row` per line: `Column` `Text` label + `Column align="right"` `Text` value | Tables carry `role="presentation"` (React Email adds it) |
 | `Email / Line Items`, `Email / Line Item`, `Email / Total Row` | `Section` with `Row` per item: `Column` `Img` (64 x 64), `Column` `Text` name + meta, `Column align="right"` `Text` amount; `Hr`; `Row` per total | Total row bold 18; amounts formatted with `Intl.NumberFormat` and the currency |
 | `Email / Callout` | `Section` (backgroundColor tone tint as solid hex, borderRadius 8, padding 16) with `Row`: `Column` `Img` icon 20 + `Column` `Text` title and `Text` body | Use solid hex tints (rgba is unreliable in Outlook); icon PNG, `alt=""` |
 | `Email / Divider` | `Hr` (borderColor border, margin "0 40px") | |
-| `Email / Stats`, `Email / Stat` | `Row` with up to three `Column` cells (background muted, border, borderRadius 8, padding 16): `Text` value, `Text` label, `Text` change | Cells stack under 480 px with a media query in `Head` |
-| `Email / Article` | `Row`: `Column` `Img` (160 x 120) + `Column` `Heading as="h3"`, `Text`, `Link` | Whole title links to the article too |
+| `Email / Stats`, `Email / Stat` | Cells stack under 480 (media query), 2 per row where the client supports it | Min width 320; stat cell min 112 |
+| `Email / Article` | `Row` with two `Column`s; stack under 480 with a media query in `Head` (`.stack td { display:block; width:100% }`) | Min width 320; title `line-clamp-2`, text `line-clamp-3` are not reliable in mail clients: keep copy short instead |
 | `Email / Footer` | `Section` (textAlign center) with `Row` of `Link` + `Img` social icons (20 px), `Text` address, `Text` reason, `Link` preferences, `Link` unsubscribe | Also send the `List-Unsubscribe` and `List-Unsubscribe-Post` headers for marketing mail |
 
 ## Style alternatives
@@ -461,6 +461,25 @@ New style values added to existing components in 0.58.0 (the default value keeps
 | `Countdown` (Style=default, boxed, inline) | default tiles `bg-[var(--card-muted-background)] rounded-md px-3 py-2`; boxed `bg-card border shadow-xs rounded-lg p-3 text-3xl`; inline `flex items-start gap-3` with `:` separators `text-muted-foreground` | Same `useCountdown` hook; `tabular-nums` on digits |
 | `Stepper`, `Step` (Orientation=vertical) | custom `<ol class="flex flex-col">` of steps: rail (`flex flex-col items-center` with indicator and `w-px flex-1 bg-border` connector) + text | Side column or checklist |
 | `Stepper`, `Step` (Style=dots) | horizontal: `<ol class="flex items-center gap-2">` of `<li class="size-2 rounded-full bg-primary">` (current `w-6`, upcoming `bg-muted-foreground`, error `bg-destructive`); vertical: dot `size-2` on the rail, current `ring-2 ring-primary bg-background` | Each dot `aria-label="Step 2 of 4, current"`; `aria-current="step"` |
+
+## Resize behavior
+How components that changed for narrow widths behave in code (from `/eggux:responsive`). The main row
+above still maps the component; these rows add the resize classes.
+
+| Figma | Code | Notes |
+|---|---|---|
+| `Email / Details Row` | `Column` label + `Column align="right"` value; under 480 the value column drops under the label (media query) | Value never wraps (`whiteSpace: nowrap`) |
+| `Comment` | header `flex flex-wrap gap-x-2`; name `truncate max-w-60`; time `truncate max-w-40 shrink-0` | Body `min-w-0` |
+| `File Dropzone` | title and hint `text-center line-clamp-2` | |
+| `Filter Condition` (in `Filter Group`) | row `flex flex-wrap gap-2`; field and operator `shrink-0`; value `flex-1 min-w-36` | Below about 760 the operator and value wrap |
+| `Date Input`, `Duration Input` | `min-w-40`; segments fixed `w-[2ch]`/`w-[4ch]`, `overflow-hidden text-ellipsis` | |
+| `Phone Input`, `Currency Input` | picker `max-w-28` / `max-w-24 shrink-0`, code `truncate`; value `min-w-0 flex-1 truncate` | Currency Input `min-w-40` |
+| `Input Group` | input `min-w-0 flex-1 truncate`; addons `shrink-0` | |
+| `Navigation Menu Panel` | `min-w-[640px]`; links `grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))]`; featured `w-60 shrink-0` | On phones use a `Sheet` |
+| `Metric Strip`, `Metric Strip Item`, `Trend Indicator` | strip `grid grid-cols-[repeat(auto-fit,minmax(128px,1fr))]`; trend `flex flex-wrap gap-x-1` | |
+| `Kbd` | `min-w-5 px-1` (width hugs) | |
+| `Store Badge` | fixed size image, `shrink-0` | Stack badges in narrow columns |
+| `Breadcrumb` | list `flex flex-wrap` (shadcn default) | Use `BreadcrumbEllipsis` for deep paths |
 
 ## Admin
 | Figma | Code | Notes |
