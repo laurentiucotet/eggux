@@ -1,6 +1,6 @@
 # Image
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -110,6 +110,7 @@ Map placeholder for contact, offices and store locators. Resize freely; roads sc
 - Always pair the map with the written address
 - Resize freely; roads scale and the pin stays centered
 - Production: a static map image (Mapbox, Google) as fill or an interactive embed, with pin, label, attribution
+- Resize: the pin stays centered; its label hugs up to 192 and title and address stay on 1 line with ellipsis
 
 **Accessibility**
 
@@ -135,7 +136,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: static map image or an embedded map (Mapbox, Google) (Address in text next to it)
+Code: pin label `max-w-48`, title and address `truncate`
 
 ## Image Cropper
 
@@ -355,6 +356,7 @@ Usage: eggux build-ui/patterns/marketing-pages.md
 - The address matches the screen
 - Realistic content (Acme, invoices), no placeholder text
 - Prefer an Image / Screenshot component on marketing pages; a live block only when it must stay editable
+- Resize: the browser address fills the bar and stays on 1 line with ellipsis; the screen fills
 
 **Accessibility**
 
@@ -383,7 +385,7 @@ Tokens and styles:
 
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: custom `<figure>`: border, top bar (dots, URL), `<img>` or live component (Screenshot at 1:1)
+Code: address `min-w-0 flex-1 truncate`
 
 ## Image Figure
 

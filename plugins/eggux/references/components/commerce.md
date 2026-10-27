@@ -1,6 +1,6 @@
 # Commerce
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -66,6 +66,7 @@ Usage: eggux build-ui/patterns/commerce.md
 - Pick the photo ratio once per grid on the exposed Image, never by resizing the image layer
 - Show rating on every card of a grid or on none; the count is the number of reviews
 - Sold out keeps Notify me even when quick add (Show action) is off in the grid; turn Show notify off only when there is no restock
+- Resize: name up to 2 lines, variant line 1 line, both with ellipsis
 
 **Accessibility**
 
@@ -100,7 +101,7 @@ Tokens and styles:
 
 Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: shadcn `Card` with an `<a>` stretched over the card, `Badge`, `Button` (icon) for wishlist (Whole card is one link; Add to cart opens the `Mini Cart`)
+Code: shadcn `Card` (name `line-clamp-2`; variant `truncate`)
 
 ## Line Item
 
@@ -264,6 +265,7 @@ Status uses soft Badges: processing neutral, shipped info, delivered and paid su
 - The whole row opens the order page
 - Cancelled orders stay in the list with their total
 - In a list with the order detail beside it, the open order is State=selected; never a fill override
+- Resize: order number and meta fill, 1 line with ellipsis (order column at least 160); total hugs, never wraps, at least 96, right aligned; below about 420 the status, total and chevron wrap under the order
 
 **Accessibility**
 
@@ -287,18 +289,21 @@ Built from: `Badge`. Icons: chevron-right
 
 Tokens and styles:
 - Colors: `background/accent`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/3`, `spacing/4`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`, `spacing/4`
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: `<a>` row + shadcn `Badge`, `<time>` (Status names from one shared list)
+Code: `<a>` row + shadcn `Badge` (`flex flex-wrap gap-4 gap-y-2`; order `flex-1 min-w-40`, number and meta `truncate`; total `min-w-24 text-right whitespace-nowrap`)
 
 ## Shipment Tracker
 
 Component · 1 variant · default size 640 × 144
 
 Where an order is: the expected day first, carrier and tracking number, then the steps with dates (Ordered, Shipped, Out for delivery, Delivered). Problems (delayed, returned) replace the step with an error and say what happens next. Link to the carrier for the full scan history. The four Steps are exposed: set each Title, Description (date and time) and State in the panel.
+
+
+Width: the Track button wraps under the text when narrow; the four steps need at least 560. In a narrower column show the steps as a Timeline.
 
 **Use for**
 
@@ -325,6 +330,7 @@ Where an order is: the expected day first, carrier and tracking number, then the
 - Track links to the carrier for the full scan history
 - The tracking number can be copied
 - Several parcels: one tracker per parcel
+- Resize: the Track button wraps under the text (text at least 160); ETA and carrier 1 line with ellipsis; the four steps need at least 560, in a narrower column show the steps as a Timeline
 
 **Accessibility**
 
@@ -341,13 +347,13 @@ Built from: `Button`, `Step`. Icons: package
 
 Tokens and styles:
 - Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/3`, `spacing/5`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`, `spacing/5`
 - Radius: `radius/xl`
 - Text styles: `heading/h4`, `ui/caption`
 
 Guides: [stepper](../../skills/build-ui/components/stepper.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: custom header + `<ol>` of `Step` (`aria-current="step"`; carrier tracking URL)
+Code: custom + `Step` (`min-w-[560px]`; header `flex flex-wrap`, text `flex-1 min-w-40`, eta and carrier `truncate`)
 
 ## Address Card
 
@@ -385,6 +391,7 @@ Usage: eggux build-ui/patterns/commerce.md
 - Remove asks to confirm (Confirm Popover)
 - One default address; the Default badge sits next to the name
 - Read-only places (order details, receipts) turn off Show actions and Show radio
+- Resize: the name row fills and wraps the Default badge under a long name; the name caps at 200, 1 line with ellipsis
 
 **Accessibility**
 
@@ -414,7 +421,7 @@ Tokens and styles:
 
 Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: shadcn `RadioGroup` + `Card` items (`Label` wraps the card), `<address>`
+Code: radio card (name row `flex flex-wrap gap-2 gap-y-1`; name `max-w-[200px] truncate`)
 
 ## Payment Method Card
 
@@ -452,6 +459,7 @@ Usage: eggux build-ui/patterns/commerce.md
 - Removing the default asks which method replaces it
 - Brand marks come from the payment provider
 - Show default only where the default can change (billing settings); turn it off on receipts and past orders
+- Resize: the brand name truncates inside its 44 box; card and expiry are 1 line with ellipsis
 
 **Accessibility**
 
@@ -479,7 +487,7 @@ Tokens and styles:
 
 Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: shadcn `Card` + `Badge` + `DropdownMenu` (Data from the payment provider (Stripe `PaymentMethod`); last 4 digits only)
+Code: radio card (brand mark `w-11 truncate text-center`)
 
 ## Payment Method Mark
 

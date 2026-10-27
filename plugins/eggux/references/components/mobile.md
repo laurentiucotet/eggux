@@ -1,6 +1,6 @@
 # Mobile
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -253,6 +253,7 @@ A short list of actions for one item on mobile, rising from the bottom: share, d
 - Cancel sits apart at the bottom
 - Tap outside or swipe down closes it
 - Title names the object ("INV-2041")
+- Resize: title (2 lines) and description (3 lines) fill and wrap; action labels fill and stay on 1 line with ellipsis; Cancel is centered on 1 line
 
 **Accessibility**
 
@@ -286,7 +287,7 @@ Tokens and styles:
 
 Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
 
-Code: shadcn `Drawer` (vaul) with a list of `Button`s and a separate Cancel (Desktop: `DropdownMenu`)
+Code: title `line-clamp-2`, description `line-clamp-3`, action labels `min-w-0 flex-1 truncate`
 
 ## Store Badge
 
@@ -305,6 +306,9 @@ Rules
 One badge per store, same height, 8 to 12 px apart.
 Keep the store text as the stores write it; translate the small line only with the store's localized badge.
 Link each badge to the listing; the accessible name is the store, e.g. "Download on the App Store".
+
+
+Never narrower than its artwork (store guidelines); in a narrow column stack the two badges.
 
 
 Usage: eggux build-ui/patterns/mobile.md
@@ -332,6 +336,7 @@ Usage: eggux build-ui/patterns/mobile.md
 - App Store first, then Google Play, same height, 8 to 12 px apart
 - Keep the store text as the stores write it; translate only with the store's localized badge
 - Link each badge to its listing
+- Resize: never narrower than its artwork (min width = badge width); in a narrow column stack the badges instead of shrinking them
 
 **Accessibility**
 
@@ -350,6 +355,8 @@ Tokens and styles:
 - Text styles: `heading/h4`, `ui/caption`
 
 Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
+
+Code: fixed size image, `shrink-0` (Stack badges in narrow columns)
 
 ## QR Code
 

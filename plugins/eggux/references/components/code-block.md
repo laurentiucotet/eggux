@@ -1,6 +1,6 @@
 # Code Block
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -157,6 +157,7 @@ One API endpoint in a reference list: method badge, path in mono with parameters
 - Summary starts with a verb: "Retrieve an invoice"
 - The whole row links to the endpoint page; the open endpoint is State=selected, one per list
 - Order within a resource: list, create, retrieve, update, delete
+- Resize: path fills (at least 120, 1 line with ellipsis); the summary caps at 200 and wraps under the path when narrow
 
 **Accessibility**
 
@@ -179,12 +180,12 @@ Built from: `Badge`
 
 Tokens and styles:
 - Colors: `background/accent`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/2`, `spacing/3`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`
 - Text styles: `body/small`, `code`
 
 Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
-Code: `<a>` row with shadcn `Badge` (method variant) + `<code>` path (GET info, POST success, PUT / PATCH warning, DELETE destructive)
+Code: `<a>` row (`flex flex-wrap gap-3 gap-y-1`; path `flex-1 min-w-[120px] truncate`; summary `max-w-[200px] truncate`)
 
 ## Log Row
 
@@ -273,6 +274,7 @@ What changed between two versions of a text, contract, config or code: file name
 - Counts in the header: +3 −1
 - Unified by default; side by side only on wide screens (1024 and up)
 - No changes: say "No differences" instead of an empty frame
+- Resize: file name fills (at least 120), 1 line with ellipsis; added and removed counts cap at 64
 
 **Accessibility**
 
@@ -383,6 +385,7 @@ Structured data people inspect: webhook payloads, API responses, event propertie
 - Copy copies the whole payload, formatted
 - Long strings wrap; null shows as null, never blank
 - Mask secrets (tokens, card numbers) before they reach the viewer
+- Resize: each line fills the viewer; code truncates to 1 line with ellipsis (full value in the expanded node or on copy)
 
 **Accessibility**
 
@@ -400,4 +403,4 @@ Tokens and styles:
 
 Guides: [content](../../skills/build-ui/components/content.md), [audit-log](../../skills/build-ui/patterns/audit-log.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
-Code: custom tree on `<pre>`, or `react-json-view-lite` themed with tokens (`role="tree"`; collapsed after the first level for large payloads)
+Code: custom tree (each line `truncate` (no wrap); full value on expand or copy)

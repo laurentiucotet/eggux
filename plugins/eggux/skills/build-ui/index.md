@@ -69,6 +69,7 @@ component guides it names. Names are Figma components; inventory in
 | AI review of a document (proposed edits) | App | AI Document Review | ai-chat | ai-chat (AI Suggestion, AI Review Bar), rich-text-editor |
 | AI generate (images, documents, charts) | App | AI Generate | ai-chat, loading-states | ai-chat (Prompt Input, Model Picker, AI Loading, Artifact Card) |
 | Agent doing a multi-step task, agent run page | App or panel | Agent Task Run (run page; example "Agent run page"); example "agent at work" (Agent Plan, Artifact Card, Tool Call approval) | ai-chat, approvals, notifications | ai-chat |
+| Comments on selected text in a document (review, brief, contract) | App | Document with Comments (screens: SCREENS / Documents, Commenting) | record-page, unsaved-changes | comments-and-chat, rich-text-editor |
 | Transactional email (welcome, verify, sign-in link, reset, security notice, invite, invoice, receipt, payment failed, trial ending, digest, order confirmation) | Email template (600 column on a muted canvas; copy a `Screen / Email / *` from the Emails page) | Email / Header, Hero, Content, Button, Code, Details, Line Items, Callout, Stats, Article, Divider, Footer | email, auth, notifications, writing | (Email page) |
 
 ## By interaction

@@ -1,6 +1,6 @@
 # Approvals
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -46,6 +46,7 @@ One approver in a chain: marker, name, role and rule, status, time, comment. cur
 - Changing the request resets the steps that depend on what changed, and says so
 - Every decision is an audit log entry
 - Set the time line through the Time property in every Status; never type over the layer
+- Role wraps to 2 lines, time to 1 line, with ellipsis; the status badge keeps its size
 
 **Accessibility**
 
@@ -76,4 +77,4 @@ Tokens and styles:
 
 Guides: [approvals](../../skills/build-ui/patterns/approvals.md)
 
-Code: custom on the Timeline layout
+Code: custom timeline item (role `line-clamp-2`, time `truncate`)

@@ -134,6 +134,7 @@ Current tokens:
 | `icon-tile/gradient-start`, `icon-tile/gradient-end` | Light `neutral/700` to `900`, Dark `neutral/200` to `400`, Corporate `blue/600` to `800`, Showcase `brand/500` to `700` | Icon Tile Style=gradient; icon `foreground/primary` |
 | `gradient/primary-transparent`, `gradient/chart-3-transparent` | `background/primary`, `chart/3` at `opacity/0` | End stops of the gradient styles, so fades keep the hue |
 | `gradient/background-transparent` | `background/default` at `opacity/0` | End stop of edge fades over the page (Logo Marquee), so the fade keeps the surface color |
+| `comment/highlight`, `comment/highlight-active`, `comment/selection` | warning at `opacity/30` and `/60` (light modes), `/25` and `/40` (dark modes); ring at `/20` (light), `/40` (dark) | Comment Highlight text decoration and the selection tint in editors; `foreground/default` stays 6.3:1 or more; body text only |
 
 Naming: `<component>/<property>`,
 for example `button/radius`, `card/muted-background`. Sizes that change with density live in

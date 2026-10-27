@@ -22,7 +22,8 @@
    "Accepted values keep an \"AI generated\" label until edited, with Undo",
    "Low confidence says so in the Reason",
    "Several suggestions: \"Accept all\" at the top, still one by one below",
-   "Store who accepted the value and when"
+   "Store who accepted the value and when",
+   "Label and value fill the width; label 1 line with ellipsis; actions stay at their size"
   ],
   "a11y": [
    "Accept and Dismiss name the field (\"Accept Expense category\")",
@@ -59,7 +60,9 @@
    "Opening the sources shows exactly what was used",
    "State=generating shows what it reads; State=error says what failed and offers Try again",
    "Regenerate keeps the previous version until the new one is ready",
-   "The disclaimer uses the same words everywhere"
+   "The disclaimer uses the same words everywhere",
+   "Content text: up to 6 lines, then ellipsis; long answers go to Show More",
+   "Disclaimer fills the width and wraps; it never truncates"
   ],
   "a11y": [
    "Generating and ready are announced politely",
@@ -138,7 +141,8 @@
    "Steps that send, pay or delete become a Tool Call with Status=approval",
    "A failed step says what failed and what happens next; the plan never stops silently",
    "Background tasks say so and notify when done",
-   "After it finishes, keep the plan in the conversation, collapsed to its result"
+   "After it finishes, keep the plan in the conversation, collapsed to its result",
+   "Title wraps; status line: 1 line with ellipsis; Stop keeps its size"
   ],
   "a11y": [
    "Stop has a label and is always reachable by keyboard",
@@ -267,7 +271,8 @@
    "Last step: Connector off",
    "Changing the request resets the steps that depend on what changed, and says so",
    "Every decision is an audit log entry",
-   "Set the time line through the Time property in every Status; never type over the layer"
+   "Set the time line through the Time property in every Status; never type over the layer",
+   "Role wraps to 2 lines, time to 1 line, with ellipsis; the status badge keeps its size"
   ],
   "a11y": [
    "The chain is an ordered list; each step reads name, role, status and time",
@@ -381,7 +386,8 @@
    "The Image / Person photos are sample faces (Unsplash License, not covered by the CC BY 4.0 license of the file): replace them with real photos",
    "Pick a photo that fits the name, use a different person for each avatar in a block, and the same photo for the same person within it",
    "Overflow avatars (+3) and organizations stay initials",
-   "Status dot only when presence matters to the task; same size within a list or group; one shape per list"
+   "Status dot only when presence matters to the task; same size within a list or group; one shape per list",
+   "Initials stay inside the circle: 1 line, centered, clipped by the circle, ellipsis for anything longer than 2 letters"
   ],
   "a11y": [
    "Image alt is the name, or alt=\"\" when the name is right next to it",
@@ -418,7 +424,8 @@
    "Full list in a Tooltip (names) or a Popover (names and actions)",
    "Label says who they are or how many, not the names already shown",
    "Names lists the first two or three names and \"and N others\"; it matches the avatars shown",
-   "Names and Label truncate with an ellipsis at their max width (200 sm, 240 default and lg); the full list goes in the Tooltip"
+   "Names and Label truncate with an ellipsis at their max width (200 sm, 240 default and lg); the full list goes in the Tooltip",
+   "Names and Label fill the space left after the avatars and truncate; they never push the group past its column"
   ],
   "a11y": [
    "The group has a name with the count (\"5 assignees\")",
@@ -500,7 +507,8 @@
    "One style per table or list: all solid or all soft",
    "Soft colors come from badge/soft-*-bg (status color at opacity 10 in Light, 20 in Dark) and badge/soft-*-fg; never recolor by hand",
    "Not clickable",
-   "Next to the primary information of a row, never instead of it"
+   "Next to the primary information of a row, never instead of it",
+   "Hugs its label up to 256 (maxWidth spacing/64), then the label truncates to 1 line with ellipsis; parents can set a smaller max (scope 160, Current 128)"
   ],
   "a11y": [
    "Label meets 4.5:1 on every Variant; warning uses dark text (solid) or amber/800 (soft)",
@@ -691,7 +699,8 @@
    "The last item matches the page title",
    "Start at a meaningful root, not \"Home\" when the sidebar already does that",
    "Style=default in apps (Top Bar, Page Header); Style=background on marketing and docs pages, one per page",
-   "Style=background sits on background/default; on a muted section use Style=default (the track would disappear and the muted links drop below 4.5:1)"
+   "Style=background sits on background/default; on a muted section use Style=default (the track would disappear and the muted links drop below 4.5:1)",
+   "Resize: hugs its items; when the space is narrower the items wrap to a second line (row gap 4); collapse middle items with an ellipsis item for deep paths"
   ],
   "a11y": [
    "nav with aria-label=\"Breadcrumb\"",
@@ -776,7 +785,8 @@
    "2-5 items of equal weight",
    "Positions follow the order: first, middle, last",
    "Icon-only items always have a tooltip",
-   "Never use it to set a value"
+   "Never use it to set a value",
+   "Hugs its items and never shrinks below them (80 per item); item labels truncate to 1 line; when it does not fit, use a Select or a Dropdown Menu"
   ],
   "a11y": [
    "Wrap in role=\"group\" with a label (\"Invoice actions\")",
@@ -848,7 +858,9 @@
    "Week start follows the locale: Monday in most of Europe",
    "Unavailable dates are disabled with the reason nearby (\"Closed on Sundays\")",
    "Days of adjacent months use State=outside (muted)",
-   "Ranges use range-start, range-middle and range-end"
+   "Ranges use range-start, range-middle and range-end",
+   "Needs at least 250 wide (seven 32 px day cells, minWidth 250); fits every column from 1/4 (276) up, below that use Date Input",
+   "Month label: 1 line with ellipsis, centered between the arrows"
   ],
   "a11y": [
    "Arrows move by day, PageUp/PageDown by month, Enter selects, Esc closes",
@@ -886,7 +898,8 @@
    "Category color = one calendar or type, with a legend; never the only signal",
    "Overlapping events sit side by side",
    "Month view: up to 3 per day, then \"+N more\" opens the day in a Popover",
-   "Click opens details in a Popover or Sheet; confirm moves that notify others"
+   "Click opens details in a Popover or Sheet; confirm moves that notify others",
+   "Resize: the event clips to its time slot; title 1 line with an ellipsis; time 1 line (Size=default fills, Size=sm hugs next to the title)"
   ],
   "a11y": [
    "Each event is focusable and its name includes title, date and time",
@@ -1033,13 +1046,14 @@
   ],
   "anatomy": [
    "Image (fill on the \"image\" layer) with video/scrim",
-   "Content area: auto layout, padding 64 top, 128 bottom, 144 sides, content up to 640 wide",
+   "Content area: padding 64 top, 128 bottom, 24 sides; container up to 1152 centered; content up to 640 wide",
    "Overline (Show overline)",
    "Title: display/lg, 1-2 lines",
    "Text",
    "One action Button",
    "Carousel Indicator bars with Pause",
-   "Carousel Arrow, overlay, previous and next"
+   "Carousel Arrow, overlay, previous and next",
+   "Controls row: Carousel Indicator left, arrows right, in the same 1152 container"
   ],
   "rules": [
    "Auto-advance every 6-8 s; pause on hover and on focus",
@@ -1048,7 +1062,9 @@
    "One action per slide",
    "Title in 2 lines at most; the content area keeps 64 above and clears the bars below",
    "White text on video/scrim keeps 4.5:1 on any photo",
-   "The image clips on purpose; never detach"
+   "The image clips on purpose; never detach",
+   "Resize: content and controls align to a centered container up to 1152 wide with 24 side padding (144 at 1440); minimum width 768, on phones use a single static hero",
+   "Overline 1 line, Title and Text up to 3 lines, all with ellipsis"
   ],
   "a11y": [
    "Pause is always visible and reachable by keyboard",
@@ -1083,7 +1099,9 @@
    "An empty old value shows \"(empty)\"",
    "Sensitive values are masked (••••)",
    "Read only: never edit or delete entries from the UI",
-   "Dates and amounts follow the locale format"
+   "Dates and amounts follow the locale format",
+   "Old and new values hug up to 240 and truncate to 1 line; field label up to 2 lines",
+   "Wraps: when the row is narrow the new value drops to the next line (row gap 4)"
   ],
   "a11y": [
    "The arrow is decorative; read as \"Due date changed from 7 Oct 2026 to 21 Oct 2026\"",
@@ -1115,7 +1133,7 @@
    "Actions slot: time range Toggle Group",
    "Chart slot: Bar Chart, Line Chart or another chart",
    "Chart Legend (exposed, Show legend): its Items slot holds one Chart Legend Item per series",
-   "Footer with Insight and Note (Show footer)"
+   "Footer with trend icon, Insight and Note (Show footer)"
   ],
   "rules": [
    "Title says what is measured (\"Revenue vs costs\"), never \"Chart\"",
@@ -1123,7 +1141,10 @@
    "Footer states the insight in words (\"Profit up 21% vs last half-year\")",
    "Every chart has a table view in code",
    "Empty: say why; loading: Skeleton in the chart shape; error: inline Alert with retry",
-   "Fill the Actions and Chart slots in the instance; never detach"
+   "Fill the Actions and Chart slots in the instance; never detach",
+   "Resize: the header wraps the Actions slot under the titles when narrow (titles at least 160); Title and Description up to 2 lines with ellipsis",
+   "Footer: trend icon first, Insight fills and wraps to 2 lines; Note up to 2 lines",
+   "Hide an empty Actions slot (it still takes its width)"
   ],
   "a11y": [
    "Table view toggle or \"View data\" action, reachable by keyboard",
@@ -1158,7 +1179,8 @@
    "Series = chart/N token, assigned in order",
    "Same order as the series in the chart and in the tooltip",
    "Clicking an item isolates the series (in code)",
-   "Fill the Items slot in the instance; never detach"
+   "Fill the Items slot in the instance; never detach",
+   "Resize: the Items slot fills the legend and wraps to more rows (row gap 8); inside charts and Chart Card the legend fills the width"
   ],
   "a11y": [
    "Labels name the series, so color is not the only key",
@@ -1189,7 +1211,8 @@
    "One row per visible series, in legend order",
    "Values in text color, never the series color",
    "Compact numbers with units",
-   "Hit targets bigger than the marks"
+   "Hit targets bigger than the marks",
+   "Resize: title fills the tooltip, 1 line with ellipsis"
   ],
   "a11y": [
    "Hover is not available to everyone: the same values are in the table view",
@@ -1256,7 +1279,8 @@
    "Group by date (Today, Previous 7 days, older); pinned items on top",
    "State=active marks the open conversation",
    "Delete offers Undo",
-   "Search the list when there are more than about 20 conversations; New chat at the top"
+   "Search the list when there are more than about 20 conversations; New chat at the top",
+   "Title and time: 1 line with ellipsis; the item works down to 128 wide"
   ],
   "a11y": [
    "The item is a link; the open one has aria-current=\"page\"",
@@ -1295,7 +1319,8 @@
    "Delivery status on the last outgoing message",
    "Day separators: Today, Yesterday, then the date",
    "Failed send: the message stays with Retry, never disappears",
-   "Open at the latest message; when scrolled up, show a \"New messages\" pill instead of jumping"
+   "Open at the latest message; when scrolled up, show a \"New messages\" pill instead of jumping",
+   "Resize: bubbles hug their text up to a max; Size=default needs at least 472 (bubble up to 440); under 480 use Size=compact, which fits 276 (bubble up to 244 incoming, 276 outgoing)"
   ],
   "a11y": [
    "New messages are announced with aria-live=\"polite\"",
@@ -1329,7 +1354,8 @@
    "Indeterminate only for \"select all\" over a partial selection",
    "A consent checkbox says what the user agrees to, not \"I agree\"",
    "Never pre-tick consent or anything with consequences",
-   "State=error marks the box; the message comes from Field"
+   "State=error marks the box; the message comes from Field",
+   "Resize: the label hugs, and wraps under its own width when the checkbox is narrower than the text; the box keeps its size"
   ],
   "a11y": [
    "Space toggles; the label is tied to the input",
@@ -1413,7 +1439,8 @@
    "Side bottom by default, top near the page end, left or right in narrow columns",
    "Media only when a picture explains faster than words",
    "Remember progress per user; never repeat a finished tour",
-   "Mobile: a bottom Drawer step, no arrow"
+   "Mobile: a bottom Drawer step, no arrow",
+   "Resize: fixed width you can change between 240 and 320; title and description wrap; the step text fills and truncates; Back and Next keep their size"
   ],
   "a11y": [
    "Focus moves into the coachmark and returns to the target after it closes",
@@ -1481,7 +1508,8 @@
    "Hex accepts with or without #, 3 or 6 digits; a valid hex updates the swatch",
    "Opacity only when the product supports it",
    "When the color sits behind text, check contrast and warn below the field",
-   "Gradients in the control are raw colors by design; the rest uses tokens"
+   "Gradients in the control are raw colors by design; the rest uses tokens",
+   "Resize: saturation, hue, input and swatches stretch with the picker; needs at least 240"
   ],
   "a11y": [
    "The hex input is the keyboard path; area and slider handles also move with arrow keys",
@@ -1517,7 +1545,8 @@
    "Offer \"Create <query>\" when the user may create",
    "Show recent or suggested options before typing",
    "Long lists load asynchronously with a loading row, never an empty dropdown",
-   "A single choice closes the list after the pick"
+   "A single choice closes the list after the pick",
+   "Resize: the value truncates to 1 line with an ellipsis; the chevron keeps its size"
   ],
   "a11y": [
    "Visible label; the trigger exposes aria-expanded",
@@ -1611,7 +1640,8 @@
   "use": [
    "Discussion attached to an object, read later",
    "Review threads that get resolved",
-   "Type=reply for answers under a parent comment"
+   "Type=reply for answers under a parent comment",
+   "Inside Comment Thread for comments on selected text"
   ],
   "avoid": [
    "Real-time conversation: use Chat Message",
@@ -1630,7 +1660,8 @@
    "Newest at the bottom, composer under the thread, count in the section title",
    "Edit in place and show \"edited\" after the time",
    "Delete asks for confirmation or offers Undo",
-   "Resolved comments collapse or fade and stay reachable with \"Show resolved\""
+   "Resolved comments collapse or fade and stay reachable with \"Show resolved\"",
+   "Resize: the header wraps: Name hugs up to 200 (160 in Type=reply) and Time up to 160, each 1 line with ellipsis; Time drops under the name in narrow threads; the text fills and wraps. Fits a 280 wide Comment Thread"
   ],
   "a11y": [
    "New comments are announced with aria-live=\"polite\"",
@@ -1776,7 +1807,9 @@
    "Unsaved changes to a view offer Save and Save as new",
    "Filters show the active count; active filters appear as chips",
    "Export exports the current view",
-   "Search, filters and sort are kept in the URL"
+   "Search, filters and sort are kept in the URL",
+   "Resize: the row wraps; when Start and End do not fit, the End slot drops under the Start slot",
+   "Needs at least 512; in narrower places keep search and a Filters button only"
   ],
   "a11y": [
    "role=\"toolbar\" with a label",
@@ -1846,7 +1879,8 @@
    "The trigger shows the preset name and the dates (\"Last 14 days: 6 - 19 Oct\")",
    "Summary counts the days (\"6 Oct - 19 Oct 2026 · 14 days\")",
    "Future dates disabled for reports on past data; past dates disabled for bookings",
-   "Mobile: one month in a full-height Drawer, presets as chips above"
+   "Mobile: one month in a full-height Drawer, presets as chips above",
+   "Needs at least 658 wide (presets plus two months, minWidth 658); in a 1/2 column, a sidebar or on mobile use one Calendar in a Popover with the presets as a Select, or two Date Inputs"
   ],
   "a11y": [
    "Focus moves into the popover on open; Esc closes and returns focus to the trigger",
@@ -1881,7 +1915,8 @@
    "Empty value: \"-\" or \"Not set\" in muted, never blank",
    "Values never repeat the label; long values wrap",
    "One Edit action per card, not a pencil per row",
-   "Fill the Value slot in the instance; never detach"
+   "Fill the Value slot in the instance; never detach",
+   "Resize: horizontal keeps the 160 label column; label and value wrap (value fills); vertical label and value fill the width"
   ],
   "a11y": [
    "Code as dl with dt and dd, so each label is read with its value",
@@ -1962,7 +1997,9 @@
    "Always show the legend with values and percentages",
    "Set segment angles with arcData",
    "Series colors chart/1..8 in order; color follows the entity",
-   "Text uses text tokens, never the segment color"
+   "Text uses text tokens, never the segment color",
+   "Resize: the legend wraps under the donut when the row is narrower than 392 (donut 200 + legend at least 160); legend names truncate to 1 line, values cap at 96",
+   "Center total and its label: 1 line each, 120 wide, ellipsis"
   ],
   "a11y": [
    "Table view with values and percentages",
@@ -2156,7 +2193,8 @@
    "Error replaces the hint, says what is wrong and how to fix it: \"Enter an email address like name@example.com\"",
    "Validate on blur; once in error, re-validate on every change",
    "Error text uses background/destructive with an icon, not color alone",
-   "Show label off only when the control carries its own visible label (Input Style=floating); hint and error stay under it"
+   "Show label off only when the control carries its own visible label (Input Style=floating); hint and error stay under it",
+   "Resize: label and hint fill the width and wrap (label up to 2 lines); the control fills"
   ],
   "a11y": [
    "Label is tied to the control (for / id)",
@@ -2229,7 +2267,8 @@
    "Validate type, size and count on selection; the error says the fix: \"Upload PDF, JPG or PNG\"",
    "State drag-over while a file is dragged over; error after a rejected drop; disabled when no upload is allowed",
    "Upload starts on selection; submit waits for uploads or says what is pending",
-   "With a limit, show the total: \"3 of 5 files\""
+   "With a limit, show the total: \"3 of 5 files\"",
+   "Resize: title and hint fill the width, centered, up to 2 lines each with ellipsis"
   ],
   "a11y": [
    "The whole area is clickable and keyboard-focusable; Browse files is the keyboard path",
@@ -2367,7 +2406,8 @@
    "One level of nesting; deeper groups are not supported",
    "Operators follow the field type: text, number and money, date, sets",
    "Value control follows the field: Tag Input for sets, Date Range Picker for dates, Number Input for amounts",
-   "Live result count; Apply in the builder footer; active conditions show as chips under the toolbar"
+   "Live result count; Apply in the builder footer; active conditions show as chips under the toolbar",
+   "Resize: each Filter Condition wraps: Where, field and operator keep their width, the value fills (min 144); below about 760 the operator and value move to a second line"
   ],
   "a11y": [
    "Each Select and value control has a label that names the condition",
@@ -2510,7 +2550,9 @@
    "Set Value, the value arc and the Target tick together so they agree",
    "Target label says the target in words and units; Min and Max name the scale",
    "Status tone follows Status: on-track, at-risk (warning), off-track (destructive)",
-   "Use sparingly"
+   "Use sparingly",
+   "Resize: fixed 240 arc (minimum width 240); wider instances keep the arc centered",
+   "Value, status and Target label: 1 line with ellipsis; Min and Max cap at 72; Label up to 2 lines"
   ],
   "a11y": [
    "Status is text, so meaning does not rely on color",
@@ -2546,7 +2588,8 @@
    "Never use red/green scales",
    "The legend reads from fewer to more",
    "Exact value on hover, never only the shade",
-   "Pick the Data shape closest to the story; for real data, detach in client files and set each cell to a step (or muted for zero)"
+   "Pick the Data shape closest to the story; for real data, detach in client files and set each cell to a step (or muted for zero)",
+   "Resize: cells stretch with the width (day labels stay 32); needs at least 276"
   ],
   "a11y": [
    "Table view for screen readers and exact values",
@@ -2804,7 +2847,8 @@
    "Input Addon is not editable and not part of what the user types",
    "Input Addon Position: start or end; muted background, divider toward the field",
    "State: default, focus, error, disabled",
-   "Amounts are right-aligned in tables"
+   "Amounts are right-aligned in tables",
+   "Resize: the value fills between the addons and stays on 1 line with ellipsis; addons keep their width"
   ],
   "a11y": [
    "Addon text is included in the accessible description (aria-describedby)",
@@ -2875,7 +2919,8 @@
    "State: default, hover, dragging (lifted with shadow/lg and a slight tilt)",
    "Click opens the item in a Sheet",
    "Each card has a \"Move to...\" menu",
-   "Never delete on drop"
+   "Never delete on drop",
+   "Resize: min width 224; labels wrap to more lines; title up to 3 lines; due date hugs up to 80 and the comment count up to 28, both 1 line with ellipsis"
   ],
   "a11y": [
    "Keyboard: Space picks up, arrows move, Space drops; announce the new column and position",
@@ -2899,7 +2944,7 @@
    "Dates on a time axis: use Calendar Event in Block / Scheduler Week or Gantt Bar"
   ],
   "anatomy": [
-   "Title",
+   "Title: fills the header, 1 line with ellipsis (count and actions sit at the right)",
    "Count (Badge Count), or \"3 / 5\" with a WIP limit",
    "Header actions (Button Icon)",
    "Cards slot of Kanban Cards",
@@ -2909,7 +2954,8 @@
    "Count in the header; WIP limit shown as \"3 / 5\" and a warning when exceeded",
    "Columns scroll vertically; the board scrolls horizontally",
    "Moving to a final stage (Done, Lost) may ask for a reason",
-   "Always offer a list or table view of the same items"
+   "Always offer a list or table view of the same items",
+   "Resize: min width 256; the title fills and stays on 1 line with ellipsis, the count and actions keep their size at the right"
   ],
   "a11y": [
    "Column is a labeled region named by its title and count",
@@ -2933,14 +2979,15 @@
    "Inline code in prose: use the code style"
   ],
   "anatomy": [
-   "Key surface (background/muted, border)",
+   "Key surface (background/muted, border): hugs the label, min 20, padding spacing/1",
    "Key label (Key): symbol or name, foreground/default",
    "Used next to a menu label or in a Tooltip"
   ],
   "rules": [
    "Show the user's platform: ⌘ ⌥ ⇧ ⌃ on Mac, \"Ctrl\" and \"Alt\" on Windows and Linux",
    "Do not show shortcuts that are not implemented",
-   "Never rely on a shortcut as the only way"
+   "Never rely on a shortcut as the only way",
+   "Resize: the key hugs its label (min 20) with 4 px side padding, so Ctrl and Enter fit; height stays 20"
   ],
   "a11y": [
    "Use the <kbd> element; symbols get readable names (\"Command\")",
@@ -3005,7 +3052,8 @@
    "The image fits the screen; never cropped",
    "Colors from video/* tokens, the same in every mode",
    "Pinch and double tap zoom on touch",
-   "Arrows disabled at the first and last image unless it loops"
+   "Arrows disabled at the first and last image unless it loops",
+   "Resize: the title fills the top bar, 1 line with ellipsis"
   ],
   "a11y": [
    "It is a modal dialog: focus moves in and stays inside, Esc closes",
@@ -3120,7 +3168,8 @@
   "rules": [
    "Always pair the map with the written address",
    "Resize freely; roads scale and the pin stays centered",
-   "Production: a static map image (Mapbox, Google) as fill or an interactive embed, with pin, label, attribution"
+   "Production: a static map image (Mapbox, Google) as fill or an interactive embed, with pin, label, attribution",
+   "Resize: the pin stays centered; its label hugs up to 192 and title and address stay on 1 line with ellipsis"
   ],
   "a11y": [
    "The written address is the accessible content; the map has a title or alt",
@@ -3295,7 +3344,9 @@
    "Up to ~8 links, grouped by what visitors want to do, not internal team names",
    "Navigation Menu Link description says what the user gets, not what the product is",
    "Opens on hover with a small delay and on click or Enter",
-   "Mobile: the same links grouped in the full-screen menu"
+   "Mobile: the same links grouped in the full-screen menu",
+   "Resize: min width 640; links fill and wrap (each link at least 240), 2 columns at 834 and 1 below about 800; the featured card keeps 240",
+   "On phones put the links in a Sheet"
   ],
   "a11y": [
    "Escape closes and returns focus to the trigger",
@@ -3398,7 +3449,9 @@
    "The current organization shows a check, role and plan",
    "Search appears when there are more than 5",
    "Switching reloads data and keeps the user on the same kind of page",
-   "No toast after switching; the new organization's page is the feedback"
+   "No toast after switching; the new organization's page is the feedback",
+   "Resize: organization name, role line and action labels fill and truncate to 1 line",
+   "Needs at least 192"
   ],
   "a11y": [
    "Arrows move, Enter switches, Escape closes and returns focus",
@@ -3433,7 +3486,8 @@
    "Description is one sentence",
    "Title matches the last Breadcrumb item",
    "Tabs for sub-views go right under it",
-   "Turn Show actions off when the page has no page-level action; never leave an empty slot"
+   "Turn Show actions off when the page has no page-level action; never leave an empty slot",
+   "Resize: the header wraps: text fills (min 240), actions move under it in narrow columns; title and description up to 2 lines with ellipsis"
   ],
   "a11y": [
    "Title is the page heading; keep heading levels in order",
@@ -3475,7 +3529,8 @@
    "Mobile: Previous and Next as icons only, plus \"Page 2 of 25\"",
    "Narrow places (a card, a side panel, mobile): Pagination Compact with \"Page 2 of 12\"",
    "Style=simple: disable previous on the first page and next on the last (exposed items, State=disabled)",
-   "Style=dots: one dot per position, the current one active; pair with swipe and arrows, never as the only control in a data list"
+   "Style=dots: one dot per position, the current one active; pair with swipe and arrows, never as the only control in a data list",
+   "Never narrower than its items (numbered 386, simple 278, dots 76): the minimum width is set; in narrow places use Pagination Compact or Style=simple"
   ],
   "a11y": [
    "Wrap it in a nav with aria-label=\"Pagination\"",
@@ -3634,7 +3689,8 @@
    "Compact: 3-5 items per list; meta says type and date (\"Guide · 12 Oct 2026\"); image on all items or none",
    "One Size per list or grid; sm for lists next to a featured story and for grids of 4",
    "Never restyle the title per instance: switch Size instead",
-   "Overlay text sits only on the solid media/scrim panel, never on the fade; choose photos with the subject in the top half"
+   "Overlay text sits only on the solid media/scrim panel, never on the fade; choose photos with the subject in the top half",
+   "Resize: meta row fills, the date truncates to 1 line after the Badge; the author name truncates to 1 line after the avatar"
   ],
   "a11y": [
    "One link per card; the Title is the link text",
@@ -3716,7 +3772,8 @@
    "Status names the state in text, picked from a rule",
    "Say the rule in the footnote or a tooltip (\"at risk under 80% of the expected pace\")",
    "The bar Value matches the percent in the Footnote",
-   "Amounts follow the locale format"
+   "Amounts follow the locale format",
+   "Resize: the target text fills the value row (at least 80), 1 line with ellipsis, and wraps under the value when there is no room"
   ],
   "a11y": [
    "Progress has role=\"progressbar\" with aria-valuenow and a label",
@@ -3903,7 +3960,8 @@
    "State=running appears within 100 ms of sending",
    "Collapsed by default when done; the person opens it",
    "Label says how long it took (\"Thought for 12 s\")",
-   "Details is a summary that explains; never show raw chain of thought as the answer"
+   "Details is a summary that explains; never show raw chain of thought as the answer",
+   "Header hugs up to 240 and the status or label truncates to 1 line; the chevron stays next to it"
   ],
   "a11y": [
    "The Label row is a button with aria-expanded",
@@ -3977,7 +4035,8 @@
    "Paste keeps structure (headings, lists, links) and drops foreign styles",
    "With a limit: warn at 90%, block at 100% with an error, never cut text silently",
    "Min height ~5 lines; grows with content to a max, then scrolls",
-   "Autosave long content and show \"Saved\" / \"Saving…\""
+   "Autosave long content and show \"Saved\" / \"Saving…\"",
+   "Resize: the footer hint fills and wraps to 2 lines with ellipsis; the character count hugs and never shrinks"
   ],
   "a11y": [
    "Every toolbar button has a label and a tooltip with its shortcut (⌘B, ⌘I, ⌘U, ⌘K)",
@@ -4014,7 +4073,8 @@
    "Save validates and scrolls to the first error; State=error says what failed",
    "Discard asks first when the changes are large",
    "Leaving the page with changes asks \"Discard changes?\" (Keep editing, Discard)",
-   "After saving, the bar hides, the form is clean and a toast confirms"
+   "After saving, the bar hides, the form is clean and a toast confirms",
+   "Resize: the message fills (at least 160, 2 lines with an ellipsis); the row wraps, so under about 400 Discard and Save drop under the message"
   ],
   "a11y": [
    "Its appearance is announced politely (\"3 unsaved changes\")",
@@ -4053,7 +4113,8 @@
    "Name both axes with units",
    "Axes start at zero unless the range says otherwise",
    "One or two series; legend only for two",
-   "Hover shows the item in a Chart Tooltip"
+   "Hover shows the item in a Chart Tooltip",
+   "Resize: axis titles share the row, 1 line each with ellipsis; the X title is right aligned"
   ],
   "a11y": [
    "Table view listing each item and both values",
@@ -4203,7 +4264,8 @@
    "Footer stays fixed at the bottom; Content scrolls",
    "Never open a Sheet from a Sheet; a Dialog on top only for a confirmation",
    "Outside click and Esc close it; unsaved input follows the unsaved changes pattern",
-   "Filters: one compact Accordion Item per group with a Badge Count of active options"
+   "Filters: one compact Accordion Item per group with a Badge Count of active options",
+   "Minimum width 320 (set on both sides)"
   ],
   "a11y": [
    "Focus moves to the first field (or the title) on open and returns to the trigger on close",
@@ -4245,7 +4307,8 @@
    "Chevron marks a section with sub-pages",
    "Mode expanded 256, collapsed 48: icons only, labels in tooltips",
    "Mobile: a Sheet opened from the header trigger (panel-left)",
-   "Level 2 only under an expanded parent with a Chevron; one level deep at most"
+   "Level 2 only under an expanded parent with a Chevron; one level deep at most",
+   "Minimum width: Mode=expanded 240, Mode=collapsed 48; narrower than 240 use Mode=collapsed or the mobile Sheet"
   ],
   "a11y": [
    "A nav landmark; the active item has aria-current=\"page\"",
@@ -4284,7 +4347,8 @@
    "Always offer \"Type instead\" (typed name in a script font)",
    "After signing, show who signed and when",
    "Store the image with the timestamp and the document version",
-   "Name the signing method in the decision log; legal weight depends on the country"
+   "Name the signing method in the decision log; legal weight depends on the country",
+   "Resize: the hint stretches with the pad (32 from each edge), centered, up to 2 lines with ellipsis"
   ],
   "a11y": [
    "Type instead is the keyboard and screen reader path",
@@ -4365,7 +4429,8 @@
    "Leave 40 px above and 24 px below the Slider when Show value or Show marks is on; they overflow the component box",
    "Stretch the Slider (FILL or any width): the thumbs keep their size and follow the value; never resize the thumb itself",
    "Pick the Value nearest to the real number; for another value or for Type=range, move the thumb wrapper and resize the range layer to the thumb center (never resize the thumb)",
-   "Keep the shown number, the marks and Value in step (2,500 on a 0 to 5,000 scale = Value=50)"
+   "Keep the shown number, the marks and Value in step (2,500 on a 0 to 5,000 scale = Value=50)",
+   "Resize: the track stretches; the min mark label is anchored to the left edge and the max label to the right edge, so long values grow inward"
   ],
   "a11y": [
    "Arrows move by one step, Page Up and Page Down by 10 steps",
@@ -4438,7 +4503,9 @@
    "Every factual claim from a source gets a Citation with its Source Item number",
    "A Source Item opens the source in a new tab",
    "List only sources the user can open",
-   "Citation hover shows a Hover Card with the source; click opens it"
+   "Citation hover shows a Hover Card with the source; click opens it",
+   "Header label: 1 line with ellipsis; favicon letters stay inside their tile",
+   "Source Items fill the row between 240 and 384 and wrap: two per row at 720, one per row under about 500"
   ],
   "a11y": [
    "The toggle is a button with aria-expanded and the count in its name",
@@ -4588,7 +4655,8 @@
    "Numbers in the locale format of the page: +12.5% and €48,250 in English, never a decimal comma next to a thousands comma",
    "Value stays on one line; amounts in the locale format (€48,250)",
    "The Footnote says what it is compared to",
-   "Cards in a row share structure and height"
+   "Cards in a row share structure and height",
+   "Resize: trend text caps at 200, 1 line with ellipsis, icon after it"
   ],
   "a11y": [
    "The change reads as text (\"Up 12% compared to September\")",
@@ -4703,7 +4771,8 @@
    "The label names the setting, not the action: \"Email notifications\"",
    "Temporarily unavailable: State=disabled with the reason",
    "Show description says what the setting does or what it costs, in one sentence; the switch aligns to the first line",
-   "Use one Size per list; match the Size of the Buttons and fields around it"
+   "Use one Size per list; match the Size of the Buttons and fields around it",
+   "Resize: the text column fills; label 2 lines and description 3 lines, then an ellipsis; the switch keeps its size"
   ],
   "a11y": [
    "role=\"switch\" with aria-checked; Space toggles",
@@ -4785,7 +4854,8 @@
    "State: expanded (rows below), collapsed (rows hidden, chevron right); never swap the chevron by hand",
    "The chevron collapses and expands the group",
    "Count and subtotal summarize the group; the subtotal uses the column's number format",
-   "Grouping is chosen with Group by in the Data Grid Toolbar"
+   "Grouping is chosen with Group by in the Data Grid Toolbar",
+   "Resize: the label fills (at least 48, 1 line with an ellipsis); the count hugs; the subtotal hugs up to 160 with an ellipsis"
   ],
   "a11y": [
    "The chevron is a button with aria-expanded (true on expanded) and a label: \"Collapse Overdue\" or \"Expand Paid\"",
@@ -4816,7 +4886,9 @@
    "The range names the total and the object",
    "Rows per page: 10, 20, 50, 100",
    "Under 900 px, turn off Show rows per page",
-   "Changing filters resets to page 1"
+   "Changing filters resets to page 1",
+   "Resize: the range fills (at least 160, 1 line with an ellipsis); the row wraps, so under about 800 Pagination drops to its own line",
+   "Needs at least 448"
   ],
   "a11y": [
    "The rows-per-page Select has a label",
@@ -4850,7 +4922,8 @@
    "Only actions valid for the whole selection are enabled; disabled ones say why",
    "After selecting a page, offer \"Select all 1,284 invoices\"",
    "Destructive bulk actions confirm with the count",
-   "One toast reports the result with counts and failures: \"18 sent, 2 failed\""
+   "One toast reports the result with counts and failures: \"18 sent, 2 failed\"",
+   "Resize: the selection text fills (at least 128, 1 line); the row wraps, so in narrow tables the Actions drop under it"
   ],
   "a11y": [
    "The selection count is announced when it changes",
@@ -4885,7 +4958,8 @@
    "Table of Contents Item State: default, hover, active; active = the section in view (scroll spy)",
    "Clicking scrolls with an offset for sticky headers",
    "Labels match the heading text",
-   "Title names the list: \"On this page\" for headings of the page, another title for lists of other pages (\"Other policies\")"
+   "Title names the list: \"On this page\" for headings of the page, another title for lists of other pages (\"Other policies\")",
+   "Resize: the title fills and wraps to 2 lines with ellipsis; items fill"
   ],
   "a11y": [
    "nav with aria-label=\"On this page\"",
@@ -5071,7 +5145,8 @@
    "Long histories: the last 5-10 with \"View all\"; group by day",
    "Alternating: switch alternating-left and alternating-right item by item, starting with left",
    "One Layout per timeline (alternating counts as one)",
-   "Layout=card in narrow columns (5 per row on a 1152 container): keep titles to 2 or 3 words per line; never resize the title layer"
+   "Layout=card in narrow columns (5 per row on a 1152 container): keep titles to 2 or 3 words per line; never resize the title layer",
+   "Resize: the title fills (at least 96, 2 lines with an ellipsis); the time hugs up to 128 with an ellipsis; the description 3 lines"
   ],
   "a11y": [
    "The timeline is an ordered list",
@@ -5286,7 +5361,8 @@
    "Only global actions on the right",
    "Search opens the Command Dialog (⌘K / Ctrl K) and stays a visible button",
    "Style=floating: keep it sticky with the inset; content scrolls under it, so give the page a top padding of the bar height plus the inset",
-   "One Style per product; do not mix floating and default between pages"
+   "One Style per product; do not mix floating and default between pages",
+   "Resize: min width 320; the breadcrumb fills its slot and wraps when space is short; trigger and actions keep their size"
   ],
   "a11y": [
    "Header landmark; icon buttons have labels: \"Toggle sidebar\", \"Notifications\"",
@@ -5324,7 +5400,9 @@
    "Each side has a title, count, search and checkboxes",
    "Move buttons act on the checked items only",
    "Counts update after every move",
-   "When order matters, use Sortable List Item on the right side"
+   "When order matters, use Sortable List Item on the right side",
+   "Resize: both lists fill equally and never go under 208; list titles truncate to 1 line",
+   "Needs at least 512; in narrower places use a searchable list with checkboxes"
   ],
   "a11y": [
    "Space checks an item; Tab reaches the move buttons",
@@ -5393,7 +5471,8 @@
    "Largest rectangle top-left",
    "Label inside when it fits, otherwise on hover",
    "Tinted fills with a colored edge keep text readable in every mode",
-   "Color follows the entity, never its rank"
+   "Color follows the entity, never its rank",
+   "Resize: tiles scale with the width; tile labels stretch with their tile and truncate to 1 line (name and value), so narrow tiles show an ellipsis and the full label on hover"
   ],
   "a11y": [
    "Table view with every part and its value",
@@ -5458,7 +5537,8 @@
    "Text is shown as sent; never rewrite or trim it",
    "Actions show on hover on desktop and always on touch",
    "Edit and resend continues the conversation from that message",
-   "The user's message is never lost, even when the answer fails"
+   "The user's message is never lost, even when the answer fails",
+   "Bubble hugs up to 576 and wraps there; in a panel narrower than 600 set the bubble to Fill in the instance so long messages wrap at the panel width"
   ],
   "a11y": [
    "Copy and Edit Button Icons have accessible labels and tooltips with the same text",
@@ -5570,7 +5650,8 @@
    "Title names what the panel shows (\"Showcase info\", \"Properties\"), not the action",
    "Content reads top to bottom; no tabs inside a Side Panel",
    "Collapsed state is remembered per user and page",
-   "Below 1024 px open it as a right Sheet instead"
+   "Below 1024 px open it as a right Sheet instead",
+   "Resize: expanded needs at least 240, title 1 line with ellipsis, slot content fills; collapsed is a 48 rail with the rotated title capped at 200"
   ],
   "a11y": [
    "An aside landmark labeled by the Title",
@@ -5607,7 +5688,8 @@
    "One active rail item (the section) and one active panel item (the page)",
    "Panel title repeats the rail item's name",
    "Panel actions only for the section (add a page or an item), one or two Button Icon",
-   "Rail icons have Tooltips with the section name"
+   "Rail icons have Tooltips with the section name",
+   "Minimum width: Mode=expanded 288 (rail 48 and panel 240), Mode=collapsed 48"
   ],
   "a11y": [
    "Two nav landmarks with labels (\"Sections\", the section name)",
@@ -5643,7 +5725,8 @@
    "Same icon for the same kind of fact across the product",
    "In a row gap 24, in a column gap 8; 4 items at most",
    "Dates with time zone, places with the city",
-   "A link keeps the label color; underline on hover"
+   "A link keeps the label color; underline on hover",
+   "Resize: hugs its label inline; the label caps at 280, 1 line with ellipsis. Keep labels short in narrow columns (it does not shrink below its text)"
   ],
   "a11y": [
    "The icon is decorative (aria-hidden); the label carries the meaning",
@@ -5681,7 +5764,8 @@
    "Add the source when the figure is a claim; one source line under a group is enough",
    "Numbers in the locale format with units (€18,500, 47 days, 62%)",
    "No trend arrows or colors here: that is Stat Card",
-   "Tone=on-primary on primary bands (Block / Stats Brand Band); keep text alignment as the only override"
+   "Tone=on-primary on primary bands (Block / Stats Brand Band); keep text alignment as the only override",
+   "Resize: value up to 2 lines, label up to 3, source up to 2, all with ellipsis"
   ],
   "a11y": [
    "Value and label are read together as one phrase",
@@ -5872,7 +5956,8 @@
    "Variant=large once per page, under 20 words, with generous space above and below",
    "Attribution names the person and their role at the time",
    "Under 40 words; longer passages stay in the body text",
-   "Narrow columns (cards, mobile): keep the full role; it wraps, never truncate it or resize the text layers"
+   "Narrow columns (cards, mobile): keep the full role; it wraps, never truncate it or resize the text layers",
+   "Resize: the quote text wraps without a limit (never cut a quote); the name hugs up to 192 with an ellipsis, the role wraps to 2 lines"
   ],
   "a11y": [
    "Code as blockquote with a figcaption for the attribution",
@@ -5911,7 +5996,8 @@
    "Increase and decrease use the diverging arms, never series slots; say in the legend which is which",
    "At most 8 steps; fold the small ones into \"Other\"",
    "The footer says the result in a sentence (\"€14K above opening\")",
-   "Bars are drawn in the main, not properties: to change the data, detach the instance in client files and edit bar heights, labels and connectors; step names and value labels can be overridden as text"
+   "Bars are drawn in the main, not properties: to change the data, detach the instance in client files and edit bar heights, labels and connectors; step names and value labels can be overridden as text",
+   "Resize: needs at least 500 for seven named steps; the legend fills and wraps. In a narrower column use Bar Chart Horizontal or fewer steps"
   ],
   "a11y": [
    "Color is not the only cue: signs on the labels and the legend",
@@ -5947,7 +6033,8 @@
    "Pick the left maximum so the line stays clear of the bars",
    "Legend says which axis each series reads on (\"left axis\", \"right axis\")",
    "Label the end value of the line, not every point",
-   "The footer states the relation in a sentence"
+   "The footer states the relation in a sentence",
+   "Resize: the legend fills the chart width and wraps to more rows"
   ],
   "a11y": [
    "The table view has one column per measure with units",
@@ -5985,7 +6072,8 @@
    "Description says what the section holds in one sentence",
    "At most two buttons in Actions; one primary",
    "Show icon on all sections of a page or none; one icon per content type (reports, events, news)",
-   "Same Size for sections on the same level of a page"
+   "Same Size for sections on the same level of a page",
+   "Resize: the text column fills (at least 192); the row wraps, so in narrow columns the Actions slot drops under the text; title 2 lines, description 3 lines with an ellipsis"
   ],
   "a11y": [
    "The title is a real heading (h2, h3, h4) that follows the page outline",
@@ -6139,7 +6227,8 @@
    "One person per Byline",
    "Detail is one line: role, company or date · reading time",
    "Size follows the context: sm in dense grids, default under titles, lg under testimonials",
-   "The name links to the profile when there is one"
+   "The name links to the profile when there is one",
+   "Name and detail: 1 line with ellipsis; the byline hugs its text and truncates when its column is narrower"
   ],
   "a11y": [
    "The Avatar is decorative next to the name (alt=\"\")",
@@ -6321,7 +6410,8 @@
    "Format on blur in the locale format (1,250.00 or 1.250,00); accept the typed separators of the locale",
    "Never change the currency silently: changing it keeps the amount and asks before converting",
    "Errors name the limit: \"Enter an amount up to EUR 10,000.00\"",
-   "Store the amount in minor units with the ISO code"
+   "Store the amount in minor units with the ISO code",
+   "Resize: min width 160; the currency picker hugs up to 96 with its code on 1 line; the amount fills and truncates"
   ],
   "a11y": [
    "The currency trigger has an aria-label (\"Currency, EUR\")",
@@ -6355,7 +6445,8 @@
    "Default to the country of the account",
    "Accept pasted numbers with the + prefix and set the country from them",
    "Store in E.164 (+40712345678); show it formatted for the country",
-   "Ask for a phone number only when it is used, and say what for in the hint"
+   "Ask for a phone number only when it is used, and say what for in the hint",
+   "Resize: the country picker hugs up to 112 with its code on 1 line; the number fills and stays on 1 line with ellipsis"
   ],
   "a11y": [
    "The country list is searchable by country name and code; arrow keys move, Enter picks",
@@ -6390,7 +6481,8 @@
    "Segment order and separators follow the locale (12.11.2026 for ro-RO)",
    "Arrow keys change the focused segment; typing a full segment moves to the next",
    "Validate on blur; errors name the rule: \"Date must be after 1 Jan 2026\"",
-   "Pasting a full date fills all segments"
+   "Pasting a full date fills all segments",
+   "Resize: min width 160; day, month and year segments keep their width and truncate a value that does not fit"
   ],
   "a11y": [
    "Each segment is a spinbutton with a label (\"Day\", \"Month\", \"Year\") inside a group labelled by the Field",
@@ -6424,7 +6516,8 @@
    "Accept \"1:30\", \"90\" (minutes) and \"1.5h\"; normalize on blur",
    "Minutes above 59 roll into hours",
    "Add a days segment only when the task needs it (lead times)",
-   "Store minutes as one number; errors name the limit (\"Up to 24 h per entry\")"
+   "Store minutes as one number; errors name the limit (\"Up to 24 h per entry\")",
+   "Resize: min width 160; values (max 24) and units (max 28) hug and truncate with ellipsis"
   ],
   "a11y": [
    "Hours and minutes are inputs with labels (\"Hours\", \"Minutes\") in a group labelled by the Field",
@@ -6637,7 +6730,8 @@
    "The Label always names the selected swatch; when you select another swatch, change the Label too",
    "Colors come from chart tokens so they stay readable in dark mode",
    "Same order everywhere the palette appears",
-   "Show the name under the swatches; never rely on color alone"
+   "Show the name under the swatches; never rely on color alone",
+   "Resize: swatches wrap to more rows (row gap 4); the color name truncates to 1 line"
   ],
   "a11y": [
    "A radiogroup with a label (\"Label color\"); arrow keys move between swatches",
@@ -6671,7 +6765,9 @@
    "Group fields the way people think about them; 2-6 fields per section",
    "Description says what the fields are for or when changes apply",
    "Divider between sections, off on the last one",
-   "One Save for the page, in a Save Bar or Action Bar"
+   "One Save for the page, in a Save Bar or Action Bar",
+   "Resize: Layout=side needs at least 640 (heading 280 + fields); below that use Layout=stacked, where heading and fields fill the width",
+   "Title up to 2 lines with ellipsis, description wraps"
   ],
   "a11y": [
    "The title is a real heading that follows the page outline",
@@ -6741,7 +6837,8 @@
    "Shows only after a submit; focus moves here",
    "Each link names the field and the fix, the same message the field shows inline",
    "Links in the order of the fields on the page",
-   "The count updates as fields are fixed; the summary disappears when all are fixed"
+   "The count updates as fields are fixed; the summary disappears when all are fixed",
+   "Resize: the error list fills the width; each error link wraps to at most 2 lines with ellipsis"
   ],
   "a11y": [
    "role=\"alert\" or a focused container with tabindex=\"-1\" and a heading",
@@ -6774,7 +6871,8 @@
    "Each Check Item updates as soon as it is met",
    "Nothing turns red before a submit; pending stays neutral",
    "Under 6 rules, in the order people fix them",
-   "Rules are positive and short: \"At least 12 characters\""
+   "Rules are positive and short: \"At least 12 characters\"",
+   "Resize: the title fills and wraps to 2 lines; requirement items hug their text"
   ],
   "a11y": [
    "A list (ul) linked to the field with aria-describedby",
@@ -6948,7 +7046,8 @@
    "The first element in the tab order of every page",
    "Hidden until focused, then shown top left above everything",
    "Moves focus to the main content (the <main> landmark or the page title)",
-   "Add one per long repeated block; never remove it"
+   "Add one per long repeated block; never remove it",
+   "Resize: hugs its label up to 320, then the label wraps (2 lines) centered"
   ],
   "a11y": [
    "A link to #main; the target has tabindex=\"-1\" so it can take focus",
@@ -6984,7 +7083,8 @@
    "The filter count shows only when filters are on",
    "Search, filters and view live in the URL",
    "While rows are selected, Table Toolbar takes its place",
-   "On narrow screens search takes the full row and the rest wraps below"
+   "On narrow screens search takes the full row and the rest wraps below",
+   "Resize: the toolbar wraps: the start group fills (min 256) with search between 128 and 320, the end group moves to a second line in narrow columns"
   ],
   "a11y": [
    "Search has an aria-label that says what it searches",
@@ -7060,7 +7160,8 @@
    "State=unread has a muted background and the dot",
    "The whole row opens the object and marks it read",
    "Actions only for what people can do from the list (Approve, View invoice); at most two",
-   "System notifications without a person use an icon Avatar"
+   "System notifications without a person use an icon Avatar",
+   "Resize: the text column fills (at least 128); message 3 lines and meta 1 line, then an ellipsis"
   ],
   "a11y": [
    "The row is a link; actions are separate buttons, not nested in the link",
@@ -7096,7 +7197,8 @@
    "Opening the panel does not mark items read; opening an item does",
    "Empty: \"You are all caught up.\"",
    "Mark all as read applies to the current tab",
-   "Show tabs only when there are several kinds of notification; one kind needs no tabs"
+   "Show tabs only when there are several kinds of notification; one kind needs no tabs",
+   "Resize: the title truncates to 1 line; needs at least 288, on phones show it full width in a Sheet"
   ],
   "a11y": [
    "The bell is a button with the count in its name: \"Notifications, 3 unread\"",
@@ -7145,7 +7247,8 @@
    "Titles wrap to 2 lines, snippets and summaries to 2 (Answer to 4), then ellipsis; bold the matched terms",
    "Status Badges in results are the soft variants (soft-success, soft-warning, soft-destructive, soft-info, soft-neutral), never solid",
    "Records show their status Badge; files show format and size before people click; people show role and team",
-   "No results: Empty State that repeats the query and suggests other words"
+   "No results: Empty State that repeats the query and suggests other words",
+   "Resize: path, meta and detail rows fill; their texts truncate to 1 line (path up to 160, last text fills); badges hug up to 128; title and snippet 2 lines"
   ],
   "a11y": [
    "Results are a list; each title is a link and a heading; the leading visual is decorative (alt=\"\") unless it adds information",
@@ -7215,7 +7318,8 @@
    "Hide the button when everything is shown; keep the count",
    "Keep the scroll position and move focus to the first new item",
    "Loading keeps the button width and disables it",
-   "On error, keep the loaded items and show Retry"
+   "On error, keep the loaded items and show Retry",
+   "Resize: the count fills, centered, up to 2 lines with an ellipsis; the button hugs"
   ],
   "a11y": [
    "The count is in a live region (aria-live=\"polite\") and updates after loading",
@@ -7283,7 +7387,8 @@
    "Double-click the handle to reset the split",
    "The split is remembered per person",
    "On narrow screens show one panel at a time with a way back",
-   "A panel can collapse to a rail when dragged past its minimum"
+   "A panel can collapse to a rail when dragged past its minimum",
+   "Resize: the start panel keeps its width, the end panel fills; needs at least 480"
   ],
   "a11y": [
    "The handle has role=\"separator\" with aria-valuenow, aria-valuemin and aria-valuemax",
@@ -7353,7 +7458,8 @@
    "Destructive last and red; it still asks for confirmation when it cannot be undone",
    "Cancel sits apart at the bottom",
    "Tap outside or swipe down closes it",
-   "Title names the object (\"INV-2041\")"
+   "Title names the object (\"INV-2041\")",
+   "Resize: title (2 lines) and description (3 lines) fill and wrap; action labels fill and stay on 1 line with ellipsis; Cancel is centered on 1 line"
   ],
   "a11y": [
    "role=\"menu\" with menuitem rows, or a list of buttons in a dialog; focus moves to the first action",
@@ -7388,7 +7494,8 @@
    "Numbers match the comment list order",
    "Click opens the thread in a Popover or the side panel; State=active is the open one",
    "Resolved pins fade and show a check",
-   "Pins that overlap move apart and stay clickable"
+   "Pins that overlap move apart and stay clickable",
+   "Resize: hugs its number with 6 side padding, at least 28 wide (32 when active); long numbers grow into a pill"
   ],
   "a11y": [
    "Each pin is a button: \"Comment 3 by Elena Popa\"",
@@ -7425,7 +7532,8 @@
    "Up to three networks the audience uses",
    "Replace the letter marks with the networks' official logos in product",
    "The system share button shows only where the browser supports it",
-   "Shared links open with a title, description and image (Open Graph)"
+   "Shared links open with a title, description and image (Open Graph)",
+   "Label truncates to 1 line when space runs out; the share buttons keep their size"
   ],
   "a11y": [
    "Each button has an aria-label: \"Copy link\", \"Share by email\", \"Share on LinkedIn\"",
@@ -7464,7 +7572,8 @@
    "The comparison names the period (\"vs last month\", \"vs Q3\"); hide it only when the period is said once nearby",
    "Edit the value text per instance; keep the same comparison for every item in a row",
    "Neutral tone when the change is too small to matter, or when up and down mean nothing good or bad",
-   "One Style per row of metrics"
+   "One Style per row of metrics",
+   "Resize: hugs on its own; when its parent is narrow (Fill) the comparison wraps under the change"
   ],
   "a11y": [
    "The sign and the words carry the meaning; color only supports it",
@@ -7496,7 +7605,8 @@
    "Show divider off on the first item, on for every item after it",
    "Value stays on one line; amounts in the locale format and compact (€1.84M)",
    "Label is a noun of one to three words, sentence case",
-   "Show trend on all items in a strip or on none"
+   "Show trend on all items in a strip or on none",
+   "Resize: min width 128; label and value fill; the Trend Indicator fills and wraps its comparison under the change"
   ],
   "a11y": [
    "Label and value are read together (dt and dd)",
@@ -7528,7 +7638,8 @@
    "Most important figure first, in the same order on every visit",
    "Items share the width equally; on narrow screens wrap to two columns, no horizontal scroll",
    "Loading: Skeleton in each value; no data: \"No data\" in muted text, never 0",
-   "Items fill the row height, so values stay aligned and dividers stay full height when an item has Show trend off"
+   "Items fill the row height, so values stay aligned and dividers stay full height when an item has Show trend off",
+   "Resize: the Metrics row wraps and each item is at least 128 wide: all in one row on desktop, 2 per row in a 1/4 column; inside an item the trend comparison drops under the change when narrow"
   ],
   "a11y": [
    "Code as a <dl> with one dt and dd per figure",
@@ -7565,7 +7676,8 @@
    "Level=over above 100%: error tone, say the consequence and the date (\"Uploads pause on 1 Nov\")",
    "Usage shows used and limit with the unit (\"4.2 of 5 GB\"); unlimited plans show the count and no bar",
    "Say when the count resets for monthly limits (\"Resets 1 Nov\")",
-   "Offer the fix in the hint or next to it: Upgrade, Buy more, Manage"
+   "Offer the fix in the hint or next to it: Upgrade, Buy more, Manage",
+   "Resize: the top row wraps: label fills (min 120, 2 lines), usage hugs up to 160 on 1 line and moves under the label when narrow; hint up to 3 lines"
   ],
   "a11y": [
    "The bar has role=\"meter\" with aria-valuenow, aria-valuemax and a label (\"Seats used\")",
@@ -7605,7 +7717,8 @@
    "Two digits per tile (02, 14); drop the days tile when it is 00",
    "At zero, replace it with the outcome (\"Registration closed\") and remove the action it promoted",
    "Count from the server time, never only the device clock",
-   "One Style per page"
+   "One Style per page",
+   "Resize: tiles keep their width; numbers and units stay on 1 line inside the tile with ellipsis"
   ],
   "a11y": [
    "Screen readers get the end time, not a ticking value: role=\"timer\" with aria-live=\"off\" and a <time datetime> label",
@@ -7643,7 +7756,8 @@
    "Value says the unit (€48,250, 312 tickets); same unit for every row",
    "Ties share a rank (1, 2, 2, 4)",
    "Say the period and the measure above the list (\"Paid revenue, Q4\")",
-   "Long names truncate with a Tooltip; value never truncates"
+   "Long names truncate with a Tooltip; value never truncates",
+   "Resize: rank keeps its 20 column (1 line), the name fills (min 80) with ellipsis, the value hugs up to 88 on 1 line"
   ],
   "a11y": [
    "Code as an <ol> or a table with rank, name and value columns",
@@ -7714,7 +7828,8 @@
    "Path in mono, parameters in braces, no host",
    "Summary starts with a verb: \"Retrieve an invoice\"",
    "The whole row links to the endpoint page; the open endpoint is State=selected, one per list",
-   "Order within a resource: list, create, retrieve, update, delete"
+   "Order within a resource: list, create, retrieve, update, delete",
+   "Resize: path fills (at least 120, 1 line with ellipsis); the summary caps at 200 and wraps under the path when narrow"
   ],
   "a11y": [
    "The row is one link with an accessible name of method, path and summary",
@@ -7814,7 +7929,8 @@
    "Removed lines above added lines",
    "Counts in the header: +3 −1",
    "Unified by default; side by side only on wide screens (1024 and up)",
-   "No changes: say \"No differences\" instead of an empty frame"
+   "No changes: say \"No differences\" instead of an empty frame",
+   "Resize: file name fills (at least 120), 1 line with ellipsis; added and removed counts cap at 64"
   ],
   "a11y": [
    "Each line names its type in hidden text (added, removed), so color is not the only cue",
@@ -7850,7 +7966,8 @@
    "Large payloads open collapsed after the first level; collapsed nodes show a count (\"items: [3]\")",
    "Copy copies the whole payload, formatted",
    "Long strings wrap; null shows as null, never blank",
-   "Mask secrets (tokens, card numbers) before they reach the viewer"
+   "Mask secrets (tokens, card numbers) before they reach the viewer",
+   "Resize: each line fills the viewer; code truncates to 1 line with ellipsis (full value in the expanded node or on copy)"
   ],
   "a11y": [
    "Code as a tree (role=\"tree\", role=\"treeitem\", aria-expanded); arrow keys open and close nodes",
@@ -7925,7 +8042,8 @@
    "Segment colors follow the entity (chart/1..6), match the legend swatches and stay the same across pages",
    "Legend shows the share (42%); hover a segment for the count; show or hide legend items to match the segments",
    "2 px gap between segments; tiny segments keep a 4 px minimum width",
-   "Shares add to 100%; round the largest to fix rounding"
+   "Shares add to 100%; round the largest to fix rounding",
+   "Resize: title fills (at least 120); total caps at 140, 1 line with ellipsis; the legend wraps"
   ],
   "a11y": [
    "The legend carries label and share in text, so color is not the only cue",
@@ -7961,7 +8079,8 @@
    "Bands are named in the legend or footnote (poor, fair, good) with their limits",
    "Stacked bullets share the same scale when the units match",
    "Scale starts at 0; values written as text next to the track (412k, target 480k)",
-   "Unit and period in the label"
+   "Unit and period in the label",
+   "Resize: label column 140 (title and unit 1 line each); the track fills (at least 160) and wraps under the label when narrow; values cap at 120 with ellipsis and wrap last"
   ],
   "a11y": [
    "Actual and target are text, so the line and bar are not the only cue",
@@ -7987,6 +8106,7 @@
    "Qualities on different scales: use a table"
   ],
   "anatomy": [
+   "Plot: the drawing, centered in the width",
    "Grid rings: 25, 50, 75, 100",
    "Axes: one per quality",
    "Series areas and lines: chart/1, chart/2, chart/3",
@@ -7998,7 +8118,8 @@
    "1-3 series; area fill low opacity so overlaps stay readable",
    "Labels outside the grid, short (one or two words)",
    "Axis order stays fixed and groups related qualities",
-   "Legend for 2+ series; tooltip lists every axis value of the hovered series"
+   "Legend for 2+ series; tooltip lists every axis value of the hovered series",
+   "Resize: the drawing stays centered in the width; needs at least 288"
   ],
   "a11y": [
    "Every Radar Chart has a table view with each quality and score",
@@ -8068,7 +8189,8 @@
    "Replace the tile regions with real map shapes, or keep tiles when equal size reads better",
    "Normalize when size skews the map (per customer, per capita)",
    "Legend states the unit and the step limits",
-   "Hover a region for its name and value"
+   "Hover a region for its name and value",
+   "Resize: regions scale with the map width; needs at least 240"
   ],
   "a11y": [
    "The table view lists every region with its value",
@@ -8104,7 +8226,8 @@
    "Selecting a version previews it (State=selected) with a Diff Viewer",
    "Restoring creates a new version; it never deletes the newer ones",
    "Summary says what changed in one line; autosaved versions say \"Autosave\"",
-   "Group autosaves by session or day when there are many"
+   "Group autosaves by session or day when there are many",
+   "Version name fills and truncates to 1 line, the Current badge sits at the end of the row (max 128); meta 1 line, summary 2 lines"
   ],
   "a11y": [
    "The list is a listbox or a list of buttons; the selected one has aria-selected or aria-current",
@@ -8145,7 +8268,8 @@
    "Text: two sentences: what changed and where to find it (Settings → Reminders)",
    "Type from the variant: new, improved, fixed; for a release with lines, the type of the headline change",
    "Changes: 2-5 lines, New first, then Improved, then Fixed; one sentence each",
-   "Screenshot only when it shows where to click; link to the help article"
+   "Screenshot only when it shows where to click; link to the help article",
+   "Title up to 2 lines, text up to 4 lines, date 1 line, with ellipsis; the full note opens from the link"
   ],
   "a11y": [
    "Each entry is an <article> with the title as a heading",
@@ -8182,7 +8306,8 @@
    "The Switch turns it on or off without deleting it (Status=on, off)",
    "Show how often it ran and when last, so people trust it; failures say so in Meta",
    "Delete asks for confirmation; off keeps the history",
-   "Name says the outcome (\"Route large invoices to finance\")"
+   "Name says the outcome (\"Route large invoices to finance\")",
+   "Name up to 2 lines, meta 1 line; trigger, condition and action chips hug up to 240 and truncate; the sentence wraps"
   ],
   "a11y": [
    "The Switch is labelled with the rule name (\"Route large invoices to finance, on\")",
@@ -8292,7 +8417,8 @@
    "Say whether VAT is included near the price",
    "Old price only during a real discount, with the end date nearby",
    "Prices compared side by side use the same Size",
-   "Size=xl once per page, in a hero or a single-offer section; comparisons use default"
+   "Size=xl once per page, in a hero or a single-offer section; comparisons use default",
+   "Resize: the amount never wraps or truncates; the period fills what is left and truncates to 1 line. Give the Price at least the amount's width"
   ],
   "a11y": [
    "The old price is announced as such (\"Was €35, now €29\"): <s> alone is not read by most screen readers",
@@ -8341,7 +8467,8 @@
    "CTA labels match across the page (\"Start free trial\"); one primary per section",
    "Features title says what the plan adds to the one before",
    "Cards in a row share height; buttons and prices align",
-   "Check Items placed in an inverted card's Features slot use background/default text and icon"
+   "Check Items placed in an inverted card's Features slot use background/default text and icon",
+   "Resize: the features title wraps to 2 lines with an ellipsis; Price and the features keep their width"
   ],
   "a11y": [
    "The plan name is a heading one level below the section title",
@@ -8376,7 +8503,8 @@
    "Links to the announcement or the changelog",
    "Label is one line (about 40 characters) and says what is new",
    "Tag says \"New\" or \"Beta\", nothing louder",
-   "Never for errors or outages"
+   "Never for errors or outages",
+   "Hugs its text; in a narrower column the text truncates to 1 line; tag and arrow keep their size"
   ],
   "a11y": [
    "The whole pill is one link; its name reads tag and label (\"New: Automations for every team\")",
@@ -8415,7 +8543,8 @@
    "Update or remove it when a certificate expires",
    "Same order everywhere; 3-5 in a row",
    "Name and Description wrap inside the border when the badge is narrower than its text; set Fill in rows of equal badges",
-   "Tone=on-primary on primary bands and cards, Tone=inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner); never override the colors by hand"
+   "Tone=on-primary on primary bands and cards, Tone=inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner); never override the colors by hand",
+   "Name and detail: up to 2 lines each with ellipsis"
   ],
   "a11y": [
    "The icon is aria-hidden; name and detail are text, not part of an image",
@@ -8460,7 +8589,8 @@
    "Logo only with the customer's written permission to use their mark",
    "Minimal quotes sit on the page background; never put them inside another card",
    "Rating only when it comes with the quote from the same customer",
-   "Real photos or initials; no stock photos"
+   "Real photos or initials; no stock photos",
+   "Resize: the quote wraps to 6 lines with an ellipsis; keep quotes under about 200 characters"
   ],
   "a11y": [
    "Code as <figure> with <blockquote> and the Byline in <figcaption>",
@@ -8584,7 +8714,8 @@
    "In grids set the card to Fill in a Grid auto layout (4 columns desktop, 2 mobile); minimum width 160",
    "Pick the photo ratio once per grid on the exposed Image, never by resizing the image layer",
    "Show rating on every card of a grid or on none; the count is the number of reviews",
-   "Sold out keeps Notify me even when quick add (Show action) is off in the grid; turn Show notify off only when there is no restock"
+   "Sold out keeps Notify me even when quick add (Show action) is off in the grid; turn Show notify off only when there is no restock",
+   "Resize: name up to 2 lines, variant line 1 line, both with ellipsis"
   ],
   "a11y": [
    "One link for the card (on the name, stretched over the card)",
@@ -8702,7 +8833,8 @@
    "Search by order number above the list when there are more than 20",
    "The whole row opens the order page",
    "Cancelled orders stay in the list with their total",
-   "In a list with the order detail beside it, the open order is State=selected; never a fill override"
+   "In a list with the order detail beside it, the open order is State=selected; never a fill override",
+   "Resize: order number and meta fill, 1 line with ellipsis (order column at least 160); total hugs, never wraps, at least 96, right aligned; below about 420 the status, total and chevron wrap under the order"
   ],
   "a11y": [
    "The row is one link named by number, status and total (\"Order #10482, Shipped, €112.40\")",
@@ -8738,7 +8870,8 @@
    "Problems (delayed, returned) replace the step with an error and say what happens next",
    "Track links to the carrier for the full scan history",
    "The tracking number can be copied",
-   "Several parcels: one tracker per parcel"
+   "Several parcels: one tracker per parcel",
+   "Resize: the Track button wraps under the text (text at least 160); ETA and carrier 1 line with ellipsis; the four steps need at least 560, in a narrower column show the steps as a Timeline"
   ],
   "a11y": [
    "Steps as an <ol>; the current step has aria-current=\"step\"",
@@ -8775,7 +8908,8 @@
    "Add new address is the last card",
    "Remove asks to confirm (Confirm Popover)",
    "One default address; the Default badge sits next to the name",
-   "Read-only places (order details, receipts) turn off Show actions and Show radio"
+   "Read-only places (order details, receipts) turn off Show actions and Show radio",
+   "Resize: the name row fills and wraps the Default badge under a long name; the name caps at 200, 1 line with ellipsis"
   ],
   "a11y": [
    "In checkout the cards are a radiogroup; the whole card is the label of its radio",
@@ -8812,7 +8946,8 @@
    "expired says it in destructive and offers Update",
    "Removing the default asks which method replaces it",
    "Brand marks come from the payment provider",
-   "Show default only where the default can change (billing settings); turn it off on receipts and past orders"
+   "Show default only where the default can change (billing settings); turn it off on receipts and past orders",
+   "Resize: the brand name truncates inside its 44 box; card and expiry are 1 line with ellipsis"
   ],
   "a11y": [
    "The card reads as text (\"Visa ending in 4242, expires 08/28\"), not dots",
@@ -8849,7 +8984,8 @@
    "Sort by most helpful by default, with filters by stars",
    "Never edit what customers wrote; company replies sit under the review",
    "Verified only when the purchase is confirmed",
-   "Dates as day, month, year (\"3 Oct 2026\")"
+   "Dates as day, month, year (\"3 Oct 2026\")",
+   "Resize: the name fills and truncates to 1 line; the Verified badge and the date hug up to 128; title 2 lines, text 4 lines with an ellipsis (link to the full review)"
   ],
   "a11y": [
    "Code as an <article>; the title is a heading",
@@ -8883,7 +9019,8 @@
    "Each bar row filters the list to that rating",
    "Count says how many reviews it comes from",
    "Under 5 reviews, show the count only",
-   "Bars show the share of all reviews (92 of 128 = 72% of the track); resize the fill layer to set it, it keeps the proportion when the card resizes"
+   "Bars show the share of all reviews (92 of 128 = 72% of the track); resize the fill layer to set it, it keeps the proportion when the card resizes",
+   "Resize: the average column hugs up to 160 (value 1 line, count 2 lines, then ellipsis); the distribution fills and never goes under 192, so under about 340 it wraps below the average"
   ],
   "a11y": [
    "The average reads \"4.6 out of 5, 128 reviews\"",
@@ -8920,7 +9057,8 @@
    "The author can remove the preview and keep the plain link",
    "No preview for private links that need sign-in",
    "Title and description cut at 2 lines",
-   "While loading, a Skeleton; when the fetch fails, the plain link"
+   "While loading, a Skeleton; when the fetch fails, the plain link",
+   "Resize: the site row fills; the domain truncates to 1 line"
   ],
   "a11y": [
    "One link wraps the card; its name is the title and it says it opens a new tab",
@@ -9035,7 +9173,8 @@
    "One frame style per page",
    "The address matches the screen",
    "Realistic content (Acme, invoices), no placeholder text",
-   "Prefer an Image / Screenshot component on marketing pages; a live block only when it must stay editable"
+   "Prefer an Image / Screenshot component on marketing pages; a live block only when it must stay editable",
+   "Resize: the browser address fills the bar and stays on 1 line with ellipsis; the screen fills"
   ],
   "a11y": [
    "The screenshot has alt text that says what it shows",
@@ -9173,7 +9312,9 @@
    "The time line says day, start and end, and time zone (\"Tue 22 Oct · 14:00-15:00 EET\"); recurring meetings say so (\"Weekly\")",
    "Place is a room or the video provider (\"Google Meet\"), never a raw URL",
    "Avatar Group shows up to 4 people, then +N; the organizer first",
-   "Ended meetings leave the dashboard; in a record they stay with a link to notes"
+   "Ended meetings leave the dashboard; in a record they stay with a link to notes",
+   "Resize: the title wraps to 2 lines with an ellipsis",
+   "Needs at least 240"
   ],
   "a11y": [
    "The card is an article with the title as its heading",
@@ -9210,7 +9351,8 @@
    "State=unavailable hides the hours and says \"Unavailable\"",
    "Times in 15 or 30 minute steps; the end is after the start; overlapping ranges merge on save",
    "Extra ranges stack under the first, each with a remove button",
-   "The time zone is said once above the list; \"Copy to all days\" in the header saves repeat work"
+   "The time zone is said once above the list; \"Copy to all days\" in the header saves repeat work",
+   "Resize: the row wraps; under about 430 the hours (two Selects and the add button) drop under the switch and day"
   ],
   "a11y": [
    "The Switch is labelled with the day (\"Available on Monday\")",
@@ -9279,7 +9421,8 @@
    "Show it after about 300 ms; quicker loads need nothing",
    "The label says what loads (\"Loading invoices…\")",
    "The covered region is not interactive; the rest of the page stays usable",
-   "A failed load replaces it with an error Empty State in the same area, with \"Try again\""
+   "A failed load replaces it with an error Empty State in the same area, with \"Try again\"",
+   "Resize: the overlay stretches; the message spans the width minus 24 on each side, centered, label 2 lines with an ellipsis"
   ],
   "a11y": [
    "The region gets aria-busy=\"true\" while loading",
@@ -9316,7 +9459,8 @@
    "Ask once per page per person and remember the answer",
    "After an answer, the comment is optional; after No it asks what was missing",
    "Send the answer with the page and version so it can be acted on",
-   "Thanks replaces the widget in place; no dialog"
+   "Thanks replaces the widget in place; no dialog",
+   "Resize: question and thanks texts fill and wrap to 2 lines with an ellipsis; the answer buttons hug"
   ],
   "a11y": [
    "Answers are a group labelled by the question; buttons use aria-pressed",
@@ -9423,7 +9567,9 @@
    "Uptime has two decimals over the same 90 days on every row",
    "Maintenance says until when, with the time zone, in the incident",
    "Status pages use Show bars on every row; select a nested Uptime Day to set the state of that day",
-   "The bars and the uptime % cover the same 90 days"
+   "The bars and the uptime % cover the same 90 days",
+   "Service fills (min 128) and truncates to 1 line; uptime hugs up to 160 and truncates",
+   "Wraps: in a narrow column uptime and status drop under the service name (row gap 4)"
   ],
   "a11y": [
    "Rows are a list or a table; the status word is read with the service name",
@@ -9460,7 +9606,9 @@
    "The role picker lists Can view, Can comment, Can edit, then Remove access at the bottom, apart",
    "Owner shows the role as text; owner first, then you, then the rest A-Z",
    "Pending shows \"Invited 2 days ago\"; its menu offers Resend and Cancel invite",
-   "Changes save at once with a toast; removing your own access asks to confirm"
+   "Changes save at once with a toast; removing your own access asks to confirm",
+   "Resize: name and email fill and truncate to 1 line (who column at least 128); avatar and role Select keep their size",
+   "Needs at least 320"
   ],
   "a11y": [
    "The list is a ul with aria-label \"People with access\"",
@@ -9563,7 +9711,8 @@
    "Top right of the editor, next to Share",
    "Hovering an avatar shows the name and what they are looking at; clicking jumps there",
    "Up to 4 avatars, then +N; each person keeps the same color as their cursor",
-   "People who leave disappear; idle people fade"
+   "People who leave disappear; idle people fade",
+   "The avatar group fills the bar and its label truncates; the live dot keeps its size"
   ],
   "a11y": [
    "A group with aria-label \"People viewing\"",
@@ -9656,7 +9805,8 @@
    "Tapping a Reaction adds or removes the reader's own",
    "Hover lists who reacted (up to 10 names, then \"and N others\")",
    "With no reactions, only the add button shows, on hover or focus of the message",
-   "Reactions are for acknowledgement; decisions still go in a reply"
+   "Reactions are for acknowledgement; decisions still go in a reply",
+   "Resize: the Reactions slot fills the bar and wraps to more rows (row gap 4); the add button stays last"
   ],
   "a11y": [
    "A group with aria-label \"Reactions\"",
@@ -9690,7 +9840,8 @@
    "Unread replies make the count bold with a dot",
    "Count uses singular and plural (\"1 reply\", \"3 replies\")",
    "Last reply time is relative; the exact time shows on hover",
-   "Photos by default; set an Avatar to Type=initials when a person has no photo"
+   "Photos by default; set an Avatar to Type=initials when a person has no photo",
+   "Resize: the row wraps; Replies and Last reply cap at 120, 1 line with ellipsis"
   ],
   "a11y": [
    "A button with aria-expanded when it opens in place",
@@ -9726,7 +9877,9 @@
    "Show the salary range when you can; candidates filter on it",
    "Sort newest first; group by team with Section Heading and counts",
    "\"New\" only for roles posted in the last 7 days",
-   "On mobile, salary and Apply move under the details"
+   "On mobile, salary and Apply move under the details",
+   "Resize: the row wraps: the body fills (min 240) and the salary and Apply move under it in narrow columns",
+   "Title and meta up to 2 lines; location and posted hug up to 200 on 1 line; salary hugs up to 224 on 1 line, all with ellipsis"
   ],
   "a11y": [
    "The row is a list item with one main link named by the title",
@@ -9765,7 +9918,8 @@
    "Use a letter tile only when no vendor logo is available; one style per grid",
    "Error says what failed and how to fix it (\"Token expired. Reconnect\")",
    "Grid of 3 on desktop, 1 on mobile; cards in a row share height",
-   "Disconnecting asks for confirmation and says what stops"
+   "Disconnecting asks for confirmation and says what stops",
+   "Name and category: 1 line with ellipsis; description up to 3 lines; the logo letter stays inside the tile"
   ],
   "a11y": [
    "The name is the card heading; Connect is named with the app (\"Connect Payments\")",
@@ -9805,7 +9959,9 @@
    "Highlight the role being edited: its role cell State=selected in every permission row, header unchanged",
    "Locked roles (owner) show disabled checked boxes and say why",
    "Show changed on rows edited since the last save; save with the Save Bar and log it in the audit log",
-   "A permission that needs another (approve needs view) ticks it too, and says so"
+   "A permission that needs another (approve needs view) ticks it too, and says so",
+   "Needs at least 448 wide (permission column min 160 plus three 96 role columns, minWidth 448 on every Type); add 96 for each extra role; in a narrow panel list one role at a time with a Select",
+   "Title: 1 line with ellipsis; description up to 2 lines; the Changed badge truncates at 128"
   ],
   "a11y": [
    "A real table: role names as th scope=\"col\", permission as th scope=\"row\"",
@@ -9846,7 +10002,9 @@
    "Roll creates a new key, shown once, and says how long the old one keeps working",
    "Unused keys older than 90 days get a warning",
    "Newest first; revoked keys leave the list and go to the audit log",
-   "Show scope when keys differ in access; hide it when every key has full access"
+   "Show scope when keys differ in access; hide it when every key has full access",
+   "Name and meta fill the text column (min 160); name 1 line, meta 2 lines, with ellipsis; scope badge truncates at 160",
+   "Wraps: when the row is narrow the key, Copy and More drop under the name (row gap 8); the key truncates at 192"
   ],
   "a11y": [
    "The masked key reads \"Key ending in 4f2a\"",
@@ -9884,7 +10042,9 @@
    "Then sort by last active",
    "Location is approximate (city, country); the IP is partial",
    "End the list with \"Sign out of all other sessions\"",
-   "Sign out works at once; the row leaves with a toast"
+   "Sign out works at once; the row leaves with a toast",
+   "Name 1 line, meta 2 lines, with ellipsis; text column min 160",
+   "Wraps: in a narrow column the action drops under the text (row gap 8)"
   ],
   "a11y": [
    "Sign out is named with the device (\"Sign out Chrome on macOS\")",
@@ -9922,7 +10082,8 @@
    "Connect nodes with 1 px border/default lines",
    "Vacant roles are dashed, titled \"Open role\" (Vacancy); the secondary line is Role and Hiring status (\"Head of Platform · Hiring\"), linked to the Job Listing",
    "Large orgs show 2-3 levels and a search",
-   "Names and titles wrap to two lines at most"
+   "Names and titles wrap to two lines at most",
+   "Needs at least 160 wide (minWidth 160); name wraps to 2 lines, role and reports truncate to 1 line, centered"
   ],
   "a11y": [
    "The chart is a tree (role=\"tree\", treeitem with aria-expanded and aria-level); arrow keys move",
@@ -9959,7 +10120,8 @@
    "Under 1 second, show nothing",
    "Stop keeps what arrived and says it stopped",
    "Time left only when it is known",
-   "Works at any width from about 240; set the instance to FILL in its container"
+   "Works at any width from about 240; set the instance to FILL in its container",
+   "Status and progress: 1 line with ellipsis; Stop keeps its size"
   ],
   "a11y": [
    "Status text is in role=\"status\" (aria-live=\"polite\"), updated per step, not per token",
@@ -10105,7 +10267,8 @@
    "Done is struck through and moves to the end",
    "Overdue says it in destructive: write Due as \"Overdue · was due 10 Nov\" when you switch to State=overdue",
    "Open items sort by due date; the title wraps to two lines at most",
-   "The row opens the task; the Checkbox only ticks; the action button starts the task"
+   "The row opens the task; the Checkbox only ticks; the action button starts the task",
+   "Resize: title and due date fill; due stays on 1 line with ellipsis"
   ],
   "a11y": [
    "The Checkbox is labelled by the title",
@@ -10140,7 +10303,8 @@
    "Either side may stay empty (\"from 100\")",
    "Error when min is above max; say it once under the pair: \"Minimum must be lower than the maximum\"",
    "Same unit and format on both sides; format on blur",
-   "In filters, apply on blur or Enter, not on every key"
+   "In filters, apply on blur or Enter, not on every key",
+   "Resize: the two fields share the width; units hug up to 32 and values stay on 1 line with ellipsis"
   ],
   "a11y": [
    "Wrap the pair in a fieldset or group with the label (\"Price\")",
@@ -10174,7 +10338,8 @@
    "Starters come from real user tasks, never generic examples",
    "Follow-ups: 2-4 chips, only when the next step is predictable",
    "Click fills the input; follow-up chips send at once",
-   "Label is short: \"Summarize open invoices\""
+   "Label is short: \"Summarize open invoices\"",
+   "Chip hugs its label; when the chip is narrower than the label, the label truncates to 1 line (card: 2 lines)"
   ],
   "a11y": [
    "Each Suggestion is a button named by its Label",
@@ -10210,7 +10375,8 @@
    "Keyboard: Tab next, Enter accept, Backspace reject",
    "Accept all asks once when the changes are many",
    "Floats at the bottom center of the document until all are reviewed",
-   "Accepted changes can be undone; at the end the bar sums up and leaves"
+   "Accepted changes can be undone; at the end the bar sums up and leaves",
+   "Wraps: below about 700 the actions drop to a second row (row gap 8); the count fills the space left (min 128) and truncates to 1 line"
   ],
   "a11y": [
    "role=\"toolbar\" with aria-label \"Review suggestions\"",
@@ -10283,7 +10449,8 @@
    "Show 2-4 tags, then +N",
    "One or two words per tag, sentence case",
    "Status colors only when the tag means a status",
-   "Same order everywhere (type, frequency, region)"
+   "Same order everywhere (type, frequency, region)",
+   "Badges wrap to more lines when the list is narrower than its badges (row gap as the badge gap); +N stays at the end of the first row"
   ],
   "a11y": [
    "Code as a list (ul) with a label (\"Tags\")",
@@ -10349,7 +10516,8 @@
    "Select a nested Uptime Day to set its State; keep the real degraded and outage days",
    "Days before a service existed are no-data, not operational",
    "Each day with an incident links to it; the tooltip says the date, the state and the incident title",
-   "Show labels on every row of a status page, or once under the last row"
+   "Show labels on every row of a status page, or once under the last row",
+   "Bars share the width; the start and end labels stay on 1 line (end label hugs up to 96)"
   ],
   "a11y": [
    "Color is never the only signal: each day has a tooltip and an accessible label (\"3 Oct 2026: degraded\")",
@@ -10609,7 +10777,8 @@
   "rules": [
    "App Store first, then Google Play, same height, 8 to 12 px apart",
    "Keep the store text as the stores write it; translate only with the store's localized badge",
-   "Link each badge to its listing"
+   "Link each badge to its listing",
+   "Resize: never narrower than its artwork (min width = badge width); in a narrow column stack the badges instead of shrinking them"
   ],
   "a11y": [
    "It is a link: accessible name \"Download on the App Store\" or \"Get it on Google Play\"",
@@ -10698,7 +10867,8 @@
   "rules": [
    "Title says the news or the task in sentence case, no exclamation marks",
    "Text gives the one fact needed next: amount, date, who, how long a link works",
-   "The subject line and the Title say the same thing"
+   "The subject line and the Title say the same thing",
+   "Resize: min width 320; Title up to 3 lines and Text up to 4, with ellipsis; Eyebrow 1 line"
   ],
   "a11y": [
    "Title is the email's only h1",
@@ -10728,7 +10898,8 @@
   "rules": [
    "Label is verb + object and matches the page it opens (\"Reset password\")",
    "Under links that expire, add the plain URL in Email / Content for people whose client blocks buttons",
-   "Align left in text emails; center in short welcome or announcement emails"
+   "Align left in text emails; center in short welcome or announcement emails",
+   "Resize: min width 320; the button hugs its label up to 240 wide, the label stays on 1 line with ellipsis"
   ],
   "a11y": [
    "It is a link (a element), not a button",
@@ -10759,7 +10930,8 @@
   "rules": [
    "Two or three sentences per block; stack blocks rather than writing walls of text",
    "Links are underlined and say where they go",
-   "No \"click here\", no exclamation marks"
+   "No \"click here\", no exclamation marks",
+   "Resize: min width 320; Heading up to 2 lines; the paragraph wraps and never truncates (body copy is read in full)"
   ],
   "a11y": [
    "Heading is h2 in code",
@@ -10789,7 +10961,8 @@
   "rules": [
    "Six digits, no spaces inside, so copy and paste works",
    "Hint says when the code expires and what to do if the reader did not ask for it",
-   "Put the code in the subject line too (\"482916 is your Orbitly code\")"
+   "Put the code in the subject line too (\"482916 is your Orbitly code\")",
+   "Resize: min width 320; Label and Code fill the box and wrap (Code up to 2 lines); codes are 4 to 8 characters"
   ],
   "a11y": [
    "Code is real text, never an image",
@@ -10821,7 +10994,8 @@
   "rules": [
    "Most important row first (amount or what changed)",
    "Exact values: currency symbol, full dates for legal facts, times with time zone",
-   "Same labels as in the product (\"Invoice number\", not \"Ref\")"
+   "Same labels as in the product (\"Invoice number\", not \"Ref\")",
+   "Resize: min width 320; each row wraps: Label fills (min 112), Value hugs up to 192 on 1 line and moves under the label when there is no room"
   ],
   "a11y": [
    "In code a two-column table with role=\"presentation\" or a definition list",
@@ -10882,7 +11056,8 @@
   "rules": [
    "Title short, Text one or two sentences with the fix",
    "The message must make sense without the color",
-   "warning for deadlines and \"was this not you\" notices; destructive only for a blocked account or data loss"
+   "warning for deadlines and \"was this not you\" notices; destructive only for a blocked account or data loss",
+   "Resize: min width 320; Title up to 2 lines, Text up to 4, with ellipsis"
   ],
   "a11y": [
    "Icon is decorative (empty alt); the Title carries the meaning",
@@ -10932,7 +11107,8 @@
   ],
   "rules": [
    "Every figure says its period",
-   "Link to the full report from the email's one button"
+   "Link to the full report from the email's one button",
+   "Resize: min width 320; the Items row wraps and each Email / Stat is at least 112 wide: 3 per row at 600, 2 then 1 at 320"
   ],
   "a11y": [
    "Cells stack on narrow screens in code",
@@ -10960,7 +11136,9 @@
   ],
   "rules": [
    "Link names the destination (\"Read the guide\"), never \"click here\"",
-   "One sentence of text"
+   "One sentence of text",
+   "Resize: min width 320; the row wraps, so below about 380 the text column (min 192) drops under the image",
+   "Title: 2 lines, Text: 3 lines, Link: 1 line, all with ellipsis"
   ],
   "a11y": [
    "Thumbnail alt text or empty when the title says it all",
@@ -11052,7 +11230,8 @@
   "rules": [
    "Letter is the first letter of the site or app name",
    "Sources repeats the first three Letters in its collapsed row",
-   "Opens the source in a new tab"
+   "Opens the source in a new tab",
+   "Title and domain: 1 line with ellipsis; the item fills its slot between 240 and 384"
   ],
   "a11y": [
    "The item is a link named by its title and domain; it says it opens a new tab",
@@ -11077,7 +11256,7 @@
    "One plan with what is included: use Block / Pricing Single"
   ],
   "anatomy": [
-   "Plans: 3 (label column 432, plan columns 240), 4 (label column 352, plan columns 200)",
+   "Plans: 3 (label column 432, plan columns 240), 4 (label column 352, plan columns 200); all columns FILL in that proportion with a 192 minimum (label 256 with 4 plans)",
    "Header row: plan name (with an optional Badge), Price sm and a sm Button per plan",
    "Section rows: an overline label (\"Core\", \"Collaboration\", \"Security\")",
    "Feature rows: label and one Table Cell Check per plan (check, dash or a short value)",
@@ -11088,7 +11267,9 @@
    "Same feature order and wording as the plan cards",
    "Use a check or a dash for yes and no; a short value (\"100 GB\", \"Unlimited\") when it differs",
    "Hide rows you do not need; keep at least one row per section",
-   "One primary button in the header: the recommended plan"
+   "One primary button in the header: the recommended plan",
+   "Resize: label and plan columns fill in proportion (432/240, or 352/200 with 4 plans); plan columns never go under 192, the label column under 192 (256 with 4 plans) and feature labels wrap",
+   "Needs at least 768 (Plans=3) or 1024 (Plans=4); below that, stack Plan Cards"
   ],
   "a11y": [
    "Code it as a <table> with plan names as column headers (scope=\"col\") and feature labels as row headers (scope=\"row\")",
@@ -11132,6 +11313,152 @@
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/patterns/mobile.md"
+  ]
+ },
+ "Selection Toolbar": {
+  "summary": "Small floating bar over selected text in a document: quick formats (Bold, Italic, Link) and a primary Comment button.",
+  "use": [
+   "Text selected in a Rich Text Editor or a read-only document that people comment on",
+   "Quick formatting without moving to the editor toolbar",
+   "Read-only reviewers: Show formatting off, Comment only"
+  ],
+  "avoid": [
+   "The full list of formats: use the Rich Text Editor toolbar",
+   "Actions on a whole record or row: use a Menu or Action Bar",
+   "AI rewrites of a selection: use Block / Inline AI"
+  ],
+  "anatomy": [
+   "Formatting (Show formatting): Toggle Group Items Bold, Italic, Link and a vertical Separator",
+   "Comment (Show comment): Button default sm with message-square icon",
+   "Surface: background/popover, border/default, radius/lg, shadow/md"
+  ],
+  "rules": [
+   "Appears 8 px above the selection, at its start or centered on it; flips below when there is no room above",
+   "Hides on Escape, on click outside and when the selection collapses",
+   "Comment opens a new Comment Thread at the top of the Comments Panel with the selection as its Quote; the run turns into a Comment Highlight State=active",
+   "Show comment off where comments are disabled; Show formatting off for readers who can only comment",
+   "Resize: hugs its content, never stretches; on phones it fits 390 with both groups"
+  ],
+  "a11y": [
+   "role=\"toolbar\" with aria-label=\"Text actions\"; arrow keys move between buttons",
+   "Toggle buttons expose aria-pressed and have tooltips with shortcuts (⌘B, ⌘I, ⌘K)",
+   "A keyboard shortcut adds a comment without the mouse (⌘⌥M); focus moves to the new composer"
+  ],
+  "code": "Tiptap BubbleMenu (or Lexical floating toolbar) with shadcn Toggle and Button; positioned by Floating UI.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md",
+   "skills/build-ui/components/rich-text-editor.md"
+  ]
+ },
+ "Comment Highlight": {
+  "summary": "Highlighter tint on a run of commented text, drawn as a text decoration so the words stay editable and the tint wraps with the paragraph.",
+  "use": [
+   "Commented words inside the Rich Text Editor Content slot",
+   "The run behind the active Comment Thread (State=active)",
+   "A selection before the comment is posted (State=selected)"
+  ],
+  "avoid": [
+   "Marking search results: use a find highlight in code (mark element), not the comment colors",
+   "AI changes to review: use AI Suggestion",
+   "Pins on images or designs: use Annotation Pin"
+  ],
+  "anatomy": [
+   "Text: the commented run, body/default",
+   "State: open (comment/highlight), active (comment/highlight-active), selected (comment/selection), resolved (no tint)",
+   "Recipe on any text run: Decoration Underline, thickness 100%, offset -80%, skip ink off, color = the State token"
+  ],
+  "rules": [
+   "Every open thread has exactly one highlight; resolving the thread removes it",
+   "One active highlight at a time, the same thread as the active Comment Thread",
+   "Overlapping comments: the most recent draws on top; clicking the run cycles through its threads",
+   "Body text only, never on muted text (contrast)",
+   "Resize: it is part of the text run, so it wraps and reflows with the paragraph at every width"
+  ],
+  "a11y": [
+   "Text contrast on the tint: 12.5:1 or more in Light, 6.3:1 or more in Dark (active on card)",
+   "The run is a mark element with aria-describedby pointing to its thread, or announced as \"commented\"",
+   "Never rely on the tint alone: the panel lists the same quote"
+  ],
+  "code": "Tiptap Mark extension (comment) rendering <mark data-thread-id> with bg-[var(--comment-highlight)]; active adds bg-[var(--comment-highlight-active)].",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md",
+   "skills/build-ui/components/rich-text-editor.md"
+  ]
+ },
+ "Comment Thread": {
+  "summary": "One comment thread in the Comments Panel, anchored to a run of text: quoted excerpt, the first Comment, Replies and a reply Comment Composer, with Resolve and a menu.",
+  "use": [
+   "Comments on selected text in documents, contracts, briefs and specs",
+   "The thread list in Comments Panel, or a bottom Drawer on mobile",
+   "A new thread being written (Show comments off, composer focused)"
+  ],
+  "avoid": [
+   "Comments on a whole record (task, invoice): use Comment and Comment Composer",
+   "Real-time conversation: use Chat Message",
+   "Pins on images or designs: use Annotation Pin with a comment list"
+  ],
+  "anatomy": [
+   "Quote: the commented words with a warning bar, body/small muted, 2 lines with ellipsis (1 line when resolved)",
+   "Resolve (Button Icon ghost sm, check) and More (Button Icon ghost sm, ellipsis); Reopen (Button outline sm) when resolved",
+   "Comment (Show comments): exposed Comment Type=comment",
+   "Replies (Show replies): native slot of Comment Type=reply",
+   "Comment Composer (Show reply)",
+   "Resolved by: check icon and \"Resolved by Ana Popescu · 2 d ago\" (State=resolved)",
+   "State: default, active, resolved"
+  ],
+  "rules": [
+   "Clicking a thread scrolls to its Comment Highlight and makes both active; only one active thread",
+   "State=active: border/ring and shadow/md; the highlight uses comment/highlight-active",
+   "Resolve collapses the thread to State=resolved, removes the highlight and moves it under the Resolved filter; Reopen brings both back",
+   "A new thread starts with Show comments off and the composer focused; posting turns on Show comments",
+   "Show reply off for readers without comment rights; Show replies off when there are no replies",
+   "Resize: width 320, works from 280 to 400; the quote and comments wrap, header actions hug and never shrink; comment names cap at 200 (replies 160) with ellipsis"
+  ],
+  "a11y": [
+   "The thread is an article labelled by its quote; Resolve and More have aria-labels (\"Resolve thread\", \"Thread actions\")",
+   "New replies from others are announced with aria-live=\"polite\"",
+   "Resolved state is in text (\"Resolved by\"), not only color"
+  ],
+  "code": "Custom card (shadcn Card styles) with Comment list and Comment Composer; thread data keyed by the comment mark id (Tiptap) or a Liveblocks / Velt thread.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md"
+  ]
+ },
+ "Comments Panel": {
+  "summary": "Right sidebar that keeps the comment threads of a document: title with the open count, Open / Resolved filter, a list of Comment Threads and an empty state.",
+  "use": [
+   "Next to a document people comment on (Block / Document with Comments)",
+   "Review of contracts, briefs and policies inside the product",
+   "Content=empty before the first comment"
+  ],
+  "avoid": [
+   "Comments under a record: use Block / Comments",
+   "Notifications across the product: use Notification Center",
+   "Mobile: put the Comment Threads in a bottom Drawer opened from a comment count button"
+  ],
+  "anatomy": [
+   "Title (\"Comments\") and Count (exposed Badge Count)",
+   "Filter (Show filter) and Close (Show close): Button Icon ghost sm",
+   "Filter tabs: exposed Toggle Group segmented, \"Open 3\" and \"Resolved 1\"",
+   "Threads: native slot of Comment Thread",
+   "Content: threads, empty (Empty State sm: \"No comments yet\", \"Select text to comment.\")"
+  ],
+  "rules": [
+   "360 wide, full height, border on the left; the list scrolls inside, the header stays",
+   "Threads follow document order; the active one lines up with its highlight when there is room",
+   "Count, the Open / Resolved labels and the comment count button in the page header show the same numbers",
+   "Resolved shows State=resolved threads only; Open never shows resolved ones",
+   "Close hides the panel; the comment count button in the header opens it again",
+   "Resize: fixed 360; below 1024 it overlays the document as a Sheet, on phones it becomes a bottom Drawer"
+  ],
+  "a11y": [
+   "complementary landmark labelled \"Comments\"; the filter is a radio group",
+   "Focus moves to the new thread composer after Comment in the Selection Toolbar",
+   "Escape closes the panel and returns focus to the comment count button"
+  ],
+  "code": "aside with shadcn ToggleGroup (type single) and ScrollArea; threads sorted by mark position from the editor (Tiptap) or rendered by Liveblocks / Velt comment components.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md"
   ]
  }
 }

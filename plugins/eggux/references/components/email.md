@@ -1,6 +1,6 @@
 # Email
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -94,6 +94,9 @@ Text gives the one fact the reader needs next (amount, date, who).
 Show eyebrow adds a short brand-colored label (product area or date range). Show image adds a 16:9 Image Placeholder (exposed: pick an Image / *); use it for announcements and newsletters, not for security emails.
 
 
+Needs at least 320 (the narrowest mail client). Title up to 3 lines, text up to 4.
+
+
 Usage: eggux build-ui/patterns/email.md
 
 **Use for**
@@ -119,6 +122,7 @@ Usage: eggux build-ui/patterns/email.md
 - Title says the news or the task in sentence case, no exclamation marks
 - Text gives the one fact needed next: amount, date, who, how long a link works
 - The subject line and the Title say the same thing
+- Resize: min width 320; Title up to 3 lines and Text up to 4, with ellipsis; Eyebrow 1 line
 
 **Accessibility**
 
@@ -157,6 +161,9 @@ Align left (default, follows the text) or center (short welcome or announcement 
 Put the plain URL under it for long-lived links ("Or paste this link into your browser").
 
 
+Needs at least 320 (the narrowest mail client). The button hugs its label up to 240; longer labels end with an ellipsis, so keep them short.
+
+
 Usage: eggux build-ui/patterns/email.md
 
 **Use for**
@@ -180,6 +187,7 @@ Usage: eggux build-ui/patterns/email.md
 - Label is verb + object and matches the page it opens ("Reset password")
 - Under links that expire, add the plain URL in Email / Content for people whose client blocks buttons
 - Align left in text emails; center in short welcome or announcement emails
+- Resize: min width 320; the button hugs its label up to 240 wide, the label stays on 1 line with ellipsis
 
 **Accessibility**
 
@@ -201,7 +209,7 @@ Tokens and styles:
 - Radius: `button/radius`
 - Text styles: `ui/label`
 
-Code: `Button` (`href`, padding 12px 24px, borderRadius 9999, background primary, color primary-foreground, fontWeight 600) (Renders a bulletproof padded link (works with images off, MSO padding hack included); Align=center: wrap in `Section` with `textAlign: "center"`)
+Code: `Button` with `maxWidth: 240`, `whiteSpace: nowrap`, `overflow: hidden`, `textOverflow: ellipsis` (Keep labels short; the template is at least 320 wide)
 
 ## Email / Content
 
@@ -213,6 +221,9 @@ A block of body text with an optional heading: explanations, next steps, fallbac
 Text in body/default 16, foreground/default; short paragraphs (2 to 3 sentences).
 Show heading adds a heading/h4 for a titled section ("What happens next").
 Links inside the text are underlined and say where they go.
+
+
+Needs at least 320 (the narrowest mail client). The paragraph never truncates.
 
 
 Usage: eggux build-ui/patterns/email.md
@@ -239,6 +250,7 @@ Usage: eggux build-ui/patterns/email.md
 - Two or three sentences per block; stack blocks rather than writing walls of text
 - Links are underlined and say where they go
 - No "click here", no exclamation marks
+- Resize: min width 320; Heading up to 2 lines; the paragraph wraps and never truncates (body copy is read in full)
 
 **Accessibility**
 
@@ -271,6 +283,9 @@ Hint says when it expires and what to do if the reader did not ask for it.
 Put the code in the email subject too ("482916 is your Acme code") so it shows in notifications.
 
 
+Needs at least 320 (the narrowest mail client).
+
+
 Usage: eggux build-ui/patterns/email.md
 
 **Use for**
@@ -294,6 +309,7 @@ Usage: eggux build-ui/patterns/email.md
 - Six digits, no spaces inside, so copy and paste works
 - Hint says when the code expires and what to do if the reader did not ask for it
 - Put the code in the subject line too ("482916 is your Orbitly code")
+- Resize: min width 320; Label and Code fill the box and wrap (Code up to 2 lines); codes are 4 to 8 characters
 
 **Accessibility**
 
@@ -328,6 +344,9 @@ Values are exact: currency with symbol, full dates for anything legal ("15 Novem
 Show title adds a heading/h4 above the box.
 
 
+Needs at least 320 (the narrowest mail client); a long value moves under its label.
+
+
 Usage: eggux build-ui/patterns/email.md
 
 **Use for**
@@ -352,6 +371,7 @@ Usage: eggux build-ui/patterns/email.md
 - Most important row first (amount or what changed)
 - Exact values: currency symbol, full dates for legal facts, times with time zone
 - Same labels as in the product ("Invoice number", not "Ref")
+- Resize: min width 320; each row wraps: Label fills (min 112), Value hugs up to 192 on 1 line and moves under the label when there is no room
 
 **Accessibility**
 
@@ -391,7 +411,7 @@ Usage: eggux build-ui/patterns/email.md
 
 Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/2`, `spacing/4`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
 - Text styles: `body/small`, `ui/label`
 
 Code: `Section` (border, borderRadius 8, padding "12px 20px") with one `Row` per line: `Column` `Text` label + `Column align="right"` `Text` value (Tables carry `role="presentation"` (React Email adds it))
@@ -515,6 +535,9 @@ One callout per email at most; the message must still make sense without the col
 Title short, Text one or two sentences with the fix.
 
 
+Needs at least 320 (the narrowest mail client). Title up to 2 lines, text up to 4.
+
+
 Usage: eggux build-ui/patterns/email.md
 
 **Use for**
@@ -540,6 +563,7 @@ Usage: eggux build-ui/patterns/email.md
 - Title short, Text one or two sentences with the fix
 - The message must make sense without the color
 - warning for deadlines and "was this not you" notices; destructive only for a blocked account or data loss
+- Resize: min width 320; Title up to 2 lines, Text up to 4, with ellipsis
 
 **Accessibility**
 
@@ -614,6 +638,9 @@ Two or three key numbers side by side for digests and reports (weekly summary, u
 Three figures at most, each with its period; link to the full report with the Email / Button.
 
 
+Needs at least 320 (the narrowest mail client); stats wrap: 3 per row at 600, 2 and 1 at 320.
+
+
 Usage: eggux build-ui/patterns/email.md
 
 **Use for**
@@ -634,6 +661,7 @@ Usage: eggux build-ui/patterns/email.md
 
 - Every figure says its period
 - Link to the full report from the email's one button
+- Resize: min width 320; the Items row wraps and each Email / Stat is at least 112 wide: 3 per row at 600, 2 then 1 at 320
 
 **Accessibility**
 
@@ -647,7 +675,7 @@ Built from: `Email / Stat`
 Tokens and styles:
 - Spacing and size: `spacing/10`, `spacing/3`
 
-Code: `Row` with up to three `Column` cells (background muted, border, borderRadius 8, padding 16): `Text` value, `Text` label, `Text` change (Cells stack under 480 px with a media query in `Head`)
+Code: Cells stack under 480 (media query), 2 per row where the client supports it (Min width 320; stat cell min 112)
 
 ## Email / Stat
 
@@ -671,13 +699,16 @@ Tokens and styles:
 - Radius: `radius/md`
 - Text styles: `body/small`, `heading/h3`, `ui/label-small`
 
-Code: `Row` with up to three `Column` cells (background muted, border, borderRadius 8, padding 16): `Text` value, `Text` label, `Text` change (Cells stack under 480 px with a media query in `Head`)
+Code: Cells stack under 480 (media query), 2 per row where the client supports it (Min width 320; stat cell min 112)
 
 ## Email / Article
 
 Component · 1 variant · default size 600 × 120
 
 A teaser for an article, guide or release note in newsletters: 4:3 thumbnail (Show image, exposed Image Placeholder), Title, one-sentence Text and a Link that names the destination. Stack 2 to 4 with Email / Divider between.
+
+
+Needs at least 320 (the narrowest mail client); below about 380 the text column drops under the image.
 
 
 Usage: eggux build-ui/patterns/email.md
@@ -701,6 +732,8 @@ Usage: eggux build-ui/patterns/email.md
 
 - Link names the destination ("Read the guide"), never "click here"
 - One sentence of text
+- Resize: min width 320; the row wraps, so below about 380 the text column (min 192) drops under the image
+- Title: 2 lines, Text: 3 lines, Link: 1 line, all with ellipsis
 
 **Accessibility**
 
@@ -721,7 +754,7 @@ Tokens and styles:
 - Spacing and size: `spacing/1`, `spacing/10`, `spacing/5`
 - Text styles: `body/large`, `body/small`, `ui/label`
 
-Code: `Row`: `Column` `Img` (160 x 120) + `Column` `Heading as="h3"`, `Text`, `Link` (Whole title links to the article too)
+Code: `Row` with two `Column`s; stack under 480 with a media query in `Head` (`.stack td { display:block; width:100% }`) (Min width 320; title `line-clamp-2`, text `line-clamp-3` are not reliable in mail clients: keep copy short instead)
 
 ## Email / Footer
 

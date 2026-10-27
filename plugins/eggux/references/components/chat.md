@@ -1,6 +1,6 @@
 # Chat
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -21,6 +21,9 @@ On the Figma page: "Example / in conversation", "Example / team thread with ment
 Component set · 4 variants · default size 640 × 56
 
 One chat message. incoming: avatar + muted bubble on the left; outgoing: primary bubble on the right with delivery status (Sent, Delivered, Read). Size=default: bubbles max 440 wide; Size=compact: max 300, for panels and widgets under 480 wide. Text wraps by itself, never add manual line breaks; consecutive messages from the same person group (avatar and time only on the last).
+
+
+Width: Size=default needs at least 472 (bubble up to 440); in columns under 480 use Size=compact, which fits 276 (bubble up to 244).
 
 **Use for**
 
@@ -51,6 +54,7 @@ One chat message. incoming: avatar + muted bubble on the left; outgoing: primary
 - Day separators: Today, Yesterday, then the date
 - Failed send: the message stays with Retry, never disappears
 - Open at the latest message; when scrolled up, show a "New messages" pill instead of jumping
+- Resize: bubbles hug their text up to a max; Size=default needs at least 472 (bubble up to 440); under 480 use Size=compact, which fits 276 (bubble up to 244 incoming, 276 outgoing)
 
 **Accessibility**
 
@@ -257,6 +261,7 @@ Reactions under a comment or message: one Reaction per emoji with its count, the
 - Hover lists who reacted (up to 10 names, then "and N others")
 - With no reactions, only the add button shows, on hover or focus of the message
 - Reactions are for acknowledgement; decisions still go in a reply
+- Resize: the Reactions slot fills the bar and wraps to more rows (row gap 4); the add button stays last
 
 **Accessibility**
 
@@ -355,6 +360,7 @@ Collapsed replies under a comment or message: who replied (photo Avatars in an e
 - Count uses singular and plural ("1 reply", "3 replies")
 - Last reply time is relative; the exact time shows on hover
 - Photos by default; set an Avatar to Type=initials when a person has no photo
+- Resize: the row wraps; Replies and Last reply cap at 120, 1 line with ellipsis
 
 **Accessibility**
 
@@ -371,9 +377,9 @@ Built from: `Avatar Group`
 
 Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/2`
+- Spacing and size: `spacing/1`, `spacing/2`
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
 
-Code: custom button + `Avatar` group; `Collapsible` or `Sheet` (`aria-expanded` when it opens in place)
+Code: `<button>` row (`flex flex-wrap gap-x-2 gap-y-1`; texts `max-w-[120px] truncate`)

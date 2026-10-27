@@ -1,6 +1,6 @@
 # Admin
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -52,6 +52,7 @@ Usage: eggux build-ui/patterns/settings-and-admin.md
 - Error says what failed and how to fix it ("Token expired. Reconnect")
 - Grid of 3 on desktop, 1 on mobile; cards in a row share height
 - Disconnecting asks for confirmation and says what stops
+- Name and category: 1 line with ellipsis; description up to 3 lines; the logo letter stays inside the tile
 
 **Accessibility**
 
@@ -88,13 +89,16 @@ Tokens and styles:
 
 Guides: [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: shadcn `Card size="sm"` + `Button`, `Switch`, `Badge` (Connect opens the provider OAuth flow; letter tile = square `Avatar` fallback; Learn more = `Button variant="link"`)
+Code: shadcn `Card` (name, category `truncate`; description `line-clamp-3`)
 
 ## Permission Row
 
 Component set · 3 variants · default size 720 × 55
 
 One row of a role matrix, built from Table Cells so rows, the header and group rows share one grid. Type=permission: name, optional description and one Checkbox cell per role; Type=header names the roles; Type=group is a full-width area row (Invoices, Customers). 3 role columns by default, up to 5 with Show role 4 / Show role 5. Highlight the role being edited by setting its role cell to State=selected in every row. Locked roles (owner) show disabled checked boxes. Show changed marks an unsaved change; save with the Save Bar and log it in the audit history.
+
+
+Needs at least 448 wide (permission column 160 plus three 96 role columns); add 96 for each extra role. In a narrow panel list one role at a time with a Select.
 
 
 Usage: eggux build-ui/patterns/permissions-and-access.md
@@ -128,6 +132,8 @@ Usage: eggux build-ui/patterns/permissions-and-access.md
 - Locked roles (owner) show disabled checked boxes and say why
 - Show changed on rows edited since the last save; save with the Save Bar and log it in the audit log
 - A permission that needs another (approve needs view) ticks it too, and says so
+- Needs at least 448 wide (permission column min 160 plus three 96 role columns, minWidth 448 on every Type); add 96 for each extra role; in a narrow panel list one role at a time with a Select
+- Title: 1 line with ellipsis; description up to 2 lines; the Changed badge truncates at 128
 
 **Accessibility**
 
@@ -159,7 +165,7 @@ Tokens and styles:
 
 Guides: [permissions-and-access](../../skills/build-ui/patterns/permissions-and-access.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: shadcn `Table`: header `th scope="col"`, group rows `th colSpan`, `Checkbox` cells (Form state in react-hook-form; save with `Save Bar`; selected role column `bg-muted`; log changes)
+Code: table row (`min-w-[448px]` (+96 per extra role); permission cell `min-w-40`; title `truncate`, description `line-clamp-2`)
 
 ## API Key Row
 
@@ -199,6 +205,8 @@ Usage: eggux build-ui/patterns/settings-and-admin.md
 - Unused keys older than 90 days get a warning
 - Newest first; revoked keys leave the list and go to the audit log
 - Show scope when keys differ in access; hide it when every key has full access
+- Name and meta fill the text column (min 160); name 1 line, meta 2 lines, with ellipsis; scope badge truncates at 160
+- Wraps: when the row is narrow the key, Copy and More drop under the name (row gap 8); the key truncates at 192
 
 **Accessibility**
 
@@ -223,7 +231,7 @@ Tokens and styles:
 
 Guides: [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: custom row + `Badge`, `Button size="icon"`, `DropdownMenu`; `AlertDialog` for revoke (Full key shown once at creation, then only the last 4 characters)
+Code: custom row (`flex flex-wrap gap-y-2`; text column `min-w-40 flex-1`; name `truncate`, meta `line-clamp-2`; scope / current `Badge` `max-w-40`/`max-w-32`; key `max-w-48 truncate`; buttons `shrink-0`)
 
 ## Session Row
 
@@ -259,6 +267,8 @@ One signed-in device in security settings: device and browser, approximate locat
 - Location is approximate (city, country); the IP is partial
 - End the list with "Sign out of all other sessions"
 - Sign out works at once; the row leaves with a toast
+- Name 1 line, meta 2 lines, with ellipsis; text column min 160
+- Wraps: in a narrow column the action drops under the text (row gap 8)
 
 **Accessibility**
 
@@ -286,13 +296,16 @@ Tokens and styles:
 
 Guides: [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: custom row + `Badge` and `Button` (Sessions from your auth provider (Auth.js, Clerk, WorkOS); the current device cannot sign itself out)
+Code: custom row (`flex flex-wrap gap-y-2`; text column `min-w-40 flex-1`; name `truncate`, meta `line-clamp-2`; scope / current `Badge` `max-w-40`/`max-w-32`; key `max-w-48 truncate`; buttons `shrink-0`)
 
 ## Org Chart Node
 
 Component set · 3 variants · default size 220 × 150
 
 One person or open role in an org chart: avatar, name, role and direct reports. State=selected for the person in focus; State=vacant is dashed: the title is the Vacancy ("Open role"), the secondary line shows the Role of the position and the Hiring status ("Hiring", "Interviewing", "Offer out"). Connect nodes with 1 px border/default lines.
+
+
+Needs at least 160 wide; name wraps to 2 lines, role and reports truncate.
 
 
 Usage: eggux build-ui/patterns/enterprise-apps.md
@@ -325,6 +338,7 @@ Usage: eggux build-ui/patterns/enterprise-apps.md
 - Vacant roles are dashed, titled "Open role" (Vacancy); the secondary line is Role and Hiring status ("Head of Platform · Hiring"), linked to the Job Listing
 - Large orgs show 2-3 levels and a search
 - Names and titles wrap to two lines at most
+- Needs at least 160 wide (minWidth 160); name wraps to 2 lines, role and reports truncate to 1 line, centered
 
 **Accessibility**
 
@@ -354,4 +368,4 @@ Tokens and styles:
 
 Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
 
-Code: @xyflow/react with a dagre layout (or react-d3-tree); custom node with `Avatar` (`role="tree"` semantics for keyboard use)
+Code: custom card (`min-w-40`; name `line-clamp-2`, role and reports `truncate`, centered)

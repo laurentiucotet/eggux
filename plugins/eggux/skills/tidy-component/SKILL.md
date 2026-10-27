@@ -43,7 +43,8 @@ Never change the design itself here; propose design changes and wait.
 ## 3. Stress test
 `Stress test / <Name>` exists and uses the current variants: keep it and screenshot it. It does
 not exist or misses cases: build it from `references/stress-test.md`. Every break becomes a rule
-in the component and in `CONFIG.docs.rules`.
+in the component and in `CONFIG.docs.rules`. Width breaks (squeezed, clipped or overflowing text
+in the 276, 368 and 564 cells) are measured and fixed with `/eggux:responsive`.
 
 ## 4. Contextual examples
 2 to 4 frames named `Example / <what it shows>` that put the component where it lives:

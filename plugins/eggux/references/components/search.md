@@ -1,6 +1,6 @@
 # Search
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -68,6 +68,7 @@ Usage: eggux build-ui/patterns/search-and-filter.md
 - Status Badges in results are the soft variants (soft-success, soft-warning, soft-destructive, soft-info, soft-neutral), never solid
 - Records show their status Badge; files show format and size before people click; people show role and team
 - No results: Empty State that repeats the query and suggests other words
+- Resize: path, meta and detail rows fill; their texts truncate to 1 line (path up to 160, last text fills); badges hug up to 128; title and snippet 2 lines
 
 **Accessibility**
 
@@ -123,4 +124,4 @@ Tokens and styles:
 
 Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md), [commerce](../../skills/build-ui/patterns/commerce.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
-Code: custom `<li>` with a `type` switch (page, record, person, file, media, product, event, answer): page = breadcrumb, `<a>` heading, `line-clamp-2` snippet, `Badge`; others = leading `Avatar`, icon tile, video poster, image or date tile, a `line-clamp-2` title, one details line; `Badge`, `Button`, Price, `Rating`; answer = muted `Card` with source links (Matched terms in `<mark>`; one `type` per result; at most one answer, first; Figma text props are per type (Record, Name, File name, Product, Event, Question...))
+Code: custom (Path, meta and detail rows `min-w-0`, texts `truncate` (path `max-w-40`), badges `max-w-32`; title and snippet `line-clamp-2`)

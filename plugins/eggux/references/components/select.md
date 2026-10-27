@@ -1,6 +1,6 @@
 # Select
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -127,6 +127,7 @@ Searchable select (shadcn Combobox = Popover + Command). Use instead of Select w
 - Show recent or suggested options before typing
 - Long lists load asynchronously with a loading row, never an empty dropdown
 - A single choice closes the list after the pick
+- Resize: the value truncates to 1 line with an ellipsis; the chevron keeps its size
 
 **Accessibility**
 
@@ -342,6 +343,9 @@ Component · 1 variant · default size 628 × 291
 
 Move items between two lists (permissions to a role, columns to a view, members to a group): each side has a count, search and checkboxes; arrows move the checked items. Keyboard: Space checks, the buttons move. For under ~10 items a list of checkboxes is simpler.
 
+
+Needs at least 512 (each list 208 or more); in narrower places use a searchable list with checkboxes.
+
 **Use for**
 
 - Permissions assigned to a role
@@ -368,6 +372,8 @@ Move items between two lists (permissions to a role, columns to a view, members 
 - Move buttons act on the checked items only
 - Counts update after every move
 - When order matters, use Sortable List Item on the right side
+- Resize: both lists fill equally and never go under 208; list titles truncate to 1 line
+- Needs at least 512; in narrower places use a searchable list with checkboxes
 
 **Accessibility**
 
@@ -392,7 +398,7 @@ Tokens and styles:
 
 Guides: [select](../../skills/build-ui/components/select.md)
 
-Code: custom: two lists of `Checkbox` rows + move `Button`s (Or `@dnd-kit` when order matters)
+Code: custom (`grid grid-cols-[1fr_auto_1fr] min-w-[512px]`, lists `min-w-52`; titles `truncate`)
 
 ## Address Autocomplete
 

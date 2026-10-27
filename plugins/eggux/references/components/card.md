@@ -1,6 +1,6 @@
 # Card
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -190,6 +190,7 @@ Usage: eggux build-ui/components/card.md
 - Value stays on one line; amounts in the locale format (€48,250)
 - The Footnote says what it is compared to
 - Cards in a row share structure and height
+- Resize: trend text caps at 200, 1 line with ellipsis, icon after it
 
 **Accessibility**
 
@@ -338,6 +339,7 @@ Usage: eggux build-ui/components/card.md
 - One Size per list or grid; sm for lists next to a featured story and for grids of 4
 - Never restyle the title per instance: switch Size instead
 - Overlay text sits only on the solid media/scrim panel, never on the fade; choose photos with the subject in the top half
+- Resize: meta row fills, the date truncates to 1 line after the Badge; the author name truncates to 1 line after the avatar
 
 **Accessibility**
 
@@ -371,7 +373,7 @@ Tokens and styles:
 
 Guides: [content](../../skills/build-ui/components/content.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link (`size` prop (default, sm) via `cva`: sm = smaller gaps, `h4` title class, horizontal image `basis-1/3 min-w-[120px] max-w-[240px]` instead of half, compact image `size-12`)
+Code: shadcn `Card` (meta `flex min-w-0`, date `truncate`; author name `truncate`)
 
 ## Entity Card
 
@@ -480,6 +482,7 @@ A goal against its target (revenue, budget, quota, completion): label, status ba
 - Say the rule in the footnote or a tooltip ("at risk under 80% of the expected pace")
 - The bar Value matches the percent in the Footnote
 - Amounts follow the locale format
+- Resize: the target text fills the value row (at least 80), 1 line with ellipsis, and wraps under the value when there is no room
 
 **Accessibility**
 
@@ -713,6 +716,7 @@ A pasted URL shown as a card in comments, chat, notes and editors: site, title, 
 - No preview for private links that need sign-in
 - Title and description cut at 2 lines
 - While loading, a Skeleton; when the fetch fails, the plain link
+- Resize: the site row fills; the domain truncates to 1 line
 
 **Accessibility**
 
@@ -741,7 +745,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md), [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
 
-Code: shadcn `Card` in `<a target="_blank" rel="noopener">` (Open Graph metadata fetched on the server)
+Code: `<a>` card (domain `truncate min-w-0`)
 
 ## Location Card
 

@@ -1,6 +1,6 @@
 # Automation
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -44,6 +44,7 @@ One automation in a rules list, written as a sentence: When trigger, and conditi
 - Show how often it ran and when last, so people trust it; failures say so in Meta
 - Delete asks for confirmation; off keeps the history
 - Name says the outcome ("Route large invoices to finance")
+- Name up to 2 lines, meta 1 line; trigger, condition and action chips hug up to 240 and truncate; the sentence wraps
 
 **Accessibility**
 
@@ -74,7 +75,7 @@ Tokens and styles:
 
 Guides: [approvals](../../skills/build-ui/patterns/approvals.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
-Code: custom on shadcn `Card` + `Switch` + `DropdownMenu` (Sentence: When trigger, and condition, then action)
+Code: custom card (name `line-clamp-2`, meta `truncate`; sentence `flex flex-wrap`; chips `max-w-60 truncate`)
 
 ## Workflow Node
 

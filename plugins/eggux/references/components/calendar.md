@@ -1,6 +1,6 @@
 # Calendar
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -19,6 +19,9 @@ On the Figma page: "Example / date and time", "Example / date picker open", "Exa
 Component · 1 variant · default size 250 × 294
 
 Month view (shadcn Calendar / react-day-picker). Week starts Monday (ro-RO). Set each Calendar Day state in the instance: today, selected, range, outside, disabled (past or unavailable dates). Two months side by side for ranges.
+
+
+Needs at least 250 wide (seven 32 px day cells). It fits every column from 1/4 (276) up; below that use Date Input.
 
 **Use for**
 
@@ -46,6 +49,8 @@ Month view (shadcn Calendar / react-day-picker). Week starts Monday (ro-RO). Set
 - Unavailable dates are disabled with the reason nearby ("Closed on Sundays")
 - Days of adjacent months use State=outside (muted)
 - Ranges use range-start, range-middle and range-end
+- Needs at least 250 wide (seven 32 px day cells, minWidth 250); fits every column from 1/4 (276) up, below that use Date Input
+- Month label: 1 line with ellipsis, centered between the arrows
 
 **Accessibility**
 
@@ -145,7 +150,7 @@ Icons: calendar
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
 - Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`
 
 Guides: [date-picker](../../skills/build-ui/components/date-picker.md)
@@ -202,7 +207,7 @@ Icons: clock
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
 - Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
-- Radius: `radius/md`
+- Radius: `input/radius`
 - Text styles: `body/small`
 
 Guides: [date-picker](../../skills/build-ui/components/date-picker.md)
@@ -211,9 +216,12 @@ Code: custom `Select` of times
 
 ## Date Range Picker
 
-Component · 1 variant · default size 658 × 355
+Component · 1 variant · default size 662 × 355
 
 Date range popover for filters and reports: presets, two months (previous + current), summary with the number of days, Cancel / Apply. Future days disabled for past-data reports. Mobile: one month, full-screen Drawer.
+
+
+Needs at least 658 wide (presets and two months). In a 1/2 column, a sidebar or on mobile use a Popover with one Calendar and the presets as a Select, or two Date Inputs.
 
 **Use for**
 
@@ -240,6 +248,7 @@ Date range popover for filters and reports: presets, two months (previous + curr
 - Summary counts the days ("6 Oct - 19 Oct 2026 · 14 days")
 - Future dates disabled for reports on past data; past dates disabled for bookings
 - Mobile: one month in a full-height Drawer, presets as chips above
+- Needs at least 658 wide (presets plus two months, minWidth 658); in a 1/2 column, a sidebar or on mobile use one Calendar in a Popover with the presets as a Select, or two Date Inputs
 
 **Accessibility**
 

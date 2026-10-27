@@ -1,6 +1,6 @@
 # List
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -186,6 +186,7 @@ Due drives the date in every State; for overdue write it as "Overdue · was due 
 - Overdue says it in destructive: write Due as "Overdue · was due 10 Nov" when you switch to State=overdue
 - Open items sort by due date; the title wraps to two lines at most
 - The row opens the task; the Checkbox only ticks; the action button starts the task
+- Resize: title and due date fill; due stays on 1 line with ellipsis
 
 **Accessibility**
 
@@ -252,6 +253,8 @@ One open role in a careers list: title, team, type and work mode, location, post
 - Sort newest first; group by team with Section Heading and counts
 - "New" only for roles posted in the last 7 days
 - On mobile, salary and Apply move under the details
+- Resize: the row wraps: the body fills (min 240) and the salary and Apply move under it in narrow columns
+- Title and meta up to 2 lines; location and posted hug up to 200 on 1 line; salary hugs up to 224 on 1 line, all with ellipsis
 
 **Accessibility**
 
@@ -274,9 +277,9 @@ Built from: `Badge`, `Button`. Icons: clock, map-pin
 
 Tokens and styles:
 - Colors: `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
 - Text styles: `body/small`, `heading/h4`, `ui/caption`, `ui/label`
 
 Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
 
-Code: custom `<li>` with a stretched `<a>` + `Badge` + `Button asChild` (Salary range with currency and period)
+Code: row `flex flex-wrap gap-3`; body `min-w-60 flex-1`; title and meta `line-clamp-2`; salary `truncate max-w-56` (End group wraps under the body)

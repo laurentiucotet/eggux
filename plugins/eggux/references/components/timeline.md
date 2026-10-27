@@ -1,6 +1,6 @@
 # Timeline
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -52,6 +52,7 @@ One event in an activity history (record history, audit log, order tracking). Ne
 - Alternating: switch alternating-left and alternating-right item by item, starting with left
 - One Layout per timeline (alternating counts as one)
 - Layout=card in narrow columns (5 per row on a 1152 container): keep titles to 2 or 3 words per line; never resize the title layer
+- Resize: the title fills (at least 96, 2 lines with an ellipsis); the time hugs up to 128 with an ellipsis; the description 3 lines
 
 **Accessibility**
 

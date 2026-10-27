@@ -1,6 +1,6 @@
 # Chart
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -276,6 +276,8 @@ Part of a whole (share by entity, status mix). 2-5 segments, largest first, star
 - Set segment angles with arcData
 - Series colors chart/1..8 in order; color follows the entity
 - Text uses text tokens, never the segment color
+- Resize: the legend wraps under the donut when the row is narrower than 392 (donut 200 + legend at least 160); legend names truncate to 1 line, values cap at 96
+- Center total and its label: 1 line each, 120 wide, ellipsis
 
 **Accessibility**
 
@@ -312,6 +314,9 @@ Intensity over two dimensions (weekday × hour, team × week). One hue (chart/1)
 Data: three preset shapes (default, late-peak, weekdays-only). For real data, in client files detach the instance and set each cell to one of the 5 opacity steps of chart/1 (or background/muted for zero); in the library edit the cells in the main. Row and column labels can be overridden as text.
 
 
+Width: cells stretch with the width; needs at least 276.
+
+
 Usage: eggux build-ui/components/charts.md
 
 **Use for**
@@ -342,6 +347,7 @@ Usage: eggux build-ui/components/charts.md
 - The legend reads from fewer to more
 - Exact value on hover, never only the shade
 - Pick the Data shape closest to the story; for real data, detach in client files and set each cell to a step (or muted for zero)
+- Resize: cells stretch with the width (day labels stay 32); needs at least 276
 
 **Accessibility**
 
@@ -361,13 +367,16 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
-Code: custom CSS grid or nivo `HeatMap`
+Code: CSS grid `grid-cols-[32px_repeat(12,minmax(0,1fr))]` (`min-w-[276px]`; cells stretch)
 
 ## Gauge
 
 Component set · 3 variants · default size 240 × 176
 
 Progress of one number toward a target (quota, budget, SLA). Status is written, not only colored (On track, At risk, Off track). Set Value, Label, Min, Max and Target label in the panel; place the tick with the exposed "target" (Target 50 to 95%); set the value arc on the "value" ellipse (Sweep = share x 50%, start 180°). Use sparingly: a Progress bar or Stat Card is clearer in tables and dashboards with many numbers.
+
+
+Width: fixed arc, at least 240; wider instances keep the arc centered and truncate long axis labels.
 
 
 Usage: eggux build-ui/components/charts.md
@@ -400,6 +409,8 @@ Usage: eggux build-ui/components/charts.md
 - Target label says the target in words and units; Min and Max name the scale
 - Status tone follows Status: on-track, at-risk (warning), off-track (destructive)
 - Use sparingly
+- Resize: fixed 240 arc (minimum width 240); wider instances keep the arc centered
+- Value, status and Target label: 1 line with ellipsis; Min and Max cap at 72; Label up to 2 lines
 
 **Accessibility**
 
@@ -427,7 +438,7 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
-Code: Recharts `RadialBarChart` (half circle) or custom SVG arc
+Code: Recharts RadialBarChart (half circle) (`min-w-[240px]`; arc `mx-auto`; Min and Max `max-w-[72px] truncate`; target label `flex-1 min-w-0 truncate`; label `line-clamp-2`)
 
 ## Gauge Target
 
@@ -478,6 +489,7 @@ Part of a whole with many parts or a hierarchy (revenue by product, spend by ven
 - Label inside when it fits, otherwise on hover
 - Tinted fills with a colored edge keep text readable in every mode
 - Color follows the entity, never its rank
+- Resize: tiles scale with the width; tile labels stretch with their tile and truncate to 1 line (name and value), so narrow tiles show an ellipsis and the full label on hover
 
 **Accessibility**
 
@@ -492,7 +504,7 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
-Code: Recharts `Treemap` with a custom cell renderer
+Code: Recharts Treemap (tile label `truncate` inside the tile width (full label in the tooltip))
 
 ## Funnel Chart
 
@@ -576,6 +588,7 @@ Relation between two numbers per item (invoice amount vs days to pay, deal size 
 - Axes start at zero unless the range says otherwise
 - One or two series; legend only for two
 - Hover shows the item in a Chart Tooltip
+- Resize: axis titles share the row, 1 line each with ellipsis; the X title is right aligned
 
 **Accessibility**
 
@@ -594,12 +607,12 @@ Relation between two numbers per item (invoice amount vs days to pay, deal size 
 
 Tokens and styles:
 - Colors: `border/default`, `border/input`, `chart/1`, `chart/2`, `foreground/muted`
-- Spacing and size: `spacing/10`, `spacing/2`
+- Spacing and size: `spacing/10`, `spacing/2`, `spacing/4`
 - Text styles: `ui/caption`
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
-Code: Recharts `ScatterChart` with `XAxis` and `YAxis` `type="number"`
+Code: Recharts ScatterChart (axis titles `flex gap-4`, each `flex-1 min-w-0 truncate`, X title `text-right`)
 
 ## Chart Legend
 
@@ -632,6 +645,7 @@ Legend row above or below the plot. Clicking an item isolates the series in code
 - Same order as the series in the chart and in the tooltip
 - Clicking an item isolates the series (in code)
 - Fill the Items slot in the instance; never detach
+- Resize: the Items slot fills the legend and wraps to more rows (row gap 8); inside charts and Chart Card the legend fills the width
 
 **Accessibility**
 
@@ -643,7 +657,7 @@ Slots (fill them in the instance, never detach): `Items`
 Built from: `Chart Legend Item`
 
 Tokens and styles:
-- Spacing and size: `spacing/4`
+- Spacing and size: `spacing/2`, `spacing/4`
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
@@ -703,6 +717,7 @@ Hover tooltip: crosshair on line/area, per-mark on bar. Title = the x value; one
 - Values in text color, never the series color
 - Compact numbers with units
 - Hit targets bigger than the marks
+- Resize: title fills the tooltip, 1 line with ellipsis
 
 **Accessibility**
 
@@ -780,7 +795,7 @@ Usage: eggux build-ui/components/charts.md
 3. Actions slot: time range Toggle Group
 4. Chart slot: Bar Chart, Line Chart or another chart
 5. Chart Legend (exposed, Show legend): its Items slot holds one Chart Legend Item per series
-6. Footer with Insight and Note (Show footer)
+6. Footer with trend icon, Insight and Note (Show footer)
 
 **Content and behavior**
 
@@ -790,6 +805,9 @@ Usage: eggux build-ui/components/charts.md
 - Every chart has a table view in code
 - Empty: say why; loading: Skeleton in the chart shape; error: inline Alert with retry
 - Fill the Actions and Chart slots in the instance; never detach
+- Resize: the header wraps the Actions slot under the titles when narrow (titles at least 160); Title and Description up to 2 lines with ellipsis
+- Footer: trend icon first, Insight fills and wraps to 2 lines; Note up to 2 lines
+- Hide an empty Actions slot (it still takes its width)
 
 **Accessibility**
 
@@ -812,13 +830,13 @@ Built from: `Bar Chart`, `Chart Legend`, `Toggle Group`. Icons: trending-up
 
 Tokens and styles:
 - Colors: `background/card`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`, `spacing/6`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`
 - Radius: `radius/xl`
 - Text styles: `body/small`, `heading/h4`, `ui/label`
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
-Code: shadcn `Card` + shadcn `Chart` (Recharts) + `ToggleGroup` for the time range
+Code: shadcn `Card` + shadcn `Chart` + `ToggleGroup` (header `flex flex-wrap gap-4 gap-y-3`, titles `flex-1 min-w-40`, title and description `line-clamp-2`; footer trend `flex gap-2` icon first then insight `line-clamp-2`; note `line-clamp-2`; omit the actions wrapper when empty)
 
 ## Waterfall Chart
 
@@ -828,6 +846,9 @@ Waterfall (Recharts BarChart with stacked invisible offsets): how a starting tot
 
 
 Change the data: bars, labels and connectors are drawn in the main, not properties. In client files detach the instance and edit bar heights, labels and connectors (keep the scale on the y axis); in the library edit the bars in the main. Step names and value labels can be overridden as text without detaching.
+
+
+Width: needs at least 500 for seven named steps; in a narrower column use Bar Chart Horizontal or fewer steps.
 
 
 Usage: eggux build-ui/components/charts.md
@@ -861,6 +882,7 @@ Usage: eggux build-ui/components/charts.md
 - At most 8 steps; fold the small ones into "Other"
 - The footer says the result in a sentence ("€14K above opening")
 - Bars are drawn in the main, not properties: to change the data, detach the instance in client files and edit bar heights, labels and connectors; step names and value labels can be overridden as text
+- Resize: needs at least 500 for seven named steps; the legend fills and wraps. In a narrower column use Bar Chart Horizontal or fewer steps
 
 **Accessibility**
 
@@ -877,7 +899,7 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
-Code: Recharts `BarChart` with a transparent offset bar per step (Increase `color/blue/600`, decrease `color/red/600`, totals `color/neutral/400`)
+Code: Recharts BarChart (stacked, invisible base) (`min-w-[500px]`; legend `flex flex-wrap`)
 
 ## Combo Chart
 
@@ -911,6 +933,7 @@ Combo (Recharts ComposedChart): bars and a line that share the x axis but measur
 - Legend says which axis each series reads on ("left axis", "right axis")
 - Label the end value of the line, not every point
 - The footer states the relation in a sentence
+- Resize: the legend fills the chart width and wraps to more rows
 
 **Accessibility**
 
@@ -1023,6 +1046,7 @@ Parts of one whole as a single 100% bar: invoices by status, budget by category,
 - Legend shows the share (42%); hover a segment for the count; show or hide legend items to match the segments
 - 2 px gap between segments; tiny segments keep a 4 px minimum width
 - Shares add to 100%; round the largest to fix rounding
+- Resize: title fills (at least 120); total caps at 140, 1 line with ellipsis; the legend wraps
 
 **Accessibility**
 
@@ -1048,7 +1072,7 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
-Code: flex row of segments (width from the share) + legend `<ul>`; or Recharts `BarChart layout="vertical"` stacked to 100% (`var(--chart-N)` per entity; 2-6 segments)
+Code: custom (total `max-w-[140px] truncate shrink-0`; title `flex-1 min-w-[120px]`)
 
 ## Distribution Segment
 
@@ -1103,6 +1127,7 @@ One measure against its target and bands (poor, fair, good) in one line: revenue
 - Stacked bullets share the same scale when the units match
 - Scale starts at 0; values written as text next to the track (412k, target 480k)
 - Unit and period in the label
+- Resize: label column 140 (title and unit 1 line each); the track fills (at least 160) and wraps under the label when narrow; values cap at 120 with ellipsis and wrap last
 
 **Accessibility**
 
@@ -1119,18 +1144,21 @@ One measure against its target and bands (poor, fair, good) in one line: revenue
 
 Tokens and styles:
 - Colors: `chart/1`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/4`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/4`
 - Text styles: `ui/caption`, `ui/label`
 
 Guides: [charts](../../skills/build-ui/components/charts.md), [reports](../../skills/build-ui/patterns/reports.md)
 
-Code: Recharts `BarChart layout="vertical"`: stacked range bars, thin value `Bar`, `ReferenceLine` for the target; or custom SVG (Same scale for stacked bullets)
+Code: custom SVG / divs (`flex flex-wrap gap-4 gap-y-2`; label `w-[140px]` with `truncate` lines; track `flex-1 min-w-40`; values `max-w-[120px] truncate`)
 
 ## Radar Chart
 
 Component · 1 variant · default size 360 × 320
 
 Compares 1-3 items across 5-8 qualities on the same scale: vendor scores, skill profiles, plan features. Each axis is one quality; the shape is the item. Same scale on every axis, labels outside, a legend for series. More than 3 series or precise values read better in a grouped Bar Chart or a table.
+
+
+Width: the drawing stays centered; needs at least 288.
 
 **Use for**
 
@@ -1146,11 +1174,12 @@ Compares 1-3 items across 5-8 qualities on the same scale: vendor scores, skill 
 
 **Anatomy**
 
-1. Grid rings: 25, 50, 75, 100
-2. Axes: one per quality
-3. Series areas and lines: chart/1, chart/2, chart/3
-4. Axis labels outside the grid
-5. Legend for 2+ series
+1. Plot: the drawing, centered in the width
+2. Grid rings: 25, 50, 75, 100
+3. Axes: one per quality
+4. Series areas and lines: chart/1, chart/2, chart/3
+5. Axis labels outside the grid
+6. Legend for 2+ series
 
 **Content and behavior**
 
@@ -1159,6 +1188,7 @@ Compares 1-3 items across 5-8 qualities on the same scale: vendor scores, skill 
 - Labels outside the grid, short (one or two words)
 - Axis order stays fixed and groups related qualities
 - Legend for 2+ series; tooltip lists every axis value of the hovered series
+- Resize: the drawing stays centered in the width; needs at least 288
 
 **Accessibility**
 
@@ -1172,7 +1202,7 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
-Code: shadcn `Chart` (Recharts) `RadarChart` with `PolarGrid`, `PolarAngleAxis`, `Radar` per series (1-3 series, 5-8 axes; `var(--chart-N)`)
+Code: Recharts RadarChart (`min-w-[288px]`, chart centered)
 
 ## Sankey Chart
 
@@ -1229,6 +1259,9 @@ Component · 1 variant · default size 480 × 328
 
 Values by region on a map, shaded from light (low) to dark (high): revenue by county, customers by country. One measure, one hue, 5 steps, with a legend. Replace the tile regions with real map shapes, or keep the tile layout when equal-size regions read better. Hover a region for its name and value.
 
+
+Width: regions scale with the width; needs at least 240.
+
 **Use for**
 
 - Revenue or customers by country, county or region
@@ -1253,6 +1286,7 @@ Values by region on a map, shaded from light (low) to dark (high): revenue by co
 - Normalize when size skews the map (per customer, per capita)
 - Legend states the unit and the step limits
 - Hover a region for its name and value
+- Resize: regions scale with the map width; needs at least 240
 
 **Accessibility**
 
@@ -1268,4 +1302,4 @@ Tokens and styles:
 
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
-Code: react-simple-maps + d3-scale `scaleQuantize` (5 steps, one hue); tile layout as a CSS grid (Muted for no data; table view lists every region)
+Code: custom SVG tile map (SVG `w-full` with viewBox (regions scale); `min-w-[240px]`)

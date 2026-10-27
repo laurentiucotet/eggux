@@ -22,6 +22,26 @@ Usage guidelines only. Visual specs live in the Figma components (Chat page) and
   (`patterns/delete-confirmation.md`) or offers Undo.
 - Comment button disabled while empty; ⌘↵ sends. Keep the draft per thread.
 
+## Comments on selected text
+- Select text, then Comment in the `Selection Toolbar` (8 px above the selection); a new
+  `Comment Thread` opens at the top of the `Comments Panel` with the selection as its Quote and
+  the composer focused.
+- Every open thread has a `Comment Highlight` on its run; the active thread (border/ring) and its
+  highlight (`comment/highlight-active`) change together, one at a time.
+- Resolving collapses the thread (State=resolved, "Resolved by", Reopen), removes the highlight
+  and moves it under the Resolved filter; counts in the header button and the filter match.
+- Threads follow document order and line up with their highlight when there is room; the panel
+  is 360 wide with a border on the left and scrolls inside.
+- Mobile: a comment count button in the header opens the threads in a bottom `Drawer`; the
+  Selection Toolbar keeps Comment.
+- Figma: `Selection Toolbar` (Show formatting, Show comment), `Comment Highlight` (State open,
+  active, selected, resolved), `Comment Thread` (State default, active, resolved; Quote, Replies,
+  Show comments, Show replies, Show reply), `Comments Panel` (Content threads, empty). Block:
+  `Block / Document with Comments` (Content page, Editor family); screens: SCREENS / Documents,
+  Commenting.
+- Code: a Tiptap comment Mark with a thread id plus `BubbleMenu`, or Liveblocks / Velt comments;
+  threads keyed by the mark id.
+
 ## Chat
 - Incoming on the left with avatar and muted bubble; outgoing on the right with the primary
   bubble. Bubbles max 440 wide.

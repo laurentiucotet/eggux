@@ -188,8 +188,12 @@ const buildStress = async (row, sec) => {
   if (textKeys.length) { await cell('Long text', () => inst(null, { text: 'long' })); if (!big) await cell('Short text', () => inst(null, { text: 'short' })); }
   if (boolKeys.length && !big) { await cell('All options on', () => inst(null, { bool: true, text: 'long' })); await cell('All options off', () => inst(null, { bool: false })); }
   // Real column widths of the 1152 container (1/4, 1/3, 1/2); a part that keeps a fixed size shows up here.
-  for (const [label, w] of [['Column 1/4 (276)', 276], ['Column 1/3 (368)', 368], ['Column 1/2 (564)', 564]]) if (v0.width > w && v0.width >= 160) await cell(label, () => { const i = inst(null, { text: 'long' }); i.resize(w, i.height); return i; });
-  if (v0.width >= 160 && v0.width <= 276) await cell('Narrow (50%)', () => { const i = inst(null, { text: 'long' }); i.resize(Math.max(120, Math.round(v0.width / 2)), i.height); return i; });
+  // Width cells stop at the component's minWidth: a component that must not get narrower than N
+  // gets a 'Min width (N)' cell instead of cells it can never be placed in.
+  const minW = typeof v0.minWidth === 'number' && v0.minWidth > 0 ? v0.minWidth : 0;
+  for (const [label, w] of [['Column 1/4 (276)', 276], ['Column 1/3 (368)', 368], ['Column 1/2 (564)', 564]]) if (v0.width > w && v0.width >= 160 && w >= minW) await cell(label, () => { const i = inst(null, { text: 'long' }); i.resize(w, i.height); return i; });
+  if (minW && minW < v0.width) await cell(`Min width (${Math.round(minW)})`, () => { const i = inst(null, { text: 'long' }); i.resize(minW, i.height); return i; });
+  if (v0.width >= 160 && v0.width <= 276 && Math.max(120, Math.round(v0.width / 2)) >= minW) await cell('Narrow (50%)', () => { const i = inst(null, { text: 'long' }); i.resize(Math.max(120, Math.round(v0.width / 2)), i.height); return i; });
   if (main.type === 'COMPONENT_SET' && !big) {
     const vp = Object.entries(defs).find(([k, d]) => d.type === 'VARIANT' && !/^(state|size)$/i.test(k) && d.variantOptions.length > 1) || Object.entries(defs).find(([k, d]) => d.type === 'VARIANT' && d.variantOptions.length > 1);
     if (vp) for (const opt of vp[1].variantOptions.slice(0, 6)) {

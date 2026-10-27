@@ -1,6 +1,6 @@
 # Section Heading
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -44,6 +44,7 @@ Title and description that open a section of an app or content page, or a group 
 - At most two buttons in Actions; one primary
 - Show icon on all sections of a page or none; one icon per content type (reports, events, news)
 - Same Size for sections on the same level of a page
+- Resize: the text column fills (at least 192); the row wraps, so in narrow columns the Actions slot drops under the text; title 2 lines, description 3 lines with an ellipsis
 
 **Accessibility**
 
@@ -78,4 +79,4 @@ Tokens and styles:
 
 Guides: [content](../../skills/build-ui/components/content.md)
 
-Code: `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` (Heading level follows the page outline. Optional icon before the title (`size-6` lg, `size-5` default and sm, `aria-hidden`))
+Code: custom (`flex flex-wrap gap-3`; text column `min-w-48 flex-1`; title `line-clamp-2`, description `line-clamp-3`)

@@ -1,6 +1,6 @@
 # Kbd
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -31,7 +31,7 @@ One keyboard key (shadcn Kbd). Use in menus, tooltips and help: "⌘ K". Mac sym
 
 **Anatomy**
 
-1. Key surface (background/muted, border)
+1. Key surface (background/muted, border): hugs the label, min 20, padding spacing/1
 2. Key label (Key): symbol or name, foreground/default
 3. Used next to a menu label or in a Tooltip
 
@@ -40,6 +40,7 @@ One keyboard key (shadcn Kbd). Use in menus, tooltips and help: "⌘ K". Mac sym
 - Show the user's platform: ⌘ ⌥ ⇧ ⌃ on Mac, "Ctrl" and "Alt" on Windows and Linux
 - Do not show shortcuts that are not implemented
 - Never rely on a shortcut as the only way
+- Resize: the key hugs its label (min 20) with 4 px side padding, so Ctrl and Enter fit; height stays 20
 
 **Accessibility**
 

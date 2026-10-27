@@ -109,6 +109,8 @@ translation). Label each cell with its case.
   rows) becomes a rule in the component: truncation with `maxLines`, a "+N" overflow item, min
   and max width, a placeholder for missing images, hidden empty rows.
 - Fix the component, rebuild the stress frame, repeat until every case passes.
+- Widths: run `/eggux:responsive` on the component (resize contract, `check.js` on the stress
+  frame, fixes) until it reports nothing at 276, 368, 564, full and the narrowest container.
 
 ## 6. Check
 1. Screenshot the set and the example, and look at them: overflow, clipped or one-letter-wide

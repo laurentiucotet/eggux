@@ -1,6 +1,6 @@
 # Slider
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -54,6 +54,7 @@ Usage: eggux build-ui/components/progress-and-slider.md
 - Stretch the Slider (FILL or any width): the thumbs keep their size and follow the value; never resize the thumb itself
 - Pick the Value nearest to the real number; for another value or for Type=range, move the thumb wrapper and resize the range layer to the thumb center (never resize the thumb)
 - Keep the shown number, the marks and Value in step (2,500 on a 0 to 5,000 scale = Value=50)
+- Resize: the track stretches; the min mark label is anchored to the left edge and the max label to the right edge, so long values grow inward
 
 **Accessibility**
 

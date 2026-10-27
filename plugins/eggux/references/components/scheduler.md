@@ -1,6 +1,6 @@
 # Scheduler
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -48,6 +48,7 @@ Event in day/week views: card surface with a left bar in the calendar's category
 - Overlapping events sit side by side
 - Month view: up to 3 per day, then "+N more" opens the day in a Popover
 - Click opens details in a Popover or Sheet; confirm moves that notify others
+- Resize: the event clips to its time slot; title 1 line with an ellipsis; time 1 line (Size=default fills, Size=sm hugs next to the title)
 
 **Accessibility**
 
@@ -222,6 +223,9 @@ Component set · 2 variants · default size 360 × 212
 
 A meeting people are about to join: title, time with time zone, place or video link, who is invited, Join. live from 5 minutes before the start (Join becomes primary). In a dashboard, a record's activity or a notification. Recurring meetings say so in the time line.
 
+
+Needs at least 240.
+
 **Use for**
 
 - The next meeting on a dashboard
@@ -248,6 +252,8 @@ A meeting people are about to join: title, time with time zone, place or video l
 - Place is a room or the video provider ("Google Meet"), never a raw URL
 - Avatar Group shows up to 4 people, then +N; the organizer first
 - Ended meetings leave the dashboard; in a record they stay with a link to notes
+- Resize: the title wraps to 2 lines with an ellipsis
+- Needs at least 240
 
 **Accessibility**
 
@@ -308,6 +314,7 @@ Working hours for one weekday in booking and team settings: on/off, the day, one
 - Times in 15 or 30 minute steps; the end is after the start; overlapping ranges merge on save
 - Extra ranges stack under the first, each with a remove button
 - The time zone is said once above the list; "Copy to all days" in the header saves repeat work
+- Resize: the row wraps; under about 430 the hours (two Selects and the add button) drop under the switch and day
 
 **Accessibility**
 
@@ -332,7 +339,7 @@ Tokens and styles:
 
 Guides: [booking](../../skills/build-ui/patterns/booking.md)
 
-Code: custom row: shadcn `Switch` + two `Select` of times + `Button size="icon"` (Ranges with `useFieldArray` (react-hook-form); merge overlaps on save)
+Code: custom (`flex flex-wrap gap-y-2`; hours group `shrink-0`)
 
 ## Time Slot
 

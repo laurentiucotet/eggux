@@ -1,6 +1,6 @@
 # Kanban
 
-Generated from the EGG UI master library on 2026-10-22 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -16,6 +16,7 @@ On the Figma page: "Example / in kanban board", "Stress test / Kanban Card", "St
 Component set · 3 variants · default size 272 × 114
 
 Task or deal card on a board: labels (max 2-3), title, due date, comments, assignee. dragging = lifted (shadow/lg, slight tilt) while moving. Click opens the item in a Sheet; keyboard: Space to pick up, arrows to move, Space to drop.
+Needs at least 224; in narrower places show the task as a List row instead.
 
 **Use for**
 
@@ -43,6 +44,7 @@ Task or deal card on a board: labels (max 2-3), title, due date, comments, assig
 - Click opens the item in a Sheet
 - Each card has a "Move to..." menu
 - Never delete on drop
+- Resize: min width 224; labels wrap to more lines; title up to 3 lines; due date hugs up to 80 and the comment count up to 28, both 1 line with ellipsis
 
 **Accessibility**
 
@@ -72,13 +74,14 @@ Tokens and styles:
 
 Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md)
 
-Code: dnd-kit + custom
+Code: card `min-w-56`, labels `flex flex-wrap`, title `line-clamp-3`, due `truncate max-w-20`; column `min-w-64 shrink-0`, title `min-w-0 flex-1 truncate` (Board scrolls horizontally (`overflow-x-auto`))
 
 ## Kanban Column
 
 Component · 1 variant · default size 296 × 466
 
 One stage of a board (To do, In progress, Review, Done). Count in the header; WIP limit shown as "3 / 5" and warning when exceeded. Columns scroll vertically; the board scrolls horizontally.
+Needs at least 256 (a 224 card plus padding); the board scrolls sideways instead of squeezing columns.
 
 **Use for**
 
@@ -93,7 +96,7 @@ One stage of a board (To do, In progress, Review, Done). Count in the header; WI
 
 **Anatomy**
 
-1. Title
+1. Title: fills the header, 1 line with ellipsis (count and actions sit at the right)
 2. Count (Badge Count), or "3 / 5" with a WIP limit
 3. Header actions (Button Icon)
 4. Cards slot of Kanban Cards
@@ -105,6 +108,7 @@ One stage of a board (To do, In progress, Review, Done). Count in the header; WI
 - Columns scroll vertically; the board scrolls horizontally
 - Moving to a final stage (Done, Lost) may ask for a reason
 - Always offer a list or table view of the same items
+- Resize: min width 256; the title fills and stays on 1 line with ellipsis, the count and actions keep their size at the right
 
 **Accessibility**
 
@@ -128,4 +132,4 @@ Tokens and styles:
 
 Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md)
 
-Code: dnd-kit + custom
+Code: card `min-w-56`, labels `flex flex-wrap`, title `line-clamp-3`, due `truncate max-w-20`; column `min-w-64 shrink-0`, title `min-w-0 flex-1 truncate` (Board scrolls horizontally (`overflow-x-auto`))

@@ -96,6 +96,7 @@ structure than the person made.
    icons or broken slots.
 2. Light, Dark, Corporate Light and Compact in a temporary frame; remove it after.
 3. Screenshot the set, the example and the stress test.
+4. Widths: run `/eggux:responsive` (`check.js` on the stress frame) and fix what it reports.
 
 ## 9. Review (status: in review)
 Show, short:
