@@ -47,6 +47,9 @@ Pick the ones that apply to the component's content.
 - A part that keeps a fixed size while the instance shrinks (a fixed image, a fixed text column).
   Sizes set inside an instance are ignored by Figma, so the designer cannot fix it per use.
 
+Width breaks are measured by `skills/responsive/check.js` and fixed with the recipes in
+`skills/responsive/SKILL.md`.
+
 ## Turning breaks into rules
 | Break | Typical rule |
 |---|---|

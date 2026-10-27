@@ -37,7 +37,9 @@ they exist: the review checks the design against the actor's workflow, not in a 
    Block or Page Shell exists (`build-ui/index.md` maps screens to shells and blocks); library
    default copy ("Acme", "Website redesign") left in a client design. `scan-components.js`
    from `/eggux:audit-tokens` finds raw values and broken slots. Icons whose stroke is not
-   2 x size / 24 (resized instead of scaled) read bold next to the rest.
+   2 x size / 24 (resized instead of scaled) read bold next to the rest. Text squeezed to a few
+   letters per line, clipped or running past its component at a column width: run
+   `/eggux:responsive`.
 
 10. **Fidelity (when a reference is given):** the reference next to the result. Section order and
     hierarchy, spacing rhythm, accent colors and type scale, images and icons. Each approximation

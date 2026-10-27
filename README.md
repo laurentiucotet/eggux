@@ -17,7 +17,7 @@ At a glance: 367 components on 74 pages, 245 blocks, 8 page shells, 93 complete 
 email templates (SCREENS: Auth, Account, Settings, Emails), 4 full showcase pages, 667 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
 Română), 16 text styles, 4 gradient styles, 110 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
-images (49 photos, 7 product screenshots). The plugin adds 12 skills, 32
+images (49 photos, 7 product screenshots). The plugin adds 13 skills, 32
 patterns and 38 component guides.
 
 ## Install
@@ -54,6 +54,7 @@ checks every applied decision.
 | `/eggux:build-ui` | Designs and builds screens from the library, following client files |
 | `/eggux:decision-log` | Turns Inbox requests into decisions, applies them in Figma and code, verifies the work |
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
+| `/eggux:responsive` | Resize contract for a component or block, `check.js` on its stress test (squeezed, clipped, overflowing text at 276, 368, 564 and full width), fix recipes; also audits a whole library |
 | `/eggux:audit-tokens` | Checks Figma variables (aliases, code syntax, scopes, contrast) and scans components for raw values |
 | `/eggux:new-component` | From a screenshot or description to an approved component: reuse map, proposal, build, stress test (min, typical, max content), review, docs and records |
 | `/eggux:update-component` | After you edit a component by hand in Figma: finds what changed (snapshot diff), plays it back, polishes it (tokens, all variants, properties, layout), checks decisions, UX rules and affected instances, re-runs the stress test, reviews, then updates the doc, snapshot and records |
