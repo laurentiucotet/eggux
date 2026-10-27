@@ -43,6 +43,7 @@ async function checkInstance(inst, cellLabel) {
   }
   for (const t of inst.findAll(n => n.type === 'TEXT')) {
     if (!visible(t) || !t.characters || !t.characters.trim()) continue;
+    if (Math.abs(t.rotation || 0) > 1) continue; // rotated labels (collapsed panels) are measured on the wrong axis
     const tb = box(t);
     const fs = fontSizeOf(t), lh = lineHeightOf(t);
     const lines = Math.max(1, Math.round(tb.height / lh));

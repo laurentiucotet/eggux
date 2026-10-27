@@ -39,10 +39,10 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Command`, `Command Input`, `Command Dialog` | shadcn `Command`, `CommandInput`, `CommandDialog` | |
 | `Dialog`, `Dialog Header`, `Dialog Footer`, `Alert Dialog` | shadcn `Dialog` (`DialogHeader`, `DialogFooter`), `AlertDialog` | |
 | `Sheet`, `Drawer` | shadcn `Sheet`, `Drawer` (vaul) | |
-| `Side Panel` | `<aside>` in the page grid + shadcn `Collapsible` | Right `Sheet` below 1024 px; persist the collapsed state |
+| `Side Panel` | `<aside>` | expanded `min-w-60`, title `truncate`; collapsed rail title `max-h-[200px] truncate` (vertical writing mode) |
 | `Alert`, `Toast` | shadcn `Alert`, `Sonner` | |
 | `Card`, `Card Header`, `Card Footer`, `Stat Card` | shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) | Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content |
-| `Stat Card` | shadcn `Card` + custom content; change = `Badge` soft variant by direction; optional sparkline = Recharts `LineChart` without axes, `var(--chart-1)` | Up soft-success, down soft-destructive, flat soft-neutral; swap on the instance when up is bad; sparkline `aria-hidden` |
+| `Stat Card` | shadcn `Card` | trend text `max-w-[200px] truncate`, icon `shrink-0` |
 | `Skeleton`, `Spinner`, `Kbd`, `Kbd Group` | shadcn `Skeleton`, `Spinner`, `Kbd` (`KbdGroup`) | Kbd text `text-foreground` (not `text-muted-foreground`): muted text on `bg-muted` is 4.35:1 in Light |
 | `Pagination`, `Pagination Item`, `Breadcrumb`, `Breadcrumb Item` | shadcn `Pagination` (`PaginationItem`), `Breadcrumb` (`BreadcrumbItem`) | In tables use `Table Pagination` |
 | `Pagination Compact` | shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNext` | |
@@ -57,8 +57,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Setting Row` | custom row + shadcn `Switch`, `Select` or `Button` | Label and `aria-describedby` from the texts |
 | `Carousel`, `Carousel Arrow`, `Carousel Indicator`, `Carousel Slide` | shadcn `Carousel` (Embla): `CarouselPrevious`, `CarouselNext`, dots from the Embla API | Autoplay plugin only with a pause control |
 | `Carousel Gallery`, `Carousel Thumbnail` | Embla main + thumbs carousels | |
-| `Carousel Hero` | Embla with Autoplay plugin, pause on hover and focus | |
-| `Lightbox` | yet-another-react-lightbox or PhotoSwipe, or a `Dialog` | Esc, arrows, focus trap |
+| `Carousel Hero` | Embla with Autoplay | `min-w-[768px]` (phones: static hero); content and controls in `mx-auto max-w-[1152px] px-6`; overline `truncate`, title and text `line-clamp-3` |
+| `Lightbox` | Radix Dialog full screen | title `flex-1 min-w-0 truncate` |
 | `People Picker`, `Person Option` | shadcn `Popover` + `Command` with `Avatar` rows; chips in the trigger | Server search by name, email, team; debounce 200 ms |
 | `Transfer List` | custom: two lists of `Checkbox` rows + move `Button`s | Or `@dnd-kit` when order matters |
 | `Inline Edit` | custom: text ↔ `Input` with save / cancel `Button Icon`s | Optimistic save, revert on error |
@@ -99,7 +99,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Show More` | shadcn `Collapsible` or `line-clamp-3` + `Button variant="link"` | `aria-expanded` on the toggle |
 | `Load More` | shadcn `Button variant="outline"` + count; TanStack Query `useInfiniteQuery` | Focus the first new item; count in `aria-live` |
 | `Shortcut Row` | custom `flex justify-between` + shadcn `Kbd` / `KbdGroup` | ⌘ on Mac, Ctrl elsewhere |
-| `Resizable Panels` | shadcn `Resizable` (react-resizable-panels) | `autoSaveId` remembers the split; one panel at a time on mobile |
+| `Resizable Panels` | shadcn `Resizable` | `min-w-[480px]`; end panel `flex-1 min-w-0` |
 | `FAB` | shadcn `Button size="icon"` `rounded-full shadow-lg fixed bottom-20 right-4` | Mobile only; desktop uses a primary Button |
 | `Action Sheet` | title `line-clamp-2`, description `line-clamp-3`, action labels `min-w-0 flex-1 truncate` | |
 | `Countdown` | tile values and units `truncate text-center` | Tiles keep their width |
@@ -141,15 +141,15 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Bar Chart`, `Line Chart`, `Sparkline` | shadcn `Chart` (Recharts) | `var(--chart-N)` |
 | `Chart Legend`, `Chart Legend Item` | shadcn `ChartLegend` with `ChartLegendContent` (Recharts) | Colors from `chartConfig` |
 | `Chart Tooltip`, `Chart Tooltip Row` | shadcn `ChartTooltip` with `ChartTooltipContent` (Recharts) | |
-| `Chart Card` | shadcn `Card` + shadcn `Chart` (Recharts) + `ToggleGroup` for the time range | |
+| `Chart Card` | shadcn `Card` + shadcn `Chart` + `ToggleGroup` | header `flex flex-wrap gap-4 gap-y-3`, titles `flex-1 min-w-40`, title and description `line-clamp-2`; footer trend `flex gap-2` icon first then insight `line-clamp-2`; note `line-clamp-2`; omit the actions wrapper when empty |
 | `Funnel Chart` | Recharts `FunnelChart`, or plain bars with widths from the data | |
-| `Scatter Chart` | Recharts `ScatterChart` with `XAxis` and `YAxis` `type="number"` | |
+| `Scatter Chart` | Recharts ScatterChart | axis titles `flex gap-4`, each `flex-1 min-w-0 truncate`, X title `text-right` |
 | `Donut Chart`, `Bar Chart Horizontal` | Recharts `PieChart` (`innerRadius`), `BarChart layout="vertical"` | |
-| `Heatmap` | custom CSS grid or nivo `HeatMap` | |
-| `Gauge` | Recharts `RadialBarChart` (half circle) or custom SVG arc | |
-| `Waterfall Chart` | Recharts `BarChart` with a transparent offset bar per step | Increase `color/blue/600`, decrease `color/red/600`, totals `color/neutral/400` |
+| `Heatmap` | CSS grid `grid-cols-[32px_repeat(12,minmax(0,1fr))]` | `min-w-[276px]`; cells stretch |
+| `Gauge` | Recharts RadialBarChart (half circle) | `min-w-[240px]`; arc `mx-auto`; Min and Max `max-w-[72px] truncate`; target label `flex-1 min-w-0 truncate`; label `line-clamp-2` |
+| `Waterfall Chart` | Recharts BarChart (stacked, invisible base) | `min-w-[500px]`; legend `flex flex-wrap` |
 | `Combo Chart` | Recharts `ComposedChart`: `Bar yAxisId="left"` + `Line yAxisId="right"` | Two `YAxis`, both from 0 |
-| `Treemap` | Recharts `Treemap` with a custom cell renderer | |
+| `Treemap` | Recharts Treemap | tile label `truncate` inside the tile width (full label in the tooltip) |
 | `Gantt Bar`, `Gantt Milestone`, Gantt block | SVAR Gantt, Frappe Gantt, or a custom grid with dnd-kit | |
 | `Page Toolbar` | `flex flex-wrap gap-2`; start `min-w-64 flex-1`; search `min-w-32 max-w-80 flex-1` | End group wraps to a second line |
 | `Trend Indicator` | custom: lucide `TrendingUp` / `TrendingDown` / `Minus` + `<span class="tabular-nums">`; Style=badge wraps both in a soft `Badge` | Direction from the data, tone from the meaning (`text-success`, `text-destructive`, `text-muted-foreground`, or the soft Badge of that tone); hidden "Up" / "Down" text |
@@ -157,11 +157,11 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Usage Meter` | top row `flex flex-wrap`; label `min-w-30 flex-1 line-clamp-2`; usage `truncate max-w-40`; hint `line-clamp-3` | |
 | `Leaderboard Row` | rank `w-5 truncate`; name `min-w-20 flex-1 truncate`; value `max-w-22 truncate tabular-nums` | |
 | `Dashboard Widget` | react-grid-layout (12 cols, `draggableHandle`) with shadcn `Card` per item | Sizes 3, 4, 6, 12 columns; save the layout per user |
-| `Distribution Bar` | flex row of segments (width from the share) + legend `<ul>`; or Recharts `BarChart layout="vertical"` stacked to 100% | `var(--chart-N)` per entity; 2-6 segments |
-| `Bullet Chart` | Recharts `BarChart layout="vertical"`: stacked range bars, thin value `Bar`, `ReferenceLine` for the target; or custom SVG | Same scale for stacked bullets |
-| `Radar Chart` | shadcn `Chart` (Recharts) `RadarChart` with `PolarGrid`, `PolarAngleAxis`, `Radar` per series | 1-3 series, 5-8 axes; `var(--chart-N)` |
+| `Distribution Bar` | custom | total `max-w-[140px] truncate shrink-0`; title `flex-1 min-w-[120px]` |
+| `Bullet Chart` | custom SVG / divs | `flex flex-wrap gap-4 gap-y-2`; label `w-[140px]` with `truncate` lines; track `flex-1 min-w-40`; values `max-w-[120px] truncate` |
+| `Radar Chart` | Recharts RadarChart | `min-w-[288px]`, chart centered |
 | `Sankey Chart` | Recharts `Sankey` with custom node and link renderers | Links colored by source with `var(--chart-N)`; under 12 nodes |
-| `Choropleth Map` | react-simple-maps + d3-scale `scaleQuantize` (5 steps, one hue); tile layout as a CSS grid | Muted for no data; table view lists every region |
+| `Choropleth Map` | custom SVG tile map | SVG `w-full` with viewBox (regions scale); `min-w-[240px]` |
 | `Version Item` | custom list with shadcn `Avatar`, `Badge`, `Button`; preview in `Diff Viewer` | Restore creates a new version |
 | `Automation Rule` | custom card | name `line-clamp-2`, meta `truncate`; sentence `flex flex-wrap`; chips `max-w-60 truncate` |
 | `Workflow Node` | @xyflow/react custom node (`Handle` for ports), settings in shadcn `Sheet` | Edges 1.5 px `border/default`; keyboard and list view for steps |
@@ -176,7 +176,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | Figma | Code | Notes |
 |---|---|---|
 | `Rich Text Editor` | footer `flex gap-2`; hint `min-w-0 flex-1 line-clamp-2`; count `shrink-0 tabular-nums` | |
-| `Post Card` | shadcn `Card` with image, `Badge` and `Avatar`, wrapped in one link | `size` prop (default, sm) via `cva`: sm = smaller gaps, `h4` title class, horizontal image `basis-1/3 min-w-[120px] max-w-[240px]` instead of half, compact image `size-12` |
+| `Post Card` | shadcn `Card` | meta `flex min-w-0`, date `truncate`; author name `truncate` |
 | `Code Block` | Shiki or Prism + copy `Button` | |
 | `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, larger type |
 | `Section Heading` | `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` | Heading level follows the page outline. Optional icon before the title (`size-6` lg, `size-5` default and sm, `aria-hidden`) |
@@ -194,7 +194,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `File Dropzone`, `File Item`, `Attachment` | react-dropzone + custom | |
 | `Resource Item` | custom row + `Button` (ghost icon) with `<a download>` | Label names the file, format and size |
 | `Rating` | custom `RadioGroup` | Score is the shown number (one decimal), Value the filled stars. Size=lg: stars `size-8`, value `text-lg font-semibold`, for review forms |
-| `Color Picker` | react-colorful in `Popover` | |
+| `Color Picker` | react-colorful + Input Group | `min-w-[240px]`, parts `w-full` |
 | `Coachmark`, `Hotspot` | Driver.js, Shepherd or `Popover` anchored to the target | |
 | `Video Player` | native `video` or Vidstack | Size=lg: play button `size-24` (96 px) for hero and full-width players |
 | `Kanban Card`, `Kanban Column` | card `min-w-56`, labels `flex flex-wrap`, title `line-clamp-3`, due `truncate max-w-20`; column `min-w-64 shrink-0`, title `min-w-0 flex-1 truncate` | Board scrolls horizontally (`overflow-x-auto`) |
@@ -207,14 +207,14 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Annotation Pin` | custom absolutely positioned `Button` + shadcn `Popover` | Store positions as percentages of the image |
 | `Social Share` | shadcn `Button size="icon"`; `navigator.clipboard`, `mailto:`, `navigator.share`, network share URLs | Copy link confirms with Sonner; official network logos |
 | `Command Snippet` | `<pre><code>` on `bg-muted` + shadcn `Button size="icon"` (`navigator.clipboard.writeText`) | Prompt `$` is `select-none aria-hidden`, never copied |
-| `Endpoint Row` | `<a>` row with shadcn `Badge` (method variant) + `<code>` path | GET info, POST success, PUT / PATCH warning, DELETE destructive |
+| `Endpoint Row` | `<a>` row | `flex flex-wrap gap-3 gap-y-1`; path `flex-1 min-w-[120px] truncate`; summary `max-w-[200px] truncate` |
 | `Log Row` | virtualized list (`@tanstack/react-virtual`) of mono rows | `role="log"` for live tails; level as text |
 | `Diff Viewer`, `Diff Line` | jsdiff (`diffLines`) + custom rows; `react-diff-viewer-continued` for side by side | 3 lines of context, rest collapsed; hidden "added" / "removed" text |
-| `JSON Viewer` | custom tree on `<pre>`, or `react-json-view-lite` themed with tokens | `role="tree"`; collapsed after the first level for large payloads |
+| `JSON Viewer` | custom tree | each line `truncate` (no wrap); full value on expand or copy |
 | `Release Note Item` | `<article>` with shadcn `Badge`, `<time>`, optional `<img>`, `Button variant="link"` | New info, Improved secondary, Fixed success |
 | `Release Note Line` | `<li>` with shadcn `Badge` + text, in a `<ul>` | Part of `Release Note Item` (Changes slot); New info, Improved secondary, Fixed success |
 | `Footnote` | custom `<ol>` with ids; `<sup><a href="#fn-1">` in the text | Back link to `#fnref-1` |
-| `Link Preview` | shadcn `Card` in `<a target="_blank" rel="noopener">` | Open Graph metadata fetched on the server |
+| `Link Preview` | `<a>` card | domain `truncate min-w-0` |
 | `Location Card` | shadcn `Card` + `<address>`, `tel:` link, maps link | Show map: a static map image or embed on top |
 | `Image Compare Slider` | react-compare-slider, or `clip-path` + `<input type="range">` | Handle `role="slider"`, arrow keys |
 | `Video Thumbnail` | `<button>` + `<img>` poster, lucide `Play`, `Badge` | Opens `Video Player` in place or in a `Dialog` |
@@ -225,20 +225,20 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Uptime Bars`, `Uptime Day` | flex row of 90 bars (`flex-1 h-7 rounded-sm`, `bg-success` / `bg-warning` / `bg-destructive` / `bg-info` / `bg-border` by state) with a shadcn `Tooltip` per day; caption "90 days ago" / "Today" | Each day has an accessible label with date and state |
 | `Mention Chip` | Tiptap `Mention` extension + `Command` list; rendered as `<a>` | Mention notifies once; reader mentions use the warning tint |
 | `Reaction Bar`, `Reaction` | custom flex of shadcn `Toggle` (`aria-pressed`) + `Popover` emoji picker (emoji-mart or frimousse) |  |
-| `Thread Summary` | custom button + `Avatar` group; `Collapsible` or `Sheet` | `aria-expanded` when it opens in place |
+| `Thread Summary` | `<button>` row | `flex flex-wrap gap-x-2 gap-y-1`; texts `max-w-[120px] truncate` |
 | `Job Listing` | row `flex flex-wrap gap-3`; body `min-w-60 flex-1`; title and meta `line-clamp-2`; salary `truncate max-w-56` | End group wraps under the body |
 | `AI Loading`, `Confidence Indicator`, `AI Review Bar` | shadcn `Skeleton`, `Tooltip`, `Button` + custom; Vercel AI SDK for streaming; review bar on Tiptap track changes or a diff of the form state | Never apply low-confidence values automatically; store who accepted an AI value |
 
 ## Commerce
 | Figma | Code | Notes |
 |---|---|---|
-| `Product Card` | shadcn `Card` with an `<a>` stretched over the card, `Badge`, `Button` (icon) for wishlist | Whole card is one link; Add to cart opens the `Mini Cart` |
+| `Product Card` | shadcn `Card` | name `line-clamp-2`; variant `truncate` |
 | `Line Item` | custom `<li class="flex gap-4">`: `<img>`, text, `Number Input` (Size=sm), amount, ghost `Button` | `tabular-nums`; Undo in `Sonner` toast |
 | `Mini Cart` | shadcn `Popover` (`Sheet` on mobile) + `Line Item`s, `Summary Row`, `Button`s | Auto-open 4 s without moving focus |
-| `Order Row` | `<a>` row + shadcn `Badge`, `<time>` | Status names from one shared list |
-| `Shipment Tracker` | custom header + `<ol>` of `Step` | `aria-current="step"`; carrier tracking URL |
-| `Address Card` | shadcn `RadioGroup` + `Card` items (`Label` wraps the card), `<address>` |  |
-| `Payment Method Card` | shadcn `Card` + `Badge` + `DropdownMenu` | Data from the payment provider (Stripe `PaymentMethod`); last 4 digits only |
+| `Order Row` | `<a>` row + shadcn `Badge` | `flex flex-wrap gap-4 gap-y-2`; order `flex-1 min-w-40`, number and meta `truncate`; total `min-w-24 text-right whitespace-nowrap` |
+| `Shipment Tracker` | custom + `Step` | `min-w-[560px]`; header `flex flex-wrap`, text `flex-1 min-w-40`, eta and carrier `truncate` |
+| `Address Card` | radio card | name row `flex flex-wrap gap-2 gap-y-1`; name `max-w-[200px] truncate` |
+| `Payment Method Card` | radio card | brand mark `w-11 truncate text-center` |
 | `Review Item` | `<article>` + `Avatar`, `Badge`, `Rating`, ghost `Button`s | Helpful: `aria-pressed` |
 | `Rating Summary` | custom: `Rating` + rows of shadcn `Progress` in `Button`s | Rows set the star filter |
 
@@ -415,7 +415,7 @@ New style values added to existing components in 0.58.0 (the default value keeps
 | `Distribution Segment` | part of `Distribution Bar`: one `<div>` in the flex row, `flex-grow: share` (or `width: share%`), `min-width: 4px`, background `var(--chart-N)` | Color chart-1..chart-8 |
 | `QR Code` | `qrcode.react` `<QRCodeSVG value={url} size={128} marginSize={2} />` (or a generated SVG) in a `rounded-xl bg-card p-3` tile | Size=sm 96, default 128, lg 160; the Figma pattern is sample art; keep the real code dark on light in every theme; alt text names the destination |
 | `Comparison Table` | `<table>` with shadcn `Table` parts; header cells with `Price` (sm) and `Button` (sm); cells with lucide `Check` / `Minus` and `sr-only` text | Plans=3 or 4 columns; used by `Block / Comparison Table` (3) and `Block / Pricing with Comparison` (4) |
-| `Figure` | `<dl>` with `dd` (value) and `dt` (label) | Tone=on-primary: `text-primary-foreground` on value, label and source |
+| `Figure` | `<figure>` | value `line-clamp-2`, label `line-clamp-3`, source `line-clamp-2` |
 | `Alert` (Style=soft) | shadcn `Alert` with a cva `style: "soft"`: `border-0 bg-[var(--badge-soft-X-bg)] [&>svg]:text-[var(--badge-soft-X-fg)]`, title `text-[var(--badge-soft-X-fg)]`, description `text-foreground` (X = neutral for default, destructive, success, warning, info) | Same tint tokens as Badge soft; one Style per product |
 | `Alert` (Style=accent) | shadcn `Alert` with `style: "accent"`: `bg-card border border-l-4 border-l-X` (`border-l-muted-foreground`, `border-l-destructive`, `border-l-success`, `border-l-warning`, `border-l-info`); icon and title `text-X`, warning title `text-[var(--badge-soft-warning-fg)]` | Banner: `border-0 border-b border-l-4 rounded-none` |
 | `Toast` (Style=inverted) | Sonner `<Toaster invert />`, or `toastOptions={{ classNames: { toast: "bg-foreground text-background border-0", description: "text-background/80" } }}` | Icons take `currentColor` (monochrome); flips to a light toast in dark mode |
@@ -497,6 +497,17 @@ above still maps the component; these rows add the resize classes.
 | `Badge` | shadcn `Badge` | `max-w-64` with label `min-w-0 truncate`; parents can set a smaller `max-w-*` |
 | `Button Group`, `Button Group Item` | shadcn `ButtonGroup` | items `shrink-0`; label `truncate` inside the fixed item width |
 | `User Message` | custom bubble | `max-w-[576px]` stays; in narrow panels use `max-w-[80%]` (container relative) |
+| `Donut Chart` | Recharts PieChart in a `flex flex-wrap gap-8` row | legend `min-w-40 flex-1`; legend name `truncate min-w-0`; value `max-w-24 truncate`; center total `w-[120px] truncate text-center` |
+| `Chart Legend` | Recharts Legend / custom | `flex flex-wrap gap-x-4 gap-y-2 w-full` |
+| `Chart Tooltip` | Recharts Tooltip content | title `truncate` |
+| `Progress Card` | shadcn `Card` + `Progress` | value row `flex flex-wrap items-baseline gap-2`; target `flex-1 min-w-20 truncate` |
+| `Chat Message` | custom | Size=default `max-w-[440px]`, row `min-w-[472px]`; Size=compact bubble `max-w-[244px]` with avatar (`max-w-[276px]` outgoing), fits a 276 column |
+| `Reaction Bar` | custom | reactions `flex flex-wrap gap-1 flex-1`; add button `shrink-0` |
+| `Diff Viewer` | custom | file `flex-1 min-w-[120px] truncate`; counts `max-w-16 truncate shrink-0` |
+| `Description List Item` | `<dt>`/`<dd>` | horizontal `grid-cols-[160px_1fr]`, value `min-w-0 break-words` |
+| `Meta Item` | `<span>` inline | label `max-w-[280px] truncate` |
+| `Swatch Picker` | radio group | swatches `flex flex-wrap gap-1`; name `truncate` |
+| `Sheet` | shadcn `Sheet` | `min-w-[320px]` (`w-full` on phones) |
 
 ## Admin
 | Figma | Code | Notes |
