@@ -134,8 +134,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Person Card` | shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`) | |
 | `Event Card`, `Date Tile` | shadcn `Card` + `Badge`, `Button`; date tile as custom markup | `<time datetime>` for the date. `datePosition` prop (text, image) on vertical: image = tile `absolute top-3 left-3 bg-background` inside a `relative` image wrapper |
 | `Empty State` | shadcn `Empty` (or a custom block: icon, title, description, actions) | |
-| `Approval Step` | custom on the Timeline layout | |
-| `Change Item` | custom | |
+| `Approval Step` | custom timeline item | role `line-clamp-2`, time `truncate` |
+| `Change Item` | custom row | `flex flex-wrap gap-y-1`; old / new value chips `max-w-60 truncate`; field `line-clamp-2` |
 | `Save Bar` | custom sticky footer | Listen to form dirty state |
 | `Org Switcher` | `DropdownMenu` or `Popover` + `Command` | |
 | `Bar Chart`, `Line Chart`, `Sparkline` | shadcn `Chart` (Recharts) | `var(--chart-N)` |
@@ -163,7 +163,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Sankey Chart` | Recharts `Sankey` with custom node and link renderers | Links colored by source with `var(--chart-N)`; under 12 nodes |
 | `Choropleth Map` | react-simple-maps + d3-scale `scaleQuantize` (5 steps, one hue); tile layout as a CSS grid | Muted for no data; table view lists every region |
 | `Version Item` | custom list with shadcn `Avatar`, `Badge`, `Button`; preview in `Diff Viewer` | Restore creates a new version |
-| `Automation Rule` | custom on shadcn `Card` + `Switch` + `DropdownMenu` | Sentence: When trigger, and condition, then action |
+| `Automation Rule` | custom card | name `line-clamp-2`, meta `truncate`; sentence `flex flex-wrap`; chips `max-w-60 truncate` |
 | `Workflow Node` | @xyflow/react custom node (`Handle` for ports), settings in shadcn `Sheet` | Edges 1.5 px `border/default`; keyboard and list view for steps |
 | `Mapping Row` | shadcn `Select` (or `Combobox`) + lucide `ArrowRight` + status `Badge`; react-hook-form `useFieldArray` | Auto-match by name; save the mapping as a template |
 | `Availability Row` | custom row: shadcn `Switch` + two `Select` of times + `Button size="icon"` | Ranges with `useFieldArray` (react-hook-form); merge overlaps on save |
@@ -181,7 +181,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, larger type |
 | `Section Heading` | `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` | Heading level follows the page outline. Optional icon before the title (`size-6` lg, `size-5` default and sm, `aria-hidden`) |
 | `Feature Item` | custom: `Icon Tile` (lucide icon in a `size-10 rounded-md` tile, Style neutral `bg-muted` by default) + `<h3>` + `<p>` | Icon `aria-hidden`; grid of 3 or 4. Tile Style follows the nested Icon Tile (brand: `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`). Layout=card: wrap in shadcn `Card` (`rounded-xl border bg-card p-6 gap-4`); link as `Button variant="link"`. Marker=number: an `<ol>`, number circle `rounded-full bg-primary text-primary-foreground`, `aria-hidden` |
-| `Badge List` | `<ul class="flex gap-1.5">` of shadcn `Badge`; "+N" as a `Popover` trigger | |
+| `Badge List` | `Badge` list | `flex flex-wrap gap-1`; +N `shrink-0` |
 | `Table of Contents`, `Table of Contents Item` | custom with scroll spy | |
 | `Comment`, `Comment Composer` | custom + `Textarea` | |
 | `Chat Message`, `Chat Composer`, `Typing Indicator` | custom | Chat Message Size=default `max-w-[440px]`, Size=compact `max-w-[300px]` (panels under 480); text wraps, no manual breaks |
@@ -221,7 +221,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Audio Player` | native `<audio>` + custom controls (shadcn `Button`, `Slider`), or Vidstack | Space play / pause, arrows seek 5 s |
 | `Agenda Item`, `Meeting Card` | custom `<li>` with `<time>` pairs; shadcn `Card` + `Meta Item`, `Avatar` group, `Button` | Join is an `<a>` to the meeting URL; live from 5 min before the start |
 | `Feedback Widget`, `NPS Survey`, `CSAT Rating` | shadcn `Button`, `ToggleGroup` (or `RadioGroup`) + `Textarea` | Send with page or ticket id, version and date; throttle per person |
-| `Service Status Row` | custom row with `Status Dot`, `flex justify-between` | Data from your status provider; link non-operational states to the incident |
+| `Service Status Row` | custom row | head `flex flex-wrap gap-y-1`; service `min-w-32 flex-1 truncate`; uptime `max-w-40 truncate` |
 | `Uptime Bars`, `Uptime Day` | flex row of 90 bars (`flex-1 h-7 rounded-sm`, `bg-success` / `bg-warning` / `bg-destructive` / `bg-info` / `bg-border` by state) with a shadcn `Tooltip` per day; caption "90 days ago" / "Today" | Each day has an accessible label with date and state |
 | `Mention Chip` | Tiptap `Mention` extension + `Command` list; rendered as `<a>` | Mention notifies once; reader mentions use the warning tint |
 | `Reaction Bar`, `Reaction` | custom flex of shadcn `Toggle` (`aria-pressed`) + `Popover` emoji picker (emoji-mart or frimousse) |  |
@@ -248,7 +248,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Price` | custom: amount, `<s>` old price and period (`text-muted-foreground`) | `Intl.NumberFormat` with currency; sr-only "Was ... now ..." |
 | `Plan Card` | shadcn `Card` + `Price`, `Button`, `<ul>` of `Check Item` | Variant=featured: `ring-2 ring-primary`, primary `Button` |
 | `Announcement Pill` | `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` | One at a time |
-| `Trust Badge` | custom: lucide icon + name and detail, `<a>` to the trust page | Only current claims. Tone=on-primary: `text-primary-foreground border-primary-foreground`; Tone=inverted: `text-background border-border`, detail `text-muted` (on `bg-foreground` cards) |
+| `Trust Badge` | custom | name and detail `line-clamp-2` |
 | `Testimonial Card` | shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>` |  |
 | `Logo Tile` | `<li>` with `<img alt>` or inline SVG in `currentColor` (`text-foreground`, `opacity-70` for Style=plain) | Logo is an instance swap; `<a>` only when it links to a case study or integration; alt = company name |
 | `Logo`, `Logo Mark` | inline SVG in `currentColor` (or `<img alt>` with the product name) | Logo Mark is the symbol alone |
@@ -480,16 +480,33 @@ above still maps the component; these rows add the resize classes.
 | `Kbd` | `min-w-5 px-1` (width hugs) | |
 | `Store Badge` | fixed size image, `shrink-0` | Stack badges in narrow columns |
 | `Breadcrumb` | list `flex flex-wrap` (shadcn default) | Use `BreadcrumbEllipsis` for deep paths |
+| `Calendar` | shadcn `Calendar` (react-day-picker) | `min-w-[250px]`; caption label `truncate` |
+| `Date Range Picker` | shadcn `Calendar` `numberOfMonths={2}` + presets in `Popover` | `min-w-[658px]`; under `@container` 658 render one month and presets as a `Select` |
+| `Sources`, `Source Item` | custom `Collapsible` + list | items `flex flex-wrap gap-2`, each `basis-60 grow max-w-96 min-w-0`; title, domain and header label `truncate` |
+| `AI Review Bar` | custom toolbar | `flex flex-wrap gap-x-2 gap-y-2`; count `min-w-32 flex-1 truncate`; buttons `shrink-0` |
+| `Chat History Item`, `AI Loading`, `Agent Plan` | custom rows | time / status / progress line `min-w-0 truncate`; buttons `shrink-0` |
+| `AI Suggestion` | custom field | label `truncate` |
+| `AI Summary`, `AI Notice` | custom card | content `line-clamp-6`; disclaimer `w-full` and wraps (no clamp) |
+| `Reasoning` | shadcn `Collapsible` | trigger `max-w-60 min-w-0`, label `truncate`, chevron `shrink-0` |
+| `Prompt Suggestion` | shadcn `Button` variant=outline | label `truncate` (chip), `line-clamp-2` (card); `max-w-full` |
+| `API Key Row`, `Session Row` | custom row | `flex flex-wrap gap-y-2`; text column `min-w-40 flex-1`; name `truncate`, meta `line-clamp-2`; scope / current `Badge` `max-w-40`/`max-w-32`; key `max-w-48 truncate`; buttons `shrink-0` |
+| `Uptime Bars` | custom | end label `max-w-24 truncate`, start label `truncate` |
+| `Version Item`, `Release Note Item` | custom | version `min-w-0 flex-1 truncate`, badge `shrink-0 max-w-32`; title `line-clamp-2`, text `line-clamp-4`, date `truncate` |
+| `Avatar` | shadcn `Avatar` | `AvatarFallback` shows at most 2 letters (`slice(0, 2)`), `overflow-hidden` |
+| `Byline`, `Avatar Group`, `Presence Bar`, `Announcement Pill`, `Social Share` | custom inline groups | text `min-w-0 truncate`; avatars, icons and buttons `shrink-0` |
+| `Badge` | shadcn `Badge` | `max-w-64` with label `min-w-0 truncate`; parents can set a smaller `max-w-*` |
+| `Button Group`, `Button Group Item` | shadcn `ButtonGroup` | items `shrink-0`; label `truncate` inside the fixed item width |
+| `User Message` | custom bubble | `max-w-[576px]` stays; in narrow panels use `max-w-[80%]` (container relative) |
 
 ## Admin
 | Figma | Code | Notes |
 |---|---|---|
 | `Access Row`, `Invite Row`, `Share Link Row` | shadcn `Avatar`, `Select`, `Popover` + `Command` (combobox with chips), `Button` | Copy with `navigator.clipboard.writeText`; validate emails with zod |
-| `Integration Card` | shadcn `Card size="sm"` + `Button`, `Switch`, `Badge` | Connect opens the provider OAuth flow; letter tile = square `Avatar` fallback; Learn more = `Button variant="link"` |
-| `Permission Row` | shadcn `Table`: header `th scope="col"`, group rows `th colSpan`, `Checkbox` cells | Form state in react-hook-form; save with `Save Bar`; selected role column `bg-muted`; log changes |
+| `Integration Card` | shadcn `Card` | name, category `truncate`; description `line-clamp-3` |
+| `Permission Row` | table row | `min-w-[448px]` (+96 per extra role); permission cell `min-w-40`; title `truncate`, description `line-clamp-2` |
 | `API Key Row` | custom row + `Badge`, `Button size="icon"`, `DropdownMenu`; `AlertDialog` for revoke | Full key shown once at creation, then only the last 4 characters |
 | `Session Row` | custom row + `Badge` and `Button` | Sessions from your auth provider (Auth.js, Clerk, WorkOS); the current device cannot sign itself out |
-| `Org Chart Node` | @xyflow/react with a dagre layout (or react-d3-tree); custom node with `Avatar` | `role="tree"` semantics for keyboard use |
+| `Org Chart Node` | custom card | `min-w-40`; name `line-clamp-2`, role and reports `truncate`, centered |
 
 ## Built from base components
 These have no component of their own since 0.51.0. Build them from the base component; the

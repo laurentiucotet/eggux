@@ -22,7 +22,8 @@
    "Accepted values keep an \"AI generated\" label until edited, with Undo",
    "Low confidence says so in the Reason",
    "Several suggestions: \"Accept all\" at the top, still one by one below",
-   "Store who accepted the value and when"
+   "Store who accepted the value and when",
+   "Label and value fill the width; label 1 line with ellipsis; actions stay at their size"
   ],
   "a11y": [
    "Accept and Dismiss name the field (\"Accept Expense category\")",
@@ -59,7 +60,9 @@
    "Opening the sources shows exactly what was used",
    "State=generating shows what it reads; State=error says what failed and offers Try again",
    "Regenerate keeps the previous version until the new one is ready",
-   "The disclaimer uses the same words everywhere"
+   "The disclaimer uses the same words everywhere",
+   "Content text: up to 6 lines, then ellipsis; long answers go to Show More",
+   "Disclaimer fills the width and wraps; it never truncates"
   ],
   "a11y": [
    "Generating and ready are announced politely",
@@ -138,7 +141,8 @@
    "Steps that send, pay or delete become a Tool Call with Status=approval",
    "A failed step says what failed and what happens next; the plan never stops silently",
    "Background tasks say so and notify when done",
-   "After it finishes, keep the plan in the conversation, collapsed to its result"
+   "After it finishes, keep the plan in the conversation, collapsed to its result",
+   "Title wraps; status line: 1 line with ellipsis; Stop keeps its size"
   ],
   "a11y": [
    "Stop has a label and is always reachable by keyboard",
@@ -267,7 +271,8 @@
    "Last step: Connector off",
    "Changing the request resets the steps that depend on what changed, and says so",
    "Every decision is an audit log entry",
-   "Set the time line through the Time property in every Status; never type over the layer"
+   "Set the time line through the Time property in every Status; never type over the layer",
+   "Role wraps to 2 lines, time to 1 line, with ellipsis; the status badge keeps its size"
   ],
   "a11y": [
    "The chain is an ordered list; each step reads name, role, status and time",
@@ -381,7 +386,8 @@
    "The Image / Person photos are sample faces (Unsplash License, not covered by the CC BY 4.0 license of the file): replace them with real photos",
    "Pick a photo that fits the name, use a different person for each avatar in a block, and the same photo for the same person within it",
    "Overflow avatars (+3) and organizations stay initials",
-   "Status dot only when presence matters to the task; same size within a list or group; one shape per list"
+   "Status dot only when presence matters to the task; same size within a list or group; one shape per list",
+   "Initials stay inside the circle: 1 line, centered, clipped by the circle, ellipsis for anything longer than 2 letters"
   ],
   "a11y": [
    "Image alt is the name, or alt=\"\" when the name is right next to it",
@@ -418,7 +424,8 @@
    "Full list in a Tooltip (names) or a Popover (names and actions)",
    "Label says who they are or how many, not the names already shown",
    "Names lists the first two or three names and \"and N others\"; it matches the avatars shown",
-   "Names and Label truncate with an ellipsis at their max width (200 sm, 240 default and lg); the full list goes in the Tooltip"
+   "Names and Label truncate with an ellipsis at their max width (200 sm, 240 default and lg); the full list goes in the Tooltip",
+   "Names and Label fill the space left after the avatars and truncate; they never push the group past its column"
   ],
   "a11y": [
    "The group has a name with the count (\"5 assignees\")",
@@ -500,7 +507,8 @@
    "One style per table or list: all solid or all soft",
    "Soft colors come from badge/soft-*-bg (status color at opacity 10 in Light, 20 in Dark) and badge/soft-*-fg; never recolor by hand",
    "Not clickable",
-   "Next to the primary information of a row, never instead of it"
+   "Next to the primary information of a row, never instead of it",
+   "Hugs its label up to 256 (maxWidth spacing/64), then the label truncates to 1 line with ellipsis; parents can set a smaller max (scope 160, Current 128)"
   ],
   "a11y": [
    "Label meets 4.5:1 on every Variant; warning uses dark text (solid) or amber/800 (soft)",
@@ -777,7 +785,8 @@
    "2-5 items of equal weight",
    "Positions follow the order: first, middle, last",
    "Icon-only items always have a tooltip",
-   "Never use it to set a value"
+   "Never use it to set a value",
+   "Hugs its items and never shrinks below them (80 per item); item labels truncate to 1 line; when it does not fit, use a Select or a Dropdown Menu"
   ],
   "a11y": [
    "Wrap in role=\"group\" with a label (\"Invoice actions\")",
@@ -849,7 +858,9 @@
    "Week start follows the locale: Monday in most of Europe",
    "Unavailable dates are disabled with the reason nearby (\"Closed on Sundays\")",
    "Days of adjacent months use State=outside (muted)",
-   "Ranges use range-start, range-middle and range-end"
+   "Ranges use range-start, range-middle and range-end",
+   "Needs at least 250 wide (seven 32 px day cells, minWidth 250); fits every column from 1/4 (276) up, below that use Date Input",
+   "Month label: 1 line with ellipsis, centered between the arrows"
   ],
   "a11y": [
    "Arrows move by day, PageUp/PageDown by month, Enter selects, Esc closes",
@@ -1084,7 +1095,9 @@
    "An empty old value shows \"(empty)\"",
    "Sensitive values are masked (••••)",
    "Read only: never edit or delete entries from the UI",
-   "Dates and amounts follow the locale format"
+   "Dates and amounts follow the locale format",
+   "Old and new values hug up to 240 and truncate to 1 line; field label up to 2 lines",
+   "Wraps: when the row is narrow the new value drops to the next line (row gap 4)"
   ],
   "a11y": [
    "The arrow is decorative; read as \"Due date changed from 7 Oct 2026 to 21 Oct 2026\"",
@@ -1257,7 +1270,8 @@
    "Group by date (Today, Previous 7 days, older); pinned items on top",
    "State=active marks the open conversation",
    "Delete offers Undo",
-   "Search the list when there are more than about 20 conversations; New chat at the top"
+   "Search the list when there are more than about 20 conversations; New chat at the top",
+   "Title and time: 1 line with ellipsis; the item works down to 128 wide"
   ],
   "a11y": [
    "The item is a link; the open one has aria-current=\"page\"",
@@ -1848,7 +1862,8 @@
    "The trigger shows the preset name and the dates (\"Last 14 days: 6 - 19 Oct\")",
    "Summary counts the days (\"6 Oct - 19 Oct 2026 · 14 days\")",
    "Future dates disabled for reports on past data; past dates disabled for bookings",
-   "Mobile: one month in a full-height Drawer, presets as chips above"
+   "Mobile: one month in a full-height Drawer, presets as chips above",
+   "Needs at least 658 wide (presets plus two months, minWidth 658); in a 1/2 column, a sidebar or on mobile use one Calendar in a Popover with the presets as a Select, or two Date Inputs"
   ],
   "a11y": [
    "Focus moves into the popover on open; Esc closes and returns focus to the trigger",
@@ -3916,7 +3931,8 @@
    "State=running appears within 100 ms of sending",
    "Collapsed by default when done; the person opens it",
    "Label says how long it took (\"Thought for 12 s\")",
-   "Details is a summary that explains; never show raw chain of thought as the answer"
+   "Details is a summary that explains; never show raw chain of thought as the answer",
+   "Header hugs up to 240 and the status or label truncates to 1 line; the chevron stays next to it"
   ],
   "a11y": [
    "The Label row is a button with aria-expanded",
@@ -4453,7 +4469,9 @@
    "Every factual claim from a source gets a Citation with its Source Item number",
    "A Source Item opens the source in a new tab",
    "List only sources the user can open",
-   "Citation hover shows a Hover Card with the source; click opens it"
+   "Citation hover shows a Hover Card with the source; click opens it",
+   "Header label: 1 line with ellipsis; favicon letters stay inside their tile",
+   "Source Items fill the row between 240 and 384 and wrap: two per row at 720, one per row under about 500"
   ],
   "a11y": [
    "The toggle is a button with aria-expanded and the count in its name",
@@ -5475,7 +5493,8 @@
    "Text is shown as sent; never rewrite or trim it",
    "Actions show on hover on desktop and always on touch",
    "Edit and resend continues the conversation from that message",
-   "The user's message is never lost, even when the answer fails"
+   "The user's message is never lost, even when the answer fails",
+   "Bubble hugs up to 576 and wraps there; in a panel narrower than 600 set the bubble to Fill in the instance so long messages wrap at the panel width"
   ],
   "a11y": [
    "Copy and Edit Button Icons have accessible labels and tooltips with the same text",
@@ -6156,7 +6175,8 @@
    "One person per Byline",
    "Detail is one line: role, company or date · reading time",
    "Size follows the context: sm in dense grids, default under titles, lg under testimonials",
-   "The name links to the profile when there is one"
+   "The name links to the profile when there is one",
+   "Name and detail: 1 line with ellipsis; the byline hugs its text and truncates when its column is narrower"
   ],
   "a11y": [
    "The Avatar is decorative next to the name (alt=\"\")",
@@ -7453,7 +7473,8 @@
    "Up to three networks the audience uses",
    "Replace the letter marks with the networks' official logos in product",
    "The system share button shows only where the browser supports it",
-   "Shared links open with a title, description and image (Open Graph)"
+   "Shared links open with a title, description and image (Open Graph)",
+   "Label truncates to 1 line when space runs out; the share buttons keep their size"
   ],
   "a11y": [
    "Each button has an aria-label: \"Copy link\", \"Share by email\", \"Share on LinkedIn\"",
@@ -8138,7 +8159,8 @@
    "Selecting a version previews it (State=selected) with a Diff Viewer",
    "Restoring creates a new version; it never deletes the newer ones",
    "Summary says what changed in one line; autosaved versions say \"Autosave\"",
-   "Group autosaves by session or day when there are many"
+   "Group autosaves by session or day when there are many",
+   "Version name fills and truncates to 1 line, the Current badge sits at the end of the row (max 128); meta 1 line, summary 2 lines"
   ],
   "a11y": [
    "The list is a listbox or a list of buttons; the selected one has aria-selected or aria-current",
@@ -8179,7 +8201,8 @@
    "Text: two sentences: what changed and where to find it (Settings → Reminders)",
    "Type from the variant: new, improved, fixed; for a release with lines, the type of the headline change",
    "Changes: 2-5 lines, New first, then Improved, then Fixed; one sentence each",
-   "Screenshot only when it shows where to click; link to the help article"
+   "Screenshot only when it shows where to click; link to the help article",
+   "Title up to 2 lines, text up to 4 lines, date 1 line, with ellipsis; the full note opens from the link"
   ],
   "a11y": [
    "Each entry is an <article> with the title as a heading",
@@ -8216,7 +8239,8 @@
    "The Switch turns it on or off without deleting it (Status=on, off)",
    "Show how often it ran and when last, so people trust it; failures say so in Meta",
    "Delete asks for confirmation; off keeps the history",
-   "Name says the outcome (\"Route large invoices to finance\")"
+   "Name says the outcome (\"Route large invoices to finance\")",
+   "Name up to 2 lines, meta 1 line; trigger, condition and action chips hug up to 240 and truncate; the sentence wraps"
   ],
   "a11y": [
    "The Switch is labelled with the rule name (\"Route large invoices to finance, on\")",
@@ -8410,7 +8434,8 @@
    "Links to the announcement or the changelog",
    "Label is one line (about 40 characters) and says what is new",
    "Tag says \"New\" or \"Beta\", nothing louder",
-   "Never for errors or outages"
+   "Never for errors or outages",
+   "Hugs its text; in a narrower column the text truncates to 1 line; tag and arrow keep their size"
   ],
   "a11y": [
    "The whole pill is one link; its name reads tag and label (\"New: Automations for every team\")",
@@ -8449,7 +8474,8 @@
    "Update or remove it when a certificate expires",
    "Same order everywhere; 3-5 in a row",
    "Name and Description wrap inside the border when the badge is narrower than its text; set Fill in rows of equal badges",
-   "Tone=on-primary on primary bands and cards, Tone=inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner); never override the colors by hand"
+   "Tone=on-primary on primary bands and cards, Tone=inverted on inverted cards (Plan Card inverted, Pricing Enterprise Banner); never override the colors by hand",
+   "Name and detail: up to 2 lines each with ellipsis"
   ],
   "a11y": [
    "The icon is aria-hidden; name and detail are text, not part of an image",
@@ -9458,7 +9484,9 @@
    "Uptime has two decimals over the same 90 days on every row",
    "Maintenance says until when, with the time zone, in the incident",
    "Status pages use Show bars on every row; select a nested Uptime Day to set the state of that day",
-   "The bars and the uptime % cover the same 90 days"
+   "The bars and the uptime % cover the same 90 days",
+   "Service fills (min 128) and truncates to 1 line; uptime hugs up to 160 and truncates",
+   "Wraps: in a narrow column uptime and status drop under the service name (row gap 4)"
   ],
   "a11y": [
    "Rows are a list or a table; the status word is read with the service name",
@@ -9598,7 +9626,8 @@
    "Top right of the editor, next to Share",
    "Hovering an avatar shows the name and what they are looking at; clicking jumps there",
    "Up to 4 avatars, then +N; each person keeps the same color as their cursor",
-   "People who leave disappear; idle people fade"
+   "People who leave disappear; idle people fade",
+   "The avatar group fills the bar and its label truncates; the live dot keeps its size"
   ],
   "a11y": [
    "A group with aria-label \"People viewing\"",
@@ -9802,7 +9831,8 @@
    "Use a letter tile only when no vendor logo is available; one style per grid",
    "Error says what failed and how to fix it (\"Token expired. Reconnect\")",
    "Grid of 3 on desktop, 1 on mobile; cards in a row share height",
-   "Disconnecting asks for confirmation and says what stops"
+   "Disconnecting asks for confirmation and says what stops",
+   "Name and category: 1 line with ellipsis; description up to 3 lines; the logo letter stays inside the tile"
   ],
   "a11y": [
    "The name is the card heading; Connect is named with the app (\"Connect Payments\")",
@@ -9842,7 +9872,9 @@
    "Highlight the role being edited: its role cell State=selected in every permission row, header unchanged",
    "Locked roles (owner) show disabled checked boxes and say why",
    "Show changed on rows edited since the last save; save with the Save Bar and log it in the audit log",
-   "A permission that needs another (approve needs view) ticks it too, and says so"
+   "A permission that needs another (approve needs view) ticks it too, and says so",
+   "Needs at least 448 wide (permission column min 160 plus three 96 role columns, minWidth 448 on every Type); add 96 for each extra role; in a narrow panel list one role at a time with a Select",
+   "Title: 1 line with ellipsis; description up to 2 lines; the Changed badge truncates at 128"
   ],
   "a11y": [
    "A real table: role names as th scope=\"col\", permission as th scope=\"row\"",
@@ -9883,7 +9915,9 @@
    "Roll creates a new key, shown once, and says how long the old one keeps working",
    "Unused keys older than 90 days get a warning",
    "Newest first; revoked keys leave the list and go to the audit log",
-   "Show scope when keys differ in access; hide it when every key has full access"
+   "Show scope when keys differ in access; hide it when every key has full access",
+   "Name and meta fill the text column (min 160); name 1 line, meta 2 lines, with ellipsis; scope badge truncates at 160",
+   "Wraps: when the row is narrow the key, Copy and More drop under the name (row gap 8); the key truncates at 192"
   ],
   "a11y": [
    "The masked key reads \"Key ending in 4f2a\"",
@@ -9921,7 +9955,9 @@
    "Then sort by last active",
    "Location is approximate (city, country); the IP is partial",
    "End the list with \"Sign out of all other sessions\"",
-   "Sign out works at once; the row leaves with a toast"
+   "Sign out works at once; the row leaves with a toast",
+   "Name 1 line, meta 2 lines, with ellipsis; text column min 160",
+   "Wraps: in a narrow column the action drops under the text (row gap 8)"
   ],
   "a11y": [
    "Sign out is named with the device (\"Sign out Chrome on macOS\")",
@@ -9959,7 +9995,8 @@
    "Connect nodes with 1 px border/default lines",
    "Vacant roles are dashed, titled \"Open role\" (Vacancy); the secondary line is Role and Hiring status (\"Head of Platform · Hiring\"), linked to the Job Listing",
    "Large orgs show 2-3 levels and a search",
-   "Names and titles wrap to two lines at most"
+   "Names and titles wrap to two lines at most",
+   "Needs at least 160 wide (minWidth 160); name wraps to 2 lines, role and reports truncate to 1 line, centered"
   ],
   "a11y": [
    "The chart is a tree (role=\"tree\", treeitem with aria-expanded and aria-level); arrow keys move",
@@ -9996,7 +10033,8 @@
    "Under 1 second, show nothing",
    "Stop keeps what arrived and says it stopped",
    "Time left only when it is known",
-   "Works at any width from about 240; set the instance to FILL in its container"
+   "Works at any width from about 240; set the instance to FILL in its container",
+   "Status and progress: 1 line with ellipsis; Stop keeps its size"
   ],
   "a11y": [
    "Status text is in role=\"status\" (aria-live=\"polite\"), updated per step, not per token",
@@ -10213,7 +10251,8 @@
    "Starters come from real user tasks, never generic examples",
    "Follow-ups: 2-4 chips, only when the next step is predictable",
    "Click fills the input; follow-up chips send at once",
-   "Label is short: \"Summarize open invoices\""
+   "Label is short: \"Summarize open invoices\"",
+   "Chip hugs its label; when the chip is narrower than the label, the label truncates to 1 line (card: 2 lines)"
   ],
   "a11y": [
    "Each Suggestion is a button named by its Label",
@@ -10249,7 +10288,8 @@
    "Keyboard: Tab next, Enter accept, Backspace reject",
    "Accept all asks once when the changes are many",
    "Floats at the bottom center of the document until all are reviewed",
-   "Accepted changes can be undone; at the end the bar sums up and leaves"
+   "Accepted changes can be undone; at the end the bar sums up and leaves",
+   "Wraps: below about 700 the actions drop to a second row (row gap 8); the count fills the space left (min 128) and truncates to 1 line"
   ],
   "a11y": [
    "role=\"toolbar\" with aria-label \"Review suggestions\"",
@@ -10322,7 +10362,8 @@
    "Show 2-4 tags, then +N",
    "One or two words per tag, sentence case",
    "Status colors only when the tag means a status",
-   "Same order everywhere (type, frequency, region)"
+   "Same order everywhere (type, frequency, region)",
+   "Badges wrap to more lines when the list is narrower than its badges (row gap as the badge gap); +N stays at the end of the first row"
   ],
   "a11y": [
    "Code as a list (ul) with a label (\"Tags\")",
@@ -10388,7 +10429,8 @@
    "Select a nested Uptime Day to set its State; keep the real degraded and outage days",
    "Days before a service existed are no-data, not operational",
    "Each day with an incident links to it; the tooltip says the date, the state and the incident title",
-   "Show labels on every row of a status page, or once under the last row"
+   "Show labels on every row of a status page, or once under the last row",
+   "Bars share the width; the start and end labels stay on 1 line (end label hugs up to 96)"
   ],
   "a11y": [
    "Color is never the only signal: each day has a tooltip and an accessible label (\"3 Oct 2026: degraded\")",
@@ -11101,7 +11143,8 @@
   "rules": [
    "Letter is the first letter of the site or app name",
    "Sources repeats the first three Letters in its collapsed row",
-   "Opens the source in a new tab"
+   "Opens the source in a new tab",
+   "Title and domain: 1 line with ellipsis; the item fills its slot between 240 and 384"
   ],
   "a11y": [
    "The item is a link named by its title and domain; it says it opens a new tab",
