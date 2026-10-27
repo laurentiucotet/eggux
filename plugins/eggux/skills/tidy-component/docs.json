@@ -1640,7 +1640,8 @@
   "use": [
    "Discussion attached to an object, read later",
    "Review threads that get resolved",
-   "Type=reply for answers under a parent comment"
+   "Type=reply for answers under a parent comment",
+   "Inside Comment Thread for comments on selected text"
   ],
   "avoid": [
    "Real-time conversation: use Chat Message",
@@ -1660,7 +1661,7 @@
    "Edit in place and show \"edited\" after the time",
    "Delete asks for confirmation or offers Undo",
    "Resolved comments collapse or fade and stay reachable with \"Show resolved\"",
-   "Resize: the header wraps: Name hugs up to 240 and Time up to 160, each 1 line with ellipsis; Time drops under the name in narrow threads; the text fills and wraps"
+   "Resize: the header wraps: Name hugs up to 200 (160 in Type=reply) and Time up to 160, each 1 line with ellipsis; Time drops under the name in narrow threads; the text fills and wraps. Fits a 280 wide Comment Thread"
   ],
   "a11y": [
    "New comments are announced with aria-live=\"polite\"",
@@ -11312,6 +11313,152 @@
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md",
    "skills/build-ui/patterns/mobile.md"
+  ]
+ },
+ "Selection Toolbar": {
+  "summary": "Small floating bar over selected text in a document: quick formats (Bold, Italic, Link) and a primary Comment button.",
+  "use": [
+   "Text selected in a Rich Text Editor or a read-only document that people comment on",
+   "Quick formatting without moving to the editor toolbar",
+   "Read-only reviewers: Show formatting off, Comment only"
+  ],
+  "avoid": [
+   "The full list of formats: use the Rich Text Editor toolbar",
+   "Actions on a whole record or row: use a Menu or Action Bar",
+   "AI rewrites of a selection: use Block / Inline AI"
+  ],
+  "anatomy": [
+   "Formatting (Show formatting): Toggle Group Items Bold, Italic, Link and a vertical Separator",
+   "Comment (Show comment): Button default sm with message-square icon",
+   "Surface: background/popover, border/default, radius/lg, shadow/md"
+  ],
+  "rules": [
+   "Appears 8 px above the selection, at its start or centered on it; flips below when there is no room above",
+   "Hides on Escape, on click outside and when the selection collapses",
+   "Comment opens a new Comment Thread at the top of the Comments Panel with the selection as its Quote; the run turns into a Comment Highlight State=active",
+   "Show comment off where comments are disabled; Show formatting off for readers who can only comment",
+   "Resize: hugs its content, never stretches; on phones it fits 390 with both groups"
+  ],
+  "a11y": [
+   "role=\"toolbar\" with aria-label=\"Text actions\"; arrow keys move between buttons",
+   "Toggle buttons expose aria-pressed and have tooltips with shortcuts (⌘B, ⌘I, ⌘K)",
+   "A keyboard shortcut adds a comment without the mouse (⌘⌥M); focus moves to the new composer"
+  ],
+  "code": "Tiptap BubbleMenu (or Lexical floating toolbar) with shadcn Toggle and Button; positioned by Floating UI.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md",
+   "skills/build-ui/components/rich-text-editor.md"
+  ]
+ },
+ "Comment Highlight": {
+  "summary": "Highlighter tint on a run of commented text, drawn as a text decoration so the words stay editable and the tint wraps with the paragraph.",
+  "use": [
+   "Commented words inside the Rich Text Editor Content slot",
+   "The run behind the active Comment Thread (State=active)",
+   "A selection before the comment is posted (State=selected)"
+  ],
+  "avoid": [
+   "Marking search results: use a find highlight in code (mark element), not the comment colors",
+   "AI changes to review: use AI Suggestion",
+   "Pins on images or designs: use Annotation Pin"
+  ],
+  "anatomy": [
+   "Text: the commented run, body/default",
+   "State: open (comment/highlight), active (comment/highlight-active), selected (comment/selection), resolved (no tint)",
+   "Recipe on any text run: Decoration Underline, thickness 100%, offset -80%, skip ink off, color = the State token"
+  ],
+  "rules": [
+   "Every open thread has exactly one highlight; resolving the thread removes it",
+   "One active highlight at a time, the same thread as the active Comment Thread",
+   "Overlapping comments: the most recent draws on top; clicking the run cycles through its threads",
+   "Body text only, never on muted text (contrast)",
+   "Resize: it is part of the text run, so it wraps and reflows with the paragraph at every width"
+  ],
+  "a11y": [
+   "Text contrast on the tint: 12.5:1 or more in Light, 6.3:1 or more in Dark (active on card)",
+   "The run is a mark element with aria-describedby pointing to its thread, or announced as \"commented\"",
+   "Never rely on the tint alone: the panel lists the same quote"
+  ],
+  "code": "Tiptap Mark extension (comment) rendering <mark data-thread-id> with bg-[var(--comment-highlight)]; active adds bg-[var(--comment-highlight-active)].",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md",
+   "skills/build-ui/components/rich-text-editor.md"
+  ]
+ },
+ "Comment Thread": {
+  "summary": "One comment thread in the Comments Panel, anchored to a run of text: quoted excerpt, the first Comment, Replies and a reply Comment Composer, with Resolve and a menu.",
+  "use": [
+   "Comments on selected text in documents, contracts, briefs and specs",
+   "The thread list in Comments Panel, or a bottom Drawer on mobile",
+   "A new thread being written (Show comments off, composer focused)"
+  ],
+  "avoid": [
+   "Comments on a whole record (task, invoice): use Comment and Comment Composer",
+   "Real-time conversation: use Chat Message",
+   "Pins on images or designs: use Annotation Pin with a comment list"
+  ],
+  "anatomy": [
+   "Quote: the commented words with a warning bar, body/small muted, 2 lines with ellipsis (1 line when resolved)",
+   "Resolve (Button Icon ghost sm, check) and More (Button Icon ghost sm, ellipsis); Reopen (Button outline sm) when resolved",
+   "Comment (Show comments): exposed Comment Type=comment",
+   "Replies (Show replies): native slot of Comment Type=reply",
+   "Comment Composer (Show reply)",
+   "Resolved by: check icon and \"Resolved by Ana Popescu · 2 d ago\" (State=resolved)",
+   "State: default, active, resolved"
+  ],
+  "rules": [
+   "Clicking a thread scrolls to its Comment Highlight and makes both active; only one active thread",
+   "State=active: border/ring and shadow/md; the highlight uses comment/highlight-active",
+   "Resolve collapses the thread to State=resolved, removes the highlight and moves it under the Resolved filter; Reopen brings both back",
+   "A new thread starts with Show comments off and the composer focused; posting turns on Show comments",
+   "Show reply off for readers without comment rights; Show replies off when there are no replies",
+   "Resize: width 320, works from 280 to 400; the quote and comments wrap, header actions hug and never shrink; comment names cap at 200 (replies 160) with ellipsis"
+  ],
+  "a11y": [
+   "The thread is an article labelled by its quote; Resolve and More have aria-labels (\"Resolve thread\", \"Thread actions\")",
+   "New replies from others are announced with aria-live=\"polite\"",
+   "Resolved state is in text (\"Resolved by\"), not only color"
+  ],
+  "code": "Custom card (shadcn Card styles) with Comment list and Comment Composer; thread data keyed by the comment mark id (Tiptap) or a Liveblocks / Velt thread.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md"
+  ]
+ },
+ "Comments Panel": {
+  "summary": "Right sidebar that keeps the comment threads of a document: title with the open count, Open / Resolved filter, a list of Comment Threads and an empty state.",
+  "use": [
+   "Next to a document people comment on (Block / Document with Comments)",
+   "Review of contracts, briefs and policies inside the product",
+   "Content=empty before the first comment"
+  ],
+  "avoid": [
+   "Comments under a record: use Block / Comments",
+   "Notifications across the product: use Notification Center",
+   "Mobile: put the Comment Threads in a bottom Drawer opened from a comment count button"
+  ],
+  "anatomy": [
+   "Title (\"Comments\") and Count (exposed Badge Count)",
+   "Filter (Show filter) and Close (Show close): Button Icon ghost sm",
+   "Filter tabs: exposed Toggle Group segmented, \"Open 3\" and \"Resolved 1\"",
+   "Threads: native slot of Comment Thread",
+   "Content: threads, empty (Empty State sm: \"No comments yet\", \"Select text to comment.\")"
+  ],
+  "rules": [
+   "360 wide, full height, border on the left; the list scrolls inside, the header stays",
+   "Threads follow document order; the active one lines up with its highlight when there is room",
+   "Count, the Open / Resolved labels and the comment count button in the page header show the same numbers",
+   "Resolved shows State=resolved threads only; Open never shows resolved ones",
+   "Close hides the panel; the comment count button in the header opens it again",
+   "Resize: fixed 360; below 1024 it overlays the document as a Sheet, on phones it becomes a bottom Drawer"
+  ],
+  "a11y": [
+   "complementary landmark labelled \"Comments\"; the filter is a radio group",
+   "Focus moves to the new thread composer after Comment in the Selection Toolbar",
+   "Escape closes the panel and returns focus to the comment count button"
+  ],
+  "code": "aside with shadcn ToggleGroup (type single) and ScrollArea; threads sorted by mark position from the editor (Tiptap) or rendered by Liveblocks / Velt comment components.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md"
   ]
  }
 }

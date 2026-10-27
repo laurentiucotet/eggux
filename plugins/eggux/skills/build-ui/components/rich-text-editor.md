@@ -24,10 +24,16 @@ Usage guidelines only. Visual specs live in the Figma component (Editor page).
 - Autosave long content (every few seconds or on blur) and show "Saved" / "Saving…"; otherwise
   follow `patterns/unsaved-changes.md`.
 - Minimum height ~5 lines; grows with content up to a max, then scrolls inside.
+- Selected text shows a `Selection Toolbar` with the most used formats and Comment; it never
+  replaces the main toolbar.
+- Commented runs use the `Comment Highlight` recipe (text decoration, 100% thick, -80% offset,
+  `comment/*` tokens) so they stay editable text; never draw rectangles behind text.
 
 ## Figma
 `Rich Text Editor`: State default, focus; Content (native slot); Show footer. Put it in a
 `Field` when it has a label. Comments use `Comment Composer`, chat uses `Chat Composer`.
+- Comments on selected text: `Block / Document with Comments` (Content page) and SCREENS /
+  Documents.
 
 ## Code
 Tiptap (or Lexical) with a toolbar of shadcn `Toggle` buttons. Store HTML or JSON, never render

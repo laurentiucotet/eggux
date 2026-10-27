@@ -898,6 +898,35 @@
    "main": "Comment Composer",
    "helpers": [],
    "block": "144:3001"
+  },
+  {
+   "main": "Selection Toolbar",
+   "helpers": [],
+   "block": "1023:5577",
+   "examples": [
+    "Example / comment on a contract clause"
+   ]
+  },
+  {
+   "main": "Comment Highlight",
+   "helpers": [],
+   "block": "1023:5577",
+   "examples": [
+    "Example / comment on a contract clause"
+   ]
+  },
+  {
+   "main": "Comment Thread",
+   "helpers": [],
+   "block": "1023:5577",
+   "examples": [
+    "Example / comment on a contract clause"
+   ]
+  },
+  {
+   "main": "Comments Panel",
+   "helpers": [],
+   "block": "1023:5577"
   }
  ],
  "Email": [
