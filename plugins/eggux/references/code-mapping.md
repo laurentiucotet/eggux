@@ -48,7 +48,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Pagination Compact` | shadcn `Pagination` with `PaginationPrevious`, a text item, `PaginationNext` | |
 | `Pager Link` | `<a>` card (`rounded-xl border p-4 hover:bg-accent focus-visible:ring`) with lucide `ChevronLeft` / `ChevronRight`, two of them in a `<nav>` | Docs prev/next; for tables and lists use `Pagination` |
 | `Sidebar`, `Sidebar Item`, `Sidebar Group`, `Sidebar Group Label`, `Sidebar Workspace`, `Sidebar User` | shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarHeader`, `SidebarFooter`) | |
-| `Sidebar Double` | shadcn `Sidebar` `collapsible="icon"` (rail) + a second `Sidebar` (panel) | Panel opens as a left `Sheet` on mobile |
+| `Sidebar Double` | shadcn `Sidebar` (rail + panel) | Expanded `min-w-72` |
 | `Navigation Menu Panel`, `Navigation Menu Link`, `Nav Link` | shadcn `NavigationMenu` (`NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuTrigger`) | |
 | `Stepper`, `Step` | custom (no shadcn stepper) | |
 | `Description List Item`, `Timeline Item` | custom `dl` with `dt` / `dd` and a Tailwind grid; custom `ol` | No shadcn component |
@@ -60,7 +60,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Carousel Hero` | Embla with Autoplay | `min-w-[768px]` (phones: static hero); content and controls in `mx-auto max-w-[1152px] px-6`; overline `truncate`, title and text `line-clamp-3` |
 | `Lightbox` | Radix Dialog full screen | title `flex-1 min-w-0 truncate` |
 | `People Picker`, `Person Option` | shadcn `Popover` + `Command` with `Avatar` rows; chips in the trigger | Server search by name, email, team; debounce 200 ms |
-| `Transfer List` | custom: two lists of `Checkbox` rows + move `Button`s | Or `@dnd-kit` when order matters |
+| `Transfer List` | custom | `grid grid-cols-[1fr_auto_1fr] min-w-[512px]`, lists `min-w-52`; titles `truncate` |
 | `Inline Edit` | custom: text ↔ `Input` with save / cancel `Button Icon`s | Optimistic save, revert on error |
 | `Signature Pad` | `signature_pad` (or `react-signature-canvas`) in a bordered canvas | Typed fallback; store PNG/SVG + timestamp |
 | `Sortable List Item` | `@dnd-kit/sortable` with keyboard sensor and announcements | Drag handle = `useSortable` listeners |
@@ -97,13 +97,13 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Skip Link` | `max-w-80 text-center` | |
 | `Account Menu` | shadcn `DropdownMenu` with `DropdownMenuLabel` (Avatar, name, email) | Log out last after `DropdownMenuSeparator` |
 | `Show More` | shadcn `Collapsible` or `line-clamp-3` + `Button variant="link"` | `aria-expanded` on the toggle |
-| `Load More` | shadcn `Button variant="outline"` + count; TanStack Query `useInfiniteQuery` | Focus the first new item; count in `aria-live` |
+| `Load More` | custom | Count `w-full text-center line-clamp-2` |
 | `Shortcut Row` | custom `flex justify-between` + shadcn `Kbd` / `KbdGroup` | ⌘ on Mac, Ctrl elsewhere |
 | `Resizable Panels` | shadcn `Resizable` | `min-w-[480px]`; end panel `flex-1 min-w-0` |
 | `FAB` | shadcn `Button size="icon"` `rounded-full shadow-lg fixed bottom-20 right-4` | Mobile only; desktop uses a primary Button |
 | `Action Sheet` | title `line-clamp-2`, description `line-clamp-3`, action labels `min-w-0 flex-1 truncate` | |
 | `Countdown` | tile values and units `truncate text-center` | Tiles keep their width |
-| `Loading Overlay` | custom: `absolute inset-0 bg-background/60` layer + shadcn `Spinner` | `aria-busy` on the region; label in `role="status"` |
+| `Loading Overlay` | custom overlay | Message `inset-x-6 text-center line-clamp-2` |
 | `Presence Bar` | shadcn `Avatar` group + `HoverCard` | Presence from Liveblocks, Yjs awareness or your websocket |
 | `List Item` | custom row (`ul` / `li`) with shadcn `Avatar` and `Badge` | Show leading and Show trailing map to optional children. `Show divider` = `border-b` on the `li` (or `divide-y` on the `ul`), off on the last row |
 | `Tree Item` | custom tree (`role="tree"`) with shadcn `Checkbox` and `Badge` | Arrow keys expand and collapse |
@@ -121,14 +121,14 @@ later. "custom" means compose it from the listed primitives in the project.
 | Figma | Code | Notes |
 |---|---|---|
 | Table template, `Table Cell`, `Table Header Label`, `Table Cell Text`, `Table Cell Stack`, `Table Cell User` | shadcn `Table` + TanStack Table | Grid columns → column defs |
-| `Table Toolbar` | custom bar on shadcn `Table` + TanStack Table row selection | Shows "N selected" and the bulk actions |
+| `Table Toolbar` | custom | `flex flex-wrap gap-2`; selection `min-w-32 flex-1 truncate` |
 | `Data Grid Toolbar`, `Table Group Row` | custom on TanStack Table (grouping, aggregation, visibility) | Saved views stored per user. Table Group Row State=expanded / collapsed = `row.getIsExpanded()`, chevron-down / chevron-right with `aria-expanded` |
 | `Filter Condition`, `Filter Group` | custom: `Select`, `Combobox`, `Input`, `Button` | Serialize to the API filter format |
 | `Filter Bar`, `Filter Chip`, `Faceted Filter`, `Facet Option` | shadcn data-table toolbar: `Input`, `Popover` + `Command` with `CommandItem` checkboxes, `Button variant="outline"` (dashed) | Faceted values from `column.getFacetedUniqueValues()` (TanStack) |
 | `Filter Section` | `Collapsible` + `Checkbox` list | |
 | `Table Cell Amount`, `Table Cell Status`, `Table Cell Progress`, `Table Cell Actions` | cell renderers in TanStack column defs; `Badge`, `Progress`, `DropdownMenu` | Amounts with `Intl.NumberFormat`, `tabular-nums`; Table Cell Status note `min-w-0 truncate` so it fills the cell |
 | `Table Cell Link`, `Table Cell Date`, `Table Cell File`, `Table Cell Badges`, `Table Cell Avatars` | cell renderers: `<a>`, `<time>`, icon + name, `Badge` list with a `Popover` for +N, `Avatar` group | One date format per column |
-| `Table Pagination` | shadcn data-table pagination (`Select` for page size + `Pagination`) | |
+| `Table Pagination` | shadcn data-table pagination | Container `flex flex-wrap gap-y-3 min-w-[448px]`; range `min-w-40 flex-1 truncate` |
 | `Table Cell Check` | cell renderer: lucide `Check` / `Minus` icon with `sr-only` "Included" / "Not included", or the text value; optional muted note | Plan comparison cells; excluded is a dash, never blank |
 | `Entity Card`, `Progress Card` | shadcn `Card` with `size="sm"`; `Progress` | |
 | `Person Card` | shadcn `Card` + `Avatar`, `Badge`, links (`mailto:`, `tel:`) | |
@@ -136,8 +136,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Empty State` | shadcn `Empty` (or a custom block: icon, title, description, actions) | |
 | `Approval Step` | custom timeline item | role `line-clamp-2`, time `truncate` |
 | `Change Item` | custom row | `flex flex-wrap gap-y-1`; old / new value chips `max-w-60 truncate`; field `line-clamp-2` |
-| `Save Bar` | custom sticky footer | Listen to form dirty state |
-| `Org Switcher` | `DropdownMenu` or `Popover` + `Command` | |
+| `Save Bar` | custom sticky footer | `flex flex-wrap gap-2`; message `min-w-40 flex-1 line-clamp-2` |
+| `Org Switcher` | `DropdownMenu` content | `min-w-48`; names, roles and action labels `truncate` |
 | `Bar Chart`, `Line Chart`, `Sparkline` | shadcn `Chart` (Recharts) | `var(--chart-N)` |
 | `Chart Legend`, `Chart Legend Item` | shadcn `ChartLegend` with `ChartLegendContent` (Recharts) | Colors from `chartConfig` |
 | `Chart Tooltip`, `Chart Tooltip Row` | shadcn `ChartTooltip` with `ChartTooltipContent` (Recharts) | |
@@ -166,7 +166,7 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Automation Rule` | custom card | name `line-clamp-2`, meta `truncate`; sentence `flex flex-wrap`; chips `max-w-60 truncate` |
 | `Workflow Node` | @xyflow/react custom node (`Handle` for ports), settings in shadcn `Sheet` | Edges 1.5 px `border/default`; keyboard and list view for steps |
 | `Mapping Row` | shadcn `Select` (or `Combobox`) + lucide `ArrowRight` + status `Badge`; react-hook-form `useFieldArray` | Auto-match by name; save the mapping as a template |
-| `Availability Row` | custom row: shadcn `Switch` + two `Select` of times + `Button size="icon"` | Ranges with `useFieldArray` (react-hook-form); merge overlaps on save |
+| `Availability Row` | custom | `flex flex-wrap gap-y-2`; hours group `shrink-0` |
 | `Time Slot` | shadcn `ToggleGroup type="single"` (or `RadioGroup`) of outline `Button`s | Times from the availability API; time zone above the grid |
 | `Background Job` | custom row: shadcn `Progress` + `Button` | Status by polling or server-sent events; notify when done |
 | `Task Item` | custom row: shadcn `Checkbox` + `Avatar` | Optimistic save with an Undo toast (Sonner) |
@@ -178,8 +178,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Rich Text Editor` | footer `flex gap-2`; hint `min-w-0 flex-1 line-clamp-2`; count `shrink-0 tabular-nums` | |
 | `Post Card` | shadcn `Card` | meta `flex min-w-0`, date `truncate`; author name `truncate` |
 | `Code Block` | Shiki or Prism + copy `Button` | |
-| `Quote` | `<figure><blockquote>` + `<figcaption>` | Default: `border-l-2`; pull: centered, larger type |
-| `Section Heading` | `<header>` with `<h2>`/`<h3>`/`<h4>` + `<p>`, actions in `flex justify-between` | Heading level follows the page outline. Optional icon before the title (`size-6` lg, `size-5` default and sm, `aria-hidden`) |
+| `Quote` | custom `<figure>` | Name `max-w-48 truncate`; role `line-clamp-2`; quote text never clamped |
+| `Section Heading` | custom | `flex flex-wrap gap-3`; text column `min-w-48 flex-1`; title `line-clamp-2`, description `line-clamp-3` |
 | `Feature Item` | custom: `Icon Tile` (lucide icon in a `size-10 rounded-md` tile, Style neutral `bg-muted` by default) + `<h3>` + `<p>` | Icon `aria-hidden`; grid of 3 or 4. Tile Style follows the nested Icon Tile (brand: `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`). Layout=card: wrap in shadcn `Card` (`rounded-xl border bg-card p-6 gap-4`); link as `Button variant="link"`. Marker=number: an `<ol>`, number circle `rounded-full bg-primary text-primary-foreground`, `aria-hidden` |
 | `Badge List` | `Badge` list | `flex flex-wrap gap-1`; +N `shrink-0` |
 | `Table of Contents`, `Table of Contents Item` | custom with scroll spy | |
@@ -203,8 +203,8 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Block / Status Page` uptime bars | custom flex of 90 spans with `title` and an uptime % in text | Data from your status provider (Instatus, Better Stack, Atlassian Statuspage) |
 | `Block / Navbar Mega Menu` | shadcn `NavigationMenu` with `NavigationMenuContent` | |
 | `Notification Item`, `Notification Center` | shadcn `Popover` + `Tabs` + `ScrollArea`; custom rows with `Avatar` | Bell `Button` + `Badge`; opening an item marks it read |
-| `Search Result Item` | custom `<li>` with a `type` switch (page, record, person, file, media, product, event, answer): page = breadcrumb, `<a>` heading, `line-clamp-2` snippet, `Badge`; others = leading `Avatar`, icon tile, video poster, image or date tile, a `line-clamp-2` title, one details line; `Badge`, `Button`, Price, `Rating`; answer = muted `Card` with source links | Matched terms in `<mark>`; one `type` per result; at most one answer, first; Figma text props are per type (Record, Name, File name, Product, Event, Question...) |
-| `Annotation Pin` | custom absolutely positioned `Button` + shadcn `Popover` | Store positions as percentages of the image |
+| `Search Result Item` | custom | Path, meta and detail rows `min-w-0`, texts `truncate` (path `max-w-40`), badges `max-w-32`; title and snippet `line-clamp-2` |
+| `Annotation Pin` | custom | `inline-flex min-w-7 px-1.5 rounded-full` (grows into a pill) |
 | `Social Share` | shadcn `Button size="icon"`; `navigator.clipboard`, `mailto:`, `navigator.share`, network share URLs | Copy link confirms with Sonner; official network logos |
 | `Command Snippet` | `<pre><code>` on `bg-muted` + shadcn `Button size="icon"` (`navigator.clipboard.writeText`) | Prompt `$` is `select-none aria-hidden`, never copied |
 | `Endpoint Row` | `<a>` row | `flex flex-wrap gap-3 gap-y-1`; path `flex-1 min-w-[120px] truncate`; summary `max-w-[200px] truncate` |
@@ -239,17 +239,17 @@ later. "custom" means compose it from the listed primitives in the project.
 | `Shipment Tracker` | custom + `Step` | `min-w-[560px]`; header `flex flex-wrap`, text `flex-1 min-w-40`, eta and carrier `truncate` |
 | `Address Card` | radio card | name row `flex flex-wrap gap-2 gap-y-1`; name `max-w-[200px] truncate` |
 | `Payment Method Card` | radio card | brand mark `w-11 truncate text-center` |
-| `Review Item` | `<article>` + `Avatar`, `Badge`, `Rating`, ghost `Button`s | Helpful: `aria-pressed` |
-| `Rating Summary` | custom: `Rating` + rows of shadcn `Progress` in `Button`s | Rows set the star filter |
+| `Review Item` | custom | Name `min-w-0 flex-1 truncate`; badge and date `max-w-32 truncate shrink-0`; title `line-clamp-2`; text `line-clamp-4` with a Read more link |
+| `Rating Summary` | custom `flex flex-wrap gap-x-8 gap-y-4` | Average column `max-w-40`, value `truncate`, count `line-clamp-2`; distribution `flex-1 min-w-48` |
 
 ## Marketing
 | Figma | Code | Notes |
 |---|---|---|
-| `Price` | custom: amount, `<s>` old price and period (`text-muted-foreground`) | `Intl.NumberFormat` with currency; sr-only "Was ... now ..." |
+| `Price` | custom flex row | Amount `whitespace-nowrap shrink-0`; period `min-w-0 truncate` |
 | `Plan Card` | shadcn `Card` + `Price`, `Button`, `<ul>` of `Check Item` | Variant=featured: `ring-2 ring-primary`, primary `Button` |
 | `Announcement Pill` | `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` | One at a time |
 | `Trust Badge` | custom | name and detail `line-clamp-2` |
-| `Testimonial Card` | shadcn `Card` + `<figure><blockquote>` + `Byline` in `<figcaption>` |  |
+| `Testimonial Card` | custom | Quote `line-clamp-6` |
 | `Logo Tile` | `<li>` with `<img alt>` or inline SVG in `currentColor` (`text-foreground`, `opacity-70` for Style=plain) | Logo is an instance swap; `<a>` only when it links to a case study or integration; alt = company name |
 | `Logo`, `Logo Mark` | inline SVG in `currentColor` (or `<img alt>` with the product name) | Logo Mark is the symbol alone |
 | `Map` | pin label `max-w-48`, title and address `truncate` | |
@@ -414,7 +414,7 @@ New style values added to existing components in 0.58.0 (the default value keeps
 | `Gauge Target` | part of `Gauge`: the target tick, a short line at angle 180° + 180° x target on the arc (SVG line or a Recharts `ReferenceDot`) | Target 50-95; not used alone |
 | `Distribution Segment` | part of `Distribution Bar`: one `<div>` in the flex row, `flex-grow: share` (or `width: share%`), `min-width: 4px`, background `var(--chart-N)` | Color chart-1..chart-8 |
 | `QR Code` | `qrcode.react` `<QRCodeSVG value={url} size={128} marginSize={2} />` (or a generated SVG) in a `rounded-xl bg-card p-3` tile | Size=sm 96, default 128, lg 160; the Figma pattern is sample art; keep the real code dark on light in every theme; alt text names the destination |
-| `Comparison Table` | `<table>` with shadcn `Table` parts; header cells with `Price` (sm) and `Button` (sm); cells with lucide `Check` / `Minus` and `sr-only` text | Plans=3 or 4 columns; used by `Block / Comparison Table` (3) and `Block / Pricing with Comparison` (4) |
+| `Comparison Table` | `<table>` with shadcn `Table` parts, wrapped in `min-w-[768px]` (Plans=3) or `min-w-[1024px]` (Plans=4) | Plan columns `min-w-48`; feature labels wrap; below `md` render stacked Plan Cards instead (`hidden md:table` / `md:hidden`) |
 | `Figure` | `<figure>` | value `line-clamp-2`, label `line-clamp-3`, source `line-clamp-2` |
 | `Alert` (Style=soft) | shadcn `Alert` with a cva `style: "soft"`: `border-0 bg-[var(--badge-soft-X-bg)] [&>svg]:text-[var(--badge-soft-X-fg)]`, title `text-[var(--badge-soft-X-fg)]`, description `text-foreground` (X = neutral for default, destructive, success, warning, info) | Same tint tokens as Badge soft; one Style per product |
 | `Alert` (Style=accent) | shadcn `Alert` with `style: "accent"`: `bg-card border border-l-4 border-l-X` (`border-l-muted-foreground`, `border-l-destructive`, `border-l-success`, `border-l-warning`, `border-l-info`); icon and title `text-X`, warning title `text-[var(--badge-soft-warning-fg)]` | Banner: `border-0 border-b border-l-4 rounded-none` |
@@ -508,6 +508,22 @@ above still maps the component; these rows add the resize classes.
 | `Meta Item` | `<span>` inline | label `max-w-[280px] truncate` |
 | `Swatch Picker` | radio group | swatches `flex flex-wrap gap-1`; name `truncate` |
 | `Sheet` | shadcn `Sheet` | `min-w-[320px]` (`w-full` on phones) |
+| `Data Grid Toolbar` | custom toolbar | `flex flex-wrap justify-between gap-y-2 min-w-[512px]` |
+| `Table Group Row` | `<tr>` group header | Label `min-w-12 flex-1 truncate`; subtotal `max-w-40 truncate shrink-0` |
+| `Pagination` | shadcn `Pagination` | `shrink-0`, never squeezed; under 400 use `Pagination Compact` or Style=simple (container query `@max-sm`) |
+| `Notification Item` | custom | Text column `min-w-32 flex-1`; message `line-clamp-3`; meta `truncate` |
+| `Notification Center` | `Popover` content | `min-w-72`; full width `Sheet` on mobile; title `truncate` |
+| `Sidebar` | shadcn `Sidebar` | Expanded `min-w-60`, collapsed `w-12` |
+| `Access Row` | custom | `min-w-80`; who column `min-w-32 flex-1`, name and email `truncate`; avatar and Select `shrink-0` |
+| `Combobox` | shadcn `Combobox` | Trigger value `truncate` |
+| `Checkbox` | shadcn `Checkbox` + `Label` | Label wraps (`min-w-0`); box `shrink-0` |
+| `Switch` | shadcn `Switch` + `Label` | Text column `min-w-0 flex-1`; label `line-clamp-2`, description `line-clamp-3`; switch `shrink-0` |
+| `Calendar Event` | custom event block | `overflow-hidden`; title `truncate`; time `truncate` (default) or `shrink-0 whitespace-nowrap` (sm) |
+| `Meeting Card` | custom `Card` | `min-w-60`; title `line-clamp-2` |
+| `Coachmark` | `Popover` anchored to the target | `w-80 min-w-60`; step `min-w-0 flex-1 truncate`; buttons `shrink-0` |
+| `Timeline Item` | custom | Title `min-w-24 flex-1 line-clamp-2`; time `max-w-32 truncate shrink-0`; description `line-clamp-3` |
+| `Slider` | shadcn `Slider` | Min label `text-left`, max label `text-right` at the track ends |
+| `Feedback Widget` | custom | Question and thanks text `line-clamp-2` |
 
 ## Admin
 | Figma | Code | Notes |
