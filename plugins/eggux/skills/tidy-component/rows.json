@@ -340,13 +340,17 @@
    "helpers": [],
    "block": "72:3",
    "examples": [
-    "Example / Button styles"
+    "Example / Button styles",
+    "Example / Button sizes"
    ]
   },
   {
    "main": "Button Icon",
    "helpers": [],
-   "block": "96:5364"
+   "block": "96:5364",
+   "examples": [
+    "Example / Button sizes"
+   ]
   },
   {
    "main": "Button Group",
@@ -365,7 +369,8 @@
    "helpers": [],
    "block": "72:80",
    "examples": [
-    "Example / form footer"
+    "Example / form footer",
+    "Example / sticky mobile action bar"
    ]
   },
   {
@@ -374,6 +379,14 @@
    "block": null,
    "examples": [
     "Example / share row at the end of an article"
+   ]
+  },
+  {
+   "main": "Copy Button",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Copy Button"
    ]
   }
  ],
@@ -2001,6 +2014,14 @@
    "main": "Table Pagination",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Bulk Action Bar",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / bulk selection in a grid"
+   ]
   }
  ],
  "Tabs": [
@@ -2044,7 +2065,27 @@
    ],
    "block": "141:2756",
    "examples": [
-    "Example / Toggle Group styles"
+    "Example / Toggle Group styles",
+    "Example / Toggle Group sizes"
+   ]
+  },
+  {
+   "main": "Toggle",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Toggle"
+   ]
+  }
+ ],
+ "Toolbar": [
+  {
+   "main": "Toolbar",
+   "helpers": [],
+   "block": "849:5879",
+   "examples": [
+    "Example / editor toolbar",
+    "Example / canvas zoom"
    ]
   }
  ],

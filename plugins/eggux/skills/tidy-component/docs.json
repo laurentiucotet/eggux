@@ -714,13 +714,14 @@
   ]
  },
  "Button": {
-  "summary": "Triggers an action: a labeled button in seven variants and three sizes.",
+  "summary": "Triggers an action: a labeled button in seven variants and five sizes (xs 28 to xl 48).",
   "use": [
    "The single main action of a view or dialog: Variant=default",
    "A brand-colored action that must not compete with the main one (Add line item, Import CSV, a call to action on a card): Variant=soft",
    "Alternative actions: secondary; Cancel and back: outline",
    "Toolbar and low-emphasis actions in dense UI: ghost",
-   "The confirming action of a destructive flow: destructive; text-like navigation in content: link"
+   "The confirming action of a destructive flow: destructive; text-like navigation in content: link",
+   "Size=xs in table rows, cards and dense toolbars; Size=xl for the one main action of a hero or a phone screen (sticky mobile Action Bar)"
   ],
   "avoid": [
    "Icon-only actions: use Button Icon with a tooltip",
@@ -734,7 +735,8 @@
    "Trailing icon (optional, Trailing icon)",
    "State=loading: a spinning loader replaces the leading icon; width stays",
    "Variant=link: label, icons and hover underline use foreground/brand; no fill and no side padding in every Size, so the text lines up with the text column above it",
-   "Variant=soft: fill button/soft-bg (background/primary at 10%, 20% in dark), hover button/soft-hover (one step stronger); label and icons foreground/brand; no shadow"
+   "Variant=soft: fill button/soft-bg (background/primary at 10%, 20% in dark), hover button/soft-hover (one step stronger); label and icons foreground/brand; no shadow",
+   "Size: xs 28 (ui/label-small, 14 px icons, 10 px sides), sm 32, default 36, lg 40, xl 48 (32 px sides); same tokens in every size"
   ],
   "rules": [
    "One Variant=default per view or dialog",
@@ -747,7 +749,11 @@
    "soft is quieter than default and louder than secondary: use it for the second most important action, or several equal brand actions in one card",
    "Never two soft Buttons next to one default Button in the same group; pick soft or secondary for the group",
    "soft text and icons are foreground/brand, never background/primary",
-   "Variant=link has no side padding: place it in the text column, never add padding back by hand; the focus ring hugs the label"
+   "Variant=link has no side padding: place it in the text column, never add padding back by hand; the focus ring hugs the label",
+   "Same Size for every Button in one group or bar",
+   "xl only for the main action and its partner; never a row of xl Buttons",
+   "xs is not a touch target on its own: on phones use sm or larger",
+   "Resize: hugs its label; one line; in a sticky mobile bar Buttons FILL and share the width"
   ],
   "a11y": [
    "Reachable with Tab; Enter and Space activate; State=focus shows the border/ring focus ring",
@@ -756,7 +762,7 @@
    "Text meets 4.5:1 in every Variant; link (foreground/brand) passes 4.5:1 on background/default, muted and card in every theme",
    "soft: foreground/brand on button/soft-bg is 5.8:1 Light, 6.7:1 Dark, 5.7:1 Corporate Light; on hover 5.1, 5.9, 4.9. The fill boundary is about 1.2:1, so the label carries the meaning, as for ghost"
   ],
-  "code": "shadcn Button (variant, size); Leading icon is an icon child before the label. variant=\"link\" uses text-brand (var(--brand)) instead of text-primary. Add variant soft to buttonVariants: \"bg-primary/10 text-brand hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30\".",
+  "code": "shadcn Button (variant, size); Leading icon is an icon child before the label. variant=\"link\" uses text-brand (var(--brand)) instead of text-primary. Add variant soft to buttonVariants: \"bg-primary/10 text-brand hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30\". Sizes: add xs (\"h-7 gap-1 px-2.5 text-xs [&_svg]:size-3.5\") and xl (\"h-12 px-8\") to buttonVariants.size.",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/patterns/action-feedback.md",
@@ -799,7 +805,7 @@
   ]
  },
  "Button Icon": {
-  "summary": "An icon-only button, 36 x 36, for compact actions that a familiar icon explains.",
+  "summary": "An icon-only button for compact actions that a familiar icon explains: xs 28, sm 32, default 36, lg 40; State=loading while it works.",
   "use": [
    "Toolbars, row actions and card menus (ellipsis)",
    "Message actions: Copy, Regenerate, Good response",
@@ -810,8 +816,9 @@
    "The main action of a view: use Button Variant=default with a Label"
   ],
   "anatomy": [
-   "Icon (instance swap, default ellipsis)",
-   "Container in the chosen Variant (default, secondary, outline, ghost, destructive, soft): Size sm 32, default 36, lg 40",
+   "Icon (instance swap, default ellipsis); 14 px in xs, 16 px in the other sizes",
+   "Container in the chosen Variant (default, secondary, outline, ghost, destructive, soft): Size xs 28, sm 32, default 36, lg 40",
+   "State=loading: a spinning loader replaces the icon; same size",
    "Tooltip with the same text as the accessible label"
   ],
   "rules": [
@@ -820,15 +827,20 @@
    "ghost in toolbars and dense UI",
    "Copy turns the icon into a check for 2 s with the label \"Copied\"; no toast",
    "Size matches the Buttons next to it: sm in tables and dense toolbars, lg next to lg Buttons in heroes",
-   "Variant=soft (button/soft-bg, foreground/brand icon) next to soft Buttons, or for a brand-colored icon action without a solid fill"
+   "Variant=soft (button/soft-bg, foreground/brand icon) next to soft Buttons, or for a brand-colored icon action without a solid fill",
+   "Size=xs for clear, copy and reveal inside fields, Tag and Chip remove, table row and Kanban Card menus",
+   "State=loading while the action runs (refresh, retry, send): keep the size, block repeat clicks, then return to default or show the result",
+   "To copy a value use Copy Button (it carries the copied state)",
+   "Resize: fixed size; never shrinks"
   ],
   "a11y": [
    "aria-label in code, same text as the tooltip",
    "The tooltip shows on hover and on keyboard focus",
    "Icon meets 3:1; touch target at least 44 x 44 px on mobile",
-   "soft icon: foreground/brand on button/soft-bg meets 3:1 in every theme (5.7:1 or more)"
+   "soft icon: foreground/brand on button/soft-bg meets 3:1 in every theme (5.7:1 or more)",
+   "Loading: aria-busy=\"true\" and the tooltip says the action in progress (\"Refreshing\")"
   ],
-  "code": "shadcn Button size=\"icon\" with aria-label, wrapped in Tooltip. Variant soft uses the same buttonVariants entry as Button.",
+  "code": "shadcn Button size=\"icon\" with aria-label, wrapped in Tooltip. Variant soft uses the same buttonVariants entry as Button. Size xs = size=\"icon-xs\" (\"size-7 [&_svg]:size-3.5\"); loading = disabled + lucide LoaderCircle animate-spin in place of the icon.",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/components/tooltip.md",
@@ -4023,7 +4035,7 @@
    "Comments in a thread: use Comment Composer; chat: use Chat Composer"
   ],
   "anatomy": [
-   "Toolbar of Toggle Group Items: heading, bold, italic, underline",
+   "Toolbar (Toolbar Style=default, FILL, Show overflow off, inside the toolbar frame that draws the bottom border): Toggles for heading, bold, italic, underline",
    "Separator, then lists and quote",
    "Separator, then link",
    "Content slot",
@@ -4031,12 +4043,13 @@
   ],
   "rules": [
    "Toolbar shows only the formats the content needs; tables, images, mentions only on request",
-   "Active format uses the on state of Toggle Group Item",
+   "Active format uses Toggle State=pressed",
    "Paste keeps structure (headings, lists, links) and drops foreign styles",
    "With a limit: warn at 90%, block at 100% with an error, never cut text silently",
    "Min height ~5 lines; grows with content to a max, then scrolls",
    "Autosave long content and show \"Saved\" / \"Saving…\"",
-   "Resize: the footer hint fills and wraps to 2 lines with ellipsis; the character count hugs and never shrinks"
+   "Resize: the footer hint fills and wraps to 2 lines with ellipsis; the character count hugs and never shrinks",
+   "Narrow editors: turn Show overflow on in the Toolbar and move the last groups into it"
   ],
   "a11y": [
    "Every toolbar button has a label and a tooltip with its shortcut (⌘B, ⌘I, ⌘U, ⌘K)",
@@ -5215,19 +5228,22 @@
    "Period: day / week / month",
    "Formatting in a Rich Text Editor toolbar",
    "Product options such as size on a product page",
-   "Variant=segmented: 2-4 short options on one track, such as a period or a monthly / yearly billing switch"
+   "Variant=segmented: 2-4 short options on one track, such as a period or a monthly / yearly billing switch",
+   "Size=sm items in Toolbars and Chart Card period switches; Size=lg for the pricing billing period and the Appearance theme choice"
   ],
   "avoid": [
    "Switching panels of content: use Tabs",
    "Independent actions (Archive, zoom): use Button Group",
-   "Many options: use Select"
+   "Many options: use Select",
+   "One on/off button alone (bold, pin, mute): use Toggle"
   ],
   "anatomy": [
    "Group (Variant: default, outline or segmented)",
    "Items slot: Toggle Group Item instances with the matching Item Variant (default for default and outline, segmented for segmented)",
    "Item: Label and/or icon (Show label, Show icon, Icon)",
    "Selected item: State=selected (background/accent; segmented: background/default with shadow/xs)",
-   "Segmented track: background/muted, padding spacing/1, items 28 high; the Items slot fills the track"
+   "Segmented track: background/muted, padding spacing/1, items 28 high; the Items slot fills the track",
+   "Size lives on the items: Toggle Group Item Size sm (32; segmented 24), default (36; 28), lg (40; 32); the segmented track adds 4 px around"
   ],
   "rules": [
    "It sets a value; if the content below changes panels, use Tabs",
@@ -5236,7 +5252,9 @@
    "Choosing a value is a Toggle Group, not a Button Group",
    "segmented looks like Tabs Variant=default; it still sets a value, it never switches panels",
    "segmented: at most 4 items with one or two words each; more options: use Select",
-   "Full width segmented: Toggle Group FILL and every item FILL, items share the track equally; in a hugging group keep items on HUG"
+   "Full width segmented: Toggle Group FILL and every item FILL, items share the track equally; in a hugging group keep items on HUG",
+   "Every item in one group has the same Size",
+   "Resize: hugs its items; segmented on FILL shares the track equally"
   ],
   "a11y": [
    "Arrow keys move between items; Space or Enter toggles",
@@ -5244,7 +5262,7 @@
    "Icon-only items have an aria-label that matches the tooltip",
    "segmented: labels are foreground/default on the track (18:1 Light, 14.5:1 Dark); the selected pill differs from the track by fill (1.1:1) and shadow, so the selected state is also exposed with aria-checked"
   ],
-  "code": "shadcn ToggleGroup (type single or multiple). Variant=segmented: ToggleGroup className \"bg-muted p-1 rounded-full\", items \"h-7 px-3 data-[state=on]:bg-background data-[state=on]:shadow-xs\".",
+  "code": "shadcn ToggleGroup (type single or multiple). Variant=segmented: ToggleGroup className \"bg-muted p-1 rounded-full\", items \"h-7 px-3 data-[state=on]:bg-background data-[state=on]:shadow-xs\". Sizes: ToggleGroup size=\"sm\" | \"lg\" (shadcn toggleVariants size), segmented sm items h-6, lg items h-8.",
   "guides": [
    "skills/build-ui/components/tabs.md",
    "skills/build-ui/components/rich-text-editor.md",
@@ -6135,12 +6153,13 @@
   ]
  },
  "Action Bar": {
-  "summary": "The row of buttons that ends a form, a step or a hero: Actions slot, optional Leading slot and divider.",
+  "summary": "The row of buttons that ends a form, a step or a hero, and the sticky bottom bar of a phone screen (Style=sticky-mobile).",
   "use": [
    "The end of a form or a settings section (Align=end)",
    "The buttons of a hero or a page header (Align=start)",
    "Under a centered hero, CTA or empty state (Align=center)",
-   "Back on the left and Next on the right in a wizard step (Show leading)"
+   "Back on the left and Next on the right in a wizard step (Show leading)",
+   "Style=sticky-mobile: the bottom bar of phone screens: checkout, product detail, booking confirm, wizard steps, mobile settings"
   ],
   "avoid": [
    "The footer of a Dialog: use the Dialog's own footer",
@@ -6151,20 +6170,26 @@
    "Divider above (Show divider)",
    "Leading slot (Show leading): Back, Delete, Remove",
    "Actions slot: secondary and primary Buttons",
-   "Align: end, start, center"
+   "Align: end, start, center",
+   "Style: default, sticky-mobile",
+   "sticky-mobile: background/default, top border, 16 px sides, 12 px top and 32 px bottom (home indicator); summary line (Show summary: Summary label, Summary value) above the buttons; xl Buttons FILL and share the width"
   ],
   "rules": [
    "One primary button per bar",
    "end: secondary left of primary (Cancel, Save); start and center: primary first",
    "Destructive actions go in Leading, away from the primary",
-   "Same button Size inside one bar"
+   "Same button Size inside one bar",
+   "sticky-mobile stays at the bottom of the viewport while the page scrolls; the page gets bottom padding equal to the bar height",
+   "sticky-mobile: one primary, at most one secondary; Align does not apply",
+   "Summary line only when it helps the decision (total, items, date); one line, label truncates, value never wraps",
+   "Resize: default stretches and the Actions slot fills; sticky-mobile FILLs the screen width, min 320, buttons share the width"
   ],
   "a11y": [
    "Tab order follows the visual order",
    "The primary action is the submit button of the form",
    "Disabled buttons explain why in a hint or a Tooltip"
   ],
-  "code": "<div class=\"flex gap-2 justify-end\"> (or justify-start, justify-center); the leading button with mr-auto.",
+  "code": "<div class=\"flex gap-2 justify-end\"> (or justify-start, justify-center); the leading button with mr-auto. sticky-mobile: <div class=\"sticky bottom-0 border-t bg-background px-4 pt-3 pb-[max(2rem,env(safe-area-inset-bottom))]\"> with a summary row and Buttons size=\"xl\" className=\"flex-1\".",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/patterns/form-validation.md"
@@ -11328,7 +11353,7 @@
    "AI rewrites of a selection: use Block / Inline AI"
   ],
   "anatomy": [
-   "Formatting (Show formatting): Toggle Group Items Bold, Italic, Link and a vertical Separator",
+   "Formatting (Show formatting): Toggles Bold, Italic, Link (Size default) and a vertical Separator",
    "Comment (Show comment): Button default sm with message-square icon",
    "Surface: background/popover, border/default, radius/lg, shadow/md"
   ],
@@ -11459,6 +11484,189 @@
   "code": "aside with shadcn ToggleGroup (type single) and ScrollArea; threads sorted by mark position from the editor (Tiptap) or rendered by Liveblocks / Velt comment components.",
   "guides": [
    "skills/build-ui/components/comments-and-chat.md"
+  ]
+ },
+ "Toolbar": {
+  "summary": "A row or column of related controls in groups (Toggles, Button Icons, small Buttons, Selects) with Separators between groups and an overflow menu.",
+  "use": [
+   "The formatting bar of a Rich Text Editor or a document header (Style=default, FILL)",
+   "Zoom and view controls over a canvas: Org Chart, Workflow Builder, File Preview, Image Cropper (Style=floating)",
+   "A tool column on the side of a canvas (Orientation=vertical, Style=floating)",
+   "Dashboard edit mode and media controls that act on the content around them"
+  ],
+  "avoid": [
+   "Rows are selected in a table: use Table Toolbar; in a grid or board: use Bulk Action Bar",
+   "Search, filters and view switch above a list: use Page Toolbar or Data Grid Toolbar",
+   "The buttons that end a form or a step: use Action Bar",
+   "Text selected in a document: use Selection Toolbar"
+  ],
+  "anatomy": [
+   "Items (native slot): sm controls in groups, Toggle Size=sm for on/off formats, Button Icon ghost sm for actions, Button ghost sm for a value (\"100%\"), a Select sm",
+   "Separator Orientation=vertical Spacing=sm between groups (horizontal in a vertical Toolbar)",
+   "Overflow (Show overflow): Button Icon ghost sm with ellipsis that opens a Menu with the items that do not fit",
+   "Style default: no surface, the parent draws the border (editor, card or panel header)",
+   "Style floating: background/popover, border/default, radius/lg, shadow/md",
+   "Orientation: horizontal, vertical; padding spacing/1, gap spacing/0_5"
+  ],
+  "rules": [
+   "Group related controls (text style, lists, insert, zoom) and separate groups with a Separator; 2 to 5 items per group",
+   "Toggle for formats that stay on (bold, grid), Button Icon for one-off actions (insert link, fit to screen); never mix Toggle Group Items into a Toolbar",
+   "All controls in one Toolbar use the same size (sm)",
+   "When the Toolbar runs out of room the last groups move into the overflow Menu, in order; the first group never moves",
+   "floating sits 16 px from the canvas edge it belongs to (zoom: bottom right; tools: top left)",
+   "Resize: hugs its items; set to FILL in a header and the overflow stays at the end (space between); below about 400 drop whole groups into the overflow instead of squeezing"
+  ],
+  "a11y": [
+   "role=\"toolbar\" with an aria-label (\"Formatting\", \"Zoom\"); aria-orientation for vertical",
+   "One Tab stop: Tab enters the toolbar, arrow keys move between items (roving tabindex), Home and End jump",
+   "Icon-only items have aria-label and a Tooltip with the shortcut; Toggles expose aria-pressed",
+   "The overflow button is labelled \"More\" and its Menu holds the hidden items with their names"
+  ],
+  "code": "Radix Toolbar (@radix-ui/react-toolbar): Toolbar.Root, Toolbar.ToggleItem or shadcn Toggle, Toolbar.Button with shadcn Button size=\"icon-sm\" variant=\"ghost\", Toolbar.Separator; overflow with a ResizeObserver that moves items into a DropdownMenu.",
+  "guides": [
+   "skills/build-ui/components/rich-text-editor.md",
+   "skills/build-ui/components/button.md"
+  ]
+ },
+ "Toggle": {
+  "summary": "One on/off button with a pressed state: bold, pin, mute, captions, favorite. Text, icon or both.",
+  "use": [
+   "A format or setting that stays on: bold in a Toolbar, captions and mute in a Video Player",
+   "Pin, favorite or watch on a record (Variant=outline, with a label)",
+   "Formatting in Chat Composer and Selection Toolbar"
+  ],
+  "avoid": [
+   "One choice out of several options: use Toggle Group",
+   "A setting in a form that applies on save: use Switch or Checkbox",
+   "An action that runs once (copy, delete, refresh): use Button Icon or Button"
+  ],
+  "anatomy": [
+   "Icon (Show icon, Icon swap; default bold) and Label (Show label, off by default)",
+   "Variant: default (no border) or outline (border/input, shadow/xs)",
+   "Size: sm 32, default 36, lg 40; icon-only is square (minWidth = height)",
+   "State: default, hover (background/muted), pressed (background/accent, foreground/accent), focus (ring), disabled (50%)"
+  ],
+  "rules": [
+   "Pressed is the on state; the icon does not change between on and off, the fill does",
+   "When the label says the state, keep it the same in both states (\"Pinned\" toggles; do not swap text)",
+   "default in Toolbars and players; outline on plain surfaces next to outline Buttons",
+   "Same Size as the controls next to it (sm in a Toolbar)",
+   "Resize: hugs; never stretches; with a label it is one line"
+  ],
+  "a11y": [
+   "aria-pressed=\"true\" or \"false\"; the accessible name does not change with the state",
+   "Icon-only: aria-label and a Tooltip with the shortcut (Bold, ⌘B)",
+   "pressed: foreground/accent on background/accent is 16.5:1 Light, 14.5:1 Dark, 16.4:1 Corporate Light; the pressed fill is close to the page, so the state is also exposed with aria-pressed",
+   "Focus shows the border/ring focus ring"
+  ],
+  "code": "shadcn Toggle (variant default or outline, size sm, default, lg); pressed = data-state=\"on\" (pressed / onPressedChange).",
+  "guides": [
+   "skills/build-ui/components/tabs.md",
+   "skills/build-ui/components/rich-text-editor.md"
+  ]
+ },
+ "Copy Button": {
+  "summary": "A Button Icon that copies one value and confirms it in place: a check for 2 s, no toast.",
+  "use": [
+   "Code Block, Command Snippet and JSON Viewer headers",
+   "IDs, keys and URLs in Description List values, table cells and API Key or Endpoint rows",
+   "Share Link rows where the link is already visible"
+  ],
+  "avoid": [
+   "A value people read and copy from a labelled field: use Copy Field",
+   "Copy as one of several actions on a message: use Button Icon ghost with the copy icon in the action row, same behavior",
+   "Copying a whole page or a large export: use Button with a label"
+  ],
+  "anatomy": [
+   "Button Icon (nested) with Icon/copy",
+   "State=copied: Icon/check in background/success (the success color)",
+   "Variant: ghost (in content) or outline (next to fields); Size: default 36, sm 32, xs 28"
+  ],
+  "rules": [
+   "Copied lasts 2 s after the click, then returns to default; no toast",
+   "Tooltip \"Copy\" changes to \"Copied\" while State=copied",
+   "Copies the full value even when the visible text is truncated or masked",
+   "If copying fails, select the value and say \"Press Ctrl+C to copy\"",
+   "xs inside table rows and fields, sm in code blocks and cards",
+   "Resize: fixed size; never shrinks"
+  ],
+  "a11y": [
+   "aria-label names the value (\"Copy invoice number\")",
+   "\"Copied\" is announced in a live region (role=\"status\", aria-live=\"polite\")",
+   "The check is background/success: 5.0:1 Light, 8.7:1 Dark, 5.0:1 Corporate Light on background/default (3:1 needed for icons)"
+  ],
+  "code": "custom: shadcn Button size=\"icon\" variant=\"ghost\" + Tooltip; navigator.clipboard.writeText(value); copied state 2 s with lucide Copy / Check (text-success).",
+  "guides": [
+   "skills/build-ui/components/button.md",
+   "skills/build-ui/patterns/action-feedback.md"
+  ]
+ },
+ "Bulk Action Bar": {
+  "summary": "A floating bar at the bottom of the screen while items are selected in a grid, board, gallery or inbox: count, actions, clear.",
+  "use": [
+   "Selection in card grids where there is no table: Grid List, File Manager grid, Gallery",
+   "Selection in boards and inboxes: Kanban Board, Inbox, Approval Inbox",
+   "Mobile lists with selection mode"
+  ],
+  "avoid": [
+   "Rows selected in a table: use Table Toolbar above the table",
+   "Unsaved changes: use Save Bar",
+   "Actions on one item: use the item's menu"
+  ],
+  "anatomy": [
+   "Selection (TEXT): \"3 selected\"",
+   "Select all (Show select all): Button link sm, exposed (\"Select all 48\")",
+   "Separator vertical",
+   "Actions (native slot): outline sm Buttons with icons; on phones ghost sm Button Icons",
+   "Clear (Show clear): Button Icon ghost sm with x",
+   "Surface: background/popover, border/default, radius/lg, shadow/lg"
+  ],
+  "rules": [
+   "Appears with the first selection, bottom center, 24 px above the bottom edge (above Bottom Nav on mobile); leaves when the selection is empty",
+   "The count updates on every change; after a page is selected offer \"Select all 48\"",
+   "3 actions at most in the bar; more go into a Menu behind an ellipsis Button Icon",
+   "Destructive actions confirm with the count (\"Delete 3 files?\")",
+   "One toast reports the result: \"3 files moved\"",
+   "Resize: hugs its content; on phones (under 480) the actions become Button Icons with tooltips so the bar fits 328"
+  ],
+  "a11y": [
+   "role=\"toolbar\" with aria-label=\"Bulk actions\"; the count is in a live region",
+   "Escape or Clear empties the selection and returns focus to the last selected item",
+   "Text foreground/default on background/popover 19.8:1 Light, 17.2:1 Dark; Select all link 6.7:1 Light, 7.1:1 Dark"
+  ],
+  "code": "custom: fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 rounded-lg border bg-popover shadow-lg px-4 py-2 (Chakra ActionBar pattern); shadcn Button variant=\"outline\" size=\"sm\"; selection from TanStack or local state.",
+  "guides": [
+   "skills/build-ui/components/table.md",
+   "skills/build-ui/patterns/bulk-actions.md"
+  ]
+ },
+ "Toggle Group Item": {
+  "summary": "One option inside a Toggle Group: text, icon or both, with a selected state. Variant default or segmented, Size sm, default, lg.",
+  "use": [
+   "Inside Toggle Group only, one item per option"
+  ],
+  "avoid": [
+   "A single on/off button: use Toggle",
+   "Toolbars: use Toggle Size=sm in a Toolbar"
+  ],
+  "anatomy": [
+   "Icon (Show icon, Icon swap) and Label (Show label)",
+   "Variant: default (background/accent when selected) or segmented (pill on the muted track)",
+   "Size: sm (32; segmented 24), default (36; 28), lg (40; 32); icon-only items are square",
+   "State: default, hover, selected, focus, disabled"
+  ],
+  "rules": [
+   "Use the Variant that matches the group (default for default and outline groups)",
+   "All items in one group share the Size",
+   "Resize: hugs its label; FILL in a full width segmented group"
+  ],
+  "a11y": [
+   "aria-checked (single) or aria-pressed (multiple) exposes the selected state",
+   "Icon-only items need aria-label and a Tooltip"
+  ],
+  "code": "shadcn ToggleGroupItem; size from the ToggleGroup size prop.",
+  "guides": [
+   "skills/build-ui/components/tabs.md"
   ]
  }
 }

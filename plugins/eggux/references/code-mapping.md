@@ -529,6 +529,20 @@ above still maps the component; these rows add the resize classes.
 | `Slider` | shadcn `Slider` | Min label `text-left`, max label `text-right` at the track ends |
 | `Feedback Widget` | custom | Question and thanks text `line-clamp-2` |
 
+## Components wave 2026-10
+Components and variants added from the 2026-10 gap audit.
+
+| Figma | Code | Notes |
+|---|---|---|
+| `Toolbar` | Radix `Toolbar` (`@radix-ui/react-toolbar`): `Toolbar.Root`, `Toolbar.ToggleItem` / shadcn `Toggle size="sm"`, `Toolbar.Button` with shadcn `Button variant="ghost" size="icon-sm"`, `Toolbar.Separator`; overflow `DropdownMenu` | Style default: no surface (parent draws `border-b`); floating: `rounded-lg border bg-popover shadow-md p-1 gap-0.5`. `orientation="vertical"` for tool columns. Overflow: ResizeObserver moves trailing groups into the menu; resize contract `flex items-center justify-between` when it fills |
+| `Toggle` | shadcn `Toggle` (`variant` default, outline; `size` sm, default, lg) | State=pressed = `data-state="on"` (`pressed`, `onPressedChange`); icon-only needs `aria-label` + `Tooltip`; `shrink-0` |
+| `Copy Button` | custom: shadcn `Button variant="ghost" size="icon"` (or `outline`, `icon-sm`, `icon-xs`) + `Tooltip`; `navigator.clipboard.writeText(value)` | State=copied for 2 s: lucide `Check` with `text-success` in place of `Copy`, tooltip "Copied", `role="status"` live region; no toast |
+| `Bulk Action Bar` | custom (Chakra ActionBar pattern): `fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 rounded-lg border bg-popover px-4 py-2 shadow-lg` with shadcn `Button variant="outline" size="sm"` and a ghost `Button size="icon-sm"` to clear | `role="toolbar"`, count in `aria-live="polite"`; under `sm` the actions are icon buttons with tooltips; selection from TanStack `rowSelection` or local state |
+| `Button` (Size=xs, xl) | shadcn `Button size="xs"` / `size="xl"`: add to `buttonVariants.size` `xs: "h-7 gap-1 rounded-full px-2.5 text-xs [&_svg:not([class*='size-'])]:size-3.5"`, `xl: "h-12 rounded-full px-8"` | Radius follows `button/radius` (`rounded-[var(--button-radius)]`); one size per group |
+| `Button Icon` (Size=xs, State=loading) | shadcn `Button size="icon-xs"` (`size-7 [&_svg]:size-3.5`); loading = `disabled` + `aria-busy` + lucide `LoaderCircle className="animate-spin"` in place of the icon | Tooltip says the running action ("Refreshing") |
+| `Action Bar` (Style=sticky-mobile) | `<div class="sticky bottom-0 z-10 border-t bg-background px-4 pt-3 pb-[max(2rem,env(safe-area-inset-bottom))]">` with a summary row (`flex justify-between`, label `truncate text-muted-foreground`, value `font-semibold shrink-0`) and `flex gap-2` of `Button size="xl" className="flex-1"` | Mobile only (`md:hidden`); page gets matching bottom padding; min width 320 |
+| `Toggle Group Item` (Size=sm, lg), `Toggle Group` | shadcn `ToggleGroup size="sm" | "lg"` (size passes to items via context) | segmented: sm items `h-6`, lg items `h-8` inside `p-1` track |
+
 ## Admin
 | Figma | Code | Notes |
 |---|---|---|
