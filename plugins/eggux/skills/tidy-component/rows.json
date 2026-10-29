@@ -17,6 +17,14 @@
    "examples": [
     "Example / customer profile with show more and details"
    ]
+  },
+  {
+   "main": "Collapsible",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Collapsible"
+   ]
   }
  ],
  "Admin": [
@@ -189,6 +197,14 @@
     "Uptime Day"
    ],
    "block": "214:1389"
+  },
+  {
+   "main": "Inline Message",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Inline Message"
+   ]
   }
  ],
  "Approvals": [
@@ -507,6 +523,14 @@
    "main": "Location Card",
    "helpers": [],
    "block": "197:1319"
+  },
+  {
+   "main": "Callout Card",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Callout Card"
+   ]
   }
  ],
  "Carousel": [
@@ -884,13 +908,22 @@
    ],
    "block": "550:81245",
    "examples": [
-    "Example / dialog sizes"
+    "Example / dialog sizes",
+    "Example / Dialog sizes"
    ]
   },
   {
    "main": "Alert Dialog",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Scrim",
+   "helpers": [],
+   "block": "693:116887",
+   "examples": [
+    "Example / Dialog sizes"
+   ]
   }
  ],
  "Drawer": [
@@ -1044,7 +1077,8 @@
    "block": null,
    "examples": [
     "Example / empty state types",
-    "Example / Empty State styles"
+    "Example / Empty State styles",
+    "Example / Empty State tones and illustrations"
    ]
   }
  ],
@@ -1167,6 +1201,17 @@
    "block": "117:410",
    "examples": [
     "Example / Field Preset styles"
+   ]
+  }
+ ],
+ "Illustrations": [
+  {
+   "main": "Spot Illustration",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Empty State tones and illustrations",
+    "Example / Callout Card"
    ]
   }
  ],
@@ -1640,6 +1685,22 @@
    "examples": [
     "Example / confirm before archiving invoices"
    ]
+  },
+  {
+   "main": "Popover Header",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Popover Header and Footer"
+   ]
+  },
+  {
+   "main": "Popover Footer",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Popover Header and Footer"
+   ]
   }
  ],
  "Pricing": [
@@ -1956,6 +2017,14 @@
    "main": "Skeleton",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Skeleton Preset",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Skeleton presets"
+   ]
   }
  ],
  "Slider": [

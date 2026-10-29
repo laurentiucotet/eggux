@@ -1998,19 +1998,21 @@
   "use": [
    "Rename, invite a member, quick create",
    "A few fields where the page behind does not matter",
-   "Re-authentication after an expired session"
+   "Re-authentication after an expired session",
+   "Size=fullscreen: forms and pickers on mobile when a Drawer is too small"
   ],
   "avoid": [
    "A decision before continuing: use Alert Dialog",
    "Longer forms or details next to a list: use Sheet",
    "More than one step or ~6 fields: use a page",
-   "Forms on mobile: use Drawer or a full-screen Sheet"
+   "Short forms on mobile: use Drawer"
   ],
   "anatomy": [
-   "Overlay (dialog/overlay)",
+   "Scrim behind it (Tone=dialog)",
    "Header slot: Dialog Header with Title, Description, Close X and optional Media",
    "Content slot",
-   "Footer slot: Dialog Footer, Cancel outline left, primary right"
+   "Footer slot: Dialog Footer, Cancel outline left, primary right",
+   "Size: default 512, sm 384, lg 672, xl 896 (widths bound to layout/container/*), fullscreen 390 x 844 (no radius, border or shadow; content fills the height, footer at the bottom)"
   ],
   "rules": [
    "Title says the task (\"Invite member\"), never \"Info\" or \"Warning\"",
@@ -2019,7 +2021,8 @@
    "Long content scrolls inside; header and footer stay fixed",
    "Closing with unsaved input follows the unsaved changes pattern",
    "Fill the Header, Content and Footer slots in the instance; never detach",
-   "Width: sm 384 for a short confirmation, default 512 for a form with a few fields, lg 672 for a table, a preview or a longer form, xl 896 only for side-by-side content; resize the instance"
+   "Size: sm for a short confirmation or one field, default for a form with a few fields, lg for a table, a preview or a longer form, xl only for side-by-side content; pick the Size, never resize the instance",
+   "Size=fullscreen on mobile: resize the instance to the screen; the content scrolls between the fixed header and footer"
   ],
   "a11y": [
    "Focus moves to the first field on open and returns to the trigger on close",
@@ -2027,14 +2030,15 @@
    "Title is the accessible name, Description the accessible description",
    "Close X has an accessible label"
   ],
-  "code": "shadcn Dialog (DialogHeader, DialogFooter).",
+  "code": "shadcn Dialog (DialogHeader, DialogFooter). Size on DialogContent: sm:max-w-sm, default sm:max-w-lg, lg sm:max-w-2xl, xl sm:max-w-4xl, fullscreen max-sm:h-dvh max-sm:max-w-none max-sm:rounded-none max-sm:border-0.",
   "guides": [
    "skills/build-ui/components/dialog.md",
    "skills/build-ui/components/drawer.md",
    "skills/build-ui/components/popover.md",
    "skills/build-ui/patterns/unsaved-changes.md",
    "skills/build-ui/patterns/errors-and-recovery.md",
-   "skills/build-ui/patterns/sharing-and-invites.md"
+   "skills/build-ui/patterns/sharing-and-invites.md",
+   "skills/build-ui/patterns/mobile.md"
   ]
  },
  "Donut Chart": {
@@ -2121,7 +2125,9 @@
    "No access: say who can grant it",
    "Error: say what failed and offer Retry",
    "Size=default for pages and large cards, sm inside tables, cards and panels",
-   "Media=image: first-run pages and empty dashboards where a photo or illustration shows the value of the first action"
+   "Media=illustration: first-run pages, empty dashboards and onboarding where a picture helps but a photo is not the point",
+   "Media=image: a photo or product screenshot that shows the value of the first action",
+   "Tone=error: a widget, chart, table or search that failed to load"
   ],
   "avoid": [
    "Loading: use Skeleton in the shape of the content",
@@ -2130,33 +2136,40 @@
   ],
   "anatomy": [
    "Media=icon: icon tile with an Icon (swap) that matches the object",
+   "Media=illustration: Spot Illustration (exposed, pick its Type), 120 (80 in Size=sm)",
    "Media=image: Image Placeholder 16:9 (exposed) above the title; swap the Image",
    "Title (\"No invoices yet\")",
    "Description, one sentence (Show description)",
-   "Actions slot (Show actions)"
+   "Actions slot (Show actions)",
+   "Tone=error (Media=icon): tile badge/soft-destructive-bg with triangle-alert in badge/soft-destructive-fg; Error title and Error description (own text properties); Actions: Button outline \"Try again\" with refresh-cw"
   ],
   "rules": [
    "Every list and table has one",
    "Action only when the user may create; use the object's create label",
    "Centered in the area the content would occupy, not the whole page",
-   "Media=image only for first run and onboarding; never an image that hides or replaces the title and action",
    "Inside a table: Size=sm under the header row",
    "Cleared (inbox zero): a short positive line, no action",
    "Five cases, each with its own icon and action (see \"empty state types\"): no data yet (create, import), no results (clear filters), error (try again), no access (request access), first run (set up)",
-   "No results, error and no access always use Media=icon"
+   "No results, error and no access always use Media=icon",
+   "Media=illustration or image only for first run, empty dashboards and onboarding; never an image that hides or replaces the title and action",
+   "Tone=error: say what failed and that data is safe, offer Try again; Error title and Error description are separate properties, so set them after switching Tone",
+   "FILL the area; text centered; works from 276 (Size=sm)"
   ],
   "a11y": [
    "The title is a heading at the right level",
    "The icon is decorative (aria-hidden)",
    "Actions are buttons reachable by keyboard",
    "Description in foreground/muted keeps 4.5:1",
-   "The image is decorative (empty alt) unless it carries information"
+   "The image is decorative (empty alt) unless it carries information",
+   "Tone=error: announce with role=\"alert\" when it replaces content that was loading"
   ],
-  "code": "shadcn Empty (or a custom block: icon, title, description, actions).",
+  "code": "shadcn Empty (EmptyMedia variant=\"icon\" or an illustration SVG, EmptyTitle, EmptyDescription, EmptyContent); Tone=error uses bg-destructive/10 text-destructive on the media.",
   "guides": [
    "skills/build-ui/patterns/empty-state.md",
    "skills/build-ui/components/table.md",
-   "skills/build-ui/patterns/search-and-filter.md"
+   "skills/build-ui/patterns/search-and-filter.md",
+   "skills/build-ui/patterns/errors-and-recovery.md",
+   "skills/build-ui/patterns/loading-states.md"
   ]
  },
  "Entity Card": {
@@ -3821,43 +3834,50 @@
   ]
  },
  "Progress": {
-  "summary": "Determinate progress bar for work with a known share: uploads, imports, multi-step completion.",
+  "summary": "Progress bar for work with a known share (uploads, imports, completion), with sizes, an optional label row and an indeterminate state.",
   "use": [
    "Uploads, imports and exports of known size",
    "Completion of a profile or setup (\"3 of 5\")",
    "Bulk actions that run longer than ~2 s",
    "A value per row, inside Table Cell Progress",
-   "Type=segmented: a count of steps (onboarding, setup checklist, a multi-step form on mobile), 4 to 10 segments"
+   "Type=segmented: a count of steps (onboarding, setup checklist, a multi-step form on mobile), 4 to 10 segments",
+   "Size=sm inside File Item, Toast, table rows and dense cards; Size=lg for one key bar on a page",
+   "Show label when the bar has no label nearby: Label left, value text right",
+   "Value=indeterminate when the total is not known yet (a sync, a job before it counts)"
   ],
   "avoid": [
-   "Unknown duration under ~3 s: use Spinner",
    "Content loading: use Skeleton",
    "Steps people move through: use Stepper",
    "Picking a value: use Slider",
-   "A circular indicator: use Progress Ring"
+   "A circular indicator: use Progress Ring",
+   "Unknown duration under ~3 s: use Spinner"
   ],
   "anatomy": [
-   "Track: background/muted, radius/full",
-   "Indicator: background/primary, width = Value (0 to 100 by 10, plus 25 and 75)",
-   "Value text next to it: percent or \"3 of 5\"",
+   "Label row (Show label): Label (ui/label, 1 line, Label) and value text (body/small, foreground/muted; edit it to \"3 of 5\" or \"2 min left\")",
+   "Track: background/muted, radius/full; height by Size: sm 4, default 8, lg 12",
+   "Indicator: background/primary (Tone colors), width = Value (0 to 100 by 10, plus 25 and 75)",
+   "Value=indeterminate: a 40% segment (moves in code), no value text; Tone=default only",
    "Tone: default, success, warning, error (indicator color)",
-   "Type=segmented: Segments (native slot) with Progress Segment instances (State complete or upcoming, Tone), 4 px gap, each FILL width"
+   "Type=segmented: Segments (native slot) with Progress Segment instances (State complete or upcoming, Tone), 4 px gap, each FILL width; Size default only, no label row"
   ],
   "rules": [
-   "Determinate only: the share must be known",
    "Always show the number or the remaining count next to the bar; never only color",
    "Value variants (Type=default): 0 to 100 in steps of 10, plus 25 and 75; pick the nearest step to the real share",
    "Jobs over ~10 s run in the background, with a toast or notification when done",
    "Tone shows the outcome, not the amount: success when complete, warning near a limit, error when failed; the text says it too",
    "Type=segmented: one segment per step; Value sets 0 to 4 of 4 complete, add or remove segments for 4 to 10 steps and set each State",
-   "Segmented progress still shows the count in text (\"Step 2 of 4\")"
+   "Segmented progress still shows the count in text (\"Step 2 of 4\")",
+   "Determinate whenever the share is known; Value=indeterminate only until it is",
+   "Show label: Label says what is progressing (\"Uploading invoices.csv\"), 1 line with ellipsis; the value text hugs and never wraps",
+   "FILL the column; the track and indicator follow the width (indicator scales); label row min 160 for the label"
   ],
   "a11y": [
    "role=\"progressbar\" with aria-valuenow, aria-valuemin and aria-valuemax",
    "The accessible name says what is progressing (\"Uploading invoices.csv\")",
-   "Announce completion when it matters"
+   "Announce completion when it matters",
+   "Indeterminate: role=\"progressbar\" without aria-valuenow, with aria-busy on the region"
   ],
-  "code": "shadcn Progress; Type=segmented is a flex row of divs (see code-mapping).",
+  "code": "shadcn Progress; Size via className (h-1, h-2, h-3); Show label is a flex row above it; indeterminate is an animated translate on the indicator; Type=segmented is a flex row of divs (see code-mapping).",
   "guides": [
    "skills/build-ui/components/progress-and-slider.md",
    "skills/build-ui/components/skeleton.md",
@@ -5306,7 +5326,9 @@
    "Undo for restorable deletes and archives",
    "Background events: export ready, import done",
    "Bulk results with counts: \"18 sent, 2 failed\"",
-   "Style=inverted: dark toast in Light (light in Dark) when toasts sit over busy or white content: editors, maps, media"
+   "Style=inverted: dark toast in Light (light in Dark) when toasts sit over busy or white content: editors, maps, media",
+   "Show avatar: activity from a person (\"Ana Popescu replied\")",
+   "Show progress: an upload in progress (Type=loading) or the time left to Undo"
   ],
   "avoid": [
    "The result is visible where the user is: the change itself is the feedback",
@@ -5314,9 +5336,11 @@
    "Information people need later: put it on the page or use Alert"
   ],
   "anatomy": [
+   "Avatar (Show avatar, Type=default only, exposed Avatar sm)",
    "Type icon: success, error, warning, info or loading",
    "Title: one line (Title)",
    "Description (Show description, Description)",
+   "Progress (Show progress, exposed Progress Size=sm under the text; set its Value)",
    "Action button (Show action)",
    "Close button (Show close)",
    "Style: default (popover surface, border, shadow/lg) or inverted (foreground/default fill, text and icons background/default, description and close at opacity/80, no border)"
@@ -5329,14 +5353,16 @@
    "Errors that block the goal also show inline",
    "Same position everywhere: bottom right, top center on mobile",
    "Style=inverted icons are monochrome; the icon shape and the words carry the type",
-   "One Style per product; never mix default and inverted toasts in one stack"
+   "One Style per product; never mix default and inverted toasts in one stack",
+   "Never a status icon and an avatar together; Show avatar is for Type=default",
+   "Show progress: the bar shows real progress or the Undo countdown; the toast stays until the work ends"
   ],
   "a11y": [
    "aria-live=\"polite\"; \"assertive\" for errors",
    "Timers pause on focus, so the action can be reached with the keyboard",
    "Nothing appears only in a toast"
   ],
-  "code": "shadcn Sonner; Style=inverted is <Toaster invert /> (or toast classNames bg-foreground text-background).",
+  "code": "shadcn Sonner; Style=inverted is <Toaster invert /> (or toast classNames bg-foreground text-background). Avatar and progress go in a custom toast (toast.custom) with Avatar and Progress className=\"h-1\".",
   "guides": [
    "skills/build-ui/components/toast.md",
    "skills/build-ui/patterns/action-feedback.md",
@@ -11963,6 +11989,281 @@
   "code": "Button variant=\"ghost\" size=\"icon\" className=\"size-5 rounded-full text-muted-foreground\" with Info className=\"size-4\".",
   "guides": [
    "skills/build-ui/components/tooltip.md"
+  ]
+ },
+ "Inline Message": {
+  "summary": "One line of status text with an icon and no box, placed next to the thing it is about.",
+  "use": [
+   "Autosave status in a document or settings header: \"Saved 2 minutes ago\", \"Saving…\"",
+   "The result of an action next to the Action Bar buttons",
+   "Per-row results in Import Mapping, Invite Row and bulk lists: \"3 rows skipped\"",
+   "A short note under a Card or a section"
+  ],
+  "avoid": [
+   "A message that needs a title, a box or actions: use Alert",
+   "The result of an action the user may not see: use Toast",
+   "Field validation: use the Field error text",
+   "A status label on an object: use Badge or Status Dot"
+  ],
+  "anatomy": [
+   "Icon box 16 x 20 (aligned to the first line): Icon/clock (default), info, circle-check (success), triangle-alert (warning), circle-alert (error) or a Spinner sm (loading)",
+   "Text (body/small, Text), 2 lines at most, then an ellipsis",
+   "Type: default and loading use foreground/muted; info, success, warning and error use badge/soft-*-fg for icon and text"
+  ],
+  "rules": [
+   "The words carry the meaning; color and icon only repeat it",
+   "Past tense for results (\"Saved\", \"3 rows imported\"), present with an ellipsis while running (\"Saving…\")",
+   "One message per place; replace it, never stack several",
+   "Hugs its text up to 480 px; set the instance to FILL in narrow columns so it wraps; 2 lines max with ellipsis",
+   "Never a link or button inside; put actions next to it"
+  ],
+  "a11y": [
+   "Wrap it in role=\"status\" (aria-live=\"polite\"); errors that block the goal use role=\"alert\"",
+   "The icon is decorative (aria-hidden)",
+   "Status text meets 4.5:1: soft-fg tokens 6.47 to 7.13 in Light, 9.45 and up in Dark, 6.47 and up in Corporate Light; foreground/muted 4.74 in Light"
+  ],
+  "code": "custom: <p role=\"status\" class=\"flex items-start gap-2 text-sm\"> with a lucide icon (size-4 mt-0.5 shrink-0) or Spinner; see code-mapping.",
+  "guides": [
+   "skills/build-ui/components/alert.md",
+   "skills/build-ui/patterns/feedback-messages.md",
+   "skills/build-ui/patterns/action-feedback.md",
+   "skills/build-ui/patterns/loading-states.md"
+  ]
+ },
+ "Callout Card": {
+  "summary": "An in-app card that suggests one thing: media, title, one sentence, an action and a dismiss X.",
+  "use": [
+   "Upgrade or trial card in the sidebar footer: Layout=stacked",
+   "Tips and next steps on a home or dashboard page: Layout=horizontal",
+   "A feature announcement inside the app",
+   "An empty dashboard nudge or the next onboarding step"
+  ],
+  "avoid": [
+   "Status that needs attention (errors, limits): use Alert",
+   "Content people read or act on every day: use Card",
+   "Page-wide promotions on marketing pages: use the Banner blocks",
+   "More than one callout per view"
+  ],
+  "anatomy": [
+   "Media (Show media, native slot): Icon Tile Style=brand by default; a Spot Illustration at 80 for a friendlier tone",
+   "Title (body/large, Title), 2 lines",
+   "Description (body/small, Description), 3 lines",
+   "Actions (Show actions, native slot): Button default sm and Button ghost sm; wraps",
+   "Close X (Show close), top right",
+   "Layout: horizontal (560, media left) or stacked (280, media on top, X in the corner)",
+   "Surface: background/card, border/default, radius/xl, padding spacing/5"
+  ],
+  "rules": [
+   "One primary action at most; the second is ghost or absent",
+   "Title says the benefit (\"Send invoices automatically\"), not the feature name",
+   "Dismiss is remembered: once closed it does not come back for that person",
+   "Horizontal min width 320, stacked min 220; title 2 lines and description 3 lines with ellipsis; actions wrap to a second line",
+   "Below 400 use Layout=stacked"
+  ],
+  "a11y": [
+   "A region with the title as its heading (aria-labelledby)",
+   "The close X has aria-label \"Dismiss\"",
+   "Media is decorative (aria-hidden) unless it carries information"
+  ],
+  "code": "shadcn Card with a flex row (horizontal) or column (stacked); see code-mapping.",
+  "guides": [
+   "skills/build-ui/components/card.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Popover Header": {
+  "summary": "Top of a Popover: title, optional description and a close X, like Dialog Header.",
+  "use": [
+   "Filter, picker and settings popovers: Faceted Filter, Filter Builder, Date Range Picker, Column Settings",
+   "Panels opened from the top bar: Notification Center, Mini Cart"
+  ],
+  "avoid": [
+   "A small text popover or a Tooltip: no header",
+   "Menus: use Menu with a Menu Label"
+  ],
+  "anatomy": [
+   "Title (ui/label, foreground/popover, Title), 2 lines",
+   "Description (Show description, body/small, foreground/muted), 3 lines",
+   "Close X 20 px with a 16 px icon (Show close)"
+  ],
+  "rules": [
+   "Put it first in the Popover Content slot",
+   "Title names the task or the content (\"Filter by status\", \"Notifications\")",
+   "FILL the popover width; min 160, title wraps to 2 lines then ellipsis"
+  ],
+  "a11y": [
+   "The title labels the popover (aria-labelledby)",
+   "Close X: aria-label \"Close\"; Esc and outside click also close"
+  ],
+  "code": "custom: <div class=\"flex items-start gap-2\"> with a title, an optional muted description and a ghost icon Button (size-5).",
+  "guides": [
+   "skills/build-ui/components/popover.md"
+  ]
+ },
+ "Popover Footer": {
+  "summary": "Bottom of a Popover: Apply and Cancel on the right and an optional Reset on the left, like Dialog Footer.",
+  "use": [
+   "Popovers whose choices apply on a button press: filters, date ranges, column settings"
+  ],
+  "avoid": [
+   "Popovers that apply at once (a single select, a toggle): no footer",
+   "Confirmation of a risky action: use Confirm Popover"
+  ],
+  "anatomy": [
+   "Start (Show start, native slot): Button ghost sm \"Reset\"",
+   "Spacer (FILL)",
+   "Actions (native slot): Button outline sm \"Cancel\", Button default sm \"Apply\""
+  ],
+  "rules": [
+   "Put it last in the Popover Content slot",
+   "One primary action, on the right",
+   "FILL the popover width; min 240 (Reset, Cancel and Apply fit side by side)"
+  ],
+  "a11y": [
+   "Buttons in reading order: Reset, Cancel, Apply",
+   "Enter applies when focus is in the popover"
+  ],
+  "code": "custom: <div class=\"flex items-center gap-2\"> with the start button, <div class=\"flex-1\" /> and the actions.",
+  "guides": [
+   "skills/build-ui/components/popover.md",
+   "skills/build-ui/patterns/search-and-filter.md"
+  ]
+ },
+ "Collapsible": {
+  "summary": "A text trigger with a chevron that opens a Content slot in place, with no card or list around it.",
+  "use": [
+   "Advanced or optional fields in a form: Create Record Dialog, Record Form",
+   "Order summary lines on mobile checkout",
+   "Tool Call input and output",
+   "\"Show 3 more\" under a short list"
+  ],
+  "avoid": [
+   "Several stacked sections with titles: use Accordion",
+   "One long text: use Show More",
+   "Content most people need: show it"
+  ],
+  "anatomy": [
+   "Trigger: exposed Button Variant=link Size=sm with a trailing chevron (down when collapsed, up when expanded); edit its Label",
+   "Content (native slot): the fields or rows it opens; hidden but kept in State=collapsed",
+   "State: collapsed, expanded; gap spacing/3"
+  ],
+  "rules": [
+   "The label says what opens: \"Show advanced settings\" / \"Hide advanced settings\", \"Show 3 more line items\"",
+   "Open by default when a field inside has a value or an error",
+   "FILL the column; content FILLs too and follows its own components' rules"
+  ],
+  "a11y": [
+   "The trigger is a button with aria-expanded and aria-controls",
+   "Focus stays on the trigger after toggling"
+  ],
+  "code": "shadcn Collapsible (CollapsibleTrigger asChild with Button variant=\"link\" size=\"sm\", CollapsibleContent).",
+  "guides": [
+   "skills/build-ui/components/accordion.md"
+  ]
+ },
+ "Skeleton Preset": {
+  "summary": "Ready-made loading placeholders in the shape of common content, built from Skeleton shapes.",
+  "use": [
+   "Lists, inboxes and feeds: Type=list-row",
+   "Card grids: Type=card",
+   "Tables: Type=table-row under the real header",
+   "Stat Card and Metric Strip: Type=stat",
+   "Chart Card and Dashboard Widget: Type=chart"
+  ],
+  "avoid": [
+   "A layout no preset matches: draw it with Skeleton shapes",
+   "Short actions: use Spinner",
+   "Content that stays visible while it reloads: use Loading Overlay"
+  ],
+  "anatomy": [
+   "list-row: circle 40, two text lines, a trailing value",
+   "card: block 16:9, title and two lines, card surface",
+   "table-row: checkbox, avatar, name (FILL), status, two values, bottom border",
+   "stat: label, value, footnote, card surface",
+   "chart: title and subtitle, 10 bars, axis labels, card surface",
+   "Shapes are Skeleton instances (background/accent)"
+  ],
+  "rules": [
+   "Mirror the real layout so nothing moves when content arrives",
+   "Repeat rows 3 to 5 times, never more than the screen shows",
+   "Show only after ~300 ms",
+   "Every preset FILLs its column: min widths list-row 240, card 220, table-row 480, stat 160, chart 320"
+  ],
+  "a11y": [
+   "Mark the region aria-busy=\"true\" and announce \"Loading…\" once",
+   "No pulse animation with prefers-reduced-motion"
+  ],
+  "code": "shadcn Skeleton composed per preset; see code-mapping.",
+  "guides": [
+   "skills/build-ui/components/skeleton.md",
+   "skills/build-ui/patterns/loading-states.md",
+   "skills/build-ui/components/table.md"
+  ]
+ },
+ "Spot Illustration": {
+  "summary": "Twelve simple line illustrations bound to tokens, for empty states, results and onboarding.",
+  "use": [
+   "Empty State Media=illustration: first run, empty dashboards, no reports or connections yet",
+   "Result, Check Email, Welcome and Done steps, Waitlist joined",
+   "Media of a Callout Card (at 80)"
+  ],
+  "avoid": [
+   "Errors and no access in lists and tables: Empty State Media=icon",
+   "When a product screenshot or photo shows the value better: Image Placeholder",
+   "As a button, a status signal or decoration in dense UI"
+  ],
+  "anatomy": [
+   "Type: search, inbox, files, lock, success, error, upload, connection, calendar, chart, cart, team",
+   "Disc: background/muted, 104 px",
+   "Line drawing: foreground/default, 2 px strokes, round caps; surfaces background/default",
+   "One accent: background/primary (some parts at opacity/20)",
+   "120 x 120; every layer scales"
+  ],
+  "rules": [
+   "Pick the Type that names the object or the moment, not a mood",
+   "Sizes: 120 on pages, 80 in cards and panels, 160 at most; resize the instance, keep it square",
+   "One illustration per view",
+   "Follows every theme through tokens; never recolor by hand or flatten"
+  ],
+  "a11y": [
+   "Decorative: empty alt or aria-hidden; the title next to it carries the meaning"
+  ],
+  "code": "Inline SVGs (one React component per type) using currentColor for lines and var(--primary) for the accent; see code-mapping.",
+  "guides": [
+   "skills/build-ui/patterns/empty-state.md",
+   "skills/build-ui/patterns/result-pages.md"
+  ]
+ },
+ "Scrim": {
+  "summary": "The dimmed layer behind overlays and over media.",
+  "use": [
+   "Behind Dialog, Alert Dialog, Sheet, Drawer, Command Palette and the mobile menu: Tone=dialog",
+   "Over a photo or video so text and controls stay readable: Tone=media",
+   "A soft veil over busy or locked content: Tone=light"
+  ],
+  "avoid": [
+   "Popovers, menus and tooltips: no scrim",
+   "A gradient fade under text on an image: use the media/scrim-fade token on the image block"
+  ],
+  "anatomy": [
+   "Tone=dialog: dialog/overlay",
+   "Tone=media: media/scrim",
+   "Tone=light: background/default at opacity/80",
+   "640 x 400 by default; stretch to the frame it covers"
+  ],
+  "rules": [
+   "First layer of the frame it covers, constraints left and right plus top and bottom (or FILL)",
+   "Never draw a rectangle with the overlay color by hand",
+   "One scrim at a time; never stack dialogs"
+  ],
+  "a11y": [
+   "Content behind is inert (aria-hidden or inert) while a modal is open",
+   "A click on it closes only dismissible overlays"
+  ],
+  "code": "The shadcn DialogOverlay / SheetOverlay (bg-black/50), or <div class=\"absolute inset-0\"> with the token.",
+  "guides": [
+   "skills/build-ui/components/dialog.md",
+   "skills/build-ui/components/drawer.md"
   ]
  }
 }

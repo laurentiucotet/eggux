@@ -85,7 +85,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | File Upload | `File Item` | State: uploading, done, error | File name; Progress, cancel/remove, Retry |
 | File Upload | `Resource Item` | - | Icon (swap), Name, Meta, Show divider; Actions (native slot). A file people download or open |
 | File Upload | `File Preview` | State: ready, loading, unavailable | File name, Meta; zoom, download, close; page thumbnails; page count. Page area clips |
-| Progress | `Progress` | Tone: default, success, warning, error. Value: 0 to 100 by 10, plus 25, 75 (segmented: 0, 25, 50, 75, 100). Type: default, segmented | Pick the nearest Value step. segmented: Segments (native slot) of Progress Segment instances |
+| Progress | `Progress` | Tone: default, success, warning, error. Value: 0 to 100 by 10, plus 25, 75, indeterminate (segmented: 0, 25, 50, 75, 100). Type: default, segmented. Size: default (8), sm (4), lg (12) | Show label (off) + Label: a row above the bar with the label and an editable value text ("40%", "3 of 5"). indeterminate: Tone=default, no value text. Sizes and label on Type=default only. Pick the nearest Value step. segmented: Segments (native slot) of Progress Segment instances |
 | Progress | `Progress Segment` | State: complete, upcoming. Tone: default, success, warning, error | One segment of Progress Type=segmented; only inside its Segments slot, FILL width |
 | Progress | `Progress Ring` | Size: sm, default, lg. Value: 0, 25, 50, 75, 100 | Show label (percent inside on default and lg) |
 | Slider | `Slider` | Type: single, range. State: default, focus, disabled. Value: 0, 25, 50, 75, 100 (single; range is 50 only) | Value places the thumb; keep the number and marks in step. Range: move the thumb wrappers for other values. Stretches to any width; the thumbs stay 16 px and follow the value. Show value (Tooltip over each thumb), Show marks + Min label, Mid label, Max label |
@@ -184,10 +184,10 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Tooltip | `Tooltip` | Side: top, bottom, left, right. Variant: default, light | Label (wraps at 280), Title + Show title (rich), Show shortcut (Kbd exposed) |
 | Skeleton | `Skeleton` | Shape: text, circle, block | Resize instances to the real layout |
 | Alert | `Alert` | Variant: default, destructive, success, warning, info. Layout: inline, banner. Style: default, soft, accent | Title, Description, Show description, Actions (native slot) + Show actions, Show close |
-| Toast | `Toast` | Type: default, success, error, warning, info, loading. Style: default, inverted | Title, Description, Show description, Show action (nested Button exposed), Show close (off by default) |
+| Toast | `Toast` | Type: default, success, error, warning, info, loading. Style: default, inverted | Title, Description, Show description, Show action (nested Button exposed), Show close (off by default), Show avatar (Type=default, exposed Avatar sm), Show progress (exposed Progress Size=sm under the text) |
 | Dialog | `Dialog Header` | - | Title, Description, Show description, Show close. Media (native slot) + Show media |
 | Dialog | `Dialog Footer` | - | Actions (native slot) |
-| Dialog | `Dialog` | - | Header, Content, Footer (native slots); Show header, Show content, Show footer. Width sm 384, default 512, lg 672, xl 896 (resize) |
+| Dialog | `Dialog` | Size: default (512), sm (384), lg (672), xl (896), fullscreen (390 x 844, mobile) | Header, Content, Footer (native slots); Show header, Show content, Show footer. Pick the Size instead of resizing; Scrim Tone=dialog behind it |
 | Dialog | `Alert Dialog` | Type: confirm, destructive, acknowledge | Header, Content, Footer (native slots); Show content (off by default; type-to-confirm Field, what is lost). Status icon in the header Media slot |
 | Drawer | `Sheet` | Side: right, left | Side drawer, full height, 384 wide (480 forms, 640 record or preview). Header, Content, Footer (native slots) from Dialog Header/Footer |
 | Drawer | `Drawer` | - | Bottom drawer, top radius xl. Show handle; Header (no close), Content, Footer (native slots, stacked full-width buttons) |
@@ -303,7 +303,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Forms | `Block / Multi-step Form` | - | Stepper + Card with Combobox, Date Picker, Select, Textarea; Back / Continue |
 | Forms | `Block / Account Settings Form` | - | Long settings form: Error Summary, Form Sections, phone, date, currency and address inputs, Fieldset, Recurrence Picker, Requirement List, Action Bar |
 | Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
-| Empty State | `Empty State` | Size: default, sm. Media: icon, image | Title, Description, Show description, Icon (swap), Show actions; Actions (native slot) |
+| Empty State | `Empty State` | Size: default, sm. Media: icon, image, illustration. Tone: default, error (Media=icon only) | Title, Description, Show description, Icon (swap), Show actions; Actions (native slot). illustration: exposed Spot Illustration (120, sm 80). error: Error title, Error description, Try again Button, soft destructive tile |
 | Results | `Block / Result` | Type: not-found, server-error, no-access, maintenance, success | Show code; Actions (native slot) |
 | Commerce | `Product Card` | Layout: vertical, horizontal, overlay. State: default, sale, sold-out | Name, Variant text, Show action, Show wishlist, Price, Old price; sale: `Discount` Badge exposed (set the percentage in its Label); sold-out: `Sold out badge`. A product in a grid or carousel: photo, sale or sold-out badges, wishlist, name, variant text, Price and Old price, optional quick add. |
 | Commerce | `Block / Product Detail` | - | Gallery, options (Toggle Group), quantity, add to cart, details accordion |
@@ -585,6 +585,14 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Tooltip | `Info Tip` | Side: bottom, top | Title, Show title, Text, Link, Show link. 280 wide popover (background/popover, border, shadow/md, arrow) opened by click on an `Info Tip Trigger` |
 | Tooltip | `Info Tip Trigger` | State: default, hover, focus, open | 20 px info icon button that opens an Info Tip; used by Field Show info |
 | Input | `Field Counter` | Status: default, near, over | Count ("42 / 160"). Exposed in Field (Show counter) |
+| Illustrations | `Spot Illustration` | Type: search, inbox, files, lock, success, error, upload, connection, calendar, chart, cart, team | 120 x 120 line drawings: background/muted disc, foreground/default 2 px lines, background/default surfaces, one background/primary accent. Every layer scales: resize to 80 (cards, panels) or 160. Decorative. New page Illustrations after Imagery |
+| Alert | `Inline Message` | Type: default, info, success, warning, error, loading | Text. Icon and one line of status text, no box ("Saved 2 minutes ago", "Saving…"). Hugs up to 480, 2 lines then ellipsis; FILL in narrow columns. Status colors badge/soft-*-fg |
+| Card | `Callout Card` | Layout: horizontal (560, min 320), stacked (280, min 220) | Title, Description, Show media, Show actions, Show close; Media (Icon Tile brand by default, or a Spot Illustration), Actions (native slots). Upgrade, tip and announcement card |
+| Popover | `Popover Header` | - | Title, Description, Show description (off), Show close. First in the Popover Content slot; FILL, min 160 |
+| Popover | `Popover Footer` | - | Show start (off); Start (Reset ghost sm), Actions (Cancel outline sm, Apply default sm) native slots. Last in the Popover Content slot; FILL, min 240 |
+| Accordion | `Collapsible` | State: collapsed, expanded | Content (native slot, hidden but kept when collapsed). Trigger is an exposed Button link sm with a chevron: edit its Label ("Show advanced settings"). 400, FILL |
+| Skeleton | `Skeleton Preset` | Type: list-row, card, table-row, stat, chart | Built from Skeleton shapes; each FILLs its column (min 240, 220, 480, 160, 320) |
+| Dialog | `Scrim` | Tone: dialog, media, light | dialog/overlay, media/scrim, background/default at opacity/80. First layer of the frame it covers, stretched. Used by the App overlay blocks and Hero Full-bleed Image |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,
