@@ -22,6 +22,11 @@ Usage guidelines only. Visual specs live in the Figma components (File Upload pa
 - `File Dropzone` State: default, drag-over, error, disabled; Hint text; Browse button exposed.
 - `File Item` State: uploading (Progress + cancel), done (remove), error (reason + Retry +
   cancel); File name. Example "upload documents" (Field + dropzone + items).
+- File Item Layout=tile with Type=image for photo uploads in a grid; Layout=row elsewhere. File
+  Dropzone Size=sm (one row) inside forms, comments and chat; default for an upload page or step.
+- Show the file type with `File Type Icon` (pdf, document, sheet, slides, image, video, audio,
+  archive, code, generic; Size default 40, sm 32) next to file names when types mix. Example
+  "File Item tiles, File Dropzone sm and File Type Icon".
 
 ## Resource Item (downloads)
 - Files people take away: samples, templates, guides, brand assets. Name says what it is, not the

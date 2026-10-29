@@ -12,8 +12,10 @@ Usage guidelines only. Visual specs live in the Figma component (Editor page).
 ## Rules
 - Toolbar shows only the formats the content needs. Order: heading, bold, italic, underline,
   separator, lists, quote, separator, link. Add more (tables, images, mentions) only on request.
-- Every toolbar button has a tooltip with its shortcut (⌘B, ⌘I, ⌘U, ⌘K). Active formats use the
-  `on` state of `Toggle Group Item`.
+- The formatting bar is a `Toolbar` (Style default) of `Toggle`s sm in groups with
+  `Separator`s; narrow editors move the last groups into the overflow (see `button.md`).
+- Every toolbar button has a tooltip with its shortcut (⌘B, ⌘I, ⌘U, ⌘K). Active formats use
+  `Toggle` State=pressed.
 - Markdown shortcuts work (`**bold**`, `- ` for a list, `> ` for a quote); say so in the footer
   hint the first time.
 - Paste keeps structure (headings, lists, links) and drops foreign styling (fonts, colors).

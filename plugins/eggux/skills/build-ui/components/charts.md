@@ -12,6 +12,8 @@ validation: `references/tokens.md` § Data visualization.
 | Rank items (top customers, reasons) | Bar Chart Horizontal, sorted |
 | Intensity over two dimensions (day × hour, team × week) | Heatmap |
 | One number against a target (quota, budget, SLA) | Gauge, or Progress in tables and dense dashboards |
+| Progress to a goal, one to three goals | Radial Chart (one to three rings) |
+| Spread of values per group (delivery times, prices) | Box Plot, always with a table view |
 | Part of a whole with many parts or a hierarchy | Treemap (6+ parts); fewer parts read better as Bar Chart Horizontal |
 | Part of a whole over categories | Stacked bar (≤ 4 segments) |
 | Trend next to a number | Sparkline |
@@ -34,7 +36,9 @@ the legend showing values and percentages; to compare parts, use Bar Chart Horiz
   than the marks. Time range control (7 days / 30 days / 6 months) in the card header.
 - Every chart has a table view (toggle or "View data") for screen readers and exact values.
 - Empty: say why and what to do ("No sales yet in this period"); loading: Skeleton in the chart's
-  shape; error: inline Alert with retry.
+  shape; error: Empty State Tone=error with Try again. `Chart Card` State=loading, empty or error
+  replaces the chart in place; set the Empty State text on the exposed instance and keep the
+  period control. Example "Chart Card states".
 - Dark mode uses the same tokens; check the chart on `background/card`.
 - Stacked bars start with chart/1 at the base, like every other chart; one dashboard uses chart/1 to chart/6 so series stay distinct.
 - Give each chart on a dashboard its own `chart/N` color, and keep one color per measure across
@@ -50,6 +54,11 @@ not only colored; target tick), `Treemap` (tinted cells with a colored edge so l
 readable in every mode). In instances, chart lines and bars keep the master shape, so pick data
 that matches it or detach only in client files. Funnel Chart bars: set the track padding to set
 the share. Blocks: `Block / Analytics` and the dashboard blocks on the App page.
+- `Line Chart`: Show comparison for the previous period (dashed, named in the legend); Show
+  series 2 and 3 for more series; Type=stacked-area for parts of a total, Type=step for prices and
+  plans. Example "Line Chart styles".
+- `Radial Chart` Type single or concentric (Value, Label) and `Box Plot` (Show outliers, min 320)
+  go inside a Chart Card. Example "Radial Chart and Box Plot".
 - Radar, Sankey and Choropleth go inside a Chart Card Chart slot; turn off Show legend when the chart labels itself (Sankey, Choropleth).
 - Gauge: set Value, Min, Max and Target label in the panel, pick the tick with the exposed
   target's Target (50 to 95), and set the value arc on the "value" ellipse (Sweep = share x 50%) so

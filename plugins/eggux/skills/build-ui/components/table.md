@@ -21,6 +21,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Filtering and search follow `patterns/search-and-filter.md`.
 - Selection: checkbox column only when bulk actions exist. A toolbar with the bulk actions
   and "N selected" appears when something is selected.
+- Selection outside a table (card grids, boards, galleries, inboxes) uses `Bulk Action Bar` at
+  the bottom center; tables keep `Table Toolbar`.
 - More than ~50 rows: pagination or virtualized scroll. Show the total count.
 - Loading: skeleton rows matching the column layout (`patterns/loading-states.md`).
 - Empty: `patterns/empty-state.md`, inside the table area, keeping the header when filters are active.
@@ -59,6 +61,8 @@ columns and rows. Details: "Tables on auto-layout grid" in `references/figma-lib
 - Example: `Example / invoices with filters` and `Example / no results` (Table page).
 - Selection: checkbox column, header checkbox indeterminate on partial selection,
   `Table Toolbar` above the grid with "N selected" and the bulk actions.
+- `Bulk Action Bar`: Selection text, Show select all ("Select all 48"), Actions slot, Show clear.
+  Example "bulk selection in a grid" on the Table page.
 - Enterprise: copy `Template / data grid (enterprise)` (toolbar, chips, groups, totals,
   pagination). Grid rows must be HUG; see the API notes.
 - More cell parts: `Table Cell Link` (the record or a related object, underlined), `Table Cell Date`

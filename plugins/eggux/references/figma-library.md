@@ -151,21 +151,21 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Carousel | `Lightbox` | - | 1280 × 800 viewer on video/* tokens: Counter, Title, download, close, arrows, thumbnails |
 | Color Picker | `Color Picker` | - | Saturation area, hue slider, hex Input Group with opacity; Swatches (native slot) |
 | Cookie Consent | `Cookie Consent` | Type: banner, card, preferences | Title, Body. Accept all and Reject all with equal weight; Customize; categories with Switches, Necessary always on |
-| Kanban | `Kanban Card` | State: default, hover, dragging | Title, Due date, Show labels, Show meta; assignee exposed |
-| Kanban | `Kanban Column` | - | Title, Cards (native slot); count exposed |
+| Kanban | `Kanban Card` | State: default, hover, dragging | Title, Due date, Show labels, Show meta, Show cover (Image Placeholder exposed), Show priority (Badge sm exposed); assignee exposed |
+| Kanban | `Kanban Column` | State: default, drop-target, collapsed (48 wide) | Title, Limit + Show limit, Cards (native slot); count exposed |
 | Scheduler | `Gantt Bar` | Status: planned, in-progress, done, blocked | Label; tinted bar, colored edge, progress line, status icon |
 | Scheduler | `Gantt Milestone` | - | Label; diamond on the date |
-| Scheduler | `Calendar Event` | Size: default, sm. Series: 1-4 | Title, Time |
+| Scheduler | `Calendar Event` | Size: default, sm. Series: 1-4. State: default, selected, dragging (Size=default). Status: confirmed, tentative, cancelled (Size=default) | Title, Time |
 | Pagination | `Pagination Item` | Type: page, previous, next, ellipsis. State: default, hover, active, focus, disabled | Label (page) |
 | Pagination | `Pagination` | Style: numbered, simple, dots | Items (native slot, numbered); Label (simple, "Page 2 of 10"); dots: Carousel Indicator |
 | Pagination | `Pagination Compact` | - | Label ("Page 2 of 12"); previous and next Button Icon sm (exposed) |
 | Stepper | `Step` | Orientation: horizontal, vertical. State: completed, current, upcoming, error. Style: default, dots | Title, Description, Show description, Number, Show connector |
 | Stepper | `Stepper` | Orientation: horizontal, vertical. Style: default, dots | Steps (native slot, Steps with the same Orientation and Style) |
-| Description List | `Description List Item` | Orientation: horizontal, vertical | Label, Show divider; Value (native slot) |
+| Description List | `Description List Item` | Orientation: horizontal, vertical. Style: default, bordered (horizontal) | Label, Show divider, Show action (Copy Button xs exposed, horizontal); Value (native slot). bordered: muted label cell 96-192, border around the row |
 | Description List | `Meta Item` | - | Icon (swap, 16, muted), Label, Show icon. One fact: date, place, people, contact |
 | Description List | `Figure` | Layout: stacked, inline. Size: default, lg. Tone: default, on-primary (text in `foreground/primary`) | Value, Label, Source, Show source, Show divider. A number with what it counts; no trend. on-primary on primary bands |
 | Description List | `Summary Row` | Variant: default, discount, total | Label, Value. One line of a money breakdown, amount right aligned |
-| Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive. Layout: default, card, alternating-left, alternating-right | Title, Time, Description, Show description, Icon (swap), Show connector; Content (native slot) + Show content. card: the header wraps, so Time moves under the Title in narrow cards |
+| Timeline | `Timeline Item` | Tone: default, primary, success, warning, destructive. Layout: default, card, alternating-left, alternating-right, horizontal. Size: default, sm (Layout=default) | Title, Time, Description, Show description, Icon (swap), Show connector; Content (native slot) + Show content. card: the header wraps, so Time moves under the Title in narrow cards. horizontal: 200 wide, time above title. sm: 16 px dot, compact feed |
 | Menu | `Menu Item` | Variant: default, destructive. State: default, highlighted, disabled | Label, Show leading icon + Leading icon (swap), Show shortcut + Shortcut text, Checked, Description + Show description, Show submenu (chevron) |
 | Menu | `Menu Label` | - | Label |
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
@@ -194,19 +194,19 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Drawer | `Side Panel` | State: expanded (320), collapsed (48) | Inline aside, no overlay. Title, Collapsible, Show footer; Actions, Content, Footer (native slots) |
 | Card | `Card Header` | - | Title, Description, Show description, Show action, Show icon + Icon (swap). Action (native slot) |
 | Card | `Card Footer` | - | Actions (native slot) |
-| Card | `Card` | Variant: default, outline, muted, inverted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Padding and gap from `density/card-*` (16 / 12 in Compact) |
+| Card | `Card` | Variant: default, outline, muted, inverted. Size: default (24), sm (16). Elevation: false, true (toggle, shadow md). State: default, hover, focus (default and outline, Elevation false). Media: none, top (default and outline, Elevation false) | Header, Content, Footer (native slots, each with side padding); Show header, Show content, Show footer. Media=top: Image Placeholder 16:9 exposed. Padding and gap from `density/card-*` (16 / 12 in Compact) |
 | Card | `Stat Card` | Trend: up, down, neutral. Layout: vertical, compact, horizontal | Label, Value, Trend text, Footnote, Show footer, Show sparkline. Change Badge exposed: set its Label and Variant per instance (default tone follows Trend); trend line edited per instance |
-| Card | `Option Card` | Control: radio, checkbox. State: default, hover, focus, selected, disabled | Title, Description, Show description, Show icon + Icon (swap). Selectable card: a radio for one choice, a checkbox for several; the whole card is the target |
+| Card | `Option Card` | Control: radio, checkbox. State: default, hover, focus, selected, disabled. Layout: default, media (280, 16:9 preview), compact | Title, Description, Show description, Show icon + Icon (swap). Selectable card: a radio for one choice, a checkbox for several; the whole card is the target |
 | Card | `Entity Card` | State: default, hover, focus, selected | Title (2 lines), Description (1 line), Footer text; Show menu, Show tags, Show details, Show footer, Show actions, Show people; Leading (avatar, icon or 1:1 image), Tags, Details, Actions (native slots). Card padding sm tokens |
 | Card | `Person Card` | Layout: vertical (280), horizontal (400), photo (280, 3:4 photo) | Name, Role, Organization, Show organization, Show tags, Show contact, Show actions; Avatar, Tags, Contact (Meta Items), Actions (native slots) |
 | Card | `Event Card` | Layout: horizontal (640), vertical (352, image). Date position: text, image (vertical: tile over the image) | Title, Show tags, Show actions, Show image; Date Tile (exposed); Tags, Meta (Meta Items), Actions (native slots) |
 | Card | `Date Tile` | Size: default (56), sm (44) | Month, Day. Part of Event Card |
 | Card | `Progress Card` | Status: on-track, at-risk, off-track | Label, Value, Target (wraps under the value), Footnote; Progress exposed |
 | Card | `Post Card` | Layout: vertical, horizontal, compact, overlay. Size: default, sm (sm horizontal: image one third, 120-240) | Title, Excerpt, Date, Author, Show author, Show excerpt, Show image (compact: 1:1 image 64; horizontal: image half the width, 160-640); category Badge (layer `Badge`) exposed. Compact = title on 2 lines + meta, for related lists |
-| Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded | Content (native slot). Header hover/resizing show the resize handle |
+| Table | `Table Cell` | header: default, hover, resizing, dragging. body: default, hover, selected, editing, error. expanded. footer (totals). Style: default, striped (body default) | Content (native slot). Header hover/resizing show the resize handle. footer and striped on card/muted-background |
 | Table | `Table Cell Check` | Value: included, excluded, text | Text, Note, Show note. Plan comparison value in a table cell: included (check), excluded (dash) or a text value such as "100 GB" or "Unlimited", with an optional note ("per seat"). |
 | Table | `Table Cell Link`, `Table Cell Date`, `Table Cell File`, `Table Cell Badges`, `Table Cell Avatars` | - | Content for body cells: link (underlined), date (Show time), file (icon, name, size), badges (Badge List), people (Avatar Group sm) |
-| Table | `Table Header Label` | Sort: off, sortable, ascending, descending. Align: left, right | Label |
+| Table | `Table Header Label` | Sort: off, sortable, ascending, descending. Align: left, right | Label; Show info (Info Tip Trigger), Show menu (ellipsis Button Icon xs). Align=right truncates the label |
 | Table | `Table Cell Text` | Style: default, strong, muted. Align: left, right | Text |
 | Table | `Table Cell Stack` | - | Title, Description |
 | Table | `Table Cell User` | - | Name, Email, Show email. Avatar exposed |
@@ -384,7 +384,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Image | `Image Figure` | - | Caption, Show credit, Credit. An image with a caption under it (HTML figure and figcaption) for galleries, articles and docs. |
 | Input | `Copy Field` | State: default, copied | Value. A read-only value people copy and paste elsewhere: API key, invite link, webhook URL, reference code. |
 | Input | `Currency Input` | State: default, focus, error, disabled | Amount, Currency. An amount with its currency: a currency picker on the left and the amount right-aligned in the locale format. |
-| Input | `Date Input` | State: default, focus, error, disabled | Day, Month, Year. A date people type in day, month and year segments, with a calendar button that opens Date Picker. |
+| Input | `Date Input` | State: default, focus, error, disabled | Day, Month, Year. Segments hug 16-24 (year 32-44), centered |
 | Input | `Duration Input` | State: default, focus, error | Hours, Minutes. A length of time in hours and minutes for time entries, SLAs, reminders and meeting length. |
 | Input | `Inline Form` | State: default, error, success. Tone: default, on-primary (secondary Button; hint, error and success in `foreground/primary`) | Hint, Error, Success message, Show hint; Button exposed (set its Label). One field and one button on a line: newsletter sign-up, coupon code, invite by email, add a tag. |
 | Input | `Phone Input` | State: default, focus, error, disabled | Country, Number. Phone number with a country code picker; formats as people type and stores the number in E.164. |
@@ -615,6 +615,12 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Code Block | `Inline Code` | - | Code. Code style on background/muted, radius sm; hugs up to 320, 1 line with ellipsis |
 | Code Block | `Code Highlight` | Line: 1-8 | The highlighted line band (code/line-highlight) of a Code Block; only inside Code Block (exposed as highlight) |
 | Content | `Block / Article`, `Block / Legal Page` | - | Body now built on a Prose instance (Size default): Prose Headings, Paragraphs, List Items, plus Quote, Code Block and Alert in its Content slot |
+| Image | `Thumbnail` | Size: default 48, xs 24, sm 32, lg 64, xl 80. Ratio: 1:1, 4:3 | Show image + Image (swap: Image / *), Icon (fallback swap, shown on background/muted when Show image is off). 1 px border over the image. Products, files and listings in rows and tables; people use Avatar |
+| Table | `Table Cell Media` | - | Title, Meta, Show meta; Thumbnail (exposed, sm). Product, file or listing cell; min 160, title and meta truncate |
+| Table | `Table Cell Tree` | Level: 0, 1, 2, 3. Expander: collapsed, expanded, none | Label, Show icon + Icon (swap, folder). First-column content of tree rows, indent 24 per level; min 120 to 192 |
+| Table | `Column Settings` | - | Items (native slot of Column Settings Item), Show search, Show footer; Popover Header, Search Field, Popover Footer exposed. Opens from Columns in Data Grid Toolbar; 288, min 240 |
+| Table | `Column Settings Item` | State: default, hover, dragging, locked | Label; Checkbox exposed; grip handle; locked shows a lock and a disabled checkbox |
+| Chat | `Conversation Item` | State: default, hover, selected | Name, Message, Time, Show unread (Badge Count exposed), Show pinned, Show muted (bell-off); Avatar exposed. Inbox and chat lists; 360, min 240 |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,
@@ -627,7 +633,7 @@ text-quote, link, external-link, share-2, heading, code, git-branch, sparkles, z
 refresh-cw, square, paperclip, globe, wrench, mic, message-square, square-pen, play, pause,
 volume-2, maximize, captions, image, shield-check, key-round, lock, eye, pin, grip-vertical, sun,
 moon, folder, send, receipt, reply, user-plus, palette, languages, hash, printer,
-database, bookmark, headphones, podcast, bot.
+database, bookmark, headphones, podcast, bot, bell-off.
 
 ## Screens
 The SCREENS group (after BLOCKS) holds complete screens and templates to copy whole: pages Account,

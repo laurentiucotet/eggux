@@ -946,7 +946,9 @@
    "Card surface: background/card, shadow/xs",
    "Left bar in the category color (Category 1-4 = chart/1 to chart/4)",
    "Title",
-   "Time range (\"11:00 - 12:30\")"
+   "Time range (\"11:00 - 12:30\")",
+   "State (Size=default): default, selected (2 px border/ring outline), dragging (shadow/lg)",
+   "Status (Size=default): confirmed, tentative (dashed outline in the calendar color, background/default), cancelled (card/muted-background, title at 70%)"
   ],
   "rules": [
    "Height = duration; 30 min or less uses Size=compact",
@@ -954,14 +956,20 @@
    "Overlapping events sit side by side",
    "Month view: up to 3 per day, then \"+N more\" opens the day in a Popover",
    "Click opens details in a Popover or Sheet; confirm moves that notify others",
-   "Resize: the event clips to its time slot; title 1 line with an ellipsis; time 1 line (Size=default fills, Size=sm hugs next to the title)"
+   "Resize: the event clips to its time slot; title 1 line with an ellipsis; time 1 line (Size=default fills, Size=sm hugs next to the title)",
+   "Selected while its details are open; one selected event at a time",
+   "Dragging shows the new time in Time while moving",
+   "Tentative for invites not answered and holds; cancelled stays visible until the day passes, never deleted silently",
+   "Cancelled is not shown by color only: say \"Cancelled\" in the details and strike the title in code"
   ],
   "a11y": [
    "Each event is focusable and its name includes title, date and time",
    "Moving and resizing also work without drag, from the event details",
-   "The calendar or type is written in the details, not only shown by color"
+   "The calendar or type is written in the details, not only shown by color",
+   "Status is part of the event name: \"Weekly sync, cancelled, 16:00 to 16:30\"",
+   "Cancelled text keeps 4.5:1: title 7.3:1 Light, time 4.54:1 Light"
   ],
-  "code": "custom grid, or FullCalendar themed with tokens.",
+  "code": "custom grid, or FullCalendar themed with tokens. selected: ring-2 ring-ring; dragging: shadow-lg; tentative: border border-dashed border-[color] bg-background; cancelled: bg-muted/50 line-through opacity-70 on the title.",
   "guides": [
    "skills/build-ui/components/boards-and-calendars.md"
   ]
@@ -973,7 +981,9 @@
    "Variant=outline inside panels, dialogs and long lists of cards",
    "Variant=muted for secondary or summary information and placeholders",
    "Variant=inverted for the one card that must stand out on a page (an upgrade offer, a key summary)",
-   "Size=sm for grids of many cards, sidebars and dashboards"
+   "Size=sm for grids of many cards, sidebars and dashboards",
+   "State=hover and focus: cards that are one link as a whole (use cases, category tiles, folders, help categories)",
+   "Media=top: article, template and integration tiles with a picture"
   ],
   "avoid": [
    "A status message: use Alert, or a Badge inside the card",
@@ -985,7 +995,9 @@
    "Header slot (Card Header): Icon (Show icon, Icon swap, 20 px), Title, Description, Action slot top right",
    "Content slot",
    "Footer slot (Card Footer): Actions slot",
-   "Inverted default slot content is recolored: titles background/default, descriptions background/default at opacity/70, ghost icons background/default"
+   "Inverted default slot content is recolored: titles background/default, descriptions background/default at opacity/70, ghost icons background/default",
+   "State (Variant default and outline, Elevation false): default, hover (shadow/md, border/strong), focus (2 px ring). Interactive outline cards get the background/card surface",
+   "Media: none, top (full-bleed 16:9 Image Placeholder, exposed, radius/xl top corners; Header follows after the card gap)"
   ],
   "rules": [
    "Never nest cards in cards",
@@ -997,16 +1009,19 @@
    "Padding comes from density/card-* tokens; change the tokens, never single instances",
    "Turn off Show header or Show footer when unused; never detach",
    "Card Header icon: on all cards of a row or none; it names the card type, never decorates",
-   "Content you place in an inverted card's slots uses inverted colors: text background/default (opacity/70 for secondary), Buttons secondary or outline, never default (primary is under 3:1 on the inverted surface in Corporate)"
+   "Content you place in an inverted card's slots uses inverted colors: text background/default (opacity/70 for secondary), Buttons secondary or outline, never default (primary is under 3:1 on the inverted surface in Corporate)",
+   "Hover and focus only on cards with a single destination; static cards stay State=default",
+   "Media=top: one image Ratio per grid; images crop, never stretch"
   ],
   "a11y": [
    "A clickable card is one link with a hover state and a focus ring",
    "The Card Header Title is a heading at the right level for the page",
    "Action slot Button Icons have labels and tooltips",
    "The Card Header icon is decorative (aria-hidden); the Title carries the meaning",
-   "Inverted text is background/default on foreground/default: 19.8:1 Light, 19.0:1 Dark, 17.9:1 Corporate Light; secondary text at 70% stays above 7:1"
+   "Inverted text is background/default on foreground/default: 19.8:1 Light, 19.0:1 Dark, 17.9:1 Corporate Light; secondary text at 70% stays above 7:1",
+   "Focus ring meets 3:1: border/ring 5.17:1 Light, 4.87:1 Dark on background/card"
   ],
-  "code": "shadcn Card + cva: variant (default, outline, muted, inverted = bg-foreground text-background border-foreground), size (default, sm), elevated (shadow-md). CardHeader icon: optional Lucide icon (size-5) before CardTitle.",
+  "code": "shadcn Card + cva: variant (default, outline, muted, inverted = bg-foreground text-background border-foreground), size (default, sm), elevated (shadow-md). CardHeader icon: optional Lucide icon (size-5) before CardTitle. Hover: hover:shadow-md hover:border-foreground/20 transition-shadow; focus: focus-visible:ring-2 ring-ring on the wrapping link. Media: img aspect-video object-cover rounded-t-xl as the first child with pt-0 on the card.",
   "guides": [
    "skills/build-ui/components/card.md"
   ]
@@ -1999,7 +2014,9 @@
    "Details card on a record page",
    "Details of one object in a Sheet",
    "What is requested in an approval",
-   "Orientation=vertical in narrow columns and grids of 2-3"
+   "Orientation=vertical in narrow columns and grids of 2-3",
+   "Style=bordered: dense record details, invoice headers and product specs read like a table",
+   "Show action: IDs, keys, URLs and references people copy"
   ],
   "avoid": [
    "Editable fields: use Field with Input, or Inline Edit for single rows",
@@ -2009,7 +2026,9 @@
   "anatomy": [
    "Label: a short noun in sentence case",
    "Value slot: text, Badge, Avatar + name, or a link",
-   "Divider (off on the last row)"
+   "Divider (off on the last row)",
+   "Style: default; bordered (horizontal): label on a muted cell (card/muted-background, 96 to 192 wide, 2:3 with the value), border around the row",
+   "Show action (horizontal): Copy Button xs after the value, exposed (swap for a pencil Button Icon to edit)"
   ],
   "rules": [
    "Horizontal (label column 160) in cards and sheets; vertical in narrow columns",
@@ -2017,14 +2036,18 @@
    "Values never repeat the label; long values wrap",
    "One Edit action per card, not a pencil per row",
    "Fill the Value slot in the instance; never detach",
-   "Resize: horizontal keeps the 160 label column; label and value wrap (value fills); vertical label and value fill the width"
+   "Resize: horizontal keeps the 160 label column; label and value wrap (value fills); vertical label and value fill the width",
+   "Stack bordered items with -1 spacing so borders overlap; one Style per list",
+   "Show action only on values people copy or edit often; never on every row",
+   "Resize (bordered): the label cell takes 2/5 of the width between 96 and 192, the value the rest (min 120); below 276 use Orientation=vertical"
   ],
   "a11y": [
    "Code as dl with dt and dd, so each label is read with its value",
    "Statuses in the Value slot are Badges with text, not color alone",
-   "Muted empty values still keep 4.5:1"
+   "Muted empty values still keep 4.5:1",
+   "Copy buttons are named \"Copy <label>\" and announce \"Copied\""
   ],
-  "code": "Custom dl with dt/dd and a Tailwind grid; no shadcn component.",
+  "code": "Custom dl with dt/dd and a Tailwind grid; no shadcn component. Bordered: dl className=\"divide-y rounded-md border\" with rows grid grid-cols-[minmax(6rem,12rem)_1fr], dt bg-muted/50 border-r px-4 py-3. Action: Copy Button size xs.",
   "guides": [
    "skills/build-ui/components/description-list.md",
    "skills/build-ui/patterns/record-page.md",
@@ -3095,7 +3118,9 @@
    "Title",
    "Due date (Show meta)",
    "Comments count",
-   "Assignee Avatar"
+   "Assignee Avatar",
+   "Cover image (Show cover, exposed Image Placeholder 16:9)",
+   "Priority Badge sm (Show priority, exposed): High soft-destructive, Medium soft-warning, Low soft-neutral"
   ],
   "rules": [
    "Max 2-3 labels",
@@ -3103,14 +3128,16 @@
    "Click opens the item in a Sheet",
    "Each card has a \"Move to...\" menu",
    "Never delete on drop",
-   "Resize: min width 224; labels wrap to more lines; title up to 3 lines; due date hugs up to 80 and the comment count up to 28, both 1 line with ellipsis"
+   "Resize: min width 224; labels wrap to more lines; title up to 3 lines; due date hugs up to 80 and the comment count up to 28, both 1 line with ellipsis",
+   "Covers only on visual boards (content, design, marketing); never on every card of a dense board",
+   "Priority only when it drives the order; text in the badge, not color alone"
   ],
   "a11y": [
    "Keyboard: Space picks up, arrows move, Space drops; announce the new column and position",
    "Labels carry text, not only color",
    "The card is a focusable button named by its title"
   ],
-  "code": "Kanban parts: dnd-kit + custom.",
+  "code": "Kanban parts: dnd-kit + custom. Cover: img aspect-video rounded-md object-cover; priority Badge size sm.",
   "guides": [
    "skills/build-ui/components/boards-and-calendars.md"
   ]
@@ -3128,24 +3155,30 @@
   ],
   "anatomy": [
    "Title: fills the header, 1 line with ellipsis (count and actions sit at the right)",
-   "Count (Badge Count), or \"3 / 5\" with a WIP limit",
+   "Count (Badge Count) and the WIP limit (Show limit, Limit text \"Limit 5\")",
    "Header actions (Button Icon)",
    "Cards slot of Kanban Cards",
-   "Add card (Button)"
+   "Add card (Button)",
+   "State: default, drop-target (background/accent, dashed 2 px border/ring), collapsed (48 wide: count and title turned 90 degrees, cards hidden)"
   ],
   "rules": [
-   "Count in the header; WIP limit shown as \"3 / 5\" and a warning when exceeded",
+   "Count in the header; with Show limit, set the count Badge Count to Variant=destructive when it passes the limit",
    "Columns scroll vertically; the board scrolls horizontally",
    "Moving to a final stage (Done, Lost) may ask for a reason",
    "Always offer a list or table view of the same items",
-   "Resize: min width 256; the title fills and stays on 1 line with ellipsis, the count and actions keep their size at the right"
+   "Resize: min width 256; the title fills and stays on 1 line with ellipsis, the count and actions keep their size at the right",
+   "drop-target only while a card is dragged over the column",
+   "Collapse columns people rarely open (Done, Archived); the count stays visible",
+   "Resize: collapsed is 48 wide and hugs its height"
   ],
   "a11y": [
    "Column is a labeled region named by its title and count",
    "WIP warning is text, not only color",
-   "Drop placeholder shows where the card lands"
+   "Drop placeholder shows where the card lands",
+   "Collapsed columns are buttons named \"<Title>, <n> cards, expand\"",
+   "Drop target is announced (\"Over In progress\") during keyboard moves"
   ],
-  "code": "Kanban parts: dnd-kit + custom.",
+  "code": "Kanban parts: dnd-kit + custom. drop-target: bg-accent outline-dashed outline-2 outline-ring; collapsed: w-12 with [writing-mode:vertical-rl] title.",
   "guides": [
    "skills/build-ui/components/boards-and-calendars.md"
   ]
@@ -3600,7 +3633,9 @@
   "use": [
    "Choosing one of 2-4 options that each need a description (Control=radio)",
    "Turning on several add-ons, modules or channels (Control=checkbox)",
-   "Onboarding choices where each option needs a sentence of context"
+   "Onboarding choices where each option needs a sentence of context",
+   "Layout=media: theme, template and layout pickers with a preview",
+   "Layout=compact: delivery options with carrier logos and short lists in dialogs"
   ],
   "avoid": [
    "Many options or short labels: use Radio or Select",
@@ -3611,20 +3646,24 @@
    "Icon (optional, Show icon + Icon)",
    "Title",
    "Description (Show description)",
-   "Control: Radio (Control=radio) or Checkbox (Control=checkbox)"
+   "Control: Radio (Control=radio) or Checkbox (Control=checkbox)",
+   "Layout: default; media (280 wide, 16:9 preview on top as exposed Image Placeholder, then title, description and control; no icon); compact (12 padding, 32 icon tile, description on 1 line)"
   ],
   "rules": [
    "The whole card is the click target",
    "Control=radio: exactly one selected; Control=checkbox: any number",
    "State: default, hover, focus, selected, disabled",
-   "Group 2-6 cards in a column or a grid with the same height"
+   "Group 2-6 cards in a column or a grid with the same height",
+   "One Layout per group",
+   "Media previews show the option itself (the theme, the template), not decoration",
+   "Resize: media 240 to 320 wide in a grid; compact fills its column, title and description 1 line with ellipsis"
   ],
   "a11y": [
    "The group is a radiogroup with a label; arrow keys move between options",
    "Selected shows by the radio and the border, not color alone",
    "State=focus shows the focus ring on the card"
   ],
-  "code": "shadcn RadioGroup or Checkbox with a Label wrapping a Card (has-[:checked]:ring-2).",
+  "code": "shadcn RadioGroup or Checkbox with a Label wrapping a Card (has-[:checked]:ring-2). Media: Card with img aspect-video rounded-md above the label row; compact: p-3 gap-3 items-center, description truncate.",
   "guides": [
    "skills/build-ui/components/card.md"
   ]
@@ -5053,7 +5092,8 @@
   "use": [
    "Data people compare across attributes, sort or scan",
    "Data grids people work in all day: invoices, orders, tickets",
-   "Copy Template / invoices table (grid) and change columns and rows"
+   "Copy Template / invoices table (grid) and change columns and rows",
+   "Column Settings opens from Columns in Data Grid Toolbar to show, hide and reorder columns"
   ],
   "avoid": [
    "One item at a time or few attributes: use a list or cards",
@@ -5061,12 +5101,16 @@
    "Key-value details of one record: use Description List Item rows"
   ],
   "anatomy": [
-   "Type=header with Table Header Label (Label, Sort, Align)",
+   "Type=header with Table Header Label (Label, Sort, Align, Show info: Info Tip Trigger after the label, Show menu: ellipsis Button Icon xs for the column menu)",
    "Type=body with Table Cell Text, Table Cell Stack or Table Cell User",
+   "Products, files and listings: Table Cell Media (Thumbnail sm exposed, Title, Meta, Show meta)",
+   "Tree rows: Table Cell Tree in the first column (Level 0-3, Expander collapsed, expanded, none; Label, Show icon, Icon)",
    "Rich body content: Table Cell Amount, Status (Badge + Note that fills the cell and ends with an ellipsis), Progress, Link, Date, File, Badges, Avatars",
    "Plan comparison values: Table Cell Check (Value=included|excluded|text, Text, Note)",
    "Last column: Table Cell Actions (edit and menu)",
-   "Type=expanded: one detail cell spanning all columns"
+   "Type=expanded: one detail cell spanning all columns",
+   "Type=footer: totals row (card/muted-background, top border) with Table Cell Text Style=strong and Table Cell Amount",
+   "Style=striped (body, State=default): every second row on card/muted-background"
   ],
   "rules": [
    "Every cell of a row uses the same State (hover, selected)",
@@ -5078,16 +5122,24 @@
    "One date format per column (Table Cell Date); time under it only when it matters",
    "Links in a cell (Table Cell Link) go where the row goes; one link per row besides the row",
    "Comparison tables: Table Cell Check centered in plan columns; excluded is a dash, never blank",
-   "Table Cell Status: set it to FILL in the cell so a long Note truncates with an ellipsis; hugging, the note shows in full"
+   "Table Cell Status: set it to FILL in the cell so a long Note truncates with an ellipsis; hugging, the note shows in full",
+   "Footer: one totals row under the body; label left (\"Total, 4 products\"), sums right-aligned",
+   "Stripes only for wide read-only tables (reports, invoices, plan comparison); hover and selected look the same with or without stripes",
+   "Tree rows: indent 24 per level up to Level 3; leaf rows use Expander=none so labels line up; Level 3 needs at least 192",
+   "Show menu on the hovered or focused header only; Show info for metric definitions",
+   "Resize: Table Cell Media min 160 (text column min 96, title and meta 1 line with ellipsis); Table Cell Tree min 120 to 192 by level, label 1 line with ellipsis; Header Label Align=right truncates the label, Align=left labels hug (keep them short)"
   ],
   "a11y": [
    "Header cells are th; the sorted column has aria-sort",
    "Sortable headers are buttons reachable with the keyboard",
    "Row icon buttons have a tooltip and an aria-label with the row: \"Edit invoice INV-1041\"",
    "Row checkboxes have labels: \"Select INV-1041\"",
-   "Table Cell Check icons read \"Included\" or \"Not included\" (visually hidden text)"
+   "Table Cell Check icons read \"Included\" or \"Not included\" (visually hidden text)",
+   "Tree rows: role=\"treegrid\", aria-level and aria-expanded on the row; Right and Left arrows expand and collapse",
+   "Header menu and info buttons have labels: \"Column options for Amount\", \"More about Amount\"",
+   "Footer is a tfoot row; striped and footer muted text keeps 4.54:1 Light, 6.0:1 Dark, 6.92:1 Corporate Light"
   ],
-  "code": "shadcn Table + TanStack Table; cell renderers in column defs, amounts with Intl.NumberFormat; Table Cell Check = Check or Minus icon with sr-only text, or the value.",
+  "code": "shadcn Table + TanStack Table; cell renderers in column defs, amounts with Intl.NumberFormat; Table Cell Check = Check or Minus icon with sr-only text, or the value. Footer: TableFooter. Striped: [&_tr:nth-child(even)]:bg-muted/50. Tree: TanStack getSubRows + row.depth padding (pl-6 per level). Media: Thumbnail + truncate column. Header menu: DropdownMenu on a ghost icon Button.",
   "guides": [
    "skills/build-ui/components/table.md",
    "skills/build-ui/patterns/enterprise-apps.md"
@@ -5391,29 +5443,34 @@
   ]
  },
  "Timeline Item": {
-  "summary": "One event in an activity history: record history, audit trail, order tracking. Layout=card puts the content in a card; Layout=alternating-left and alternating-right place it on either side of a center line.",
+  "summary": "One event in an activity history: record history, audit trail, order tracking. Layout=card puts the content in a card; Layout=alternating-left and alternating-right place it on either side of a center line. Layout=horizontal runs left to right; Size=sm is a compact feed.",
   "use": [
    "Activity column on a record page",
    "Order or shipment tracking",
    "Changes made by the system, listed in order",
    "Layout=card: events with a note, attachment or diff in the Content slot",
-   "Layout=alternating-left / alternating-right: milestones and company history on marketing pages"
+   "Layout=alternating-left / alternating-right: milestones and company history on marketing pages",
+   "Layout=horizontal: roadmaps, company history and order steps in a row on wide screens",
+   "Size=sm: activity feeds in side panels, Record Preview Sheet and Order Detail"
   ],
   "avoid": [
    "Conversations between people: use Comment",
    "Filterable change history: use the Audit Log with Change Item",
    "Steps the user still has to complete: use Stepper",
-   "Alternating layouts in apps or below 768: use Layout=default"
+   "Alternating layouts in apps or below 768: use Layout=default",
+   "Layout=horizontal below 640 or with more than 6 items: use the vertical list"
   ],
   "anatomy": [
-   "Layout: default, card, alternating-left, alternating-right. Tone: default, primary, success, warning, destructive",
+   "Layout: default, card, alternating-left, alternating-right, horizontal. Tone: default, primary, success, warning, destructive. Size: default, sm (Layout=default)",
    "Icon in a circle colored by Tone (Icon)",
    "Connector line to the next item (Show connector)",
    "Title: what happened",
    "Time: \"2 h ago\" (in alternating layouts on the other side of the line)",
    "Description: who and where (Show description)",
    "Content slot: note excerpt, attachment or diff (Show content)",
-   "card: Title, Time, Description and Content in a bordered card (radius/base, padding spacing/4); the header wraps, so Time moves under the Title when the card is narrower than about 200 px (Title keeps at least 120 px)"
+   "card: Title, Time, Description and Content in a bordered card (radius/base, padding spacing/4); the header wraps, so Time moves under the Title when the card is narrower than about 200 px (Title keeps at least 120 px)",
+   "horizontal: 200 wide; dot and a connector to the right, then Time, Title, Description below",
+   "sm: 16 px dot, ui/label-small title, caption description (2 lines), 16 below each item"
   ],
   "rules": [
    "Newest first; one event per item",
@@ -5424,14 +5481,16 @@
    "Alternating: switch alternating-left and alternating-right item by item, starting with left",
    "One Layout per timeline (alternating counts as one)",
    "Layout=card in narrow columns (5 per row on a 1152 container): keep titles to 2 or 3 words per line; never resize the title layer",
-   "Resize: the title fills (at least 96, 2 lines with an ellipsis); the time hugs up to 128 with an ellipsis; the description 3 lines"
+   "Resize: the title fills (at least 96, 2 lines with an ellipsis); the time hugs up to 128 with an ellipsis; the description 3 lines",
+   "Horizontal: items in a row with no gap so connectors meet; connector off on the last item",
+   "Size=sm: one size per feed; keep descriptions to one line of facts"
   ],
   "a11y": [
    "The timeline is an ordered list",
    "The outcome is in the Title text, not only in the Tone color",
    "The time element carries the full timestamp in its datetime attribute"
   ],
-  "code": "custom ol (code mapping: Description List, Timeline = custom dl / ol). Card: li content in a Card (rounded-xl border p-4). Alternating: grid grid-cols-[1fr_auto_1fr] with odd items in column 1 and even items in column 3; stack to Layout=default below md.",
+  "code": "custom ol (code mapping: Description List, Timeline = custom dl / ol). Card: li content in a Card (rounded-xl border p-4). Alternating: grid grid-cols-[1fr_auto_1fr] with odd items in column 1 and even items in column 3; stack to Layout=default below md. Horizontal: ol className=\"flex\" with li w-[200px] and a flex-1 border-t connector after the dot. sm: size-4 dot, text-xs.",
   "guides": [
    "skills/build-ui/components/description-list.md",
    "skills/build-ui/components/comments-and-chat.md",
@@ -6778,7 +6837,7 @@
    "Arrow keys change the focused segment; typing a full segment moves to the next",
    "Validate on blur; errors name the rule: \"Date must be after 1 Jan 2026\"",
    "Pasting a full date fills all segments",
-   "Resize: min width 160; day, month and year segments keep their width and truncate a value that does not fit"
+   "Resize: min width 160; day and month segments hug at least 16 and up to 24, the year 32 to 44, centered, so 2-digit values never truncate"
   ],
   "a11y": [
    "Each segment is a spinbutton with a label (\"Day\", \"Month\", \"Year\") inside a group labelled by the Field",
@@ -12873,6 +12932,117 @@
   "code": "Recharts has no box plot: draw with ComposedChart (stacked Bar for the box, ErrorBar for whiskers, Scatter for outliers), or use visx BoxPlot or ECharts boxplot.",
   "guides": [
    "skills/build-ui/components/charts.md"
+  ]
+ },
+ "Thumbnail": {
+  "summary": "A small framed image of a product, file or listing, 24 to 80 wide, with a fallback icon when there is no image.",
+  "use": [
+   "Products in Line Item, Mini Cart, Order Row and admin tables (Table Cell Media)",
+   "Leading image in List Item and Search Result Item for products, media and listings",
+   "Files with a preview image in attachment lists and file grids"
+  ],
+  "avoid": [
+   "People: use Avatar",
+   "Company and app logos: use Logo Tile",
+   "Large images in cards or galleries: use Image Placeholder with a Ratio"
+  ],
+  "anatomy": [
+   "Size: default 48, xs 24, sm 32, lg 64, xl 80 (the width)",
+   "Ratio: 1:1, 4:3 (3/4 as tall as wide)",
+   "Image (Show image, Image swap: any Image / * component, cropped to the frame)",
+   "Fallback Icon on background/muted (Icon swap: image, file-text, package, receipt, folder) when Show image is off",
+   "1 px border/default border drawn over the image; radius/sm (xs, sm), radius/md (default, lg), radius/lg (xl)"
+  ],
+  "rules": [
+   "Fixed size: pick another Size, never stretch or resize the instance",
+   "One Size and Ratio per list",
+   "Missing image: turn Show image off and pick a fallback icon that names the type",
+   "Resize: fixed width and height per Size; the image crops to fill"
+  ],
+  "a11y": [
+   "Meaningful images have alt text naming the item; a thumbnail next to the item name is decorative (alt=\"\")",
+   "The fallback icon is decorative; the item name carries the meaning",
+   "Border keeps the edge visible on white images (3:1 not required for decorative frames)"
+  ],
+  "code": "<img className=\"size-12 rounded-md border object-cover\"> (sizes size-6, size-8, size-12, size-16, size-20; 4:3 adds aspect-[4/3] with h-auto); fallback div with bg-muted grid place-items-center and a lucide icon.",
+  "guides": [
+   "skills/build-ui/components/carousel.md",
+   "skills/build-ui/components/table.md"
+  ]
+ },
+ "Column Settings": {
+  "summary": "Popover to show, hide and reorder the columns of a data table, opened from Columns in Data Grid Toolbar.",
+  "use": [
+   "Data Table, User Directory, Grouped Table and enterprise data grids with more columns than fit",
+   "Saved views that store the visible columns per user"
+  ],
+  "avoid": [
+   "Tables with 5 columns or fewer: show them all",
+   "Filtering rows: use Faceted Filter or Filter Builder",
+   "Sorting: use the header (Table Header Label Sort or Show menu)"
+  ],
+  "anatomy": [
+   "Popover Header (exposed): \"Columns\", close",
+   "Search Field (Show search, exposed): for more than 8 columns",
+   "Items (native slot) of Column Settings Item: grip, Checkbox (exposed), Label; State default, hover, dragging, locked",
+   "Popover Footer (Show footer, exposed): Reset, Cancel, Apply",
+   "288 wide (popover tokens, shadow/md), min 240"
+  ],
+  "rules": [
+   "Items list columns in their table order; dragging changes the order",
+   "The identifying column is State=locked: always shown, no grip",
+   "Keep at least one column visible; disable the last checked box",
+   "Reset returns to the default columns of the view",
+   "Show footer off when changes apply at once; on when Apply saves a view",
+   "Resize: 288 by default, min 240; labels end with an ellipsis on one line; grip, checkbox and lock keep their size"
+  ],
+  "a11y": [
+   "The list is a listbox or a list of checkboxes with the column names as labels",
+   "Reorder works without drag: Alt + Arrow up or down moves the focused column, announced with its new position",
+   "The popover traps focus and Escape closes it, returning focus to Columns"
+  ],
+  "code": "shadcn Popover + Input + Checkbox list with dnd-kit sortable (TanStack column.getIsVisible / toggleVisibility, setColumnOrder); footer Buttons.",
+  "guides": [
+   "skills/build-ui/components/table.md",
+   "skills/build-ui/components/popover.md"
+  ]
+ },
+ "Conversation Item": {
+  "summary": "One conversation in a chat or inbox list: who, the last message, when, and how many are unread.",
+  "use": [
+   "Inbox list pane, Team Chat direct messages and channels",
+   "Support Chat Widget home with recent conversations",
+   "Mobile chat lists"
+  ],
+  "avoid": [
+   "Email threads with subject lines: use List Item with a description",
+   "Notifications: use Notification Item",
+   "The messages themselves: use Chat Message"
+  ],
+  "anatomy": [
+   "Avatar (exposed): photo, initials or a group icon; Show status for presence",
+   "Name (1 line, ellipsis)",
+   "Show pinned (pin icon), Show muted (bell-off icon)",
+   "Time of the last message (hugs, max 96)",
+   "Message: the last message on one line with an ellipsis",
+   "Badge Count (Show unread, exposed: Count)",
+   "State: default, hover, selected (the open conversation)"
+  ],
+  "rules": [
+   "Newest first; pinned conversations on top",
+   "Prefix your own last message with \"You: \"",
+   "Time: time today, \"Yesterday\", weekday this week, then the date",
+   "Muted conversations show no unread count (use Badge Count Type=dot at most)",
+   "Resize: 360 by default, min 240; Name and Message truncate, Time, icons and badge keep their size"
+  ],
+  "a11y": [
+   "Each item is a link or option named \"<Name>, <n> unread, <last message>, <time>\"",
+   "Unread count is text in the name, not only the badge",
+   "Selected uses aria-current or aria-selected"
+  ],
+  "code": "custom: button/link with Avatar, flex min-w-0 column (name truncate, message truncate text-muted-foreground), time text-xs shrink-0, Badge count shrink-0.",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md"
   ]
  }
 }

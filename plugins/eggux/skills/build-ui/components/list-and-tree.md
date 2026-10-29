@@ -18,6 +18,9 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Long lists follow `patterns/search-and-filter.md` and `patterns/loading-states.md`.
 - Show leading and Show trailing hide the slots for text-only rows (settings, links); compact
   lists turn Show description off.
+- Group long lists with `List Group Header`: Variant=muted and sticky for day or letter groups
+  (notifications, a directory A to Z), default inside cards. Show count for the group size, Show
+  action for one group action ("Mark all as read"). Example "List Group Header".
 
 ## Tree Item
 - Indent 16 px per level; at most 4 levels visible (deeper data needs a different structure).

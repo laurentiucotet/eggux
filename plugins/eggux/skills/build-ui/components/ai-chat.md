@@ -8,7 +8,7 @@ which surface and the behavior rules: `patterns/ai-chat.md`.
 | `Prompt Input` | State: default, focus, streaming, disabled. Content: placeholder, filled | Main input: Attachments and Tools slots, voice, send (stop while streaming) |
 | `Attachment` | Type: file, image. State: default, uploading, error | File in the input or above a user message |
 | `User Message` | - | Muted bubble on the right, hugs short text, max 576 |
-| `Assistant Message` | State: default, streaming, error | Full-width answer with a small avatar; Content slot; copy, regenerate, good, bad |
+| `Assistant Message` | State: default, streaming, error, stopped | Full-width answer with a small avatar; Content slot; copy, regenerate, good, bad |
 | `Reasoning` | State: running, collapsed, expanded | Thinking status and its summary |
 | `Tool Call` | Status: running, done, error, approval | An action the assistant runs; approval waits for the user |
 | `Sources`, `Source Item` | - | Sources under an answer, numbered like the Citations |
@@ -32,6 +32,10 @@ which surface and the behavior rules: `patterns/ai-chat.md`.
 - The conversation column is 768 (`layout/container/3xl`); in the panel everything is FILL.
 - Message actions appear on hover on desktop and always on touch. Each icon button has a
   tooltip: Copy, Regenerate, Good response, Bad response, Edit.
+- After Regenerate show the branch counter (Show branch, "2 of 3"); after Stop use Assistant
+  Message State=stopped, never error.
+- Long answers (reports, documents) use `Prose` in the Content slot (`content.md`); text the
+  assistant changed is marked with `Highlight` Tone=ai.
 - Prompt Input: hide Tools and voice where they do not apply (panel, inline). A draft left in the
   input is State=default, Content=filled.
 - Icons: `sparkles` marks AI (use it for AI entry points, not decoration), `square` is Stop,

@@ -3,7 +3,10 @@
 Usage guidelines only. Visual specs live in the Figma components (Progress, Slider pages).
 
 ## Progress
-- Determinate only: the share is known (upload, import, profile completion, step 3 of 5).
+- Determinate when the share is known (upload, import, profile completion, step 3 of 5);
+  Value=indeterminate only until the total is known.
+- Size sm (4 px) in rows, toasts and dense cards, lg (12 px) for one key bar; default elsewhere.
+  Show label puts the label and the value ("40%") above the bar. Example "Progress styles".
 - Unknown duration: Spinner under ~3 s, Skeleton for content, progress text for long jobs
   ("Importing 1 240 rows…"). See `patterns/loading-states.md`.
 - Show the number or the remaining count next to the bar; never only color.
@@ -19,6 +22,13 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
 - Figma: Type=segmented holds `Progress Segment` instances (State complete or upcoming, Tone) in the
   Segments slot; Value sets 0 to 4 of 4 complete. Add or remove segments and set each State for
   other counts. Example "Progress styles".
+
+## Top Loading Bar
+- Route and region loads over 300 ms show `Top Loading Bar` (2 px) at the top edge of the page or
+  region; content placeholders stay Skeleton. Also a reading progress line under an article
+  header.
+- Figma: `Top Loading Bar` Value (indeterminate, 30, 60, 90), Show track (decoration only).
+  Example "Top Loading Bar" on the Progress page.
 
 ## Slider
 - For a value on a continuous scale where approximate is fine (price range, radius, volume).

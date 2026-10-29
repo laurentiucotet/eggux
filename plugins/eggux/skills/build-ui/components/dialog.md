@@ -26,10 +26,13 @@ Usage guidelines only. Visual specs live in the Figma component.
   `Dialog Footer` (Actions slot) and `Dialog` with native slots Header, Content and Footer.
 - `Alert Dialog`: same pieces, Header with Show close off, no Content, footer Cancel + destructive.
 - `Sheet` and `Drawer` reuse `Dialog Header` and `Dialog Footer`; see `drawer.md`.
-- Overlay behind both: `dialog/overlay`. See the "dialog over page" example on the Dialog page.
-- Width: sm 384 for a short confirmation, default 512 for a form with a few fields, lg 672 for a
-  table, a preview or a longer form, xl 896 only for side-by-side content. Resize the instance.
-  Example "dialog sizes".
+- Overlay behind both: `Scrim` Tone=dialog (`dialog/overlay`). See the "dialog over page"
+  example on the Dialog page.
+- Pick `Dialog` Size instead of resizing: sm 384 for a short confirmation, default 512 for a form
+  with a few fields, lg 672 for a table, a preview or a longer form, xl 896 only for side-by-side
+  content. On mobile use Size=fullscreen or a Drawer. Example "Dialog sizes".
+- `Scrim` Tone: dialog behind dialogs, sheets and drawers; media over images under text (hero,
+  lightbox); light to dim content under a local overlay. Never a hand-drawn rectangle.
 
 ## Alert Dialog types
 | Type | When | Buttons |

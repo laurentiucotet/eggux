@@ -497,7 +497,10 @@
   {
    "main": "Option Card",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Option Card styles"
+   ]
   },
   {
    "main": "Post Card",
@@ -783,6 +786,14 @@
    "examples": [
     "Example / team thread with mentions and reactions"
    ]
+  },
+  {
+   "main": "Conversation Item",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Conversation list"
+   ]
   }
  ],
  "Chip": [
@@ -941,7 +952,10 @@
   {
    "main": "Description List Item",
    "helpers": [],
-   "block": "124:2163"
+   "block": "124:2163",
+   "examples": [
+    "Example / Description List Item styles"
+   ]
   },
   {
    "main": "Meta Item",
@@ -1339,6 +1353,14 @@
    "main": "Image Figure",
    "helpers": [],
    "block": "206:2004"
+  },
+  {
+   "main": "Thumbnail",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Thumbnail in a product list"
+   ]
   }
  ],
  "Input": [
@@ -1465,12 +1487,18 @@
   {
    "main": "Kanban Card",
    "helpers": [],
-   "block": "140:2631"
+   "block": "140:2631",
+   "examples": [
+    "Example / Kanban styles"
+   ]
   },
   {
    "main": "Kanban Column",
    "helpers": [],
-   "block": "140:2631"
+   "block": "140:2631",
+   "examples": [
+    "Example / Kanban styles"
+   ]
   }
  ],
  "Kbd": [
@@ -1959,7 +1987,10 @@
   {
    "main": "Calendar Event",
    "helpers": [],
-   "block": "141:2756"
+   "block": "141:2756",
+   "examples": [
+    "Example / Calendar Event styles"
+   ]
   },
   {
    "main": "Gantt Bar",
@@ -2276,11 +2307,14 @@
     "Table Cell File",
     "Table Cell Badges",
     "Table Cell Avatars",
-    "Table Cell Check"
+    "Table Cell Check",
+    "Table Cell Media",
+    "Table Cell Tree"
    ],
    "block": "181:923",
    "examples": [
-    "Example / table cell types"
+    "Example / table cell types",
+    "Example / Table Cell styles"
    ]
   },
   {
@@ -2309,6 +2343,16 @@
    "block": null,
    "examples": [
     "Example / bulk selection in a grid"
+   ]
+  },
+  {
+   "main": "Column Settings",
+   "helpers": [
+    "Column Settings Item"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Table Cell styles"
    ]
   }
  ],

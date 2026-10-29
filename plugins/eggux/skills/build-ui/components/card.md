@@ -7,6 +7,8 @@ Usage guidelines only. Visual specs live in the Figma component.
   from the page.
 - Object cards show the attributes marked "card" in `objects.md`, in that order.
 - Do not nest cards in cards. Inside a card, separate groups with spacing or a `Separator`.
+- Text between two lines ("or continue with", "Today") is `Separator` Show label (Show start
+  line off puts the label at the start), never a hand-drawn row. Example "Separator styles".
 
 ## Anatomy
 Header (title `body/large`, optional description `body/small` muted, optional action top right)
@@ -94,5 +96,11 @@ Stat Card, Option Card and Post Card use the same tokens.
   280 and 720 wide, for every variant, sm, Dark, Compact and Corporate Light.
 - `Entity Card` Show people hides the Avatar Group in the footer when people do not matter for the
   object.
+- To suggest one thing (upgrade, tip, announcement) use `Callout Card`: Layout=horizontal in
+  content, stacked in sidebars, one primary action and a dismiss that is remembered (Show close).
+  Media slot for an Icon Tile or a Spot Illustration. Example "Callout Card".
+- `Product Card` (rules in `patterns/commerce.md`): Show swatches when the product comes in
+  colors (4 max); Size=sm for dense grids and Mini Cart recommendations. Example "Product Card
+  styles".
 - `Link Preview` shows a pasted URL as a card in comments, chat and notes. `Location Card` shows an
   office, store or venue with address, phone, hours and directions; grids of 3 or next to a `Map`.
