@@ -424,14 +424,18 @@
    "helpers": [
     "Calendar Day"
    ],
-   "block": "93:1683"
+   "block": "93:1683",
+   "examples": [
+    "Example / Calendar options"
+   ]
   },
   {
    "main": "Date Picker",
    "helpers": [],
    "block": "93:316",
    "examples": [
-    "Example / Date Picker styles"
+    "Example / Date Picker styles",
+    "Example / Date range filter"
    ]
   },
   {
@@ -439,13 +443,32 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / Time Picker styles"
+    "Example / Time Picker styles",
+    "Example / Availability time ranges"
    ]
   },
   {
    "main": "Date Range Picker",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Date Time Picker",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Date Time Picker"
+   ]
+  },
+  {
+   "main": "Month Picker",
+   "helpers": [
+    "Month Picker Cell"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Month Picker"
+   ]
   }
  ],
  "Card": [
@@ -807,6 +830,14 @@
    "examples": [
     "Example / brand colors",
     "Example / Swatch styles"
+   ]
+  },
+  {
+   "main": "Color Input",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Color Input"
    ]
   }
  ],
@@ -1701,6 +1732,16 @@
    "examples": [
     "Example / Popover Header and Footer"
    ]
+  },
+  {
+   "main": "Mention Menu",
+   "helpers": [
+    "Mention Option"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Mention Menu"
+   ]
   }
  ],
  "Pricing": [
@@ -1875,7 +1916,8 @@
    "helpers": [],
    "block": "67:2442",
    "examples": [
-    "Example / Select styles"
+    "Example / Select styles",
+    "Example / Select ghost and leading"
    ]
   },
   {
@@ -1883,7 +1925,8 @@
    "helpers": [],
    "block": "93:316",
    "examples": [
-    "Example / Combobox styles"
+    "Example / Combobox styles",
+    "Example / Combobox create option"
    ]
   },
   {
@@ -1918,7 +1961,8 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / customer picker in a new invoice"
+    "Example / customer picker in a new invoice",
+    "Example / Combobox create option"
    ]
   },
   {

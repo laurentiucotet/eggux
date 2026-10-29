@@ -94,8 +94,8 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled. Size: default, sm, lg | Label, Show label, Description, Show description |
 | Selection controls | `Setting Row` | - | Title, Description, Show description, Show divider; Control (native slot: Switch, Select, Button) |
 | Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Content (native slot); clips its content; thin scrollbar on border/default |
-| Select | `Select` | Style: default, filled. Size: default, sm, lg. State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value, Show clear. Read-only hides the chevron. Open state = Select (focus) + Menu with Checked on the selected item |
-| Select | `Combobox` | Size: default, sm, lg. State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value, Show clear. Searchable select trigger (chevrons-up-down); opens a Command |
+| Select | `Select` | Style: default, filled, ghost. Size: default, sm, lg. State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value, Show clear; Label + Show label (ghost, "Sort by:"); Show leading icon + Leading icon (swap), Show avatar (Avatar xs exposed), Show status dot (Status Dot exposed). Open state = Select (focus) + Menu with Checked on the selected item. ghost hugs, for sort and period switches |
+| Select | `Combobox` | Size: default, sm, lg. State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value, Show clear; Show leading icon + Leading icon (swap), Show avatar, Show status dot. Searchable select trigger (chevrons-up-down); opens a Command |
 | Select | `Tag` | State: default, disabled. Tone: default, category-1 to category-8. Size: default 24, sm 20 | Label, Show remove, Show avatar + Avatar (exposed), Show leading icon + Leading icon (swap). Label truncates at 192 |
 | Select | `Tag Input` | Size: default, sm, lg. State: default, focus, error, disabled | Tags (native slot), Show chevron |
 | Select | `Person Option` | Selected: false, true. State: default, hover | Name, Description, Show detail; Checkbox and Avatar (exposed) |
@@ -106,10 +106,10 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Popover | `Command` | - | Command Input (exposed), Items (native slot), Show empty, Show items. Base for Combobox and ⌘K |
 | Popover | `Hover Card` | - | Content (native slot), 320 wide |
 | Popover | `Command Dialog` | - | Command Input (exposed), Items (native slot), footer with key hints. 560 wide |
-| Calendar | `Calendar Day` | State: default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end | Day |
-| Calendar | `Calendar` | - | Month. Monday-first month grid, prev/next ghost Button Icons |
-| Calendar | `Date Picker` | Size: default, sm, lg. State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value. Calendar icon; opens Calendar in a popover |
-| Calendar | `Time Picker` | Size: default, sm, lg. State: default, focus, error, disabled. Content: placeholder, filled | Value. Clock icon; opens a Menu of times |
+| Calendar | `Calendar Day` | State: default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end, booked | Day; Show dot (4 px event dot), Show note + Note ("€89", grows to 36). booked: muted with a strike line, not pickable |
+| Calendar | `Calendar` | Caption: label, dropdown. Months: 1, 2 | Month, Second month, Show week numbers. Monday-first month grid, prev/next ghost Button Icons; dropdown has month and year Selects (ghost sm); 2 months side by side (498) |
+| Calendar | `Date Picker` | Type: single, range. Size: default, sm, lg. State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value (single), Range (range, "1 Oct to 31 Oct 2026"). Calendar icon; single opens Calendar in a popover, range opens Date Range Picker |
+| Calendar | `Time Picker` | Type: single, range. Size: default, sm, lg. State: default, focus, error, disabled. Content: placeholder, filled | Value (single); Range "09:00 to 10:30", Duration "1 h 30 min", Show duration (range, 240, lg 280, min 220). Clock icon; opens a Menu of times |
 | Calendar | `Date Range Picker` | - | Presets (native slot), Summary, Show presets; two Calendars; Cancel / Apply |
 | Chart | `Bar Chart` | Type: single, grouped, stacked | Bars ≤ 24, 4 px data-end radius, 2 px gaps; y axis, grid, x labels |
 | Chart | `Line Chart` | Type: line, area | 2 px lines, end dots with surface ring, area at opacity/10 |
@@ -427,7 +427,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Search | `Search Result Item` | Type: page, record, person, file, media, product, event, answer | One result on a search page. Text properties are per type (pick the Type first): page Title, Snippet, Path, Section, Updated; record Record, Record details; person Name, Role, Email; file File name, File details, Owner; media Media title, Media summary, Media details; product Product, Product summary; event Event, When and where; answer Question, Answer, Sources (slot). Show path, Show meta, Show action, Show feedback, Icon (swap) |
 | Select | `Address Autocomplete` | - | Query, Show suggestions. Address field with suggestions as people type; a pick fills the address fields below it. |
 | Select | `Recurrence Picker` | Frequency: daily, weekly, monthly | Show summary. How often something repeats: interval and unit, the days or the day, when it ends, and a summary sentence. |
-| Select | `Select Option` | Type: icon, avatar, none. State: default, highlighted | Title, Description, Show description, Checked, Icon. A rich option in a Select, Combobox or Menu list: icon or avatar, title, a muted second line and a check when selected. |
+| Select | `Select Option` | Type: icon, avatar, none, create. State: default, highlighted | Title, Description, Show description, Checked, Icon; Create label (create: plus, "Create label \"Urgent\""). A rich option in a Select, Combobox or Menu list |
 | Sharing | `Access Row` | Type: editable, owner, pending | Name, Email. One person or group with access to an object in a share dialog: avatar, Name and Email, and their role. |
 | Sharing | `Invite Row` | - | Show role. Adds people to an object or a workspace: email or name with suggestions from the directory, the role they get, and Invite. |
 | Sharing | `Share Link Row` | Type: restricted, anyone | General access of an object at the bottom of a share dialog: who can open the link, and Copy link. |
@@ -593,6 +593,10 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Accordion | `Collapsible` | State: collapsed, expanded | Content (native slot, hidden but kept when collapsed). Trigger is an exposed Button link sm with a chevron: edit its Label ("Show advanced settings"). 400, FILL |
 | Skeleton | `Skeleton Preset` | Type: list-row, card, table-row, stat, chart | Built from Skeleton shapes; each FILLs its column (min 240, 220, 480, 160, 320) |
 | Dialog | `Scrim` | Tone: dialog, media, light | dialog/overlay, media/scrim, background/default at opacity/80. First layer of the frame it covers, stretched. Used by the App overlay blocks and Hero Full-bleed Image |
+| Calendar | `Date Time Picker` | - | Calendar (exposed), Times (native slot of Time Slots in a scrolling column), Summary, Show footer (Cancel / Apply). Date and time in one popover (373); the trigger is a Date Picker showing "22 Oct 2026, 14:30" |
+| Calendar | `Month Picker` | Type: month, quarter, year | Period ("2026"), Decade ("2020 to 2031"). Grid of Month Picker Cells (State: default, hover, focus, current, selected, disabled; Label) for report periods, statements and expiry; 250 wide, cells fill |
+| Popover | `Mention Menu` | - | Header, Show header, Items (native slot of Mention Options: Type person, item; State default, highlighted; Match, Name, Description, Show description, Icon). The @ suggestion list, 280 wide, typed part in foreground/brand |
+| Color Picker | `Color Input` | State: default, focus, error, disabled | Value ("#2563EB"), Opacity, Show opacity. Field with a color swatch (override its fill) and hex that opens Color Picker; 240, min 180 |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,

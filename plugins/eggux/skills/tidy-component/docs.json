@@ -876,17 +876,24 @@
    "Inside a Popover for Date Picker",
    "Inline for bookings with availability, with time slots next to it",
    "Two months side by side for ranges on desktop",
-   "A small month with event dots on mobile schedules"
+   "A small month with event dots on mobile schedules",
+   "Caption=dropdown: dates far away (date of birth with a calendar, expiry) and year jumps",
+   "Months=2: ranges and booking on desktop",
+   "Show week numbers: week-based planning (sprints, shifts, payroll weeks)",
+   "Calendar Day Show note: prices or places left in booking; Show dot: days with events in Agenda and Scheduler mini calendars"
   ],
   "avoid": [
-   "Far-away dates known by heart (birth date, document expiry): use a text Input with a date mask",
-   "Planning many events: use the scheduler month view"
+   "Far-away dates known by heart (birth date, document expiry): use Date Input; Caption=dropdown when a calendar is still wanted",
+   "Planning many events: use the scheduler month view",
+   "Picking a month, quarter or year: use Month Picker"
   ],
   "anatomy": [
-   "Month",
+   "Caption: label (Month between the arrows) or dropdown (month and year Selects, ghost sm)",
+   "Months: 1, or 2 side by side (Second month; previous arrow on the first, next on the second)",
    "Previous and next Button Icons (ghost)",
+   "Week numbers (Show week numbers): ISO week column, muted caption",
    "Weekday header",
-   "Grid of Calendar Days: today, selected, range, outside, disabled"
+   "Grid of Calendar Days: State default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end, booked; Show dot; Show note + Note"
   ],
   "rules": [
    "Today is always marked (State=today)",
@@ -895,15 +902,21 @@
    "Days of adjacent months use State=outside (muted)",
    "Ranges use range-start, range-middle and range-end",
    "Needs at least 250 wide (seven 32 px day cells, minWidth 250); fits every column from 1/4 (276) up, below that use Date Input",
-   "Month label: 1 line with ellipsis, centered between the arrows"
+   "Month label: 1 line with ellipsis, centered between the arrows",
+   "Calendar Day: dot or note, not both; notes are 4 characters or fewer (\"€89\", \"Full\"); rows with notes grow to 36",
+   "Booked days (taken, sold out) stay visible with a strike line and cannot be picked; disabled is for days outside the allowed range",
+   "Months=2 needs at least 500 wide (minWidth from two grids); below that use Months=1",
+   "Show week numbers adds 32 (282 wide)"
   ],
   "a11y": [
    "Arrows move by day, PageUp/PageDown by month, Enter selects, Esc closes",
    "Each day has a full date label (\"Thursday, 22 October 2026\")",
    "Today and selected are not color alone (aria-current, aria-selected)",
-   "The focused day shows the focus ring (State=focus)"
+   "The focused day shows the focus ring (State=focus)",
+   "Booked days are announced as unavailable (\"24 October, booked\"); notes are part of the day label (\"21 October, 79 euros\")",
+   "Dropdowns are labelled Month and Year"
   ],
-  "code": "shadcn Calendar (react-day-picker) with weekStartsOn and the product locale.",
+  "code": "shadcn Calendar (react-day-picker) with weekStartsOn and the product locale; captionLayout=\"dropdown\" (formatMonthDropdown short), numberOfMonths={2}, showWeekNumber; DayButton with a dot or note and modifiers.booked.",
   "guides": [
    "skills/build-ui/components/date-picker.md",
    "skills/build-ui/components/boards-and-calendars.md",
@@ -1579,7 +1592,8 @@
   "use": [
    "Long option lists: country, customer, product",
    "Users know what they want and type it",
-   "Adding people or values in share dialogs and filters"
+   "Adding people or values in share dialogs and filters",
+   "With Show avatar for customers, people and owners; with an icon for record types"
   ],
   "avoid": [
    "6-15 options without search: use Select",
@@ -1588,30 +1602,29 @@
   ],
   "anatomy": [
    "Label (from Field)",
-   "Trigger with Value: placeholder or filled (Content)",
+   "Leading (off by default): Show leading icon + Leading icon (swap), Show avatar (Avatar xs, exposed), Show status dot (Status Dot, exposed)",
+   "Trigger with Value: placeholder or filled (Content); Show clear",
    "chevrons-up-down icon",
    "Open: Command 4 px below, with Command Input showing the query",
-   "Matching Menu Items, Checked on the selected one",
-   "Clear (Show clear): x icon before the chevrons",
-   "Size: default 36, sm 32, lg 40",
-   "State=read-only: background/muted, no chevrons"
+   "Matching Select Options or Menu Items, Checked on the selected one; Select Option Type=create last when people may add"
   ],
   "rules": [
    "No match: \"No results for <query>\" (Command Empty on, Show items off)",
-   "Offer \"Create <query>\" when the user may create",
+   "Offer Select Option Type=create (\"Create customer \\\"Nord\\\"\") as the last item when people may create",
    "Show recent or suggested options before typing",
    "Long lists load asynchronously with a loading row, never an empty dropdown",
    "A single choice closes the list after the pick",
    "Resize: the value truncates to 1 line with an ellipsis; the chevron keeps its size",
    "State: default, focus, error, disabled, read-only; Size: default, sm, lg",
-   "Show clear empties the value and keeps focus on the trigger"
+   "Show clear empties the value and keeps focus on the trigger",
+   "The trigger leading matches the leading of the options"
   ],
   "a11y": [
    "Visible label; the trigger exposes aria-expanded",
    "Typing filters, arrows move, Enter picks, Escape closes and returns focus to the trigger",
    "\"No results\" is announced, not only shown"
   ],
-  "code": "shadcn Popover + Command (the shadcn Combobox recipe). Size: Button trigger className \"h-8\" (sm) or \"h-10 text-base\" (lg). read-only: no Popover, a bg-muted field.",
+  "code": "shadcn Popover + Command (the shadcn Combobox recipe); leading Avatar or icon before the value in the trigger Button.",
   "guides": [
    "skills/build-ui/components/select.md",
    "skills/build-ui/components/popover.md",
@@ -1883,23 +1896,24 @@
   ]
  },
  "Date Picker": {
-  "summary": "A date field that opens a Calendar in a Popover.",
+  "summary": "A date field that opens a Calendar in a Popover; Type=range is the field for a period and opens Date Range Picker.",
   "use": [
    "Dates in the near future or past: due dates, deadlines, filters, bookings",
    "Due dates on invoices and tasks",
-   "Single-date filters in a list or report"
+   "Single-date filters in a list or report",
+   "Type=range: report periods, dashboard and Audit Log filters, stays and bookings (\"1 Oct to 31 Oct 2026\")",
+   "As the trigger of Month Picker (\"October 2026\", \"Q3 2026\") and Date Time Picker (\"22 Oct 2026, 14:30\")"
   ],
   "avoid": [
    "Birth dates and far-away dates: use a text Input with a mask and an optional calendar button",
-   "A period: use Date Range Picker",
-   "A time: add a Time Picker next to it"
+   "A time: add a Time Picker next to it",
+   "A period with presets and two months open by default on a phone: use one Calendar in a Drawer"
   ],
   "anatomy": [
-   "Value or placeholder (\"Pick a date\")",
+   "Type: single (Value, \"Pick a date\") or range (Range, \"1 Oct to 31 Oct 2026\"; truncates to 1 line)",
+   "Size: default 36, sm 32, lg 40; State: default, focus, error, disabled, read-only; Content: placeholder, filled",
    "Calendar icon",
-   "Calendar in a Popover, 4 px below, shadow/md (open state)",
-   "Size: default 36, sm 32, lg 40",
-   "State=read-only: background/muted, full-contrast value; nothing opens"
+   "Open: Calendar in a Popover, 4 px below, shadow/md; range opens Date Range Picker; date and time opens Date Time Picker"
   ],
   "rules": [
    "Format follows the locale (\"22 Oct 2026\")",
@@ -1908,14 +1922,17 @@
    "Today is marked; unavailable dates are disabled with the reason",
    "State: default, focus, error, disabled, read-only; Size: default, sm, lg",
    "sm in report and filter bars; lg in booking and mobile forms",
-   "Resize: the value fills and truncates; the icon keeps its size"
+   "Resize: the value fills and truncates; the icon keeps its size",
+   "Range format: \"6 Oct to 19 Oct 2026\" (one year at the end when both dates share it); a preset name may lead (\"Last 14 days: 6 Oct to 19 Oct\")",
+   "Resize: the value truncates to 1 line with an ellipsis; a full range needs about 240 (lg 280); the icon keeps its size"
   ],
   "a11y": [
    "The field has a visible label, read together with the value",
    "Opening moves focus to the selected day or today; Esc closes and returns focus",
-   "Arrows move by day, PageUp/PageDown by month, Enter selects"
+   "Arrows move by day, PageUp/PageDown by month, Enter selects",
+   "Range: the trigger is read as \"Period, 6 October to 19 October 2026\"; the panel announces the length"
   ],
-  "code": "shadcn Calendar (react-day-picker) in Popover (Date Picker recipe). Size: trigger Button className \"h-8\" (sm) or \"h-10 text-base\" (lg). read-only: a bg-muted field without the Popover.",
+  "code": "shadcn Calendar (react-day-picker) in Popover (Date Picker recipe); Type=range: mode=\"range\" with the Date Range Picker panel.",
   "guides": [
    "skills/build-ui/components/date-picker.md"
   ]
@@ -4313,24 +4330,26 @@
    "Size=sm: filter bars, Data Grid Toolbar, rows per page, dense forms",
    "Size=lg: hero and mobile forms",
    "State=read-only: a value shown in a form that cannot be changed there (plan, owner after approval)",
-   "Show clear: filters and optional values that can be emptied"
+   "Show clear: filters and optional values that can be emptied",
+   "Style=ghost: sort, period and rows-per-page switches in list headers, Chart Cards, Activity Feed and Product Grid (\"Sort by: Newest\")",
+   "Leading: Status Dot for status and priority, Avatar for assignee and owner, an icon for language, currency or category"
   ],
   "avoid": [
    "2-5 options worth seeing: use Radio",
    "More than 15 options, or users know what to type: use Combobox",
    "Several values: use Tag Input or a Checkbox group",
-   "Actions, not a value: use Menu"
+   "Actions, not a value: use Menu",
+   "Style=ghost inside a form: use default or filled so the field looks editable"
   ],
   "anatomy": [
    "Label (from Field)",
-   "Style: default (border/input) or filled (background/muted fill, no border until focus or error; placeholder in input/filled-muted-foreground)",
-   "Trigger with Value: placeholder or filled (Content)",
+   "Style: default (border/input), filled (background/muted, no border until focus or error) or ghost (no border or fill, hugs its text)",
+   "Label (Show label, ghost only): inline muted text before the value (\"Sort by:\")",
+   "Leading (off by default): Show leading icon + Leading icon (swap), Show avatar (Avatar xs, exposed), Show status dot (Status Dot, exposed, label off)",
+   "Trigger with Value: placeholder or filled (Content); Show clear",
    "chevron-down icon",
    "Open: Menu under the trigger, Checked on the selected Menu Item",
-   "Error message (from Field)",
-   "Clear (Show clear): x icon before the chevron",
-   "Size: default 36, sm 32, lg 40 (body/default text)",
-   "State=read-only: background/muted, no chevron, value foreground/default"
+   "Error message (from Field)"
   ],
   "rules": [
    "No preselection unless one option is clearly right; never preselect something with consequences",
@@ -4341,16 +4360,21 @@
    "Use the same Style as the other controls in the form",
    "State: default, focus, error, disabled, read-only; Size: default, sm, lg",
    "Match the Size of the Inputs and Buttons in the same row",
-   "Resize: the value truncates to 1 line; icons keep their size"
+   "Resize: the value truncates to 1 line; icons keep their size",
+   "One leading part at a time, and the same leading on every option in the open list (Select Option Leading)",
+   "Ghost: padding spacing/2 (lg spacing/3); the value is medium weight and truncates at 200 with an ellipsis; the whole row stays one line",
+   "Resize: default and filled FILL their column with the value truncating; ghost hugs"
   ],
   "a11y": [
    "The visible label is tied to the trigger",
    "Enter, Space or arrows open; arrows move, Enter selects, Escape closes",
    "Typing a letter jumps to the matching option",
    "Focus ring in border/ring (State=focus)",
-   "Style=filled: placeholder 7:1 on the fill (input/filled-muted-foreground); focus ring 4.7:1 on the fill"
+   "Style=filled: placeholder 7:1 on the fill (input/filled-muted-foreground); focus ring 4.7:1 on the fill",
+   "Ghost: the inline label is part of the accessible name (\"Sort by, Newest\"); the focus ring still shows (State=focus)",
+   "Status Dot color is never the only cue: the value names the status"
   ],
-  "code": "shadcn Select. Style=filled: SelectTrigger className \"bg-muted border-transparent shadow-none focus-visible:border-ring\". Size: SelectTrigger size=\"sm\" (h-8) or className \"h-10 text-base\" for lg. read-only: render the value as a read-only Input-like div (bg-muted) without the trigger. Clear: a ghost icon button that resets the value.",
+  "code": "shadcn Select. Style=filled: SelectTrigger className \"bg-muted border-transparent shadow-none focus-visible:border-ring\". Style=ghost: SelectTrigger className \"w-auto border-transparent bg-transparent shadow-none px-2 gap-1\" with a muted label span. Leading: an icon, Avatar size-5 or status dot inside SelectValue.",
   "guides": [
    "skills/build-ui/components/select.md",
    "skills/build-ui/components/dropdown-menu.md",
@@ -5241,31 +5265,35 @@
   "use": [
    "Bookings where only some times are valid: steps of 15 or 30 min",
    "Logs and reminders where any minute is valid: typing hh:mm",
-   "Next to a Date Picker for date + time"
+   "Next to a Date Picker for date + time",
+   "Type=range: availability rows, shifts, meetings and bookings (\"09:00 to 10:30\" and \"1 h 30 min\")"
   ],
   "avoid": [
    "Booking with availability across days: use Calendar with time slots",
    "A date only: use Date Picker"
   ],
   "anatomy": [
-   "Value or placeholder (\"Select time\")",
+   "Type: single (Value, \"Select time\") or range (Range \"09:00 to 10:30\"; Duration \"1 h 30 min\", Show duration)",
+   "Size: default 36, sm 32, lg 40; State: default, focus, error, disabled; Content: placeholder, filled",
    "Clock icon",
-   "Menu of times, Checked on the selected one (open state)",
-   "Size: default 36, sm 32, lg 40"
+   "Menu of times, Checked on the selected one (open state); range opens two lists, start and end"
   ],
   "rules": [
    "Format follows the locale: 24 h in most of Europe (\"10:30\"), 12 h in the US (\"10:30 AM\")",
    "Steps of 15 or 30 min for bookings",
    "Unavailable times are disabled in the list, not removed, when users expect them",
    "Date + time: Date Picker and Time Picker side by side",
-   "Size: default, sm, lg; match the Date Picker beside it"
+   "Size: default, sm, lg; match the Date Picker beside it",
+   "Range: the end is after the start; the end list starts at the start time and shows the duration next to each time",
+   "Resize: range is 240 (lg 280) with minWidth 220; the range text truncates first, the duration keeps its width"
   ],
   "a11y": [
    "The field has a visible label",
    "Arrow keys move in the list, Enter selects, Esc closes and returns focus",
-   "Disabled times are announced as unavailable"
+   "Disabled times are announced as unavailable",
+   "Range is two fields for assistive tech: Start time and End time; the duration is read after them"
   ],
-  "code": "Custom Select of times.",
+  "code": "Custom Select of times; Type=range: two Selects (start, end) in one trigger-styled group with the duration as muted text.",
   "guides": [
    "skills/build-ui/components/date-picker.md",
    "skills/build-ui/patterns/booking.md"
@@ -6746,7 +6774,8 @@
   "use": [
    "Options that share a name (two customers called Northwind)",
    "Options a picture tells apart: workspaces, integrations, people",
-   "Lists where the type or place helps the choice"
+   "Lists where the type or place helps the choice",
+   "Type=create: the last option when the typed text matches nothing and people may add it (labels, customers, projects, invite by email)"
   ],
   "avoid": [
    "Short options that are clear by name: use Menu Item",
@@ -6754,24 +6783,27 @@
    "Choices with a long description: use Option Card"
   ],
   "anatomy": [
-   "Leading: icon tile or avatar (Leading, Icon)",
+   "Type: icon (icon tile, Icon swap), avatar, none, create (plus icon tile and Create label)",
    "Title",
    "Description (Show description): muted, one line",
-   "Check (Checked)"
+   "Check (Checked)",
+   "Create label (Type=create): \"Create label \\\"Urgent\\\"\", \"Invite anna@acme.com\""
   ],
   "rules": [
-   "Leading: icon, avatar, none; the same Leading for every option in one list",
+   "Type: icon, avatar, none; the same Type for every option in one list; create is the only exception, always last",
    "State: default, highlighted",
    "Description is one short line: type, place, email (\"Customer · Berlin\")",
    "Title and description truncate on one line each; the full text shows in a tooltip",
-   "Checked marks the selected option; multi-select lists keep it open while picking"
+   "Checked marks the selected option; multi-select lists keep it open while picking",
+   "Create shows only when the query has no exact match; quote the typed text; picking it creates and selects the value"
   ],
   "a11y": [
    "role=\"option\" with aria-selected; the list is a listbox",
    "Title and description are read together as the option name",
-   "Icons and avatars are decorative (aria-hidden) unless they carry meaning"
+   "Icons and avatars are decorative (aria-hidden) unless they carry meaning",
+   "The create option is read as \"Create label Urgent\"; after picking, announce \"Label Urgent created\""
   ],
-  "code": "shadcn CommandItem or SelectItem with an Avatar or icon, two text lines and a check icon.",
+  "code": "shadcn CommandItem or SelectItem with an Avatar or icon, two text lines and a check icon; create: a CommandItem with a Plus icon rendered when the query has no match (value is the query).",
   "guides": [
    "skills/build-ui/components/select.md"
   ]
@@ -12264,6 +12296,148 @@
   "guides": [
    "skills/build-ui/components/dialog.md",
    "skills/build-ui/components/drawer.md"
+  ]
+ },
+ "Date Time Picker": {
+  "summary": "A popover for picking a date and a time together: Calendar, a column of times, the summary and Cancel / Apply.",
+  "use": [
+   "Scheduling a post, an email or a reminder",
+   "Meeting create in Scheduler blocks and booking",
+   "Background Job schedules and Automation Rule triggers"
+  ],
+  "avoid": [
+   "Only a date: use Date Picker",
+   "Only a time, or a time range: use Time Picker",
+   "Booking with availability across days: Calendar with Time Slots on the page",
+   "Recurring schedules: use Recurrence Picker"
+  ],
+  "anatomy": [
+   "Calendar (exposed): Caption and Months as in Calendar",
+   "Divider",
+   "Times: title \"Time\" and a scrolling viewport with the Times slot (Time Slots, 30 min steps; selected, disabled)",
+   "Footer (Show footer): Summary (\"22 Oct 2026, 14:30\"), Cancel and Apply Buttons",
+   "Trigger: Date Picker Type=single whose value shows date and time (\"22 Oct 2026, 14:30\")"
+  ],
+  "rules": [
+   "Times follow the locale (24 h in most of Europe) and show the time zone under the field when it can differ",
+   "Scroll the selected time into view on open",
+   "Unavailable times stay in the list, disabled",
+   "Apply commits both values; without the footer a pick commits at once",
+   "Resize: fixed 373 wide (Calendar 250, times 96); on phones use a Drawer with Calendar and a Time Picker below; the viewport clips on purpose (scroll area)"
+  ],
+  "a11y": [
+   "Focus moves to the selected day on open; Tab moves to the time list, arrows move in it, Enter picks",
+   "The summary is a live region so the new value is announced",
+   "Esc closes and returns focus to the trigger"
+  ],
+  "code": "shadcn Popover with Calendar (react-day-picker) and a ScrollArea of time Buttons (shadcn date-time picker pattern); value is one Date.",
+  "guides": [
+   "skills/build-ui/components/date-picker.md",
+   "skills/build-ui/patterns/booking.md"
+  ]
+ },
+ "Month Picker": {
+  "summary": "A grid for picking a month, a quarter or a year instead of a day.",
+  "use": [
+   "Report and dashboard periods (Finance Dashboard, Report)",
+   "Billing statements and invoices by month",
+   "Card expiry and the year jump of a Calendar"
+  ],
+  "avoid": [
+   "A day: use Calendar or Date Picker",
+   "A custom period: use Date Range Picker",
+   "A short fixed list (This month, Last month): use Select"
+  ],
+  "anatomy": [
+   "Type: month (3 x 4), quarter (Q1 to Q4, 2 x 2), year (12 years, 3 x 4)",
+   "Caption: previous and next Button Icons and Period (\"2026\") or Decade (\"2020 to 2031\")",
+   "Month Picker Cells: Label; State default, hover, focus, current, selected, disabled",
+   "Popover surface as Calendar: background/popover, border/default, radius/md, padding spacing/3"
+  ],
+  "rules": [
+   "current marks this month, quarter or year; selected the pick",
+   "Periods without data or in the future for reports are disabled",
+   "The trigger is a Date Picker that shows \"October 2026\" or \"Q3 2026\"",
+   "Arrows move by a year (Type=year by 12 years)",
+   "Resize: 250 wide (minWidth 250); when it stretches the cells fill their columns"
+  ],
+  "a11y": [
+   "The grid is a listbox or grid of buttons with full names (\"October 2026\", \"Third quarter 2026\")",
+   "Arrows move between cells, PageUp and PageDown change the year, Enter picks",
+   "current and selected are not color alone (aria-current, aria-selected)"
+  ],
+  "code": "Custom: a Popover with a CSS grid of shadcn Buttons (ghost; selected default), or Mantine MonthPicker / YearPicker logic; value is the first day of the period.",
+  "guides": [
+   "skills/build-ui/components/date-picker.md",
+   "skills/build-ui/patterns/reports.md"
+  ]
+ },
+ "Mention Menu": {
+  "summary": "The suggestion list that opens while typing @: people, files and records, with the typed part highlighted.",
+  "use": [
+   "Comment Composer, Chat Composer and Team Chat",
+   "Rich Text Editor and Comment Thread replies",
+   "Prompt Input (@ to add context; the pick becomes a Context Chip)"
+  ],
+  "avoid": [
+   "Picking a value in a form: use Combobox",
+   "Commands typed with /: use Command",
+   "Inviting people to a resource: use People Picker"
+  ],
+  "anatomy": [
+   "Header (Show header): group name (\"People\", \"Files\")",
+   "Items (native slot): Mention Options",
+   "Mention Option: Type person (Avatar, exposed) or item (icon tile, Icon swap); Match (typed part, foreground/brand) + Name; Description (handle and team, or type and place), Show description; State default, highlighted",
+   "Popover surface, 280 wide, padding spacing/1"
+  ],
+  "rules": [
+   "Opens under the caret after @ and filters as people type; the first item is highlighted",
+   "6 to 8 items at most; people first, then files and records, each group with a Header",
+   "No match: one muted line \"No people match\", or close the menu",
+   "The pick inserts a Mention Chip and a space; Esc closes and keeps the typed text",
+   "Resize: fixed 280; names and descriptions truncate to 1 line"
+  ],
+  "a11y": [
+   "The editor keeps focus; the list is a listbox tied with aria-activedescendant",
+   "Up and Down move, Enter or Tab picks, Esc closes",
+   "The highlighted match is not color alone: the name is read in full"
+  ],
+  "code": "Tiptap Mention extension (or a textarea with a caret-anchored Popover) rendering shadcn Command items; highlight the match with a <mark> span (font-medium text-brand).",
+  "guides": [
+   "skills/build-ui/components/comments-and-chat.md",
+   "skills/build-ui/components/ai-chat.md"
+  ]
+ },
+ "Color Input": {
+  "summary": "A field for one color: a swatch and its hex value, opening Color Picker.",
+  "use": [
+   "Brand and theme settings (Appearance Settings, theme preview)",
+   "Label, category and calendar colors when any color is allowed",
+   "Chart series colors in dashboard settings"
+  ],
+  "avoid": [
+   "A short fixed set of colors: use Swatch Picker",
+   "Choosing a color visually on the page: use Color Picker inline"
+  ],
+  "anatomy": [
+   "Swatch: 20 px, radius/sm, border/default inside; its fill is the current color (override per use)",
+   "Value: hex (\"#2563EB\")",
+   "Opacity (Show opacity): \"60%\" in muted text",
+   "State: default, focus, error, disabled; field tokens of Input (border/input, input/radius, density/control-height)"
+  ],
+  "rules": [
+   "Typing a valid hex updates the swatch; an invalid one shows State=error with \"Use a hex color like #2563EB\" from Field",
+   "Click, Enter or Space opens Color Picker in a Popover under the field",
+   "Hex in upper case, 6 digits; opacity only where alpha is supported",
+   "Resize: 240 by default, FILL in forms, minWidth 180; the hex truncates last, the swatch and opacity keep their size"
+  ],
+  "a11y": [
+   "Visible label; the swatch is decorative, the value is read (\"Brand color, #2563EB\")",
+   "Check the picked color against its background where it carries text (the field does not)"
+  ],
+  "code": "Input Group: a swatch button (PopoverTrigger, size-5 rounded-sm border) + Input with the hex (react-colorful HexColorInput) + optional muted opacity; Color Picker in the Popover.",
+  "guides": [
+   "skills/build-ui/components/color-picker.md"
   ]
  }
 }
