@@ -3404,7 +3404,9 @@
    "Every mobile app screen",
    "Detail pages with back, object title and actions",
    "Mobile list pages with search and a menu",
-   "Entry screens with nothing to go back to (sign in, sign up): Type=brand"
+   "Entry screens with nothing to go back to (sign in, sign up): Type=brand",
+   "Searching a mobile list or directory after tapping search (Type=search)",
+   "The top of a mobile list scrolled to the top, with a large title (Size=large)"
   ],
   "avoid": [
    "Desktop and tablet app shell: use Top Bar",
@@ -3414,7 +3416,9 @@
    "Leading slot: menu (app) or back (detail); hidden in brand",
    "Title (app, detail)",
    "Logo (brand): Logo swap",
-   "Trailing slot: notifications and Avatar, or actions; in brand empty or one link"
+   "Trailing slot: notifications and Avatar, or actions; in brand empty or one link",
+   "Type=search: Leading (back), Search Field (exposed, no shortcut) that fills the bar, Trailing (Cancel Button)",
+   "Size=large (app, detail): the bar with Leading and Trailing, then the Title in heading/h2 under it, up to 2 lines"
   ],
   "rules": [
    "Type app: menu + page title + notifications or avatar",
@@ -3422,15 +3426,19 @@
    "Type brand: the Logo on entry screens (sign in, sign up, invite); later steps of a flow use detail with back and the flow name",
    "Title is the page or object name, truncated to one line",
    "Height 56; add the safe-area inset on top in code",
-   "The menu button opens the Sidebar as a left Sheet"
+   "The menu button opens the Sidebar as a left Sheet",
+   "Size=large only at the top of a list; it collapses to Size=default when the content scrolls",
+   "Type=search opens with the keyboard and focus in the field; Cancel returns to the list and clears the query"
   ],
   "a11y": [
    "Icon buttons have labels: \"Open menu\", \"Back to customers\"",
    "Touch targets at least 44 x 44",
    "Title is the page heading for screen readers",
-   "In brand the Logo links home and has the product name as its label"
+   "In brand the Logo links home and has the product name as its label",
+   "Type=search: role=\"search\"; Cancel is a text button",
+   "Size=large: the large title is the page heading; the collapsed bar title is aria-hidden while the large one shows"
   ],
-  "code": "custom header with shadcn Button (size=\"icon\") and Avatar.",
+  "code": "custom header with shadcn Button (size=\"icon\") and Avatar. Type=search: `InputGroup type=\"search\"` with `flex-1`; Size=large: `<h1 class=\"px-4 pb-3 text-3xl font-semibold line-clamp-2\">` under the bar, collapsed with an IntersectionObserver.",
   "guides": [
    "skills/build-ui/patterns/mobile.md"
   ]
@@ -3611,19 +3619,23 @@
   ]
  },
  "Page Header": {
-  "summary": "Title of a page inside the app shell with a short description and the page actions.",
+  "summary": "Title of a page inside the app shell with a short description and the page actions; on record pages also a back link, a status badge, meta facts and a pager.",
   "use": [
    "Top of every app page: lists, settings, reports",
    "The place for the page primary action: \"New project\"",
-   "Settings and report pages that need a description"
+   "Settings and report pages that need a description",
+   "Record pages (an invoice, an order, an approval): Show back link, Show meta with Show badge, Show pager"
   ],
   "avoid": [
    "Global actions (search, notifications): use Top Bar",
    "A single record with status and facts: use Block / Record Header"
   ],
   "anatomy": [
+   "Back Link (Show back link, exposed): \"All invoices\" above the title",
    "Title (heading/h3)",
    "Description (Show description)",
+   "Meta line (Show meta): Badge (Show badge, exposed, status) then the Meta slot (Meta Items: date, customer, amount)",
+   "Pager (Show pager): Pager label \"3 of 24\" and previous / next Button Icons outline sm",
    "Actions slot (Show actions), primary last"
   ],
   "rules": [
@@ -3632,16 +3644,23 @@
    "Title matches the last Breadcrumb item",
    "Tabs for sub-views go right under it",
    "Turn Show actions off when the page has no page-level action; never leave an empty slot",
-   "Resize: the header wraps: text fills (min 240), actions move under it in narrow columns; title and description up to 2 lines with ellipsis"
+   "Back link names the list it returns to, never \"Back\"; it keeps the list filters",
+   "Badge shows one status of the record (Paid, Overdue, Draft) and sits at the start of the meta line; turn Show meta on to see it",
+   "Meta: 2 to 4 Meta Items; the line wraps",
+   "Pager only when the page was opened from a list; previous and next keep the list order and filters; disable at the ends",
+   "Resize: the header wraps: text fills (min 240), pager and actions move under it in narrow columns; title and description up to 2 lines with ellipsis; Meta Items wrap"
   ],
   "a11y": [
    "Title is the page heading; keep heading levels in order",
-   "Action buttons have verb labels"
+   "Action buttons have verb labels",
+   "Pager buttons are labelled \"Previous invoice\" and \"Next invoice\"; the label \"3 of 24\" is plain text",
+   "The status Badge text is read with the title (aria-describedby or visible order)"
   ],
-  "code": "custom header with a heading, text and shadcn Button.",
+  "code": "custom header with a heading, text and shadcn Button; back link `Link` with ArrowLeft, status shadcn `Badge`, meta `flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground`, pager `Button variant=\"outline\" size=\"icon-sm\"` pair with ChevronLeft and ChevronRight.",
   "guides": [
    "skills/build-ui/components/navigation.md",
-   "skills/build-ui/patterns/common-flows.md"
+   "skills/build-ui/patterns/common-flows.md",
+   "skills/build-ui/patterns/record-page.md"
   ]
  },
  "Pagination": {
@@ -4387,7 +4406,8 @@
   "use": [
    "Between groups inside cards, sidebars and popovers",
    "Vertical, between button groups in a toolbar",
-   "Between sections of a Command Dialog or People Picker"
+   "Between sections of a Command Dialog or People Picker",
+   "With a label: \"or continue with\" in sign in, \"Today\" and \"New messages\" in threads, \"Show 3 more\" in lists (Show label)"
   ],
   "avoid": [
    "Inside a Menu: use Menu Separator",
@@ -4396,24 +4416,32 @@
   "anatomy": [
    "Spacing before the line (Spacing: none, sm, md)",
    "Line: border/default, 1 px (Orientation: horizontal, vertical)",
+   "Label slot (Show label, horizontal only): \"or continue with\" in ui/caption, foreground/muted, or a ghost sm Button",
+   "Start line (Show start line): off puts the label at the start",
    "Same spacing after the line"
   ],
   "rules": [
    "Horizontal fills its parent width; vertical fills its parent height (default 24)",
    "Spacing sm = 4 (menus), md = 8",
    "Separate groups, not single items",
-   "Never nest cards to group content; use spacing or a Separator inside one card"
+   "Never nest cards to group content; use spacing or a Separator inside one card",
+   "Labels are short and one line; one label per separator",
+   "Show start line off only with Show label on, for a heading at the start of a group (\"Earlier\")",
+   "A button in the label (\"Show 3 more\") is a ghost sm Button; a date in a thread is plain text"
   ],
   "a11y": [
    "Decorative by default and hidden from screen readers",
    "Use the semantic separator role only between real sections",
-   "Decorative dividers are exempt from the contrast rules"
+   "Decorative dividers are exempt from the contrast rules",
+   "A labelled separator between sections reads its text; a button inside it is a normal button"
   ],
-  "code": "shadcn Separator (decorative unless it separates real sections).",
+  "code": "shadcn Separator (decorative unless it separates real sections); with a label: `<div class=\"flex items-center gap-3\"><Separator class=\"flex-1\"/><span class=\"text-xs text-muted-foreground\">or continue with</span><Separator class=\"flex-1\"/></div>`.",
   "guides": [
    "skills/build-ui/components/card.md",
    "skills/build-ui/components/dropdown-menu.md",
-   "skills/build-ui/components/rich-text-editor.md"
+   "skills/build-ui/components/rich-text-editor.md",
+   "skills/build-ui/patterns/auth.md",
+   "skills/build-ui/components/comments-and-chat.md"
   ]
  },
  "Sheet": {
@@ -4461,7 +4489,9 @@
   "use": [
    "Apps with more than ~5 destinations or with sections",
    "Desktop app shell (from 1024 px)",
-   "Settings navigation as its own Sidebar Group"
+   "Settings navigation as its own Sidebar Group",
+   "Variant=floating: Showcase and AI products, brand themes, app pages on a muted canvas",
+   "Variant=inset: apps where the page reads as one raised surface beside the navigation"
   ],
   "avoid": [
    "Switching views of one object: use Tabs",
@@ -4473,7 +4503,10 @@
    "Content slot: Sidebar Group with a Sidebar Group Label",
    "Sidebar Item rows: Icon, Label, optional Badge (Show badge) and Chevron (Show chevron)",
    "Footer slot: Sidebar User (Avatar, Title, Description, menu)",
-   "Sidebar Item Level=2: a sub-page row, no icon, label aligned with the parent label"
+   "Sidebar Item Level=2: a sub-page row, no icon, label aligned with the parent label",
+   "Variant: sidebar (default, right border), floating (panel inside spacing/2 with border, radius/lg and shadow/sm), inset (no border; the page area is inset with radius/xl and shadow/sm)",
+   "Sidebar Group Label Show action: ghost xs Button Icon (plus) to add an item to the group",
+   "Sidebar Item Show action: ghost xs Button Icon (ellipsis) at the end of the row for item actions"
   ],
   "rules": [
    "One active Sidebar Item, matching the current page",
@@ -4483,15 +4516,19 @@
    "Mode expanded 256, collapsed 48: icons only, labels in tooltips",
    "Mobile: a Sheet opened from the header trigger (panel-left)",
    "Level 2 only under an expanded parent with a Chevron; one level deep at most",
-   "Minimum width: Mode=expanded 240, Mode=collapsed 48; narrower than 240 use Mode=collapsed or the mobile Sheet"
+   "Minimum width: Mode=expanded 240, Mode=collapsed 48; narrower than 240 use Mode=collapsed or the mobile Sheet",
+   "One Variant per product; floating sits on background/muted or a brand surface, inset on sidebar/background with the page as a background/default card",
+   "Item actions show on hover and on the active item only; group actions always show",
+   "Every action has a Tooltip (\"Add project\", \"More actions\")"
   ],
   "a11y": [
    "A nav landmark; the active item has aria-current=\"page\"",
    "Collapsed items have a Tooltip and an accessible label",
    "The collapse trigger has an accessible label",
-   "Every item is reachable with the keyboard"
+   "Every item is reachable with the keyboard",
+   "Action buttons are separate buttons after the item link, with labels naming the item (\"More actions for Website redesign\")"
   ],
-  "code": "shadcn Sidebar.",
+  "code": "shadcn Sidebar (`variant=\"sidebar\" | \"floating\" | \"inset\"`, inset with `SidebarInset`); `SidebarGroupAction` for the group plus and `SidebarMenuAction showOnHover` for item actions.",
   "guides": [
    "skills/build-ui/components/sidebar.md",
    "skills/build-ui/components/navigation.md",
@@ -5165,23 +5202,28 @@
    "Tabs slot: Tab instances with the matching Tab Variant (default, line, vertical, pills, boxed)",
    "Active Tab: background and shadow (default), underline in background/primary (line), background/muted (vertical), background/primary fill with foreground/primary text (pills), border/default on three sides and background/default (boxed)",
    "Count: Show count on Tab adds a Badge Count after the label",
-   "Variant=boxed: header row (Tabs slot + a rest line in border/default) and a Panel slot with border/default on the sides and bottom, padding density/card-padding-sm"
+   "Variant=boxed: header row (Tabs slot + a rest line in border/default) and a Panel slot with border/default on the sides and bottom, padding density/card-padding-sm",
+   "Show overflow (default, line, pills, boxed): a \"More\" Tab with an ellipsis after the tabs; it opens a Menu with the tabs that do not fit",
+   "Tab Size: default, sm (4 px lower, tighter side padding) set on every Tab in the slot"
   ],
   "rules": [
    "2-6 tabs horizontally, up to 10 vertically; labels are one or two words, nouns",
    "Exactly one active tab, matching the content shown",
    "Variant=line spans the full width with a bottom border; vertical is 200 wide with the content on the right",
-   "More tabs than fit on mobile: switch to a Select",
    "pills: no track; use on background/default or background/card, never on muted surfaces (inactive text is foreground/muted)",
-   "boxed: the active tab covers the panel's top line; put the panel content in the Panel slot, not under the component"
+   "boxed: the active tab covers the panel's top line; put the panel content in the Panel slot, not under the component",
+   "More tabs than fit: Show overflow with the rest in a Menu; on mobile switch to a Select",
+   "The active tab is always visible; when it is picked from the menu it moves into the row",
+   "Size=sm for card headers, side panels, comments panels and toolbars; one Size per Tabs"
   ],
   "a11y": [
    "Tab list role; arrow keys move between tabs, Tab moves into the panel",
    "The active tab has aria-selected; each panel is labeled by its tab",
    "Focus ring visible on Tab State=focus",
-   "pills: active text 5.2:1 Light, 5.2:1 Dark, 6.7:1 Corporate Light; inactive foreground/muted 4.7:1 or more on the page"
+   "pills: active text 5.2:1 Light, 5.2:1 Dark, 6.7:1 Corporate Light; inactive foreground/muted 4.7:1 or more on the page",
+   "More is a menu button (aria-haspopup=\"menu\") labelled \"More tabs\""
   ],
-  "code": "shadcn Tabs; Variant=line with TabsList variant line (border-b), vertical with orientation=\"vertical\" and TabsList flex-col. pills: TabsList \"bg-transparent gap-2\", TabsTrigger \"rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground\". boxed: TabsList \"border-b w-full justify-start\", TabsTrigger \"rounded-t-md border border-transparent data-[state=active]:border-border data-[state=active]:border-b-background -mb-px\", TabsContent \"border border-t-0 rounded-b-md p-4\".",
+  "code": "shadcn Tabs; Variant=line with TabsList variant line (border-b), vertical with orientation=\"vertical\" and TabsList flex-col. pills: TabsList \"bg-transparent gap-2\", TabsTrigger \"rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground\". boxed: TabsList \"border-b w-full justify-start\", TabsTrigger \"rounded-t-md border border-transparent data-[state=active]:border-border data-[state=active]:border-b-background -mb-px\", TabsContent \"border border-t-0 rounded-b-md p-4\". Size=sm: TabsTrigger `h-6 px-2.5` (line `h-8`). Overflow: a `DropdownMenu` trigger styled as a TabsTrigger after the visible triggers (ResizeObserver decides how many fit).",
   "guides": [
    "skills/build-ui/components/tabs.md"
   ]
@@ -12438,6 +12480,148 @@
   "code": "Input Group: a swatch button (PopoverTrigger, size-5 rounded-sm border) + Input with the hex (react-colorful HexColorInput) + optional muted opacity; Color Picker in the Popover.",
   "guides": [
    "skills/build-ui/components/color-picker.md"
+  ]
+ },
+ "App Header": {
+  "summary": "Top navigation for apps without a sidebar: logo, primary links, search, notifications and the account menu.",
+  "use": [
+   "Client portals, simple admin and commerce admin with 3 to 6 destinations",
+   "Page Shell / App Layout=stacked",
+   "Docs and help apps with a few app links"
+  ],
+  "avoid": [
+   "More than 6 destinations or sections: use Sidebar and Top Bar",
+   "Marketing sites: use Navbar",
+   "Under 768: use Mobile Header"
+  ],
+  "anatomy": [
+   "Logo (swap)",
+   "Links slot: Nav Links, the current page State=active",
+   "Search Field (Show search, exposed): 256 wide, opens Command Dialog or searches in place",
+   "Actions slot: notifications Button Icon, help, account Avatar",
+   "Bottom border border/default, 64 high, padding spacing/6"
+  ],
+  "rules": [
+   "One active link, matching the current page",
+   "Links are nouns, one or two words",
+   "Only global actions on the right",
+   "Resize: needs at least 768; Links fill the space, search keeps 256, actions keep their size; under 1024 turn Show search off and put a search Button Icon in Actions"
+  ],
+  "a11y": [
+   "Header landmark with a nav for the links; the active link has aria-current=\"page\"",
+   "Icon buttons have labels: \"Notifications\", \"Search\"",
+   "The Logo links home and has the product name as its label"
+  ],
+  "code": "custom `<header class=\"flex h-16 items-center gap-6 border-b bg-background px-6\">` with the Logo, shadcn `NavigationMenu` (or links) `flex-1`, a search `InputGroup w-64`, `Button size=\"icon\" variant=\"ghost\"` and `Avatar` in a `DropdownMenu`.",
+  "guides": [
+   "skills/build-ui/components/navigation.md"
+  ]
+ },
+ "List Group Header": {
+  "summary": "A left-aligned label over a group of rows, with an optional count and action; sticky in long lists.",
+  "use": [
+   "Notifications and activity grouped by day (Today, Yesterday)",
+   "People Directory A to Z with counts",
+   "File Manager, inbox and chat history groups"
+  ],
+  "avoid": [
+   "Section titles of a page: use Section Heading",
+   "Groups in a menu: use Menu Label",
+   "Groups in a sidebar: use Sidebar Group Label",
+   "A table: use group rows of the table"
+  ],
+  "anatomy": [
+   "Label (ui/label-small; foreground/muted in default, foreground/default in muted)",
+   "Count (Show count): Badge Count, exposed",
+   "Action (Show action): link Button sm, exposed (\"Mark all as read\", \"View all\")",
+   "Variant: default (no fill), muted (background/muted, top and bottom border)"
+  ],
+  "rules": [
+   "One header before the first row of each group; no header for a single group",
+   "Labels are short: a day, a letter, a status",
+   "muted for long scrolling lists, sticky while its group scrolls; default inside cards and panels",
+   "Resize: fills its list; the label truncates to one line (max 160), count and action keep their size"
+  ],
+  "a11y": [
+   "Render as a heading (h3 or role=\"heading\") or as the label of a role=\"group\" list",
+   "The count is read with the label (\"Today, 2 unread\")"
+  ],
+  "code": "custom `<div class=\"sticky top-0 z-10 flex items-center gap-2 border-y bg-muted px-3 py-1.5 text-xs font-medium\">` (muted) or without border and fill (default), shadcn `Badge` count and `Button variant=\"link\" size=\"sm\"`.",
+  "guides": [
+   "skills/build-ui/components/list-and-tree.md",
+   "skills/build-ui/patterns/notifications.md"
+  ]
+ },
+ "Search Suggestions": {
+  "summary": "The panel under a search field while people type: recent searches, completions with the typed part marked, records that match, and a hint.",
+  "use": [
+   "App and help center search fields (Block / Navbar Search, Help Hero, Header Search Results)",
+   "Store search and People Directory search",
+   "Recent searches when the field gets focus with an empty query"
+  ],
+  "avoid": [
+   "Global search with commands and navigation: use Command Dialog",
+   "Picking one value for a form field: use Combobox",
+   "The results page itself: use Search Result Item"
+  ],
+  "anatomy": [
+   "Recent (Show recent): Recent label + slot of Search Suggestion Item Type=recent (Query, remove x)",
+   "Suggestions (Show suggestions): Suggestions label + slot of Type=suggestion (Match in ui/label + Completion)",
+   "Records (Show records): Records label (the record type) + slot of Type=record (Icon, Title, Meta)",
+   "Footer (Show footer): Hint in ui/caption with a top border",
+   "Popover surface: background/popover, border/default, radius/lg, shadow/md, padding spacing/1"
+  ],
+  "rules": [
+   "Open under the field with a 4 px gap and the same width (min 280)",
+   "Empty query: recents only; typing: suggestions and records",
+   "At most 5 suggestions and 3 to 5 records; hide empty sections",
+   "One row highlighted (State=highlighted), moved with the arrow keys; Enter opens it, Enter with no highlight searches all results; Esc closes",
+   "No matches: one line \"No matches for ...\" plus the search-all action",
+   "Resize: FILL the field width (min 280); rows truncate to one line"
+  ],
+  "a11y": [
+   "Combobox pattern: the field has role=\"combobox\" and aria-expanded; the panel is a listbox with grouped options",
+   "aria-activedescendant follows the highlighted row",
+   "The remove button of a recent search is labelled \"Remove overdue invoices from recent searches\""
+  ],
+  "code": "shadcn `Popover` anchored to the search `InputGroup` with `Command` (`CommandList`, `CommandGroup heading`, `CommandItem`) and `shouldFilter={false}`; the match is `<span class=\"font-medium\">inv</span>oice templates`.",
+  "guides": [
+   "skills/build-ui/patterns/search-and-filter.md"
+  ]
+ },
+ "Top Loading Bar": {
+  "summary": "A thin bar along the top of the page or a region while a route, a page change or an in-place generation loads.",
+  "use": [
+   "Route and page changes in Page Shell / App and Docs",
+   "In-place AI generation or refresh of a region",
+   "Reading progress on an article (Value with Show track)"
+  ],
+  "avoid": [
+   "Loads under about 300 ms: show nothing",
+   "Long or blocking work: Progress with a label or Background Job",
+   "Content loading: Skeleton",
+   "A button action: Button State=loading"
+  ],
+  "anatomy": [
+   "Indicator: background/primary, 2 px high (spacing/0_5)",
+   "Value: indeterminate (40% segment that moves in code), 30, 60, 90",
+   "Track (Show track): background/muted rail, off for route loads"
+  ],
+  "rules": [
+   "Put it FILL at the very top edge of the shell, Top Bar or region, above everything",
+   "Remove it when the load ends; complete to 100% then fade",
+   "One bar per page",
+   "Resize: fills any width; the indicator scales with it"
+  ],
+  "a11y": [
+   "role=\"progressbar\" with aria-label \"Loading page\"; indeterminate omits aria-valuenow",
+   "Set aria-busy=\"true\" on the region that loads",
+   "motion-reduce: no sliding animation, show a static segment"
+  ],
+  "code": "custom `<div role=\"progressbar\" class=\"fixed inset-x-0 top-0 z-50 h-0.5\"><div class=\"h-full w-2/5 bg-primary animate-[progress-indeterminate_1.5s_ease-in-out_infinite]\"/></div>` (NProgress or the router loading state); determinate: `style={{width: value + \"%\"}}` with `transition-[width]`.",
+  "guides": [
+   "skills/build-ui/components/progress-and-slider.md",
+   "skills/build-ui/patterns/loading-states.md"
   ]
  }
 }

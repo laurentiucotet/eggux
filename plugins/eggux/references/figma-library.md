@@ -66,7 +66,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Avatar | `Avatar` | Type: initials, image, icon. Size: xs 20, sm 24, default 32, lg 40, xl 48, 2xl 64, 3xl 96. Shape: circle (people), square (companies, apps) | Initials, Photo (swap, Type=image: Image / Person / *), Icon (swap, Type=icon: user, bot, users), Show status + Avatar Status (exposed: online, away, busy, offline), Show verified (info tick) |
 | Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar; Label + Show label ("Maintained by 3 analysts"); Names + Show names ("Ana, Mihai and 3 others"). Label and names truncate on one line |
 | Avatar | `Byline` | Size: sm, default, lg | Name, Description, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
-| Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
+| Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars. Horizontal: Show label (Label slot: "or continue with", a date, or a ghost sm Button) and Show start line (off puts the label at the start) |
 | Input | `Input` | Style: default, filled, floating. Size: default 36, sm 32, lg 40 (default and filled). State: default, focus, error, disabled, read-only (not floating). Content: placeholder, filled | Value; Label (floating); Show leading icon + Leading icon (swap); Show clear; Show loading (Spinner sm); Trailing (native slot) + Show trailing |
 | Input | `Password Strength` | Level: empty, weak, fair, good, strong | Meter + message under a new-password field. Messages ask only for length ("Weak: make it longer.") |
 | Input | `Field` | State: default, error, disabled. Layout: vertical, horizontal (160 label column, min width 400) | Label, Show label, Hint, Show hint, Error. Show required (red asterisk), Show optional ("Optional", field/optional string), Show info (Info Tip Trigger), Show counter (Field Counter exposed). Control (native slot, default Input) |
@@ -171,11 +171,11 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Menu | `Menu` | - | Items (native slot). Base for Dropdown menu, Select options and context menus |
 | Menu | `Menubar Trigger` | State: default, hover, open | Label |
 | Menu | `Menubar` | - | Menus (native slot of Menubar Triggers); opens a Menu below the trigger |
-| Mobile | `Mobile Header` | Type: app, detail, brand | Title (app, detail), Logo (swap, brand: entry screens); Leading, Trailing (native slots; Leading hidden in brand) |
+| Mobile | `Mobile Header` | Type: app, detail, brand, search. Size: default, large (app, detail) | Title (app, detail), Logo (swap, brand: entry screens); Leading, Trailing (native slots; Leading hidden in brand). search: Search Field (exposed) fills the bar, Cancel in Trailing. large: Title in heading/h2 under the bar, collapses to default on scroll |
 | Mobile | `Bottom Nav Item` | State: default, active | Label, Icon (swap) |
 | Mobile | `Bottom Nav` | Style: default, floating | Items (native slot), 3-5 items, safe-area padding |
-| Tabs | `Tab` | Variant: default, line, vertical, pills, boxed. State: default, active, focus, disabled | Label, Show count (Badge Count exposed), Icon (swap) + Show icon |
-| Tabs | `Tabs` | Variant: default, line, vertical, pills, boxed | Tabs (native slot of Tab instances with the same Variant). default: pill tabs in a card; line: underlined page sections; vertical: a 200 wide column for settings; pills: list filters, active tab filled; boxed: tabs and Panel (native slot) in one bordered unit |
+| Tabs | `Tab` | Variant: default, line, vertical, pills, boxed. State: default, active, focus, disabled. Size: default, sm | Label, Show count (Badge Count exposed), Icon (swap) + Show icon. sm is 4 px lower with tighter padding, for card headers, panels and toolbars |
+| Tabs | `Tabs` | Variant: default, line, vertical, pills, boxed | Tabs (native slot of Tab instances with the same Variant), Show overflow (a "More" Tab with an ellipsis that opens a Menu; not in vertical). default: pill tabs in a card; line: underlined page sections; vertical: a 200 wide column for settings; pills: list filters, active tab filled; boxed: tabs and Panel (native slot) in one bordered unit |
 | Toggle Group | `Toggle Group Item` | Variant: default, segmented. Size: default, sm, lg. State: default, hover, selected, focus, disabled | Label, Show label, Show icon + Icon (swap). sm 32 (segmented 24), default 36 (28), lg 40 (32) |
 | Toggle Group | `Toggle Group` | Variant: default, outline, segmented | Items (native slot; FILL in segmented: group and items on FILL share the track, keep items on HUG in a hugging group). Sets a value; Tabs switch panels. Theme, view and billing period switches are examples on this page, not components |
 | List | `List Item` | State: default, hover, selected, focus, disabled | Title, Description, Show description, Show leading, Show trailing, Show divider. Leading, Trailing (native slots) |
@@ -229,16 +229,16 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Audit | `Change Item` | - | Field, Old, New |
 | Save Bar | `Save Bar` | State: default, saving, error | Message (default, "Unsaved changes"; set the count), Error (error). Sticky bar with the message, Discard, Save changes; Saving… while saving |
 | Sidebar | `Org Switcher` | - | Organization list with role and plan, search, create, manage |
-| Sidebar | `Sidebar Item` | Level: 1, 2 (sub-page, no icon; expanded only). Mode: expanded, collapsed. State: default, hover, active, disabled | Label, Icon (swap), Show badge (Badge Count, exposed), Show chevron |
-| Sidebar | `Sidebar Group Label` | - | Label |
+| Sidebar | `Sidebar Item` | Level: 1, 2 (sub-page, no icon; expanded only). Mode: expanded, collapsed. State: default, hover, active, disabled | Label, Icon (swap), Show badge (Badge Count, exposed), Show chevron, Show action (ghost xs Button Icon, exposed, ellipsis; expanded only, on hover and active) |
+| Sidebar | `Sidebar Group Label` | - | Label, Show action (ghost xs Button Icon, exposed, plus: add to the group) |
 | Sidebar | `Sidebar Group` | Mode: expanded, collapsed | Items (native slot), Show label |
 | Sidebar | `Sidebar Workspace`, `Sidebar User` | Mode: expanded, collapsed | Title, Description |
-| Sidebar | `Sidebar` | Mode: expanded (256), collapsed (48) | Header, Content, Footer (native slots) |
+| Sidebar | `Sidebar` | Mode: expanded (256), collapsed (48). Variant: sidebar, floating, inset | Header, Content, Footer (native slots). floating: panel inside spacing/2 with border, radius/lg, shadow/sm (collapsed 64); inset: no border, the page beside it is inset with radius/xl and shadow/sm |
 | Sidebar | `Sidebar Double` | Mode: expanded (288: rail 48 + panel 240), collapsed (48) | Panel title; Rail header, Rail, Rail footer, Panel actions, Panel (native slots) |
 | Navigation | `Breadcrumb Item` | Type: link, current, ellipsis. State: default, hover (link) | Label, Show separator |
 | Navigation | `Breadcrumb` | Style: default, background | Items (native slot) |
 | Navigation | `Top Bar` | Style: default, floating | Show sidebar trigger; Breadcrumb, Actions (native slots) |
-| Navigation | `Page Header` | - | Title (heading/h3), Description, Show description, Show actions; Actions (native slot) |
+| Navigation | `Page Header` | - | Title (heading/h3), Description, Show description, Show actions; Actions (native slot). Record pages: Show back link (Back Link exposed), Show meta (Meta slot of Meta Items) with Show badge (status Badge exposed at the start of the meta line), Show pager (Pager label "3 of 24" + previous / next Button Icons) |
 | Navigation | `Nav Link` | State: default, hover, active | Label, Show chevron (marketing navbar) |
 | Navigation | `Navigation Menu Link` | State: default, hover | Title, Description, Show icon, Icon (swap) |
 | Navigation | `Navigation Menu Panel` | - | Links, Featured (native slots), Show featured |
@@ -597,6 +597,12 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Calendar | `Month Picker` | Type: month, quarter, year | Period ("2026"), Decade ("2020 to 2031"). Grid of Month Picker Cells (State: default, hover, focus, current, selected, disabled; Label) for report periods, statements and expiry; 250 wide, cells fill |
 | Popover | `Mention Menu` | - | Header, Show header, Items (native slot of Mention Options: Type person, item; State default, highlighted; Match, Name, Description, Show description, Icon). The @ suggestion list, 280 wide, typed part in foreground/brand |
 | Color Picker | `Color Input` | State: default, focus, error, disabled | Value ("#2563EB"), Opacity, Show opacity. Field with a color swatch (override its fill) and hex that opens Color Picker; 240, min 180 |
+| Navigation | `App Header` | - | Logo (swap), Links (native slot of Nav Links, current page active), Show search (Search Field exposed, 256), Actions (native slot: bell, Avatar). 64 high, bottom border. Top navigation for apps without a sidebar (portals, simple admin, commerce admin) and Page Shell / App Layout=stacked; min width 768 |
+| List | `List Group Header` | Variant: default, muted | Label, Show count (Badge Count exposed), Show action (link Button sm exposed). A label over a group of List Items (Today, Yesterday, A, B); muted is the sticky style for long lists |
+| Progress | `Top Loading Bar` | Value: indeterminate, 30, 60, 90 | Show track. 2 px background/primary bar along the top of the page or a region while a route or region loads; FILL, indicator scales |
+| Search | `Search Suggestions` | - | Recent, Suggestions, Records (native slots of Search Suggestion Items) with Recent label, Suggestions label, Records label and Show recent, Show suggestions, Show records; Hint + Show footer. Popover panel under a search field, min 280 |
+| Search | `Search Suggestion Item` | Type: suggestion, recent, record. State: default, highlighted | suggestion: Match (typed part, ui/label) + Completion; recent: Query + remove x (exposed); record: Icon (swap), Title, Meta |
+| Page Shells | `Page Shell / App` | Layout: sidebar, stacked | Page (native slot). sidebar: Sidebar and Top Bar exposed; stacked: App Header exposed. Hugs its content with a min height of 900: put a taller page in the Page slot, never resize the shell |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,

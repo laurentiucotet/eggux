@@ -1458,6 +1458,14 @@
    "main": "Job Listing",
    "helpers": [],
    "block": "206:1783"
+  },
+  {
+   "main": "List Group Header",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / List Group Header"
+   ]
   }
  ],
  "Menu": [
@@ -1524,7 +1532,10 @@
   {
    "main": "Mobile Header",
    "helpers": [],
-   "block": "96:480"
+   "block": "96:480",
+   "examples": [
+    "Example / Mobile Header styles"
+   ]
   },
   {
    "main": "Bottom Nav",
@@ -1585,7 +1596,10 @@
   {
    "main": "Page Header",
    "helpers": [],
-   "block": "77:314"
+   "block": "77:314",
+   "examples": [
+    "Example / Page Header styles"
+   ]
   },
   {
    "main": "Nav Link",
@@ -1625,6 +1639,14 @@
    "block": null,
    "examples": [
     "Example / invoices page with skip link and toolbar"
+   ]
+  },
+  {
+   "main": "App Header",
+   "helpers": [],
+   "block": "1097:133268",
+   "examples": [
+    "Example / App Header"
    ]
   }
  ],
@@ -1790,6 +1812,14 @@
    "examples": [
     "Example / exports panel from the top bar"
    ]
+  },
+  {
+   "main": "Top Loading Bar",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Top Loading Bar"
+   ]
   }
  ],
  "Quote": [
@@ -1897,6 +1927,16 @@
     "Example / help center search results",
     "Example / search results all types",
     "Example / search results tabbed by type"
+   ]
+  },
+  {
+   "main": "Search Suggestions",
+   "helpers": [
+    "Search Suggestion Item"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Search Suggestions"
    ]
   }
  ],
@@ -2009,7 +2049,10 @@
   {
    "main": "Separator",
    "helpers": [],
-   "block": "92:1352"
+   "block": "92:1352",
+   "examples": [
+    "Example / Separator styles"
+   ]
   }
  ],
  "Sharing": [
@@ -2039,7 +2082,11 @@
     "Sidebar Workspace",
     "Sidebar User"
    ],
-   "block": "77:314"
+   "block": "77:314",
+   "examples": [
+    "Example / Sidebar styles",
+    "Example / Sidebar actions"
+   ]
   },
   {
    "main": "Sidebar Double",
@@ -2196,7 +2243,8 @@
    "block": "92:949",
    "examples": [
     "Example / tabs with counts",
-    "Example / Tabs styles"
+    "Example / Tabs styles",
+    "Example / Tabs overflow and sizes"
    ]
   }
  ],
