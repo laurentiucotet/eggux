@@ -8,7 +8,7 @@
 |---|---|
 | The user can never do it (role does not allow it) | Hide the control |
 | The user could do it now but a condition is missing (paid plan, required field, status) | Disable it, tooltip with the reason and how to fix it |
-| Plan or feature gate | Show it with a lock badge and an upgrade path; never a dead button |
+| Plan or feature gate | Show it with a `Lock Badge` and an upgrade path (`monetization.md`); never a dead button |
 | The whole page is not allowed | "You don't have access" result page: who can grant it, Request access button, link back |
 | Read-only access | Show values as text, not disabled inputs; a banner says "View only" and who can edit |
 

@@ -15,6 +15,10 @@ Usage guidelines only. Visual specs live in the Figma components (Progress, Slid
   50, 75, 100). In a Usage Meter set the exposed bar's Value to the nearest step of the real share.
 - Tone: success when complete, warning near a limit, error when failed; the text next to the bar
   says it too. Figma: `Progress` Tone × Value.
+- Plan limits: `Usage Meter` in Billing and cards (near from 80%, over above 100%, with the reset
+  date); across the top of a screen `Usage Limit Banner` (Pricing page) Status=approaching at 80%
+  (dismissible) or reached at 100%, Layout=banner on desktop and inline on phones. Rules in
+  `patterns/monetization.md`.
 - Long exports and syncs show as Background Jobs in a Popover from a top bar button, one row per job (Status, Result or Error per state).
 - Type=segmented for a count of steps (onboarding, a setup checklist, a multi-step form on mobile):
   one segment per step, 4 to 10, and the count in text next to it ("Step 2 of 4"). Type=default for

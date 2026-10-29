@@ -40,6 +40,15 @@ admin panels, at least check that the page does not break below 768.
   (Bottom Nav and sticky bars include it).
 - Thumb zone: primary actions at the bottom, destructive ones away from them.
 
+## Paywalls
+- App paywall: `Block / Mobile Paywall` (list or comparison) on a 390 x 844 screen with close,
+  Restore purchases, Terms and Privacy; `Plan Option Row`s for plans; prices and renewal text from
+  the store. Restoring shows what was found in a Drawer.
+- Paywalls on phones: `Gate Overlay` Style=fade, `Usage Limit Banner` Layout=inline, `Trial Banner`
+  above the Page Shell / Mobile (text wraps, button under it), `Block / Cancel Subscription` at 358
+  with Continue to cancel always visible; see the SCREENS / Billing and SCREENS / Paywalls mobile
+  frames and `monetization.md`.
+
 ## Figma
 `Page Shell / Mobile` (390 x 844) on the Page Shells page; examples "mobile list", "mobile
 menu open"; `Block / Navbar Mobile` and "mobile nav open" on the Navigation blocks page; bottom

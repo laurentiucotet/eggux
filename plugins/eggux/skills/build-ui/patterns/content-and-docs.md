@@ -25,6 +25,13 @@ Page tops for hubs, topics, search, people and events: the Page Headers page (`m
 - To explain one idea with a picture inside a long page use `Block / Content with Image`: at most
   one pull Quote, caption every image.
 
+## Paid content
+- Paid articles: `Block / Article Paywall` after the preview (headline, lead, author and two
+  paragraphs fading into the page), `Meter Banner` pinned to the bottom while free reads are left;
+  Type metered, registration or hard as in `monetization.md`. Screens: SCREENS / Paywalls.
+- Locked documents and reports inside the app use `Gate Overlay` Style=fade over the first part of
+  the real content; public articles use the content paywall blocks.
+
 ## Legal and policy pages
 Navbar, `Block / Legal Page`, Footer (`Example / Legal page`). The block holds Header Simple, a
 Table of Contents on the left and a 720 reading column with numbered h3 sections; put a

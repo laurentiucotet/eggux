@@ -17,7 +17,7 @@ At a glance: 367 components on 74 pages, 245 blocks, 8 page shells, 93 complete 
 email templates (SCREENS: Auth, Account, Settings, Emails), 4 full showcase pages, 667 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
 Română), 16 text styles, 4 gradient styles, 110 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
-images (49 photos, 7 product screenshots). The plugin adds 13 skills, 32
+images (49 photos, 7 product screenshots). The plugin adds 13 skills, 33
 patterns and 38 component guides.
 
 ## Install
@@ -188,12 +188,12 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 [`skills/build-ui/index.md`](plugins/eggux/skills/build-ui/index.md) maps each screen and task
 to its shell, blocks, patterns and component guides, and lists what each guide covers.
 
-- **Patterns (32):** core flows (action feedback, bulk actions, common flows, delete confirmation,
+- **Patterns (33):** core flows (action feedback, bulk actions, common flows, delete confirmation,
   unsaved changes, multi-step form), forms (form validation, form presets, auth), states (empty
   state, loading states, errors and recovery, feedback messages, result pages, notifications),
   app screens (record page, search and filter, settings and admin, permissions and access,
   sharing and invites, approvals, audit log, reports, enterprise apps, booking), products (AI
-  chat, commerce, content and docs, marketing pages, email), mobile and writing.
+  chat, commerce, content and docs, marketing pages, email, monetization), mobile and writing.
 - **Component guides (38):** actions (button, dropdown menu), forms and choices (input, select,
   date picker, color picker, file upload, rich text editor), overlays (dialog, drawer, popover,
   tooltip, toast, tour), navigation (navigation, sidebar, tabs and toggle group, pagination,

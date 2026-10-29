@@ -65,3 +65,7 @@ it everywhere. The same status never appears in two colors.
   primary band use Tone=on-primary, on an inverted card Tone=inverted; never recolor by hand.
 - Stock on a product page ("In stock", "Only 3 left", "Out of stock") is a `Status Dot` with its
   label: success, warning, error. Example "stock status" on the Badge page.
+- `Lock Badge` (Pricing page) marks a feature that needs a plan: lock + plan name after the item
+  name in a Sidebar Item, Tab, Menu Item, setting or report title; the item stays clickable and
+  opens the upgrade path. Tone=neutral in navigation and lists, brand on upgrade surfaces. It is
+  a plan marker; object statuses keep the status Badge (`patterns/monetization.md`).

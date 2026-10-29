@@ -166,6 +166,10 @@ careers, blog index).
   Style=default (muted tiles) for banners, cards and checkout; boxed for hero sections, launch and
   webinar pages on a muted or image background; inline for tight spaces (a sticky bar, a table
   cell, a resend-code line). One Style per page.
+- Paywalls (metered, registration and hard content walls, in-app gates, mobile app paywalls) reuse
+  the Pricing parts with `Paywall Card`, `Plan Option Row` and `Meter Banner`; rules in
+  `monetization.md`. The pricing page shows the same prices, periods and trial terms as the
+  paywalls, and a trial CTA says what happens after it ("Free for 14 days, then €29 per month").
 - Pricing blocks are built from `Plan Card` (2-4 side by side, one recommended plan as
   Variant=featured or inverted, never both; Variant=compact rows for 4+ plans and add-ons), `Price`,
   `Check Item` (5-8 per plan) and a `Toggle Group` for monthly or yearly with a success Badge for

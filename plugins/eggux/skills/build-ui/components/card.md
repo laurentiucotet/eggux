@@ -103,6 +103,10 @@ Stat Card, Option Card and Post Card use the same tokens.
 - To suggest one thing (upgrade, tip, announcement) use `Callout Card`: Layout=horizontal in
   content, stacked in sidebars, one primary action and a dismiss that is remembered (Show close).
   Media slot for an Icon Tile or a Spot Illustration. Example "Callout Card".
+- `Upsell Card` (Pricing page) is the small upgrade nudge for a sidebar footer or an empty state
+  (240, 200 to 360): one benefit, the price note and a full-width Upgrade; one upsell per screen,
+  hidden from people without billing rights (`patterns/monetization.md`). Tips and announcements
+  stay on Callout Card.
 - `Product Card` (rules in `patterns/commerce.md`): Show swatches when the product comes in
   colors (4 max); Size=sm for dense grids and Mini Cart recommendations. Example "Product Card
   styles".
