@@ -1646,7 +1646,7 @@
   ],
   "rules": [
    "No match: \"No results for <query>\" (Command Empty on, Show items off)",
-   "Offer Select Option Type=create (\"Create customer \\\"Nord\\\"\") as the last item when people may create",
+   "Offer Select Option Type=create (\"Create customer \"Nord\"\") as the last item when people may create",
    "Show recent or suggested options before typing",
    "Long lists load asynchronously with a loading row, never an empty dropdown",
    "A single choice closes the list after the pick",
@@ -6937,7 +6937,7 @@
    "Title",
    "Description (Show description): muted, one line",
    "Check (Checked)",
-   "Create label (Type=create): \"Create label \\\"Urgent\\\"\", \"Invite anna@acme.com\""
+   "Create label (Type=create): \"Create label \"Urgent\"\", \"Invite anna@acme.com\""
   ],
   "rules": [
    "Type: icon, avatar, none; the same Type for every option in one list; create is the only exception, always last",
