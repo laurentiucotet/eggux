@@ -621,6 +621,11 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Table | `Column Settings` | - | Items (native slot of Column Settings Item), Show search, Show footer; Popover Header, Search Field, Popover Footer exposed. Opens from Columns in Data Grid Toolbar; 288, min 240 |
 | Table | `Column Settings Item` | State: default, hover, dragging, locked | Label; Checkbox exposed; grip handle; locked shows a lock and a disabled checkbox |
 | Chat | `Conversation Item` | State: default, hover, selected | Name, Message, Time, Show unread (Badge Count exposed), Show pinned, Show muted (bell-off); Avatar exposed. Inbox and chat lists; 360, min 240 |
+| Pricing | `Plan Option Row` | State: default, selected | Name, Price, Equivalent, Trial text, Show badge, Show trial text, Show equivalent; saving Badge exposed (soft-success pill). One plan in a mobile or in-app paywall: radio, name, billed price per period, per-week or per-month equivalent, trial line. FILL, min 240 |
+| Pricing | `Meter Banner` | State: remaining, last, none | Title, Last title, None title (one per State), Description, Show sign in, Show dismiss; Sign in and Subscribe Buttons exposed. Sticky bottom bar for metered content ("You have 2 free articles left this month"); FILL, min 320, container 1152, actions wrap below 640 |
+| Pricing | `Paywall Card` | Type: metered, registration, hard | Logo (swap, default `Logo / Press / Northbeam Daily`), Show logo, Title / Description (metered), Registration title / description, Hard title / description, Sign in prompt, Fine print, Note, Show sign in; Benefits (slot: 3 Check Items), Plans (slot: 2 Plan Option Rows, metered and hard); Subscribe, Inline Form, Continue with Google, Sign in and Lock Badge (hard) exposed. 560, FILL from 320 |
+| Content | `Block / Article Paywall` | Type: metered, registration, hard | Title, Excerpt, Date; Preview (native slot: 2 Prose Paragraphs); Badge, Byline and Paywall Card exposed. 1440 (min 320): meta, h1, lead, Byline, two paragraphs fading into `background/default` (gradient to `gradient/background-transparent`), Paywall Card of the same Type. Family "Paywalls" on the Content page |
+| Hero | `Block / Mobile Paywall` | Style: list, comparison | Title, Description, Fine print, Show image; Benefits, Plans (native slots, list); Close, Primary action, Restore purchases, Terms, Privacy, Image Placeholder (list), Toggle Group and Price (comparison) exposed. 390 x 844 app paywall: list has a 21:9 image, 4 Check Items, Plan Option Rows yearly (selected, Save 58%, 7-day free trial) and monthly; comparison has a Free vs Pro table (Table Cell Check, Pro column on background/muted), Yearly / Monthly segmented toggle and Price. Family "Mobile" on the Hero page |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,
@@ -637,7 +642,7 @@ database, bookmark, headphones, podcast, bot, bell-off.
 
 ## Screens
 The SCREENS group (after BLOCKS) holds complete screens and templates to copy whole: pages Account,
-Auth, Documents, Emails, Settings. Each flow is a Figma section with `Screen / <Flow> / <Step> / Desktop` and `/ Mobile` frames
+Auth, Billing, Documents, Emails, Paywalls, Settings. Each flow is a Figma section with `Screen / <Flow> / <Step> / Desktop` and `/ Mobile` frames
 left to right in flow order (emails: `Screen / Email / <Name>`).
 
 | Page | Flow | Screens | Built from |
@@ -660,6 +665,10 @@ left to right in flow order (emails: `Screen / Email / <Name>`).
 | Emails | Billing | `Screen / Email / Invoice`, `Payment receipt`, `Payment failed`, `Trial ending` | Email / Header, Hero, Details, Line Items (Line Item, Total Row), Callout warning (Payment failed), Stats (Trial ending), Content, Button, Footer |
 | Emails | Marketing | `Screen / Email / Weekly summary` | Email / Header (View in browser on), Hero with eyebrow, Stats (3 Stat), Button, Divider, Hero with image (h3 title, feature), Content link, 3 Article, Footer with unsubscribe |
 | Emails | Commerce | `Screen / Email / Order confirmation` | Email / Header (Logo / Tidewater), Hero, Details (order, delivery), Line Items with product photos (`Image / Product / 01, 03, 07`), Button, Content, Footer (Tidewater address) |
+| Paywalls | Metered article | Reading (2 free articles left), Last free article, Wall reached, After subscribing; each Desktop + Mobile | Block / Navbar (Logo / Press / Northbeam Daily, news sections, Sign in + Subscribe), Block / Article with Prose Paragraphs and `Image / City / 01`, Meter Banner remaining and last pinned to the viewport, Block / Article Paywall Type=metered scrolled to the card, Toast success "Welcome to Northbeam Daily"; mobile: Mobile Header Type=brand with Subscribe, the same parts at 390 |
+| Paywalls | Registration wall | Wall: email or Google, Sign-in link sent; each Desktop + Mobile | Block / Article Paywall Type=registration, Inline Form State=success with the sent message |
+| Paywalls | Hard paywall | Subscriber-only article (Desktop) | Block / Article Paywall Type=hard (Lock Badge brand "Subscribers") |
+| Paywalls | Mobile app paywall | Onboarding list (yearly selected), Onboarding comparison (yearly selected), Restore purchases sheet, Purchase success, Onboarding list in Dark (Mobile) | Block / Mobile Paywall both Styles (Lumora), Scrim dialog + Drawer (restored purchase row on background/muted), Spot Illustration success, Check Items, xl Button, Manage subscription link |
 | Settings | General | Unsaved changes (Desktop, Mobile), Saved (Desktop, plus Dark and Corporate Light) | Page Shell / App (Orbitly sidebar), Block / Settings Page with Tabs, Block / Danger Zone, Save Bar, Toast success; mobile: Page Shell / Mobile detail, Form Section stacked, sticky Discard / Save changes bar |
 | Settings | Members | Team, Invite (dialog) | Settings Page with Tabs, Block / Team Members, Roles card (Setting Rows + Badge), Dialog with Textarea emails, Role Select, Usage Meter near |
 | Settings | Notifications | Preferences (Desktop with toast, Mobile) | Settings Page with Tabs, Block / Notification Preferences, Alert info (security emails always on), Toast; mobile Setting Rows with Switches grouped by topic |

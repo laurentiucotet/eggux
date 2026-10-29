@@ -1870,6 +1870,21 @@
    "main": "Comparison Table",
    "helpers": [],
    "block": "693:115421"
+  },
+  {
+   "main": "Plan Option Row",
+   "helpers": [],
+   "block": "1110:29613"
+  },
+  {
+   "main": "Meter Banner",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Paywall Card",
+   "helpers": [],
+   "block": "1110:6533"
   }
  ],
  "Progress": [

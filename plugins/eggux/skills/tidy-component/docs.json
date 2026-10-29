@@ -13044,5 +13044,133 @@
   "guides": [
    "skills/build-ui/components/comments-and-chat.md"
   ]
+ },
+ "Plan Option Row": {
+  "summary": "One plan in a mobile or in-app paywall: radio, plan name, the billed price per period, a per-week or per-month equivalent, a saving Badge and the trial line. The whole row is the target.",
+  "use": [
+   "Block / Mobile Paywall Style=list: yearly and monthly rows",
+   "Paywall Card: the plan choice in the Plans slot",
+   "Any short choice of 2 or 3 billing plans in a sheet or dialog on mobile"
+  ],
+  "avoid": [
+   "Plans compared side by side on a pricing page: use Plan Card",
+   "A detailed feature comparison: use Comparison Table",
+   "A choice that is not a plan or price: use Option Card"
+  ],
+  "anatomy": [
+   "State: default, selected",
+   "Radio (follows State)",
+   "Name: \"Yearly\"",
+   "Badge (Show badge, exposed): soft-success pill \"Save 58%\"",
+   "Trial text (Show trial text): \"7-day free trial\"",
+   "Price: the billed amount and period, \"€59.99 per year\"",
+   "Equivalent (Show equivalent): \"€1.15 per week\" or \"€4.17 per month\""
+  ],
+  "rules": [
+   "Stack 2 or 3 rows with spacing/3; the better deal first and selected (State=selected), the base plan under it",
+   "The billed price is the main value; the equivalent is secondary (ui/caption, muted) and never larger than the billed price",
+   "The saving compares with the other row in the same list and is rounded down (\"Save 58%\")",
+   "Show badge off on the base plan; Show trial text off on plans without a trial",
+   "Prices, currency and trial length come from the store or billing provider",
+   "Resize: FILL width, min 240. Text column fills (min 80) and wraps the Badge under the name; price column hugs and never wraps"
+  ],
+  "a11y": [
+   "A radio group: each row is role=radio with aria-checked, the group has a label (\"Choose a plan\")",
+   "The accessible name reads the whole row: \"Yearly, €59.99 per year, €1.15 per week, save 58%, 7-day free trial\"",
+   "Selected is shown by the filled radio and the 2 px primary border (5.2:1 Light, 3.5:1 Dark on the card), not color alone",
+   "Muted text on the card 4.7:1 Light, 7.1:1 Dark; soft-success Badge 6.2:1 Light, 7.2:1 Dark"
+  ],
+  "code": "RadioGroup.Item styled as a card: <label> with RadioGroupItem, name + Badge, trial line, and a right-aligned price stack; data-[state=checked]:border-2 border-primary.",
+  "guides": [
+   "skills/build-ui/patterns/monetization.md",
+   "skills/build-ui/patterns/mobile.md"
+  ]
+ },
+ "Meter Banner": {
+  "summary": "Sticky bar at the bottom of metered content: how many free articles are left this month, Subscribe and Sign in.",
+  "use": [
+   "Articles and videos on a metered site, while free reads are left",
+   "The last free article before the wall (State=last)",
+   "Next to the content wall once the meter is used (State=none), when the page keeps a bar"
+  ],
+  "avoid": [
+   "A product usage limit in an app: use Usage Limit Banner or Usage Meter",
+   "A site-wide announcement: use Block / Banner with Action",
+   "A trial countdown: use Trial Banner"
+  ],
+  "anatomy": [
+   "State: remaining, last, none",
+   "Icon tile 40: bookmark on background/muted (remaining), file on soft-warning (last), lock on soft-info (none)",
+   "Title (remaining), Last title, None title: one per State",
+   "Description: the lowest price and \"Cancel anytime\"",
+   "Sign in (Show sign in, exposed ghost Button)",
+   "Subscribe (exposed primary Button)",
+   "Dismiss (Show dismiss): ghost sm Button Icon"
+  ],
+  "rules": [
+   "Pin it to the bottom of the viewport; it never covers the headline or the text being read (pad the page by its height)",
+   "Say the count in words people use: \"You have 2 free articles left this month\"",
+   "The description names a price and period (\"from €6.49 per month\") and how to cancel",
+   "Keep Dismiss on remaining and last; the reader can always close it and keep reading",
+   "One primary action (Subscribe); Sign in for people who already pay",
+   "Resize: FILL width, min 320, container max 1152 centered. The actions wrap under the message below about 640; title 2 lines, description 3 lines with ellipsis"
+  ],
+  "a11y": [
+   "role=region with aria-label \"Free articles\"; not a dialog, focus stays in the article",
+   "Changes of the count are announced once (polite), not on every page view",
+   "Dismiss has aria-label \"Dismiss\"; Esc does not need to close it",
+   "Title on the card 19.8:1, description 4.7:1 Light and 7.1:1 Dark; soft tiles carry an icon, not color alone"
+  ],
+  "code": "fixed bottom-0 inset-x-0 border-t bg-card shadow-lg; inner max-w-6xl mx-auto flex flex-wrap items-center gap-4; message flex-1 min-w-60; actions shrink-0; Button variant=\"ghost\" Sign in, Button Subscribe, Button size=\"icon\" variant=\"ghost\" dismiss.",
+  "guides": [
+   "skills/build-ui/patterns/monetization.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
+ },
+ "Paywall Card": {
+  "summary": "The subscription card that sits under the faded preview when a reader reaches a content wall: logo, title, what they get, the plan choice, one primary action, Sign in for subscribers and the price and renewal fine print.",
+  "use": [
+   "Block / Article Paywall: the end of the free preview",
+   "A metered, registration or hard wall on articles, videos, reports or courses",
+   "Inside a Dialog or Drawer when the wall opens over the page"
+  ],
+  "avoid": [
+   "A locked feature inside an app: use Gate Overlay or Upgrade Dialog",
+   "A full pricing page: use Block / Pricing and Plan Card",
+   "A mobile app paywall: use Block / Mobile Paywall"
+  ],
+  "anatomy": [
+   "Type: metered, registration, hard",
+   "Logo (swap, Show logo): Logo / Press / Northbeam Daily by default",
+   "Lock Badge (hard only, exposed): Tone=brand, \"Subscribers\"",
+   "Title, Description (metered); Registration title, Registration description; Hard title, Hard description",
+   "Benefits slot: 3 Check Items",
+   "Plans slot (metered, hard): 2 Plan Option Rows, yearly selected with the saving, monthly",
+   "Subscribe (metered, hard): exposed primary lg Button, FILL",
+   "Inline Form (registration, exposed): email + Continue, hint",
+   "Separator \"or\" + Continue with Google (registration, exposed outline lg Button)",
+   "Sign in prompt + Sign in link Button (Show sign in)",
+   "Fine print (metered, hard) or Note (registration)"
+  ],
+  "rules": [
+   "metered: say that the free articles are used and when they come back (\"3 more on 1 December\")",
+   "registration asks only for an email or Google; no plans, no card, no password",
+   "hard: only for content that is never free; it is the one wall without another way in, so keep Sign in",
+   "The fine print sits right under the action and states every price, the period, automatic renewal and where to cancel; no hidden fees",
+   "Plans slot: Plan Option Rows, or a segmented billing Toggle Group with a Price; never preselect a more expensive plan without saying why (the saving)",
+   "Place it under the faded preview, never over the headline; the reader can scroll back up",
+   "Resize: 560 wide in an article column, FILL on mobile, min 320. Title up to 3 lines, fine print 4 lines"
+  ],
+  "a11y": [
+   "The title is a heading (h2) in the article flow; the card is not a modal and does not trap focus",
+   "Plans are a radio group with a label; the Subscribe label can name the plan (aria-describedby the fine print)",
+   "Fine print 4.7:1 Light, 7.1:1 Dark on the card; title 19.8:1",
+   "The Google button names the provider in text"
+  ],
+  "code": "shadcn Card (max-w-[560px] mx-auto shadow-xl rounded-xl p-8) with logo, h2, <ul> of Check Item, RadioGroup of Plan Option Row (or Tabs/ToggleGroup + Price), Button size=\"lg\" w-full, sign-in link and <p className=\"text-xs text-muted-foreground\"> fine print; registration: Inline Form + Separator + outline Button.",
+  "guides": [
+   "skills/build-ui/patterns/monetization.md",
+   "skills/build-ui/patterns/content-and-docs.md"
+  ]
  }
 }

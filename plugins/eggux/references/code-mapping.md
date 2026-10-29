@@ -624,6 +624,17 @@ Components and variants added from the 2026-10 gap audit.
 | `Kanban Column` (State, Show limit) | limit `span className="text-xs text-muted-foreground"` "Limit 5" after the count; drop-target `bg-accent outline-dashed outline-2 outline-ring` (dnd-kit `isOver`); collapsed `w-12` button with `[writing-mode:vertical-rl]` title | Count Badge destructive over the limit |
 | `Icon/bell-off` | lucide `BellOff` | Muted conversations and notification settings |
 
+## Paywalls and subscriptions
+Paywall, gate and subscription components (see patterns/monetization.md).
+
+| Figma | Code | Notes |
+|---|---|---|
+| `Plan Option Row` | shadcn `RadioGroupItem` inside a `<label>` card + `Badge` | `flex items-center gap-3 p-4 rounded-lg border min-w-60`; text `flex-1 min-w-20` with name and Badge in `flex flex-wrap gap-2`; price stack `shrink-0 text-right whitespace-nowrap`; `data-[state=checked]:border-2 data-[state=checked]:border-primary shadow-xs` |
+| `Meter Banner` | custom fixed bar + shadcn `Button` | `fixed inset-x-0 bottom-0 border-t bg-card shadow-lg px-6 py-4`; inner `max-w-6xl mx-auto flex flex-wrap items-center gap-x-4 gap-y-3`; message `flex-1 min-w-60`; title `line-clamp-2`, description `line-clamp-3`; `role="region" aria-label="Free articles"` |
+| `Paywall Card` | shadcn `Card` + `Check Item`, `RadioGroup` of `Plan Option Row`, `Button`, `Inline Form`, `Separator` | `w-full max-w-[560px] min-w-80 mx-auto p-8 rounded-xl shadow-xl`; Type maps to which parts render (plans + Subscribe, or email form + Google); fine print `text-xs text-muted-foreground text-center` right under the action |
+| `Block / Article Paywall` | custom: article header + `Prose` + fade + `Paywall Card` | Column `max-w-[672px] mx-auto px-4`; preview wrapper `relative`, fade `absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none`; render only the preview paragraphs server side, not the hidden rest |
+| `Block / Mobile Paywall` | React Native / SwiftUI screen or web `Dialog` fullscreen | 390 x 844: close top left, scroll body, sticky footer with the xl Button, fine print and Restore purchases, Terms, Privacy links; prices and renewal text from StoreKit / Play Billing |
+
 ## Admin
 | Figma | Code | Notes |
 |---|---|---|
