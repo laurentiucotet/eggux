@@ -1,6 +1,6 @@
 # Alert
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -10,8 +10,9 @@ Usage rules live in the guides linked under each component.
 | [Service Status Row](#service-status-row) | 4 | - |
 | [Uptime Bars](#uptime-bars) | 1 | - |
 | [Uptime Day](#uptime-day) | 5 | - |
+| [Inline Message](#inline-message) | 6 | - |
 
-On the Figma page: "Example / Alert styles", "Example / in status page", "Stress test / Alert", "Stress test / Service Status Row", "Stress test / Uptime Bars"
+On the Figma page: "Example / Alert styles", "Example / Inline Message", "Example / in status page", "Stress test / Alert", "Stress test / Inline Message", "Stress test / Service Status Row", "Stress test / Uptime Bars"
 
 ## Alert
 
@@ -232,3 +233,71 @@ Tokens and styles:
 Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
 Code: flex row of 90 bars (`flex-1 h-7 rounded-sm`, `bg-success` / `bg-warning` / `bg-destructive` / `bg-info` / `bg-border` by state) with a shadcn `Tooltip` per day; caption "90 days ago" / "Today" (Each day has an accessible label with date and state)
+
+## Inline Message
+
+Component set · 6 variants · default size 161 × 20
+
+One line of status text with an icon and no box, next to the thing it is about: autosave in a header ("Saved 2 minutes ago"), a result next to Action Bar buttons, an import or invite row result, a note under a Card.
+
+
+Type: default (muted, clock: timestamps and neutral status), info, success, warning, error (icon and text in the status color; the words carry the meaning too), loading (Spinner and muted text: "Saving…"). Text wraps to 2 lines at most (480 max width), then ends with an ellipsis.
+
+
+Use Alert for messages that need a title, a box or actions, Toast for results of an action the user may miss, and the Field error text for field validation.
+
+
+Usage: eggux build-ui/components/alert.md
+
+**Use for**
+
+- Autosave status in a document or settings header: "Saved 2 minutes ago", "Saving…"
+- The result of an action next to the Action Bar buttons
+- Per-row results in Import Mapping, Invite Row and bulk lists: "3 rows skipped"
+- A short note under a Card or a section
+
+**Not for**
+
+- A message that needs a title, a box or actions: use Alert
+- The result of an action the user may not see: use Toast
+- Field validation: use the Field error text
+- A status label on an object: use Badge or Status Dot
+
+**Anatomy**
+
+1. Icon box 16 x 20 (aligned to the first line): Icon/clock (default), info, circle-check (success), triangle-alert (warning), circle-alert (error) or a Spinner sm (loading)
+2. Text (body/small, Text), 2 lines at most, then an ellipsis
+3. Type: default and loading use foreground/muted; info, success, warning and error use badge/soft-*-fg for icon and text
+
+**Content and behavior**
+
+- The words carry the meaning; color and icon only repeat it
+- Past tense for results ("Saved", "3 rows imported"), present with an ellipsis while running ("Saving…")
+- One message per place; replace it, never stack several
+- Hugs its text up to 480 px; set the instance to FILL in narrow columns so it wraps; 2 lines max with ellipsis
+- Never a link or button inside; put actions next to it
+
+**Accessibility**
+
+- Wrap it in role="status" (aria-live="polite"); errors that block the goal use role="alert"
+- The icon is decorative (aria-hidden)
+- Status text meets 4.5:1: soft-fg tokens 6.47 to 7.13 in Light, 9.45 and up in Dark, 6.47 and up in Corporate Light; foreground/muted 4.74 in Light
+
+| Variant property | Values |
+|---|---|
+| Type | default, info, success, warning, error, loading |
+
+| Property | Type | Default |
+|---|---|---|
+| Text | text | Saved 2 minutes ago |
+
+Built from: `Spinner`. Icons: circle-alert, circle-check, clock, info, triangle-alert
+
+Tokens and styles:
+- Colors: `badge/soft-destructive-fg`, `badge/soft-info-fg`, `badge/soft-success-fg`, `badge/soft-warning-fg`, `foreground/muted`
+- Spacing and size: `spacing/2`
+- Text styles: `body/small`
+
+Guides: [alert](../../skills/build-ui/components/alert.md)
+
+Code: custom: `<p role="status" className="flex items-start gap-2 text-sm">` + lucide icon (`size-4 mt-0.5 shrink-0`) or `Spinner`, text `min-w-0 line-clamp-2` (Type default/loading `text-muted-foreground`; info/success/warning/error use the soft badge tokens: `text-[var(--badge-soft-success-fg)]` etc. (icons and text). Errors that block the goal: `role="alert"`. `max-w-[480px]` when it hugs)

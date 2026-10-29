@@ -1,6 +1,6 @@
 # Video
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -8,9 +8,9 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Video Player](#video-player) | 6 | - |
 | [Video Thumbnail](#video-thumbnail) | 1 | - |
-| [Audio Player](#audio-player) | 1 | - |
+| [Audio Player](#audio-player) | 4 | - |
 
-On the Figma page: "Example / getting started video", "Example / help center videos and podcast", "Stress test / Audio Player", "Stress test / Video Player", "Stress test / Video Thumbnail"
+On the Figma page: "Example / Audio Player styles", "Example / getting started video", "Example / help center videos and podcast", "Stress test / Audio Player", "Stress test / Video Player", "Stress test / Video Thumbnail"
 
 ## Video Player
 
@@ -137,15 +137,22 @@ Code: `<button>` + `<img>` poster, lucide `Play`, `Badge` (Opens `Video Player` 
 
 ## Audio Player
 
-Component · 1 variant · default size 480 × 68
+Component set · 4 variants · default size 480 × 68
 
 Plays one audio file: podcast episode, voice message, recorded call. Play/pause, title, position and length, a seek bar, volume. Space toggles play; arrows seek 5 s. Offer a transcript link next to it. Video uses Video Player.
+
+
+Variant: default (title, seek bar, times, volume) for episodes, recordings and files; compact (280, pill: play, waveform, duration) for voice messages in Chat, Team Chat and Inbox. State: paused (play icon) or playing (pause icon, played part in background/primary). Played waveform bars use background/primary, the rest foreground/muted.
+
+
+Usage: eggux build-ui/components/video-player.md
 
 **Use for**
 
 - Podcast episodes
 - Voice messages in chat
 - Recorded calls in a record
+- Variant=compact: voice messages in Chat, Team Chat and Inbox
 
 **Not for**
 
@@ -159,6 +166,9 @@ Plays one audio file: podcast episode, voice message, recorded call. Play/pause,
 2. Title
 3. Progress: current time, seek bar, length
 4. Volume: Button Icon
+5. Variant: default or compact (280 pill: play sm, waveform, duration; no title or volume)
+6. State: paused (play icon) or playing (pause icon, played part in background/primary)
+7. Waveform: 28 bars, played in background/primary, the rest foreground/muted
 
 **Content and behavior**
 
@@ -167,12 +177,20 @@ Plays one audio file: podcast episode, voice message, recorded call. Play/pause,
 - One player plays at a time; never autoplay
 - Times in m:ss, h:mm:ss past an hour
 - Title in one line
+- Compact shows the remaining or total time in Duration
+- Resize: default title 1 line with ellipsis; compact waveform fills, min 200
 
 **Accessibility**
 
 - The play button name follows the state ("Play", "Pause")
 - The seek bar is role="slider" with aria-valuetext ("4 minutes 12 seconds of 14 minutes 30 seconds")
 - The volume button is named "Mute" or "Unmute"
+- The waveform is decorative; the slider carries the position
+
+| Variant property | Values |
+|---|---|
+| Variant | default, compact |
+| State | paused, playing |
 
 | Property | Type | Default |
 |---|---|---|
@@ -184,7 +202,7 @@ Built from: `Button Icon`
 
 Tokens and styles:
 - Colors: `background/card`, `background/muted`, `background/primary`, `border/default`, `foreground/card`, `foreground/muted`
-- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/3`
+- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
 - Radius: `radius/full`, `radius/lg`
 - Text styles: `ui/caption`, `ui/label`
 

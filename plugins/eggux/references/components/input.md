@@ -1,15 +1,16 @@
 # Input
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Input](#input) | 24 | Trailing |
-| [Field](#field) | 3 | Control |
+| [Input](#input) | 68 | Trailing |
+| [Field](#field) | 6 | Control |
+| [Field Counter](#field-counter) | 3 | - |
 | [Password Strength](#password-strength) | 5 | - |
-| [Textarea](#textarea) | 8 | - |
+| [Textarea](#textarea) | 10 | - |
 | [Input Group](#input-group) | 4 | Start, End |
 | [Input Addon](#input-addon) | 2 | - |
 | [Number Input](#number-input) | 8 | - |
@@ -24,16 +25,19 @@ Usage rules live in the guides linked under each component.
 | [Duration Input](#duration-input) | 3 | - |
 | [Range Input](#range-input) | 2 | - |
 
-On the Figma page: "Example / Input styles", "Example / Search Field styles", "Example / approve a contract", "Example / in account settings form", "Example / in multi-step form", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Example / textarea in field", "Example / workspace rules", "Stress test / Copy Field", "Stress test / Currency Input", "Stress test / Date Input", "Stress test / Duration Input", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Inline Form", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Phone Input", "Stress test / Range Input", "Stress test / Search Field", "Stress test / Signature Pad", "Stress test / Textarea"
+On the Figma page: "Example / Field styles", "Example / Input Group styles", "Example / Input styles", "Example / Search Field styles", "Example / Textarea styles", "Example / approve a contract", "Example / in account settings form", "Example / in product detail", "Example / in reset password", "Example / input groups", "Example / rename a project", "Example / textarea in field", "Example / workspace rules", "Stress test / Copy Field", "Stress test / Currency Input", "Stress test / Date Input", "Stress test / Duration Input", "Stress test / Field", "Stress test / Inline Edit and Signature Pad", "Stress test / Inline Form", "Stress test / Input", "Stress test / Input Group", "Stress test / Number Input", "Stress test / Password Strength", "Stress test / Phone Input", "Stress test / Range Input", "Stress test / Search Field", "Stress test / Signature Pad", "Stress test / Textarea"
 
 ## Input
 
-Component set · 24 variants · default size 320 × 36
+Component set · 68 variants · default size 320 × 36
 
 shadcn Input. Content=placeholder shows an example value, never the label. Use inside Field for label, hint and error.
 
 
 Style: default (outlined, the standard); filled (background/muted fill, no border until focus or error; for dense or card-heavy screens; placeholder in input/filled-muted-foreground); floating (48 high, the Label sits inside and moves up on focus or once there is a value; for short public forms like sign-up and checkout; put it in a Field with Show label off). One Style per form.
+
+
+Size: default 36 (density/control-height), sm 32 (filter bars, toolbars, table rows, dense forms), lg 40 (body/default text; hero and mobile forms). Match the Size of the Buttons beside it. State=read-only: muted fill, the same border, no shadow, value in foreground/default; for values people can read and copy but not change (never use disabled for that). Show clear: an x after the value, only while it has a value. Show loading: Spinner sm at the end during an async check (coupon, workspace URL, VAT number). Style=floating has no sizes and no read-only.
 
 
 Usage: eggux build-ui/components/input.md
@@ -45,6 +49,11 @@ Usage: eggux build-ui/components/input.md
 - Any form control inside Field
 - Style=filled: dense or card-heavy screens, filters and settings where many outlined boxes look busy
 - Style=floating: short public forms (sign-up, checkout, contact) where the label sits inside the field to save height
+- Size=sm: filter bars, Data Grid Toolbar, table rows, dense enterprise forms
+- Size=lg: hero inline forms, Help Hero search, mobile forms
+- State=read-only: values people can read and copy but not change (record details, IDs, fields locked after approval)
+- Show loading: async checks (workspace URL, coupon, address, VAT number)
+- Show clear: filter fields and search-like fields with a value
 
 **Not for**
 
@@ -54,6 +63,8 @@ Usage: eggux build-ui/components/input.md
 - Common data (email, phone, card): use Field Preset
 - Mixing Styles in one form: pick one Style per form
 - Style=floating for long or dense forms, or with long labels: use default with the label above
+- State=disabled for a value that is only locked: use read-only
+- Mixing Sizes in one row: match the Buttons beside it
 
 **Anatomy**
 
@@ -62,11 +73,15 @@ Usage: eggux build-ui/components/input.md
 3. Label (floating only): rests in the middle in body/small; moves up in ui/caption on focus or when Content=filled; foreground/brand on focus, background/destructive on error
 4. Value or placeholder
 5. Trailing slot (Show trailing): clear, show password
+6. Clear (Show clear): x icon 16 after the value
+7. Loading (Show loading): Spinner sm at the end
+8. Size: default 36 (density/control-height), sm 32 (spacing/8), lg 40 (spacing/10, body/default text, 16 padding)
+9. State=read-only: background/muted fill, border/input border, no shadow, value foreground/default, placeholder input/filled-muted-foreground; clear and loading hidden
 
 **Content and behavior**
 
 - Content=placeholder shows an example value, never the label or instructions
-- State: default, focus, error, disabled
+- State: default, focus, error, disabled, read-only; Size: default, sm, lg (Style default and filled; floating has default only)
 - Width suggests the expected length
 - Pick the narrowest type and set autocomplete in code
 - Never clear what the user typed after an error
@@ -74,6 +89,10 @@ Usage: eggux build-ui/components/input.md
 - Style=filled on background/default or background/card only; on a muted surface the fill disappears
 - Style=floating: put it in a Field with Show label off so the hint and the error stay; the Label is the visible label, never a placeholder only
 - Style=floating with focus and no value shows the floated Label and the placeholder
+- Read-only text stays selectable and full contrast; never use disabled for it
+- Show clear only while there is a value; clearing keeps focus in the field
+- Show loading only during the check; then show the result in the Field hint or error
+- Resize: the value fills and truncates to 1 line; icons, clear and spinner keep their size
 
 **Accessibility**
 
@@ -82,11 +101,15 @@ Usage: eggux build-ui/components/input.md
 - Error is linked with aria-describedby and aria-invalid
 - Style=filled: the fill is about 1.1:1 against the page (1.3:1 Dark), like the default border (1.3:1 Light); the visible label identifies the field, and focus adds a border/ring border and ring (4.7:1 on the fill)
 - Style=floating: the Label is the accessible name (label for/id); it stays visible when the field has a value; label text is 4.7:1 or more in every theme
+- read-only: readonly attribute, still focusable; no aria-disabled
+- Clear is a button with aria-label "Clear"
+- Loading: aria-busy on the field and a polite status message
 
 | Variant property | Values |
 |---|---|
 | Style | default, filled, floating |
-| State | default, focus, error, disabled |
+| Size | default, sm, lg |
+| State | default, focus, error, disabled, read-only |
 | Content | placeholder, filled |
 
 | Property | Type | Default |
@@ -96,16 +119,18 @@ Usage: eggux build-ui/components/input.md
 | Leading icon | instance swap | Icon/search |
 | Show trailing | boolean | false |
 | Label | text | Email |
+| Show clear | boolean | false |
+| Show loading | boolean | false |
 
 Slots (fill them in the instance, never detach): `Trailing`
 
-Icons: search
+Built from: `Spinner`. Icons: search, x
 
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `background/muted`, `border/input`, `border/ring`, `foreground/brand`, `foreground/default`, `foreground/muted`, `input/filled-muted-foreground`
-- Spacing and size: `density/control-height`, `spacing/12`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
+- Spacing and size: `density/control-height`, `spacing/10`, `spacing/12`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
 - Radius: `input/radius`
-- Text styles: `body/small`, `ui/caption`, `ui/label`
+- Text styles: `body/default`, `body/small`, `ui/caption`, `ui/label`
 - Effects: `shadow/xs`
 
 Guides: [input](../../skills/build-ui/components/input.md), [rich-text-editor](../../skills/build-ui/components/rich-text-editor.md), [select](../../skills/build-ui/components/select.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
@@ -114,9 +139,12 @@ Code: shadcn `Input`, `Label`, `Textarea`, `Form` (react-hook-form) (Field = `Fo
 
 ## Field
 
-Component set · 3 variants · default size 320 × 88
+Component set · 6 variants · default size 320 × 88
 
 Label + Control (native slot, default Input) + hint or error. Label always visible: Show label off only when the control has its own visible label (Input Style=floating). Error text uses background/destructive with an icon.
+
+
+Show required adds a red asterisk after the label; Show optional adds "Optional" (bound to the field/optional content string, so it translates). Mark the minority in a form: required or optional, never both. Show info adds an Info Tip Trigger after the label that opens an Info Tip with a short definition. Show counter adds the Field Counter (exposed: Count; Status default, near, over) at the right of the label; over the limit also set State=error with a message. Layout: vertical (label above, the default) or horizontal (160 px label column on the left, min width 400, for dense settings and record forms). Labels wrap at 256 px (144 in horizontal).
 
 
 Usage: eggux build-ui/patterns/form-validation.md
@@ -126,17 +154,29 @@ Usage: eggux build-ui/patterns/form-validation.md
 - Every form control: Input, Textarea, Select, Input Group, Number Input
 - Format hints shown before the user types
 - Grouped fields (address, date range) that need one label each
+- Layout=horizontal: dense settings pages and enterprise record forms with many short fields
+- Show info: a field that needs a definition (tax ID, SLA, webhook URL, role names)
+- Show counter: text with a limit (bio, SMS, notification text, review, AI prompt)
 
 **Not for**
 
 - Table cells or filter toolbars where the column or chip names the value: use Input alone with aria-label
 - Values edited in place on a detail page: use Inline Edit
+- Show required and Show optional in the same form: mark only the minority
+- Layout=horizontal under 400 px or on mobile: use vertical
+- Show info for text people need to finish the task: put it in the hint
 
 **Anatomy**
 
-1. Label (Show label, on by default)
-2. Control slot (default Input)
-3. Hint (Show hint) or Error with circle-alert icon
+1. Label row (Show label): label group and counter
+2. Label (Label, ui/label; wraps at 256, 144 in horizontal)
+3. Required (Show required): red asterisk, background/destructive
+4. Optional (Show optional): "Optional" in body/small foreground/muted, bound to the field/optional content string
+5. Info (Show info): Info Tip Trigger that opens an Info Tip
+6. Counter (Show counter): Field Counter, exposed (Count; Status default, near, over), at the right of the label
+7. Control slot (default Input)
+8. Hint (Show hint) or Error with circle-alert icon
+9. Layout: vertical (label above) or horizontal (160 label column on the left, body fills; min width 400)
 
 **Content and behavior**
 
@@ -146,7 +186,13 @@ Usage: eggux build-ui/patterns/form-validation.md
 - Validate on blur; once in error, re-validate on every change
 - Error text uses background/destructive with an icon, not color alone
 - Show label off only when the control carries its own visible label (Input Style=floating); hint and error stay under it
-- Resize: label and hint fill the width and wrap (label up to 2 lines); the control fills
+- State: default, error, disabled; Layout: vertical, horizontal
+- Mark the minority: if most fields are required, mark the optional ones (Show optional), otherwise mark the required ones (Show required); never both in one form
+- Required asterisk is explained once at the top of long forms ("* required") unless every field is required
+- Counter: default up to about 90% of the limit, near from 90%, over past the limit; over also sets State=error with "Use 160 characters or fewer"; never block typing or paste
+- Info Tip text is one or two sentences and at most one link; the hint stays for format help
+- Resize: label row fills; the label hugs and wraps at 256 (144 in horizontal), markers wrap to the next line when there is no room; the control fills; hint and error wrap
+- Layout=horizontal needs at least 400; below that use vertical
 
 **Accessibility**
 
@@ -154,10 +200,15 @@ Usage: eggux build-ui/patterns/form-validation.md
 - Hint and error linked with aria-describedby; aria-invalid on error
 - On submit, focus moves to the first invalid field
 - With Show label off the control's own label must stay visible and be tied to the control
+- Required: the input gets required / aria-required; the asterisk is aria-hidden and the form explains it
+- Optional text is part of the label (read with it)
+- Counter text is linked with aria-describedby and announced politely only near and over the limit
+- Info trigger is a button with aria-label "More about <label>" and aria-expanded
 
 | Variant property | Values |
 |---|---|
 | State | default, error, disabled |
+| Layout | vertical, horizontal |
 
 | Property | Type | Default |
 |---|---|---|
@@ -166,19 +217,73 @@ Usage: eggux build-ui/patterns/form-validation.md
 | Show hint | boolean | true |
 | Error | text | Enter an email address like name@example.com |
 | Show label | boolean | true |
+| Show required | boolean | false |
+| Show optional | boolean | false |
+| Show info | boolean | false |
+| Show counter | boolean | false |
 
 Slots (fill them in the instance, never detach): `Control`
 
-Built from: `Input`. Icons: circle-alert
+Built from: `Field Counter`, `Info Tip Trigger`, `Input`. Icons: circle-alert
 
 Tokens and styles:
 - Colors: `background/destructive`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1_5`, `spacing/2`
-- Text styles: `ui/caption`, `ui/label`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/4`, `spacing/40`
+- Text styles: `body/small`, `ui/caption`, `ui/label`
 
 Guides: [input](../../skills/build-ui/components/input.md), [rich-text-editor](../../skills/build-ui/components/rich-text-editor.md), [select](../../skills/build-ui/components/select.md)
 
 Code: shadcn `Input`, `Label`, `Textarea`, `Form` (react-hook-form) (Field = `FormItem` with label, description, message)
+
+## Field Counter
+
+Component set · 3 variants · default size 45 × 16
+
+Character counter shown at the right of a Field label ("142 / 160"); exposed in Field (Show counter). Status: default (foreground/muted), near (foreground/default, medium, from about 90% of the limit), over (background/destructive, medium; set the Field to State=error with a message like "Use 160 characters or fewer"). Never block typing at the limit; let people paste and then trim.
+
+
+Usage: eggux build-ui/components/input.md
+
+**Use for**
+
+- Inside Field (Show counter) for text with a limit
+
+**Not for**
+
+- Fields without a real limit
+- Number limits (min, max): use the hint
+
+**Anatomy**
+
+1. Count text (Count)
+2. Status: default (ui/caption, foreground/muted), near (ui/label-small, foreground/default), over (ui/label-small, background/destructive)
+
+**Content and behavior**
+
+- Status near from about 90% of the limit, over past it
+- Over the limit the Field also goes to State=error with a message
+- Resize: hugs its text; never wraps
+
+**Accessibility**
+
+- Linked to the control with aria-describedby
+- Announce only near and over (aria-live polite), not on every key
+
+| Variant property | Values |
+|---|---|
+| Status | default, near, over |
+
+| Property | Type | Default |
+|---|---|---|
+| Count | text | 42 / 160 |
+
+Tokens and styles:
+- Colors: `background/destructive`, `foreground/default`, `foreground/muted`
+- Text styles: `ui/caption`, `ui/label-small`
+
+Guides: [input](../../skills/build-ui/components/input.md)
+
+Code: `span className="text-xs tabular-nums text-muted-foreground"`; near `font-medium text-foreground`; over `font-medium text-destructive` (In the label row (`flex justify-between`); `aria-describedby` on the control, `aria-live="polite"` near and over only)
 
 ## Password Strength
 
@@ -236,15 +341,22 @@ Code: custom bars + text under the shadcn `Input` (Level in text, not only color
 
 ## Textarea
 
-Component set · 8 variants · default size 320 × 64
+Component set · 10 variants · default size 320 × 64
 
 Multi-line text input (shadcn Textarea). Min height 64, grows with content; in code set rows or max height with scroll. Put it in a Field for label, hint and error. Character count goes in the Field hint ("120/500").
+
+
+State=read-only: muted fill, full-contrast text, no shadow, for notes locked after approval. A character limit goes in the Field: Show counter (Field Counter at the right of the label).
+
+
+Usage: eggux build-ui/components/input.md
 
 **Use for**
 
 - Free text longer than one line: notes, descriptions, reasons
 - Messages and comments without formatting
 - Reasons for a rejection, a refund or a status change
+- State=read-only: notes and reasons locked after approval
 
 **Not for**
 
@@ -255,14 +367,16 @@ Multi-line text input (shadcn Textarea). Min height 64, grows with content; in c
 
 1. Field label
 2. Text area
-3. Hint with character count ("120/500")
+3. Counter: Field Show counter (Field Counter at the right of the label)
+4. State=read-only: background/muted, no shadow, full-contrast text
 
 **Content and behavior**
 
-- State: default, focus, error, disabled; Content: placeholder, filled
+- State: default, focus, error, disabled, read-only; Content: placeholder, filled
 - Min height 64; grows with content up to a max height, then scrolls
 - Height shows the expected length: 3-5 rows
-- A limit shows as a counter in the Field hint and turns to error past the limit
+- A limit shows as Field Show counter; past the limit the counter is Status=over and the Field State=error
+- Resize: the text area fills the Field; text wraps
 
 **Accessibility**
 
@@ -272,7 +386,7 @@ Multi-line text input (shadcn Textarea). Min height 64, grows with content; in c
 
 | Variant property | Values |
 |---|---|
-| State | default, focus, error, disabled |
+| State | default, focus, error, disabled, read-only |
 | Content | placeholder, filled |
 
 | Property | Type | Default |
@@ -280,7 +394,7 @@ Multi-line text input (shadcn Textarea). Min height 64, grows with content; in c
 | Value | text | Add a note… |
 
 Tokens and styles:
-- Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
+- Colors: `background/default`, `background/destructive`, `background/muted`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`, `input/filled-muted-foreground`
 - Spacing and size: `spacing/2`, `spacing/3`
 - Radius: `radius/md`
 - Text styles: `body/small`
@@ -295,11 +409,18 @@ Component set · 4 variants · default size 360 × 36
 
 Input with attached addons (shadcn Input Group). Use when a fixed prefix/suffix is part of the value format (https://, .com, EUR, kg, %). For icons inside the field, use Input with Leading icon / Trailing slot instead.
 
+
+Show loading: Spinner sm after the value while an async check runs (workspace URL available, coupon, VAT number); put the result in the Field hint or error.
+
+
+Usage: eggux build-ui/components/input.md
+
 **Use for**
 
 - Prefix or suffix that is part of the value: https://, .com, EUR, kg, %, @
 - Money, decimals and large numbers with a unit
 - A Select (currency) or Button (Copy, Generate) attached to a field
+- Show loading: an async check of the value (workspace URL available, coupon, VAT number)
 
 **Not for**
 
@@ -311,6 +432,7 @@ Input with attached addons (shadcn Input Group). Use when a fixed prefix/suffix 
 1. Start slot: Input Addon (Show start)
 2. Input with Value
 3. End slot: Input Addon (Show end)
+4. Loading (Show loading): Spinner sm after the value
 
 **Content and behavior**
 
@@ -319,12 +441,14 @@ Input with attached addons (shadcn Input Group). Use when a fixed prefix/suffix 
 - State: default, focus, error, disabled
 - Amounts are right-aligned in tables
 - Resize: the value fills between the addons and stays on 1 line with ellipsis; addons keep their width
+- Show loading only while checking; the result goes in the Field hint or error
 
 **Accessibility**
 
 - Addon text is included in the accessible description (aria-describedby)
 - Focus ring wraps the whole group
 - Buttons in the slots have labels
+- Loading: aria-busy on the input and a polite status message
 
 | Variant property | Values |
 |---|---|
@@ -335,14 +459,15 @@ Input with attached addons (shadcn Input Group). Use when a fixed prefix/suffix 
 | Value | text | egg-ux |
 | Show start | boolean | true |
 | Show end | boolean | true |
+| Show loading | boolean | false |
 
 Slots (fill them in the instance, never detach): `Start`, `End`
 
-Built from: `Input Addon`
+Built from: `Input Addon`, `Spinner`
 
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `border/input`, `border/ring`, `foreground/default`
-- Spacing and size: `density/control-height`, `spacing/3`
+- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`
 - Radius: `input/radius`
 - Text styles: `body/small`
 
@@ -604,7 +729,7 @@ Tokens and styles:
 - Radius: `input/radius`
 - Text styles: `code`
 
-Guides: [input](../../skills/build-ui/components/input.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
+Guides: [button](../../skills/build-ui/components/button.md), [input](../../skills/build-ui/components/input.md), [settings-and-admin](../../skills/build-ui/patterns/settings-and-admin.md)
 
 Code: shadcn `InputGroup` with a `readOnly` Input (`font-mono`) + Copy `Button`; `navigator.clipboard.writeText` (copied state 2 s, no toast; mask secrets until Reveal)
 
@@ -899,7 +1024,7 @@ Needs at least 160: segments keep their width and a value that does not fit ends
 - Arrow keys change the focused segment; typing a full segment moves to the next
 - Validate on blur; errors name the rule: "Date must be after 1 Jan 2026"
 - Pasting a full date fills all segments
-- Resize: min width 160; day, month and year segments keep their width and truncate a value that does not fit
+- Resize: min width 160; day and month segments hug at least 16 and up to 24, the year 32 to 44, centered, so 2-digit values never truncate
 
 **Accessibility**
 

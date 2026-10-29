@@ -16,10 +16,21 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Style=floating (inset 12, rounded bar with a small shadow) for product headers on a muted
   canvas; Style=default elsewhere.
 
+## App Header (app without a sidebar)
+- Apps with 3 to 6 destinations and no sections use `App Header` (logo, links, search, actions)
+  in `Page Shell / App` Layout=stacked; more destinations use Sidebar and Top Bar.
+- Under 1024 turn Show search off and put a search icon in Actions; under 768 use the mobile
+  shell (Mobile Header and Bottom Nav).
+- Figma: `App Header` (Logo swap, Links and Actions slots, Show search). Example "App Header" on
+  the Navigation page.
+
 ## Page Header (app)
 - One per page: title (heading/h3, the only h3 at that level), one-sentence description, page
   actions with the primary last. Tabs for sub-views go right under it.
 - Turn Show actions off when the page has no page action; never leave an empty Actions slot.
+- Record pages use Show back link, Show meta (status Badge first with Show badge, then 2 to 4
+  Meta Items) and Show pager ("3 of 24") when the record was opened from a list. Show badge
+  needs Show meta on. Example "Page Header styles".
 
 ## Navbar (marketing)
 - Logo, 4-6 links (chevron when it opens a menu), sign in + one primary CTA.

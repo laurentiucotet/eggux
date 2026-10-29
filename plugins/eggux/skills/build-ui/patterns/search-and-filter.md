@@ -10,6 +10,9 @@ looks the way it does.
 - Results update as the user types, debounced (~300 ms), when search is fast; otherwise on Enter.
 - Matching text highlighted in results when it helps scanning.
 - Clear button inside the field when it has text. Escape clears it.
+- Suggestions under a search field are `Search Suggestions`: recents on focus, completions and
+  records while typing, at most 5 of each; `Command Dialog` stays for global commands. Rows are
+  `Search Suggestion Item` Type suggestion, recent or record. Example "Search Suggestions".
 
 ## Filters
 - Choose filters from the object's attributes that actors actually filter by (`objects.md`).

@@ -1,12 +1,12 @@
 # Table
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Table Cell](#table-cell) | 10 | Content |
+| [Table Cell](#table-cell) | 12 | Content |
 | [Table Header Label](#table-header-label) | 8 | - |
 | [Table Cell Text](#table-cell-text) | 6 | - |
 | [Table Cell Stack](#table-cell-stack) | 1 | - |
@@ -21,24 +21,33 @@ Usage rules live in the guides linked under each component.
 | [Table Cell Badges](#table-cell-badges) | 1 | - |
 | [Table Cell Avatars](#table-cell-avatars) | 1 | - |
 | [Table Cell Check](#table-cell-check) | 3 | - |
+| [Table Cell Media](#table-cell-media) | 1 | - |
+| [Table Cell Tree](#table-cell-tree) | 12 | - |
 | [Table Toolbar](#table-toolbar) | 1 | Actions |
 | [Data Grid Toolbar](#data-grid-toolbar) | 1 | Start, End |
 | [Table Group Row](#table-group-row) | 2 | - |
 | [Table Pagination](#table-pagination) | 1 | - |
+| [Bulk Action Bar](#bulk-action-bar) | 1 | Actions |
+| [Column Settings](#column-settings) | 1 | Items |
+| [Column Settings Item](#column-settings-item) | 4 | - |
 
-On the Figma page: "Example / bulk actions on invoices", "Example / density comparison", "Example / in audit log", "Example / inline edit and column resize", "Example / invoice list footer", "Example / invoices grouped by status", "Example / invoices with filters", "Example / no results", "Example / table cell types", "Stress test / Data Grid Toolbar", "Stress test / Table Group Row", "Stress test / Table Pagination", "Stress test / Table Toolbar", "Stress test / Table cells", "Template / data grid (enterprise)", "Template / invoices table (grid)"
+On the Figma page: "Example / Table Cell styles", "Example / bulk actions on invoices", "Example / bulk selection in a grid", "Example / density comparison", "Example / in audit log", "Example / inline edit and column resize", "Example / invoice list footer", "Example / invoices grouped by status", "Example / invoices with filters", "Example / no results", "Example / table cell types", "Stress test / Bulk Action Bar", "Stress test / Column Settings", "Stress test / Data Grid Toolbar", "Stress test / Table Group Row", "Stress test / Table Pagination", "Stress test / Table Toolbar", "Stress test / Table cells", "Template / data grid (enterprise)", "Template / invoices table (grid)"
 
 ## Table Cell
 
-Component set · 10 variants · default size 160 × 40
+Component set · 12 variants · default size 160 × 40
 
-Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row uses the same State (hover, selected). Expanded = detail row: one cell spanning all columns. Usage: eggux build-ui/components/table.md
+Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row uses the same State (hover, selected). Expanded = detail row: one cell spanning all columns. Type=footer: the totals row under the body (muted fill, top border; Table Cell Text Style=strong for labels and Table Cell Amount for sums), one per table. Style=striped: body cells of every second row on a muted fill, for wide read-only tables (reports, invoices, plan comparison); hover and selected look the same with or without stripes. Do not stripe tables that already use dividers and row hover for work.
+
+
+Usage: eggux build-ui/components/table.md
 
 **Use for**
 
 - Data people compare across attributes, sort or scan
 - Data grids people work in all day: invoices, orders, tickets
 - Copy Template / invoices table (grid) and change columns and rows
+- Column Settings opens from Columns in Data Grid Toolbar to show, hide and reorder columns
 
 **Not for**
 
@@ -48,12 +57,16 @@ Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row use
 
 **Anatomy**
 
-1. Type=header with Table Header Label (Label, Sort, Align)
+1. Type=header with Table Header Label (Label, Sort, Align, Show info: Info Tip Trigger after the label, Show menu: ellipsis Button Icon xs for the column menu)
 2. Type=body with Table Cell Text, Table Cell Stack or Table Cell User
-3. Rich body content: Table Cell Amount, Status (Badge + Note that fills the cell and ends with an ellipsis), Progress, Link, Date, File, Badges, Avatars
-4. Plan comparison values: Table Cell Check (Value=included|excluded|text, Text, Note)
-5. Last column: Table Cell Actions (edit and menu)
-6. Type=expanded: one detail cell spanning all columns
+3. Products, files and listings: Table Cell Media (Thumbnail sm exposed, Title, Meta, Show meta)
+4. Tree rows: Table Cell Tree in the first column (Level 0-3, Expander collapsed, expanded, none; Label, Show icon, Icon)
+5. Rich body content: Table Cell Amount, Status (Badge + Note that fills the cell and ends with an ellipsis), Progress, Link, Date, File, Badges, Avatars
+6. Plan comparison values: Table Cell Check (Value=included|excluded|text, Text, Note)
+7. Last column: Table Cell Actions (edit and menu)
+8. Type=expanded: one detail cell spanning all columns
+9. Type=footer: totals row (card/muted-background, top border) with Table Cell Text Style=strong and Table Cell Amount
+10. Style=striped (body, State=default): every second row on card/muted-background
 
 **Content and behavior**
 
@@ -67,6 +80,11 @@ Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row use
 - Links in a cell (Table Cell Link) go where the row goes; one link per row besides the row
 - Comparison tables: Table Cell Check centered in plan columns; excluded is a dash, never blank
 - Table Cell Status: set it to FILL in the cell so a long Note truncates with an ellipsis; hugging, the note shows in full
+- Footer: one totals row under the body; label left ("Total, 4 products"), sums right-aligned
+- Stripes only for wide read-only tables (reports, invoices, plan comparison); hover and selected look the same with or without stripes
+- Tree rows: indent 24 per level up to Level 3; leaf rows use Expander=none so labels line up; Level 3 needs at least 192
+- Show menu on the hovered or focused header only; Show info for metric definitions
+- Resize: Table Cell Media min 160 (text column min 96, title and meta 1 line with ellipsis); Table Cell Tree min 120 to 192 by level, label 1 line with ellipsis; Header Label Align=right truncates the label, Align=left labels hug (keep them short)
 
 **Accessibility**
 
@@ -75,28 +93,37 @@ Grid table cell. Put cells in an auto-layout GRID frame; every cell of a row use
 - Row icon buttons have a tooltip and an aria-label with the row: "Edit invoice INV-1041"
 - Row checkboxes have labels: "Select INV-1041"
 - Table Cell Check icons read "Included" or "Not included" (visually hidden text)
+- Tree rows: role="treegrid", aria-level and aria-expanded on the row; Right and Left arrows expand and collapse
+- Header menu and info buttons have labels: "Column options for Amount", "More about Amount"
+- Footer is a tfoot row; striped and footer muted text keeps 4.54:1 Light, 6.0:1 Dark, 6.92:1 Corporate Light
 
 | Variant property | Values |
 |---|---|
-| Type | header, body, expanded |
+| Type | header, body, expanded, footer |
 | State | default, hover, selected, resizing, dragging, editing, error |
+| Style | default, striped |
 
 Slots (fill them in the instance, never detach): `Content`
 
 Built from: `Table Cell Stack`, `Table Cell Text`, `Table Header Label`
 
 Tokens and styles:
-- Colors: `background/default`, `background/destructive`, `background/muted`, `background/primary`, `border/default`, `border/input`, `border/ring`, `table/row-expanded`, `table/row-hover`
+- Colors: `background/default`, `background/destructive`, `background/muted`, `background/primary`, `border/default`, `border/input`, `border/ring`, `card/muted-background`, `table/row-expanded`, `table/row-hover`
 - Spacing and size: `border-width/2`, `density/cell-padding-y`, `density/table-header-height`, `spacing/0_5`, `spacing/2`, `spacing/4`, `spacing/40`
 - Effects: `shadow/md`
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
+Code: `TableFooter` row `bg-muted/50 border-t font-medium`; striped `TableBody className="[&_tr:nth-child(even)]:bg-muted/50"` (Stripes only on read-only tables)
+
 ## Table Header Label
 
 Component set · 8 variants · default size 160 × 20
 
-Header cell content. Sort: off (not sortable), sortable (inactive), ascending, descending. Numbers and currency columns align right.
+Header cell content. Sort: off (not sortable), sortable (inactive), ascending, descending. Numbers and currency columns align right. Show info adds an Info Tip Trigger after the label for a metric definition (click opens an Info Tip). Show menu adds an ellipsis Button Icon xs at the far end of the cell (start of the cell in right-aligned columns) that opens a column Menu: sort ascending, sort descending, filter, pin, hide column. In code the menu shows on hover and focus of the header; in Figma turn it on for the hovered column only.
+
+
+Usage: eggux build-ui/components/table.md
 
 | Variant property | Values |
 |---|---|
@@ -106,8 +133,10 @@ Header cell content. Sort: off (not sortable), sortable (inactive), ascending, d
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Customer |
+| Show info | boolean | false |
+| Show menu | boolean | false |
 
-Icons: arrow-up-down, chevron-down, chevron-up
+Built from: `Button Icon`, `Info Tip Trigger`. Icons: arrow-up-down, chevron-down, chevron-up
 
 Tokens and styles:
 - Colors: `foreground/default`
@@ -115,6 +144,8 @@ Tokens and styles:
 - Text styles: `ui/label`
 
 Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: Info Tip after the label; `DropdownMenu` on `Button variant="ghost" size="icon" className="size-7 opacity-0 group-hover:opacity-100 focus-visible:opacity-100"` (`Ellipsis`) with Sort asc, Sort desc, Filter, Pin, Hide (`th className="group"`; Align=right label `truncate text-right`)
 
 ## Table Cell Text
 
@@ -385,6 +416,64 @@ Guides: [table](../../skills/build-ui/components/table.md)
 
 Code: cell renderer: lucide `Check` / `Minus` icon with `sr-only` "Included" / "Not included", or the text value; optional muted note (Plan comparison cells; excluded is a dash, never blank)
 
+## Table Cell Media
+
+Component · 1 variant · default size 240 × 38
+
+Body cell content for a product, file or listing: Thumbnail (exposed, sm 32 by default; set Show image off for the fallback icon) + Title + one line of Meta (SKU, size, variant count). Title and Meta end with an ellipsis on one line. People use Table Cell User; files without an image use Table Cell File.
+
+
+Usage: eggux build-ui/components/table.md
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Linen tote bag |
+| Meta | text | SKU 10482 · 3 variants |
+| Show meta | boolean | true |
+
+Built from: `Thumbnail`
+
+Tokens and styles:
+- Colors: `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/3`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: `div className="flex min-w-40 items-center gap-3"` + Thumbnail sm + `div className="min-w-24 flex-1"` with title `truncate text-sm font-medium` and meta `truncate text-xs text-muted-foreground` (Products, files, listings; people use Table Cell User)
+
+## Table Cell Tree
+
+Component set · 12 variants · default size 240 × 20
+
+First-column content for tree rows in a table (nested tasks, budget categories, chart of accounts, folders, permission groups). Level 0 to 3 indents 24 per level; Expander: collapsed (chevron right), expanded (chevron down), none (leaf rows keep the 20 px space so labels line up). Level 0 labels are medium weight. Show icon + Icon (folder, file-text...). Label ends with an ellipsis on one line, min 80. Every other cell of the row stays a normal Table Cell. In code: role="treegrid", aria-level and aria-expanded on the row; Right and Left arrows expand and collapse.
+
+
+Usage: eggux build-ui/components/table.md
+
+| Variant property | Values |
+|---|---|
+| Level | 0, 1, 2, 3 |
+| Expander | collapsed, expanded, none |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Marketing |
+| Show icon | boolean | true |
+| Icon | instance swap | Icon/folder |
+
+Icons: chevron-down, chevron-right, folder
+
+Tokens and styles:
+- Colors: `foreground/default`
+- Spacing and size: `spacing/12`, `spacing/1_5`, `spacing/5`, `spacing/6`
+- Radius: `radius/sm`
+- Text styles: `body/small`, `ui/label`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: first-column cell `div style={{ paddingLeft: row.depth * 24 }} className="flex items-center gap-1.5"`: expander ghost Button (`ChevronRight` / `ChevronDown`, `aria-expanded`) or a `size-5` spacer, lucide icon, `truncate` label (TanStack `getSubRows`, `row.getToggleExpandedHandler()`; table `role="treegrid"`, rows `aria-level`; min width 120 + 24 per level)
+
 ## Table Toolbar
 
 Component · 1 variant · default size 720 × 48
@@ -609,3 +698,161 @@ Tokens and styles:
 Guides: [table](../../skills/build-ui/components/table.md)
 
 Code: shadcn data-table pagination (Container `flex flex-wrap gap-y-3 min-w-[448px]`; range `min-w-40 flex-1 truncate`)
+
+## Bulk Action Bar
+
+Component · 1 variant · default size 467 × 50
+
+A floating bar at the bottom center of the screen while items are selected in a card grid, board, gallery, file grid or inbox: the count (Selection, "3 selected"), an optional "Select all 48" link (Show select all), a Separator, the bulk actions (Actions, native slot: outline sm Buttons with icons) and Clear (Show clear, x Button Icon). Popover surface, radius/lg, shadow/lg. It appears with the first selection and leaves when the selection is cleared. Tables use Table Toolbar above the table instead.
+
+
+Usage: eggux build-ui/components/table.md
+
+**Use for**
+
+- Selection in card grids where there is no table: Grid List, File Manager grid, Gallery
+- Selection in boards and inboxes: Kanban Board, Inbox, Approval Inbox
+- Mobile lists with selection mode
+
+**Not for**
+
+- Rows selected in a table: use Table Toolbar above the table
+- Unsaved changes: use Save Bar
+- Actions on one item: use the item's menu
+
+**Anatomy**
+
+1. Selection (TEXT): "3 selected"
+2. Select all (Show select all): Button link sm, exposed ("Select all 48")
+3. Separator vertical
+4. Actions (native slot): outline sm Buttons with icons; on phones ghost sm Button Icons
+5. Clear (Show clear): Button Icon ghost sm with x
+6. Surface: background/popover, border/default, radius/lg, shadow/lg
+
+**Content and behavior**
+
+- Appears with the first selection, bottom center, 24 px above the bottom edge (above Bottom Nav on mobile); leaves when the selection is empty
+- The count updates on every change; after a page is selected offer "Select all 48"
+- 3 actions at most in the bar; more go into a Menu behind an ellipsis Button Icon
+- Destructive actions confirm with the count ("Delete 3 files?")
+- One toast reports the result: "3 files moved"
+- Resize: hugs its content; on phones (under 480) the actions become Button Icons with tooltips so the bar fits 328
+
+**Accessibility**
+
+- role="toolbar" with aria-label="Bulk actions"; the count is in a live region
+- Escape or Clear empties the selection and returns focus to the last selected item
+- Text foreground/default on background/popover 19.8:1 Light, 17.2:1 Dark; Select all link 6.7:1 Light, 7.1:1 Dark
+
+| Property | Type | Default |
+|---|---|---|
+| Selection | text | 3 selected |
+| Show select all | boolean | false |
+| Show clear | boolean | true |
+
+Slots (fill them in the instance, never detach): `Actions`
+
+Built from: `Button`, `Button Icon`, `Separator`
+
+Tokens and styles:
+- Colors: `background/popover`, `border/default`, `foreground/default`
+- Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`
+- Radius: `radius/lg`
+- Text styles: `ui/label`
+- Effects: `shadow/lg`
+
+Guides: [table](../../skills/build-ui/components/table.md), [bulk-actions](../../skills/build-ui/patterns/bulk-actions.md)
+
+Code: custom (Chakra ActionBar pattern): `fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 rounded-lg border bg-popover px-4 py-2 shadow-lg` with shadcn `Button variant="outline" size="sm"` and a ghost `Button size="icon-sm"` to clear (`role="toolbar"`, count in `aria-live="polite"`; under `sm` the actions are icon buttons with tooltips; selection from TanStack `rowSelection` or local state)
+
+## Column Settings
+
+Component · 1 variant · default size 288 × 340
+
+Popover that opens from "Columns" in Data Grid Toolbar (Carbon Datagrid customize columns, Ant Pro column settings): Popover Header ("Columns"), Search Field (Show search, for more than 8 columns), Items (native slot of Column Settings Item: checkbox shows or hides, grip reorders, the identifying column is locked) and Popover Footer (Reset to the default columns, Cancel, Apply; Show footer off when changes apply at once). 288 wide, min 240; keep at least one column visible.
+
+
+Usage: eggux build-ui/components/table.md
+
+**Use for**
+
+- Data Table, User Directory, Grouped Table and enterprise data grids with more columns than fit
+- Saved views that store the visible columns per user
+
+**Not for**
+
+- Tables with 5 columns or fewer: show them all
+- Filtering rows: use Faceted Filter or Filter Builder
+- Sorting: use the header (Table Header Label Sort or Show menu)
+
+**Anatomy**
+
+1. Popover Header (exposed): "Columns", close
+2. Search Field (Show search, exposed): for more than 8 columns
+3. Items (native slot) of Column Settings Item: grip, Checkbox (exposed), Label; State default, hover, dragging, locked
+4. Popover Footer (Show footer, exposed): Reset, Cancel, Apply
+5. 288 wide (popover tokens, shadow/md), min 240
+
+**Content and behavior**
+
+- Items list columns in their table order; dragging changes the order
+- The identifying column is State=locked: always shown, no grip
+- Keep at least one column visible; disable the last checked box
+- Reset returns to the default columns of the view
+- Show footer off when changes apply at once; on when Apply saves a view
+- Resize: 288 by default, min 240; labels end with an ellipsis on one line; grip, checkbox and lock keep their size
+
+**Accessibility**
+
+- The list is a listbox or a list of checkboxes with the column names as labels
+- Reorder works without drag: Alt + Arrow up or down moves the focused column, announced with its new position
+- The popover traps focus and Escape closes it, returning focus to Columns
+
+| Property | Type | Default |
+|---|---|---|
+| Show search | boolean | true |
+| Show footer | boolean | true |
+
+Slots (fill them in the instance, never detach): `Items`
+
+Built from: `Column Settings Item`, `Popover Footer`, `Popover Header`, `Search Field`
+
+Tokens and styles:
+- Colors: `background/popover`, `border/default`
+- Spacing and size: `spacing/0_5`, `spacing/2`, `spacing/3`, `spacing/72`
+- Radius: `radius/md`
+- Effects: `shadow/md`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: `Popover` with header, `Input` search, dnd-kit `SortableContext` list of rows (`GripVertical` handle, `Checkbox` bound to `column.getIsVisible()` / `toggleVisibility`, label `truncate`; locked row `Lock` icon and disabled checkbox), footer Reset / Cancel / Apply (`table.setColumnOrder`; Alt + Arrow keys reorder; keep one column visible)
+
+## Column Settings Item
+
+Component set · 4 variants · default size 256 × 32
+
+One column in Column Settings: grip handle, Checkbox (exposed: Checked shows or hides the column) and Label. State: default, hover, dragging (lifted with shadow/md while reordering), locked (the identifying column: always shown, checkbox disabled, lock icon, no grip). Keyboard: Space toggles, Alt + arrow keys move the column.
+
+
+Usage: eggux build-ui/components/table.md
+
+| Variant property | Values |
+|---|---|
+| State | default, hover, dragging, locked |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Customer |
+
+Built from: `Checkbox`. Icons: grip-vertical, lock
+
+Tokens and styles:
+- Colors: `background/accent`, `background/popover`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/8`
+- Radius: `radius/sm`
+- Text styles: `body/small`
+- Effects: `shadow/md`
+
+Guides: [table](../../skills/build-ui/components/table.md)
+
+Code: `Popover` with header, `Input` search, dnd-kit `SortableContext` list of rows (`GripVertical` handle, `Checkbox` bound to `column.getIsVisible()` / `toggleVisibility`, label `truncate`; locked row `Lock` icon and disabled checkbox), footer Reset / Cancel / Apply (`table.setColumnOrder`; Alt + Arrow keys reorder; keep one column visible)

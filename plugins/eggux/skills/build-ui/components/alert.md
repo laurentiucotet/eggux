@@ -7,6 +7,15 @@ and inline messages: `patterns/feedback-messages.md`.
 - A persistent message about the page or a section: a problem to fix, a state to know about
   (trial ends in 3 days, read-only access, sync failed).
 - Not for confirming an action that just happened (use a toast).
+- For one line of status next to what it is about (autosave, a row result), use `Inline Message`
+  instead of an Alert; it has no box, title or actions.
+
+## Inline Message
+- Type default, info, success, warning, error or loading (Spinner, "Saving…"). One line, two at
+  most; it sits next to or under the thing it describes.
+- Not for errors of one field (Field error) or messages that need an action (Alert).
+- Figma: `Inline Message` Type; Text. Hugs up to 480; set it to FILL in narrow columns. Example
+  "Inline Message" on the Alert page.
 
 ## Rules
 - Variant matches the meaning: `default`, `info`, `success`, `warning`, `destructive`. Always with an icon.

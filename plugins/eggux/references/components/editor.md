@@ -1,6 +1,6 @@
 # Editor
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -36,7 +36,7 @@ Formatted text input for descriptions, notes, comments and emails (Tiptap / Lexi
 
 **Anatomy**
 
-1. Toolbar of Toggle Group Items: heading, bold, italic, underline
+1. Toolbar (Toolbar Style=default, FILL, Show overflow off, inside the toolbar frame that draws the bottom border): Toggles for heading, bold, italic, underline
 2. Separator, then lists and quote
 3. Separator, then link
 4. Content slot
@@ -45,12 +45,13 @@ Formatted text input for descriptions, notes, comments and emails (Tiptap / Lexi
 **Content and behavior**
 
 - Toolbar shows only the formats the content needs; tables, images, mentions only on request
-- Active format uses the on state of Toggle Group Item
+- Active format uses Toggle State=pressed
 - Paste keeps structure (headings, lists, links) and drops foreign styles
 - With a limit: warn at 90%, block at 100% with an error, never cut text silently
 - Min height ~5 lines; grows with content to a max, then scrolls
 - Autosave long content and show "Saved" / "Saving…"
 - Resize: the footer hint fills and wraps to 2 lines with ellipsis; the character count hugs and never shrinks
+- Narrow editors: turn Show overflow on in the Toolbar and move the last groups into it
 
 **Accessibility**
 
@@ -69,11 +70,11 @@ Formatted text input for descriptions, notes, comments and emails (Tiptap / Lexi
 
 Slots (fill them in the instance, never detach): `Content`
 
-Built from: `Separator`, `Toggle Group Item`
+Built from: `Toolbar`
 
 Tokens and styles:
 - Colors: `background/default`, `border/default`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`
+- Spacing and size: `spacing/0`, `spacing/0_5`, `spacing/2`, `spacing/3`
 - Radius: `radius/md`
 - Text styles: `body/small`, `ui/caption`, `ui/label`
 
@@ -226,7 +227,7 @@ Usage: eggux build-ui/components/comments-and-chat.md
 
 **Anatomy**
 
-1. Formatting (Show formatting): Toggle Group Items Bold, Italic, Link and a vertical Separator
+1. Formatting (Show formatting): Toggles Bold, Italic, Link (Size default) and a vertical Separator
 2. Comment (Show comment): Button default sm with message-square icon
 3. Surface: background/popover, border/default, radius/lg, shadow/md
 
@@ -249,7 +250,7 @@ Usage: eggux build-ui/components/comments-and-chat.md
 | Show formatting | boolean | true |
 | Show comment | boolean | true |
 
-Built from: `Button`, `Separator`, `Toggle Group Item`
+Built from: `Button`, `Separator`, `Toggle`
 
 Tokens and styles:
 - Colors: `background/popover`, `border/default`

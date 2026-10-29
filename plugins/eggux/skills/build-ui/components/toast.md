@@ -22,7 +22,8 @@ and inline messages: `patterns/feedback-messages.md`.
 
 ## Figma
 `Toast` types: default, success, error, warning, info, loading; Style default or inverted
-(example "Toast styles"). Toast has no TEXT properties for
+(example "Toast styles"). Show avatar for activity from a person, Show progress for uploads and
+the Undo countdown; never an avatar and a status icon together. Toast has no TEXT properties for
 the title and description: edit those text layers in the instance, and turn off
 `Show description` for one-line toasts. Turn on `Show action` for Undo or View (the nested Button
 is exposed). `Show close` is off by default. Turn it on for toasts with an action, errors and

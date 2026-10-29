@@ -1,12 +1,12 @@
 # Sidebar
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Sidebar](#sidebar) | 2 | Header, Content, Footer |
+| [Sidebar](#sidebar) | 6 | Header, Content, Footer |
 | [Sidebar Item](#sidebar-item) | 12 | - |
 | [Sidebar Group Label](#sidebar-group-label) | 1 | - |
 | [Sidebar Group](#sidebar-group) | 2 | Items |
@@ -15,22 +15,30 @@ Usage rules live in the guides linked under each component.
 | [Org Switcher](#org-switcher) | 1 | - |
 | [Sidebar Double](#sidebar-double) | 2 | Rail header, Rail, Rail footer, Panel actions, Panel |
 
-On the Figma page: "Example / Admin panel list with double sidebar", "Example / Double sidebar collapsed", "Example / app shell", "Example / switch organization", "Examples / stat cards", "Stress test / Org Switcher", "Stress test / Sidebar", "Stress test / Sidebar Double", "Template / invoices table (grid)"
+On the Figma page: "Example / Admin panel list with double sidebar", "Example / Double sidebar collapsed", "Example / Sidebar actions", "Example / Sidebar styles", "Example / app shell", "Example / switch organization", "Examples / stat cards", "Stress test / Org Switcher", "Stress test / Sidebar", "Stress test / Sidebar Double", "Template / invoices table (grid)"
 
 ## Sidebar
 
-Component set · 2 variants · default size 256 × 720
+Component set · 6 variants · default size 256 × 720
 
 shadcn Sidebar (uses sidebar/* tokens). Header, Content and Footer are native slots. Mode: expanded 256 / collapsed 48 (icon only, labels in tooltips). One active item per sidebar.
 
 
 Mode=expanded needs at least 240, Mode=collapsed 48; narrower than that use Mode=collapsed or a Sheet.
 
+
+Variant (shadcn variant): sidebar (default: full height, right border), floating (the panel floats inside spacing/2 with a full border, radius/lg and shadow/sm, on a background/muted or brand canvas: Showcase and AI products), inset (no border; the page area beside it is inset with a margin, radius/xl and shadow/sm, see Example / Sidebar styles). One Variant per product.
+
+
+Usage: eggux build-ui/components/sidebar.md
+
 **Use for**
 
 - Apps with more than ~5 destinations or with sections
 - Desktop app shell (from 1024 px)
 - Settings navigation as its own Sidebar Group
+- Variant=floating: Showcase and AI products, brand themes, app pages on a muted canvas
+- Variant=inset: apps where the page reads as one raised surface beside the navigation
 
 **Not for**
 
@@ -45,6 +53,9 @@ Mode=expanded needs at least 240, Mode=collapsed 48; narrower than that use Mode
 3. Sidebar Item rows: Icon, Label, optional Badge (Show badge) and Chevron (Show chevron)
 4. Footer slot: Sidebar User (Avatar, Title, Description, menu)
 5. Sidebar Item Level=2: a sub-page row, no icon, label aligned with the parent label
+6. Variant: sidebar (default, right border), floating (panel inside spacing/2 with border, radius/lg and shadow/sm), inset (no border; the page area is inset with radius/xl and shadow/sm)
+7. Sidebar Group Label Show action: ghost xs Button Icon (plus) to add an item to the group
+8. Sidebar Item Show action: ghost xs Button Icon (ellipsis) at the end of the row for item actions
 
 **Content and behavior**
 
@@ -56,6 +67,9 @@ Mode=expanded needs at least 240, Mode=collapsed 48; narrower than that use Mode
 - Mobile: a Sheet opened from the header trigger (panel-left)
 - Level 2 only under an expanded parent with a Chevron; one level deep at most
 - Minimum width: Mode=expanded 240, Mode=collapsed 48; narrower than 240 use Mode=collapsed or the mobile Sheet
+- One Variant per product; floating sits on background/muted or a brand surface, inset on sidebar/background with the page as a background/default card
+- Item actions show on hover and on the active item only; group actions always show
+- Every action has a Tooltip ("Add project", "More actions")
 
 **Accessibility**
 
@@ -63,10 +77,12 @@ Mode=expanded needs at least 240, Mode=collapsed 48; narrower than that use Mode
 - Collapsed items have a Tooltip and an accessible label
 - The collapse trigger has an accessible label
 - Every item is reachable with the keyboard
+- Action buttons are separate buttons after the item link, with labels naming the item ("More actions for Website redesign")
 
 | Variant property | Values |
 |---|---|
 | Mode | expanded, collapsed |
+| Variant | sidebar, floating, inset |
 
 Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
 
@@ -74,7 +90,9 @@ Built from: `Sidebar Group`, `Sidebar User`, `Sidebar Workspace`
 
 Tokens and styles:
 - Colors: `sidebar/background`, `sidebar/border`
-- Spacing and size: `spacing/12`, `spacing/2`, `spacing/64`
+- Spacing and size: `spacing/12`, `spacing/16`, `spacing/2`, `spacing/64`
+- Radius: `radius/lg`
+- Effects: `shadow/sm`
 
 Guides: [sidebar](../../skills/build-ui/components/sidebar.md)
 
@@ -85,6 +103,12 @@ Code: shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, 
 Component set · 12 variants · default size 224 × 32
 
 shadcn SidebarMenuButton. active = current page (one per sidebar). Badge = Badge Count (exposed). Chevron for a collapsible group. Collapsed = icon only; pair it with a Tooltip showing the label. Level=2: sub-page row without icon, label aligned with the parent; only under an expanded parent with a Chevron.
+
+
+Show action (expanded) adds a ghost xs Button Icon (exposed, ellipsis by default) at the end of the row, for a menu of item actions (rename, share, delete): show it on hover and on the active item (shadcn SidebarMenuAction with showOnHover), never on every row at rest.
+
+
+Usage: eggux build-ui/components/sidebar.md
 
 | Variant property | Values |
 |---|---|
@@ -98,8 +122,9 @@ shadcn SidebarMenuButton. active = current page (one per sidebar). Badge = Badge
 | Icon | instance swap | Icon/house |
 | Show badge | boolean | false |
 | Show chevron | boolean | false |
+| Show action | boolean | false |
 
-Built from: `Badge Count`. Icons: chevron-right, house
+Built from: `Badge Count`, `Button Icon`. Icons: chevron-right, house
 
 Tokens and styles:
 - Colors: `sidebar/accent`, `sidebar/accent-foreground`, `sidebar/foreground`
@@ -115,11 +140,17 @@ Code: shadcn `Sidebar` (`SidebarMenuItem`, `SidebarGroup`, `SidebarGroupLabel`, 
 
 Component · 1 variant · default size 224 × 32
 
-Section label inside a Sidebar Group (shadcn SidebarGroupLabel).
+Section label inside a Sidebar Group (shadcn SidebarGroupLabel). Show action adds a ghost xs Button Icon (exposed, plus by default) at the end: add a project, a channel or a saved view to this group (shadcn SidebarGroupAction). Give it a Tooltip ("Add project").
+
+
+Usage: eggux build-ui/components/sidebar.md
 
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Workspace |
+| Show action | boolean | false |
+
+Built from: `Button Icon`
 
 Tokens and styles:
 - Colors: `foreground/muted`

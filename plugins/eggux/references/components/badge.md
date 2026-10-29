@@ -1,25 +1,25 @@
 # Badge
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Badge](#badge) | 24 | - |
-| [Badge Count](#badge-count) | 4 | - |
+| [Badge](#badge) | 120 | - |
+| [Badge Count](#badge-count) | 8 | - |
 | [Status Dot](#status-dot) | 5 | - |
 | [Badge List](#badge-list) | 1 | Tags |
 | [Announcement Pill](#announcement-pill) | 1 | - |
 | [Trust Badge](#trust-badge) | 3 | - |
 
-On the Figma page: "Example / Trust Badge tones", "Example / dataset header", "Example / filter panel", "Example / in announcement banner", "Example / in filtered list", "Example / stock status", "Stress test / Announcement Pill", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Badge List", "Stress test / Status Dot", "Stress test / Trust Badge"
+On the Figma page: "Example / Badge Count styles", "Example / Badge styles", "Example / Trust Badge tones", "Example / dataset header", "Example / stock status", "Stress test / Announcement Pill", "Stress test / Badge", "Stress test / Badge Count", "Stress test / Badge List", "Stress test / Status Dot", "Stress test / Trust Badge"
 
 ## Badge
 
-Component set · 24 variants · default size 55 × 20
+Component set · 120 variants · default size 55 × 20
 
-shadcn Badge plus EGG status variants. Solid: default, secondary, destructive, outline, success, warning, info. Soft (tinted fill, colored text, calm color for tables and lists): soft-success, soft-warning, soft-destructive, soft-info, soft-neutral; their colors come from badge/soft-{status}-bg and badge/soft-{status}-fg (4.5:1 or more in every mode). Shape: rounded (default) or pill. Options: Icon, Dot (status dot), Count (number after the label). Text carries the meaning; map each status to one variant and use one style (solid or soft) per table. Usage: eggux build-ui/components/badge.md
+shadcn Badge plus EGG status and category variants. Solid: default, secondary, destructive, outline, success, warning, info. Soft (tinted fill, colored text, calm color for tables and lists): soft-success, soft-warning, soft-destructive, soft-info, soft-neutral; colors from badge/soft-{status}-bg and -fg. Category (soft fill in the chart hues, for labels with no status meaning: project, team, Kanban and calendar categories): category-1 to category-8 from badge/category-{n}-bg and -fg, same order as chart/1..8 and Swatch Picker; 4.5:1 or more in every mode. Size: default (20), sm (16) for dense tables and Kanban labels, lg (24) next to page and record titles. Shape: rounded (default) or pill. Options: Icon, Dot (status dot), Count (number after the label). Text carries the meaning; map each status or category to one variant and use one style (solid, soft or category) per table. Usage: eggux build-ui/components/badge.md
 
 **Use for**
 
@@ -27,20 +27,24 @@ shadcn Badge plus EGG status variants. Solid: default, secondary, destructive, o
 - Category of an item
 - A count after a label (Count on: "Invoices 12")
 - Variant=soft-* for statuses repeated down a table or list (Paid, Pending, Overdue), so the page gets calm color
+- Variant=category-1 to category-8 for categories with no status meaning: projects, teams, Kanban and calendar labels, picked in the Swatch Picker order
+- Size=sm in dense tables and Kanban cards, default in lists, lg next to a page or record title
 
 **Not for**
 
 - Filters and selections: use Chip
 - A number alone on an icon or sidebar item: use Badge Count
 - State of a system or person in text flow: use Status Dot
+- A category color that also means a status (green = done): use the soft status variants for statuses
 
 **Anatomy**
 
-1. Variant: solid default, secondary, destructive, outline, success, warning, info; soft soft-success, soft-warning, soft-destructive, soft-info, soft-neutral
-2. Shape: rounded or pill
-3. Icon (Show icon, Icon swap) or Dot (Show dot), in the label color
-4. Label
-5. Count value (Show count)
+1. Variant: solid default, secondary, destructive, outline, success, warning, info; soft soft-success, soft-warning, soft-destructive, soft-info, soft-neutral; category category-1 to category-8
+2. Size: default (20 high, ui/label-small), sm (16 high, ui/label-small, 10 px icon), lg (24 high, ui/label, 14 px icon, 8 px dot)
+3. Shape: rounded or pill
+4. Icon (Show icon, Icon swap) or Dot (Show dot), in the label color
+5. Label
+6. Count value (Show count)
 
 **Content and behavior**
 
@@ -48,8 +52,10 @@ shadcn Badge plus EGG status variants. Solid: default, secondary, destructive, o
 - One or two words, sentence case
 - Map each status to one Variant once and reuse it; a status never appears in two colors
 - Neutral: secondary, outline or soft-neutral; done: success; pending: warning; failed: destructive; new: info
-- One style per table or list: all solid or all soft
-- Soft colors come from badge/soft-*-bg (status color at opacity 10 in Light, 20 in Dark) and badge/soft-*-fg; never recolor by hand
+- Categories use category-1 to category-8 in a fixed order (the chart/1..8 hues); the same category keeps the same number everywhere; more than 8 categories: reuse soft-neutral for the rest
+- One style per table or list: all solid, all soft or all category
+- Soft colors come from badge/soft-*-bg and badge/soft-*-fg, category colors from badge/category-{n}-bg (chart/n at opacity 10 in light modes, 20 in dark) and badge/category-{n}-fg (hue 800 light, 300 dark); never recolor by hand
+- One Size per row or card; lg only next to a heading
 - Not clickable
 - Next to the primary information of a row, never instead of it
 - Hugs its label up to 256 (maxWidth spacing/64), then the label truncates to 1 line with ellipsis; parents can set a smaller max (scope 160, Current 128)
@@ -58,13 +64,16 @@ shadcn Badge plus EGG status variants. Solid: default, secondary, destructive, o
 
 - Label meets 4.5:1 on every Variant; warning uses dark text (solid) or amber/800 (soft)
 - Soft labels measured 5.5 to 11 : 1 in Light, Dark, Corporate Light and Corporate Dark
+- Category labels measured 5.67 to 9.65 : 1 on background/default, card and muted in all six modes
+- category-2 (orange) and category-4 (amber) look alike at label size: never put them side by side as the only difference; the text tells them apart
 - Never a color or dot alone
 - Not focusable: it is static text
 
 | Variant property | Values |
 |---|---|
-| Variant | default, secondary, destructive, outline, success, warning, info, soft-success, soft-warning, soft-destructive, soft-info, soft-neutral |
+| Variant | default, secondary, destructive, outline, success, warning, info, soft-success, soft-warning, soft-destructive, soft-info, soft-neutral, category-1, category-2, category-3, category-4, category-5, category-6, category-7, category-8 |
 | Shape | rounded, pill |
+| Size | default, sm, lg |
 
 | Property | Type | Default |
 |---|---|---|
@@ -78,53 +87,61 @@ shadcn Badge plus EGG status variants. Solid: default, secondary, destructive, o
 Icons: check
 
 Tokens and styles:
-- Colors: `background/destructive`, `background/info`, `background/primary`, `background/secondary`, `background/success`, `background/warning`, `badge/soft-destructive-bg`, `badge/soft-destructive-fg`, `badge/soft-info-bg`, `badge/soft-info-fg`, `badge/soft-neutral-bg`, `badge/soft-neutral-fg`, `badge/soft-success-bg`, `badge/soft-success-fg`, `badge/soft-warning-bg`, `badge/soft-warning-fg`, `border/default`, `foreground/default`, `foreground/destructive`, `foreground/info`, `foreground/primary`, `foreground/secondary`, `foreground/success`, `foreground/warning`
-- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`
+- Colors: `background/destructive`, `background/info`, `background/primary`, `background/secondary`, `background/success`, `background/warning`, `badge/category-1-bg`, `badge/category-1-fg`, `badge/category-2-bg`, `badge/category-2-fg`, `badge/category-3-bg`, `badge/category-3-fg`, `badge/category-4-bg`, `badge/category-4-fg`, `badge/category-5-bg`, `badge/category-5-fg`, `badge/category-6-bg`, `badge/category-6-fg`, `badge/category-7-bg`, `badge/category-7-fg`, `badge/category-8-bg`, `badge/category-8-fg`, `badge/soft-destructive-bg`, `badge/soft-destructive-fg`, `badge/soft-info-bg`, `badge/soft-info-fg`, `badge/soft-neutral-bg`, `badge/soft-neutral-fg`, `badge/soft-success-bg`, `badge/soft-success-fg`, `badge/soft-warning-bg`, `badge/soft-warning-fg`, `border/default`, `foreground/default`, `foreground/destructive`, `foreground/info`, `foreground/primary`, `foreground/secondary`, `foreground/success`, `foreground/warning`
+- Spacing and size: `spacing/0`, `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/2_5`
 - Radius: `radius/full`, `radius/md`
-- Text styles: `ui/label-small`
+- Text styles: `ui/label`, `ui/label-small`
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [card](../../skills/build-ui/components/card.md), [content](../../skills/build-ui/components/content.md), [indicators](../../skills/build-ui/components/indicators.md), [table](../../skills/build-ui/components/table.md), [action-feedback](../../skills/build-ui/patterns/action-feedback.md), [permissions-and-access](../../skills/build-ui/patterns/permissions-and-access.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
-Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; one style per table)
+Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`; category-1 to category-8 as `bg-[var(--badge-category-N-bg)] text-[var(--badge-category-N-fg)]`; size `sm` = `h-4 px-1.5`, `lg` = `h-6 px-2.5 text-sm`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; category = chart/N at the same opacities with hue 800 / 300 text; one style per table. Badge Count Type=dot: `<span class="size-2 rounded-full bg-primary" aria-hidden>` + `sr-only` "unread"; counts cap at "99+")
 
 ## Badge Count
 
-Component set · 4 variants · default size 20 × 20
+Component set · 8 variants · default size 20 × 20
 
-Numeric counter (notifications, unread, items in a nav entry). Use "99+" above 99. Place on an icon button corner or at the end of a sidebar item.
+Numeric counter for notifications, unread items and items in a nav entry. Type=count (default): digits, capped at "99+" above 99 (never "100" or "1k"). Type=dot: an 8 px unread dot with no number, for "something new" when the amount does not matter: the bell, a Sidebar Item, a Tab or an Avatar corner. Variant: default, secondary, destructive, outline. Place it on an icon button corner or at the end of a sidebar item; the accessible name carries the count or "unread". Usage: eggux build-ui/components/badge.md
 
 **Use for**
 
 - Corner of an icon button, such as the notifications bell
 - End of a sidebar item
 - Meta of an Accordion Item: active filters in that group
+- Type=dot: something new when the amount does not matter (bell, Sidebar Item, Tab, Avatar corner)
 
 **Not for**
 
 - A count after a text label: use Badge with Count
 - A status word: use Badge
+- A dot on its own with no text nearby: add the count or "unread" to the accessible name
 
 **Anatomy**
 
-1. Count: digits only, "99+" above 99
-2. Round container colored by Variant: default, secondary, destructive, outline
-3. Position: icon button corner or the end of a sidebar item
+1. Type: count (default) or dot (8 px, no number)
+2. Count: digits only, "99+" above 99
+3. Round container colored by Variant: default, secondary, destructive, outline
+4. Position: icon button corner or the end of a sidebar item
 
 **Content and behavior**
 
-- Above 99 show "99+"
+- Above 99 show "99+"; never "100", "1k" or a word
 - Only for something the user must act on (unread, pending); never decorative
 - Numbers only; words belong in a Badge
+- Type=dot uses default or destructive; secondary and outline dots disappear on white surfaces
+- Dot on an icon: top-right corner, overlapping the icon box by 2 to 4 px
+- Hugs its count from a 20 px circle (minWidth), never wraps
 
 **Accessibility**
 
 - The count is part of the accessible name ("Notifications, 3 unread")
 - Count changes that matter are announced politely
 - Text meets 4.5:1 on every Variant
+- A dot has a text equivalent: "Notifications, unread"
 
 | Variant property | Values |
 |---|---|
 | Variant | default, secondary, destructive, outline |
+| Type | count, dot |
 
 | Property | Type | Default |
 |---|---|---|
@@ -132,13 +149,13 @@ Numeric counter (notifications, unread, items in a nav entry). Use "99+" above 9
 
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/default`, `foreground/default`, `foreground/destructive`, `foreground/primary`, `foreground/secondary`
-- Spacing and size: `spacing/1_5`, `spacing/5`
+- Spacing and size: `spacing/0`, `spacing/1_5`, `spacing/2`, `spacing/5`
 - Radius: `radius/full`
 - Text styles: `ui/label-small`
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [drawer](../../skills/build-ui/components/drawer.md), [notifications](../../skills/build-ui/patterns/notifications.md)
 
-Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; one style per table)
+Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`; category-1 to category-8 as `bg-[var(--badge-category-N-bg)] text-[var(--badge-category-N-fg)]`; size `sm` = `h-4 px-1.5`, `lg` = `h-6 px-2.5 text-sm`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; category = chart/N at the same opacities with hue 800 / 300 text; one style per table. Badge Count Type=dot: `<span class="size-2 rounded-full bg-primary" aria-hidden>` + `sr-only` "unread"; counts cap at "99+")
 
 ## Status Dot
 
@@ -189,9 +206,9 @@ Tokens and styles:
 - Spacing and size: `spacing/2`
 - Text styles: `body/small`
 
-Guides: [badge](../../skills/build-ui/components/badge.md), [indicators](../../skills/build-ui/components/indicators.md), [commerce](../../skills/build-ui/patterns/commerce.md)
+Guides: [badge](../../skills/build-ui/components/badge.md), [indicators](../../skills/build-ui/components/indicators.md), [select](../../skills/build-ui/components/select.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
-Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; one style per table)
+Code: shadcn `Badge` (+ success, warning, info variants; soft-success, soft-warning, soft-destructive, soft-info, soft-neutral as cva variants `bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]`; category-1 to category-8 as `bg-[var(--badge-category-N-bg)] text-[var(--badge-category-N-fg)]`; size `sm` = `h-4 px-1.5`, `lg` = `h-6 px-2.5 text-sm`) (Status Dot: custom span + label. Soft = status color at 10% (Light) / 20% (Dark) with a darker or lighter text step; category = chart/N at the same opacities with hue 800 / 300 text; one style per table. Badge Count Type=dot: `<span class="size-2 rounded-full bg-primary" aria-hidden>` + `sr-only` "unread"; counts cap at "99+")
 
 ## Badge List
 

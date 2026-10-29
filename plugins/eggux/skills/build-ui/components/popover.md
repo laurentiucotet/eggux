@@ -8,7 +8,8 @@ Usage guidelines only. Visual specs live in the Figma components (Popover page).
 | `Tooltip` | A label or short hint, no interaction inside |
 | `Menu` (Dropdown) | A list of actions or one choice from a short list |
 | `Popover` | Rich, interactive content tied to a trigger: quick edit, details, share link, filters with few options |
-| `Command` | Searchable list: Combobox, command palette (⌘K), mention picker |
+| `Command` | Searchable list: Combobox, command palette (⌘K) |
+| `Mention Menu` | The people and items list that opens when someone types @ (see `comments-and-chat.md`) |
 | `Sheet` / `Dialog` | Content that needs more room or blocks the page |
 
 ## Rules
@@ -22,6 +23,11 @@ Usage guidelines only. Visual specs live in the Figma components (Popover page).
 
 ## Figma
 - `Popover`: Content (native slot), popover tokens, `shadow/md`.
+- Filter and picker popovers start with `Popover Header` (Title, Show description, Show close)
+  and end with `Popover Footer` (Reset in the Start slot, Cancel and Apply on the right);
+  popovers that apply at once have no footer. Example "Popover Header and Footer".
+- `Mention Menu`: 280 wide, Show header ("People"), Items slot of `Mention Option` Type person or
+  item, the typed part as Match. Example "Mention Menu".
 - `Command`: `Command Input` (exposed, Value) + `Items` slot + `Empty` state.
 - `Combobox`: trigger (State × Content); see `select.md`.
 
@@ -38,8 +44,9 @@ shadcn `Popover`, `Command` (cmdk), Combobox = `Popover` + `Command`.
 - Command Dialog: global shortcut ⌘K / Ctrl K, also a visible search button in the Top Bar.
   Before typing: recent items and suggested actions. Results grouped (Pages, Records, Actions,
   Settings), shortcuts on the right, footer with ↑ ↓ ↵ esc.
-- Search with suggestions: dropdown under a search Input; recent searches, then matches grouped
-  by type; Enter on the text searches everything. Highlight the matched part in code.
+- Search with suggestions: `Search Suggestions` under a search field; recent searches, then
+  matches grouped by type; Enter on the text searches everything. Highlight the matched part in
+  code. See `patterns/search-and-filter.md`.
 - No results: say so and offer "Search everywhere for …" or a create action.
 - Figma: `Command Dialog` (Items slot, Command Input exposed); example "search with suggestions".
 

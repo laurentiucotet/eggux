@@ -6,6 +6,7 @@ Usage guidelines only. Visual specs live in the Figma component.
 | Component | Use |
 |---|---|
 | `Tooltip` | Name of an icon-only button, or a short hint (one line). Plain text only |
+| `Info Tip` | A definition or short explanation on click (i icon): Field Show info, table headers, stat labels |
 | `HoverCard` | Preview of an object on hover (user, linked record). Never the only way to get it |
 | `Popover` | Interactive content on click: a small form, a picker, filter options |
 
@@ -15,6 +16,7 @@ Usage guidelines only. Visual specs live in the Figma component.
   or buttons.
 - Do not hide information the user needs to complete the task in a tooltip; put it on the page.
 - Touch devices have no hover: anything in a tooltip must also be reachable another way.
+  Definitions people may need on touch use `Info Tip` (click), not Tooltip (hover).
 - A Popover closes on Escape and outside click and returns focus to its trigger.
 
 ## Figma
@@ -26,3 +28,6 @@ See the "icon button with tooltip" example.
 - Show shortcut adds a Kbd after the text ("Search ⌘K"). Show title makes a rich tooltip: a title
   and up to three lines, wrapping at 280. Still no links or buttons: those need a Popover. Example
   "rich tooltip and shortcut".
+- `Info Tip Trigger` (State default, hover, focus, open) opens `Info Tip` (Side bottom or top;
+  Title, Text, Show link for "Learn more"). One Info Tip per label; text over 3 lines belongs on
+  the page. Example "Info Tip" on the Tooltip page.

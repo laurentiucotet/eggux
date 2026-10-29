@@ -6,12 +6,18 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Always next to the person's name, or with the name as accessible label; never the only identifier.
 - Photo when available, initials (two letters) as fallback, user icon only when there is no name.
 - Size by density: sm in tables and dense lists, default in lists and sidebars, lg / xl on
-  profile cards and headers.
+  profile cards and headers, 2xl (64) on profile headers and vertical person cards, 3xl (96) on
+  My profile and the Avatar Upload preview.
+- Type=icon (user, bot, users) when there is no photo or name: guests, system events, the AI
+  assistant.
 - Status dot only when presence matters to the task (available, online), with text elsewhere.
+  `Avatar Status` online, away, busy or offline (Show status), or `Avatar Verified` (Show
+  verified) for checked accounts, never both on one avatar.
 
 ## Figma
-`Avatar` Type (initials, image) × Size (sm, default, lg, xl). For a photo, put an image fill on
-the `image` layer of the instance. `Status` shows the online dot.
+`Avatar` Type (initials, image, icon) × Size (xs, sm, default, lg, xl, 2xl, 3xl). For a photo,
+put an image fill on the `image` layer of the instance. Show status shows the exposed `Avatar
+Status`. Example "Avatar styles".
 - Shape: circle for people, square for companies, workspaces and apps (one shape per list).
   Size xs (20) for inline mentions and dense table cells.
 - Type=image with a face from the `Photo` swap (Image / Person / *) makes people real in testimonials, teams and comments; the faces are samples: ship the person's photo, or initials when there is none. Never repeat one face in one block.

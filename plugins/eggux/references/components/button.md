@@ -1,24 +1,25 @@
 # Button
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Button](#button) | 105 | - |
-| [Button Icon](#button-icon) | 72 | - |
+| [Button](#button) | 175 | - |
+| [Button Icon](#button-icon) | 120 | - |
 | [Button Group](#button-group) | 1 | Items |
 | [Button Group Item](#button-group-item) | 12 | - |
 | [Split Button](#split-button) | 2 | - |
-| [Action Bar](#action-bar) | 3 | Leading, Actions |
+| [Action Bar](#action-bar) | 4 | Leading, Actions |
 | [Social Share](#social-share) | 1 | - |
+| [Copy Button](#copy-button) | 12 | - |
 
-On the Figma page: "Example / AI action", "Example / Button styles", "Example / form footer", "Example / record actions", "Example / scroll to top", "Example / share row at the end of an article", "Example / sign-in providers", "Example / split button open", "Example / wishlist", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Social Share", "Stress test / Split Button"
+On the Figma page: "Example / AI action", "Example / Button sizes", "Example / Button styles", "Example / Copy Button", "Example / form footer", "Example / record actions", "Example / scroll to top", "Example / share row at the end of an article", "Example / sign-in providers", "Example / split button open", "Example / sticky mobile action bar", "Example / wishlist", "Stress test / Action Bar", "Stress test / Button", "Stress test / Button Group", "Stress test / Button Icon", "Stress test / Copy Button", "Stress test / Social Share", "Stress test / Split Button"
 
 ## Button
 
-Component set · 105 variants · default size 78 × 36
+Component set · 175 variants · default size 78 × 36
 
 shadcn Button. One "default" (primary) per view; "destructive" only inside a confirmation step. Label is a verb.
 
@@ -27,6 +28,9 @@ Variant=soft: a primary tint (button/soft-bg, hover button/soft-hover) with fore
 
 
 State=loading: spinner instead of the leading icon, same width; blocks repeat clicks. Variant=link has no side padding in every Size, so its text lines up with the text column; the focus ring stays.
+
+
+Size: xs 28 (ui/label-small, 14 px icons; table rows, cards, dense toolbars), sm 32, default 36, lg 40, xl 48 (the main action of a hero or a phone screen, sticky mobile bars). Keep one Size per group.
 
 
 Usage: eggux build-ui/components/button.md
@@ -38,6 +42,7 @@ Usage: eggux build-ui/components/button.md
 - Alternative actions: secondary; Cancel and back: outline
 - Toolbar and low-emphasis actions in dense UI: ghost
 - The confirming action of a destructive flow: destructive; text-like navigation in content: link
+- Size=xs in table rows, cards and dense toolbars; Size=xl for the one main action of a hero or a phone screen (sticky mobile Action Bar)
 
 **Not for**
 
@@ -54,6 +59,7 @@ Usage: eggux build-ui/components/button.md
 4. State=loading: a spinning loader replaces the leading icon; width stays
 5. Variant=link: label, icons and hover underline use foreground/brand; no fill and no side padding in every Size, so the text lines up with the text column above it
 6. Variant=soft: fill button/soft-bg (background/primary at 10%, 20% in dark), hover button/soft-hover (one step stronger); label and icons foreground/brand; no shadow
+7. Size: xs 28 (ui/label-small, 14 px icons, 10 px sides), sm 32, default 36, lg 40, xl 48 (32 px sides); same tokens in every size
 
 **Content and behavior**
 
@@ -68,6 +74,10 @@ Usage: eggux build-ui/components/button.md
 - Never two soft Buttons next to one default Button in the same group; pick soft or secondary for the group
 - soft text and icons are foreground/brand, never background/primary
 - Variant=link has no side padding: place it in the text column, never add padding back by hand; the focus ring hugs the label
+- Same Size for every Button in one group or bar
+- xl only for the main action and its partner; never a row of xl Buttons
+- xs is not a touch target on its own: on phones use sm or larger
+- Resize: hugs its label; one line; in a sticky mobile bar Buttons FILL and share the width
 
 **Accessibility**
 
@@ -80,7 +90,7 @@ Usage: eggux build-ui/components/button.md
 | Variant property | Values |
 |---|---|
 | Variant | default, secondary, outline, ghost, destructive, link, soft |
-| Size | sm, default, lg |
+| Size | sm, default, lg, xs, xl |
 | State | default, hover, focus, disabled, loading |
 
 | Property | Type | Default |
@@ -95,9 +105,9 @@ Icons: chevron-right, loader-circle, plus
 
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`, `button/soft-bg`, `button/soft-hover`, `foreground/accent`, `foreground/brand`, `foreground/default`, `foreground/destructive`, `foreground/primary`, `foreground/secondary`
-- Spacing and size: `density/control-height`, `spacing/0`, `spacing/10`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/6`, `spacing/8`
+- Spacing and size: `density/control-height`, `spacing/0`, `spacing/1`, `spacing/10`, `spacing/12`, `spacing/1_5`, `spacing/2`, `spacing/2_5`, `spacing/3`, `spacing/4`, `spacing/6`, `spacing/7`, `spacing/8`
 - Radius: `button/radius`
-- Text styles: `ui/label`
+- Text styles: `ui/label`, `ui/label-small`
 - Effects: `shadow/xs`
 
 Guides: [button](../../skills/build-ui/components/button.md), [action-feedback](../../skills/build-ui/patterns/action-feedback.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md), [auth](../../skills/build-ui/patterns/auth.md), [loading-states](../../skills/build-ui/patterns/loading-states.md)
@@ -106,9 +116,12 @@ Code: shadcn `Button` (`variant`, `size`) (`Show leading icon` → icon child be
 
 ## Button Icon
 
-Component set · 72 variants · default size 36 × 36
+Component set · 120 variants · default size 36 × 36
 
 Icon-only button, 36x36 (shadcn size="icon"). Always needs an accessible label in code and a tooltip with the same text. Size: sm 32 (tables, dense toolbars), default 36, lg 40 (next to lg Buttons). Variant=soft (button/soft-bg, foreground/brand icon) next to soft Buttons or for a brand-colored icon action without a solid fill.
+
+
+Size xs 28 (14 px icon): clear, copy and reveal inside fields, Tag and Chip remove, table row and Kanban Card menus. State=loading: a spinner replaces the icon while the action runs (refresh, retry, send); same size, blocks repeat clicks, aria-busy in code. To copy a value use Copy Button.
 
 
 Usage: eggux build-ui/components/button.md, tooltip.md
@@ -126,9 +139,10 @@ Usage: eggux build-ui/components/button.md, tooltip.md
 
 **Anatomy**
 
-1. Icon (instance swap, default ellipsis)
-2. Container in the chosen Variant (default, secondary, outline, ghost, destructive, soft): Size sm 32, default 36, lg 40
-3. Tooltip with the same text as the accessible label
+1. Icon (instance swap, default ellipsis); 14 px in xs, 16 px in the other sizes
+2. Container in the chosen Variant (default, secondary, outline, ghost, destructive, soft): Size xs 28, sm 32, default 36, lg 40
+3. State=loading: a spinning loader replaces the icon; same size
+4. Tooltip with the same text as the accessible label
 
 **Content and behavior**
 
@@ -138,6 +152,10 @@ Usage: eggux build-ui/components/button.md, tooltip.md
 - Copy turns the icon into a check for 2 s with the label "Copied"; no toast
 - Size matches the Buttons next to it: sm in tables and dense toolbars, lg next to lg Buttons in heroes
 - Variant=soft (button/soft-bg, foreground/brand icon) next to soft Buttons, or for a brand-colored icon action without a solid fill
+- Size=xs for clear, copy and reveal inside fields, Tag and Chip remove, table row and Kanban Card menus
+- State=loading while the action runs (refresh, retry, send): keep the size, block repeat clicks, then return to default or show the result
+- To copy a value use Copy Button (it carries the copied state)
+- Resize: fixed size; never shrinks
 
 **Accessibility**
 
@@ -145,22 +163,23 @@ Usage: eggux build-ui/components/button.md, tooltip.md
 - The tooltip shows on hover and on keyboard focus
 - Icon meets 3:1; touch target at least 44 x 44 px on mobile
 - soft icon: foreground/brand on button/soft-bg meets 3:1 in every theme (5.7:1 or more)
+- Loading: aria-busy="true" and the tooltip says the action in progress ("Refreshing")
 
 | Variant property | Values |
 |---|---|
 | Variant | default, secondary, outline, ghost, destructive, soft |
-| Size | default, sm, lg |
-| State | default, hover, focus, disabled |
+| Size | default, sm, lg, xs |
+| State | default, hover, focus, disabled, loading |
 
 | Property | Type | Default |
 |---|---|---|
 | Icon | instance swap | Icon/ellipsis |
 
-Icons: ellipsis
+Icons: ellipsis, loader-circle
 
 Tokens and styles:
 - Colors: `background/accent`, `background/default`, `background/destructive`, `background/primary`, `background/secondary`, `border/input`, `button/destructive-hover`, `button/primary-hover`, `button/secondary-hover`, `button/soft-bg`, `button/soft-hover`
-- Spacing and size: `density/control-height`, `spacing/10`, `spacing/8`
+- Spacing and size: `density/control-height`, `spacing/10`, `spacing/7`, `spacing/8`
 - Radius: `button/radius`
 - Effects: `shadow/xs`
 
@@ -306,9 +325,15 @@ Code: shadcn `ButtonGroup` or custom flex + `DropdownMenu`
 
 ## Action Bar
 
-Component set · 3 variants · default size 560 × 36
+Component set · 4 variants · default size 560 × 36
 
 The row of buttons that ends a form, a dialog body, a step or a hero: Actions slot (primary and secondary), optional Leading slot (Back, Delete) and divider above. end for forms and steps (secondary left of primary: Cancel, Save); start for heroes and page headers (primary first: Get started, Talk to sales); center under centered heroes and CTAs. One primary per bar. Dialog footers use the Dialog's own footer; a sticky bar for unsaved changes is Save Bar.
+
+
+Style=sticky-mobile: a bottom bar for phone screens (390 wide, FILL): background/default, top border, 16 px sides and 32 px bottom padding for the home indicator, an optional summary line (Show summary: Summary label and Summary value, "Total (2 items)", "€48.00") and xl Buttons that share the width. Use it for checkout, product detail, booking confirm and wizard steps on mobile; Align does not apply to it.
+
+
+Usage: eggux build-ui/components/button.md
 
 **Use for**
 
@@ -316,6 +341,7 @@ The row of buttons that ends a form, a dialog body, a step or a hero: Actions sl
 - The buttons of a hero or a page header (Align=start)
 - Under a centered hero, CTA or empty state (Align=center)
 - Back on the left and Next on the right in a wizard step (Show leading)
+- Style=sticky-mobile: the bottom bar of phone screens: checkout, product detail, booking confirm, wizard steps, mobile settings
 
 **Not for**
 
@@ -329,6 +355,8 @@ The row of buttons that ends a form, a dialog body, a step or a hero: Actions sl
 2. Leading slot (Show leading): Back, Delete, Remove
 3. Actions slot: secondary and primary Buttons
 4. Align: end, start, center
+5. Style: default, sticky-mobile
+6. sticky-mobile: background/default, top border, 16 px sides, 12 px top and 32 px bottom (home indicator); summary line (Show summary: Summary label, Summary value) above the buttons; xl Buttons FILL and share the width
 
 **Content and behavior**
 
@@ -336,6 +364,10 @@ The row of buttons that ends a form, a dialog body, a step or a hero: Actions sl
 - end: secondary left of primary (Cancel, Save); start and center: primary first
 - Destructive actions go in Leading, away from the primary
 - Same button Size inside one bar
+- sticky-mobile stays at the bottom of the viewport while the page scrolls; the page gets bottom padding equal to the bar height
+- sticky-mobile: one primary, at most one secondary; Align does not apply
+- Summary line only when it helps the decision (total, items, date); one line, label truncates, value never wraps
+- Resize: default stretches and the Actions slot fills; sticky-mobile FILLs the screen width, min 320, buttons share the width
 
 **Accessibility**
 
@@ -346,21 +378,26 @@ The row of buttons that ends a form, a dialog body, a step or a hero: Actions sl
 | Variant property | Values |
 |---|---|
 | Align | end, start, center |
+| Style | default, sticky-mobile |
 
 | Property | Type | Default |
 |---|---|---|
 | Show divider | boolean | false |
 | Show leading | boolean | false |
+| Show summary | boolean | true |
+| Summary label | text | Total (2 items) |
+| Summary value | text | €48.00 |
 
 Slots (fill them in the instance, never detach): `Leading`, `Actions`
 
 Built from: `Button`
 
 Tokens and styles:
-- Colors: `border/default`
-- Spacing and size: `spacing/2`, `spacing/4`
+- Colors: `background/default`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
+- Text styles: `body/large`, `body/small`
 
-Guides: [button](../../skills/build-ui/components/button.md)
+Guides: [button](../../skills/build-ui/components/button.md), [mobile](../../skills/build-ui/patterns/mobile.md)
 
 Code: `<div class="flex gap-2 justify-end">` of shadcn `Button` (justify-start, justify-center) (Leading button with `mr-auto`; one primary)
 
@@ -422,3 +459,57 @@ Tokens and styles:
 Guides: [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
 
 Code: shadcn `Button size="icon"`; `navigator.clipboard`, `mailto:`, `navigator.share`, network share URLs (Copy link confirms with Sonner; official network logos)
+
+## Copy Button
+
+Component set · 12 variants · default size 36 × 36
+
+A Button Icon that copies one value (an ID, a key, a URL, a code snippet) and confirms it in place: State=copied shows a check in the success color (background/success, 5.0:1 Light, 8.7:1 Dark, 5.0:1 Corporate Light) for 2 s, then returns to default. Variant ghost (code blocks, table cells, Description List values) or outline (next to fields); Size default 36, sm 32, xs 28. Pair it with a Tooltip "Copy" that reads "Copied" after the click; no toast. A labeled field people copy from is Copy Field.
+
+
+Usage: eggux build-ui/components/button.md
+
+**Use for**
+
+- Code Block, Command Snippet and JSON Viewer headers
+- IDs, keys and URLs in Description List values, table cells and API Key or Endpoint rows
+- Share Link rows where the link is already visible
+
+**Not for**
+
+- A value people read and copy from a labelled field: use Copy Field
+- Copy as one of several actions on a message: use Button Icon ghost with the copy icon in the action row, same behavior
+- Copying a whole page or a large export: use Button with a label
+
+**Anatomy**
+
+1. Button Icon (nested) with Icon/copy
+2. State=copied: Icon/check in background/success (the success color)
+3. Variant: ghost (in content) or outline (next to fields); Size: default 36, sm 32, xs 28
+
+**Content and behavior**
+
+- Copied lasts 2 s after the click, then returns to default; no toast
+- Tooltip "Copy" changes to "Copied" while State=copied
+- Copies the full value even when the visible text is truncated or masked
+- If copying fails, select the value and say "Press Ctrl+C to copy"
+- xs inside table rows and fields, sm in code blocks and cards
+- Resize: fixed size; never shrinks
+
+**Accessibility**
+
+- aria-label names the value ("Copy invoice number")
+- "Copied" is announced in a live region (role="status", aria-live="polite")
+- The check is background/success: 5.0:1 Light, 8.7:1 Dark, 5.0:1 Corporate Light on background/default (3:1 needed for icons)
+
+| Variant property | Values |
+|---|---|
+| Variant | ghost, outline |
+| Size | default, sm, xs |
+| State | default, copied |
+
+Built from: `Button Icon`
+
+Guides: [button](../../skills/build-ui/components/button.md)
+
+Code: custom: shadcn `Button variant="ghost" size="icon"` (or `outline`, `icon-sm`, `icon-xs`) + `Tooltip`; `navigator.clipboard.writeText(value)` (State=copied for 2 s: lucide `Check` with `text-success` in place of `Copy`, tooltip "Copied", `role="status"` live region; no toast)

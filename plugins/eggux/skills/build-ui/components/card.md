@@ -7,6 +7,8 @@ Usage guidelines only. Visual specs live in the Figma component.
   from the page.
 - Object cards show the attributes marked "card" in `objects.md`, in that order.
 - Do not nest cards in cards. Inside a card, separate groups with spacing or a `Separator`.
+- Text between two lines ("or continue with", "Today") is `Separator` Show label (Show start
+  line off puts the label at the start), never a hand-drawn row. Example "Separator styles".
 
 ## Anatomy
 Header (title `body/large`, optional description `body/small` muted, optional action top right)
@@ -48,12 +50,16 @@ Stat Card, Option Card and Post Card use the same tokens.
 
 ## Rules
 - A whole card is clickable only when it has one destination. Then it has a hover state, a focus
-  ring and no other buttons inside except a menu. Otherwise, make the title the link.
+  ring and no other buttons inside except a menu. Otherwise, make the title the link. Cards that
+  are one link use `Card` State=hover and focus; Media=top (a full-bleed 16:9 image) for picture
+  tiles.
 - Cards in a grid have equal height per row and the same structure, so the eye can scan.
 - Footer actions follow button rules: one primary at most, usually none in a grid of cards.
 - Metric cards: label (`body/small` muted), value (`heading/h2`, one line), change with direction
   in text and icon, not color alone.
 - Selectable cards (plan, delivery, billing period) use Option Card: the whole card is the target, one selected.
+  Option Card Layout=media for visual pickers (theme, template), compact for short lists in
+  dialogs.
 - Card Header `Show icon` names the card type on dashboards; give every card in a row an icon or none.
 - Stat Card: the change Badge is exposed: set its Label and Variant per instance. It is soft and its
   tone follows meaning (up success, down destructive, flat neutral; churn down = soft-success).
@@ -94,5 +100,15 @@ Stat Card, Option Card and Post Card use the same tokens.
   280 and 720 wide, for every variant, sm, Dark, Compact and Corporate Light.
 - `Entity Card` Show people hides the Avatar Group in the footer when people do not matter for the
   object.
+- To suggest one thing (upgrade, tip, announcement) use `Callout Card`: Layout=horizontal in
+  content, stacked in sidebars, one primary action and a dismiss that is remembered (Show close).
+  Media slot for an Icon Tile or a Spot Illustration. Example "Callout Card".
+- `Upsell Card` (Pricing page) is the small upgrade nudge for a sidebar footer or an empty state
+  (240, 200 to 360): one benefit, the price note and a full-width Upgrade; one upsell per screen,
+  hidden from people without billing rights (`patterns/monetization.md`). Tips and announcements
+  stay on Callout Card.
+- `Product Card` (rules in `patterns/commerce.md`): Show swatches when the product comes in
+  colors (4 max); Size=sm for dense grids and Mini Cart recommendations. Example "Product Card
+  styles".
 - `Link Preview` shows a pasted URL as a card in comments, chat and notes. `Location Card` shows an
   office, store or venue with address, phone, hours and directions; grids of 3 or next to a `Map`.

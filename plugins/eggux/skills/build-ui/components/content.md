@@ -1,6 +1,24 @@
-# Content components: Section Heading, Feature Item, Post Card, Quote, Code Block, Table of Contents
+# Content components: Prose, Section Heading, Feature Item, Post Card, Quote, Code Block, Table of Contents
 
 Usage guidelines only. Visual specs live in the Figma components.
+
+## Prose (long text)
+- Long text (articles, legal, help, docs, long AI answers) goes in `Prose` with Prose parts:
+  `Prose Heading` (h2, h3, h4), `Prose Paragraph`, `Prose List Item` (bullet, number) and `Prose
+  Blockquote`; Quote, Code Block, Image Figure and Alert sit in the same slot. Links, inline code
+  and marks are styled runs inside the text, never separate boxes.
+- Size default (672) for article and docs pages, sm (576) in side panels and narrow columns, lg
+  (768) for one long read with no aside. One Size per page.
+- Headings bring their own space above; never add spacers between Prose parts.
+- Figma: `Prose` Size; Content slot (Prose page). `Block / Article` and `Block / Legal Page` use
+  it. Example "Prose".
+
+## Highlight and Inline Code
+- `Inline Code` for code values in hints, cells and short text (a key, a path, a command name);
+  max 320 with an ellipsis. Longer code is a Code Block or Command Snippet.
+- `Highlight` Tone=default for search matches and marked text, Tone=ai for text the assistant
+  changed or added. It is a text decoration on the run (like Comment Highlight), so the text
+  stays editable.
 
 ## Section Heading
 - Opens a section of an app or content page, or a group inside a card or a long form: title,
@@ -55,8 +73,12 @@ Usage guidelines only. Visual specs live in the Figma components.
 ## Code Block
 - Commands, snippets, API examples. Language label + Copy; Copy confirms with "Copied" for 2 s.
 - No wrapping: long lines scroll horizontally. Syntax colors come from the highlighter theme.
-- Inline code inside prose: `code` style on `background/muted`, radius sm, no Code Block.
-- Figma: `Code Block` (Code Block page), Language, Code, Show header.
+- Inline code inside prose: `Inline Code` (`code` style on `background/muted`, radius sm), no Code
+  Block.
+- Show tabs for alternatives (npm, pnpm, yarn), Show line numbers past 3 lines, Show highlight
+  (`Code Highlight`, `code/line-highlight`) for the line the text refers to.
+- Figma: `Code Block` (Code Block page), Language, Code, Show header, Show tabs, Show line
+  numbers, Show highlight. Example "Code Block styles".
 - API reference pages: Endpoint Row list (State=selected on the open one), a curl Command Snippet, a JSON Viewer response, recent Log Rows and schema changes in a Diff Viewer (`Block / API Reference`).
 
 ## Table of Contents

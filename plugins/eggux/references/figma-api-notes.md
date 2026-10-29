@@ -81,6 +81,8 @@ Read before any `use_figma` write to the library or a client file. Each line cos
 - Moving a node between two slots of the same instance with `appendChild` leaves stale ids in
   `children`. Clone it into the target slot and remove the original.
 - An empty SLOT hugs to 100 x 100: give it a hidden child so it hugs to its content size.
+- Check the fill of every new slot: a slot with a white fill (Mention Menu Items, Date Time Picker
+  Times) shows white in Dark. Clear it (`fills = []`) or bind a token.
 
 ## Instances and properties
 - To replace a nested part driven by an INSTANCE_SWAP with a component that has its own swap: inventory
@@ -103,6 +105,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   layer name afterwards.
 - Hidden children of instances are skipped by `findAll` / `children` unless
   `figma.skipInvisibleInstanceChildren = false`.
+- Overrides on an instance inside a hidden frame of a main component (fills on a Swatch in a
+  `visible = false` row) do not stick, and `resolveForConsumer` on them throws. Show the frame,
+  override, then hide it again.
 - Scanning blocks: call `await instance.getMainComponentAsync()` on each instance before walking
   into it. Until the main component is loaded, `findAll` does not see the content placed in the
   instance's slots, so a scan reports too few nested instances.
@@ -225,6 +230,9 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   the sizing modes, so a fixed-width column becomes hug width (a 1152 container shrank to 100
   and its text wrapped one letter per line). Set `primaryAxisSizingMode` and
   `counterAxisSizingMode` again and resize after the switch.
+- After switching a cloned variant from HORIZONTAL to VERTICAL, a child that was FILL on the old
+  primary axis becomes FILL vertically and collapses to 1 px: set `layoutSizingVertical = 'HUG'`
+  on it again.
 - An auto-layout child with `layoutGrow = 1` is FIXED on that axis. Set it back to HUG before
   measuring how tall the content is.
 - `createInstance()` puts the instance on the current page at 0,0 until it is appended. A

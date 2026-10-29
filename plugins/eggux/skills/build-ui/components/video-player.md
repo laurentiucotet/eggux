@@ -31,3 +31,6 @@ Native `<video>` with custom controls, or a player (Vidstack, Plyr) for HLS and 
 - Before playback, lists and cards show a `Video Thumbnail` (poster, play button, duration) that
   opens the `Video Player`. Audio files (podcasts, voice messages, calls) use `Audio Player` with a
   transcript link.
+- `Audio Player` Variant=compact (a 280 pill with a waveform) for voice messages in chat and
+  comments; default for podcasts and calls. State follows play and pause. Example "Audio Player
+  styles".

@@ -1,29 +1,33 @@
 # Avatar
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Avatar](#avatar) | 20 | - |
+| [Avatar](#avatar) | 42 | - |
+| [Avatar Status](#avatar-status) | 4 | - |
+| [Avatar Verified](#avatar-verified) | 1 | - |
 | [Avatar Group](#avatar-group) | 3 | Avatars |
 | [Byline](#byline) | 3 | - |
 | [Presence Bar](#presence-bar) | 1 | - |
 
-On the Figma page: "Example / Avatar Group styles", "Example / article meta", "Example / assignees on a project page", "Example / document header with live presence", "Example / in record header", "Stress test / Avatar", "Stress test / Avatar Group", "Stress test / Byline", "Stress test / Presence Bar"
+On the Figma page: "Example / Avatar Group styles", "Example / Avatar styles", "Example / article meta", "Example / assignees on a project page", "Example / document header with live presence", "Stress test / Avatar", "Stress test / Avatar Group", "Stress test / Byline", "Stress test / Presence Bar"
 
 ## Avatar
 
-Component set · 20 variants · default size 32 × 32
+Component set · 42 variants · default size 32 × 32
 
-shadcn Avatar. Type=initials (default, two letters) is the fallback; Type=image shows the photo picked in the Photo swap (Image / Person / * from the Imagery page), clipped to the shape. The sample faces are placeholders: replace them with real photos, and use a different person for each avatar in a list. Status = online dot. Always pair with the person's name in text nearby or as accessible label. Shape: circle for people, square for companies, workspaces and apps. Size xs (20) for inline mentions and dense cells. Usage: eggux build-ui/components/avatar.md
+shadcn Avatar. Type=initials (default, two letters) is the fallback; Type=image shows the photo picked in the Photo swap (Image / Person / * from the Imagery page), clipped to the shape; Type=icon shows a glyph (Icon swap: user for guests and deleted accounts, bot for the AI assistant and automations, users for a team) when there is no photo or name. The sample faces are placeholders: replace them with real photos, and use a different person for each avatar in a list. Status (Show status, exposed Avatar Status): online, away, busy, offline. Show verified: a checked account or organization (info tick in the same corner; use status or verified, not both). Always pair with the name in text nearby or as accessible label. Shape: circle for people, square for companies, workspaces and apps. Size: xs (20) inline and dense cells, sm (24), default (32), lg (40), xl (48), 2xl (64) profile headers and person cards, 3xl (96) My profile and Avatar Upload preview. Usage: eggux build-ui/components/avatar.md
 
 **Use for**
 
 - People in lists, tables, comments, headers and cards
-- Size sm in tables and dense lists, default in lists and sidebars, lg and xl on profiles
+- Size xs and sm in tables and dense lists, default in lists and sidebars, lg and xl on cards, 2xl on profile headers and Person Card vertical, 3xl on My profile and Avatar Upload preview
 - Owners and assignees on Entity Cards, Post Card authors, testimonial and team blocks
+- Type=icon for guests, deleted users, system events and the AI assistant (Icon swap: user, bot, users)
+- Show status for presence in chat, inbox and directories; Show verified for checked accounts and organizations
 
 **Not for**
 
@@ -34,33 +38,38 @@ shadcn Avatar. Type=initials (default, two letters) is the fallback; Type=image 
 
 **Anatomy**
 
-1. Type: initials (default) or image
+1. Type: initials (default), image or icon
 2. Initials (Type=initials): two letters on background/muted
 3. Photo swap (Photo, Type=image): nested Image / Person / * instance clipped to the shape; default Image / Person / 01
-4. Status (Show status): online dot
-5. Shape: circle for people, square (radius md, lg on lg and xl) for companies, workspaces and apps
-6. Size: xs (20), sm (24), default (32), lg (40), xl (48)
+4. Icon swap (Icon, Type=icon): user (default), bot, users; half the avatar size, foreground/muted
+5. Status (Show status): exposed Avatar Status with Status online, away, busy, offline
+6. Verified (Show verified): Avatar Verified tick, background/info with a foreground/info check
+7. Shape: circle for people, square (radius md, lg on lg and up) for companies, workspaces and apps
+8. Size: xs (20), sm (24), default (32), lg (40), xl (48), 2xl (64), 3xl (96)
 
 **Content and behavior**
 
 - Always next to the person's name, or with the name as accessible label; never the only identifier
-- Type=image with a Photo when a photo exists; initials stay the default and the fallback
+- Type=image with a Photo when a photo exists; initials stay the default and the fallback; Type=icon only when there is no name either (guest, deleted user) or the actor is not a person (bot, system)
 - The Image / Person photos are sample faces (Unsplash License, not covered by the CC BY 4.0 license of the file): replace them with real photos
 - Pick a photo that fits the name, use a different person for each avatar in a block, and the same photo for the same person within it
 - Overflow avatars (+3) and organizations stay initials
-- Status dot only when presence matters to the task; same size within a list or group; one shape per list
+- Status only when presence matters to the task: online (success), away (warning), busy (destructive), offline (muted); same size within a list or group; one shape per list
+- Status and verified share the bottom-right corner: use one, never both
 - Initials stay inside the circle: 1 line, centered, clipped by the circle, ellipsis for anything longer than 2 letters
+- Fixed size: never stretch an avatar; pick the Size
 
 **Accessibility**
 
 - Image alt is the name, or alt="" when the name is right next to it
-- The Status dot has a text equivalent ("Online")
-- Initials meet 4.5:1 on background/muted
+- Status has a text equivalent ("Ana Popescu, away"); color is never the only signal
+- Verified has a text equivalent ("Verified") in the name or a Tooltip
+- Initials meet 4.5:1 on background/muted; icons and dots 3:1 except the away dot (amber on white, same as Status Dot warning), which always comes with text
 
 | Variant property | Values |
 |---|---|
-| Type | initials, image |
-| Size | sm, default, lg, xl, xs |
+| Type | initials, image, icon |
+| Size | sm, default, lg, xl, xs, 2xl, 3xl |
 | Shape | circle, square |
 
 | Property | Type | Default |
@@ -68,18 +77,50 @@ shadcn Avatar. Type=initials (default, two letters) is the fallback; Type=image 
 | Initials | text | AP |
 | Show status | boolean | false |
 | Photo | instance swap | Image / Person / 01 |
+| Show verified | boolean | false |
+| Icon | instance swap | Icon/user |
 
-Built from: `Image / Person / 01`. Icons: user
+Built from: `Avatar Status`, `Avatar Verified`, `Image / Person / 01`. Icons: user
 
 Tokens and styles:
-- Colors: `background/default`, `background/muted`, `background/success`, `foreground/default`
-- Spacing and size: `border-width/2`, `spacing/10`, `spacing/12`, `spacing/5`, `spacing/6`, `spacing/8`
+- Colors: `background/muted`, `foreground/default`
+- Spacing and size: `spacing/10`, `spacing/12`, `spacing/16`, `spacing/24`, `spacing/5`, `spacing/6`, `spacing/8`
 - Radius: `radius/full`, `radius/lg`, `radius/md`
-- Text styles: `body/large`, `ui/label`, `ui/label-small`
+- Text styles: `body/large`, `heading/h2`, `heading/h3`, `ui/label`, `ui/label-small`
+
+Guides: [avatar](../../skills/build-ui/components/avatar.md), [select](../../skills/build-ui/components/select.md)
+
+Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`; `Type=icon` = `AvatarFallback` with lucide `User` / `Bot` / `Users` (`size-1/2 text-muted-foreground`). Sizes `size-5` (xs) to `size-16` (2xl) and `size-24` (3xl). Status (`Avatar Status`): `absolute bottom-0 right-0 rounded-full ring-2 ring-background` with `bg-success`, `bg-warning`, `bg-destructive`, `bg-muted-foreground` + sr-only text; Show verified (`Avatar Verified`): lucide `BadgeCheck` or a check in `bg-info text-info-foreground` in the same corner. Group: negative margin + ring)
+
+## Avatar Status
+
+Component set · 4 variants · default size 10 × 10
+
+Presence dot on the corner of an Avatar (part of Avatar, not used alone). Status: online (success), away (warning), busy (destructive), offline (muted). A 2 px ring in background/default separates it from the photo. Color is never the only signal: say the status in text nearby or in the accessible name ("Ana Popescu, away"). Usage: eggux build-ui/components/avatar.md
+
+| Variant property | Values |
+|---|---|
+| Status | online, away, busy, offline |
+
+Tokens and styles:
+- Colors: `background/default`, `background/destructive`, `background/success`, `background/warning`, `foreground/muted`
+- Spacing and size: `border-width/2`
 
 Guides: [avatar](../../skills/build-ui/components/avatar.md)
 
-Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`. Group: negative margin + ring)
+## Avatar Verified
+
+Component · 1 variant · default size 16 × 16
+
+Verified tick on the corner of an Avatar (part of Avatar, not used alone): an account, organization or seller whose identity was checked. background/info circle, foreground/info check, 2 px background ring. Pair it with "Verified" in the accessible name or a Tooltip. Usage: eggux build-ui/components/avatar.md
+
+Icons: check
+
+Tokens and styles:
+- Colors: `background/default`, `background/info`
+- Spacing and size: `border-width/2`
+
+Guides: [avatar](../../skills/build-ui/components/avatar.md)
 
 ## Avatar Group
 
@@ -145,7 +186,7 @@ Tokens and styles:
 
 Guides: [avatar](../../skills/build-ui/components/avatar.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
 
-Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`. Group: negative margin + ring)
+Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`; `Type=icon` = `AvatarFallback` with lucide `User` / `Bot` / `Users` (`size-1/2 text-muted-foreground`). Sizes `size-5` (xs) to `size-16` (2xl) and `size-24` (3xl). Status (`Avatar Status`): `absolute bottom-0 right-0 rounded-full ring-2 ring-background` with `bg-success`, `bg-warning`, `bg-destructive`, `bg-muted-foreground` + sr-only text; Show verified (`Avatar Verified`): lucide `BadgeCheck` or a check in `bg-info text-info-foreground` in the same corner. Group: negative margin + ring)
 
 ## Byline
 

@@ -21,20 +21,28 @@ its variables; read them through Figma MCP, do not copy them here.
 - `destructive` appears inside the confirmation step; the trigger in a list can be `ghost` or a menu item.
 - Icon-only buttons need an accessible label and a tooltip.
 - Loading: keep the width, show a spinner, block repeat clicks.
+- Sizes: xs 28 for table rows, cards and dense toolbars, xl 48 for the one main action of a hero
+  or a phone screen; one size per group.
 - Disabled only when the action is truly unavailable, with a reason nearby. Never as form validation.
 - On a muted card or panel, secondary actions are `outline`, never `secondary` (same color as the surface). `link` text uses `foreground/brand`.
 - `link` has no side padding, so it lines up with the text column above it.
 - The other actions of a group use `soft` or `secondary`: pick one for the whole group.
 
 ## Figma
-- `Button`: `Variant` × `Size` (sm, default, lg) × `State` (default, hover, focus, disabled,
-  loading). Properties: `Label`, `Show leading icon` with the `Leading icon` swap, `Show trailing
-  icon` with the `Trailing icon` swap.
-- `Button Icon`: icon-only, `Variant` × `Size` × `State`, `Icon` swap. Size sm 32 (tables, dense
-  toolbars), default 36, lg 40 (next to lg Buttons). Pair it with a tooltip. It has `soft` too,
-  for icon actions next to soft Buttons. Example "Button styles".
+- `Button`: `Variant` × `Size` (xs, sm, default, lg, xl) × `State` (default, hover, focus,
+  disabled, loading). Properties: `Label`, `Show leading icon` with the `Leading icon` swap, `Show
+  trailing icon` with the `Trailing icon` swap.
+- `Button Icon`: icon-only, `Variant` × `Size` × `State`, `Icon` swap. Size xs 28 (table rows,
+  sidebar item actions), sm 32 (tables, dense toolbars), default 36, lg 40 (next to lg Buttons).
+  Pair it with a tooltip. It has `soft` too, for icon actions next to soft Buttons. Example
+  "Button styles".
 - `Button` State=loading: a spinner replaces the leading icon, the width stays; label stays or
   says the action in progress ("Saving…"). Block repeat clicks while loading.
+- `Button Icon` State=loading while a refresh, retry or send runs; keep the size and block repeat
+  clicks.
+- Copy a value with `Copy Button` (Variant ghost or outline, Size like the row; State=copied
+  shows a check for 2 s with the tooltip "Copied", no toast). A labelled value to copy is
+  `Copy Field`.
 
 ## Common buttons built from Button and Button Icon
 There is no separate component for these; build them from the base and keep the rules above.
@@ -70,5 +78,23 @@ is a boolean property; turn it off in the client file rather than detaching inst
   away from the primary. Show divider when the bar closes a long form.
 - Not for: Dialog footers (the Dialog has its own), unsaved changes that follow the scroll (Save
   Bar), related actions joined in one control (Button Group).
-- Figma: `Action Bar` Align (end, start, center); Show divider, Show leading; Leading and Actions
-  slots. Used in the hero, page header, CTA, empty page and import blocks.
+- On phones end checkout, product and wizard screens with `Action Bar` Style=sticky-mobile: a
+  summary line (Show summary, "Total" and the amount) plus xl Buttons that share the width.
+- Figma: `Action Bar` Align (end, start, center) × Style (default, sticky-mobile); Show divider,
+  Show leading; Leading and Actions slots. Used in the hero, page header, CTA, empty page and
+  import blocks. Example "sticky mobile action bar".
+
+## Toolbar
+- A row (or column) of controls that act on one surface: editor formatting, canvas zoom and
+  tools, a media or file viewer. Groups of `Toggle`s and `Button Icon`s split by `Separator`s,
+  most used first.
+- Style=default inside a frame (editor header, card top); Style=floating over a canvas or image
+  (popover surface, shadow). Orientation=vertical for tool columns at the side of a canvas.
+- Narrow toolbars move the last groups into the overflow (Show overflow, ellipsis Menu); never
+  wrap to two rows.
+- Every icon-only control has a tooltip with its shortcut; Arrow keys move inside the toolbar
+  (`role="toolbar"`), Tab leaves it.
+- Not for page actions (Page Header Actions), list filters (Filter Bar) or a selection's actions
+  (Bulk Action Bar, Table Toolbar).
+- Figma: `Toolbar` Orientation × Style; Items slot, Show overflow. Toolbar page, examples "editor
+  toolbar" and "canvas zoom".

@@ -8,6 +8,7 @@
 |---|---|---|
 | < 300 ms | Any | Nothing extra; the state change is the feedback |
 | 300 ms - 2 s | Content area (page, table, card) | Skeleton matching the layout |
+| > 300 ms | Route or region change | `Top Loading Bar` at the top edge, plus Skeleton for content |
 | 300 ms - 2 s | One element (button, row, toggle) | Spinner inside it, element blocked |
 | > 2 s, known length | Upload, import, export | Progress bar with percentage or "N of M" |
 | > 10 s | Background job | Let the user continue; notify on completion (toast, badge) |
@@ -21,6 +22,8 @@
 - Long operations can be cancelled when the system allows it.
 - A load that fails shows the error empty state (`empty-state.md`) with "Try again", in the same
   area the content would occupy.
+- Route and region loads over 300 ms show `Top Loading Bar` at the top edge; content placeholders
+  stay Skeleton. Start skeletons from `Skeleton Preset`.
 
 ## shadcn / Figma
 `Skeleton`, `Progress`, spinner icon inside `Button`. See `components/skeleton.md`.

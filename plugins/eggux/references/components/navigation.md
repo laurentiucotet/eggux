@@ -1,6 +1,6 @@
 # Navigation
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -9,7 +9,7 @@ Usage rules live in the guides linked under each component.
 | [Breadcrumb Item](#breadcrumb-item) | 4 | - |
 | [Breadcrumb](#breadcrumb) | 2 | Items |
 | [Top Bar](#top-bar) | 2 | Breadcrumb, Actions |
-| [Page Header](#page-header) | 1 | Actions |
+| [Page Header](#page-header) | 1 | Actions, Meta |
 | [Nav Link](#nav-link) | 3 | - |
 | [Navigation Menu Panel](#navigation-menu-panel) | 1 | Links, Featured |
 | [Navigation Menu Link](#navigation-menu-link) | 2 | - |
@@ -18,8 +18,9 @@ Usage rules live in the guides linked under each component.
 | [Back Link](#back-link) | 2 | - |
 | [Skip Link](#skip-link) | 1 | - |
 | [Page Toolbar](#page-toolbar) | 1 | - |
+| [App Header](#app-header) | 1 | Links, Actions |
 
-On the Figma page: "Example / Breadcrumb styles", "Example / Top Bar styles", "Example / in navbar", "Example / in page shell / app", "Example / in page shell / docs", "Example / invoices page with skip link and toolbar", "Example / navbar with mega menu", "Stress test / Back Link", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Page Toolbar", "Stress test / Skip Link", "Stress test / Table of Contents", "Stress test / Top Bar"
+On the Figma page: "Example / App Header", "Example / Breadcrumb styles", "Example / Page Header styles", "Example / Top Bar styles", "Example / in navbar", "Example / in page shell / docs", "Example / invoices page with skip link and toolbar", "Example / navbar with mega menu", "Stress test / App Header", "Stress test / Back Link", "Stress test / Breadcrumb", "Stress test / Nav Link", "Stress test / Navigation Menu Panel", "Stress test / Page Header", "Stress test / Page Toolbar", "Stress test / Skip Link", "Stress test / Table of Contents", "Stress test / Top Bar"
 
 ## Breadcrumb Item
 
@@ -178,7 +179,10 @@ Code: `min-w-80`; breadcrumb `min-w-0 flex-1`
 
 Component · 1 variant · default size 1136 × 56
 
-Title of a page inside the app shell with a short description and the page actions. Top of every app page (lists, settings, reports). Title (heading/h3) matches the last Breadcrumb item; Description is one sentence (Show description); Actions slot holds the page actions, primary last. Show actions: turn off when the page has no page-level action (a read-only report, a settings section). Global actions (search, notifications) go in the Top Bar.
+Title of a page inside the app shell with a short description and the page actions. Top of every app page (lists, settings, reports) and of record pages. Title (heading/h3) matches the last Breadcrumb item; Description is one sentence (Show description); Actions slot holds the page actions, primary last. Show actions: turn off when the page has no page-level action (a read-only report, a settings section). Global actions (search, notifications) go in the Top Bar.
+
+
+Record pages: Show back link adds a Back Link (exposed) above the title that names the list ("All invoices"). Show meta adds a line under the description with the Meta slot (Meta Items: date, customer, amount) and Show badge, a status Badge (exposed) at the start of that line. Show pager adds "3 of 24" (Pager label) and previous and next Button Icons before the actions, to step through the records of the list.
 
 
 Usage: eggux build-ui/components/navigation.md
@@ -188,6 +192,7 @@ Usage: eggux build-ui/components/navigation.md
 - Top of every app page: lists, settings, reports
 - The place for the page primary action: "New project"
 - Settings and report pages that need a description
+- Record pages (an invoice, an order, an approval): Show back link, Show meta with Show badge, Show pager
 
 **Not for**
 
@@ -196,9 +201,12 @@ Usage: eggux build-ui/components/navigation.md
 
 **Anatomy**
 
-1. Title (heading/h3)
-2. Description (Show description)
-3. Actions slot (Show actions), primary last
+1. Back Link (Show back link, exposed): "All invoices" above the title
+2. Title (heading/h3)
+3. Description (Show description)
+4. Meta line (Show meta): Badge (Show badge, exposed, status) then the Meta slot (Meta Items: date, customer, amount)
+5. Pager (Show pager): Pager label "3 of 24" and previous / next Button Icons outline sm
+6. Actions slot (Show actions), primary last
 
 **Content and behavior**
 
@@ -207,12 +215,18 @@ Usage: eggux build-ui/components/navigation.md
 - Title matches the last Breadcrumb item
 - Tabs for sub-views go right under it
 - Turn Show actions off when the page has no page-level action; never leave an empty slot
-- Resize: the header wraps: text fills (min 240), actions move under it in narrow columns; title and description up to 2 lines with ellipsis
+- Back link names the list it returns to, never "Back"; it keeps the list filters
+- Badge shows one status of the record (Paid, Overdue, Draft) and sits at the start of the meta line; turn Show meta on to see it
+- Meta: 2 to 4 Meta Items; the line wraps
+- Pager only when the page was opened from a list; previous and next keep the list order and filters; disable at the ends
+- Resize: the header wraps: text fills (min 240), pager and actions move under it in narrow columns; title and description up to 2 lines with ellipsis; Meta Items wrap
 
 **Accessibility**
 
 - Title is the page heading; keep heading levels in order
 - Action buttons have verb labels
+- Pager buttons are labelled "Previous invoice" and "Next invoice"; the label "3 of 24" is plain text
+- The status Badge text is read with the title (aria-describedby or visible order)
 
 | Property | Type | Default |
 |---|---|---|
@@ -220,14 +234,19 @@ Usage: eggux build-ui/components/navigation.md
 | Description | text | All projects across your workspace. |
 | Show description | boolean | true |
 | Show actions | boolean | true |
+| Show back link | boolean | false |
+| Show meta | boolean | false |
+| Show badge | boolean | false |
+| Show pager | boolean | false |
+| Pager label | text | 3 of 24 |
 
-Slots (fill them in the instance, never detach): `Actions`
+Slots (fill them in the instance, never detach): `Actions`, `Meta`
 
-Built from: `Button`
+Built from: `Back Link`, `Badge`, `Button`, `Button Icon`, `Meta Item`
 
 Tokens and styles:
 - Colors: `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
+- Spacing and size: `density/control-height`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
 - Text styles: `body/small`, `heading/h3`
 
 Guides: [navigation](../../skills/build-ui/components/navigation.md)
@@ -620,3 +639,65 @@ Tokens and styles:
 Guides: [navigation](../../skills/build-ui/components/navigation.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: `flex flex-wrap gap-2`; start `min-w-64 flex-1`; search `min-w-32 max-w-80 flex-1` (End group wraps to a second line)
+
+## App Header
+
+Component · 1 variant · default size 1440 × 64
+
+Top navigation for apps without a sidebar (Carbon UI Shell header, Primer Header, Tailwind Plus stacked shells): Logo (swap), Links (native slot of Nav Links, the current page State=active), Search Field (exposed, Show search) and Actions (native slot: notifications, help, the account Avatar). 64 high with a bottom border. Use it for client portals, simple admin and commerce admin with 3 to 6 destinations, and in Page Shell / App Layout=stacked. Apps with more destinations or sections use Sidebar and Top Bar; marketing sites use Navbar; under 768 use Mobile Header.
+
+
+Resize: needs at least 768; Links fill the space between logo and search, search keeps 256, actions keep their size. Under 1024 turn Show search off and keep the search as a Button Icon in Actions.
+
+
+Usage: eggux build-ui/components/navigation.md
+
+**Use for**
+
+- Client portals, simple admin and commerce admin with 3 to 6 destinations
+- Page Shell / App Layout=stacked
+- Docs and help apps with a few app links
+
+**Not for**
+
+- More than 6 destinations or sections: use Sidebar and Top Bar
+- Marketing sites: use Navbar
+- Under 768: use Mobile Header
+
+**Anatomy**
+
+1. Logo (swap)
+2. Links slot: Nav Links, the current page State=active
+3. Search Field (Show search, exposed): 256 wide, opens Command Dialog or searches in place
+4. Actions slot: notifications Button Icon, help, account Avatar
+5. Bottom border border/default, 64 high, padding spacing/6
+
+**Content and behavior**
+
+- One active link, matching the current page
+- Links are nouns, one or two words
+- Only global actions on the right
+- Resize: needs at least 768; Links fill the space, search keeps 256, actions keep their size; under 1024 turn Show search off and put a search Button Icon in Actions
+
+**Accessibility**
+
+- Header landmark with a nav for the links; the active link has aria-current="page"
+- Icon buttons have labels: "Notifications", "Search"
+- The Logo links home and has the product name as its label
+
+| Property | Type | Default |
+|---|---|---|
+| Logo | instance swap | Type=full |
+| Show search | boolean | true |
+
+Slots (fill them in the instance, never detach): `Links`, `Actions`
+
+Built from: `Avatar`, `Button Icon`, `Logo`, `Nav Link`, `Search Field`
+
+Tokens and styles:
+- Colors: `background/default`, `border/default`
+- Spacing and size: `spacing/1`, `spacing/16`, `spacing/2`, `spacing/6`
+
+Guides: [navigation](../../skills/build-ui/components/navigation.md)
+
+Code: custom `<header className="flex h-16 items-center gap-6 border-b bg-background px-6">`: Logo link, links in shadcn `NavigationMenu` (`className="flex-1"`, active link `aria-current="page"` with `bg-accent`), search `InputGroup className="w-64"` opening `CommandDialog`, `Button variant="ghost" size="icon"` and `Avatar` in a `DropdownMenu` (`min-w-[768px]`; under `lg` hide the search field (`hidden lg:flex`) and show a search icon button; under `md` render `Mobile Header`)

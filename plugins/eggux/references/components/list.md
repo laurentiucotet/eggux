@@ -1,6 +1,6 @@
 # List
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -10,8 +10,9 @@ Usage rules live in the guides linked under each component.
 | [Sortable List Item](#sortable-list-item) | 4 | Trailing, Leading |
 | [Task Item](#task-item) | 3 | Action |
 | [Job Listing](#job-listing) | 1 | - |
+| [List Group Header](#list-group-header) | 2 | - |
 
-On the Figma page: "Example / in careers list", "Example / in notifications", "Example / in onboarding checklist", "Example / table columns", "Stress test / Job Listing", "Stress test / List Item", "Stress test / Sortable List Item", "Stress test / Task Item"
+On the Figma page: "Example / List Group Header", "Example / in careers list", "Example / in notifications", "Example / in onboarding checklist", "Example / table columns", "Stress test / Job Listing", "Stress test / List Group Header", "Stress test / List Item", "Stress test / Sortable List Item", "Stress test / Task Item"
 
 ## List Item
 
@@ -283,3 +284,68 @@ Tokens and styles:
 Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
 
 Code: row `flex flex-wrap gap-3`; body `min-w-60 flex-1`; title and meta `line-clamp-2`; salary `truncate max-w-56` (End group wraps under the body)
+
+## List Group Header
+
+Component set · 2 variants · default size 384 × 32
+
+A left-aligned label over a group of rows (Primer ActionList.GroupHeading, Material list subheader): Label ("Today", "Yesterday", "A"), Show count (Badge Count, exposed) and Show action (link Button sm, exposed: "Mark all as read", "View all"). Variant: default (no fill, label in foreground/muted, for groups inside a card or a panel), muted (background/muted with top and bottom borders, label in foreground/default; sticky headings in long lists: Notifications by day, People Directory A to Z, File Manager). Put it before the first List Item of each group, full width (FILL), and keep it sticky while its group scrolls.
+
+
+Resize: fills its list; the label truncates to one line (max 280), count and action keep their size.
+
+
+Usage: eggux build-ui/components/list-and-tree.md
+
+**Use for**
+
+- Notifications and activity grouped by day (Today, Yesterday)
+- People Directory A to Z with counts
+- File Manager, inbox and chat history groups
+
+**Not for**
+
+- Section titles of a page: use Section Heading
+- Groups in a menu: use Menu Label
+- Groups in a sidebar: use Sidebar Group Label
+- A table: use group rows of the table
+
+**Anatomy**
+
+1. Label (ui/label-small; foreground/muted in default, foreground/default in muted)
+2. Count (Show count): Badge Count, exposed
+3. Action (Show action): link Button sm, exposed ("Mark all as read", "View all")
+4. Variant: default (no fill), muted (background/muted, top and bottom border)
+
+**Content and behavior**
+
+- One header before the first row of each group; no header for a single group
+- Labels are short: a day, a letter, a status
+- muted for long scrolling lists, sticky while its group scrolls; default inside cards and panels
+- Resize: fills its list; the label truncates to one line (max 160), count and action keep their size
+
+**Accessibility**
+
+- Render as a heading (h3 or role="heading") or as the label of a role="group" list
+- The count is read with the label ("Today, 2 unread")
+
+| Variant property | Values |
+|---|---|
+| Variant | default, muted |
+
+| Property | Type | Default |
+|---|---|---|
+| Label | text | Today |
+| Show count | boolean | false |
+| Show action | boolean | false |
+
+Built from: `Badge Count`, `Button`
+
+Tokens and styles:
+- Colors: `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/96`
+- Text styles: `ui/label-small`
+
+Guides: [list-and-tree](../../skills/build-ui/components/list-and-tree.md)
+
+Code: custom `<div role="heading" aria-level={3} className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-muted-foreground">` with label `truncate max-w-40`, shadcn `Badge variant="secondary"` count and `Button variant="link" size="sm" className="ml-auto"` (Variant=muted: `sticky top-0 z-10 border-y bg-muted text-foreground`)

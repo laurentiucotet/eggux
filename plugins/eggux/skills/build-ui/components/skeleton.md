@@ -14,4 +14,6 @@ Usage guidelines only. Visual specs live in the Figma component. When to use eac
 - Mark the loading region `aria-busy="true"` and announce completion when it matters.
 
 ## Figma
-`Skeleton` shapes: text, circle, block. Resize instances; see the "list row loading" example.
+- Start from `Skeleton Preset` (list-row, card, table-row, stat, chart) and draw with Skeleton
+  shapes only when no preset matches. Example "Skeleton presets".
+- `Skeleton` shapes: text, circle, block. Resize instances; see the "list row loading" example.

@@ -28,6 +28,8 @@ Usage guidelines only. Visual specs live in the Figma component.
   counts when useful. Variant=boxed when the tabs and their panel form one bordered unit: the
   content goes in the Tabs `Panel` slot. Example "Tabs styles".
 - `Tab` Show icon adds a 16 px icon before the label (Icon swap); icons on all tabs or none.
+- More tabs than fit: `Tabs` Show overflow, the rest in a Menu under "More". Dense headers and
+  panels use `Tab` Size=sm; one Size per Tabs. Example "Tabs overflow and sizes".
 - Variant=vertical: a 200 wide column for settings and long forms with 4-10 sections; the content
   sits on the right. Mobile: a Select or a list that opens each section. Example "settings with
   vertical tabs".
@@ -42,6 +44,10 @@ Usage guidelines only. Visual specs live in the Figma component.
   value: periods on a chart card, Monthly / Yearly on pricing. Example "Toggle Group styles".
 - Full width segmented Toggle Group: set the group and its items to FILL, so items share the
   track. In a hugging group keep items on HUG.
+- One on/off button (bold, pin, mute) is `Toggle` (Variant default or outline, State=pressed when
+  on); Toggle Group sets a value. Icon-only Toggles keep a tooltip. Example "Toggle".
+- Sizes sit on the items (`Toggle Group Item` Size, the same on every item): sm in toolbars and
+  chart headers, lg for billing period and theme. Example "Toggle Group sizes".
 
 ## Related components
 - View switches (list, board, calendar) and theme switches (light, dark, system) are plain

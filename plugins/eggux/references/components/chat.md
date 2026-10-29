@@ -1,6 +1,6 @@
 # Chat
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -13,8 +13,9 @@ Usage rules live in the guides linked under each component.
 | [Reaction Bar](#reaction-bar) | 1 | Reactions |
 | [Reaction](#reaction) | 2 | - |
 | [Thread Summary](#thread-summary) | 1 | - |
+| [Conversation Item](#conversation-item) | 3 | - |
 
-On the Figma page: "Example / in conversation", "Example / team thread with mentions and reactions", "Stress test / Chat Composer", "Stress test / Chat Message", "Stress test / Mention Chip", "Stress test / Reaction Bar", "Stress test / Thread Summary", "Stress test / Typing Indicator"
+On the Figma page: "Example / Conversation list", "Example / in conversation", "Example / team thread with mentions and reactions", "Stress test / Chat Composer", "Stress test / Chat Message", "Stress test / Conversation Item", "Stress test / Mention Chip", "Stress test / Reaction Bar", "Stress test / Thread Summary", "Stress test / Typing Indicator"
 
 ## Chat Message
 
@@ -383,3 +384,73 @@ Tokens and styles:
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
 
 Code: `<button>` row (`flex flex-wrap gap-x-2 gap-y-1`; texts `max-w-[120px] truncate`)
+
+## Conversation Item
+
+Component set · 3 variants · default size 360 × 66
+
+One conversation in a chat or inbox list: Avatar (exposed: photo, initials or a group icon; Show status for presence), Name, Time of the last message, Message (the last message on one line with an ellipsis; prefix your own messages with "You: "), unread Badge Count (Show unread, exposed: set the Count), Show pinned (pin icon) and Show muted (bell-off icon; muted conversations show no unread count, only the dot of a Badge Count Type=dot). State: default, hover, selected (the open conversation). 360 wide, min 240: Name and Message truncate, Time and badge keep their size.
+
+
+Usage: eggux build-ui/components/chat.md
+
+**Use for**
+
+- Inbox list pane, Team Chat direct messages and channels
+- Support Chat Widget home with recent conversations
+- Mobile chat lists
+
+**Not for**
+
+- Email threads with subject lines: use List Item with a description
+- Notifications: use Notification Item
+- The messages themselves: use Chat Message
+
+**Anatomy**
+
+1. Avatar (exposed): photo, initials or a group icon; Show status for presence
+2. Name (1 line, ellipsis)
+3. Show pinned (pin icon), Show muted (bell-off icon)
+4. Time of the last message (hugs, max 96)
+5. Message: the last message on one line with an ellipsis
+6. Badge Count (Show unread, exposed: Count)
+7. State: default, hover, selected (the open conversation)
+
+**Content and behavior**
+
+- Newest first; pinned conversations on top
+- Prefix your own last message with "You: "
+- Time: time today, "Yesterday", weekday this week, then the date
+- Muted conversations show no unread count (use Badge Count Type=dot at most)
+- Resize: 360 by default, min 240; Name and Message truncate, Time, icons and badge keep their size
+
+**Accessibility**
+
+- Each item is a link or option named "<Name>, <n> unread, <last message>, <time>"
+- Unread count is text in the name, not only the badge
+- Selected uses aria-current or aria-selected
+
+| Variant property | Values |
+|---|---|
+| State | default, hover, selected |
+
+| Property | Type | Default |
+|---|---|---|
+| Name | text | Ana Popescu |
+| Message | text | Sure, I will send the updated invoice today. |
+| Time | text | 10:42 |
+| Show unread | boolean | true |
+| Show pinned | boolean | false |
+| Show muted | boolean | false |
+
+Built from: `Avatar`, `Badge Count`. Icons: bell-off, pin
+
+Tokens and styles:
+- Colors: `background/accent`, `background/muted`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1_5`, `spacing/2`, `spacing/3`
+- Radius: `radius/md`
+- Text styles: `body/small`, `ui/caption`, `ui/label`
+
+Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md)
+
+Code: `button/a className="flex w-full min-w-60 items-center gap-3 rounded-md p-3 hover:bg-muted aria-[current=page]:bg-accent"`: Avatar lg, `div className="min-w-0 flex-1"` (name `truncate font-medium` + `Pin` / `BellOff` size-3.5 + time `text-xs shrink-0`; message `truncate text-sm text-muted-foreground` + Badge count) (Name includes unread count for screen readers)

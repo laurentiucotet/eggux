@@ -1,6 +1,6 @@
 # Selection controls
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -11,19 +11,26 @@ Usage rules live in the guides linked under each component.
 | [Switch](#switch) | 18 | - |
 | [Setting Row](#setting-row) | 1 | Control |
 
-On the Figma page: "Example / Switch styles", "Example / billing period", "Example / in two-factor", "Example / settings section", "Stress test / Checkbox", "Stress test / Radio", "Stress test / Setting Row", "Stress test / Switch"
+On the Figma page: "Example / Checkbox styles", "Example / Radio styles", "Example / Switch styles", "Example / billing period", "Example / settings section", "Stress test / Checkbox", "Stress test / Radio", "Stress test / Setting Row", "Stress test / Switch"
 
 ## Checkbox
 
 Component set · 12 variants · default size 199 × 20
 
-shadcn Checkbox with label. Inside forms that save on submit. Indeterminate only for "select all" over a partial selection. Usage: eggux build-ui/components/select.md
+shadcn Checkbox with label. Inside forms that save on submit. Indeterminate only for "select all" over a partial selection.
+
+
+Show description adds a second line (body/small, foreground/muted) under the label, indented to the label; the box stays centered on the label line. Use it for consent details, notification options and plan add-ons; keep it to one sentence (3 lines max).
+
+
+Usage: eggux build-ui/components/select.md
 
 **Use for**
 
 - 2-5 options worth seeing, where several can be chosen
 - A single opt-in or consent in a form
 - Row selection in tables with bulk actions
+- Options that need a second line: notification preferences, consent details, plan add-ons
 
 **Not for**
 
@@ -36,6 +43,7 @@ shadcn Checkbox with label. Inside forms that save on submit. Indeterminate only
 1. Box: check icon when Checked=true, minus when Checked=indeterminate
 2. Label to the right (Label, Show label)
 3. Error message from Field or text under the group
+4. Description (Show description, Description): body/small foreground/muted under the label, indented to the label
 
 **Content and behavior**
 
@@ -45,6 +53,8 @@ shadcn Checkbox with label. Inside forms that save on submit. Indeterminate only
 - Never pre-tick consent or anything with consequences
 - State=error marks the box; the message comes from Field
 - Resize: the label hugs, and wraps under its own width when the checkbox is narrower than the text; the box keeps its size
+- Description: one sentence, 3 lines max with an ellipsis; the control stays centered on the label line
+- Resize: label and description wrap; the description is at least 200 wide
 
 **Accessibility**
 
@@ -52,6 +62,7 @@ shadcn Checkbox with label. Inside forms that save on submit. Indeterminate only
 - Show label off needs an aria-label: "Select invoice INV-1041"
 - Indeterminate exposes aria-checked="mixed"
 - The box border meets 3:1; focus ring in border/ring
+- Description is linked with aria-describedby
 
 | Variant property | Values |
 |---|---|
@@ -62,14 +73,16 @@ shadcn Checkbox with label. Inside forms that save on submit. Indeterminate only
 |---|---|---|
 | Label | text | Send me product updates |
 | Show label | boolean | true |
+| Description | text | A short email once a month. Unsubscribe at any time. |
+| Show description | boolean | false |
 
 Icons: check, minus
 
 Tokens and styles:
-- Colors: `background/default`, `background/destructive`, `background/primary`, `border/input`, `foreground/default`
-- Spacing and size: `spacing/2`, `spacing/4`
+- Colors: `background/default`, `background/destructive`, `background/primary`, `border/input`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/4`, `spacing/6`
 - Radius: `radius/sm`
-- Text styles: `ui/label`
+- Text styles: `body/small`, `ui/label`
 - Effects: `shadow/xs`
 
 Guides: [select](../../skills/build-ui/components/select.md), [bulk-actions](../../skills/build-ui/patterns/bulk-actions.md)
@@ -80,13 +93,20 @@ Code: shadcn `Checkbox`, `RadioGroup`, `Switch`
 
 Component set · 8 variants · default size 86 × 20
 
-shadcn RadioGroup item with label. 2-5 options worth seeing, single choice. Usage: eggux build-ui/components/select.md
+shadcn RadioGroup item with label. 2-5 options worth seeing, single choice.
+
+
+Show description adds a second line (body/small, foreground/muted) under the label, indented to the label. Use it when options need a cost, a time or a consequence to compare (delivery, plans); keep it to one sentence (3 lines max).
+
+
+Usage: eggux build-ui/components/select.md
 
 **Use for**
 
 - One choice from 2-5 options shown at once
 - Options people should compare before choosing (plan, delivery method)
 - The input mode of Rating: a radio group of 5
+- Options people compare by cost, time or consequence (delivery, plans): Show description
 
 **Not for**
 
@@ -100,6 +120,7 @@ shadcn RadioGroup item with label. 2-5 options worth seeing, single choice. Usag
 2. Circle, with a dot when Checked=true
 3. Label (Label, Show label)
 4. Error message under the group
+5. Description (Show description, Description): body/small foreground/muted under the label, indented to the label
 
 **Content and behavior**
 
@@ -108,12 +129,15 @@ shadcn RadioGroup item with label. 2-5 options worth seeing, single choice. Usag
 - Options in a meaningful order; labels short and parallel
 - The label is clickable and sits to the right of the control
 - State=error marks the controls; the message sits under the group
+- Description: one sentence, 3 lines max with an ellipsis; the control stays centered on the label line
+- Resize: label and description wrap; the description is at least 200 wide
 
 **Accessibility**
 
 - The group has a label (fieldset legend or aria-labelledby)
 - Tab enters the group; arrow keys move and select
 - The circle border meets 3:1; focus ring in border/ring
+- Description is linked with aria-describedby
 
 | Variant property | Values |
 |---|---|
@@ -124,12 +148,14 @@ shadcn RadioGroup item with label. 2-5 options worth seeing, single choice. Usag
 |---|---|---|
 | Label | text | In person |
 | Show label | boolean | true |
+| Description | text | Meet at our office. We send the address with the invite. |
+| Show description | boolean | false |
 
 Tokens and styles:
-- Colors: `background/default`, `background/destructive`, `background/primary`, `border/input`, `foreground/default`
-- Spacing and size: `spacing/2`, `spacing/4`
+- Colors: `background/default`, `background/destructive`, `background/primary`, `border/input`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`, `spacing/4`, `spacing/6`
 - Radius: `radius/full`
-- Text styles: `ui/label`
+- Text styles: `body/small`, `ui/label`
 - Effects: `shadow/xs`
 
 Guides: [select](../../skills/build-ui/components/select.md)

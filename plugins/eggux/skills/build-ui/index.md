@@ -28,7 +28,12 @@ component guides it names. Names are Figma components; inventory in
 | Project home | App | Project Overview, Gantt for the full plan | record-page | boards-and-calendars, card (Progress Card), avatar, progress-and-slider |
 | Admin panel, CMS (lists and editors of content) | Admin Panel (grid: Sidebar or Sidebar Double, Aside=on with a Side Panel beside editors, Aside=off for lists, actions bar fixed at the bottom) | Data table, Forms blocks | enterprise-apps, unsaved-changes | sidebar, drawer (Side Panel), table, card (Entity Card actions), list-and-tree (Sortable List Item) |
 | Settings, admin, account (general, appearance, billing, AI, members and invites, profile, notifications inbox, activity, sessions, delete account) | App | Settings Page with Tabs, Workspace Settings (General tab), Appearance Settings, Plan and Usage (above Billing), AI Settings (AI tab), Danger Zone, Profile, Team Members, Invite Members Dialog, Billing, Notification Preferences, API Keys, Integrations, Settings Section; starting screens on SCREENS / Settings and SCREENS / Account | settings-and-admin, sharing-and-invites, unsaved-changes, delete-confirmation | input, select, card, progress-and-slider (Usage Meter) |
-| Billing: invoice page, plan checkout | App | Invoice Detail, Plan Checkout, Plan and Usage, Billing | settings-and-admin, record-page | table, description-list, input |
+| Billing: invoice page, plan checkout | App | Invoice Detail, Plan Checkout, Plan and Usage, Billing, Manage Subscription; paywall parts on the Pricing page: Lock Badge, Gate Overlay, Usage Limit Banner, Trial Banner, Upsell Card | settings-and-admin, record-page, monetization | table, description-list, input |
+| Locked feature in the app (feature gate to upgrade) | App | Feature Gate (Gate Overlay over the real content), Upgrade Dialog, Plan Checkout, Upgrade Success; Lock Badge on the locked Sidebar Item, Upsell Card in the sidebar footer; starting screens on SCREENS / Billing (Feature gate to upgrade) | monetization, permissions-and-access | badge (Lock Badge), card (Upsell Card, Plan Card), dialog |
+| Usage limit approaching or reached (credits, projects, seats, storage) | App | Usage Limit Banner (approaching at 80%, reached at 100%), Usage Limit Reached (upgrade, one-time add-on, wait until the reset date), Plan and Usage; starting screens on SCREENS / Billing (Usage limit) | monetization, settings-and-admin | progress-and-slider (Usage Meter, Usage Limit Banner), toast |
+| Free trial (active, ending, ended and read-only) | App | Trial Banner above the shell; after the trial an Alert with Choose a plan and Export data; starting screens on SCREENS / Billing (Trial), email `Screen / Email / Trial ending` | monetization, email | alert |
+| Manage or cancel a subscription | App | Settings Page with Tabs (Billing tab), Manage Subscription, Cancel Subscription (reason, offer, confirm, done with Reactivate), Plan and Usage; starting screens on SCREENS / Billing (Manage and cancel) | monetization, settings-and-admin | card, description-list (Summary Row), toast |
+| Paywall or subscription wall on content (metered, registration, hard) | Marketing | Navbar, Article, Meter Banner pinned to the bottom, Article Paywall (Paywall Card of the same Type, Plan Option Rows); starting screens on SCREENS / Paywalls | monetization, content-and-docs | content, (Paywall Card, Meter Banner, Plan Option Row) |
 | Inbox, team chat, tickets, in-app support chat | App or Split View | Inbox (customer messaging), Team Chat (channels and threads; example "Team chat"), Support Chat Widget (View=home, chat; in-app help), Conversation (example "inbox") | search-and-filter, empty-state | navigation (split view), list-and-tree, comments-and-chat |
 | Discussion on an object (task, document, invoice) | App (record page) | Comments | record-page | comments-and-chat, rich-text-editor |
 | Create / edit form | App, or Sheet / Dialog over a list | Forms blocks, Field Presets | form-validation, form-presets, unsaved-changes | input, select, date-picker, file-upload, dialog, drawer |
@@ -60,8 +65,9 @@ component guides it names. Names are Figma components; inventory in
 | Shop: listing, category, product, cart, checkout | Marketing | Store Navbar, Product List Simple (8-12 products, no filters), Category Filters, Product Grid, Product Detail, Product Detail Image Grid with Product Specs (photo-led or technical products), Product Quick View, Shopping Cart Page, Checkout Single Page, Checkout Multi-step, Order Confirmation, Order Summary, Address, Payment, Store Footer (examples "Category page", "Product page", "Cart page") | commerce, search-and-filter, form-presets, multi-step-form | select (multi), input (number, group), drawer, carousel, rating, card (Product Card), stepper |
 | Order detail, write a review | Marketing | Store Navbar, Order Detail, Product Carousel ("Buy again"), Incentives, Store Footer (example "Order detail page"); Write a Review from a delivered order | commerce | stepper (Shipment Tracker), rating, card (Address Card), file-upload |
 | Pick a date and time | App or Marketing | Booking | booking | date-picker |
-| Error, empty, success page | the current shell | Result, Empty States Set (copy one state) | result-pages, empty-state | |
+| Error, empty, success page | the current shell | Result, Empty States Set (copy one state) | result-pages, empty-state (Spot Illustration) | |
 | Mobile screen | Mobile | Navbar Mobile | mobile | drawer, navigation |
+| Mobile app paywall (onboarding or a premium feature) | Mobile (390 x 844 frame) | Mobile Paywall (Style=list or comparison: close, Restore purchases, Terms, Privacy), Drawer for restored purchases; starting screens on SCREENS / Paywalls (Mobile app paywall) | monetization, mobile | drawer, (Plan Option Row) |
 | AI search results page | App | AI Search Answer, Load More (example "AI search page") | search-and-filter, ai-chat | ai-chat (AI Summary, Citation, Sources), pagination |
 | AI assistant (chat page) | App (history in Sidebar) | AI Chat Empty, AI Conversation (example "AI chat app") | ai-chat, empty-state | ai-chat, comments-and-chat |
 | AI on a screen (copilot panel, inline edit) | current shell | AI Assistant Panel, Inline AI | ai-chat | ai-chat, popover |
@@ -77,8 +83,9 @@ component guides it names. Names are Figma components; inventory in
 | Need | Pattern | Component guides |
 |---|---|---|
 | Feedback after any action (create, save, delete, send, copy, export) | action-feedback | toast, button |
-| Act on many items | bulk-actions | table |
+| Act on many items | bulk-actions | table (Table Toolbar, Bulk Action Bar) |
 | Someone cannot do or see something | permissions-and-access | tooltip, badge |
+| Ask people to pay or upgrade (paywall, feature gate, usage limit, trial, upsell, cancel) | monetization | badge (Lock Badge), card (Upsell Card), progress-and-slider (Usage Limit Banner) |
 | Session expired, offline, conflicting edit, undo, trash | errors-and-recovery | alert, dialog, toast |
 | Tell people about events | notifications | badge, toast |
 | Invite people, share an object | sharing-and-invites | dialog, avatar |
@@ -89,7 +96,7 @@ component guides it names. Names are Figma components; inventory in
 | Wait for data or an operation | loading-states | skeleton, indicators, progress-and-slider |
 | Pick one or many options | (none) | select (Select, Combobox, Tag Input, People Picker, Transfer List), toggle in tabs |
 | Show more without leaving | (none) | popover (Popover, Hover Card), dialog, drawer, accordion |
-| Find anything fast | search-and-filter | popover (Command Dialog, search suggestions) |
+| Find anything fast | search-and-filter | popover (Command Dialog, Search Suggestions) |
 | Write formatted text | unsaved-changes | rich-text-editor |
 | Rate or review | (none) | rating |
 | Pick a color | (none) | color-picker |
@@ -109,41 +116,41 @@ component guides it names. Names are Figma components; inventory in
 
 | File | Covers |
 |---|---|
-| accordion | Accordion, filter groups, Show More |
+| accordion | Accordion, filter groups, Show More, Collapsible |
 | ai-chat | Prompt Input, Attachment, User / Assistant Message, Reasoning, Tool Call, Sources, Citation, Prompt Suggestion, AI Suggestion, AI Summary, Agent Plan, Artifact Card, Chat History Item, Context Chip, Response Feedback, User Message, Voice Recorder, AI Loading, Confidence Indicator, AI Review Bar, Model Picker |
-| alert | Alert inline and banner |
-| avatar | Avatar, Avatar Group, Byline, Presence Bar |
-| badge | Badge, Badge Count, Chip, Status Dot (see indicators), Badge List, Endpoint Row, Release Note Item, Announcement Pill, Trust Badge, Order Row |
-| button | Button, Button Icon, Button Group, Split Button, Action Bar, FAB, Social Share |
+| alert | Alert inline and banner, Inline Message |
+| avatar | Avatar, Avatar Status, Avatar Verified, Avatar Group, Byline, Presence Bar |
+| badge | Badge, Badge Count, Chip, Chip Group, Status Dot (see indicators), Badge List, Endpoint Row, Release Note Item, Announcement Pill, Trust Badge, Order Row, Lock Badge |
+| button | Button, Button Icon, Copy Button, Button Group, Split Button, Action Bar, Toolbar, FAB, Social Share |
 | boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view, Gantt Bar, Workflow Node, Agenda Item, Meeting Card |
-| card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Progress Card, Separator, Plan Card, Product Card, Address Card, Link Preview, Location Card, Integration Card |
-| carousel | Carousel, Carousel Gallery, Carousel Hero, Image Placeholder, Lightbox |
-| charts | Bar Chart, Bar Chart Horizontal, Line Chart, Donut Chart (donut, pie), Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart, Waterfall Chart, Combo Chart, Sparkline, Chart Card, Chart Legend, Chart Tooltip, Trend Indicator, Metric Strip, Dashboard Widget, Distribution Bar, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map |
-| color-picker | Color Picker, Swatch, Swatch Picker, color field |
-| comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer, Annotation Pin, Mention Chip, Reaction, Reaction Bar, Thread Summary |
-| content | Section Heading, Feature Item, Post Card, Quote, Code Block, Table of Contents Item, Table of Contents, Command Snippet, Diff Line, Diff Viewer, JSON Viewer, Testimonial Card, Footnote, Image Compare Slider |
-| date-picker | Calendar, Date Picker, Time Picker, Date Range Picker, Date Input |
+| card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Progress Card, Separator, Plan Card, Product Card, Address Card, Link Preview, Location Card, Integration Card, Callout Card, Upsell Card |
+| carousel | Carousel, Carousel Gallery, Carousel Hero, Image Placeholder (ratios, states), Thumbnail, Lightbox |
+| charts | Bar Chart, Bar Chart Horizontal, Line Chart, Donut Chart (donut, pie), Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart, Waterfall Chart, Combo Chart, Sparkline, Chart Card, Chart Legend, Chart Tooltip, Trend Indicator, Metric Strip, Dashboard Widget, Distribution Bar, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map, Radial Chart, Box Plot |
+| color-picker | Color Picker, Swatch, Swatch Picker, Color Input |
+| comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer, Annotation Pin, Conversation Item, Mention Chip, Mention Menu, Reaction, Reaction Bar, Thread Summary |
+| content | Prose (Prose Heading, Prose Paragraph, Prose List Item, Prose Blockquote), Highlight, Inline Code, Section Heading, Feature Item, Post Card, Quote, Code Block, Table of Contents Item, Table of Contents, Command Snippet, Diff Line, Diff Viewer, JSON Viewer, Testimonial Card, Footnote, Image Compare Slider |
+| date-picker | Calendar, Date Picker, Time Picker, Date Range Picker, Date Time Picker, Month Picker, Date Input |
 | description-list | Description List, Meta Item, Figure, Summary Row, Timeline, Description List Item, Timeline Item |
-| dialog | Dialog, Alert Dialog |
+| dialog | Dialog (sizes, fullscreen), Alert Dialog, Scrim |
 | drawer | Sheet, Drawer, Side Panel, Resizable Panels, Action Sheet |
 | dropdown-menu | Menu, Menu Item, Menubar, Account Menu |
-| file-upload | File Dropzone, File Item, File Preview, Resource Item, Avatar Upload, Image Cropper, File Field |
+| file-upload | File Dropzone, File Item, File Type Icon, File Preview, Resource Item, Avatar Upload, Image Cropper, File Field |
 | indicators | Spinner, Status Dot, Kbd, Kbd Group, Shortcut Row, Loading Overlay, Service Status Row |
-| input | Input, Field, Textarea, Input Group, Number Input, Input OTP, Inline Edit, Signature Pad, Copy Field, Search Field, Inline Form, Currency Input, Phone Input, Duration Input, Check Item, Range Input |
-| list-and-tree | List Item, Tree Item, Sortable List Item, Scroll Area, Leaderboard Row, Log Row, Job Listing, Org Chart Node, Task Item |
-| navigation | Breadcrumb, Top Bar, Page Header, Nav Link, Navigation Menu, Split View, Navigation Menu Panel, Back Link, Skip Link |
+| input | Input, Field, Field Counter, Textarea, Input Group, Number Input, Input OTP, Inline Edit, Signature Pad, Copy Field, Search Field, Inline Form, Currency Input, Phone Input, Duration Input, Check Item, Range Input |
+| list-and-tree | List Item, List Group Header, Tree Item, Sortable List Item, Scroll Area, Leaderboard Row, Log Row, Job Listing, Org Chart Node, Task Item |
+| navigation | Breadcrumb, Top Bar, App Header, Page Header, Nav Link, Navigation Menu, Split View, Navigation Menu Panel, Back Link, Skip Link |
 | pagination | Pagination, Pagination Compact, Load More |
-| popover | Popover, Command, Combobox panel, Command Dialog, Hover Card, search suggestions, Emoji Picker, App Launcher, Confirm Popover, Notification Center, Mini Cart |
-| progress-and-slider | Progress, Progress Ring, Slider, Usage Meter, Background Job |
+| popover | Popover, Popover Header, Popover Footer, Mention Menu, Command, Combobox panel, Command Dialog, Hover Card, Search Suggestions, Emoji Picker, App Launcher, Confirm Popover, Notification Center, Mini Cart |
+| progress-and-slider | Progress, Progress Ring, Top Loading Bar, Slider, Usage Meter, Usage Limit Banner, Background Job |
 | rating | Rating, Review Item, Rating Summary, Feedback Widget, NPS Survey, CSAT Rating |
-| rich-text-editor | Rich Text Editor |
+| rich-text-editor | Rich Text Editor (formatting Toolbar) |
 | select | Select, Combobox, Checkbox, Radio, Switch, Setting Row, Tag Input, People Picker, Transfer List, Faceted Filter, Address Autocomplete, Select Option, Recurrence Picker, Fieldset |
 | sidebar | Sidebar and its parts, Sidebar Double, Org Switcher |
-| skeleton | Skeleton |
+| skeleton | Skeleton, Skeleton Preset |
 | stepper | Step, Stepper, Shipment Tracker |
-| table | Table cells, toolbar, inline edit, column resize, Data Grid Toolbar, Empty State, Filter Bar, Table Cell, Table Group Row, Table Pagination, Table Toolbar, Page Toolbar, Saved View Item |
-| tabs | Tabs (default, line, vertical), Tab, Toggle Group |
+| table | Table cells, toolbar, inline edit, column resize, Data Grid Toolbar, Empty State, Filter Bar, Table Cell, Table Group Row, Table Pagination, Table Toolbar, Bulk Action Bar, Page Toolbar, Saved View Item, Table Cell Media, Table Cell Tree, Column Settings |
+| tabs | Tabs (default, line, vertical), Tab, Toggle Group, Toggle |
 | toast | Toast |
-| tooltip | Tooltip |
+| tooltip | Tooltip, Info Tip |
 | tour | Coachmark, Hotspot, spotlight |
 | video-player | Video Player, Video Thumbnail, Audio Player |

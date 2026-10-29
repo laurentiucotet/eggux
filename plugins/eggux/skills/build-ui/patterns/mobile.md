@@ -15,9 +15,13 @@ admin panels, at least check that the page does not break below 768.
 - `Bottom Nav` Style=floating (a pill above the safe area) for consumer apps with full-bleed content;
   keep the content padded so the last row clears the pill. Style=default elsewhere.
 - Otherwise: menu button in `Mobile Header` opens the Sidebar as a left `Sheet`.
-- Detail pages: back button + object title, no Bottom Nav; primary action in a sticky bottom bar.
+- Detail pages: back button + object title, no Bottom Nav; primary action in a sticky bottom bar
+  (`Action Bar` Style=sticky-mobile, see `components/button.md`).
 - Entry screens (sign in, sign up, invite) use `Mobile Header` Type=brand (Logo); later steps use
   Type=detail with back and the flow name.
+- Mobile lists start with `Mobile Header` Size=large (title on its own line) and collapse to
+  default on scroll; tapping search switches to Type=search (field and Cancel). Example "Mobile
+  Header styles".
 - Marketing: `Block / Navbar Mobile`; the menu is a full-screen panel with links and full-width CTAs.
 - One FAB per screen, bottom right above the Bottom Nav; an Action Sheet slides up from the bottom for the actions of one item.
 
@@ -35,6 +39,15 @@ admin panels, at least check that the page does not break below 768.
 - Respect `env(safe-area-inset-*)`: top under the status bar, bottom above the home indicator
   (Bottom Nav and sticky bars include it).
 - Thumb zone: primary actions at the bottom, destructive ones away from them.
+
+## Paywalls
+- App paywall: `Block / Mobile Paywall` (list or comparison) on a 390 x 844 screen with close,
+  Restore purchases, Terms and Privacy; `Plan Option Row`s for plans; prices and renewal text from
+  the store. Restoring shows what was found in a Drawer.
+- Paywalls on phones: `Gate Overlay` Style=fade, `Usage Limit Banner` Layout=inline, `Trial Banner`
+  above the Page Shell / Mobile (text wraps, button under it), `Block / Cancel Subscription` at 358
+  with Continue to cancel always visible; see the SCREENS / Billing and SCREENS / Paywalls mobile
+  frames and `monetization.md`.
 
 ## Figma
 `Page Shell / Mobile` (390 x 844) on the Page Shells page; examples "mobile list", "mobile

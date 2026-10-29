@@ -52,6 +52,9 @@ Figma and code map 1:1.
 | `background/info` | `--info` | Extension |
 | `foreground/<same names>` | `--foreground`, `--<name>-foreground` | Text and icons on the matching background |
 | `foreground/brand` | `--brand` | Text and icons in the brand color on the page: accent words in a headline, inline links, `Button` link. Never put `background/primary` on text. Light `blue/700`, Dark `blue/400` (same in Corporate), Showcase brand/700 and brand/400; at least 4.5:1 on default, muted and card. Tailwind v4: `--color-brand: var(--brand)` in `@theme inline`, then `text-brand` |
+| `highlight/mark` | `--highlight-mark` | Highlighted text in Prose (`Highlight` Tone=default); alias of `comment/highlight` |
+| `highlight/ai` | `--highlight-ai` | AI-generated or AI-changed text (`Highlight` Tone=ai); alias of `icon-tile/brand-bg` |
+| `code/line-highlight` | `--code-line-highlight` | Highlighted lines in Code Block; alias of `icon-tile/brand-bg` |
 | `border/default` | `--border` | |
 | `border/input` | `--input` | |
 | `border/ring` | `--ring` | Focus ring, usually follows the brand |
@@ -123,6 +126,7 @@ Current tokens:
 | `badge/soft-destructive-fg` | Light `color/red/700`, Dark `color/red/300` | 5.5 / 6.9 : 1 |
 | `badge/soft-info-fg` | Light `color/blue/700`, Dark `color/blue/300` | 5.7 / 7.6 : 1 |
 | `badge/soft-neutral-fg` | Light `color/neutral/700`, Dark `color/neutral/300`; Corporate `color/slate/700` / `color/slate/300` | 8.4 / 9.2 : 1 |
+| `badge/category-1..8-bg`, `badge/category-1..8-fg` | `chart/N` at `opacity/10` (light modes), `opacity/20` (dark modes); text hue step 800 (light), 300 (dark) | Categorical Badge, Chip and Tag tones; 5.67:1 or more in all six modes. Orange (2) and amber (4) look alike at label size: do not put them side by side |
 | `video/background` | `color/black`, same in Light and Dark | Video Player surface behind the frame |
 | `video/foreground` | `color/white` | Icons, time and subtitles over video |
 | `video/track` | `color/white` at `opacity/30` | Unplayed part of the progress bar |

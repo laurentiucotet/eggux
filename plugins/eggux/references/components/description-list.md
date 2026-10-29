@@ -1,23 +1,29 @@
 # Description List
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Description List Item](#description-list-item) | 2 | Value |
+| [Description List Item](#description-list-item) | 3 | Value |
 | [Meta Item](#meta-item) | 1 | - |
 | [Figure](#figure) | 8 | - |
 | [Summary Row](#summary-row) | 3 | - |
 
-On the Figma page: "Example / event facts", "Example / in billing", "Example / invoice totals", "Example / report figures", "Stress test / Description List Item", "Stress test / Figure", "Stress test / Meta Item", "Stress test / Summary Row"
+On the Figma page: "Example / Description List Item styles", "Example / event facts", "Example / invoice totals", "Example / report figures", "Stress test / Description List Item", "Stress test / Figure", "Stress test / Meta Item", "Stress test / Summary Row"
 
 ## Description List Item
 
-Component set · 2 variants · default size 560 × 45
+Component set · 3 variants · default size 560 × 45
 
 Label-value pair for record details (shadcn has no component; dl/dt/dd in code). Horizontal in cards and sheets, vertical in narrow columns and grids. Divider off on the last row. Empty value: "-" or "Not set" in muted, never blank.
+
+
+Style=bordered (horizontal): a table-like row with the label on a muted 192 px cell and a border around the row, for dense record details, invoices and specs; stack bordered items with -1 spacing so borders overlap. Show action (horizontal): a Copy Button xs after the value for IDs, keys and links (exposed: swap it for a pencil Button Icon to edit the value).
+
+
+Usage: eggux build-ui/components/description-list.md
 
 **Use for**
 
@@ -25,6 +31,8 @@ Label-value pair for record details (shadcn has no component; dl/dt/dd in code).
 - Details of one object in a Sheet
 - What is requested in an approval
 - Orientation=vertical in narrow columns and grids of 2-3
+- Style=bordered: dense record details, invoice headers and product specs read like a table
+- Show action: IDs, keys, URLs and references people copy
 
 **Not for**
 
@@ -37,6 +45,8 @@ Label-value pair for record details (shadcn has no component; dl/dt/dd in code).
 1. Label: a short noun in sentence case
 2. Value slot: text, Badge, Avatar + name, or a link
 3. Divider (off on the last row)
+4. Style: default; bordered (horizontal): label on a muted cell (card/muted-background, 96 to 192 wide, 2:3 with the value), border around the row
+5. Show action (horizontal): Copy Button xs after the value, exposed (swap for a pencil Button Icon to edit)
 
 **Content and behavior**
 
@@ -46,27 +56,35 @@ Label-value pair for record details (shadcn has no component; dl/dt/dd in code).
 - One Edit action per card, not a pencil per row
 - Fill the Value slot in the instance; never detach
 - Resize: horizontal keeps the 160 label column; label and value wrap (value fills); vertical label and value fill the width
+- Stack bordered items with -1 spacing so borders overlap; one Style per list
+- Show action only on values people copy or edit often; never on every row
+- Resize (bordered): the label cell takes 2/5 of the width between 96 and 192, the value the rest (min 120); below 276 use Orientation=vertical
 
 **Accessibility**
 
 - Code as dl with dt and dd, so each label is read with its value
 - Statuses in the Value slot are Badges with text, not color alone
 - Muted empty values still keep 4.5:1
+- Copy buttons are named "Copy <label>" and announce "Copied"
 
 | Variant property | Values |
 |---|---|
 | Orientation | horizontal, vertical |
+| Style | default, bordered |
 
 | Property | Type | Default |
 |---|---|---|
 | Label | text | Phone |
 | Show divider | boolean | true |
+| Show action | boolean | false |
 
 Slots (fill them in the instance, never detach): `Value`
 
+Built from: `Copy Button`
+
 Tokens and styles:
-- Colors: `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `border-width/DEFAULT`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
+- Colors: `background/card`, `border/default`, `card/muted-background`, `foreground/default`, `foreground/muted`
+- Spacing and size: `border-width/DEFAULT`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`
 - Text styles: `body/small`, `ui/label`
 
 Guides: [description-list](../../skills/build-ui/components/description-list.md)

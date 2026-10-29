@@ -8,6 +8,8 @@ blocks the page.
 - Selection: checkbox column; header checkbox selects the page (indeterminate when partial);
   after selecting a page, offer "Select all 1,284 invoices" across pages.
 - While selected, `Table Toolbar` replaces the toolbar: "N selected", the actions, Clear.
+- Grids and boards: `Bulk Action Bar` at the bottom center (count, "Select all N", up to 3
+  actions, clear); on phones the actions are icons with tooltips.
 - Only actions valid for the whole selection are enabled; a disabled action says why on
   hover ("2 selected invoices are already paid").
 - Destructive bulk actions confirm with the count and type to confirm above ~100 items.
@@ -19,4 +21,5 @@ blocks the page.
 - Every bulk change is one audit log entry with the list of objects.
 
 ## Figma
-Data grid template (Table page), `Table Toolbar`, `Checkbox`, `Toast`, `Sheet`, `Progress`.
+Data grid template (Table page), `Table Toolbar`, `Bulk Action Bar`, `Checkbox`, `Toast`,
+`Sheet`, `Progress`.

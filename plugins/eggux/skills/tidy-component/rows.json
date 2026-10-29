@@ -17,6 +17,14 @@
    "examples": [
     "Example / customer profile with show more and details"
    ]
+  },
+  {
+   "main": "Collapsible",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Collapsible"
+   ]
   }
  ],
  "Admin": [
@@ -65,7 +73,10 @@
   {
    "main": "Assistant Message",
    "helpers": [],
-   "block": "159:214"
+   "block": "159:214",
+   "examples": [
+    "Example / Assistant Message branch and stopped"
+   ]
   },
   {
    "main": "Reasoning",
@@ -189,6 +200,14 @@
     "Uptime Day"
    ],
    "block": "214:1389"
+  },
+  {
+   "main": "Inline Message",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Inline Message"
+   ]
   }
  ],
  "Approvals": [
@@ -240,8 +259,14 @@
  "Avatar": [
   {
    "main": "Avatar",
-   "helpers": [],
-   "block": "92:949"
+   "helpers": [
+    "Avatar Status",
+    "Avatar Verified"
+   ],
+   "block": "92:949",
+   "examples": [
+    "Example / Avatar styles"
+   ]
   },
   {
    "main": "Avatar Group",
@@ -300,12 +325,18 @@
   {
    "main": "Badge",
    "helpers": [],
-   "block": "200:1241"
+   "block": "200:1241",
+   "examples": [
+    "Example / Badge styles"
+   ]
   },
   {
    "main": "Badge Count",
    "helpers": [],
-   "block": "79:108"
+   "block": "79:108",
+   "examples": [
+    "Example / Badge Count styles"
+   ]
   },
   {
    "main": "Status Dot",
@@ -340,13 +371,17 @@
    "helpers": [],
    "block": "72:3",
    "examples": [
-    "Example / Button styles"
+    "Example / Button styles",
+    "Example / Button sizes"
    ]
   },
   {
    "main": "Button Icon",
    "helpers": [],
-   "block": "96:5364"
+   "block": "96:5364",
+   "examples": [
+    "Example / Button sizes"
+   ]
   },
   {
    "main": "Button Group",
@@ -365,7 +400,8 @@
    "helpers": [],
    "block": "72:80",
    "examples": [
-    "Example / form footer"
+    "Example / form footer",
+    "Example / sticky mobile action bar"
    ]
   },
   {
@@ -375,6 +411,14 @@
    "examples": [
     "Example / share row at the end of an article"
    ]
+  },
+  {
+   "main": "Copy Button",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Copy Button"
+   ]
   }
  ],
  "Calendar": [
@@ -383,22 +427,51 @@
    "helpers": [
     "Calendar Day"
    ],
-   "block": "93:1683"
+   "block": "93:1683",
+   "examples": [
+    "Example / Calendar options"
+   ]
   },
   {
    "main": "Date Picker",
    "helpers": [],
-   "block": "93:316"
+   "block": "93:316",
+   "examples": [
+    "Example / Date Picker styles",
+    "Example / Date range filter"
+   ]
   },
   {
    "main": "Time Picker",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Time Picker styles",
+    "Example / Availability time ranges"
+   ]
   },
   {
    "main": "Date Range Picker",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Date Time Picker",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Date Time Picker"
+   ]
+  },
+  {
+   "main": "Month Picker",
+   "helpers": [
+    "Month Picker Cell"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Month Picker"
+   ]
   }
  ],
  "Card": [
@@ -424,7 +497,10 @@
   {
    "main": "Option Card",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Option Card styles"
+   ]
   },
   {
    "main": "Post Card",
@@ -476,6 +552,14 @@
    "main": "Location Card",
    "helpers": [],
    "block": "197:1319"
+  },
+  {
+   "main": "Callout Card",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Callout Card"
+   ]
   }
  ],
  "Carousel": [
@@ -523,7 +607,10 @@
   {
    "main": "Line Chart",
    "helpers": [],
-   "block": "109:1790"
+   "block": "109:1790",
+   "examples": [
+    "Example / Line Chart styles"
+   ]
   },
   {
    "main": "Sparkline",
@@ -595,7 +682,10 @@
   {
    "main": "Chart Card",
    "helpers": [],
-   "block": "109:1790"
+   "block": "109:1790",
+   "examples": [
+    "Example / Chart Card states"
+   ]
   },
   {
    "main": "Dashboard Widget",
@@ -636,6 +726,22 @@
    "block": null,
    "examples": [
     "Example / payments analytics"
+   ]
+  },
+  {
+   "main": "Radial Chart",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Radial Chart and Box Plot"
+   ]
+  },
+  {
+   "main": "Box Plot",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Radial Chart and Box Plot"
    ]
   }
  ],
@@ -680,6 +786,14 @@
    "examples": [
     "Example / team thread with mentions and reactions"
    ]
+  },
+  {
+   "main": "Conversation Item",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Conversation list"
+   ]
   }
  ],
  "Chip": [
@@ -690,13 +804,26 @@
    "examples": [
     "Example / Chip styles"
    ]
+  },
+  {
+   "main": "Chip Group",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Chip Group"
+   ]
   }
  ],
  "Code Block": [
   {
    "main": "Code Block",
-   "helpers": [],
-   "block": "138:209"
+   "helpers": [
+    "Code Highlight"
+   ],
+   "block": "138:209",
+   "examples": [
+    "Example / Code Block styles"
+   ]
   },
   {
    "main": "Command Snippet",
@@ -724,6 +851,14 @@
    "main": "JSON Viewer",
    "helpers": [],
    "block": "550:78821"
+  },
+  {
+   "main": "Inline Code",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Code Block styles"
+   ]
   }
  ],
  "Color Picker": [
@@ -744,6 +879,14 @@
    "examples": [
     "Example / brand colors",
     "Example / Swatch styles"
+   ]
+  },
+  {
+   "main": "Color Input",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Color Input"
    ]
   }
  ],
@@ -809,7 +952,10 @@
   {
    "main": "Description List Item",
    "helpers": [],
-   "block": "124:2163"
+   "block": "124:2163",
+   "examples": [
+    "Example / Description List Item styles"
+   ]
   },
   {
    "main": "Meta Item",
@@ -845,13 +991,22 @@
    ],
    "block": "550:81245",
    "examples": [
-    "Example / dialog sizes"
+    "Example / dialog sizes",
+    "Example / Dialog sizes"
    ]
   },
   {
    "main": "Alert Dialog",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Scrim",
+   "helpers": [],
+   "block": "693:116887",
+   "examples": [
+    "Example / Dialog sizes"
+   ]
   }
  ],
  "Drawer": [
@@ -1005,7 +1160,8 @@
    "block": null,
    "examples": [
     "Example / empty state types",
-    "Example / Empty State styles"
+    "Example / Empty State styles",
+    "Example / Empty State tones and illustrations"
    ]
   }
  ],
@@ -1029,12 +1185,18 @@
   {
    "main": "File Dropzone",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / File Item tiles, File Dropzone sm and File Type Icon"
+   ]
   },
   {
    "main": "File Item",
    "helpers": [],
-   "block": "181:501"
+   "block": "181:501",
+   "examples": [
+    "Example / File Item tiles, File Dropzone sm and File Type Icon"
+   ]
   },
   {
    "main": "File Preview",
@@ -1055,6 +1217,14 @@
    "block": null,
    "examples": [
     "Example / supplier onboarding documents"
+   ]
+  },
+  {
+   "main": "File Type Icon",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / File Item tiles, File Dropzone sm and File Type Icon"
    ]
   }
  ],
@@ -1125,14 +1295,31 @@
   {
    "main": "Field Preset",
    "helpers": [],
-   "block": "117:410"
+   "block": "117:410",
+   "examples": [
+    "Example / Field Preset styles"
+   ]
+  }
+ ],
+ "Illustrations": [
+  {
+   "main": "Spot Illustration",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Empty State tones and illustrations",
+    "Example / Callout Card"
+   ]
   }
  ],
  "Image": [
   {
    "main": "Image Placeholder",
    "helpers": [],
-   "block": "126:3"
+   "block": "126:3",
+   "examples": [
+    "Example / Image Placeholder ratios and states"
+   ]
   },
   {
    "main": "Map",
@@ -1166,6 +1353,14 @@
    "main": "Image Figure",
    "helpers": [],
    "block": "206:2004"
+  },
+  {
+   "main": "Thumbnail",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Thumbnail in a product list"
+   ]
   }
  ],
  "Input": [
@@ -1179,10 +1374,13 @@
   },
   {
    "main": "Field",
-   "helpers": [],
+   "helpers": [
+    "Field Counter"
+   ],
    "block": "117:410",
    "examples": [
-    "Example / Input styles"
+    "Example / Input styles",
+    "Example / Field styles"
    ]
   },
   {
@@ -1193,14 +1391,20 @@
   {
    "main": "Textarea",
    "helpers": [],
-   "block": "93:316"
+   "block": "93:316",
+   "examples": [
+    "Example / Textarea styles"
+   ]
   },
   {
    "main": "Input Group",
    "helpers": [
     "Input Addon"
    ],
-   "block": "126:260"
+   "block": "126:260",
+   "examples": [
+    "Example / Input Group styles"
+   ]
   },
   {
    "main": "Number Input",
@@ -1283,12 +1487,18 @@
   {
    "main": "Kanban Card",
    "helpers": [],
-   "block": "140:2631"
+   "block": "140:2631",
+   "examples": [
+    "Example / Kanban styles"
+   ]
   },
   {
    "main": "Kanban Column",
    "helpers": [],
-   "block": "140:2631"
+   "block": "140:2631",
+   "examples": [
+    "Example / Kanban styles"
+   ]
   }
  ],
  "Kbd": [
@@ -1331,6 +1541,14 @@
    "main": "Job Listing",
    "helpers": [],
    "block": "206:1783"
+  },
+  {
+   "main": "List Group Header",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / List Group Header"
+   ]
   }
  ],
  "Menu": [
@@ -1397,7 +1615,10 @@
   {
    "main": "Mobile Header",
    "helpers": [],
-   "block": "96:480"
+   "block": "96:480",
+   "examples": [
+    "Example / Mobile Header styles"
+   ]
   },
   {
    "main": "Bottom Nav",
@@ -1458,7 +1679,10 @@
   {
    "main": "Page Header",
    "helpers": [],
-   "block": "77:314"
+   "block": "77:314",
+   "examples": [
+    "Example / Page Header styles"
+   ]
   },
   {
    "main": "Nav Link",
@@ -1498,6 +1722,14 @@
    "block": null,
    "examples": [
     "Example / invoices page with skip link and toolbar"
+   ]
+  },
+  {
+   "main": "App Header",
+   "helpers": [],
+   "block": "1097:133268",
+   "examples": [
+    "Example / App Header"
    ]
   }
  ],
@@ -1589,6 +1821,32 @@
    "examples": [
     "Example / confirm before archiving invoices"
    ]
+  },
+  {
+   "main": "Popover Header",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Popover Header and Footer"
+   ]
+  },
+  {
+   "main": "Popover Footer",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Popover Header and Footer"
+   ]
+  },
+  {
+   "main": "Mention Menu",
+   "helpers": [
+    "Mention Option"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Mention Menu"
+   ]
   }
  ],
  "Pricing": [
@@ -1612,6 +1870,61 @@
    "main": "Comparison Table",
    "helpers": [],
    "block": "693:115421"
+  },
+  {
+   "main": "Plan Option Row",
+   "helpers": [],
+   "block": "1110:29613"
+  },
+  {
+   "main": "Meter Banner",
+   "helpers": [],
+   "block": null
+  },
+  {
+   "main": "Paywall Card",
+   "helpers": [],
+   "block": "1110:6533"
+  },
+  {
+   "main": "Lock Badge",
+   "helpers": [],
+   "block": "1110:29732",
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
+  },
+  {
+   "main": "Gate Overlay",
+   "helpers": [],
+   "block": "1110:29732",
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
+  },
+  {
+   "main": "Usage Limit Banner",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
+  },
+  {
+   "main": "Trial Banner",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
+  },
+  {
+   "main": "Upsell Card",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
   }
  ],
  "Progress": [
@@ -1636,6 +1949,37 @@
    "block": null,
    "examples": [
     "Example / exports panel from the top bar"
+   ]
+  },
+  {
+   "main": "Top Loading Bar",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Top Loading Bar"
+   ]
+  }
+ ],
+ "Prose": [
+  {
+   "main": "Prose",
+   "helpers": [
+    "Prose Heading",
+    "Prose Paragraph",
+    "Prose List Item",
+    "Prose Blockquote"
+   ],
+   "block": "138:209",
+   "examples": [
+    "Example / Prose"
+   ]
+  },
+  {
+   "main": "Highlight",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Prose"
    ]
   }
  ],
@@ -1698,7 +2042,10 @@
   {
    "main": "Calendar Event",
    "helpers": [],
-   "block": "141:2756"
+   "block": "141:2756",
+   "examples": [
+    "Example / Calendar Event styles"
+   ]
   },
   {
    "main": "Gantt Bar",
@@ -1745,6 +2092,16 @@
     "Example / search results all types",
     "Example / search results tabbed by type"
    ]
+  },
+  {
+   "main": "Search Suggestions",
+   "helpers": [
+    "Search Suggestion Item"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Search Suggestions"
+   ]
   }
  ],
  "Section Heading": [
@@ -1763,20 +2120,28 @@
    "helpers": [],
    "block": "67:2442",
    "examples": [
-    "Example / Select styles"
+    "Example / Select styles",
+    "Example / Select ghost and leading"
    ]
   },
   {
    "main": "Combobox",
    "helpers": [],
-   "block": "93:316"
+   "block": "93:316",
+   "examples": [
+    "Example / Combobox styles",
+    "Example / Combobox create option"
+   ]
   },
   {
    "main": "Tag Input",
    "helpers": [
     "Tag"
    ],
-   "block": "179:1208"
+   "block": "179:1208",
+   "examples": [
+    "Example / Tag Input styles"
+   ]
   },
   {
    "main": "People Picker",
@@ -1800,7 +2165,8 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / customer picker in a new invoice"
+    "Example / customer picker in a new invoice",
+    "Example / Combobox create option"
    ]
   },
   {
@@ -1813,12 +2179,18 @@
   {
    "main": "Checkbox",
    "helpers": [],
-   "block": "117:646"
+   "block": "117:646",
+   "examples": [
+    "Example / Checkbox styles"
+   ]
   },
   {
    "main": "Radio",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Radio styles"
+   ]
   },
   {
    "main": "Switch",
@@ -1841,7 +2213,10 @@
   {
    "main": "Separator",
    "helpers": [],
-   "block": "92:1352"
+   "block": "92:1352",
+   "examples": [
+    "Example / Separator styles"
+   ]
   }
  ],
  "Sharing": [
@@ -1871,7 +2246,11 @@
     "Sidebar Workspace",
     "Sidebar User"
    ],
-   "block": "77:314"
+   "block": "77:314",
+   "examples": [
+    "Example / Sidebar styles",
+    "Example / Sidebar actions"
+   ]
   },
   {
    "main": "Sidebar Double",
@@ -1893,6 +2272,14 @@
    "main": "Skeleton",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Skeleton Preset",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Skeleton presets"
+   ]
   }
  ],
  "Slider": [
@@ -1975,11 +2362,14 @@
     "Table Cell File",
     "Table Cell Badges",
     "Table Cell Avatars",
-    "Table Cell Check"
+    "Table Cell Check",
+    "Table Cell Media",
+    "Table Cell Tree"
    ],
    "block": "181:923",
    "examples": [
-    "Example / table cell types"
+    "Example / table cell types",
+    "Example / Table Cell styles"
    ]
   },
   {
@@ -2001,6 +2391,24 @@
    "main": "Table Pagination",
    "helpers": [],
    "block": null
+  },
+  {
+   "main": "Bulk Action Bar",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / bulk selection in a grid"
+   ]
+  },
+  {
+   "main": "Column Settings",
+   "helpers": [
+    "Column Settings Item"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Table Cell styles"
+   ]
   }
  ],
  "Tabs": [
@@ -2012,7 +2420,8 @@
    "block": "92:949",
    "examples": [
     "Example / tabs with counts",
-    "Example / Tabs styles"
+    "Example / Tabs styles",
+    "Example / Tabs overflow and sizes"
    ]
   }
  ],
@@ -2044,7 +2453,27 @@
    ],
    "block": "141:2756",
    "examples": [
-    "Example / Toggle Group styles"
+    "Example / Toggle Group styles",
+    "Example / Toggle Group sizes"
+   ]
+  },
+  {
+   "main": "Toggle",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Toggle"
+   ]
+  }
+ ],
+ "Toolbar": [
+  {
+   "main": "Toolbar",
+   "helpers": [],
+   "block": "849:5879",
+   "examples": [
+    "Example / editor toolbar",
+    "Example / canvas zoom"
    ]
   }
  ],
@@ -2056,6 +2485,16 @@
    "examples": [
     "Example / rich tooltip and shortcut",
     "Example / Tooltip styles"
+   ]
+  },
+  {
+   "main": "Info Tip",
+   "helpers": [
+    "Info Tip Trigger"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Info Tip"
    ]
   }
  ],
@@ -2105,7 +2544,8 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / help center videos and podcast"
+    "Example / help center videos and podcast",
+    "Example / Audio Player styles"
    ]
   }
  ]

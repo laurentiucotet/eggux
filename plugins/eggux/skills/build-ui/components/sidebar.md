@@ -36,6 +36,12 @@ Usage guidelines only. Visual specs live in the Figma component.
 from `Sidebar Workspace`, `Sidebar Group` (a `Sidebar Group Label` and an Items slot of
 `Sidebar Item`) and `Sidebar User`.
 Uses the `sidebar/*` tokens. See the "app shell" example on the Sidebar page.
+- Variant: default (border on the right) for most apps; floating (a rounded panel with a shadow)
+  for brand and Showcase products on a muted canvas; inset (no border) when the page should read
+  as a raised card next to it. One Variant per product. Example "Sidebar styles".
+- Group actions (`Sidebar Group Label` Show action, plus) add to the group; item actions
+  (`Sidebar Item` Show action, ellipsis Menu) show on hover and on the active item. Example
+  "Sidebar actions".
 
 `Sidebar Double` (Mode expanded 288 / collapsed 48) with slots Rail header, Rail, Rail footer
 (collapsed `Sidebar Workspace`, `Sidebar Item`, `Sidebar User`), the Panel title text, Panel

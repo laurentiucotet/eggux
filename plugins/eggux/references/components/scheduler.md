@@ -1,12 +1,12 @@
 # Scheduler
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Calendar Event](#calendar-event) | 8 | - |
+| [Calendar Event](#calendar-event) | 24 | - |
 | [Gantt Bar](#gantt-bar) | 4 | - |
 | [Gantt Milestone](#gantt-milestone) | 1 | - |
 | [Agenda Item](#agenda-item) | 3 | - |
@@ -14,13 +14,19 @@ Usage rules live in the guides linked under each component.
 | [Availability Row](#availability-row) | 2 | - |
 | [Time Slot](#time-slot) | 4 | - |
 
-On the Figma page: "Example / in agenda", "Example / in booking", "Example / in gantt", "Example / in scheduler week", "Stress test / Agenda Item", "Stress test / Availability Row", "Stress test / Calendar Event", "Stress test / Gantt Bar", "Stress test / Meeting Card", "Stress test / Time Slot"
+On the Figma page: "Example / Calendar Event styles", "Example / in agenda", "Example / in booking", "Example / in gantt", "Stress test / Agenda Item", "Stress test / Availability Row", "Stress test / Calendar Event", "Stress test / Gantt Bar", "Stress test / Meeting Card", "Stress test / Time Slot"
 
 ## Calendar Event
 
-Component set · 8 variants · default size 146 × 46
+Component set · 24 variants · default size 146 × 46
 
 Event in day/week views: card surface with a left bar in the calendar's category color (chart/1..4 = one per calendar or type, with a legend). Height = duration; compact for 30 min or less. Overlaps sit side by side. Click opens details in a Popover or Sheet.
+
+
+State (Size=default): selected (2 px border/ring outline while its details are open), dragging (shadow/lg while it moves to another time; show the new time in Time). Status (Size=default): tentative (dashed outline in the calendar color on the page background, for invites not yet answered or holds), cancelled (muted fill, title struck through and muted; keep it visible until the day passes). Confirmed is the default.
+
+
+Usage: eggux build-ui/components/scheduler.md
 
 **Use for**
 
@@ -40,6 +46,8 @@ Event in day/week views: card surface with a left bar in the calendar's category
 2. Left bar in the category color (Category 1-4 = chart/1 to chart/4)
 3. Title
 4. Time range ("11:00 - 12:30")
+5. State (Size=default): default, selected (2 px border/ring outline), dragging (shadow/lg)
+6. Status (Size=default): confirmed, tentative (dashed outline in the calendar color, background/default), cancelled (card/muted-background, title at 70%)
 
 **Content and behavior**
 
@@ -49,17 +57,25 @@ Event in day/week views: card surface with a left bar in the calendar's category
 - Month view: up to 3 per day, then "+N more" opens the day in a Popover
 - Click opens details in a Popover or Sheet; confirm moves that notify others
 - Resize: the event clips to its time slot; title 1 line with an ellipsis; time 1 line (Size=default fills, Size=sm hugs next to the title)
+- Selected while its details are open; one selected event at a time
+- Dragging shows the new time in Time while moving
+- Tentative for invites not answered and holds; cancelled stays visible until the day passes, never deleted silently
+- Cancelled is not shown by color only: say "Cancelled" in the details and strike the title in code
 
 **Accessibility**
 
 - Each event is focusable and its name includes title, date and time
 - Moving and resizing also work without drag, from the event details
 - The calendar or type is written in the details, not only shown by color
+- Status is part of the event name: "Weekly sync, cancelled, 16:00 to 16:30"
+- Cancelled text keeps 4.5:1: title 7.3:1 Light, time 4.54:1 Light
 
 | Variant property | Values |
 |---|---|
 | Size | default, sm |
 | Series | 1, 2, 3, 4 |
+| State | default, selected, dragging |
+| Status | confirmed, tentative, cancelled |
 
 | Property | Type | Default |
 |---|---|---|
@@ -67,10 +83,10 @@ Event in day/week views: card surface with a left bar in the calendar's category
 | Time | text | 11:00 - 12:30 |
 
 Tokens and styles:
-- Colors: `background/card`, `chart/1`, `chart/2`, `chart/3`, `chart/4`, `foreground/default`, `foreground/muted`
+- Colors: `background/card`, `background/default`, `border/ring`, `card/muted-background`, `chart/1`, `chart/2`, `chart/3`, `chart/4`, `foreground/default`, `foreground/muted`
 - Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`
 - Text styles: `ui/caption`, `ui/label-small`
-- Effects: `shadow/xs`
+- Effects: `shadow/lg`, `shadow/xs`
 
 Guides: [boards-and-calendars](../../skills/build-ui/components/boards-and-calendars.md)
 

@@ -7,7 +7,9 @@ full 1136 (integrations). Navigation between settings sections: Sidebar group or
 |---|---|
 | Profile | Photo, name, title, email (re-verified on change), bio with limit, language, time zone. Save / Cancel; unsaved-changes.md |
 | Team Members | Seats used; invite in the header; role per row (Owner fixed); pending invites marked; resend / revoke in the row menu |
-| Billing | Current plan + renewal date, usage bars (warn at 80%, block at 100% with an upgrade path), payment method, billing email, invoices to download. Cancel is visible |
+| Billing | Current plan + renewal date, usage bars (warn at 80%, block at 100% with an upgrade path), payment method, billing email, invoices to download. Cancel is visible. Paywalls, trials and limits: `monetization.md` |
+| Manage Subscription | The contract on the Billing tab: renewal date and amount, payment method, invoices, Change plan, Pause and a visible Cancel subscription |
+| Cancel Subscription | The cancel flow: reason (optional), one offer at most, confirm with what is lost and the end date, done with Reactivate |
 | Notification Preferences | Event × channel checkboxes; defaults on for things that need action, off for marketing; security emails always on; saves immediately with a toast |
 | API Keys | Masked keys, full key shown once at creation with Copy; created / last used; revoke with confirmation |
 | Integrations | Search; cards with logo, benefit, status; Connect (OAuth) or Settings + on/off |
@@ -34,6 +36,11 @@ Destructive settings (delete workspace, transfer ownership) live in a separate "
 at the bottom, with typed confirmation (`delete-confirmation.md`).
 - Billing emails (invoice, receipt, payment failed, trial ending) use the Emails page templates with
   Email / Details and Email / Line Items (email.md).
+- Use Block / Manage Subscription for the contract (renewal, payment method, invoices, Cancel
+  subscription visible) and Block / Cancel Subscription for the cancel flow (one offer at most);
+  flows on SCREENS / Billing (Feature gate to upgrade, Usage limit, Trial, Manage and cancel).
+- Subscription bought on a content site: Account settings shows the plan, renewal date and Cancel
+  subscription, the place the paywall fine print points to.
 - Start a settings page from `Block / Settings Page with Tabs` (Page Header, line Tabs, Sections slot
   960 wide, Save Bar) and put the area's blocks in Sections; finish with `Block / Danger Zone`. Full
   screens: SCREENS / Settings (General, Members, Notifications, Security, Billing, API keys,

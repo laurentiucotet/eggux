@@ -32,7 +32,8 @@ for page in sys.argv[1:]:
     jobs.append({'page': page, 'rows': out})
 
 src = open(os.path.join(HERE, 'component-page.js')).read()
-src = re.sub(r'const JOBS = \[.*?\n\];\n', 'const JOBS = ' + json.dumps(jobs, ensure_ascii=False) + ';\n', src, count=1, flags=re.S)
+jobs_js = 'const JOBS = ' + json.dumps(jobs, ensure_ascii=False) + ';\n'
+src = re.sub(r'const JOBS = \[.*?\n\];\n', lambda _m: jobs_js, src, count=1, flags=re.S)  # a function: no backslash escapes in the JSON
 src = '\n'.join(l for l in src.split('\n') if not l.strip().startswith('//'))
 sys.stdout.write(src)
 if missing:

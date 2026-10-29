@@ -13,11 +13,11 @@ motion and density tokens.
 **Get the Figma library:** [EGG UI on Figma Community](https://www.figma.com/community/file/1694044412384019384). Duplicate it into your
 workspace and start from there; client files start as a copy of it.
 
-At a glance: 367 components on 74 pages, 245 blocks, 8 page shells, 93 complete screens and
-email templates (SCREENS: Auth, Account, Settings, Emails), 4 full showcase pages, 667 variables in five
+At a glance: 427 components on 76 pages, 253 blocks, 8 page shells, 141 complete screens and
+email templates (SCREENS: Account, Auth, Billing, Documents, Emails, Paywalls, Settings), 4 full showcase pages, 689 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
-Română), 16 text styles, 4 gradient styles, 110 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
-images (49 photos, 7 product screenshots). The plugin adds 13 skills, 32
+Română), 16 text styles, 4 gradient styles, 112 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
+images (49 photos, 7 product screenshots). The plugin adds 13 skills, 33
 patterns and 38 component guides.
 
 ## Install
@@ -102,7 +102,7 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 ([Community file](https://www.figma.com/community/file/1694044412384019384)) has foundations (variables, text and effect styles, density,
-motion, chart palette, a `foreground/brand` text token), 110 Lucide icons and 6 brand icons, and components for actions, forms, selection, overlays, navigation, feedback,
+motion, chart palette, a `foreground/brand` text token), 112 Lucide icons and 6 brand icons, and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
 (comments, chat, reactions, mentions), AI chat and AI states, commerce (product, cart, orders, account),
@@ -178,6 +178,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3zi. Done (0.55.0): Search Result Item with 8 types (page, record, person, file, media, product, event, answer) and per-type properties; Scroll Area content slot; separate List and Tree pages.
 3zj. Done (0.56.0 to 0.58.0): de-wireframe program from audit 2: sample imagery and logos; soft badges, colored metrics, shadows, display type; EGG default theme (blue primary, pill controls, 12 px cards, Plus Jakarta Sans); Showcase modes, gradients, Background decorations and Icon Tile; four showcase pages and a new Cover; 62 new blocks with page examples; 42 style alternatives on existing components; SCREENS group with auth, account, settings and email templates.
 3zk. Done (0.59.0 to 0.60.0): defects found while composing pages fixed (Feature Item with Icon Tile, Device Frame ratio, Navbar on-image, Comparison Table, Wizard, Mobile Header, Slider and more); blocks wave 2 (55 blocks, 12 page examples): marketing extras, case studies, legal, onboarding steps, finance and support dashboards, file manager, inbox and team chat, billing, commerce detail pages, AI review and generate, enterprise org chart, approval inbox, workflow builder, version history, user directory.
+3zl. Done (0.61.0 to 0.62.0): responsive skill and library-wide width fixes; inline comments on selected text; components wave from a gap audit against shadcn, Radix, Untitled UI, Material, Ant, Carbon, Polaris and Atlassian (about 40 new components and 60 new variants across forms, pickers, actions, navigation, data display, badges, feedback, charts, content and media); paywalls and subscriptions (content walls, feature gates, usage limits, trials, mobile paywalls, manage and cancel).
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - a Search Hero block;
@@ -188,12 +189,12 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 [`skills/build-ui/index.md`](plugins/eggux/skills/build-ui/index.md) maps each screen and task
 to its shell, blocks, patterns and component guides, and lists what each guide covers.
 
-- **Patterns (32):** core flows (action feedback, bulk actions, common flows, delete confirmation,
+- **Patterns (33):** core flows (action feedback, bulk actions, common flows, delete confirmation,
   unsaved changes, multi-step form), forms (form validation, form presets, auth), states (empty
   state, loading states, errors and recovery, feedback messages, result pages, notifications),
   app screens (record page, search and filter, settings and admin, permissions and access,
   sharing and invites, approvals, audit log, reports, enterprise apps, booking), products (AI
-  chat, commerce, content and docs, marketing pages, email), mobile and writing.
+  chat, commerce, content and docs, marketing pages, email, monetization), mobile and writing.
 - **Component guides (38):** actions (button, dropdown menu), forms and choices (input, select,
   date picker, color picker, file upload, rich text editor), overlays (dialog, drawer, popover,
   tooltip, toast, tour), navigation (navigation, sidebar, tabs and toggle group, pagination,

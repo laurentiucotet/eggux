@@ -1,6 +1,6 @@
 # Chart
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -8,7 +8,7 @@ Usage rules live in the guides linked under each component.
 |---|---|---|
 | [Bar Chart](#bar-chart) | 3 | - |
 | [Bar Chart Horizontal](#bar-chart-horizontal) | 1 | - |
-| [Line Chart](#line-chart) | 2 | - |
+| [Line Chart](#line-chart) | 4 | - |
 | [Sparkline](#sparkline) | 2 | - |
 | [Donut Chart](#donut-chart) | 2 | - |
 | [Heatmap](#heatmap) | 3 | - |
@@ -21,7 +21,7 @@ Usage rules live in the guides linked under each component.
 | [Chart Legend Item](#chart-legend-item) | 16 | - |
 | [Chart Tooltip](#chart-tooltip) | 1 | Rows |
 | [Chart Tooltip Row](#chart-tooltip-row) | 8 | - |
-| [Chart Card](#chart-card) | 1 | Actions, Chart |
+| [Chart Card](#chart-card) | 4 | Actions, Chart |
 | [Waterfall Chart](#waterfall-chart) | 1 | - |
 | [Combo Chart](#combo-chart) | 1 | - |
 | [Dashboard Widget](#dashboard-widget) | 1 | Content |
@@ -31,8 +31,10 @@ Usage rules live in the guides linked under each component.
 | [Radar Chart](#radar-chart) | 1 | - |
 | [Sankey Chart](#sankey-chart) | 1 | - |
 | [Choropleth Map](#choropleth-map) | 1 | - |
+| [Radial Chart](#radial-chart) | 2 | - |
+| [Box Plot](#box-plot) | 1 | - |
 
-On the Figma page: "Example / activity by weekday and hour", "Example / cash bridge", "Example / in analytics", "Example / in bento grid", "Example / in executive dashboard", "Example / invoice flow", "Example / payment behavior", "Example / payments analytics", "Example / quarter target", "Example / revenue by product", "Example / spend by vendor", "Example / trend next to a metric", "Example / values on hover", "Example / volume and on-time rate", "Stress test / Bar Chart", "Stress test / Bar Chart Horizontal", "Stress test / Bullet Chart", "Stress test / Chart Card", "Stress test / Chart Legend", "Stress test / Chart Tooltip", "Stress test / Choropleth Map", "Stress test / Combo Chart", "Stress test / Dashboard Widget", "Stress test / Distribution Bar", "Stress test / Donut Chart", "Stress test / Funnel and Scatter", "Stress test / Gauge", "Stress test / Heatmap", "Stress test / Line Chart", "Stress test / Radar Chart", "Stress test / Sankey Chart", "Stress test / Scatter Chart", "Stress test / Sparkline", "Stress test / Treemap", "Stress test / Waterfall Chart"
+On the Figma page: "Example / Chart Card states", "Example / Line Chart styles", "Example / Radial Chart and Box Plot", "Example / activity by weekday and hour", "Example / cash bridge", "Example / in analytics", "Example / in bento grid", "Example / in executive dashboard", "Example / invoice flow", "Example / payment behavior", "Example / payments analytics", "Example / quarter target", "Example / revenue by product", "Example / spend by vendor", "Example / trend next to a metric", "Example / values on hover", "Example / volume and on-time rate", "Stress test / Bar Chart", "Stress test / Bar Chart Horizontal", "Stress test / Box Plot", "Stress test / Bullet Chart", "Stress test / Chart Card", "Stress test / Chart Legend", "Stress test / Chart Tooltip", "Stress test / Choropleth Map", "Stress test / Combo Chart", "Stress test / Dashboard Widget", "Stress test / Distribution Bar", "Stress test / Donut Chart", "Stress test / Funnel and Scatter", "Stress test / Gauge", "Stress test / Heatmap", "Stress test / Line Chart", "Stress test / Radar Chart", "Stress test / Radial Chart", "Stress test / Sankey Chart", "Stress test / Scatter Chart", "Stress test / Sparkline", "Stress test / Treemap", "Stress test / Waterfall Chart"
 
 ## Bar Chart
 
@@ -141,9 +143,15 @@ Code: Recharts `PieChart` (`innerRadius`), `BarChart layout="vertical"`
 
 ## Line Chart
 
-Component set · 2 variants · default size 560 × 240
+Component set · 4 variants · default size 560 × 240
 
 Change over time (Recharts LineChart / AreaChart). Lines 2 px, round joins; end dot 8 px with a 2 px surface ring; area wash = series at 10%. One y axis only. Label the end value or the extreme, never every point.
+
+
+Type: line (1 to 3 series), area (one series and its wash), stacked-area (parts of a total over time, bands chart/1 to chart/3 at 20% with a line on each top edge), step (values that change in jumps: prices, plans, limits). Show series 2 (on) and Show series 3 (off) set how many series draw; series keep their chart slot. Show comparison (off) adds the previous period of series 1 as a dashed muted line; name it in the legend ("Previous period").
+
+
+Usage: eggux build-ui/components/charts.md
 
 **Use for**
 
@@ -151,6 +159,9 @@ Change over time (Recharts LineChart / AreaChart). Lines 2 px, round joins; end 
 - Type=area: one series or a total
 - Type=line: several series over the same period
 - The main trend chart at the top of a report
+- Type=stacked-area: parts of a total over time (revenue by plan)
+- Type=step: values that change in jumps (price, plan, limit)
+- Show comparison: this period against the previous one
 
 **Not for**
 
@@ -168,6 +179,10 @@ Change over time (Recharts LineChart / AreaChart). Lines 2 px, round joins; end 
 5. End dot, 8 px with a 2 px surface ring
 6. X axis (time)
 7. Chart Legend for 2 or more series
+8. Show series 2 (on), Show series 3 (off): how many series draw, chart/1 to chart/3
+9. Show comparison (off): previous period of series 1, dashed 2 px in foreground/muted
+10. Type=stacked-area: bands chart/1 to chart/3 at opacity/20 with a 2 px line on each top edge (Show series 3 = top band)
+11. Type=step: horizontal then vertical segments, square joins
 
 **Content and behavior**
 
@@ -176,6 +191,10 @@ Change over time (Recharts LineChart / AreaChart). Lines 2 px, round joins; end 
 - Legend for 2 or more series, none for one
 - Series colors chart/1..8 in order; text in text tokens
 - Edit line points for real data
+- Comparison line has no end dot and is named in the legend ("Previous period") with a Chart Legend Item Key=line
+- Stacked area: at most 3 to 4 parts; the top edge is the total; never stack series that are not parts of one total
+- Step only when the value really holds until the next change
+- Resize: marks scale with the width (min about 276); the y axis stays 32 wide
 
 **Accessibility**
 
@@ -185,10 +204,16 @@ Change over time (Recharts LineChart / AreaChart). Lines 2 px, round joins; end 
 
 | Variant property | Values |
 |---|---|
-| Type | line, area |
+| Type | line, area, stacked-area, step |
+
+| Property | Type | Default |
+|---|---|---|
+| Show series 2 | boolean | true |
+| Show series 3 | boolean | false |
+| Show comparison | boolean | false |
 
 Tokens and styles:
-- Colors: `background/default`, `border/default`, `border/input`, `chart/1`, `chart/2`, `foreground/muted`
+- Colors: `background/default`, `border/default`, `border/input`, `chart/1`, `chart/2`, `chart/3`, `foreground/muted`
 - Spacing and size: `border-width/2`, `border-width/DEFAULT`, `spacing/10`, `spacing/2`
 - Text styles: `ui/caption`
 
@@ -769,9 +794,12 @@ Code: shadcn `ChartTooltip` with `ChartTooltipContent` (Recharts)
 
 ## Chart Card
 
-Component · 1 variant · default size 640 × 474
+Component set · 4 variants · default size 640 × 474
 
 A chart in a card: Title, Description, Actions (native slot, e.g. a Toggle Group), Chart (native slot, any chart component), an exposed Chart Legend and an optional footer with Insight and Note. The legend items sit in the Items slot of the Chart Legend: keep one item per series and remove the rest for a one- or two-series chart, or turn Show legend off when the title already names the single series.
+
+
+State: default shows the chart. loading keeps the header and actions and draws Skeleton bars while data loads. empty shows an exposed Empty State with the chart Spot Illustration when the period has no data. error shows an exposed Empty State Tone=error with Try again when the data failed to load. The Chart slot stays in every state (hidden outside default), so switching back keeps the chart; legend and footer show only in default.
 
 
 Usage: eggux build-ui/components/charts.md
@@ -796,6 +824,8 @@ Usage: eggux build-ui/components/charts.md
 4. Chart slot: Bar Chart, Line Chart or another chart
 5. Chart Legend (exposed, Show legend): its Items slot holds one Chart Legend Item per series
 6. Footer with trend icon, Insight and Note (Show footer)
+7. State: default (chart), loading (Skeleton bars and axis, header and Actions stay), empty (exposed Empty State sm with the chart Spot Illustration, Show actions off), error (exposed Empty State sm Tone=error with Try again)
+8. Chart slot stays in every state, hidden outside default; Chart Legend and footer show only in default
 
 **Content and behavior**
 
@@ -803,17 +833,26 @@ Usage: eggux build-ui/components/charts.md
 - Legend on for 2 or more series with one item per series (remove items from the legend's Items slot); off for one series
 - Footer states the insight in words ("Profit up 21% vs last half-year")
 - Every chart has a table view in code
-- Empty: say why; loading: Skeleton in the chart shape; error: inline Alert with retry
 - Fill the Actions and Chart slots in the instance; never detach
 - Resize: the header wraps the Actions slot under the titles when narrow (titles at least 160); Title and Description up to 2 lines with ellipsis
 - Footer: trend icon first, Insight fills and wraps to 2 lines; Note up to 2 lines
 - Hide an empty Actions slot (it still takes its width)
+- State=loading while data loads: keep the title and period so the layout does not jump
+- State=empty when the period has no data: say why and what to try ("Try a longer period"); never draw an empty axis
+- State=error when the data failed: say it failed and offer Try again; keep the Actions so people can change the period
+- Set the title and description of the Empty State per card on the exposed instance
+- All states keep the card height of the default chart (240 chart area), so a dashboard grid does not shift
 
 **Accessibility**
 
 - Table view toggle or "View data" action, reachable by keyboard
 - The insight gives the takeaway without reading the chart
 - The time range Toggle Group has a label
+- Loading sets aria-busy on the chart area; empty and error text is read in place of the chart
+
+| Variant property | Values |
+|---|---|
+| State | default, loading, empty, error |
 
 | Property | Type | Default |
 |---|---|---|
@@ -826,7 +865,7 @@ Usage: eggux build-ui/components/charts.md
 
 Slots (fill them in the instance, never detach): `Actions`, `Chart`
 
-Built from: `Bar Chart`, `Chart Legend`, `Toggle Group`. Icons: trending-up
+Built from: `Bar Chart`, `Chart Legend`, `Empty State`, `Skeleton`, `Toggle Group`. Icons: trending-up
 
 Tokens and styles:
 - Colors: `background/card`, `border/default`, `foreground/default`, `foreground/muted`
@@ -1303,3 +1342,111 @@ Tokens and styles:
 Guides: [charts](../../skills/build-ui/components/charts.md)
 
 Code: custom SVG tile map (SVG `w-full` with viewBox (regions scale); `min-w-[240px]`)
+
+## Radial Chart
+
+Component set · 2 variants · default size 200 × 200
+
+Progress to a goal as a ring with the value in the middle (Recharts RadialBarChart). Type single: one measure (chart/1, 72% of goal). concentric: up to 3 measures as rings from outside in (chart/1, chart/2, chart/3); name them in a Chart Legend next to it. Track background/muted; the arc starts at 12 o'clock and runs clockwise; set the value arc per instance (Sweep = share x 360 deg). Value and Label in the center (Show label). Fixed square (200): center it in its card; for a target line use Gauge, for one value against bands use Bullet Chart.
+
+
+Usage: eggux build-ui/components/charts.md
+
+**Use for**
+
+- Goal completion on dashboards
+- Plan and usage, onboarding progress
+- Capacity in booking and support dashboards
+
+**Not for**
+
+- A value against a target line: use Gauge
+- A value against bands: use Bullet Chart
+- Parts of a whole: use Donut Chart or Distribution Bar
+
+**Anatomy**
+
+1. Type: single (chart/1) or concentric (chart/1, chart/2, chart/3 from outside in)
+2. Track: background/muted ring
+3. Value arc from 12 o'clock, clockwise
+4. Center: Value and Label (Show label)
+
+**Content and behavior**
+
+- Set each value arc per instance (sweep = share x 360 deg)
+- Concentric needs a Chart Legend naming each ring with its value
+- Fixed 200 square: center it in its card; never stretch
+
+**Accessibility**
+
+- role=img with a label that says every value ("Revenue 82% of goal")
+- Values are text, not color alone
+
+| Variant property | Values |
+|---|---|
+| Type | single, concentric |
+
+| Property | Type | Default |
+|---|---|---|
+| Value | text | 72% |
+| Label | text | of goal |
+| Show label | boolean | true |
+
+Tokens and styles:
+- Colors: `background/muted`, `chart/1`, `chart/2`, `chart/3`, `foreground/default`, `foreground/muted`
+- Text styles: `heading/h2`, `heading/h4`, `ui/caption`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: shadcn Chart (Recharts) `RadialBarChart` `startAngle={90} endAngle={-270} innerRadius` with `RadialBar background cornerRadius={0}` and `PolarAngleAxis type="number" domain={[0,100]} tick={false}`; center `<Label>` value `text-3xl font-semibold` and label `text-muted-foreground text-xs` (Concentric: one `RadialBar` per measure, `fill="var(--chart-N)"`; `size-[200px]`)
+
+## Box Plot
+
+Component · 1 variant · default size 560 × 240
+
+Spread of values per group: box from the first to the third quartile, median line, whiskers to the lowest and highest values within 1.5 x the box, outliers as open dots (Show outliers). Response times by channel, deal sizes by region, price ranges, salary bands. One series in chart/1 (box tint badge/category-1-bg); compare up to 8 groups; name the unit on the y axis or in the Chart Card description. Marks scale with the width (min 320). Say the takeaway in words (median and spread), and offer the table view.
+
+
+Usage: eggux build-ui/components/charts.md
+
+**Use for**
+
+- Response times by channel in Support Dashboard
+- Deal sizes in Sales Pipeline, price ranges, salary bands in Report
+
+**Not for**
+
+- Averages only: use Bar Chart
+- One distribution in detail: use a histogram (Bar Chart)
+- Audiences not used to statistics: say the median and range in words instead
+
+**Anatomy**
+
+1. Y axis with the unit
+2. Per group: box (first to third quartile, badge/category-1-bg with chart/1 border), median line 2 px, whiskers and caps 1 px chart/1, outliers as open dots (Show outliers)
+3. X axis group labels
+
+**Content and behavior**
+
+- Whiskers reach the lowest and highest values within 1.5 x the box; points beyond are outliers
+- Up to 8 groups; sort by median when the order has no meaning
+- Edit the marks per instance for real data
+- Resize: marks scale with the width, min 320
+
+**Accessibility**
+
+- Table view with min, quartiles, median and max per group
+- The insight says the takeaway in words
+
+| Property | Type | Default |
+|---|---|---|
+| Show outliers | boolean | true |
+
+Tokens and styles:
+- Colors: `background/card`, `badge/category-1-bg`, `border/default`, `border/input`, `chart/1`, `foreground/muted`
+- Spacing and size: `border-width/DEFAULT`, `spacing/10`, `spacing/2`
+- Text styles: `ui/caption`
+
+Guides: [charts](../../skills/build-ui/components/charts.md)
+
+Code: no Recharts primitive: `ComposedChart` with a stacked transparent + `Bar` (q1 to q3, `fill="var(--badge-category-1-bg)" stroke="var(--chart-1)"`), `ErrorBar` whiskers, median `ReferenceLine` segments and `Scatter` outliers; or visx `BoxPlot`, ECharts `boxplot` (Provide a table view with min, q1, median, q3, max)

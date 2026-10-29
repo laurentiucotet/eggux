@@ -1,12 +1,12 @@
 # Mobile
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Mobile Header](#mobile-header) | 3 | Leading, Trailing |
+| [Mobile Header](#mobile-header) | 6 | Leading, Trailing |
 | [Bottom Nav Item](#bottom-nav-item) | 2 | - |
 | [Bottom Nav](#bottom-nav) | 2 | Items |
 | [FAB](#fab) | 2 | - |
@@ -14,13 +14,19 @@ Usage rules live in the guides linked under each component.
 | [Store Badge](#store-badge) | 2 | - |
 | [QR Code](#qr-code) | 3 | - |
 
-On the Figma page: "Example / Bottom Nav styles", "Example / in cta app download", "Example / in hero with phone", "Example / in page shell / mobile", "Example / invoices on mobile", "Stress test / Action Sheet", "Stress test / Bottom Nav", "Stress test / FAB", "Stress test / Mobile Header", "Stress test / QR Code", "Stress test / Store Badge"
+On the Figma page: "Example / Bottom Nav styles", "Example / Mobile Header styles", "Example / in cta app download", "Example / in hero with phone", "Example / invoices on mobile", "Stress test / Action Sheet", "Stress test / Bottom Nav", "Stress test / FAB", "Stress test / Mobile Header", "Stress test / QR Code", "Stress test / Store Badge"
 
 ## Mobile Header
 
-Component set · 3 variants · default size 390 × 56
+Component set · 6 variants · default size 390 × 56
 
 Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail: back + object title + actions. brand: the Logo (swap) on entry screens such as sign in and sign up, nothing to go back to; Trailing can hold one link or button. Title is the page or object name, truncated to one line. 56 high; add the safe-area inset on top in code.
+
+
+Type=search: a Search Field (exposed, no shortcut) fills the bar, back in Leading and a Cancel Button in Trailing; for mobile lists, directories and store search once the person taps search. Size=large (app, detail): the bar keeps Leading and Trailing and the Title moves under it in heading/h2 (up to 2 lines); use it at the top of a list scrolled to the top (Customers, Notifications, Orders) and switch to Size=default when the list scrolls (the large title collapses into the bar). Entry screens keep brand.
+
+
+Usage: eggux build-ui/patterns/mobile.md
 
 **Use for**
 
@@ -28,6 +34,8 @@ Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail
 - Detail pages with back, object title and actions
 - Mobile list pages with search and a menu
 - Entry screens with nothing to go back to (sign in, sign up): Type=brand
+- Searching a mobile list or directory after tapping search (Type=search)
+- The top of a mobile list scrolled to the top, with a large title (Size=large)
 
 **Not for**
 
@@ -40,6 +48,8 @@ Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail
 2. Title (app, detail)
 3. Logo (brand): Logo swap
 4. Trailing slot: notifications and Avatar, or actions; in brand empty or one link
+5. Type=search: Leading (back), Search Field (exposed, no shortcut) that fills the bar, Trailing (Cancel Button)
+6. Size=large (app, detail): the bar with Leading and Trailing, then the Title in heading/h2 under it, up to 2 lines
 
 **Content and behavior**
 
@@ -49,6 +59,8 @@ Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail
 - Title is the page or object name, truncated to one line
 - Height 56; add the safe-area inset on top in code
 - The menu button opens the Sidebar as a left Sheet
+- Size=large only at the top of a list; it collapses to Size=default when the content scrolls
+- Type=search opens with the keyboard and focus in the field; Cancel returns to the list and clears the query
 
 **Accessibility**
 
@@ -56,10 +68,13 @@ Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail
 - Touch targets at least 44 x 44
 - Title is the page heading for screen readers
 - In brand the Logo links home and has the product name as its label
+- Type=search: role="search"; Cancel is a text button
+- Size=large: the large title is the page heading; the collapsed bar title is aria-hidden while the large one shows
 
 | Variant property | Values |
 |---|---|
-| Type | app, detail, brand |
+| Type | app, detail, brand, search |
+| Size | default, large |
 
 | Property | Type | Default |
 |---|---|---|
@@ -68,12 +83,12 @@ Top bar on mobile (< 768). app: menu + page title + notifications/avatar. detail
 
 Slots (fill them in the instance, never detach): `Leading`, `Trailing`
 
-Built from: `Avatar`, `Button Icon`, `Logo`
+Built from: `Avatar`, `Button`, `Button Icon`, `Logo`, `Search Field`
 
 Tokens and styles:
 - Colors: `background/default`, `border/default`, `foreground/default`
-- Spacing and size: `spacing/1`, `spacing/14`, `spacing/2`
-- Text styles: `heading/h4`
+- Spacing and size: `spacing/1`, `spacing/14`, `spacing/2`, `spacing/3`, `spacing/4`
+- Text styles: `heading/h2`, `heading/h4`
 
 Guides: [mobile](../../skills/build-ui/patterns/mobile.md)
 
