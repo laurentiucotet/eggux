@@ -1885,6 +1885,46 @@
    "main": "Paywall Card",
    "helpers": [],
    "block": "1110:6533"
+  },
+  {
+   "main": "Lock Badge",
+   "helpers": [],
+   "block": "1110:29732",
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
+  },
+  {
+   "main": "Gate Overlay",
+   "helpers": [],
+   "block": "1110:29732",
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
+  },
+  {
+   "main": "Usage Limit Banner",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
+  },
+  {
+   "main": "Trial Banner",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
+  },
+  {
+   "main": "Upsell Card",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / paywall parts at widths"
+   ]
   }
  ],
  "Progress": [

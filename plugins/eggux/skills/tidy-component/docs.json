@@ -13172,5 +13172,197 @@
    "skills/build-ui/patterns/monetization.md",
    "skills/build-ui/patterns/content-and-docs.md"
   ]
+ },
+ "Lock Badge": {
+  "summary": "A small lock and the plan name (Pro, Business) after a locked menu item, tab, button, setting or report: what is locked and which plan opens it.",
+  "use": [
+   "After the label of a locked Sidebar Item, Tab, Menu Item or setting row",
+   "Next to a report or card title that needs a higher plan",
+   "Inside Gate Overlay and Upsell surfaces (Tone=brand)"
+  ],
+  "avoid": [
+   "Status of an object (Paid, Overdue): use Badge",
+   "A feature that is simply off: use Switch or a disabled state with a reason",
+   "Marketing plan labels on pricing pages: use Badge on Plan Card"
+  ],
+  "anatomy": [
+   "Lock icon (12, sm 10) in the label color",
+   "Label: plan name, one word (\"Business\")",
+   "Size: default 20 (headings, cards), sm 16 (Sidebar Items, Tabs, Menu Items)",
+   "Tone: neutral (badge/soft-neutral-*), brand (icon-tile/brand-*)"
+  ],
+  "rules": [
+   "Always after the feature name, never instead of it",
+   "The locked item stays clickable and opens the upgrade path (Gate Overlay, Upgrade Dialog); never a dead end",
+   "Tone=neutral in navigation and lists, Tone=brand on upgrade surfaces",
+   "One Lock Badge per item; do not combine with a Badge Count",
+   "Resize: hugs its label, never wraps or truncates (plan names are short)"
+  ],
+  "a11y": [
+   "The lock icon is decorative; the item's accessible name ends with \"(Business plan)\"",
+   "Label meets 4.5:1 in Light, Dark and Corporate Light (neutral 8.35, brand 5.83 in Light)",
+   "In a sidebar, absolute over the item: keep it out of the tab order"
+  ],
+  "code": "<Badge variant=\"secondary\" className=\"gap-1\"><Lock className=\"size-3\" aria-hidden />Business</Badge>; sm: h-4 px-1.5 text-xs, icon size-2.5.",
+  "guides": [
+   "skills/build-ui/patterns/monetization.md",
+   "skills/build-ui/components/badge.md",
+   "skills/build-ui/components/sidebar.md"
+  ]
+ },
+ "Gate Overlay": {
+  "summary": "Placed over locked content: the real content stays visible but blurred or faded, with a centered card that names the plan, the value, Upgrade, See plans and the price.",
+  "use": [
+   "A paid report, chart, export or advanced setting inside the app",
+   "A blurred AI result or preview people can see before upgrading",
+   "Long content (list, document) that fades after the first rows (Style=fade)"
+  ],
+  "avoid": [
+   "A limit reached by an action (invite, create): use Block / Usage Limit Reached or Block / Upgrade Dialog",
+   "Articles and media: use the content paywall blocks",
+   "Whole pages people cannot use at all: show Block / Result no-access or the plans"
+  ],
+  "anatomy": [
+   "Preview (native slot): the real content, default a Chart Card",
+   "Style=blur: layer blur/DEFAULT on Preview and Scrim Tone=light at opacity/60",
+   "Style=fade: gradient from transparent to background/default, card at the bottom",
+   "Card (400 max, background/card, radius/xl, shadow/lg): Lock Badge (exposed, brand), Title (heading/h4), Description (body/small), Upgrade (exposed Button), See plans (exposed outline Button, Show see plans), Note (Show note)"
+  ],
+  "rules": [
+   "Put real or sample content in Preview, never an empty box",
+   "Title says the benefit (\"Unlock revenue reports\"), not the plan name",
+   "Note states price, period and how to cancel next to the action",
+   "Only the locked part is covered; navigation and free data keep working",
+   "Upgrade opens the Upgrade Dialog or Plan Checkout and returns here after paying",
+   "Resize: resize the instance to cover the content (min 320 x 320); the card fills down to 272 and stays 400 at most; title 2 lines, description 3, note 2 with ellipsis; actions wrap"
+  ],
+  "a11y": [
+   "Preview content is aria-hidden and not focusable",
+   "The card is a region labelled by its title; Upgrade gets focus first when the gate opens from a click",
+   "Price text meets 4.5:1 (foreground/muted on background/card 4.74 in Light)"
+  ],
+  "code": "relative wrapper; preview child `blur-sm pointer-events-none select-none` + `aria-hidden`; overlay `absolute inset-0 grid place-items-center bg-background/60` (fade: `bg-gradient-to-b from-transparent to-background to-45%` and `items-end`); card `w-full max-w-[400px]`.",
+  "guides": [
+   "skills/build-ui/patterns/monetization.md",
+   "skills/build-ui/patterns/permissions-and-access.md"
+  ]
+ },
+ "Usage Limit Banner": {
+  "summary": "Tells people they are close to a plan limit (from 80%) or have reached it (100%), with the numbers, the reset date, Upgrade and Buy more.",
+  "use": [
+   "Metered limits: AI credits, API calls, storage, exports or documents per month",
+   "Top of the page that uses the limit (Layout=banner)",
+   "Sidebar, settings or next to the feature (Layout=inline)"
+  ],
+  "avoid": [
+   "Seat or project caps reached by one action: open Block / Usage Limit Reached or Upgrade Dialog then",
+   "Plan status in settings: use Usage Meter in Block / Plan and Usage",
+   "System errors: use Alert"
+  ],
+  "anatomy": [
+   "Status: approaching (warning tint, triangle-alert, dismissible) or reached (destructive tint, circle-alert)",
+   "Title / Reached title, Description / Reached description",
+   "banner: Progress sm (exposed, Value 80 or 100) + percent text, actions on the right",
+   "inline: card 400 with Usage Meter (exposed, Level near or over, hint with the reset date)",
+   "Buy more (exposed outline Button, Show buy more), Upgrade (exposed Button), close (Show close, approaching only)"
+  ],
+  "rules": [
+   "Say used and limit with the unit and the reset date",
+   "Approaching from 80%, dismissible, comes back at the next threshold (90%)",
+   "Reached stays until the limit changes; never block work that is not metered",
+   "State the add-on price in the text or on the button",
+   "Bar Value matches the numbers (nearest step)",
+   "Resize: banner wraps: text column min 240, actions and close drop under it below about 640; inline min 280; title 2 lines, description 3"
+  ],
+  "a11y": [
+   "Progress and Usage Meter have role meter with aria-valuenow and aria-valuemax",
+   "Status is in the title text, never color alone",
+   "Crossing a threshold is announced once (polite live region)",
+   "Contrast in Light: soft-warning-fg on soft-warning-bg 6.57, soft-destructive-fg on soft-destructive-bg 5.54"
+  ],
+  "code": "banner: `flex flex-wrap items-center gap-4 px-6 py-3 bg-[--badge-soft-warning-bg]`, text `min-w-60 flex-1`, Progress `max-w-60 h-1`; inline: shadcn Card + UsageMeter; role=\"status\".",
+  "guides": [
+   "skills/build-ui/patterns/monetization.md",
+   "skills/build-ui/components/progress-and-slider.md",
+   "skills/build-ui/patterns/settings-and-admin.md"
+  ]
+ },
+ "Trial Banner": {
+  "summary": "A strip across the top of the app during a free trial: days left, what happens after it and Choose a plan.",
+  "use": [
+   "Above the Page Shell while a trial runs",
+   "Ending (3 days or less) and ended (read-only workspace) states"
+  ],
+  "avoid": [
+   "Product news and promotions: use the Banner blocks",
+   "Payment problems: use Alert destructive with Update payment method",
+   "Inside page content: it belongs above the shell"
+  ],
+  "anatomy": [
+   "State: active (soft-info, sparkles, dismissible), ending (soft-warning, clock, dismissible), ended (background/primary, lock, not dismissible)",
+   "Message / Ending message / Ended message (ui/label)",
+   "Detail / Ending detail / Ended detail (body/small, Show detail)",
+   "Choose a plan (exposed Button sm; secondary on ended)",
+   "close (Show close)"
+  ],
+  "rules": [
+   "State the end date and the price after the trial next to the action",
+   "Ending says nothing is charged without consent",
+   "Ended says what still works (read-only, export) and that nothing was deleted",
+   "One strip at a time: it replaces announcement banners while it shows",
+   "Choose a plan opens the plans with the trial plan preselected",
+   "Resize: full width, min 360; the detail fills (min 160, 3 lines) and wraps under the message; the button and close drop to a new line on phones"
+  ],
+  "a11y": [
+   "role=region with aria-label \"Trial\"",
+   "State is in the message text",
+   "Contrast in Light: soft-info-fg on soft-info-bg 5.83, soft-warning-fg on soft-warning-bg 6.57, foreground/primary on background/primary 5.17"
+  ],
+  "code": "`flex flex-wrap items-center gap-3 px-6 py-2` above the app shell; text `flex flex-wrap gap-x-2 min-w-50 flex-1`; detail `line-clamp-3`; dismissal stored per user per day.",
+  "guides": [
+   "skills/build-ui/patterns/monetization.md",
+   "skills/build-ui/patterns/notifications.md"
+  ]
+ },
+ "Upsell Card": {
+  "summary": "A compact, dismissible card that suggests one upgrade: Icon Tile, one benefit, full-width Upgrade and the price.",
+  "use": [
+   "Sidebar footer above the user menu",
+   "Empty states of paid features",
+   "End of a settings list or a free report"
+  ],
+  "avoid": [
+   "A locked feature people tried to open: use Gate Overlay",
+   "Limits: use Usage Limit Banner",
+   "Tips and announcements: use Callout Card"
+  ],
+  "anatomy": [
+   "Icon Tile (exposed, Style=brand, sm)",
+   "close X (Show close)",
+   "Title (ui/label, 2 lines)",
+   "Description (body/small, 3 lines)",
+   "Upgrade (exposed Button sm, FILL)",
+   "Note (ui/caption, Show note): price and period",
+   "Surface: background/card, border/default, radius/lg, padding spacing/4"
+  ],
+  "rules": [
+   "One benefit in the title, not \"Go Pro\"",
+   "Price and period in the Note",
+   "Dismissed cards stay hidden for that person for at least 30 days",
+   "Never shown to people who cannot buy: say \"Ask your admin\" instead",
+   "One upsell per screen",
+   "Resize: 240 by default, fills from 200 to 360; text wraps, button fills"
+  ],
+  "a11y": [
+   "role=complementary with the title as label",
+   "Close has aria-label \"Dismiss\"",
+   "Icon is decorative"
+  ],
+  "code": "shadcn Card `p-4 gap-3`, IconTile sm, Button size=\"sm\" className=\"w-full\", note `text-xs text-muted-foreground`.",
+  "guides": [
+   "skills/build-ui/patterns/monetization.md",
+   "skills/build-ui/components/card.md",
+   "skills/build-ui/components/sidebar.md"
+  ]
  }
 }
