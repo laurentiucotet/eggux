@@ -360,11 +360,13 @@
   ]
  },
  "Avatar": {
-  "summary": "A photo or initials that identify a person next to their name.",
+  "summary": "A photo, initials or an icon that identify a person, team, organization or bot next to its name, with presence or a verified tick.",
   "use": [
    "People in lists, tables, comments, headers and cards",
-   "Size sm in tables and dense lists, default in lists and sidebars, lg and xl on profiles",
-   "Owners and assignees on Entity Cards, Post Card authors, testimonial and team blocks"
+   "Size xs and sm in tables and dense lists, default in lists and sidebars, lg and xl on cards, 2xl on profile headers and Person Card vertical, 3xl on My profile and Avatar Upload preview",
+   "Owners and assignees on Entity Cards, Post Card authors, testimonial and team blocks",
+   "Type=icon for guests, deleted users, system events and the AI assistant (Icon swap: user, bot, users)",
+   "Show status for presence in chat, inbox and directories; Show verified for checked accounts and organizations"
   ],
   "avoid": [
    "Several people in little space: use Avatar Group",
@@ -373,30 +375,36 @@
    "Companies and objects without a photo: use an icon or Shape=square initials"
   ],
   "anatomy": [
-   "Type: initials (default) or image",
+   "Type: initials (default), image or icon",
    "Initials (Type=initials): two letters on background/muted",
    "Photo swap (Photo, Type=image): nested Image / Person / * instance clipped to the shape; default Image / Person / 01",
-   "Status (Show status): online dot",
-   "Shape: circle for people, square (radius md, lg on lg and xl) for companies, workspaces and apps",
-   "Size: xs (20), sm (24), default (32), lg (40), xl (48)"
+   "Icon swap (Icon, Type=icon): user (default), bot, users; half the avatar size, foreground/muted",
+   "Status (Show status): exposed Avatar Status with Status online, away, busy, offline",
+   "Verified (Show verified): Avatar Verified tick, background/info with a foreground/info check",
+   "Shape: circle for people, square (radius md, lg on lg and up) for companies, workspaces and apps",
+   "Size: xs (20), sm (24), default (32), lg (40), xl (48), 2xl (64), 3xl (96)"
   ],
   "rules": [
    "Always next to the person's name, or with the name as accessible label; never the only identifier",
-   "Type=image with a Photo when a photo exists; initials stay the default and the fallback",
+   "Type=image with a Photo when a photo exists; initials stay the default and the fallback; Type=icon only when there is no name either (guest, deleted user) or the actor is not a person (bot, system)",
    "The Image / Person photos are sample faces (Unsplash License, not covered by the CC BY 4.0 license of the file): replace them with real photos",
    "Pick a photo that fits the name, use a different person for each avatar in a block, and the same photo for the same person within it",
    "Overflow avatars (+3) and organizations stay initials",
-   "Status dot only when presence matters to the task; same size within a list or group; one shape per list",
-   "Initials stay inside the circle: 1 line, centered, clipped by the circle, ellipsis for anything longer than 2 letters"
+   "Status only when presence matters to the task: online (success), away (warning), busy (destructive), offline (muted); same size within a list or group; one shape per list",
+   "Status and verified share the bottom-right corner: use one, never both",
+   "Initials stay inside the circle: 1 line, centered, clipped by the circle, ellipsis for anything longer than 2 letters",
+   "Fixed size: never stretch an avatar; pick the Size"
   ],
   "a11y": [
    "Image alt is the name, or alt=\"\" when the name is right next to it",
-   "The Status dot has a text equivalent (\"Online\")",
-   "Initials meet 4.5:1 on background/muted"
+   "Status has a text equivalent (\"Ana Popescu, away\"); color is never the only signal",
+   "Verified has a text equivalent (\"Verified\") in the name or a Tooltip",
+   "Initials meet 4.5:1 on background/muted; icons and dots 3:1 except the away dot (amber on white, same as Status Dot warning), which always comes with text"
   ],
-  "code": "shadcn Avatar (AvatarImage with the photo URL, AvatarFallback for initials).",
+  "code": "shadcn Avatar (AvatarImage with the photo URL, AvatarFallback for initials or a lucide User / Bot icon). Sizes size-5 to size-24; status = absolute span bottom-0 right-0 rounded-full ring-2 ring-background bg-success / bg-warning / bg-destructive / bg-muted-foreground; verified = absolute BadgeCheck in bg-info.",
   "guides": [
-   "skills/build-ui/components/avatar.md"
+   "skills/build-ui/components/avatar.md",
+   "skills/build-ui/components/indicators.md"
   ]
  },
  "Avatar Group": {
@@ -480,20 +488,24 @@
   ]
  },
  "Badge": {
-  "summary": "A short label for the status of an object, a category or a count, as a solid or a soft (tinted) pill.",
+  "summary": "A short label for the status of an object, a category or a count, as a solid, soft (tinted) or category pill in three sizes.",
   "use": [
    "Status of an object (Paid, Overdue, Draft) next to its name",
    "Category of an item",
    "A count after a label (Count on: \"Invoices 12\")",
-   "Variant=soft-* for statuses repeated down a table or list (Paid, Pending, Overdue), so the page gets calm color"
+   "Variant=soft-* for statuses repeated down a table or list (Paid, Pending, Overdue), so the page gets calm color",
+   "Variant=category-1 to category-8 for categories with no status meaning: projects, teams, Kanban and calendar labels, picked in the Swatch Picker order",
+   "Size=sm in dense tables and Kanban cards, default in lists, lg next to a page or record title"
   ],
   "avoid": [
    "Filters and selections: use Chip",
    "A number alone on an icon or sidebar item: use Badge Count",
-   "State of a system or person in text flow: use Status Dot"
+   "State of a system or person in text flow: use Status Dot",
+   "A category color that also means a status (green = done): use the soft status variants for statuses"
   ],
   "anatomy": [
-   "Variant: solid default, secondary, destructive, outline, success, warning, info; soft soft-success, soft-warning, soft-destructive, soft-info, soft-neutral",
+   "Variant: solid default, secondary, destructive, outline, success, warning, info; soft soft-success, soft-warning, soft-destructive, soft-info, soft-neutral; category category-1 to category-8",
+   "Size: default (20 high, ui/label-small), sm (16 high, ui/label-small, 10 px icon), lg (24 high, ui/label, 14 px icon, 8 px dot)",
    "Shape: rounded or pill",
    "Icon (Show icon, Icon swap) or Dot (Show dot), in the label color",
    "Label",
@@ -504,8 +516,10 @@
    "One or two words, sentence case",
    "Map each status to one Variant once and reuse it; a status never appears in two colors",
    "Neutral: secondary, outline or soft-neutral; done: success; pending: warning; failed: destructive; new: info",
-   "One style per table or list: all solid or all soft",
-   "Soft colors come from badge/soft-*-bg (status color at opacity 10 in Light, 20 in Dark) and badge/soft-*-fg; never recolor by hand",
+   "Categories use category-1 to category-8 in a fixed order (the chart/1..8 hues); the same category keeps the same number everywhere; more than 8 categories: reuse soft-neutral for the rest",
+   "One style per table or list: all solid, all soft or all category",
+   "Soft colors come from badge/soft-*-bg and badge/soft-*-fg, category colors from badge/category-{n}-bg (chart/n at opacity 10 in light modes, 20 in dark) and badge/category-{n}-fg (hue 800 light, 300 dark); never recolor by hand",
+   "One Size per row or card; lg only next to a heading",
    "Not clickable",
    "Next to the primary information of a row, never instead of it",
    "Hugs its label up to 256 (maxWidth spacing/64), then the label truncates to 1 line with ellipsis; parents can set a smaller max (scope 160, Current 128)"
@@ -513,10 +527,12 @@
   "a11y": [
    "Label meets 4.5:1 on every Variant; warning uses dark text (solid) or amber/800 (soft)",
    "Soft labels measured 5.5 to 11 : 1 in Light, Dark, Corporate Light and Corporate Dark",
+   "Category labels measured 5.67 to 9.65 : 1 on background/default, card and muted in all six modes",
+   "category-2 (orange) and category-4 (amber) look alike at label size: never put them side by side as the only difference; the text tells them apart",
    "Never a color or dot alone",
    "Not focusable: it is static text"
   ],
-  "code": "shadcn Badge (+ success, warning, info variants; soft-* variants use bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]).",
+  "code": "shadcn Badge (+ success, warning, info variants; soft-* variants use bg-[var(--badge-soft-X-bg)] text-[var(--badge-soft-X-fg)]; category-N use bg-[var(--badge-category-N-bg)] text-[var(--badge-category-N-fg)]; size sm = h-4 px-1.5 text-xs, lg = h-6 px-2.5 text-sm).",
   "guides": [
    "skills/build-ui/components/badge.md",
    "skills/build-ui/components/table.md",
@@ -528,32 +544,39 @@
   ]
  },
  "Badge Count": {
-  "summary": "A numeric counter for notifications, unread items or items in a navigation entry.",
+  "summary": "A numeric counter or an unread dot for notifications, unread items or items in a navigation entry.",
   "use": [
    "Corner of an icon button, such as the notifications bell",
    "End of a sidebar item",
-   "Meta of an Accordion Item: active filters in that group"
+   "Meta of an Accordion Item: active filters in that group",
+   "Type=dot: something new when the amount does not matter (bell, Sidebar Item, Tab, Avatar corner)"
   ],
   "avoid": [
    "A count after a text label: use Badge with Count",
-   "A status word: use Badge"
+   "A status word: use Badge",
+   "A dot on its own with no text nearby: add the count or \"unread\" to the accessible name"
   ],
   "anatomy": [
+   "Type: count (default) or dot (8 px, no number)",
    "Count: digits only, \"99+\" above 99",
    "Round container colored by Variant: default, secondary, destructive, outline",
    "Position: icon button corner or the end of a sidebar item"
   ],
   "rules": [
-   "Above 99 show \"99+\"",
+   "Above 99 show \"99+\"; never \"100\", \"1k\" or a word",
    "Only for something the user must act on (unread, pending); never decorative",
-   "Numbers only; words belong in a Badge"
+   "Numbers only; words belong in a Badge",
+   "Type=dot uses default or destructive; secondary and outline dots disappear on white surfaces",
+   "Dot on an icon: top-right corner, overlapping the icon box by 2 to 4 px",
+   "Hugs its count from a 20 px circle (minWidth), never wraps"
   ],
   "a11y": [
    "The count is part of the accessible name (\"Notifications, 3 unread\")",
    "Count changes that matter are announced politely",
-   "Text meets 4.5:1 on every Variant"
+   "Text meets 4.5:1 on every Variant",
+   "A dot has a text equivalent: \"Notifications, unread\""
   ],
-  "code": "shadcn Badge.",
+  "code": "shadcn Badge; Type=dot = <span class=\"size-2 rounded-full bg-primary\" aria-hidden> plus sr-only text.",
   "guides": [
    "skills/build-ui/components/badge.md",
    "skills/build-ui/components/sidebar.md",
@@ -1383,25 +1406,33 @@
   ]
  },
  "Chip": {
-  "summary": "Pill for filters, multi-selection and tags; Tone gives tags and categories a soft color.",
+  "summary": "Pill for filters, multi-selection and tags in three sizes; Tone gives tags and categories a soft or categorical color.",
   "use": [
    "Quick filters above a list (\"This week\", \"Unpaid\")",
    "Multi-select options shown as toggles",
    "Active filter values that can be cleared with Remove",
-   "Tone=soft-info, soft-success, soft-warning, soft-neutral: tags and categories on cards and records (\"Design\", \"Approved\")"
+   "Tone=soft-info, soft-success, soft-warning, soft-neutral: tags and categories on cards and records (\"Design\", \"Approved\")",
+   "Tone=category-1 to category-8: categories with a fixed color (projects, teams, labels)",
+   "Show avatar: people filters (assignee, owner)",
+   "Show count: filter values with result counts (\"Open 12\")",
+   "Size=sm in table toolbars and dense filter rows, lg for touch and hero filters"
   ],
   "avoid": [
    "A status or category that is not clickable: use Badge",
    "A field filter with several values in a Filter Bar: use Filter Chip",
    "One choice among a few options: use Toggle Group",
-   "A tone that means a status nobody can change: use Badge Variant=soft-*"
+   "A tone that means a status nobody can change: use Badge Variant=soft-*",
+   "Several chips that wrap or scroll as one control: use Chip Group"
   ],
   "anatomy": [
-   "Tone: default, soft-info, soft-success, soft-warning, soft-neutral (badge/soft-*-bg fill, badge/soft-*-fg text and icons)",
+   "Size: default (32, ui/label, 16 px icons), sm (24, ui/label-small, 14 px icons), lg (40, ui/label)",
+   "Tone: default, soft-info, soft-success, soft-warning, soft-neutral (badge/soft-*), category-1 to category-8 (badge/category-*)",
+   "Avatar (Show avatar, exposed Avatar xs, sm on lg): sits 2 to 8 px from the edge, as far as from top and bottom",
    "Leading icon (Show leading icon): calendar, or check when selected",
    "Label",
+   "Count value (Show count)",
    "Remove x (Show remove)",
-   "State: default, hover, focus, selected, disabled (soft tones: default, hover, focus, disabled)"
+   "State: default, hover, focus, selected, disabled (soft and category tones: default, hover, focus, disabled)"
   ],
   "rules": [
    "Label is one or two words in sentence case",
@@ -1409,15 +1440,20 @@
    "Selected is shown by the check and fill, not by color alone",
    "Show \"Clear all\" when more than one filter is active",
    "Soft tones are for tags and categories, not for filter state: a selected filter stays Tone=default, State=selected",
-   "Use the tone by meaning (success = done or approved, warning = needs attention, info = type or topic, neutral = other), and keep it the same for the same tag everywhere"
+   "Use the tone by meaning (success = done or approved, warning = needs attention, info = type or topic, neutral = other), and keep it the same for the same tag everywhere",
+   "Category tones follow the Badge category order; the same tag keeps the same number everywhere",
+   "One Size per row of chips",
+   "Count is a number only, after the label; no brackets",
+   "Hugs its content up to 320 (maxWidth spacing/80); the label truncates to 1 line with ellipsis, the avatar, icons, count and x never shrink"
   ],
   "a11y": [
    "A selectable chip is a toggle button with aria-pressed",
    "The remove x is a separate button labelled \"Remove <value>\"",
    "Focus state is visible (border/ring)",
-   "Touch targets at least 44 x 44 on mobile"
+   "Touch targets at least 44 x 44 on mobile",
+   "A count is part of the accessible name (\"Open, 12 results\")"
   ],
-  "code": "Custom on shadcn Badge + remove Button. Soft tones: className=\"bg-[var(--badge-soft-info-bg)] text-[var(--badge-soft-info-fg)] border-transparent\" (same for success, warning, neutral); hover border-current.",
+  "code": "Custom on shadcn Badge + remove Button. Soft tones: className=\"bg-[var(--badge-soft-info-bg)] text-[var(--badge-soft-info-fg)] border-transparent\" (same for success, warning, neutral; category-N with --badge-category-N-*); hover border-current. Sizes: sm h-6 px-2 text-xs, default h-8 px-3 text-sm, lg h-10 px-4 text-sm. Avatar: shadcn Avatar size-5 (size-6 on lg) with -ml-1.5; count <span class=\"tabular-nums\">; label min-w-0 truncate, chip max-w-80.",
   "guides": [
    "skills/build-ui/components/badge.md",
    "skills/build-ui/patterns/search-and-filter.md"
@@ -11667,6 +11703,81 @@
   "code": "shadcn ToggleGroupItem; size from the ToggleGroup size prop.",
   "guides": [
    "skills/build-ui/components/tabs.md"
+  ]
+ },
+ "Chip Group": {
+  "summary": "A set of Chips that wraps or scrolls, single or multi select, with \"+N more\" at the end.",
+  "use": [
+   "Filter rows above a list or feed (Activity Feed, Case Study Grid industries)",
+   "Scopes or reasons to pick (AI Search Answer scopes, Response Feedback reasons, Write a Review highlights)",
+   "Layout=scroll on mobile and in narrow headers (Header Topic subtopics)"
+  ],
+  "avoid": [
+   "Tags that are not clickable: use Badge List",
+   "One choice among 2 to 5 options in a toolbar: use Toggle Group",
+   "Many filters on different fields: use Filter Bar"
+  ],
+  "anatomy": [
+   "Layout: wrap (default) or scroll",
+   "Chips (native slot): Chip instances",
+   "More (Show more, exposed Chip): \"+3 more\" at the end of the first row",
+   "viewport (Layout=scroll): crops the row so the last chip is cut at the edge"
+  ],
+  "rules": [
+   "Chips in a group share one Size and one Tone family",
+   "Single select: exactly one State=selected (radio behavior); multi select: any number selected (toggle buttons); the label above says which",
+   "Show 4 to 8 chips, then +N that opens a Popover with the rest or expands the group",
+   "Order chips by frequency or a natural order, never alphabetically when one option is the default (All first)",
+   "Fills its container (min width 160); Layout=wrap drops chips to the next line with 8 px row gap, Layout=scroll keeps one line and scrolls sideways"
+  ],
+  "a11y": [
+   "Single select: role=\"radiogroup\" with radio chips; multi select: a group (role=\"group\" with aria-label) of toggle buttons with aria-pressed",
+   "Arrow keys move between chips in a radiogroup; Tab moves in and out",
+   "+N is a button whose label names what it opens (\"Show 3 more industries\")",
+   "Layout=scroll: the row scrolls with the keyboard when a chip gets focus"
+  ],
+  "code": "<div role=\"group\" class=\"flex flex-wrap gap-2\"> (wrap) or <ScrollArea><div class=\"flex gap-2 w-max\"> (scroll) of Chips; single select with shadcn ToggleGroup type=\"single\", multi with type=\"multiple\"; +N as a Popover trigger.",
+  "guides": [
+   "skills/build-ui/components/badge.md",
+   "skills/build-ui/patterns/search-and-filter.md"
+  ]
+ },
+ "Tag": {
+  "summary": "A removable value inside Tag Input, People Picker and multi-select, with an optional avatar, icon or category color.",
+  "use": [
+   "Selected values in Tag Input and multi Select",
+   "People Picker selections (Show avatar)",
+   "Typed values with an icon (status, file type, channel)",
+   "Labels with a fixed color (Tone=category-n)"
+  ],
+  "avoid": [
+   "Filters outside a field: use Chip",
+   "Static labels nobody removes: use Badge"
+  ],
+  "anatomy": [
+   "Size: default (24) or sm (20)",
+   "Tone: default (secondary fill) or category-1 to category-8 (badge/category-*)",
+   "Avatar (Show avatar, exposed Avatar xs on a background/default circle)",
+   "Leading icon (Show leading icon, Leading icon swap, 12 px)",
+   "Label",
+   "Remove x (Show remove)",
+   "State: default, disabled"
+  ],
+  "rules": [
+   "One Size per field: sm in dense fields and table filters",
+   "Avatar or icon, not both",
+   "Category tones follow the Badge category order",
+   "Disabled field: every Tag uses State=disabled",
+   "Hugs its label up to 192 (maxWidth spacing/48); the label truncates to 1 line with ellipsis"
+  ],
+  "a11y": [
+   "Remove x is a button labelled \"Remove <value>\"",
+   "Tags can be removed from the keyboard (Backspace, Delete)",
+   "Category labels 5.67:1 or more in every mode"
+  ],
+  "code": "Custom on shadcn Badge variant=\"secondary\" + remove Button; avatar = shadcn Avatar size-5 -ml-1.5; Tone=category-N: bg-[var(--badge-category-N-bg)] text-[var(--badge-category-N-fg)]; sm h-5 px-1.5, default h-6 px-2; label min-w-0 truncate, tag max-w-48.",
+  "guides": [
+   "skills/build-ui/components/select.md"
   ]
  }
 }

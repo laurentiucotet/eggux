@@ -240,8 +240,14 @@
  "Avatar": [
   {
    "main": "Avatar",
-   "helpers": [],
-   "block": "92:949"
+   "helpers": [
+    "Avatar Status",
+    "Avatar Verified"
+   ],
+   "block": "92:949",
+   "examples": [
+    "Example / Avatar styles"
+   ]
   },
   {
    "main": "Avatar Group",
@@ -300,12 +306,18 @@
   {
    "main": "Badge",
    "helpers": [],
-   "block": "200:1241"
+   "block": "200:1241",
+   "examples": [
+    "Example / Badge styles"
+   ]
   },
   {
    "main": "Badge Count",
    "helpers": [],
-   "block": "79:108"
+   "block": "79:108",
+   "examples": [
+    "Example / Badge Count styles"
+   ]
   },
   {
    "main": "Status Dot",
@@ -702,6 +714,14 @@
    "block": "213:1104",
    "examples": [
     "Example / Chip styles"
+   ]
+  },
+  {
+   "main": "Chip Group",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Chip Group"
    ]
   }
  ],

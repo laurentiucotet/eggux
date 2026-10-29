@@ -58,12 +58,12 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Button | `Button Group` | - | Items (native slot) |
 | Button | `Action Bar` | Align: end, start, center. Style: default, sticky-mobile | Show divider, Show leading; Leading, Actions (native slots). sticky-mobile: phone bottom bar (390, min 320) with Show summary (Summary label, Summary value) and xl Buttons sharing the width. The row of buttons that ends a form, a step or a hero |
 | Button | `Split Button` | Variant: default, outline | Label; chevron opens a Menu |
-| Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info, soft-success, soft-warning, soft-destructive, soft-info, soft-neutral. Shape: rounded, pill | Label; Show icon + Icon (swap); Show dot; Show count + Count value |
-| Badge | `Badge Count` | Variant: default, secondary, destructive, outline | Count (numeric bubble for nav items and icon buttons) |
+| Badge | `Badge` | Variant: default, secondary, destructive, outline, success, warning, info, soft-success, soft-warning, soft-destructive, soft-info, soft-neutral, category-1 to category-8. Shape: rounded, pill. Size: default 20, sm 16, lg 24 | Label; Show icon + Icon (swap); Show dot; Show count + Count value. Category colors from badge/category-{n}-bg / -fg (chart hues, Swatch Picker order) |
+| Badge | `Badge Count` | Variant: default, secondary, destructive, outline. Type: count, dot | Count (numeric bubble for nav items and icon buttons, "99+" above 99); Type=dot is an 8 px unread dot |
 | Badge | `Status Dot` | Status: success, warning, error, info, neutral | Label, Show label |
 | Badge | `Badge List` | - | Show more; Tags (native slot) of Badges + "+N" Badge (exposed). A few tags on one line |
-| Chip | `Chip` | State: default, hover, focus, selected, disabled. Tone: default, soft-info, soft-success, soft-warning, soft-neutral (selected only on default) | Label, Show leading icon + Leading icon (swap), Show remove |
-| Avatar | `Avatar` | Type: initials, image. Size: xs 20, sm 24, default 32, lg 40, xl 48. Shape: circle (people), square (companies, apps) | Initials, Show status (online dot), Photo (swap, Type=image: Image / Person / *) |
+| Chip | `Chip` | State: default, hover, focus, selected, disabled. Tone: default, soft-info, soft-success, soft-warning, soft-neutral, category-1 to category-8 (selected only on default). Size: default 32, sm 24, lg 40 | Label, Show leading icon + Leading icon (swap), Show avatar + Avatar (exposed), Show count + Count value, Show remove. Label truncates at 320 |
+| Avatar | `Avatar` | Type: initials, image, icon. Size: xs 20, sm 24, default 32, lg 40, xl 48, 2xl 64, 3xl 96. Shape: circle (people), square (companies, apps) | Initials, Photo (swap, Type=image: Image / Person / *), Icon (swap, Type=icon: user, bot, users), Show status + Avatar Status (exposed: online, away, busy, offline), Show verified (info tick) |
 | Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar; Label + Show label ("Maintained by 3 analysts"); Names + Show names ("Ana, Mihai and 3 others"). Label and names truncate on one line |
 | Avatar | `Byline` | Size: sm, default, lg | Name, Description, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
@@ -96,7 +96,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Content (native slot); clips its content; thin scrollbar on border/default |
 | Select | `Select` | Style: default, filled. State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
 | Select | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
-| Select | `Tag` | State: default, disabled | Label, Show remove |
+| Select | `Tag` | State: default, disabled. Tone: default, category-1 to category-8. Size: default 24, sm 20 | Label, Show remove, Show avatar + Avatar (exposed), Show leading icon + Leading icon (swap). Label truncates at 192 |
 | Select | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Show chevron |
 | Select | `Person Option` | Selected: false, true. State: default, hover | Name, Description, Show detail; Checkbox and Avatar (exposed) |
 | Select | `People Picker` | State: closed, open | Placeholder; Selected, Results (native slots); search, invite by email |
@@ -581,6 +581,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Toggle Group | `Toggle` | Variant: default, outline. Size: default 36, sm 32, lg 40. State: default, hover, pressed, focus, disabled | Label, Show label (off), Show icon (on) + Icon (swap, bold). One on/off button: bold, pin, mute, captions, favorite; icon-only is square |
 | Button | `Copy Button` | Variant: ghost, outline. Size: default 36, sm 32, xs 28. State: default, copied | Nested Button Icon with copy icon; copied shows a check in background/success for 2 s. Code blocks, IDs and keys in tables and Description Lists |
 | Table | `Bulk Action Bar` | - | Selection ("3 selected"), Show select all (link Button exposed, "Select all 48"), Actions (native slot: outline sm Buttons; Button Icons on phones), Show clear. Floating bottom bar for selection in grids, boards, galleries and inboxes |
+| Chip | `Chip Group` | Layout: wrap, scroll | Chips (native slot) of Chips; Show more + "+N more" Chip (exposed). Single or multi select filters and scopes; fills its container, min 160 |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,
@@ -593,7 +594,7 @@ text-quote, link, external-link, share-2, heading, code, git-branch, sparkles, z
 refresh-cw, square, paperclip, globe, wrench, mic, message-square, square-pen, play, pause,
 volume-2, maximize, captions, image, shield-check, key-round, lock, eye, pin, grip-vertical, sun,
 moon, folder, send, receipt, reply, user-plus, palette, languages, hash, printer,
-database, bookmark, headphones, podcast.
+database, bookmark, headphones, podcast, bot.
 
 ## Screens
 The SCREENS group (after BLOCKS) holds complete screens and templates to copy whole: pages Account,
