@@ -8,6 +8,8 @@ Usage guidelines only. Visual specs live in the Figma components (Calendar page)
 | Near future or past (bookings, deadlines, filters) | `Date Picker` (Calendar in a Popover) |
 | Far away or known by heart (birth date, document expiry) | Text input with mask `dd.mm.yyyy`, optional calendar button |
 | A period | Date range: two months side by side on desktop, one on mobile |
+| Date and time together (schedule a post, a reminder) | `Date Time Picker`: one popover, one value "22 Oct 2026, 14:30" |
+| A month, quarter or year (statements, reports) | `Month Picker`, not a Calendar day |
 | Booking with availability | Calendar inline + time slots next to it |
 
 ## Rules
@@ -21,9 +23,20 @@ Usage guidelines only. Visual specs live in the Figma components (Calendar page)
 
 ## Figma
 - `Calendar Day` State: default, hover, focus, today, selected, outside, disabled, range-start,
-  range-middle, range-end. `Calendar`: Month text, prev/next ghost Button Icons, Monday-first grid.
+  range-middle, range-end, booked. `Calendar`: Month text, prev/next ghost Button Icons,
+  Monday-first grid.
+- `Calendar` Caption=dropdown (month and year Selects) for far dates, Months=2 for ranges on
+  desktop, Show week numbers for week-based planning. Booking days carry a note (Show note,
+  price) or State=booked; a Calendar Day shows a note or a dot (Show dot), never both. Example
+  "Calendar options".
 - `Date Picker` (State × Content) with calendar icon. Open state: Date Picker (focus) + Calendar
   with `shadow/md`, 4 px below. Examples "date picker open" and "date range".
+- A period in a filter bar or report is `Date Picker` Type=range that opens Date Range Picker;
+  the trigger reads "6 Oct to 19 Oct 2026". Example "Date range filter".
+- `Date Time Picker`: Calendar plus a scrolling time column and a footer (summary, Cancel,
+  Apply); the trigger is a Date Picker with the date and time. Example "Date Time Picker".
+- `Month Picker` Type month (3 x 4), quarter (2 x 2) or year (12 years) of `Month Picker Cell`s,
+  opened from a Date Picker. Example "Month Picker".
 
 ## Code
 shadcn `Calendar` (react-day-picker, `weekStartsOn={1}`, `locale={ro}`) and the Date Picker recipe
@@ -33,8 +46,11 @@ shadcn `Calendar` (react-day-picker, `weekStartsOn={1}`, `locale={ro}`) and the 
 - Format follows the locale: 24 h in most of Europe ("10:30"), 12 h in the US ("10:30 AM"). Steps of 15 or 30 min for bookings; typing hh:mm when
   any minute is valid (logs, reminders).
 - Unavailable times are disabled in the list, not removed, when users expect them ("10:00").
-- Date + time: two fields side by side (Date Picker 240, Time Picker 140); for bookings prefer
-  `patterns/booking.md` (calendar + slots).
+- Date + time: two fields side by side (Date Picker 240, Time Picker 140), or one `Date Time
+  Picker` when both are picked together; for bookings prefer `patterns/booking.md` (calendar +
+  slots).
+- Time ranges (availability, shifts) use `Time Picker` Type=range with the duration ("09:00 to
+  10:30", Show duration "1 h 30 min"). Example "Availability time ranges".
 - Figma: `Time Picker` (State × Content, clock icon) on the Calendar page. Open state: Time Picker
   (focus) + Menu with times, Checked on the selected one. Examples "time picker open", "date and time".
 

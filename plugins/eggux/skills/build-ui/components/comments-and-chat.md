@@ -15,7 +15,9 @@ Usage guidelines only. Visual specs live in the Figma components (Chat page) and
 - One level of replies, indented under the parent. Deeper nesting becomes unreadable.
 - Each comment: avatar, name, relative time ("2 h ago", full date on hover), text, actions
   (Reply, Edit, Delete for the author; Resolve when the thread is a review).
-- @mentions open a people list and notify; links and mentions are styled as links.
+- @mentions open a people list and notify; links and mentions are styled as links. Typing @
+  opens `Mention Menu` under the caret (people first, typed part highlighted); the pick becomes a
+  `Mention Chip`. Example "Mention Menu" on the Popover page.
 - Resolved comments collapse or fade (`State=resolved` with a Resolved badge) and stay
   reachable with "Show resolved".
 - Edit in place; show "edited" after the time. Delete asks for confirmation

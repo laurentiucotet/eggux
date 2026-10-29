@@ -16,7 +16,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Options are sorted in a meaningful order (frequency, logical sequence, then alphabetical).
 - Option labels are short and parallel in form. Add a description line only when options are
   hard to tell apart.
-- A Combobox shows "No results for <query>" and, when the actor may create, a "Create <query>" option.
+- A Combobox shows "No results for <query>" and, when the actor may create, a "Create <query>"
+  option: end the list with `Select Option` Type=create.
 - Long lists load asynchronously with a loading row, never an empty dropdown.
 - Disabled options stay visible with the reason in a tooltip or description when possible.
 
@@ -24,6 +25,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - The label is clickable and sits to the right of the control.
 - `Switch` applies immediately and shows the result. Inside a form that saves on submit, use `Checkbox`.
 - A single checkbox for consent states what the user agrees to, not "I agree".
+- `Checkbox` and `Radio` Show description adds one muted sentence under the label for consent,
+  notification and plan options.
 - Indeterminate checkbox only for "select all" over a partial selection.
 
 ## Figma
@@ -31,6 +34,10 @@ Usage guidelines only. Visual specs live in the Figma component.
   selected `Menu Item`. See the "select open" example.
 - `Select` Style default or filled: filled matches `Input` Style=filled. Use the form's Input Style;
   never mix filled and outlined controls in one form. Example "Select styles".
+- Style=ghost (no box, inline label "Sort by: Newest") for sort, period and rows-per-page
+  switches outside forms; never inside a form. Example "Select ghost and leading".
+- Status, assignee and language Selects show a leading `Status Dot`, `Avatar` or icon (Show
+  status dot, Show avatar, Show leading icon), matching the options.
 - `Checkbox`, `Radio`, `Switch` include their label (`Show label` to hide it). Error state marks
   the control; the message comes from `Field` or text under the group.
 - `Combobox` is the searchable trigger (chevrons-up-down). Open state: `Combobox` (focus) +
@@ -46,6 +53,8 @@ Usage guidelines only. Visual specs live in the Figma component.
 - 2-5 options all worth seeing: Checkbox group instead.
 - Figma: `Tag` (Label, Show remove), `Tag Input` (State, Tags slot, Show chevron) on the Select page.
   Example "multi-select open".
+- `Tag` Show avatar for people, Show leading icon for typed values (#channel), Tone=category-N for
+  colored labels (see `badge.md`); Size=sm in dense fields. Example "Tag styles".
 
 ## People Picker
 - Choosing people (assignee, approvers, reviewers, share with). Search matches name, email and

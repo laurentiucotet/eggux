@@ -9,7 +9,10 @@ Label (`ui/label`) → input → hint or error (`ui/caption`). The label is alwa
 - Pick the narrowest input type: email, tel, number, date picker, select, combobox, textarea.
 - Width suggests the expected length (postal code short, address full width).
 - Placeholder shows an example value, never the label or instructions.
-- Required/optional marking is consistent across the product (see ux-rules.md).
+- Required/optional marking is consistent across the product (see ux-rules.md). Mark the
+  minority: `Field` Show optional on the few optional fields, or Show required on the few
+  required ones, never both in one form.
+- Values people may read but not change use State=read-only, never disabled.
 - Errors follow `patterns/form-validation.md`.
 - Group related fields (address, date range) and keep one column on mobile.
 - Autofill: set the correct `autocomplete` attribute in code.
@@ -28,10 +31,27 @@ Pick one `Input` Style per form, and give `Select` the same Style.
 - Never mix filled and outlined controls in one form.
 - Figma: `Input` Style × State × Content; `Field` Show label. Example "Input styles" on the Input page.
 
+## Size and layout
+| Size | Use |
+|---|---|
+| `sm` (32) | Filter bars, toolbars and table rows |
+| `default` (36) | Most forms |
+| `lg` (40) | Hero and mobile forms |
+
+- One Size per row or form, matching the Buttons in the same row. Size is on `Input`, `Select`,
+  `Combobox`, `Date Picker`, `Time Picker` and `Tag Input`.
+- `Field` Layout=horizontal (label column at the left) for dense settings and record forms at
+  400 px and wider; vertical below.
+- `Field` Show info adds an `Info Tip Trigger` after the label for a definition (see
+  `tooltip.md`).
+- `Input` Show loading while a value is checked or looked up (VAT number, username); Show clear
+  on search and filter inputs.
+
 ## Textarea
 - Use for free text longer than one line: notes, descriptions, messages, reasons.
 - Height shows the expected length (3-5 rows); it grows with content up to a max, then scrolls.
-- A limit is shown as a counter in the Field hint ("86/500"), turning to error past the limit.
+- A text limit uses `Field` Show counter (`Field Counter` at the right of the label, "86/500"):
+  Status near from 90%, over past the limit together with State=error.
 - Figma: `Textarea` (State × Content, like Input) inside a `Field` Control slot.
 
 ## Input OTP (one-time codes)

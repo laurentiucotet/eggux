@@ -6,10 +6,11 @@ Usage guidelines only. Visual specs live in the Figma component (Color Picker pa
 | Need | Use |
 |---|---|
 | Pick from a few fixed colors (labels, calendars, tags) | Swatches only (a row of buttons with a ring on the selected one) |
-| Any color (brand settings, theme, charts) | `Color Picker` in a Popover, opened from a color field |
+| Any color (brand settings, theme, charts) | `Color Picker` in a Popover, opened from a `Color Input` |
 
 ## Rules
-- The trigger is a color field: swatch + hex value. Typing a valid hex updates the swatch.
+- In forms a color is a `Color Input` (swatch + hex) that opens Color Picker; fixed palettes use
+  `Swatch Picker`. Typing a valid hex updates the swatch.
 - Show presets (brand or recent colors) first when users should stay on palette.
 - Hex input accepts with or without `#`, 3 or 6 digits; opacity only when the product supports
   it.
@@ -19,6 +20,7 @@ Usage guidelines only. Visual specs live in the Figma component (Color Picker pa
 ## Figma
 `Color Picker`: saturation area, hue slider, hex `Input Group` with opacity, Swatches (native
 slot). Gradients in the control are raw colors by design; everything else uses tokens.
+`Color Input` State default, focus, error, disabled; Value, Show opacity. Example "Color Input".
 
 ## Code
 `react-colorful` (or the native `input type="color"` for simple cases) inside a shadcn
