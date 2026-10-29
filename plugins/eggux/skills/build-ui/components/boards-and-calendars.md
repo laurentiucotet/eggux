@@ -10,8 +10,13 @@ Usage guidelines only. Visual specs live in the Figma components (Kanban, Schedu
 - Drag and drop with a lifted card and a drop placeholder; keyboard alternative (Space to pick
   up, arrows to move, Space to drop) and a "Move to…" menu on each card.
 - Moving to a final stage (Done, Lost) may ask for a reason; never delete on drop.
-- Figma: `Kanban Card` (State: default, hover, dragging), `Kanban Column` (Cards slot),
-  `Block / Kanban Board` on the App page.
+- Kanban Column State=drop-target while a card is dragged over it, collapsed for Done and other
+  columns people rarely open; Show limit with the count turning destructive past it.
+- Kanban Card Show cover only when the picture helps (design, content); Show priority for high
+  priority only.
+- Figma: `Kanban Card` (State: default, hover, dragging; Show cover, Show priority), `Kanban
+  Column` (State default, drop-target, collapsed; Cards slot, Limit), `Block / Kanban Board` on
+  the App page.
 
 ## Scheduler (day / week)
 - For bookings, shifts, meetings and rooms. Toolbar: Today, previous / next, range title,
@@ -22,6 +27,8 @@ Usage guidelines only. Visual specs live in the Figma components (Kanban, Schedu
   events sit side by side.
 - Click an empty slot to create, drag to move or resize; confirm moves that notify others.
 - Time zone visible when users or attendees can be in different zones.
+- `Calendar Event` State=selected while its details are open, dragging while moved; Status
+  tentative and cancelled stay on the calendar (cancelled with a line-through in code).
 - Mobile: day view with a week strip.
 - Figma: `Calendar Event` (Size default, sm × Series 1-4) on the Scheduler page, `Block / Scheduler Week` on the
   App page.

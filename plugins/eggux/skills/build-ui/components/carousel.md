@@ -15,6 +15,8 @@ Usage guidelines only. Visual specs live in the Figma component (Carousel page).
 - Product gallery: thumbnails under or beside the main image instead of dots.
 - Slides keep the same size; images use one ratio (`Image Placeholder` 16:9, 4:3 or 1:1).
   Ratio 3:2 for photos in articles, 2:3 for product photos, 9:16 for stories.
+- Small product and file images (lists, cart lines, table cells) use `Thumbnail` (Size xs 24 to
+  xl 80, Ratio 1:1 or 4:3) with a fallback icon; never a resized Image Placeholder.
 - Image Placeholder State=loading while an image loads, State=error when it fails (Fallback text
   "Image unavailable"). Example "Image Placeholder ratios and states".
 - Image Placeholder: change only the width; the height follows the Ratio. Pick another Ratio

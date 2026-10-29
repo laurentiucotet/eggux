@@ -30,11 +30,12 @@ its variables; read them through Figma MCP, do not copy them here.
 
 ## Figma
 - `Button`: `Variant` × `Size` (xs, sm, default, lg, xl) × `State` (default, hover, focus,
-  disabled, loading). Properties: `Label`, `Show leading icon` with the `Leading icon` swap, `Show trailing
-  icon` with the `Trailing icon` swap.
+  disabled, loading). Properties: `Label`, `Show leading icon` with the `Leading icon` swap, `Show
+  trailing icon` with the `Trailing icon` swap.
 - `Button Icon`: icon-only, `Variant` × `Size` × `State`, `Icon` swap. Size xs 28 (table rows,
-  sidebar item actions), sm 32 (tables, dense toolbars), default 36, lg 40 (next to lg Buttons). Pair it with a tooltip. It has `soft` too,
-  for icon actions next to soft Buttons. Example "Button styles".
+  sidebar item actions), sm 32 (tables, dense toolbars), default 36, lg 40 (next to lg Buttons).
+  Pair it with a tooltip. It has `soft` too, for icon actions next to soft Buttons. Example
+  "Button styles".
 - `Button` State=loading: a spinner replaces the leading icon, the width stays; label stays or
   says the action in progress ("Saving…"). Block repeat clicks while loading.
 - `Button Icon` State=loading while a refresh, retry or send runs; keep the size and block repeat

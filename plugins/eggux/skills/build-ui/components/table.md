@@ -15,9 +15,15 @@ Usage guidelines only. Visual specs live in the Figma component.
 - Row actions: a `DropdownMenu` in the last column (ghost icon button with label "Actions for <name>").
   One frequent action can be visible; the rest go in the menu.
 - Empty cells show "-" or "Not set", never blank.
+- Products, files and listings use `Table Cell Media` (Thumbnail sm, title, one line of meta);
+  people use `Table Cell User`.
+- Totals go in one `Table Cell` Type=footer row; stripe (Style=striped) only wide read-only
+  tables.
 
 ## Behavior
 - Sorting: clickable header with a sort indicator; one default sort that makes sense for the task.
+- `Table Header Label` Show menu on the hovered column only; Show info (Info Tip) for metric
+  definitions. A left-aligned label with both needs about 72 px more than the label.
 - Filtering and search follow `patterns/search-and-filter.md`.
 - Selection: checkbox column only when bulk actions exist. A toolbar with the bulk actions
   and "N selected" appears when something is selected.
@@ -32,6 +38,10 @@ Usage guidelines only. Visual specs live in the Figma component.
 For lists people work in all day (invoices, orders, tickets, users, assets).
 - Toolbar (`Data Grid Toolbar`): saved view selector, search, Filters with the active count,
   Columns (show, hide, reorder), Group by, density, Export. Active filters as chips under it.
+- Columns opens `Column Settings` (search, `Column Settings Item`s to check and drag, Reset,
+  Cancel, Apply); lock the identifying column (State=locked) and keep one column visible.
+- Tree rows put `Table Cell Tree` in the first column (indent 24 per level, max Level 3); leaf
+  rows use Expander=none.
 - Saved views: name, owner, shared or private; the view keeps columns, filters, sort and
   grouping. "Unsaved changes to this view" with Save / Save as new.
 - Group rows (`Table Group Row` in an expanded cell): label, count, subtotal, collapsible.

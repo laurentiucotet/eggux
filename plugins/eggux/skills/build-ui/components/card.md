@@ -50,12 +50,16 @@ Stat Card, Option Card and Post Card use the same tokens.
 
 ## Rules
 - A whole card is clickable only when it has one destination. Then it has a hover state, a focus
-  ring and no other buttons inside except a menu. Otherwise, make the title the link.
+  ring and no other buttons inside except a menu. Otherwise, make the title the link. Cards that
+  are one link use `Card` State=hover and focus; Media=top (a full-bleed 16:9 image) for picture
+  tiles.
 - Cards in a grid have equal height per row and the same structure, so the eye can scan.
 - Footer actions follow button rules: one primary at most, usually none in a grid of cards.
 - Metric cards: label (`body/small` muted), value (`heading/h2`, one line), change with direction
   in text and icon, not color alone.
 - Selectable cards (plan, delivery, billing period) use Option Card: the whole card is the target, one selected.
+  Option Card Layout=media for visual pickers (theme, template), compact for short lists in
+  dialogs.
 - Card Header `Show icon` names the card type on dashboards; give every card in a row an icon or none.
 - Stat Card: the change Badge is exposed: set its Label and Variant per instance. It is soft and its
   tone follows meaning (up success, down destructive, flat neutral; churn down = soft-success).

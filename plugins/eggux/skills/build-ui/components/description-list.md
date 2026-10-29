@@ -10,7 +10,10 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Statuses and categories are Badges in the Value slot; people are Avatar + name; long values wrap.
 - Edit: one "Edit" action per card that turns the card into a form (or opens a Sheet), not a pencil
   per row, unless rows are edited independently (inline edit, see `table.md`).
-- Figma: `Description List Item` Orientation × Label, Show divider (off on the last row), Value slot.
+- Style=bordered (label on a muted cell, a border around each row) for dense record headers and
+  specs; Show action (Copy Button) only on IDs, keys and links.
+- Figma: `Description List Item` Orientation × Style × Label, Show divider (off on the last row),
+  Show action, Value slot.
 - Code: `<dl>` with `<dt>`/`<dd>` and Tailwind grid, no shadcn component.
 
 ## Meta Item (facts with an icon)
@@ -49,5 +52,7 @@ Usage guidelines only. Visual specs live in the Figma components.
 - Long histories: show the last 5-10 with "View all".
 - Layout=default in activity feeds. Layout=card for events with notes or files. alternating-left
   and alternating-right, alternated item by item, for milestones on marketing pages from 768 up.
+  Layout=horizontal for roadmaps and history on wide screens; Size=sm for activity in side
+  panels.
 - Figma: `Timeline Item` Tone × Layout × Title, Time, Description, Icon, Show connector (off on the last),
   Content slot (Show content).

@@ -57,6 +57,8 @@ Usage guidelines only. Visual specs live in the Figma components (Chat page) and
 - `Typing Indicator` while the other person types; hide after 5 s without input.
 - Layout: list of conversations + conversation in `Page Shell / Split View`; on mobile, the
   list and the conversation are separate screens.
+- Chat and inbox lists use `Conversation Item` (newest first, pinned on top, "You: " before your
+  own last message; Show unread, Show pinned, Show muted). Example "Conversation Item".
 
 ## Figma
 - `Comment`: Type comment, reply × State default, resolved; Name, Time, Text, Show actions.

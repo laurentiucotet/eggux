@@ -15,9 +15,9 @@ Usage guidelines only. Visual specs live in the Figma component.
   verified) for checked accounts, never both on one avatar.
 
 ## Figma
-`Avatar` Type (initials, image, icon) × Size (xs, sm, default, lg, xl, 2xl, 3xl). For a photo, put an image fill on
-the `image` layer of the instance. Show status shows the exposed `Avatar Status`. Example
-"Avatar styles".
+`Avatar` Type (initials, image, icon) × Size (xs, sm, default, lg, xl, 2xl, 3xl). For a photo,
+put an image fill on the `image` layer of the instance. Show status shows the exposed `Avatar
+Status`. Example "Avatar styles".
 - Shape: circle for people, square for companies, workspaces and apps (one shape per list).
   Size xs (20) for inline mentions and dense table cells.
 - Type=image with a face from the `Photo` swap (Image / Person / *) makes people real in testimonials, teams and comments; the faces are samples: ship the person's photo, or initials when there is none. Never repeat one face in one block.

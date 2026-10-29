@@ -117,10 +117,10 @@ component guides it names. Names are Figma components; inventory in
 | button | Button, Button Icon, Copy Button, Button Group, Split Button, Action Bar, Toolbar, FAB, Social Share |
 | boards-and-calendars | Kanban Card, Kanban Column, Calendar Event, week and month view, Gantt Bar, Workflow Node, Agenda Item, Meeting Card |
 | card | Card, Stat Card, Option Card, Post Card, Entity Card, Person Card, Event Card, Progress Card, Separator, Plan Card, Product Card, Address Card, Link Preview, Location Card, Integration Card, Callout Card |
-| carousel | Carousel, Carousel Gallery, Carousel Hero, Image Placeholder (ratios, states), Lightbox |
+| carousel | Carousel, Carousel Gallery, Carousel Hero, Image Placeholder (ratios, states), Thumbnail, Lightbox |
 | charts | Bar Chart, Bar Chart Horizontal, Line Chart, Donut Chart (donut, pie), Heatmap, Gauge, Treemap, Funnel Chart, Scatter Chart, Waterfall Chart, Combo Chart, Sparkline, Chart Card, Chart Legend, Chart Tooltip, Trend Indicator, Metric Strip, Dashboard Widget, Distribution Bar, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map, Radial Chart, Box Plot |
 | color-picker | Color Picker, Swatch, Swatch Picker, Color Input |
-| comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer, Annotation Pin, Mention Chip, Mention Menu, Reaction, Reaction Bar, Thread Summary |
+| comments-and-chat | Comment, Comment Composer, Chat Message, Typing Indicator, Chat Composer, Annotation Pin, Conversation Item, Mention Chip, Mention Menu, Reaction, Reaction Bar, Thread Summary |
 | content | Prose (Prose Heading, Prose Paragraph, Prose List Item, Prose Blockquote), Highlight, Inline Code, Section Heading, Feature Item, Post Card, Quote, Code Block, Table of Contents Item, Table of Contents, Command Snippet, Diff Line, Diff Viewer, JSON Viewer, Testimonial Card, Footnote, Image Compare Slider |
 | date-picker | Calendar, Date Picker, Time Picker, Date Range Picker, Date Time Picker, Month Picker, Date Input |
 | description-list | Description List, Meta Item, Figure, Summary Row, Timeline, Description List Item, Timeline Item |
@@ -141,7 +141,7 @@ component guides it names. Names are Figma components; inventory in
 | sidebar | Sidebar and its parts, Sidebar Double, Org Switcher |
 | skeleton | Skeleton, Skeleton Preset |
 | stepper | Step, Stepper, Shipment Tracker |
-| table | Table cells, toolbar, inline edit, column resize, Data Grid Toolbar, Empty State, Filter Bar, Table Cell, Table Group Row, Table Pagination, Table Toolbar, Bulk Action Bar, Page Toolbar, Saved View Item |
+| table | Table cells, toolbar, inline edit, column resize, Data Grid Toolbar, Empty State, Filter Bar, Table Cell, Table Group Row, Table Pagination, Table Toolbar, Bulk Action Bar, Page Toolbar, Saved View Item, Table Cell Media, Table Cell Tree, Column Settings |
 | tabs | Tabs (default, line, vertical), Tab, Toggle Group, Toggle |
 | toast | Toast |
 | tooltip | Tooltip, Info Tip |
