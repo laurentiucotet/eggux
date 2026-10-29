@@ -33,7 +33,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | AI Chat | `Prompt Input` | State: default, focus, streaming, disabled. Content: placeholder, filled | Placeholder, Value, Show attachments, Show tools, Show voice; Attachments, Tools (native slots). Send becomes Stop while streaming; enabled when filled, disabled on the placeholder. A draft left in the input is State=default, Content=filled |
 | AI Chat | `Attachment` | Type: file, image. State: default, uploading, error | Name, Meta, Show remove |
 | AI Chat | `User Message` | - | Text, Show actions (copy, edit). Bubble hugs, max 576 |
-| AI Chat | `Assistant Message` | State: default, streaming, error | Content (native slot), Show actions (copy, regenerate, good, bad) |
+| AI Chat | `Assistant Message` | State: default, streaming, error, stopped | Content (native slot), Show actions (copy, regenerate, good, bad), Show branch + Branch ("2 of 3"); stopped: "You stopped this answer" above the actions |
 | AI Chat | `Reasoning` | State: running, collapsed, expanded | Label, Status, Details |
 | AI Chat | `Tool Call` | Status: running, done, error, approval | Title, Description, Approval message (approval), Error message (error); approval has Deny / Approve. Status Badges soft: done soft-success, error soft-destructive, approval soft-warning |
 | AI Chat | `Source Item` | - | Number, Letter (favicon initial), Title, Domain |
@@ -81,8 +81,8 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Kbd | `Kbd` | - | Key (`foreground/default` on `background/muted`) |
 | Kbd | `Kbd Group` | - | Keys (native slot) |
 | Spinner | `Spinner` | Size: sm 16, default 20, lg 32. Tone: muted, default. Type: default, dots | Loader icon; rotate in code. dots: three pulsing dots for typing and AI writing |
-| File Upload | `File Dropzone` | State: default, drag-over, error, disabled | Title (not in drag-over), Hint, Error (error state); Browse button exposed |
-| File Upload | `File Item` | State: uploading, done, error | File name; Progress, cancel/remove, Retry |
+| File Upload | `File Dropzone` | State: default, drag-over, error, disabled. Size: default, sm | Title (not in drag-over), Hint, Error (error state); Browse button exposed. sm: one row, title and hint 1 line each, 480 and Fill |
+| File Upload | `File Item` | State: uploading, done, error. Type: file, image. Layout: row, tile | File name; Progress, cancel/remove, Retry. image: Image Placeholder 1:1 thumbnail (set its Image). tile: 160 wide, media 112, remove or cancel on the media corner, Retry under the error |
 | File Upload | `Resource Item` | - | Icon (swap), Name, Meta, Show divider; Actions (native slot). A file people download or open |
 | File Upload | `File Preview` | State: ready, loading, unavailable | File name, Meta; zoom, download, close; page thumbnails; page count. Page area clips |
 | Progress | `Progress` | Tone: default, success, warning, error. Value: 0 to 100 by 10, plus 25, 75, indeterminate (segmented: 0, 25, 50, 75, 100). Type: default, segmented. Size: default (8), sm (4), lg (12) | Show label (off) + Label: a row above the bar with the label and an editable value text ("40%", "3 of 5"). indeterminate: Tone=default, no value text. Sizes and label on Type=default only. Pick the nearest Value step. segmented: Segments (native slot) of Progress Segment instances |
@@ -112,7 +112,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Calendar | `Time Picker` | Type: single, range. Size: default, sm, lg. State: default, focus, error, disabled. Content: placeholder, filled | Value (single); Range "09:00 to 10:30", Duration "1 h 30 min", Show duration (range, 240, lg 280, min 220). Clock icon; opens a Menu of times |
 | Calendar | `Date Range Picker` | - | Presets (native slot), Summary, Show presets; two Calendars; Cancel / Apply |
 | Chart | `Bar Chart` | Type: single, grouped, stacked | Bars ≤ 24, 4 px data-end radius, 2 px gaps; y axis, grid, x labels |
-| Chart | `Line Chart` | Type: line, area | 2 px lines, end dots with surface ring, area at opacity/10 |
+| Chart | `Line Chart` | Type: line, area, stacked-area, step | Show series 2 (on), Show series 3 (off), Show comparison (off: previous period of series 1, dashed muted). 2 px lines, end dots with surface ring, area at opacity/10, stacked bands at opacity/20 |
 | Chart | `Donut Chart` | Type: donut, pie | Total, Total label; 4 segments (arcData) and legend with values |
 | Chart | `Bar Chart Horizontal` | - | Ranked rows: label, bar (share of track), value |
 | Chart | `Heatmap` | Data: default, late-peak, weekdays-only | 7 × 12 grid, 5 opacity steps of chart/1, legend Fewer → More. Other data only by detaching in client files |
@@ -128,8 +128,8 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Chart | `Chart Legend` | - | Items (native slot) |
 | Chart | `Chart Tooltip Row` | Series: 1-8 | Label, Value |
 | Chart | `Chart Tooltip` | - | Title; Rows (native slot) |
-| Chart | `Chart Card` | - | Title, Description, Insight, Note, Show legend, Show footer; Actions, Chart (native slots); Legend exposed (one Chart Legend Item per series in its Items slot; remove the extras) |
-| Code Block | `Code Block` | - | Language, Code, Show header; Copy button |
+| Chart | `Chart Card` | State: default, loading, empty, error | Title, Description, Insight, Note, Show legend, Show footer; Actions, Chart (native slots); Legend exposed. loading: Skeleton bars; empty: exposed Empty State sm (chart Spot Illustration); error: exposed Empty State sm Tone=error with Try again. Chart slot kept (hidden) outside default; legend and footer only in default |
+| Code Block | `Code Block` | - | Language, Code, Show header; Copy button; Show tabs + Tabs (native slot of Tab line sm), Show line numbers + Line numbers, Show highlight (exposed Code Highlight, pick Line) |
 | Editor | `Rich Text Editor` | State: default, focus | Toolbar (Toolbar default with Toggles: heading, bold, italic, underline, lists, quote, link); Content (native slot), Show footer (hint + counter) |
 | Editor | `Comment` | Type: comment, reply. State: default, resolved | Name, Time, Text, Show actions; Avatar exposed |
 | Editor | `Comment Composer` | - | Avatar, Textarea, attach, ⌘↵ hint, Comment button |
@@ -247,7 +247,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Accordion | `Accordion Item` | Size: default, sm. State: collapsed, expanded. Style: default, card. Icon: chevron, plus | Title, Show leading icon + Leading icon (swap), Show meta; Meta, Content (native slots) |
 | Accordion | `Accordion` | Style: default, card | Items (native slot) |
 | Image | `Map` | - | Label, Address, Show label, Show controls, Show pin. Roads scale, pin stays centered; put a static map image as fill in production |
-| Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 1:1, 3:4 | Show caption, Show image + Image (swap: Image / * from the Imagery page). Without an image: dot pattern and an image icon. The height follows the width at the Ratio: change only the width, pick another Ratio instead of resizing the height |
+| Image | `Image Placeholder` | Ratio: 21:9, 16:9, 4:3, 3:2, 1:1, 3:4, 2:3, 9:16. State: default, loading, error | Show caption, Show image + Image (swap), Fallback text (error). loading: background/accent fill; error: image icon and "Image unavailable" (follows Show caption). The height follows the width at the Ratio |
 | Image | `Image Cropper` | Shape: square, circle | Image layer (fill), scrim, selection that stays centered, zoom Slider, rotate, Cancel, Save |
 | Image | `Avatar Upload` | Shape: circle (people), square (workspaces, companies). State: empty, filled, uploading, error | Label, Show label, Hint, Show remove; Upload or Change (exposed Button, set its Label). Profile or logo picture in settings; square sets Label to "Workspace logo" |
 | Sections (blocks) | `Section Header` | Align: center, left | Overline (`foreground/brand` in both Align values; do not override), Title (heading/h2), Description |
@@ -305,7 +305,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Forms | `Block / Forgot Password`, `/ Check Email`, `/ Reset Password`, `/ Two-Factor`, `/ Accept Invite` | - | Auth flow cards, 384 wide |
 | Empty State | `Empty State` | Size: default, sm. Media: icon, image, illustration. Tone: default, error (Media=icon only) | Title, Description, Show description, Icon (swap), Show actions; Actions (native slot). illustration: exposed Spot Illustration (120, sm 80). error: Error title, Error description, Try again Button, soft destructive tile |
 | Results | `Block / Result` | Type: not-found, server-error, no-access, maintenance, success | Show code; Actions (native slot) |
-| Commerce | `Product Card` | Layout: vertical, horizontal, overlay. State: default, sale, sold-out | Name, Variant text, Show action, Show wishlist, Price, Old price; sale: `Discount` Badge exposed (set the percentage in its Label); sold-out: `Sold out badge`. A product in a grid or carousel: photo, sale or sold-out badges, wishlist, name, variant text, Price and Old price, optional quick add. |
+| Commerce | `Product Card` | Layout: vertical, horizontal, overlay. State: default, sale, sold-out. Size: default, sm (vertical only) | as before + Show swatches (off: 4 Swatch sm under the variant text); sm 180 (min 140), smaller name, wishlist sm |
 | Commerce | `Block / Product Detail` | - | Gallery, options (Toggle Group), quantity, add to cart, details accordion |
 | Commerce | `Block / Order Summary` | - | Title, Show pay button; Subtotal row, Shipping row, VAT row, Total row (Summary Rows) and Pay button exposed. Lines, discount code, totals, pay button, trust line. Turn Show pay button off on checkout steps with their own Continue |
 | Commerce | `Block / Product Grid`, `/ Orders`, `/ Reviews` | - | Category listing with filters, sort, product grid and Load More; order history with tracking, address and payment; rating summary with reviews |
@@ -436,7 +436,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Surveys | `Feedback Widget` | State: ask, comment, thanks | Question, Thanks. A one-tap question at the end of a help article, an AI answer or a finished task: Yes or No, then an optional comment, then thanks. |
 | Surveys | `NPS Survey` | State: unanswered, answered | Question. Net Promoter Score: a 0-10 scale with anchors, then one optional open question. |
 | Tour | `Annotation Pin` | State: default, active, resolved | Number. A numbered marker on a design, document or screenshot where a comment lives. |
-| Video | `Audio Player` | - | Title, Time, Duration. Plays one audio file: podcast episode, voice message, recorded call. |
+| Video | `Audio Player` | Variant: default, compact. State: paused, playing | Title, Time, Duration. compact: 280 pill with play, waveform and Duration (voice messages) |
 | Video | `Video Thumbnail` | - | Show duration. A video before it plays: poster frame, play button and duration. |
 | Hero | `Block / Hero with Logo Cloud` | - | Announcement Pill, display Title with accent, Description, Action Bar (2 CTAs), browser Device Frame (exposed) with `Image / Screenshot / Invoices`, Logo caption + Logos slot (6 Logo Tile plain); Show announcement, Show screenshot, Show logos |
 | Hero | `Block / Hero with Form` | - | Eyebrow, display Title with accent, Description, Inline Form (exposed, "Start free" + hint), social proof (Avatar Group with photos + Rating 4.9), 4:3 Image (exposed, `Image / Office / 03`); Show eyebrow, Show social proof |
@@ -603,6 +603,18 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Search | `Search Suggestions` | - | Recent, Suggestions, Records (native slots of Search Suggestion Items) with Recent label, Suggestions label, Records label and Show recent, Show suggestions, Show records; Hint + Show footer. Popover panel under a search field, min 280 |
 | Search | `Search Suggestion Item` | Type: suggestion, recent, record. State: default, highlighted | suggestion: Match (typed part, ui/label) + Completion; recent: Query + remove x (exposed); record: Icon (swap), Title, Meta |
 | Page Shells | `Page Shell / App` | Layout: sidebar, stacked | Page (native slot). sidebar: Sidebar and Top Bar exposed; stacked: App Header exposed. Hugs its content with a min height of 900: put a taller page in the Page slot, never resize the shell |
+| Chart | `Radial Chart` | Type: single, concentric | Value, Label, Show label. Progress to a goal as one ring (chart/1) or three concentric rings (chart/1-3) on background/muted tracks, value in the middle; set each value arc per instance (Sweep = share x 360). Fixed 200 square |
+| Chart | `Box Plot` | - | Show outliers. 5 groups: quartile box (badge/category-1-bg, chart/1 border), median 2 px, whiskers and caps, open outlier dots; y axis with unit, x group labels. Marks scale with the width, min 320 |
+| File Upload | `File Type Icon` | Type: pdf, document, sheet, slides, image, video, audio, archive, code, generic. Size: default 40, sm 32 | Tile in the Badge category tint with the extension (PDF, DOC, XLS, PPT, JPG, MP4, MP3, ZIP, </>) in category-N-fg; generic shows a file icon. Edit the extension text per instance |
+| Prose | `Prose` | Size: default, sm, lg | Content (native slot) with Prose parts in reading order: Prose Heading, Prose Paragraph, Prose List Item, Prose Blockquote, Code Block, Image Figure, Separator. Fill up to 672 (sm 576, lg 768), min 280. New page Prose (COMPONENTS, before Quote) |
+| Prose | `Prose Heading` | Level: h2, h3, h4. Size: default, sm, lg | Text. Space above per level. Only inside Prose |
+| Prose | `Prose Paragraph` | Size: default, sm, lg | Text. Links, inline code and marks are styled runs |
+| Prose | `Prose List Item` | Type: bullet, number. Size: default, sm, lg | Text, Number (number type) |
+| Prose | `Prose Blockquote` | Size: default, sm, lg | Text, Cite, Show cite. Left rule border/default |
+| Prose | `Highlight` | Tone: default, ai | Text. Marked run drawn with the Comment Highlight recipe in `highlight/mark` (search matches) or `highlight/ai` (AI changes); apply the same recipe to runs in any text |
+| Code Block | `Inline Code` | - | Code. Code style on background/muted, radius sm; hugs up to 320, 1 line with ellipsis |
+| Code Block | `Code Highlight` | Line: 1-8 | The highlighted line band (code/line-highlight) of a Code Block; only inside Code Block (exposed as highlight) |
+| Content | `Block / Article`, `Block / Legal Page` | - | Body now built on a Prose instance (Size default): Prose Headings, Paragraphs, List Items, plus Quote, Code Block and Alert in its Content slot |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,

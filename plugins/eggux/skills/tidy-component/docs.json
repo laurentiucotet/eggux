@@ -325,7 +325,9 @@
   "use": [
    "Every answer in a chat page or assistant panel",
    "Answers that include Reasoning, Tool Calls, lists, tables, Code Blocks and Sources",
-   "Streaming replies (State=streaming) and failed replies (State=error)"
+   "Streaming replies (State=streaming) and failed replies (State=error)",
+   "State=stopped after Stop in Prompt Input",
+   "Show branch after Regenerate or an edited prompt"
   ],
   "avoid": [
    "Messages the user sent: use User Message",
@@ -337,7 +339,9 @@
    "Content slot: Reasoning, Tool Calls, text, lists, tables, Code Blocks, in the order they happened",
    "Sources, with Citations in the text",
    "Actions: copy, regenerate, good, bad (Show actions)",
-   "Alert with the reason and Retry (State=error)"
+   "Alert with the reason and Retry (State=error)",
+   "Branch (Show branch, off): previous and next Button Icons ghost sm with \"2 of 3\" (Branch) before the actions",
+   "State=stopped: partial answer, muted \"You stopped this answer\" line with a square icon, then copy and regenerate"
   ],
   "rules": [
    "Lead with the answer, then the detail; short paragraphs in body/default (panel: body/small)",
@@ -345,13 +349,16 @@
    "State=error: keep the partial answer, say what happened, offer Retry",
    "Facts from data get a Citation; with no source, say \"I could not find…\" instead of guessing",
    "Do not auto-scroll when the user scrolled up; show \"Jump to latest\"",
-   "Sanitize model output before rendering HTML"
+   "Sanitize model output before rendering HTML",
+   "Branch counts the answers to the same prompt; switching keeps the conversation below in sync",
+   "Stopped keeps what was written; never show it as an error"
   ],
   "a11y": [
    "Streaming text is announced with aria-live=\"polite\", once per finished paragraph, not per token",
    "Action tooltips and labels: Copy, Regenerate, Good response, Bad response",
    "Actions show on keyboard focus as well as hover",
-   "Reduced motion: no typing animation, show text in chunks"
+   "Reduced motion: no typing animation, show text in chunks",
+   "Branch buttons are labelled \"Previous answer\" and \"Next answer\"; the count is announced (\"Answer 2 of 3\")"
   ],
   "code": "Vercel AI SDK + AI Elements, or assistant-ui. Render with the product's markdown renderer.",
   "guides": [
@@ -1181,23 +1188,30 @@
    "Actions slot: time range Toggle Group",
    "Chart slot: Bar Chart, Line Chart or another chart",
    "Chart Legend (exposed, Show legend): its Items slot holds one Chart Legend Item per series",
-   "Footer with trend icon, Insight and Note (Show footer)"
+   "Footer with trend icon, Insight and Note (Show footer)",
+   "State: default (chart), loading (Skeleton bars and axis, header and Actions stay), empty (exposed Empty State sm with the chart Spot Illustration, Show actions off), error (exposed Empty State sm Tone=error with Try again)",
+   "Chart slot stays in every state, hidden outside default; Chart Legend and footer show only in default"
   ],
   "rules": [
    "Title says what is measured (\"Revenue vs costs\"), never \"Chart\"",
    "Legend on for 2 or more series with one item per series (remove items from the legend's Items slot); off for one series",
    "Footer states the insight in words (\"Profit up 21% vs last half-year\")",
    "Every chart has a table view in code",
-   "Empty: say why; loading: Skeleton in the chart shape; error: inline Alert with retry",
    "Fill the Actions and Chart slots in the instance; never detach",
    "Resize: the header wraps the Actions slot under the titles when narrow (titles at least 160); Title and Description up to 2 lines with ellipsis",
    "Footer: trend icon first, Insight fills and wraps to 2 lines; Note up to 2 lines",
-   "Hide an empty Actions slot (it still takes its width)"
+   "Hide an empty Actions slot (it still takes its width)",
+   "State=loading while data loads: keep the title and period so the layout does not jump",
+   "State=empty when the period has no data: say why and what to try (\"Try a longer period\"); never draw an empty axis",
+   "State=error when the data failed: say it failed and offer Try again; keep the Actions so people can change the period",
+   "Set the title and description of the Empty State per card on the exposed instance",
+   "All states keep the card height of the default chart (240 chart area), so a dashboard grid does not shift"
   ],
   "a11y": [
    "Table view toggle or \"View data\" action, reachable by keyboard",
    "The insight gives the takeaway without reading the chart",
-   "The time range Toggle Group has a label"
+   "The time range Toggle Group has a label",
+   "Loading sets aria-busy on the chart area; empty and error text is read in place of the chart"
   ],
   "code": "shadcn Card + shadcn Chart (Recharts) + ToggleGroup for the time range.",
   "guides": [
@@ -1526,26 +1540,33 @@
    "Config snippets in docs and help articles"
   ],
   "avoid": [
-   "Code inside a sentence: inline code style on background/muted, radius sm",
+   "Code inside a sentence or a cell: use Inline Code (or the code style on the run inside Prose)",
    "Editing code or config: use a code editor (Monaco, CodeMirror)"
   ],
   "anatomy": [
    "Header (Show header): Language label and Copy Button Icon",
    "Code in the monospace code style",
-   "Body that scrolls horizontally"
+   "Body that scrolls horizontally",
+   "Tabs slot (Show tabs, off): Tab line sm instances for files, package managers or OS variants; one active",
+   "Line numbers (Show line numbers, off): muted gutter; set Line numbers to 1 to N, one per line",
+   "Highlight (Show highlight, off): exposed Code Highlight band (code/line-highlight) behind one line; pick Line 1 to 8"
   ],
   "rules": [
    "No wrapping: long lines scroll horizontally",
    "Syntax colors come from the highlighter theme, not from tokens",
    "Copy confirms with \"Copied\" for 2 s",
-   "Language names the language in lowercase (bash, json)"
+   "Language names the language in lowercase (bash, json)",
+   "Line numbers for code longer than 3 lines or code a text refers to by line",
+   "Highlight the line the step talks about, one band per block",
+   "Tabs switch the whole snippet; keep Language accurate for the active tab or empty when the tabs name it",
+   "Resize: body fills the width; code never wraps in code (horizontal scroll), in Figma it wraps at narrow widths"
   ],
   "a11y": [
    "Copy is an icon button labelled \"Copy code\"; \"Copied\" is announced politely",
    "The scrolling body is focusable, so keyboard users can scroll it",
    "The highlighter theme keeps 4.5:1 on background/muted"
   ],
-  "code": "Shiki or Prism + copy Button.",
+  "code": "Shiki or Prism + copy Button. Tabs: shadcn Tabs variant line above the <pre>; line numbers: CSS counter on .line; highlight: Shiki transformerNotationHighlight (bg var(--code-line-highlight)).",
   "guides": [
    "skills/build-ui/components/content.md",
    "skills/build-ui/components/rich-text-editor.md",
@@ -2372,7 +2393,8 @@
   "use": [
    "Several documents or images attached to a record: invoices, contracts, exports",
    "Upload step inside a form, under a Field label",
-   "Imports where the user drags a file from the desktop"
+   "Imports where the user drags a file from the desktop",
+   "Size=sm: a file field inside a Form Section, comment and chat attachments, the first step of an import"
   ],
   "avoid": [
    "One image such as an avatar or logo: use Avatar Upload",
@@ -2383,7 +2405,8 @@
    "Instruction text",
    "Browse files Button",
    "Hint: accepted types and max size",
-   "File Item list below, one per file"
+   "File Item list below, one per file",
+   "Size: default (centered stack) or sm (one row: 32 icon tile, title and hint 1 line each, Browse at the end)"
   ],
   "rules": [
    "Hint states accepted types and max size before the user picks a file (default \"PDF, JPG or PNG · up to 10 MB each\")",
@@ -2391,7 +2414,8 @@
    "State drag-over while a file is dragged over; error after a rejected drop; disabled when no upload is allowed",
    "Upload starts on selection; submit waits for uploads or says what is pending",
    "With a limit, show the total: \"3 of 5 files\"",
-   "Resize: title and hint fill the width, centered, up to 2 lines each with ellipsis"
+   "Resize: title and hint fill the width, centered, up to 2 lines each with ellipsis",
+   "Size=sm: 480 wide by default, Fill in forms; title and hint 1 line with ellipsis; keep the hint short"
   ],
   "a11y": [
    "The whole area is clickable and keyboard-focusable; Browse files is the keyboard path",
@@ -2407,31 +2431,39 @@
   "summary": "One selected or uploaded file under a File Dropzone, with progress, size and the actions for its state.",
   "use": [
    "Each file added through a File Dropzone",
-   "Files already attached to a record, in edit mode"
+   "Files already attached to a record, in edit mode",
+   "Type=image: photos and images being uploaded, with a thumbnail",
+   "Layout=tile: photo grids (review photos, product images, gallery and avatar uploads)"
   ],
   "avoid": [
    "Attachments in a read-only record or a message: use a List Item or an attachment chip",
    "Background imports with many rows: use Progress with a status message"
   ],
   "anatomy": [
+   "Type: file (file icon) or image (thumbnail: Image Placeholder 1:1 inside, set its Image)",
+   "Layout: row (480, Fill) or tile (160: media 112 high, name, meta)",
    "File icon",
    "File name",
    "Progress (uploading) or size (complete) or reason (error)",
-   "Actions: cancel (X), remove (trash), Retry"
+   "Actions: cancel (X), remove (trash), Retry",
+   "Tile: remove or cancel is a Button Icon outline sm on the media corner; Retry sits under the error text"
   ],
   "rules": [
    "State uploading: Progress and cancel (X)",
-   "State complete: size and remove (trash)",
+   "State done: size and remove (trash)",
    "State error: reason in destructive text, Retry and cancel; Retry only for network or server errors",
    "File name truncates in the middle in code so the extension stays visible; full name in a Tooltip",
-   "Files are listed in the order added"
+   "Files are listed in the order added",
+   "Error keeps the alert icon in both types, even for images",
+   "One Layout per list or grid; tiles sit in a wrapping row with 12 gap",
+   "Resize: row name 1 line with ellipsis (middle truncation in code), meta wraps; tile is a fixed 160, name 1 line, error text 2 lines"
   ],
   "a11y": [
    "Cancel, remove and Retry are Button Icons with labels that name the file: \"Remove q3-financials.pdf\"",
    "Progress and completion are announced in a live region",
    "Error reason is text with an icon (circle-alert), never color alone"
   ],
-  "code": "react-dropzone + custom, with shadcn Progress and Button.",
+  "code": "react-dropzone + custom, with shadcn Progress and Button. Tile: grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-3; thumbnail <img class=\"aspect-[4/3] object-cover\"> from URL.createObjectURL.",
   "guides": [
    "skills/build-ui/components/file-upload.md"
   ]
@@ -2830,7 +2862,9 @@
   "use": [
    "Photos, screenshots and covers in cards, carousels, galleries and marketing sections",
    "Team photos, product shots and blog covers with one ratio per grid",
-   "Layouts where the final image is not ready yet (Show image off)"
+   "Layouts where the final image is not ready yet (Show image off)",
+   "Ratio 3:2 for photography and blog covers, 2:3 for product and portrait photos, 9:16 for stories, mobile video and app screens",
+   "State=loading while the image loads; State=error when it fails (broken URL, blocked, removed)"
   ],
   "avoid": [
    "People next to their name in lists, comments and bylines: use Avatar",
@@ -2838,29 +2872,33 @@
    "Icons and illustrations: use the icon set"
   ],
   "anatomy": [
-   "Ratio: 16:9, 4:3, 1:1, 3:4, 21:9 (variant); the ratio is also in the hint layer name",
+   "Ratio: 16:9, 4:3, 1:1, 3:4, 21:9, 3:2, 2:3, 9:16 (variant); the ratio is also in the hint layer name",
    "Image (Show image, off by default): nested Image / * instance that covers the whole area and crops to the ratio",
    "Image swap (Image): any component from the Imagery page (Image / Person, Product, Office, Cover, Abstract, City); default Image / Office / 01",
    "Pattern: dot grid on background/muted, dots in border/default, shown when there is no image",
    "Hint (Show caption): centered Lucide image icon in foreground/muted",
    "Corner radius and clipping come from the placeholder, not from the image",
-   "ratio: a transparent layer at Fill width with a locked aspect ratio; it sets the height, so the height follows any width (fixed, Fill or resized)"
+   "ratio: a transparent layer at Fill width with a locked aspect ratio; it sets the height, so the height follows any width (fixed, Fill or resized)",
+   "State: default; loading (background/accent skeleton fill, no pattern or icon); error (image icon and Fallback text \"Image unavailable\" in foreground/default, centered; the text follows Show caption)"
   ],
   "rules": [
    "Turn Show image on and pick the photo in the Image swap; never paste a raster fill over the instance",
    "The Image / * photos are sample content (Unsplash License, not covered by the CC BY 4.0 license of the file): replace them with your own images before shipping",
    "Pick photos that match the content next to them: Person for team cards, Product for shop cards, Office, Cover or City for posts, events and galleries",
    "No two cards in one grid use the same photo; one ratio per carousel or grid; 21:9 for wide banners and page header images",
-   "Show image off is the loading or missing-image state: keep the dot pattern and the icon, no fake text",
+   "Show image off is the no-image-yet state (design time): keep the dot pattern and the icon, no fake text",
    "Text over a photo needs a scrim or a solid surface behind it",
-   "Change the width only; the height follows the Ratio. For a different crop pick another Ratio (21:9 for banners); a fixed height crops the image and is only for full-bleed media that must cover a box"
+   "Change the width only; the height follows the Ratio. For a different crop pick another Ratio (21:9 for banners); a fixed height crops the image and is only for full-bleed media that must cover a box",
+   "State=error shows the image icon and \"Image unavailable\"; turn Show caption off below about 96 px (the text truncates)",
+   "The Image swap is kept in every state, so switching back shows the photo"
   ],
   "a11y": [
    "Meaningful images have alt text that says what the photo shows; decorative ones have empty alt",
    "Text over an image keeps 4.5:1 contrast",
-   "The no-image hint icon is decorative (aria-hidden)"
+   "The no-image hint icon is decorative (aria-hidden)",
+   "The error state keeps the alt text of the missing image for screen readers; the fallback text is aria-hidden"
   ],
-  "code": "an <img> or next/image with aspect-ratio and object-cover; the no-image state is a muted box with a dot background and a lucide Image icon.",
+  "code": "an <img> or next/image with aspect-ratio and object-cover; the no-image state is a muted box with a dot background and a lucide Image icon. Loading: bg-accent animate-pulse until onLoad; error: onError swaps to a muted box with lucide ImageOff/Image and \"Image unavailable\".",
   "guides": [
    "skills/build-ui/components/carousel.md"
   ]
@@ -3217,7 +3255,10 @@
    "Trends over time: revenue per month, active customers per week",
    "Type=area: one series or a total",
    "Type=line: several series over the same period",
-   "The main trend chart at the top of a report"
+   "The main trend chart at the top of a report",
+   "Type=stacked-area: parts of a total over time (revenue by plan)",
+   "Type=step: values that change in jumps (price, plan, limit)",
+   "Show comparison: this period against the previous one"
   ],
   "avoid": [
    "Comparing categories: use Bar Chart",
@@ -3232,21 +3273,29 @@
    "Area wash, series at 10% (Type=area)",
    "End dot, 8 px with a 2 px surface ring",
    "X axis (time)",
-   "Chart Legend for 2 or more series"
+   "Chart Legend for 2 or more series",
+   "Show series 2 (on), Show series 3 (off): how many series draw, chart/1 to chart/3",
+   "Show comparison (off): previous period of series 1, dashed 2 px in foreground/muted",
+   "Type=stacked-area: bands chart/1 to chart/3 at opacity/20 with a 2 px line on each top edge (Show series 3 = top band)",
+   "Type=step: horizontal then vertical segments, square joins"
   ],
   "rules": [
    "One y axis only (two axes only in Combo Chart)",
    "Label the end value or the extreme, never every point",
    "Legend for 2 or more series, none for one",
    "Series colors chart/1..8 in order; text in text tokens",
-   "Edit line points for real data"
+   "Edit line points for real data",
+   "Comparison line has no end dot and is named in the legend (\"Previous period\") with a Chart Legend Item Key=line",
+   "Stacked area: at most 3 to 4 parts; the top edge is the total; never stack series that are not parts of one total",
+   "Step only when the value really holds until the next change",
+   "Resize: marks scale with the width (min about 276); the y axis stays 32 wide"
   ],
   "a11y": [
    "Table view for screen readers and exact values",
    "Hover shows a crosshair and a Chart Tooltip; the hit area is larger than the line",
    "Series are told apart by legend and end labels, not by color alone"
   ],
-  "code": "shadcn Chart (Recharts) LineChart or AreaChart; series colors via var(--chart-N).",
+  "code": "shadcn Chart (Recharts) LineChart or AreaChart; series colors via var(--chart-N). Stacked area: <Area stackId=\"a\" fillOpacity={0.2}>; step: type=\"stepAfter\"; comparison: a second <Line strokeDasharray=\"4 4\" stroke=\"var(--muted-foreground)\" dot={false}>.",
   "guides": [
    "skills/build-ui/components/charts.md",
    "skills/build-ui/patterns/reports.md"
@@ -8934,7 +8983,9 @@
    "Product grids and category pages (3-4 per row on desktop, 2 on mobile): Layout=vertical",
    "Carousels of related products",
    "Product search results, wishlists, recently viewed and cart suggestions: Layout=horizontal",
-   "Editorial grids, lookbooks and category tiles where the photo sells: Layout=overlay"
+   "Editorial grids, lookbooks and category tiles where the photo sells: Layout=overlay",
+   "Size=sm: dense grids, carousels, Mini Cart recommendations, Category Filters results",
+   "Show swatches: products sold in several colors"
   ],
   "avoid": [
    "Articles and case studies: use Post Card",
@@ -8952,7 +9003,9 @@
    "Price, Old price (State=sale shows Old price struck through)",
    "Action: Button (Show action) \"Add to cart\"; State=sold-out shows \"Notify me\" with its own Show notify, independent of Show action",
    "Horizontal: no wishlist; details column with name, variant text, rating, price and the action (hug)",
-   "Overlay: media/scrim-fade to media/scrim gradient and a media/scrim panel with name, variant text and price in media/foreground; wishlist and badges stay on the photo; no action or Notify me"
+   "Overlay: media/scrim-fade to media/scrim gradient and a media/scrim panel with name, variant text and price in media/foreground; wishlist and badges stay on the photo; no action or Notify me",
+   "Swatches (Show swatches, off): up to 4 Swatch sm (color) under the variant text, the selected one ringed",
+   "Size: default (264) or sm (180, min 140; Layout=vertical only): name ui/label-small, wishlist sm, tighter gaps"
   ],
   "rules": [
    "One Layout per grid or list; overlay only where the photo is the point and there is no quick add",
@@ -8966,13 +9019,17 @@
    "Pick the photo ratio once per grid on the exposed Image, never by resizing the image layer",
    "Show rating on every card of a grid or on none; the count is the number of reviews",
    "Sold out keeps Notify me even when quick add (Show action) is off in the grid; turn Show notify off only when there is no restock",
-   "Resize: name up to 2 lines, variant line 1 line, both with ellipsis"
+   "Resize: name up to 2 lines, variant line 1 line, both with ellipsis",
+   "Show at most 4 swatches; say the total in Variant text (\"4 colors\")",
+   "Swatches change the photo on hover or click in code; the card still opens the product",
+   "Size=sm only in the vertical layout; one Size per grid"
   ],
   "a11y": [
    "One link for the card (on the name, stretched over the card)",
    "Wishlist and Add to cart are separate buttons with the product name in their labels",
    "The image alt is empty when the name sits next to it; the price reads old and new",
-   "Overlay text is media/foreground on media/scrim (black 60%): 5.7:1 over the brightest pixel"
+   "Overlay text is media/foreground on media/scrim (black 60%): 5.7:1 over the brightest pixel",
+   "Swatches are buttons named by color (\"Sand\"), the selected one has aria-pressed"
   ],
   "code": "shadcn Card with an <a> on the name (after:absolute after:inset-0), Badge, Button size=\"icon\" for wishlist, Button for the action. Layout via cva: horizontal = flex gap-4 with a size-30 image; overlay = relative aspect-[3/4] with an absolute bottom panel bg-black/60 text-white and a gradient strip.",
   "guides": [
@@ -9475,7 +9532,8 @@
   "use": [
    "Podcast episodes",
    "Voice messages in chat",
-   "Recorded calls in a record"
+   "Recorded calls in a record",
+   "Variant=compact: voice messages in Chat, Team Chat and Inbox"
   ],
   "avoid": [
    "Video: use Video Player",
@@ -9486,19 +9544,25 @@
    "Play: Button Icon (play, pause)",
    "Title",
    "Progress: current time, seek bar, length",
-   "Volume: Button Icon"
+   "Volume: Button Icon",
+   "Variant: default or compact (280 pill: play sm, waveform, duration; no title or volume)",
+   "State: paused (play icon) or playing (pause icon, played part in background/primary)",
+   "Waveform: 28 bars, played in background/primary, the rest foreground/muted"
   ],
   "rules": [
    "Space toggles play; arrows seek 5 s",
    "Offer a transcript link next to it",
    "One player plays at a time; never autoplay",
    "Times in m:ss, h:mm:ss past an hour",
-   "Title in one line"
+   "Title in one line",
+   "Compact shows the remaining or total time in Duration",
+   "Resize: default title 1 line with ellipsis; compact waveform fills, min 200"
   ],
   "a11y": [
    "The play button name follows the state (\"Play\", \"Pause\")",
    "The seek bar is role=\"slider\" with aria-valuetext (\"4 minutes 12 seconds of 14 minutes 30 seconds\")",
-   "The volume button is named \"Mute\" or \"Unmute\""
+   "The volume button is named \"Mute\" or \"Unmute\"",
+   "The waveform is decorative; the slider carries the position"
   ],
   "code": "native <audio> with custom controls (shadcn Button and Slider), or Vidstack.",
   "guides": [
@@ -12622,6 +12686,193 @@
   "guides": [
    "skills/build-ui/components/progress-and-slider.md",
    "skills/build-ui/patterns/loading-states.md"
+  ]
+ },
+ "File Type Icon": {
+  "summary": "A tile per file type with its extension in the type color, so files read at a glance in lists, uploads and attachments.",
+  "use": [
+   "File Item, Resource Item and attachment lists",
+   "Table Cell File and Search Result Item Type=file",
+   "Context Chip Type=file and email attachments"
+  ],
+  "avoid": [
+   "A file preview with content: use File Preview or an Image Placeholder thumbnail",
+   "Folders and other objects: use an icon in Icon Tile"
+  ],
+  "anatomy": [
+   "Type: pdf, document, sheet, slides, image, video, audio, archive, code, generic",
+   "Size: default 40, sm 32",
+   "Tile: Badge category tint (category-N-bg), radius md (sm: radius sm)",
+   "Extension: ui/label-small in category-N-fg (PDF, DOC, XLS, PPT, JPG, MP4, MP3, ZIP, </>); generic shows a file icon"
+  ],
+  "rules": [
+   "Colors: pdf rose (8), document blue (1), sheet green (6), slides orange (2), image violet (7), video fuchsia (5), audio cyan (3), archive amber (4), code and generic neutral",
+   "Edit the extension text for other extensions of the same type (CSV in sheet, PNG in image); 3 letters, 4 at most in default",
+   "Do not use it for a single file type everywhere; it helps only when types mix",
+   "Resize: fixed size, never stretched"
+  ],
+  "a11y": [
+   "Decorative next to the file name (aria-hidden); the name includes the extension",
+   "Extension text keeps 5.67:1 or more on its tint in every mode"
+  ],
+  "code": "A small component: <span class=\"inline-flex size-10 items-center justify-center rounded-md bg-[var(--badge-category-8-bg)] text-[var(--badge-category-8-fg)] text-xs font-medium\">PDF</span>, type from the MIME type or extension.",
+  "guides": [
+   "skills/build-ui/components/file-upload.md"
+  ]
+ },
+ "Prose": {
+  "summary": "Long-form text styled for reading: headings, paragraphs, lists, quotes, code and figures in one column at a reading measure.",
+  "use": [
+   "Articles and blog posts (Block / Article)",
+   "Legal pages (Block / Legal Page), help articles and docs",
+   "Release notes, long AI answers and email bodies"
+  ],
+  "avoid": [
+   "Short UI copy, labels and descriptions: use the text styles directly",
+   "Marketing sections with layout: use Section Header and Feature blocks",
+   "Editable rich text: use Rich Text Editor (its Content slot can hold Prose parts)"
+  ],
+  "anatomy": [
+   "Size: sm (14 px body), default (16 px), lg (18 px)",
+   "Content slot: Prose Heading (h2 to h4), Prose Paragraph, Prose List Item (bullet or number), Prose Blockquote, Code Block, Image Figure, Separator; tables from Table parts",
+   "Gap: sm 12, default 16, lg 20; headings add their own space above",
+   "Width: Fill up to the reading measure (576, 672, 768), min 280"
+  ],
+  "rules": [
+   "Every part in the slot uses the same Size as the Prose",
+   "The page title (h1) sits outside the Prose; the Prose starts at h2 and never skips a level",
+   "Links are underlined runs in foreground/brand; inline code is a code-style run; marks use the Highlight recipe on the run",
+   "One idea per paragraph; lists for 3 or more parallel items",
+   "Resize: text wraps, no line limits; images and code blocks fill the column"
+  ],
+  "a11y": [
+   "Real heading levels (h2 to h4) in order, lists as ul and ol",
+   "Links say where they go; body text keeps 4.5:1 or more",
+   "Blockquote uses blockquote with cite"
+  ],
+  "code": "Tailwind Typography: <article class=\"prose prose-neutral dark:prose-invert\"> (prose-sm, prose-base, prose-lg) or shadcn/typeset; max-w-prose; map links to text-primary underline and code to bg-muted.",
+  "guides": [
+   "skills/build-ui/components/content.md"
+  ]
+ },
+ "Highlight": {
+  "summary": "A marked run of text for search matches and AI changes, drawn with the Comment Highlight recipe so it wraps with the text.",
+  "use": [
+   "Search matches in Search Result Item snippets, Search Suggestions, Command items, Mention Menu",
+   "Text an AI added or changed when there is nothing to accept or reject (Tone=ai)"
+  ],
+  "avoid": [
+   "Comments: use Comment Highlight",
+   "AI changes to review: use AI Suggestion",
+   "Emphasis in prose: use strong text, not a tint"
+  ],
+  "anatomy": [
+   "Tone: default (highlight/mark, warning tint) or ai (highlight/ai, brand tint)",
+   "Text: body/default run with Underline 100% thick, offset -80%, skip ink off, color = the token"
+  ],
+  "rules": [
+   "Apply the same recipe to a run inside any text; the component is for single runs and snippets",
+   "Mark the matched characters only, not the whole word or line",
+   "Body text only, never on muted text"
+  ],
+  "a11y": [
+   "Rendered as mark; foreground/default on the tint keeps 6.3:1 or more",
+   "Never rely on the tint alone for meaning (search results also bold or count matches)"
+  ],
+  "code": "<mark class=\"bg-[var(--highlight-mark)] text-foreground\">; AI: bg-[var(--highlight-ai)].",
+  "guides": [
+   "skills/build-ui/components/content.md"
+  ]
+ },
+ "Inline Code": {
+  "summary": "A short code value in a tinted mono chip, for use in text, hints and cells.",
+  "use": [
+   "Field names, template tags and keys in Field hints (\"use {{name}}\")",
+   "IDs in Description List values and Table Cell Text",
+   "Commands and values in API Reference and Changelog"
+  ],
+  "avoid": [
+   "Several lines of code: use Code Block",
+   "A value people copy: use Copy Field or Command Snippet",
+   "Inside Prose paragraphs: style the run with the code text style"
+  ],
+  "anatomy": [
+   "Code: code style, foreground/default",
+   "Chip: background/muted, radius sm, padding 4 x 2"
+  ],
+  "rules": [
+   "One line; hugs up to 320, then truncates (middle truncation for IDs in code)",
+   "Never put links or icons inside"
+  ],
+  "a11y": [
+   "Rendered as code; foreground/default on background/muted keeps 14.5:1 or more"
+  ],
+  "code": "<code class=\"rounded-sm bg-muted px-1 py-0.5 font-mono text-sm\">invoice_id</code>.",
+  "guides": [
+   "skills/build-ui/components/content.md"
+  ]
+ },
+ "Radial Chart": {
+  "summary": "Progress to a goal as one ring or up to three concentric rings, with the value in the middle.",
+  "use": [
+   "Goal completion on dashboards",
+   "Plan and usage, onboarding progress",
+   "Capacity in booking and support dashboards"
+  ],
+  "avoid": [
+   "A value against a target line: use Gauge",
+   "A value against bands: use Bullet Chart",
+   "Parts of a whole: use Donut Chart or Distribution Bar"
+  ],
+  "anatomy": [
+   "Type: single (chart/1) or concentric (chart/1, chart/2, chart/3 from outside in)",
+   "Track: background/muted ring",
+   "Value arc from 12 o'clock, clockwise",
+   "Center: Value and Label (Show label)"
+  ],
+  "rules": [
+   "Set each value arc per instance (sweep = share x 360 deg)",
+   "Concentric needs a Chart Legend naming each ring with its value",
+   "Fixed 200 square: center it in its card; never stretch"
+  ],
+  "a11y": [
+   "role=img with a label that says every value (\"Revenue 82% of goal\")",
+   "Values are text, not color alone"
+  ],
+  "code": "shadcn Chart (Recharts) RadialBarChart with startAngle={90} endAngle={-270}, background track, PolarAngleAxis domain [0,100], center label in a <Label>.",
+  "guides": [
+   "skills/build-ui/components/charts.md"
+  ]
+ },
+ "Box Plot": {
+  "summary": "Spread of values per group: quartile box, median, whiskers and outliers.",
+  "use": [
+   "Response times by channel in Support Dashboard",
+   "Deal sizes in Sales Pipeline, price ranges, salary bands in Report"
+  ],
+  "avoid": [
+   "Averages only: use Bar Chart",
+   "One distribution in detail: use a histogram (Bar Chart)",
+   "Audiences not used to statistics: say the median and range in words instead"
+  ],
+  "anatomy": [
+   "Y axis with the unit",
+   "Per group: box (first to third quartile, badge/category-1-bg with chart/1 border), median line 2 px, whiskers and caps 1 px chart/1, outliers as open dots (Show outliers)",
+   "X axis group labels"
+  ],
+  "rules": [
+   "Whiskers reach the lowest and highest values within 1.5 x the box; points beyond are outliers",
+   "Up to 8 groups; sort by median when the order has no meaning",
+   "Edit the marks per instance for real data",
+   "Resize: marks scale with the width, min 320"
+  ],
+  "a11y": [
+   "Table view with min, quartiles, median and max per group",
+   "The insight says the takeaway in words"
+  ],
+  "code": "Recharts has no box plot: draw with ComposedChart (stacked Bar for the box, ErrorBar for whiskers, Scatter for outliers), or use visx BoxPlot or ECharts boxplot.",
+  "guides": [
+   "skills/build-ui/components/charts.md"
   ]
  }
 }

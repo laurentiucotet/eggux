@@ -73,7 +73,10 @@
   {
    "main": "Assistant Message",
    "helpers": [],
-   "block": "159:214"
+   "block": "159:214",
+   "examples": [
+    "Example / Assistant Message branch and stopped"
+   ]
   },
   {
    "main": "Reasoning",
@@ -601,7 +604,10 @@
   {
    "main": "Line Chart",
    "helpers": [],
-   "block": "109:1790"
+   "block": "109:1790",
+   "examples": [
+    "Example / Line Chart styles"
+   ]
   },
   {
    "main": "Sparkline",
@@ -673,7 +679,10 @@
   {
    "main": "Chart Card",
    "helpers": [],
-   "block": "109:1790"
+   "block": "109:1790",
+   "examples": [
+    "Example / Chart Card states"
+   ]
   },
   {
    "main": "Dashboard Widget",
@@ -714,6 +723,22 @@
    "block": null,
    "examples": [
     "Example / payments analytics"
+   ]
+  },
+  {
+   "main": "Radial Chart",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Radial Chart and Box Plot"
+   ]
+  },
+  {
+   "main": "Box Plot",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Radial Chart and Box Plot"
    ]
   }
  ],
@@ -781,8 +806,13 @@
  "Code Block": [
   {
    "main": "Code Block",
-   "helpers": [],
-   "block": "138:209"
+   "helpers": [
+    "Code Highlight"
+   ],
+   "block": "138:209",
+   "examples": [
+    "Example / Code Block styles"
+   ]
   },
   {
    "main": "Command Snippet",
@@ -810,6 +840,14 @@
    "main": "JSON Viewer",
    "helpers": [],
    "block": "550:78821"
+  },
+  {
+   "main": "Inline Code",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Code Block styles"
+   ]
   }
  ],
  "Color Picker": [
@@ -1133,12 +1171,18 @@
   {
    "main": "File Dropzone",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / File Item tiles, File Dropzone sm and File Type Icon"
+   ]
   },
   {
    "main": "File Item",
    "helpers": [],
-   "block": "181:501"
+   "block": "181:501",
+   "examples": [
+    "Example / File Item tiles, File Dropzone sm and File Type Icon"
+   ]
   },
   {
    "main": "File Preview",
@@ -1159,6 +1203,14 @@
    "block": null,
    "examples": [
     "Example / supplier onboarding documents"
+   ]
+  },
+  {
+   "main": "File Type Icon",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / File Item tiles, File Dropzone sm and File Type Icon"
    ]
   }
  ],
@@ -1250,7 +1302,10 @@
   {
    "main": "Image Placeholder",
    "helpers": [],
-   "block": "126:3"
+   "block": "126:3",
+   "examples": [
+    "Example / Image Placeholder ratios and states"
+   ]
   },
   {
    "main": "Map",
@@ -1822,6 +1877,29 @@
    ]
   }
  ],
+ "Prose": [
+  {
+   "main": "Prose",
+   "helpers": [
+    "Prose Heading",
+    "Prose Paragraph",
+    "Prose List Item",
+    "Prose Blockquote"
+   ],
+   "block": "138:209",
+   "examples": [
+    "Example / Prose"
+   ]
+  },
+  {
+   "main": "Highlight",
+   "helpers": [],
+   "block": null,
+   "examples": [
+    "Example / Prose"
+   ]
+  }
+ ],
  "Quote": [
   {
    "main": "Quote",
@@ -2367,7 +2445,8 @@
    "helpers": [],
    "block": null,
    "examples": [
-    "Example / help center videos and podcast"
+    "Example / help center videos and podcast",
+    "Example / Audio Player styles"
    ]
   }
  ]
