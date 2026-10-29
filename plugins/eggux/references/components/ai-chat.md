@@ -1,6 +1,6 @@
 # AI Chat
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -9,7 +9,7 @@ Usage rules live in the guides linked under each component.
 | [Prompt Input](#prompt-input) | 8 | Attachments, Tools |
 | [Attachment](#attachment) | 4 | - |
 | [User Message](#user-message) | 1 | - |
-| [Assistant Message](#assistant-message) | 3 | Content |
+| [Assistant Message](#assistant-message) | 4 | Content |
 | [Reasoning](#reasoning) | 3 | - |
 | [Tool Call](#tool-call) | 4 | - |
 | [Sources](#sources) | 1 | Items |
@@ -32,7 +32,7 @@ Usage rules live in the guides linked under each component.
 | [Confidence Indicator](#confidence-indicator) | 3 | - |
 | [AI Review Bar](#ai-review-bar) | 1 | - |
 
-On the Figma page: "Example / AI on a record page", "Example / agent at work", "Example / chat history", "Example / context added to a request", "Example / dictating a request", "Example / feedback after a bad answer", "Example / in ai assistant panel", "Example / in ai chat empty", "Example / in ai conversation", "Example / model choice in the assistant", "Example / model picker open above the prompt", "Example / report made by the assistant", "Example / reviewing AI suggestions on an invoice", "Example / suggested category on a new invoice", "Stress test / AI Loading", "Stress test / AI Review Bar", "Stress test / AI Suggestion", "Stress test / AI Summary", "Stress test / AI components", "Stress test / Agent Plan", "Stress test / Artifact Card", "Stress test / Assistant Message", "Stress test / Chat History Item", "Stress test / Confidence Indicator", "Stress test / Context Chip", "Stress test / Prompt Input", "Stress test / Prompt Suggestion", "Stress test / Reasoning", "Stress test / Response Feedback", "Stress test / Sources", "Stress test / Tool Call", "Stress test / User Message", "Stress test / Voice Recorder"
+On the Figma page: "Example / AI on a record page", "Example / Assistant Message branch and stopped", "Example / agent at work", "Example / chat history", "Example / context added to a request", "Example / dictating a request", "Example / feedback after a bad answer", "Example / in ai assistant panel", "Example / in ai chat empty", "Example / in ai conversation", "Example / model choice in the assistant", "Example / model picker open above the prompt", "Example / report made by the assistant", "Example / reviewing AI suggestions on an invoice", "Example / suggested category on a new invoice", "Stress test / AI Loading", "Stress test / AI Review Bar", "Stress test / AI Suggestion", "Stress test / AI Summary", "Stress test / AI components", "Stress test / Agent Plan", "Stress test / Artifact Card", "Stress test / Assistant Message", "Stress test / Chat History Item", "Stress test / Confidence Indicator", "Stress test / Context Chip", "Stress test / Prompt Input", "Stress test / Prompt Suggestion", "Stress test / Reasoning", "Stress test / Response Feedback", "Stress test / Sources", "Stress test / Tool Call", "Stress test / User Message", "Stress test / Voice Recorder"
 
 ## Prompt Input
 
@@ -194,15 +194,23 @@ Code: Vercel AI SDK + AI Elements, or assistant-ui (Prompt Input Content=placeho
 
 ## Assistant Message
 
-Component set · 3 variants · default size 768 × 232
+Component set · 4 variants · default size 768 × 232
 
 A reply from the assistant: no bubble, full width for long answers; small avatar marks the speaker. streaming: text grows with a caret, no actions, Prompt Input shows Stop. error: keep the partial answer, explain, offer Retry. Actions under a finished answer: copy, regenerate, good, bad.
+
+
+Show branch (off): previous and next Button Icons with "2 of 3" (Branch) before the actions, after Regenerate or an edited prompt; each branch keeps its own answer. State stopped: the partial answer stays, a muted "You stopped this answer" line sits above the actions (copy, regenerate), matching Stop in Prompt Input.
+
+
+Usage: eggux build-ui/components/ai-chat.md
 
 **Use for**
 
 - Every answer in a chat page or assistant panel
 - Answers that include Reasoning, Tool Calls, lists, tables, Code Blocks and Sources
 - Streaming replies (State=streaming) and failed replies (State=error)
+- State=stopped after Stop in Prompt Input
+- Show branch after Regenerate or an edited prompt
 
 **Not for**
 
@@ -217,6 +225,8 @@ A reply from the assistant: no bubble, full width for long answers; small avatar
 3. Sources, with Citations in the text
 4. Actions: copy, regenerate, good, bad (Show actions)
 5. Alert with the reason and Retry (State=error)
+6. Branch (Show branch, off): previous and next Button Icons ghost sm with "2 of 3" (Branch) before the actions
+7. State=stopped: partial answer, muted "You stopped this answer" line with a square icon, then copy and regenerate
 
 **Content and behavior**
 
@@ -226,6 +236,8 @@ A reply from the assistant: no bubble, full width for long answers; small avatar
 - Facts from data get a Citation; with no source, say "I could not find…" instead of guessing
 - Do not auto-scroll when the user scrolled up; show "Jump to latest"
 - Sanitize model output before rendering HTML
+- Branch counts the answers to the same prompt; switching keeps the conversation below in sync
+- Stopped keeps what was written; never show it as an error
 
 **Accessibility**
 
@@ -233,24 +245,27 @@ A reply from the assistant: no bubble, full width for long answers; small avatar
 - Action tooltips and labels: Copy, Regenerate, Good response, Bad response
 - Actions show on keyboard focus as well as hover
 - Reduced motion: no typing animation, show text in chunks
+- Branch buttons are labelled "Previous answer" and "Next answer"; the count is announced ("Answer 2 of 3")
 
 | Variant property | Values |
 |---|---|
-| State | default, streaming, error |
+| State | default, streaming, error, stopped |
 
 | Property | Type | Default |
 |---|---|---|
 | Show actions | boolean | true |
+| Show branch | boolean | false |
+| Branch | text | 2 of 3 |
 
 Slots (fill them in the instance, never detach): `Content`
 
-Built from: `Alert`, `Button`, `Button Icon`. Icons: sparkles
+Built from: `Alert`, `Button`, `Button Icon`. Icons: sparkles, square
 
 Tokens and styles:
 - Colors: `background/default`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`, `spacing/3`, `spacing/4`, `spacing/8`
 - Radius: `radius/full`
-- Text styles: `body/default`
+- Text styles: `body/default`, `ui/caption`
 
 Guides: [ai-chat](../../skills/build-ui/components/ai-chat.md), [ai-chat](../../skills/build-ui/patterns/ai-chat.md)
 

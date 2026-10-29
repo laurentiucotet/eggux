@@ -1,14 +1,16 @@
 # Search
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
 | [Search Result Item](#search-result-item) | 8 | Sources |
+| [Search Suggestions](#search-suggestions) | 1 | Recent, Suggestions, Records |
+| [Search Suggestion Item](#search-suggestion-item) | 6 | - |
 
-On the Figma page: "Example / help center search results", "Example / search results all types", "Example / search results tabbed by type", "Stress test / Search Result Item"
+On the Figma page: "Example / Search Suggestions", "Example / help center search results", "Example / search results all types", "Example / search results tabbed by type", "Stress test / Search Result Item", "Stress test / Search Suggestions"
 
 ## Search Result Item
 
@@ -125,3 +127,114 @@ Tokens and styles:
 Guides: [ai-chat](../../skills/build-ui/patterns/ai-chat.md), [commerce](../../skills/build-ui/patterns/commerce.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: custom (Path, meta and detail rows `min-w-0`, texts `truncate` (path `max-w-40`), badges `max-w-32`; title and snippet `line-clamp-2`)
+
+## Search Suggestions
+
+Component · 1 variant · default size 480 × 439
+
+The panel under a search field while people type (Material 3 search view, Ant AutoComplete with groups): Recent searches (Show recent, before typing), Suggestions (Show suggestions: completions with the typed part in Match), Records (Show records: records that match, opened directly; rename the section label to the record type, "Invoices", "People") and a footer hint (Show footer). Each section is a native slot of Search Suggestion Items; labels are text properties. Popover surface: background/popover, border/default, radius/lg, shadow/md.
+
+
+Rules: open it under the Search Field with 4 px offset and the same width (min 280); at most 5 suggestions and 3 to 5 records; one row highlighted with the arrow keys, Enter opens it, Enter with no highlight searches all results; empty query shows recents only; hide sections with no rows; no results shows one line "No matches for ..." with the search action. Global app search with commands uses Command Dialog instead.
+
+
+Resize: FILL the field width (min 280); rows truncate to one line.
+
+
+Usage: eggux build-ui/patterns/search-and-filter.md
+
+**Use for**
+
+- App and help center search fields (Block / Navbar Search, Help Hero, Header Search Results)
+- Store search and People Directory search
+- Recent searches when the field gets focus with an empty query
+
+**Not for**
+
+- Global search with commands and navigation: use Command Dialog
+- Picking one value for a form field: use Combobox
+- The results page itself: use Search Result Item
+
+**Anatomy**
+
+1. Recent (Show recent): Recent label + slot of Search Suggestion Item Type=recent (Query, remove x)
+2. Suggestions (Show suggestions): Suggestions label + slot of Type=suggestion (Match in ui/label + Completion)
+3. Records (Show records): Records label (the record type) + slot of Type=record (Icon, Title, Meta)
+4. Footer (Show footer): Hint in ui/caption with a top border
+5. Popover surface: background/popover, border/default, radius/lg, shadow/md, padding spacing/1
+
+**Content and behavior**
+
+- Open under the field with a 4 px gap and the same width (min 280)
+- Empty query: recents only; typing: suggestions and records
+- At most 5 suggestions and 3 to 5 records; hide empty sections
+- One row highlighted (State=highlighted), moved with the arrow keys; Enter opens it, Enter with no highlight searches all results; Esc closes
+- No matches: one line "No matches for ..." plus the search-all action
+- Resize: FILL the field width (min 280); rows truncate to one line
+
+**Accessibility**
+
+- Combobox pattern: the field has role="combobox" and aria-expanded; the panel is a listbox with grouped options
+- aria-activedescendant follows the highlighted row
+- The remove button of a recent search is labelled "Remove overdue invoices from recent searches"
+
+| Property | Type | Default |
+|---|---|---|
+| Recent label | text | Recent searches |
+| Show recent | boolean | true |
+| Suggestions label | text | Suggestions |
+| Show suggestions | boolean | true |
+| Records label | text | Invoices |
+| Show records | boolean | true |
+| Hint | text | Enter to search all results · Esc to close |
+| Show footer | boolean | true |
+
+Slots (fill them in the instance, never detach): `Recent`, `Suggestions`, `Records`
+
+Built from: `Search Suggestion Item`
+
+Tokens and styles:
+- Colors: `background/popover`, `border/default`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/1_5`, `spacing/2`
+- Radius: `radius/lg`
+- Text styles: `ui/caption`, `ui/label-small`
+- Effects: `shadow/md`
+
+Guides: [popover](../../skills/build-ui/components/popover.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+
+Code: shadcn `Popover` anchored to the search `InputGroup` (`PopoverContent className="w-[var(--radix-popover-trigger-width)] min-w-70 p-1"`) with `Command shouldFilter={false}`: `CommandList`, `CommandGroup heading="Recent searches"`, `CommandItem` (suggestion `<span className="font-medium">{typed}</span>{rest}`, recent with `History` icon and a remove `Button size="icon-xs" variant="ghost"`, record with its icon and `<span className="ml-auto text-xs text-muted-foreground">Invoice</span>`); footer `border-t px-2 pt-2 pb-1 text-xs text-muted-foreground` (Combobox a11y: input `role="combobox" aria-expanded aria-controls`; highlighted row = `data-[selected=true]:bg-accent`; rows `truncate`)
+
+## Search Suggestion Item
+
+Component set · 6 variants · default size 448 × 36
+
+One row in Search Suggestions. Type: suggestion (search icon, the typed part in Match (ui/label) and the rest in Completion: "inv" + "oice templates"; picking it runs the search), recent (history icon, a past Query and a remove x Button Icon, exposed), record (Icon swap, Title and Meta: opens the record directly, skipping the results page). State: default, highlighted (background/accent, moved with the arrow keys). 36 high; text truncates to one line.
+
+
+Usage: eggux build-ui/patterns/search-and-filter.md
+
+| Variant property | Values |
+|---|---|
+| Type | suggestion, recent, record |
+| State | default, highlighted |
+
+| Property | Type | Default |
+|---|---|---|
+| Match | text | inv |
+| Completion | text | oice templates |
+| Query | text | overdue invoices |
+| Title | text | INV-2041 · Acme Inc. |
+| Meta | text | Invoice |
+| Icon | instance swap | Icon/file-text |
+
+Built from: `Button Icon`. Icons: file-text, history, search
+
+Tokens and styles:
+- Colors: `background/accent`, `foreground/accent`, `foreground/default`, `foreground/muted`
+- Spacing and size: `spacing/2`
+- Radius: `radius/sm`
+- Text styles: `body/small`, `ui/caption`, `ui/label`
+
+Guides: [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
+
+Code: shadcn `Popover` anchored to the search `InputGroup` (`PopoverContent className="w-[var(--radix-popover-trigger-width)] min-w-70 p-1"`) with `Command shouldFilter={false}`: `CommandList`, `CommandGroup heading="Recent searches"`, `CommandItem` (suggestion `<span className="font-medium">{typed}</span>{rest}`, recent with `History` icon and a remove `Button size="icon-xs" variant="ghost"`, record with its icon and `<span className="ml-auto text-xs text-muted-foreground">Invoice</span>`); footer `border-t px-2 pt-2 pb-1 text-xs text-muted-foreground` (Combobox a11y: input `role="combobox" aria-expanded aria-controls`; highlighted row = `data-[selected=true]:bg-accent`; rows `truncate`)

@@ -1,6 +1,6 @@
 # Accordion
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -9,8 +9,9 @@ Usage rules live in the guides linked under each component.
 | [Accordion Item](#accordion-item) | 16 | Meta, Content |
 | [Accordion](#accordion) | 2 | Items |
 | [Show More](#show-more) | 2 | - |
+| [Collapsible](#collapsible) | 2 | Content |
 
-On the Figma page: "Example / Accordion styles", "Example / customer profile with show more and details", "Example / filter panel", "Stress test / Accordion", "Stress test / Show More"
+On the Figma page: "Example / Accordion styles", "Example / Collapsible", "Example / customer profile with show more and details", "Example / filter panel", "Stress test / Accordion", "Stress test / Collapsible", "Stress test / Show More"
 
 ## Accordion Item
 
@@ -188,3 +189,63 @@ Tokens and styles:
 Guides: [accordion](../../skills/build-ui/components/accordion.md)
 
 Code: shadcn `Collapsible` or `line-clamp-3` + `Button variant="link"` (`aria-expanded` on the toggle)
+
+## Collapsible
+
+Component set · 2 variants · default size 400 × 32
+
+A text trigger with a chevron ("Show advanced settings") that opens a Content slot in place, with no card, border or list around it. Use it for optional fields in a form (Create Record Dialog, Record Form), order summary lines on mobile checkout, tool call input and output, and "Show 3 more" under a short list.
+
+
+State: collapsed (trigger only; the Content slot stays in the layer list, hidden, so content placed in it survives switching), expanded (trigger says "Hide…" and the chevron points up). The trigger is an exposed Button (Variant=link, Size=sm): edit its Label to say what opens. Fill the Content slot with the real fields or rows.
+
+
+Use Accordion for several stacked sections with titles and Show More for one long text cut to 3 lines.
+
+
+Usage: eggux build-ui/components/accordion.md
+
+**Use for**
+
+- Advanced or optional fields in a form: Create Record Dialog, Record Form
+- Order summary lines on mobile checkout
+- Tool Call input and output
+- "Show 3 more" under a short list
+
+**Not for**
+
+- Several stacked sections with titles: use Accordion
+- One long text: use Show More
+- Content most people need: show it
+
+**Anatomy**
+
+1. Trigger: exposed Button Variant=link Size=sm with a trailing chevron (down when collapsed, up when expanded); edit its Label
+2. Content (native slot): the fields or rows it opens; hidden but kept in State=collapsed
+3. State: collapsed, expanded; gap spacing/3
+
+**Content and behavior**
+
+- The label says what opens: "Show advanced settings" / "Hide advanced settings", "Show 3 more line items"
+- Open by default when a field inside has a value or an error
+- FILL the column; content FILLs too and follows its own components' rules
+
+**Accessibility**
+
+- The trigger is a button with aria-expanded and aria-controls
+- Focus stays on the trigger after toggling
+
+| Variant property | Values |
+|---|---|
+| State | collapsed, expanded |
+
+Slots (fill them in the instance, never detach): `Content`
+
+Built from: `Button`, `Field`
+
+Tokens and styles:
+- Spacing and size: `spacing/3`, `spacing/4`
+
+Guides: [accordion](../../skills/build-ui/components/accordion.md)
+
+Code: shadcn `Collapsible`: `CollapsibleTrigger asChild` → `Button variant="link" size="sm"` with `ChevronDown` (`data-[state=open]:rotate-180`), `CollapsibleContent className="space-y-4 pt-3"` (Label switches Show/Hide by state; `aria-expanded` comes from Radix)

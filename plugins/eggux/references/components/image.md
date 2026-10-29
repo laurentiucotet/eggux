@@ -1,32 +1,41 @@
 # Image
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Image Placeholder](#image-placeholder) | 5 | - |
+| [Image Placeholder](#image-placeholder) | 24 | - |
 | [Map](#map) | 1 | - |
 | [Image Cropper](#image-cropper) | 2 | - |
 | [Avatar Upload](#avatar-upload) | 8 | - |
 | [Image Compare Slider](#image-compare-slider) | 1 | - |
 | [Device Frame](#device-frame) | 2 | Screen |
 | [Image Figure](#image-figure) | 1 | - |
+| [Thumbnail](#thumbnail) | 10 | - |
 
-On the Figma page: "Example / before and after in a case study", "Example / cropping a profile photo", "Example / in gallery grid", "Example / in map section", "Example / in product card", "Example / profile settings", "Stress test / Device Frame", "Stress test / Image Compare Slider", "Stress test / Image Cropper", "Stress test / Image Cropper and Avatar Upload", "Stress test / Image Figure", "Stress test / Image Placeholder", "Stress test / Map"
+On the Figma page: "Example / Image Placeholder ratios and states", "Example / Thumbnail in a product list", "Example / before and after in a case study", "Example / cropping a profile photo", "Example / in gallery grid", "Example / in map section", "Example / profile settings", "Stress test / Device Frame", "Stress test / Image Compare Slider", "Stress test / Image Cropper", "Stress test / Image Cropper and Avatar Upload", "Stress test / Image Figure", "Stress test / Image Placeholder", "Stress test / Map", "Stress test / Thumbnail"
 
 ## Image Placeholder
 
-Component set · 5 variants · default size 640 × 360
+Component set · 24 variants · default size 640 × 360
 
-Image area with a fixed ratio (Ratio 16:9, 4:3, 1:1, 3:4, 21:9) for photos, covers and screenshots in cards, carousels and marketing sections. Show image on shows the photo picked in the Image swap (any Image / * component from the Imagery page; it covers and crops to the ratio). Off: muted background with a dot pattern and a centered image icon (Show caption toggles the icon). Sample photos are placeholders: replace them with your own images and give meaningful images alt text. Height follows width: a transparent ratio layer at Fill width with a locked aspect ratio sets the height, so a fixed width, Fill or a resize keeps the Ratio. For a crop of another height, pick another Ratio (21:9 for banners) rather than resizing the height. Usage: eggux build-ui/components/carousel.md
+Image area with a fixed ratio (Ratio 16:9, 4:3, 1:1, 3:4, 21:9) for photos, covers and screenshots in cards, carousels and marketing sections. Show image on shows the photo picked in the Image swap (any Image / * component from the Imagery page; it covers and crops to the ratio). Off: muted background with a dot pattern and a centered image icon (Show caption toggles the icon). Sample photos are placeholders: replace them with your own images and give meaningful images alt text. Height follows width: a transparent ratio layer at Fill width with a locked aspect ratio sets the height, so a fixed width, Fill or a resize keeps the Ratio. For a crop of another height, pick another Ratio (21:9 for banners) rather than resizing the height. 
+
+
+Ratio 3:2 (photography, blog covers), 2:3 (product and portrait photos), 9:16 (stories, mobile video, app screens) join 16:9, 4:3, 1:1, 3:4 and 21:9. State: default; loading (skeleton fill while the image loads, no icon); error (broken or missing image: image icon and Fallback text "Image unavailable", the text follows Show caption and truncates at small sizes). The Image swap is kept in every state.
+
+
+Usage: eggux build-ui/components/carousel.md
 
 **Use for**
 
 - Photos, screenshots and covers in cards, carousels, galleries and marketing sections
 - Team photos, product shots and blog covers with one ratio per grid
 - Layouts where the final image is not ready yet (Show image off)
+- Ratio 3:2 for photography and blog covers, 2:3 for product and portrait photos, 9:16 for stories, mobile video and app screens
+- State=loading while the image loads; State=error when it fails (broken URL, blocked, removed)
 
 **Not for**
 
@@ -36,13 +45,14 @@ Image area with a fixed ratio (Ratio 16:9, 4:3, 1:1, 3:4, 21:9) for photos, cove
 
 **Anatomy**
 
-1. Ratio: 16:9, 4:3, 1:1, 3:4, 21:9 (variant); the ratio is also in the hint layer name
+1. Ratio: 16:9, 4:3, 1:1, 3:4, 21:9, 3:2, 2:3, 9:16 (variant); the ratio is also in the hint layer name
 2. Image (Show image, off by default): nested Image / * instance that covers the whole area and crops to the ratio
 3. Image swap (Image): any component from the Imagery page (Image / Person, Product, Office, Cover, Abstract, City); default Image / Office / 01
 4. Pattern: dot grid on background/muted, dots in border/default, shown when there is no image
 5. Hint (Show caption): centered Lucide image icon in foreground/muted
 6. Corner radius and clipping come from the placeholder, not from the image
 7. ratio: a transparent layer at Fill width with a locked aspect ratio; it sets the height, so the height follows any width (fixed, Fill or resized)
+8. State: default; loading (background/accent skeleton fill, no pattern or icon); error (image icon and Fallback text "Image unavailable" in foreground/default, centered; the text follows Show caption)
 
 **Content and behavior**
 
@@ -50,31 +60,38 @@ Image area with a fixed ratio (Ratio 16:9, 4:3, 1:1, 3:4, 21:9) for photos, cove
 - The Image / * photos are sample content (Unsplash License, not covered by the CC BY 4.0 license of the file): replace them with your own images before shipping
 - Pick photos that match the content next to them: Person for team cards, Product for shop cards, Office, Cover or City for posts, events and galleries
 - No two cards in one grid use the same photo; one ratio per carousel or grid; 21:9 for wide banners and page header images
-- Show image off is the loading or missing-image state: keep the dot pattern and the icon, no fake text
+- Show image off is the no-image-yet state (design time): keep the dot pattern and the icon, no fake text
 - Text over a photo needs a scrim or a solid surface behind it
 - Change the width only; the height follows the Ratio. For a different crop pick another Ratio (21:9 for banners); a fixed height crops the image and is only for full-bleed media that must cover a box
+- State=error shows the image icon and "Image unavailable"; turn Show caption off below about 96 px (the text truncates)
+- The Image swap is kept in every state, so switching back shows the photo
 
 **Accessibility**
 
 - Meaningful images have alt text that says what the photo shows; decorative ones have empty alt
 - Text over an image keeps 4.5:1 contrast
 - The no-image hint icon is decorative (aria-hidden)
+- The error state keeps the alt text of the missing image for screen readers; the fallback text is aria-hidden
 
 | Variant property | Values |
 |---|---|
-| Ratio | 16:9, 4:3, 1:1, 3:4, 21:9 |
+| Ratio | 16:9, 4:3, 1:1, 3:4, 21:9, 3:2, 2:3, 9:16 |
+| State | default, loading, error |
 
 | Property | Type | Default |
 |---|---|---|
 | Show caption | boolean | true |
 | Show image | boolean | false |
 | Image | instance swap | Image / Office / 01 |
+| Fallback text | text | Image unavailable |
 
 Built from: `Image / Office / 01`. Icons: image
 
 Tokens and styles:
-- Colors: `background/muted`, `border/default`
+- Colors: `background/accent`, `background/muted`, `border/default`, `foreground/default`
+- Spacing and size: `spacing/2`
 - Radius: `radius/lg`
+- Text styles: `ui/caption`
 
 Guides: [carousel](../../skills/build-ui/components/carousel.md)
 
@@ -440,3 +457,70 @@ Tokens and styles:
 Guides: [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
 Code: `<figure>` with `<img>` or `next/image` (`aspect-*`, `object-cover`, `rounded-lg`) + `<figcaption className="text-sm text-muted-foreground">` (Credit in a `<small>` inside the figcaption)
+
+## Thumbnail
+
+Component set · 10 variants · default size 48 × 48
+
+A small framed image of a product, file or listing (Polaris Thumbnail, Atlassian Tile): 1 px border, rounded corners and the image cropped to the frame. Size: xs 24, sm 32, default 48, lg 64, xl 80 (the width; Ratio 4:3 makes it 3/4 as tall). Show image on shows the Image swap (any Image / * component); off shows the fallback Icon (image, file-text, package, folder) on a muted tile, for missing photos and files without a preview.
+
+
+Use it in Line Item, Mini Cart, Order Row, Table Cell Media, List Item leading and Search Result Item. People use Avatar, logos use Logo Tile. Fixed size: never stretch it; pick another Size. Give meaningful images alt text; decorative ones use alt="".
+
+
+Usage: eggux build-ui/components/carousel.md
+
+**Use for**
+
+- Products in Line Item, Mini Cart, Order Row and admin tables (Table Cell Media)
+- Leading image in List Item and Search Result Item for products, media and listings
+- Files with a preview image in attachment lists and file grids
+
+**Not for**
+
+- People: use Avatar
+- Company and app logos: use Logo Tile
+- Large images in cards or galleries: use Image Placeholder with a Ratio
+
+**Anatomy**
+
+1. Size: default 48, xs 24, sm 32, lg 64, xl 80 (the width)
+2. Ratio: 1:1, 4:3 (3/4 as tall as wide)
+3. Image (Show image, Image swap: any Image / * component, cropped to the frame)
+4. Fallback Icon on background/muted (Icon swap: image, file-text, package, receipt, folder) when Show image is off
+5. 1 px border/default border drawn over the image; radius/sm (xs, sm), radius/md (default, lg), radius/lg (xl)
+
+**Content and behavior**
+
+- Fixed size: pick another Size, never stretch or resize the instance
+- One Size and Ratio per list
+- Missing image: turn Show image off and pick a fallback icon that names the type
+- Resize: fixed width and height per Size; the image crops to fill
+
+**Accessibility**
+
+- Meaningful images have alt text naming the item; a thumbnail next to the item name is decorative (alt="")
+- The fallback icon is decorative; the item name carries the meaning
+- Border keeps the edge visible on white images (3:1 not required for decorative frames)
+
+| Variant property | Values |
+|---|---|
+| Size | default, xs, sm, lg, xl |
+| Ratio | 1:1, 4:3 |
+
+| Property | Type | Default |
+|---|---|---|
+| Show image | boolean | true |
+| Image | instance swap | Image / Product / 01 |
+| Icon | instance swap | Icon/image |
+
+Built from: `Image / Product / 01`. Icons: image
+
+Tokens and styles:
+- Colors: `background/muted`, `border/default`
+- Spacing and size: `spacing/12`, `spacing/16`, `spacing/20`, `spacing/6`, `spacing/8`
+- Radius: `radius/lg`, `radius/md`, `radius/sm`
+
+Guides: [carousel](../../skills/build-ui/components/carousel.md)
+
+Code: `<img className="size-12 rounded-md border object-cover" alt="">` (xs `size-6 rounded-sm`, sm `size-8 rounded-sm`, lg `size-16`, xl `size-20 rounded-lg`); Ratio 4:3 `w-12 aspect-[4/3]`; fallback `div className="grid place-items-center bg-muted text-muted-foreground"` + lucide icon (`shrink-0`; alt="" when the item name is next to it)

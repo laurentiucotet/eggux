@@ -1,26 +1,34 @@
 # Code Block
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Code Block](#code-block) | 1 | - |
+| [Code Block](#code-block) | 1 | Tabs |
+| [Code Highlight](#code-highlight) | 8 | - |
 | [Command Snippet](#command-snippet) | 1 | - |
 | [Endpoint Row](#endpoint-row) | 15 | - |
 | [Log Row](#log-row) | 4 | - |
 | [Diff Viewer](#diff-viewer) | 1 | Lines |
 | [Diff Line](#diff-line) | 3 | - |
 | [JSON Viewer](#json-viewer) | 1 | - |
+| [Inline Code](#inline-code) | 1 | - |
 
-On the Figma page: "Example / in api reference", "Example / in article", "Stress test / Code Block", "Stress test / Command Snippet", "Stress test / Diff Viewer", "Stress test / Endpoint Row", "Stress test / JSON Viewer", "Stress test / Log Row"
+On the Figma page: "Example / Code Block styles", "Example / in api reference", "Stress test / Code Block", "Stress test / Command Snippet", "Stress test / Diff Viewer", "Stress test / Endpoint Row", "Stress test / Inline Code", "Stress test / JSON Viewer", "Stress test / Log Row"
 
 ## Code Block
 
 Component · 1 variant · default size 640 × 119
 
-Code snippet with language label and Copy (docs, API keys, install steps). Monospace `code` style, no wrapping in code (horizontal scroll); syntax colors come from the code highlighter theme, not from tokens. Inline code in prose: `code` style on background/muted, radius sm.
+Code snippet with language label and Copy (docs, API keys, install steps). Monospace code style, no wrapping in code (horizontal scroll); syntax colors come from the code highlighter theme, not from tokens.
+
+
+Show tabs: a Tabs slot with Tab line sm instances for files or package managers (npm, pnpm, yarn) or OS alternatives; one is active. Show line numbers: a muted gutter; set Line numbers to match the lines (1 to N, one per line). Show highlight: an exposed Code Highlight band behind one line (pick Line 1 to 8), for the line a step talks about. Inline code inside a sentence or cell: Inline Code.
+
+
+Usage: eggux build-ui/components/content.md
 
 **Use for**
 
@@ -30,7 +38,7 @@ Code snippet with language label and Copy (docs, API keys, install steps). Monos
 
 **Not for**
 
-- Code inside a sentence: inline code style on background/muted, radius sm
+- Code inside a sentence or a cell: use Inline Code (or the code style on the run inside Prose)
 - Editing code or config: use a code editor (Monaco, CodeMirror)
 
 **Anatomy**
@@ -38,6 +46,9 @@ Code snippet with language label and Copy (docs, API keys, install steps). Monos
 1. Header (Show header): Language label and Copy Button Icon
 2. Code in the monospace code style
 3. Body that scrolls horizontally
+4. Tabs slot (Show tabs, off): Tab line sm instances for files, package managers or OS variants; one active
+5. Line numbers (Show line numbers, off): muted gutter; set Line numbers to 1 to N, one per line
+6. Highlight (Show highlight, off): exposed Code Highlight band (code/line-highlight) behind one line; pick Line 1 to 8
 
 **Content and behavior**
 
@@ -45,6 +56,10 @@ Code snippet with language label and Copy (docs, API keys, install steps). Monos
 - Syntax colors come from the highlighter theme, not from tokens
 - Copy confirms with "Copied" for 2 s
 - Language names the language in lowercase (bash, json)
+- Line numbers for code longer than 3 lines or code a text refers to by line
+- Highlight the line the step talks about, one band per block
+- Tabs switch the whole snippet; keep Language accurate for the active tab or empty when the tabs name it
+- Resize: body fills the width; code never wraps in code (horizontal scroll), in Figma it wraps at narrow widths
 
 **Accessibility**
 
@@ -57,8 +72,14 @@ Code snippet with language label and Copy (docs, API keys, install steps). Monos
 | Language | text | bash |
 | Code | text | npx shadcn@latest add button ⏎ npx shadcn@latest add dialog |
 | Show header | boolean | true |
+| Show line numbers | boolean | false |
+| Line numbers | text | 1 ⏎ 2 |
+| Show highlight | boolean | false |
+| Show tabs | boolean | false |
 
-Built from: `Button Icon`
+Slots (fill them in the instance, never detach): `Tabs`
+
+Built from: `Button Icon`, `Code Highlight`, `Tab`
 
 Tokens and styles:
 - Colors: `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
@@ -69,6 +90,27 @@ Tokens and styles:
 Guides: [content](../../skills/build-ui/components/content.md), [rich-text-editor](../../skills/build-ui/components/rich-text-editor.md)
 
 Code: Shiki or Prism + copy `Button`
+
+## Code Highlight
+
+Component set · 8 variants · default size 638 × 36
+
+The highlighted line of a Code Block (Show highlight): a brand tint band (code/line-highlight) behind line N. Pick Line 1 to 8 on the exposed instance. Only inside Code Block.
+
+
+Usage: eggux build-ui/components/content.md
+
+| Variant property | Values |
+|---|---|
+| Line | 1, 2, 3, 4, 5, 6, 7, 8 |
+
+Tokens and styles:
+- Colors: `code/line-highlight`
+- Spacing and size: `spacing/4`, `type/leading/2`
+
+Guides: [content](../../skills/build-ui/components/content.md)
+
+Code: the `.highlighted` line class above (Helper of Code Block)
 
 ## Command Snippet
 
@@ -404,3 +446,52 @@ Tokens and styles:
 Guides: [content](../../skills/build-ui/components/content.md), [audit-log](../../skills/build-ui/patterns/audit-log.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
 Code: custom tree (each line `truncate` (no wrap); full value on expand or copy)
+
+## Inline Code
+
+Component · 1 variant · default size 93 × 24
+
+A short code value in a tinted mono chip (code style on background/muted, radius sm): field names, IDs, keys, template tags and commands inside text, Field hints, table cells and Description List values. One line, hugs up to 320 then truncates (truncate long IDs in the middle in code, full value on copy or in a tooltip). Inside Prose paragraphs style the run with the code text style instead.
+
+
+Usage: eggux build-ui/components/content.md
+
+**Use for**
+
+- Field names, template tags and keys in Field hints ("use {{name}}")
+- IDs in Description List values and Table Cell Text
+- Commands and values in API Reference and Changelog
+
+**Not for**
+
+- Several lines of code: use Code Block
+- A value people copy: use Copy Field or Command Snippet
+- Inside Prose paragraphs: style the run with the code text style
+
+**Anatomy**
+
+1. Code: code style, foreground/default
+2. Chip: background/muted, radius sm, padding 4 x 2
+
+**Content and behavior**
+
+- One line; hugs up to 320, then truncates (middle truncation for IDs in code)
+- Never put links or icons inside
+
+**Accessibility**
+
+- Rendered as code; foreground/default on background/muted keeps 14.5:1 or more
+
+| Property | Type | Default |
+|---|---|---|
+| Code | text | invoice_id |
+
+Tokens and styles:
+- Colors: `background/muted`, `foreground/default`
+- Spacing and size: `spacing/0_5`, `spacing/1`
+- Radius: `radius/sm`
+- Text styles: `code`
+
+Guides: [content](../../skills/build-ui/components/content.md)
+
+Code: `<code className="rounded-sm bg-muted px-1 py-0.5 font-mono text-sm">` (`max-w-80 truncate` for long IDs (middle truncation helper for keys))

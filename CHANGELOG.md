@@ -3,6 +3,48 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.62.0
+A components wave from a gap audit, and paywalls. The library has 427 components and 253 blocks.
+- Gap audit against shadcn/ui, Radix, Untitled UI, Material 3, Ant Design, Carbon, Polaris,
+  Atlassian, Primer and Tailwind Plus; built in 8 batches.
+- Forms: Field required, optional, counter, info and horizontal layout; Size sm and lg and a
+  read-only state on Input, Select, Combobox, Date and Time Picker, Tag Input; Input loading and
+  Show clear; Checkbox and Radio descriptions; `Info Tip`; Field Preset types url, time zone,
+  currency, language, date of birth, tax id, IBAN.
+- Pickers: Date Picker and Time Picker ranges; `Date Time Picker`, `Month Picker`; Calendar caption
+  dropdown, two months and week numbers; Calendar Day dot, note, booked; Select and Combobox leading
+  icon, avatar or dot; Select ghost style and create option; `Mention Menu`; `Color Input`.
+- Actions: `Toolbar` (new page), `Toggle`, `Copy Button`, `Bulk Action Bar`; Button xs and xl;
+  Button Icon xs and loading; Action Bar sticky on mobile; Toggle Group sizes.
+- Navigation: Page Header back link, meta, badge and pager; Separator label; Tabs sm and overflow;
+  Sidebar floating and inset with actions; Mobile Header search and large title; Page Shell / App
+  is a set with a stacked layout (its Page slot key changed: library users re-place slot content
+  after updating); `App Header`, `Search Suggestions`, `List Group Header`, `Top Loading Bar`.
+- Data display: `Thumbnail`, `Table Cell Media`, `Column Settings`, `Table Cell Tree`,
+  `Conversation Item`; table header menu and info, footer and striped rows; Description List Item
+  bordered and copy; Timeline horizontal and sm; Calendar Event states; Card hover, focus and
+  media; Option Card media and compact; Kanban states; Date Input month fixed.
+- Badges and avatars: Badge sizes; 8 categorical tones (`badge/category-*`) on Badge, Chip, Tag;
+  `Chip Group`; Badge Count dot; Tag avatar and icon; Chip sizes, avatar, count; Avatar 2xl and
+  3xl, status set, verified, icon type.
+- Feedback and overlays: `Inline Message`, `Callout Card`, `Popover Header` and `Footer`,
+  `Collapsible`, `Skeleton Preset`, `Scrim`, `Spot Illustration` (12, new Illustrations page);
+  Progress sizes, label and indeterminate; Dialog sizes and fullscreen; Toast avatar and progress;
+  Empty State error tone and illustrations.
+- Charts, content, media: Chart Card loading, empty, error; Line Chart series, comparison,
+  stacked area, step; `Prose` (new page; Article and Legal Page rebuilt on it), `Highlight`,
+  `Inline Code`, `File Type Icon`, `Radial Chart`, `Box Plot`; Code Block tabs, line numbers and
+  highlights; Image Placeholder ratios and states; File Item tile; File Dropzone sm; Audio Player
+  compact; Product Card swatches and sm; Assistant Message branch and stopped.
+- Paywalls and subscriptions: `Lock Badge`, `Gate Overlay`, `Usage Limit Banner`, `Trial Banner`,
+  `Upsell Card`, `Plan Option Row`, `Meter Banner`, `Paywall Card`; blocks Feature Gate, Usage
+  Limit Reached, Manage Subscription, Cancel Subscription, Upgrade Success, Article Paywall,
+  Mobile Paywall; SCREENS pages Billing and Paywalls; new guide `patterns/monetization.md`.
+- New icons bot, bell-off; tokens `badge/category-*`, `highlight/*`, `code/line-highlight`.
+- tidy-component: `jobs.py` no longer turns backslashes in docs into broken scripts.
+- Docs frames rebuilt on 45 component pages; guides, index, library map, code mapping and tokens
+  cover every new component and variant.
+
 ## 0.61.0
 Responsive components and inline comments.
 - New skill `/eggux:responsive`: a resize contract per component (what fills, hugs or stays fixed,

@@ -1,16 +1,16 @@
 # Card
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Card](#card) | 16 | Header, Content, Footer |
+| [Card](#card) | 28 | Header, Content, Footer |
 | [Card Header](#card-header) | 1 | Action |
 | [Card Footer](#card-footer) | 1 | Actions |
 | [Stat Card](#stat-card) | 9 | - |
-| [Option Card](#option-card) | 10 | - |
+| [Option Card](#option-card) | 30 | - |
 | [Post Card](#post-card) | 8 | - |
 | [Entity Card](#entity-card) | 4 | Leading, Tags, Details, Actions |
 | [Progress Card](#progress-card) | 3 | - |
@@ -19,14 +19,18 @@ Usage rules live in the guides linked under each component.
 | [Date Tile](#date-tile) | 2 | - |
 | [Link Preview](#link-preview) | 2 | - |
 | [Location Card](#location-card) | 1 | - |
+| [Callout Card](#callout-card) | 2 | Media, Actions |
 
-On the Figma page: "Example / Card styles", "Example / Person Card styles", "Example / Post Card styles", "Example / Stat Card styles", "Example / customer card", "Example / events grid", "Example / in offices", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / shared link in a conversation", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Link Preview", "Stress test / Location Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
+On the Figma page: "Example / Callout Card", "Example / Card styles", "Example / Option Card styles", "Example / Person Card styles", "Example / Post Card styles", "Example / Stat Card styles", "Example / customer card", "Example / events grid", "Example / in offices", "Example / people directory", "Example / plan choice", "Example / quarter goal", "Example / related links in an aside", "Example / shared link in a conversation", "Example / upcoming events", "Examples / cards", "Examples / stat cards", "Stress test / Callout Card", "Stress test / Card", "Stress test / Entity and Progress cards", "Stress test / Event Card", "Stress test / Link Preview", "Stress test / Location Card", "Stress test / Option Card", "Stress test / Person Card", "Stress test / Post Card", "Stress test / Progress Card", "Stress test / Stat Card"
 
 ## Card
 
-Component set · 16 variants · default size 384 × 308
+Component set · 28 variants · default size 384 × 308
 
 shadcn Card. Variant: default (card background and border); outline (border only; inside panels and long lists); muted (tinted, no border; secondary or summary information); inverted (foreground/default surface with background/default text, near black in Light and near white in Dark) for the one card that must stand out on a page, such as an upgrade offer or a key summary, never a whole grid. Size: default (padding and gap 24, 16 in Compact), sm (16, 12 in Compact). Elevation: false (flat) or true (shadow md; an outline card gets the card background so the shadow has a surface). Use Elevation for one card that must stand out or floats over content, never for a whole grid. Header, Content and Footer are native slots with their own side padding, so a slot set to padding 0 runs edge to edge. Content you place in an inverted card's slots must use inverted colors: text background/default (70% opacity for secondary text), Buttons secondary or outline, never the primary default (under 3:1 in Corporate). Padding and gap come from density/card-*; change those tokens for a product-wide decision. A card with its own anatomy (Stat Card, Option Card, Post Card) is a separate component built on Card.
+
+
+State (Variant default and outline, Elevation false): hover (shadow/md and a stronger border) and focus (2 px ring) for cards that are one link or button as a whole (use cases, category tiles, folders, help categories); static cards stay State=default. Media=top: a full-bleed 16:9 Image Placeholder at the top (exposed: pick the Image or another Ratio), Header and Content below; for article, template and integration tiles.
 
 
 Usage: eggux build-ui/components/card.md
@@ -38,6 +42,8 @@ Usage: eggux build-ui/components/card.md
 - Variant=muted for secondary or summary information and placeholders
 - Variant=inverted for the one card that must stand out on a page (an upgrade offer, a key summary)
 - Size=sm for grids of many cards, sidebars and dashboards
+- State=hover and focus: cards that are one link as a whole (use cases, category tiles, folders, help categories)
+- Media=top: article, template and integration tiles with a picture
 
 **Not for**
 
@@ -52,6 +58,8 @@ Usage: eggux build-ui/components/card.md
 3. Content slot
 4. Footer slot (Card Footer): Actions slot
 5. Inverted default slot content is recolored: titles background/default, descriptions background/default at opacity/70, ghost icons background/default
+6. State (Variant default and outline, Elevation false): default, hover (shadow/md, border/strong), focus (2 px ring). Interactive outline cards get the background/card surface
+7. Media: none, top (full-bleed 16:9 Image Placeholder, exposed, radius/xl top corners; Header follows after the card gap)
 
 **Content and behavior**
 
@@ -65,6 +73,8 @@ Usage: eggux build-ui/components/card.md
 - Turn off Show header or Show footer when unused; never detach
 - Card Header icon: on all cards of a row or none; it names the card type, never decorates
 - Content you place in an inverted card's slots uses inverted colors: text background/default (opacity/70 for secondary), Buttons secondary or outline, never default (primary is under 3:1 on the inverted surface in Corporate)
+- Hover and focus only on cards with a single destination; static cards stay State=default
+- Media=top: one image Ratio per grid; images crop, never stretch
 
 **Accessibility**
 
@@ -73,12 +83,15 @@ Usage: eggux build-ui/components/card.md
 - Action slot Button Icons have labels and tooltips
 - The Card Header icon is decorative (aria-hidden); the Title carries the meaning
 - Inverted text is background/default on foreground/default: 19.8:1 Light, 19.0:1 Dark, 17.9:1 Corporate Light; secondary text at 70% stays above 7:1
+- Focus ring meets 3:1: border/ring 5.17:1 Light, 4.87:1 Dark on background/card
 
 | Variant property | Values |
 |---|---|
 | Variant | default, outline, muted, inverted |
 | Size | default, sm |
 | Elevation | false, true |
+| State | default, hover, focus |
+| Media | none, top |
 
 | Property | Type | Default |
 |---|---|---|
@@ -88,7 +101,7 @@ Usage: eggux build-ui/components/card.md
 
 Slots (fill them in the instance, never detach): `Header`, `Content`, `Footer`
 
-Built from: `Card Footer`, `Card Header`
+Built from: `Card Footer`, `Card Header`, `Image Placeholder`
 
 Tokens and styles:
 - Colors: `background/card`, `background/default`, `background/muted`, `border/default`, `card/muted-background`, `foreground/default`, `foreground/muted`
@@ -231,15 +244,23 @@ Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default
 
 ## Option Card
 
-Component set · 10 variants · default size 384 × 80
+Component set · 30 variants · default size 384 × 80
 
 Selectable card: a radio option with more context (plan, delivery, billing period). The whole card is the click target; selected = 2 px primary border + checked radio. Group 2-4 of them vertically or in a row. Control=checkbox for several choices (a card per option with a checkbox); radio for one choice.
+
+
+Layout: default (icon, title and description, control on the right); media (280 wide: a 16:9 preview on top, exposed Image Placeholder, then title, description and control; for theme, template and layout pickers; no icon); compact (12 padding, 32 icon tile, description on one line; delivery options with carrier logos, short lists in dialogs).
+
+
+Usage: eggux build-ui/components/card.md
 
 **Use for**
 
 - Choosing one of 2-4 options that each need a description (Control=radio)
 - Turning on several add-ons, modules or channels (Control=checkbox)
 - Onboarding choices where each option needs a sentence of context
+- Layout=media: theme, template and layout pickers with a preview
+- Layout=compact: delivery options with carrier logos and short lists in dialogs
 
 **Not for**
 
@@ -253,6 +274,7 @@ Selectable card: a radio option with more context (plan, delivery, billing perio
 2. Title
 3. Description (Show description)
 4. Control: Radio (Control=radio) or Checkbox (Control=checkbox)
+5. Layout: default; media (280 wide, 16:9 preview on top as exposed Image Placeholder, then title, description and control; no icon); compact (12 padding, 32 icon tile, description on 1 line)
 
 **Content and behavior**
 
@@ -260,6 +282,9 @@ Selectable card: a radio option with more context (plan, delivery, billing perio
 - Control=radio: exactly one selected; Control=checkbox: any number
 - State: default, hover, focus, selected, disabled
 - Group 2-6 cards in a column or a grid with the same height
+- One Layout per group
+- Media previews show the option itself (the theme, the template), not decoration
+- Resize: media 240 to 320 wide in a grid; compact fills its column, title and description 1 line with ellipsis
 
 **Accessibility**
 
@@ -271,6 +296,7 @@ Selectable card: a radio option with more context (plan, delivery, billing perio
 |---|---|
 | State | default, hover, focus, selected, disabled |
 | Control | checkbox, radio |
+| Layout | default, media, compact |
 
 | Property | Type | Default |
 |---|---|---|
@@ -280,11 +306,11 @@ Selectable card: a radio option with more context (plan, delivery, billing perio
 | Show icon | boolean | true |
 | Icon | instance swap | Icon/building |
 
-Built from: `Checkbox`, `Radio`. Icons: building
+Built from: `Checkbox`, `Image Placeholder`, `Radio`. Icons: building
 
 Tokens and styles:
 - Colors: `background/accent`, `background/card`, `background/muted`, `background/primary`, `border/default`, `foreground/card`, `foreground/muted`
-- Spacing and size: `density/card-padding-sm`, `spacing/10`, `spacing/1_5`, `spacing/3`, `spacing/96`
+- Spacing and size: `density/card-padding-sm`, `spacing/0_5`, `spacing/10`, `spacing/1_5`, `spacing/3`, `spacing/8`, `spacing/96`
 - Radius: `radius/lg`, `radius/md`
 - Text styles: `body/small`, `ui/label`
 - Effects: `shadow/xs`
@@ -808,3 +834,82 @@ Tokens and styles:
 Guides: [card](../../skills/build-ui/components/card.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
 Code: shadcn `Card` + `<address>`, `tel:` link, maps link (Show map: a static map image or embed on top)
+
+## Callout Card
+
+Component set · 2 variants · default size 560 × 162
+
+An in-app card that suggests one thing: an optional Media slot (Icon Tile by default, or a Spot Illustration), Title, one sentence, Actions and a dismiss X. Use it for an upgrade card in the sidebar footer, tips on a home page, a feature announcement, an empty dashboard nudge or the next onboarding step.
+
+
+Layout: horizontal (560, min 320: media on the left; page and card areas), stacked (280, min 220: media on top and the X in the corner; sidebars and narrow columns). Title 2 lines, Description 3 lines, then an ellipsis; Actions wrap. One primary action at most; Show close lets people dismiss it for good (remember the choice).
+
+
+Use Alert for status that needs attention, Card for content, and Banner blocks for page-wide promotions.
+
+
+Usage: eggux build-ui/components/card.md
+
+**Use for**
+
+- Upgrade or trial card in the sidebar footer: Layout=stacked
+- Tips and next steps on a home or dashboard page: Layout=horizontal
+- A feature announcement inside the app
+- An empty dashboard nudge or the next onboarding step
+
+**Not for**
+
+- Status that needs attention (errors, limits): use Alert
+- Content people read or act on every day: use Card
+- Page-wide promotions on marketing pages: use the Banner blocks
+- More than one callout per view
+
+**Anatomy**
+
+1. Media (Show media, native slot): Icon Tile Style=brand by default; a Spot Illustration at 80 for a friendlier tone
+2. Title (body/large, Title), 2 lines
+3. Description (body/small, Description), 3 lines
+4. Actions (Show actions, native slot): Button default sm and Button ghost sm; wraps
+5. Close X (Show close), top right
+6. Layout: horizontal (560, media left) or stacked (280, media on top, X in the corner)
+7. Surface: background/card, border/default, radius/xl, padding spacing/5
+
+**Content and behavior**
+
+- One primary action at most; the second is ghost or absent
+- Title says the benefit ("Send invoices automatically"), not the feature name
+- Dismiss is remembered: once closed it does not come back for that person
+- Horizontal min width 320, stacked min 220; title 2 lines and description 3 lines with ellipsis; actions wrap to a second line
+- Below 400 use Layout=stacked
+
+**Accessibility**
+
+- A region with the title as its heading (aria-labelledby)
+- The close X has aria-label "Dismiss"
+- Media is decorative (aria-hidden) unless it carries information
+
+| Variant property | Values |
+|---|---|
+| Layout | horizontal, stacked |
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Get more from Acme |
+| Description | text | Upgrade to Pro for unlimited projects, custom roles and priority support. |
+| Show media | boolean | true |
+| Show actions | boolean | true |
+| Show close | boolean | true |
+
+Slots (fill them in the instance, never detach): `Media`, `Actions`
+
+Built from: `Button`, `Icon Tile`. Icons: x
+
+Tokens and styles:
+- Colors: `background/card`, `border/default`, `foreground/card`, `foreground/muted`
+- Spacing and size: `spacing/1`, `spacing/2`, `spacing/4`, `spacing/5`, `spacing/6`
+- Radius: `radius/sm`, `radius/xl`
+- Text styles: `body/large`, `body/small`
+
+Guides: [card](../../skills/build-ui/components/card.md), [monetization](../../skills/build-ui/patterns/monetization.md)
+
+Code: shadcn `Card` with `flex gap-4 p-5` (Layout=horizontal) or `flex-col` (stacked, close `absolute right-3 top-3`); `CardTitle` `line-clamp-2`, description `text-sm text-muted-foreground line-clamp-3`, actions `flex flex-wrap gap-2` (Dismissal stored per user (localStorage or a user setting); media is `IconTile` or a spot illustration SVG `size-20` with `aria-hidden`)

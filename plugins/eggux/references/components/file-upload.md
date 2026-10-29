@@ -1,30 +1,38 @@
 # File Upload
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [File Dropzone](#file-dropzone) | 4 | - |
-| [File Item](#file-item) | 3 | - |
+| [File Dropzone](#file-dropzone) | 8 | - |
+| [File Item](#file-item) | 12 | - |
 | [File Preview](#file-preview) | 3 | - |
 | [Resource Item](#resource-item) | 1 | Actions |
 | [File Field](#file-field) | 3 | - |
+| [File Type Icon](#file-type-icon) | 20 | - |
 
-On the Figma page: "Example / attach documents", "Example / downloads", "Example / invoice preview over a list", "Example / supplier onboarding documents", "Example / upload documents", "Stress test / File Dropzone", "Stress test / File Field", "Stress test / File Item", "Stress test / File Preview", "Stress test / Resource Item"
+On the Figma page: "Example / File Item tiles, File Dropzone sm and File Type Icon", "Example / attach documents", "Example / downloads", "Example / invoice preview over a list", "Example / supplier onboarding documents", "Example / upload documents", "Stress test / File Dropzone", "Stress test / File Field", "Stress test / File Item", "Stress test / File Preview", "Stress test / File Type Icon", "Stress test / Resource Item"
 
 ## File Dropzone
 
-Component set · 4 variants · default size 480 × 186
+Component set · 8 variants · default size 480 × 186
 
 Drop area + "Browse files" button for uploads. The whole area is clickable and keyboard-focusable. Hint states accepted types and max size. drag-over while dragging; error after a rejected drop. Each file then appears as a File Item below.
+
+
+Size: default (the drop area of an upload page or dialog) or sm (one line: icon, title and hint on 1 line each with ellipsis, Browse at the end, 480 wide and Fill) for a file field inside a Form Section, comment and chat attachments and the first step of an import.
+
+
+Usage: eggux build-ui/components/file-upload.md
 
 **Use for**
 
 - Several documents or images attached to a record: invoices, contracts, exports
 - Upload step inside a form, under a Field label
 - Imports where the user drags a file from the desktop
+- Size=sm: a file field inside a Form Section, comment and chat attachments, the first step of an import
 
 **Not for**
 
@@ -38,6 +46,7 @@ Drop area + "Browse files" button for uploads. The whole area is clickable and k
 3. Browse files Button
 4. Hint: accepted types and max size
 5. File Item list below, one per file
+6. Size: default (centered stack) or sm (one row: 32 icon tile, title and hint 1 line each, Browse at the end)
 
 **Content and behavior**
 
@@ -47,6 +56,7 @@ Drop area + "Browse files" button for uploads. The whole area is clickable and k
 - Upload starts on selection; submit waits for uploads or says what is pending
 - With a limit, show the total: "3 of 5 files"
 - Resize: title and hint fill the width, centered, up to 2 lines each with ellipsis
+- Size=sm: 480 wide by default, Fill in forms; title and hint 1 line with ellipsis; keep the hint short
 
 **Accessibility**
 
@@ -57,6 +67,7 @@ Drop area + "Browse files" button for uploads. The whole area is clickable and k
 | Variant property | Values |
 |---|---|
 | State | default, drag-over, error, disabled |
+| Size | default, sm |
 
 | Property | Type | Default |
 |---|---|---|
@@ -68,7 +79,7 @@ Built from: `Button`. Icons: upload
 
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `background/muted`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/10`, `spacing/3`, `spacing/6`
+- Spacing and size: `spacing/1`, `spacing/10`, `spacing/3`, `spacing/6`, `spacing/8`
 - Radius: `radius/full`, `radius/lg`
 - Text styles: `ui/caption`, `ui/label`
 
@@ -78,14 +89,22 @@ Code: react-dropzone + custom
 
 ## File Item
 
-Component set · 3 variants · default size 480 × 78
+Component set · 12 variants · default size 480 × 78
 
-One selected or uploaded file. uploading: progress + cancel (X). complete: size + remove (trash). error: reason in destructive text + Retry + cancel. Name truncates in the middle in code; full name in a tooltip.
+One selected or uploaded file. uploading: progress + cancel (X). done: size + remove (trash). error: reason in destructive text + Retry + cancel. Name truncates in the middle in code; full name in a tooltip.
+
+
+Type: file shows a file icon; image shows a thumbnail of the photo (Image Placeholder 1:1 inside, set its Image). Layout: row (default, full-width list under a File Dropzone) or tile (160 wide, for photo grids: review photos, product images, gallery and avatar uploads). In a tile, remove or cancel sits on the thumbnail corner, the name is 1 line and Retry moves under the error text. Error keeps the alert icon in both types.
+
+
+Usage: eggux build-ui/components/file-upload.md
 
 **Use for**
 
 - Each file added through a File Dropzone
 - Files already attached to a record, in edit mode
+- Type=image: photos and images being uploaded, with a thumbnail
+- Layout=tile: photo grids (review photos, product images, gallery and avatar uploads)
 
 **Not for**
 
@@ -94,18 +113,24 @@ One selected or uploaded file. uploading: progress + cancel (X). complete: size 
 
 **Anatomy**
 
-1. File icon
-2. File name
-3. Progress (uploading) or size (complete) or reason (error)
-4. Actions: cancel (X), remove (trash), Retry
+1. Type: file (file icon) or image (thumbnail: Image Placeholder 1:1 inside, set its Image)
+2. Layout: row (480, Fill) or tile (160: media 112 high, name, meta)
+3. File icon
+4. File name
+5. Progress (uploading) or size (complete) or reason (error)
+6. Actions: cancel (X), remove (trash), Retry
+7. Tile: remove or cancel is a Button Icon outline sm on the media corner; Retry sits under the error text
 
 **Content and behavior**
 
 - State uploading: Progress and cancel (X)
-- State complete: size and remove (trash)
+- State done: size and remove (trash)
 - State error: reason in destructive text, Retry and cancel; Retry only for network or server errors
 - File name truncates in the middle in code so the extension stays visible; full name in a Tooltip
 - Files are listed in the order added
+- Error keeps the alert icon in both types, even for images
+- One Layout per list or grid; tiles sit in a wrapping row with 12 gap
+- Resize: row name 1 line with ellipsis (middle truncation in code), meta wraps; tile is a fixed 160, name 1 line, error text 2 lines
 
 **Accessibility**
 
@@ -116,16 +141,18 @@ One selected or uploaded file. uploading: progress + cancel (X). complete: size 
 | Variant property | Values |
 |---|---|
 | State | uploading, done, error |
+| Type | file, image |
+| Layout | row, tile |
 
 | Property | Type | Default |
 |---|---|---|
 | File name | text | q3-financials.pdf |
 
-Built from: `Button`, `Button Icon`, `Progress`. Icons: circle-alert, file-text
+Built from: `Button`, `Button Icon`, `Image Placeholder`, `Progress`. Icons: circle-alert, file-text
 
 Tokens and styles:
 - Colors: `background/default`, `background/destructive`, `background/muted`, `border/default`, `foreground/default`, `foreground/muted`
-- Spacing and size: `spacing/1`, `spacing/10`, `spacing/3`
+- Spacing and size: `spacing/1`, `spacing/10`, `spacing/2`, `spacing/28`, `spacing/3`
 - Radius: `radius/md`
 - Text styles: `ui/caption`, `ui/label`
 
@@ -312,3 +339,59 @@ Tokens and styles:
 Guides: [file-upload](../../skills/build-ui/components/file-upload.md)
 
 Code: custom: hidden `input type="file"` + shadcn `Button`, file name, remove `Button` (Several files: `File Dropzone` (react-dropzone))
+
+## File Type Icon
+
+Component set · 20 variants · default size 40 × 40
+
+A tile per file type with its extension in the type color: pdf (rose), document (blue), sheet (green), slides (orange), image (violet), video (fuchsia), audio (cyan), archive (amber), code (neutral, </>), generic (neutral, file icon). Size default 40, sm 32. Colors are the Badge category tints (category-N-bg and -fg, 5.67:1 or more in every mode), so a type keeps its color everywhere. Edit the extension text in the instance for a different extension of the same type (CSV in sheet, PNG in image). Use it in File Item, Resource Item, attachments, Table Cell File, Search Result Item Type=file and Context Chip Type=file instead of a generic icon.
+
+
+Usage: eggux build-ui/components/file-upload.md
+
+**Use for**
+
+- File Item, Resource Item and attachment lists
+- Table Cell File and Search Result Item Type=file
+- Context Chip Type=file and email attachments
+
+**Not for**
+
+- A file preview with content: use File Preview or an Image Placeholder thumbnail
+- Folders and other objects: use an icon in Icon Tile
+
+**Anatomy**
+
+1. Type: pdf, document, sheet, slides, image, video, audio, archive, code, generic
+2. Size: default 40, sm 32
+3. Tile: Badge category tint (category-N-bg), radius md (sm: radius sm)
+4. Extension: ui/label-small in category-N-fg (PDF, DOC, XLS, PPT, JPG, MP4, MP3, ZIP, </>); generic shows a file icon
+
+**Content and behavior**
+
+- Colors: pdf rose (8), document blue (1), sheet green (6), slides orange (2), image violet (7), video fuchsia (5), audio cyan (3), archive amber (4), code and generic neutral
+- Edit the extension text for other extensions of the same type (CSV in sheet, PNG in image); 3 letters, 4 at most in default
+- Do not use it for a single file type everywhere; it helps only when types mix
+- Resize: fixed size, never stretched
+
+**Accessibility**
+
+- Decorative next to the file name (aria-hidden); the name includes the extension
+- Extension text keeps 5.67:1 or more on its tint in every mode
+
+| Variant property | Values |
+|---|---|
+| Type | pdf, document, sheet, slides, image, video, audio, archive, code, generic |
+| Size | default, sm |
+
+Icons: file-text
+
+Tokens and styles:
+- Colors: `badge/category-1-bg`, `badge/category-1-fg`, `badge/category-2-bg`, `badge/category-2-fg`, `badge/category-3-bg`, `badge/category-3-fg`, `badge/category-4-bg`, `badge/category-4-fg`, `badge/category-5-bg`, `badge/category-5-fg`, `badge/category-6-bg`, `badge/category-6-fg`, `badge/category-7-bg`, `badge/category-7-fg`, `badge/category-8-bg`, `badge/category-8-fg`, `badge/soft-neutral-bg`, `foreground/default`
+- Spacing and size: `spacing/10`, `spacing/8`
+- Radius: `radius/md`, `radius/sm`
+- Text styles: `ui/label-small`
+
+Guides: [file-upload](../../skills/build-ui/components/file-upload.md)
+
+Code: `<span className="inline-flex size-10 items-center justify-center rounded-md bg-[var(--badge-category-N-bg)] text-[var(--badge-category-N-fg)] text-xs font-medium">PDF</span>` (sm `size-8 rounded-sm`); code and generic `bg-[var(--badge-soft-neutral-bg)]`, generic shows lucide `FileText` (Map MIME type or extension to the type: pdf 8, document 1, sheet 6, slides 2, image 7, video 5, audio 3, archive 4; `aria-hidden`)

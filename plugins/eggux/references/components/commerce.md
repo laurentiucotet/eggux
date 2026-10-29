@@ -1,12 +1,12 @@
 # Commerce
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
 | Component | Variants | Slots |
 |---|---|---|
-| [Product Card](#product-card) | 9 | - |
+| [Product Card](#product-card) | 12 | - |
 | [Line Item](#line-item) | 2 | - |
 | [Mini Cart](#mini-cart) | 1 | Items |
 | [Order Row](#order-row) | 18 | - |
@@ -19,9 +19,12 @@ On the Figma page: "Example / Product Card styles", "Example / in billing", "Exa
 
 ## Product Card
 
-Component set · 9 variants · default size 264 × 384
+Component set · 12 variants · default size 264 × 384
 
 A product in a grid, carousel or list: photo, sale or sold-out badges, wishlist, name, variant text, Price and Old price, optional quick add. Layout: vertical (default) for product grids, set the card to Fill in a Grid auto layout (min width 160), the photo height follows the width; horizontal (120 px photo left, details and action right, no wishlist) for search result lists, wishlists, recently viewed and cart suggestions; overlay (name, variant text and price over the photo on a media/scrim panel, wishlist on the photo, no action button) for editorial grids, lookbooks and category tiles where the photo sells. Pick the photo ratio on the exposed Image (1:1 default, 3:4 for fashion), the same across a grid. Overlay text is media/foreground on media/scrim, 5.7:1 over the brightest pixel. One Layout per grid. State=sale: set the percentage on the Discount Badge (exposed, its Label in the instance panel: "-20%", "-35%"); it is not a text property because a text property cannot reach into a nested Badge.
+
+
+Show swatches (off): a row of color Swatches under the variant text when the product comes in colors; show up to 4 and say the rest in Variant text ("4 colors"). Size: default (264) or sm (180, min 140; vertical layout only) for dense grids, carousels, Mini Cart recommendations and Category Filters results: smaller name, wishlist sm, tighter gaps.
 
 
 Usage: eggux build-ui/patterns/commerce.md
@@ -32,6 +35,8 @@ Usage: eggux build-ui/patterns/commerce.md
 - Carousels of related products
 - Product search results, wishlists, recently viewed and cart suggestions: Layout=horizontal
 - Editorial grids, lookbooks and category tiles where the photo sells: Layout=overlay
+- Size=sm: dense grids, carousels, Mini Cart recommendations, Category Filters results
+- Show swatches: products sold in several colors
 
 **Not for**
 
@@ -52,6 +57,8 @@ Usage: eggux build-ui/patterns/commerce.md
 9. Action: Button (Show action) "Add to cart"; State=sold-out shows "Notify me" with its own Show notify, independent of Show action
 10. Horizontal: no wishlist; details column with name, variant text, rating, price and the action (hug)
 11. Overlay: media/scrim-fade to media/scrim gradient and a media/scrim panel with name, variant text and price in media/foreground; wishlist and badges stay on the photo; no action or Notify me
+12. Swatches (Show swatches, off): up to 4 Swatch sm (color) under the variant text, the selected one ringed
+13. Size: default (264) or sm (180, min 140; Layout=vertical only): name ui/label-small, wishlist sm, tighter gaps
 
 **Content and behavior**
 
@@ -67,6 +74,9 @@ Usage: eggux build-ui/patterns/commerce.md
 - Show rating on every card of a grid or on none; the count is the number of reviews
 - Sold out keeps Notify me even when quick add (Show action) is off in the grid; turn Show notify off only when there is no restock
 - Resize: name up to 2 lines, variant line 1 line, both with ellipsis
+- Show at most 4 swatches; say the total in Variant text ("4 colors")
+- Swatches change the photo on hover or click in code; the card still opens the product
+- Size=sm only in the vertical layout; one Size per grid
 
 **Accessibility**
 
@@ -74,11 +84,13 @@ Usage: eggux build-ui/patterns/commerce.md
 - Wishlist and Add to cart are separate buttons with the product name in their labels
 - The image alt is empty when the name sits next to it; the price reads old and new
 - Overlay text is media/foreground on media/scrim (black 60%): 5.7:1 over the brightest pixel
+- Swatches are buttons named by color ("Sand"), the selected one has aria-pressed
 
 | Variant property | Values |
 |---|---|
 | Layout | vertical, horizontal, overlay |
 | State | default, sale, sold-out |
+| Size | default, sm |
 
 | Property | Type | Default |
 |---|---|---|
@@ -90,16 +102,17 @@ Usage: eggux build-ui/patterns/commerce.md
 | Old price | text | €59.00 |
 | Show rating | boolean | false |
 | Show notify | boolean | true |
+| Show swatches | boolean | false |
 
-Built from: `Badge`, `Button`, `Button Icon`, `Image Placeholder`, `Rating`
+Built from: `Badge`, `Button`, `Button Icon`, `Image Placeholder`, `Rating`, `Swatch`
 
 Tokens and styles:
 - Colors: `background/destructive`, `foreground/default`, `foreground/muted`, `media/foreground`, `media/scrim`
-- Spacing and size: `spacing/0`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
+- Spacing and size: `spacing/0`, `spacing/0_5`, `spacing/1`, `spacing/2`, `spacing/3`, `spacing/4`
 - Radius: `radius/lg`
-- Text styles: `ui/caption`, `ui/label`
+- Text styles: `ui/caption`, `ui/label`, `ui/label-small`
 
-Guides: [commerce](../../skills/build-ui/patterns/commerce.md)
+Guides: [card](../../skills/build-ui/components/card.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
 Code: shadcn `Card` (name `line-clamp-2`; variant `truncate`)
 

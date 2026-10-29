@@ -1,6 +1,6 @@
 # Color Picker
 
-Generated from the EGG UI master library on 2026-10-27 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -9,8 +9,9 @@ Usage rules live in the guides linked under each component.
 | [Color Picker](#color-picker) | 1 | Swatches |
 | [Swatch Picker](#swatch-picker) | 1 | Swatches |
 | [Swatch](#swatch) | 9 | - |
+| [Color Input](#color-input) | 4 | - |
 
-On the Figma page: "Example / Swatch styles", "Example / brand colors", "Example / color field", "Stress test / Color Picker", "Stress test / Swatch Picker"
+On the Figma page: "Example / Color Input", "Example / Swatch styles", "Example / brand colors", "Example / color field", "Stress test / Color Input", "Stress test / Color Picker", "Stress test / Swatch Picker"
 
 ## Color Picker
 
@@ -185,3 +186,62 @@ Tokens and styles:
 Guides: [color-picker](../../skills/build-ui/components/color-picker.md), [commerce](../../skills/build-ui/patterns/commerce.md)
 
 Code: shadcn `RadioGroup` (or `ToggleGroup type="single"`) with custom items: a color dot (Type=color) or a label box (Type=label) (Color or option name as label; unavailable: `aria-disabled`, still focusable)
+
+## Color Input
+
+Component set · 4 variants · default size 240 × 36
+
+A field for one color: a swatch with the current color and its hex value (Value, "#2563EB"), with Opacity ("100%", Show opacity) for colors with alpha. Click or Enter opens Color Picker in a Popover; typing a hex updates the swatch. Override the swatch fill per use. For brand and theme settings, label and category colors and chart series colors. State: default, focus, error (invalid hex), disabled. 240 wide by default, FILL in forms, min 160; the hex never wraps.
+
+
+Usage: eggux build-ui/components/color-picker.md
+
+**Use for**
+
+- Brand and theme settings (Appearance Settings, theme preview)
+- Label, category and calendar colors when any color is allowed
+- Chart series colors in dashboard settings
+
+**Not for**
+
+- A short fixed set of colors: use Swatch Picker
+- Choosing a color visually on the page: use Color Picker inline
+
+**Anatomy**
+
+1. Swatch: 20 px, radius/sm, border/default inside; its fill is the current color (override per use)
+2. Value: hex ("#2563EB")
+3. Opacity (Show opacity): "60%" in muted text
+4. State: default, focus, error, disabled; field tokens of Input (border/input, input/radius, density/control-height)
+
+**Content and behavior**
+
+- Typing a valid hex updates the swatch; an invalid one shows State=error with "Use a hex color like #2563EB" from Field
+- Click, Enter or Space opens Color Picker in a Popover under the field
+- Hex in upper case, 6 digits; opacity only where alpha is supported
+- Resize: 240 by default, FILL in forms, minWidth 180; the hex truncates last, the swatch and opacity keep their size
+
+**Accessibility**
+
+- Visible label; the swatch is decorative, the value is read ("Brand color, #2563EB")
+- Check the picked color against its background where it carries text (the field does not)
+
+| Variant property | Values |
+|---|---|
+| State | default, focus, error, disabled |
+
+| Property | Type | Default |
+|---|---|---|
+| Value | text | #2563EB |
+| Opacity | text | 100% |
+| Show opacity | boolean | false |
+
+Tokens and styles:
+- Colors: `background/default`, `background/destructive`, `background/primary`, `border/default`, `border/input`, `border/ring`, `foreground/default`, `foreground/muted`
+- Spacing and size: `density/control-height`, `spacing/2`, `spacing/3`, `spacing/5`
+- Radius: `input/radius`, `radius/sm`
+- Text styles: `body/small`
+
+Guides: [color-picker](../../skills/build-ui/components/color-picker.md)
+
+Code: `InputGroup`: `PopoverTrigger` swatch (`size-5 rounded-sm border` with `style={{ background: value }}`) + `HexColorInput` (react-colorful) `className="uppercase"` + optional muted `60%`; `Color Picker` in the `Popover` (`min-w-[180px]`, `w-full` in forms; invalid hex sets `aria-invalid`)

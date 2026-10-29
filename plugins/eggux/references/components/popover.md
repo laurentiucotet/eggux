@@ -1,6 +1,6 @@
 # Popover
 
-Generated from the EGG UI master library on 2026-10-26 by `scripts/component-docs.js` and
+Generated from the EGG UI master library on 2026-10-29 by `scripts/component-docs.js` and
 `scripts/component-docs.py`. Do not edit by hand: change the component in Figma, then regenerate.
 Usage rules live in the guides linked under each component.
 
@@ -14,8 +14,12 @@ Usage rules live in the guides linked under each component.
 | [Emoji Picker](#emoji-picker) | 1 | - |
 | [App Launcher](#app-launcher) | 1 | - |
 | [Confirm Popover](#confirm-popover) | 2 | - |
+| [Popover Header](#popover-header) | 1 | - |
+| [Popover Footer](#popover-footer) | 1 | Start, Actions |
+| [Mention Menu](#mention-menu) | 1 | Items |
+| [Mention Option](#mention-option) | 4 | - |
 
-On the Figma page: "Example / app launcher from the top bar", "Example / command palette over the app", "Example / confirm before archiving invoices", "Example / emoji picker in a comment", "Example / person preview", "Example / quick edit from a header button", "Example / search with suggestions", "Stress test / App Launcher", "Stress test / Command", "Stress test / Command Dialog", "Stress test / Confirm Popover", "Stress test / Emoji Picker", "Stress test / Hover Card", "Stress test / Popover"
+On the Figma page: "Example / Mention Menu", "Example / Popover Header and Footer", "Example / app launcher from the top bar", "Example / command palette over the app", "Example / confirm before archiving invoices", "Example / emoji picker in a comment", "Example / person preview", "Example / quick edit from a header button", "Example / search with suggestions", "Stress test / App Launcher", "Stress test / Command", "Stress test / Command Dialog", "Stress test / Confirm Popover", "Stress test / Emoji Picker", "Stress test / Hover Card", "Stress test / Mention Menu", "Stress test / Popover", "Stress test / Popover Footer", "Stress test / Popover Header"
 
 ## Popover
 
@@ -201,7 +205,7 @@ Tokens and styles:
 - Text styles: `ui/caption`
 - Effects: `shadow/lg`
 
-Guides: [popover](../../skills/build-ui/components/popover.md)
+Guides: [popover](../../skills/build-ui/components/popover.md), [search-and-filter](../../skills/build-ui/patterns/search-and-filter.md)
 
 Code: shadcn `Command`, `CommandInput`, `CommandDialog`
 
@@ -421,3 +425,209 @@ Tokens and styles:
 Guides: [popover](../../skills/build-ui/components/popover.md)
 
 Code: shadcn `Popover` (`role="alertdialog"`) + two `Button`s (Irreversible actions use `AlertDialog`)
+
+## Popover Header
+
+Component · 1 variant · default size 256 × 20
+
+Top of a Popover, like Dialog Header: Title (ui/label, 2 lines), optional Description (Show description) and a close X (Show close). Put it first in the Popover Content slot, above the content; pair it with Popover Footer when the popover has Apply and Cancel. Use it for filter, picker and settings popovers (Faceted Filter, Date Range Picker, Column Settings, Notification Center); a small text popover needs no header.
+
+
+The close X is 20 px with a 16 px icon; in code it is a ghost icon button with aria-label "Close". Esc and an outside click close the popover too.
+
+
+Usage: eggux build-ui/components/popover.md
+
+**Use for**
+
+- Filter, picker and settings popovers: Faceted Filter, Filter Builder, Date Range Picker, Column Settings
+- Panels opened from the top bar: Notification Center, Mini Cart
+
+**Not for**
+
+- A small text popover or a Tooltip: no header
+- Menus: use Menu with a Menu Label
+
+**Anatomy**
+
+1. Title (ui/label, foreground/popover, Title), 2 lines
+2. Description (Show description, body/small, foreground/muted), 3 lines
+3. Close X 20 px with a 16 px icon (Show close)
+
+**Content and behavior**
+
+- Put it first in the Popover Content slot
+- Title names the task or the content ("Filter by status", "Notifications")
+- FILL the popover width; min 160, title wraps to 2 lines then ellipsis
+
+**Accessibility**
+
+- The title labels the popover (aria-labelledby)
+- Close X: aria-label "Close"; Esc and outside click also close
+
+| Property | Type | Default |
+|---|---|---|
+| Title | text | Filter by status |
+| Description | text | Pick one or more statuses to show. |
+| Show description | boolean | false |
+| Show close | boolean | true |
+
+Icons: x
+
+Tokens and styles:
+- Colors: `foreground/muted`, `foreground/popover`
+- Spacing and size: `spacing/1`, `spacing/2`
+- Radius: `radius/sm`
+- Text styles: `body/small`, `ui/label`
+
+Guides: [popover](../../skills/build-ui/components/popover.md)
+
+Code: custom in `PopoverContent`: `<div className="flex items-start gap-2"><div className="flex-1 min-w-0"><h3 className="text-sm font-medium line-clamp-2">…</h3><p className="text-sm text-muted-foreground">…</p></div><PopoverClose asChild><Button variant="ghost" size="icon" className="size-5" aria-label="Close"><X className="size-4" /></Button></PopoverClose></div>` (`aria-labelledby` on `PopoverContent` points at the title)
+
+## Popover Footer
+
+Component · 1 variant · default size 256 × 32
+
+Bottom of a Popover, like Dialog Footer: Actions (native slot, right: Cancel outline and Apply default, both sm) and an optional Start slot on the left (Show start: Reset or Clear, a ghost Button). Put it last in the Popover Content slot. Use it only when the choices apply on a button press (filters, date ranges, column settings); popovers that apply at once (a single select, a toggle) have no footer.
+
+
+One primary action, on the right.
+
+
+Usage: eggux build-ui/components/popover.md
+
+**Use for**
+
+- Popovers whose choices apply on a button press: filters, date ranges, column settings
+
+**Not for**
+
+- Popovers that apply at once (a single select, a toggle): no footer
+- Confirmation of a risky action: use Confirm Popover
+
+**Anatomy**
+
+1. Start (Show start, native slot): Button ghost sm "Reset"
+2. Spacer (FILL)
+3. Actions (native slot): Button outline sm "Cancel", Button default sm "Apply"
+
+**Content and behavior**
+
+- Put it last in the Popover Content slot
+- One primary action, on the right
+- FILL the popover width; min 240 (Reset, Cancel and Apply fit side by side)
+
+**Accessibility**
+
+- Buttons in reading order: Reset, Cancel, Apply
+- Enter applies when focus is in the popover
+
+| Property | Type | Default |
+|---|---|---|
+| Show start | boolean | false |
+
+Slots (fill them in the instance, never detach): `Start`, `Actions`
+
+Built from: `Button`
+
+Tokens and styles:
+- Spacing and size: `spacing/2`
+
+Guides: [popover](../../skills/build-ui/components/popover.md)
+
+Code: custom: `<div className="flex items-center gap-2"><Button variant="ghost" size="sm">Reset</Button><div className="flex-1" /><Button variant="outline" size="sm">Cancel</Button><Button size="sm">Apply</Button></div>` (min width 240)
+
+## Mention Menu
+
+Component · 1 variant · default size 280 × 230
+
+The suggestion list that opens while typing @ in a comment, chat, editor or prompt: Mention Options with the typed part highlighted, people first, then files and records (Items slot), an optional group Header ("People", Show header). 280 wide, popover surface, opens under the caret; at most 6 to 8 items, the first highlighted. The pick becomes a Mention Chip in the text.
+
+
+Usage: eggux build-ui/components/comments-and-chat.md
+
+**Use for**
+
+- Comment Composer, Chat Composer and Team Chat
+- Rich Text Editor and Comment Thread replies
+- Prompt Input (@ to add context; the pick becomes a Context Chip)
+
+**Not for**
+
+- Picking a value in a form: use Combobox
+- Commands typed with /: use Command
+- Inviting people to a resource: use People Picker
+
+**Anatomy**
+
+1. Header (Show header): group name ("People", "Files")
+2. Items (native slot): Mention Options
+3. Mention Option: Type person (Avatar, exposed) or item (icon tile, Icon swap); Match (typed part, foreground/brand) + Name; Description (handle and team, or type and place), Show description; State default, highlighted
+4. Popover surface, 280 wide, padding spacing/1
+
+**Content and behavior**
+
+- Opens under the caret after @ and filters as people type; the first item is highlighted
+- 6 to 8 items at most; people first, then files and records, each group with a Header
+- No match: one muted line "No people match", or close the menu
+- The pick inserts a Mention Chip and a space; Esc closes and keeps the typed text
+- Resize: fixed 280; names and descriptions truncate to 1 line
+
+**Accessibility**
+
+- The editor keeps focus; the list is a listbox tied with aria-activedescendant
+- Up and Down move, Enter or Tab picks, Esc closes
+- The highlighted match is not color alone: the name is read in full
+
+| Property | Type | Default |
+|---|---|---|
+| Header | text | People |
+| Show header | boolean | true |
+
+Slots (fill them in the instance, never detach): `Items`
+
+Built from: `Mention Option`
+
+Tokens and styles:
+- Colors: `background/popover`, `border/default`, `foreground/muted`
+- Spacing and size: `spacing/0_5`, `spacing/1`, `spacing/1_5`, `spacing/2`
+- Radius: `radius/md`
+- Text styles: `ui/caption`
+
+Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md), [popover](../../skills/build-ui/components/popover.md)
+
+Code: Tiptap `Mention` suggestion (or `textarea` + caret-anchored `Popover`) rendering `Command` / `CommandItem` with `Avatar size-8` or an icon tile, `<mark className="bg-transparent font-medium text-brand">An</mark>na Berg` and a muted second line (`w-[280px]`; `aria-activedescendant` from the editor; insert a `Mention Chip` on select)
+
+## Mention Option
+
+Component set · 4 variants · default size 264 × 48
+
+One suggestion in Mention Menu: Avatar (Type=person, exposed) or an icon tile (Type=item: files, records, channels; Icon swap), the name with the typed part highlighted (Match in primary, then Name), and a muted line (Description: handle and team, or type and place). State: default, highlighted (keyboard focus).
+
+
+Usage: eggux build-ui/components/comments-and-chat.md
+
+| Variant property | Values |
+|---|---|
+| Type | person, item |
+| State | default, highlighted |
+
+| Property | Type | Default |
+|---|---|---|
+| Match | text | An |
+| Name | text | na Berg |
+| Description | text | @anna · Design |
+| Show description | boolean | true |
+| Icon | instance swap | Icon/file-text |
+
+Built from: `Avatar`. Icons: file-text
+
+Tokens and styles:
+- Colors: `background/accent`, `background/muted`, `foreground/brand`, `foreground/muted`, `foreground/popover`
+- Spacing and size: `spacing/1_5`, `spacing/2`
+- Radius: `radius/md`, `radius/sm`
+- Text styles: `ui/caption`, `ui/label`
+
+Guides: [popover](../../skills/build-ui/components/popover.md)
+
+Code: Tiptap `Mention` suggestion (or `textarea` + caret-anchored `Popover`) rendering `Command` / `CommandItem` with `Avatar size-8` or an icon tile, `<mark className="bg-transparent font-medium text-brand">An</mark>na Berg` and a muted second line (`w-[280px]`; `aria-activedescendant` from the editor; insert a `Mention Chip` on select)
