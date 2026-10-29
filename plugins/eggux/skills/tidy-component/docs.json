@@ -1372,7 +1372,8 @@
   "use": [
    "2-5 options worth seeing, where several can be chosen",
    "A single opt-in or consent in a form",
-   "Row selection in tables with bulk actions"
+   "Row selection in tables with bulk actions",
+   "Options that need a second line: notification preferences, consent details, plan add-ons"
   ],
   "avoid": [
    "On/off that applies immediately: use Switch",
@@ -1382,7 +1383,8 @@
   "anatomy": [
    "Box: check icon when Checked=true, minus when Checked=indeterminate",
    "Label to the right (Label, Show label)",
-   "Error message from Field or text under the group"
+   "Error message from Field or text under the group",
+   "Description (Show description, Description): body/small foreground/muted under the label, indented to the label"
   ],
   "rules": [
    "The label is clickable and sits to the right of the box",
@@ -1390,15 +1392,18 @@
    "A consent checkbox says what the user agrees to, not \"I agree\"",
    "Never pre-tick consent or anything with consequences",
    "State=error marks the box; the message comes from Field",
-   "Resize: the label hugs, and wraps under its own width when the checkbox is narrower than the text; the box keeps its size"
+   "Resize: the label hugs, and wraps under its own width when the checkbox is narrower than the text; the box keeps its size",
+   "Description: one sentence, 3 lines max with an ellipsis; the control stays centered on the label line",
+   "Resize: label and description wrap; the description is at least 200 wide"
   ],
   "a11y": [
    "Space toggles; the label is tied to the input",
    "Show label off needs an aria-label: \"Select invoice INV-1041\"",
    "Indeterminate exposes aria-checked=\"mixed\"",
-   "The box border meets 3:1; focus ring in border/ring"
+   "The box border meets 3:1; focus ring in border/ring",
+   "Description is linked with aria-describedby"
   ],
-  "code": "shadcn Checkbox.",
+  "code": "shadcn Checkbox. Description: a p className=\"text-sm text-muted-foreground\" under the Label, linked with aria-describedby (flex items-start gap-2; text column grid gap-0.5).",
   "guides": [
    "skills/build-ui/components/select.md",
    "skills/build-ui/components/table.md",
@@ -1586,7 +1591,10 @@
    "Trigger with Value: placeholder or filled (Content)",
    "chevrons-up-down icon",
    "Open: Command 4 px below, with Command Input showing the query",
-   "Matching Menu Items, Checked on the selected one"
+   "Matching Menu Items, Checked on the selected one",
+   "Clear (Show clear): x icon before the chevrons",
+   "Size: default 36, sm 32, lg 40",
+   "State=read-only: background/muted, no chevrons"
   ],
   "rules": [
    "No match: \"No results for <query>\" (Command Empty on, Show items off)",
@@ -1594,14 +1602,16 @@
    "Show recent or suggested options before typing",
    "Long lists load asynchronously with a loading row, never an empty dropdown",
    "A single choice closes the list after the pick",
-   "Resize: the value truncates to 1 line with an ellipsis; the chevron keeps its size"
+   "Resize: the value truncates to 1 line with an ellipsis; the chevron keeps its size",
+   "State: default, focus, error, disabled, read-only; Size: default, sm, lg",
+   "Show clear empties the value and keeps focus on the trigger"
   ],
   "a11y": [
    "Visible label; the trigger exposes aria-expanded",
    "Typing filters, arrows move, Enter picks, Escape closes and returns focus to the trigger",
    "\"No results\" is announced, not only shown"
   ],
-  "code": "shadcn Popover + Command (the shadcn Combobox recipe).",
+  "code": "shadcn Popover + Command (the shadcn Combobox recipe). Size: Button trigger className \"h-8\" (sm) or \"h-10 text-base\" (lg). read-only: no Popover, a bg-muted field.",
   "guides": [
    "skills/build-ui/components/select.md",
    "skills/build-ui/components/popover.md",
@@ -1887,20 +1897,25 @@
   "anatomy": [
    "Value or placeholder (\"Pick a date\")",
    "Calendar icon",
-   "Calendar in a Popover, 4 px below, shadow/md (open state)"
+   "Calendar in a Popover, 4 px below, shadow/md (open state)",
+   "Size: default 36, sm 32, lg 40",
+   "State=read-only: background/muted, full-contrast value; nothing opens"
   ],
   "rules": [
    "Format follows the locale (\"22 Oct 2026\")",
    "Typing works as well as clicking; validate on blur with a format hint",
    "State=error shows the message under the field; never clear what was typed",
-   "Today is marked; unavailable dates are disabled with the reason"
+   "Today is marked; unavailable dates are disabled with the reason",
+   "State: default, focus, error, disabled, read-only; Size: default, sm, lg",
+   "sm in report and filter bars; lg in booking and mobile forms",
+   "Resize: the value fills and truncates; the icon keeps its size"
   ],
   "a11y": [
    "The field has a visible label, read together with the value",
    "Opening moves focus to the selected day or today; Esc closes and returns focus",
    "Arrows move by day, PageUp/PageDown by month, Enter selects"
   ],
-  "code": "shadcn Calendar (react-day-picker) in Popover (Date Picker recipe).",
+  "code": "shadcn Calendar (react-day-picker) in Popover (Date Picker recipe). Size: trigger Button className \"h-8\" (sm) or \"h-10 text-base\" (lg). read-only: a bg-muted field without the Popover.",
   "guides": [
    "skills/build-ui/components/date-picker.md"
   ]
@@ -2220,20 +2235,32 @@
   ]
  },
  "Field": {
-  "summary": "Wrapper that gives a control a visible label, a hint and an error message.",
+  "summary": "Wrapper that gives a control a visible label, a hint and an error message, with optional required, optional, info and counter markers. Layout vertical or horizontal.",
   "use": [
    "Every form control: Input, Textarea, Select, Input Group, Number Input",
    "Format hints shown before the user types",
-   "Grouped fields (address, date range) that need one label each"
+   "Grouped fields (address, date range) that need one label each",
+   "Layout=horizontal: dense settings pages and enterprise record forms with many short fields",
+   "Show info: a field that needs a definition (tax ID, SLA, webhook URL, role names)",
+   "Show counter: text with a limit (bio, SMS, notification text, review, AI prompt)"
   ],
   "avoid": [
    "Table cells or filter toolbars where the column or chip names the value: use Input alone with aria-label",
-   "Values edited in place on a detail page: use Inline Edit"
+   "Values edited in place on a detail page: use Inline Edit",
+   "Show required and Show optional in the same form: mark only the minority",
+   "Layout=horizontal under 400 px or on mobile: use vertical",
+   "Show info for text people need to finish the task: put it in the hint"
   ],
   "anatomy": [
-   "Label (Show label, on by default)",
+   "Label row (Show label): label group and counter",
+   "Label (Label, ui/label; wraps at 256, 144 in horizontal)",
+   "Required (Show required): red asterisk, background/destructive",
+   "Optional (Show optional): \"Optional\" in body/small foreground/muted, bound to the field/optional content string",
+   "Info (Show info): Info Tip Trigger that opens an Info Tip",
+   "Counter (Show counter): Field Counter, exposed (Count; Status default, near, over), at the right of the label",
    "Control slot (default Input)",
-   "Hint (Show hint) or Error with circle-alert icon"
+   "Hint (Show hint) or Error with circle-alert icon",
+   "Layout: vertical (label above) or horizontal (160 label column on the left, body fills; min width 400)"
   ],
   "rules": [
    "Label is always visible",
@@ -2242,26 +2269,39 @@
    "Validate on blur; once in error, re-validate on every change",
    "Error text uses background/destructive with an icon, not color alone",
    "Show label off only when the control carries its own visible label (Input Style=floating); hint and error stay under it",
-   "Resize: label and hint fill the width and wrap (label up to 2 lines); the control fills"
+   "State: default, error, disabled; Layout: vertical, horizontal",
+   "Mark the minority: if most fields are required, mark the optional ones (Show optional), otherwise mark the required ones (Show required); never both in one form",
+   "Required asterisk is explained once at the top of long forms (\"* required\") unless every field is required",
+   "Counter: default up to about 90% of the limit, near from 90%, over past the limit; over also sets State=error with \"Use 160 characters or fewer\"; never block typing or paste",
+   "Info Tip text is one or two sentences and at most one link; the hint stays for format help",
+   "Resize: label row fills; the label hugs and wraps at 256 (144 in horizontal), markers wrap to the next line when there is no room; the control fills; hint and error wrap",
+   "Layout=horizontal needs at least 400; below that use vertical"
   ],
   "a11y": [
    "Label is tied to the control (for / id)",
    "Hint and error linked with aria-describedby; aria-invalid on error",
    "On submit, focus moves to the first invalid field",
-   "With Show label off the control's own label must stay visible and be tied to the control"
+   "With Show label off the control's own label must stay visible and be tied to the control",
+   "Required: the input gets required / aria-required; the asterisk is aria-hidden and the form explains it",
+   "Optional text is part of the label (read with it)",
+   "Counter text is linked with aria-describedby and announced politely only near and over the limit",
+   "Info trigger is a button with aria-label \"More about <label>\" and aria-expanded"
   ],
-  "code": "shadcn Form: Field = FormItem with FormLabel, FormDescription, FormMessage (react-hook-form + zod).",
+  "code": "shadcn Form: Field = FormItem with FormLabel, FormDescription, FormMessage (react-hook-form + zod). Required: asterisk span aria-hidden after the label text and required on the input. Optional: a muted span inside the label. Info: Info Tip (Popover) trigger after the label. Counter: a muted span with the count in the label row (justify-between). Layout=horizontal: FormItem className \"grid grid-cols-[160px_1fr] gap-4 items-start\" with the label pt-2.",
   "guides": [
    "skills/build-ui/components/input.md",
-   "skills/build-ui/patterns/form-validation.md"
+   "skills/build-ui/patterns/form-validation.md",
+   "skills/build-ui/components/tooltip.md"
   ]
  },
  "Field Preset": {
-  "summary": "Ready-made Field for common data (email, password, phone, card, address) with the right type and autocomplete.",
+  "summary": "Ready-made Field for common data (email, password, phone, card, address, url, time zone, currency, language, date of birth, tax ID, IBAN) with the right type and autocomplete.",
   "use": [
    "Sign in, sign up, payment and address forms",
    "Any field whose data matches one of the 10 Types",
-   "Checkout and billing details: card, postal code, country, region"
+   "Checkout and billing details: card, postal code, country, region",
+   "Workspace setup, account settings, billing and B2B checkout: url, time-zone, currency, language, tax-id, iban",
+   "Profile and age checks: date-of-birth"
   ],
   "avoid": [
    "Data that matches no preset: use Field with Input",
@@ -2269,24 +2309,29 @@
   ],
   "anatomy": [
    "Field label",
-   "Control: Input or Select for the Type",
-   "Hint and Error: each Type has its own default text (nested Field exposed)"
+   "Control: Input, Select, Input Group (url) or Date Input (date-of-birth) for the Type",
+   "Hint and Error: each Type has its own default text (nested Field exposed; Show required, Show optional, Show info there)"
   ],
   "rules": [
-   "Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region",
+   "Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region, url, time-zone, currency, language, date-of-birth, tax-id, iban",
    "Each Type sets its own Error and Hint defaults (password \"Enter your password\", new-password \"Use at least 8 characters\", phone with the country code, card fields, postal code, country, county); rewrite them in the client's words, never leave another type's text",
    "country shows the placeholder \"Select a country\" by default; for a filled form set the nested Select to Content=filled with the country as Value",
    "In code set the matching type, inputmode and autocomplete (email, tel, cc-number, postal-code...)",
    "Change the label to the client's terminology; keep the preset behavior",
    "password never blocks paste; new-password pairs with Password Strength",
-   "card-number groups digits by 4; card-expiry formats MM / YY as the user types"
+   "card-number groups digits by 4; card-expiry formats MM / YY as the user types",
+   "url: Input Group with \"https://\"; accept an address typed without it",
+   "time-zone, currency, language: placeholder until picked; use a Combobox in code when the list is long (time zones, currencies)",
+   "date-of-birth: typed day, month and year (Date Input), never a calendar",
+   "tax-id: Show info on by default with a one-line definition; validate the format per country",
+   "iban: group in blocks of 4 as people type; accept spaces and lowercase"
   ],
   "a11y": [
    "Correct autocomplete lets browsers and password managers fill the field",
    "inputmode opens the right mobile keyboard",
    "Errors and states come from the nested Field"
   ],
-  "code": "Field (FormItem) + shadcn Input or Select with type, inputmode and autocomplete set per preset.",
+  "code": "Field (FormItem) + shadcn Input or Select with type, inputmode and autocomplete set per preset. url: type=\"url\" autocomplete=\"url\"; time-zone, currency, language: Select or Combobox; date-of-birth: autocomplete=\"bday-day\", \"bday-month\", \"bday-year\" with inputmode=\"numeric\"; tax-id: autocomplete=\"off\", uppercase; iban: inputmode=\"text\" autocomplete=\"off\", formatted in groups of 4.",
   "guides": [
    "skills/build-ui/patterns/form-presets.md",
    "skills/build-ui/patterns/auth.md"
@@ -2827,13 +2872,18 @@
   ]
  },
  "Input": {
-  "summary": "Single-line text field (shadcn Input), used inside a Field for label, hint and error. Style: default (outlined), filled or floating label.",
+  "summary": "Single-line text field (shadcn Input), used inside a Field for label, hint and error. Style: default, filled or floating. Size: default, sm, lg. States include read-only.",
   "use": [
    "Short free text: names, titles, email, search",
    "Search above a list, with the search Leading icon",
    "Any form control inside Field",
    "Style=filled: dense or card-heavy screens, filters and settings where many outlined boxes look busy",
-   "Style=floating: short public forms (sign-up, checkout, contact) where the label sits inside the field to save height"
+   "Style=floating: short public forms (sign-up, checkout, contact) where the label sits inside the field to save height",
+   "Size=sm: filter bars, Data Grid Toolbar, table rows, dense enterprise forms",
+   "Size=lg: hero inline forms, Help Hero search, mobile forms",
+   "State=read-only: values people can read and copy but not change (record details, IDs, fields locked after approval)",
+   "Show loading: async checks (workspace URL, coupon, address, VAT number)",
+   "Show clear: filter fields and search-like fields with a value"
   ],
   "avoid": [
    "Text longer than one line: use Textarea",
@@ -2841,34 +2891,47 @@
    "Fixed prefix or suffix (https://, EUR, %): use Input Group",
    "Common data (email, phone, card): use Field Preset",
    "Mixing Styles in one form: pick one Style per form",
-   "Style=floating for long or dense forms, or with long labels: use default with the label above"
+   "Style=floating for long or dense forms, or with long labels: use default with the label above",
+   "State=disabled for a value that is only locked: use read-only",
+   "Mixing Sizes in one row: match the Buttons beside it"
   ],
   "anatomy": [
    "Style: default (border/input, shadow/xs), filled (background/muted fill, no border until focus or error), floating (48 high, Label inside)",
    "Leading icon (Show leading icon, Leading icon)",
    "Label (floating only): rests in the middle in body/small; moves up in ui/caption on focus or when Content=filled; foreground/brand on focus, background/destructive on error",
    "Value or placeholder",
-   "Trailing slot (Show trailing): clear, show password"
+   "Trailing slot (Show trailing): clear, show password",
+   "Clear (Show clear): x icon 16 after the value",
+   "Loading (Show loading): Spinner sm at the end",
+   "Size: default 36 (density/control-height), sm 32 (spacing/8), lg 40 (spacing/10, body/default text, 16 padding)",
+   "State=read-only: background/muted fill, border/input border, no shadow, value foreground/default, placeholder input/filled-muted-foreground; clear and loading hidden"
   ],
   "rules": [
    "Content=placeholder shows an example value, never the label or instructions",
-   "State: default, focus, error, disabled",
+   "State: default, focus, error, disabled, read-only; Size: default, sm, lg (Style default and filled; floating has default only)",
    "Width suggests the expected length",
    "Pick the narrowest type and set autocomplete in code",
    "Never clear what the user typed after an error",
    "Style=filled: placeholder and secondary text use input/filled-muted-foreground (neutral/600 in light modes) because foreground/muted is 4.35:1 on background/muted",
    "Style=filled on background/default or background/card only; on a muted surface the fill disappears",
    "Style=floating: put it in a Field with Show label off so the hint and the error stay; the Label is the visible label, never a placeholder only",
-   "Style=floating with focus and no value shows the floated Label and the placeholder"
+   "Style=floating with focus and no value shows the floated Label and the placeholder",
+   "Read-only text stays selectable and full contrast; never use disabled for it",
+   "Show clear only while there is a value; clearing keeps focus in the field",
+   "Show loading only during the check; then show the result in the Field hint or error",
+   "Resize: the value fills and truncates to 1 line; icons, clear and spinner keep their size"
   ],
   "a11y": [
    "Always has a visible label through Field; icon-only search fields need aria-label",
    "Focus ring uses border/ring; border contrast at least 3:1",
    "Error is linked with aria-describedby and aria-invalid",
    "Style=filled: the fill is about 1.1:1 against the page (1.3:1 Dark), like the default border (1.3:1 Light); the visible label identifies the field, and focus adds a border/ring border and ring (4.7:1 on the fill)",
-   "Style=floating: the Label is the accessible name (label for/id); it stays visible when the field has a value; label text is 4.7:1 or more in every theme"
+   "Style=floating: the Label is the accessible name (label for/id); it stays visible when the field has a value; label text is 4.7:1 or more in every theme",
+   "read-only: readonly attribute, still focusable; no aria-disabled",
+   "Clear is a button with aria-label \"Clear\"",
+   "Loading: aria-busy on the field and a polite status message"
   ],
-  "code": "shadcn Input, Label, Form (react-hook-form). Style=filled: className \"bg-muted border-transparent shadow-none focus-visible:border-ring\". Style=floating: a relative wrapper with a peer Input (h-12 pt-5, placeholder=\" \") and a Label that moves with peer-placeholder-shown / peer-focus classes.",
+  "code": "shadcn Input, Label, Form (react-hook-form). Style=filled: className \"bg-muted border-transparent shadow-none focus-visible:border-ring\". Style=floating: a relative wrapper with a peer Input (h-12 pt-5, placeholder=\" \") and a Label that moves with peer-placeholder-shown / peer-focus classes. Size: sm className \"h-8\", lg \"h-10 px-4 text-base\". read-only: readOnly with className \"read-only:bg-muted read-only:shadow-none read-only:focus-visible:ring-0\". Clear: a ghost icon button in an InputGroup end slot. Loading: Loader2 \"size-4 animate-spin text-muted-foreground\" at the end.",
   "guides": [
    "skills/build-ui/components/input.md",
    "skills/build-ui/patterns/form-validation.md",
@@ -2880,7 +2943,8 @@
   "use": [
    "Prefix or suffix that is part of the value: https://, .com, EUR, kg, %, @",
    "Money, decimals and large numbers with a unit",
-   "A Select (currency) or Button (Copy, Generate) attached to a field"
+   "A Select (currency) or Button (Copy, Generate) attached to a field",
+   "Show loading: an async check of the value (workspace URL available, coupon, VAT number)"
   ],
   "avoid": [
    "Icons inside the field: use Input with Show leading icon or the Trailing slot",
@@ -2889,21 +2953,24 @@
   "anatomy": [
    "Start slot: Input Addon (Show start)",
    "Input with Value",
-   "End slot: Input Addon (Show end)"
+   "End slot: Input Addon (Show end)",
+   "Loading (Show loading): Spinner sm after the value"
   ],
   "rules": [
    "Input Addon is not editable and not part of what the user types",
    "Input Addon Position: start or end; muted background, divider toward the field",
    "State: default, focus, error, disabled",
    "Amounts are right-aligned in tables",
-   "Resize: the value fills between the addons and stays on 1 line with ellipsis; addons keep their width"
+   "Resize: the value fills between the addons and stays on 1 line with ellipsis; addons keep their width",
+   "Show loading only while checking; the result goes in the Field hint or error"
   ],
   "a11y": [
    "Addon text is included in the accessible description (aria-describedby)",
    "Focus ring wraps the whole group",
-   "Buttons in the slots have labels"
+   "Buttons in the slots have labels",
+   "Loading: aria-busy on the input and a polite status message"
   ],
-  "code": "shadcn InputGroup or custom.",
+  "code": "shadcn InputGroup or custom. Loading: Loader2 \"size-4 animate-spin text-muted-foreground\" before the end addon.",
   "guides": [
    "skills/build-ui/components/input.md",
    "skills/build-ui/components/color-picker.md"
@@ -3913,7 +3980,8 @@
   "use": [
    "One choice from 2-5 options shown at once",
    "Options people should compare before choosing (plan, delivery method)",
-   "The input mode of Rating: a radio group of 5"
+   "The input mode of Rating: a radio group of 5",
+   "Options people compare by cost, time or consequence (delivery, plans): Show description"
   ],
   "avoid": [
    "6-15 options: use Select",
@@ -3924,21 +3992,25 @@
    "Group label",
    "Circle, with a dot when Checked=true",
    "Label (Label, Show label)",
-   "Error message under the group"
+   "Error message under the group",
+   "Description (Show description, Description): body/small foreground/muted under the label, indented to the label"
   ],
   "rules": [
    "Always in a group of 2 or more",
    "No default unless one option is clearly right for most users",
    "Options in a meaningful order; labels short and parallel",
    "The label is clickable and sits to the right of the control",
-   "State=error marks the controls; the message sits under the group"
+   "State=error marks the controls; the message sits under the group",
+   "Description: one sentence, 3 lines max with an ellipsis; the control stays centered on the label line",
+   "Resize: label and description wrap; the description is at least 200 wide"
   ],
   "a11y": [
    "The group has a label (fieldset legend or aria-labelledby)",
    "Tab enters the group; arrow keys move and select",
-   "The circle border meets 3:1; focus ring in border/ring"
+   "The circle border meets 3:1; focus ring in border/ring",
+   "Description is linked with aria-describedby"
   ],
-  "code": "shadcn RadioGroup.",
+  "code": "shadcn RadioGroup. Description: a p className=\"text-sm text-muted-foreground\" under the Label, linked with aria-describedby (flex items-start gap-2; text column grid gap-0.5).",
   "guides": [
    "skills/build-ui/components/select.md",
    "skills/build-ui/components/rating.md"
@@ -4217,7 +4289,11 @@
    "One choice from 6-15 options in a form",
    "Inside Field, for the label, description and error",
    "Rows per page in Table Pagination",
-   "Style=filled in forms that use Input Style=filled"
+   "Style=filled in forms that use Input Style=filled",
+   "Size=sm: filter bars, Data Grid Toolbar, rows per page, dense forms",
+   "Size=lg: hero and mobile forms",
+   "State=read-only: a value shown in a form that cannot be changed there (plan, owner after approval)",
+   "Show clear: filters and optional values that can be emptied"
   ],
   "avoid": [
    "2-5 options worth seeing: use Radio",
@@ -4231,7 +4307,10 @@
    "Trigger with Value: placeholder or filled (Content)",
    "chevron-down icon",
    "Open: Menu under the trigger, Checked on the selected Menu Item",
-   "Error message (from Field)"
+   "Error message (from Field)",
+   "Clear (Show clear): x icon before the chevron",
+   "Size: default 36, sm 32, lg 40 (body/default text)",
+   "State=read-only: background/muted, no chevron, value foreground/default"
   ],
   "rules": [
    "No preselection unless one option is clearly right; never preselect something with consequences",
@@ -4239,7 +4318,10 @@
    "Option labels are short and parallel; the placeholder is an example, not a label",
    "Disabled options stay visible, with the reason when possible",
    "State=error marks the trigger; the message comes from Field",
-   "Use the same Style as the other controls in the form"
+   "Use the same Style as the other controls in the form",
+   "State: default, focus, error, disabled, read-only; Size: default, sm, lg",
+   "Match the Size of the Inputs and Buttons in the same row",
+   "Resize: the value truncates to 1 line; icons keep their size"
   ],
   "a11y": [
    "The visible label is tied to the trigger",
@@ -4248,7 +4330,7 @@
    "Focus ring in border/ring (State=focus)",
    "Style=filled: placeholder 7:1 on the fill (input/filled-muted-foreground); focus ring 4.7:1 on the fill"
   ],
-  "code": "shadcn Select. Style=filled: SelectTrigger className \"bg-muted border-transparent shadow-none focus-visible:border-ring\".",
+  "code": "shadcn Select. Style=filled: SelectTrigger className \"bg-muted border-transparent shadow-none focus-visible:border-ring\". Size: SelectTrigger size=\"sm\" (h-8) or className \"h-10 text-base\" for lg. read-only: render the value as a read-only Input-like div (bg-muted) without the trigger. Clear: a ghost icon button that resets the value.",
   "guides": [
    "skills/build-ui/components/select.md",
    "skills/build-ui/components/dropdown-menu.md",
@@ -5077,14 +5159,17 @@
    "Tags slot: Tag instances (Label, Show remove)",
    "Overflow text: \"+3 more\"",
    "Typing area",
-   "chevrons-up-down icon (Show chevron on)"
+   "chevrons-up-down icon (Show chevron on)",
+   "Size: default (min height 36), sm (min 32, 2 px padding), lg (min 40, 6 px padding)"
   ],
   "rules": [
    "Show at most ~5 tags, then \"+3 more\"",
    "Enter adds a free tag; Backspace in the empty field removes the last tag",
    "The multi-select list stays open while picking",
    "Disabled field: every Tag uses State=disabled",
-   "State=error marks the field; the message comes from Field"
+   "State=error marks the field; the message comes from Field",
+   "Size: default, sm, lg; match the other fields in the form",
+   "Resize: tags wrap to new lines and the field grows in height"
   ],
   "a11y": [
    "Each Tag remove button has a label: \"Remove Design\"",
@@ -5101,7 +5186,8 @@
   "use": [
    "Free text longer than one line: notes, descriptions, reasons",
    "Messages and comments without formatting",
-   "Reasons for a rejection, a refund or a status change"
+   "Reasons for a rejection, a refund or a status change",
+   "State=read-only: notes and reasons locked after approval"
   ],
   "avoid": [
    "One line of text: use Input",
@@ -5110,20 +5196,22 @@
   "anatomy": [
    "Field label",
    "Text area",
-   "Hint with character count (\"120/500\")"
+   "Counter: Field Show counter (Field Counter at the right of the label)",
+   "State=read-only: background/muted, no shadow, full-contrast text"
   ],
   "rules": [
-   "State: default, focus, error, disabled; Content: placeholder, filled",
+   "State: default, focus, error, disabled, read-only; Content: placeholder, filled",
    "Min height 64; grows with content up to a max height, then scrolls",
    "Height shows the expected length: 3-5 rows",
-   "A limit shows as a counter in the Field hint and turns to error past the limit"
+   "A limit shows as Field Show counter; past the limit the counter is Status=over and the Field State=error",
+   "Resize: the text area fills the Field; text wraps"
   ],
   "a11y": [
    "Visible label through Field",
    "Counter is linked with aria-describedby; announce only near the limit",
    "Never trap Tab: Tab leaves the field"
   ],
-  "code": "shadcn Textarea inside Form (FormItem).",
+  "code": "shadcn Textarea inside Form (FormItem). read-only: readOnly with className \"read-only:bg-muted read-only:shadow-none\".",
   "guides": [
    "skills/build-ui/components/input.md"
   ]
@@ -5142,13 +5230,15 @@
   "anatomy": [
    "Value or placeholder (\"Select time\")",
    "Clock icon",
-   "Menu of times, Checked on the selected one (open state)"
+   "Menu of times, Checked on the selected one (open state)",
+   "Size: default 36, sm 32, lg 40"
   ],
   "rules": [
    "Format follows the locale: 24 h in most of Europe (\"10:30\"), 12 h in the US (\"10:30 AM\")",
    "Steps of 15 or 30 min for bookings",
    "Unavailable times are disabled in the list, not removed, when users expect them",
-   "Date + time: Date Picker and Time Picker side by side"
+   "Date + time: Date Picker and Time Picker side by side",
+   "Size: default, sm, lg; match the Date Picker beside it"
   ],
   "a11y": [
    "The field has a visible label",
@@ -11778,6 +11868,101 @@
   "code": "Custom on shadcn Badge variant=\"secondary\" + remove Button; avatar = shadcn Avatar size-5 -ml-1.5; Tone=category-N: bg-[var(--badge-category-N-bg)] text-[var(--badge-category-N-fg)]; sm h-5 px-1.5, default h-6 px-2; label min-w-0 truncate, tag max-w-48.",
   "guides": [
    "skills/build-ui/components/select.md"
+  ]
+ },
+ "Field Counter": {
+  "summary": "Character counter for a Field (\"142 / 160\"), shown at the right of the label.",
+  "use": [
+   "Inside Field (Show counter) for text with a limit"
+  ],
+  "avoid": [
+   "Fields without a real limit",
+   "Number limits (min, max): use the hint"
+  ],
+  "anatomy": [
+   "Count text (Count)",
+   "Status: default (ui/caption, foreground/muted), near (ui/label-small, foreground/default), over (ui/label-small, background/destructive)"
+  ],
+  "rules": [
+   "Status near from about 90% of the limit, over past it",
+   "Over the limit the Field also goes to State=error with a message",
+   "Resize: hugs its text; never wraps"
+  ],
+  "a11y": [
+   "Linked to the control with aria-describedby",
+   "Announce only near and over (aria-live polite), not on every key"
+  ],
+  "code": "span className=\"text-xs text-muted-foreground tabular-nums\"; near: \"font-medium text-foreground\"; over: \"font-medium text-destructive\".",
+  "guides": [
+   "skills/build-ui/components/input.md"
+  ]
+ },
+ "Info Tip": {
+  "summary": "Small popover with one or two sentences and an optional link, opened by clicking an info icon. Works on touch, unlike Tooltip.",
+  "use": [
+   "Definitions next to field labels (Field Show info): tax ID, SLA, webhook URL, role names",
+   "Metric definitions on Table Header Label, Stat Card and Metric Strip labels, Chart Card titles",
+   "Feature explanations in Comparison Table rows and Plan Cards"
+  ],
+  "avoid": [
+   "The name of an icon button or a one-line hint on hover: use Tooltip",
+   "Format help needed to fill a field: use the Field hint",
+   "Forms, lists or several actions: use Popover",
+   "Pointing out a new feature: use Coachmark"
+  ],
+  "anatomy": [
+   "Info Tip Trigger: 20 px info icon button (State: default, hover, focus, open)",
+   "Panel: background/popover, border/default, radius/md, shadow/md, 280 wide, 12 padding",
+   "Title (Show title): ui/label, foreground/popover",
+   "Text: body/small, foreground/muted",
+   "Link (Show link): ui/label, foreground/brand",
+   "Arrow pointing at the trigger (Side: bottom, top)"
+  ],
+  "rules": [
+   "Opens on click or tap, never on hover alone; closes on Escape, outside click or a second click",
+   "One or two sentences; at most one link, no other actions",
+   "Side=bottom by default; top when there is no room below",
+   "The trigger shows State=open while the tip is open",
+   "Resize: fixed 280 wide; text wraps, height hugs"
+  ],
+  "a11y": [
+   "The trigger is a button with aria-label \"More about <label>\" and aria-expanded",
+   "Focus stays on the trigger; the content is announced (aria-describedby or a live region), Escape closes",
+   "Hit area 24 px in code around the 20 px trigger; icon 3:1 or more (foreground/muted 4.7:1 Light)",
+   "Text 4.7:1 Light, 7.1:1 Dark on background/popover; link 6.7:1"
+  ],
+  "code": "shadcn Popover with a ghost icon button trigger (Info size-4) and PopoverContent className=\"w-70 p-3 text-sm\" side=\"bottom\"; Radix Popover gives click and touch, Escape and focus return.",
+  "guides": [
+   "skills/build-ui/components/tooltip.md",
+   "skills/build-ui/components/popover.md",
+   "skills/build-ui/components/input.md"
+  ]
+ },
+ "Info Tip Trigger": {
+  "summary": "The 20 px info icon button that opens an Info Tip.",
+  "use": [
+   "After a field label (Field Show info), a table header, a stat label or a plan feature"
+  ],
+  "avoid": [
+   "Alone without an Info Tip",
+   "As a general help button: use a Button with a label"
+  ],
+  "anatomy": [
+   "Icon/info 16 (stroke 1.33)",
+   "State: default (foreground/muted), hover (background/muted, foreground/default), focus (2 px border/ring outside), open (background/muted, foreground/brand)"
+  ],
+  "rules": [
+   "Sits 4 px after the label, centered on the label line",
+   "Resize: fixed 20 x 20"
+  ],
+  "a11y": [
+   "button with aria-label \"More about <label>\", aria-expanded",
+   "24 px hit area in code",
+   "Focus ring 5.2:1"
+  ],
+  "code": "Button variant=\"ghost\" size=\"icon\" className=\"size-5 rounded-full text-muted-foreground\" with Info className=\"size-4\".",
+  "guides": [
+   "skills/build-ui/components/tooltip.md"
   ]
  }
 }

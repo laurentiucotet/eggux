@@ -67,12 +67,12 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Avatar | `Avatar Group` | Size: sm, default, lg | Avatars (native slot), overlap with a 2 px background ring, "+N" as last avatar; Label + Show label ("Maintained by 3 analysts"); Names + Show names ("Ana, Mihai and 3 others"). Label and names truncate on one line |
 | Avatar | `Byline` | Size: sm, default, lg | Name, Description, Show detail, Show avatar; Avatar (exposed). Who wrote, said or owns something |
 | Separator | `Separator` | Orientation: horizontal, vertical. Spacing: none, sm (4), md (8) | Use anywhere: menus, cards, toolbars, sidebars |
-| Input | `Input` | Style: default, filled, floating. State: default, focus, error, disabled. Content: placeholder, filled | Value; Label (floating); Show leading icon + Leading icon (swap); Trailing (native slot) + Show trailing |
+| Input | `Input` | Style: default, filled, floating. Size: default 36, sm 32, lg 40 (default and filled). State: default, focus, error, disabled, read-only (not floating). Content: placeholder, filled | Value; Label (floating); Show leading icon + Leading icon (swap); Show clear; Show loading (Spinner sm); Trailing (native slot) + Show trailing |
 | Input | `Password Strength` | Level: empty, weak, fair, good, strong | Meter + message under a new-password field. Messages ask only for length ("Weak: make it longer.") |
-| Input | `Field` | State: default, error, disabled | Label, Show label, Hint, Show hint, Error. Control (native slot, default Input) |
-| Input | `Textarea` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Min height 64, grows with content; put it in a Field |
+| Input | `Field` | State: default, error, disabled. Layout: vertical, horizontal (160 label column, min width 400) | Label, Show label, Hint, Show hint, Error. Show required (red asterisk), Show optional ("Optional", field/optional string), Show info (Info Tip Trigger), Show counter (Field Counter exposed). Control (native slot, default Input) |
+| Input | `Textarea` | State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value. Min height 64, grows with content; put it in a Field (limit: Field Show counter) |
 | Input | `Input Addon` | Position: start, end | Text |
-| Input | `Input Group` | State: default, focus, error, disabled | Value, Show start, Show end; Start, End (native slots) |
+| Input | `Input Group` | State: default, focus, error, disabled | Value, Show start, Show end, Show loading; Start, End (native slots) |
 | Input | `Number Input` | Size: default 36, sm 32. State: default, focus, error, disabled | Value; − / + steppers. sm is the quantity in Line Item and dense rows |
 | Input | `Inline Edit` | State: view, hover, editing, saving, error | Value, Error. Pencil on hover; Input with check and x while editing |
 | Input | `Signature Pad` | State: empty, signed | Pad (clips the stroke), baseline, Clear, Type instead; signer and time when signed |
@@ -89,15 +89,15 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Progress | `Progress Segment` | State: complete, upcoming. Tone: default, success, warning, error | One segment of Progress Type=segmented; only inside its Segments slot, FILL width |
 | Progress | `Progress Ring` | Size: sm, default, lg. Value: 0, 25, 50, 75, 100 | Show label (percent inside on default and lg) |
 | Slider | `Slider` | Type: single, range. State: default, focus, disabled. Value: 0, 25, 50, 75, 100 (single; range is 50 only) | Value places the thumb; keep the number and marks in step. Range: move the thumb wrappers for other values. Stretches to any width; the thumbs stay 16 px and follow the value. Show value (Tooltip over each thumb), Show marks + Min label, Mid label, Max label |
-| Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label |
-| Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label |
+| Selection controls | `Checkbox` | Checked: false, true, indeterminate. State: default, focus, error, disabled | Label, Show label, Description, Show description |
+| Selection controls | `Radio` | Checked: false, true. State: default, focus, error, disabled | Label, Show label, Description, Show description |
 | Selection controls | `Switch` | Checked: false, true. State: default, focus, disabled. Size: default, sm, lg | Label, Show label, Description, Show description |
 | Selection controls | `Setting Row` | - | Title, Description, Show description, Show divider; Control (native slot: Switch, Select, Button) |
 | Scroll Area | `Scroll Area` | Orientation: vertical, horizontal | Content (native slot); clips its content; thin scrollbar on border/default |
-| Select | `Select` | Style: default, filled. State: default, focus, error, disabled. Content: placeholder, filled | Value. Open state = Select (focus) + Menu with Checked on the selected item |
-| Select | `Combobox` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Searchable select trigger (chevrons-up-down); opens a Command |
+| Select | `Select` | Style: default, filled. Size: default, sm, lg. State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value, Show clear. Read-only hides the chevron. Open state = Select (focus) + Menu with Checked on the selected item |
+| Select | `Combobox` | Size: default, sm, lg. State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value, Show clear. Searchable select trigger (chevrons-up-down); opens a Command |
 | Select | `Tag` | State: default, disabled. Tone: default, category-1 to category-8. Size: default 24, sm 20 | Label, Show remove, Show avatar + Avatar (exposed), Show leading icon + Leading icon (swap). Label truncates at 192 |
-| Select | `Tag Input` | State: default, focus, error, disabled | Tags (native slot), Show chevron |
+| Select | `Tag Input` | Size: default, sm, lg. State: default, focus, error, disabled | Tags (native slot), Show chevron |
 | Select | `Person Option` | Selected: false, true. State: default, hover | Name, Description, Show detail; Checkbox and Avatar (exposed) |
 | Select | `People Picker` | State: closed, open | Placeholder; Selected, Results (native slots); search, invite by email |
 | Select | `Transfer List` | - | Left title, Right title; Available, Selected (native slots of Facet Options); counts, search, move buttons |
@@ -108,8 +108,8 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Popover | `Command Dialog` | - | Command Input (exposed), Items (native slot), footer with key hints. 560 wide |
 | Calendar | `Calendar Day` | State: default, hover, focus, today, selected, outside, disabled, range-start, range-middle, range-end | Day |
 | Calendar | `Calendar` | - | Month. Monday-first month grid, prev/next ghost Button Icons |
-| Calendar | `Date Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Calendar icon; opens Calendar in a popover |
-| Calendar | `Time Picker` | State: default, focus, error, disabled. Content: placeholder, filled | Value. Clock icon; opens a Menu of times |
+| Calendar | `Date Picker` | Size: default, sm, lg. State: default, focus, error, disabled, read-only. Content: placeholder, filled | Value. Calendar icon; opens Calendar in a popover |
+| Calendar | `Time Picker` | Size: default, sm, lg. State: default, focus, error, disabled. Content: placeholder, filled | Value. Clock icon; opens a Menu of times |
 | Calendar | `Date Range Picker` | - | Presets (native slot), Summary, Show presets; two Calendars; Cancel / Apply |
 | Chart | `Bar Chart` | Type: single, grouped, stacked | Bars ≤ 24, 4 px data-end radius, 2 px gaps; y axis, grid, x labels |
 | Chart | `Line Chart` | Type: line, area | 2 px lines, end dots with surface ring, area at opacity/10 |
@@ -259,7 +259,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Page Shells | `Page Shell / Admin Panel` | Aside: on, off | Navigation, Header, Main, Aside, Actions (native slots); Show actions. Grid: navigation and aside hug, Main flexes, actions fixed at the bottom, only the Body scrolls |
 | Brand | `Logo Mark` | - | The one place to put the client symbol; used by Logo and Sidebar Workspace |
 | Brand | `Logo` | Type: mark, wordmark, full | Name |
-| Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region | Built from Field + Input/Select; nested Field exposed. Each Type sets its own Hint and Error. country shows "Select a country" (placeholder); set the nested Select to Content=filled for a filled form |
+| Form Presets | `Field Preset` | Type: email, password, new-password, phone, card-number, card-expiry, card-cvc, postal-code, country, region, url, time-zone, currency, language, date-of-birth, tax-id, iban | Built from Field + Input, Select, Input Group (url) or Date Input (date-of-birth); nested Field exposed. Each Type sets its own Hint and Error. country, time-zone, currency, language show a placeholder; tax-id has Show info on |
 | Forms | `Block / Sign In`, `/ Sign Up`, `/ Payment`, `/ Address` | - | Card + Field Presets + Buttons. Address: Card and its Card Header exposed (Title, Description, "Delivery address"); City "Cluj-Napoca" |
 | Navigation (blocks) | `Block / Navbar` | Style: default, on-image (no fill or border; text and icons on `video/foreground`, for full-bleed photo and video heroes) | Logo (swap), Show cart (ghost cart Button Icon with Badge Count, exposed); Nav Links, CTAs |
 | Navigation (blocks) | `Block / Footer` | - | Logo, footer link columns |
@@ -582,6 +582,9 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 | Button | `Copy Button` | Variant: ghost, outline. Size: default 36, sm 32, xs 28. State: default, copied | Nested Button Icon with copy icon; copied shows a check in background/success for 2 s. Code blocks, IDs and keys in tables and Description Lists |
 | Table | `Bulk Action Bar` | - | Selection ("3 selected"), Show select all (link Button exposed, "Select all 48"), Actions (native slot: outline sm Buttons; Button Icons on phones), Show clear. Floating bottom bar for selection in grids, boards, galleries and inboxes |
 | Chip | `Chip Group` | Layout: wrap, scroll | Chips (native slot) of Chips; Show more + "+N more" Chip (exposed). Single or multi select filters and scopes; fills its container, min 160 |
+| Tooltip | `Info Tip` | Side: bottom, top | Title, Show title, Text, Link, Show link. 280 wide popover (background/popover, border, shadow/md, arrow) opened by click on an `Info Tip Trigger` |
+| Tooltip | `Info Tip Trigger` | State: default, hover, focus, open | 20 px info icon button that opens an Info Tip; used by Field Show info |
+| Input | `Field Counter` | Status: default, near, over | Count ("42 / 160"). Exposed in Field (Show counter) |
 
 Icons available: plus, minus, check, x, search, chevron-down, chevron-up, chevron-left,
 chevron-right, chevrons-up-down, arrow-up-down, arrow-up, arrow-right, arrow-left, info,

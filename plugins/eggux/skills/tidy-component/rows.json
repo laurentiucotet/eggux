@@ -413,12 +413,18 @@
   {
    "main": "Date Picker",
    "helpers": [],
-   "block": "93:316"
+   "block": "93:316",
+   "examples": [
+    "Example / Date Picker styles"
+   ]
   },
   {
    "main": "Time Picker",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Time Picker styles"
+   ]
   },
   {
    "main": "Date Range Picker",
@@ -1158,7 +1164,10 @@
   {
    "main": "Field Preset",
    "helpers": [],
-   "block": "117:410"
+   "block": "117:410",
+   "examples": [
+    "Example / Field Preset styles"
+   ]
   }
  ],
  "Image": [
@@ -1212,10 +1221,13 @@
   },
   {
    "main": "Field",
-   "helpers": [],
+   "helpers": [
+    "Field Counter"
+   ],
    "block": "117:410",
    "examples": [
-    "Example / Input styles"
+    "Example / Input styles",
+    "Example / Field styles"
    ]
   },
   {
@@ -1226,14 +1238,20 @@
   {
    "main": "Textarea",
    "helpers": [],
-   "block": "93:316"
+   "block": "93:316",
+   "examples": [
+    "Example / Textarea styles"
+   ]
   },
   {
    "main": "Input Group",
    "helpers": [
     "Input Addon"
    ],
-   "block": "126:260"
+   "block": "126:260",
+   "examples": [
+    "Example / Input Group styles"
+   ]
   },
   {
    "main": "Number Input",
@@ -1802,14 +1820,20 @@
   {
    "main": "Combobox",
    "helpers": [],
-   "block": "93:316"
+   "block": "93:316",
+   "examples": [
+    "Example / Combobox styles"
+   ]
   },
   {
    "main": "Tag Input",
    "helpers": [
     "Tag"
    ],
-   "block": "179:1208"
+   "block": "179:1208",
+   "examples": [
+    "Example / Tag Input styles"
+   ]
   },
   {
    "main": "People Picker",
@@ -1846,12 +1870,18 @@
   {
    "main": "Checkbox",
    "helpers": [],
-   "block": "117:646"
+   "block": "117:646",
+   "examples": [
+    "Example / Checkbox styles"
+   ]
   },
   {
    "main": "Radio",
    "helpers": [],
-   "block": null
+   "block": null,
+   "examples": [
+    "Example / Radio styles"
+   ]
   },
   {
    "main": "Switch",
@@ -2117,6 +2147,16 @@
    "examples": [
     "Example / rich tooltip and shortcut",
     "Example / Tooltip styles"
+   ]
+  },
+  {
+   "main": "Info Tip",
+   "helpers": [
+    "Info Tip Trigger"
+   ],
+   "block": null,
+   "examples": [
+    "Example / Info Tip"
    ]
   }
  ],
