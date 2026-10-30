@@ -57,7 +57,7 @@ component guides it names. Names are Figma components; inventory in
 | Careers, jobs | Marketing | About Hero, Careers Benefits, Team Cards Social, Timeline Section, Careers List (example "Careers page"); job page: Job Header, Article | marketing-pages | badge, chip, card (Person Card) |
 | Project plan with dates and dependencies | App | Gantt | (none) | boards-and-calendars |
 | Contact page, locations | Marketing | Contact Cards, Contact with Map, Offices, Map Section, FAQ Grid (example "Contact page") | marketing-pages | input, image (Map) |
-| Documentation, help center | Docs, Marketing | Navbar Search, Help Hero, Help Categories, Help Popular Articles, Help Article List, Support Options, Docs Page Footer (examples "docs page", "Help center") | content-and-docs | content, navigation |
+| Documentation, help center | Docs, Marketing | Navbar Search, Help Hero, Help Categories, Help Popular Articles, Help Article List, Help Topic, Help Article, Help Search Results, Contact Support, Help Requests, Support Options, Docs Page Footer (examples "docs page", "Help center"; SCREENS Help Center) | content-and-docs | content, navigation |
 | Changelog, status page | Marketing | Changelog, Status Page | content-and-docs | badge, alert |
 | Board (stages) | App | Kanban Board | search-and-filter | boards-and-calendars |
 | Calendar, schedule, day plan for several people or rooms | App | Scheduler Day (one column per person or room), Scheduler Week, Scheduler Month, Booking | booking | boards-and-calendars (Calendar Event), date-picker |

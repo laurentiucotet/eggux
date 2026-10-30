@@ -13,8 +13,8 @@ motion and density tokens.
 **Get the Figma library:** [EGG UI on Figma Community](https://www.figma.com/community/file/1694044412384019384). Duplicate it into your
 workspace and start from there; client files start as a copy of it.
 
-At a glance: 427 components on 76 pages, 253 blocks, 8 page shells, 141 complete screens and
-email templates (SCREENS: Account, Auth, Billing, Documents, Emails, Paywalls, Settings), 4 full showcase pages, 689 variables in five
+At a glance: 427 components on 76 pages, 258 blocks, 8 page shells, 171 complete screens and
+email templates (SCREENS: Account, Auth, Billing, Documents, Emails, Help Center, Paywalls, Settings), 4 full showcase pages, 689 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
 Română), 16 text styles, 4 gradient styles, 112 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
 images (49 photos, 7 product screenshots). The plugin adds 13 skills, 33
@@ -179,6 +179,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3zj. Done (0.56.0 to 0.58.0): de-wireframe program from audit 2: sample imagery and logos; soft badges, colored metrics, shadows, display type; EGG default theme (blue primary, pill controls, 12 px cards, Plus Jakarta Sans); Showcase modes, gradients, Background decorations and Icon Tile; four showcase pages and a new Cover; 62 new blocks with page examples; 42 style alternatives on existing components; SCREENS group with auth, account, settings and email templates.
 3zk. Done (0.59.0 to 0.60.0): defects found while composing pages fixed (Feature Item with Icon Tile, Device Frame ratio, Navbar on-image, Comparison Table, Wizard, Mobile Header, Slider and more); blocks wave 2 (55 blocks, 12 page examples): marketing extras, case studies, legal, onboarding steps, finance and support dashboards, file manager, inbox and team chat, billing, commerce detail pages, AI review and generate, enterprise org chart, approval inbox, workflow builder, version history, user directory.
 3zl. Done (0.61.0 to 0.62.0): responsive skill and library-wide width fixes; inline comments on selected text; components wave from a gap audit against shadcn, Radix, Untitled UI, Material, Ant, Carbon, Polaris and Atlassian (about 40 new components and 60 new variants across forms, pickers, actions, navigation, data display, badges, feedback, charts, content and media); paywalls and subscriptions (content walls, feature gates, usage limits, trials, mobile paywalls, manage and cancel).
+3zm. Done (0.63.0): help center flow: Help Article, Help Search Results, Help Topic, Contact Support and Help Requests blocks; SCREENS page Help Center (browse topics, search with typeahead and no results, article with feedback, contact support and my requests, Desktop and Mobile).
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - a Search Hero block;

@@ -2,7 +2,8 @@
 
 Blocks on the Content page (Blog family: Blog Grid, Blog Featured, Blog Post Header, News List,
 Blog List, Article; Help center family: Help Hero, Help Categories, Help Popular Articles, Help
-Article List, Support Options, Docs Page Footer, Changelog, Status Page; Prose family: Legal Page,
+Article List, Help Topic, Help Article, Help Search Results, Contact Support, Help Requests,
+Support Options, Docs Page Footer, Changelog, Status Page; Prose family: Legal Page,
 Content with Image) and `Page Shell / Docs`. Examples: `Example / Help center` and
 `Example / Legal page` on the Content page, `Example / Blog index page` on the Sections page.
 Page tops for hubs, topics, search, people and events: the Page Headers page (`marketing-pages.md`
@@ -38,9 +39,25 @@ Table of Contents on the left and a 720 reading column with numbered h3 sections
 short-version Alert first, and keep the date and the contact always visible.
 
 ## Help center
-Order: `Block / Navbar Search` → Help Hero → Help Categories → Help Popular Articles → Support
-Options → Footer. Category page: Help Article List. Article: `Page Shell / Docs` reading column,
-ending with `Block / Docs Page Footer`.
+Start from SCREENS / Help Center (Browse topics, Search, Contact support, each Desktop and Mobile).
+Pages: home (`Block / Navbar Search` → Help Hero → Help Categories → Help Popular Articles →
+Support Options → Footer), topic (`Block / Help Topic`), subtopic list (`Block / Help Article
+List`), article (`Block / Help Article`), search (`Block / Help Search Results`), contact
+(`Block / Contact Support`), my requests (`Block / Help Requests`).
+
+- Navigation: topic tree on the left (current topic expanded, current article selected),
+  Breadcrumb Help center > topic > subtopic, "On this page" on the right from the h2s. Below 1024
+  hide the TOC; below 768 swap the tree for a Topics button (Sheet) and the TOC for an On this
+  page menu.
+- Typeahead: Search Suggestions under the field with recent searches, suggested articles and
+  topics; the typed part is highlighted; Enter opens the results page.
+- Results: keep the query in the field, say how many results, highlight matched words, filter by
+  type (chips) and topic (facets, a Sheet on phones). An AI answer goes first only with sources.
+- No results is never a dead end: the query stays, "Did you mean", popular articles and Contact
+  support.
+- Contact support: show the reply time before the form; suggest 3 articles from the subject as
+  people type; after sending show the request number, where the copy went and a link to My
+  requests.
 
 - Search first: one field in the hero and the navbar (⌘K). Results show articles first, then
   "Contact support" when nothing matches; log searches with no results and write those articles.
