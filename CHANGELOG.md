@@ -3,6 +3,23 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.63.0
+Help center and support flow. The library has 258 blocks and 171 screens and emails.
+- Blocks on the Content page, Help center family: `Block / Help Article` (topic tree, breadcrumb,
+  steps, note, screenshot, code, On this page, feedback, related articles, contact card, previous
+  and next; the TOC hides below 1024, the tree becomes a Topics button below 768), `Block / Help
+  Search Results` (State results and no-results: count, type chips, topic facets, highlighted
+  matches, optional AI answer, Did you mean, popular articles), `Block / Help Topic` (subtopic
+  cards with counts), `Block / Contact Support` (State form, suggestions, sent: articles
+  suggested from the subject, reply time, request number), `Block / Help Requests` (View list and
+  detail).
+- SCREENS page Help Center: Browse topics (home, topic, subtopic list, article, On this page menu,
+  feedback), Search (typeahead, results for "invoice", no results with a spelling suggestion) and
+  Contact support (form with suggestions, sent, my requests, request detail), Desktop and Mobile,
+  with Dark and Corporate Light copies and a flow diagram.
+- Guide: `patterns/content-and-docs.md` Help center section rewritten (pages, navigation,
+  typeahead, results, no results, contact support); index row updated.
+
 ## 0.62.0
 A components wave from a gap audit, and paywalls. The library has 427 components and 253 blocks.
 - Gap audit against shadcn/ui, Radix, Untitled UI, Material 3, Ant Design, Carbon, Polaris,

@@ -645,6 +645,17 @@ Paywall, gate and subscription components (see patterns/monetization.md).
 | `Block / Cancel Subscription` | One route per step (`/billing/cancel?step=reason|offer|confirm|done`) in a shadcn `Card` `max-w-[640px]`; reason `RadioGroup` + `Textarea`; offer `ToggleGroup type="single"` (1, 2, 3 months); confirm list with `X`/`Check` icons; done summary rows | At most one offer step; Continue works without a reason; confirmation email after cancel; Reactivate calls the same subscription API |
 | `Block / Upgrade Success` | shadcn `Card` `max-w-[640px] text-center` with spot SVG, check list on `bg-muted`, numbered next steps, actions | Title in a `role="status"` region after payment; primary action returns to the feature that triggered the upgrade |
 
+## Help center
+Help center and support blocks (see patterns/content-and-docs.md).
+
+| Figma | Code | Notes |
+|---|---|---|
+| `Block / Help Article` | custom page: `nav` tree (Collapsible) + MDX `Prose` + `Table of Contents` + `Feedback Widget` + `Pager Link` + `Callout Card` | `max-w-6xl mx-auto px-4 grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)_208px] md:grid-cols-[240px_minmax(0,1fr)]`; TOC `hidden lg:block sticky top-20`; nav `hidden md:block`; phones: `md:hidden` row with Topics (opens `Sheet side=left`) and On this page (`DropdownMenu` of h2 anchors); pager `grid sm:grid-cols-2 gap-4` |
+| `Block / Help Search Results` | shadcn `Input` (search), `Badge`/chip `ToggleGroup`, `Checkbox` facets, `Pagination`; results list with `<mark>` | `max-w-6xl mx-auto px-4`; body `grid md:grid-cols-[240px_minmax(0,1fr)] gap-10`; facets `hidden md:block`, Filters button `md:hidden` opens a `Sheet`; count in `aria-live="polite"`; `<mark className="bg-[--highlight-mark] text-inherit rounded-sm">`; no-results: `Empty` + "Did you mean" link + popular list |
+| `Block / Help Topic` | custom: aside tree + `Card` grid | `grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6`; aside `hidden md:block w-60`; phones: topic `Select` (`md:hidden`); card title as `h2` |
+| `Block / Contact Support` | shadcn `Form`, `Select`, `Input`, `Textarea`, file input (`File Dropzone`), `Stepper` | `max-w-2xl mx-auto px-4`; subject `onChange` debounced search shows 3 results in `role="region" aria-live="polite"`; success view replaces the form and focuses its heading; email field only when signed out |
+| `Block / Help Requests` | list of links + `Badge`; detail: `Comment` thread, `Textarea`, aside of `Meta Item` | `max-w-4xl mx-auto px-4`; detail `grid md:grid-cols-[minmax(0,1fr)_256px] gap-8`; list title `truncate`, status `shrink-0`; status filter in the URL (`?status=open`) |
+
 ## Admin
 | Figma | Code | Notes |
 |---|---|---|
