@@ -26,7 +26,7 @@ grouped by family inside each page's `Blocks` section.
 | Careers | Careers List, Careers Benefits, Job Header | List grouped by department with counts; benefits as facts; job page header with salary range |
 | Gallery | Gallery Grid, Gallery Mosaic | Grid for places and events; Mosaic for a property, product or venue detail page |
 | Navbar | Navbar, Navbar Centered, Navbar Search, Navbar Mega Menu, Navbar Flyout, Navbar Mobile | Default for most sites; Centered for brand-led sites with few links; Search for docs and help; Mega Menu past 7 top-level links or for several products in grouped columns; Navbar Flyout for one menu of 4 to 8 products (a Navigation Menu Panel with icons and one featured card) |
-| Help center (Content page) | Help Hero, Help Categories, Help Popular Articles, Help Article List, Support Options, Docs Page Footer, Changelog, Status Page | See content-and-docs |
+| Help center (Content page) | Help Hero, Help Categories, Help Popular Articles, Help Article List, Help Topic, Help Article, Help Search Results, Contact Support, Help Requests, Support Options, Docs Page Footer, Changelog, Status Page | See content-and-docs |
 | Footer | Footer, Footer Simple, Footer Newsletter, Footer Corporate, Footer Centered | Simple for few pages; columns for large sites; Newsletter when updates matter; Corporate for enterprise (legal, certifications, status, language); Centered for landing pages and microsites |
 
 ## Page headers

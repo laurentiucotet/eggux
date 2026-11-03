@@ -3,6 +3,15 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.63.1
+Audit of 0.63.0 (docs only, the Figma library is unchanged).
+- Code mapping: `Block / Help Search Results` marks matches with the `Highlight` mapping
+  (`bg-[var(--highlight-mark)]`); the old `bg-[--highlight-mark]` is not valid in Tailwind v4.
+- `patterns/content-and-docs.md` Help center: one list instead of two; the "Search first" rule no
+  longer repeats the no-results rule.
+- `patterns/marketing-pages.md`: the Help center row lists the five new blocks.
+- `figma-library.md`: the Help center row points to where the new block rows are.
+
 ## 0.63.0
 Help center and support flow. The library has 258 blocks and 171 screens and emails.
 - Blocks on the Content page, Help center family: `Block / Help Article` (topic tree, breadcrumb,

@@ -58,9 +58,8 @@ List`), article (`Block / Help Article`), search (`Block / Help Search Results`)
 - Contact support: show the reply time before the form; suggest 3 articles from the subject as
   people type; after sending show the request number, where the copy went and a link to My
   requests.
-
-- Search first: one field in the hero and the navbar (⌘K). Results show articles first, then
-  "Contact support" when nothing matches; log searches with no results and write those articles.
+- Search first: one field in the hero and the navbar (⌘K); log searches with no results and
+  write those articles.
 - Topics by task and object people know (Invoices, Approvals), never by internal team. 6-9 topics,
   each with an article count.
 - Articles: title as a question or a task ("Export invoices to CSV"), steps numbered, one task per
