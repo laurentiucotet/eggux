@@ -17,7 +17,8 @@ export default mergeConfig(viteConfig, defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: playwright({}),
+            // PW_CHROMIUM: path of a preinstalled Chromium (cloud sessions), else Playwright's own.
+            provider: playwright(process.env.PW_CHROMIUM ? { launchOptions: { executablePath: process.env.PW_CHROMIUM } } : {}),
             instances: [{ browser: 'chromium' }],
           },
         },

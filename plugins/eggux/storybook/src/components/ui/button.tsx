@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { Slot } from 'radix-ui';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Loader2 } from 'lucide-react';
+import { LoaderCircle } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
@@ -36,9 +36,9 @@ const buttonVariants = cva(
 export interface ButtonProps extends React.ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
   /** Render the child element (a link) with button styles. */
   asChild?: boolean;
-  /** Figma "Leading icon" (Show leading icon + swap): a lucide icon before the label. */
+  /** Figma "Leading icon" (Show leading icon + swap): an icon from `@/components/icons` before the label. */
   leadingIcon?: React.ReactNode;
-  /** Figma "Trailing icon": a lucide icon after the label. */
+  /** Figma "Trailing icon": an icon from `@/components/icons` after the label. */
   trailingIcon?: React.ReactNode;
   /** Figma State=loading: a spinner replaces the leading icon, the label stays, repeat clicks are blocked. */
   loading?: boolean;
@@ -59,7 +59,7 @@ function Button({ className, variant, size, asChild = false, loading = false, di
       onClick={loading ? e => e.preventDefault() : onClick}
       {...props}
     >
-      {loading ? <Loader2 className="animate-spin" aria-hidden="true" /> : leadingIcon}
+      {loading ? <LoaderCircle className="animate-spin" aria-hidden="true" /> : leadingIcon}
       {children}
       {trailingIcon}
     </button>

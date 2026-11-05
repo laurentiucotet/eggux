@@ -44,7 +44,8 @@ Never edit tokens.css by hand; change the variable in Figma, export again, regen
 
 ## 4. Check
 - `npm run typecheck` and `npm test` (every story renders, passes its play function and axe in
-  the themes it sets). All green before anything else.
+  the themes it sets). All green before anything else. If Playwright cannot find its browser
+  (cloud sessions ship one Chromium), run the tests with `PW_CHROMIUM=<path to chrome>`.
 - `npm run storybook` and give the user the URL. In a cloud or remote session the user's
   browser reaches it through a forwarded host, which Storybook refuses ("Invalid host"): start it
   with `STORYBOOK_ALLOW_ALL_HOSTS=1 npx storybook dev -p 6006 --host 0.0.0.0 --no-open --ci` and

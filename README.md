@@ -16,7 +16,7 @@ workspace and start from there; client files start as a copy of it.
 At a glance: 427 components on 76 pages, 258 blocks, 8 page shells, 171 complete screens and
 email templates (SCREENS: Account, Auth, Billing, Documents, Emails, Help Center, Paywalls, Settings), 4 full showcase pages, 689 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
-Română), 16 text styles, 4 gradient styles, 112 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
+Română), 16 text styles, 4 gradient styles, 112 IconMCP icons (1 px line, sharp corners), 6 brand icons, 12 sample logos and 56 sample
 images (49 photos, 7 product screenshots). The plugin adds 22 skills, 33
 patterns and 38 component guides.
 
@@ -75,7 +75,7 @@ The plugin holds the method; each client project holds its answers.
 
 ```
 plugins/eggux/
-├── storybook/           EGG UI in code: tokens pipeline, Storybook 10, Vitest + axe, Button, Badge, Input (starter for code-setup)
+├── storybook/           EGG UI in code: tokens pipeline, Storybook 10, Vitest + axe, icons, Button, Badge, Input (starter for code-setup)
 ├── app/                 the board: local web interface (Node, no dependencies) for decisions, tasks and notes
 ├── hooks/               SessionStart reminder of the client's decisions.md, its Inbox and open tasks
 ├── references/          tokens (incl. density, motion, chart palette), content strings, Figma inventory, Figma API notes, code mapping, client file convention
@@ -118,7 +118,7 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 ([Community file](https://www.figma.com/community/file/1694044412384019384)) has foundations (variables, text and effect styles, density,
-motion, chart palette, a `foreground/brand` text token), 112 Lucide icons and 6 brand icons, and components for actions, forms, selection, overlays, navigation, feedback,
+motion, chart palette, a `foreground/brand` text token), 112 IconMCP icons and 6 brand icons, and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
 (comments, chat, reactions, mentions), AI chat and AI states, commerce (product, cart, orders, account),

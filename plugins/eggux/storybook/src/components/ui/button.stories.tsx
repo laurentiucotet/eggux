@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, within } from 'storybook/test';
-import { ArrowRight, Plus } from 'lucide-react';
+import { ArrowRight, Plus } from '@/components/icons';
 import { Button } from './button';
 
 // One story per Figma variant group, plus the states and the stress cases from the Figma stress
