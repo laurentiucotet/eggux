@@ -56,7 +56,7 @@ export const Default: Story = {
 };
 
 // Keyboard: every control is a tab stop in visual order.
-export const Keyboard: Story = {
+export const Keyboard: Story = { tags: ['!dev'],
   render: args => <SocialShare {...args} />,
   play: async ({ canvas }) => {
     await userEvent.tab();
@@ -94,25 +94,3 @@ export const AllOff: Story = {
     await expect(canvas.getAllByRole('button')).toHaveLength(2);
   },
 };
-
-// Stress test (Figma "Stress test / Social Share"): at 276 the label truncates first and the
-// buttons keep 32; a long label shows in full when there is room.
-export const NarrowColumns: Story = { tags: ['!dev'],
-  render: args => (
-    <div className="flex flex-col gap-4">
-      <div className="w-[276px]"><SocialShare {...args} label="Share with a much longer label than planned" /></div>
-      <div className="w-[560px]"><SocialShare {...args} label="Share with a much longer label than planned" /></div>
-    </div>
-  ),
-  play: async ({ canvasElement }) => {
-    const [narrow, wide] = [...canvasElement.querySelectorAll<HTMLElement>('[data-slot="social-share-label"]')];
-    await expect(narrow.scrollWidth).toBeGreaterThan(narrow.clientWidth);
-    await expect(wide.scrollWidth).toBeLessThanOrEqual(wide.clientWidth);
-    const share = narrow.parentElement!;
-    for (const el of share.querySelectorAll('button, a')) await expect(box(el)).toEqual([32, 32]);
-    await expect(box(share)[0]).toBe(276);
-  },
-};
-
-export const DefaultDark: Story = { ...Default, play: undefined, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, play: undefined, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

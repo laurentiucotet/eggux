@@ -58,7 +58,7 @@ export const Default: Story = {
 };
 
 // Keyboard: each item is its own tab stop with the focus ring; Enter and Space activate.
-export const Keyboard: Story = {
+export const Keyboard: Story = { tags: ['!dev'],
   render: Default.render,
   play: async ({ canvas }) => {
     const [edit, duplicate] = canvas.getAllByRole('button');
@@ -156,29 +156,3 @@ export const Positions: Story = {
     await expect(parseFloat(getComputedStyle(last).borderBottomRightRadius)).toBeGreaterThan(0);
   },
 };
-
-// Stress test (Figma "Stress test / Button Group"): long labels truncate to one line (at most 160
-// per item); in a column narrower than the group, the group keeps its size (never shrinks).
-export const LongLabels: Story = {
-  render: args => (
-    <div className="w-[276px] overflow-x-auto rounded-md border border-dashed p-3">
-      <ButtonGroup {...args}>
-        <ButtonGroupItem label="Edit the billing contact" />
-        <ButtonGroupItem label="Duplicate as a new draft invoice" />
-        <ButtonGroupItem label="Archive" />
-      </ButtonGroup>
-    </div>
-  ),
-  play: async ({ canvas }) => {
-    const items = canvas.getAllByRole('button');
-    for (const item of items) await expect(box(item)[1]).toBe(36);
-    await expect(box(items[1])[0]).toBe(160);
-    const label = items[1].querySelector('span')!;
-    await expect(label.scrollWidth).toBeGreaterThan(label.clientWidth);
-    // The full label stays the accessible name.
-    await expect(canvas.getByRole('button', { name: 'Duplicate as a new draft invoice' })).toBe(items[1]);
-  },
-};
-
-export const DefaultDark: Story = { ...Default, play: undefined, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, play: undefined, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

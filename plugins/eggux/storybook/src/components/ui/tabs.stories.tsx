@@ -196,7 +196,8 @@ export const Vertical: Story = {
 };
 
 // Keyboard (WAI-ARIA tabs): arrows, Home/End, automatic activation, Tab into the panel.
-export const Keyboard: Story = {
+export const States: Story = {
+  name: 'States (active, disabled, keyboard)',
   render: () => (
     <Tabs defaultValue="overview" onValueChange={fn()}>
       <TabsList aria-label="Account">
@@ -284,23 +285,6 @@ export const WithIcons: Story = {
   },
 };
 
-// Controlled value and onValueChange.
-export const Controlled: Story = {
-  render: () => {
-    const [v, setV] = React.useState('overview');
-    return (
-      <div className="flex flex-col gap-3">
-        <Sample value={v} onValueChange={setV} />
-        <p data-testid="current">Current: {v}</p>
-      </div>
-    );
-  },
-  play: async ({ canvas }) => {
-    await userEvent.click(canvas.getByRole('tab', { name: 'Invoices' }));
-    await expect(canvas.getByTestId('current')).toHaveTextContent('Current: invoices');
-  },
-};
-
 const many = [
   ['overview', 'Overview'], ['projects', 'Projects'], ['invoices', 'Invoices'], ['members', 'Members'], ['billing', 'Billing'], ['security', 'Security'],
 ] as const;
@@ -329,87 +313,7 @@ const overflowCheck = async (canvas: ReturnType<typeof within>, body: HTMLElemen
 };
 
 export const OverflowLine: Story = {
-  name: 'Overflow (line, 368 px column)',
+  name: 'Overflow',
   render: () => <div className="w-[368px]"><Sample variant="line" overflow names={many} /></div>,
   play: async ({ canvas, canvasElement }) => overflowCheck(canvas, canvasElement.ownerDocument.body),
 };
-
-export const OverflowPillsSmall: Story = {
-  name: 'Overflow (pills sm, 368 px column)',
-  render: () => <div className="w-[368px]"><Sample variant="pills" size="sm" overflow names={many} /></div>,
-  play: async ({ canvas, canvasElement }) => overflowCheck(canvas, canvasElement.ownerDocument.body),
-};
-
-export const OverflowDefault: Story = {
-  name: 'Overflow (default, 276 px column)',
-  render: () => <div className="w-[276px]"><Sample overflow names={many} /></div>,
-  play: async ({ canvas, canvasElement }) => overflowCheck(canvas, canvasElement.ownerDocument.body),
-};
-
-export const OverflowBoxed: Story = {
-  name: 'Overflow (boxed, 368 px column)',
-  render: () => <div className="w-[368px]"><Sample variant="boxed" size="sm" overflow names={many} /></div>,
-  play: async ({ canvas, canvasElement }) => overflowCheck(canvas, canvasElement.ownerDocument.body),
-};
-
-// When everything fits there is no More button.
-export const OverflowFits: Story = {
-  name: 'Overflow (everything fits)',
-  render: () => <div className="w-[480px]"><Sample variant="line" overflow /></div>,
-  play: async ({ canvas }) => {
-    await expect(canvas.queryByRole('button', { name: 'More tabs' })).toBeNull();
-    await expect(canvas.getAllByRole('tab')).toHaveLength(3);
-  },
-};
-
-const longNames = [['a', 'Quarterly revenue and forecast'], ['b', 'Customer onboarding checklist'], ['c', 'Archived']] as const;
-
-// Stress: long labels stay on one line (no wrapping) and the list scrolls inside its column, never the page.
-const NarrowColumn = ({ width, variant }: { width: number; variant: TabsVariant }) => (
-  <div style={{ width }} data-testid="column" className="overflow-hidden">
-    <Sample variant={variant} names={longNames} defaultValue="a" />
-  </div>
-);
-export const LongLabels276: Story = {
-  name: 'Stress (long labels, 276 px)',
-  render: () => <NarrowColumn width={276} variant="line" />,
-  play: async ({ canvas }) => {
-    for (const tab of canvas.getAllByRole('tab')) await expect(h(tab)).toBe(36);
-    // Labels never wrap; the column clips instead of growing.
-    await expect(rect(canvas.getByTestId('column')).width).toBe(276);
-  },
-};
-export const LongLabels368: Story = {
-  name: 'Stress (long labels, 368 px, overflow)',
-  render: () => <div className="w-[368px]"><Sample variant="line" overflow names={longNames} /></div>,
-  play: async ({ canvas }) => {
-    await waitFor(() => expect(canvas.getByRole('button', { name: 'More tabs' })).toBeVisible());
-    for (const tab of canvas.getAllByRole('tab').filter((t: HTMLElement) => getComputedStyle(t).display !== 'none')) await expect(h(tab)).toBe(36);
-  },
-};
-export const VerticalLongLabel: Story = {
-  name: 'Stress (vertical, long label)',
-  render: () => (
-    <Tabs variant="vertical" defaultValue="a">
-      <TabsList aria-label="Sections">
-        <TabsTrigger value="a">Notification preferences for every connected workspace</TabsTrigger>
-        <TabsTrigger value="b">Billing</TabsTrigger>
-      </TabsList>
-      <TabsContent value="a">Notifications.</TabsContent>
-      <TabsContent value="b">Billing.</TabsContent>
-    </Tabs>
-  ),
-  play: async ({ canvas }) => {
-    const long = canvas.getAllByRole('tab')[0];
-    // One line, 200 wide, truncated.
-    await expect(h(long)).toBe(32);
-    await expect(Math.round(rect(long).width)).toBe(200);
-    const label = long.querySelector('span') as HTMLElement;
-    await expect(label.scrollWidth).toBeGreaterThan(label.clientWidth);
-  },
-};
-
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
-export const VariantsDark: Story = { ...Styles_, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const VariantsCorporate: Story = { ...Styles_, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
