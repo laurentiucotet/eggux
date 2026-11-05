@@ -3,6 +3,28 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.65.0
+EGG UI in code: a Storybook starter and the skills to grow it one component at a time.
+- `plugins/eggux/storybook`: React 19, Tailwind 4, shadcn/ui names, Storybook 10 (docs, a11y,
+  themes, vitest addons), Vitest 5 browser mode in Chromium. Toolbar with the six Semantic modes
+  and Density. Every story is a test: it renders, runs its play function and fails on any axe
+  violation in the theme it sets.
+- Tokens from Figma: `scripts/export-tokens.js` (read-only, through use_figma) returns every
+  Semantic, Components and Density variable with its WEB code-syntax name and resolved values per
+  mode (color + opacity values included; formulas such as `color-mix(...)` are skipped and
+  listed); `storybook/scripts/tokens-to-css.js` writes `tokens.css` with one block per mode.
+- Components: Button (7 variants, 5 sizes, icons, loading that keeps its look and ignores clicks
+  and Enter, asChild), Badge (solid, soft, category 1-8, 3 sizes, pill, dot, truncation), Input
+  (default and filled, 3 sizes, invalid, read-only); 26 story tests green. The Dark theme test
+  found white text on the light red destructive fill: code now uses `destructive-foreground`
+  like Figma.
+- Skills: `code-setup` (starter into a client project, tokens export and refresh), `code-component`
+  (one Figma component into code with stories and tests, until green, compared with Figma),
+  `code-qa` (all tests, build, visual check, report by cause). new-component and update-component
+  end with code-component when the project has code; pipeline Build and QA name the new skills.
+- `storybook/scripts/screenshot-stories.js` for the side-by-side check with Figma;
+  `storybook/COMPONENTS.md` tracks coverage.
+
 ## 0.64.0
 The board: a local web interface for decisions, tasks and notes, and a defined pipeline.
 - `plugins/eggux/app`: Node server with no dependencies (`node app/server.js --root <project>`,

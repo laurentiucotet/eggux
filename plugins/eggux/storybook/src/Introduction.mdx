@@ -1,0 +1,17 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# EGG UI
+
+Components of the EGG UI Figma library in React and Tailwind, with shadcn/ui names. Every value
+comes from the Figma variables (exported to `tokens.css`); switch Theme and Density in the
+toolbar to see the six modes and the compact density.
+
+- **Each story is a test.** It renders, runs its interaction test and passes the accessibility
+  checks (axe) in the theme it sets. Run them all with `npm test`.
+- **Props follow Figma.** `Variant`, `Size` and the other Figma properties have the same names
+  in code (`variant="soft"`, `size="xl"`).
+- **Usage rules** live in the EGG UX guides named in each component's description.
+
+Built so far: Button, Badge, Input. See `COMPONENTS.md` for coverage.

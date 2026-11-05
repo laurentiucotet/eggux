@@ -147,3 +147,7 @@ Later hand edits in Figma go through `/eggux:update-component`.
 
 End with the status, what was built, the stress test result (cases, breaks found, rules added),
 and where the docs and records are.
+
+## Code
+If the project has the code library (`/eggux:code-setup`), finish with `/eggux:code-component` for
+this component so the code, its stories and tests follow the approved Figma version.

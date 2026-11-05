@@ -126,3 +126,7 @@ Iterate on feedback; every change re-runs steps 4 to 8 for what it touches.
 
 End with the status, the changes found, the polish applied, decisions proposed, the impact,
 the stress test result, and where the doc and snapshot are.
+
+## Code
+If the project has the code library (`/eggux:code-setup`), finish with `/eggux:code-component` for
+this component so the code, its stories and tests follow the approved Figma version.
