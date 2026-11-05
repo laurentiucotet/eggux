@@ -3,6 +3,20 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.66.0
+Storybook's own agent skills, from [storybookjs/skills](https://github.com/storybookjs/skills)
+(branch `next`, synced from Storybook v11.0.0-alpha.7), adapted to the plugin.
+- New skills: `storybook-init`, `storybook-setup`, `storybook-upgrade`,
+  `storybook-component-docs`, `storybook-ui-workflow`. Each one runs the instructions Storybook's
+  CLI prints for the project (`npx storybook skills ...`, `npx storybook tools ...`).
+- Upstream requires Storybook 11 (prerelease). Here they work on 10.x too: on 10 they use
+  `skills setup`, `skills stories` and `skills write-story`, which 10.6 ships; on 11 they use
+  `skills component-docs` and `skills ui-workflow`. Upgrades target the latest stable release;
+  the prerelease only when the user asks. The starter stays on Storybook 10.
+- EGG UI projects: init hands over to `code-setup`, setup never runs the generic setup on the
+  starter, upgrade ends with `code-qa`, component-docs keeps Figma and `references/components`
+  as the source of design intent. `code-qa` names `storybook-upgrade` for Storybook upgrades.
+
 ## 0.65.0
 EGG UI in code: a Storybook starter and the skills to grow it one component at a time.
 - `plugins/eggux/storybook`: React 19, Tailwind 4, shadcn/ui names, Storybook 10 (docs, a11y,

@@ -1,6 +1,6 @@
 ---
 name: code-qa
-description: Check the coded EGG UI components against their tests and against Figma before a release or after a token, theme or dependency change. Runs typecheck and every story test (interaction, keyboard, accessibility in each theme), rebuilds Storybook, screenshots the stories and compares them with the Figma components, then reports what passes, what broke and why. Use when the user asks to test the components ("rulează testele", "verifică Storybook", "e totul ok în cod?"), before a release, after /eggux:code-setup refreshed tokens, or after upgrading Storybook, Tailwind or React.
+description: Check the coded EGG UI components against their tests and against Figma before a release or after a token, theme or dependency change. Runs typecheck and every story test (interaction, keyboard, accessibility in each theme), rebuilds Storybook, screenshots the stories and compares them with the Figma components, then reports what passes, what broke and why. Use when the user asks to test the components ("rulează testele", "verifică Storybook", "e totul ok în cod?"), before a release, after /eggux:code-setup refreshed tokens, or after upgrading Storybook (/eggux:storybook-upgrade), Tailwind or React.
 ---
 
 # Code QA
