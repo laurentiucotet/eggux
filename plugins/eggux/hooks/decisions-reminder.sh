@@ -20,6 +20,13 @@ if [ -f "$f" ]; then
   fi
 fi
 
+t="$root/tasks.md"
+if [ -f "$t" ]; then
+  open_t=$(grep '^- Status:' "$t" | grep -vc 'done')
+  doing=$(grep -c '^- Status: doing' "$t")
+  echo "EGG UX: eggux/tasks.md has $open_t open tasks ($doing in progress). Update a task's Status when you finish its deliverable; /eggux:board opens decisions, tasks and notes in the browser."
+fi
+
 for fd in "$root"/features/*/decisions.md; do
   [ -f "$fd" ] || continue
   lines=$(inbox_of "$fd")

@@ -17,7 +17,7 @@ At a glance: 427 components on 76 pages, 258 blocks, 8 page shells, 171 complete
 email templates (SCREENS: Account, Auth, Billing, Documents, Emails, Help Center, Paywalls, Settings), 4 full showcase pages, 689 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
 Română), 16 text styles, 4 gradient styles, 112 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
-images (49 photos, 7 product screenshots). The plugin adds 13 skills, 33
+images (49 photos, 7 product screenshots). The plugin adds 14 skills, 33
 patterns and 38 component guides.
 
 ## Install
@@ -52,6 +52,7 @@ checks every applied decision.
 | `/eggux:new-feature` | Interviews you about a feature idea (actors, flows, data, scenarios, edge cases, states, feedback), writes `eggux/features/<slug>/` (feature, scenarios, workflows, decisions) and creates the feature's Figma page with a section per flow, scenario and edge case |
 | `/eggux:update-feature` | Takes new input (decisions, details, comments, notes) and updates every file and Figma section it touches, marks affected screens "Needs update", archives superseded frames, checks that everything agrees and logs the change |
 | `/eggux:build-ui` | Designs and builds screens from the library, following client files |
+| `/eggux:board` | Opens a local web interface for the project's decision log (Inbox, statuses, terminology), task list (pipeline stages, board) and notes; reads and writes the markdown files in `eggux/`, live |
 | `/eggux:decision-log` | Turns Inbox requests into decisions, applies them in Figma and code, verifies the work |
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
 | `/eggux:responsive` | Resize contract for a component or block, `check.js` on its stress test (squeezed, clipped, overflowing text at 276, 368, 564 and full width), fix recipes; also audits a whole library |
@@ -66,7 +67,8 @@ The plugin holds the method; each client project holds its answers.
 
 ```
 plugins/eggux/
-├── hooks/               SessionStart reminder of the client's decisions.md and its Inbox
+├── app/                 the board: local web interface (Node, no dependencies) for decisions, tasks and notes
+├── hooks/               SessionStart reminder of the client's decisions.md, its Inbox and open tasks
 ├── references/          tokens (incl. density, motion, chart palette), content strings, Figma inventory, Figma API notes, code mapping, client file convention
 │   └── components/      generated reference: one file per component page (variants, properties, slots, parts, tokens, guides, code)
 ├── scripts/             component-docs.js (extract from Figma) + component-docs.py (write references/components)
@@ -75,6 +77,7 @@ plugins/eggux/
     ├── discovery/       OOUX method
     ├── brand-intake/
     ├── build-ui/        ux-rules.md, index.md (screen → shell, blocks, guides), patterns/, components/
+    ├── board/           opens the app; task and note formats
     ├── decision-log/
     ├── review/          Nielsen heuristics
     ├── audit-tokens/    audit.js, scan-components.js, run through Figma MCP
@@ -85,7 +88,7 @@ plugins/eggux/
     └── update-component/ hand edit → snapshot diff → polish → impact → stress test → approval → docs
 
 client-project/
-└── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md, features/<slug>/, components/
+└── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md, tasks.md, notes/, features/<slug>/, components/
 ```
 
 Precedence: client `decisions.md` > client `brand.md` overrides > plugin base rules.
@@ -180,6 +183,7 @@ Per-component reference (generated from Figma): [`plugins/eggux/references/compo
 3zk. Done (0.59.0 to 0.60.0): defects found while composing pages fixed (Feature Item with Icon Tile, Device Frame ratio, Navbar on-image, Comparison Table, Wizard, Mobile Header, Slider and more); blocks wave 2 (55 blocks, 12 page examples): marketing extras, case studies, legal, onboarding steps, finance and support dashboards, file manager, inbox and team chat, billing, commerce detail pages, AI review and generate, enterprise org chart, approval inbox, workflow builder, version history, user directory.
 3zl. Done (0.61.0 to 0.62.0): responsive skill and library-wide width fixes; inline comments on selected text; components wave from a gap audit against shadcn, Radix, Untitled UI, Material, Ant, Carbon, Polaris and Atlassian (about 40 new components and 60 new variants across forms, pickers, actions, navigation, data display, badges, feedback, charts, content and media); paywalls and subscriptions (content walls, feature gates, usage limits, trials, mobile paywalls, manage and cancel).
 3zm. Done (0.63.0): help center flow: Help Article, Help Search Results, Help Topic, Contact Support and Help Requests blocks; SCREENS page Help Center (browse topics, search with typeahead and no results, article with feedback, contact support and my requests, Desktop and Mobile).
+3zn. Done (0.64.0): the board, a local web interface for the project's decision log, task list and notes over the `eggux/` markdown files (`/eggux:board`); pipeline stages and deliverables by role in `references/pipeline.md`.
 4. Next: Code Connect once a component codebase exists (the Figma names already match shadcn/ui).
    Open library gaps found while rebuilding real screens:
    - a Search Hero block;
