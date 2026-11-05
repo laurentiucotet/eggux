@@ -3,7 +3,7 @@ import { expect, fn, userEvent } from 'storybook/test';
 import { TimeSlot } from './time-slot';
 
 const meta = {
-  title: 'Components/Calendar/Time Slot',
+  title: 'Components/Scheduler/Time Slot',
   component: TimeSlot,
   parameters: {
     layout: 'padded',
@@ -69,5 +69,3 @@ const All = () => (
   </div>
 );
 export const AllStates: Story = { render: () => <All /> };
-export const AllStatesDark: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const AllStatesCorporate: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

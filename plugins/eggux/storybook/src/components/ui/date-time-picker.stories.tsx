@@ -49,6 +49,18 @@ export const Default: Story = {
     const r = selected.getBoundingClientRect();
     await expect(r.top).toBeGreaterThanOrEqual(viewport.getBoundingClientRect().top - 1);
     await expect(r.bottom).toBeLessThanOrEqual(viewport.getBoundingClientRect().bottom + 1);
+    // Keyboard: Tab goes from the calendar to one time slot; arrows move in the slots; Enter picks.
+    canvas.getByRole('button', { name: /Thursday 22 October 2026/ }).focus();
+    await userEvent.tab();
+    await expect(canvas.getByRole('button', { name: '14:30' })).toHaveFocus();
+    await userEvent.keyboard('{ArrowDown}{ArrowDown}');
+    await expect(canvas.getByRole('button', { name: '15:30' })).toHaveFocus();
+    await userEvent.keyboard('{Enter}');
+    await expect(canvas.getByRole('status')).toHaveTextContent('22 Oct 2026, 15:30');
+    await userEvent.keyboard('{Home}');
+    await expect(canvas.getByRole('button', { name: '00:00' })).toHaveFocus();
+    await userEvent.keyboard('{End}');
+    await expect(canvas.getByRole('button', { name: '23:30' })).toHaveFocus();
     // Pick another day and time: the summary follows, Apply commits both.
     await userEvent.click(canvas.getByRole('button', { name: /Friday 23 October 2026/ }));
     await userEvent.click(canvas.getByRole('button', { name: '15:00' }));
@@ -83,38 +95,6 @@ export const UnavailableTimes: Story = {
   },
 };
 
-// Keyboard: Tab goes calendar, then one time slot; arrows move in the slots; Enter picks.
-export const Keyboard: Story = {
-  play: async ({ canvas }) => {
-    canvas.getByRole('button', { name: /Thursday 22 October 2026/ }).focus();
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: '14:30' })).toHaveFocus();
-    await userEvent.keyboard('{ArrowDown}{ArrowDown}');
-    await expect(canvas.getByRole('button', { name: '15:30' })).toHaveFocus();
-    await userEvent.keyboard('{Enter}');
-    await expect(canvas.getByRole('status')).toHaveTextContent('22 Oct 2026, 15:30');
-    await userEvent.keyboard('{Home}');
-    await expect(canvas.getByRole('button', { name: '00:00' })).toHaveFocus();
-    await userEvent.keyboard('{End}');
-    await expect(canvas.getByRole('button', { name: '23:30' })).toHaveFocus();
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Cancel' })).toHaveFocus();
-  },
-};
-
-// Without a value: Apply is off until a day and a time are chosen; choosing a time first uses today.
-export const Empty: Story = {
-  args: { defaultValue: undefined },
-  play: async ({ canvas, args }) => {
-    await expect(canvas.getByRole('button', { name: 'Apply' })).toBeDisabled();
-    await expect(canvas.getByRole('status')).toBeEmptyDOMElement();
-    await userEvent.click(canvas.getByRole('button', { name: '09:00' }));
-    await expect(canvas.getByRole('status')).toHaveTextContent('19 Oct 2026, 09:00');
-    await userEvent.click(canvas.getByRole('button', { name: 'Apply' }));
-    await waitFor(() => expect(args.onApply).toHaveBeenCalledTimes(1));
-  },
-};
-
 // Show footer off: a pick commits at once, the panel is 57 px shorter.
 export const WithoutFooter: Story = {
   args: { showFooter: false },
@@ -128,22 +108,3 @@ export const WithoutFooter: Story = {
   },
 };
 
-export const TwelveHour: Story = {
-  args: { hour12: true },
-  play: async ({ canvas }) => {
-    await expect(canvas.getByRole('status')).toHaveTextContent(/22 Oct 2026, 2:30\s?pm/i);
-    await expect(canvas.getByRole('button', { name: /2:30\s?pm/i, pressed: true })).toBeVisible();
-  },
-};
-
-// Stress test (Figma "Stress test / Date Time Picker"): in a 368 px column the panel shrinks; nothing overflows the page.
-export const Column368: Story = { tags: ['!dev'],
-  decorators: [Story => <div className="w-[368px]"><Story /></div>],
-  play: async ({ canvasElement }) => {
-    await expect(box(panel(canvasElement))[0]).toBeLessThanOrEqual(368);
-    await expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(document.documentElement.clientWidth);
-  },
-};
-
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

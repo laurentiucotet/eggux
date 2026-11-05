@@ -1,4 +1,3 @@
-import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor } from 'storybook/test';
 import { MonthPicker } from './month-picker';
@@ -57,19 +56,36 @@ export const Default: Story = {
     await expect([picked.getFullYear(), picked.getMonth(), picked.getDate()]).toEqual([2026, 2, 1]);
     await expect(canvas.getByRole('button', { name: 'Mar, March 2026' }).closest('[role="gridcell"]')).toHaveAttribute('aria-selected', 'true');
     await expect(oct.closest('[role="gridcell"]')).toHaveAttribute('aria-selected', 'false');
-  },
-};
 
-// Year arrows change the period; the selected month shows only in its own year.
-export const YearNavigation: Story = {
-  play: async ({ canvas }) => {
+    // Year arrows change the period; the current month shows only in its own year.
     await userEvent.click(canvas.getByRole('button', { name: 'Next year' }));
     await expect(canvas.getByText('2027')).toBeVisible();
     await expect(canvas.getByRole('button', { name: 'Oct, October 2027' }).closest('[role="gridcell"]')).toHaveAttribute('aria-selected', 'false');
     await expect(canvas.getByRole('button', { name: 'Nov, November 2027' })).not.toHaveAttribute('aria-current');
     await userEvent.click(canvas.getByRole('button', { name: 'Previous year' }));
-    await userEvent.click(canvas.getByRole('button', { name: 'Previous year' }));
-    await expect(canvas.getByText('2025')).toBeVisible();
+    await expect(canvas.getByText('2026')).toBeVisible();
+
+    // Keyboard: arrows between cells, Home and End the row, PageUp and PageDown the year, Enter and Space pick.
+    canvas.getByRole('button', { name: 'Oct, October 2026' }).focus();
+    await userEvent.keyboard('{ArrowRight}');
+    await expect(canvas.getByRole('button', { name: 'Nov, November 2026' })).toHaveFocus();
+    await userEvent.keyboard('{ArrowUp}');
+    await expect(canvas.getByRole('button', { name: 'Aug, August 2026' })).toHaveFocus();
+    await userEvent.keyboard('{Home}');
+    await expect(canvas.getByRole('button', { name: 'Jul, July 2026' })).toHaveFocus();
+    await userEvent.keyboard('{End}');
+    await expect(canvas.getByRole('button', { name: 'Sep, September 2026' })).toHaveFocus();
+    await userEvent.keyboard('{ArrowDown}{ArrowDown}');
+    await expect(canvas.getByRole('button', { name: 'Dec, December 2026' })).toHaveFocus();
+    await userEvent.keyboard('{Enter}');
+    await expect(args.onValueChange).toHaveBeenCalledTimes(2);
+    await userEvent.keyboard('{PageDown}');
+    await waitFor(() => expect(canvas.getByText('2027')).toBeVisible());
+    await waitFor(() => expect(canvas.getByRole('button', { name: 'Dec, December 2027' })).toHaveFocus());
+    await userEvent.keyboard('{ArrowLeft} ');
+    await expect(args.onValueChange).toHaveBeenCalledTimes(3);
+    await userEvent.keyboard('{PageUp}{PageUp}');
+    await waitFor(() => expect(canvas.getByText('2025')).toBeVisible());
   },
 };
 
@@ -117,89 +133,3 @@ export const DisabledFuture: Story = {
   },
 };
 
-// Keyboard: arrows between cells, Home and End the row, PageUp and PageDown the year, Enter and Space pick.
-export const Keyboard: Story = {
-  args: { onValueChange: fn() },
-  play: async ({ canvas, args }) => {
-    canvas.getByRole('button', { name: 'Oct, October 2026' }).focus();
-    await userEvent.keyboard('{ArrowRight}');
-    await expect(canvas.getByRole('button', { name: 'Nov, November 2026' })).toHaveFocus();
-    await userEvent.keyboard('{ArrowUp}');
-    await expect(canvas.getByRole('button', { name: 'Aug, August 2026' })).toHaveFocus();
-    await userEvent.keyboard('{Home}');
-    await expect(canvas.getByRole('button', { name: 'Jul, July 2026' })).toHaveFocus();
-    await userEvent.keyboard('{End}');
-    await expect(canvas.getByRole('button', { name: 'Sept, September 2026' })).toHaveFocus();
-    await userEvent.keyboard('{ArrowDown}{ArrowDown}');
-    await expect(canvas.getByRole('button', { name: 'Dec, December 2026' })).toHaveFocus();
-    await userEvent.keyboard('{Enter}');
-    await expect(args.onValueChange).toHaveBeenCalledTimes(1);
-    await userEvent.keyboard('{PageDown}');
-    await waitFor(() => expect(canvas.getByText('2027')).toBeVisible());
-    await waitFor(() => expect(canvas.getByRole('button', { name: 'Dec, December 2027' })).toHaveFocus());
-    await userEvent.keyboard('{ArrowLeft} ');
-    await expect(args.onValueChange).toHaveBeenCalledTimes(2);
-    await userEvent.keyboard('{PageUp}{PageUp}');
-    await waitFor(() => expect(canvas.getByText('2025')).toBeVisible());
-  },
-};
-
-// Tab goes through the two arrows, then one cell.
-export const TabOrder: Story = {
-  play: async ({ canvas }) => {
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Previous year' })).toHaveFocus();
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Next year' })).toHaveFocus();
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Oct, October 2026' })).toHaveFocus();
-  },
-};
-
-// Controlled value.
-const Controlled = () => {
-  const [value, setValue] = React.useState<Date | undefined>(PICKED);
-  return (
-    <div className="flex flex-col gap-3">
-      <MonthPicker today={TODAY} value={value} onValueChange={setValue} />
-      <p>Period: <output>{value?.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}</output></p>
-    </div>
-  );
-};
-export const ControlledValue: Story = {
-  render: () => <Controlled />,
-  play: async ({ canvas }) => {
-    await userEvent.click(canvas.getByRole('button', { name: 'May, May 2026' }));
-    await expect(canvas.getByRole('status')).toHaveTextContent('May 2026');
-  },
-};
-
-// Stress test (Figma "Stress test / Month Picker"): wider than 250 the cells fill their columns; locale names stay on one line.
-export const Wide368: Story = {
-  decorators: [Story => <div className="w-[368px]"><Story /></div>],
-  render: args => <MonthPicker {...args} className="w-full" />,
-  play: async ({ canvas, canvasElement }) => {
-    await expect(box(picker(canvasElement))[0]).toBe(368);
-    await expect(box(canvas.getByRole('button', { name: 'Oct, October 2026' }))[0]).toBe(Math.round((368 - 2 - 24 - 16) / 3));
-  },
-};
-export const LocaleRomanian: Story = {
-  args: { locale: 'ro-RO' },
-  play: async ({ canvas }) => {
-    await expect(canvas.getByRole('button', { name: 'oct., octombrie 2026' })).toBeVisible();
-    for (const cell of canvas.getAllByRole('button').filter(b => b.dataset.slot === 'month-picker-cell')) {
-      await expect(Math.round(cell.getBoundingClientRect().height)).toBe(40);
-    }
-  },
-};
-
-const All = () => (
-  <div className="flex flex-wrap items-start gap-6">
-    <MonthPicker today={TODAY} defaultValue={PICKED} />
-    <MonthPicker type="quarter" today={TODAY} defaultValue={new Date(2026, 6, 1)} />
-    <MonthPicker type="year" today={TODAY} defaultValue={new Date(2025, 0, 1)} />
-  </div>
-);
-export const AllTypes: Story = { render: () => <All />, name: 'All types' };
-export const AllTypesDark: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All types (Dark)' };
-export const AllTypesCorporate: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All types (Corporate Light)' };

@@ -80,13 +80,16 @@ export function weekdayLabels(locale = DEFAULT_LOCALE, weekStartsOn: WeekStart =
 }
 
 export const formatMonthYear = (d: Date, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(d);
-export const formatMonthShort = (monthIndex: number, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { month: 'short' }).format(new Date(2026, monthIndex, 1));
+// English short months follow Figma ("Sep", never en-GB's "Sept"): three letters for every month.
+const shortParts = (fmt: Intl.DateTimeFormat, d: Date) =>
+  fmt.formatToParts(d).map(p => (p.type === 'month' && p.value === 'Sept' ? 'Sep' : p.value)).join('');
+export const formatMonthShort = (monthIndex: number, locale = DEFAULT_LOCALE) => shortParts(new Intl.DateTimeFormat(locale, { month: 'short' }), new Date(2026, monthIndex, 1));
 export const formatMonthLong = (monthIndex: number, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { month: 'long' }).format(new Date(2026, monthIndex, 1));
 /** Full label for screen readers: "Thursday 22 October 2026". */
 export const formatFullDate = (d: Date, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(d);
 /** Value of a Date Picker: "22 Oct 2026". */
-export const formatShortDate = (d: Date, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', year: 'numeric' }).format(d);
-const formatDayMonth = (d: Date, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' }).format(d);
+export const formatShortDate = (d: Date, locale = DEFAULT_LOCALE) => shortParts(new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', year: 'numeric' }), d);
+const formatDayMonth = (d: Date, locale = DEFAULT_LOCALE) => shortParts(new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' }), d);
 
 /** "6 Oct to 19 Oct 2026": the year goes once at the end when both dates share it. */
 export function formatRangeText(range: DateRange, locale = DEFAULT_LOCALE) {

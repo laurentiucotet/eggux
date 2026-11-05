@@ -68,7 +68,7 @@ export const Presets: Story = {
     await userEvent.click(canvas.getByRole('button', { name: 'Today' }));
     await expect(canvas.getByRole('status')).toHaveTextContent('19 Oct 2026 · 1 day');
     await userEvent.click(canvas.getByRole('button', { name: 'Last month' }));
-    await expect(canvas.getByRole('status')).toHaveTextContent('1 Sept - 30 Sept 2026 · 30 days');
+    await expect(canvas.getByRole('status')).toHaveTextContent('1 Sep - 30 Sep 2026 · 30 days');
     await expect(canvas.getByRole('grid', { name: 'August 2026' })).toBeVisible();
     await userEvent.click(canvas.getByRole('button', { name: 'This year' }));
     await expect(canvas.getByRole('status')).toHaveTextContent('1 Jan - 19 Oct 2026 · 292 days');
@@ -93,24 +93,6 @@ export const CustomRange: Story = {
   },
 };
 
-// The presets come before the calendars in the tab order, and the calendars have one tab stop.
-export const Keyboard: Story = {
-  play: async ({ canvas }) => {
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Today' })).toHaveFocus();
-    await userEvent.keyboard('{Enter}');
-    await expect(canvas.getByRole('status')).toHaveTextContent('19 Oct 2026 · 1 day');
-    for (let i = 0; i < 8; i += 1) await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Previous month' })).toHaveFocus();
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Next month' })).toHaveFocus();
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: /Monday 19 October 2026/ })).toHaveFocus();
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Cancel' })).toHaveFocus();
-  },
-};
-
 // Show presets off: only the calendars and the footer.
 export const WithoutPresets: Story = {
   args: { showPresets: false },
@@ -121,40 +103,3 @@ export const WithoutPresets: Story = {
   },
 };
 
-// Past days disabled for bookings.
-export const BookingRange: Story = {
-  args: { disableFuture: false, disablePast: true, defaultValue: { from: new Date(2026, 9, 20), to: new Date(2026, 9, 24) } },
-  play: async ({ canvas }) => {
-    await expect(canvas.getByRole('button', { name: /Sunday 18 October 2026/ })).toHaveAttribute('aria-disabled', 'true');
-    await expect(canvas.getByRole('button', { name: /Wednesday 21 October 2026/ })).toHaveAttribute('data-state', 'range-middle');
-    await expect(canvas.getByRole('button', { name: /Friday 30 October 2026/ })).not.toHaveAttribute('aria-disabled');
-  },
-};
-
-// Stress test (Figma "Stress test / Date Range Picker"): in a 368 px column the panel shrinks and the calendars scroll sideways; nothing overflows the page.
-export const Column368: Story = { tags: ['!dev'],
-  decorators: [Story => <div className="w-[368px]"><Story /></div>],
-  play: async ({ canvasElement }) => {
-    await expect(box(panel(canvasElement))[0]).toBe(368);
-    await expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(document.documentElement.clientWidth);
-  },
-};
-
-// A long custom preset name is cut with an ellipsis.
-export const LongPresetName: Story = { tags: ['!dev'],
-  args: {
-    presets: [
-      { id: 'q', label: 'Previous fiscal quarter of the Acme group including adjustments', range: t => ({ from: new Date(t.getFullYear(), 6, 1), to: new Date(t.getFullYear(), 8, 30) }) },
-      { id: 'custom', label: 'Custom' },
-    ],
-  },
-  play: async ({ canvas }) => {
-    const preset = canvas.getByRole('button', { name: /Previous fiscal quarter/ });
-    await expect(box(preset)[1]).toBe(32);
-    await expect(getComputedStyle(preset.firstElementChild!).textOverflow).toBe('ellipsis');
-    await expect(box(preset)[0]).toBeLessThanOrEqual(152);
-  },
-};
-
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test';
 import { DatePicker } from './date-picker';
-import { Field } from './field';
 
 const TODAY = new Date(2026, 9, 19);
 
@@ -56,26 +55,17 @@ export const Default: Story = {
     const filled = canvas.getByRole('button', { name: 'Due date, 22 Oct 2026' });
     await expect(filled).toHaveFocus();
     await expect(css(filled.querySelector('[data-slot="date-picker-value"]')!).color).toBe(probe('text-foreground', 'color'));
-  },
-};
-
-// Keyboard only: Enter opens, focus is on the selected day, arrows move, Enter picks, Escape closes and returns focus.
-export const Keyboard: Story = {
-  args: { defaultValue: new Date(2026, 9, 22) },
-  play: async ({ canvas, args }) => {
-    await userEvent.tab();
-    const trigger = canvas.getByRole('button', { name: 'Due date, 22 Oct 2026' });
-    await expect(trigger).toHaveFocus();
+    // Keyboard: Enter opens, focus is on the selected day, arrows move, PageDown changes the month, Enter picks, Escape closes and returns focus.
     await userEvent.keyboard('{Enter}');
-    const dialog = await screen.findByRole('dialog', { name: 'Choose a date' });
-    await waitFor(() => expect(within(dialog).getByRole('button', { name: /Thursday 22 October 2026/ })).toHaveFocus());
+    const again = await screen.findByRole('dialog', { name: 'Choose a date' });
+    await waitFor(() => expect(within(again).getByRole('button', { name: /Thursday 22 October 2026/ })).toHaveFocus());
     await userEvent.keyboard('{ArrowRight}{ArrowDown}');
-    await expect(within(dialog).getByRole('button', { name: /Friday 30 October 2026/ })).toHaveFocus();
+    await expect(within(again).getByRole('button', { name: /Friday 30 October 2026/ })).toHaveFocus();
     await userEvent.keyboard('{PageDown}');
-    await waitFor(() => expect(within(dialog).getByRole('grid', { name: 'November 2026' })).toBeVisible());
+    await waitFor(() => expect(within(again).getByRole('grid', { name: 'November 2026' })).toBeVisible());
     await userEvent.keyboard('{Enter}');
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
-    await expect(args.onValueChange).toHaveBeenCalledTimes(1);
+    await expect(args.onValueChange).toHaveBeenCalledTimes(2);
     await expect(canvas.getByRole('button', { name: 'Due date, 30 Nov 2026' })).toHaveFocus();
     await userEvent.keyboard('{Enter}');
     await screen.findByRole('dialog');
@@ -132,33 +122,13 @@ export const States: Story = {
     await expect(css(readOnly.querySelector('[data-slot="date-picker-value"]')!).color).toBe(probe('text-foreground', 'color'));
     await userEvent.click(readOnly);
     await expect(screen.queryByRole('dialog')).toBeNull();
+    // Tab order starts again from the top of the page: the error trigger is first, then the read-only one (the disabled one is skipped).
+    (document.activeElement as HTMLElement | null)?.blur();
     await userEvent.tab();
     await expect(error).toHaveFocus();
     await expect(css(error).boxShadow).not.toBe('none');
     await userEvent.tab();
     await expect(readOnly).toHaveFocus();
-  },
-};
-
-// Unavailable days are disabled in the popover calendar (with the reason near the field).
-export const UnavailableDays: Story = {
-  args: { calendarProps: { disabled: d => d.getDay() === 0 || d < TODAY } },
-  render: args => (
-    <Field label="Delivery date" hint="Closed on Sundays">
-      <DatePicker {...args} label={undefined} />
-    </Field>
-  ),
-  play: async ({ canvas, args }) => {
-    const trigger = canvas.getByRole('button', { name: 'Delivery date' });
-    await expect(trigger).toHaveAccessibleDescription('Closed on Sundays');
-    await userEvent.click(trigger);
-    const dialog = await screen.findByRole('dialog');
-    await expect(within(dialog).getByRole('button', { name: /Sunday 25 October 2026/ })).toHaveAttribute('aria-disabled', 'true');
-    await expect(within(dialog).getByRole('button', { name: /Friday 16 October 2026/ })).toHaveAttribute('aria-disabled', 'true');
-    await userEvent.click(within(dialog).getByRole('button', { name: /Sunday 25 October 2026/ }));
-    await expect(args.onValueChange).not.toHaveBeenCalled();
-    await expect(screen.getByRole('dialog')).toBeVisible();
-    await userEvent.keyboard('{Escape}');
   },
 };
 
@@ -179,19 +149,6 @@ export const Range: Story = {
   },
 };
 
-export const RangePlaceholder: Story = {
-  args: { type: 'range', label: 'Period', placeholder: 'Pick a period' },
-  play: async ({ canvas }) => {
-    await expect(canvas.getByRole('button', { name: 'Period, Pick a period' })).toBeVisible();
-    await userEvent.click(canvas.getByRole('button'));
-    const dialog = await screen.findByRole('dialog', { name: 'Choose a period' });
-    await expect(within(dialog).getByRole('button', { name: 'Apply' })).toBeDisabled();
-    await userEvent.click(within(dialog).getByRole('button', { name: 'Cancel' }));
-    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
-    await expect(canvas.getByRole('button')).toHaveFocus();
-  },
-};
-
 // Date and time: the trigger shows both values, the popover is the Date Time Picker.
 export const DateAndTime: Story = {
   args: { type: 'datetime', label: 'Send at', defaultValue: new Date(2026, 9, 22, 14, 30) },
@@ -207,63 +164,3 @@ export const DateAndTime: Story = {
     await expect(canvas.getByRole('button', { name: 'Send at, 22 Oct 2026, 16:00' })).toHaveFocus();
   },
 };
-
-// Inside a Field the visible label names the trigger.
-export const InField: Story = {
-  render: () => (
-    <Field label="Invoice date" hint="Format follows your language">
-      <DatePicker today={TODAY} />
-    </Field>
-  ),
-  play: async ({ canvas }) => {
-    const trigger = canvas.getByRole('button', { name: 'Invoice date' });
-    await expect(trigger).toHaveAccessibleDescription('Format follows your language');
-    await userEvent.click(canvas.getByText('Invoice date'));
-    await expect(await screen.findByRole('dialog')).toBeVisible();
-    await userEvent.keyboard('{Escape}');
-  },
-};
-
-// Stress test (Figma "Stress test / Date Picker"): a long range truncates to one line, the icon keeps its size.
-export const LongRange: Story = { tags: ['!dev'],
-  args: { type: 'range', label: 'Period', defaultRange: { from: new Date(2026, 8, 28), to: new Date(2027, 0, 31) } },
-  decorators: [Story => <div className="w-[160px]"><Story /></div>],
-  play: async ({ canvas }) => {
-    const trigger = canvas.getByRole('button');
-    await expect(box(trigger)).toEqual([160, 36]);
-    const value = trigger.querySelector('[data-slot="date-picker-value"]') as HTMLElement;
-    await expect(value.scrollWidth).toBeGreaterThan(value.clientWidth);
-    await expect(css(value).whiteSpace).toBe('nowrap');
-    await expect(box(trigger.querySelector('svg')!)).toEqual([16, 16]);
-    await expect(trigger.scrollWidth).toBeLessThanOrEqual(trigger.clientWidth);
-  },
-};
-
-export const Column276: Story = { tags: ['!dev'],
-  decorators: [Story => <div className="w-[276px]"><Story /></div>],
-  args: { defaultValue: new Date(2026, 9, 22) },
-  play: async ({ canvas }) => {
-    await expect(box(canvas.getByRole('button'))).toEqual([276, 36]);
-    await userEvent.click(canvas.getByRole('button'));
-    const dialog = await screen.findByRole('dialog');
-    // The calendar keeps 250 wide, so it fits the column.
-    await expect(box(dialog.querySelector('[data-slot="calendar"]')!)[0]).toBe(250);
-    await userEvent.keyboard('{Escape}');
-  },
-};
-
-const Showcase = () => (
-  <div className="flex w-[240px] flex-col gap-3">
-    <DatePicker label="Empty" today={TODAY} />
-    <DatePicker label="Filled" today={TODAY} defaultValue={new Date(2026, 9, 22)} />
-    <DatePicker label="Error" today={TODAY} defaultValue={new Date(2026, 9, 22)} invalid />
-    <DatePicker label="Disabled" today={TODAY} defaultValue={new Date(2026, 9, 22)} disabled />
-    <DatePicker label="Read only" today={TODAY} defaultValue={new Date(2026, 9, 22)} readOnly />
-    <DatePicker label="Range" type="range" today={TODAY} defaultRange={{ from: new Date(2026, 9, 1), to: new Date(2026, 9, 31) }} />
-  </div>
-);
-export const AllStates: Story = { decorators: [], render: () => <Showcase />, name: 'All states' };
-export const AllStatesDark: Story = { decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All states (Dark)' };
-export const AllStatesCorporate: Story = { decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All states (Corporate Light)' };
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

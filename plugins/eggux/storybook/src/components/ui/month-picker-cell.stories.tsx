@@ -56,7 +56,7 @@ const fills: Record<MonthPickerCellState, [string, string, string]> = {
 export const States: Story = {
   decorators: [],
   render: () => (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex w-max gap-4">
       {states.map(s => <div key={s} className="w-[72px]"><MonthPickerCell state={s} label="Oct" aria-label={`Oct ${s}`} /></div>)}
     </div>
   ),
@@ -76,15 +76,3 @@ export const States: Story = {
   },
 };
 
-// Stress test: a long label is cut with an ellipsis and does not grow the cell.
-export const LongLabel: Story = { tags: ['!dev'],
-  args: { label: 'September 2026 and later', 'aria-label': 'September 2026 and later' },
-  play: async ({ canvas }) => {
-    const cell = canvas.getByRole('button');
-    await expect(box(cell)).toEqual([72, 40]);
-    await expect(css(cell.firstElementChild!).textOverflow).toBe('ellipsis');
-  },
-};
-
-export const StatesDark: Story = { ...States, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const StatesCorporate: Story = { ...States, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

@@ -194,7 +194,7 @@ function TimePicker({
     ? range.start && range.end ? `${formatTime(range.start, hour12, locale)} to ${formatTime(range.end, hour12, locale)}` : undefined
     : value ? formatTime(value, hour12, locale) : undefined;
   const shown = text ?? placeholder ?? (isRange ? 'Select time range' : 'Select time');
-  const name = label ? `${label}, ${shown}${isRange && showDuration && duration ? `, ${duration}` : ''}` : undefined;
+  const name = label ? `${label}, ${shown}${isRange && showDuration && duration ? ` ${duration}` : ''}` : undefined;
 
   const pickSingle = (o: string) => {
     setInnerValue(o);
@@ -237,6 +237,8 @@ function TimePicker({
         >
           <Clock aria-hidden="true" className="size-4 shrink-0 text-muted-foreground" />
           <span id={valueId} data-slot="time-picker-value" className={cn('min-w-0 flex-1 truncate', !text && 'text-muted-foreground')}>{shown}</span>
+          {/* A real space, so the visible text reads "11:30 1 h 30 min" like the accessible name. */}
+          {isRange && showDuration && duration ? ' ' : null}
           {isRange && showDuration && duration ? <span data-slot="time-picker-duration" className="shrink-0 text-sm text-muted-foreground">{duration}</span> : null}
         </button>
       </PopoverTrigger>
