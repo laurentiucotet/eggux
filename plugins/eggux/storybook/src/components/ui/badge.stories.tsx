@@ -3,7 +3,7 @@ import { expect } from 'storybook/test';
 import { Badge } from './badge';
 
 const meta = {
-  title: 'Components/Badge',
+  title: 'Components/Badge/Badge',
   component: Badge,
   parameters: {
     docs: { description: { component: 'Status or category of an object. Soft variants for statuses repeated down a table; category-1 to 8 for categories without a status meaning. Figma: COMPONENTS / Badge. Guide: eggux build-ui/components/badge.md' } },
@@ -59,7 +59,7 @@ export const Sizes: Story = {
 };
 
 // Stress test: a long label truncates at max-w-64 (256) and never wraps.
-export const LongLabel: Story = {
+export const LongLabel: Story = { tags: ['!dev'],
   args: { children: 'Waiting for the second approver in the finance department', variant: 'soft-warning' },
   play: async ({ canvas, args }) => {
     const label = canvas.getByText(String(args.children));
@@ -71,5 +71,5 @@ export const LongLabel: Story = {
 };
 
 // Contrast of the soft and category tints in Dark.
-export const SoftDark: Story = { ...Soft, globals: { theme: 'Dark' } };
-export const CategoriesDark: Story = { ...Categories, globals: { theme: 'Dark' } };
+export const SoftDark: Story = { ...Soft, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const CategoriesDark: Story = { ...Categories, tags: ['!dev'], globals: { theme: 'Dark' } };
