@@ -414,7 +414,7 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-Code: cell renderer: lucide `Check` / `Minus` icon with `sr-only` "Included" / "Not included", or the text value; optional muted note (Plan comparison cells; excluded is a dash, never blank)
+Code: cell renderer: icon `Check` / `Minus` icon with `sr-only` "Included" / "Not included", or the text value; optional muted note (Plan comparison cells; excluded is a dash, never blank)
 
 ## Table Cell Media
 
@@ -472,7 +472,7 @@ Tokens and styles:
 
 Guides: [table](../../skills/build-ui/components/table.md)
 
-Code: first-column cell `div style={{ paddingLeft: row.depth * 24 }} className="flex items-center gap-1.5"`: expander ghost Button (`ChevronRight` / `ChevronDown`, `aria-expanded`) or a `size-5` spacer, lucide icon, `truncate` label (TanStack `getSubRows`, `row.getToggleExpandedHandler()`; table `role="treegrid"`, rows `aria-level`; min width 120 + 24 per level)
+Code: first-column cell `div style={{ paddingLeft: row.depth * 24 }} className="flex items-center gap-1.5"`: expander ghost Button (`ChevronRight` / `ChevronDown`, `aria-expanded`) or a `size-5` spacer, icon, `truncate` label (TanStack `getSubRows`, `row.getToggleExpandedHandler()`; table `role="treegrid"`, rows `aria-level`; min width 120 + 24 per level)
 
 ## Table Toolbar
 

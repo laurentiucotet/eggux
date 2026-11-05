@@ -394,4 +394,4 @@ Tokens and styles:
 
 Guides: [file-upload](../../skills/build-ui/components/file-upload.md)
 
-Code: `<span className="inline-flex size-10 items-center justify-center rounded-md bg-[var(--badge-category-N-bg)] text-[var(--badge-category-N-fg)] text-xs font-medium">PDF</span>` (sm `size-8 rounded-sm`); code and generic `bg-[var(--badge-soft-neutral-bg)]`, generic shows lucide `FileText` (Map MIME type or extension to the type: pdf 8, document 1, sheet 6, slides 2, image 7, video 5, audio 3, archive 4; `aria-hidden`)
+Code: `<span className="inline-flex size-10 items-center justify-center rounded-md bg-[var(--badge-category-N-bg)] text-[var(--badge-category-N-fg)] text-xs font-medium">PDF</span>` (sm `size-8 rounded-sm`); code and generic `bg-[var(--badge-soft-neutral-bg)]`, generic shows icon `FileText` (Map MIME type or extension to the type: pdf 8, document 1, sheet 6, slides 2, image 7, video 5, audio 3, archive 4; `aria-hidden`)

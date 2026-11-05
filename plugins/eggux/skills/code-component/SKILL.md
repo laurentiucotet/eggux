@@ -25,7 +25,9 @@ first, code follows Figma).
 ## 2. Write the component
 `src/components/ui/<name>.tsx` (kebab-case file, PascalCase export).
 - Start from the shadcn/ui source of the mapped component when there is one; keep its API and
-  `data-slot` names. Radix primitives come from `radix-ui`, icons from `lucide-react`.
+  `data-slot` names. Radix primitives come from `radix-ui`, icons from `@/components/icons` (IconMCP, same
+  names as the Figma `Icon/<name>` in PascalCase: `Icon/trash-2` → `Trash2`), never `lucide-react`.
+  An icon the set lacks: add it from IconMCP to `icons/iconmcp.json` and run `npm run icons`.
 - Props mirror Figma: Variant → `variant`, Size → `size`, other variant properties → props of the
   same name in camelCase, booleans `Show x` → optional props or children, text properties →
   children or named props, slots → `children` or named `ReactNode` props. Default values are the

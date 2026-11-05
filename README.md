@@ -16,8 +16,8 @@ workspace and start from there; client files start as a copy of it.
 At a glance: 427 components on 76 pages, 258 blocks, 8 page shells, 171 complete screens and
 email templates (SCREENS: Account, Auth, Billing, Documents, Emails, Help Center, Paywalls, Settings), 4 full showcase pages, 689 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
-Română), 16 text styles, 4 gradient styles, 112 Lucide icons, 6 brand icons, 12 sample logos and 56 sample
-images (49 photos, 7 product screenshots). The plugin adds 17 skills, 33
+Română), 16 text styles, 4 gradient styles, 112 IconMCP icons (1 px line, sharp corners), 6 brand icons, 12 sample logos and 56 sample
+images (49 photos, 7 product screenshots). The plugin adds 22 skills, 33
 patterns and 38 component guides.
 
 ## Install
@@ -56,6 +56,11 @@ checks every applied decision.
 | `/eggux:code-setup` | Puts the EGG UI components in code in a client project: React, Tailwind, shadcn/ui names, Storybook with themes and density, tests; exports the client's Figma variables to CSS, and refreshes them when Figma changes |
 | `/eggux:code-component` | "Creează componenta asta": builds one component in code from its Figma component, with stories that are also tests (interaction, keyboard, measured sizes, accessibility in each theme, stress cases), runs them until green and compares the story with Figma |
 | `/eggux:code-qa` | Runs every story test, rebuilds Storybook, compares the stories with Figma and reports defects by cause (code, design, test) and coverage gaps |
+| `/eggux:storybook-init` | Adds Storybook to a project without it (latest stable); EGG UI projects go to code-setup. From [storybookjs/skills](https://github.com/storybookjs/skills), adapted |
+| `/eggux:storybook-setup` | Makes an installed Storybook work for the real project (preview, providers, CSS, mocks, first stories) by following `npx storybook skills setup`; leaves the EGG starter alone |
+| `/eggux:storybook-upgrade` | Upgrades Storybook to the latest stable (prerelease only on request), checks it and ends with code-qa |
+| `/eggux:storybook-component-docs` | Answers which components exist and what props they take from Storybook's docs tools, so they get reused instead of rebuilt |
+| `/eggux:storybook-ui-workflow` | Storybook's workflow for UI changes: reuse lookup, stories, story tests, review page; works on Storybook 10 and 11 |
 | `/eggux:decision-log` | Turns Inbox requests into decisions, applies them in Figma and code, verifies the work |
 | `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
 | `/eggux:responsive` | Resize contract for a component or block, `check.js` on its stress test (squeezed, clipped, overflowing text at 276, 368, 564 and full width), fix recipes; also audits a whole library |
@@ -70,7 +75,7 @@ The plugin holds the method; each client project holds its answers.
 
 ```
 plugins/eggux/
-├── storybook/           EGG UI in code: tokens pipeline, Storybook 10, Vitest + axe, Button, Badge, Input (starter for code-setup)
+├── storybook/           EGG UI in code: tokens pipeline, Storybook 10, Vitest + axe, icons, Button, Badge, Input (starter for code-setup)
 ├── app/                 the board: local web interface (Node, no dependencies) for decisions, tasks and notes
 ├── hooks/               SessionStart reminder of the client's decisions.md, its Inbox and open tasks
 ├── references/          tokens (incl. density, motion, chart palette), content strings, Figma inventory, Figma API notes, code mapping, client file convention
@@ -85,6 +90,7 @@ plugins/eggux/
     ├── code-setup/      code library + Storybook in a client project, tokens from Figma
     ├── code-component/  one Figma component → component, stories, tests, visual check
     ├── code-qa/         all tests, Storybook build, visual check against Figma, report
+    ├── storybook-*/     init, setup, upgrade, component-docs, ui-workflow (adapted from storybookjs/skills)
     ├── decision-log/
     ├── review/          Nielsen heuristics
     ├── audit-tokens/    audit.js, scan-components.js, run through Figma MCP
@@ -112,7 +118,7 @@ express: when to use what, behavior, rules.
 ## Figma library status
 
 EGG UI v2 ([Community file](https://www.figma.com/community/file/1694044412384019384)) has foundations (variables, text and effect styles, density,
-motion, chart palette, a `foreground/brand` text token), 112 Lucide icons and 6 brand icons, and components for actions, forms, selection, overlays, navigation, feedback,
+motion, chart palette, a `foreground/brand` text token), 112 IconMCP icons and 6 brand icons, and components for actions, forms, selection, overlays, navigation, feedback,
 data display (tables on auto-layout grid, charts, description list, timeline), dates and
 scheduling, files, content (code block, table of contents, rich text editor), communication
 (comments, chat, reactions, mentions), AI chat and AI states, commerce (product, cart, orders, account),

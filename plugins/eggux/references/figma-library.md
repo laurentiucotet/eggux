@@ -25,7 +25,7 @@ variant of the parent (Order Row status, Release Note type, Endpoint method) sta
 
 | Page | Component | Variants | Properties |
 |---|---|---|---|
-| Icons | `Icon/<name>` | - | Lucide, 24 px, one `Vector` layer bound to `foreground/default`. Rescale to 16 (UI) or 12 (badge) |
+| Icons | `Icon/<name>` | - | IconMCP (MIT), outline, stroke 1, radius 0; 24 px component, one `Vector` layer bound to `foreground/default`. Resize to 16 (UI), 14 (xs) or 12 (badge); the line stays 1 px |
 | Icons | `Icon/brand/<name>` | - | Brand logos from Simple Icons, filled, 24 px, one `Vector` bound to `foreground/default`: apple-podcasts, spotify, linkedin, youtube, github, x. Frame "Icons / Brand" |
 | Tour | `Coachmark` | Side: bottom, top, right, left | Title, Description, Step, Show media (Media slot), Show close, Show back. Arrow points at the target |
 | Tour | `Hotspot` | - | 24 px beacon that opens a Coachmark |
@@ -865,6 +865,6 @@ Preview Sheet, Command Palette, Upgrade Dialog) show the overlay over a dimmed a
 
 ## Not built yet
 Open gaps from the README roadmap: a Search Hero block, and examples in real screens for the 0.50.0 components
-(their rows have generated stress tests). Icons: the 110 Lucide icons stay; the team may switch
-to Phosphor (flatten each icon to one `Vector` layer so swaps keep their color). When something
+(their rows have generated stress tests). Icons come from IconMCP; a missing one is added from
+IconMCP (`references/figma-api-notes.md`, Icons), never drawn by hand. When something
 is missing, compose from the components above, tokens and text styles, and flag it.

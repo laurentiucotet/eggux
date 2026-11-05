@@ -7,7 +7,7 @@ steps again before every new Community version.
 - [x] Cover page with a 1920 x 1080 `Thumbnail` frame (artwork, the only frame allowed to
       have detached styles).
 - [x] Intro page: "Getting started" frame with what is inside (current counts), how to use,
-      how the file is organized, conventions, credits and license (Plus Jakarta Sans, Inter, Roboto Mono, Lucide,
+      how the file is organized, conventions, credits and license (Plus Jakarta Sans, Inter, Roboto Mono, IconMCP,
       shadcn/ui, CC BY 4.0) and the changelog. Update counts and changelog with every release.
 - [x] Foundations page: color roles in pairs, chart palette, type scale, spacing, radius,
       elevation, motion, modes; everything bound to variables and styles.
@@ -18,7 +18,7 @@ steps again before every new Community version.
 - [x] Component scan clean on library pages (`skills/audit-tokens/scan-components.js`).
 - [x] Token audit: the 4 known contrast exceptions in Light / Dark, only warning-as-text in
       Corporate (`tokens.md`).
-- [x] Fonts are free Google Fonts (Plus Jakarta Sans, Inter, Roboto Mono); icons Lucide (ISC).
+- [x] Fonts are free Google Fonts (Plus Jakarta Sans, Inter, Roboto Mono); icons IconMCP (MIT).
 
 ## To do by hand in Figma
 1. Rename the file to **EGG UI** (it is currently "Document" or the team name).
@@ -63,12 +63,12 @@ What is inside
 - Native slots for every content area, so you fill components instead of detaching them.
 - Variant names match shadcn/ui props, so design and code speak the same words.
 - Contrast checked in both modes: text 4.5:1, controls 3:1, chart colors 3:1.
-- 97 Lucide icons as single vector layers.
+- 112 IconMCP icons (outline, 1 px line, sharp corners) as single vector layers.
 
 How to start: duplicate, put your logo in Logo Mark, change primary and radius in the
 Semantic collection, then build from a page shell. The Intro page walks you through it.
 
-Fonts: Plus Jakarta Sans, Inter, Roboto Mono (Google Fonts). Icons: Lucide (ISC).
+Fonts: Plus Jakarta Sans, Inter, Roboto Mono (Google Fonts). Icons: IconMCP (MIT).
 
 **Tags (max 12):** design system, enterprise, ui kit, variables, dark mode, shadcn, data grid,
 dashboard, saas, ai chat, tokens, accessibility

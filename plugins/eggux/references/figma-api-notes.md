@@ -129,22 +129,31 @@ Read before any `use_figma` write to the library or a client file. Each line cos
   parent) and back in (`insertChild`): ids and property references stay.
 
 ## Icons
-- Icon stroke follows size like lucide-react: stroke = 2 x size / 24 (16 px 1.33, 14 px 1.17, 20 px 1.67).
-  `rescale()` keeps that; `resize()` keeps stroke 2 and the icon looks bold. After `resize()`, set the
-  vectors' `strokeWeight` to 2 x width / 24 in the main component so instances inherit.
+- The `Icon/*` components are IconMCP icons (https://iconmcp.com, MIT): outline, stroke 1,
+  radius 0, drawn on a 16-unit grid and placed in a 24 px component. The component name keeps the
+  role name (`Icon/trash-2`); its description names the IconMCP source icon.
+- The line is 1 px at every size (16 px UI, 14 px xs, 12 px badge, 24 px). Change an icon's size
+  with `resize()`, which keeps `strokeWeight` 1; `rescale()` scales the line (0.67 at 16 px), so
+  after a `rescale()` set the instance's `Vector` back to `strokeWeight = 1`.
 - Keep every icon one layer named `Vector`, or swapped icons come out partly in the default color.
 - An INSTANCE_SWAP property on a node forces its default on every variant: do not bind the swap
   when variants need different icons.
 - Components without an icon swap property (Menu Item): swap the nested icon with
   `iconInstance.swapComponent(Icon/...)`.
-- New icons from Lucide SVG: convert the path (relative commands, H/V, arcs to cubic curves),
-  translate to the bounding box, set `vectorPaths`, then place the vector at the box origin.
 - Setting an INSTANCE_SWAP to the icon it already shows resets the nested color override (a plus
   in a primary Button turns dark). Set the swap only when the icon changes.
 - Flattening a main component empties existing instances. Record their colors first, then
   `resetOverrides()` each instance and re-apply.
-- New icon: clone an existing icon component, set `vectorPaths` with coordinates relative to the
-  vector's top-left, then position the vector in the 24 grid. Arcs must be written as curves.
+- New icon: find it with IconMCP `search_icons`, take the SVG with `get_icon` (style outline,
+  stroke 1, radius 0, size 24). Clone an existing icon component, `figma.createNodeFromSvg(svg)`,
+  `figma.flatten()` its shapes into one vector, copy it into the clone's `Vector` with
+  `await vector.setVectorNetworkAsync(flat.vectorNetwork)`, set the vector's x and y to the
+  flattened one's, `strokeWeight = 1`, round caps and joins, then remove the SVG frame. The stroke
+  stays bound to `foreground/default`. Add the SVG to `storybook/icons/iconmcp.json` and run
+  `npm run icons` so code has the same icon.
+- Replacing an icon's geometry in the main component updates every instance, but a rescaled
+  instance gets the scaled line again: set `strokeWeight = 1` on the `Vector` of every instance of
+  that icon afterwards (all pages).
 
 ## Text and styles
 - Write component descriptions with `descriptionMarkdown`. Setting `description` stores quotes

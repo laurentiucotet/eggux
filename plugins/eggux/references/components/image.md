@@ -49,7 +49,7 @@ Usage: eggux build-ui/components/carousel.md
 2. Image (Show image, off by default): nested Image / * instance that covers the whole area and crops to the ratio
 3. Image swap (Image): any component from the Imagery page (Image / Person, Product, Office, Cover, Abstract, City); default Image / Office / 01
 4. Pattern: dot grid on background/muted, dots in border/default, shown when there is no image
-5. Hint (Show caption): centered Lucide image icon in foreground/muted
+5. Hint (Show caption): centered image icon in foreground/muted
 6. Corner radius and clipping come from the placeholder, not from the image
 7. ratio: a transparent layer at Fill width with a locked aspect ratio; it sets the height, so the height follows any width (fixed, Fill or resized)
 8. State: default; loading (background/accent skeleton fill, no pattern or icon); error (image icon and Fallback text "Image unavailable" in foreground/default, centered; the text follows Show caption)
@@ -95,7 +95,7 @@ Tokens and styles:
 
 Guides: [carousel](../../skills/build-ui/components/carousel.md)
 
-Code: `<img>` or `next/image` with `aspect-ratio` and `object-cover` (`Show image` = render the image; off = muted box with a dot background and lucide `Image` icon (loading or missing image). The `Image` swap picks a sample photo: replace with the real `src` and alt)
+Code: `<img>` or `next/image` with `aspect-ratio` and `object-cover` (`Show image` = render the image; off = muted box with a dot background and icon `Image` icon (loading or missing image). The `Image` swap picks a sample photo: replace with the real `src` and alt)
 
 ## Map
 
@@ -523,4 +523,4 @@ Tokens and styles:
 
 Guides: [carousel](../../skills/build-ui/components/carousel.md)
 
-Code: `<img className="size-12 rounded-md border object-cover" alt="">` (xs `size-6 rounded-sm`, sm `size-8 rounded-sm`, lg `size-16`, xl `size-20 rounded-lg`); Ratio 4:3 `w-12 aspect-[4/3]`; fallback `div className="grid place-items-center bg-muted text-muted-foreground"` + lucide icon (`shrink-0`; alt="" when the item name is next to it)
+Code: `<img className="size-12 rounded-md border object-cover" alt="">` (xs `size-6 rounded-sm`, sm `size-8 rounded-sm`, lg `size-16`, xl `size-20 rounded-lg`); Ratio 4:3 `w-12 aspect-[4/3]`; fallback `div className="grid place-items-center bg-muted text-muted-foreground"` + icon (`shrink-0`; alt="" when the item name is next to it)

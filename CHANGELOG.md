@@ -3,6 +3,35 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.67.0
+Icons from IconMCP: outline, a 1 px line at every size, sharp corners (stroke 1, radius 0).
+- Figma: the 112 `Icon/*` components now draw the IconMCP icons (MIT); names, keys and the
+  `foreground/default` binding stay, so every swap and instance follows. 90 have the same name in
+  IconMCP, 22 use the closest IconMCP icon (each description names it, e.g. trash-2 → trash,
+  text-quote → quote, square-pen → note-edit). Filled dots are 1 px round dots so each icon
+  stays one `Vector`; bell-off has no gap around its slash. 14,468 icon instances set to a 1 px
+  line. Intro credits and counts updated. Brand icons unchanged.
+- Code: `storybook/icons/iconmcp.json` holds the source SVGs; `npm run icons` writes
+  `src/components/icons` (PascalCase names of the Figma icons, 1 px non-scaling line).
+  lucide-react removed; Button and its stories use the new icons; `Foundations/Icons` story;
+  28 story tests green. `PW_CHROMIUM` lets the tests use a preinstalled Chromium.
+- Rules: figma-api-notes (resize keeps the 1 px line, adding an icon from IconMCP),
+  new-component, code-component, code-mapping and the component references name the new set.
+
+## 0.66.0
+Storybook's own agent skills, from [storybookjs/skills](https://github.com/storybookjs/skills)
+(branch `next`, synced from Storybook v11.0.0-alpha.7), adapted to the plugin.
+- New skills: `storybook-init`, `storybook-setup`, `storybook-upgrade`,
+  `storybook-component-docs`, `storybook-ui-workflow`. Each one runs the instructions Storybook's
+  CLI prints for the project (`npx storybook skills ...`, `npx storybook tools ...`).
+- Upstream requires Storybook 11 (prerelease). Here they work on 10.x too: on 10 they use
+  `skills setup`, `skills stories` and `skills write-story`, which 10.6 ships; on 11 they use
+  `skills component-docs` and `skills ui-workflow`. Upgrades target the latest stable release;
+  the prerelease only when the user asks. The starter stays on Storybook 10.
+- EGG UI projects: init hands over to `code-setup`, setup never runs the generic setup on the
+  starter, upgrade ends with `code-qa`, component-docs keeps Figma and `references/components`
+  as the source of design intent. `code-qa` names `storybook-upgrade` for Storybook upgrades.
+
 ## 0.65.0
 EGG UI in code: a Storybook starter and the skills to grow it one component at a time.
 - `plugins/eggux/storybook`: React 19, Tailwind 4, shadcn/ui names, Storybook 10 (docs, a11y,

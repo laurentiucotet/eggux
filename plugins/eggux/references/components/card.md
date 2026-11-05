@@ -112,7 +112,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
 
 ## Card Header
 
@@ -140,7 +140,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
 
 ## Card Footer
 
@@ -157,7 +157,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
 
 ## Stat Card
 
@@ -240,7 +240,7 @@ Tokens and styles:
 
 Guides: [card](../../skills/build-ui/components/card.md)
 
-Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional Lucide icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
+Code: shadcn `Card` (`CardHeader`, `CardFooter`) + `cva` with `variant` (default, outline, muted), `size` (default, sm) and `elevated` (boolean, `shadow-md`) (Padding from `var(--card-padding)` / `var(--card-padding-sm)` on Card (py) and CardHeader, CardContent, CardFooter (px); gap from `var(--card-gap)`. Card Header `Show icon` / `Icon` = optional icon (`size-5`, `aria-hidden`) before `CardTitle` in a `flex items-center gap-2` row. Stat Card: custom content)
 
 ## Option Card
 

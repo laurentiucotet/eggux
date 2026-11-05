@@ -195,4 +195,4 @@ Tokens and styles:
 
 Guides: [approvals](../../skills/build-ui/patterns/approvals.md), [enterprise-apps](../../skills/build-ui/patterns/enterprise-apps.md)
 
-Code: shadcn `Select` (or `Combobox`) + lucide `ArrowRight` + status `Badge`; react-hook-form `useFieldArray` (Auto-match by name; save the mapping as a template)
+Code: shadcn `Select` (or `Combobox`) + icon `ArrowRight` + status `Badge`; react-hook-form `useFieldArray` (Auto-match by name; save the mapping as a template)

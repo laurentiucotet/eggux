@@ -312,4 +312,4 @@ Tokens and styles:
 
 Guides: [content](../../skills/build-ui/components/content.md), [input](../../skills/build-ui/components/input.md), [auth](../../skills/build-ui/patterns/auth.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: `<li class="flex gap-2">` with lucide `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status (Mark=check, dash, x. Tone=on-primary: label and icon `text-primary-foreground`; Tone=inverted: `text-background`, dash `text-muted`)
+Code: `<li class="flex gap-2">` with icon `CircleCheck`, `Minus` or `X` (`aria-hidden`) and an sr-only status (Mark=check, dash, x. Tone=on-primary: label and icon `text-primary-foreground`; Tone=inverted: `text-background`, dash `text-muted`)
