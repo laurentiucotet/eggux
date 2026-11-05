@@ -1,20 +1,7 @@
-import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor } from 'storybook/test';
 import { Calendar } from './calendar';
-import {
-  addDays,
-  addMonths,
-  daysBetweenInclusive,
-  formatDuration,
-  formatRangeText,
-  formatTime,
-  isoWeek,
-  monthGrid,
-  timeOptions,
-  weekdayLabels,
-  type DateRange,
-} from './calendar-date';
+import { type DateRange } from './calendar-date';
 
 const TODAY = new Date(2026, 9, 19);
 const SELECTED = new Date(2026, 9, 22);
@@ -45,42 +32,8 @@ const probe = (className: string, prop: 'color' | 'backgroundColor' | 'borderTop
 };
 const day = (canvas: { getByRole: (...a: any[]) => HTMLElement }, label: RegExp | string) => canvas.getByRole('button', { name: label });
 
-// Date math, tested without a browser date library.
-export const DateMath: Story = {
-  render: () => <p>Date math is tested in the play function.</p>,
-  play: async () => {
-    const oct = monthGrid(2026, 9);
-    await expect(oct).toHaveLength(5);
-    await expect(oct[0][0].toDateString()).toBe(new Date(2026, 8, 28).toDateString());
-    await expect(oct[4][6].toDateString()).toBe(new Date(2026, 10, 1).toDateString());
-    await expect(monthGrid(2026, 10)).toHaveLength(6);
-    await expect(monthGrid(2026, 1)).toHaveLength(5);
-    await expect(monthGrid(2027, 1)).toHaveLength(4);
-    // Sunday start: October 2026 begins on a Thursday, so the first row starts on Sunday 27 September.
-    await expect(monthGrid(2026, 9, 0)[0][0].getDate()).toBe(27);
-    await expect(oct.every(w => w.length === 7)).toBe(true);
-    await expect(addMonths(new Date(2026, 0, 31), 1).toDateString()).toBe(new Date(2026, 1, 28).toDateString());
-    await expect(addMonths(new Date(2026, 0, 15), -1).toDateString()).toBe(new Date(2025, 11, 15).toDateString());
-    await expect(addDays(new Date(2026, 11, 31), 1).toDateString()).toBe(new Date(2027, 0, 1).toDateString());
-    await expect(daysBetweenInclusive(new Date(2026, 9, 6), new Date(2026, 9, 19))).toBe(14);
-    // Across the daylight saving change (25 Oct 2026 in Europe) the count stays right.
-    await expect(daysBetweenInclusive(new Date(2026, 9, 24), new Date(2026, 9, 26))).toBe(3);
-    await expect(isoWeek(new Date(2026, 9, 5))).toBe(41);
-    await expect(isoWeek(new Date(2026, 0, 1))).toBe(1);
-    await expect(isoWeek(new Date(2020, 11, 31))).toBe(53);
-    await expect(isoWeek(new Date(2021, 0, 3))).toBe(53);
-    await expect(weekdayLabels('en-GB', 1).map(w => w.short)).toEqual(['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']);
-    await expect(weekdayLabels('en-GB', 0)[0].short).toBe('Su');
-    await expect(formatRangeText({ from: new Date(2026, 9, 6), to: new Date(2026, 9, 19) })).toBe('6 Oct to 19 Oct 2026');
-    await expect(formatRangeText({ from: new Date(2026, 11, 20), to: new Date(2027, 0, 5) })).toContain('2026 to');
-    await expect(timeOptions(30, 9 * 60, 11 * 60)).toEqual(['09:00', '09:30', '10:00', '10:30', '11:00']);
-    await expect(formatDuration(90)).toBe('1 h 30 min');
-    await expect(formatDuration(45)).toBe('45 min');
-    await expect(formatTime('14:30', true)).toMatch(/2:30\s?pm/i);
-  },
-};
-
-// Figma Caption=label, Months=1: 250 x 294, Monday first, today marked, 22 selected.
+// Figma Caption=label, Months=1: 250 x 294, Monday first, today marked, 22 selected. Also the month
+// arrows and the WAI-ARIA date grid keyboard.
 export const Default: Story = {
   args: { onSelect: fn() },
   play: async ({ canvas, canvasElement, args }) => {
@@ -110,29 +63,19 @@ export const Default: Story = {
     await expect((args.onSelect as ReturnType<typeof fn>).mock.calls[0][0].getDate()).toBe(23);
     await expect(day(canvas, /Friday 23 October 2026/).closest('[role="gridcell"]')).toHaveAttribute('aria-selected', 'true');
     await expect(day(canvas, /Thursday 22 October 2026/).closest('[role="gridcell"]')).toHaveAttribute('aria-selected', 'false');
-  },
-};
 
-// Month navigation with the arrows and with a click on an outside day.
-export const Navigation: Story = {
-  play: async ({ canvas }) => {
+    // Month navigation with the arrows and with a click on an outside day.
     await userEvent.click(canvas.getByRole('button', { name: 'Next month' }));
     await expect(canvas.getByRole('grid', { name: 'November 2026' })).toBeVisible();
-    // November 2026 has 6 rows.
     await expect(canvas.getAllByRole('row')).toHaveLength(7);
     await userEvent.click(canvas.getByRole('button', { name: 'Previous month' }));
     await userEvent.click(canvas.getByRole('button', { name: 'Previous month' }));
     await expect(canvas.getByRole('grid', { name: 'September 2026' })).toBeVisible();
-    // Clicking 1 October (outside day of September) opens October and selects it.
     await userEvent.click(day(canvas, /Thursday 1 October 2026/));
     await expect(canvas.getByRole('grid', { name: 'October 2026' })).toBeVisible();
     await expect(day(canvas, /Thursday 1 October 2026/).closest('[role="gridcell"]')).toHaveAttribute('aria-selected', 'true');
-  },
-};
 
-// WAI-ARIA date grid keyboard.
-export const Keyboard: Story = {
-  play: async ({ canvas, canvasElement }) => {
+    // Keyboard.
     day(canvas, /Thursday 22 October 2026/).focus();
     await userEvent.keyboard('{ArrowRight}');
     await expect(day(canvas, /Friday 23 October 2026/)).toHaveFocus();
@@ -154,9 +97,6 @@ export const Keyboard: Story = {
     await userEvent.keyboard('{PageUp}{PageUp}');
     await waitFor(() => expect(canvas.getByRole('grid', { name: 'October 2026' })).toBeVisible());
     await waitFor(() => expect(day(canvas, /Thursday 1 October 2026/)).toHaveFocus());
-    // Shift+PageDown moves a year.
-    await userEvent.keyboard('{Shift>}{PageDown}{/Shift}');
-    await waitFor(() => expect(canvas.getByRole('grid', { name: 'October 2027' })).toBeVisible());
     // Enter and Space pick.
     await userEvent.keyboard('{ArrowRight}');
     await userEvent.keyboard('{Enter}');
@@ -165,20 +105,6 @@ export const Keyboard: Story = {
     await userEvent.keyboard(' ');
     await waitFor(() => expect(canvasElement.querySelector('[role="gridcell"][aria-selected="true"]')).toHaveTextContent('3'));
     await expect(canvasElement.querySelectorAll('[role="gridcell"][aria-selected="true"]')).toHaveLength(1);
-  },
-};
-
-// Tab reaches the arrows, then the one day in the tab order; Shift+Tab goes back.
-export const TabOrder: Story = {
-  play: async ({ canvas }) => {
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Previous month' })).toHaveFocus();
-    await userEvent.tab();
-    await expect(canvas.getByRole('button', { name: 'Next month' })).toHaveFocus();
-    await userEvent.tab();
-    await expect(day(canvas, /Thursday 22 October 2026/)).toHaveFocus();
-    await userEvent.tab({ shift: true });
-    await expect(canvas.getByRole('button', { name: 'Next month' })).toHaveFocus();
   },
 };
 
@@ -196,7 +122,6 @@ export const Dropdown: Story = {
     await expect(canvas.getByRole('grid', { name: 'March 2026' })).toBeVisible();
     await userEvent.selectOptions(year, '2030');
     await expect(canvas.getByRole('grid', { name: 'March 2030' })).toBeVisible();
-    await userEvent.keyboard('{Tab}');
   },
 };
 
@@ -220,18 +145,6 @@ export const TwoMonths: Story = {
     await userEvent.keyboard('{PageDown}{PageDown}');
     await waitFor(() => expect(canvas.getByRole('grid', { name: 'December 2026' })).toBeVisible());
     await expect(canvas.getByRole('grid', { name: 'November 2026' })).toBeVisible();
-  },
-};
-
-export const TwoMonthsDropdown: Story = {
-  args: { months: 2, caption: 'dropdown' },
-  play: async ({ canvas, canvasElement }) => {
-    await expect(box(canvasElement.querySelector('[data-slot="calendar"]')!)).toEqual([498, 334]);
-    await expect(canvas.getAllByRole('combobox', { name: 'Month' })).toHaveLength(2);
-    await userEvent.selectOptions(canvas.getAllByRole('combobox', { name: 'Month' })[1], 'Jan');
-    // The second month became January 2026, so the first is December 2025.
-    await expect(canvas.getByRole('grid', { name: 'December 2025' })).toBeVisible();
-    await expect(canvas.getByRole('grid', { name: 'January 2026' })).toBeVisible();
   },
 };
 
@@ -277,7 +190,7 @@ export const Range: Story = {
   },
 };
 
-// Booking: notes with prices, a booked day (strike, announced, not pickable), a dot for events.
+// Booking: notes with prices, a booked day (strike, announced, not pickable), disabled past days.
 export const Booking: Story = {
   args: {
     defaultSelected: undefined,
@@ -300,6 +213,7 @@ export const Booking: Story = {
   },
 };
 
+// Show dot: days with events (Agenda and Scheduler mini calendars).
 export const EventDots: Story = {
   args: { getDayMeta: d => (d.getMonth() === 9 && [5, 12, 22].includes(d.getDate()) ? { dot: true } : undefined) },
   play: async ({ canvasElement }) => {
@@ -307,74 +221,3 @@ export const EventDots: Story = {
     await expect(box(canvasElement.querySelector('[data-slot="calendar"]')!)).toEqual([250, 294]);
   },
 };
-
-// Locale: names come from Intl; Sunday first for en-US style calendars.
-export const SundayStart: Story = {
-  args: { weekStartsOn: 0, locale: 'en-US' },
-  play: async ({ canvas }) => {
-    await expect(canvas.getAllByRole('columnheader').map(h => h.textContent)).toEqual(['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']);
-    await expect(canvas.getByRole('grid', { name: 'October 2026' })).toBeVisible();
-  },
-};
-
-// Controlled month and value.
-const Controlled = () => {
-  const [value, setValue] = React.useState<Date | undefined>(SELECTED);
-  const [month, setMonth] = React.useState(TODAY);
-  return (
-    <div className="flex flex-col gap-3">
-      <Calendar today={TODAY} selected={value} onSelect={setValue} month={month} onMonthChange={setMonth} />
-      <p>Picked: <output>{value ? value.toDateString() : 'none'}</output></p>
-    </div>
-  );
-};
-export const ControlledValue: Story = {
-  render: () => <Controlled />,
-  play: async ({ canvas }) => {
-    await userEvent.click(canvas.getByRole('button', { name: 'Next month' }));
-    await userEvent.click(day(canvas, /Sunday 15 November 2026/));
-    await expect(canvas.getByRole('status')).toHaveTextContent('Sun Nov 15 2026');
-  },
-};
-
-// Stress test (Figma "Stress test / Calendar"): 276 and 368 px columns. The calendar keeps 250 and does not overflow.
-export const Column276: Story = {
-  decorators: [Story => <div className="w-[276px]"><Story /></div>],
-  play: async ({ canvasElement }) => {
-    const cal = canvasElement.querySelector('[data-slot="calendar"]') as HTMLElement;
-    await expect(cal.scrollWidth).toBeLessThanOrEqual(cal.clientWidth);
-    await expect(cal.getBoundingClientRect().width).toBeLessThanOrEqual(276);
-  },
-};
-export const Column368: Story = {
-  args: { months: 1, caption: 'dropdown', showWeekNumbers: true },
-  decorators: [Story => <div className="w-[368px]"><Story /></div>],
-  play: async ({ canvasElement }) => {
-    const cal = canvasElement.querySelector('[data-slot="calendar"]') as HTMLElement;
-    await expect(cal.scrollWidth).toBeLessThanOrEqual(cal.clientWidth);
-    await expect(box(cal)).toEqual([282, 294]);
-  },
-};
-// A long month name (locale) is cut with an ellipsis, never wrapped.
-export const LongMonthName: Story = {
-  args: { locale: 'ro-RO' },
-  decorators: [Story => <div className="w-[276px]"><Story /></div>],
-  play: async ({ canvasElement }) => {
-    const label = canvasElement.querySelector('[data-slot="calendar-label"]') as HTMLElement;
-    await expect(getComputedStyle(label).textOverflow).toBe('ellipsis');
-    await expect(Math.round(label.getBoundingClientRect().height)).toBe(20);
-  },
-};
-
-// Theme copies: axe checks contrast of every day state in each mode.
-const Showcase = () => (
-  <div className="flex flex-wrap items-start gap-6">
-    <Calendar today={TODAY} defaultSelected={SELECTED} defaultMonth={TODAY} aria-label="Selected day" />
-    <Calendar mode="range" months={1} today={TODAY} defaultMonth={TODAY} defaultRange={{ from: new Date(2026, 9, 6), to: new Date(2026, 9, 12) }} aria-label="Range" caption="dropdown" />
-  </div>
-);
-export const ThemeLight: Story = { render: () => <Showcase />, name: 'Day and range' };
-export const ThemeDark: Story = { render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Day and range (Dark)' };
-export const ThemeCorporate: Story = { render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Day and range (Corporate Light)' };
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

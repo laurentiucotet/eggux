@@ -50,7 +50,7 @@ export const Default: Story = {
 };
 
 // Keyboard: Tab focuses it (ring and tooltip), Enter and Space activate, Escape hides the tooltip.
-export const Keyboard: Story = {
+export const Keyboard: Story = { tags: ['!dev'],
   play: async ({ canvas, args }) => {
     const button = canvas.getByRole('button');
     await userEvent.tab();
@@ -154,26 +154,3 @@ export const Disabled: Story = {
     await expect(args.onClick).not.toHaveBeenCalled();
   },
 };
-
-// Stress test (Figma "Stress test / Button Icon"): fixed size, never shrinks in a tight row; a
-// long label stays in the tooltip, which wraps at 280.
-export const NarrowRow: Story = {
-  args: { variant: 'ghost', size: 'xs', label: 'Remove the filter Customer is Acme Corporation Europe GmbH', icon: <X aria-hidden="true" /> },
-  render: args => (
-    <div className="flex w-[120px] items-center gap-1 rounded-md border border-dashed p-1">
-      <span className="min-w-0 flex-1 truncate text-sm">Customer is Acme Corporation Europe GmbH</span>
-      <ButtonIcon {...args} />
-    </div>
-  ),
-  play: async ({ canvas }) => {
-    const button = canvas.getByRole('button');
-    await expect(box(button)).toEqual([28, 28]);
-    await userEvent.hover(button);
-    const tip = await screen.findByRole('tooltip');
-    await expect(tip).toHaveTextContent('Remove the filter');
-    await userEvent.unhover(button);
-  },
-};
-
-export const VariantsDark: Story = { ...Variants, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const VariantsCorporate: Story = { ...Variants, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

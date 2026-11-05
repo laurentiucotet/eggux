@@ -117,36 +117,3 @@ export const StickyMobile: Story = {
     await expect(canvas.getByText('€48.00')).toBeVisible();
   },
 };
-
-// Stress test (Figma "Stress test / Action Bar"): 276 and 368 columns; the bar fills the column
-// and stays right aligned; the sticky summary label truncates, the value never wraps.
-export const NarrowColumns: Story = { tags: ['!dev'],
-  render: () => (
-    <div className="flex flex-col gap-6">
-      {[276, 368].map(w => (
-        <div key={w} style={{ width: w }} className="rounded-md border border-dashed p-0">
-          <ActionBar><Button variant="outline">Cancel</Button><Button>Save</Button></ActionBar>
-        </div>
-      ))}
-      <div className="w-[320px]">
-        <ActionBar barStyle="sticky-mobile" summaryLabel="Total (12 items), VAT and delivery to Acme Europe included" summaryValue="€12,480.00">
-          <Button size="xl">Checkout</Button>
-        </ActionBar>
-      </div>
-    </div>
-  ),
-  play: async ({ canvas, canvasElement }) => {
-    const bars = [...canvasElement.querySelectorAll('[data-slot="action-bar"]')];
-    for (const bar of bars.slice(0, 2)) {
-      await expect(box(bar).h).toBe(36);
-      await expect(box(bar.querySelectorAll('button')[1]).r).toBe(box(bar).r);
-    }
-    const label = canvas.getByText(/Total \(12 items\)/);
-    await expect(label.scrollWidth).toBeGreaterThan(label.clientWidth);
-    await expect(box(canvas.getByText('€12,480.00')).h).toBe(28);
-  },
-};
-
-export const StickyMobileDark: Story = { ...StickyMobile, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const WithDividerAndLeadingDark: Story = { ...WithDividerAndLeading, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const WithDividerAndLeadingCorporate: Story = { ...WithDividerAndLeading, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

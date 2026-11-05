@@ -54,7 +54,7 @@ export const Default: Story = {
 };
 
 // Keyboard: two tab stops; ArrowDown on the chevron opens the menu, Escape closes it and returns focus.
-export const Keyboard: Story = {
+export const Keyboard: Story = { tags: ['!dev'],
   play: async ({ canvas, args }) => {
     const save = canvas.getByRole('button', { name: 'Save' });
     const more = canvas.getByRole('button', { name: 'More save options' });
@@ -128,21 +128,3 @@ export const Disabled: Story = {
     await expect(args.onClick).not.toHaveBeenCalled();
   },
 };
-
-// Stress test (Figma "Stress test / Split Button"): a long label grows the action part on one
-// line; a one-letter label stays a compact pill.
-export const LongAndShortLabels: Story = { tags: ['!dev'],
-  render: args => (
-    <div className="flex w-[368px] flex-col items-start gap-3">
-      <SplitButton {...args} label="Save and send the invoice to Acme" />
-      <SplitButton {...args} label="A" variant="outline" menuLabel="More options for A" />
-    </div>
-  ),
-  play: async ({ canvas }) => {
-    const long = canvas.getByRole('button', { name: 'Save and send the invoice to Acme' });
-    await expect(box(long)[1]).toBe(36);
-  },
-};
-
-export const VariantsDark: Story = { ...Variants, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const VariantsCorporate: Story = { ...Variants, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

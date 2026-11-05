@@ -93,7 +93,7 @@ function MonthSelect({ label, value, onChange, options, disabled }: { label: str
         value={value}
         disabled={disabled}
         onChange={e => onChange(Number(e.target.value))}
-        className="h-8 w-18 cursor-pointer appearance-none truncate rounded-input bg-transparent pl-2 pr-8 text-sm font-medium text-foreground outline-none"
+        className="h-8 w-auto cursor-pointer appearance-none rounded-input bg-transparent pl-2 pr-6 text-sm font-medium text-foreground outline-none"
       >
         {options.map(o => (
           <option key={o.value} value={o.value} className="bg-popover text-popover-foreground">{o.label}</option>

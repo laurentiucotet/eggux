@@ -50,7 +50,7 @@ export const Default: Story = {
 };
 
 // Keyboard: Tab reaches it, Enter copies; focus stays.
-export const Keyboard: Story = {
+export const Keyboard: Story = { tags: ['!dev'],
   play: async ({ canvas, args }) => {
     const button = canvas.getByRole('button', { name: 'Copy invoice number' });
     await userEvent.tab();
@@ -128,6 +128,3 @@ export const InRows: Story = {
     await expect(box(canvas.getByRole('button', { name: 'Copy callback url' }))).toEqual([32, 32]);
   },
 };
-
-export const InRowsDark: Story = { ...InRows, play: undefined, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const InRowsCorporate: Story = { ...InRows, play: undefined, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

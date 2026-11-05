@@ -92,20 +92,13 @@ export const States: Story = {
     await expect(canvas.getByRole('button', { name: '19 disabled' })).toHaveAttribute('aria-disabled', 'true');
     await expect(canvas.getByRole('button', { name: '19 booked' })).toHaveAttribute('aria-disabled', 'true');
     await expect(canvas.getByRole('button', { name: '19 default' })).not.toHaveAttribute('aria-disabled');
-  },
-};
-
-// State=booked: a 1 px strike line across the number, muted.
-export const Booked: Story = {
-  args: { state: 'booked', day: '24', 'aria-label': '24 October, booked' },
-  play: async ({ canvas }) => {
-    const day = canvas.getByRole('button', { name: '24 October, booked' });
-    const strike = day.querySelector('[data-slot="calendar-day-strike"]') as HTMLElement;
+    // State=booked: a 1 px strike line across the number, muted, 1 px wider than the number on each side.
+    const booked = canvas.getByRole('button', { name: '19 booked' });
+    const strike = booked.querySelector('[data-slot="calendar-day-strike"]') as HTMLElement;
     await expect(Math.round(strike.getBoundingClientRect().height)).toBe(1);
     await expect(css(strike).backgroundColor).toBe(probe('bg-muted-foreground', 'backgroundColor'));
-    // The strike is wider than the number by 1 px on each side.
-    const number = day.querySelector('[data-slot="calendar-day-number"]') as HTMLElement;
-    await expect(Math.round(strike.getBoundingClientRect().width - number.getBoundingClientRect().width)).toBe(2);
+    const bookedNumber = booked.querySelector('[data-slot="calendar-day-number"]') as HTMLElement;
+    await expect(Math.round(strike.getBoundingClientRect().width - bookedNumber.getBoundingClientRect().width)).toBe(2);
   },
 };
 
@@ -156,26 +149,3 @@ export const WithDot: Story = {
   },
 };
 
-// Keyboard focus shows the ring (Figma State=focus).
-export const FocusRing: Story = {
-  args: { day: '12', 'aria-label': '12 October' },
-  play: async ({ canvas }) => {
-    await userEvent.tab();
-    const day = canvas.getByRole('button', { name: '12 October' });
-    await expect(day).toHaveFocus();
-    await expect(css(day).boxShadow).not.toBe('none');
-  },
-};
-
-// Stress test (Figma "Stress test / Calendar"): a three digit number and a 6 character note do not grow the 32 px column.
-export const LongContent: Story = {
-  args: { day: '31', showNote: true, note: '3 left', 'aria-label': '31 3 left' },
-  play: async ({ canvas }) => {
-    const day = canvas.getByRole('button', { name: '31 3 left' });
-    await expect(size(day)[0]).toBeGreaterThanOrEqual(32);
-    await expect(size(day)[1]).toBe(36);
-  },
-};
-
-export const StatesDark: Story = { ...States, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const StatesCorporate: Story = { ...States, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

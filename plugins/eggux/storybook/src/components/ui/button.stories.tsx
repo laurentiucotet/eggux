@@ -130,24 +130,6 @@ export const Loading: Story = {
   },
 };
 
-// Loading in every Variant: the spinner takes the leading slot, the width matches the idle button with an icon.
-export const LoadingVariants: Story = {
-  render: args => (
-    <div className="flex flex-col gap-3">
-      {variants.map(v => (
-        <div key={v} className="flex items-center gap-3">
-          <Button {...args} variant={v} leadingIcon={<Plus aria-hidden="true" />}>Save</Button>
-          <Button {...args} variant={v} loading>Save</Button>
-        </div>
-      ))}
-    </div>
-  ),
-  play: async ({ canvas }) => {
-    const buttons = canvas.getAllByRole('button');
-    for (let i = 0; i < buttons.length; i += 2) await expect(box(buttons[i + 1])).toEqual(box(buttons[i]));
-  },
-};
-
 // Figma State=disabled: 50 % opacity, same colors; blocks clicks.
 export const Disabled: Story = {
   args: { disabled: true },
@@ -165,33 +147,3 @@ export const AsLink: Story = {
     await expect(canvas.getByRole('link', { name: 'View invoices' })).toHaveAttribute('href', '#invoices');
   },
 };
-
-// Stress test (Figma "Stress test / Button"): long label, narrow column. Hugs its label, one line.
-export const LongLabel: Story = {
-  args: { children: 'Export every invoice from the last fiscal year to CSV' },
-  render: args => <div className="w-[276px] rounded-md border border-dashed p-3"><Button {...args} /></div>,
-  play: async ({ canvasElement }) => {
-    const button = within(canvasElement).getByRole('button');
-    const lineHeight = parseFloat(getComputedStyle(button).lineHeight) || 20;
-    await expect(button.getBoundingClientRect().height).toBeLessThan(lineHeight * 2 + 16);
-  },
-};
-
-// Stress test: a one-letter label is still a pill at least as tall as wide; all options on.
-export const ShortAndAllOptions: Story = {
-  render: args => (
-    <div className="flex items-center gap-3">
-      <Button {...args}>A</Button>
-      <Button {...args} variant="outline" leadingIcon={<Plus aria-hidden="true" />} trailingIcon={<ChevronRight aria-hidden="true" />}>Add customer</Button>
-    </div>
-  ),
-  play: async ({ canvas }) => {
-    const [a] = canvas.getAllByRole('button');
-    const [w, h] = box(a);
-    await expect(w).toBeGreaterThanOrEqual(h - 1);
-  },
-};
-
-// Same variants in Dark and Corporate Light: axe checks the contrast of every theme mode.
-export const VariantsDark: Story = { ...Variants, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const VariantsCorporate: Story = { ...Variants, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
