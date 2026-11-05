@@ -284,4 +284,4 @@ Tokens and styles:
 
 Guides: [pagination](../../skills/build-ui/components/pagination.md), [content-and-docs](../../skills/build-ui/patterns/content-and-docs.md)
 
-Code: `<a>` card (`rounded-xl border p-4 hover:bg-accent focus-visible:ring`) with lucide `ChevronLeft` / `ChevronRight`, two of them in a `<nav>` (Docs prev/next; for tables and lists use `Pagination`)
+Code: `<a>` card (`rounded-xl border p-4 hover:bg-accent focus-visible:ring`) with icon `ChevronLeft` / `ChevronRight`, two of them in a `<nav>` (Docs prev/next; for tables and lists use `Pagination`)

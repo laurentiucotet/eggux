@@ -87,13 +87,13 @@ Tokens and styles:
 
 Guides: [content](../../skills/build-ui/components/content.md), [stepper](../../skills/build-ui/components/stepper.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: custom: `Icon Tile` (lucide icon in a `size-10 rounded-md` tile, Style neutral `bg-muted` by default) + `<h3>` + `<p>` (Icon `aria-hidden`; grid of 3 or 4. Tile Style follows the nested Icon Tile (brand: `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`). Layout=card: wrap in shadcn `Card` (`rounded-xl border bg-card p-6 gap-4`); link as `Button variant="link"`. Marker=number: an `<ol>`, number circle `rounded-full bg-primary text-primary-foreground`, `aria-hidden`)
+Code: custom: `Icon Tile` (icon in a `size-10 rounded-md` tile, Style neutral `bg-muted` by default) + `<h3>` + `<p>` (Icon `aria-hidden`; grid of 3 or 4. Tile Style follows the nested Icon Tile (brand: `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`). Layout=card: wrap in shadcn `Card` (`rounded-xl border bg-card p-6 gap-4`); link as `Button variant="link"`. Marker=number: an `<ol>`, number circle `rounded-full bg-primary text-primary-foreground`, `aria-hidden`)
 
 ## Icon Tile
 
 Component set · 12 variants · default size 40 × 40
 
-Icon Tile: a rounded square holding one Lucide icon, for features, steps, stats and bento cards. Style: neutral (default; background/muted, foreground/default icon), brand (icon-tile/brand-bg tint with icon-tile/brand-fg icon, for one accent row), gradient (icon-tile/gradient-start to -end with a foreground/primary icon, for one hero feature or a highlighted step), outline (border/default ring, foreground/muted icon, for quiet lists on cards). Size: default 40 (icon 20), sm 32 (icon 16), lg 48 (icon 24). Icon swaps the Lucide icon. Use one Style per grid; the icon is decorative next to a title, so it carries no meaning of its own. Usage: eggux build-ui/patterns/marketing-pages.md
+Icon Tile: a rounded square holding one icon, for features, steps, stats and bento cards. Style: neutral (default; background/muted, foreground/default icon), brand (icon-tile/brand-bg tint with icon-tile/brand-fg icon, for one accent row), gradient (icon-tile/gradient-start to -end with a foreground/primary icon, for one hero feature or a highlighted step), outline (border/default ring, foreground/muted icon, for quiet lists on cards). Size: default 40 (icon 20), sm 32 (icon 16), lg 48 (icon 24). Icon swaps the icon. Use one Style per grid; the icon is decorative next to a title, so it carries no meaning of its own. Usage: eggux build-ui/patterns/marketing-pages.md
 
 **Use for**
 
@@ -112,7 +112,7 @@ Icon Tile: a rounded square holding one Lucide icon, for features, steps, stats 
 **Anatomy**
 
 1. Tile: rounded square, Size=default 40 (radius/md), sm 32 (radius/md), lg 48 (radius/lg)
-2. Icon (Icon swap): Lucide icon, 20 / 16 / 24 px, default Icon/sparkles
+2. Icon (Icon swap): icon, 20 / 16 / 24 px, default Icon/sparkles
 3. Style=neutral (default): background/muted fill, foreground/default icon
 4. Style=brand: icon-tile/brand-bg fill (background/primary at 10% light, 20% dark), icon-tile/brand-fg icon (foreground/brand)
 5. Style=gradient: linear icon-tile/gradient-start to icon-tile/gradient-end, foreground/primary icon
@@ -122,7 +122,7 @@ Icon Tile: a rounded square holding one Lucide icon, for features, steps, stats 
 
 - One Style per grid; gradient for one hero feature or one highlighted step only
 - Same Size across a grid: default in feature grids, sm in dense lists, lg in bento cards
-- Pick icons from one family (Lucide) with the same stroke weight
+- Pick icons from one family (IconMCP) with the same stroke weight
 - brand and gradient follow the theme: violet in Showcase, near black in Default, blue in Corporate
 
 **Accessibility**
@@ -149,4 +149,4 @@ Tokens and styles:
 
 Guides: [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: custom `<div class="flex size-10 items-center justify-center rounded-md">` + lucide icon (`size-5`, `aria-hidden`) (Size: sm `size-8` + `size-4` icon, default `size-10` + `size-5`, lg `size-12 rounded-lg` + `size-6`. Style: neutral `bg-muted text-foreground`; brand `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`; gradient `bg-linear-to-br from-[var(--icon-tile-gradient-start)] to-[var(--icon-tile-gradient-end)] text-primary-foreground`; outline `border text-muted-foreground`. Decorative)
+Code: custom `<div class="flex size-10 items-center justify-center rounded-md">` + icon (`size-5`, `aria-hidden`) (Size: sm `size-8` + `size-4` icon, default `size-10` + `size-5`, lg `size-12 rounded-lg` + `size-6`. Style: neutral `bg-muted text-foreground`; brand `bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)]`; gradient `bg-linear-to-br from-[var(--icon-tile-gradient-start)] to-[var(--icon-tile-gradient-end)] text-primary-foreground`; outline `border text-muted-foreground`. Decorative)

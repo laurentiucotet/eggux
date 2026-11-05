@@ -90,7 +90,7 @@ Tokens and styles:
 
 Guides: [avatar](../../skills/build-ui/components/avatar.md), [select](../../skills/build-ui/components/select.md)
 
-Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`; `Type=icon` = `AvatarFallback` with lucide `User` / `Bot` / `Users` (`size-1/2 text-muted-foreground`). Sizes `size-5` (xs) to `size-16` (2xl) and `size-24` (3xl). Status (`Avatar Status`): `absolute bottom-0 right-0 rounded-full ring-2 ring-background` with `bg-success`, `bg-warning`, `bg-destructive`, `bg-muted-foreground` + sr-only text; Show verified (`Avatar Verified`): lucide `BadgeCheck` or a check in `bg-info text-info-foreground` in the same corner. Group: negative margin + ring)
+Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`; `Type=icon` = `AvatarFallback` with icon `User` / `Bot` / `Users` (`size-1/2 text-muted-foreground`). Sizes `size-5` (xs) to `size-16` (2xl) and `size-24` (3xl). Status (`Avatar Status`): `absolute bottom-0 right-0 rounded-full ring-2 ring-background` with `bg-success`, `bg-warning`, `bg-destructive`, `bg-muted-foreground` + sr-only text; Show verified (`Avatar Verified`): icon `BadgeCheck` or a check in `bg-info text-info-foreground` in the same corner. Group: negative margin + ring)
 
 ## Avatar Status
 
@@ -186,7 +186,7 @@ Tokens and styles:
 
 Guides: [avatar](../../skills/build-ui/components/avatar.md), [sharing-and-invites](../../skills/build-ui/patterns/sharing-and-invites.md)
 
-Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`; `Type=icon` = `AvatarFallback` with lucide `User` / `Bot` / `Users` (`size-1/2 text-muted-foreground`). Sizes `size-5` (xs) to `size-16` (2xl) and `size-24` (3xl). Status (`Avatar Status`): `absolute bottom-0 right-0 rounded-full ring-2 ring-background` with `bg-success`, `bg-warning`, `bg-destructive`, `bg-muted-foreground` + sr-only text; Show verified (`Avatar Verified`): lucide `BadgeCheck` or a check in `bg-info text-info-foreground` in the same corner. Group: negative margin + ring)
+Code: shadcn `Avatar` (`Type=image` = `AvatarImage` (the `Photo` swap is a sample face, use the person's photo URL); `Type=initials` = `AvatarFallback`; `Type=icon` = `AvatarFallback` with icon `User` / `Bot` / `Users` (`size-1/2 text-muted-foreground`). Sizes `size-5` (xs) to `size-16` (2xl) and `size-24` (3xl). Status (`Avatar Status`): `absolute bottom-0 right-0 rounded-full ring-2 ring-background` with `bg-success`, `bg-warning`, `bg-destructive`, `bg-muted-foreground` + sr-only text; Show verified (`Avatar Verified`): icon `BadgeCheck` or a check in `bg-info text-info-foreground` in the same corner. Group: negative margin + ring)
 
 ## Byline
 

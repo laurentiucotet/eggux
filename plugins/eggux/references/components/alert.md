@@ -300,4 +300,4 @@ Tokens and styles:
 
 Guides: [alert](../../skills/build-ui/components/alert.md)
 
-Code: custom: `<p role="status" className="flex items-start gap-2 text-sm">` + lucide icon (`size-4 mt-0.5 shrink-0`) or `Spinner`, text `min-w-0 line-clamp-2` (Type default/loading `text-muted-foreground`; info/success/warning/error use the soft badge tokens: `text-[var(--badge-soft-success-fg)]` etc. (icons and text). Errors that block the goal: `role="alert"`. `max-w-[480px]` when it hugs)
+Code: custom: `<p role="status" className="flex items-start gap-2 text-sm">` + icon (`size-4 mt-0.5 shrink-0`) or `Spinner`, text `min-w-0 line-clamp-2` (Type default/loading `text-muted-foreground`; info/success/warning/error use the soft badge tokens: `text-[var(--badge-soft-success-fg)]` etc. (icons and text). Errors that block the goal: `role="alert"`. `max-w-[480px]` when it hugs)

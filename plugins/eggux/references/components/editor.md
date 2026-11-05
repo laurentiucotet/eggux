@@ -260,7 +260,7 @@ Tokens and styles:
 
 Guides: [comments-and-chat](../../skills/build-ui/components/comments-and-chat.md), [rich-text-editor](../../skills/build-ui/components/rich-text-editor.md)
 
-Code: Tiptap `BubbleMenu` (`@tiptap/react`, shown when `!selection.empty`) or a Lexical floating toolbar, positioned with Floating UI (`offset(8)`, `flip()`, `shift()`); shadcn `Toggle` for Bold / Italic / Link and a shadcn `Button size="sm"` with lucide `MessageSquare` (or `MessageSquarePlus`) for Comment; container `rounded-lg border bg-popover shadow-md p-1 flex items-center gap-0.5` (`role="toolbar"`; Show formatting / Show comment map to permissions (`canEdit`, `canComment`); Comment calls `editor.chain().setComment(threadId).run()` and opens the new thread)
+Code: Tiptap `BubbleMenu` (`@tiptap/react`, shown when `!selection.empty`) or a Lexical floating toolbar, positioned with Floating UI (`offset(8)`, `flip()`, `shift()`); shadcn `Toggle` for Bold / Italic / Link and a shadcn `Button size="sm"` with icon `MessageSquare` (or `MessageSquarePlus`) for Comment; container `rounded-lg border bg-popover shadow-md p-1 flex items-center gap-0.5` (`role="toolbar"`; Show formatting / Show comment map to permissions (`canEdit`, `canComment`); Comment calls `editor.chain().setComment(threadId).run()` and opens the new thread)
 
 ## Comment Highlight
 

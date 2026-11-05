@@ -512,4 +512,4 @@ Built from: `Button Icon`
 
 Guides: [button](../../skills/build-ui/components/button.md)
 
-Code: custom: shadcn `Button variant="ghost" size="icon"` (or `outline`, `icon-sm`, `icon-xs`) + `Tooltip`; `navigator.clipboard.writeText(value)` (State=copied for 2 s: lucide `Check` with `text-success` in place of `Copy`, tooltip "Copied", `role="status"` live region; no toast)
+Code: custom: shadcn `Button variant="ghost" size="icon"` (or `outline`, `icon-sm`, `icon-xs`) + `Tooltip`; `navigator.clipboard.writeText(value)` (State=copied for 2 s: icon `Check` with `text-success` in place of `Copy`, tooltip "Copied", `role="status"` live region; no toast)

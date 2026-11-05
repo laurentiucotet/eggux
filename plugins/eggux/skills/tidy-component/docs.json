@@ -408,7 +408,7 @@
    "Verified has a text equivalent (\"Verified\") in the name or a Tooltip",
    "Initials meet 4.5:1 on background/muted; icons and dots 3:1 except the away dot (amber on white, same as Status Dot warning), which always comes with text"
   ],
-  "code": "shadcn Avatar (AvatarImage with the photo URL, AvatarFallback for initials or a lucide User / Bot icon). Sizes size-5 to size-24; status = absolute span bottom-0 right-0 rounded-full ring-2 ring-background bg-success / bg-warning / bg-destructive / bg-muted-foreground; verified = absolute BadgeCheck in bg-info.",
+  "code": "shadcn Avatar (AvatarImage with the photo URL, AvatarFallback for initials or a icon User / Bot icon). Sizes size-5 to size-24; status = absolute span bottom-0 right-0 rounded-full ring-2 ring-background bg-success / bg-warning / bg-destructive / bg-muted-foreground; verified = absolute BadgeCheck in bg-info.",
   "guides": [
    "skills/build-ui/components/avatar.md",
    "skills/build-ui/components/indicators.md"
@@ -870,7 +870,7 @@
    "soft icon: foreground/brand on button/soft-bg meets 3:1 in every theme (5.7:1 or more)",
    "Loading: aria-busy=\"true\" and the tooltip says the action in progress (\"Refreshing\")"
   ],
-  "code": "shadcn Button size=\"icon\" with aria-label, wrapped in Tooltip. Variant soft uses the same buttonVariants entry as Button. Size xs = size=\"icon-xs\" (\"size-7 [&_svg]:size-3.5\"); loading = disabled + lucide LoaderCircle animate-spin in place of the icon.",
+  "code": "shadcn Button size=\"icon\" with aria-label, wrapped in Tooltip. Variant soft uses the same buttonVariants entry as Button. Size xs = size=\"icon-xs\" (\"size-7 [&_svg]:size-3.5\"); loading = disabled + icon LoaderCircle animate-spin in place of the icon.",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/components/tooltip.md",
@@ -1021,7 +1021,7 @@
    "Inverted text is background/default on foreground/default: 19.8:1 Light, 19.0:1 Dark, 17.9:1 Corporate Light; secondary text at 70% stays above 7:1",
    "Focus ring meets 3:1: border/ring 5.17:1 Light, 4.87:1 Dark on background/card"
   ],
-  "code": "shadcn Card + cva: variant (default, outline, muted, inverted = bg-foreground text-background border-foreground), size (default, sm), elevated (shadow-md). CardHeader icon: optional Lucide icon (size-5) before CardTitle. Hover: hover:shadow-md hover:border-foreground/20 transition-shadow; focus: focus-visible:ring-2 ring-ring on the wrapping link. Media: img aspect-video object-cover rounded-t-xl as the first child with pt-0 on the card.",
+  "code": "shadcn Card + cva: variant (default, outline, muted, inverted = bg-foreground text-background border-foreground), size (default, sm), elevated (shadow-md). CardHeader icon: optional icon (size-5) before CardTitle. Hover: hover:shadow-md hover:border-foreground/20 transition-shadow; focus: focus-visible:ring-2 ring-ring on the wrapping link. Media: img aspect-video object-cover rounded-t-xl as the first child with pt-0 on the card.",
   "guides": [
    "skills/build-ui/components/card.md"
   ]
@@ -2899,7 +2899,7 @@
    "Image (Show image, off by default): nested Image / * instance that covers the whole area and crops to the ratio",
    "Image swap (Image): any component from the Imagery page (Image / Person, Product, Office, Cover, Abstract, City); default Image / Office / 01",
    "Pattern: dot grid on background/muted, dots in border/default, shown when there is no image",
-   "Hint (Show caption): centered Lucide image icon in foreground/muted",
+   "Hint (Show caption): centered image icon in foreground/muted",
    "Corner radius and clipping come from the placeholder, not from the image",
    "ratio: a transparent layer at Fill width with a locked aspect ratio; it sets the height, so the height follows any width (fixed, Fill or resized)",
    "State: default; loading (background/accent skeleton fill, no pattern or icon); error (image icon and Fallback text \"Image unavailable\" in foreground/default, centered; the text follows Show caption)"
@@ -2921,7 +2921,7 @@
    "The no-image hint icon is decorative (aria-hidden)",
    "The error state keeps the alt text of the missing image for screen readers; the fallback text is aria-hidden"
   ],
-  "code": "an <img> or next/image with aspect-ratio and object-cover; the no-image state is a muted box with a dot background and a lucide Image icon. Loading: bg-accent animate-pulse until onLoad; error: onError swaps to a muted box with lucide ImageOff/Image and \"Image unavailable\".",
+  "code": "an <img> or next/image with aspect-ratio and object-cover; the no-image state is a muted box with a dot background and a icon Image icon. Loading: bg-accent animate-pulse until onLoad; error: onError swaps to a muted box with icon ImageOff/Image and \"Image unavailable\".",
   "guides": [
    "skills/build-ui/components/carousel.md"
   ]
@@ -6081,7 +6081,7 @@
    "Text meets 4.5:1 on its background",
    "A fact that is a link has a link role and a clear name"
   ],
-  "code": "Custom inline element: icon (lucide) + text, flex gap-1.5, text-sm text-muted-foreground.",
+  "code": "Custom inline element: icon + text, flex gap-1.5, text-sm text-muted-foreground.",
   "guides": [
    "skills/build-ui/components/description-list.md",
    "skills/build-ui/patterns/marketing-pages.md"
@@ -6429,7 +6429,7 @@
    "A search Input in Actions has a label",
    "The icon is decorative (aria-hidden); the title says what the section is"
   ],
-  "code": "<header> with <h2|h3|h4> and <p>; flex justify-between for the actions; optional Lucide icon (size-6 lg, size-5 default and sm) before the title, aria-hidden.",
+  "code": "<header> with <h2|h3|h4> and <p>; flex justify-between for the actions; optional icon (size-6 lg, size-5 default and sm) before the title, aria-hidden.",
   "guides": [
    "skills/build-ui/components/content.md",
    "skills/build-ui/patterns/enterprise-apps.md"
@@ -7939,7 +7939,7 @@
    "The icon is decorative (aria-hidden); read as \"Up 12.4% vs last month\" with a visually hidden \"Up\" or \"Down\"",
    "Positive and negative text keeps 4.5:1 on card and page in every mode"
   ],
-  "code": "custom: lucide TrendingUp, TrendingDown or Minus + <span class=\"tabular-nums\">; tone as text-success, text-destructive or text-muted-foreground. Style=badge: shadcn Badge soft variant with the icon inside.",
+  "code": "custom: icon TrendingUp, TrendingDown or Minus + <span class=\"tabular-nums\">; tone as text-success, text-destructive or text-muted-foreground. Style=badge: shadcn Badge soft variant with the icon inside.",
   "guides": [
    "skills/build-ui/components/charts.md",
    "skills/build-ui/patterns/reports.md"
@@ -8744,7 +8744,7 @@
    "Status is text or an icon with a label, never color alone",
    "Errors are linked with aria-describedby and listed in the summary"
   ],
-  "code": "custom row: shadcn Select (or Combobox for many fields) + lucide ArrowRight + status Badge; react-hook-form field array.",
+  "code": "custom row: shadcn Select (or Combobox for many fields) + icon ArrowRight + status Badge; react-hook-form field array.",
   "guides": [
    "skills/build-ui/patterns/enterprise-apps.md",
    "skills/build-ui/patterns/common-flows.md"
@@ -8870,7 +8870,7 @@
    "The arrow icon is aria-hidden",
    "Visible focus ring around the pill; label meets 4.5:1"
   ],
-  "code": "<a> with rounded-full border, a shadcn Badge and lucide ArrowRight.",
+  "code": "<a> with rounded-full border, a shadcn Badge and icon ArrowRight.",
   "guides": [
    "skills/build-ui/components/badge.md",
    "skills/build-ui/patterns/marketing-pages.md"
@@ -8911,7 +8911,7 @@
    "The muted detail meets 4.5:1",
    "on-primary: foreground/primary on background/primary is 5.2:1 Light and Dark, 6.7:1 Corporate Light; inverted: background/default and background/muted on foreground/default are over 14:1 in every theme"
   ],
-  "code": "custom: lucide icon and two lines of text in a bordered <div>; an <a> when it links to the trust page.",
+  "code": "custom: icon and two lines of text in a bordered <div>; an <a> when it links to the trust page.",
   "guides": [
    "skills/build-ui/components/badge.md",
    "skills/build-ui/patterns/marketing-pages.md"
@@ -9581,7 +9581,7 @@
    "The play icon is aria-hidden; the duration is text",
    "Visible focus ring over the image"
   ],
-  "code": "<button> with an <img> poster, lucide Play and a Badge; opens the player (native <video> or Vidstack) in place or in a Dialog.",
+  "code": "<button> with an <img> poster, icon Play and a Badge; opens the player (native <video> or Vidstack) in place or in a Dialog.",
   "guides": [
    "skills/build-ui/components/video-player.md"
   ]
@@ -10610,7 +10610,7 @@
    "Contrast of muted labels stays at 4.5:1",
    "In the on-primary and inverted tones the mark has the label color (foreground/primary 5.2:1 on primary; background/default over 14:1 on inverted), because the success green falls under 3:1 on an inverted card in Dark"
   ],
-  "code": "<li class=\"flex gap-2\"> with a lucide CircleCheck, Minus or X (aria-hidden) and an sr-only status.",
+  "code": "<li class=\"flex gap-2\"> with a icon CircleCheck, Minus or X (aria-hidden) and an sr-only status.",
   "guides": [
    "skills/build-ui/components/input.md",
    "skills/build-ui/patterns/form-validation.md",
@@ -10933,7 +10933,7 @@
    "The link text reads \"Previous: <title>\"; the chevron is aria-hidden",
    "Focus shows the focus ring (State=focus)"
   ],
-  "code": "custom: <a> card (rounded-xl border p-4 hover:bg-accent focus-visible:ring) with lucide ChevronLeft / ChevronRight, inside a <nav>.",
+  "code": "custom: <a> card (rounded-xl border p-4 hover:bg-accent focus-visible:ring) with icon ChevronLeft / ChevronRight, inside a <nav>.",
   "guides": [
    "skills/build-ui/patterns/content-and-docs.md",
    "skills/build-ui/components/pagination.md"
@@ -10975,7 +10975,7 @@
   ]
  },
  "Icon Tile": {
-  "summary": "A rounded square holding one Lucide icon, the marker for a feature, step, stat or bento card.",
+  "summary": "A rounded square holding one icon, the marker for a feature, step, stat or bento card.",
   "use": [
    "Feature grids and benefit lists on marketing pages",
    "Bento cards and \"How it works\" rows that lead with an icon",
@@ -10990,7 +10990,7 @@
   ],
   "anatomy": [
    "Tile: rounded square, Size=default 40 (radius/md), sm 32 (radius/md), lg 48 (radius/lg)",
-   "Icon (Icon swap): Lucide icon, 20 / 16 / 24 px, default Icon/sparkles",
+   "Icon (Icon swap): icon, 20 / 16 / 24 px, default Icon/sparkles",
    "Style=neutral (default): background/muted fill, foreground/default icon",
    "Style=brand: icon-tile/brand-bg fill (background/primary at 10% light, 20% dark), icon-tile/brand-fg icon (foreground/brand)",
    "Style=gradient: linear icon-tile/gradient-start to icon-tile/gradient-end, foreground/primary icon",
@@ -10999,7 +10999,7 @@
   "rules": [
    "One Style per grid; gradient for one hero feature or one highlighted step only",
    "Same Size across a grid: default in feature grids, sm in dense lists, lg in bento cards",
-   "Pick icons from one family (Lucide) with the same stroke weight",
+   "Pick icons from one family (IconMCP) with the same stroke weight",
    "brand and gradient follow the theme: violet in Showcase, near black in Default, blue in Corporate"
   ],
   "a11y": [
@@ -11650,7 +11650,7 @@
    "Check and dash cells have text for screen readers (\"Included\", \"Not included\")",
    "Section labels are row headers that span the table"
   ],
-  "code": "<table> with shadcn Table parts; header cells hold Price and Button; cells use lucide Check and Minus with sr-only text.",
+  "code": "<table> with shadcn Table parts; header cells hold Price and Button; cells use icon Check and Minus with sr-only text.",
   "guides": [
    "skills/build-ui/patterns/marketing-pages.md"
   ]
@@ -11944,7 +11944,7 @@
    "\"Copied\" is announced in a live region (role=\"status\", aria-live=\"polite\")",
    "The check is background/success: 5.0:1 Light, 8.7:1 Dark, 5.0:1 Corporate Light on background/default (3:1 needed for icons)"
   ],
-  "code": "custom: shadcn Button size=\"icon\" variant=\"ghost\" + Tooltip; navigator.clipboard.writeText(value); copied state 2 s with lucide Copy / Check (text-success).",
+  "code": "custom: shadcn Button size=\"icon\" variant=\"ghost\" + Tooltip; navigator.clipboard.writeText(value); copied state 2 s with icon Copy / Check (text-success).",
   "guides": [
    "skills/build-ui/components/button.md",
    "skills/build-ui/patterns/action-feedback.md"
@@ -12219,7 +12219,7 @@
    "The icon is decorative (aria-hidden)",
    "Status text meets 4.5:1: soft-fg tokens 6.47 to 7.13 in Light, 9.45 and up in Dark, 6.47 and up in Corporate Light; foreground/muted 4.74 in Light"
   ],
-  "code": "custom: <p role=\"status\" class=\"flex items-start gap-2 text-sm\"> with a lucide icon (size-4 mt-0.5 shrink-0) or Spinner; see code-mapping.",
+  "code": "custom: <p role=\"status\" class=\"flex items-start gap-2 text-sm\"> with a icon (size-4 mt-0.5 shrink-0) or Spinner; see code-mapping.",
   "guides": [
    "skills/build-ui/components/alert.md",
    "skills/build-ui/patterns/feedback-messages.md",
@@ -12964,7 +12964,7 @@
    "The fallback icon is decorative; the item name carries the meaning",
    "Border keeps the edge visible on white images (3:1 not required for decorative frames)"
   ],
-  "code": "<img className=\"size-12 rounded-md border object-cover\"> (sizes size-6, size-8, size-12, size-16, size-20; 4:3 adds aspect-[4/3] with h-auto); fallback div with bg-muted grid place-items-center and a lucide icon.",
+  "code": "<img className=\"size-12 rounded-md border object-cover\"> (sizes size-6, size-8, size-12, size-16, size-20; 4:3 adds aspect-[4/3] with h-auto); fallback div with bg-muted grid place-items-center and a icon.",
   "guides": [
    "skills/build-ui/components/carousel.md",
    "skills/build-ui/components/table.md"

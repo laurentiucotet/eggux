@@ -133,7 +133,7 @@ Tokens and styles:
 
 Guides: [video-player](../../skills/build-ui/components/video-player.md)
 
-Code: `<button>` + `<img>` poster, lucide `Play`, `Badge` (Opens `Video Player` in place or in a `Dialog`)
+Code: `<button>` + `<img>` poster, icon `Play`, `Badge` (Opens `Video Player` in place or in a `Dialog`)
 
 ## Audio Player
 

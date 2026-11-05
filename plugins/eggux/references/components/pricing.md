@@ -547,7 +547,7 @@ Tokens and styles:
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [monetization](../../skills/build-ui/patterns/monetization.md), [permissions-and-access](../../skills/build-ui/patterns/permissions-and-access.md)
 
-Code: shadcn `Badge variant="secondary"` with lucide `Lock` (`size-3`, sm `size-2.5`, `aria-hidden`) + plan name; Tone=brand: `bg-primary/10 text-primary`; sm `h-4 px-1.5 text-xs` (Inside a nav item: `ml-auto shrink-0`; the item's accessible name ends with "(Business plan)"; the item stays a link to the upgrade path)
+Code: shadcn `Badge variant="secondary"` with icon `Lock` (`size-3`, sm `size-2.5`, `aria-hidden`) + plan name; Tone=brand: `bg-primary/10 text-primary`; sm `h-4 px-1.5 text-xs` (Inside a nav item: `ml-auto shrink-0`; the item's accessible name ends with "(Business plan)"; the item stays a link to the upgrade path)
 
 ## Gate Overlay
 

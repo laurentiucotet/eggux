@@ -78,7 +78,7 @@ Tokens and styles:
 
 Guides: [reports](../../skills/build-ui/patterns/reports.md)
 
-Code: custom: lucide `TrendingUp` / `TrendingDown` / `Minus` + `<span class="tabular-nums">`; Style=badge wraps both in a soft `Badge` (Direction from the data, tone from the meaning (`text-success`, `text-destructive`, `text-muted-foreground`, or the soft Badge of that tone); hidden "Up" / "Down" text)
+Code: custom: icon `TrendingUp` / `TrendingDown` / `Minus` + `<span class="tabular-nums">`; Style=badge wraps both in a soft `Badge` (Direction from the data, tone from the meaning (`text-success`, `text-destructive`, `text-muted-foreground`, or the soft Badge of that tone); hidden "Up" / "Down" text)
 
 ## Metric Strip
 

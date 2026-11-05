@@ -315,7 +315,7 @@ Tokens and styles:
 
 Guides: [badge](../../skills/build-ui/components/badge.md), [marketing-pages](../../skills/build-ui/patterns/marketing-pages.md)
 
-Code: `<a>` (`rounded-full border`) + shadcn `Badge` + lucide `ArrowRight` (One at a time)
+Code: `<a>` (`rounded-full border`) + shadcn `Badge` + icon `ArrowRight` (One at a time)
 
 ## Trust Badge
 
