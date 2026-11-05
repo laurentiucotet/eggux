@@ -4,7 +4,7 @@ import { Input } from './input';
 
 // Inputs always have a label (Field in Figma). The stories use a plain <label> until Field is built.
 const meta = {
-  title: 'Components/Input',
+  title: 'Components/Input/Input',
   component: Input,
   parameters: {
     docs: { description: { component: 'Short free text. Placeholder shows an example value, never the label. Figma: COMPONENTS / Input. Guide: eggux build-ui/components/input.md' } },
@@ -76,7 +76,7 @@ export const ReadOnly: Story = {
 export const Disabled: Story = { args: { disabled: true } };
 
 // Stress test: long value in a narrow column stays one line and scrolls inside the field.
-export const LongValue: Story = {
+export const LongValue: Story = { tags: ['!dev'],
   args: { defaultValue: 'a.very.long.address.for.the.finance.department@acme-holdings-international.com' },
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvas }) => {
@@ -86,4 +86,4 @@ export const LongValue: Story = {
   },
 };
 
-export const FilledDark: Story = { args: { inputStyle: 'filled' }, globals: { theme: 'Dark' } };
+export const FilledDark: Story = { args: { inputStyle: 'filled' }, tags: ['!dev'], globals: { theme: 'Dark' } };

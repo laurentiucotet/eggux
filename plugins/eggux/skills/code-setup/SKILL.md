@@ -50,6 +50,8 @@ Never edit tokens.css by hand; change the variable in Figma, export again, regen
   browser reaches it through a forwarded host, which Storybook refuses ("Invalid host"): start it
   with `STORYBOOK_ALLOW_ALL_HOSTS=1 npx storybook dev -p 6006 --host 0.0.0.0 --no-open --ci` and
   report the port with the preview tool. `127.0.0.1` links only work on the machine running it. `npm run build-storybook` produces a static site to host anywhere.
+  Restart the dev server after adding component files: one started before them does not
+  generate their Tailwind classes, so new stories look unstyled while the tests pass.
 - Record a task in `eggux/tasks.md` (Stage: build) and, for a client project, a decision
   `D-xxx · Components in code with Storybook` with where the code lives.
 

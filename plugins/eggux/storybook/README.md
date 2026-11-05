@@ -6,7 +6,7 @@ components come one at a time with `/eggux:code-component`, checks with `/eggux:
 
 ```
 npm install
-npm run storybook        # http://localhost:6006, themes and density in the toolbar
+npm run storybook        # http://localhost:6006, themes and density in the toolbar (restart after adding component files)
 npm test                 # every story as a test: render, play function, axe
 npm run build-storybook  # static site in storybook-static/
 npm run tokens           # tokens/egg-ui.tokens.json -> src/styles/tokens.css

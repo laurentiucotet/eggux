@@ -3,6 +3,26 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.68.0
+The AI Chat page in code: all 19 components with stories and tests, and what building them taught
+the skills.
+- Code: Prompt Input, User Message, Assistant Message, Reasoning, Tool Call, Sources (Source Item,
+  Citation), Prompt Suggestion, Model Picker (Model Option), Chat History Item, Context Chip,
+  Response Feedback, Voice Recorder, Agent Plan (Plan Step), Artifact Card, AI Loading, AI Summary
+  (AI Notice), AI Suggestion, Confidence Indicator, AI Review Bar, plus an interactive
+  `AI Chat/Examples` conversation. Button gets the Button Icon sizes (`icon-xs`, `icon-sm`,
+  `icon`, `icon-lg`). 220 story tests green (render, play, axe in Light, Dark, Corporate).
+- code-component: sparse Figma sections (get_metadata, then each variant); every library
+  component the requested one contains ("Built from", instances in its variants, slot defaults)
+  that is not in Storybook yet is created in the same run, first and recursively, without asking; disabled components disable their slots
+  (`fieldset disabled`); a new "A whole Figma page" section for parallel agents with file
+  ownership and one shared merge, test run and Figma comparison; the dev server must be
+  restarted to style new component files.
+- init: warns when the Figma link is the EGG UI master library.
+- code-setup and the starter README: restart `storybook dev` after adding component files.
+- Design findings (Light): `foreground/muted` on `background/muted` and on `background/accent`
+  is about 4.35:1, under AA; code uses a darker token there until Figma changes.
+
 ## 0.67.0
 Icons from IconMCP: outline, a 1 px line at every size, sharp corners (stroke 1, radius 0).
 - Figma: the 112 `Icon/*` components now draw the IconMCP icons (MIT); names, keys and the
