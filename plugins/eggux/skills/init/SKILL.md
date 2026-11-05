@@ -18,5 +18,7 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/project-files.md` for the folder conventi
      their workspace, and send the new link.
 3. Copy every file from the `templates/` folder next to this SKILL.md into `eggux/`, filling
    the client name, the Figma URL and today's date in the frontmatter.
-4. Finish with the next step in one line: run `/eggux:discovery` with interview notes, or
-   `/eggux:brand-intake` with the client's brand assets. Either order works.
+4. Create an empty `eggux/notes/` folder for meeting and research notes.
+5. Finish with the next step in one line: run `/eggux:discovery` with interview notes, or
+   `/eggux:brand-intake` with the client's brand assets. Either order works. `/eggux:board` opens
+   decisions, tasks and notes in the browser.

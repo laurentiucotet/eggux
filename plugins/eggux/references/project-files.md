@@ -9,7 +9,9 @@ project. The plugin holds the method; this folder holds the client's answers.
 | `eggux/objects.md` | discovery | build-ui |
 | `eggux/actors.md` | discovery | build-ui, review |
 | `eggux/workflows.md` | discovery | build-ui, review |
-| `eggux/decisions.md` | decision-log (and anyone deciding something) | build-ui, review |
+| `eggux/decisions.md` | decision-log (and anyone deciding something), board | build-ui, review, board |
+| `eggux/tasks.md` (T-xxx, one pipeline stage each) | board, anyone (chat or editor) | board, every skill that finishes a task |
+| `eggux/notes/<date>-<slug>.md` | board, anyone | board; decisions in notes go to the Inbox |
 | `eggux/features/<slug>/feature.md` | new-feature, update-feature | build-ui, review |
 | `eggux/features/<slug>/scenarios.md` (S-xx, E-xx) | new-feature, update-feature, build-ui (statuses) | build-ui, review |
 | `eggux/features/<slug>/workflows.md` (F-xx) | new-feature, update-feature | build-ui, review |
@@ -32,6 +34,9 @@ F-xx flows, S-xx scenarios and E-xx edge cases as sections, screens named `<ID> 
 FD-xx feature decisions. A feature decision that changes the whole product is also a D-xxx in
 `eggux/decisions.md`; product decisions win. `/eggux:update-feature` keeps the folder, the
 product files and the Figma page in sync.
+
+The board (`/eggux:board`) is a local web interface over `decisions.md`, `tasks.md` and
+`notes/`; the files stay the source of truth. Stages and deliverables: `references/pipeline.md`.
 
 If a skill needs a file that does not exist yet, it tells the user which skill creates it
 (`/eggux:init`, `/eggux:discovery`, `/eggux:brand-intake`) instead of guessing the content.

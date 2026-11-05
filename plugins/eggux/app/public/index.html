@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EGG UX Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232563eb'/%3E%3Ctext x='16' y='21' font-family='Arial' font-weight='800' font-size='13' fill='white' text-anchor='middle'%3EEG%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">EG</div>
+        <div class="brand-name">EGG UX Board<small id="project-name">Loading</small></div>
+      </div>
+      <nav class="nav" aria-label="Sections" id="nav"></nav>
+      <div class="side-foot">
+        <span class="hint"><span class="live off" id="live">Connecting</span></span>
+        <button class="btn ghost sm" id="theme-btn" type="button" aria-label="Switch theme"></button>
+      </div>
+    </aside>
+    <main id="main" tabindex="-1"></main>
+  </div>
+
+  <dialog id="decision-dlg" aria-labelledby="decision-dlg-title">
+    <form method="dialog" id="decision-form">
+      <div class="dlg-head"><h2 id="decision-dlg-title">New decision</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+      <div class="dlg-body">
+        <label class="field"><span>Title</span><input class="input" name="title" required maxlength="140" placeholder="Cards use 12 px padding"></label>
+        <div class="grid2">
+          <label class="field"><span>Type</span><select class="input" name="type"></select></label>
+          <label class="field"><span>Where</span><select class="input" name="source"></select></label>
+        </div>
+        <label class="field"><span>Decision</span><textarea class="input" name="decision" rows="3" placeholder="Card padding 24 px (spacing/6) → 12 px (spacing/3), header, content and footer."></textarea><small>Exact: the element, the current value with its token, the new value.</small></label>
+        <label class="field"><span>Scope</span><input class="input" name="scope" placeholder="Card and everything built on it; all screens"></label>
+        <div class="grid2">
+          <label class="field"><span>Who asked</span><input class="input" name="from" placeholder="Andrei (manager)"></label>
+          <label class="field"><span>Replaces</span><input class="input" name="replaces" placeholder="D-004"></label>
+        </div>
+        <label class="field"><span>Reason</span><input class="input" name="reason" placeholder="Denser dashboards"></label>
+        <label class="field"><span>How to verify</span><input class="input" name="verify" placeholder="Card paddings bound to density/card-padding; no overrides"></label>
+        <label class="field"><span>Status</span><select class="input" name="status"><option value="proposed">proposed</option><option value="approved">approved</option></select><small>Claude applies approved decisions with /eggux:decision-log.</small></label>
+        <input type="hidden" name="inboxRaw">
+      </div>
+      <div class="dlg-foot"><button class="btn outline" value="cancel" formnovalidate>Cancel</button><button class="btn" value="ok">Record decision</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="task-dlg" aria-labelledby="task-dlg-title">
+    <form method="dialog" id="task-form">
+      <div class="dlg-head"><h2 id="task-dlg-title">New task</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+      <div class="dlg-body">
+        <label class="field"><span>Title</span><input class="input" name="title" required maxlength="140" placeholder="Design the approvals inbox"></label>
+        <div class="grid2">
+          <label class="field"><span>Status</span><select class="input" name="status"></select></label>
+          <label class="field"><span>Stage</span><select class="input" name="stage"></select></label>
+        </div>
+        <label class="field"><span>Deliverable</span><input class="input" name="deliverable" placeholder="Figma page with flows, all states, mobile"></label>
+        <label class="field"><span>Links</span><input class="input" name="links" placeholder="D-007, feature:approvals, component:Card"><small>Decision ids, feature:&lt;slug&gt;, component:&lt;Name&gt;, note:&lt;file&gt; or a URL, separated by commas.</small></label>
+        <div class="grid2">
+          <label class="field"><span>Due</span><input class="input" type="date" name="due"></label>
+          <span></span>
+        </div>
+        <label class="field"><span>Notes</span><textarea class="input" name="notes" rows="3"></textarea></label>
+        <input type="hidden" name="id">
+      </div>
+      <div class="dlg-foot"><button class="btn outline" value="cancel" formnovalidate>Cancel</button><button class="btn" value="ok" id="task-ok">Add task</button></div>
+    </form>
+  </dialog>
+
+  <div id="toasts" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

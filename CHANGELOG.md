@@ -3,6 +3,26 @@
 Versions of the EGG UX plugin (`plugins/eggux/.claude-plugin/plugin.json`). The Figma library
 EGG UI v2 changes in the same PRs; its own version is on the Intro page.
 
+## 0.64.0
+The board: a local web interface for decisions, tasks and notes, and a defined pipeline.
+- `plugins/eggux/app`: Node server with no dependencies (`node app/server.js --root <project>`,
+  127.0.0.1:4317) and a plain HTML/JS interface in the EGG UI default theme, Light and Dark,
+  desktop and mobile. It reads and writes the markdown files in `eggux/` with small targeted
+  edits; the files stay the source of truth and the page updates live when they change on disk.
+- Decisions: Inbox for the product and each feature (add a line, record it as a decision with the
+  next D-xxx or FD-xx, dismiss), filters by status, type and feature, detail with status change
+  (applied and verified get the date), supersede through Replaces, linked tasks, Terminology.
+- Tasks: new `eggux/tasks.md` (T-xxx with Status, Stage, Deliverable, Links, Due); pipeline strip
+  with open counts per stage; board To do, Doing, Review, Done with drag and drop and an edit
+  dialog; overdue dates flagged.
+- Notes: `eggux/notes/<date>-<slug>.md` with title and tags; editor with preview and autosave;
+  a selected line goes to the Inbox or becomes a task; edits on disk are never overwritten.
+- New skill `/eggux:board` (opens the app; task and note formats for the chat); `references/
+  pipeline.md` with nine stages, the deliverable of each and deliverables by role (UI/UX
+  designer, design engineer, design system maintainer); init creates `notes/` and ships a
+  `tasks.md` template; the SessionStart hook also reports open tasks.
+- Tests: `node --test plugins/eggux/app/test/store.test.js`.
+
 ## 0.63.0
 Help center and support flow. The library has 258 blocks and 171 screens and emails.
 - Blocks on the Content page, Help center family: `Block / Help Article` (topic tree, breadcrumb,
