@@ -48,6 +48,8 @@ Coverage of the EGG UI Figma library in code. `/eggux:code-component` adds a row
 | Presence Bar | Avatar | `src/components/ui/presence-bar.tsx` | Default, Keyboard, FewPeople (+ Stress, Dark, Corporate hidden) | 24 high, live dot, Avatar Group sm, avatars are buttons named person + place with tooltip, click/Enter, +N, hidden when empty, truncation at 127/254, axe in Light, Dark, Corporate | done (idle state not in Figma: opacity 70) |
 | Chip | Chip | `src/components/ui/chip.tsx` | Default, Tones, Sizes, Selected, Options, Disabled, Keyboard (+ Stress, Dark, Corporate hidden) | aria-pressed toggle, 13 tones, 24/32/40 with 8/12/16 sides, check when selected, avatar, count in the name, separate "Remove <label>" button, disabled blocks, 320 max with truncation, axe in Light, Dark, Corporate | done |
 | Chip Group | Chip | `src/components/ui/chip-group.tsx` | Default, Keyboard, MultiSelect, Scroll (+ Stress, Dark, Corporate hidden) | single = radiogroup with arrows/Home/End, multiple = aria-pressed toggles, 8 px gaps, +N more, scroll row 32 high follows focus, wraps at 276, min 160, axe in Light, Dark, Corporate | done |
+| Toggle | Toggle Group | `src/components/ui/toggle.tsx` | Default, Variants, Sizes, Keyboard, Disabled (+ Stress, Dark, Corporate hidden) | aria-pressed toggle, name unchanged, accent pressed fill, icon-only square 32/36/40 with name and tooltip with shortcut, outline 1 px border + shadow, Space/Enter, disabled blocks, one line at 276, axe in Light, Dark, Corporate | done |
+| Toggle Group / Toggle Group Item | Toggle Group | `src/components/ui/toggle-group.tsx` | Default, Variants, Sizes, WithIcons, Multiple, Keyboard, Disabled, FullWidth (+ Stress, Dark, Corporate hidden) | single = radiogroup that never empties, multiple = toolbar of aria-pressed buttons, items 32/36/40 (segmented 24/28/32) with 4 px gaps, outline and segmented styles, one Tab stop with arrows, disabled item and group, full width at 368, narrow segmented truncates, axe in Light, Dark, Corporate | done (Board icon: LayoutGrid until Columns2 is in the set) |
 
 ## Design findings
 Differences between Figma, the references and code, found while building. Each needs a decision
@@ -63,3 +65,4 @@ in Figma or in the reference; code follows the column "Code".
 | Presence Bar | No idle state in Figma; at 50 % opacity initials fail contrast | idle at 70 % |
 | Chip | Remove x target is 16 px, under the 24 px minimum (WCAG 2.5.8) | 16 px as in Figma; needs a larger hit area |
 | Avatar Status | Away (amber) dot is under 3:1 on white | always paired with text |
+| Toggle Group | Figma stress frame: a default group overflows its 50 % column (items never shrink) | same as Figma; only full-width segmented truncates |
