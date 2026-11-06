@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**180 of the 427 Figma components are in code** with stories and passing tests. The list with
+**188 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,9 +20,9 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (247 components)
+## What is left (239 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
-that made this file. Next in line: Sidebar,
+that made this file. Next in line:
 Badge / Description List / Feature Item / Card leftovers, then Table cells, Pagination, Tabs-like
 small pages, and last Chart (26) and Email (16).
 
@@ -71,7 +71,6 @@ small pages, and last Chart (26) and Email (16).
 | Search | 0/3 | Search Result Item, Search Suggestions, Search Suggestion Item |
 | Section Heading | 0/1 | Section Heading |
 | Sharing | 0/3 | Access Row, Invite Row, Share Link Row |
-| Sidebar | 0/8 | Sidebar, Sidebar Item, Sidebar Group Label, Sidebar Group, Sidebar Workspace, Sidebar User, Org Switcher, Sidebar Double |
 | Slider | 0/1 | Slider |
 | Spinner | 1/2 | Loading Overlay |
 | Stepper | 0/2 | Step, Stepper |
