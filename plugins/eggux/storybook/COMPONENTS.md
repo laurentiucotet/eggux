@@ -74,6 +74,10 @@ Coverage of the EGG UI Figma library in code. `/eggux:code-component` adds a row
 | Drawer | Drawer | `src/components/ui/drawer.tsx` | Default, Keyboard, WithoutHandle (+ OutsideTap, Stress, Dark, Corporate hidden) | bottom edge, radius-xl top, handle 96 × 8, stacked full-width buttons, focus to the first field, trap, Escape and outside tap close with focus return, max 80 % height, axe in Light, Dark, Corporate | partial (no drag to close: vaul not installed) |
 | Side Panel | Drawer | `src/components/ui/side-panel.tsx` | Default, Keyboard, Collapsed, WithFooter, NotCollapsible (+ Controlled, Stress, Dark, Corporate hidden) | aside named by the title, 320 (min 240), collapsed 48 rail with vertical title, aria-expanded/controls, focus kept on the toggle, footer 61, title ellipsis at 240–320, axe in Light, Dark, Corporate | done |
 | Resizable Panels | Drawer | `src/components/ui/resizable-panels.tsx` | Default, Keyboard (+ Remembered, LabelledPanels, Stress, Dark, Corporate hidden) | separator with valuenow/min/max, drag, double-click reset, arrows 16 (Shift 64), Home/End, Enter collapses, end min 240, split remembered, axe in Light, Dark, Corporate | done (custom splitter, no react-resizable-panels) |
+| Menu Item | Menu | `src/components/ui/dropdown-menu.tsx` (stories `menu-item.stories.tsx`) | Default, States, Options (+ Stress, Dark, Corporate hidden) | 32 high, 8 px sides and gap, 16 px icon, shortcut at the end, highlighted accent, destructive, disabled skipped by arrows, checkbox item, description, submenu by arrows, truncation at 224, axe in Light, Dark, Corporate | done (sub trigger and radio item lack description/shortcut/icon options) |
+| Menu Label | Menu | `src/components/ui/dropdown-menu.tsx` (stories `menu-label.stories.tsx`) | Default (+ Stress, Dark, Corporate hidden) | 32 high, padding 6/8, ui/label, not focusable, names its group, wraps inside 224, axe in Light, Dark, Corporate | done |
+| Menubar / Menubar Trigger | Menu | `src/components/ui/menubar.tsx` | Default, Keyboard (+ Stress, Dark, Corporate hidden) | bar 36 high, trigger 28 with accent when open, menu 224 under the trigger, hover switches menus, arrows between triggers and menus, submenu, Escape returns focus, axe in Light, Dark, Corporate | done |
+| Account Menu | Menu | `src/components/ui/account-menu.tsx` | Default, Theme, Keyboard, SidebarTrigger (+ Stress, ShortName, Dark, Corporate hidden) | trigger named "Account menu", 260 × 254, header with Avatar names the menu, Log out last, Theme submenu radio, keyboard with focus return, custom Sidebar trigger, long email truncates with Tooltip, axe in Light, Dark, Corporate | done |
 
 ## Design findings
 Differences between Figma, the references and code, found while building. Each needs a decision
@@ -105,3 +109,6 @@ in Figma or in the reference; code follows the column "Code".
 | Dialog | No open/close animation: the repo has no tw-animate | static until animation tokens are wired |
 | Drawer | Reference wants buttons at least 44 × 44, Figma uses 36 | 36 as in Figma |
 | Resizable Panels | Handle line border/default on white is about 1.2:1, reference asks 3:1 | only the grip icon passes; Figma should darken the line |
+| Menu Label | Description says ui/caption muted, component is ui/label in foreground | follows the component |
+| Account Menu | Reference aria-label "Account menu" fails axe when the trigger shows a name | name from the Avatar text or the visible name |
+| Menubar | No narrow-width behavior in Figma (four long triggers overflow 276) | to decide: scroll or wrap |

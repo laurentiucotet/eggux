@@ -113,7 +113,7 @@ function DropdownMenuLabel({ className, ...props }: React.ComponentProps<typeof 
 
 /** Figma Separator, Spacing=sm: 4 px above and below a 1 px border line. */
 function DropdownMenuSeparator({ className, ...props }: React.ComponentProps<typeof MenuPrimitive.Separator>) {
-  return <MenuPrimitive.Separator data-slot="dropdown-menu-separator" className={cn('-mx-1 my-1 h-px bg-border', className)} {...props} />;
+  return <MenuPrimitive.Separator data-slot="dropdown-menu-separator" className={cn('my-1 h-px bg-border', className)} {...props} />;
 }
 
 /** Figma Shortcut text: ui/caption, muted; follows the item color when highlighted. */
@@ -141,7 +141,7 @@ function DropdownMenuSubTrigger({ className, icon, children, ...props }: React.C
     >
       {icon}
       <span className="min-w-0 flex-1 truncate">{children}</span>
-      <ChevronRight className="ml-auto" aria-hidden="true" />
+      <ChevronRight className="ml-auto text-muted-foreground group-data-[highlighted]/item:text-current" aria-hidden="true" />
     </MenuPrimitive.SubTrigger>
   );
 }
