@@ -65,6 +65,11 @@ Coverage of the EGG UI Figma library in code. `/eggux:code-component` adds a row
 | Currency Input | Input | `src/components/ui/currency-input.tsx` | Default, ChangeCurrency, Locale, FixedCurrency, Invalid, Disabled (+ Stress, Dark, Corporate hidden) | 240 × 36, right-aligned amount formatted on blur in the locale, value in minor units, currency menu by keyboard keeps the amount, JPY without decimals, fixed prefix, error, disabled, truncation, axe in Light, Dark, Corporate | done (currency list on DropdownMenu, can move to Select) |
 | Phone Input | Input | `src/components/ui/phone-input.tsx` | Default, PasteInternational, PickCountry, Invalid, Disabled (+ Stress, Dark, Corporate hidden) | 280 × 36, tel attributes, grouping as you type, E.164 value, + paste sets the country, searchable country list by keyboard with focus to the number, error, disabled, axe in Light, Dark, Corporate | done (22 countries, no per-country validation: needs libphonenumber-js) |
 | Inline Form | Input | `src/components/ui/inline-form.tsx` | Default, Validation, States, OnPrimary, Pending (+ Stress, Dark, Corporate hidden) | 400 × 62, 8 px gap, hint 6 px below, Enter submits, error/success replace the hint (live, described), on-primary tone, pending blocks repeats, button full width under 320, axe in Light, Dark, Corporate | done |
+| Scrim | Dialog | `src/components/ui/scrim.tsx` | Tones (+ Stress, Dark hidden) | covers its box, blocks clicks, token color per tone, aria-hidden, axe in Light, Dark | done |
+| Dialog Header | Dialog | `src/components/ui/dialog-header.tsx` | Default, WithMedia, TitleOnly (+ Stress, Dark, Corporate hidden) | 464 × 56, title 18/28, description 14/20, 24 px close by click and Enter, 40 px media, title and description name the overlay, wraps at 276/368, axe in Light, Dark, Corporate | done |
+| Dialog Footer | Dialog | `src/components/ui/dialog-footer.tsx` | Default, WithLeftItem (+ Stress, Dark, Corporate hidden) | 464 × 36, right aligned, 8 px gap, tab order, left item, wraps at 276, axe in Light, Dark, Corporate | done |
+| Dialog | Dialog | `src/components/ui/dialog.tsx` | Default, Closing, Sizes, LongContent (+ Stress, Dark, Corporate hidden) | named and described, page behind hidden, focus to the first field, trap, Escape/X/Cancel/scrim close with focus return, sizes sm/default/lg/xl/fullscreen, only the body scrolls, axe in Light, Dark, Corporate | done (no open/close animation) |
+| Alert Dialog | Dialog | `src/components/ui/alert-dialog.tsx` | Default, Types, WithContent (+ Stress, Dark, Corporate hidden) | role alertdialog, focus on Cancel (or the only button), trap, no scrim close, Escape acts as Cancel, icon and action style per type, type-to-confirm, 512 wide, axe in Light, Dark, Corporate | done |
 
 ## Design findings
 Differences between Figma, the references and code, found while building. Each needs a decision
@@ -92,3 +97,5 @@ in Figma or in the reference; code follows the column "Code".
 | Inline Edit | Reference says optimistic save, Figma shows a saving state | follows Figma: value updates after the save succeeds |
 | Inline Form | Reference: button full width under 320 px; Figma stress at 276 keeps it on the line | follows the reference |
 | Phone Input | Reference name "Country code, Romania +40" fails axe (visible "RO +40" missing) | "Country code, Romania, RO +40" |
+| Dialog | code-mapping says fullscreen only under `sm`; Figma fills the screen at every width | follows Figma |
+| Dialog | No open/close animation: the repo has no tw-animate | static until animation tokens are wired |
