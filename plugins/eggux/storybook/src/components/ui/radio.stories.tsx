@@ -3,7 +3,7 @@ import { expect, userEvent, waitFor } from 'storybook/test';
 import { RadioGroup, RadioGroupItem } from './radio';
 
 const meta = {
-  title: 'Components/Card/Radio',
+  title: 'Components/Selection Controls/Radio',
   component: RadioGroup,
   parameters: {
     layout: 'padded',
