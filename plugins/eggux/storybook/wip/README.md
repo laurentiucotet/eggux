@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**175 of the 427 Figma components are in code** with stories and passing tests. The list with
+**180 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,9 +20,9 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (252 components)
+## What is left (247 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
-that made this file. Next in line: the rest of Navigation, Sidebar,
+that made this file. Next in line: Sidebar,
 Badge / Description List / Feature Item / Card leftovers, then Table cells, Pagination, Tabs-like
 small pages, and last Chart (26) and Email (16).
 
@@ -58,7 +58,6 @@ small pages, and last Chart (26) and Email (16).
 | List | 0/5 | List Item, Sortable List Item, Task Item, Job Listing, List Group Header |
 | Metrics | 0/6 | Trend Indicator, Metric Strip, Metric Strip Item, Usage Meter, Countdown, Leaderboard Row |
 | Mobile | 0/7 | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge, QR Code |
-| Navigation | 9/13 | Top Bar, Page Header, Page Toolbar, App Header |
 | Notifications | 0/2 | Notification Item, Notification Center |
 | Pagination | 0/5 | Pagination Item, Pagination, Pagination Compact, Load More, Pager Link |
 | Pricing | 0/11 | Price, Plan Card, Comparison Table, Plan Option Row, Meter Banner, Paywall Card, Lock Badge, Gate Overlay, Usage Limit Banner, Trial Banner, Upsell Card |
