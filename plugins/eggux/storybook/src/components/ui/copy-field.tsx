@@ -9,7 +9,7 @@
 // input, so Field labels it ("Live secret key").
 import * as React from 'react';
 import { flushSync } from 'react-dom';
-import { Check, Copy, Eye } from '@/components/icons';
+import { Check, Copy, Eye, EyeOff } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { Button } from './button';
 import { ButtonIcon } from './button-icon';
@@ -94,7 +94,7 @@ function CopyField({
       {secret ? (
         <ButtonIcon
           variant="outline"
-          icon={<Eye aria-hidden="true" />}
+          icon={revealed ? <EyeOff aria-hidden="true" /> : <Eye aria-hidden="true" />}
           label={revealLabel}
           aria-pressed={revealed}
           disabled={disabled}

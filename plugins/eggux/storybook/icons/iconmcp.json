@@ -164,6 +164,11 @@
   "set": "generic",
   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.667\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <g>\n    <path d=\"M2 8 C3.4 5.2 5.6 3.75 8 3.75 C10.4 3.75 12.6 5.2 14 8 C12.6 10.8 10.4 12.25 8 12.25 C5.6 12.25 3.4 10.8 2 8 Z\"/>\n    <circle cx=\"8\" cy=\"8\" r=\"2.25\"/>\n  </g>\n</svg>"
  },
+ "eye-off": {
+  "iconmcp": "eye-off",
+  "set": "generic",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.667\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <defs>\n    <mask id=\"iconmcp-eye-off-m\" maskUnits=\"userSpaceOnUse\" x=\"-4\" y=\"-4\" width=\"24\" height=\"24\">\n      <rect x=\"-4\" y=\"-4\" width=\"24\" height=\"24\" fill=\"#fff\" stroke=\"none\"/>\n      <line x1=\"2.75\" y1=\"2.75\" x2=\"13.25\" y2=\"13.25\" stroke=\"#000\" fill=\"none\" stroke-width=\"3\"/>\n    </mask>\n  </defs>\n  <g>\n    <g mask=\"url(#iconmcp-eye-off-m)\">\n      <path d=\"M2 8 C3.4 5.2 5.6 3.75 8 3.75 C10.4 3.75 12.6 5.2 14 8 C12.6 10.8 10.4 12.25 8 12.25 C5.6 12.25 3.4 10.8 2 8 Z\"/>\n      <circle cx=\"8\" cy=\"8\" r=\"2.25\"/>\n    </g>\n    <line x1=\"2.75\" y1=\"2.75\" x2=\"13.25\" y2=\"13.25\"/>\n  </g>\n</svg>"
+ },
  "file-text": {
   "iconmcp": "file-text",
   "set": "files",

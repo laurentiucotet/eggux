@@ -98,6 +98,8 @@ export const Ellipsis = create('ellipsis', "<g><circle cx=\"3.25\" cy=\"8\" r=\"
 export const ExternalLink = create('external-link', "<g><path d=\"M7 2.75 L2.75 2.75 L2.75 13.25 L13.25 13.25 L13.25 9\"/><line x1=\"7.5\" y1=\"8.5\" x2=\"13.25\" y2=\"2.75\"/><path d=\"M9.25 2.75 L13.25 2.75 L13.25 6.75\"/></g>");
 /** Figma Icon/eye */
 export const Eye = create('eye', "<g><path d=\"M2 8 C3.4 5.2 5.6 3.75 8 3.75 C10.4 3.75 12.6 5.2 14 8 C12.6 10.8 10.4 12.25 8 12.25 C5.6 12.25 3.4 10.8 2 8 Z\"/><circle cx=\"8\" cy=\"8\" r=\"2.25\"/></g>");
+/** Figma Icon/eye-off */
+export const EyeOff = create('eye-off', "<defs><mask id=\"iconmcp-eye-off-m\" maskUnits=\"userSpaceOnUse\" x=\"-4\" y=\"-4\" width=\"24\" height=\"24\"><rect x=\"-4\" y=\"-4\" width=\"24\" height=\"24\" fill=\"#fff\" stroke=\"none\"/><line x1=\"2.75\" y1=\"2.75\" x2=\"13.25\" y2=\"13.25\" stroke=\"#000\" fill=\"none\" stroke-width=\"3\"/></mask></defs><g><g mask=\"url(#iconmcp-eye-off-m)\"><path d=\"M2 8 C3.4 5.2 5.6 3.75 8 3.75 C10.4 3.75 12.6 5.2 14 8 C12.6 10.8 10.4 12.25 8 12.25 C5.6 12.25 3.4 10.8 2 8 Z\"/><circle cx=\"8\" cy=\"8\" r=\"2.25\"/></g><line x1=\"2.75\" y1=\"2.75\" x2=\"13.25\" y2=\"13.25\"/></g>");
 /** Figma Icon/file-text */
 export const FileText = create('file-text', "<g><path d=\"M3.25 2 L9 2 L12.75 5.75 L12.75 14 L3.25 14 L3.25 2 Z\"/><path d=\"M9 2 L9 5.75 L12.75 5.75\"/><line x1=\"5.5\" y1=\"5.75\" x2=\"7\" y2=\"5.75\"/><line x1=\"5.5\" y1=\"8.5\" x2=\"10.5\" y2=\"8.5\"/><line x1=\"5.5\" y1=\"11\" x2=\"10.5\" y2=\"11\"/></g>");
 /** Figma Icon/folder */
@@ -292,6 +294,7 @@ export const icons = {
   'ellipsis': Ellipsis,
   'external-link': ExternalLink,
   'eye': Eye,
+  'eye-off': EyeOff,
   'file-text': FileText,
   'folder': Folder,
   'git-branch': GitBranch,

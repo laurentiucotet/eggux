@@ -6,7 +6,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const inputVariants = cva(
-  'flex w-full min-w-0 rounded-input border bg-background px-3.5 py-1 text-base text-foreground shadow-xs outline-none transition-[color,box-shadow,border-color] duration-[var(--duration-fast)] placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 read-only:bg-muted read-only:shadow-none read-only:focus-visible:ring-0',
+  'flex w-full min-w-0 rounded-input border bg-background px-3 py-1 text-base text-foreground shadow-xs outline-none transition-[color,box-shadow,border-color] duration-[var(--duration-fast)] placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:shadow-[0_0_0_2px_var(--background),0_0_0_4px_var(--ring)] aria-invalid:border-destructive read-only:enabled:bg-muted read-only:enabled:shadow-none read-only:enabled:focus-visible:shadow-none',
   {
     variants: {
       inputStyle: {
