@@ -95,7 +95,8 @@ export const Default: Story = {
     await expect(day(canvas, /Monday 19 October 2026/)).toHaveAttribute('data-state', 'today');
     const selected = day(canvas, /Thursday 22 October 2026/);
     await expect(selected.closest('[role="gridcell"]')).toHaveAttribute('aria-selected', 'true');
-    await expect(getComputedStyle(selected).backgroundColor).toBe(probe('bg-primary', 'backgroundColor'));
+    // The day fades its color on a theme switch: wait for the end of the transition.
+    await waitFor(() => expect(getComputedStyle(selected).backgroundColor).toBe(probe('bg-primary', 'backgroundColor')));
     await expect(selected).toHaveTextContent('22');
     // Calendar surface.
     await expect(getComputedStyle(cal).backgroundColor).toBe(probe('bg-popover', 'backgroundColor'));

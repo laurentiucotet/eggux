@@ -83,7 +83,12 @@ export const formatMonthYear = (d: Date, locale = DEFAULT_LOCALE) => new Intl.Da
 export const formatMonthShort = (monthIndex: number, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { month: 'short' }).format(new Date(2026, monthIndex, 1));
 export const formatMonthLong = (monthIndex: number, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { month: 'long' }).format(new Date(2026, monthIndex, 1));
 /** Full label for screen readers: "Thursday 22 October 2026". */
-export const formatFullDate = (d: Date, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+// Built from parts: browsers differ on the comma after the weekday ("Monday, 19 October 2026").
+export const formatFullDate = (d: Date, locale = DEFAULT_LOCALE) => {
+  const weekday = new Intl.DateTimeFormat(locale, { weekday: 'long' }).format(d);
+  const date = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+  return `${weekday} ${date}`;
+};
 /** Value of a Date Picker: "22 Oct 2026". */
 export const formatShortDate = (d: Date, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', year: 'numeric' }).format(d);
 const formatDayMonth = (d: Date, locale = DEFAULT_LOCALE) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' }).format(d);

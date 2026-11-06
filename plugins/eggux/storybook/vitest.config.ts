@@ -14,6 +14,7 @@ export default mergeConfig(viteConfig, defineConfig({
         plugins: [storybookTest({ configDir: path.join(import.meta.dirname, '.storybook') })],
         test: {
           name: 'storybook',
+          setupFiles: [path.join(import.meta.dirname, '.storybook/vitest.setup.ts')],
           browser: {
             enabled: true,
             headless: true,
