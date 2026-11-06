@@ -49,7 +49,7 @@ function NavigationMenuLink({ title, description, icon, showIcon = true, classNa
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span data-slot="navigation-menu-link-title" className="truncate text-sm font-medium leading-5 text-foreground">{title}</span>
         {description ? (
-          <span data-slot="navigation-menu-link-description" className="text-xs leading-4 text-muted-foreground">{description}</span>
+          <span data-slot="navigation-menu-link-description" className="text-xs leading-4 text-muted-foreground group-hover/menu-link:text-[var(--input-filled-muted-foreground)] group-focus-visible/menu-link:text-[var(--input-filled-muted-foreground)] group-data-[active]/menu-link:text-[var(--input-filled-muted-foreground)]">{description}</span>
         ) : null}
       </span>
     </NavigationMenuPrimitive.Link>

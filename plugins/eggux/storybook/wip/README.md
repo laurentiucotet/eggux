@@ -1,8 +1,8 @@
 # Handoff: EGG UI components into Storybook
 
-Status on 2026-11-06, branch `claude/zealous-planck-j9rsnj`.
+Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**168 of the 427 Figma components are in code** with stories and passing tests. The list with
+**175 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -18,24 +18,11 @@ rows and commits only the files it names.
 Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 
 ## Unfinished files in this folder
-Agents were stopped mid-way. These files are kept here, outside `src/`, so the test suite stays
-green. Move a file back to `src/components/ui/` to continue it.
+None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-| File | Component | State |
-|---|---|---|
-| `person-option.tsx` | Person Option (Select) | component written, no stories |
-| `people-picker.tsx` | People Picker (Select) | component written, no stories |
-| `transfer-list.tsx` | Transfer List (Select) | component written, no stories |
-| `address-autocomplete.tsx` | Address Autocomplete (Select) | component written, no stories |
-| `recurrence-picker.tsx` | Recurrence Picker (Select) | component written, no stories |
-| `navigation-menu.tsx` | Navigation Menu (Navigation) | component written, no stories |
-| `navigation-menu-link.tsx` + `.stories.tsx` | Navigation Menu Link | stories: Default and Options fail, 3 pass |
-
-None of them has been reviewed. Typecheck passed with them in `src/`.
-
-## What is left (259 components)
+## What is left (252 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
-that made this file. Next in line: the rest of Select and Navigation (files above), Sidebar,
+that made this file. Next in line: the rest of Navigation, Sidebar,
 Badge / Description List / Feature Item / Card leftovers, then Table cells, Pagination, Tabs-like
 small pages, and last Chart (26) and Email (16).
 
@@ -71,7 +58,7 @@ small pages, and last Chart (26) and Email (16).
 | List | 0/5 | List Item, Sortable List Item, Task Item, Job Listing, List Group Header |
 | Metrics | 0/6 | Trend Indicator, Metric Strip, Metric Strip Item, Usage Meter, Countdown, Leaderboard Row |
 | Mobile | 0/7 | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge, QR Code |
-| Navigation | 7/13 | Top Bar, Page Header, Navigation Menu Panel, Navigation Menu Link, Page Toolbar, App Header |
+| Navigation | 9/13 | Top Bar, Page Header, Page Toolbar, App Header |
 | Notifications | 0/2 | Notification Item, Notification Center |
 | Pagination | 0/5 | Pagination Item, Pagination, Pagination Compact, Load More, Pager Link |
 | Pricing | 0/11 | Price, Plan Card, Comparison Table, Plan Option Row, Meter Banner, Paywall Card, Lock Badge, Gate Overlay, Usage Limit Banner, Trial Banner, Upsell Card |
@@ -84,7 +71,6 @@ small pages, and last Chart (26) and Email (16).
 | Scroll Area | 0/1 | Scroll Area |
 | Search | 0/3 | Search Result Item, Search Suggestions, Search Suggestion Item |
 | Section Heading | 0/1 | Section Heading |
-| Select | 5/10 | People Picker, Person Option, Transfer List, Address Autocomplete, Recurrence Picker |
 | Sharing | 0/3 | Access Row, Invite Row, Share Link Row |
 | Sidebar | 0/8 | Sidebar, Sidebar Item, Sidebar Group Label, Sidebar Group, Sidebar Workspace, Sidebar User, Org Switcher, Sidebar Double |
 | Slider | 0/1 | Slider |

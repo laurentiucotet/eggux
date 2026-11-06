@@ -70,6 +70,8 @@ export const Default: Story = {
     const description = link.querySelector('[data-slot="navigation-menu-link-description"]') as HTMLElement;
     await expect(getComputedStyle(description).fontSize).toBe('12px');
     await expect(getComputedStyle(description).color).toBe(colors('text-muted-foreground').color);
+    // On the accent background (hover, focus, active) the description darkens to keep 4.5:1.
+    await expect(description.className).toContain('group-focus-visible/menu-link:text-[var(--input-filled-muted-foreground)]');
     // Figma State=hover: background/accent (CSS :hover is not reachable from userEvent).
     await expect(link.className).toContain('hover:bg-accent');
     await userEvent.tab();

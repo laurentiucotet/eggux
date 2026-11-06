@@ -96,7 +96,7 @@ function PersonOption({
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span data-slot="person-option-name" title={name} className="truncate text-sm leading-5 font-medium text-foreground">{name}</span>
         {description ? (
-          <span data-slot="person-option-description" title={description} className="truncate text-sm leading-5 text-muted-foreground">{description}</span>
+          <span data-slot="person-option-description" title={description} className="truncate text-sm leading-5 text-muted-foreground group-hover/person:text-[var(--input-filled-muted-foreground)] group-data-[highlighted]/person:text-[var(--input-filled-muted-foreground)]">{description}</span>
         ) : null}
       </span>
       {/* Single pick: no checkbox, so the selected person gets the list check at the end. */}

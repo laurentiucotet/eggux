@@ -89,7 +89,8 @@ function NavigationMenuFeatured({ title, description, action, className, ...prop
   return (
     <div data-slot="navigation-menu-featured" className={cn('flex w-60 shrink-0 flex-col justify-end gap-1 rounded-md bg-muted p-4', className)} {...props}>
       <p className="m-0 line-clamp-2 text-sm font-medium leading-5 text-foreground">{title}</p>
-      {description ? <p className="m-0 line-clamp-3 text-xs leading-4 text-muted-foreground">{description}</p> : null}
+      {/* foreground/default, not muted: muted on background/muted is 4.34:1 (decision D-001). */}
+      {description ? <p className="m-0 line-clamp-3 text-xs leading-4 text-foreground">{description}</p> : null}
       {action ? <div className="flex">{action}</div> : null}
     </div>
   );

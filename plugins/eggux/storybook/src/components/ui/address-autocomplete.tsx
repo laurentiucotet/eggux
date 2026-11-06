@@ -90,12 +90,12 @@ function SuggestionRow({ suggestion }: { suggestion: AddressSuggestion }) {
       onMouseDown={e => e.preventDefault()}
       onMouseMove={() => { if (!highlighted) ctx.setActiveValue(suggestion.id); }}
       onClick={() => ctx.select(suggestion.id)}
-      className="flex min-w-0 cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-popover-foreground data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
+      className="group/suggestion flex min-w-0 cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-popover-foreground data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
     >
-      <MapPin aria-hidden="true" className="size-4 shrink-0 text-muted-foreground" />
+      <MapPin aria-hidden="true" className="size-4 shrink-0 text-muted-foreground group-data-[highlighted]/suggestion:text-[var(--input-filled-muted-foreground)]" />
       <span className="flex min-w-0 flex-1 flex-col">
         <span title={suggestion.line1} className="truncate text-sm leading-5 font-medium">{suggestion.line1}</span>
-        {suggestion.line2 ? <span title={suggestion.line2} className="truncate text-xs leading-4 text-muted-foreground">{suggestion.line2}</span> : null}
+        {suggestion.line2 ? <span title={suggestion.line2} className="truncate text-xs leading-4 text-muted-foreground group-data-[highlighted]/suggestion:text-[var(--input-filled-muted-foreground)]">{suggestion.line2}</span> : null}
       </span>
     </div>
   );
