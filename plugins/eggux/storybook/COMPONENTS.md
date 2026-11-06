@@ -74,3 +74,4 @@ in Figma or in the reference; code follows the column "Code".
 | Date Input | A focused empty segment with muted text on the accent fill is 4.35:1 | placeholder uses accent-foreground when focused |
 | Signature Pad | No script font token for the typed name | `font-serif` italic until a token exists |
 | Range / Duration / Date Input | Figma has no rule messages (min above max, over the limit, date rules) and no disabled state | message under the field in the Field error style; disabled through Field |
+| Option Card | Disabled card faded to 50 % puts the muted description at 1.96:1 | only control, icon, title and media fade, as in Radio |

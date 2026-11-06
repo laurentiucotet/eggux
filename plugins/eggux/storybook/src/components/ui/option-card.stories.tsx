@@ -45,7 +45,9 @@ export const Default: Story = {
   render: () => <Group />,
   play: async ({ canvas, canvasElement }) => {
     const standard = canvas.getByRole('radio', { name: 'Standard shipping' });
-    const el = cardOf(standard);
+    // Measure the unselected card: Standard starts selected and its 2 px border makes it 82 (see Selected).
+    // The height does not depend on the font: text-sm has a fixed 20 px line height.
+    const el = cardOf(canvas.getByRole('radio', { name: 'Express shipping' }));
     await expect(Math.round(box(el).width)).toBe(384);
     await expect(Math.round(box(el).height)).toBe(80);
     await expect(Math.round(box(canvasElement.querySelector('[data-slot="option-card-icon"]')!).width)).toBe(40);
@@ -73,12 +75,45 @@ export const Selected: Story = {
 };
 
 // State=hover: accent fill.
+// The background a :hover rule gives `el`, resolved to rgb. userEvent.hover only dispatches pointer
+// events: Chromium does not enter the CSS :hover state for them, so the hover style is read from
+// the stylesheet (Tailwind v4 nests it: .hover\:bg-accent { &:hover { @media (hover: hover) { ... } } }).
+const hoverBackground = (el: Element) => {
+  let found: string | undefined;
+  const walk = (rules: CSSRuleList, parent: string) => {
+    for (const rule of Array.from(rules)) {
+      if (rule instanceof CSSStyleRule) {
+        const selector = parent ? rule.selectorText.replace(/&/g, parent) : rule.selectorText;
+        if (selector.includes(':hover')) {
+          const base = selector.replace(/:hover/g, '');
+          let matches = false;
+          try { matches = el.matches(base); } catch { /* selector the DOM API cannot parse */ }
+          if (matches && rule.style.backgroundColor) found = rule.style.backgroundColor;
+        }
+        walk(rule.cssRules, selector);
+      } else if ('cssRules' in rule) {
+        walk((rule as CSSGroupingRule).cssRules, parent);
+      }
+    }
+  };
+  for (const sheet of Array.from(document.styleSheets)) {
+    try { walk(sheet.cssRules, ''); } catch { /* cross-origin sheet (Google Fonts) */ }
+  }
+  if (!found) return undefined;
+  const p = document.createElement('span');
+  p.style.backgroundColor = found;
+  el.append(p);
+  const value = getComputedStyle(p).backgroundColor;
+  p.remove();
+  return value;
+};
+
 export const Hover: Story = {
   render: () => <Group />,
   play: async ({ canvas }) => {
     const el = cardOf(canvas.getByRole('radio', { name: 'Express shipping' }));
     await userEvent.hover(el);
-    await waitFor(() => expect(getComputedStyle(el).backgroundColor).toBe(probe('bg-accent').bg));
+    await expect(hoverBackground(el)).toBe(probe('bg-accent').bg);
   },
 };
 
@@ -98,13 +133,19 @@ export const Keyboard: Story = {
   },
 };
 
-// State=disabled: the control is disabled and the card fades to 50%; clicks do nothing.
+// State=disabled: the control is disabled; control, icon and title fade to 50%, the description keeps
+// its muted color (faded it fails the 4.5:1 contrast); clicks do nothing.
 export const Disabled: Story = {
   render: () => <Group disabledValue="express" />,
   play: async ({ canvas }) => {
     const express = canvas.getByRole('radio', { name: 'Express shipping' });
     await expect(express).toBeDisabled();
-    await expect(getComputedStyle(cardOf(express)).opacity).toBe('0.5');
+    const card = cardOf(express);
+    await expect(getComputedStyle(express).opacity).toBe('0.5');
+    await expect(getComputedStyle(canvas.getByText('Express shipping')).opacity).toBe('0.5');
+    await expect(getComputedStyle(card.querySelector('[data-slot="option-card-icon"]')!).opacity).toBe('0.5');
+    await expect(getComputedStyle(canvas.getByText('Delivered tomorrow.')).opacity).toBe('1');
+    await expect(getComputedStyle(card).opacity).toBe('1');
     await userEvent.click(canvas.getByText('Delivered tomorrow.'));
     await expect(express).not.toBeChecked();
     await expect(canvas.getByRole('radio', { name: 'Standard shipping' })).toBeChecked();
@@ -143,7 +184,8 @@ export const Media: Story = {
   play: async ({ canvas, canvasElement }) => {
     const el = cardOf(canvas.getByRole('radio', { name: 'Standard shipping' }));
     await expect(Math.round(box(el).width)).toBe(280);
-    const media = canvasElement.querySelector('[data-slot="option-card-media"]') as HTMLElement;
+    // The unselected card: 280 - 2 x 16 padding - 2 x 1 border = 246 (the selected one has a 2 px border: 244).
+    const media = cardOf(canvas.getByRole('radio', { name: 'Express shipping' })).querySelector('[data-slot="option-card-media"]') as HTMLElement;
     await expect(Math.round(box(media).width)).toBe(246);
     await expect(Math.abs(box(media).height - (246 * 9) / 16)).toBeLessThan(1);
     await expect(canvasElement.querySelector('[data-slot="option-card-icon"]')).toBeNull();

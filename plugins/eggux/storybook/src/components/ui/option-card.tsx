@@ -4,7 +4,10 @@
 // focus (the real focus-visible ring), selected (2 px primary border + checked control) and disabled
 // come from the control's state. Control=radio goes inside a RadioGroup (`OptionCardGroup`, a
 // radiogroup you label with `aria-label`); Control=checkbox takes `checked` / `onCheckedChange`
-// and several cards go in a <fieldset>. Built on Radio and Checkbox.
+// and several cards go in a <fieldset>. Built on Radio and Checkbox. Disabled fades the control,
+// icon, title and media to 50% but not the card or the description: a faded description fails the
+// 4.5:1 contrast (axe exempts the title, which names the disabled control, not the description),
+// the same rule as Radio. Compact: title and description on one line with an ellipsis.
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
@@ -20,7 +23,7 @@ const optionCardVariants = cva(
     'hover:bg-accent',
     'has-[[data-state=checked]]:border-2 has-[[data-state=checked]]:border-primary',
     'has-[:focus-visible]:shadow-[0_0_0_2px_var(--background),0_0_0_4px_var(--ring)]',
-    'has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:disabled]:hover:bg-card',
+    'has-[:disabled]:cursor-not-allowed has-[:disabled]:hover:bg-card [&:has(:disabled)_[data-fade]]:opacity-50',
   ],
   {
     variants: {
@@ -90,7 +93,7 @@ function OptionCard({
     );
   const text = (
     <div data-slot="option-card-text" className={cn('flex min-w-0 flex-1 flex-col text-sm', compact ? 'gap-0.5' : 'gap-1.5')}>
-      <span id={titleId} className="font-medium">{title}</span>
+      <span id={titleId} data-fade="" className={cn('font-medium', compact && 'truncate')}>{title}</span>
       {description ? (
         <span id={descId} className={cn('text-muted-foreground', compact && 'truncate')}>{description}</span>
       ) : null}
@@ -100,7 +103,7 @@ function OptionCard({
     <label data-slot="option-card" data-layout={layout} data-control={control} className={cn(optionCardVariants({ layout }), className)} {...props}>
       {layout === 'media' ? (
         <>
-          {media ? <div data-slot="option-card-media" className="w-full overflow-clip rounded-md">{media}</div> : null}
+          {media ? <div data-slot="option-card-media" data-fade="" className="w-full overflow-clip rounded-md">{media}</div> : null}
           <div className="flex w-full min-w-0 items-start gap-3">
             {text}
             {controlEl}
@@ -112,6 +115,7 @@ function OptionCard({
             <span
               aria-hidden="true"
               data-slot="option-card-icon"
+              data-fade=""
               className={cn('flex shrink-0 items-center justify-center rounded-md bg-muted', compact ? 'size-8 [&_svg]:size-4' : 'size-10 [&_svg]:size-5')}
             >
               {icon}

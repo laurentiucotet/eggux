@@ -132,7 +132,9 @@ export const States: Story = {
     await expect(css(readOnly.querySelector('[data-slot="date-picker-value"]')!).color).toBe(probe('text-foreground', 'color'));
     await userEvent.click(readOnly);
     await expect(screen.queryByRole('dialog')).toBeNull();
-    await userEvent.tab();
+    // Clicking the read-only field focuses it (it stays in the tab order); the disabled one is skipped.
+    await expect(readOnly).toHaveFocus();
+    await userEvent.tab({ shift: true });
     await expect(error).toHaveFocus();
     await expect(css(error).boxShadow).not.toBe('none');
     await userEvent.tab();

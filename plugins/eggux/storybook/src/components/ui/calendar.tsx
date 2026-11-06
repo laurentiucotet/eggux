@@ -146,6 +146,15 @@ function Calendar({
     const wanted = selected ?? range.from ?? today;
     return startOfMonth(wanted).getTime() === initialMonth.getTime() ? wanted : initialMonth;
   });
+  // When the selection changes from outside (a Date Range Picker preset, a controlled value), the
+  // tab stop follows it, so Tab lands on the selected day and not on the day picked before.
+  const selectionKey = (selected ?? range.from)?.getTime();
+  const [prevSelectionKey, setPrevSelectionKey] = React.useState(selectionKey);
+  if (selectionKey !== prevSelectionKey) {
+    setPrevSelectionKey(selectionKey);
+    const wanted = selected ?? range.from;
+    if (wanted && !isSameDay(wanted, focusDate)) setFocusDate(wanted);
+  }
   const rootRef = React.useRef<HTMLDivElement>(null);
   const keyboardMove = React.useRef(false);
   const uid = React.useId();

@@ -185,7 +185,7 @@ export const Range: Story = {
     await userEvent.click(within(start).getByRole('option', { name: '10:00' }));
     await waitFor(() => expect(within(dialog).getByRole('listbox', { name: 'End time' })).toHaveFocus());
     await expect(within(dialog).getByRole('listbox', { name: 'End time' }).querySelector('[role="option"]')).toHaveTextContent('10:30');
-    await userEvent.click(within(dialog).getByRole('option', { name: /11:30/ }));
+    await userEvent.click(within(within(dialog).getByRole('listbox', { name: 'End time' })).getByRole('option', { name: /11:30/ }));
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
     await expect(canvas.getByRole('button', { name: 'Availability, 10:00 to 11:30, 1 h 30 min' })).toHaveFocus();
   },
@@ -231,7 +231,8 @@ export const RangeNarrow: Story = { tags: ['!dev'],
   },
 };
 
-// Inside a Field the visible label names the trigger.
+// Inside a Field the visible label names the trigger; clicking the label activates it (opens the list),
+// like the Date Picker in a Field.
 export const InField: Story = {
   decorators: [Story => <div className="w-[200px]"><Story /></div>],
   render: () => (
@@ -242,6 +243,9 @@ export const InField: Story = {
   play: async ({ canvas }) => {
     await expect(canvas.getByRole('button', { name: 'Opening time' })).toHaveAccessibleDescription('Local time of the branch');
     await userEvent.click(canvas.getByText('Opening time'));
+    await expect(await screen.findByRole('listbox', { name: 'Times' })).toHaveFocus();
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
     await expect(canvas.getByRole('button', { name: 'Opening time' })).toHaveFocus();
   },
 };
