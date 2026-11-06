@@ -187,14 +187,31 @@ function Command({
   );
 }
 
-export interface CommandInputProps extends Omit<React.ComponentProps<'input'>, 'value' | 'onChange' | 'type'> {
+export interface CommandInputProps extends Omit<React.ComponentProps<'input'>, 'type'> {
   /** Class of the row around the input (height, padding, divider). */
   wrapperClassName?: string;
 }
 
-/** Figma Command Input: the search field at the top of the list. Value = the placeholder. */
+/**
+ * Figma Command Input: the search field at the top of the list. Value = the placeholder.
+ * Inside <Command> it is the list's combobox (value, aria-controls and aria-activedescendant come
+ * from the Command). Outside a Command it is a plain styled search input: pass value, onChange and
+ * the aria attributes yourself (Emoji Picker does).
+ */
 function CommandInput({ className, wrapperClassName, placeholder = 'Search…', ...props }: CommandInputProps) {
-  const ctx = useCommand('CommandInput');
+  const ctx = React.useContext(CommandContext);
+  const commandProps: React.ComponentProps<'input'> = ctx
+    ? {
+        role: 'combobox',
+        'aria-expanded': true,
+        'aria-controls': ctx.listId,
+        'aria-autocomplete': 'list',
+        'aria-activedescendant': ctx.activeId ?? undefined,
+        'aria-label': props['aria-labelledby'] ? undefined : (ctx.label ?? placeholder),
+        value: ctx.search,
+        onChange: event => ctx.setSearch(event.target.value),
+      }
+    : {};
   return (
     <div
       data-slot="command-input-wrapper"
@@ -204,18 +221,11 @@ function CommandInput({ className, wrapperClassName, placeholder = 'Search…', 
       <input
         data-slot="command-input"
         type="text"
-        role="combobox"
-        aria-expanded="true"
-        aria-controls={ctx.listId}
-        aria-autocomplete="list"
-        aria-activedescendant={ctx.activeId ?? undefined}
-        aria-label={props['aria-labelledby'] ? undefined : (ctx.label ?? placeholder)}
         autoComplete="off"
         autoCorrect="off"
         spellCheck={false}
         placeholder={placeholder}
-        value={ctx.search}
-        onChange={event => ctx.setSearch(event.target.value)}
+        {...commandProps}
         className={cn(
           'h-full min-w-0 flex-1 bg-transparent text-sm leading-5 text-popover-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
           className,
