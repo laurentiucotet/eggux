@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**212 of the 427 Figma components are in code** with stories and passing tests. The list with
+**215 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,10 +20,10 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (215 components)
+## What is left (212 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Card leftovers (Post Card, Entity Card, Person Card), then Table cells, Pagination, Tabs-like
+Table cells, Pagination, Tabs-like
 small pages, and last Chart (26) and Email (16).
 
 | Figma page | In code | Missing |
@@ -33,7 +33,6 @@ small pages, and last Chart (26) and Email (16).
 | Audit | 0/4 | Change Item, Version Item, Release Note Item, Release Note Line |
 | Automation | 0/3 | Automation Rule, Workflow Node, Mapping Row |
 | Background | 0/4 | Background / Grid, Background / Dots, Background / Glow, Background / Beam |
-| Card | 11/14 | Post Card, Entity Card, Person Card |
 | Carousel | 0/8 | Carousel, Carousel Arrow, Carousel Indicator, Carousel Slide, Carousel Gallery, Carousel Thumbnail, Carousel Hero, Lightbox |
 | Chart | 1/27 | Bar Chart, Bar Chart Horizontal, Line Chart, Donut Chart, Heatmap, Gauge, Gauge Target, Treemap, Funnel Chart, Scatter Chart, Chart Legend, Chart Legend Item, Chart Tooltip, Chart Tooltip Row, Chart Card, Waterfall Chart, Combo Chart, Dashboard Widget, Distribution Bar, Distribution Segment, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map, Radial Chart, Box Plot |
 | Chat | 0/8 | Chat Message, Typing Indicator, Chat Composer, Mention Chip, Reaction Bar, Reaction, Thread Summary, Conversation Item |
