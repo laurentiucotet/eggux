@@ -47,7 +47,7 @@ Small pages (Kanban, Automation, Video, Background, Color Picker, Admin), and la
 | Scheduler | 1/7 | Calendar Event, Gantt Bar, Gantt Milestone, Agenda Item, Meeting Card, Availability Row |
 | Video | 0/3 | Video Player, Video Thumbnail, Audio Player |
 
-Blocks built outside the 427 count (`site-navigation.tsx`): Block / Navbar (default, on-image, mobile, Centered, Search, Flyout, Mega Menu, dropdown menus), Block / Footer, Footer Simple, Footer Newsletter, Footer Corporate, Footer Centered. Still to do on that page: the Banner blocks (Announcement, Floating, Countdown, with Action).
+Blocks built outside the 427 count (`site-navigation.tsx`): Block / Navbar (default, on-image, mobile, Centered, Search, Flyout, Mega Menu, dropdown menus), Block / Footer, Footer Simple, Footer Newsletter, Footer Corporate, Footer Centered; `site-banners.tsx`: Announcement Banner, Banner with Action, Banner Countdown, Banner Floating, with Countdown (Style=default; boxed and inline not built). The Navigation blocks page is complete.
 
 ## Notes
 - The full suite (`npm test`) is slow (well over 10 minutes for ~1,000 stories). Run story files
