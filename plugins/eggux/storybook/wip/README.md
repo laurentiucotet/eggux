@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**258 of the 427 Figma components are in code** with stories and passing tests. The list with
+**263 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,7 +20,7 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (169 components)
+## What is left (164 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
 Small pages (Kanban, Surveys, Tour, Audit), and last Chart (26) and Email (16).
@@ -43,7 +43,6 @@ Small pages (Kanban, Surveys, Tour, Audit), and last Chart (26) and Email (16).
 | File Upload | 0/6 | File Dropzone, File Item, File Preview, Resource Item, File Field, File Type Icon |
 | Filters | 0/8 | Filter Bar, Filter Chip, Faceted Filter, Facet Option, Filter Section, Filter Group, Filter Condition, Saved View Item |
 | Form Presets | 0/1 | Field Preset |
-| Form Layout | 0/5 | Form Section, Fieldset, Error Summary, Requirement List, Check Item |
 | Image | 2/8 | Map, Image Cropper, Avatar Upload, Image Compare Slider, Device Frame, Image Figure |
 | Kanban | 0/2 | Kanban Card, Kanban Column |
 | Mobile | 0/7 | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge, QR Code |
