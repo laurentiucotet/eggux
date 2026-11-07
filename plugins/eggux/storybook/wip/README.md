@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**231 of the 427 Figma components are in code** with stories and passing tests. The list with
+**234 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,10 +20,10 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (196 components)
+## What is left (193 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Tabs-like small pages (List, Metrics, Search, Sharing, Quote, Rating), and last Chart (26) and Email (16).
+Tabs-like small pages (List, Metrics, Search, Sharing, Quote), and last Chart (26) and Email (16).
 
 | Figma page | In code | Missing |
 |---|---|---|
@@ -53,7 +53,6 @@ Tabs-like small pages (List, Metrics, Search, Sharing, Quote, Rating), and last 
 | Pricing | 0/11 | Price, Plan Card, Comparison Table, Plan Option Row, Meter Banner, Paywall Card, Lock Badge, Gate Overlay, Usage Limit Banner, Trial Banner, Upsell Card |
 | Prose | 0/6 | Prose, Prose Heading, Prose Paragraph, Prose List Item, Prose Blockquote, Highlight |
 | Quote | 0/3 | Quote, Testimonial Card, Footnote |
-| Rating | 0/3 | Rating, Review Item, Rating Summary |
 | Scheduler | 1/7 | Calendar Event, Gantt Bar, Gantt Milestone, Agenda Item, Meeting Card, Availability Row |
 | Search | 0/3 | Search Result Item, Search Suggestions, Search Suggestion Item |
 | Sharing | 0/3 | Access Row, Invite Row, Share Link Row |
