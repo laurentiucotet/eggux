@@ -99,6 +99,47 @@ export const ColumnSettingsFlow: Story = {
   },
 };
 
+
+const fire = (el: Element, type: string, y: number) =>
+  el.dispatchEvent(new PointerEvent(type, { bubbles: true, cancelable: true, clientX: el.getBoundingClientRect().left + 4, clientY: y, button: 0, pointerId: 1, isPrimary: true, pointerType: 'mouse' }));
+const frame = () => new Promise(r => requestAnimationFrame(() => r(null)));
+/** Pointer drag of a grip to a y position; checks the drop line while over the target. */
+async function dragTo(grip: Element, toY: number, root: Element) {
+  const r = grip.getBoundingClientRect();
+  const y0 = r.top + r.height / 2;
+  fire(grip, 'pointerdown', y0);
+  fire(grip, 'pointermove', y0 + (toY > y0 ? 8 : -8));
+  await frame();
+  fire(grip, 'pointermove', toY);
+  await frame();
+  await expect(root.querySelector('[data-slot="drop-indicator"]')).not.toBeNull();
+  fire(grip, 'pointerup', toY);
+  await frame();
+}
+
+// Column Settings pointer drag: Owner moves above Status; it cannot pass the locked Customer.
+export const ColumnSettingsDrag: Story = {
+  render: function Render() {
+    const [order, setOrder] = React.useState('');
+    return (
+      <div className="flex flex-col gap-4">
+        <Popover><ColumnSettings columns={columns} defaultVisible={["customer", "status", "amount", "due"]} showFooter={false} onApply={s => setOrder(s.order.join(","))} className="rounded-lg border border-border" /></Popover>
+        <p className="text-sm">Order: {order}</p>
+      </div>
+    );
+  },
+  play: async ({ canvas, canvasElement }) => {
+    const root = canvasElement.querySelector('[data-slot="column-settings"]')!;
+    const rows = () => Array.from(root.querySelectorAll('[data-slot="column-settings-item"]'));
+    const grip = (id: string) => root.querySelector(`[data-column-id="${id}"] [data-slot="column-grip"]`)!;
+    await dragTo(grip('owner'), rows()[1]!.getBoundingClientRect().top + 4, root);
+    await waitFor(() => expect(canvas.getByText('Order: customer,owner,status,amount,due,created')).toBeInTheDocument());
+    // Dropping above the locked first column lands right after it.
+    await dragTo(grip('created'), rows()[0]!.getBoundingClientRect().top + 2, root);
+    await waitFor(() => expect(canvas.getByText('Order: customer,created,owner,status,amount,due')).toBeInTheDocument());
+  },
+};
+
 // Table Pagination under a table: range, rows per page, numbered pagination.
 export const Pagination: Story = {
   render: function Render() {

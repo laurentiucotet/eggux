@@ -6,12 +6,14 @@
 // truncates); hover accent; dragging lifts with shadow md; locked (the identifying column): checkbox
 // on and disabled, muted label, a 14 lock and no grip. At least one column stays visible.
 // A11y: the list is a listbox-free group of checkboxes; Space toggles; Alt + Up / Down moves the
-// focused column (the grip is decorative). Drag and drop with the pointer is the app's job.
+// focused column. The grip drags with the pointer (hidden from screen readers; off while searching);
+// a 2 px primary line shows where the column lands.
 import * as React from 'react';
 import { GripVertical, Lock } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { Button } from './button';
 import { Checkbox } from './checkbox';
+import { usePointerReorder } from './use-pointer-reorder';
 import { PopoverClose } from './popover';
 import { PopoverFooter } from './popover-footer';
 import { PopoverHeader } from './popover-header';
@@ -29,13 +31,17 @@ export interface ColumnSettingsItemProps extends Omit<React.ComponentProps<'div'
   checked: boolean;
   locked?: boolean;
   dragging?: boolean;
+  /** Drop indicator line before or after the row. */
+  dropTarget?: false | 'before' | 'after';
+  /** Pointer handlers for the grip (usePointerReorder). */
+  gripProps?: React.HTMLAttributes<HTMLElement>;
   onCheckedChange?: (checked: boolean) => void;
   /** Alt + Up / Down. */
   onMove?: (delta: -1 | 1) => void;
   disabled?: boolean;
 }
 
-function ColumnSettingsItem({ label, checked, locked = false, dragging = false, onCheckedChange, onMove, disabled, className, ...props }: ColumnSettingsItemProps) {
+function ColumnSettingsItem({ label, checked, locked = false, dragging = false, dropTarget = false, gripProps, onCheckedChange, onMove, disabled, className, ...props }: ColumnSettingsItemProps) {
   return (
     <div
       data-slot="column-settings-item"
@@ -47,13 +53,14 @@ function ColumnSettingsItem({ label, checked, locked = false, dragging = false, 
         if (e.key === 'ArrowDown') { e.preventDefault(); onMove(1); }
       }}
       className={cn(
-        'flex h-8 w-full min-w-0 items-center gap-2 rounded-sm pr-2 pl-1 hover:bg-accent',
+        'relative flex h-8 w-full min-w-0 items-center gap-2 rounded-sm pr-2 pl-1 hover:bg-accent',
         dragging && 'bg-popover shadow-md',
         className,
       )}
       {...props}
     >
-      <span aria-hidden="true" className={cn('flex size-4 shrink-0 text-muted-foreground [&_svg]:size-4', locked && 'invisible')}><GripVertical /></span>
+      {dropTarget ? <span aria-hidden="true" data-slot="drop-indicator" className={cn('absolute inset-x-0 h-0.5 rounded-full bg-primary', dropTarget === 'after' ? '-bottom-px' : '-top-px')} /> : null}
+      <span aria-hidden="true" data-slot="column-grip" {...(locked ? {} : gripProps)} className={cn('flex size-4 shrink-0 text-muted-foreground [&_svg]:size-4', locked ? 'invisible' : 'cursor-grab active:cursor-grabbing')}><GripVertical /></span>
       <Checkbox
         checked={locked ? true : checked}
         disabled={locked || disabled}
@@ -100,20 +107,25 @@ function ColumnSettings({ columns, defaultVisible, onApply, onCancel, searchFrom
     requestAnimationFrame(() => document.querySelector<HTMLElement>(`[data-column-id="${id}"] [role="checkbox"]`)?.focus());
   };
   const q = query.trim().toLowerCase();
+  const pointer = usePointerReorder({ order, onReorder: next => commit(next, visible), isLocked: id => Boolean(byId.get(id)?.locked), disabled: Boolean(q) });
   const shown = order.filter(id => !q || byId.get(id)!.label.toLowerCase().includes(q));
   const visibleCount = visible.length;
   return (
     <div data-slot="column-settings" className={cn('flex w-72 min-w-60 flex-col gap-2 px-2 py-3', className)} {...props}>
       <PopoverHeader title="Columns" description="Show, hide and reorder columns." className="px-1" />
       {columns.length >= searchFrom ? <SearchField placeholder="Search columns" value={query} onValueChange={setQuery} /> : null}
-      <div role="group" aria-label="Columns" className="flex flex-col gap-0.5">
-        {shown.map(id => {
+      <div ref={pointer.containerRef as React.Ref<HTMLDivElement>} role="group" aria-label="Columns" className="flex flex-col gap-0.5">
+        {shown.map((id, index) => {
           const c = byId.get(id)!;
           const on = visible.includes(id);
           return (
             <ColumnSettingsItem
               key={id}
               data-column-id={id}
+              data-reorder-id={id}
+              dragging={pointer.dragId === id}
+              dropTarget={pointer.dragId && pointer.overIndex === index ? 'before' : pointer.dragId && pointer.overIndex === shown.length && index === shown.length - 1 ? 'after' : false}
+              gripProps={pointer.gripProps(id)}
               label={c.label}
               locked={c.locked}
               checked={on}

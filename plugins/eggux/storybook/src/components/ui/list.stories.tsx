@@ -45,6 +45,24 @@ export const Default: Story = {
 };
 
 // Sortable: Space picks up, ArrowDown moves, Space drops; the live region says the position.
+
+const fire = (el: Element, type: string, y: number) =>
+  el.dispatchEvent(new PointerEvent(type, { bubbles: true, cancelable: true, clientX: el.getBoundingClientRect().left + 4, clientY: y, button: 0, pointerId: 1, isPrimary: true, pointerType: 'mouse' }));
+const frame = () => new Promise(r => requestAnimationFrame(() => r(null)));
+/** Pointer drag of a grip to a y position; checks the drop line while over the target. */
+async function dragTo(grip: Element, toY: number, root: Element) {
+  const r = grip.getBoundingClientRect();
+  const y0 = r.top + r.height / 2;
+  fire(grip, 'pointerdown', y0);
+  fire(grip, 'pointermove', y0 + (toY > y0 ? 8 : -8));
+  await frame();
+  fire(grip, 'pointermove', toY);
+  await frame();
+  await expect(root.querySelector('[data-slot="drop-indicator"]')).not.toBeNull();
+  fire(grip, 'pointerup', toY);
+  await frame();
+}
+
 export const Sortable: Story = {
   render: () => (
     <div className="w-[480px]">
@@ -69,6 +87,14 @@ export const Sortable: Story = {
     await userEvent.keyboard(' ');
     const labels = Array.from(canvasElement.querySelectorAll('[data-slot="sortable-list-item"] [title]')).map(e => e.textContent);
     await expect(labels).toEqual(['Customer', 'Invoice number', 'Amount']);
+    // Pointer: drag Amount above Customer.
+    const list = canvasElement.querySelector('[data-slot="sortable-list"]')!;
+    const first = list.querySelector('[data-slot="sortable-list-item"]')!.getBoundingClientRect();
+    await dragTo(canvas.getByRole('button', { name: 'Reorder Amount' }), first.top + 4, list);
+    const after = Array.from(canvasElement.querySelectorAll('[data-slot="sortable-list-item"] [title]')).map(e => e.textContent);
+    await expect(after).toEqual(['Amount', 'Customer', 'Invoice number']);
+    await waitFor(() => expect(canvas.getByRole('status')).toHaveTextContent('Amount moved to position 1 of 3.'));
+    await expect(list.querySelector('[data-slot="drop-indicator"]')).toBeNull();
   },
 };
 

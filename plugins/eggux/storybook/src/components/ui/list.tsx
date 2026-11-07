@@ -5,7 +5,8 @@
 // radius md, 58 high. Hover muted, selected accent, disabled 50%, divider under every row but the
 // last (muted text on the selected accent uses input-filled-muted-foreground for 4.5:1). With href (or onSelect) the whole row is one link (or button) through the title.
 // Sortable List Item: drag handle, optional 48 image, label (1 line) and description (2 lines),
-// Trailing slot; 8 padding, 12 gap; dragging lifts with border and shadow lg; drop-target shows a
+// Trailing slot; 8 padding, 12 gap; dragging lifts with border and shadow lg (pointer drag on the
+// grip, or Space + arrows); drop-target shows a
 // primary line. Keyboard: Space on the handle picks up, arrows move, Space drops, Escape cancels; a
 // live region says the new position.
 // Task Item: checkbox, title (body/small) over the due date (ui/caption; overdue in destructive),
@@ -16,6 +17,7 @@
 // default (no fill, muted label) or muted (muted fill with top and bottom borders); sticky.
 import * as React from 'react';
 import { Clock, GripVertical, MapPin } from '@/components/icons';
+import { usePointerReorder } from './use-pointer-reorder';
 import { cn } from '@/lib/utils';
 import { Avatar } from './avatar';
 import { Badge } from './badge';
@@ -86,6 +88,16 @@ function SortableList({ items: itemsProp, onReorder, className, ...props }: Sort
   const handles = React.useRef(new Map<string, HTMLButtonElement>());
   const focus = (id: string) => requestAnimationFrame(() => handles.current.get(id)?.focus());
   const commit = (next: SortableItem[]) => { setItems(next); onReorder?.(next); };
+  const pointer = usePointerReorder({
+    order: items.map(i => i.id),
+    onReorder: (ids, movedId) => {
+      const next = ids.map(id => items.find(i => i.id === id)!);
+      const moved = next.find(i => i.id === movedId)!;
+      commit(next);
+      setAnnounce(`${moved.label} moved to position ${next.indexOf(moved) + 1} of ${next.length}.`);
+    },
+    disabled: Boolean(picked),
+  });
   const onKey = (e: React.KeyboardEvent, item: SortableItem, index: number) => {
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
@@ -123,7 +135,7 @@ function SortableList({ items: itemsProp, onReorder, className, ...props }: Sort
   };
   return (
     <>
-      <ul data-slot="sortable-list" className={cn('m-0 flex list-none flex-col gap-1 p-0', className)} {...props}>
+      <ul ref={pointer.containerRef as React.Ref<HTMLUListElement>} data-slot="sortable-list" className={cn('m-0 flex list-none flex-col gap-1 p-0', className)} {...props}>
         {items.map((item, index) => (
           <SortableListItem
             key={item.id}
@@ -131,7 +143,10 @@ function SortableList({ items: itemsProp, onReorder, className, ...props }: Sort
             description={item.description}
             leading={item.leading}
             trailing={item.trailing}
-            dragging={picked?.id === item.id}
+            data-reorder-id={item.id}
+            dragging={picked?.id === item.id || pointer.dragId === item.id}
+            dropTarget={pointer.overIndex === index && pointer.dragId !== null ? 'before' : pointer.overIndex === items.length && index === items.length - 1 && pointer.dragId !== null ? 'after' : false}
+            gripProps={pointer.gripProps(item.id)}
             handleRef={el => { if (el) handles.current.set(item.id, el); else handles.current.delete(item.id); }}
             onHandleKeyDown={e => onKey(e, item, index)}
           />
@@ -148,15 +163,18 @@ export interface SortableListItemProps extends Omit<React.ComponentProps<'li'>, 
   leading?: React.ReactNode;
   trailing?: React.ReactNode;
   dragging?: boolean;
-  dropTarget?: boolean;
+  /** Drop indicator line before or after the row. */
+  dropTarget?: boolean | 'before' | 'after';
+  /** Pointer handlers for the grip (usePointerReorder). */
+  gripProps?: React.HTMLAttributes<HTMLElement> & { style?: React.CSSProperties };
   handleRef?: React.Ref<HTMLButtonElement>;
   onHandleKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
 }
 
-function SortableListItem({ label, description, leading, trailing, dragging = false, dropTarget = false, handleRef, onHandleKeyDown, className, ...props }: SortableListItemProps) {
+function SortableListItem({ label, description, leading, trailing, dragging = false, dropTarget = false, gripProps, handleRef, onHandleKeyDown, className, ...props }: SortableListItemProps) {
   return (
     <li data-slot="sortable-list-item" data-dragging={dragging || undefined} className={cn('relative flex min-w-0 list-none flex-col', className)} {...props}>
-      {dropTarget ? <span aria-hidden="true" className="absolute inset-x-0 -top-0.5 h-0.5 rounded-full bg-primary" /> : null}
+      {dropTarget ? <span aria-hidden="true" data-slot="drop-indicator" className={cn('absolute inset-x-0 h-0.5 rounded-full bg-primary', dropTarget === 'after' ? '-bottom-0.5' : '-top-0.5')} /> : null}
       <div className={cn('flex min-w-0 items-center gap-3 rounded-md p-2', dragging ? 'border border-border bg-card shadow-lg' : 'hover:bg-muted')}>
         <button
           ref={handleRef}
@@ -164,7 +182,8 @@ function SortableListItem({ label, description, leading, trailing, dragging = fa
           aria-label={`Reorder ${label}`}
           aria-pressed={dragging}
           onKeyDown={onHandleKeyDown}
-          className="flex size-4 shrink-0 cursor-grab items-center justify-center rounded-sm text-muted-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 [&_svg]:size-4"
+          {...(gripProps as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+          className="flex size-4 shrink-0 cursor-grab active:cursor-grabbing items-center justify-center rounded-sm text-muted-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 [&_svg]:size-4"
         >
           <GripVertical aria-hidden="true" />
         </button>
