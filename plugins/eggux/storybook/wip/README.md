@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**417 of the 427 Figma components are in code** with stories and passing tests. The list with
+**418 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,14 +20,14 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (10 components)
+## What is left (9 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Only the pages on hold and AI Chat Attachment. Mobile, Form Presets and Kanban are on hold (the user's choice, 2026-11-07).
+Only the pages on hold. Mobile, Form Presets and Kanban are on hold (the user's choice, 2026-11-07).
 
 | Figma page | In code | Missing |
 |---|---|---|
-| AI Chat | 24/25 | Attachment (not on the AI Chat page in Figma any more; check where it went) |
+| AI Chat | 25/25 | done (Attachment in `ai-attachment.tsx`, built from the docs: no Figma component any more) |
 | Admin | 5/5 | done (`admin.tsx`) |
 | Automation | 3/3 | done (`automation.tsx`) |
 | Background | 4/4 | done (`backgrounds.tsx`) |
@@ -48,6 +48,8 @@ Only the pages on hold and AI Chat Attachment. Mobile, Form Presets and Kanban a
 | Video | 3/3 | done (`media.tsx`) |
 
 Blocks built outside the 427 count (`site-navigation.tsx`): Block / Navbar (default, on-image, mobile, Centered, Search, Flyout, Mega Menu, dropdown menus), Block / Footer, Footer Simple, Footer Newsletter, Footer Corporate, Footer Centered; `site-banners.tsx`: Announcement Banner, Banner with Action, Banner Countdown, Banner Floating, with Countdown (Style=default; boxed and inline not built). The Navigation blocks page is complete.
+
+Extra types built on request (not in Figma): Sidebar types (`sidebar-variants.tsx`), more cards (`cards-more.tsx`), more avatars (`avatar-more.tsx`).
 
 ## Notes
 - The full suite (`npm test`) is slow (well over 10 minutes for ~1,000 stories). Run story files
