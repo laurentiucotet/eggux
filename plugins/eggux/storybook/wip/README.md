@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**263 of the 427 Figma components are in code** with stories and passing tests. The list with
+**273 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,16 +20,15 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (164 components)
+## What is left (154 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Small pages (Kanban, Surveys, Tour, Audit), and last Chart (26) and Email (16).
+File Upload, Code Block, Pricing, small pages (Kanban, Automation, Video, Background, Color Picker, Admin), and last Chart (26) and Email (16).
 
 | Figma page | In code | Missing |
 |---|---|---|
 | AI Chat | 24/25 | Attachment (not on the AI Chat page in Figma any more; check where it went) |
 | Admin | 0/5 | Integration Card, Permission Row, API Key Row, Session Row, Org Chart Node |
-| Audit | 0/4 | Change Item, Version Item, Release Note Item, Release Note Line |
 | Automation | 0/3 | Automation Rule, Workflow Node, Mapping Row |
 | Background | 0/4 | Background / Grid, Background / Dots, Background / Glow, Background / Beam |
 | Carousel | 0/8 | Carousel, Carousel Arrow, Carousel Indicator, Carousel Slide, Carousel Gallery, Carousel Thumbnail, Carousel Hero, Lightbox |
@@ -49,8 +48,6 @@ Small pages (Kanban, Surveys, Tour, Audit), and last Chart (26) and Email (16).
 | Pricing | 0/11 | Price, Plan Card, Comparison Table, Plan Option Row, Meter Banner, Paywall Card, Lock Badge, Gate Overlay, Usage Limit Banner, Trial Banner, Upsell Card |
 | Prose | 0/6 | Prose, Prose Heading, Prose Paragraph, Prose List Item, Prose Blockquote, Highlight |
 | Scheduler | 1/7 | Calendar Event, Gantt Bar, Gantt Milestone, Agenda Item, Meeting Card, Availability Row |
-| Surveys | 0/3 | Feedback Widget, NPS Survey, CSAT Rating |
-| Tour | 0/3 | Coachmark, Hotspot, Annotation Pin |
 | Video | 0/3 | Video Player, Video Thumbnail, Audio Player |
 
 ## Notes
