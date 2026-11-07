@@ -251,6 +251,7 @@ export const UserPlus = create('user-plus', "<g><circle cx=\"6\" cy=\"5.25\" r=\
 /** Figma Icon/users */
 export const Users = create('users', "<g><circle cx=\"6\" cy=\"5.25\" r=\"2.5\"/><path d=\"M1.75 13.5 C2.25 11.25 3.9 9.75 6 9.75 C8.1 9.75 9.75 11.25 10.25 13.5\"/><path d=\"M10.25 2.85 A2.5 2.5 0 0 1 10.25 7.65\"/><path d=\"M11.75 10 C12.9 10.5 13.7 11.8 14 13.5\"/></g>");
 /** Figma Icon/volume-2 (IconMCP volume) */
+export const VolumeX = create('volume-x', "<g><path d=\"M2.25 6 L4.75 6 L8 3 L8 13 L4.75 10 L2.25 10 L2.25 6 Z\"/><line x1=\"10.75\" y1=\"6\" x2=\"14.25\" y2=\"10\"/><line x1=\"14.25\" y1=\"6\" x2=\"10.75\" y2=\"10\"/></g>");
 export const Volume2 = create('volume-2', "<g><path d=\"M2.25 6 L4.75 6 L8 3 L8 13 L4.75 10 L2.25 10 L2.25 6 Z\"/><path d=\"M10.5 5.75 A3.25 3.25 0 0 1 10.5 10.25\"/><path d=\"M12.25 3.75 A6 6 0 0 1 12.25 12.25\"/></g>");
 /** Figma Icon/wrench */
 export const Wrench = create('wrench', "<g><path d=\"M8.63 9.13 A3.75 3.75 0 0 0 13.7 4.28 L11.42 6.56 L9.44 4.58 L11.72 2.3 A3.75 3.75 0 0 0 6.87 7.37 L2.83 11.41 A1.25 1.25 0 0 0 4.59 13.17 Z\"/></g>");
@@ -371,6 +372,7 @@ export const icons = {
   'user-plus': UserPlus,
   'users': Users,
   'volume-2': Volume2,
+  'volume-x': VolumeX,
   'wrench': Wrench,
   'x': X,
   'zap': Zap,
