@@ -31,7 +31,8 @@ export function niceTicks(max: number, count = 4) {
 export interface ChartLegendItemProps extends React.ComponentProps<'li'> {
   label: string;
   series?: number;
-  keyType?: 'swatch' | 'line';
+  /** swatch (bars), line (lines), dashed (the Line Chart comparison). */
+  keyType?: 'swatch' | 'line' | 'dashed';
   /** Optional value after the label (shares). */
   value?: string;
   /** Key color outside the chart/N slots (Waterfall increase / decrease / total). */
@@ -41,7 +42,11 @@ export interface ChartLegendItemProps extends React.ComponentProps<'li'> {
 function ChartLegendItem({ label, series = 0, keyType = 'swatch', value, color, className, ...props }: ChartLegendItemProps) {
   return (
     <li data-slot="chart-legend-item" className={cn('flex list-none items-center gap-1.5 text-xs leading-4', className)} {...props}>
-      <span aria-hidden="true" className={cn('shrink-0', keyType === 'line' ? 'h-0.5 w-3 rounded-full' : 'size-2 rounded-sm')} style={{ background: color ?? chartColor(series) }} />
+      {keyType === 'dashed' ? (
+        <span aria-hidden="true" className="h-0 w-3 shrink-0 border-t-2 border-dashed" style={{ borderColor: color ?? chartColor(series) }} />
+      ) : (
+        <span aria-hidden="true" className={cn('shrink-0', keyType === 'line' ? 'h-0.5 w-3 rounded-full' : 'size-2 rounded-sm')} style={{ background: color ?? chartColor(series) }} />
+      )}
       <span className="whitespace-nowrap text-muted-foreground">{label}</span>
       {value ? <span className="whitespace-nowrap text-foreground">{value}</span> : null}
     </li>
@@ -54,10 +59,10 @@ function ChartLegend({ className, ...props }: React.ComponentProps<'ul'>) {
 
 /* Tooltip */
 
-function ChartTooltipRow({ label, value, series = 0, className, ...props }: React.ComponentProps<'div'> & { label: string; value: string; series?: number }) {
+function ChartTooltipRow({ label, value, series = 0, color, className, ...props }: React.ComponentProps<'div'> & { label: string; value: string; series?: number; color?: string }) {
   return (
     <div data-slot="chart-tooltip-row" className={cn('flex items-center gap-2 text-xs leading-4', className)} {...props}>
-      <span aria-hidden="true" className="size-2 shrink-0 rounded-sm" style={{ background: chartColor(series) }} />
+      <span aria-hidden="true" className="size-2 shrink-0 rounded-sm" style={{ background: color ?? chartColor(series) }} />
       <span className="min-w-0 flex-1 text-muted-foreground">{label}</span>
       <span className="shrink-0 font-medium whitespace-nowrap text-foreground">{value}</span>
     </div>
@@ -75,7 +80,7 @@ function ChartTooltip({ title, className, children, ...props }: React.ComponentP
 
 /* Shared data shape for bar and line charts */
 
-export interface ChartSeries { key: string; label: string }
+export interface ChartSeries { key: string; label: string; /** A color outside the chart/N slots (the Line Chart comparison is muted-foreground). */ color?: string }
 export interface ChartDatum { label: string; values: Record<string, number> }
 
 interface CartesianProps extends Omit<React.ComponentProps<'figure'>, 'children'> {
@@ -147,7 +152,7 @@ function Cartesian({ label, series, data, formatValue = defaultFormat, plotHeigh
               className="pointer-events-none absolute z-10"
               style={{ top: 8, left: `calc(${((active! + 0.5) / data.length) * 100}% ${active! > data.length / 2 ? '- 184px' : '+ 8px'})` }}
             >
-              {series.map((s, si) => <ChartTooltipRow key={s.key} series={si} label={s.label} value={formatValue(tooltip.values[s.key] ?? 0)} />)}
+              {series.map((s, si) => <ChartTooltipRow key={s.key} series={si} color={s.color} label={s.label} value={formatValue(tooltip.values[s.key] ?? 0)} />)}
             </ChartTooltip>
           ) : null}
           <span aria-live="polite" className="sr-only">{tooltip ? `${tooltip.label}: ${series.map(s => `${s.label} ${formatValue(tooltip.values[s.key] ?? 0)}`).join(', ')}` : ''}</span>
@@ -207,10 +212,16 @@ export interface LineChartProps extends CartesianProps {
   /** line: up to 3 series; area: one series filled; stacked-area: series add up (parts of a total);
    *  step: values that change at points in time (prices, plan limits). */
   type?: 'line' | 'area' | 'stacked-area' | 'step';
+  /** Figma Show comparison (line and area): the previous period of series 1 as a dashed muted line.
+   *  Its values are in `data` under `key`; name it in the legend ("Previous period"). */
+  comparison?: { key: string; label: string };
 }
 
-function LineChart({ type = 'line', series, data, plotHeight = 216, ...props }: LineChartProps) {
+const comparisonColor = 'var(--muted-foreground)';
+
+function LineChart({ type = 'line', series, data, plotHeight = 216, comparison, ...props }: LineChartProps) {
   const shown = type === 'area' ? series.slice(0, 1) : series.slice(0, 3);
+  const compare = comparison && (type === 'line' || type === 'area') ? { ...comparison, color: comparisonColor } : undefined;
   const stacked = type === 'stacked-area';
   // Running totals per point for stacked-area: base[si][i] is the value under series si.
   const base = shown.map((_, si) => data.map(d => shown.slice(0, si).reduce((a, s) => a + (d.values[s.key] ?? 0), 0)));
@@ -218,7 +229,7 @@ function LineChart({ type = 'line', series, data, plotHeight = 216, ...props }: 
   return (
     <Cartesian
       data-type={type}
-      series={shown}
+      series={compare ? [...shown, compare] : shown}
       data={data}
       plotHeight={plotHeight}
       stacked={stacked}
@@ -234,6 +245,19 @@ function LineChart({ type = 'line', series, data, plotHeight = 216, ...props }: 
         return (
           <>
             <svg className="absolute inset-0 size-full overflow-visible" viewBox={`0 0 100 ${plotHeight}`} preserveAspectRatio="none">
+              {compare ? (
+                <polyline
+                  data-slot="chart-comparison"
+                  points={data.map((d, i) => `${xs[i]},${y(d.values[compare.key] ?? 0)}`).join(' ')}
+                  fill="none"
+                  stroke={comparisonColor}
+                  strokeWidth={2}
+                  strokeDasharray="4 4"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  vectorEffect="non-scaling-stroke"
+                />
+              ) : null}
               {shown.map((s, si) => {
                 const pts = linePts(si);
                 const lower = stacked ? data.map((_, i) => `${xs[i]},${y(base[si]![i]!)}`).reverse().join(' ') : `${xs[xs.length - 1]},${plotHeight - 8} ${xs[0]},${plotHeight - 8}`;
