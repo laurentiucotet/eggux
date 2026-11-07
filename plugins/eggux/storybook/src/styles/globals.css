@@ -44,6 +44,13 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --radius-button: var(--button-radius);
   --radius-input: var(--input-radius);
+  /* Progress Value=indeterminate and Top Loading Bar: a 40% segment that slides across. */
+  --animate-progress-indeterminate: progress-indeterminate 1.4s ease-in-out infinite;
+}
+
+@keyframes progress-indeterminate {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
 }
 
 @layer base {

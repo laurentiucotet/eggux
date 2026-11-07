@@ -2,7 +2,8 @@
 // dependency of Progress Card. Size (sm 4, default 8, lg 12), Tone (default, success, warning,
 // error), Show label (a row above the bar: the label, 1 line, and the value text on the right).
 // shadcn Progress on the radix-ui primitive: role="progressbar" with aria-valuenow and a name.
-// Not built here: Type=segmented, Value=indeterminate.
+// Type=segmented is in progress-segmented.tsx; Value=indeterminate is not built here (the same
+// sliding segment is in Top Loading Bar).
 import * as React from 'react';
 import { Progress as ProgressPrimitive } from 'radix-ui';
 import { cva } from 'class-variance-authority';

@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**199 of the 427 Figma components are in code** with stories and passing tests. The list with
+**206 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,7 +20,7 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (228 components)
+## What is left (221 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
 Card leftovers (Post Card, Entity Card, Person Card), then Table cells, Pagination, Tabs-like
@@ -57,16 +57,12 @@ small pages, and last Chart (26) and Email (16).
 | Notifications | 0/2 | Notification Item, Notification Center |
 | Pagination | 0/5 | Pagination Item, Pagination, Pagination Compact, Load More, Pager Link |
 | Pricing | 0/11 | Price, Plan Card, Comparison Table, Plan Option Row, Meter Banner, Paywall Card, Lock Badge, Gate Overlay, Usage Limit Banner, Trial Banner, Upsell Card |
-| Progress | 1/5 | Progress Segment, Progress Ring, Background Job, Top Loading Bar |
 | Prose | 0/6 | Prose, Prose Heading, Prose Paragraph, Prose List Item, Prose Blockquote, Highlight |
 | Quote | 0/3 | Quote, Testimonial Card, Footnote |
 | Rating | 0/3 | Rating, Review Item, Rating Summary |
-| Save Bar | 0/1 | Save Bar |
 | Scheduler | 1/7 | Calendar Event, Gantt Bar, Gantt Milestone, Agenda Item, Meeting Card, Availability Row |
-| Scroll Area | 0/1 | Scroll Area |
 | Search | 0/3 | Search Result Item, Search Suggestions, Search Suggestion Item |
 | Sharing | 0/3 | Access Row, Invite Row, Share Link Row |
-| Slider | 0/1 | Slider |
 | Stepper | 0/2 | Step, Stepper |
 | Surveys | 0/3 | Feedback Widget, NPS Survey, CSAT Rating |
 | Table | 14/24 | Table Cell User, Table Cell Progress, Table Cell File, Table Cell Badges, Table Cell Avatars, Table Cell Media, Data Grid Toolbar, Table Pagination, Column Settings, Column Settings Item |
