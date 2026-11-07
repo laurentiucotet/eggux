@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**254 of the 427 Figma components are in code** with stories and passing tests. The list with
+**258 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,10 +20,10 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (173 components)
+## What is left (169 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Small pages (Notifications, Stepper, Kanban), and last Chart (26) and Email (16).
+Small pages (Kanban, Surveys, Tour, Audit), and last Chart (26) and Email (16).
 
 | Figma page | In code | Missing |
 |---|---|---|
@@ -47,11 +47,9 @@ Small pages (Notifications, Stepper, Kanban), and last Chart (26) and Email (16)
 | Image | 2/8 | Map, Image Cropper, Avatar Upload, Image Compare Slider, Device Frame, Image Figure |
 | Kanban | 0/2 | Kanban Card, Kanban Column |
 | Mobile | 0/7 | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge, QR Code |
-| Notifications | 0/2 | Notification Item, Notification Center |
 | Pricing | 0/11 | Price, Plan Card, Comparison Table, Plan Option Row, Meter Banner, Paywall Card, Lock Badge, Gate Overlay, Usage Limit Banner, Trial Banner, Upsell Card |
 | Prose | 0/6 | Prose, Prose Heading, Prose Paragraph, Prose List Item, Prose Blockquote, Highlight |
 | Scheduler | 1/7 | Calendar Event, Gantt Bar, Gantt Milestone, Agenda Item, Meeting Card, Availability Row |
-| Stepper | 0/2 | Step, Stepper |
 | Surveys | 0/3 | Feedback Widget, NPS Survey, CSAT Rating |
 | Tour | 0/3 | Coachmark, Hotspot, Annotation Pin |
 | Video | 0/3 | Video Player, Video Thumbnail, Audio Player |
