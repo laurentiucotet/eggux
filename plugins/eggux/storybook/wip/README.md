@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**206 of the 427 Figma components are in code** with stories and passing tests. The list with
+**212 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,7 +20,7 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (221 components)
+## What is left (215 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
 Card leftovers (Post Card, Entity Card, Person Card), then Table cells, Pagination, Tabs-like
@@ -30,7 +30,6 @@ small pages, and last Chart (26) and Email (16).
 |---|---|---|
 | AI Chat | 24/25 | Attachment (not on the AI Chat page in Figma any more; check where it went) |
 | Admin | 0/5 | Integration Card, Permission Row, API Key Row, Session Row, Org Chart Node |
-| Approvals | 0/1 | Approval Step |
 | Audit | 0/4 | Change Item, Version Item, Release Note Item, Release Note Line |
 | Automation | 0/3 | Automation Rule, Workflow Node, Mapping Row |
 | Background | 0/4 | Background / Grid, Background / Dots, Background / Glow, Background / Beam |
@@ -41,7 +40,6 @@ small pages, and last Chart (26) and Email (16).
 | Code Block | 0/9 | Code Block, Code Highlight, Command Snippet, Endpoint Row, Log Row, Diff Viewer, Diff Line, JSON Viewer, Inline Code |
 | Color Picker | 0/4 | Color Picker, Swatch Picker, Swatch, Color Input |
 | Commerce | 0/8 | Product Card, Line Item, Mini Cart, Order Row, Shipment Tracker, Address Card, Payment Method Card, Payment Method Mark |
-| Cookie Consent | 0/1 | Cookie Consent |
 | Editor | 0/7 | Rich Text Editor, Comment, Comment Composer, Selection Toolbar, Comment Highlight, Comment Thread, Comments Panel |
 | Email | 0/16 | Email / Header, Email / Hero, Email / Button, Email / Content, Email / Code, Email / Details, Email / Details Row, Email / Line Items, Email / Line Item, Email / Total Row, Email / Callout, Email / Divider, Email / Stats, Email / Stat, Email / Article, Email / Footer |
 | File Upload | 0/6 | File Dropzone, File Item, File Preview, Resource Item, File Field, File Type Icon |
@@ -49,7 +47,6 @@ small pages, and last Chart (26) and Email (16).
 | Form Presets | 0/1 | Field Preset |
 | Form Layout | 0/5 | Form Section, Fieldset, Error Summary, Requirement List, Check Item |
 | Image | 1/8 | Map, Image Cropper, Avatar Upload, Image Compare Slider, Device Frame, Image Figure, Thumbnail |
-| Input OTP | 0/2 | Input OTP, OTP Slot |
 | Kanban | 0/2 | Kanban Card, Kanban Column |
 | List | 0/5 | List Item, Sortable List Item, Task Item, Job Listing, List Group Header |
 | Metrics | 0/6 | Trend Indicator, Metric Strip, Metric Strip Item, Usage Meter, Countdown, Leaderboard Row |
@@ -66,9 +63,7 @@ small pages, and last Chart (26) and Email (16).
 | Stepper | 0/2 | Step, Stepper |
 | Surveys | 0/3 | Feedback Widget, NPS Survey, CSAT Rating |
 | Table | 14/24 | Table Cell User, Table Cell Progress, Table Cell File, Table Cell Badges, Table Cell Avatars, Table Cell Media, Data Grid Toolbar, Table Pagination, Column Settings, Column Settings Item |
-| Toolbar | 0/1 | Toolbar |
 | Tour | 0/3 | Coachmark, Hotspot, Annotation Pin |
-| Tree | 0/1 | Tree Item |
 | Video | 0/3 | Video Player, Video Thumbnail, Audio Player |
 
 ## Notes
