@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**311 of the 427 Figma components are in code** with stories and passing tests. The list with
+**317 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,10 +20,10 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (116 components)
+## What is left (110 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Small pages (Kanban, Automation, Video, Background, Color Picker, Admin), and last Chart (26) and Email (16).
+Small pages (Kanban, Automation, Video, Background, Color Picker, Admin), and last Chart (8) and Email (16).
 
 | Figma page | In code | Missing |
 |---|---|---|
@@ -32,7 +32,7 @@ Small pages (Kanban, Automation, Video, Background, Color Picker, Admin), and la
 | Automation | 0/3 | Automation Rule, Workflow Node, Mapping Row |
 | Background | 0/4 | Background / Grid, Background / Dots, Background / Glow, Background / Beam |
 | Carousel | 0/8 | Carousel, Carousel Arrow, Carousel Indicator, Carousel Slide, Carousel Gallery, Carousel Thumbnail, Carousel Hero, Lightbox |
-| Chart | 13/27 | Heatmap, Treemap, Funnel Chart, Scatter Chart, Waterfall Chart, Combo Chart, Dashboard Widget, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map, Radial Chart, Box Plot (Line Chart step and stacked-area types too) |
+| Chart | 19/27 | Dashboard Widget, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map, Radial Chart, Box Plot |
 | Chat | 0/8 | Chat Message, Typing Indicator, Chat Composer, Mention Chip, Reaction Bar, Reaction, Thread Summary, Conversation Item |
 | Color Picker | 0/4 | Color Picker, Swatch Picker, Swatch, Color Input |
 | Commerce | 0/8 | Product Card, Line Item, Mini Cart, Order Row, Shipment Tracker, Address Card, Payment Method Card, Payment Method Mark |

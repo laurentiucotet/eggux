@@ -16,13 +16,13 @@ import { Skeleton } from './skeleton';
 
 export const chartColor = (i: number) => `var(--chart-${(i % 8) + 1})`;
 
-const defaultFormat = (v: number) => new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
+export const defaultFormat = (v: number) => new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
 
-function niceTicks(max: number, count = 4) {
-  if (max <= 0) return [0, 1, 2, 3, 4];
+export function niceTicks(max: number, count = 4) {
+  if (max <= 0) return Array.from({ length: count + 1 }, (_, i) => i);
   const raw = max / count;
   const pow = 10 ** Math.floor(Math.log10(raw));
-  const step = [1, 1.5, 2, 2.5, 3, 5, 10].map(m => m * pow).find(s => s >= raw) ?? raw;
+  const step = [1, 1.5, 2, 2.5, 3, 5, 7.5, 10].map(m => m * pow).find(s => s >= raw) ?? raw;
   return Array.from({ length: count + 1 }, (_, i) => i * step);
 }
 
@@ -34,12 +34,14 @@ export interface ChartLegendItemProps extends React.ComponentProps<'li'> {
   keyType?: 'swatch' | 'line';
   /** Optional value after the label (shares). */
   value?: string;
+  /** Key color outside the chart/N slots (Waterfall increase / decrease / total). */
+  color?: string;
 }
 
-function ChartLegendItem({ label, series = 0, keyType = 'swatch', value, className, ...props }: ChartLegendItemProps) {
+function ChartLegendItem({ label, series = 0, keyType = 'swatch', value, color, className, ...props }: ChartLegendItemProps) {
   return (
     <li data-slot="chart-legend-item" className={cn('flex list-none items-center gap-1.5 text-xs leading-4', className)} {...props}>
-      <span aria-hidden="true" className={cn('shrink-0', keyType === 'line' ? 'h-0.5 w-3 rounded-full' : 'size-2 rounded-sm')} style={{ background: chartColor(series) }} />
+      <span aria-hidden="true" className={cn('shrink-0', keyType === 'line' ? 'h-0.5 w-3 rounded-full' : 'size-2 rounded-sm')} style={{ background: color ?? chartColor(series) }} />
       <span className="whitespace-nowrap text-muted-foreground">{label}</span>
       {value ? <span className="whitespace-nowrap text-foreground">{value}</span> : null}
     </li>
@@ -202,28 +204,42 @@ function BarChart({ type = 'grouped', series, data, ...props }: BarChartProps) {
 /* Line Chart */
 
 export interface LineChartProps extends CartesianProps {
-  type?: 'line' | 'area';
+  /** line: up to 3 series; area: one series filled; stacked-area: series add up (parts of a total);
+   *  step: values that change at points in time (prices, plan limits). */
+  type?: 'line' | 'area' | 'stacked-area' | 'step';
 }
 
 function LineChart({ type = 'line', series, data, plotHeight = 216, ...props }: LineChartProps) {
   const shown = type === 'area' ? series.slice(0, 1) : series.slice(0, 3);
+  const stacked = type === 'stacked-area';
+  // Running totals per point for stacked-area: base[si][i] is the value under series si.
+  const base = shown.map((_, si) => data.map(d => shown.slice(0, si).reduce((a, s) => a + (d.values[s.key] ?? 0), 0)));
+  const top = (si: number, i: number) => (stacked ? base[si]![i]! : 0) + (data[i]!.values[shown[si]!.key] ?? 0);
   return (
     <Cartesian
       data-type={type}
       series={shown}
       data={data}
       plotHeight={plotHeight}
+      stacked={stacked}
       {...props}
       render={({ y, active }) => {
         const xs = data.map((_, i) => ((i + 0.5) / data.length) * 100);
+        const linePts = (si: number) => {
+          const pts = data.map((_, i) => [xs[i]!, y(top(si, i))] as const);
+          if (type !== 'step') return pts.map(p => p.join(',')).join(' ');
+          // Step: hold each value until the next point, then jump.
+          return pts.flatMap((p, i) => (i === 0 ? [p] : [[p[0], pts[i - 1]![1]] as const, p])).map(p => p.join(',')).join(' ');
+        };
         return (
           <>
             <svg className="absolute inset-0 size-full overflow-visible" viewBox={`0 0 100 ${plotHeight}`} preserveAspectRatio="none">
               {shown.map((s, si) => {
-                const pts = data.map((d, i) => `${xs[i]},${y(d.values[s.key] ?? 0)}`).join(' ');
+                const pts = linePts(si);
+                const lower = stacked ? data.map((_, i) => `${xs[i]},${y(base[si]![i]!)}`).reverse().join(' ') : `${xs[xs.length - 1]},${plotHeight - 8} ${xs[0]},${plotHeight - 8}`;
                 return (
                   <g key={s.key}>
-                    {type === 'area' ? <polygon points={`${xs[0]},${plotHeight - 8} ${pts} ${xs[xs.length - 1]},${plotHeight - 8}`} fill={chartColor(si)} fillOpacity={0.1} /> : null}
+                    {type === 'area' || stacked ? <polygon data-slot="chart-area" points={`${pts} ${lower}`} fill={chartColor(si)} fillOpacity={stacked ? 0.2 : 0.1} /> : null}
                     <polyline data-slot="chart-line" points={pts} fill="none" stroke={chartColor(si)} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
                   </g>
                 );
@@ -237,7 +253,7 @@ function LineChart({ type = 'line', series, data, plotHeight = 216, ...props }: 
                   key={s.key}
                   data-slot="chart-dot"
                   className="absolute size-2 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-background"
-                  style={{ left: `${xs[i]}%`, top: y(data[i]?.values[s.key] ?? 0), background: chartColor(si) }}
+                  style={{ left: `${xs[i]}%`, top: y(top(si, i)), background: chartColor(si) }}
                 />
               );
             })}
