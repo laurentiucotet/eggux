@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**373 of the 427 Figma components are in code** with stories and passing tests. The list with
+**391 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,10 +20,10 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (54 components)
+## What is left (36 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Small pages (Kanban, Form Presets), and last Chart (3) and Email (16).
+Editor (7), then Chart (3) and Email (16). Mobile, Form Presets and Kanban are on hold (the user's choice, 2026-11-07).
 
 | Figma page | In code | Missing |
 |---|---|---|
@@ -39,12 +39,12 @@ Small pages (Kanban, Form Presets), and last Chart (3) and Email (16).
 | Editor | 0/7 | Rich Text Editor, Comment, Comment Composer, Selection Toolbar, Comment Highlight, Comment Thread, Comments Panel |
 | Email | 0/16 | Email / Header, Email / Hero, Email / Button, Email / Content, Email / Code, Email / Details, Email / Details Row, Email / Line Items, Email / Line Item, Email / Total Row, Email / Callout, Email / Divider, Email / Stats, Email / Stat, Email / Article, Email / Footer |
 | Filters | 8/8 | done (`filters.tsx`) |
-| Form Presets | 0/1 | Field Preset |
-| Image | 2/8 | Map, Image Cropper, Avatar Upload, Image Compare Slider, Device Frame, Image Figure |
-| Kanban | 0/2 | Kanban Card, Kanban Column |
-| Mobile | 0/7 | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge, QR Code |
-| Prose | 0/6 | Prose, Prose Heading, Prose Paragraph, Prose List Item, Prose Blockquote, Highlight |
-| Scheduler | 1/7 | Calendar Event, Gantt Bar, Gantt Milestone, Agenda Item, Meeting Card, Availability Row |
+| Form Presets | 0/1 | Field Preset (on hold) |
+| Image | 8/8 | done (`imagery.tsx`; Placeholder and Thumbnail have their own files) |
+| Kanban | 0/2 | Kanban Card, Kanban Column (on hold) |
+| Mobile | 0/7 | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge, QR Code (on hold) |
+| Prose | 6/6 | done (`prose.tsx`) |
+| Scheduler | 7/7 | done (`scheduler.tsx`; Time Slot in `time-slot.tsx`) |
 | Video | 3/3 | done (`media.tsx`) |
 
 Blocks built outside the 427 count (`site-navigation.tsx`): Block / Navbar (default, on-image, mobile, Centered, Search, Flyout, Mega Menu, dropdown menus), Block / Footer, Footer Simple, Footer Newsletter, Footer Corporate, Footer Centered; `site-banners.tsx`: Announcement Banner, Banner with Action, Banner Countdown, Banner Floating, with Countdown (Style=default; boxed and inline not built). The Navigation blocks page is complete.
