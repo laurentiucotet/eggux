@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**215 of the 427 Figma components are in code** with stories and passing tests. The list with
+**231 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,11 +20,10 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (212 components)
+## What is left (196 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Table cells, Pagination, Tabs-like
-small pages, and last Chart (26) and Email (16).
+Tabs-like small pages (List, Metrics, Search, Sharing, Quote, Rating), and last Chart (26) and Email (16).
 
 | Figma page | In code | Missing |
 |---|---|---|
@@ -45,13 +44,12 @@ small pages, and last Chart (26) and Email (16).
 | Filters | 0/8 | Filter Bar, Filter Chip, Faceted Filter, Facet Option, Filter Section, Filter Group, Filter Condition, Saved View Item |
 | Form Presets | 0/1 | Field Preset |
 | Form Layout | 0/5 | Form Section, Fieldset, Error Summary, Requirement List, Check Item |
-| Image | 1/8 | Map, Image Cropper, Avatar Upload, Image Compare Slider, Device Frame, Image Figure, Thumbnail |
+| Image | 2/8 | Map, Image Cropper, Avatar Upload, Image Compare Slider, Device Frame, Image Figure |
 | Kanban | 0/2 | Kanban Card, Kanban Column |
 | List | 0/5 | List Item, Sortable List Item, Task Item, Job Listing, List Group Header |
 | Metrics | 0/6 | Trend Indicator, Metric Strip, Metric Strip Item, Usage Meter, Countdown, Leaderboard Row |
 | Mobile | 0/7 | Mobile Header, Bottom Nav Item, Bottom Nav, FAB, Action Sheet, Store Badge, QR Code |
 | Notifications | 0/2 | Notification Item, Notification Center |
-| Pagination | 0/5 | Pagination Item, Pagination, Pagination Compact, Load More, Pager Link |
 | Pricing | 0/11 | Price, Plan Card, Comparison Table, Plan Option Row, Meter Banner, Paywall Card, Lock Badge, Gate Overlay, Usage Limit Banner, Trial Banner, Upsell Card |
 | Prose | 0/6 | Prose, Prose Heading, Prose Paragraph, Prose List Item, Prose Blockquote, Highlight |
 | Quote | 0/3 | Quote, Testimonial Card, Footnote |
@@ -61,7 +59,6 @@ small pages, and last Chart (26) and Email (16).
 | Sharing | 0/3 | Access Row, Invite Row, Share Link Row |
 | Stepper | 0/2 | Step, Stepper |
 | Surveys | 0/3 | Feedback Widget, NPS Survey, CSAT Rating |
-| Table | 14/24 | Table Cell User, Table Cell Progress, Table Cell File, Table Cell Badges, Table Cell Avatars, Table Cell Media, Data Grid Toolbar, Table Pagination, Column Settings, Column Settings Item |
 | Tour | 0/3 | Coachmark, Hotspot, Annotation Pin |
 | Video | 0/3 | Video Player, Video Thumbnail, Audio Player |
 
