@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**322 of the 427 Figma components are in code** with stories and passing tests. The list with
+**330 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,16 +20,16 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (105 components)
+## What is left (97 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Small pages (Kanban, Automation, Video, Background, Color Picker, Admin), and last Chart (3) and Email (16).
+Small pages (Kanban, Video, Background, Color Picker), and last Chart (3) and Email (16).
 
 | Figma page | In code | Missing |
 |---|---|---|
 | AI Chat | 24/25 | Attachment (not on the AI Chat page in Figma any more; check where it went) |
-| Admin | 0/5 | Integration Card, Permission Row, API Key Row, Session Row, Org Chart Node |
-| Automation | 0/3 | Automation Rule, Workflow Node, Mapping Row |
+| Admin | 5/5 | done (`admin.tsx`) |
+| Automation | 3/3 | done (`automation.tsx`) |
 | Background | 0/4 | Background / Grid, Background / Dots, Background / Glow, Background / Beam |
 | Carousel | 0/8 | Carousel, Carousel Arrow, Carousel Indicator, Carousel Slide, Carousel Gallery, Carousel Thumbnail, Carousel Hero, Lightbox |
 | Chart | 24/27 | Sankey Chart, Choropleth Map, Line Chart comparison line |
