@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**188 of the 427 Figma components are in code** with stories and passing tests. The list with
+**195 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,10 +20,10 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (239 components)
+## What is left (232 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Badge / Description List / Feature Item / Card leftovers, then Table cells, Pagination, Tabs-like
+Card leftovers (Post Card, Entity Card, Person Card), then Table cells, Pagination, Tabs-like
 small pages, and last Chart (26) and Email (16).
 
 | Figma page | In code | Missing |
@@ -34,7 +34,6 @@ small pages, and last Chart (26) and Email (16).
 | Audit | 0/4 | Change Item, Version Item, Release Note Item, Release Note Line |
 | Automation | 0/3 | Automation Rule, Workflow Node, Mapping Row |
 | Background | 0/4 | Background / Grid, Background / Dots, Background / Glow, Background / Beam |
-| Badge | 3/6 | Badge List, Announcement Pill, Trust Badge |
 | Card | 11/14 | Post Card, Entity Card, Person Card |
 | Carousel | 0/8 | Carousel, Carousel Arrow, Carousel Indicator, Carousel Slide, Carousel Gallery, Carousel Thumbnail, Carousel Hero, Lightbox |
 | Chart | 1/27 | Bar Chart, Bar Chart Horizontal, Line Chart, Donut Chart, Heatmap, Gauge, Gauge Target, Treemap, Funnel Chart, Scatter Chart, Chart Legend, Chart Legend Item, Chart Tooltip, Chart Tooltip Row, Chart Card, Waterfall Chart, Combo Chart, Dashboard Widget, Distribution Bar, Distribution Segment, Bullet Chart, Radar Chart, Sankey Chart, Choropleth Map, Radial Chart, Box Plot |
@@ -43,10 +42,8 @@ small pages, and last Chart (26) and Email (16).
 | Color Picker | 0/4 | Color Picker, Swatch Picker, Swatch, Color Input |
 | Commerce | 0/8 | Product Card, Line Item, Mini Cart, Order Row, Shipment Tracker, Address Card, Payment Method Card, Payment Method Mark |
 | Cookie Consent | 0/1 | Cookie Consent |
-| Description List | 1/4 | Description List Item, Figure, Summary Row |
 | Editor | 0/7 | Rich Text Editor, Comment, Comment Composer, Selection Toolbar, Comment Highlight, Comment Thread, Comments Panel |
 | Email | 0/16 | Email / Header, Email / Hero, Email / Button, Email / Content, Email / Code, Email / Details, Email / Details Row, Email / Line Items, Email / Line Item, Email / Total Row, Email / Callout, Email / Divider, Email / Stats, Email / Stat, Email / Article, Email / Footer |
-| Feature Item | 1/2 | Feature Item |
 | File Upload | 0/6 | File Dropzone, File Item, File Preview, Resource Item, File Field, File Type Icon |
 | Filters | 0/8 | Filter Bar, Filter Chip, Faceted Filter, Facet Option, Filter Section, Filter Group, Filter Condition, Saved View Item |
 | Form Presets | 0/1 | Field Preset |
