@@ -4,7 +4,7 @@ import { Bold, Image, Italic, LayoutGrid, Link, List, Maximize, Minus, Plus, Tex
 import { ButtonIcon } from './button-icon';
 import { DropdownMenuItem } from './dropdown-menu';
 import { Toggle } from './toggle';
-import { Toolbar, ToolbarSeparator } from './toolbar';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from './toolbar';
 
 const formatting = (
   <>
@@ -80,6 +80,50 @@ export const Floating: Story = {
     await userEvent.tab();
     await userEvent.keyboard('{ArrowDown}');
     await expect(canvas.getByRole('button', { name: 'Zoom out' })).toHaveFocus();
+  },
+};
+
+function Collapsing({ width }: { width: number }) {
+  return (
+    <div style={{ width }} className="rounded-lg border border-border">
+      <Toolbar aria-label={`Editor ${width}`}>
+        <ToolbarGroup menu={<><DropdownMenuItem>Bold</DropdownMenuItem><DropdownMenuItem>Italic</DropdownMenuItem><DropdownMenuItem>Underline</DropdownMenuItem></>}>
+          <Toggle size="sm" label="Bold" icon={<Bold />} />
+          <Toggle size="sm" label="Italic" icon={<Italic />} />
+          <Toggle size="sm" label="Underline" icon={<Underline />} />
+        </ToolbarGroup>
+        <ToolbarGroup menu={<><DropdownMenuItem>Bulleted list</DropdownMenuItem><DropdownMenuItem>Quote</DropdownMenuItem></>}>
+          <ButtonIcon variant="ghost" size="sm" icon={<List />} label="Bulleted list" />
+          <ButtonIcon variant="ghost" size="sm" icon={<TextQuote />} label="Quote" />
+        </ToolbarGroup>
+        <ToolbarGroup menu={<><DropdownMenuItem>Link</DropdownMenuItem><DropdownMenuItem>Image</DropdownMenuItem></>}>
+          <ButtonIcon variant="ghost" size="sm" icon={<Link />} label="Link" />
+          <ButtonIcon variant="ghost" size="sm" icon={<Image />} label="Image" />
+        </ToolbarGroup>
+      </Toolbar>
+    </div>
+  );
+}
+
+// Groups move into More from the end when the row is narrow; hidden controls leave the tab order.
+export const Overflow: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <Collapsing width={400} />
+      <Collapsing width={180} />
+    </div>
+  ),
+  play: async ({ canvas }) => {
+    const wide = canvas.getByRole('toolbar', { name: 'Editor 400' });
+    await expect(wide.querySelector('[aria-label="More"]')).toBeNull();
+    const narrow = canvas.getByRole('toolbar', { name: 'Editor 180' });
+    const more = narrow.querySelector<HTMLButtonElement>('button[aria-label="More"]')!;
+    await expect(more).not.toBeNull();
+    await expect(narrow.querySelector('[aria-label="Image"]')!.getClientRects()).toHaveLength(0);
+    await expect(narrow.querySelector('[aria-label="Bold"]')!.getClientRects().length).toBeGreaterThan(0);
+    await userEvent.click(more);
+    await expect(await screen.findByRole('menuitem', { name: 'Image' })).toBeInTheDocument();
+    await userEvent.keyboard('{Escape}');
   },
 };
 

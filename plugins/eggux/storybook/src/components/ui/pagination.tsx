@@ -10,7 +10,8 @@
 // (radius xl, 20 / 16 padding) with "Previous" or "Next" and a chevron, over the linked title.
 // A11y: Pagination is a nav "Pagination"; the current page has aria-current="page"; page buttons
 // are named "Page 3"; the ellipsis is hidden from screen readers; Load More announces the new count.
-// Style=dots (Carousel Indicator) is not built here.
+// Style=dots: Carousel Indicator dots (8, the current one 20 wide, 6 apart, min 76) for onboarding
+// and carousels; each dot is a button ("Page 3") with a 24 high hit area.
 import * as React from 'react';
 import { ChevronLeft, ChevronRight, Ellipsis } from '@/components/icons';
 import { cn } from '@/lib/utils';
@@ -77,7 +78,7 @@ export interface PaginationProps extends Omit<React.ComponentProps<'nav'>, 'onCh
   pageCount: number;
   onPageChange?: (page: number) => void;
   /** Figma Style: numbered (tables, long lists) or simple (articles, search, mobile). */
-  paginationStyle?: 'numbered' | 'simple';
+  paginationStyle?: 'numbered' | 'simple' | 'dots';
   siblings?: number;
   labels?: Partial<{ nav: string; previous: string; next: string; page: (n: number) => string; of: (p: number, c: number) => string }>;
 }
@@ -89,7 +90,24 @@ function Pagination({ page, pageCount, onPageChange, paginationStyle = 'numbered
   const next = <PaginationItem itemType="next" disabled={page >= pageCount} onClick={() => go(page + 1)}>{L.next}</PaginationItem>;
   return (
     <nav data-slot="pagination" data-style={paginationStyle} aria-label={L.nav} className={cn('flex w-fit shrink-0 items-center', className)} {...props}>
-      {paginationStyle === 'simple' ? (
+      {paginationStyle === 'dots' ? (
+        <ul className="m-0 -mx-[3px] flex min-w-[76px] list-none items-center p-0">
+          {Array.from({ length: pageCount }, (_, i) => i + 1).map(p => (
+            <li key={p} className="flex">
+              <button
+                type="button"
+                data-slot="pagination-dot"
+                aria-label={L.page(p)}
+                aria-current={p === page ? 'page' : undefined}
+                onClick={() => go(p)}
+                className="group flex h-6 cursor-pointer items-center justify-center rounded-full px-[3px] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+              >
+                <span aria-hidden="true" className={cn('block h-2 rounded-full transition-[width] duration-[var(--duration-fast)]', p === page ? 'w-5 bg-primary' : 'w-2 bg-input group-hover:bg-muted-foreground')} />
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : paginationStyle === 'simple' ? (
         <div className="flex min-w-[278px] items-center gap-2">
           {prev}
           <span className="text-sm leading-5 whitespace-nowrap text-muted-foreground">{L.of(page, pageCount)}</span>

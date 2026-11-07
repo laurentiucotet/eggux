@@ -5,7 +5,7 @@ import { Download, FileText, LayoutGrid } from '@/components/icons';
 import { Avatar } from './avatar';
 import { Button } from './button';
 import { DateTile } from './date-tile';
-import { SearchAnswer, SearchResultItem, SearchSuggestions, type SuggestionItemData, type SuggestionSection } from './search';
+import { SearchAnswer, SearchMediaThumbnail, SearchResultItem, SearchSuggestions, type SuggestionItemData, type SuggestionSection } from './search';
 import { Thumbnail } from './thumbnail';
 
 const allSuggestions = ['invoice templates', 'invoices from last month', 'inventory report', 'invite teammates'];
@@ -129,6 +129,7 @@ export const Results: Story = {
         <SearchResultItem type="record" href="#inv" leading={docLeading} title="INV-1041 · Northwind Traders" badge={{ label: 'Overdue', variant: 'soft-warning' }} details="Invoice · €1,240.00 · Due 30 Oct 2026 · Updated 12 Oct" />
         <SearchResultItem type="person" href="#maria" leading={<Avatar size="lg" initials="MI" />} title="Maria Ilie" details="Head of Finance Operations · maria@acme.com" actions={<Button variant="outline" size="sm">Message</Button>} />
         <SearchResultItem type="file" href="#file" leading={docLeading} title="Q4 forecast.pdf" details="PDF · 2.4 MB · Updated 12 Oct · Maria Ilie" actions={<Button variant="ghost" size="sm" aria-label="Download Q4 forecast.pdf"><Download aria-hidden="true" /></Button>} />
+        <SearchResultItem type="media" href="#video" leading={<SearchMediaThumbnail duration="12:40" />} title="Send your first invoice in three minutes" snippet={<>A short walkthrough: add a client, add line items, then send the <mark>invoice</mark> with a payment link.</>} details="Video · Acme Academy · Updated 12 Oct 2026" />
         <SearchResultItem type="product" href="#tote" leading={<Thumbnail size="xl" />} title="Linen tote bag" snippet="Washed linen, leather handles, inside pocket." details="€39.00" />
         <SearchResultItem type="event" href="#ev" leading={<DateTile month="Nov" day="14" dateTime="2026-11-14" label="14 November 2026" />} title="Year-end close workshop" badge={{ label: 'Online', variant: 'outline' }} details="Thu 14 Nov, 15:00-16:00 · Zoom" />
       </div>
@@ -142,6 +143,10 @@ export const Results: Story = {
     const record = canvasElement.querySelector('[data-type="record"]')!;
     await expect(Math.round(box(record).height)).toBe(72);
     await expect(canvas.getByRole('button', { name: 'Message' })).toBeInTheDocument();
+    // Media: 160 × 90 poster with play and duration; Figma row 116.
+    const media = canvasElement.querySelector('[data-type="media"]')!;
+    await expect(Math.round(box(media).height)).toBe(116);
+    await expect(Math.round(box(media.querySelector('[data-slot="search-media-thumbnail"]')!).width)).toBe(160);
   },
 };
 

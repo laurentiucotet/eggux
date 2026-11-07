@@ -11,10 +11,11 @@
 // highlighted recent search. The remove x of a recent is pointer-only (no nested controls).
 // Search Result Item: one result on a search page (640): page (path › section, title link, a
 // two-line snippet with the matches bold, type badge and date), record (40 icon tile, record,
-// status badge, details), person, file, media, product, event share one layout with a leading slot;
+// status badge, details), person, file, media (SearchMediaThumbnail: 160 × 90 poster, play, duration),
+// product, event share one layout with a leading slot;
 // answer is a muted card with an AI Notice, the question, the answer (4 lines), sources and feedback.
 import * as React from 'react';
-import { ChevronRight, History, Search, ThumbsDown, ThumbsUp } from '@/components/icons';
+import { ChevronRight, History, Play, Search, ThumbsDown, ThumbsUp } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { AiNotice } from './ai-summary';
 import { Badge, type BadgeProps } from './badge';
@@ -189,6 +190,24 @@ function SearchResultItem({ type = 'page', title, href, path, leading, badge, sn
   );
 }
 
+export interface SearchMediaThumbnailProps extends React.ComponentProps<'span'> {
+  /** Poster frame from the video. */
+  src?: string;
+  /** "12:40". */
+  duration?: string;
+}
+
+/** Leading slot for Type=media: a 160 × 90 poster with a play button and the duration (decorative; the title is the link). */
+function SearchMediaThumbnail({ src, duration, className, ...props }: SearchMediaThumbnailProps) {
+  return (
+    <span aria-hidden="true" data-slot="search-media-thumbnail" className={cn('relative flex h-[90px] w-40 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-muted', className)} {...props}>
+      {src ? <img src={src} alt="" className="absolute inset-0 size-full object-cover" /> : null}
+      <span className="relative flex size-[52px] items-center justify-center rounded-full bg-background text-foreground shadow-md [&_svg]:size-5"><Play /></span>
+      {duration ? <span className="absolute right-3 bottom-3 rounded-md bg-secondary px-2 py-0.5 text-xs leading-4 font-medium text-secondary-foreground">{duration}</span> : null}
+    </span>
+  );
+}
+
 export interface SearchAnswerProps extends React.ComponentProps<'section'> {
   question: string;
   answer: string;
@@ -217,4 +236,4 @@ function SearchAnswer({ question, answer, sources, feedback = null, onFeedback, 
   );
 }
 
-export { SearchAnswer, SearchResultItem, SearchSuggestionItem, SearchSuggestions };
+export { SearchAnswer, SearchMediaThumbnail, SearchResultItem, SearchSuggestionItem, SearchSuggestions };

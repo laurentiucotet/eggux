@@ -40,6 +40,11 @@ export const Default: Story = {
   },
 };
 
+function DotsDemo() {
+  const [p, setP] = React.useState(1);
+  return <Pagination paginationStyle="dots" page={p} pageCount={5} onPageChange={setP} labels={{ nav: 'Onboarding steps' }} />;
+}
+
 // Figma Style=simple (278) and Pagination Compact (32 buttons around "Page 2 of 12").
 export const SimpleAndCompact: Story = {
   render: () => {
@@ -49,10 +54,18 @@ export const SimpleAndCompact: Story = {
       <div className="flex flex-col items-start gap-6">
         <Pagination paginationStyle="simple" page={a} pageCount={10} onPageChange={setA} labels={{ nav: 'Results pages' }} />
         <PaginationCompact page={b} pageCount={12} onPageChange={setB} labels={{ nav: 'Invoices pages' }} />
+        <DotsDemo />
       </div>
     );
   },
-  play: async ({ canvas }) => {
+  play: async ({ canvas, canvasElement }) => {
+    // Style=dots: 76 wide, current 20 wide, each dot a named button.
+    const dots = canvas.getByRole('navigation', { name: 'Onboarding steps' });
+    await expect(Math.round(box(dots.querySelector('ul')!).width - 6)).toBe(76);
+    await userEvent.click(canvas.getByRole('button', { name: 'Page 3' }));
+    const current = canvasElement.querySelector('[data-slot="pagination-dot"][aria-current="page"]')!;
+    await expect(current).toHaveAccessibleName('Page 3');
+    await expect(Math.round(box(current.firstElementChild!).width)).toBe(20);
     const simple = canvas.getByRole('navigation', { name: 'Results pages' });
     await expect(Math.round(box(simple).width)).toBeGreaterThanOrEqual(278);
     await expect(simple).toHaveTextContent('Page 2 of 10');
