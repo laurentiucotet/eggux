@@ -2,7 +2,7 @@
 
 Status on 2026-11-07, branch `claude/zealous-planck-j9rsnj`.
 
-**401 of the 427 Figma components are in code** with stories and passing tests. The list with
+**417 of the 427 Figma components are in code** with stories and passing tests. The list with
 what each test checks is in `../COMPONENTS.md`. The differences found between Figma, the
 references and code are in its "Design findings" section; the ones that need a decision in
 Figma are marked there.
@@ -20,10 +20,10 @@ Figma file: `BufvaVkSh9vMWPye117Ucd` (EGG UI). Page ids are in the table below.
 ## Unfinished files in this folder
 None. The Select and Navigation files that were here are finished and in `src/` (2026-11-07).
 
-## What is left (26 components)
+## What is left (10 components)
 Page ids: run `get_metadata` on the file without a node id, or see the inventory in the session
 that made this file. Next in line:
-Email (16). Mobile, Form Presets and Kanban are on hold (the user's choice, 2026-11-07).
+Only the pages on hold and AI Chat Attachment. Mobile, Form Presets and Kanban are on hold (the user's choice, 2026-11-07).
 
 | Figma page | In code | Missing |
 |---|---|---|
@@ -37,7 +37,7 @@ Email (16). Mobile, Form Presets and Kanban are on hold (the user's choice, 2026
 | Color Picker | 4/4 | done (`color-picker.tsx`) |
 | Commerce | 8/8 | done (`commerce.tsx`) |
 | Editor | 7/7 | done (`editor.tsx`) |
-| Email | 0/16 | Email / Header, Email / Hero, Email / Button, Email / Content, Email / Code, Email / Details, Email / Details Row, Email / Line Items, Email / Line Item, Email / Total Row, Email / Callout, Email / Divider, Email / Stats, Email / Stat, Email / Article, Email / Footer |
+| Email | 16/16 | done (`email.tsx`) |
 | Filters | 8/8 | done (`filters.tsx`) |
 | Form Presets | 0/1 | Field Preset (on hold) |
 | Image | 8/8 | done (`imagery.tsx`; Placeholder and Thumbnail have their own files) |
