@@ -16,7 +16,6 @@ import {
 
 const meta = {
   title: 'Components/Drawer/Drawer',
-  component: Drawer,
   parameters: {
     layout: 'centered',
     docs: {
@@ -26,7 +25,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Drawer>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -68,7 +67,66 @@ const px = (n: number) => Math.round(n);
 
 // Figma Drawer: bottom edge, full width, radius xl on top, 16 sides and top, 24 bottom, 16 gap,
 // handle 96 × 8, buttons full width stacked 8 apart with the primary first.
-export const Default: Story = {
+type Playground = {
+  open: boolean;
+  showHandle: boolean;
+  title: string;
+  showDescription: boolean;
+  options: number;
+  primary: string;
+  showSecondary: boolean;
+};
+
+const statuses = ['Paid', 'Overdue', 'Draft', 'Sent', 'Partly paid', 'Refunded', 'Disputed', 'Cancelled', 'Scheduled', 'Void', 'Written off', 'On hold'];
+
+/** Playground: every Drawer option in Controls. More options than fit make the body scroll. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    open: { name: 'Open', control: 'boolean', description: 'Open on load', table: { category: 'Drawer' } },
+    showHandle: { name: 'Show handle', control: 'boolean', description: 'The 96 × 8 handle on top', table: { category: 'Drawer' } },
+    title: { name: 'Title', control: 'text', table: { category: 'Drawer Header' } },
+    showDescription: { name: 'Show description', control: 'boolean', table: { category: 'Drawer Header' } },
+    options: { name: 'Number of options', control: { type: 'range', min: 1, max: 12, step: 1 }, table: { category: 'Drawer Body' } },
+    primary: { name: 'Primary label', control: 'text', description: 'Say the result ("Show 24 results")', table: { category: 'Drawer Footer' } },
+    showSecondary: { name: 'Show secondary', control: 'boolean', description: 'A second full-width button under the primary', table: { category: 'Drawer Footer' } },
+  },
+  args: { open: false, showHandle: true, title: 'Filters', showDescription: true, options: 3, primary: 'Show 24 results', showSecondary: true },
+  render: a => (
+    <Drawer key={String(a.open)} defaultOpen={a.open}>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent showHandle={a.showHandle}>
+        <DrawerHeader>
+          <DrawerTitle>{a.title}</DrawerTitle>
+          {a.showDescription ? <DrawerDescription>Narrow the list of orders.</DrawerDescription> : null}
+        </DrawerHeader>
+        <DrawerBody>
+          <fieldset className="m-0 flex min-w-0 flex-col gap-3 border-0 p-0">
+            <legend className="mb-3 text-sm font-medium">Status</legend>
+            {statuses.slice(0, a.options).map(o => (
+              <Checkbox key={o} label={o} />
+            ))}
+          </fieldset>
+        </DrawerBody>
+        <DrawerFooter>
+          <DrawerClose asChild>
+            <Button onClick={onShow}>{a.primary}</Button>
+          </DrawerClose>
+          {a.showSecondary ? (
+            <DrawerClose asChild>
+              <Button variant="outline">Clear filters</Button>
+            </DrawerClose>
+          ) : null}
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <Filters />,
   play: async ({ canvas }) => {

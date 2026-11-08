@@ -18,7 +18,6 @@ import {
 
 const meta = {
   title: 'Components/Dialog/Alert Dialog',
-  component: AlertDialog,
   parameters: {
     layout: 'centered',
     docs: {
@@ -28,7 +27,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof AlertDialog>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -73,7 +72,68 @@ const Example = ({ type }: { type: AlertDialogType }) => {
   );
 };
 
-export const Default: Story = {
+type Playground = {
+  open: boolean;
+  type: AlertDialogType;
+  title: string;
+  showDescription: boolean;
+  description: string;
+  confirmField: boolean;
+  action: string;
+};
+
+/** Playground: every Alert Dialog option in Controls. Type sets the icon, the action color and Cancel. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    open: { name: 'Open', control: 'boolean', description: 'Open on load', table: { category: 'Alert Dialog' } },
+    type: { name: 'Type', control: 'inline-radio', options: ['confirm', 'destructive', 'acknowledge'], description: 'confirm: Cancel + action. destructive: Cancel + destructive action. acknowledge: one button.', table: { category: 'Alert Dialog' } },
+    title: { name: 'Title', control: 'text', description: 'A question for confirm and destructive', table: { category: 'Alert Dialog' } },
+    showDescription: { name: 'Show description', control: 'boolean', table: { category: 'Alert Dialog' } },
+    description: { name: 'Description', control: 'text', if: { arg: 'showDescription' }, table: { category: 'Alert Dialog' } },
+    confirmField: { name: 'Type to confirm', control: 'boolean', description: 'AlertDialogBody with a field the user fills before the action works', table: { category: 'Alert Dialog' } },
+    action: { name: 'Action label', control: 'text', description: 'The verb of the action ("Delete project")', table: { category: 'Alert Dialog' } },
+  },
+  args: {
+    open: false,
+    type: 'destructive',
+    title: 'Delete project?',
+    showDescription: true,
+    description: 'The project "Website redesign" and its 24 tasks will be deleted for everyone. This cannot be undone.',
+    confirmField: false,
+    action: 'Delete project',
+  },
+  render: a => <PlaygroundAlert {...a} />,
+};
+
+function PlaygroundAlert(a: Playground) {
+  const [value, setValue] = React.useState('');
+  const blocked = a.confirmField && value !== 'Website redesign';
+  return (
+    <AlertDialog key={`${a.open}-${a.type}`} defaultOpen={a.open}>
+      <AlertDialogTrigger asChild>
+        <Button variant={a.type === 'destructive' ? 'destructive' : 'outline'}>Open alert dialog</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent type={a.type}>
+        <AlertDialogHeader title={a.title} description={a.showDescription ? a.description : undefined} />
+        {a.confirmField ? (
+          <AlertDialogBody>
+            <Field label="Type Website redesign to confirm">
+              <Input value={value} onChange={e => setValue(e.target.value)} autoComplete="off" />
+            </Field>
+          </AlertDialogBody>
+        ) : null}
+        <AlertDialogFooter>
+          {a.type === 'acknowledge' ? null : <AlertDialogCancel />}
+          <AlertDialogAction disabled={blocked} onClick={onAction}>{a.action}</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <Example type="confirm" />,
   play: async ({ canvas }) => {
@@ -217,8 +277,8 @@ export const WithContent: Story = {
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
 export const TypesDark: Story = { ...Types, tags: ['!dev'], globals: { theme: 'Dark' } };
 
 /** Figma stress test: a long question and long action labels wrap inside the dialog. */

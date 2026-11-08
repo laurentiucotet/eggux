@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, screen, userEvent, waitFor } from 'storybook/test';
+import { UserPlus } from '@/components/icons';
 import { Button } from './button';
 import { Field } from './field';
 import { Input } from './input';
@@ -11,13 +12,13 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+  DialogHeaderIcon,
   DialogTrigger,
   type DialogSize,
 } from './dialog';
 
 const meta = {
   title: 'Components/Dialog/Dialog',
-  component: Dialog,
   parameters: {
     layout: 'centered',
     docs: {
@@ -27,7 +28,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Dialog>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -60,7 +61,94 @@ const InviteDialog = ({ size, trigger = 'Invite member' }: { size?: DialogSize; 
 
 const px = (v: string) => parseFloat(v);
 
-export const Default: Story = {
+type Playground = {
+  open: boolean;
+  size: DialogSize;
+  title: string;
+  showDescription: boolean;
+  description: string;
+  showMedia: boolean;
+  showClose: boolean;
+  body: 'fields' | 'long text' | 'none';
+  showCancel: boolean;
+  action: string;
+};
+
+/** Playground: every Dialog option in Controls. Open the dialog with the button, or switch Open on. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    open: { name: 'Open', control: 'boolean', description: 'Open on load', table: { category: 'Dialog' } },
+    size: { name: 'Size', control: 'inline-radio', options: ['sm', 'default', 'lg', 'xl', 'fullscreen'], description: 'sm 384, default 512, lg 672, xl 896', table: { category: 'Dialog' } },
+    body: { name: 'Content', control: 'inline-radio', options: ['fields', 'long text', 'none'], description: 'DialogBody: fields, long text that scrolls, or no body', table: { category: 'Dialog' } },
+    title: { name: 'Title', control: 'text', table: { category: 'Dialog Header' } },
+    showDescription: { name: 'Show description', control: 'boolean', table: { category: 'Dialog Header' } },
+    description: { name: 'Description', control: 'text', if: { arg: 'showDescription' }, table: { category: 'Dialog Header' } },
+    showMedia: { name: 'Show media', control: 'boolean', description: 'Dialog Header `media`: a Dialog Header Icon', table: { category: 'Dialog Header' } },
+    showClose: { name: 'Show close', control: 'boolean', description: 'Dialog Header `showClose`: the X', table: { category: 'Dialog Header' } },
+    showCancel: { name: 'Show cancel', control: 'boolean', table: { category: 'Dialog Footer' } },
+    action: { name: 'Action label', control: 'text', table: { category: 'Dialog Footer' } },
+  },
+  args: {
+    open: false,
+    size: 'default',
+    title: 'Invite member',
+    showDescription: true,
+    description: 'They will get an email with a link to join the workspace.',
+    showMedia: false,
+    showClose: true,
+    body: 'fields',
+    showCancel: true,
+    action: 'Send invite',
+  },
+  render: a => (
+    // key: remount when Open changes, so defaultOpen applies again.
+    <Dialog key={String(a.open)} defaultOpen={a.open}>
+      <DialogTrigger asChild>
+        <Button variant="outline">Open dialog</Button>
+      </DialogTrigger>
+      <DialogContent size={a.size}>
+        <DialogHeader
+          title={a.title}
+          description={a.showDescription ? a.description : undefined}
+          media={a.showMedia ? <DialogHeaderIcon><UserPlus /></DialogHeaderIcon> : undefined}
+          showClose={a.showClose}
+        />
+        {a.body === 'fields' ? (
+          <DialogBody>
+            <Field label="Email">
+              <Input type="email" placeholder="name@acme.com" />
+            </Field>
+            <Field label="Message" optional>
+              <Textarea placeholder="Add a note to the invitation" />
+            </Field>
+          </DialogBody>
+        ) : null}
+        {a.body === 'long text' ? (
+          <DialogBody>
+            {terms.map(t => (
+              <section key={t.heading} className="flex flex-col gap-1">
+                <h3 className="font-semibold">{t.heading}</h3>
+                <p className="text-muted-foreground">{t.text}</p>
+              </section>
+            ))}
+          </DialogBody>
+        ) : null}
+        <DialogFooter>
+          {a.showCancel ? (
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+          ) : null}
+          <Button onClick={onSend}>{a.action}</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <InviteDialog />,
   play: async ({ canvas }) => {
@@ -244,8 +332,8 @@ export const LongContent: Story = {
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
 
 /** Figma stress test: Size=sm with a long title and description wraps; nothing overflows. */
 export const Stress: Story = {

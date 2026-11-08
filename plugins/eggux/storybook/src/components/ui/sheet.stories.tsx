@@ -18,7 +18,6 @@ import {
 
 const meta = {
   title: 'Components/Drawer/Sheet',
-  component: Sheet,
   parameters: {
     layout: 'centered',
     docs: {
@@ -28,7 +27,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Sheet>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -73,7 +72,63 @@ const content = () => document.querySelector<HTMLElement>('[data-slot="sheet-con
 const px = (n: number) => Math.round(n);
 
 // Figma Side=right: 384 × full height, against the right edge, 24 padding, 16 gap, left border.
-export const Default: Story = {
+type Playground = {
+  open: boolean;
+  side: 'right' | 'left';
+  size: 'default' | 'md' | 'lg';
+  title: string;
+  showDescription: boolean;
+  showClose: boolean;
+  fields: number;
+  showFooter: boolean;
+};
+
+/** Playground: every Sheet option in Controls. More fields than fit make the body scroll. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    open: { name: 'Open', control: 'boolean', description: 'Open on load', table: { category: 'Sheet' } },
+    side: { name: 'Side', control: 'inline-radio', options: ['right', 'left'], description: 'right: edit or inspect. left: navigation on mobile.', table: { category: 'Sheet' } },
+    size: { name: 'Size', control: 'inline-radio', options: ['default', 'md', 'lg'], description: 'default 384, md 480 (forms), lg 640 (a record or table)', table: { category: 'Sheet' } },
+    title: { name: 'Title', control: 'text', table: { category: 'Sheet Header' } },
+    showDescription: { name: 'Show description', control: 'boolean', table: { category: 'Sheet Header' } },
+    showClose: { name: 'Show close', control: 'boolean', description: 'Sheet Header `showClose`: the X', table: { category: 'Sheet Header' } },
+    fields: { name: 'Number of fields', control: { type: 'range', min: 0, max: 16, step: 1 }, table: { category: 'Sheet Body' } },
+    showFooter: { name: 'Show footer', control: 'boolean', description: 'Sheet Footer with Cancel and Save', table: { category: 'Sheet Footer' } },
+  },
+  args: { open: false, side: 'right', size: 'default', title: 'Edit contact', showDescription: true, showClose: true, fields: 2, showFooter: true },
+  render: a => (
+    <Sheet key={String(a.open)} defaultOpen={a.open}>
+      <SheetTrigger asChild>
+        <Button variant="outline">Open sheet</Button>
+      </SheetTrigger>
+      <SheetContent side={a.side} size={a.size}>
+        <SheetHeader showClose={a.showClose}>
+          <SheetTitle>{a.title}</SheetTitle>
+          {a.showDescription ? <SheetDescription>Changes are saved to the contact record.</SheetDescription> : null}
+        </SheetHeader>
+        <SheetBody>
+          {Array.from({ length: a.fields }, (_, i) => (
+            <Field key={i} label={['Name', 'Email', 'Phone', 'Company'][i] ?? `Note ${i - 3}`}>
+              <Input defaultValue={['Ana Popescu', 'ana@acme.example', '+40 721 000 000', 'Acme Inc.'][i] ?? 'Prefers invoices in EUR'} />
+            </Field>
+          ))}
+        </SheetBody>
+        {a.showFooter ? (
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </SheetClose>
+            <Button onClick={onSave}>Save changes</Button>
+          </SheetFooter>
+        ) : null}
+      </SheetContent>
+    </Sheet>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <EditContact />,
   play: async ({ canvas }) => {
