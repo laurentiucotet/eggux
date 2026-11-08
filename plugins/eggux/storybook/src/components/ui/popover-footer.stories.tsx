@@ -9,12 +9,11 @@ import { Switch } from './switch';
 
 const meta = {
   title: 'Components/Popover/Popover Footer',
-  component: PopoverFooter,
   parameters: {
     layout: 'centered',
     docs: { description: { component: 'Bottom of a Popover, like Dialog Footer: an optional Start slot on the left (Reset), Cancel and the one primary action on the right, all sm. Only for popovers whose choices apply on a button press; popovers that apply at once have no footer. Figma: Popover page / Popover Footer. Guide: eggux build-ui/components/popover.md' } },
   },
-} satisfies Meta<typeof PopoverFooter>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -43,7 +42,38 @@ function ColumnSettings({ withReset = false }: { withReset?: boolean }) {
 }
 
 // Cancel and Apply on the right; Apply runs and closes.
-export const Default: Story = {
+type Playground = { showStart: boolean; showCancel: boolean; action: string };
+
+/** Playground: every Popover Footer option in Controls, in an open popover. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    showStart: { name: 'Show start', control: 'boolean', description: 'Popover Footer `start`: Reset on the left', table: { category: 'Popover Footer' } },
+    showCancel: { name: 'Show cancel', control: 'boolean', table: { category: 'Popover Footer' } },
+    action: { name: 'Action label', control: 'text', table: { category: 'Popover Footer' } },
+  },
+  args: { showStart: true, showCancel: true, action: 'Apply' },
+  render: a => (
+    <Popover defaultOpen>
+      <PopoverTrigger asChild><Button variant="outline">Columns</Button></PopoverTrigger>
+      <PopoverContent aria-labelledby="playground-columns-title" className="flex flex-col gap-4">
+        <PopoverHeader titleId="playground-columns-title" title="Visible columns" />
+        <div className="flex flex-col gap-3 text-sm">
+          {['Customer', 'Due date', 'Amount'].map(c => (
+            <label key={c} className="flex items-center justify-between">{c}<Switch defaultChecked /></label>
+          ))}
+        </div>
+        <PopoverFooter start={a.showStart ? <Button variant="ghost" size="sm">Reset</Button> : undefined}>
+          {a.showCancel ? <PopoverClose asChild><Button variant="outline" size="sm">Cancel</Button></PopoverClose> : null}
+          <Button size="sm" onClick={onApply}>{a.action}</Button>
+        </PopoverFooter>
+      </PopoverContent>
+    </Popover>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <ColumnSettings />,
   play: async ({ canvas }) => {

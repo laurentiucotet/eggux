@@ -4,16 +4,33 @@ import { Logo } from './logo';
 
 const meta = {
   title: 'Components/Brand/Logo',
-  component: Logo,
   parameters: {
     layout: 'padded',
     docs: { description: { component: 'Product or client logo. Type mark = the square symbol (collapsed sidebar, favicon), wordmark = the name only, full = both. Replace the symbol once in Logo Mark (an inline SVG in currentColor). The name is the accessible text, visually hidden for mark; wrap the Logo in a link home where it navigates. Figma: Brand page / Logo, Logo Mark.' } },
   },
-} satisfies Meta<typeof Logo>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const box = (el: Element) => el.getBoundingClientRect();
+
+type Playground = { type: 'mark' | 'wordmark' | 'full'; name: string; asLink: boolean };
+
+/** Playground: Logo Type and name in Controls. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    type: { name: 'Type', control: 'inline-radio', options: ['mark', 'wordmark', 'full'], description: 'mark: the symbol. wordmark: the name. full: both.', table: { category: 'Logo' } },
+    name: { name: 'Name', control: 'text', description: 'The accessible text (hidden for mark)', table: { category: 'Logo' } },
+    asLink: { name: 'As home link', control: 'boolean', description: 'Wrapped in a link home', table: { category: 'Logo' } },
+  },
+  args: { type: 'full', name: 'Acme', asLink: false },
+  render: a =>
+    a.asLink ? (
+      <a href="#home" className="inline-flex rounded-md outline-none focus-visible:shadow-[0_0_0_2px_var(--background),0_0_0_4px_var(--ring)]"><Logo type={a.type} name={a.name} /></a>
+    ) : (
+      <Logo type={a.type} name={a.name} />
+    ),
+};
 
 // Figma Type=mark, wordmark, full: mark 32 square, name 18/28 semibold, 8 px apart.
 export const Types: Story = {

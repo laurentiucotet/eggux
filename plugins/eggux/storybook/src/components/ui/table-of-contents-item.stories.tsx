@@ -14,7 +14,6 @@ const probe = (className: string) => {
 
 const meta = {
   title: 'Components/Navigation/Table of Contents Item',
-  component: TableOfContentsItem,
   parameters: {
     docs: {
       description: {
@@ -23,9 +22,8 @@ const meta = {
       },
     },
   },
-  args: { href: '#installation', children: 'Installation' },
   decorators: [Story => <ul className="m-0 w-56 list-none p-0"><Story /></ul>],
-} satisfies Meta<typeof TableOfContentsItem>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -33,7 +31,28 @@ const link = (el: HTMLElement, name: string) => el.querySelector(`a[href="#${nam
 
 // Figma Level=1/2 x State=default/active: 224 x 28, padding 4 / 12 (level 2: 24), 1 px border/default rule;
 // active: 2 px background/primary rule, ui/label foreground.
-export const Default: Story = {
+type Playground = { label: string; level: 1 | 2; active: boolean };
+
+/** Playground: one Table of Contents Item with every option in Controls, between two plain entries. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    label: { name: 'Label', control: 'text', description: 'Same text as the heading', table: { category: 'Table of Contents Item' } },
+    level: { name: 'Level', control: 'inline-radio', options: [1, 2], description: '1 = h2, 2 = h3 (indented)', table: { category: 'Table of Contents Item' } },
+    active: { name: 'Active', control: 'boolean', description: 'The section in view', table: { category: 'Table of Contents Item' } },
+  },
+  args: { label: 'Installation', level: 1, active: true },
+  render: a => (
+    <>
+      <TableOfContentsItem href="#introduction">Introduction</TableOfContentsItem>
+      <TableOfContentsItem href="#installation" level={a.level} active={a.active}>{a.label}</TableOfContentsItem>
+      <TableOfContentsItem href="#usage">Usage</TableOfContentsItem>
+    </>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => (
     <>
@@ -90,5 +109,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

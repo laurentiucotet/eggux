@@ -4,7 +4,6 @@ import { Scrim, type ScrimTone } from './scrim';
 
 const meta = {
   title: 'Components/Dialog/Scrim',
-  component: Scrim,
   parameters: {
     layout: 'centered',
     docs: {
@@ -14,9 +13,21 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Scrim>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+type Playground = { tone: ScrimTone; width: number };
+
+/** Playground: Scrim Tone over busy content. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    tone: { name: 'Tone', control: 'inline-radio', options: ['dialog', 'media', 'light'], description: 'dialog: behind a modal. media: text over a photo. light: a locked section.', table: { category: 'Scrim' } },
+    width: { name: 'Width', control: { type: 'range', min: 160, max: 640, step: 4 }, description: 'Width of the box it covers', table: { category: 'Scrim' } },
+  },
+  args: { tone: 'dialog', width: 320 },
+  render: a => <Box tone={a.tone} width={a.width} />,
+};
 
 /** Busy content behind the scrim: shapes only, so the text on top is the only text. */
 const Backdrop = () => (

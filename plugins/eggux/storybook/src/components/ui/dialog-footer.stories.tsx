@@ -6,7 +6,6 @@ import { DialogFooter } from './dialog-footer';
 
 const meta = {
   title: 'Components/Dialog/Dialog Footer',
-  component: DialogFooter,
   decorators: [
     Story => (
       <div className="w-[464px] max-w-full">
@@ -23,11 +22,39 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof DialogFooter>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+type Playground = {
+  showCancel: boolean;
+  action: string;
+  destructive: boolean;
+  leftItem: 'none' | 'checkbox' | 'link';
+};
+
+/** Playground: every Dialog Footer arrangement in Controls. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    showCancel: { name: 'Show cancel', control: 'boolean', table: { category: 'Dialog Footer' } },
+    action: { name: 'Action label', control: 'text', description: 'The one primary action, named with its verb', table: { category: 'Dialog Footer' } },
+    destructive: { name: 'Destructive', control: 'boolean', description: 'The action deletes or cannot be undone', table: { category: 'Dialog Footer' } },
+    leftItem: { name: 'Left item', control: 'inline-radio', options: ['none', 'checkbox', 'link'], description: 'An item before the buttons (mr-auto)', table: { category: 'Dialog Footer' } },
+  },
+  args: { showCancel: true, action: 'Send invite', destructive: false, leftItem: 'none' },
+  render: a => (
+    <DialogFooter>
+      {a.leftItem === 'checkbox' ? <Checkbox label="Send me a copy" wrapperClassName="mr-auto" /> : null}
+      {a.leftItem === 'link' ? <Button variant="link" className="mr-auto px-0">Learn about roles</Button> : null}
+      {a.showCancel ? <Button variant="outline">Cancel</Button> : null}
+      <Button variant={a.destructive ? 'destructive' : 'default'}>{a.action}</Button>
+    </DialogFooter>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => (
     <DialogFooter>
@@ -73,8 +100,8 @@ export const WithLeftItem: Story = {
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
 
 /** Figma stress test: one button; the 276 column with long labels wraps, still right aligned. */
 export const Stress: Story = {

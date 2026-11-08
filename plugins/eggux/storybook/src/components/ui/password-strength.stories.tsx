@@ -7,13 +7,11 @@ import { PasswordStrength, passwordStrength, type PasswordStrengthLevel } from '
 
 const meta = {
   title: 'Components/Input/Password Strength',
-  component: PasswordStrength,
   parameters: {
     docs: { description: { component: 'Strength meter under a new-password Field (sign up, reset, change password). Length is the only rule (8 or more characters): the message asks for a longer password, never for numbers or symbols. The level is in text and bar count, not only color; announced politely as people type. Not for sign in or one-time codes. Figma: Input page / Password Strength. Guide: eggux build-ui/patterns/auth.md' } },
   },
-  args: { level: 'empty' },
   decorators: [Story => <div className="w-72"><Story /></div>],
-} satisfies Meta<typeof PasswordStrength>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -34,7 +32,31 @@ function SignUp() {
   );
 }
 
-export const Default: Story = {
+type Playground = { level: PasswordStrengthLevel; inField: boolean };
+
+/** Playground: Password Strength level in Controls, alone or under a new-password field. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    level: { name: 'Level', control: 'inline-radio', options: ['empty', 'weak', 'fair', 'good', 'strong'], description: 'Comes from passwordStrength(value) in an app', table: { category: 'Password Strength' } },
+    inField: { name: 'Under a field', control: 'boolean', description: 'Shown under a New password field, linked as its description', table: { category: 'Password Strength' } },
+  },
+  args: { level: 'fair', inField: true },
+  render: a =>
+    a.inField ? (
+      <div className="flex flex-col gap-2">
+        <Field id="playground-password" label="New password">
+          <Input type="password" autoComplete="new-password" defaultValue="acme-ledger" aria-describedby="playground-password-strength" />
+        </Field>
+        <PasswordStrength level={a.level} messageId="playground-password-strength" />
+      </div>
+    ) : (
+      <PasswordStrength level={a.level} />
+    ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <SignUp />,
   play: async ({ canvas, canvasElement }) => {
@@ -126,5 +148,5 @@ export const Stress: Story = {
   },
 };
 
-export const Dark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, args: { level: 'fair' } };
-export const CorporateLight: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, args: { level: 'good' } };
+export const Dark: StoryObj<Playground> = { tags: ['!dev'], globals: { theme: 'Dark' }, args: { level: 'fair', inField: true }, render: Default.render };
+export const CorporateLight: StoryObj<Playground> = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, args: { level: 'good', inField: true }, render: Default.render };

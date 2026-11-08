@@ -13,7 +13,6 @@ const probe = (className: string) => {
 
 const meta = {
   title: 'Components/Navigation/Breadcrumb Item',
-  component: BreadcrumbItem,
   parameters: {
     docs: {
       description: {
@@ -22,7 +21,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof BreadcrumbItem>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -50,7 +49,31 @@ const Types = () => (
 );
 
 // Figma: link 76 x 20 (label 56 + 6 + chevron 14), current 20 high, ellipsis 16 icon; body/small.
-export const Default: Story = {
+type Playground = { type: 'link' | 'current' | 'ellipsis'; label: string; showSeparator: boolean };
+
+/** Playground: one Breadcrumb Item with every option in Controls. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    type: { name: 'Type', control: 'inline-radio', options: ['link', 'current', 'ellipsis'], description: 'link: an ancestor page. current: this page. ellipsis: collapsed middle levels.', table: { category: 'Breadcrumb Item' } },
+    label: { name: 'Label', control: 'text', if: { arg: 'type', neq: 'ellipsis' }, table: { category: 'Breadcrumb Item' } },
+    showSeparator: { name: 'Show separator', control: 'boolean', description: 'Never after the current page', if: { arg: 'type', neq: 'current' }, table: { category: 'Breadcrumb Item' } },
+  },
+  args: { type: 'link', label: 'Projects', showSeparator: true },
+  render: a => (
+    <ol className="m-0 flex list-none p-0" aria-label="Breadcrumb">
+      <BreadcrumbItem>
+        {a.type === 'link' ? <BreadcrumbLink href="#projects">{a.label}</BreadcrumbLink> : null}
+        {a.type === 'current' ? <BreadcrumbPage>{a.label}</BreadcrumbPage> : null}
+        {a.type === 'ellipsis' ? <BreadcrumbEllipsis /> : null}
+        {a.showSeparator && a.type !== 'current' ? <BreadcrumbSeparator /> : null}
+      </BreadcrumbItem>
+    </ol>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <Types />,
   play: async ({ canvas }) => {
@@ -110,5 +133,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
