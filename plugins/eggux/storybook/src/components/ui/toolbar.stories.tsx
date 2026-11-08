@@ -62,6 +62,7 @@ export const Default: Story = {
 
 // Figma Style=floating, horizontal (zoom bar) and vertical (tool column) over a canvas.
 export const Floating: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="relative h-[280px] w-[560px] rounded-lg bg-muted">
       <Toolbar aria-label="Canvas tools" orientation="vertical" toolbarStyle="floating" className="absolute top-4 left-4" overflow={<DropdownMenuItem>Rulers</DropdownMenuItem>}>
@@ -107,6 +108,7 @@ function Collapsing({ width }: { width: number }) {
 
 // Groups move into More from the end when the row is narrow; hidden controls leave the tab order.
 export const Overflow: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       <Collapsing width={400} />
@@ -127,5 +129,5 @@ export const Overflow: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Floating.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Floating.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Floating.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Floating.render };

@@ -83,6 +83,7 @@ function AddressForm() {
   );
 }
 export const InAForm: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <AddressForm />,
   play: async ({ canvas }) => {
     await userEvent.type(canvas.getByRole('combobox', { name: /^Street/ }), 'Strada Victoriei 12');
@@ -95,6 +96,7 @@ export const InAForm: Story = {
 
 // States: invalid and disabled.
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   name: 'States (invalid, disabled)',
   render: () => (
     <div className="flex flex-col gap-6">

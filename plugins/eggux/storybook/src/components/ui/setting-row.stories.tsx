@@ -89,6 +89,7 @@ export const Disabled: Story = {
 
 // Figma "Example / settings section": rows stacked under a section title, divider off on the last one.
 export const Section: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [state, setState] = React.useState({ reminders: true, receipts: false });
     return (
@@ -124,6 +125,7 @@ export const Section: Story = {
 const longTitle = 'Payment reminders with a much longer label than planned';
 const longDescription = 'Email customers 3 days before and 7 days after the due date. Email customers 3 days before and 7 days after the due date.';
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   decorators: [Story => <div className="w-[640px]"><Story /></div>],
   render: () => (

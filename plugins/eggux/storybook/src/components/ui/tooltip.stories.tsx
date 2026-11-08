@@ -32,6 +32,7 @@ const AddButton = (props: React.ComponentProps<typeof Button>) => (
 // The main behavior: hover and keyboard focus show it, Escape hides it. The visible text is the
 // accessible label of the icon-only button.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Tooltip>
       <TooltipTrigger asChild><AddButton /></TooltipTrigger>
@@ -67,6 +68,7 @@ export const Keyboard: Story = {
 
 // Delay: with the default 300 ms it is not open straight after hover.
 export const ShortDelay: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [Story => <TooltipProvider delayDuration={300}><Story /></TooltipProvider>],
   render: Default.render,
   play: async ({ canvas }) => {
@@ -96,7 +98,7 @@ const Sides = ({ variant }: { variant: TooltipVariant }) => (
 export const SidesDefault: Story = {
   name: 'Sides',
   render: () => <Sides variant="default" />,
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tips = allContent();
     await expect(tips.map(t => t.getAttribute('data-side')).sort()).toEqual(['bottom', 'left', 'right', 'top']);
@@ -122,7 +124,7 @@ export const SidesDefault: Story = {
 export const SidesLight: Story = {
   name: 'Sides (light)',
   render: () => <Sides variant="light" />,
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tips = allContent();
     await expect(tips).toHaveLength(4);
@@ -152,7 +154,7 @@ export const Rich: Story = {
       </Tooltip>
     </div>
   ),
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     await expect(tip.querySelector('[data-slot="tooltip-title"]')).toHaveTextContent('Schedule');
@@ -173,7 +175,7 @@ export const WithShortcut: Story = {
       </Tooltip>
     </div>
   ),
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     const group = tip.querySelector('[data-slot="kbd-group"]')!;
@@ -200,7 +202,7 @@ export const RichWithShortcutLight: Story = {
       </Tooltip>
     </div>
   ),
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     await expect(tip).toHaveAttribute('data-variant', 'light');
@@ -234,7 +236,7 @@ const Stress = ({ width }: { width: number }) => (
 );
 export const Narrow276: Story = { tags: ['!dev'],
   render: () => <Stress width={276} />,
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     await expect(box(tip).w).toBeLessThanOrEqual(280 + 24);
@@ -244,7 +246,7 @@ export const Narrow276: Story = { tags: ['!dev'],
 };
 export const Narrow368: Story = { tags: ['!dev'],
   render: () => <Stress width={368} />,
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     await expect(box(tip).w).toBeLessThanOrEqual(280 + 24);
@@ -267,6 +269,6 @@ const Both = () => (
 const bothPlay = async () => {
   await expect(allContent()).toHaveLength(2);
 };
-export const BothVariantsDark: Story = { render: () => <Both />, parameters: { layout: 'padded' }, tags: ['!dev'], globals: { theme: 'Dark' }, play: bothPlay };
-export const BothVariantsCorporate: Story = { render: () => <Both />, parameters: { layout: 'padded' }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, play: bothPlay };
-export const BothVariantsLight: Story = { render: () => <Both />, parameters: { layout: 'padded' }, tags: ['!dev'], play: bothPlay };
+export const BothVariantsDark: Story = { render: () => <Both />, parameters: { controls: { disable: true },  layout: 'padded' }, tags: ['!dev'], globals: { theme: 'Dark' }, play: bothPlay };
+export const BothVariantsCorporate: Story = { render: () => <Both />, parameters: { controls: { disable: true },  layout: 'padded' }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, play: bothPlay };
+export const BothVariantsLight: Story = { render: () => <Both />, parameters: { controls: { disable: true },  layout: 'padded' }, tags: ['!dev'], play: bothPlay };

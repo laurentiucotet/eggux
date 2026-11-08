@@ -50,6 +50,7 @@ export const Layouts: Story = {
 
 // Marker=number for "How it works": 3 steps; the number reads as "Step 1".
 export const Steps: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <ol className="m-0 grid w-[1088px] list-none grid-cols-3 gap-8 p-0">
       <li><FeatureItem number={1} title="Connect your bank" description="Link accounts in a few clicks; we read payments every hour." /></li>
@@ -76,5 +77,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Layouts.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Layouts.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Layouts.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Layouts.render };

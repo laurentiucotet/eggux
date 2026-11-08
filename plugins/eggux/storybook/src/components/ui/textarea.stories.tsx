@@ -123,6 +123,7 @@ function CounterDemo() {
   );
 }
 export const WithCounter: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <CounterDemo />,
   play: async ({ canvas }) => {
     const box = canvas.getByRole('textbox', { name: 'Reason' });
@@ -136,6 +137,7 @@ export const WithCounter: Story = {
 // grows to the max height (240), then scrolls.
 const long = Array.from({ length: 14 }, (_, i) => `Line ${i + 1}: delivery for Acme Holdings International confirmed by the warehouse team.`).join('\n');
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   decorators: [Story => <div><Story /></div>],
   render: () => (

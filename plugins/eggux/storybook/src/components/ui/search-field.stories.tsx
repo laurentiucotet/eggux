@@ -130,6 +130,7 @@ function FilterDemo() {
   );
 }
 export const FilterList: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <FilterDemo />,
   play: async ({ canvas }) => {
     await userEvent.type(canvas.getByRole('searchbox'), 'north');

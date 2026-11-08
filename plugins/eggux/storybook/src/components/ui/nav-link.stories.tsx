@@ -59,6 +59,7 @@ export const Default: Story = {
 
 // Figma State default, active and Show chevron in a navbar row.
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <nav aria-label="Main" className="flex items-center gap-1">
       <NavLink href="#product" showChevron>Product</NavLink>
@@ -107,6 +108,7 @@ export const Trigger: Story = {
 
 // Figma "Stress test / Nav Link": long labels stay on one line and hug; short label.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col items-start gap-2">

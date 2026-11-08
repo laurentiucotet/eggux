@@ -74,6 +74,7 @@ const Example = ({ type }: { type: AlertDialogType }) => {
 };
 
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Example type="confirm" />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Send reminders' });
@@ -124,6 +125,7 @@ export const Default: Story = {
 
 /** Figma Type: confirm, destructive, acknowledge. */
 export const Types: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Example type="confirm" />
@@ -188,6 +190,7 @@ const TypeToConfirm = () => {
 
 /** Figma Show content: a type-to-confirm field for high-impact deletes; the action waits for a match. */
 export const WithContent: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <TypeToConfirm />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Delete workspace' });
@@ -220,6 +223,7 @@ export const TypesDark: Story = { ...Types, tags: ['!dev'], globals: { theme: 'D
 
 /** Figma stress test: a long question and long action labels wrap inside the dialog. */
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <AlertDialog>

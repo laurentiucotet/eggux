@@ -55,6 +55,7 @@ const onPick = fn();
 
 // Typing filters and highlights the first match; Enter picks it.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className={surface}><CountryList onSelect={onPick} /></div>,
   play: async ({ canvas }) => {
     onPick.mockClear();
@@ -83,6 +84,7 @@ export const Default: Story = {
 
 // Arrows move, Home / End jump; the list stops at both ends; the highlight is accent.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className={surface}><CountryList onSelect={onPick} /></div>,
   play: async ({ canvas }) => {
     onPick.mockClear();
@@ -113,6 +115,7 @@ export const Keyboard: Story = {
 
 // Pointer: hovering highlights, a click picks and keeps focus in the input.
 export const Pointer: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className={surface}><CountryList onSelect={onPick} /></div>,
   play: async ({ canvas }) => {
     onPick.mockClear();
@@ -129,6 +132,7 @@ export const Pointer: Story = {
 
 // Figma Show empty on, Show items off: "No results found." in a status region.
 export const Empty: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className={surface}><CountryList /></div>,
   play: async ({ canvas }) => {
     const input = canvas.getByRole('combobox');
@@ -165,6 +169,7 @@ function CountryPicker() {
 }
 
 export const InPopover: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <CountryPicker />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Country: Romania' });
@@ -183,6 +188,7 @@ export const InPopover: Story = {
 
 // Keywords and diacritics: "bras" finds Brașov, "capital" finds Bucharest; disabled items are skipped.
 export const KeywordsAndDisabled: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className={surface}>
@@ -214,6 +220,7 @@ export const KeywordsAndDisabled: Story = {
 
 // Async results: a loading row, never an empty list; Empty waits until loading ends.
 export const Loading: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className={surface}>
       <Command label="Customer" shouldFilter={false} loading>
@@ -234,6 +241,7 @@ export const Loading: Story = {
 
 // Long names truncate to one line in the 276 / 368 columns; many items scroll inside 300 px.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex gap-6">

@@ -40,6 +40,7 @@ export const Default: Story = {
 
 // Input: a radio group of five; click sets, arrows change, the checked radio is the tab stop.
 export const Input: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [v, setV] = React.useState(0);
     return (
@@ -65,6 +66,7 @@ export const Input: Story = {
 
 // Review Item (560) and Rating Summary (480): helpful votes toggle, rows filter.
 export const Reviews: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [vote, setVote] = React.useState<'yes' | 'no' | null>(null);
     const [filter, setFilter] = React.useState<number | null>(null);
@@ -100,6 +102,7 @@ export const Reviews: Story = {
 
 // Stress: long review text clamps to 4 lines with Show more; under 5 reviews the summary shows the count only. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">
@@ -119,5 +122,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Reviews.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Reviews.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Reviews.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Reviews.render };

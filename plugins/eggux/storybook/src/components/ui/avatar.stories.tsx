@@ -158,6 +158,7 @@ export const StatusAndVerifiedSizes: Story = {
 
 // Stress: long initials cut to two letters, a broken photo falls back to the initials, icon with no name.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex items-center gap-4">

@@ -56,6 +56,7 @@ export const Default: Story = {
 
 // Vertical default (66 rows), vertical dots (52 rows), horizontal dots with "Step 2 of 4", error.
 export const Styles: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-10">
       <div className="flex items-center gap-4">
@@ -84,6 +85,7 @@ export const Styles: Story = {
 
 // Stress: at 276 the titles truncate and the last step keeps its width. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="w-[276px]">
@@ -97,5 +99,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Styles.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Styles.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Styles.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Styles.render };

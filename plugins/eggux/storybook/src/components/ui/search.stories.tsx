@@ -82,7 +82,7 @@ function SearchDemo() {
 const meta = {
   title: 'Components/Search/Search Suggestions',
   component: SearchSuggestions,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'The panel under a search field while people type: recent searches before typing, suggestions with the typed part in medium, matching records opened directly, and a hint. Up / Down move, Enter opens (or searches all), Escape closes, Delete removes a recent search. Search Result Item shows one result on a search page; Search Answer is the one AI answer at the top. Global search with commands uses Command Dialog. Figma: Search page / Search Suggestions, Search Suggestion Item, Search Result Item. Guide: eggux build-ui/patterns/search-and-filter.md' } },
   },
@@ -120,6 +120,7 @@ const docLeading = <span aria-hidden="true" className="flex size-10 items-center
 
 // Search Result Item types and the AI answer.
 export const Results: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [fb, setFb] = React.useState<'up' | 'down' | null>(null);
     return (
@@ -150,5 +151,5 @@ export const Results: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Results.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Results.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Results.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Results.render };

@@ -51,6 +51,7 @@ const Types = () => (
 
 // Figma: link 76 x 20 (label 56 + 6 + chevron 14), current 20 high, ellipsis 16 icon; body/small.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Types />,
   play: async ({ canvas }) => {
     const link = canvas.getByRole('link', { name: 'Projects' });
@@ -88,6 +89,7 @@ export const Default: Story = {
 
 // Stress: long labels stay on one line inside an item; the separator never shrinks.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <ol className="m-0 flex w-[276px] list-none flex-wrap gap-1.5 p-0">

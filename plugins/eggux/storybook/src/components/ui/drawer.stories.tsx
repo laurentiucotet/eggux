@@ -69,6 +69,7 @@ const px = (n: number) => Math.round(n);
 // Figma Drawer: bottom edge, full width, radius xl on top, 16 sides and top, 24 bottom, 16 gap,
 // handle 96 × 8, buttons full width stacked 8 apart with the primary first.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Filters />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Filters' });
@@ -107,6 +108,7 @@ export const Default: Story = {
 
 // Keyboard: focus trap, Escape closes, focus returns.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Filters />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Filters' });
@@ -126,6 +128,7 @@ export const Keyboard: Story = {
 
 // Outside tap on the overlay closes it (dragging is never the only way to close).
 export const OutsideTap: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => <Filters />,
   play: async ({ canvas }) => {
@@ -139,6 +142,7 @@ export const OutsideTap: Story = {
 
 // Figma Show handle off.
 export const WithoutHandle: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Filters showHandle={false} />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Filters' }));
@@ -149,6 +153,7 @@ export const WithoutHandle: Story = {
 
 // Stress: many options stay under 80 % of the screen and the body scrolls; buttons stay in view.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => <Filters options={Array.from({ length: 40 }, (_, i) => `Customer segment with a long name number ${i + 1}`)} />,
   play: async ({ canvas }) => {

@@ -118,6 +118,7 @@ export const Loading: Story = {
 
 // Figma Start and End slots: text addons for units and currencies, or a Button attached to the field.
 export const Slots: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       <Field label="Monthly budget"><InputGroup start="EUR" defaultValue="1,250.00" inputClassName="text-right tabular-nums" inputMode="decimal" /></Field>
@@ -149,6 +150,7 @@ export const Slots: Story = {
 // Stress test: a long value in the 276 and 368 columns stays on one line and truncates; the addons
 // keep their width; no start or no end.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   decorators: [Story => <div className="w-auto"><Story /></div>],
   render: () => (

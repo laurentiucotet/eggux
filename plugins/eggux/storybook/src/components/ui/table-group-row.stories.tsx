@@ -56,6 +56,7 @@ export const Default: Story = {
 
 // The 2 Figma variants. The chevron follows State and is never swapped by hand.
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <table className="w-[640px] table-fixed border-collapse text-sm text-foreground">
       <tbody>

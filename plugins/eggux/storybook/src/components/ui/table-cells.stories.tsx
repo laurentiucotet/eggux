@@ -47,6 +47,7 @@ export const Default: Story = {
 
 // Style x Align: strong is medium weight, muted is muted-foreground, right aligns the text.
 export const TextStyles: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="grid w-[360px] grid-cols-2 gap-4">
       {(['default', 'strong', 'muted'] as const).flatMap(s => (['left', 'right'] as const).map(a => (
@@ -70,6 +71,7 @@ export const TextStyles: Story = {
 
 // Empty values show "-", never blank.
 export const Empty: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[240px] flex-col gap-2">
       <TableCellText>{''}</TableCellText>
@@ -86,6 +88,7 @@ export const Empty: Story = {
 
 // Figma Table Cell Stack: 200 x 38 (20 title + 2 gap + 16 detail).
 export const Stack: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Box width={200}><TableCellStack title="Website redesign" description="Design · 2 h" /></Box>,
   play: async ({ canvas }) => {
     const root = canvas.getByText('Website redesign').closest('[data-slot="table-cell-stack"]')!;
@@ -100,6 +103,7 @@ export const Stack: Story = {
 
 // Figma Table Cell Amount, Trend none / up / down: 160 x 38, right aligned, tabular figures.
 export const Amounts: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[160px] flex-col gap-6">
       <TableCellAmount amount="€12,450.00" note="3 invoices" data-testid="none" />
@@ -135,6 +139,7 @@ export const Amounts: Story = {
 
 // A number is formatted with Intl.NumberFormat: same decimals in the column.
 export const AmountFormat: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[160px] flex-col gap-2">
       <TableCellAmount amount={12450} />
@@ -151,6 +156,7 @@ export const AmountFormat: Story = {
 
 // Figma Table Cell Date: 160 x 20; Show time adds the muted caption line (38).
 export const Dates: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[160px] flex-col gap-4">
       <TableCellDate date="12 Nov 2026" dateTime="2026-11-12" data-testid="plain" />
@@ -169,6 +175,7 @@ export const Dates: Story = {
 
 // Figma Table Cell Link: 160 x 20, underlined foreground text.
 export const Link: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Box><TableCellLink href="#inv-1041">INV-1041</TableCellLink></Box>,
   play: async ({ canvas }) => {
     const link = canvas.getByRole('link', { name: 'INV-1041' });
@@ -214,8 +221,8 @@ const check = async (canvas: HTMLElement, width: number) => {
   const table = canvas.querySelector('table')!;
   await expect(table.scrollWidth).toBeLessThanOrEqual(table.clientWidth);
 };
-export const Narrow368: Story = { tags: ['!dev'], render: () => <AllCells width={368} />, play: async ({ canvasElement }) => check(canvasElement, 368) };
-export const Narrow276: Story = { tags: ['!dev'], render: () => <AllCells width={276} />, play: async ({ canvasElement }) => check(canvasElement, 276) };
+export const Narrow368: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], render: () => <AllCells width={368} />, play: async ({ canvasElement }) => check(canvasElement, 368) };
+export const Narrow276: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], render: () => <AllCells width={276} />, play: async ({ canvasElement }) => check(canvasElement, 276) };
 
 // Theme copies for the contrast test (hidden in the sidebar, they still run in npm test).
 const Everything = () => (
@@ -228,5 +235,5 @@ const Everything = () => (
     <TableCellLink href="#">INV-1041</TableCellLink>
   </div>
 );
-export const AllCellsDark: Story = { render: () => <Everything />, name: 'All cells (Dark)', tags: ['!dev'], globals: { theme: 'Dark' } };
-export const AllCellsCorporate: Story = { render: () => <Everything />, name: 'All cells (Corporate Light)', tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const AllCellsDark: Story = { parameters: { controls: { disable: true } }, render: () => <Everything />, name: 'All cells (Dark)', tags: ['!dev'], globals: { theme: 'Dark' } };
+export const AllCellsCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <Everything />, name: 'All cells (Corporate Light)', tags: ['!dev'], globals: { theme: 'Corporate Light' } };

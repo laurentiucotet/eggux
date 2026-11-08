@@ -5,7 +5,7 @@ import { ApprovalChain, ApprovalStep } from './approval-step';
 const meta = {
   title: 'Components/Approvals/Approval Step',
   component: ApprovalStep,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'One approver in an approval chain: marker, name, role and rule, status, time and comment. The whole chain is visible before anyone acts; current shows the due date; rejected always has a reason; the last step has no connector. Field changes use Change Item; form steps use Stepper. Figma: Approvals page / Approval Step. Guide: eggux build-ui/patterns/approvals.md' } },
   },
@@ -39,6 +39,7 @@ export const Default: Story = {
 
 // Figma Status=rejected: destructive marker and badge, the reason in the comment.
 export const Rejected: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <ApprovalChain className="w-[400px]">
       <ApprovalStep name="Elena Dumitru" role="Finance manager" status="rejected" time="22 Oct 2026, 10:30" comment="Over the Q4 hosting budget by €2,400. Ask the vendor for a 12-month discount." connector={false} />
@@ -52,6 +53,7 @@ export const Rejected: Story = {
 
 // Stress: at 276 the role clamps to 2 lines and the time to 1; the badge keeps its size. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <ApprovalChain className="w-[276px]">

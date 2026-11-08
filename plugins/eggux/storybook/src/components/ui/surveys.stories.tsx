@@ -37,6 +37,7 @@ export const Default: Story = {
 
 // NPS: radiogroup with arrows, anchors in the end names, follow-up after a score; 158 / 322.
 export const Nps: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-6">
       <div className="w-[600px]"><NpsSurvey onDismiss={fn()} /></div>
@@ -65,6 +66,7 @@ export const Nps: Story = {
 
 // CSAT: five faces named by their words; picking one shows the thanks; 144 / 180.
 export const Csat: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className="w-[420px]"><CsatRating /></div>,
   play: async ({ canvas, canvasElement }) => {
     const el = canvasElement.querySelector('[data-slot="csat-rating"]')!;
@@ -80,6 +82,7 @@ export const Csat: Story = {
 
 // Stress: long question at 276 clamps to 2 lines; CSAT labels truncate. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex w-[276px] flex-col gap-4">

@@ -138,6 +138,7 @@ export const Column368: Story = { tags: ['!dev'],
 
 // Figma AI Notice Type=label (106 × 20) and Type=disclaimer.
 export const Notice: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col items-start gap-4">
       <AiNotice />

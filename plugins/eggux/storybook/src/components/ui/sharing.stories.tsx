@@ -51,6 +51,7 @@ export const Default: Story = {
 
 // Share Link Row: restricted (lock) and anyone (globe on success); Copy link says Copied.
 export const ShareLink: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[480px] flex-col">
       <ShareLinkRow url="https://acme.app/d/42" onCopy={fn()} />
@@ -70,6 +71,7 @@ export const ShareLink: Story = {
 
 // Stress: at 320 long names and emails truncate; the role keeps 132. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <ul className="m-0 w-[320px] p-0">

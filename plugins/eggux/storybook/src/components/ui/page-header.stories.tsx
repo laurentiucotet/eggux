@@ -80,6 +80,7 @@ export const Record: Story = {
 
 // Last record: next is disabled. No page action: the slot is gone.
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   name: 'States (end of list, no actions)',
   render: () => (
     <div className="flex flex-col gap-10">

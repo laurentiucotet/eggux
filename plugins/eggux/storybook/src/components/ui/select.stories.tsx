@@ -50,6 +50,7 @@ const onValueChange = fn();
 // Figma Style=default, Size=default, placeholder "Select a location": 240 x 36, opens the Menu with
 // a check on the pick; Escape closes and focus returns to the trigger.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Field label="Location">
       <Cities onValueChange={onValueChange} />
@@ -87,6 +88,7 @@ export const Default: Story = {
 
 // Keyboard only: Tab, Enter opens, arrows move, Enter picks; a letter on the closed trigger jumps.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Field label="Location">
       <Cities defaultValue="București" />
@@ -132,6 +134,7 @@ function StylesShowcase() {
 }
 
 export const Styles: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [],
   render: () => <StylesShowcase />,
   play: async ({ canvas }) => {
@@ -155,6 +158,7 @@ export const Styles: Story = {
 
 // Figma Size: sm 32, default 36, lg 40 (16 px sides, body/default).
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-3">
       <Cities size="sm" aria-label="Small" defaultValue="Iași" />
@@ -175,6 +179,7 @@ export const Sizes: Story = {
 
 // Figma Show status dot, Show avatar, Show leading icon: the same leading on every option, shown in the trigger too.
 export const Leading: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       <Field label="Status">
@@ -228,6 +233,7 @@ export const Leading: Story = {
 
 // Figma State=error: the trigger is marked, the message comes from Field.
 export const Invalid: Story = {
+  parameters: { controls: { disable: true } },
   name: 'Error',
   render: () => <Field label="Location" error="Choose where the event takes place."><Cities /></Field>,
   play: async ({ canvas }) => {
@@ -240,6 +246,7 @@ export const Invalid: Story = {
 
 // Figma State=disabled: 50 %, cannot open.
 export const Disabled: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Field label="Location" disabled><Cities defaultValue="Iași" /></Field>,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('combobox', { name: 'Location' });
@@ -252,6 +259,7 @@ export const Disabled: Story = {
 
 // Figma State=read-only: muted fill, no chevron, value in foreground; focusable but never opens.
 export const ReadOnly: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Field label="Plan" hint="Change the plan in Billing."><Cities readOnly defaultValue="Cluj-Napoca" /></Field>,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('combobox', { name: 'Plan' });
@@ -268,6 +276,7 @@ export const ReadOnly: Story = {
 
 // Figma Show clear: an x before the chevron empties the value; focus goes back to the trigger.
 export const Clearable: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Field label="City filter"><Cities showClear defaultValue="Brașov" /></Field>,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('combobox', { name: 'City filter' });
@@ -285,6 +294,7 @@ export const Clearable: Story = {
 // Stress test (Figma "Stress test / Select"): long values truncate to one line at 276 and 368, the
 // chevron keeps its size; ghost truncates at 200 and stays one line.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   decorators: [],
   render: () => (

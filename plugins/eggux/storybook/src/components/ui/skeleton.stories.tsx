@@ -39,6 +39,7 @@ export const Default: Story = {
 
 // Figma Shape: text 240 × 16 (radius md), circle 40 (radius full), block 320 × 120 (radius xl).
 export const Shapes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-start gap-8">
       <Skeleton shape="text" />
@@ -59,6 +60,7 @@ export const Shapes: Story = {
 
 // Figma "Example / list row loading": shapes resized to the real row, in an aria-busy region.
 export const ListRowLoading: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div role="region" aria-label="Customers" aria-busy="true" className="flex w-[328px] items-center gap-4 p-4">
       <span className="sr-only">Loading…</span>
@@ -84,6 +86,7 @@ export const ListRowLoading: Story = {
 
 // Stress test: narrow (50%) text, shapes in a column narrower than their default width.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex items-start gap-8">

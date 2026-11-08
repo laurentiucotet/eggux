@@ -5,7 +5,7 @@ import { SummaryList, SummaryRow } from './summary-row';
 const meta = {
   title: 'Components/Description List/Summary Row',
   component: SummaryRow,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'One line of a money breakdown: label left, amount right (order summary, invoice totals, price calculator, plan cost). default for lines, discount for reductions (success, with a minus sign), total for the last line with a Separator above. Same number format and currency in every row. Record details that are not amounts use Description List Item. Figma: Description List page / Summary Row.' } },
   },
@@ -40,6 +40,7 @@ export const Default: Story = {
 
 // Stress: a long label wraps, the amount stays on one line at 240. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <SummaryList className="w-[240px]">

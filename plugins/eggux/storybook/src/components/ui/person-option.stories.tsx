@@ -64,6 +64,7 @@ function PeopleList({ multiple = true, width = 288 }: { multiple?: boolean; widt
 // Figma default: 288 × 54 in the list, 32 px avatar, name and detail on two lines; arrows move the
 // highlight, Enter or a click toggles the person, the disabled one is skipped.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <PeopleList />,
   play: async ({ canvas }) => {
     const input = canvas.getByRole('combobox', { name: 'Search people' });
@@ -93,6 +94,7 @@ export const Default: Story = {
 
 // Single pick (owner, assignee): no checkbox, the selected person gets a check at the end.
 export const SinglePick: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <PeopleList multiple={false} />,
   play: async ({ canvas }) => {
     const [ana, , mihai] = canvas.getAllByRole('option');
@@ -106,6 +108,7 @@ export const SinglePick: Story = {
 
 // Figma Selected × State: static options outside a list.
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div role="listbox" aria-label="States" aria-multiselectable="true" className="flex w-72 flex-col gap-1">
       <PersonOption value="a" description="Finance manager · ana.popescu@acme.com" />
@@ -124,6 +127,7 @@ export const States: Story = {
 
 // Stress: long name and detail truncate on one line each at 240; no description is one line. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div role="listbox" aria-label="Stress" aria-multiselectable="true" className="flex w-60 flex-col gap-1">
@@ -144,11 +148,13 @@ export const Stress: Story = {
 };
 
 export const DefaultDark: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   globals: { theme: 'Dark' },
   render: () => <PeopleList />,
 };
 export const DefaultCorporate: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   globals: { theme: 'Corporate Light' },
   render: () => <PeopleList />,

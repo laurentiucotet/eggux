@@ -33,6 +33,7 @@ export const Default: Story = {
 
 // Spacing sm = 4 each side (9 high), md = 8 (17 high).
 export const Spacing: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col">
       <div data-testid="none"><Separator spacing="none" /></div>
@@ -49,6 +50,7 @@ export const Spacing: Story = {
 
 // Vertical: 1 x 24 (fills the toolbar height), spacing adds width: sm 9, md 17.
 export const Vertical: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-4">
       <div data-testid="none"><Separator orientation="vertical" /></div>
@@ -65,6 +67,7 @@ export const Vertical: Story = {
 };
 
 export const InToolbar: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [Story => <div className="w-[360px]"><Story /></div>],
   render: () => (
     <div className="flex items-center gap-1">
@@ -180,5 +183,5 @@ const AllThemes = () => (
     <Separator label="Earlier" showStartLine={false} />
   </div>
 );
-export const LabelledDark: Story = { render: () => <AllThemes />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Labelled (Dark)' };
-export const LabelledCorporate: Story = { render: () => <AllThemes />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Labelled (Corporate Light)' };
+export const LabelledDark: Story = { parameters: { controls: { disable: true } }, render: () => <AllThemes />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Labelled (Dark)' };
+export const LabelledCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <AllThemes />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Labelled (Corporate Light)' };

@@ -21,7 +21,7 @@ const eur = (v: number) => `€${new Intl.NumberFormat('en', { notation: 'compac
 const meta = {
   title: 'Components/Chart/Chart Card',
   component: ChartCard,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'Charts drawn from data with the chart/1..8 colors. Bar Chart (single, grouped, stacked) and Line Chart (line, area) share axes with round ticks, a focusable plot (Left / Right read the values in a Chart Tooltip) and a hidden data table. Bar Chart Horizontal ranks categories; Donut Chart shows parts of a whole with values and shares; Distribution Bar is one 100% bar; Gauge shows one number against a target with the status in words. Chart Card frames a chart with title, period actions, legend and an insight, and has loading, empty and error states. Figma: Chart page. Guide: eggux build-ui/components/charts.md' } },
   },
@@ -74,6 +74,7 @@ export const Default: Story = {
 
 // Bar types and line / area charts.
 export const BarsAndLines: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="grid w-[1160px] grid-cols-2 gap-10">
       <BarChart type="single" label="Revenue by month" series={series} data={data} formatValue={eur} />
@@ -96,6 +97,7 @@ export const BarsAndLines: Story = {
 
 // Horizontal ranking, donut, distribution bar, gauges and the tooltip on its own.
 export const PartsAndProgress: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[560px] flex-col gap-10">
       <BarChartHorizontal label="Top customers by revenue" formatValue={v => `€${v.toLocaleString('en')}`} data={[{ label: 'Northwind Traders', value: 24800 }, { label: 'Kestrel', value: 20150 }, { label: 'Fieldstone', value: 13900 }, { label: 'Halcyon', value: 10600 }, { label: 'Quintra', value: 7000 }, { label: 'Brightpath', value: 4150 }]} />
@@ -129,6 +131,7 @@ export const PartsAndProgress: Story = {
 
 // Chart Card states: loading, empty, error with Try again.
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[640px] flex-col gap-6">
       <ChartCard title="Loading" state="loading" />
@@ -144,6 +147,6 @@ export const States: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: PartsAndProgress.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: BarsAndLines.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: PartsAndProgress.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: BarsAndLines.render };
 export const CardDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' } };

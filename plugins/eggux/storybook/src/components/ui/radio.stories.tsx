@@ -22,6 +22,7 @@ const Group = ({ disabled }: { disabled?: boolean }) => (
 );
 
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group />,
   play: async ({ canvas }) => {
     const radios = canvas.getAllByRole('radio');
@@ -36,6 +37,7 @@ export const Default: Story = {
 };
 
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group />,
   play: async ({ canvas }) => {
     await userEvent.tab();
@@ -53,6 +55,7 @@ export const Keyboard: Story = {
 };
 
 export const Disabled: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group disabled />,
   play: async ({ canvas }) => {
     for (const r of canvas.getAllByRole('radio')) await expect(r).toBeDisabled();

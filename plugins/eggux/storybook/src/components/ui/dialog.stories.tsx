@@ -61,6 +61,7 @@ const InviteDialog = ({ size, trigger = 'Invite member' }: { size?: DialogSize; 
 const px = (v: string) => parseFloat(v);
 
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <InviteDialog />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Invite member' });
@@ -108,6 +109,7 @@ export const Default: Story = {
 
 /** Every way to close: the X, Cancel and a click on the scrim; focus returns each time. */
 export const Closing: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <InviteDialog />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Invite member' });
@@ -139,6 +141,7 @@ const sizes: { size: DialogSize; width: number }[] = [
 
 /** Figma Size: sm 384, default 512, lg 672, xl 896; on a narrower screen 16 px from each edge. */
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap gap-2">
       {sizes.map(({ size }) => (
@@ -184,6 +187,7 @@ const terms = Array.from({ length: 14 }, (_, i) => ({
 
 /** Long content scrolls inside the body; header and footer stay in view. */
 export const LongContent: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
@@ -245,6 +249,7 @@ export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { 
 
 /** Figma stress test: Size=sm with a long title and description wraps; nothing overflows. */
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <Dialog>

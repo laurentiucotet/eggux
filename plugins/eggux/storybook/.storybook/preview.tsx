@@ -6,7 +6,8 @@ import '../src/styles/globals.css';
 const preview: Preview = {
   parameters: {
     layout: 'centered',
-    controls: { expanded: true, matchers: { color: /(background|color)$/i } },
+    // Technical props (handlers, asChild, className, style, ref, dir) never show in Controls.
+    controls: { expanded: true, matchers: { color: /(background|color)$/i }, exclude: /^(on[A-Z]\w*|asChild|className|style|ref|dir)$/ },
     // Accessibility violations fail the story test (vitest) and show in the a11y panel.
     a11y: { test: 'error' },
     backgrounds: { disable: true },
@@ -37,6 +38,28 @@ const preview: Preview = {
     },
   },
   initialGlobals: { density: 'comfortable' },
+  // Controls show only what a designer can change: text, numbers, switches and choices.
+  // Props that are functions, React nodes, arrays or objects (raw JSON editors) are hidden, unless
+  // the story gives them a text or number value, which then gets a plain field. A story that sets
+  // its own `control` keeps it.
+  argTypesEnhancers: [
+    context => {
+      const out: typeof context.argTypes = {};
+      for (const [key, argType] of Object.entries(context.argTypes)) {
+        const initial = context.initialArgs?.[key];
+        const name = argType.type && typeof argType.type === 'object' ? argType.type.name : argType.type;
+        const summary = String(argType.table?.type?.summary ?? '');
+        const complex =
+          name === 'function' || name === 'array' || name === 'object' || name === 'other' || /ReactNode|ReactElement|JSX|=>|\[\]|\{/.test(summary);
+        if (argType.control !== undefined || !complex) out[key] = argType;
+        else if (typeof initial === 'string') out[key] = { ...argType, control: 'text' };
+        else if (typeof initial === 'number') out[key] = { ...argType, control: 'number' };
+        else if (typeof initial === 'boolean') out[key] = { ...argType, control: 'boolean' };
+        else out[key] = { ...argType, control: false, table: { ...argType.table, disable: true } };
+      }
+      return out;
+    },
+  ],
   decorators: [
     withThemeByClassName({
       themes: {

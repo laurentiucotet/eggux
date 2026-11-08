@@ -69,6 +69,7 @@ function Menu({ featured = true }: { featured?: boolean }) {
 
 // Figma default: the panel opens under Product, 834 wide, links in 2 columns, the featured card 240.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Menu />,
   play: async ({ canvas }) => {
     const nav = canvas.getByRole('navigation', { name: 'Main' });
@@ -90,6 +91,7 @@ export const Default: Story = {
 
 // Keyboard: Enter opens, Tab moves into the links, Escape closes and returns focus to the trigger.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Menu featured={false} />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Product' });
@@ -109,6 +111,7 @@ export const Keyboard: Story = {
 
 // The panel alone, without the featured card: links fill the width.
 export const PanelOnly: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <NavigationMenu aria-label="Resources">
       <NavigationMenuList>
@@ -131,6 +134,7 @@ export const PanelOnly: Story = {
 
 // Stress: 9 links at the min width 640 flow into 2 columns; a long featured title clamps. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <NavigationMenu aria-label="Stress">

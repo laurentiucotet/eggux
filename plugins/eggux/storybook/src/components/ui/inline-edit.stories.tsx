@@ -122,6 +122,7 @@ function SavingDemo() {
   );
 }
 export const Saving: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <SavingDemo />,
   play: async ({ canvas, canvasElement }) => {
     await userEvent.click(valueButton(canvas));

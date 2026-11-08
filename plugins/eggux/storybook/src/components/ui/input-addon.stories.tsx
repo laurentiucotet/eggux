@@ -33,6 +33,7 @@ export const Default: Story = {
 
 // Figma Position: start (divider right) and end (divider left); an icon works as the content too.
 export const Positions: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       <InputAddon position="start">https://</InputAddon>

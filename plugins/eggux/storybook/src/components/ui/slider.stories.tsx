@@ -38,6 +38,7 @@ export const Default: Story = {
 
 // Price range with value bubbles and marks; thumbs named, value text with the unit.
 export const PriceRange: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [v, setV] = React.useState([150, 450]);
     return (
@@ -73,6 +74,7 @@ export const Disabled: Story = {
 
 // Stress: long mark labels anchored to the ends at 276; values clamp at the ends. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="w-[276px] py-10">
@@ -88,5 +90,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: PriceRange.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: PriceRange.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: PriceRange.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: PriceRange.render };

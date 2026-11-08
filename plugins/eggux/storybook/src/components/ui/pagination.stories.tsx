@@ -47,6 +47,7 @@ function DotsDemo() {
 
 // Figma Style=simple (278) and Pagination Compact (32 buttons around "Page 2 of 12").
 export const SimpleAndCompact: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [a, setA] = React.useState(2);
     const [b, setB] = React.useState(2);
@@ -78,6 +79,7 @@ export const SimpleAndCompact: Story = {
 
 // Load More: the count over the outline button; loading disables it.
 export const LoadMoreFeed: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [shown, setShown] = React.useState(20);
     const [loading, setLoading] = React.useState(false);
@@ -105,6 +107,7 @@ export const LoadMoreFeed: Story = {
 
 // Pager Links at the end of a docs page: two equal columns, the whole card is the link.
 export const PagerLinks: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <nav aria-label="Docs pages" className="grid w-[768px] grid-cols-2 gap-4">
       <PagerLink direction="previous" href="#approvals" title="Approval chains" />

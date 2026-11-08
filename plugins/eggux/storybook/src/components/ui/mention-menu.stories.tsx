@@ -29,6 +29,7 @@ const entries: Entry[] = [
 
 // The Figma default: People header, three people and a file, the first highlighted.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <MentionMenu header="People">
       {entries.filter(e => e.name.startsWith('An')).map((e, i) => (
@@ -49,6 +50,7 @@ export const Default: Story = {
 
 // People first, then Files, each group with a header.
 export const Groups: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <MentionMenu header="People">
       <MentionOption {...splitMatch('Anna Berg', 'an')} description="@anna · Design" highlighted />
@@ -66,6 +68,7 @@ export const Groups: Story = {
 
 // No match: one muted line in a status region.
 export const Empty: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <MentionMenu header="People" />,
   play: async ({ canvas }) => {
     await expect(canvas.getByRole('status')).toHaveTextContent('No people match');
@@ -142,6 +145,7 @@ function Composer() {
 }
 
 export const InComposer: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Composer />,
   play: async ({ canvas }) => {
     onMention.mockClear();
@@ -175,6 +179,7 @@ export const InComposer: Story = {
 
 // Many people and long names: 280 fixed, names and descriptions truncate to one line.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <MentionMenu header="People in the Acme Holdings finance and operations workspace">

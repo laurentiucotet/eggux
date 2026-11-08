@@ -106,6 +106,7 @@ export const NoLabels: Story = {
 // Figma Uptime Day: one bar, 8 x 28 in the component set; here every state side by side.
 const states: UptimeState[] = ['operational', 'degraded', 'outage', 'maintenance', 'no-data'];
 export const DayStates: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <ul className="m-0 flex list-none gap-0.5 p-0">
       {states.map(s => <UptimeDay key={s} state={s} date="3 Oct 2026" className="w-2 flex-none" />)}

@@ -61,6 +61,7 @@ const sides: Record<ToggleSize, number> = { sm: 8, default: 10, lg: 12 };
 
 // Figma Variant: default (no border) and outline (border/input, shadow/xs), icon only and with a label.
 export const Variants: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       {variants.map(v => (
@@ -100,6 +101,7 @@ export const Variants: Story = {
 
 // Figma Size: sm 32, default 36, lg 40; icon only is square; label sides 8 / 10 / 12.
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       {sizes.map(s => (
@@ -165,6 +167,7 @@ export const Disabled: Story = {
 // Stress test (Figma "Stress test / Toggle"): long text stays on one line and the toggle never
 // shrinks in a narrow column; the icon-only toggle stays square; all options on and off.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex w-[276px] items-center gap-2 overflow-x-auto rounded-md border border-dashed p-3">

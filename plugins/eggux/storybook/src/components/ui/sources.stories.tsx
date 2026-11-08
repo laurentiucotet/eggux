@@ -114,6 +114,7 @@ export const WithCitations: Story = {
 };
 
 export const CitationDomain: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <p className="text-base leading-7 text-foreground">
       The reminder policy sends a first notice after 7 days <Citation label="acme.com +2" source="Reminder policy" />.

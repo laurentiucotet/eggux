@@ -130,6 +130,7 @@ export const NotCollapsible: Story = {
 
 // Controlled: the page stores the collapsed state (per user and page).
 export const Controlled: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => {
     const [collapsed, setCollapsed] = React.useState(true);
@@ -152,6 +153,7 @@ export const Controlled: Story = {
 // collapsed long title capped at 200.
 const longTitle = 'Details with a much longer label than the panel can show';
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-wrap items-start gap-4">

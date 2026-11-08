@@ -35,6 +35,7 @@ export const Default: Story = {
 
 // Figma Size sm 16, default 20, lg 32.
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-6">
       <Spinner size="sm" label="Loading small" />
@@ -51,6 +52,7 @@ export const Sizes: Story = {
 
 // Figma Tone: muted on quiet surfaces, default next to body text.
 export const Tones: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-6">
       <Spinner tone="muted" label="Loading muted" />
@@ -99,7 +101,7 @@ export const Decorative: Story = {
 };
 
 // Figma stress test: inline with text and in a narrow column; it never shrinks.
-export const Stress: Story = { tags: ['!dev'],
+export const Stress: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'],
   render: () => (
     <div className="flex w-[276px] items-start gap-2 text-sm">
       <Spinner size="sm" tone="muted" label="Importing" />

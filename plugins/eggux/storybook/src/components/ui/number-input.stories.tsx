@@ -157,6 +157,7 @@ function CartLine() {
   );
 }
 export const Controlled: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className="w-96"><CartLine /></div>,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Increase quantity' }));

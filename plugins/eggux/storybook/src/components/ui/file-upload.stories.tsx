@@ -43,7 +43,7 @@ function UploadDemo() {
 const meta = {
   title: 'Components/File Upload/File Dropzone',
   component: FileDropzone,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'Uploads and files. File Dropzone: drop area with Browse files, the hint states types and size, rejected files say why. File Item: each file with progress and cancel, size and remove, or the error with Retry; row or tile. File Field: one file inside a form. File Preview: read a document without downloading it. Resource Item: a file people download. File Type Icon: the type tile used everywhere. Figma: File Upload page. Guide: eggux build-ui/components/file-upload.md' } },
   },
@@ -85,6 +85,7 @@ export const Default: Story = {
 
 // Small dropzone, drag-over and disabled; tiles; File Type Icons.
 export const Variants: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-6">
       <div className="flex w-[480px] flex-col gap-3">
@@ -123,6 +124,7 @@ export const Variants: Story = {
 
 // Drag-over state via drag events (tests only).
 export const DragOver: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => <div className="w-[480px]"><FileDropzone /></div>,
   play: async ({ canvasElement }) => {
@@ -190,6 +192,7 @@ export const PreviewAndFields: Story = {
 };
 
 export const PreviewStates: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex w-[640px] flex-col gap-4">
@@ -203,6 +206,6 @@ export const PreviewStates: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Variants.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Variants.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Variants.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Variants.render };
 export const UploadDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' } };

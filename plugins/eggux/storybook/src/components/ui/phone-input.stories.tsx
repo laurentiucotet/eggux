@@ -138,6 +138,7 @@ export const Disabled: Story = {
 // Stress test (Figma "Stress test / Phone Input"): a long country code caps at 112 and truncates,
 // a long number stays on one line with an ellipsis, the 276 column.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => {
     const long = [{ code: 'RO', dial: '40123456', groups: [3, 3, 3] }, ...PHONE_COUNTRIES.filter(c => c.code !== 'RO')];

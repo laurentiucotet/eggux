@@ -50,6 +50,7 @@ const Stack = ({ alertStyle, layout = 'inline' }: { alertStyle: AlertStyle; layo
 
 // One story per Variant, Style=default. Warning is filled (no border): 66, the others 68.
 export const Variants: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Stack alertStyle="default" />,
   play: async ({ canvas }) => {
     const heights = canvas.getAllByText(/./, { selector: '[data-slot="alert-title"]' }).map(t => height(t.closest('[data-slot="alert"]') as HTMLElement));
@@ -89,6 +90,7 @@ export const Info: Story = { args: { variant: 'info', ...content.info }, play: a
 
 // Style=soft: tint fill, no border, 66.
 export const Soft: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Stack alertStyle="soft" />,
   play: async ({ canvas }) => {
     const alerts = canvas.getAllByText(/./, { selector: '[data-slot="alert-title"]' }).map(t => t.closest('[data-slot="alert"]') as HTMLElement);
@@ -100,6 +102,7 @@ export const Soft: Story = {
 
 // Style=accent: bordered card with a 4 px status bar on the left, 68.
 export const Accent: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Stack alertStyle="accent" />,
   play: async ({ canvas, canvasElement }) => {
     const alerts = canvas.getAllByText(/./, { selector: '[data-slot="alert-title"]' }).map(t => t.closest('[data-slot="alert"]') as HTMLElement);
@@ -113,6 +116,7 @@ export const Accent: Story = {
 
 // Layout=banner: full width, bottom border only, no radius, 24 px side padding, 67 (warning 66).
 export const Banner: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className="w-[960px]"><Stack alertStyle="default" layout="banner" /></div>,
   play: async ({ canvas }) => {
     const alerts = canvas.getAllByText(/./, { selector: '[data-slot="alert-title"]' }).map(t => t.closest('[data-slot="alert"]') as HTMLElement);
@@ -125,6 +129,7 @@ export const Banner: Story = {
 };
 
 export const BannerSoft: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className="w-[960px]"><Stack alertStyle="soft" layout="banner" /></div>,
   play: async ({ canvas }) => {
     await expect(height(canvas.getByRole('alert'))).toBe(66);
@@ -132,6 +137,7 @@ export const BannerSoft: Story = {
 };
 
 export const BannerAccent: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className="w-[960px]"><Stack alertStyle="accent" layout="banner" /></div>,
   play: async ({ canvas }) => {
     await expect(height(canvas.getByRole('alert'))).toBe(67);
@@ -187,6 +193,7 @@ const DismissibleAlert = () => {
   );
 };
 export const Dismissible: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <DismissibleAlert />,
   play: async ({ canvas }) => {
     const dismiss = canvas.getByRole('button', { name: 'Dismiss' });
@@ -263,8 +270,8 @@ const AllStyles = () => (
     <Stack alertStyle="accent" />
   </div>
 );
-export const AllStylesLight: Story = { render: () => <AllStyles />, name: 'All styles' };
-export const AllStylesDark: Story = { render: () => <AllStyles />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All styles (Dark)' };
-export const AllStylesCorporate: Story = { render: () => <AllStyles />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All styles (Corporate Light)' };
+export const AllStylesLight: Story = { parameters: { controls: { disable: true } }, render: () => <AllStyles />, name: 'All styles' };
+export const AllStylesDark: Story = { parameters: { controls: { disable: true } }, render: () => <AllStyles />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All styles (Dark)' };
+export const AllStylesCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <AllStyles />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All styles (Corporate Light)' };
 export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

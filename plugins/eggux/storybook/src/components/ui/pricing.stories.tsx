@@ -9,7 +9,7 @@ const features = ['Approvals with limits per entity', 'Audit log, kept 7 years',
 const meta = {
   title: 'Components/Pricing/Plan Card',
   component: PlanCard,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'Pricing and monetization. Price, Plan Card (default, featured, inverted, compact) and Comparison Table for pricing pages; Plan Option Row and Paywall Card for subscriptions; Meter Banner for metered content; Lock Badge, Gate Overlay and Upsell Card for paid features in the app; Usage Limit Banner and Trial Banner for limits and trials. One featured or inverted plan per section; prices, periods, renewal and how to cancel are always next to the action. Figma: Pricing page. Guide: eggux build-ui/patterns/marketing-pages.md, patterns/monetization.md' } },
   },
@@ -69,6 +69,7 @@ export const Default: Story = {
 
 // Comparison table: plans as column headers, groups, check / dash / text values.
 export const Comparison: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="w-[1152px]">
       <ComparisonTable
@@ -141,6 +142,7 @@ export const Paywall: Story = {
 
 // In-app: gate overlay over a blurred preview, usage limit banners, trial banners, upsell card.
 export const InApp: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-6">
       <div className="h-[420px] w-[720px]">
@@ -188,5 +190,5 @@ export const InApp: Story = {
 
 export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' } };
-export const InAppDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: InApp.render };
-export const PaywallDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Paywall.render };
+export const InAppDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: InApp.render };
+export const PaywallDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Paywall.render };

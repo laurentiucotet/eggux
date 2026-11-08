@@ -59,6 +59,7 @@ function Palette({ defaultOpen = false }: { defaultOpen?: boolean }) {
 
 // The search button opens it with focus in the input; Enter runs the highlighted item and closes.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Palette />,
   play: async ({ canvas }) => {
     run.mockClear();
@@ -84,6 +85,7 @@ export const Default: Story = {
 
 // ⌘K / Ctrl K opens it from anywhere; Escape closes; arrows move through the groups.
 export const Shortcut: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Palette />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: /Search/ });
@@ -108,6 +110,7 @@ export const Shortcut: Story = {
 
 // No match: say so; the footer keys stay.
 export const NoResults: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Palette defaultOpen />,
   play: async () => {
     const dialog = await screen.findByRole('dialog');
@@ -119,6 +122,7 @@ export const NoResults: Story = {
 
 // Many results scroll inside the list; header and footer stay; long labels truncate.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <CommandDialog defaultOpen>

@@ -47,7 +47,7 @@ function CenterDemo({ tabs = true, initial = seed, title }: { tabs?: boolean; in
 const meta = {
   title: 'Components/Notifications/Notification Center',
   component: NotificationCenter,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'The panel behind the bell: Mark all as read, optional tabs by type, newest first with unread on top (muted row and a dot), View all at the bottom. Opening the panel does not mark items read; opening an item does. Empty: "You are all caught up." At least 288 wide; on phones in a Sheet. Figma: Notifications page / Notification Center, Notification Item. Guide: eggux build-ui/patterns/notifications.md' } },
   },
@@ -79,6 +79,7 @@ export const Default: Story = {
 
 // No tabs (one kind) and the empty panel.
 export const NoTabsAndEmpty: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-start gap-6">
       <CenterDemo tabs={false} />
@@ -93,6 +94,7 @@ export const NoTabsAndEmpty: Story = {
 
 // Stress: at 288 a long message clamps to 2 lines and the meta truncates. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <NotificationCenter className="w-[288px]">

@@ -74,6 +74,7 @@ const px = (n: number) => Math.round(n);
 
 // Figma Side=right: 384 × full height, against the right edge, 24 padding, 16 gap, left border.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <EditContact />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Edit contact' });
@@ -111,6 +112,7 @@ export const Default: Story = {
 
 // Keyboard: Enter opens, Tab stays inside (focus trap), Escape closes, focus returns.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <EditContact />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Edit contact' });
@@ -137,6 +139,7 @@ export const Keyboard: Story = {
 
 // Close X has an accessible label; an outside click on the overlay closes it too.
 export const CloseAndOutsideClick: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => <EditContact />,
   play: async ({ canvas }) => {
@@ -158,6 +161,7 @@ export const CloseAndOutsideClick: Story = {
 
 // Figma Side=left: against the left edge, border on the right.
 export const Left: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <EditContact side="left" trigger="Open menu" />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Open menu' }));
@@ -171,6 +175,7 @@ export const Left: Story = {
 
 // Widths from the reference: 384 details and filters, 480 forms, 640 a record; full width under 640.
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex gap-2">
       <EditContact trigger="384" />
@@ -192,6 +197,7 @@ export const Sizes: Story = {
 
 // No field in the body: focus goes to the title, so the name is read first.
 export const FocusTitle: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <Sheet>
@@ -218,6 +224,7 @@ export const FocusTitle: Story = {
 
 // Stress: long content scrolls inside the body while header and footer stay in view; long title wraps.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => <EditContact fields={14} />,
   play: async ({ canvas }) => {

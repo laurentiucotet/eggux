@@ -23,6 +23,7 @@ const box = (el: Element) => el.getBoundingClientRect();
 // Figma Level=1 states in one group: default, active (accent, medium, aria-current), disabled,
 // badge, chevron; 224 × 32, 8 px sides, 8 gap, items 4 apart; group label 32 high.
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="w-64">
       <Sidebar label="Main">
@@ -55,6 +56,7 @@ export const States: Story = {
 
 // Figma Level=2: sub-pages under an expanded parent with a chevron, label aligned with the parent's.
 export const SubPages: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="w-64">
       <Sidebar label="Main">
@@ -79,6 +81,7 @@ export const SubPages: Story = {
 const onAdd = fn();
 const onMore = fn();
 export const Actions: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="w-64">
       <Sidebar label="Main">
@@ -111,6 +114,7 @@ export const Actions: Story = {
 
 // Figma Mode=collapsed: 32 square, icon only, the label is the name and the tooltip.
 export const Collapsed: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="h-auto">
       <Sidebar label="Main" collapsed>
@@ -133,6 +137,7 @@ export const Collapsed: Story = {
 
 // Stress: a long label truncates on one line at the 240 minimum, the badge keeps its place. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="w-60">

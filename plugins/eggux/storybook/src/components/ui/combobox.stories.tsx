@@ -50,6 +50,7 @@ const onValueChange = fn();
 // Figma Size=default, placeholder "Select country…": 240 x 36, chevrons-up-down. Click opens the
 // Command 4 px below with the search focused; typing filters; Enter picks, closes, focus returns.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Field label="Country">
       <Combobox options={countries} listLabel="Countries" searchPlaceholder="Search countries…" onValueChange={onValueChange} />
@@ -94,6 +95,7 @@ export const Default: Story = {
 
 // Keyboard: a letter on the trigger opens the list with that letter searched; ArrowDown opens too.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Field label="Country"><Combobox options={countries} listLabel="Countries" /></Field>,
   play: async ({ canvas }) => {
     await userEvent.tab();
@@ -117,6 +119,7 @@ export const Keyboard: Story = {
 
 // "No results for <query>" in a polite status, never an empty dropdown.
 export const NoResults: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Field label="Country"><Combobox options={countries} listLabel="Countries" /></Field>,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('combobox', { name: /^Country/ }));
@@ -157,6 +160,7 @@ function CreateDemo() {
 }
 
 export const CreateOption: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [],
   render: () => <CreateDemo />,
   play: async ({ canvas }) => {
@@ -186,6 +190,7 @@ export const CreateOption: Story = {
 
 // Groups (Menu Label) and the leading on the trigger matching the options.
 export const Groups: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Field label="Assignee">
       <Combobox
@@ -217,6 +222,7 @@ export const Groups: Story = {
 
 // Server search: no filtering in the component, a loading row instead of an empty list.
 export const Loading: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Field label="Product"><Combobox options={[]} shouldFilter={false} loading defaultOpen listLabel="Products" placeholder="Select product…" /></Field>,
   play: async () => {
     const status = await screen.findByText('Loading…');
@@ -227,6 +233,7 @@ export const Loading: Story = {
 
 // Figma Size: sm 32, default 36, lg 40 (16 px sides, body/default).
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-3">
       <Combobox size="sm" label="Small" options={countries} />
@@ -245,6 +252,7 @@ export const Sizes: Story = {
 
 // Figma State=error, disabled, read-only and Show clear.
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       <Field label="Billing country" error="Choose the country on the invoice."><Combobox options={countries} /></Field>
@@ -279,6 +287,7 @@ export const States: Story = {
 
 // The open list with rich options (Figma "Example / Combobox create option"), for the theme checks.
 export const Open: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [Story => <div className="h-[260px] w-[320px]"><Story /></div>],
   render: () => <Field label="Customer"><Combobox options={customers} defaultValue="nordic" defaultOpen listLabel="Customers" placeholder="Select customer…" /></Field>,
   play: async () => {
@@ -295,6 +304,7 @@ const longOptions: ComboboxOption[] = [
   ...countries,
 ];
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   decorators: [],
   render: () => (

@@ -49,6 +49,7 @@ export const Default: Story = {
 
 // Testimonial Card: default with rating (352), minimal, logo, featured with photo (720).
 export const Testimonials: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-8">
       <div className="grid w-[1120px] grid-cols-3 items-start gap-8">
@@ -70,6 +71,7 @@ export const Testimonials: Story = {
 
 // Footnotes: the superscript links down, Back to text links up.
 export const Footnotes_: Story = {
+  parameters: { controls: { disable: true } },
   name: 'Footnotes',
   render: () => (
     <div className="flex w-[560px] flex-col gap-6">
@@ -85,5 +87,5 @@ export const Footnotes_: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Testimonials.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Testimonials.render };
 export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' } };

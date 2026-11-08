@@ -26,6 +26,7 @@ export const Default: Story = {
 
 // Sizes and layouts: stacked lg 60, inline 28, inline lg 32; source and divider.
 export const Layouts: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap items-start gap-8">
       <div className="w-[240px]"><Figure value="47 days" label="average time to get paid" size="lg" source="Acme survey, September 2026" divider /></div>
@@ -45,6 +46,7 @@ export const Layouts: Story = {
 
 // Tone=on-primary on a primary band.
 export const OnPrimary: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex gap-10 rounded-xl bg-primary p-8">
       <div className="w-[200px]"><Figure tone="on-primary" value="12,400" label="teams on Acme" source="October 2026" /></div>
@@ -55,6 +57,7 @@ export const OnPrimary: Story = {
 
 // Stress: long value and label truncate at 160; inline stays on one line. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="w-[160px]"><Figure value="€12,480,000.00" label="total collected through automated reminders" /></div>
@@ -67,5 +70,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: OnPrimary.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: OnPrimary.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: OnPrimary.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: OnPrimary.render };

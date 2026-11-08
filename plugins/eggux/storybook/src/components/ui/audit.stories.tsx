@@ -73,6 +73,7 @@ export const Default: Story = {
 
 // Release notes: text entry with Read more, and an entry with Changes lines.
 export const ReleaseNotes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="w-[640px]">
       <ReleaseNoteItem
@@ -107,6 +108,7 @@ export const ReleaseNotes: Story = {
 
 // Stress: long values truncate at 240; at 320 the change item wraps. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="w-[320px]">
@@ -123,4 +125,4 @@ export const Stress: Story = {
 
 export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' } };
-export const ReleaseNotesDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: ReleaseNotes.render };
+export const ReleaseNotesDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: ReleaseNotes.render };

@@ -6,7 +6,7 @@ import { Timeline, TimelineItem } from './timeline';
 const meta = {
   title: 'Components/Timeline/Timeline Item',
   component: TimelineItem,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'One event in an activity history (record history, audit log, order tracking), newest first. Tone marks the outcome. Layout default for record pages, card for events with notes, alternating for milestones on marketing pages, horizontal for roadmaps and order steps on wide screens; Size sm for side panels. Relative time under 24 h, absolute after, full timestamp on hover. Figma: Timeline page / Timeline Item. Guide: eggux build-ui/components/description-list.md' } },
   },
@@ -38,6 +38,7 @@ export const Default: Story = {
 
 // Layout=card (94) with notes, and Size=sm (50) for side panels.
 export const CardAndSmall: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex gap-10">
       <Timeline className="w-[480px]">
@@ -60,6 +61,7 @@ export const CardAndSmall: Story = {
 
 // Alternating for milestones (640) and horizontal steps (200 each, no gap).
 export const Milestones: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-10">
       <Timeline className="w-[640px]">
@@ -86,6 +88,7 @@ export const Milestones: Story = {
 
 // Stress: long title and time truncate the time at 128; card at 200 wraps the time under the title. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex gap-6">

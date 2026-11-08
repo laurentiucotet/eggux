@@ -35,6 +35,7 @@ function SignUp() {
 }
 
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <SignUp />,
   play: async ({ canvas, canvasElement }) => {
     const input = canvas.getByLabelText('New password');
@@ -64,6 +65,7 @@ const levels: PasswordStrengthLevel[] = ['empty', 'weak', 'fair', 'good', 'stron
 // Figma Level: bar count 0-4 and colors (destructive, foreground/muted, info, success); 4 px bars,
 // 4 px gap, 6 px to the ui/caption message; 288 wide.
 export const Levels: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-6">
       {levels.map(l => <PasswordStrength key={l} level={l} />)}
@@ -92,6 +94,7 @@ export const Levels: Story = {
 
 // The level rule is length only: symbols and digits do not change it.
 export const LengthOnly: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => <PasswordStrength level="empty" />,
   play: async () => {
@@ -105,6 +108,7 @@ export const LengthOnly: Story = {
 
 // Stress test: the 276 and 368 columns; translated long messages wrap and stay readable.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   decorators: [Story => <div><Story /></div>],
   render: () => (

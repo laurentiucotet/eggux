@@ -86,6 +86,7 @@ function EditorMenubar({ defaultValue }: { defaultValue?: string }) {
 // Figma Menubar: 36 high (control-height), hugs its triggers with 4 px sides and gaps, border,
 // radius md. Menubar Trigger: 28 high, 12 px sides, ui/label. Click opens; open = accent fill.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <EditorMenubar />,
   play: async ({ canvas }) => {
     const bar = canvas.getByRole('menubar', { name: 'Invoice editor' });
@@ -134,6 +135,7 @@ export const Default: Story = {
 // Keyboard: Tab reaches the first trigger, arrows move between triggers and between open menus,
 // Enter opens, Escape closes and focus returns to the trigger.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <EditorMenubar />,
   play: async ({ canvas }) => {
     const [file, edit, view] = canvas.getAllByRole('menuitem');
@@ -167,6 +169,7 @@ export const Keyboard: Story = {
 
 // Stress: long trigger labels stay on one line; the bar hugs them.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <Menubar aria-label="Report builder">
@@ -188,5 +191,5 @@ export const Stress: Story = {
   },
 };
 
-export const OpenDark: Story = { render: () => <EditorMenubar defaultValue="edit" />, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const OpenCorporate: Story = { render: () => <EditorMenubar defaultValue="edit" />, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const OpenDark: Story = { parameters: { controls: { disable: true } }, render: () => <EditorMenubar defaultValue="edit" />, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const OpenCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <EditorMenubar defaultValue="edit" />, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

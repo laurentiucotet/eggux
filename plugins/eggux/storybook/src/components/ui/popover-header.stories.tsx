@@ -46,6 +46,7 @@ function FilterPopover({ description }: { description?: string }) {
 
 // The title names the popover; the X closes it and focus returns to the trigger.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <FilterPopover />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Status' });
@@ -66,6 +67,7 @@ export const Default: Story = {
 
 // Show description on: muted body/small 4 px under the title.
 export const WithDescription: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <FilterPopover description="Pick one or more statuses to show." />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Status' }));
@@ -91,6 +93,7 @@ export const WithoutClose: Story = {
 
 // Long title: two lines then an ellipsis; description three lines; the X stays 20 px.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <Popover open>

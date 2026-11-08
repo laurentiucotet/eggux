@@ -83,6 +83,7 @@ export const Default: Story = {
 
 // Show icon off, a swapped icon, and the arrow keys between links (Radix focus group).
 export const Options: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Frame>
       <NavigationMenuLink href="#inbox" icon={<Inbox />} title="Inbox" description="Every message from every channel in one place." />
@@ -104,6 +105,7 @@ export const Options: Story = {
 // Figma "Stress test / Navigation Menu Panel" links: long title stays on one line with an
 // ellipsis, long description wraps, the icon keeps 36; min width 240.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <Frame width={240}>

@@ -87,6 +87,7 @@ export const Keyboard: Story = {
 
 // Figma Size: default 36, sm 32, lg 40; text 14 px, lg 16 px.
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [],
   render: () => (
     <div className="flex w-[240px] flex-col gap-3">
@@ -107,6 +108,7 @@ export const Sizes: Story = {
 
 // Figma State: error (destructive border, aria-invalid), disabled (faded, inert), read-only (muted fill, nothing opens).
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [],
   render: () => (
     <div className="flex w-[240px] flex-col gap-3">
@@ -212,6 +214,7 @@ export const DateAndTime: Story = {
 
 // Inside a Field the visible label names the trigger.
 export const InField: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Field label="Invoice date" hint="Format follows your language">
       <DatePicker today={TODAY} />
@@ -264,8 +267,8 @@ const Showcase = () => (
     <DatePicker label="Range" type="range" today={TODAY} defaultRange={{ from: new Date(2026, 9, 1), to: new Date(2026, 9, 31) }} />
   </div>
 );
-export const AllStates: Story = { decorators: [], render: () => <Showcase />, name: 'All states' };
-export const AllStatesDark: Story = { decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All states (Dark)' };
-export const AllStatesCorporate: Story = { decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All states (Corporate Light)' };
+export const AllStates: Story = { parameters: { controls: { disable: true } }, decorators: [], render: () => <Showcase />, name: 'All states' };
+export const AllStatesDark: Story = { parameters: { controls: { disable: true } }, decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All states (Dark)' };
+export const AllStatesCorporate: Story = { parameters: { controls: { disable: true } }, decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All states (Corporate Light)' };
 export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

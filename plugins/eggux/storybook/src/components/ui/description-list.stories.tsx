@@ -6,7 +6,7 @@ import { DescriptionList, DescriptionListItem } from './description-list';
 const meta = {
   title: 'Components/Description List/Description List Item',
   component: DescriptionListItem,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'Label-value pairs for record details (dl / dt / dd). Horizontal in cards and sheets, vertical in narrow columns and grids; bordered for dense specs and invoices. Divider off on the last row; an empty value says "Not set". Show action adds a Copy Button xs for IDs, keys and links. Money breakdowns use Summary Row. Figma: Description List page / Description List Item. Guide: eggux build-ui/components/description-list.md' } },
   },
@@ -40,6 +40,7 @@ export const Default: Story = {
 
 // Figma Orientation=vertical: label over value, 69 with the divider; in a 2-column grid.
 export const Vertical: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <DescriptionList className="grid w-[540px] grid-cols-2 gap-x-5">
       <DescriptionListItem orientation="vertical" label="Phone">+40 712 345 678</DescriptionListItem>
@@ -54,6 +55,7 @@ export const Vertical: Story = {
 
 // Figma Style=bordered: label cell on card/muted (192 max), rows overlap their borders.
 export const Bordered: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <DescriptionList listStyle="bordered" className="w-[560px]">
       <DescriptionListItem itemStyle="bordered" label="Invoice">INV-2026-0412</DescriptionListItem>
@@ -71,6 +73,7 @@ export const Bordered: Story = {
 
 // Stress: a long value wraps, the label keeps 160; at 280 the bordered label shrinks to 96 min. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">
@@ -91,5 +94,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Bordered.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Bordered.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Bordered.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Bordered.render };

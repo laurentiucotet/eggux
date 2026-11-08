@@ -56,6 +56,7 @@ const probe = (className: string) => {
 
 // Figma Variant=default, Size=default: 384 x 308, radius 12, padding 24.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Sample />,
   play: async ({ canvas }) => {
     const card = canvas.getByTestId('card');
@@ -74,6 +75,7 @@ export const Default: Story = {
 
 // Variants: outline is border only (308), muted is tinted with no border (306), inverted flips the colors.
 export const Variants: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-6">
       {(['default', 'outline', 'muted', 'inverted'] as const).map(v => (
@@ -105,6 +107,7 @@ export const Variants: Story = {
 
 // Size=sm: padding and gap 16, 384 x 276.
 export const Small: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Sample size="sm" />,
   play: async ({ canvas }) => {
     const card = canvas.getByTestId('card');
@@ -116,6 +119,7 @@ export const Small: Story = {
 
 // Elevation: shadow md, never a whole grid. An outline card gets the card background.
 export const Elevated: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-6">
       <Card elevated data-testid="flat-elevated"><CardHeader title="Elevated card" description="One card that must stand out." /></Card>
@@ -130,6 +134,7 @@ export const Elevated: Story = {
 
 // Card Header: Show icon puts a 20 px decorative icon before the title.
 export const HeaderIcon: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Sample icon />,
   play: async ({ canvas, canvasElement }) => {
     const icon = canvasElement.querySelector('[data-slot="card-header-icon"]') as HTMLElement;
@@ -141,6 +146,7 @@ export const HeaderIcon: Story = {
 
 // Media=top: a full-bleed 16:9 image at the top, rounded top corners, Header and Content below.
 export const MediaTop: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Card media={<ImagePlaceholder ratio="16:9" />} data-testid="card">
       <CardHeader title="Recent activity" description="Next 7 days, all locations." />
@@ -159,6 +165,7 @@ export const MediaTop: Story = {
 
 // State hover and focus: a card that is one link as a whole. It gets shadow md and a 2 px focus ring.
 export const AsLink: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Card asChild interactive>
       <a href="#use-cases">
@@ -179,6 +186,7 @@ export const AsLink: Story = {
 
 // A slot with px-0 runs edge to edge (a table, an image, a map).
 export const FullBleedSlot: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Card data-testid="card">
       <CardHeader title="Recent activity" />
@@ -203,6 +211,7 @@ const Long = () => (
   </Card>
 );
 export const LongText: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Long />,
   play: async ({ canvas }) => {
     const card = canvas.getByTestId('card');
@@ -234,9 +243,9 @@ const AllVariants = () => (
     {(['default', 'outline', 'muted', 'inverted'] as const).map(v => <Sample key={v} variant={v} />)}
   </div>
 );
-export const AllVariantsLight: Story = { render: () => <AllVariants />, name: 'All variants' };
-export const AllVariantsDark: Story = { render: () => <AllVariants />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All variants (Dark)' };
-export const AllVariantsCorporate: Story = { render: () => <AllVariants />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All variants (Corporate Light)' };
+export const AllVariantsLight: Story = { parameters: { controls: { disable: true } }, render: () => <AllVariants />, name: 'All variants' };
+export const AllVariantsDark: Story = { parameters: { controls: { disable: true } }, render: () => <AllVariants />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All variants (Dark)' };
+export const AllVariantsCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <AllVariants />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All variants (Corporate Light)' };
 // Other themes change radius and density tokens, so these copies check the heading and run axe.
 const themed = async ({ canvas }: { canvas: any }) => { await expect(canvas.getByRole('heading', { name: 'Recent activity' })).toBeVisible(); };
 export const DefaultDark: Story = { ...Default, play: themed, tags: ['!dev'], globals: { theme: 'Dark' } };

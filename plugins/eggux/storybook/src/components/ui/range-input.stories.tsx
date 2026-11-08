@@ -144,6 +144,7 @@ export const Disabled: Story = {
 // Stress test (Figma "Stress test / Range Input"): long units and values truncate, short values,
 // the 276 column, a long error.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">

@@ -42,6 +42,7 @@ const States = () => (
 );
 
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   args: { value: 'x', children: 'Overview' },
   render: () => <States />,
   play: async ({ canvasElement }) => {
@@ -67,6 +68,7 @@ export const Default: Story = {
 
 // Focus state: a 2 px background gap and a 4 px ring, only for keyboard focus.
 export const Focus: Story = {
+  parameters: { controls: { disable: true } },
   args: { value: 'x', children: 'Overview' },
   render: () => <States />,
   play: async ({ canvasElement }) => {

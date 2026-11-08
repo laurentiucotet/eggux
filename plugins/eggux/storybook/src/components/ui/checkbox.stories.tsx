@@ -123,6 +123,7 @@ export const Disabled: Story = {
 
 // All Checked x State variants in one grid.
 export const AllStates: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="grid grid-cols-3 gap-x-8 gap-y-4">
       <Checkbox label="Unchecked" />

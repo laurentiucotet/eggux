@@ -115,6 +115,7 @@ export const Layout: Story = {
 
 // Another title for a list of other pages; items composed by hand.
 export const OtherPages: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="w-56">
@@ -135,6 +136,7 @@ export const OtherPages: Story = {
 
 // Figma "Stress test / Table of Contents": long title wraps to 2 lines with ellipsis; 112 wide column.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex gap-8">

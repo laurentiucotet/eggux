@@ -64,6 +64,7 @@ export const Default: Story = {
 
 // Treemap 560 × 320: Subscriptions takes the left column, the rest fill to the right.
 export const TreemapChart: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className="w-[560px]"><Treemap label="Revenue by product" data={revenue} formatValue={eur} /></div>,
   play: async ({ canvas, canvasElement }) => {
     const fig = canvas.getByRole('figure', { name: 'Revenue by product' });
@@ -80,6 +81,7 @@ export const TreemapChart: Story = {
 
 // Funnel 560 × 200: 4 stages, conversion from the previous step, overall line.
 export const Funnel: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="w-[560px]">
       <FunnelChart label="Invoice funnel" summary="65% of created invoices paid" stages={[{ label: 'Created', value: 1240 }, { label: 'Sent', value: 1180 }, { label: 'Viewed', value: 960 }, { label: 'Paid', value: 812 }]} />
@@ -97,6 +99,7 @@ export const Funnel: Story = {
 
 // Scatter 560 × 264: two series, ticks 0-60 and 0-10K, arrows read each point.
 export const Scatter: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[560px] flex-col gap-3">
       <ScatterChart label="Invoice amount vs days to pay" series={scatter} xTitle="X: invoice amount (EUR)" yTitle="Y: days to pay" formatX={eur} />
@@ -127,6 +130,7 @@ const cash = [
 
 // Waterfall 640 × 284: ticks €75K apart, signed labels, connectors, legend.
 export const Waterfall: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className="w-[640px]"><WaterfallChart label="Cash, opening to closing, Q3" steps={cash} formatValue={eur} /></div>,
   play: async ({ canvas, canvasElement }) => {
     const fig = canvas.getByRole('figure', { name: 'Cash, opening to closing, Q3' });
@@ -144,6 +148,7 @@ export const Waterfall: Story = {
 
 // Combo 640 × 264: bars on 0-800, line on 0-100%, end value labelled.
 export const Combo: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="w-[640px]">
       <ComboChart
@@ -179,6 +184,7 @@ const months: ChartDatum[] = [
 
 // Line Chart step and stacked-area.
 export const LineStepAndStacked: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="grid w-[1160px] grid-cols-2 gap-10">
       <LineChart type="stacked-area" label="New and returning revenue" series={[{ key: 'a', label: 'New' }, { key: 'b', label: 'Returning' }]} data={months} formatValue={eur} />
@@ -198,6 +204,7 @@ export const LineStepAndStacked: Story = {
 
 // Edge: squarify keeps every area proportional and inside the box. Tests only.
 export const TreemapLayout: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => <div className="w-[300px]"><Treemap label="One part" data={[{ label: 'Only', value: 5 }]} height={160} /></div>,
   play: async ({ canvasElement }) => {
@@ -211,6 +218,7 @@ export const TreemapLayout: Story = {
 
 // Edge: empty heatmap and a one-stage funnel. Tests only.
 export const EmptyAndMinimal: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex w-[480px] flex-col gap-6">
@@ -226,6 +234,7 @@ export const EmptyAndMinimal: Story = {
 };
 
 export const ChartsDark: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   globals: { theme: 'Dark' },
   render: () => (
@@ -237,6 +246,7 @@ export const ChartsDark: Story = {
   ),
 };
 export const ChartsCorporate: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   globals: { theme: 'Corporate Light' },
   render: () => (

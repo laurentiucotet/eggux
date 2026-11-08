@@ -167,6 +167,7 @@ const Controlled = () => {
   );
 };
 export const ControlledValue: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Controlled />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'May, May 2026' }));
@@ -200,6 +201,6 @@ const All = () => (
     <MonthPicker type="year" today={TODAY} defaultValue={new Date(2025, 0, 1)} />
   </div>
 );
-export const AllTypes: Story = { render: () => <All />, name: 'All types' };
-export const AllTypesDark: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All types (Dark)' };
-export const AllTypesCorporate: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All types (Corporate Light)' };
+export const AllTypes: Story = { parameters: { controls: { disable: true } }, render: () => <All />, name: 'All types' };
+export const AllTypesDark: Story = { parameters: { controls: { disable: true } }, render: () => <All />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All types (Dark)' };
+export const AllTypesCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <All />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All types (Corporate Light)' };

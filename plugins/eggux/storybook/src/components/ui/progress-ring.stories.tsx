@@ -29,6 +29,7 @@ export const Default: Story = {
 
 // Sizes: sm 32 without label (number next to it), default 48, lg 80 with the h4 label; 0 and 100.
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-6">
       <div className="flex items-center gap-2">
@@ -51,5 +52,5 @@ export const Sizes: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Sizes.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Sizes.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Sizes.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Sizes.render };

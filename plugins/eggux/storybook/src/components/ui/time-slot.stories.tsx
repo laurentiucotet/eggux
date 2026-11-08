@@ -68,6 +68,6 @@ const All = () => (
     <TimeSlot time="14:30" selected />
   </div>
 );
-export const AllStates: Story = { render: () => <All /> };
-export const AllStatesDark: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const AllStatesCorporate: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const AllStates: Story = { parameters: { controls: { disable: true } }, render: () => <All /> };
+export const AllStatesDark: Story = { parameters: { controls: { disable: true } }, render: () => <All />, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const AllStatesCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <All />, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

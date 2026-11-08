@@ -88,6 +88,7 @@ function Live() {
 
 // The count updates in the live region; Tab reaches every control; Escape clears.
 export const Interactive: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Live />,
   play: async ({ canvas }) => {
     await expect(canvas.getByRole('status')).toHaveTextContent('1 selected');

@@ -54,6 +54,7 @@ export const Default: Story = {
 
 // Several bullets on one scale, for a KPI review.
 export const BulletStack: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[640px] flex-col gap-4">
       <BulletChart title="Revenue" unit="EUR, this quarter" value={412} target={480} ranges={[270, 450, 600]} max={765} formatValue={k} />
@@ -70,6 +71,7 @@ export const BulletStack: Story = {
 
 // Figma: 360 × 320 drawing, 6 axes, 4 grid rings; arrows read one axis for every series.
 export const Radar: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className="w-[360px]"><RadarChart label="Vendor scores" axes={axes} series={vendors} /></div>,
   play: async ({ canvas, canvasElement }) => {
     const fig = canvas.getByRole('figure', { name: 'Vendor scores' });
@@ -89,6 +91,7 @@ export const Radar: Story = {
 
 // Figma: 200 × 200; single ring 72%, concentric 3 rings with a legend next to it.
 export const Radial: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-10">
       <RadialChart label="Q4 revenue goal" rings={[{ label: 'Revenue', value: 72 }]} caption="of goal" />
@@ -116,6 +119,7 @@ export const Radial: Story = {
 
 // Figma: 560 wide, 216 plot, ticks 0-24h, outliers as open dots; arrows read one group.
 export const BoxPlotChart: Story = {
+  parameters: { controls: { disable: true } },
   name: 'Box Plot',
   render: () => <div className="w-[560px]"><BoxPlot label="First response time by channel" groups={response} ticks={[0, 6, 12, 18, 24]} formatValue={hours} /></div>,
   play: async ({ canvas, canvasElement }) => {
@@ -134,6 +138,7 @@ export const BoxPlotChart: Story = {
 
 // Figma: 480 × 161 with a Sparkline; refresh, expand and More menu; footer with the last update.
 export const Widget: Story = {
+  parameters: { controls: { disable: true } },
   name: 'Dashboard Widget',
   render: () => (
     <div className="w-[480px]">
@@ -164,6 +169,7 @@ export const Widget: Story = {
 
 // View mode (no handle), refreshing, no footer; a Bullet Chart as content.
 export const WidgetStates: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="grid w-[980px] grid-cols-2 gap-4">
@@ -185,6 +191,7 @@ export const WidgetStates: Story = {
 
 // boxStats: quartiles, 1.5 × box whiskers, outliers; empty and flat data; radial 0 and 100.
 export const EdgeCases: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex w-[560px] flex-col gap-8">
@@ -223,5 +230,5 @@ const All = () => (
     </DashboardWidget>
   </div>
 );
-export const ChartsDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: () => <All /> };
-export const ChartsCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: () => <All /> };
+export const ChartsDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: () => <All /> };
+export const ChartsCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: () => <All /> };

@@ -143,6 +143,7 @@ export const InField: Story = {
 // Stress test (Figma "Stress test / Duration Input"): min width 160, long values and units
 // truncate, short values, the 276 column.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">

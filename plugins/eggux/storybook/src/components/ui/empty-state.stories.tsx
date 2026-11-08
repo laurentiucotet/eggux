@@ -160,6 +160,7 @@ export const ErrorSmall: Story = {
 
 // The five cases of "empty state types": each with its own icon and action.
 export const Types: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [Story => <div className="w-[848px] max-w-full"><Story /></div>],
   render: () => (
     <div className="grid gap-6 md:grid-cols-2">

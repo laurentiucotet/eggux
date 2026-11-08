@@ -90,6 +90,7 @@ export const Keyboard: Story = {
 
 // Figma Size: default 36, sm 32, lg 40. Text 14 px, lg 16 px.
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [],
   render: () => (
     <div className="flex w-[160px] flex-col gap-3">
@@ -109,6 +110,7 @@ export const Sizes: Story = {
 
 // Figma State=focus: border-ring and a 3 px ring; State=error: destructive border; State=disabled: faded and inert.
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [],
   render: () => (
     <div className="flex w-[160px] flex-col gap-3">
@@ -165,6 +167,7 @@ const RangeExample = (props: { label?: string; size?: 'sm' | 'default' | 'lg' })
   <TimePicker type="range" label={props.label ?? 'Availability'} size={props.size} defaultRange={{ start: '09:00', end: '10:30' }} />
 );
 export const Range: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [Story => <div className="w-[240px]"><Story /></div>],
   render: () => <RangeExample />,
   play: async ({ canvas }) => {
@@ -193,6 +196,7 @@ export const Range: Story = {
 
 // Picking a start at or after the old end clears the end.
 export const RangeStartAfterEnd: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [Story => <div className="w-[240px]"><Story /></div>],
   render: () => <RangeExample />,
   play: async ({ canvas }) => {
@@ -208,6 +212,7 @@ export const RangeStartAfterEnd: Story = {
 
 // Range sizes: 240 wide, lg 280.
 export const RangeLarge: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [Story => <div className="w-[280px]"><Story /></div>],
   render: () => <RangeExample size="lg" />,
   play: async ({ canvas }) => {
@@ -216,7 +221,7 @@ export const RangeLarge: Story = {
 };
 
 // Stress test (Figma "Stress test / Time Picker"): at 220 the range text truncates first, the duration keeps its width.
-export const RangeNarrow: Story = { tags: ['!dev'],
+export const RangeNarrow: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'],
   decorators: [Story => <div className="w-[160px]"><Story /></div>],
   render: () => <RangeExample />,
   play: async ({ canvas }) => {
@@ -234,6 +239,7 @@ export const RangeNarrow: Story = { tags: ['!dev'],
 // Inside a Field the visible label names the trigger; clicking the label activates it (opens the list),
 // like the Date Picker in a Field.
 export const InField: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [Story => <div className="w-[200px]"><Story /></div>],
   render: () => (
     <Field label="Opening time" hint="Local time of the branch">
@@ -259,9 +265,9 @@ const Showcase = () => (
     <RangeExample label="Range" />
   </div>
 );
-export const AllStates: Story = { decorators: [], render: () => <Showcase />, name: 'All states' };
-export const AllStatesDark: Story = { decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All states (Dark)' };
-export const AllStatesCorporate: Story = { decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All states (Corporate Light)' };
+export const AllStates: Story = { parameters: { controls: { disable: true } }, decorators: [], render: () => <Showcase />, name: 'All states' };
+export const AllStatesDark: Story = { parameters: { controls: { disable: true } }, decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All states (Dark)' };
+export const AllStatesCorporate: Story = { parameters: { controls: { disable: true } }, decorators: [], render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All states (Corporate Light)' };
 export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
 

@@ -95,6 +95,7 @@ const SortableInvoices = ({ striped = false, footer = false, fixed = false, onSo
 
 // Figma Table Cell: header 40, body 37 (20 text + 2 x 8 padding + 1 border).
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <SortableInvoices />,
   play: async ({ canvas }) => {
     const table = canvas.getByRole('table', { name: 'Invoices' });
@@ -114,6 +115,7 @@ export const Default: Story = {
 
 // Sorting: the header is a button; click, Enter and Space toggle aria-sort on the <th>.
 export const Sorting: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <SortableInvoices />,
   play: async ({ canvas }) => {
     const invoice = canvas.getByRole('columnheader', { name: /Invoice/ });
@@ -152,6 +154,7 @@ const HeaderLabels = () => (
   </div>
 );
 export const HeaderLabelSorts: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <HeaderLabels />,
   play: async ({ canvas, canvasElement }) => {
     for (const id of ['off-left', 'off-right', 'sortable-left', 'sortable-right', 'ascending-left', 'descending-right']) {
@@ -176,6 +179,7 @@ export const HeaderLabelSorts: Story = {
 
 // Show info and Show menu. The menu appears on hover and focus of the header cell.
 export const HeaderInfoAndMenu: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Table fixed aria-label="Totals">
       <TableHeader>
@@ -215,6 +219,7 @@ export const HeaderInfoAndMenu: Story = {
 
 // Table Cell states of Figma (hover, selected, editing, error, dragging, resizing) and their colors.
 export const CellStates: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Table fixed aria-label="States">
       <TableHeader>
@@ -282,6 +287,7 @@ export const CellStates: Story = {
 
 // Hover and selected come from the row: every cell of the row follows.
 export const RowStates: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Table aria-label="Rows">
       <TableBody>
@@ -305,6 +311,7 @@ export const RowStates: Story = {
 
 // Striped and footer: the muted fill; the footer has only a top border.
 export const StripedWithFooter: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <SortableInvoices striped footer />,
   play: async ({ canvas }) => {
     const rows = canvas.getAllByRole('row');
@@ -325,6 +332,7 @@ export const StripedWithFooter: Story = {
 
 // Density: .density-compact sets --table-header-height 32 and --cell-padding-y 4.
 export const Compact: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <SortableInvoices />,
   decorators: [
     Story => {
@@ -343,6 +351,7 @@ export const Compact: Story = {
 
 // Stack cells make a 55 px row (38 + 16 + 1).
 export const StackRow: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Table aria-label="Projects">
       <TableBody>
@@ -386,8 +395,8 @@ const checkTruncation = async (canvas: HTMLElement, width: number) => {
   const table = canvas.querySelector('table')!;
   await expect(table.scrollWidth).toBeLessThanOrEqual(table.clientWidth);
 };
-export const Narrow368: Story = { tags: ['!dev'], render: () => <Narrow width={368} />, play: async ({ canvasElement }) => checkTruncation(canvasElement, 368) };
-export const Narrow276: Story = { tags: ['!dev'], render: () => <Narrow width={276} />, play: async ({ canvasElement }) => checkTruncation(canvasElement, 276) };
+export const Narrow368: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], render: () => <Narrow width={368} />, play: async ({ canvasElement }) => checkTruncation(canvasElement, 368) };
+export const Narrow276: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], render: () => <Narrow width={276} />, play: async ({ canvasElement }) => checkTruncation(canvasElement, 276) };
 
 // Theme copies for the contrast test (hidden in the sidebar, they still run in npm test).
 export const DefaultDark: Story = { ...StripedWithFooter, name: 'Default (Dark)', tags: ['!dev'], globals: { theme: 'Dark' } };

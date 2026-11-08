@@ -37,6 +37,7 @@ const statuses = [
 ] as const;
 
 export const Statuses: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-3">
       {statuses.map(([status, label]) => <StatusDot key={status} status={status} label={label} />)}

@@ -28,6 +28,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <DialogFooter>
       <Button variant="outline">Cancel</Button>
@@ -53,6 +54,7 @@ export const Default: Story = {
 
 /** A left-side item (here an opt-in checkbox) goes first and pushes the buttons right. */
 export const WithLeftItem: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <DialogFooter>
       <label className="mr-auto flex items-center gap-2 text-sm">
@@ -76,6 +78,7 @@ export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { 
 
 /** Figma stress test: one button; the 276 column with long labels wraps, still right aligned. */
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">

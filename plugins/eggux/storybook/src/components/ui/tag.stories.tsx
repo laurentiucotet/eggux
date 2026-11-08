@@ -79,6 +79,7 @@ function Showcase() {
 }
 
 export const Tones: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Showcase />,
   play: async ({ canvas, canvasElement }) => {
     const sales = canvas.getByText('Sales').closest('[data-slot="tag"]')!;
@@ -117,6 +118,7 @@ export const Disabled: Story = {
 
 // Stress test: a long label hugs up to 192 (max-w-48) and truncates on one line; the x keeps its size.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex w-[276px] flex-wrap gap-1">

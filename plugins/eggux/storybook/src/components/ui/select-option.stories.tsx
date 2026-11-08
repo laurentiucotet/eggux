@@ -77,6 +77,7 @@ function CustomerList({ type = 'icon', rows = customers, width = 280, label = 'C
 // Figma Type=icon, default: 280 x 48, 32 px icon tile, title ui/label, description ui/caption muted,
 // 6 / 8 px padding, 8 gap. Arrows move the highlight (aria-activedescendant), Enter checks.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <CustomerList />,
   play: async ({ canvas }) => {
     const input = canvas.getByRole('combobox', { name: 'Search customers' });
@@ -131,6 +132,7 @@ function TypesShowcase() {
 }
 
 export const Types: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <TypesShowcase />,
   play: async ({ canvas }) => {
     const avatar = canvas.getByRole('option', { name: /^Anna Berg\s*anna.berg@acme.com$/ });
@@ -167,6 +169,7 @@ function GroupsShowcase() {
 }
 
 export const ListboxParts: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <GroupsShowcase />,
   play: async ({ canvas }) => {
     const list = canvas.getByRole('listbox', { name: 'Record types' });
@@ -186,6 +189,7 @@ export const ListboxParts: Story = {
 // Stress test (Figma "Stress test / Select Option"): long title and description truncate on one line
 // each at 276 and 368; the tile keeps its size; a long list scrolls inside the listbox only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex items-start gap-4">

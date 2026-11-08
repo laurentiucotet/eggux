@@ -5,7 +5,7 @@ import { ShortcutList, ShortcutRow } from './shortcut-row';
 const meta = {
   title: 'Components/Kbd/Shortcut Row',
   component: ShortcutRow,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'One keyboard shortcut in the shortcuts dialog (opened with ?) or a help page: what it does, then the keys. Group rows by area with a heading per group; show ⌘ on Mac and Ctrl on Windows; list only shortcuts that work. Menu shortcuts use Menu Item; button hints use Tooltip with Kbd. Figma: Kbd page / Shortcut Row. Guide: eggux build-ui/components/indicators.md' } },
   },
@@ -41,6 +41,7 @@ export const Default: Story = {
 
 // Stress: a long action wraps at 276, keys stay on one line. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <ShortcutList className="w-[276px]">

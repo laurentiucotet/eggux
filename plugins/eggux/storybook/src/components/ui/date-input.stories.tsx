@@ -136,6 +136,7 @@ export const PickFromCalendar: Story = {
 
 // Segment order and separators follow the locale.
 export const Locales: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-3">
       <DateInput label="en-GB" locale="en-GB" today={TODAY} defaultValue={new Date(2026, 10, 12)} />
@@ -230,6 +231,7 @@ export const InField: Story = {
 
 // Stress test (Figma "Stress test / Date Input"): min width 160, the 276 column, an error message.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">

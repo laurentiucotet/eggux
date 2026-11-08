@@ -44,6 +44,7 @@ function ColumnSettings({ withReset = false }: { withReset?: boolean }) {
 
 // Cancel and Apply on the right; Apply runs and closes.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <ColumnSettings />,
   play: async ({ canvas }) => {
     onApply.mockClear();
@@ -65,6 +66,7 @@ export const Default: Story = {
 
 // Show start: Reset on the left; tab order Reset, Cancel, Apply.
 export const WithStart: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <ColumnSettings withReset />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Columns' }));
@@ -84,6 +86,7 @@ export const WithStart: Story = {
 
 // Min 240: Reset, Cancel and Apply stay on one row and never overflow.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">

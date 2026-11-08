@@ -45,6 +45,7 @@ const onEdit = fn();
 // Figma Menu Item default: 32 high, 8 px sides, 8 px gap, 16 px icon, body/small label,
 // ui/caption muted shortcut, radius sm. Highlighted (arrow keys or pointer) fills accent; Enter runs it.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Menu label="Invoice actions" open={false}>
       <DropdownMenuItem icon={<Pencil aria-hidden="true" />} shortcut="⌘E" onSelect={onEdit}>Edit</DropdownMenuItem>
@@ -101,6 +102,7 @@ function StatesMenu() {
 }
 
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <StatesMenu />,
   play: async () => {
     const [edit, editHi, editOff, del, delHi, delOff] = await screen.findAllByRole('menuitem');
@@ -141,6 +143,7 @@ export const States: Story = {
 
 // Figma Menu Item options: Checked, Show description, Show submenu.
 export const Options: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [paid, setPaid] = React.useState(true);
     return (
@@ -202,6 +205,7 @@ export const Options: Story = {
 // Stress: long labels truncate on one line inside the 224 menu, the shortcut keeps its place;
 // long descriptions wrap under a one-line label.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <Menu label="Long labels">
@@ -227,5 +231,5 @@ export const Stress: Story = {
   },
 };
 
-export const StatesDark: Story = { render: () => <StatesMenu />, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const StatesCorporate: Story = { render: () => <StatesMenu />, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const StatesDark: Story = { parameters: { controls: { disable: true } }, render: () => <StatesMenu />, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const StatesCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <StatesMenu />, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

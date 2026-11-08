@@ -40,6 +40,7 @@ export const Default: Story = {
 const plans = ['Starter', 'Team', 'Business'];
 // The 3 Figma variants and the note, in a feature matrix.
 export const Variants: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <table className="w-[480px] border-collapse text-sm text-foreground">
       <thead>
@@ -104,6 +105,7 @@ function Selectable() {
 
 // Row select and select-all: named checkboxes, header indeterminate when some rows are selected.
 export const Select: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Selectable />,
   play: async ({ canvas }) => {
     const header = canvas.getByRole('checkbox', { name: 'Select all invoices' });

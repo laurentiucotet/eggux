@@ -56,6 +56,7 @@ export const Card: Story = {
 
 // Figma Type=preferences: Customize opens the dialog; Necessary on and disabled, others off; Save sends the choice.
 export const Preferences: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [open, setOpen] = React.useState(false);
     const [saved, setSaved] = React.useState<string[] | null>(null);
@@ -102,5 +103,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, args: { type: 'card' }, render: Card.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, args: { type: 'card' }, render: Card.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, args: { type: 'card' }, render: Card.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, args: { type: 'card' }, render: Card.render };

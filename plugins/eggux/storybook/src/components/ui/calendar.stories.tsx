@@ -47,6 +47,7 @@ const day = (canvas: { getByRole: (...a: any[]) => HTMLElement }, label: RegExp 
 
 // Date math, tested without a browser date library.
 export const DateMath: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <p>Date math is tested in the play function.</p>,
   play: async () => {
     const oct = monthGrid(2026, 9);
@@ -253,6 +254,7 @@ const RangeCalendar = (props: { onRangeSelect?: (r: DateRange) => void }) => (
   <Calendar mode="range" today={TODAY} defaultMonth={TODAY} defaultRange={{ from: new Date(2026, 9, 6), to: new Date(2026, 9, 19) }} disabled={d => d > TODAY} {...props} />
 );
 export const Range: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <RangeCalendar />,
   play: async ({ canvas }) => {
     await expect(day(canvas, /Tuesday 6 October 2026/)).toHaveAttribute('data-state', 'range-start');
@@ -332,6 +334,7 @@ const Controlled = () => {
   );
 };
 export const ControlledValue: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Controlled />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Next month' }));
@@ -376,8 +379,8 @@ const Showcase = () => (
     <Calendar mode="range" months={1} today={TODAY} defaultMonth={TODAY} defaultRange={{ from: new Date(2026, 9, 6), to: new Date(2026, 9, 12) }} aria-label="Range" caption="dropdown" />
   </div>
 );
-export const ThemeLight: Story = { render: () => <Showcase />, name: 'Day and range' };
-export const ThemeDark: Story = { render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Day and range (Dark)' };
-export const ThemeCorporate: Story = { render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Day and range (Corporate Light)' };
+export const ThemeLight: Story = { parameters: { controls: { disable: true } }, render: () => <Showcase />, name: 'Day and range' };
+export const ThemeDark: Story = { parameters: { controls: { disable: true } }, render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Day and range (Dark)' };
+export const ThemeCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Day and range (Corporate Light)' };
 export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

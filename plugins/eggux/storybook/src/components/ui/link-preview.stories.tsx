@@ -66,6 +66,7 @@ const Removable = ({ onRemove }: { onRemove: () => void }) => {
   return open ? <LinkPreview {...meta.args} onRemove={() => { onRemove(); setOpen(false); }} /> : <a href="https://acme.com/blog/month-end-close">https://acme.com/blog/month-end-close</a>;
 };
 export const Removal: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Removable onRemove={fn()} />,
   play: async ({ canvas }) => {
     await userEvent.tab();
@@ -113,6 +114,6 @@ const Both = () => (
     <LinkPreview {...meta.args} layout="vertical" image={<ImagePlaceholder ratio="16:9" />} />
   </div>
 );
-export const BothLight: Story = { render: () => <Both />, name: 'Both layouts' };
-export const BothDark: Story = { render: () => <Both />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Both layouts (Dark)' };
-export const BothCorporate: Story = { render: () => <Both />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Both layouts (Corporate Light)' };
+export const BothLight: Story = { parameters: { controls: { disable: true } }, render: () => <Both />, name: 'Both layouts' };
+export const BothDark: Story = { parameters: { controls: { disable: true } }, render: () => <Both />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Both layouts (Dark)' };
+export const BothCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <Both />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Both layouts (Corporate Light)' };

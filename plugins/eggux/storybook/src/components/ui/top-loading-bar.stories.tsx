@@ -35,6 +35,7 @@ export const Default: Story = {
 
 // Figma Value=30 / 60 / 90 with Show track (reading progress).
 export const Determinate: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[720px] flex-col gap-6">
       <TopLoadingBar value={30} label="Uploading" />
@@ -51,5 +52,5 @@ export const Determinate: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Determinate.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Determinate.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Determinate.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Determinate.render };

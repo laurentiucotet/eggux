@@ -63,6 +63,7 @@ const expectCovers = (box: HTMLElement) => {
 };
 
 export const Tones: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap gap-4">
       <Box tone="dialog" />
@@ -96,7 +97,7 @@ export const TonesCorporate: Story = { ...Tones, tags: ['!dev'], globals: { them
 /** Figma stress test: the scrim stretches to any box, from a 276 column to 640 x 400. */
 export const Stress: Story = {
   tags: ['!dev'],
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   render: () => (
     <div className="flex flex-wrap items-start gap-4">
       <Box tone="dialog" width={276} />

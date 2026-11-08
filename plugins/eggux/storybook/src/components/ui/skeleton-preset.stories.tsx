@@ -40,6 +40,7 @@ export const Default: Story = {
 // Figma Type at the component widths: list-row 360 × 64, card 320 × 298, table-row 720 × 57,
 // stat 280 × 126, chart 480 × 288.
 export const Types: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap items-start gap-10">
       <div className="w-[360px]"><SkeletonPreset type="list-row" /></div>
@@ -73,6 +74,7 @@ export const Types: Story = {
 // Figma "Example / Skeleton presets": a dashboard while it loads. One aria-busy region, one
 // "Loading…" announcement, rows repeated 3 to 4 times.
 export const DashboardLoading: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <section aria-label="Dashboard" aria-busy="true" className="flex w-[896px] max-w-full flex-col gap-6">
       <p role="status" className="sr-only">Loading…</p>
@@ -108,6 +110,7 @@ export const DashboardLoading: Story = {
 // width. Nothing overflows: the footnote line shrinks to its column instead of running under
 // the trailing value.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-wrap items-start gap-8">

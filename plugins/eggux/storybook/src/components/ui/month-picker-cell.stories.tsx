@@ -54,6 +54,7 @@ const fills: Record<MonthPickerCellState, [string, string, string]> = {
   disabled: ['rgba(0, 0, 0, 0)', 'text-muted-foreground', '400'],
 };
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [],
   render: () => (
     <div className="flex flex-wrap gap-4">

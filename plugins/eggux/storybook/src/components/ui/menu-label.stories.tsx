@@ -51,6 +51,7 @@ function GroupedMenu({ open = true }: { open?: boolean }) {
 // Figma Menu Label: 32 high, 8 px sides, 6 px top and bottom, ui/label (14/20 medium), popover text.
 // Not focusable: the arrows skip it.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <GroupedMenu open={false} />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Invoice' }));
@@ -78,6 +79,7 @@ export const Default: Story = {
 
 // Stress: a long label wraps (Figma) and stays inside the 224 menu.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <DropdownMenu defaultOpen modal={false}>
@@ -97,5 +99,5 @@ export const Stress: Story = {
   },
 };
 
-export const OpenDark: Story = { render: () => <GroupedMenu />, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const OpenCorporate: Story = { render: () => <GroupedMenu />, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const OpenDark: Story = { parameters: { controls: { disable: true } }, render: () => <GroupedMenu />, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const OpenCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <GroupedMenu />, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

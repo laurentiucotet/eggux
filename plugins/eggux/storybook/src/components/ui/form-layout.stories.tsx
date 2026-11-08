@@ -10,7 +10,7 @@ import { Input } from './input';
 const meta = {
   title: 'Components/Form Layout/Form Section',
   component: FormSection,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'The structure of long forms: Form Section (title and a sentence beside or above 2-6 fields, a divider between sections), Fieldset (one legend, rule and error for a group of controls), Error Summary (after a failed submit: the count and a link to each field; focus moves to it) and Requirement List with Check Items (rules checked live as people type). Figma: Form Layout page. Guide: eggux build-ui/patterns/form-validation.md' } },
   },
@@ -104,6 +104,7 @@ function SignupDemo() {
 
 // Failed submit: summary takes focus, links move focus to fields; the group error; live rules.
 export const Validation: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <SignupDemo />,
   play: async ({ canvas, canvasElement }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Create account' }));
@@ -123,6 +124,7 @@ export const Validation: Story = {
 
 // Check Item marks and tones on primary and inverted cards.
 export const CheckItems: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-start gap-6">
       <ul className="m-0 flex flex-col gap-1.5 p-0">
@@ -147,6 +149,6 @@ export const CheckItems: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: CheckItems.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: CheckItems.render };
-export const ValidationDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: () => <SignupDemo /> };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: CheckItems.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: CheckItems.render };
+export const ValidationDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: () => <SignupDemo /> };

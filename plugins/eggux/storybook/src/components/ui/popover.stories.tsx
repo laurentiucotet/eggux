@@ -26,6 +26,7 @@ const Example = () => (
 );
 
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Example />,
   play: async ({ canvas }) => {
     const trigger = canvas.getByRole('button', { name: 'Open details' });
@@ -46,6 +47,7 @@ export const Default: Story = {
 };
 
 export const KeyboardOpen: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Example />,
   play: async ({ canvas }) => {
     await userEvent.tab();

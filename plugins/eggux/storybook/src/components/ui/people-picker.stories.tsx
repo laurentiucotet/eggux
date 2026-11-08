@@ -106,6 +106,7 @@ export const Invite: Story = {
 
 // States: invalid (red border, aria-invalid) and disabled (chips cannot be removed).
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   name: 'States (invalid, disabled)',
   render: () => (
     <div className="flex flex-col gap-6">
@@ -124,6 +125,7 @@ export const States: Story = {
 
 // Stress: long names in chips at 276, many people, server loading. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => {
     const many: Person[] = Array.from({ length: 30 }, (_, i) => ({ id: `p${i}`, name: `Person ${i + 1}`, email: `person${i + 1}@acme.com` }));

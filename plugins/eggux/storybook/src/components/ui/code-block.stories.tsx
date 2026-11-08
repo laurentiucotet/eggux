@@ -31,6 +31,7 @@ export const Default: Story = {
 
 // Tabs, line numbers and a highlighted line; a command snippet and inline code.
 export const TabsAndLines: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[640px] flex-col gap-4">
       <CodeBlock
@@ -61,6 +62,7 @@ export const TabsAndLines: Story = {
 
 // Endpoint rows (selected on accent), log rows, diff viewer, JSON viewer.
 export const Developer: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-6">
       <ul aria-label="Invoices API" className="m-0 w-[560px] p-0">
@@ -112,6 +114,7 @@ export const Developer: Story = {
 
 // Stress: a long command truncates, a long line scrolls, long log messages wrap. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex w-[320px] flex-col gap-3">
@@ -129,6 +132,6 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Developer.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Developer.render };
-export const TabsDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: TabsAndLines.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Developer.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Developer.render };
+export const TabsDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: TabsAndLines.render };

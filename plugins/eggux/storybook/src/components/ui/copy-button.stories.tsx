@@ -102,7 +102,7 @@ export const CopyFails: Story = {
 // Figma "Example / Copy Button": label, a masked or truncated mono value and a ghost sm Copy
 // Button; the full value is copied even when the visible text is cut.
 export const InRows: Story = {
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   render: () => (
     <dl className="grid w-[368px] grid-cols-[120px_1fr] items-center gap-x-3 gap-y-2 text-sm">
       {[

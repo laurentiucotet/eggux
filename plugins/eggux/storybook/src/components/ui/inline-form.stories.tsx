@@ -177,6 +177,6 @@ export const Stress: Story = {
   },
 };
 
-export const Dark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: States.render };
-export const CorporateLight: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: States.render };
-export const OnPrimaryDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, args: { tone: 'on-primary' }, render: OnPrimary.render };
+export const Dark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: States.render };
+export const CorporateLight: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: States.render };
+export const OnPrimaryDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, args: { tone: 'on-primary' }, render: OnPrimary.render };

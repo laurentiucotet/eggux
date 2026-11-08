@@ -40,6 +40,7 @@ const onValueChange = fn();
 // Figma "Example / multi-select open": 360 x 36, Tags (24 high, 4 apart), chevrons-up-down. Typing
 // filters; Enter checks and adds a tag; the list stays open while picking; Escape closes.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <Field label="Skills">
       <TagInput options={skills} defaultValue={['design', 'research']} listLabel="Skills" onValueChange={onValueChange} />
@@ -85,6 +86,7 @@ export const Default: Story = {
 
 // Keyboard: Backspace in the empty field removes the last tag; Tab reaches each x; Delete on it removes.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Field label="Skills"><TagInput options={skills} defaultValue={['design', 'research', 'finance']} /></Field>,
   play: async ({ canvas }) => {
     const input = canvas.getByRole('combobox', { name: 'Skills' });
@@ -107,6 +109,7 @@ export const Keyboard: Story = {
 
 // Show chevron off: free tags. Enter or comma adds the typed text; duplicates are ignored.
 export const FreeTags: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Field label="Keywords" hint="Press Enter after each keyword."><TagInput placeholder="Add keyword…" defaultValue={['invoices']} /></Field>,
   play: async ({ canvas, canvasElement }) => {
     const input = canvas.getByRole('textbox', { name: 'Keywords' });
@@ -122,6 +125,7 @@ export const FreeTags: Story = {
 
 // Over ~5 tags: "+3 more".
 export const Overflow: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Field label="Skills"><TagInput options={skills} defaultValue={skills.map(s => s.value)} /></Field>,
   play: async ({ canvasElement }) => {
     await expect(canvasElement.querySelectorAll('[data-slot="tag"]')).toHaveLength(5);
@@ -131,6 +135,7 @@ export const Overflow: Story = {
 
 // Figma Size: sm (min 32, 2 px padding), default (min 36, 4 px), lg (min 40, 6 px). Tags stay 24.
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-3">
       <TagInput size="sm" label="Small" options={skills} defaultValue={['design']} />
@@ -151,6 +156,7 @@ export const Sizes: Story = {
 
 // Figma State=error and disabled (every Tag disabled, nothing can change).
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       <Field label="Reviewers' skills" error="Pick at least one skill."><TagInput options={skills} /></Field>
@@ -174,6 +180,7 @@ export const States: Story = {
 // Stress test (Figma "Stress test / Tag Input"): tags wrap to new lines at 276 and 368 and the field
 // grows in height; long labels truncate at 192; the chevron keeps its size.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   decorators: [],
   render: () => (
@@ -203,6 +210,7 @@ export const Stress: Story = {
 
 // The open multi-select, for the theme checks.
 export const Open: Story = {
+  parameters: { controls: { disable: true } },
   decorators: [Story => <div className="h-[260px] w-[360px]"><Story /></div>],
   render: () => <Field label="Skills"><TagInput options={skills.slice(0, 5)} defaultValue={['design', 'research']} /></Field>,
   play: async ({ canvas }) => {

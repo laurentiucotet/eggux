@@ -42,6 +42,7 @@ const card = () => document.querySelector<HTMLElement>('[data-slot="hover-card-c
 
 // Hover opens after the delay, not at once; leaving closes it.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <PersonLink />,
   play: async ({ canvas }) => {
     const link = canvas.getByRole('link', { name: 'Maria Ilie' });
@@ -61,6 +62,7 @@ export const Default: Story = {
 
 // Keyboard focus on the link opens it too; Escape closes it; the link stays a real link.
 export const KeyboardFocus: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <PersonLink />,
   play: async ({ canvas }) => {
     const link = canvas.getByRole('link', { name: 'Maria Ilie' });
@@ -75,6 +77,7 @@ export const KeyboardFocus: Story = {
 };
 
 export const Open: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <PersonLink open />,
   play: async () => {
     await waitFor(() => expect(card()).not.toBeNull());
@@ -84,6 +87,7 @@ export const Open: Story = {
 
 // Long name, handle and bio: one line for name and handle, three for the detail, no overflow.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <HoverCard open>

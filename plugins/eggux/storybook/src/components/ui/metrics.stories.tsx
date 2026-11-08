@@ -5,7 +5,7 @@ import { Countdown, LeaderboardRow, MetricStrip, MetricStripItem, TrendIndicator
 const meta = {
   title: 'Components/Metrics/Metric Strip',
   component: MetricStrip,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'Key figures lighter than Stat Cards: Metric Strip (3-5 figures with dividers, one period said nearby), Trend Indicator (arrow, signed value, comparison; Tone says if the change is good), Usage Meter (a plan limit: near from 80%, over above 100%), Countdown (time left to a deadline; screen readers get the end time) and Leaderboard Row (rank, person, value; the viewer’s own row on muted). Figma: Metrics page. Guide: eggux build-ui/components/progress-and-slider.md, build-ui/patterns/marketing-pages.md' } },
   },
@@ -42,6 +42,7 @@ export const Default: Story = {
 
 // Trend Indicator text and badge; Usage Meter levels; Countdown styles; Leaderboard rows.
 export const Parts: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-8">
       <div className="flex flex-wrap items-center gap-6">
@@ -92,6 +93,7 @@ export const Parts: Story = {
 
 // Countdown hides seconds outside the last hour and stops at zero. Tests only.
 export const CountdownEdges: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-4">
@@ -111,6 +113,7 @@ export const CountdownEdges: Story = {
 
 // Stress: long names and values truncate at 280; a strip wraps at 480. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-4">
@@ -136,5 +139,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Parts.render };
-export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Parts.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Parts.render };
+export const DefaultCorporate: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: Parts.render };

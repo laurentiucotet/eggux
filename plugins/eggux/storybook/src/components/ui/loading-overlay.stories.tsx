@@ -44,6 +44,7 @@ export const Default: Story = {
 
 // Reload on demand: the overlay comes and goes, the list stays in place.
 export const Toggle: Story = {
+  parameters: { controls: { disable: true } },
   render: () => {
     const [loading, setLoading] = React.useState(false);
     return (
@@ -66,6 +67,7 @@ export const Toggle: Story = {
 
 // Stress: at 276 a long label clamps to 2 lines; Show label off keeps it for screen readers. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex gap-4">

@@ -34,6 +34,7 @@ const link = (el: HTMLElement, name: string) => el.querySelector(`a[href="#${nam
 // Figma Level=1/2 x State=default/active: 224 x 28, padding 4 / 12 (level 2: 24), 1 px border/default rule;
 // active: 2 px background/primary rule, ui/label foreground.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <>
       <TableOfContentsItem href="#introduction">Introduction</TableOfContentsItem>
@@ -73,6 +74,7 @@ export const Default: Story = {
 
 // Long labels wrap inside the column (no truncation); short label keeps 28.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <>

@@ -27,6 +27,7 @@ export const Default: Story = {
 };
 
 export const Stack: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-1.5">
       <MetaItem icon={<Clock />}>15:00-16:00 CET</MetaItem>
@@ -38,7 +39,7 @@ export const Stack: Story = {
   },
 };
 
-export const LongText: Story = { tags: ['!dev'],
+export const LongText: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'],
   render: () => (
     <div className="w-[276px]">
       <MetaItem icon={<Globe />}>Friedrichstraße 68, 10117 Berlin, Germany, third floor, Acme Training Room</MetaItem>

@@ -59,6 +59,7 @@ export const AsChild: Story = {
 
 // Figma "Stress test / Back Link": long label in a 276 column wraps, the arrow keeps 16; short label.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-4">

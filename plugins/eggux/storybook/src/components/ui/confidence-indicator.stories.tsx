@@ -35,6 +35,7 @@ export const Default: Story = {
 
 // Figma Level=high, medium, low: filled bars match the level.
 export const Levels: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col items-start gap-4">
       <ConfidenceIndicator level="high" />

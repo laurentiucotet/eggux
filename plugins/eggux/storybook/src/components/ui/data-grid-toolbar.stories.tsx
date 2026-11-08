@@ -47,7 +47,7 @@ function Toolbar({ onApply = fn() }: { onApply?: (s: { order: string[]; visible:
 const meta = {
   title: 'Components/Table/Data Grid Toolbar',
   component: DataGridToolbar,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'Above a data grid: saved view, search, filters with the active count (Start), then columns, group by and export (End). The End slot wraps under the Start slot when both do not fit (min 512). While rows are selected, Table Toolbar takes its place. Columns opens Column Settings; Table Pagination sits under the table. Figma: Table page / Data Grid Toolbar, Column Settings, Column Settings Item, Table Pagination. Guide: eggux build-ui/components/table.md' } },
   },
@@ -157,6 +157,7 @@ export const Pagination: Story = {
 
 // Stress: at 512 the End slot wraps under Start; a single page shows only the range. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">

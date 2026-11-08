@@ -41,6 +41,7 @@ function StatusEmoji() {
 
 // Opens from the smiley button with focus in the search; Enter picks the highlighted emoji and closes.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <StatusEmoji />,
   play: async ({ canvas }) => {
     onPick.mockClear();
@@ -72,6 +73,7 @@ export const Default: Story = {
 
 // Search matches names and keywords across categories; no match says so.
 export const Search: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className={surface}><EmojiPicker onSelect={item => onPick(item.name)} /></div>,
   play: async ({ canvas }) => {
     onPick.mockClear();
@@ -94,6 +96,7 @@ export const Search: Story = {
 
 // Category tabs: buttons with aria-label and aria-pressed; 32 x 28.
 export const Categories: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <div className={surface}><EmojiPicker /></div>,
   play: async ({ canvas }) => {
     const recent = canvas.getByRole('button', { name: 'Recent' });
@@ -109,6 +112,7 @@ export const Categories: Story = {
 
 // Narrow popover and long lists: the grid scrolls inside, 8 per row, never wider than the panel.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className={surface}>

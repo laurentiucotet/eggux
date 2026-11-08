@@ -17,6 +17,7 @@ const box = (el: Element) => el.getBoundingClientRect();
 
 // Figma Type=mark, wordmark, full: mark 32 square, name 18/28 semibold, 8 px apart.
 export const Types: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-10">
       <Logo type="mark" />
@@ -41,6 +42,7 @@ export const Types: Story = {
 
 // A link home: the name is the link name.
 export const AsHomeLink: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <a href="#home" className="inline-flex rounded-md outline-none focus-visible:shadow-[0_0_0_2px_var(--background),0_0_0_4px_var(--ring)]"><Logo type="mark" name="Acme, home" /></a>,
   play: async ({ canvas }) => {
     await expect(canvas.getByRole('link', { name: 'Acme, home' })).toBeInTheDocument();

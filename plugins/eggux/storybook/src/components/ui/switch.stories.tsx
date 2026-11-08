@@ -67,6 +67,7 @@ export const Checked: Story = {
 
 // Figma Size: sm 28 x 16 (12 px thumb, 12/16 label), default 36 x 20, lg 44 x 24 (20 px thumb, label centered).
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="grid grid-cols-2 gap-x-10 gap-y-4">
       <Switch size="sm" label="Show archived" />
@@ -146,6 +147,7 @@ export const WithDescription: Story = {
 
 // All Checked x State x Size variants in one grid (focus is shown live with the keyboard).
 export const AllStates: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="grid grid-cols-2 gap-x-10 gap-y-4">
       {(['sm', 'default', 'lg'] as const).flatMap(s => [
@@ -179,6 +181,7 @@ export const NoLabel: Story = {
 const longLabel = 'Email notifications with a much longer label than planned for this settings page';
 const longDescription = 'Get an email when a customer pays an invoice, when a payment fails and when a refund is issued. Emails go to every admin of the workspace. This sentence is deliberately long to check the clamp.';
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-wrap items-start gap-8">
@@ -221,6 +224,7 @@ export const DisabledDark: Story = { ...Disabled, tags: ['!dev'], globals: { the
 
 // A controlled switch, as a settings page uses it: the change applies at once.
 export const Controlled: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => {
     const [on, setOn] = React.useState(false);

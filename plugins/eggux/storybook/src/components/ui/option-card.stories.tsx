@@ -42,6 +42,7 @@ const Group = ({ layout, disabledValue }: { layout?: 'default' | 'media' | 'comp
 
 // Figma State=default (Control=radio, Layout=default): 384 x 80, 16 padding, radius 12, icon box 40.
 export const Default: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group />,
   play: async ({ canvas, canvasElement }) => {
     const standard = canvas.getByRole('radio', { name: 'Standard shipping' });
@@ -65,6 +66,7 @@ export const Default: Story = {
 
 // State=selected: 2 px primary border (82 high), checked radio.
 export const Selected: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group />,
   play: async ({ canvas }) => {
     const el = cardOf(canvas.getByRole('radio', { name: 'Standard shipping' }));
@@ -109,6 +111,7 @@ const hoverBackground = (el: Element) => {
 };
 
 export const Hover: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group />,
   play: async ({ canvas }) => {
     const el = cardOf(canvas.getByRole('radio', { name: 'Express shipping' }));
@@ -119,6 +122,7 @@ export const Hover: Story = {
 
 // Keyboard: Tab reaches the group, arrows move and select, the focus ring shows on the card.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group />,
   play: async ({ canvas }) => {
     await userEvent.tab();
@@ -136,6 +140,7 @@ export const Keyboard: Story = {
 // State=disabled: the control is disabled; control, icon and title fade to 50%, the description keeps
 // its muted color (faded it fails the 4.5:1 contrast); clicks do nothing.
 export const Disabled: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group disabledValue="express" />,
   play: async ({ canvas }) => {
     const express = canvas.getByRole('radio', { name: 'Express shipping' });
@@ -165,6 +170,7 @@ const Checkboxes = () => {
   );
 };
 export const CheckboxControl: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Checkboxes />,
   play: async ({ canvas }) => {
     const gift = canvas.getByRole('checkbox', { name: 'Gift wrap' });
@@ -180,6 +186,7 @@ export const CheckboxControl: Story = {
 
 // Layout=media: 280 wide, a 16:9 preview on top, then title, description and control.
 export const Media: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group layout="media" />,
   play: async ({ canvas, canvasElement }) => {
     const el = cardOf(canvas.getByRole('radio', { name: 'Standard shipping' }));
@@ -194,6 +201,7 @@ export const Media: Story = {
 
 // Layout=compact: 12 padding, 32 tile, description on one line; 384 x 68 (selected 70).
 export const Compact: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Group layout="compact" />,
   play: async ({ canvas, canvasElement }) => {
     const [selected, other] = [canvas.getByRole('radio', { name: 'Standard shipping' }), canvas.getByRole('radio', { name: 'Express shipping' })].map(cardOf);
@@ -205,7 +213,7 @@ export const Compact: Story = {
 
 // Stress test: long title and description wrap in the default layout and truncate to one line in compact.
 const long = { title: 'Express delivery to a pick-up point of your choice within the European Union', description: 'Delivered in 1-2 business days to more than twelve thousand pick-up points, with a text message when it arrives.' };
-export const LongTextNarrow: Story = { tags: ['!dev'],
+export const LongTextNarrow: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'],
   render: () => (
     <OptionCardGroup defaultValue="a" aria-label="Delivery" className="w-[276px]">
       <OptionCard value="a" {...long} icon={<Package />} className="w-full" />
@@ -229,6 +237,6 @@ const AllStates = () => (
     <Checkboxes />
   </div>
 );
-export const AllStatesLight: Story = { render: () => <AllStates />, name: 'All states' };
-export const AllStatesDark: Story = { render: () => <AllStates />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All states (Dark)' };
-export const AllStatesCorporate: Story = { render: () => <AllStates />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All states (Corporate Light)' };
+export const AllStatesLight: Story = { parameters: { controls: { disable: true } }, render: () => <AllStates />, name: 'All states' };
+export const AllStatesDark: Story = { parameters: { controls: { disable: true } }, render: () => <AllStates />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All states (Dark)' };
+export const AllStatesCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <AllStates />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All states (Corporate Light)' };

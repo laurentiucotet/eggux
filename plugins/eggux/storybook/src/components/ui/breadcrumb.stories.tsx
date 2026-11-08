@@ -138,6 +138,7 @@ export const Composed: Story = {
 // Figma "Stress test / Breadcrumb": a narrow column wraps items with their separators (row gap 4);
 // a separator never starts a line; long labels and Style=background with long text.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">

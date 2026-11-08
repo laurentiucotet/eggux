@@ -27,6 +27,7 @@ export const Default: Story = {
 
 const ratios: [ImageRatio, number][] = [['16:9', 16 / 9], ['4:3', 4 / 3], ['1:1', 1], ['3:4', 3 / 4], ['21:9', 21 / 9], ['3:2', 3 / 2], ['2:3', 2 / 3], ['9:16', 9 / 16]];
 export const Ratios: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="grid grid-cols-4 gap-4">
       {ratios.map(([r]) => <ImagePlaceholder key={r} ratio={r} aria-label={r} role="img" />)}

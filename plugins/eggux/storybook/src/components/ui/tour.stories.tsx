@@ -38,7 +38,7 @@ function TourDemo({ side = 'bottom' }: { side?: 'top' | 'bottom' }) {
 const meta = {
   title: 'Components/Tour/Coachmark',
   component: Coachmark,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'Product tours and feature tips. Coachmark: one step anchored to its target, with the benefit as title, one or two lines, the step count, Back and Next (Done on the last step); always closable. Hotspot: a pulsing beacon on a new feature that opens its Coachmark; one per screen, removed once opened. Annotation Pin: a numbered marker on a design or document where a comment lives. Figma: Tour page.' } },
   },
@@ -105,6 +105,6 @@ export const HotspotAndPins: Story = {
   },
 };
 
-export const SideTop: Story = { tags: ['!dev'], render: () => <div className="pt-48"><TourDemo side="top" /></div> };
+export const SideTop: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], render: () => <div className="pt-48"><TourDemo side="top" /></div> };
 export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' } };

@@ -32,6 +32,7 @@ export const Default: Story = {
 
 // Tones: success when all done, warning, error.
 export const Tones: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[320px] flex-col gap-4">
       <ProgressSegmented aria-label="Onboarding" steps={5} value={5} tone="success" />
@@ -46,6 +47,7 @@ export const Tones: Story = {
 
 // Stress: 12 steps at 160 still fit; out-of-range values clamp. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <div className="flex w-[160px] flex-col gap-4">

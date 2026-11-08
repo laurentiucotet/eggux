@@ -104,6 +104,7 @@ function Flow() {
 }
 
 export const FromBadResponse: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Flow />,
   play: async ({ canvas }) => {
     const bad = canvas.getByRole('button', { name: 'Bad response' });

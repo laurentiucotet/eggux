@@ -16,7 +16,7 @@ const team = [
 const meta = {
   title: 'Components/Table/Table Cells Rich',
   component: TableCellUser,
-  parameters: {
+  parameters: { controls: { disable: true },
     layout: 'padded',
     docs: { description: { component: 'Rich cell contents for a TableCell: User (avatar, name, email), Progress (bar and the number as text), File (type icon, name truncating in the middle, size), Badges (Badge List with +N), Avatars (Avatar Group sm with +N), Media (Thumbnail, title, meta). Every one stays on one line; use a fixed table for the ellipsis. Figma: Table page / Table Cell User, Progress, File, Badges, Avatars, Media. Guide: eggux build-ui/components/table.md' } },
   },
@@ -72,6 +72,7 @@ export const Default: Story = {
 
 // Stress: narrow cells truncate; the file keeps its extension visible; no thumbnail shows the fallback icon. Tests only.
 export const Stress: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => (
     <Table fixed className="w-[480px]">

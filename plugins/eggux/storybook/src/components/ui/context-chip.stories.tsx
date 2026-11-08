@@ -98,6 +98,7 @@ function ContextList() {
 }
 
 export const RemoveFromList: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <ContextList />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Remove Q3 report.pdf' }));

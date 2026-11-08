@@ -39,6 +39,7 @@ export const Default: Story = {
 
 // Status in text, tone per status: on-track soft-success, at-risk soft-warning, off-track soft-destructive.
 export const Statuses: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap gap-4">
       <ProgressCard status="on-track" progress={80} />
@@ -86,6 +87,6 @@ const All = () => (
     <ProgressCard status="off-track" progress={20} />
   </div>
 );
-export const AllLight: Story = { render: () => <All />, name: 'All statuses' };
-export const AllDark: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All statuses (Dark)' };
-export const AllCorporate: Story = { render: () => <All />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All statuses (Corporate Light)' };
+export const AllLight: Story = { parameters: { controls: { disable: true } }, render: () => <All />, name: 'All statuses' };
+export const AllDark: Story = { parameters: { controls: { disable: true } }, render: () => <All />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All statuses (Dark)' };
+export const AllCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <All />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All statuses (Corporate Light)' };

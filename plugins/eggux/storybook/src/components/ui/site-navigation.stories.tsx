@@ -78,6 +78,7 @@ const footer = (w: number, cols = columns) => (
 
 // Footer 1440 × 402: brand and four link columns (each a nav named by its title), legal line.
 export const Footer: Story = {
+  parameters: { controls: { disable: true } },
   render: () => footer(1440),
   play: async ({ canvas, canvasElement }) => {
     await expect(Math.round(box(canvasElement.querySelector('footer')!).height)).toBe(402);
@@ -87,6 +88,7 @@ export const Footer: Story = {
 
 // Footer Simple 1440 × 214.
 export const FooterSimple: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="w-[1440px]">
       <SiteFooterSimple
@@ -104,6 +106,7 @@ export const FooterSimple: Story = {
 
 // Stress: at 390 the columns stack into a 2-column grid. Tests only.
 export const FooterNarrow: Story = {
+  parameters: { controls: { disable: true } },
   tags: ['!dev'],
   render: () => footer(390),
   play: async ({ canvas }) => {
@@ -113,5 +116,5 @@ export const FooterNarrow: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: Footer.render };
+export const DefaultDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: Footer.render };
 export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' } };

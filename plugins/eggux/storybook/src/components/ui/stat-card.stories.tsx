@@ -42,6 +42,7 @@ export const Default: Story = {
 
 // The change Badge tone follows Trend: up soft-success, down soft-destructive, neutral soft-neutral.
 export const Trends: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap gap-4">
       {(['up', 'down', 'neutral'] as const).map(t => <StatCard key={t} trend={t} />)}
@@ -160,6 +161,6 @@ const Row = () => (
     <StatCard trend="down" layout="horizontal" />
   </div>
 );
-export const AllLight: Story = { render: () => <Row />, name: 'All layouts' };
-export const AllDark: Story = { render: () => <Row />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All layouts (Dark)' };
-export const AllCorporate: Story = { render: () => <Row />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All layouts (Corporate Light)' };
+export const AllLight: Story = { parameters: { controls: { disable: true } }, render: () => <Row />, name: 'All layouts' };
+export const AllDark: Story = { parameters: { controls: { disable: true } }, render: () => <Row />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All layouts (Dark)' };
+export const AllCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <Row />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All layouts (Corporate Light)' };

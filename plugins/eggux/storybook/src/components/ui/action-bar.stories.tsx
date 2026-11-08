@@ -52,6 +52,7 @@ export const Default: Story = {
 
 // Figma Align: end, start (primary first), center.
 export const Aligns: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex w-[560px] flex-col gap-6">
       <ActionBar align="end"><Button variant="outline">Cancel</Button><Button>Save</Button></ActionBar>
@@ -120,7 +121,7 @@ export const StickyMobile: Story = {
 
 // Stress test (Figma "Stress test / Action Bar"): 276 and 368 columns; the bar fills the column
 // and stays right aligned; the sticky summary label truncates, the value never wraps.
-export const NarrowColumns: Story = { tags: ['!dev'],
+export const NarrowColumns: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">
       {[276, 368].map(w => (
