@@ -10,6 +10,25 @@ const preview: Preview = {
     // Accessibility violations fail the story test (vitest) and show in the a11y panel.
     a11y: { test: 'error' },
     backgrounds: { disable: true },
+    options: {
+      // Sidebar: Introduction and Foundations first, then every section, group and component
+      // A-Z. Stories inside one component keep the order of their file (Default first).
+      // Storybook reads this function as plain JavaScript from the source: no TypeScript-only
+      // syntax (no `!`, `as`, type annotations) and nothing from outside it.
+      storySort: (a, b) => {
+        const pinned = ['Introduction', 'Foundations'];
+        const pa = a.title.split('/');
+        const pb = b.title.split('/');
+        const ra = pinned.indexOf(pa[0] ?? '');
+        const rb = pinned.indexOf(pb[0] ?? '');
+        if (ra !== rb) return (ra === -1 ? pinned.length : ra) - (rb === -1 ? pinned.length : rb);
+        for (let i = 0; i < Math.min(pa.length, pb.length); i++) {
+          const c = (pa[i] ?? '').localeCompare(pb[i] ?? '', 'en', { sensitivity: 'base', numeric: true });
+          if (c !== 0) return c;
+        }
+        return pa.length - pb.length;
+      },
+    },
   },
   globalTypes: {
     density: {
