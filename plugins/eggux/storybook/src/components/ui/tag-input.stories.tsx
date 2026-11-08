@@ -6,13 +6,12 @@ import { TagInput, type TagInputOption } from './tag-input';
 
 const meta = {
   title: 'Components/Select/Tag Input',
-  component: TagInput,
   parameters: {
     layout: 'padded',
     docs: { description: { component: 'Several values in one field: a multi-select from a list (chevron on: the list opens with a check on each picked option and stays open while picking) or free tags (chevron off: Enter or comma adds). At most ~5 tags, then "+3 more". Backspace in the empty field removes the last tag; each Tag x is "Remove <value>". Tags wrap and the field grows. Adding and removing are announced. Size default (min 36), sm (min 32), lg (min 40); tags stay 24. Figma: Select page / Tag Input. Guide: eggux build-ui/components/select.md' } },
   },
   decorators: [Story => <div className="w-[360px]"><Story /></div>],
-} satisfies Meta<typeof TagInput>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -39,7 +38,64 @@ const onValueChange = fn();
 
 // Figma "Example / multi-select open": 360 x 36, Tags (24 high, 4 apart), chevrons-up-down. Typing
 // filters; Enter checks and adds a tag; the list stays open while picking; Escape closes.
-export const Default: Story = {
+type Playground = {
+  mode: 'multi-select' | 'free tags';
+  picked: number;
+  size: 'sm' | 'default' | 'lg';
+  placeholder: string;
+  maxVisible: number;
+  allowCreate: boolean;
+  disabled: boolean;
+  invalid: boolean;
+  label: string;
+  showHint: boolean;
+  width: number;
+};
+
+/** Playground: every Tag Input option in Controls. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    mode: { name: 'Mode', control: 'inline-radio', options: ['multi-select', 'free tags'], description: 'multi-select: a list with a chevron. free tags: Enter or comma adds.', table: { category: 'Tag Input' } },
+    picked: { name: 'Tags at start', control: { type: 'range', min: 0, max: 8, step: 1 }, table: { category: 'Tag Input' } },
+    size: { name: 'Size', control: 'inline-radio', options: ['sm', 'default', 'lg'], description: 'min 32 / 36 / 40; tags stay 24', table: { category: 'Tag Input' } },
+    placeholder: { name: 'Placeholder', control: 'text', table: { category: 'Tag Input' } },
+    maxVisible: { name: 'Max visible tags', control: { type: 'range', min: 1, max: 8, step: 1 }, description: 'More tags show as "+N more"', table: { category: 'Tag Input' } },
+    allowCreate: { name: 'Allow create', control: 'boolean', description: 'multi-select: typing a new value offers Create', if: { arg: 'mode', eq: 'multi-select' }, table: { category: 'Tag Input' } },
+    disabled: { name: 'Disabled', control: 'boolean', table: { category: 'Tag Input' } },
+    invalid: { name: 'Invalid', control: 'boolean', table: { category: 'Tag Input' } },
+    label: { name: 'Label', control: 'text', table: { category: 'Field' } },
+    showHint: { name: 'Show hint', control: 'boolean', table: { category: 'Field' } },
+    width: { name: 'Width', control: { type: 'range', min: 200, max: 560, step: 4 }, table: { category: 'Field' } },
+  },
+  args: { mode: 'multi-select', picked: 2, size: 'default', placeholder: '', maxVisible: 5, allowCreate: false, disabled: false, invalid: false, label: 'Skills', showHint: false, width: 360 },
+  render: a => {
+    const multi = a.mode === 'multi-select';
+    const start = skills.slice(0, a.picked).map(s => s.value);
+    return (
+      <div style={{ width: a.width }}>
+        <Field label={a.label} hint={a.showHint ? 'Pick up to five.' : undefined} disabled={a.disabled}>
+          <TagInput
+            key={`${a.mode}-${a.picked}`}
+            options={multi ? skills : undefined}
+            showChevron={multi}
+            defaultValue={multi ? start : skills.slice(0, a.picked).map(s => s.label)}
+            listLabel="Skills"
+            placeholder={a.placeholder || undefined}
+            size={a.size}
+            maxVisible={a.maxVisible}
+            allowCreate={multi ? a.allowCreate : undefined}
+            disabled={a.disabled}
+            invalid={a.invalid}
+          />
+        </Field>
+      </div>
+    );
+  },
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => (
     <Field label="Skills">

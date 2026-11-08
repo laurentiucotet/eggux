@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test';
-import { ChevronsUpDown } from '@/components/icons';
+import { ChevronsUpDown, FileText, Search, Settings, UserPlus } from '@/components/icons';
 import { Button } from './button';
 import {
   Command,
@@ -17,12 +17,11 @@ import { Popover, PopoverContent, PopoverTrigger } from './popover';
 
 const meta = {
   title: 'Components/Popover/Command',
-  component: Command,
   parameters: {
     layout: 'centered',
     docs: { description: { component: 'Searchable list: a search input over grouped options. Before typing, show recent or suggested items; the first match is highlighted; arrows move, Home / End jump, Enter picks; "No results found." is announced. Base of Command Dialog and pickers. The surface (288 wide, border, radius md, shadow md) comes from the container: PopoverContent className="w-72 p-0". Figma: Popover page / Command. Guide: eggux build-ui/components/popover.md' } },
   },
-} satisfies Meta<typeof Command>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -54,7 +53,81 @@ function CountryList({ onSelect, selected }: { onSelect?: (value: string) => voi
 const onPick = fn();
 
 // Typing filters and highlights the first match; Enter picks it.
-export const Default: Story = {
+type Playground = {
+  placeholder: string;
+  search: string;
+  loading: boolean;
+  loop: boolean;
+  showHeadings: boolean;
+  showSeparator: boolean;
+  showSecondGroup: boolean;
+  showIcons: boolean;
+  showShortcuts: boolean;
+  showChecked: boolean;
+  disableItem: boolean;
+};
+
+const actions = [
+  { label: 'New invoice', icon: <FileText />, shortcut: '⌘N' },
+  { label: 'New customer', icon: <UserPlus />, shortcut: '⌘⇧C' },
+  { label: 'Search invoices', icon: <Search />, shortcut: '⌘K' },
+  { label: 'Settings', icon: <Settings />, shortcut: '⌘,' },
+];
+
+/** Playground: every Command option in Controls. Type in Search to see the filter. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    placeholder: { name: 'Placeholder', control: 'text', table: { category: 'Command' } },
+    search: { name: 'Search', control: 'text', description: 'Start with this text in the search', table: { category: 'Command' } },
+    loading: { name: 'Loading', control: 'boolean', description: 'Command Loading instead of the results', table: { category: 'Command' } },
+    loop: { name: 'Loop', control: 'boolean', description: 'Arrows wrap from the last item to the first', table: { category: 'Command' } },
+    showHeadings: { name: 'Show group headings', control: 'boolean', description: 'Command Group `heading`', table: { category: 'Command Group' } },
+    showSecondGroup: { name: 'Show second group', control: 'boolean', table: { category: 'Command Group' } },
+    showSeparator: { name: 'Show separator', control: 'boolean', description: 'Command Separator between the groups', table: { category: 'Command Group' } },
+    showIcons: { name: 'Show icons', control: 'boolean', description: 'Command Item `icon`', table: { category: 'Command Item' } },
+    showShortcuts: { name: 'Show shortcuts', control: 'boolean', description: 'Command Item `shortcut`', table: { category: 'Command Item' } },
+    showChecked: { name: 'Show checked', control: 'boolean', description: 'Command Item `checked` (a picker): a check on the selected item', table: { category: 'Command Item' } },
+    disableItem: { name: 'Disable an item', control: 'boolean', description: 'Command Item `disabled` (Settings)', table: { category: 'Command Item' } },
+  },
+  args: { placeholder: 'Type a command or search…', search: '', loading: false, loop: false, showHeadings: true, showSeparator: true, showSecondGroup: true, showIcons: true, showShortcuts: true, showChecked: false, disableItem: false },
+  render: a => (
+    <div className={surface}>
+      <Command key={a.search} label="Commands" defaultSearch={a.search} loading={a.loading} loop={a.loop}>
+        <CommandInput placeholder={a.placeholder} />
+        <CommandList>
+          {a.loading ? <CommandLoading /> : null}
+          <CommandEmpty />
+          <CommandGroup heading={a.showHeadings ? 'Actions' : undefined}>
+            {actions.map((x, i) => (
+              <CommandItem
+                key={x.label}
+                onSelect={onPick}
+                icon={a.showIcons ? x.icon : undefined}
+                shortcut={a.showShortcuts ? x.shortcut : undefined}
+                checked={a.showChecked ? i === 0 : undefined}
+                disabled={a.disableItem && x.label === 'Settings'}
+              >
+                {x.label}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+          {a.showSecondGroup && a.showSeparator ? <CommandSeparator /> : null}
+          {a.showSecondGroup ? (
+            <CommandGroup heading={a.showHeadings ? 'Countries' : undefined}>
+              {countries.map(c => (
+                <CommandItem key={c} onSelect={onPick} checked={a.showChecked ? false : undefined}>{c}</CommandItem>
+              ))}
+            </CommandGroup>
+          ) : null}
+        </CommandList>
+      </Command>
+    </div>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <div className={surface}><CountryList onSelect={onPick} /></div>,
   play: async ({ canvas }) => {

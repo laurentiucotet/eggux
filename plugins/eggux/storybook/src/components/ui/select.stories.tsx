@@ -7,13 +7,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, type SelectProps } fr
 
 const meta = {
   title: 'Components/Select/Select',
-  component: Select,
   parameters: {
     layout: 'padded',
     docs: { description: { component: 'One choice from 6-15 options, inside Field for the label and errors. Style default or filled (same as the other controls of the form); ghost only in toolbars and list headers ("Sort by: Newest"). Size default 36, sm 32, lg 40. The open list is the Menu, 4 px below, with a check on the selected option. Read-only shows a value people cannot change here; Show clear empties a filter. Enter, Space or arrows open, arrows move, Enter picks, Escape closes, a letter jumps to its option. Figma: Select page / Select. Guide: eggux build-ui/components/select.md' } },
   },
   decorators: [Story => <div className="w-[240px]"><Story /></div>],
-} satisfies Meta<typeof Select>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -49,7 +48,73 @@ const onValueChange = fn();
 
 // Figma Style=default, Size=default, placeholder "Select a location": 240 x 36, opens the Menu with
 // a check on the pick; Escape closes and focus returns to the trigger.
-export const Default: Story = {
+type Playground = {
+  selectStyle: 'default' | 'filled' | 'ghost';
+  size: 'sm' | 'default' | 'lg';
+  placeholder: string;
+  value: string;
+  disabled: boolean;
+  readOnly: boolean;
+  showClear: boolean;
+  showLeading: boolean;
+  label: string;
+  showHint: boolean;
+  showError: boolean;
+  required: boolean;
+  itemIcons: boolean;
+  itemDescriptions: boolean;
+  width: number;
+};
+
+const regions: Record<string, string> = {
+  București: 'Muntenia', 'Cluj-Napoca': 'Transilvania', Iași: 'Moldova', Timișoara: 'Banat', Brașov: 'Transilvania', Constanța: 'Dobrogea',
+};
+
+/** Playground: every Select and Field option in Controls. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    selectStyle: { name: 'Style', control: 'inline-radio', options: ['default', 'filled', 'ghost'], description: 'ghost only in toolbars and list headers', table: { category: 'Select' } },
+    size: { name: 'Size', control: 'inline-radio', options: ['sm', 'default', 'lg'], description: 'sm 32, default 36, lg 40', table: { category: 'Select' } },
+    placeholder: { name: 'Placeholder', control: 'text', table: { category: 'Select' } },
+    value: { name: 'Value', control: 'select', options: ['', ...cities], description: 'Empty shows the placeholder', table: { category: 'Select' } },
+    disabled: { name: 'Disabled', control: 'boolean', table: { category: 'Select' } },
+    readOnly: { name: 'Read only', control: 'boolean', table: { category: 'Select' } },
+    showClear: { name: 'Show clear', control: 'boolean', description: 'An X that empties the value (filters)', table: { category: 'Select' } },
+    showLeading: { name: 'Show leading icon', control: 'boolean', description: 'Select Trigger `leading`', table: { category: 'Select' } },
+    label: { name: 'Label', control: 'text', table: { category: 'Field' } },
+    showHint: { name: 'Show hint', control: 'boolean', table: { category: 'Field' } },
+    showError: { name: 'Show error', control: 'boolean', table: { category: 'Field' } },
+    required: { name: 'Required', control: 'boolean', table: { category: 'Field' } },
+    itemIcons: { name: 'Show icons', control: 'boolean', description: 'Select Item `icon`', table: { category: 'Select Item' } },
+    itemDescriptions: { name: 'Show descriptions', control: 'boolean', description: 'Select Item `description`', table: { category: 'Select Item' } },
+    width: { name: 'Width', control: { type: 'range', min: 160, max: 480, step: 4 }, table: { category: 'Field' } },
+  },
+  args: {
+    selectStyle: 'default', size: 'default', placeholder: 'Select a location', value: '', disabled: false, readOnly: false, showClear: false, showLeading: false,
+    label: 'Location', showHint: false, showError: false, required: false, itemIcons: false, itemDescriptions: false, width: 240,
+  },
+  // The meta decorator fixes 240; the playground sets its own width.
+  decorators: [Story => <div className="w-auto"><Story /></div>],
+  render: a => (
+    <div style={{ width: a.width }}>
+      <Field label={a.label} hint={a.showHint ? 'Where the invoices are issued.' : undefined} error={a.showError ? 'Choose a location.' : undefined} required={a.required} disabled={a.disabled}>
+        {/* key: remount when Value changes, so defaultValue applies again. */}
+        <Select key={a.value} defaultValue={a.value || undefined} selectStyle={a.selectStyle} size={a.size} disabled={a.disabled} readOnly={a.readOnly}>
+          <SelectTrigger placeholder={a.placeholder} showClear={a.showClear} leading={a.showLeading ? <Globe /> : undefined} />
+          <SelectContent>
+            {cities.map(c => (
+              <SelectItem key={c} value={c} icon={a.itemIcons ? <Globe /> : undefined} description={a.itemDescriptions ? regions[c] : undefined}>{c}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </Field>
+    </div>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => (
     <Field label="Location">

@@ -7,14 +7,13 @@ import { Field } from './field';
 
 const meta = {
   title: 'Components/Select/Combobox',
-  component: Combobox,
   parameters: {
     layout: 'padded',
     docs: { description: { component: 'Searchable select for long lists (country, customer, product) or when people know what to type. The trigger opens the Command 4 px below: a search input and the matching options, Checked on the selected one. Typing filters, arrows move, Enter picks and closes, Escape closes and returns focus. "No results for …" is announced; with onCreate a Create option comes last. Size default 36, sm 32, lg 40; read-only shows the value without chevrons; Show clear empties it. Figma: Select page / Combobox. Guide: eggux build-ui/components/select.md' } },
   },
   decorators: [Story => <div className="w-[240px]"><Story /></div>],
   args: { options: [] },
-} satisfies Meta<typeof Combobox>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -49,7 +48,72 @@ const onValueChange = fn();
 
 // Figma Size=default, placeholder "Select country…": 240 x 36, chevrons-up-down. Click opens the
 // Command 4 px below with the search focused; typing filters; Enter picks, closes, focus returns.
-export const Default: Story = {
+type Playground = {
+  list: 'countries' | 'customers';
+  size: 'sm' | 'default' | 'lg';
+  placeholder: string;
+  value: string;
+  disabled: boolean;
+  readOnly: boolean;
+  invalid: boolean;
+  showClear: boolean;
+  showLeading: boolean;
+  loading: boolean;
+  allowCreate: boolean;
+  label: string;
+  showHint: boolean;
+  width: number;
+};
+
+/** Playground: every Combobox option in Controls. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    list: { name: 'Options', control: 'inline-radio', options: ['countries', 'customers'], description: 'countries: 24 plain options. customers: avatar and description.', table: { category: 'Combobox' } },
+    size: { name: 'Size', control: 'inline-radio', options: ['sm', 'default', 'lg'], description: 'sm 32, default 36, lg 40', table: { category: 'Combobox' } },
+    placeholder: { name: 'Placeholder', control: 'text', table: { category: 'Combobox' } },
+    value: { name: 'Value', control: 'select', options: ['', 'RO', 'DE', 'acme'], description: 'Empty shows the placeholder (RO, DE for countries, acme for customers)', table: { category: 'Combobox' } },
+    disabled: { name: 'Disabled', control: 'boolean', table: { category: 'Combobox' } },
+    readOnly: { name: 'Read only', control: 'boolean', table: { category: 'Combobox' } },
+    invalid: { name: 'Invalid', control: 'boolean', table: { category: 'Combobox' } },
+    showClear: { name: 'Show clear', control: 'boolean', table: { category: 'Combobox' } },
+    showLeading: { name: 'Show leading icon', control: 'boolean', table: { category: 'Combobox' } },
+    loading: { name: 'Loading', control: 'boolean', description: 'Results still loading', table: { category: 'Combobox' } },
+    allowCreate: { name: 'Allow create', control: 'boolean', description: '`onCreate`: a Create option comes last', table: { category: 'Combobox' } },
+    label: { name: 'Label', control: 'text', table: { category: 'Field' } },
+    showHint: { name: 'Show hint', control: 'boolean', table: { category: 'Field' } },
+    width: { name: 'Width', control: { type: 'range', min: 160, max: 480, step: 4 }, table: { category: 'Field' } },
+  },
+  args: {
+    list: 'countries', size: 'default', placeholder: 'Select country…', value: '', disabled: false, readOnly: false, invalid: false, showClear: false, showLeading: false,
+    loading: false, allowCreate: false, label: 'Country', showHint: false, width: 240,
+  },
+  render: a => (
+    <div style={{ width: a.width }}>
+      <Field label={a.label} hint={a.showHint ? 'Where the company is registered.' : undefined} disabled={a.disabled}>
+        <Combobox
+          key={`${a.list}-${a.value}`}
+          options={a.list === 'countries' ? countries : customers}
+          defaultValue={a.value || undefined}
+          listLabel={a.list === 'countries' ? 'Countries' : 'Customers'}
+          searchPlaceholder={a.list === 'countries' ? 'Search countries…' : 'Search customers…'}
+          placeholder={a.placeholder}
+          size={a.size}
+          disabled={a.disabled}
+          readOnly={a.readOnly}
+          invalid={a.invalid}
+          showClear={a.showClear}
+          leading={a.showLeading ? <Users /> : undefined}
+          loading={a.loading}
+          onCreate={a.allowCreate ? q => q : undefined}
+        />
+      </Field>
+    </div>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => (
     <Field label="Country">
