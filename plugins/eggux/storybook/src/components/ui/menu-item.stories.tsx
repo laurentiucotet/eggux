@@ -19,11 +19,10 @@ import {
 // in dropdown-menu.tsx). These stories check it against the Figma Menu Item component set.
 const meta = {
   title: 'Components/Menu/Menu Item',
-  component: DropdownMenuItem,
   parameters: {
     docs: { description: { component: 'Row inside a Menu (Dropdown, context menu). Variant default or destructive (last, after a separator); State default, highlighted (keyboard or pointer), disabled. Options: leading icon, shortcut, Checked (menuitemcheckbox), description (a muted second line), submenu (chevron, opens on arrow right). Figma: Menu page / Menu Item. Guide: eggux build-ui/components/dropdown-menu.md' } },
   },
-} satisfies Meta<typeof DropdownMenuItem>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -44,7 +43,63 @@ const onEdit = fn();
 
 // Figma Menu Item default: 32 high, 8 px sides, 8 px gap, 16 px icon, body/small label,
 // ui/caption muted shortcut, radius sm. Highlighted (arrow keys or pointer) fills accent; Enter runs it.
-export const Default: Story = {
+type Playground = {
+  kind: 'item' | 'checkbox' | 'submenu';
+  label: string;
+  variant: 'default' | 'destructive';
+  showIcon: boolean;
+  shortcut: string;
+  description: string;
+  checked: boolean;
+  disabled: boolean;
+};
+
+/** Playground: one Menu Item with every option in Controls, in an open menu next to a plain item. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    kind: { name: 'Type', control: 'inline-radio', options: ['item', 'checkbox', 'submenu'], description: 'item (DropdownMenuItem), checkbox (DropdownMenuCheckboxItem, Figma Checked) or submenu (DropdownMenuSubTrigger)', table: { category: 'Menu Item' } },
+    label: { name: 'Label', control: 'text', table: { category: 'Menu Item' } },
+    variant: { name: 'Variant', control: 'inline-radio', options: ['default', 'destructive'], description: 'destructive: last, after a separator', if: { arg: 'kind', eq: 'item' }, table: { category: 'Menu Item' } },
+    showIcon: { name: 'Show icon', control: 'boolean', if: { arg: 'kind', eq: 'item' }, table: { category: 'Menu Item' } },
+    shortcut: { name: 'Shortcut', control: 'text', description: 'Empty: none', if: { arg: 'kind', eq: 'item' }, table: { category: 'Menu Item' } },
+    description: { name: 'Description', control: 'text', description: 'A muted second line. Empty: none', if: { arg: 'kind', eq: 'item' }, table: { category: 'Menu Item' } },
+    checked: { name: 'Checked', control: 'boolean', if: { arg: 'kind', eq: 'checkbox' }, table: { category: 'Menu Item' } },
+    disabled: { name: 'Disabled', control: 'boolean', table: { category: 'Menu Item' } },
+  },
+  args: { kind: 'item', label: 'Edit', variant: 'default', showIcon: true, shortcut: '⌘E', description: '', checked: true, disabled: false },
+  render: a => (
+    <Menu label="Invoice actions">
+      <DropdownMenuItem icon={<Copy aria-hidden="true" />}>Duplicate</DropdownMenuItem>
+      {a.variant === 'destructive' && a.kind === 'item' ? <DropdownMenuSeparator /> : null}
+      {a.kind === 'item' ? (
+        <DropdownMenuItem
+          variant={a.variant}
+          icon={a.showIcon ? (a.variant === 'destructive' ? <Trash2 aria-hidden="true" /> : <Pencil aria-hidden="true" />) : undefined}
+          shortcut={a.shortcut || undefined}
+          description={a.description || undefined}
+          disabled={a.disabled}
+          onSelect={onEdit}
+        >
+          {a.label}
+        </DropdownMenuItem>
+      ) : null}
+      {a.kind === 'checkbox' ? <DropdownMenuCheckboxItem checked={a.checked} disabled={a.disabled}>{a.label}</DropdownMenuCheckboxItem> : null}
+      {a.kind === 'submenu' ? (
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger disabled={a.disabled}>{a.label}</DropdownMenuSubTrigger>
+          <DropdownMenuSubContent aria-label={a.label}>
+            <DropdownMenuItem>Drafts</DropdownMenuItem>
+            <DropdownMenuItem>Archive</DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+      ) : null}
+    </Menu>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => (
     <Menu label="Invoice actions" open={false}>

@@ -7,13 +7,11 @@ import { OptionCard, OptionCardGroup } from './option-card';
 
 const meta = {
   title: 'Components/Card/Option Card',
-  component: OptionCard,
   parameters: {
     layout: 'padded',
     docs: { description: { component: 'Selectable card: a radio option (or a checkbox) with more context. The whole card is the click target; selected = 2 px primary border + checked control, never color alone. Layout default, media (280, preview on top) or compact (12 padding, 32 tile). Group 2-4 in a radiogroup with a label; arrow keys move between options. Figma: Card page / Option Card. Guide: eggux build-ui/components/card.md' } },
   },
-  args: { title: 'Standard shipping', description: 'Delivered in 3-5 business days.', icon: <Building /> },
-} satisfies Meta<typeof OptionCard>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -41,7 +39,71 @@ const Group = ({ layout, disabledValue }: { layout?: 'default' | 'media' | 'comp
 };
 
 // Figma State=default (Control=radio, Layout=default): 384 x 80, 16 padding, radius 12, icon box 40.
-export const Default: Story = {
+type Playground = {
+  control: 'radio' | 'checkbox';
+  layout: 'default' | 'media' | 'compact';
+  options: number;
+  showIcon: boolean;
+  showDescription: boolean;
+  disableLast: boolean;
+};
+
+const shipping = [
+  { value: 'standard', title: 'Standard shipping', description: 'Delivered in 3-5 business days.', icon: <Building /> },
+  { value: 'express', title: 'Express shipping', description: 'Delivered tomorrow.', icon: <Package /> },
+  { value: 'pickup', title: 'Pick-up point', description: 'Collect it from 2,400 lockers.', icon: <Building /> },
+  { value: 'same-day', title: 'Same day', description: 'Order before 12:00 in Bucharest.', icon: <Package /> },
+];
+
+function PlaygroundCards(a: Playground) {
+  const [value, setValue] = React.useState('standard');
+  const shown = shipping.slice(0, a.options);
+  const card = (s: (typeof shipping)[number], i: number) => (
+    <OptionCard
+      key={s.value}
+      value={a.control === 'radio' ? s.value : undefined}
+      control={a.control}
+      defaultChecked={a.control === 'checkbox' ? i === 0 : undefined}
+      layout={a.layout}
+      media={a.layout === 'media' ? <ImagePlaceholder ratio="16:9" /> : undefined}
+      title={s.title}
+      description={a.showDescription ? s.description : undefined}
+      icon={a.showIcon && a.layout !== 'media' ? s.icon : undefined}
+      disabled={a.disableLast && i === shown.length - 1}
+    />
+  );
+  if (a.control === 'checkbox') {
+    return (
+      <fieldset className="m-0 flex flex-col gap-3 border-0 p-0">
+        <legend className="mb-2 text-sm font-medium">Delivery options</legend>
+        {shown.map(card)}
+      </fieldset>
+    );
+  }
+  return (
+    <OptionCardGroup value={value} onValueChange={setValue} aria-label="Delivery" className={a.layout === 'media' ? 'grid-flow-col' : undefined}>
+      {shown.map(card)}
+    </OptionCardGroup>
+  );
+}
+
+/** Playground: every Option Card option in Controls. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    control: { name: 'Control', control: 'inline-radio', options: ['radio', 'checkbox'], description: 'radio: one choice in a group. checkbox: several.', table: { category: 'Option Card' } },
+    layout: { name: 'Layout', control: 'inline-radio', options: ['default', 'media', 'compact'], description: 'media: 280 wide, preview on top. compact: 12 padding, 32 tile.', table: { category: 'Option Card' } },
+    options: { name: 'Number of cards', control: { type: 'range', min: 2, max: 4, step: 1 }, table: { category: 'Option Card' } },
+    showIcon: { name: 'Show icon', control: 'boolean', description: 'Not with Layout media', table: { category: 'Option Card' } },
+    showDescription: { name: 'Show description', control: 'boolean', table: { category: 'Option Card' } },
+    disableLast: { name: 'Disable last card', control: 'boolean', table: { category: 'Option Card' } },
+  },
+  args: { control: 'radio', layout: 'default', options: 2, showIcon: true, showDescription: true, disableLast: false },
+  render: a => <PlaygroundCards key={`${a.control}-${a.layout}`} {...a} />,
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <Group />,
   play: async ({ canvas, canvasElement }) => {

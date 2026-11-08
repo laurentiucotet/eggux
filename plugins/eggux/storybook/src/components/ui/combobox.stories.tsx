@@ -12,7 +12,6 @@ const meta = {
     docs: { description: { component: 'Searchable select for long lists (country, customer, product) or when people know what to type. The trigger opens the Command 4 px below: a search input and the matching options, Checked on the selected one. Typing filters, arrows move, Enter picks and closes, Escape closes and returns focus. "No results for …" is announced; with onCreate a Create option comes last. Size default 36, sm 32, lg 40; read-only shows the value without chevrons; Show clear empties it. Figma: Select page / Combobox. Guide: eggux build-ui/components/select.md' } },
   },
   decorators: [Story => <div className="w-[240px]"><Story /></div>],
-  args: { options: [] },
 } satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;

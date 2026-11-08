@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, waitFor } from 'storybook/test';
+import { House } from '@/components/icons';
 import { Tabs, TabsContent, TabsList, TabsTrigger, type TabsVariant } from './tabs';
 
 // Tab states (default, active, focus, disabled) per Variant. The Tab trigger lives in tabs.tsx.
 const meta = {
   title: 'Components/Tabs/Tab',
-  component: TabsTrigger,
   parameters: {
     layout: 'padded',
     docs: { description: { component: 'Tab trigger, put inside TabsList with the Variant of its Tabs. States: default, active (aria-selected), focus (ring) and disabled (50 percent, not focusable). Show count adds a Badge Count, Show icon a 16 px icon. Figma: Tabs page / Tab. Guide: eggux build-ui/components/tabs.md' } },
   },
-} satisfies Meta<typeof TabsTrigger>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -41,9 +41,44 @@ const States = () => (
   </div>
 );
 
-export const Default: Story = {
+type Playground = {
+  variant: TabsVariant | 'vertical';
+  size: 'default' | 'sm';
+  label: string;
+  state: 'active' | 'inactive' | 'disabled';
+  showIcon: boolean;
+  showCount: boolean;
+};
+
+/** Playground: one Tab with every option in Controls, next to a plain tab of the same Variant. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    variant: { name: 'Variant', control: 'select', options: ['default', 'line', 'vertical', 'pills', 'boxed'], description: 'Set on Tabs; every Tab of one list matches', table: { category: 'Tab' } },
+    size: { name: 'Size', control: 'inline-radio', options: ['default', 'sm'], table: { category: 'Tab' } },
+    label: { name: 'Label', control: 'text', description: 'One or two words, a noun', table: { category: 'Tab' } },
+    state: { name: 'State', control: 'inline-radio', options: ['active', 'inactive', 'disabled'], description: 'Tab focus shows on Tab key focus', table: { category: 'Tab' } },
+    showIcon: { name: 'Show icon', control: 'boolean', table: { category: 'Tab' } },
+    showCount: { name: 'Show count', control: 'boolean', description: 'A Badge Count after the label', table: { category: 'Tab' } },
+  },
+  args: { variant: 'line', size: 'default', label: 'Overview', state: 'active', showIcon: false, showCount: false },
+  render: a => (
+    <Tabs key={`${a.variant}-${a.state}`} variant={a.variant} size={a.size} defaultValue={a.state === 'active' ? 'tab' : 'other'}>
+      <TabsList aria-label="Tab playground">
+        <TabsTrigger value="tab" disabled={a.state === 'disabled'} icon={a.showIcon ? <House aria-hidden="true" /> : undefined} count={a.showCount ? 12 : undefined} countLabel={a.showCount ? '12 items' : undefined}>
+          {a.label}
+        </TabsTrigger>
+        <TabsTrigger value="other">Projects</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab">{a.label} panel.</TabsContent>
+      <TabsContent value="other">Projects panel.</TabsContent>
+    </Tabs>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
-  args: { value: 'x', children: 'Overview' },
   render: () => <States />,
   play: async ({ canvasElement }) => {
     for (const v of variants) {
@@ -69,7 +104,6 @@ export const Default: Story = {
 // Focus state: a 2 px background gap and a 4 px ring, only for keyboard focus.
 export const Focus: Story = {
   parameters: { controls: { disable: true } },
-  args: { value: 'x', children: 'Overview' },
   render: () => <States />,
   play: async ({ canvasElement }) => {
     for (const v of variants) {
@@ -85,5 +119,5 @@ export const Focus: Story = {
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
