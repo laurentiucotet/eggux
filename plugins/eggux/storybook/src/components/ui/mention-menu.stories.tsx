@@ -7,12 +7,11 @@ import { MentionOption, splitMatch } from './mention-option';
 
 const meta = {
   title: 'Components/Popover/Mention Menu',
-  component: MentionMenu,
   parameters: {
     layout: 'centered',
     docs: { description: { component: 'The suggestion list that opens while typing @: Mention Options with the typed part highlighted, people first, then files and records, at most 6 to 8, the first highlighted. The editor keeps focus (aria-activedescendant); Up / Down move, Enter or Tab picks, Esc closes and keeps the text. Figma: Popover page / Mention Menu. Guide: eggux build-ui/components/comments-and-chat.md' } },
   },
-} satisfies Meta<typeof MentionMenu>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -28,7 +27,30 @@ const entries: Entry[] = [
 ];
 
 // The Figma default: People header, three people and a file, the first highlighted.
-export const Default: Story = {
+type Playground = { query: 'An' | 'Ann' | 'M' | 'xyz'; showHeader: boolean };
+
+/** Playground: the typed text after @ filters the options and highlights the match. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    query: { name: 'Typed after @', control: 'inline-radio', options: ['An', 'Ann', 'M', 'xyz'], description: 'xyz: nothing matches', table: { category: 'Mention Menu' } },
+    showHeader: { name: 'Show header', control: 'boolean', table: { category: 'Mention Menu' } },
+  },
+  args: { query: 'An', showHeader: true },
+  render: a => {
+    const found = entries.filter(e => e.name.toLowerCase().includes(a.query.toLowerCase()));
+    return (
+      <MentionMenu header={a.showHeader ? 'People' : undefined} label="People">
+        {found.map((e, i) => (
+          <MentionOption key={e.id} type={e.type} {...splitMatch(e.name, a.query)} description={e.description} highlighted={i === 0} />
+        ))}
+      </MentionMenu>
+    );
+  },
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => (
     <MentionMenu header="People">
@@ -197,5 +219,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

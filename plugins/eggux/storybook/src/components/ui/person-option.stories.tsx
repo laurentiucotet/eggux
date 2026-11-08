@@ -6,13 +6,11 @@ import { PersonOption } from './person-option';
 
 const meta = {
   title: 'Components/Select/Person Option',
-  component: PersonOption,
   parameters: {
     layout: 'padded',
     docs: { description: { component: 'One person in a People Picker list: checkbox (multi-select), avatar 32, name and a muted detail (role and email, so two people with the same name differ). role="option" with aria-selected; the checkbox only pictures the state. Single pick (owner, assignee): no checkbox, a check at the end. Figma: Select page / Person Option. Guide: eggux build-ui/components/select.md' } },
   },
-  args: { value: 'ana' },
-} satisfies Meta<typeof PersonOption>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -63,7 +61,21 @@ function PeopleList({ multiple = true, width = 288 }: { multiple?: boolean; widt
 
 // Figma default: 288 × 54 in the list, 32 px avatar, name and detail on two lines; arrows move the
 // highlight, Enter or a click toggles the person, the disabled one is skipped.
-export const Default: Story = {
+type Playground = { multiple: boolean; width: number };
+
+/** Playground: Person Option in a People Picker list. Multiple shows checkboxes; single pick shows a check. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    multiple: { name: 'Multiple', control: 'boolean', description: 'Checkboxes (several people) or a check at the end (one person)', table: { category: 'Person Option' } },
+    width: { name: 'Width', control: { type: 'range', min: 220, max: 480, step: 4 }, table: { category: 'Person Option' } },
+  },
+  args: { multiple: true, width: 288 },
+  render: a => <PeopleList key={String(a.multiple)} multiple={a.multiple} width={a.width} />,
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <PeopleList />,
   play: async ({ canvas }) => {

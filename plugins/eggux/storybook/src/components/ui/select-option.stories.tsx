@@ -6,13 +6,11 @@ import { Listbox, ListboxGroup, ListboxItem, SelectOption, useListbox, type Sele
 
 const meta = {
   title: 'Components/Select/Select Option',
-  component: SelectOption,
   parameters: {
     layout: 'padded',
     docs: { description: { component: 'A rich option in a Select, Combobox or Menu list: icon tile or avatar, title, a muted second line (type, place, email) and a check when selected. Use it when the label alone is ambiguous. The same Type for every option in one list; Type=create is the only exception, always last ("Create "Urgent""). The listbox parts (useListbox, Listbox, ListboxGroup, ListboxItem, ListboxStatus) are the WAI-ARIA listbox with aria-activedescendant that Combobox, Tag Input and the pickers share. Figma: Select page / Select Option. Guide: eggux build-ui/components/select.md' } },
   },
-  args: { value: 'nw' },
-} satisfies Meta<typeof SelectOption>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -76,7 +74,30 @@ function CustomerList({ type = 'icon', rows = customers, width = 280, label = 'C
 
 // Figma Type=icon, default: 280 x 48, 32 px icon tile, title ui/label, description ui/caption muted,
 // 6 / 8 px padding, 8 gap. Arrows move the highlight (aria-activedescendant), Enter checks.
-export const Default: Story = {
+type Playground = { type: 'icon' | 'avatar' | 'none'; showDescriptions: boolean; disableLast: boolean; width: number };
+
+/** Playground: every Select Option option in Controls, in a small searchable list (arrows move, Enter picks). */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    type: { name: 'Type', control: 'inline-radio', options: ['icon', 'avatar', 'none'], description: 'The same Type for every option in one list', table: { category: 'Select Option' } },
+    showDescriptions: { name: 'Show descriptions', control: 'boolean', description: 'The muted second line', table: { category: 'Select Option' } },
+    disableLast: { name: 'Disable last option', control: 'boolean', table: { category: 'Select Option' } },
+    width: { name: 'Width', control: { type: 'range', min: 200, max: 480, step: 4 }, table: { category: 'Select Option' } },
+  },
+  args: { type: 'icon', showDescriptions: true, disableLast: true, width: 280 },
+  render: a => (
+    <CustomerList
+      key={`${a.type}-${a.showDescriptions}-${a.disableLast}`}
+      type={a.type}
+      width={a.width}
+      rows={customers.map((r, i) => ({ ...r, description: a.showDescriptions ? r.description : undefined, disabled: a.disableLast && i === customers.length - 1 }))}
+    />
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <CustomerList />,
   play: async ({ canvas }) => {

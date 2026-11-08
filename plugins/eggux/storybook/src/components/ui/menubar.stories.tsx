@@ -18,11 +18,10 @@ import {
 
 const meta = {
   title: 'Components/Menu/Menubar',
-  component: Menubar,
   parameters: {
     docs: { description: { component: 'Desktop app menus in a row (File, Edit, View, Help) for editors and tools with many commands; each Menubar Trigger opens a Menu with items, shortcuts and submenus. Left and right arrows move between menus, Escape closes. Not for site navigation: use Navigation or Sidebar. Figma: Menu page / Menubar, Menubar Trigger. Guide: eggux build-ui/components/dropdown-menu.md' } },
   },
-} satisfies Meta<typeof Menubar>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -85,7 +84,18 @@ function EditorMenubar({ defaultValue }: { defaultValue?: string }) {
 
 // Figma Menubar: 36 high (control-height), hugs its triggers with 4 px sides and gaps, border,
 // radius md. Menubar Trigger: 28 high, 12 px sides, ui/label. Click opens; open = accent fill.
-export const Default: Story = {
+type Playground = { openMenu: 'none' | 'file' | 'edit' | 'view' | 'help' };
+
+/** Playground: pick which menu of the Menubar is open. */
+export const Default: StoryObj<Playground> = {
+  argTypes: { openMenu: { name: 'Open menu', control: 'inline-radio', options: ['none', 'file', 'edit', 'view', 'help'], table: { category: 'Menubar' } } },
+  args: { openMenu: 'none' },
+  render: a => <EditorMenubar key={a.openMenu} defaultValue={a.openMenu === 'none' ? undefined : a.openMenu} />,
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <EditorMenubar />,
   play: async ({ canvas }) => {

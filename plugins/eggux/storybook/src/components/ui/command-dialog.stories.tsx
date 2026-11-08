@@ -9,12 +9,11 @@ import { Kbd } from './kbd';
 
 const meta = {
   title: 'Components/Popover/Command Dialog',
-  component: CommandDialog,
   parameters: {
     layout: 'centered',
     docs: { description: { component: 'Command palette opened with ⌘K / Ctrl K from anywhere and from a visible search button: search pages, records and actions; recent items before typing; groups; shortcuts on the right; footer with keys. Centered ~20% from the top over the dialog overlay. Modal: focus goes to the input, Escape closes, focus returns. Figma: Popover page / Command Dialog. Guide: eggux build-ui/components/popover.md' } },
   },
-} satisfies Meta<typeof CommandDialog>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -58,7 +57,18 @@ function Palette({ defaultOpen = false }: { defaultOpen?: boolean }) {
 }
 
 // The search button opens it with focus in the input; Enter runs the highlighted item and closes.
-export const Default: Story = {
+type Playground = { open: boolean };
+
+/** Playground: open the palette from the button, with the shortcut, or switch Open on. */
+export const Default: StoryObj<Playground> = {
+  argTypes: { open: { name: 'Open', control: 'boolean', description: 'Open on load', table: { category: 'Command Dialog' } } },
+  args: { open: false },
+  render: a => <Palette key={String(a.open)} defaultOpen={a.open} />,
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <Palette />,
   play: async ({ canvas }) => {

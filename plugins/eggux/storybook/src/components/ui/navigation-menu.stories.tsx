@@ -15,7 +15,6 @@ import {
 
 const meta = {
   title: 'Components/Navigation/Navigation Menu Panel',
-  component: NavigationMenuPanel,
   parameters: {
     layout: 'padded',
     // Radix NavigationMenu puts an aria-hidden focus proxy (tabindex 0) after an open trigger, by
@@ -23,7 +22,7 @@ const meta = {
     a11y: { config: { rules: [{ id: 'aria-hidden-focus', selector: '[data-slot="navigation-menu-item"] > span[aria-hidden="true"]', enabled: false }] } },
     docs: { description: { component: 'A mega menu: a Nav Link with a chevron opens a panel of Navigation Menu Links (columns at least 240 wide) and an optional Featured card. Opens on hover after a short delay and on click or Enter; Escape closes and returns focus to the trigger; Tab and the arrow keys move through the links. Min width 640; on phones put the links in a Sheet. Figma: Navigation page / Navigation Menu Panel. Guide: eggux build-ui/components/navigation.md' } },
   },
-} satisfies Meta<typeof NavigationMenuPanel>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -68,7 +67,18 @@ function Menu({ featured = true }: { featured?: boolean }) {
 }
 
 // Figma default: the panel opens under Product, 834 wide, links in 2 columns, the featured card 240.
-export const Default: Story = {
+type Playground = { featured: boolean };
+
+/** Playground: hover or focus a top item to open its panel. */
+export const Default: StoryObj<Playground> = {
+  argTypes: { featured: { name: 'Show featured', control: 'boolean', description: 'Navigation Menu Panel `featured`: a highlighted card on the left of the links', table: { category: 'Navigation Menu Panel' } } },
+  args: { featured: true },
+  render: a => <Menu key={String(a.featured)} featured={a.featured} />,
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <Menu />,
   play: async ({ canvas }) => {
@@ -155,5 +165,5 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

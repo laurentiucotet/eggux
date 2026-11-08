@@ -16,11 +16,10 @@ import {
 // against the Figma Menu Label component.
 const meta = {
   title: 'Components/Menu/Menu Label',
-  component: DropdownMenuLabel,
   parameters: {
     docs: { description: { component: 'Group heading inside a Menu, not clickable or focusable; groups are divided by a Separator. Figma: Menu page / Menu Label. Guide: eggux build-ui/components/dropdown-menu.md' } },
   },
-} satisfies Meta<typeof DropdownMenuLabel>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -50,7 +49,18 @@ function GroupedMenu({ open = true }: { open?: boolean }) {
 
 // Figma Menu Label: 32 high, 8 px sides, 6 px top and bottom, ui/label (14/20 medium), popover text.
 // Not focusable: the arrows skip it.
-export const Default: Story = {
+type Playground = { open: boolean };
+
+/** Playground: open the menu to see the Menu Labels over each group. */
+export const Default: StoryObj<Playground> = {
+  argTypes: { open: { name: 'Open', control: 'boolean', description: 'Open the menu on load', table: { category: 'Menu Label' } } },
+  args: { open: true },
+  render: a => <GroupedMenu key={String(a.open)} open={a.open} />,
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <GroupedMenu open={false} />,
   play: async ({ canvas }) => {

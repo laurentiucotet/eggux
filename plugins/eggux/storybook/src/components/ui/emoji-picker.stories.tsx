@@ -8,12 +8,11 @@ import { Popover, PopoverContent, PopoverTrigger } from './popover';
 
 const meta = {
   title: 'Components/Popover/Emoji Picker',
-  component: EmojiPicker,
   parameters: {
     layout: 'centered',
     docs: { description: { component: 'Pick an emoji for a status, a workspace icon or a comment: search, categories, recently used first, a grid of 8 per row. Opens in a Popover from a smiley Button Icon (PopoverContent className="w-80 p-2"); picking closes it. The search keeps focus while arrows move in the grid; Enter picks. Reactions use Reaction Bar. Figma: Popover page / Emoji Picker. Guide: eggux build-ui/components/popover.md' } },
   },
-} satisfies Meta<typeof EmojiPicker>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -40,7 +39,18 @@ function StatusEmoji() {
 }
 
 // Opens from the smiley button with focus in the search; Enter picks the highlighted emoji and closes.
-export const Default: Story = {
+type Playground = { inPopover: boolean };
+
+/** Playground: the Emoji Picker on its own surface, or behind its smiley button. */
+export const Default: StoryObj<Playground> = {
+  argTypes: { inPopover: { name: 'In a popover', control: 'boolean', description: 'Behind a smiley Button Icon, as in an app', table: { category: 'Emoji Picker' } } },
+  args: { inPopover: false },
+  render: a => (a.inPopover ? <StatusEmoji /> : <div className={surface}><EmojiPicker onSelect={item => onPick(item.name)} /></div>),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <StatusEmoji />,
   play: async ({ canvas }) => {

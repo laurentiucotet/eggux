@@ -4,8 +4,16 @@ Coverage of the EGG UI Figma library in code. `/eggux:code-component` adds a row
 `/eggux:code-qa` checks it. Status: done (stories and tests green, matches Figma), partial
 (some variants or states missing), todo.
 
-**Playground stories** (Accordion, Tabs, Dropdown Menu, Sidebar, List Item): Default is a playground with
-every option in Controls. Options that live on the child items (icon, meta, count, badge, description,
+**Controls rules** (`.storybook/preview.tsx`): Controls show only what a designer can change. Functions,
+React nodes, arrays and objects are hidden (no raw JSON editors), unless the story gives them a text,
+number or boolean value; handlers, asChild, className, style, ref and dir never show. A story whose
+render ignores args has `controls: { disable: true }`, so a switch never changes nothing.
+
+**Playground stories** (Accordion, Tabs, Dropdown Menu, Sidebar, List Item, Dialog, Alert Dialog, Sheet,
+Drawer, Select, Combobox, Tag Input, Command, Table, Popover, Hover Card, Tooltip, Radio, Option Card,
+Menu Item, Tab, Scrim, Dialog Footer, Breadcrumb Item, Table of Contents Item, Logo, Popover Footer,
+Password Strength, Select Option, Person Option, Menu Label, Menubar, Navigation Menu Panel, Command
+Dialog, Mention Menu, Emoji Picker): Default is a playground with every option in Controls. Options that live on the child items (icon, meta, count, badge, description,
 disabled) are story switches that turn them on for every item. The playground has no play function, so
 changing Controls never shows a failed test; the same checks run in the hidden `DefaultCheck`. Stories
 that only test (keyboard, single sizes, overflow per variant, stress) are hidden (`!dev`). The meta has
