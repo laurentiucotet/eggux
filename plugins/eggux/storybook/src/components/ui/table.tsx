@@ -172,6 +172,11 @@ export interface TableHeaderLabelProps extends Omit<React.ComponentProps<'div'>,
   onSortClick?: () => void;
   /** Figma Show info: the definition of the metric, shown in an Info Tip after the label. */
   info?: React.ReactNode;
+  /**
+   * A Table Column Filter (table-filter.tsx) next to the label. Code only: Figma lists Filter in the
+   * column menu. Always visible, so people see which columns can be filtered and which are.
+   */
+  filter?: React.ReactNode;
   /** Figma Show menu: renders the ellipsis Button Icon xs. The parent opens its column menu from onMenuClick. */
   showMenu?: boolean;
   /** Accessible name of the menu button: "Column options for Amount". */
@@ -190,6 +195,7 @@ function TableHeaderLabel({
   align = 'left',
   onSortClick,
   info,
+  filter,
   showMenu = false,
   menuLabel,
   onMenuClick,
@@ -241,6 +247,7 @@ function TableHeaderLabel({
         <>
           {menuEl}
           {spacer}
+          {filter}
           {infoEl}
           {labelEl}
         </>
@@ -248,6 +255,7 @@ function TableHeaderLabel({
         <>
           {labelEl}
           {infoEl}
+          {filter}
           {spacer}
           {menuEl}
         </>

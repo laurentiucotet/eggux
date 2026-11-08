@@ -29,7 +29,7 @@ function TableCellUser({ name, email, initials, src, className, ...props }: Tabl
       <Avatar initials={initials} src={src} />
       <div className="flex min-w-0 flex-1 flex-col gap-0.5 whitespace-nowrap">
         <span title={name} className="truncate text-sm leading-5 font-medium text-foreground">{name}</span>
-        {email ? <span title={email} className="truncate text-xs leading-4 text-muted-foreground">{email}</span> : null}
+        {email ? <span title={email} className="truncate text-xs leading-4 text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]">{email}</span> : null}
       </div>
     </div>
   );
@@ -49,7 +49,7 @@ function TableCellProgress({ value, label, valueText, className, ...props }: Tab
   return (
     <div data-slot="table-cell-progress" className={cn('flex min-w-0 items-center gap-3', className)} {...props}>
       <Progress value={v} aria-label={label} className="w-24 shrink-0" />
-      <span className="shrink-0 text-sm leading-5 whitespace-nowrap text-muted-foreground tabular-nums">{valueText ?? `${v}%`}</span>
+      <span className="shrink-0 text-sm leading-5 whitespace-nowrap text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)] tabular-nums">{valueText ?? `${v}%`}</span>
     </div>
   );
 }
@@ -70,12 +70,12 @@ function TableCellFile({ name, size, icon, className, ...props }: TableCellFileP
   const [start, end] = splitName(name);
   return (
     <div data-slot="table-cell-file" className={cn('flex min-w-0 items-center gap-2', className)} {...props}>
-      <span aria-hidden="true" className="flex shrink-0 text-muted-foreground [&_svg]:size-4">{icon ?? <FileText />}</span>
+      <span aria-hidden="true" className="flex shrink-0 text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)] [&_svg]:size-4">{icon ?? <FileText />}</span>
       <span title={name} className="flex min-w-0 flex-1 text-sm leading-5 whitespace-nowrap text-foreground">
         <span className="min-w-0 truncate">{start}</span>
         <span className="shrink-0">{end}</span>
       </span>
-      {size ? <span className="shrink-0 text-xs leading-4 whitespace-nowrap text-muted-foreground">{size}</span> : null}
+      {size ? <span className="shrink-0 text-xs leading-4 whitespace-nowrap text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]">{size}</span> : null}
     </div>
   );
 }
@@ -125,7 +125,7 @@ function TableCellMedia({ title, meta, src, icon, className, ...props }: TableCe
       <Thumbnail size="sm" src={src} icon={icon} />
       <div className="flex min-w-24 flex-1 flex-col gap-0.5 whitespace-nowrap">
         <span title={title} className="truncate text-sm leading-5 font-medium text-foreground">{title}</span>
-        {meta ? <span title={meta} className="truncate text-xs leading-4 text-muted-foreground">{meta}</span> : null}
+        {meta ? <span title={meta} className="truncate text-xs leading-4 text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]">{meta}</span> : null}
       </div>
     </div>
   );

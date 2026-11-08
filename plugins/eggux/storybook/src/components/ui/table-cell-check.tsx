@@ -29,13 +29,13 @@ function TableCellCheck({ value = 'included', text = 'Unlimited', note = 'per se
         <span data-slot="table-cell-check-text" className="shrink-0 whitespace-nowrap text-foreground">{text}</span>
       ) : (
         <>
-          <span data-slot="table-cell-check-icon" aria-hidden="true" className={cn('flex size-4 shrink-0 items-center justify-center [&_svg]:size-4', value === 'included' ? 'text-foreground' : 'text-muted-foreground')}>
+          <span data-slot="table-cell-check-icon" aria-hidden="true" className={cn('flex size-4 shrink-0 items-center justify-center [&_svg]:size-4', value === 'included' ? 'text-foreground' : 'text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]')}>
             {value === 'included' ? <Check /> : <Minus />}
           </span>
           <span className="sr-only">{value === 'included' ? 'Included' : 'Not included'}</span>
         </>
       )}
-      {showNote && <span data-slot="table-cell-check-note" className="max-w-24 shrink-0 truncate whitespace-nowrap text-muted-foreground">{note}</span>}
+      {showNote && <span data-slot="table-cell-check-note" className="max-w-24 shrink-0 truncate whitespace-nowrap text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]">{note}</span>}
     </div>
   );
 }

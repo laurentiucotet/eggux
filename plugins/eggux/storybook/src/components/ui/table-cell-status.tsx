@@ -22,7 +22,7 @@ function TableCellStatus({ label, variant = 'warning', dot = true, note = '12 da
   return (
     <div data-slot="table-cell-status" className={cn('flex min-w-0 items-center gap-2', className)} {...props}>
       <Badge variant={variant} dot={dot}>{label}</Badge>
-      {showNote && note ? <span data-slot="table-cell-status-note" className="min-w-0 flex-1 truncate text-sm text-muted-foreground">{note}</span> : null}
+      {showNote && note ? <span data-slot="table-cell-status-note" className="min-w-0 flex-1 truncate text-sm text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]">{note}</span> : null}
     </div>
   );
 }
