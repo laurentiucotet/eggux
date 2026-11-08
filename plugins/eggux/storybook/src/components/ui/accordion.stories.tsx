@@ -91,7 +91,8 @@ type Story = StoryObj<typeof meta>;
 const triggerHeight = (el: HTMLElement) => Math.round(el.closest('[data-slot="accordion-item"]')!.getBoundingClientRect().height);
 
 // Figma Style=default, Icon=chevron, Size=default: collapsed item 53, expanded 89.
-export const Default: Story = {
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   play: async ({ canvas }) => {
     const first = canvas.getByRole('button', { name: 'Can I change my plan later?' });
     const second = canvas.getByRole('button', { name: 'Do you offer a free trial?' });
@@ -107,6 +108,8 @@ export const Default: Story = {
     await expect(second).toHaveAttribute('aria-expanded', 'false');
   },
 };
+// Playground: no play function, so changing Controls never shows a failed test. The checks run in DefaultCheck.
+export const Default: Story = { ...DefaultCheck, tags: [], play: undefined };
 
 // Every item switch on: leading icon, Meta badge and the description line under the title.
 export const WithDetails: Story = {
@@ -247,8 +250,8 @@ export const LongTitle: Story = {
 };
 
 const allOn = { showLeadingIcon: true, showMeta: true, showDescription: true };
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const CardWithPlusDark: Story = { ...CardWithPlus, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
 export const WithDetailsDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, args: { ...allOn, defaultValue: ['plan'] } };
 export const WithDetailsCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, args: { ...allOn, accordionStyle: 'card', size: 'sm', defaultValue: ['plan'] } };

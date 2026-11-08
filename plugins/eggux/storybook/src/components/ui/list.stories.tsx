@@ -10,30 +10,94 @@ import { Switch } from './switch';
 
 const meta = {
   title: 'Components/List/List Item',
-  component: ListItem,
   parameters: {
     layout: 'padded',
-    docs: { description: { component: 'Rows of content lists: List Item (people, files, appointments; a row is one link or button through its title), Sortable List Item (rows people reorder by keyboard and pointer), Task Item (a checklist entry that saves at once), Job Listing (one open role) and List Group Header (a sticky label over a group). Menu actions use Menu Item; navigation uses Sidebar Item. Figma: List page. Guide: eggux build-ui/components/list-and-tree.md' } },
+    docs: { description: { component: 'Rows of content lists: List Item (people, files, appointments; a row is one link or button through its title), Sortable List Item (rows people reorder by keyboard and pointer), Task Item (a checklist entry that saves at once), Job Listing (one open role) and List Group Header (a sticky label over a group). Menu actions use Menu Item; navigation uses Sidebar Item. Default has every List Item and List Group Header option in Controls; the item switches apply to all rows. Figma: List page. Guide: eggux build-ui/components/list-and-tree.md' } },
   },
-  args: { title: 'Ana Popescu' },
-  render: () => (
-    <div className="w-[384px]">
-      <ListGroupHeader label="Today" variant="muted" count={3} action={<Button variant="link" size="sm" className="px-0">Mark all as read</Button>} />
-      <ul className="m-0 flex flex-col p-0">
-      <ListItem title="Ana Popescu" description="Last order: 12 Nov, 09:30" href="#ana" selected leading={<Avatar initials="AP" />} trailing={<><Badge variant="secondary" shape="pill">Confirmed</Badge><ChevronRight aria-hidden="true" /></>} divider />
-      <ListItem title="Mihai Ionescu" description="Last order: 11 Nov, 14:10" href="#mihai" leading={<Avatar initials="MI" />} trailing={<ChevronRight aria-hidden="true" />} divider />
-      <ListItem title="Dan Cristea" description="No orders yet" disabled leading={<Avatar initials="DC" />} />
-      </ul>
-    </div>
-  ),
-} satisfies Meta<typeof ListItem>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const box = (el: Element) => el.getBoundingClientRect();
 
+type Playground = {
+  showHeader: boolean;
+  headerVariant: 'default' | 'muted';
+  showCount: boolean;
+  showHeaderAction: boolean;
+  interaction: 'link' | 'button' | 'none';
+  showDescription: boolean;
+  showAvatar: boolean;
+  showBadge: boolean;
+  showChevron: boolean;
+  dividers: boolean;
+  selectFirst: boolean;
+  disableLast: boolean;
+  width: number;
+};
+const people = [
+  { id: 'ana', name: 'Ana Popescu', initials: 'AP', description: 'Last order: 12 Nov, 09:30', status: 'Confirmed' },
+  { id: 'mihai', name: 'Mihai Ionescu', initials: 'MI', description: 'Last order: 11 Nov, 14:10', status: 'Pending' },
+  { id: 'dan', name: 'Dan Cristea', initials: 'DC', description: 'No orders yet', status: 'New' },
+];
+
 // Figma List Item: 384 × 58, 32 avatar, selected on accent with aria-current; group header 34 with a count.
-export const Default: Story = {
+export const DefaultCheck: StoryObj<Playground> = {
+  tags: ['!dev'],
+  argTypes: {
+    showHeader: { name: 'Show group header', control: 'boolean', description: 'List Group Header over the rows', table: { category: 'List Group Header' } },
+    headerVariant: { name: 'Header style', control: 'inline-radio', options: ['default', 'muted'], description: 'List Group Header `variant`', if: { arg: 'showHeader' }, table: { category: 'List Group Header' } },
+    showCount: { name: 'Show count', control: 'boolean', description: 'List Group Header `count`', if: { arg: 'showHeader' }, table: { category: 'List Group Header' } },
+    showHeaderAction: { name: 'Show action', control: 'boolean', description: 'List Group Header `action`', if: { arg: 'showHeader' }, table: { category: 'List Group Header' } },
+    interaction: { name: 'Row is a', control: 'inline-radio', options: ['link', 'button', 'none'], description: 'List Item `href` (link), `onSelect` (button) or neither (static)', table: { category: 'List Item' } },
+    showDescription: { name: 'Show description', control: 'boolean', description: 'List Item `description`', table: { category: 'List Item' } },
+    showAvatar: { name: 'Show avatar', control: 'boolean', description: 'List Item `leading`', table: { category: 'List Item' } },
+    showBadge: { name: 'Show badge', control: 'boolean', description: 'List Item `trailing`: a status Badge', table: { category: 'List Item' } },
+    showChevron: { name: 'Show chevron', control: 'boolean', description: 'List Item `trailing`: a chevron (decorative)', table: { category: 'List Item' } },
+    dividers: { name: 'Dividers', control: 'boolean', description: 'List Item `divider` between rows', table: { category: 'List Item' } },
+    selectFirst: { name: 'Select first row', control: 'boolean', description: 'List Item `selected`', table: { category: 'List Item' } },
+    disableLast: { name: 'Disable last row', control: 'boolean', description: 'List Item `disabled`', table: { category: 'List Item' } },
+    width: { name: 'Width', control: { type: 'range', min: 240, max: 720, step: 4 }, description: 'Width of the list, in px', table: { category: 'List Item' } },
+  },
+  args: { showHeader: true, headerVariant: 'muted', showCount: true, showHeaderAction: true, interaction: 'link', showDescription: true, showAvatar: true, showBadge: true, showChevron: true, dividers: true, selectFirst: true, disableLast: true, width: 384 },
+  render: a => (
+    <div style={{ width: a.width, maxWidth: '100%' }}>
+      {a.showHeader ? (
+        <ListGroupHeader
+          label="Today"
+          variant={a.headerVariant}
+          count={a.showCount ? people.length : undefined}
+          action={a.showHeaderAction ? <Button variant="link" size="sm" className="px-0">Mark all as read</Button> : undefined}
+        />
+      ) : null}
+      <ul className="m-0 flex flex-col p-0">
+        {people.map((p, i) => {
+          const last = i === people.length - 1;
+          const disabled = a.disableLast && last;
+          const trailing = a.showBadge || (a.showChevron && !disabled) ? (
+            <>
+              {a.showBadge ? <Badge variant="secondary" shape="pill">{p.status}</Badge> : null}
+              {a.showChevron && !disabled ? <ChevronRight aria-hidden="true" /> : null}
+            </>
+          ) : undefined;
+          return (
+            <ListItem
+              key={p.id}
+              title={p.name}
+              description={a.showDescription ? p.description : undefined}
+              href={a.interaction === 'link' ? `#${p.id}` : undefined}
+              onSelect={a.interaction === 'button' ? () => {} : undefined}
+              selected={a.selectFirst && i === 0}
+              disabled={disabled}
+              leading={a.showAvatar ? <Avatar initials={p.initials} /> : undefined}
+              trailing={trailing}
+              divider={a.dividers && !last}
+            />
+          );
+        })}
+      </ul>
+    </div>
+  ),
   play: async ({ canvas, canvasElement }) => {
     const rows = canvasElement.querySelectorAll('[data-slot="list-item"]');
     await expect(Math.round(box(rows[0]!).height)).toBe(58);
@@ -42,7 +106,9 @@ export const Default: Story = {
     await expect(Math.round(box(canvasElement.querySelector('[data-slot="list-group-header"]')!).height)).toBe(34);
     await expect(canvas.queryByRole('link', { name: 'Dan Cristea' })).toBeNull();
   },
-};
+};
+// Playground: no play function, so changing Controls never shows a failed test. The checks run in DefaultCheck.
+export const Default: StoryObj<Playground> = { ...DefaultCheck, tags: [], play: undefined };
 
 // Sortable: Space picks up, ArrowDown moves, Space drops; the live region says the position.
 
@@ -145,5 +211,15 @@ export const Stress: Story = {
   },
 };
 
-export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultDark: StoryObj<Playground> = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+// Rows as buttons, default header, no avatar (axe on the other branch).
+export const ButtonRows: StoryObj<Playground> = {
+  ...Default,
+  tags: ['!dev'],
+  args: { ...Default.args, headerVariant: 'default', interaction: 'button', showAvatar: false, dividers: false },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole('button', { name: 'Ana Popescu' })).toHaveAttribute('aria-pressed', 'true');
+    await expect(canvas.getByRole('button', { name: 'Dan Cristea' })).toBeDisabled();
+  },
+};
 export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: TasksAndJobs.render };

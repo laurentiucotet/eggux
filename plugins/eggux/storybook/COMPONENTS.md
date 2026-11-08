@@ -4,6 +4,15 @@ Coverage of the EGG UI Figma library in code. `/eggux:code-component` adds a row
 `/eggux:code-qa` checks it. Status: done (stories and tests green, matches Figma), partial
 (some variants or states missing), todo.
 
+**Playground stories** (Accordion, Tabs, Dropdown Menu, Sidebar, List Item): Default is a playground with
+every option in Controls. Options that live on the child items (icon, meta, count, badge, description,
+disabled) are story switches that turn them on for every item. The playground has no play function, so
+changing Controls never shows a failed test; the same checks run in the hidden `DefaultCheck`. Stories
+that only test (keyboard, single sizes, overflow per variant, stress) are hidden (`!dev`). The meta has
+no `component`, so docgen does not add value, dir or handlers to Controls. `controls.include` matches the
+shown argType names. A spread story copies no tags: Storybook reads `tags` from the source, so write
+`tags: ['!dev']` on each hidden one.
+
 | Component | Figma page | File | Stories | Tests | Status |
 |---|---|---|---|---|---|
 | Button | Button | `src/components/ui/button.tsx` | Default, Variants, Sizes, WithIcons, Loading, Disabled, AsLink, LongLabel, VariantsDark, VariantsCorporate | click, keyboard, sizes 28/32/36/40/48, loading blocks clicks and Enter, disabled, link, one line at 276, axe in Light, Dark, Corporate | done (Button Icon sizes icon-xs/sm/default/lg added, no own stories yet) |

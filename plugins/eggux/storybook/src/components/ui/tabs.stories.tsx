@@ -1,17 +1,16 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
-import { House } from '@/components/icons';
+import { CreditCard, Folder, House, Receipt, ShieldCheck, Users } from '@/components/icons';
 import { Tabs, TabsContent, TabsList, TabsTrigger, type TabsSize, type TabsVariant } from './tabs';
 
 const meta = {
   title: 'Components/Tabs/Tabs',
-  component: Tabs,
   parameters: {
     layout: 'padded',
-    docs: { description: { component: 'Tabs switch between panels of one context. Variant default (pill track in a card), line (page sections), vertical (settings), pills (list filters), boxed (folder tabs on a bordered panel). Arrow keys move between tabs, Tab moves into the panel; Show overflow moves tabs that do not fit into a More menu. Not for steps (Stepper) or for setting a value (Toggle Group). Figma: Tabs page / Tabs, Tab. Guide: eggux build-ui/components/tabs.md' } },
+    docs: { description: { component: 'Tabs switch between panels of one context. Variant default (pill track in a card), line (page sections), vertical (settings), pills (list filters), boxed (folder tabs on a bordered panel). Arrow keys move between tabs, Tab moves into the panel; Show overflow moves tabs that do not fit into a More menu. Not for steps (Stepper) or for setting a value (Toggle Group). Default has every option in Controls: Icon and Count are set on each Tab, the switches turn them on for all. Figma: Tabs page / Tabs, Tab. Guide: eggux build-ui/components/tabs.md' } },
   },
-} satisfies Meta<typeof Tabs>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -36,9 +35,65 @@ function Sample({ variant = 'default', size = 'default', overflow = false, names
   );
 }
 
+// Playground: every Tabs option, and switches that set Icon, Count and Disabled on the tabs.
+type Playground = {
+  variant: TabsVariant;
+  size: TabsSize;
+  tabs: number;
+  showIcon: boolean;
+  showCount: boolean;
+  overflow: boolean;
+  disableLastTab: boolean;
+  width: number;
+};
+const playTabs = [
+  { value: 'overview', label: 'Overview', icon: <House />, count: 4, content: 'Overview of your Acme workspace.' },
+  { value: 'projects', label: 'Projects', icon: <Folder />, count: 12, content: 'All projects billed in EUR.' },
+  { value: 'invoices', label: 'Invoices', icon: <Receipt />, count: 3, content: 'Open invoices and payments.' },
+  { value: 'members', label: 'Members', icon: <Users />, count: 8, content: 'People in this workspace.' },
+  { value: 'billing', label: 'Billing', icon: <CreditCard />, count: 1, content: 'Plan, payment method and invoices.' },
+  { value: 'security', label: 'Security', icon: <ShieldCheck />, count: 2, content: 'Sign-in and sessions.' },
+];
+
 // Figma Variant=default: pill track 36 high, tab 28 high.
-export const Default: Story = {
-  render: () => <Sample />,
+export const DefaultCheck: StoryObj<Playground> = {
+  tags: ['!dev'],
+  argTypes: {
+    variant: { name: 'Variant', control: 'select', options: ['default', 'line', 'vertical', 'pills', 'boxed'], table: { category: 'Tabs' } },
+    size: { name: 'Size', control: 'inline-radio', options: ['default', 'sm'], table: { category: 'Tabs' } },
+    overflow: { name: 'Show overflow', control: 'boolean', description: 'Tabs that do not fit go into a More menu (not for vertical). Narrow the Width to see it.', table: { category: 'Tabs' } },
+    tabs: { name: 'Number of tabs', control: { type: 'range', min: 2, max: 6, step: 1 }, table: { category: 'Tabs' } },
+    width: { name: 'Width', control: { type: 'range', min: 240, max: 800, step: 4 }, description: 'Width of the column around Tabs, in px', table: { category: 'Tabs' } },
+    showIcon: { name: 'Show icon', control: 'boolean', description: 'TabsTrigger `icon`: on all tabs or none', table: { category: 'Tab' } },
+    showCount: { name: 'Show count', control: 'boolean', description: 'TabsTrigger `count` and `countLabel`: a Badge Count after the label', table: { category: 'Tab' } },
+    disableLastTab: { name: 'Disable last tab', control: 'boolean', description: 'TabsTrigger `disabled`', table: { category: 'Tab' } },
+  },
+  args: { variant: 'default', size: 'default', overflow: false, tabs: 3, width: 640, showIcon: false, showCount: false, disableLastTab: false },
+  render: ({ variant, size, overflow, tabs, width, showIcon, showCount, disableLastTab }) => {
+    const shown = playTabs.slice(0, tabs);
+    return (
+      <div style={{ width, maxWidth: '100%' }}>
+        {/* key: remount when the variant changes, so the overflow menu measures again. */}
+        <Tabs key={variant} variant={variant} size={size} defaultValue="overview">
+          <TabsList overflow={overflow} aria-label="Workspace sections">
+            {shown.map((t, i) => (
+              <TabsTrigger
+                key={t.value}
+                value={t.value}
+                icon={showIcon ? t.icon : undefined}
+                count={showCount ? t.count : undefined}
+                countLabel={showCount ? `${t.count} ${t.label.toLowerCase()}` : undefined}
+                disabled={disableLastTab && i === shown.length - 1}
+              >
+                {t.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {shown.map(t => <TabsContent key={t.value} value={t.value}>{t.content}</TabsContent>)}
+        </Tabs>
+      </div>
+    );
+  },
   play: async ({ canvas }) => {
     const list = canvas.getByRole('tablist', { name: 'Workspace sections' }).parentElement as HTMLElement;
     const [overview, projects] = canvas.getAllByRole('tab');
@@ -52,7 +107,9 @@ export const Default: Story = {
     // Each panel is labelled by its tab.
     await expect(canvas.getByRole('tabpanel', { name: 'Projects' })).toHaveTextContent('All projects billed in EUR.');
   },
-};
+};
+// Playground: no play function, so changing Controls never shows a failed test. The checks run in DefaultCheck.
+export const Default: StoryObj<Playground> = { ...DefaultCheck, tags: [], play: undefined };
 
 const probe = (cls: string, prop: 'color' | 'backgroundColor' | 'borderTopColor' | 'borderBottomColor') => {
   const el = document.createElement('div');
@@ -124,6 +181,7 @@ export const Styles_: Story = {
 };
 
 export const Sizes: Story = {
+  tags: ['!dev'],
   render: () => <Styles size="sm" />,
   play: async ({ canvasElement }) => {
     for (const v of variants) {
@@ -137,6 +195,7 @@ export const Sizes: Story = {
 
 // Boxed: header row with a rest line, and the panel carrying the border on three sides.
 export const Boxed: Story = {
+  tags: ['!dev'],
   render: () => (
     <div className="w-[480px] max-w-full">
       <Sample variant="boxed" />
@@ -197,6 +256,7 @@ export const Vertical: Story = {
 
 // Keyboard (WAI-ARIA tabs): arrows, Home/End, automatic activation, Tab into the panel.
 export const Keyboard: Story = {
+  tags: ['!dev'],
   render: () => (
     <Tabs defaultValue="overview" onValueChange={fn()}>
       <TabsList aria-label="Account">
@@ -266,6 +326,7 @@ export const WithCounts: Story = {
 };
 
 export const WithIcons: Story = {
+  tags: ['!dev'],
   render: () => (
     <Tabs variant="pills" defaultValue="home">
       <TabsList aria-label="Views">
@@ -286,6 +347,7 @@ export const WithIcons: Story = {
 
 // Controlled value and onValueChange.
 export const Controlled: Story = {
+  tags: ['!dev'],
   render: () => {
     const [v, setV] = React.useState('overview');
     return (
@@ -329,24 +391,27 @@ const overflowCheck = async (canvas: ReturnType<typeof within>, body: HTMLElemen
 };
 
 export const OverflowLine: Story = {
-  name: 'Overflow (line, 368 px column)',
+  name: 'Overflow',
   render: () => <div className="w-[368px]"><Sample variant="line" overflow names={many} /></div>,
   play: async ({ canvas, canvasElement }) => overflowCheck(canvas, canvasElement.ownerDocument.body),
 };
 
 export const OverflowPillsSmall: Story = {
+  tags: ['!dev'],
   name: 'Overflow (pills sm, 368 px column)',
   render: () => <div className="w-[368px]"><Sample variant="pills" size="sm" overflow names={many} /></div>,
   play: async ({ canvas, canvasElement }) => overflowCheck(canvas, canvasElement.ownerDocument.body),
 };
 
 export const OverflowDefault: Story = {
+  tags: ['!dev'],
   name: 'Overflow (default, 276 px column)',
   render: () => <div className="w-[276px]"><Sample overflow names={many} /></div>,
   play: async ({ canvas, canvasElement }) => overflowCheck(canvas, canvasElement.ownerDocument.body),
 };
 
 export const OverflowBoxed: Story = {
+  tags: ['!dev'],
   name: 'Overflow (boxed, 368 px column)',
   render: () => <div className="w-[368px]"><Sample variant="boxed" size="sm" overflow names={many} /></div>,
   play: async ({ canvas, canvasElement }) => overflowCheck(canvas, canvasElement.ownerDocument.body),
@@ -354,6 +419,7 @@ export const OverflowBoxed: Story = {
 
 // When everything fits there is no More button.
 export const OverflowFits: Story = {
+  tags: ['!dev'],
   name: 'Overflow (everything fits)',
   render: () => <div className="w-[480px]"><Sample variant="line" overflow /></div>,
   play: async ({ canvas }) => {
@@ -371,6 +437,7 @@ const NarrowColumn = ({ width, variant }: { width: number; variant: TabsVariant 
   </div>
 );
 export const LongLabels276: Story = {
+  tags: ['!dev'],
   name: 'Stress (long labels, 276 px)',
   render: () => <NarrowColumn width={276} variant="line" />,
   play: async ({ canvas }) => {
@@ -380,6 +447,7 @@ export const LongLabels276: Story = {
   },
 };
 export const LongLabels368: Story = {
+  tags: ['!dev'],
   name: 'Stress (long labels, 368 px, overflow)',
   render: () => <div className="w-[368px]"><Sample variant="line" overflow names={longNames} /></div>,
   play: async ({ canvas }) => {
@@ -388,6 +456,7 @@ export const LongLabels368: Story = {
   },
 };
 export const VerticalLongLabel: Story = {
+  tags: ['!dev'],
   name: 'Stress (vertical, long label)',
   render: () => (
     <Tabs variant="vertical" defaultValue="a">
@@ -409,7 +478,7 @@ export const VerticalLongLabel: Story = {
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultDark: StoryObj<Playground> = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
+export const DefaultCorporate: StoryObj<Playground> = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
 export const VariantsDark: Story = { ...Styles_, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const VariantsCorporate: Story = { ...Styles_, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

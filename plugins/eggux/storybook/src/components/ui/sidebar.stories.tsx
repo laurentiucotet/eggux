@@ -1,30 +1,57 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, screen, userEvent, waitFor, within } from 'storybook/test';
-import { Calendar, ChartColumn, FileText, House, LogOut, Settings, Users } from '@/components/icons';
+import { Calendar, ChartColumn, FileText, House, LogOut, Plus, Settings, Users } from '@/components/icons';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './dropdown-menu';
 import { Sidebar, SidebarGroup, SidebarItem, SidebarUser, SidebarWorkspace, type SidebarVariant } from './sidebar';
 
 const meta = {
   title: 'Components/Sidebar/Sidebar',
-  component: Sidebar,
   parameters: {
     layout: 'fullscreen',
-    docs: { description: { component: 'App navigation (shadcn Sidebar on sidebar/* tokens): Sidebar Workspace in the header, Sidebar Groups of Sidebar Items, Sidebar User in the footer. Expanded 256 (min 240), collapsed 48 with icons and tooltips. Variant sidebar (right border), floating (inset panel with border and shadow, on a muted canvas) or inset (no border). One active item; on phones open it as a left Sheet. Figma: Sidebar page / Sidebar, Sidebar Workspace, Sidebar User. Guide: eggux build-ui/components/sidebar.md' } },
+    docs: { description: { component: 'App navigation (shadcn Sidebar on sidebar/* tokens): Sidebar Workspace in the header, Sidebar Groups of Sidebar Items, Sidebar User in the footer. Expanded 256 (min 240), collapsed 48 with icons and tooltips. Variant sidebar (right border), floating (inset panel with border and shadow, on a muted canvas) or inset (no border). One active item; on phones open it as a left Sheet. Default has every option in Controls: label and action are set on each Sidebar Group, icon, badge and disabled on each Sidebar Item; the switches turn them on for all. Figma: Sidebar page / Sidebar, Sidebar Workspace, Sidebar User. Guide: eggux build-ui/components/sidebar.md' } },
   },
-} satisfies Meta<typeof Sidebar>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const box = (el: Element) => el.getBoundingClientRect();
 
-function Demo({ collapsed = false, variant = 'sidebar' }: { collapsed?: boolean; variant?: SidebarVariant }) {
+type DemoOptions = {
+  collapsed?: boolean;
+  variant?: SidebarVariant;
+  showHeader?: boolean;
+  showFooter?: boolean;
+  showGroupLabels?: boolean;
+  showGroupAction?: boolean;
+  showSecondGroup?: boolean;
+  showIcons?: boolean;
+  showBadges?: boolean;
+  disableItem?: boolean;
+};
+type Playground = Required<DemoOptions> & { height: number };
+
+function Demo({
+  collapsed = false,
+  variant = 'sidebar',
+  showHeader = true,
+  showFooter = true,
+  showGroupLabels = true,
+  showGroupAction = false,
+  showSecondGroup = true,
+  showIcons = true,
+  showBadges = true,
+  disableItem = false,
+}: DemoOptions) {
+  // Icons are required when collapsed (the rail shows only them).
+  const icon = (el: React.ReactNode) => (showIcons || collapsed ? el : undefined);
+  const groupLabel = (label: string) => (showGroupLabels ? label : undefined);
   return (
     <Sidebar
       variant={variant}
       collapsed={collapsed}
       header={
-        <DropdownMenu>
+        showHeader ? <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarWorkspace title="Acme Inc." description="Pro plan" />
           </DropdownMenuTrigger>
@@ -32,10 +59,10 @@ function Demo({ collapsed = false, variant = 'sidebar' }: { collapsed?: boolean;
             <DropdownMenuItem>Acme Inc.</DropdownMenuItem>
             <DropdownMenuItem>Northwind Traders</DropdownMenuItem>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> : undefined
       }
       footer={
-        <DropdownMenu>
+        showFooter ? <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarUser title="Daniel Pop" description="daniel@acme.com" />
           </DropdownMenuTrigger>
@@ -43,27 +70,49 @@ function Demo({ collapsed = false, variant = 'sidebar' }: { collapsed?: boolean;
             <DropdownMenuItem icon={<Settings aria-hidden="true" />}>Settings</DropdownMenuItem>
             <DropdownMenuItem icon={<LogOut aria-hidden="true" />}>Log out</DropdownMenuItem>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> : undefined
       }
     >
-      <SidebarGroup label="Workspace">
-        <SidebarItem href="#dashboard" icon={<House />} label="Dashboard" active />
-        <SidebarItem href="#projects" icon={<Calendar />} label="Projects" badge={12} badgeLabel={n => `${n} open`} />
-        <SidebarItem href="#customers" icon={<Users />} label="Customers" />
-        <SidebarItem href="#invoices" icon={<FileText />} label="Invoices" />
+      <SidebarGroup label={groupLabel('Workspace')} action={showGroupAction ? { label: 'Add project', icon: <Plus /> } : undefined}>
+        <SidebarItem href="#dashboard" icon={icon(<House />)} label="Dashboard" active />
+        <SidebarItem href="#projects" icon={icon(<Calendar />)} label="Projects" badge={showBadges ? 12 : undefined} badgeLabel={n => `${n} open`} />
+        <SidebarItem href="#customers" icon={icon(<Users />)} label="Customers" badge={showBadges ? 3 : undefined} badgeLabel={n => `${n} new`} />
+        <SidebarItem href="#invoices" icon={icon(<FileText />)} label="Invoices" disabled={disableItem} />
       </SidebarGroup>
-      <SidebarGroup label="Settings">
-        <SidebarItem href="#team" icon={<Users />} label="Team" />
-        <SidebarItem href="#billing" icon={<ChartColumn />} label="Billing" />
-        <SidebarItem href="#settings" icon={<Settings />} label="Settings" />
-      </SidebarGroup>
+      {showSecondGroup ? (
+        <SidebarGroup label={groupLabel('Settings')}>
+          <SidebarItem href="#team" icon={icon(<Users />)} label="Team" />
+          <SidebarItem href="#billing" icon={icon(<ChartColumn />)} label="Billing" />
+          <SidebarItem href="#settings" icon={icon(<Settings />)} label="Settings" />
+        </SidebarGroup>
+      ) : null}
     </Sidebar>
   );
 }
 
 // Figma Mode=expanded, Variant=sidebar: 256 × 720, header and footer 52 buttons, groups, one active item.
-export const Default: Story = {
-  render: () => <div className="h-[720px]"><Demo /></div>,
+export const DefaultCheck: StoryObj<Playground> = {
+  tags: ['!dev'],
+  argTypes: {
+    variant: { name: 'Variant', control: 'inline-radio', options: ['sidebar', 'floating', 'inset'], description: 'floating and inset sit on a muted canvas', table: { category: 'Sidebar' } },
+    collapsed: { name: 'Collapsed', control: 'boolean', description: '48 wide: icons with tooltips', table: { category: 'Sidebar' } },
+    showHeader: { name: 'Show workspace', control: 'boolean', description: '`header`: Sidebar Workspace', table: { category: 'Sidebar' } },
+    showFooter: { name: 'Show user', control: 'boolean', description: '`footer`: Sidebar User', table: { category: 'Sidebar' } },
+    height: { name: 'Height', control: { type: 'range', min: 320, max: 900, step: 10 }, description: 'Height of the page, in px', table: { category: 'Sidebar' } },
+    showGroupLabels: { name: 'Show group labels', control: 'boolean', description: 'Sidebar Group `label`', table: { category: 'Sidebar Group' } },
+    showGroupAction: { name: 'Show group action', control: 'boolean', description: 'Sidebar Group `action`: a + button on the label row (first group)', table: { category: 'Sidebar Group' } },
+    showSecondGroup: { name: 'Show second group', control: 'boolean', table: { category: 'Sidebar Group' } },
+    showIcons: { name: 'Show icons', control: 'boolean', description: 'Sidebar Item `icon` (always shown when collapsed)', table: { category: 'Sidebar Item' } },
+    showBadges: { name: 'Show badges', control: 'boolean', description: 'Sidebar Item `badge` and `badgeLabel`', table: { category: 'Sidebar Item' } },
+    disableItem: { name: 'Disable an item', control: 'boolean', description: 'Sidebar Item `disabled` (on Invoices)', table: { category: 'Sidebar Item' } },
+  },
+  args: { variant: 'sidebar', collapsed: false, showHeader: true, showFooter: true, height: 720, showGroupLabels: true, showGroupAction: false, showSecondGroup: true, showIcons: true, showBadges: true, disableItem: false },
+  render: ({ height, ...options }) => (
+    <div className={options.variant === 'sidebar' ? 'flex' : 'flex bg-muted'} style={{ height }}>
+      {/* key: remount on Collapsed so tooltips and widths start fresh. */}
+      <Demo key={String(options.collapsed)} {...options} />
+    </div>
+  ),
   play: async ({ canvas, canvasElement }) => {
     const sidebar = canvasElement.querySelector('[data-slot="sidebar"]')!;
     await expect([Math.round(box(sidebar).width), Math.round(box(sidebar).height)]).toEqual([256, 720]);
@@ -80,6 +129,8 @@ export const Default: Story = {
     await waitFor(() => expect(user).toHaveFocus());
   },
 };
+// Playground: no play function, so changing Controls never shows a failed test. The checks run in DefaultCheck.
+export const Default: StoryObj<Playground> = { ...DefaultCheck, tags: [], play: undefined };
 
 // Figma Mode=collapsed: 48 wide, logo mark, 32 icon items with tooltips, the avatar.
 export const Collapsed: Story = {
@@ -156,6 +207,15 @@ export const Stress: Story = {
     await expect(user.scrollWidth).toBeLessThanOrEqual(user.clientWidth + 1);
   },
 };
+
+// Group action and a disabled item on, labels off (axe in Light and Dark).
+const options: DemoOptions = { showGroupAction: true, disableItem: true };
+const optionsPlay: Story['play'] = async ({ canvas, canvasElement }) => {
+  await expect(canvas.getByRole('button', { name: 'Add project' })).toBeVisible();
+  await expect(canvasElement.querySelector('[aria-disabled="true"]')).toHaveTextContent('Invoices');
+};
+export const GroupActionAndDisabled: Story = { tags: ['!dev'], render: () => <div className="h-[720px]"><Demo {...options} /></div>, play: optionsPlay };
+export const GroupActionAndDisabledDark: Story = { ...GroupActionAndDisabled, tags: ['!dev'], globals: { theme: 'Dark' } };
 
 export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, render: () => <div className="h-[720px]"><Demo /></div> };
 export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, render: () => <div className="h-[720px]"><Demo /></div> };
