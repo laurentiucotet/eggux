@@ -5,12 +5,11 @@ import { HoverCard, HoverCardContent, HoverCardPerson, HoverCardTrigger } from '
 
 const meta = {
   title: 'Components/Popover/Hover Card',
-  component: HoverCardContent,
   parameters: {
     layout: 'centered',
     docs: { description: { component: 'Read-only preview of a person, record or link, opened after ~500 ms on hover or keyboard focus of a real link; never on touch (a tap goes to the page). Anything in the card must also be on the target page. Figma: Popover page / Hover Card. Guide: eggux build-ui/components/popover.md' } },
   },
-} satisfies Meta<typeof HoverCardContent>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -41,7 +40,54 @@ function PersonLink({ open }: { open?: boolean }) {
 const card = () => document.querySelector<HTMLElement>('[data-slot="hover-card-content"]');
 
 // Hover opens after the delay, not at once; leaving closes it.
-export const Default: Story = {
+type Playground = {
+  open: boolean;
+  side: 'top' | 'right' | 'bottom' | 'left';
+  align: 'start' | 'center' | 'end';
+  name: string;
+  showAvatar: boolean;
+  showHandle: boolean;
+  showDetail: boolean;
+  showMeta: boolean;
+};
+
+/** Playground: every Hover Card option in Controls. Hover or focus the link to open it. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    open: { name: 'Open', control: 'boolean', description: 'Open on load (otherwise hover or focus the link)', table: { category: 'Hover Card' } },
+    side: { name: 'Side', control: 'inline-radio', options: ['top', 'right', 'bottom', 'left'], table: { category: 'Hover Card' } },
+    align: { name: 'Align', control: 'inline-radio', options: ['start', 'center', 'end'], table: { category: 'Hover Card' } },
+    name: { name: 'Name', control: 'text', table: { category: 'Hover Card Person' } },
+    showAvatar: { name: 'Show avatar', control: 'boolean', table: { category: 'Hover Card Person' } },
+    showHandle: { name: 'Show handle', control: 'boolean', description: 'A second line: handle and role', table: { category: 'Hover Card Person' } },
+    showDetail: { name: 'Show detail', control: 'boolean', description: 'A short bio', table: { category: 'Hover Card Person' } },
+    showMeta: { name: 'Show meta', control: 'boolean', description: 'A line with an icon ("Joined March 2024")', table: { category: 'Hover Card Person' } },
+  },
+  args: { open: false, side: 'bottom', align: 'center', name: 'Maria Ilie', showAvatar: true, showHandle: true, showDetail: true, showMeta: true },
+  render: a => (
+    <p className="text-sm text-foreground">
+      Assigned to{' '}
+      <HoverCard key={String(a.open)} defaultOpen={a.open}>
+        <HoverCardTrigger asChild>
+          <a href="#people/maria" className="font-medium text-brand underline-offset-4 hover:underline focus-visible:underline outline-none focus-visible:shadow-[0_0_0_2px_var(--background),0_0_0_4px_var(--ring)] rounded-sm">{a.name}</a>
+        </HoverCardTrigger>
+        <HoverCardContent side={a.side} align={a.align}>
+          <HoverCardPerson
+            avatar={a.showAvatar ? <Avatar size="lg" initials={a.name.split(' ').map(p => p[0]).join('').slice(0, 2)} /> : undefined}
+            name={a.name}
+            handle={a.showHandle ? '@maria · Product designer' : undefined}
+            detail={a.showDetail ? 'Leads the design system and the onboarding squad.' : undefined}
+            meta={a.showMeta ? 'Joined March 2024' : undefined}
+          />
+        </HoverCardContent>
+      </HoverCard>
+    </p>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <PersonLink />,
   play: async ({ canvas }) => {

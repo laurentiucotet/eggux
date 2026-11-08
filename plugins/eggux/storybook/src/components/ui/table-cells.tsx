@@ -1,3 +1,4 @@
+// Muted text on a selected row (accent) uses input-filled-muted-foreground: muted-foreground on accent is about 4.3:1.
 // EGG UI table cell contents. Figma: Table page, "Table Cell / Component" section: Table Cell Text
 // (Style default, strong, muted x Align left, right), Table Cell Stack, Table Cell Amount (Trend
 // none, up, down), Table Cell Date, Table Cell Link. Put them in a TableCell (table.tsx). Every one
@@ -28,7 +29,7 @@ function TableCellText({ textStyle = 'default', align = 'left', className, child
         'min-w-0 truncate text-sm leading-5',
         textStyle === 'strong' && 'font-medium text-foreground',
         textStyle === 'default' && 'text-foreground',
-        textStyle === 'muted' && 'text-muted-foreground',
+        textStyle === 'muted' && 'text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]',
         align === 'right' && 'text-right',
         className,
       )}
@@ -52,7 +53,7 @@ function TableCellStack({ title, description, className, ...props }: TableCellSt
       <span data-slot="table-cell-stack-title" className="truncate text-sm font-medium leading-5 text-foreground">
         {isEmpty(title) ? EMPTY : title}
       </span>
-      <span data-slot="table-cell-stack-description" className="truncate text-xs leading-4 text-muted-foreground">
+      <span data-slot="table-cell-stack-description" className="truncate text-xs leading-4 text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]">
         {isEmpty(description) ? EMPTY : description}
       </span>
     </div>
@@ -91,7 +92,7 @@ function TableCellAmount({ amount, currency = 'EUR', locale = 'en-IE', trend = '
     >
       <span data-slot="table-cell-amount-value" className="max-w-full truncate text-sm font-medium leading-5 text-foreground">{text}</span>
       {note ? (
-        <span data-slot="table-cell-amount-note" className="flex max-w-full items-center gap-1 text-xs leading-4 text-muted-foreground">
+        <span data-slot="table-cell-amount-note" className="flex max-w-full items-center gap-1 text-xs leading-4 text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]">
           {Trend ? <Trend aria-hidden="true" className="size-3.5 shrink-0" /> : null}
           <span className="truncate">{note}</span>
         </span>
@@ -117,7 +118,7 @@ function TableCellDate({ date, dateTime, time, className, ...props }: TableCellD
       ) : (
         <span className="truncate text-sm leading-5 text-foreground">{EMPTY}</span>
       )}
-      {time ? <span className="truncate text-xs leading-4 text-muted-foreground">{time}</span> : null}
+      {time ? <span className="truncate text-xs leading-4 text-muted-foreground in-data-[state=selected]:text-[var(--input-filled-muted-foreground)]">{time}</span> : null}
     </div>
   );
 }

@@ -16,12 +16,11 @@ import { TableCellAmount, TableCellLink, TableCellStack, TableCellText } from '.
 
 const meta = {
   title: 'Components/Table/Table',
-  component: Table,
   parameters: {
     layout: 'padded',
     docs: { description: { component: 'Semantic table: th scope, td, aria-sort on the sorted column header. Header cells 40 high, body cells 8 px vertical padding (density tokens: compact is 32 and 4). Sortable headers are buttons; the menu shows on hover and focus of the header. Text left, numbers right with the same decimals. Stripes and footer for wide read-only tables. Figma: Table page / Table Cell, Table Header Label. Guide: eggux build-ui/components/table.md' } },
   },
-} satisfies Meta<typeof Table>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -94,7 +93,108 @@ const SortableInvoices = ({ striped = false, footer = false, fixed = false, onSo
 };
 
 // Figma Table Cell: header 40, body 37 (20 text + 2 x 8 padding + 1 border).
-export const Default: Story = {
+type Playground = {
+  rows: number;
+  sortable: boolean;
+  showMenu: boolean;
+  showInfo: boolean;
+  striped: boolean;
+  footer: boolean;
+  fixed: boolean;
+  twoLineCustomer: boolean;
+  selectRow: boolean;
+  width: number;
+};
+
+const morePlay: Invoice[] = [
+  ...invoices,
+  { id: 'INV-1045', customer: 'Umbrella', detail: 'Data migration', date: '22 Oct 2026', amount: 8800 },
+  { id: 'INV-1046', customer: 'Hooli', detail: 'Training, 2 days', date: '18 Oct 2026', amount: 2150 },
+  { id: 'INV-1047', customer: 'Stark Retail', detail: 'Licences, 40 seats', date: '11 Oct 2026', amount: 4790.25 },
+  { id: 'INV-1048', customer: 'Wayne Logistics', detail: 'Consulting', date: '02 Oct 2026', amount: 990 },
+];
+
+function PlaygroundTable(a: Playground) {
+  const [sort, setSort] = React.useState<{ key: Key; dir: 'ascending' | 'descending' }>({ key: 'id', dir: 'ascending' });
+  const toggle = (key: Key) => setSort(s => ({ key, dir: s.key === key && s.dir === 'ascending' ? 'descending' : 'ascending' }));
+  const rows = morePlay.slice(0, a.rows).sort((x, y) => {
+    const s = sort.dir === 'descending' ? -1 : 1;
+    return sort.key === 'amount' ? (x.amount - y.amount) * s : x.id.localeCompare(y.id) * s;
+  });
+  const state = (k: Key): TableSort => (!a.sortable ? 'off' : sort.key === k ? sort.dir : 'sortable');
+  const aria = (k: Key) => (a.sortable && sort.key === k ? sort.dir : undefined);
+  const head = (label: string, k?: Key, right = false) => (
+    <TableHead sort={k ? aria(k) : undefined} className={right ? 'text-right' : undefined}>
+      <TableHeaderLabel
+        label={label}
+        align={right ? 'right' : 'left'}
+        sort={k ? state(k) : 'off'}
+        onSortClick={k && a.sortable ? () => toggle(k) : undefined}
+        showMenu={a.showMenu}
+        info={a.showInfo && label === 'Amount' ? 'Total with VAT, in EUR' : undefined}
+      />
+    </TableHead>
+  );
+  return (
+    <div style={{ width: a.width, maxWidth: '100%' }}>
+      <Table fixed={a.fixed} aria-label="Invoices">
+        <TableHeader>
+          <TableRow>
+            {head('Invoice', 'id')}
+            {head('Customer')}
+            {head('Date')}
+            {head('Amount', 'amount', true)}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {rows.map((r, i) => {
+            const striped = a.striped && i % 2 === 1;
+            return (
+              <TableRow key={r.id} selected={a.selectRow && i === 0}>
+                <TableCell striped={striped}><TableCellLink href="#">{r.id}</TableCellLink></TableCell>
+                <TableCell striped={striped}>
+                  {a.twoLineCustomer ? <TableCellStack title={r.customer} description={r.detail} /> : <TableCellText textStyle="strong">{r.customer}</TableCellText>}
+                </TableCell>
+                <TableCell striped={striped}><TableCellText textStyle="muted">{r.date}</TableCellText></TableCell>
+                <TableCell striped={striped}><TableCellAmount amount={r.amount} /></TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+        {a.footer ? (
+          <TableFooter>
+            <TableRow>
+              <TableCell type="footer" colSpan={3}><TableCellText textStyle="strong">{`Total, ${rows.length} invoices`}</TableCellText></TableCell>
+              <TableCell type="footer"><TableCellAmount amount={rows.reduce((s, r) => s + r.amount, 0)} /></TableCell>
+            </TableRow>
+          </TableFooter>
+        ) : null}
+      </Table>
+    </div>
+  );
+}
+
+/** Playground: every Table option in Controls. Click a sortable header to sort. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    rows: { name: 'Rows', control: { type: 'range', min: 1, max: 8, step: 1 }, table: { category: 'Table' } },
+    striped: { name: 'Striped', control: 'boolean', description: 'Table Cell `striped` on every other row (wide read-only tables)', table: { category: 'Table' } },
+    footer: { name: 'Footer', control: 'boolean', description: 'Table Footer with the total', table: { category: 'Table' } },
+    fixed: { name: 'Fixed layout', control: 'boolean', description: 'Table `fixed`: columns share the width evenly', table: { category: 'Table' } },
+    width: { name: 'Width', control: { type: 'range', min: 320, max: 1000, step: 4 }, table: { category: 'Table' } },
+    sortable: { name: 'Sortable', control: 'boolean', description: 'Invoice and Amount headers sort (aria-sort on the sorted one)', table: { category: 'Table Header Label' } },
+    showMenu: { name: 'Show menu', control: 'boolean', description: 'Table Header Label `showMenu`: shows on hover and focus', table: { category: 'Table Header Label' } },
+    showInfo: { name: 'Show info', control: 'boolean', description: 'Table Header Label `info` on Amount', table: { category: 'Table Header Label' } },
+    twoLineCustomer: { name: 'Two-line customer', control: 'boolean', description: 'Table Cell Stack: name and a detail line', table: { category: 'Table Cell' } },
+    selectRow: { name: 'Select first row', control: 'boolean', description: 'Table Row `selected`', table: { category: 'Table Cell' } },
+  },
+  args: { rows: 4, sortable: true, showMenu: false, showInfo: false, striped: false, footer: false, fixed: false, twoLineCustomer: false, selectRow: false, width: 720 },
+  render: a => <PlaygroundTable {...a} />,
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <SortableInvoices />,
   play: async ({ canvas }) => {
@@ -401,3 +501,8 @@ export const Narrow276: Story = { parameters: { controls: { disable: true } }, t
 // Theme copies for the contrast test (hidden in the sidebar, they still run in npm test).
 export const DefaultDark: Story = { ...StripedWithFooter, name: 'Default (Dark)', tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { ...StripedWithFooter, name: 'Default (Corporate Light)', tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+
+// Every playground switch on (axe in Light and Dark).
+const allOn: Playground = { rows: 6, sortable: true, showMenu: true, showInfo: true, striped: true, footer: true, fixed: true, twoLineCustomer: true, selectRow: true, width: 720 };
+export const AllOptions: StoryObj<Playground> = { tags: ['!dev'], args: allOn, render: a => <PlaygroundTable {...a} /> };
+export const AllOptionsDark: StoryObj<Playground> = { tags: ['!dev'], args: allOn, render: a => <PlaygroundTable {...a} />, globals: { theme: 'Dark' } };
