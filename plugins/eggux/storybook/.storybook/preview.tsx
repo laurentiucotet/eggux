@@ -1,6 +1,31 @@
 import type { Preview } from '@storybook/react-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/styles/globals.css';
+// Self-hosted fonts (the families in tokens.css), bundled with the Storybook build.
+import '@fontsource/plus-jakarta-sans/400.css';
+import '@fontsource/plus-jakarta-sans/500.css';
+import '@fontsource/plus-jakarta-sans/600.css';
+import '@fontsource/plus-jakarta-sans/700.css';
+import '@fontsource/plus-jakarta-sans/800.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/roboto-mono/400.css';
+import '@fontsource/roboto-mono/500.css';
+
+// Wait for the fonts before a story renders, so sizes measured in play functions and in
+// Chromatic snapshots never use a fallback font. Fonts load on first use, so ask for each one.
+const fontFaces = [
+  ...[400, 500, 600, 700, 800].map(w => `${w} 1em "Plus Jakarta Sans"`),
+  ...[400, 500, 600, 700].map(w => `${w} 1em "Inter"`),
+  ...[400, 500].map(w => `${w} 1em "Roboto Mono"`),
+];
+const loadFonts = async () => {
+  await Promise.all(fontFaces.map(face => document.fonts.load(face).catch(() => [])));
+  await document.fonts.ready;
+  return {};
+};
 
 // Themes match the Figma modes of the Semantic collection; Density is a second toolbar.
 const preview: Preview = {
@@ -37,6 +62,7 @@ const preview: Preview = {
       toolbar: { title: 'Density', icon: 'component', items: ['comfortable', 'compact'], dynamicTitle: true },
     },
   },
+  loaders: [loadFonts],
   initialGlobals: { density: 'comfortable' },
   // Controls show only what a designer can change: text, numbers, switches and choices.
   // Props that are functions, React nodes, arrays or objects (raw JSON editors) are hidden, unless

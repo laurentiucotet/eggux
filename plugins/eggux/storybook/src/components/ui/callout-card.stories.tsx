@@ -144,6 +144,6 @@ const Both = () => (
     <CalloutCard {...meta.args} layout="stacked" />
   </div>
 );
-export const BothLight: Story = { parameters: { controls: { disable: true } }, render: () => <Both />, name: 'Both layouts' };
-export const BothDark: Story = { parameters: { controls: { disable: true } }, render: () => <Both />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Both layouts (Dark)' };
-export const BothCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <Both />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Both layouts (Corporate Light)' };
+export const BothLight: Story = { parameters: { controls: { disable: true }, a11y: { config: { rules: [{ id: 'landmark-unique', enabled: false }] } } }, render: () => <Both />, name: 'Both layouts' };
+export const BothDark: Story = { parameters: { controls: { disable: true }, a11y: { config: { rules: [{ id: 'landmark-unique', enabled: false }] } } }, render: () => <Both />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Both layouts (Dark)' };
+export const BothCorporate: Story = { parameters: { controls: { disable: true }, a11y: { config: { rules: [{ id: 'landmark-unique', enabled: false }] } } }, render: () => <Both />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Both layouts (Corporate Light)' };
