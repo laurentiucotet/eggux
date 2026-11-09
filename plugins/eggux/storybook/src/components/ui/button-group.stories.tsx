@@ -161,7 +161,7 @@ export const Positions: Story = {
 
 // Stress test (Figma "Stress test / Button Group"): long labels truncate to one line (at most 160
 // per item); in a column narrower than the group, the group keeps its size (never shrinks).
-export const LongLabels: Story = {
+export const LongLabels: Story = { tags: ['!dev'],
   render: args => (
     <div className="w-[276px] overflow-x-auto rounded-md border border-dashed p-3">
       <ButtonGroup {...args}>

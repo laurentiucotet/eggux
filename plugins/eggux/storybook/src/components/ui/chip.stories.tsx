@@ -193,7 +193,7 @@ export const Stress: Story = {
 };
 
 const themes = (story: Story) => ({ ...story, tags: ['!dev'] });
-export const TonesDark: Story = { ...themes(Tones), globals: { theme: 'Dark' } };
-export const TonesCorporate: Story = { ...themes(Tones), globals: { theme: 'Corporate Light' } };
-export const SelectedDark: Story = { ...themes(Selected), globals: { theme: 'Dark' } };
-export const OptionsDark: Story = { ...themes(Options), globals: { theme: 'Dark' } };
+export const TonesDark: Story = { ...themes(Tones), tags: ['!dev'], globals: { theme: 'Dark' } };
+export const TonesCorporate: Story = { ...themes(Tones), tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const SelectedDark: Story = { ...themes(Selected), tags: ['!dev'], globals: { theme: 'Dark' } };
+export const OptionsDark: Story = { ...themes(Options), tags: ['!dev'], globals: { theme: 'Dark' } };

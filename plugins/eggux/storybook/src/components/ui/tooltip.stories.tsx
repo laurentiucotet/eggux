@@ -108,7 +108,7 @@ export const Keyboard: Story = {
 };
 
 // Delay: with the default 300 ms it is not open straight after hover.
-export const ShortDelay: Story = {
+export const ShortDelay: Story = { tags: ['!dev'],
   parameters: { controls: { disable: true } },
   decorators: [Story => <TooltipProvider delayDuration={300}><Story /></TooltipProvider>],
   render: DefaultCheck.render,

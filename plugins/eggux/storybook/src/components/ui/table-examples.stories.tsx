@@ -20,7 +20,7 @@ import { TableCellTree } from './table-cell-tree';
 import { TableColumnFilter, TableRangeFilter, TableTextFilter, rangeCount, type TableRange } from './table-filter';
 
 const meta = {
-  title: 'Components/Table/Examples',
+  title: 'Blocks/Table/Examples',
   parameters: {
     layout: 'padded',
     controls: { disable: true },

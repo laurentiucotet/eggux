@@ -112,7 +112,7 @@ export const Past: Story = {
 
 // Stress test: a long title is cut at 2 lines; the card never overflows in 276 and 368 columns.
 const longTitle = 'Closing the books in five days: the approvals, bank matching and accruals every finance team should automate this year';
-export const LongTitleNarrow: Story = {
+export const LongTitleNarrow: Story = { tags: ['!dev'],
   args: { layout: 'vertical', title: longTitle, image: <ImagePlaceholder ratio="16:9" />, actions: <Button variant="outline" size="sm" aria-label={`Register for ${longTitle}`}>Register</Button> },
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvas, canvasElement }) => {
@@ -123,7 +123,7 @@ export const LongTitleNarrow: Story = {
     await expect(Math.round(box(link).height)).toBeLessThanOrEqual(56);
   },
 };
-export const LongTitleHorizontal368: Story = {
+export const LongTitleHorizontal368: Story = { tags: ['!dev'],
   args: { title: longTitle, actions: <Button variant="outline" size="sm" aria-label="Register">Register</Button> },
   decorators: [Story => <div className="w-[368px]"><Story /></div>],
   play: async ({ canvasElement }) => {

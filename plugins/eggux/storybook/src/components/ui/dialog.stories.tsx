@@ -274,7 +274,7 @@ const terms = Array.from({ length: 14 }, (_, i) => ({
 }));
 
 /** Long content scrolls inside the body; header and footer stay in view. */
-export const LongContent: Story = {
+export const LongContent: Story = { tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => (
     <Dialog>

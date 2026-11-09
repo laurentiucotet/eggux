@@ -11,7 +11,7 @@ const items = (
 );
 
 const meta = {
-  title: 'AI Chat/Sources',
+  title: 'Components/AI Chat/Sources',
   component: Sources,
   parameters: {
     layout: 'padded',

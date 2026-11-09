@@ -74,10 +74,27 @@ first, code follows Figma).
 ## 3. Write the stories and tests
 `src/components/ui/<name>.stories.tsx`. Every story is a test (`npm test`): it must render,
 pass axe (`a11y.test = 'error'` in preview) and pass its `play` function.
-- Title follows the Figma page, so the sidebar groups like the library: `Components/<Figma page>/<Component>`
-  when the page holds several components (`Components/Table/Table Cell Status`,
-  `Components/Accordion/Show More`), `Components/<Component>` when it is the only one on its page
-  (Button, Spinner). The Figma page is the one in the `COMPONENTS.md` row.
+
+**First decide where each variation goes** (`references/storybook-structure.md` has the full table).
+Most of what people want to look at is not a story:
+- The environment (light or dark, Platform or Back office, the width) is the **toolbar**. Never a story
+  per theme or per width for looking.
+- A value of a prop (variant, size, show icon, disabled, count, a text of any length) is a **control**
+  of the `Default` playground. There is no "long text" story and no "short text" story: the text is a
+  control. Long text and narrow columns are a hidden check.
+- A set to compare at a glance (all variants, all sizes) is **one gallery story**, not one story each.
+- A state or a flow that needs setup (open, loading, empty, a keyboard path) is a story only if
+  someone opens it by name.
+- Checks (stress, dark and Back office copies for contrast, edge cases) are **hidden** (`!dev`).
+A visible story must teach something the Default with its Controls and the toolbar cannot. A
+component ends with two to six visible stories; more means controls or checks leaked into the sidebar.
+- Title: `Components/<Family>/<Component>` when the family holds several components
+  (`Components/Table/Table Cell Status`, `Components/AI Chat/Prompt Input`), `Components/<Component>`
+  when it stands alone (Button, Spinner). The family is the Figma page in the `COMPONENTS.md` row; a
+  product area (AI Chat) is a family, not a section. A composition of components with real content
+  is a Block (`Blocks/<Family>/<Name>`, no play function) and a whole screen is a Page
+  (`Pages/<Area>/<Screen>`). Sections are fixed: Foundations, Components, Blocks, Pages
+  (`references/storybook-structure.md`).
 - `Default` is a playground: every option of the component is a control, in two groups in the
   Controls panel (the component's own props; the parts it holds). Rules:
   - `argTypes` with a readable `name` ("Show leading icon"), `control` (inline-radio for 2 to 3
@@ -99,11 +116,12 @@ pass axe (`a11y.test = 'error'` in preview) and pass its `play` function.
     switch does nothing.
   The play test of the main interaction uses `storybook/test` (`expect`, `userEvent`, `fn`) and
   the accessible role and name.
-- One story per Figma variant group (Variants, Sizes, Styles), with a play test of the measured
-  sizes the reference states (heights, widths).
-- One story per state Figma has: disabled, loading, invalid, read-only, open, empty; each with a
-  play test of what the state must do (blocks clicks, `aria-invalid` with a description, value
-  cannot change).
+- One gallery story per Figma variant group (Variants, Sizes, Styles): every variant side by side, with
+  a play test of the measured sizes the reference states (heights, widths). Not one story per variant.
+- A state that is a prop (disabled, invalid, read-only) is a control, and its check (blocks clicks,
+  `aria-invalid` with a description, value cannot change) runs in the hidden `DefaultCheck` or a hidden
+  `States` story. A state that needs setup (open, loading with data, empty list) is a story when people
+  open it by name, with its play test.
 - Keyboard: Tab reaches it, Enter or Space activates, Escape closes overlays, arrows move in
   lists and groups; focus returns where it came from.
 - Stress checks from the Figma stress test: long text, the 276 / 368 px columns, many items,
@@ -140,8 +158,9 @@ tokens; when the token itself fails (contrast of a Figma value), report it as a 
 
 ## 5. Compare with Figma
 `npm run build-storybook`, then `node scripts/screenshot-stories.js <out> components-<name>--<story>`
-for the main stories (the id follows the story title: `AI Chat/Tool Call` → `ai-chat-tool-call--<story>`,
-`Components/Table/Table Toolbar` → `components-table-table-toolbar--<story>`),
+for the main stories (the id follows the story title: `Components/AI Chat/Tool Call` → `components-ai-chat-tool-call--<story>`,
+`Components/Table/Table Toolbar` → `components-table-table-toolbar--<story>`,
+`Blocks/Table/Examples` → `blocks-table-examples--<story>`),
 and put them next to the Figma screenshots of the same variants. Check
 sizes, spacing, radius, colors, type and icon size; fix differences or explain them (a browser
 default, a deliberate code behavior). Show the user the pair for the main story.

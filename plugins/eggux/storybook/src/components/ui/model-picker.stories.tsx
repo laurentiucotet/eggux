@@ -4,7 +4,7 @@ import { ModelOption, ModelPicker } from './model-picker';
 
 // The menu is portaled to document.body: query it with `screen`.
 const meta = {
-  title: 'AI Chat/Model Picker',
+  title: 'Components/AI Chat/Model Picker',
   component: ModelPicker,
   parameters: {
     layout: 'padded',

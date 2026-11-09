@@ -347,7 +347,7 @@ export const ControlledValue: Story = {
 };
 
 // Stress test (Figma "Stress test / Calendar"): 276 and 368 px columns. The calendar keeps 250 and does not overflow.
-export const Column276: Story = {
+export const Column276: Story = { tags: ['!dev'],
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvasElement }) => {
     const cal = canvasElement.querySelector('[data-slot="calendar"]') as HTMLElement;
@@ -355,7 +355,7 @@ export const Column276: Story = {
     await expect(cal.getBoundingClientRect().width).toBeLessThanOrEqual(276);
   },
 };
-export const Column368: Story = {
+export const Column368: Story = { tags: ['!dev'],
   args: { months: 1, caption: 'dropdown', showWeekNumbers: true },
   decorators: [Story => <div className="w-[368px]"><Story /></div>],
   play: async ({ canvasElement }) => {
@@ -365,7 +365,7 @@ export const Column368: Story = {
   },
 };
 // A long month name (locale) is cut with an ellipsis, never wrapped.
-export const LongMonthName: Story = {
+export const LongMonthName: Story = { tags: ['!dev'],
   args: { locale: 'ro-RO' },
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvasElement }) => {

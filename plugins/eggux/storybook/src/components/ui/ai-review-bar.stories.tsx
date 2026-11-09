@@ -3,7 +3,7 @@ import { expect, fn, userEvent } from 'storybook/test';
 import { AiReviewBar } from './ai-review-bar';
 
 const meta = {
-  title: 'AI Chat/AI Review Bar',
+  title: 'Components/AI Chat/AI Review Bar',
   component: AiReviewBar,
   parameters: {
     layout: 'padded',

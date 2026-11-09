@@ -176,7 +176,7 @@ export const ControlledValue: Story = {
 };
 
 // Stress test (Figma "Stress test / Month Picker"): wider than 250 the cells fill their columns; locale names stay on one line.
-export const Wide368: Story = {
+export const Wide368: Story = { tags: ['!dev'],
   decorators: [Story => <div className="w-[368px]"><Story /></div>],
   render: args => <MonthPicker {...args} className="w-full" />,
   play: async ({ canvas, canvasElement }) => {

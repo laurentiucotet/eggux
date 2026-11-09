@@ -3,7 +3,7 @@ import { expect, fn, userEvent } from 'storybook/test';
 import { ArtifactCard } from './artifact-card';
 
 const meta = {
-  title: 'AI Chat/Artifact Card',
+  title: 'Components/AI Chat/Artifact Card',
   component: ArtifactCard,
   parameters: {
     layout: 'padded',

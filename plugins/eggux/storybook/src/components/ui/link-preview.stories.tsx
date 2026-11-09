@@ -87,7 +87,7 @@ const long = {
   title: 'How the Berlin, Paris and Madrid finance teams cut month-end close from nine working days to five without adding headcount',
   description: 'Three changes to approvals and bank matching, the numbers behind them, and what we would do differently next time if we started again from scratch.',
 };
-export const LongTextNarrow: Story = {
+export const LongTextNarrow: Story = { tags: ['!dev'],
   args: { ...long, layout: 'vertical' },
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvas, canvasElement }) => {
@@ -98,7 +98,7 @@ export const LongTextNarrow: Story = {
     await expect(Math.round(box(canvasElement.querySelector('[data-slot="link-preview-description"]')!).height)).toBe(32);
   },
 };
-export const LongTextHorizontal368: Story = {
+export const LongTextHorizontal368: Story = { tags: ['!dev'],
   args: long,
   decorators: [Story => <div className="w-[368px]"><Story /></div>],
   play: async ({ canvas }) => {

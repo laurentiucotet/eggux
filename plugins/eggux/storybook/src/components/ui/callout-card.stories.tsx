@@ -115,7 +115,7 @@ const long = {
     </>
   ),
 };
-export const LongTextStacked276: Story = {
+export const LongTextStacked276: Story = { tags: ['!dev'],
   args: { layout: 'stacked', ...long },
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvas, canvasElement }) => {
@@ -128,7 +128,7 @@ export const LongTextStacked276: Story = {
     await expect(box(canvas.getByRole('button', { name: 'Compare all plans' })).top).toBeGreaterThan(box(canvas.getByRole('button', { name: 'Upgrade to the Pro plan' })).bottom - 1);
   },
 };
-export const LongTextHorizontal368: Story = {
+export const LongTextHorizontal368: Story = { tags: ['!dev'],
   args: { ...long },
   decorators: [Story => <div className="w-[368px]"><Story /></div>],
   play: async ({ canvas }) => {

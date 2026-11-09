@@ -171,7 +171,7 @@ export const FocusRing: Story = {
 };
 
 // Stress test (Figma "Stress test / Calendar"): a three digit number and a 6 character note do not grow the 32 px column.
-export const LongContent: Story = {
+export const LongContent: Story = { tags: ['!dev'],
   args: { day: '31', showNote: true, note: '3 left', 'aria-label': '31 3 left' },
   play: async ({ canvas }) => {
     const day = canvas.getByRole('button', { name: '31 3 left' });

@@ -210,7 +210,7 @@ const Long = () => (
     <CardFooter><Button variant="outline">Cancel</Button><Button>Save changes</Button></CardFooter>
   </Card>
 );
-export const LongText: Story = {
+export const LongText: Story = { tags: ['!dev'],
   parameters: { controls: { disable: true } },
   render: () => <Long />,
   play: async ({ canvas }) => {
@@ -219,7 +219,7 @@ export const LongText: Story = {
     await expect(width(canvas.getByRole('button', { name: 'More actions' }))).toBe(36);
   },
 };
-export const Narrow276: Story = {
+export const Narrow276: Story = { tags: ['!dev'],
   ...LongText,
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvas }) => {
@@ -229,7 +229,7 @@ export const Narrow276: Story = {
     await expect(width(canvas.getByRole('button', { name: 'More actions' }))).toBe(36);
   },
 };
-export const Narrow368: Story = {
+export const Narrow368: Story = { tags: ['!dev'],
   ...LongText,
   decorators: [Story => <div className="w-[368px]"><Story /></div>],
   play: async ({ canvas }) => {

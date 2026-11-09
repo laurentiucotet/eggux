@@ -6,7 +6,7 @@ import { PromptInput } from './prompt-input';
 
 // Every story is a test (vitest): it renders, passes axe and runs its play function.
 const meta = {
-  title: 'AI Chat/Prompt Input',
+  title: 'Components/AI Chat/Prompt Input',
   component: PromptInput,
   parameters: {
     layout: 'padded',

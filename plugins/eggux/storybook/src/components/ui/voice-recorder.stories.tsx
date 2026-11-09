@@ -4,7 +4,7 @@ import { expect, fn, userEvent } from 'storybook/test';
 import { VoiceRecorder } from './voice-recorder';
 
 const meta = {
-  title: 'AI Chat/Voice Recorder',
+  title: 'Components/AI Chat/Voice Recorder',
   component: VoiceRecorder,
   parameters: {
     layout: 'padded',

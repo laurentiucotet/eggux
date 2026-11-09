@@ -181,6 +181,6 @@ export const Stress: Story = {
 };
 
 const themeStory: Story = { ...Status, tags: ['!dev'] };
-export const StatusDark: Story = { ...themeStory, globals: { theme: 'Dark' } };
-export const StatusCorporate: Story = { ...themeStory, globals: { theme: 'Corporate Light' } };
+export const StatusDark: Story = { tags: ['!dev'], ...themeStory, globals: { theme: 'Dark' } };
+export const StatusCorporate: Story = { tags: ['!dev'], ...themeStory, globals: { theme: 'Corporate Light' } };
 export const TypesDark: Story = { ...Types, tags: ['!dev'], globals: { theme: 'Dark' } };

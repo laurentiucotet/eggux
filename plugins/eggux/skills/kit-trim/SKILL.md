@@ -53,6 +53,9 @@ In the Storybook folder:
 - **Icons:** `npm run icons` regenerates the icon set from the list; drop the icons nothing imports.
 - **Docs and skills:** remove references and decisions for deleted components from
   `eggux/decisions.md`; keep the skills, they are the workflow.
+- **Sidebar:** keep the four sections (Foundations, Components, Blocks, Pages;
+  `references/storybook-structure.md`). Blocks and Pages hold the product's own compositions and
+  screens; start them empty and fill them with the first real screens.
 - **Foundations pages** (`src/foundations/`: colors with contrast, typography, shape and spacing,
   motion and elevation, breakpoints, themes and looks) read the tokens live, so they follow the trim
   with no work. Check `Themes and looks` after changing the looks: it shows the same components in

@@ -361,6 +361,6 @@ const Themed = () => (
     <Still type="error" toastStyle="inverted" title="Export failed" description="Try fewer columns." close />
   </Frame>
 );
-export const ThemedLight: Story = { parameters: { controls: { disable: true } }, render: () => <Themed />, name: 'Themed', play: async ({ canvasElement }) => { await ready(canvasElement); await expect(roots(canvasElement)).toHaveLength(2); } };
+export const ThemedLight: Story = { tags: ['!dev'], parameters: { controls: { disable: true } }, render: () => <Themed />, name: 'Themed', play: async ({ canvasElement }) => { await ready(canvasElement); await expect(roots(canvasElement)).toHaveLength(2); } };
 export const ThemedDark: Story = { ...ThemedLight, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const ThemedCorporate: Story = { ...ThemedLight, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

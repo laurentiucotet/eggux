@@ -10,7 +10,7 @@ const result = (
 );
 
 const meta = {
-  title: 'AI Chat/Tool Call',
+  title: 'Components/AI Chat/Tool Call',
   component: ToolCall,
   parameters: {
     layout: 'padded',

@@ -68,12 +68,12 @@ const preview: Preview = {
     a11y: { test: 'error' },
     backgrounds: { disable: true },
     options: {
-      // Sidebar: Introduction and Foundations first, then every section, group and component
-      // A-Z. Stories inside one component keep the order of their file (Default first).
+      // Sidebar: Introduction, Foundations, Components, Blocks, Pages in that order, then every
+      // group and component A-Z. Stories inside one component keep the order of their file (Default first).
       // Storybook reads this function as plain JavaScript from the source: no TypeScript-only
       // syntax (no `!`, `as`, type annotations) and nothing from outside it.
       storySort: (a, b) => {
-        const pinned = ['Introduction', 'Foundations'];
+        const pinned = ['Introduction', 'Foundations', 'Components', 'Blocks', 'Pages'];
         const pa = a.title.split('/');
         const pb = b.title.split('/');
         const ra = pinned.indexOf(pa[0] ?? '');

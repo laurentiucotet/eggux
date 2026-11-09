@@ -13,7 +13,7 @@ const figmaSteps = (
 );
 
 const meta = {
-  title: 'AI Chat/Agent Plan',
+  title: 'Components/AI Chat/Agent Plan',
   component: AgentPlan,
   parameters: {
     layout: 'padded',

@@ -3,7 +3,7 @@ import { expect, fn, userEvent } from 'storybook/test';
 import { Reasoning } from './reasoning';
 
 const meta = {
-  title: 'AI Chat/Reasoning',
+  title: 'Components/AI Chat/Reasoning',
   component: Reasoning,
   parameters: {
     layout: 'padded',

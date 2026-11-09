@@ -4,7 +4,7 @@ import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test';
 import { ChatHistoryItem } from './chat-history-item';
 
 const meta = {
-  title: 'AI Chat/Chat History Item',
+  title: 'Components/AI Chat/Chat History Item',
   component: ChatHistoryItem,
   parameters: {
     layout: 'padded',

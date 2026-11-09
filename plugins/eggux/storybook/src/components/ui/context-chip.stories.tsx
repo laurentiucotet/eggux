@@ -4,7 +4,7 @@ import { expect, fn, userEvent, waitFor } from 'storybook/test';
 import { ContextChip, type ContextChipType } from './context-chip';
 
 const meta = {
-  title: 'AI Chat/Context Chip',
+  title: 'Components/AI Chat/Context Chip',
   component: ContextChip,
   parameters: {
     layout: 'padded',

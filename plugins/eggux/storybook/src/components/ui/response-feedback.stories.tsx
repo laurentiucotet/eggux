@@ -6,7 +6,7 @@ import { Button } from './button';
 import { ResponseFeedback } from './response-feedback';
 
 const meta = {
-  title: 'AI Chat/Response Feedback',
+  title: 'Components/AI Chat/Response Feedback',
   component: ResponseFeedback,
   parameters: {
     layout: 'padded',
@@ -152,8 +152,8 @@ const column = (width: number): Story => ({
     await expect(send.getBoundingClientRect().right).toBeLessThanOrEqual(el.getBoundingClientRect().right);
   },
 });
-export const Column276: Story = column(276);
-export const Column368: Story = column(368);
+export const Column276: Story = { ...column(276), tags: ['!dev'] };
+export const Column368: Story = { ...column(368), tags: ['!dev'] };
 
 export const ReasonSelectedDark: Story = { ...ReasonSelected, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const ReasonSelectedCorporate: Story = { ...ReasonSelected, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
