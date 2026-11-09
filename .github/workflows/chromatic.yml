@@ -1,6 +1,7 @@
 # Publishes the EGG UI Storybook to Chromatic on every push and pull request that touches it.
 # Needs the repository secret CHROMATIC_PROJECT_TOKEN (Settings > Secrets and variables > Actions).
 # Without the secret the job skips its steps instead of failing.
+# Run it by hand from Actions > Chromatic > Run workflow (once this file is on main).
 name: Chromatic
 
 on:
