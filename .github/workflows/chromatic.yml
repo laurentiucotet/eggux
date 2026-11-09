@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: No token yet
         if: env.CHROMATIC_PROJECT_TOKEN == ''
+        # Before checkout the project folder does not exist yet.
+        working-directory: .
         run: echo "::notice::Add the CHROMATIC_PROJECT_TOKEN secret to publish to Chromatic."
 
       - uses: actions/checkout@v4
