@@ -3,7 +3,7 @@ import { expect, fn, userEvent } from 'storybook/test';
 import { AiSuggestion } from './ai-suggestion';
 
 const meta = {
-  title: 'AI Chat/AI Suggestion',
+  title: 'Components/AI Chat/AI Suggestion',
   component: AiSuggestion,
   parameters: {
     layout: 'padded',

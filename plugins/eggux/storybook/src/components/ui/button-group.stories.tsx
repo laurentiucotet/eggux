@@ -59,6 +59,7 @@ export const Default: Story = {
 
 // Keyboard: each item is its own tab stop with the focus ring; Enter and Space activate.
 export const Keyboard: Story = {
+  parameters: { controls: { disable: true } },
   render: Default.render,
   play: async ({ canvas }) => {
     const [edit, duplicate] = canvas.getAllByRole('button');
@@ -141,6 +142,7 @@ export const Disabled: Story = {
 
 // Figma Position on a single item, outside a group.
 export const Positions: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-3">
       <ButtonGroupItem label="First" position="first" />
@@ -159,7 +161,7 @@ export const Positions: Story = {
 
 // Stress test (Figma "Stress test / Button Group"): long labels truncate to one line (at most 160
 // per item); in a column narrower than the group, the group keeps its size (never shrinks).
-export const LongLabels: Story = {
+export const LongLabels: Story = { tags: ['!dev'],
   render: args => (
     <div className="w-[276px] overflow-x-auto rounded-md border border-dashed p-3">
       <ButtonGroup {...args}>

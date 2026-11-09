@@ -45,7 +45,8 @@ export const Default: Story = {
     await expect(canvas.getByRole('button', { name: /Thursday 22 October 2026/ }).closest('[role="gridcell"]')).toHaveAttribute('aria-selected', 'true');
     // The selected time was scrolled into view.
     const viewport = canvasElement.querySelector('[data-slot="date-time-slots"]') as HTMLElement;
-    await expect(viewport.scrollTop).toBeGreaterThan(0);
+    // The scroll happens in an effect after the first render.
+    await waitFor(() => expect(viewport.scrollTop).toBeGreaterThan(0));
     const r = selected.getBoundingClientRect();
     await expect(r.top).toBeGreaterThanOrEqual(viewport.getBoundingClientRect().top - 1);
     await expect(r.bottom).toBeLessThanOrEqual(viewport.getBoundingClientRect().bottom + 1);

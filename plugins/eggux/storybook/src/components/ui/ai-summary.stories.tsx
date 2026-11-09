@@ -5,7 +5,7 @@ import { AiNotice, AiSummary } from './ai-summary';
 const summary = 'Acme Industrial has 3 open invoices, €12,450 in total. INV-1041 is 12 days overdue; this customer usually pays 9 days late. Their finance team promised payment by Oct 31 in a call on Oct 14.';
 
 const meta = {
-  title: 'AI Chat/AI Summary',
+  title: 'Components/AI Chat/AI Summary',
   component: AiSummary,
   parameters: {
     layout: 'padded',
@@ -138,6 +138,7 @@ export const Column368: Story = { tags: ['!dev'],
 
 // Figma AI Notice Type=label (106 × 20) and Type=disclaimer.
 export const Notice: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col items-start gap-4">
       <AiNotice />

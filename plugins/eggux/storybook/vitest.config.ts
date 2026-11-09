@@ -14,11 +14,17 @@ export default mergeConfig(viteConfig, defineConfig({
         plugins: [storybookTest({ configDir: path.join(import.meta.dirname, '.storybook') })],
         test: {
           name: 'storybook',
+          setupFiles: [path.join(import.meta.dirname, '.storybook/vitest.setup.ts')],
           browser: {
             enabled: true,
             headless: true,
             // PW_CHROMIUM: path of a preinstalled Chromium (cloud sessions), else Playwright's own.
-            provider: playwright(process.env.PW_CHROMIUM ? { launchOptions: { executablePath: process.env.PW_CHROMIUM } } : {}),
+            // Locale and time zone match Chromatic's capture browser (en-US, UTC), so a test that
+            // passes here passes there, whatever the machine's own settings are.
+            provider: playwright({
+              ...(process.env.PW_CHROMIUM ? { launchOptions: { executablePath: process.env.PW_CHROMIUM } } : {}),
+              contextOptions: { locale: 'en-US', timezoneId: 'UTC' },
+            }),
             instances: [{ browser: 'chromium' }],
           },
         },

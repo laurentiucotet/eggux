@@ -3,7 +3,7 @@ import { expect, fn, userEvent } from 'storybook/test';
 import { AiLoading } from './ai-loading';
 
 const meta = {
-  title: 'AI Chat/AI Loading',
+  title: 'Components/AI Chat/AI Loading',
   component: AiLoading,
   parameters: {
     layout: 'padded',

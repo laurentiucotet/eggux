@@ -64,6 +64,7 @@ const expectations: Record<CalendarDayState, { bg: string; color: string; weight
   booked: { bg: 'rgba(0, 0, 0, 0)', color: 'text-muted-foreground', weight: '400' },
 };
 export const States: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap items-center gap-4">
       {all.map(state => <CalendarDay key={state} state={state} day="19" aria-label={`19 ${state}`} />)}
@@ -111,6 +112,7 @@ export const Booked: Story = {
 
 // Show note: a line under the number, the cell grows to 36; a note is 12 px text.
 export const WithNote: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-start gap-4">
       <CalendarDay day="21" showNote note="€89" aria-label="21 €89" />
@@ -133,6 +135,7 @@ export const WithNote: Story = {
 
 // Show dot: 4 px circle 3 px from the bottom; white on a selected day. The note wins when both are set.
 export const WithDot: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-start gap-4">
       <CalendarDay day="21" showDot aria-label="21 default" />
@@ -168,7 +171,7 @@ export const FocusRing: Story = {
 };
 
 // Stress test (Figma "Stress test / Calendar"): a three digit number and a 6 character note do not grow the 32 px column.
-export const LongContent: Story = {
+export const LongContent: Story = { tags: ['!dev'],
   args: { day: '31', showNote: true, note: '3 left', 'aria-label': '31 3 left' },
   play: async ({ canvas }) => {
     const day = canvas.getByRole('button', { name: '31 3 left' });

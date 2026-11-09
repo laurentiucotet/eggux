@@ -64,6 +64,7 @@ const statuses = [
 
 // One row per Badge variant: each Badge keeps its own fill and text color.
 export const Variants: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <table className="w-[200px] border-collapse text-sm text-foreground">
       <tbody>

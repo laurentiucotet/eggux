@@ -7,6 +7,8 @@ import * as React from 'react';
 import { X } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { Button } from './button';
+import { Chip } from './chip';
+import { ChipGroup } from './chip-group';
 
 export const defaultFeedbackReasons = ['Not accurate', 'Not helpful', 'Incomplete', 'Wrong format', 'Too slow', 'Other'];
 
@@ -61,9 +63,6 @@ function ResponseFeedback({
     if (autoFocus) reasonsRef.current?.querySelector('button')?.focus();
   }, [autoFocus]);
 
-  const toggle = (reason: string) =>
-    setSelected(current => (current.includes(reason) ? current.filter(r => r !== reason) : [...current, reason]));
-
   return (
     <form
       data-slot="response-feedback"
@@ -89,24 +88,13 @@ function ResponseFeedback({
         </Button>
       </div>
 
-      <div ref={reasonsRef} role="group" aria-label="Reasons" className="flex w-full flex-wrap items-start gap-2">
-        {reasons.map(reason => {
-          const pressed = selected.includes(reason);
-          return (
-            <button
-              key={reason}
-              type="button"
-              aria-pressed={pressed}
-              onClick={() => toggle(reason)}
-              className={cn(
-                'inline-flex h-8 max-w-80 min-w-0 items-center rounded-full border px-3 text-sm font-medium outline-none transition-[color,background-color,border-color,box-shadow] duration-[var(--duration-fast)] focus-visible:ring-[3px] focus-visible:ring-ring/50',
-                pressed ? 'border-primary bg-primary text-primary-foreground hover:bg-[var(--button-primary-hover)]' : 'border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground',
-              )}
-            >
-              <span className="truncate">{reason}</span>
-            </button>
-          );
-        })}
+      {/* Reasons are Chips in a multiple-select Chip Group (toggle buttons with aria-pressed). */}
+      <div ref={reasonsRef} className="w-full">
+        <ChipGroup type="multiple" aria-label="Reasons" value={selected} onValueChange={setSelected}>
+          {reasons.map(reason => (
+            <Chip key={reason} value={reason} label={reason} />
+          ))}
+        </ChipGroup>
       </div>
 
       {showDetails ? (

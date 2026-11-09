@@ -1,0 +1,63 @@
+# Publishes the EGG UI Storybook to Chromatic on every push and pull request that touches it.
+# Needs the repository secret CHROMATIC_PROJECT_TOKEN (Settings > Secrets and variables > Actions).
+# Without the secret the job skips its steps instead of failing.
+# Run it by hand from Actions > Chromatic > Run workflow (once this file is on main).
+name: Chromatic
+
+on:
+  push:
+    paths:
+      - 'plugins/eggux/storybook/**'
+      - '.github/workflows/chromatic.yml'
+  pull_request:
+    paths:
+      - 'plugins/eggux/storybook/**'
+      - '.github/workflows/chromatic.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: chromatic-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    env:
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+    defaults:
+      run:
+        working-directory: plugins/eggux/storybook
+    steps:
+      - name: No token yet
+        if: env.CHROMATIC_PROJECT_TOKEN == ''
+        # Before checkout the project folder does not exist yet.
+        working-directory: .
+        run: echo "::notice::Add the CHROMATIC_PROJECT_TOKEN secret to publish to Chromatic."
+
+      - uses: actions/checkout@v4
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        with:
+          # Chromatic compares with earlier builds through the git history.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: plugins/eggux/storybook/package-lock.json
+
+      - name: Install
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        run: npm ci
+
+      - name: Publish to Chromatic
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: plugins/eggux/storybook
+          buildScriptName: build-storybook
+          # Visual changes wait for review in Chromatic instead of failing the build.
+          exitZeroOnChanges: true
+          onlyChanged: true

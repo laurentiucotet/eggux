@@ -29,6 +29,7 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       {(['sm', 'default', 'lg'] as const).map(s => <Progress key={s} size={s} value={40} aria-label={`${s} bar`} />)}
@@ -41,6 +42,7 @@ export const Sizes: Story = {
 };
 
 export const Tones: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       {(['default', 'success', 'warning', 'error'] as const).map(t => <Progress key={t} tone={t} value={60} aria-label={`${t} tone`} />)}

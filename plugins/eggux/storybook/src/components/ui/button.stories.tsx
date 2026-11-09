@@ -167,7 +167,7 @@ export const AsLink: Story = {
 };
 
 // Stress test (Figma "Stress test / Button"): long label, narrow column. Hugs its label, one line.
-export const LongLabel: Story = {
+export const LongLabel: Story = { tags: ['!dev'],
   args: { children: 'Export every invoice from the last fiscal year to CSV' },
   render: args => <div className="w-[276px] rounded-md border border-dashed p-3"><Button {...args} /></div>,
   play: async ({ canvasElement }) => {
@@ -178,7 +178,7 @@ export const LongLabel: Story = {
 };
 
 // Stress test: a one-letter label is still a pill at least as tall as wide; all options on.
-export const ShortAndAllOptions: Story = {
+export const ShortAndAllOptions: Story = { tags: ['!dev'],
   render: args => (
     <div className="flex items-center gap-3">
       <Button {...args}>A</Button>

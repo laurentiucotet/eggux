@@ -10,7 +10,10 @@
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
     "test": "vitest run --project=storybook",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "chromatic": "chromatic --exit-zero-on-changes",
+    "check:stories": "node scripts/check-stories.mjs",
+    "kit": "node scripts/kit-trim.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -21,9 +24,11 @@
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "@fontsource/roboto-mono": "^5.3.0",
     "@storybook/addon-a11y": "^10.6.6",
     "@storybook/addon-docs": "^10.6.6",
-    "@storybook/addon-themes": "^10.6.6",
     "@storybook/addon-vitest": "^10.6.6",
     "@storybook/react-vite": "^10.6.6",
     "@tailwindcss/vite": "^4.3.4",
@@ -32,6 +37,7 @@
     "@vitejs/plugin-react": "^6.2.1",
     "@vitest/browser": "^5.1.0",
     "@vitest/browser-playwright": "^5.1.0",
+    "chromatic": "^18.14.2",
     "playwright": "^1.56.1",
     "storybook": "^10.6.6",
     "tailwindcss": "^4.3.4",

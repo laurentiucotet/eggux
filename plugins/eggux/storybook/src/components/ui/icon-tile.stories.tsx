@@ -27,6 +27,7 @@ export const Default: Story = {
 };
 
 export const Styles: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex gap-4">
       {(['neutral', 'brand', 'gradient', 'outline'] as const).map(s => <IconTile key={s} tileStyle={s} icon={<Sparkles />} data-testid={s} />)}
@@ -46,6 +47,7 @@ export const Styles: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-4">
       {(['sm', 'default', 'lg'] as const).map(s => <IconTile key={s} size={s} icon={<Sparkles />} data-testid={s} />)}

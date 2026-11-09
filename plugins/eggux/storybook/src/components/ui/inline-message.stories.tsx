@@ -40,6 +40,7 @@ const types: [InlineMessageType, string, string | null][] = [
 
 // Figma Types: icon per type, status color for info/success/warning/error, Spinner for loading.
 export const Types: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4">
       {types.map(([type, text]) => <InlineMessage key={type} type={type}>{text}</InlineMessage>)}
@@ -93,7 +94,7 @@ export const LongText: Story = { tags: ['!dev'],
   },
 };
 
-export const NarrowColumns: Story = { tags: ['!dev'],
+export const NarrowColumns: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'],
   render: () => (
     <div className="flex flex-col gap-6">
       {[276, 368].map(w => (

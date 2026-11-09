@@ -47,6 +47,7 @@ const day = (canvas: { getByRole: (...a: any[]) => HTMLElement }, label: RegExp 
 
 // Date math, tested without a browser date library.
 export const DateMath: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <p>Date math is tested in the play function.</p>,
   play: async () => {
     const oct = monthGrid(2026, 9);
@@ -95,7 +96,10 @@ export const Default: Story = {
     await expect(day(canvas, /Monday 19 October 2026/)).toHaveAttribute('data-state', 'today');
     const selected = day(canvas, /Thursday 22 October 2026/);
     await expect(selected.closest('[role="gridcell"]')).toHaveAttribute('aria-selected', 'true');
-    await expect(getComputedStyle(selected).backgroundColor).toBe(probe('bg-primary', 'backgroundColor'));
+    // The day fades its color on a theme switch: wait for the end of the transition.
+    // Probe outside waitFor: a probe in the callback mutates the DOM, re-triggers waitFor at once and hangs on failure.
+    const primary = probe('bg-primary', 'backgroundColor');
+    await waitFor(() => expect(getComputedStyle(selected).backgroundColor).toBe(primary));
     await expect(selected).toHaveTextContent('22');
     // Calendar surface.
     await expect(getComputedStyle(cal).backgroundColor).toBe(probe('bg-popover', 'backgroundColor'));
@@ -135,15 +139,15 @@ export const Keyboard: Story = {
   play: async ({ canvas, canvasElement }) => {
     day(canvas, /Thursday 22 October 2026/).focus();
     await userEvent.keyboard('{ArrowRight}');
-    await expect(day(canvas, /Friday 23 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Friday 23 October 2026/)).toHaveFocus());
     await userEvent.keyboard('{ArrowDown}');
-    await expect(day(canvas, /Friday 30 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Friday 30 October 2026/)).toHaveFocus());
     await userEvent.keyboard('{ArrowUp}{ArrowLeft}');
-    await expect(day(canvas, /Thursday 22 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Thursday 22 October 2026/)).toHaveFocus());
     await userEvent.keyboard('{Home}');
-    await expect(day(canvas, /Monday 19 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Monday 19 October 2026/)).toHaveFocus());
     await userEvent.keyboard('{End}');
-    await expect(day(canvas, /Sunday 25 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Sunday 25 October 2026/)).toHaveFocus());
     // Past the end of the month: the next month opens, focus follows.
     await userEvent.keyboard('{ArrowDown}');
     await waitFor(() => expect(canvas.getByRole('grid', { name: 'November 2026' })).toBeVisible());
@@ -217,7 +221,10 @@ export const TwoMonths: Story = {
     await expect(canvasElement.querySelectorAll('[data-date][tabindex="0"]')).toHaveLength(1);
     // Keyboard past the second month moves both months by one.
     day(canvas, /Thursday 22 October 2026/).focus();
-    await userEvent.keyboard('{PageDown}{PageDown}');
+    // One key at a time: the second PageDown must start from the date the first one moved to.
+    await userEvent.keyboard('{PageDown}');
+    await waitFor(() => expect(day(canvas, /Sunday 22 November 2026/)).toHaveFocus());
+    await userEvent.keyboard('{PageDown}');
     await waitFor(() => expect(canvas.getByRole('grid', { name: 'December 2026' })).toBeVisible());
     await expect(canvas.getByRole('grid', { name: 'November 2026' })).toBeVisible();
   },
@@ -250,6 +257,7 @@ const RangeCalendar = (props: { onRangeSelect?: (r: DateRange) => void }) => (
   <Calendar mode="range" today={TODAY} defaultMonth={TODAY} defaultRange={{ from: new Date(2026, 9, 6), to: new Date(2026, 9, 19) }} disabled={d => d > TODAY} {...props} />
 );
 export const Range: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <RangeCalendar />,
   play: async ({ canvas }) => {
     await expect(day(canvas, /Tuesday 6 October 2026/)).toHaveAttribute('data-state', 'range-start');
@@ -329,6 +337,7 @@ const Controlled = () => {
   );
 };
 export const ControlledValue: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Controlled />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Next month' }));
@@ -338,7 +347,7 @@ export const ControlledValue: Story = {
 };
 
 // Stress test (Figma "Stress test / Calendar"): 276 and 368 px columns. The calendar keeps 250 and does not overflow.
-export const Column276: Story = {
+export const Column276: Story = { tags: ['!dev'],
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvasElement }) => {
     const cal = canvasElement.querySelector('[data-slot="calendar"]') as HTMLElement;
@@ -346,7 +355,7 @@ export const Column276: Story = {
     await expect(cal.getBoundingClientRect().width).toBeLessThanOrEqual(276);
   },
 };
-export const Column368: Story = {
+export const Column368: Story = { tags: ['!dev'],
   args: { months: 1, caption: 'dropdown', showWeekNumbers: true },
   decorators: [Story => <div className="w-[368px]"><Story /></div>],
   play: async ({ canvasElement }) => {
@@ -356,7 +365,7 @@ export const Column368: Story = {
   },
 };
 // A long month name (locale) is cut with an ellipsis, never wrapped.
-export const LongMonthName: Story = {
+export const LongMonthName: Story = { tags: ['!dev'],
   args: { locale: 'ro-RO' },
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvasElement }) => {
@@ -373,8 +382,8 @@ const Showcase = () => (
     <Calendar mode="range" months={1} today={TODAY} defaultMonth={TODAY} defaultRange={{ from: new Date(2026, 9, 6), to: new Date(2026, 9, 12) }} aria-label="Range" caption="dropdown" />
   </div>
 );
-export const ThemeLight: Story = { render: () => <Showcase />, name: 'Day and range' };
-export const ThemeDark: Story = { render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Day and range (Dark)' };
-export const ThemeCorporate: Story = { render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Day and range (Corporate Light)' };
+export const ThemeLight: Story = { parameters: { controls: { disable: true } }, render: () => <Showcase />, name: 'Day and range' };
+export const ThemeDark: Story = { parameters: { controls: { disable: true } }, render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Day and range (Dark)' };
+export const ThemeCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <Showcase />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Day and range (Corporate Light)' };
 export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

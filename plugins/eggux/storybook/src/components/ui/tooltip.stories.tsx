@@ -8,13 +8,12 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, type TooltipV
 
 const meta = {
   title: 'Components/Tooltip/Tooltip',
-  component: TooltipContent,
   parameters: {
     layout: 'centered',
     docs: { description: { component: 'Short plain-text hint on hover and keyboard focus, after a short delay; Escape hides it. Same text as the accessible label of an icon-only button. Never links or buttons (use Popover), never the only place for information (touch has no hover). Variant default (primary fill) or light (popover surface), one per product. Title makes it rich, wraps at 280; shortcut adds a Kbd. Figma: Tooltip page / Tooltip. Guide: eggux build-ui/components/tooltip.md' } },
   },
   decorators: [Story => <TooltipProvider delayDuration={0}><Story /></TooltipProvider>],
-} satisfies Meta<typeof TooltipContent>;
+} satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -31,7 +30,50 @@ const AddButton = (props: React.ComponentProps<typeof Button>) => (
 
 // The main behavior: hover and keyboard focus show it, Escape hides it. The visible text is the
 // accessible label of the icon-only button.
-export const Default: Story = {
+type Playground = {
+  open: boolean;
+  variant: TooltipVariant;
+  text: string;
+  showTitle: boolean;
+  title: string;
+  showShortcut: boolean;
+  side: 'top' | 'right' | 'bottom' | 'left';
+  align: 'start' | 'center' | 'end';
+};
+
+/** Playground: every Tooltip option in Controls. Hover or focus the button, or switch Open on. */
+export const Default: StoryObj<Playground> = {
+  argTypes: {
+    open: { name: 'Open', control: 'boolean', description: 'Keep it open (otherwise hover or focus the button)', table: { category: 'Tooltip' } },
+    variant: { name: 'Variant', control: 'inline-radio', options: ['default', 'light'], description: 'default (primary fill) or light (popover surface), one per product', table: { category: 'Tooltip' } },
+    text: { name: 'Text', control: 'text', description: 'Also the accessible label of the icon button', table: { category: 'Tooltip' } },
+    showTitle: { name: 'Show title', control: 'boolean', description: 'Rich tooltip: a title over the text, wraps at 280', table: { category: 'Tooltip' } },
+    title: { name: 'Title', control: 'text', if: { arg: 'showTitle' }, table: { category: 'Tooltip' } },
+    showShortcut: { name: 'Show shortcut', control: 'boolean', description: 'A Kbd after the text', table: { category: 'Tooltip' } },
+    side: { name: 'Side', control: 'inline-radio', options: ['top', 'right', 'bottom', 'left'], table: { category: 'Tooltip' } },
+    align: { name: 'Align', control: 'inline-radio', options: ['start', 'center', 'end'], table: { category: 'Tooltip' } },
+  },
+  args: { open: false, variant: 'default', text: 'Add to calendar', showTitle: false, title: 'Calendar', showShortcut: false, side: 'top', align: 'center' },
+  render: a => (
+    <Tooltip open={a.open ? true : undefined}>
+      <TooltipTrigger asChild><AddButton aria-label={a.text} /></TooltipTrigger>
+      <TooltipContent
+        variant={a.variant}
+        side={a.side}
+        align={a.align}
+        title={a.showTitle ? a.title : undefined}
+        shortcut={a.showShortcut ? <KbdGroup><Kbd>⌘</Kbd><Kbd>N</Kbd></KbdGroup> : undefined}
+      >
+        {a.text}
+      </TooltipContent>
+    </Tooltip>
+  ),
+};
+
+// The checks that used to run on Default (hidden; the playground has no play function).
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
+  parameters: { controls: { disable: true } },
   render: () => (
     <Tooltip>
       <TooltipTrigger asChild><AddButton /></TooltipTrigger>
@@ -53,7 +95,7 @@ export const Default: Story = {
 
 // Keyboard: Tab to the trigger shows the tooltip, Escape hides it, focus stays.
 export const Keyboard: Story = {
-  ...Default,
+  ...DefaultCheck,
   play: async ({ canvas }) => {
     await userEvent.tab();
     const button = canvas.getByRole('button', { name: 'Add to calendar' });
@@ -66,9 +108,10 @@ export const Keyboard: Story = {
 };
 
 // Delay: with the default 300 ms it is not open straight after hover.
-export const ShortDelay: Story = {
+export const ShortDelay: Story = { tags: ['!dev'],
+  parameters: { controls: { disable: true } },
   decorators: [Story => <TooltipProvider delayDuration={300}><Story /></TooltipProvider>],
-  render: Default.render,
+  render: DefaultCheck.render,
   play: async ({ canvas }) => {
     const button = canvas.getByRole('button', { name: 'Add to calendar' });
     await userEvent.hover(button);
@@ -96,7 +139,7 @@ const Sides = ({ variant }: { variant: TooltipVariant }) => (
 export const SidesDefault: Story = {
   name: 'Sides',
   render: () => <Sides variant="default" />,
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tips = allContent();
     await expect(tips.map(t => t.getAttribute('data-side')).sort()).toEqual(['bottom', 'left', 'right', 'top']);
@@ -122,7 +165,7 @@ export const SidesDefault: Story = {
 export const SidesLight: Story = {
   name: 'Sides (light)',
   render: () => <Sides variant="light" />,
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tips = allContent();
     await expect(tips).toHaveLength(4);
@@ -152,7 +195,7 @@ export const Rich: Story = {
       </Tooltip>
     </div>
   ),
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     await expect(tip.querySelector('[data-slot="tooltip-title"]')).toHaveTextContent('Schedule');
@@ -173,7 +216,7 @@ export const WithShortcut: Story = {
       </Tooltip>
     </div>
   ),
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     const group = tip.querySelector('[data-slot="kbd-group"]')!;
@@ -200,7 +243,7 @@ export const RichWithShortcutLight: Story = {
       </Tooltip>
     </div>
   ),
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     await expect(tip).toHaveAttribute('data-variant', 'light');
@@ -211,7 +254,7 @@ export const RichWithShortcutLight: Story = {
 
 // Rule: a tooltip never holds links or buttons.
 export const NoInteractiveContent: Story = {
-  ...Default,
+  ...DefaultCheck,
   play: async ({ canvas }) => {
     await userEvent.hover(canvas.getByRole('button', { name: 'Add to calendar' }));
     await screen.findByRole('tooltip');
@@ -234,7 +277,7 @@ const Stress = ({ width }: { width: number }) => (
 );
 export const Narrow276: Story = { tags: ['!dev'],
   render: () => <Stress width={276} />,
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     await expect(box(tip).w).toBeLessThanOrEqual(280 + 24);
@@ -244,7 +287,7 @@ export const Narrow276: Story = { tags: ['!dev'],
 };
 export const Narrow368: Story = { tags: ['!dev'],
   render: () => <Stress width={368} />,
-  parameters: { layout: 'padded' },
+  parameters: { controls: { disable: true }, layout: 'padded' },
   play: async () => {
     const tip = content();
     await expect(box(tip).w).toBeLessThanOrEqual(280 + 24);
@@ -267,6 +310,6 @@ const Both = () => (
 const bothPlay = async () => {
   await expect(allContent()).toHaveLength(2);
 };
-export const BothVariantsDark: Story = { render: () => <Both />, parameters: { layout: 'padded' }, tags: ['!dev'], globals: { theme: 'Dark' }, play: bothPlay };
-export const BothVariantsCorporate: Story = { render: () => <Both />, parameters: { layout: 'padded' }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, play: bothPlay };
-export const BothVariantsLight: Story = { render: () => <Both />, parameters: { layout: 'padded' }, tags: ['!dev'], play: bothPlay };
+export const BothVariantsDark: Story = { render: () => <Both />, parameters: { controls: { disable: true },  layout: 'padded' }, tags: ['!dev'], globals: { theme: 'Dark' }, play: bothPlay };
+export const BothVariantsCorporate: Story = { render: () => <Both />, parameters: { controls: { disable: true },  layout: 'padded' }, tags: ['!dev'], globals: { theme: 'Corporate Light' }, play: bothPlay };
+export const BothVariantsLight: Story = { render: () => <Both />, parameters: { controls: { disable: true },  layout: 'padded' }, tags: ['!dev'], play: bothPlay };

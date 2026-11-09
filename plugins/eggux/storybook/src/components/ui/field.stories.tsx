@@ -56,6 +56,7 @@ export const Disabled: Story = {
 // Figma Show required / Show optional: the asterisk is hidden from screen readers, the control
 // is required; "Optional" is read with the label.
 export const RequiredAndOptional: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-6">
       <Field label="Company name" required><Input defaultValue="Acme GmbH" /></Field>
@@ -97,6 +98,7 @@ function CounterField() {
   );
 }
 export const WithCounter: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <CounterField />,
   play: async ({ canvas, canvasElement }) => {
     const input = canvas.getByRole('textbox', { name: 'Short description' });

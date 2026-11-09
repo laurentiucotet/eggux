@@ -4,7 +4,7 @@ import { ChartColumn, FileText, Mail, Receipt } from '@/components/icons';
 import { PromptSuggestion } from './prompt-suggestion';
 
 const meta = {
-  title: 'AI Chat/Prompt Suggestion',
+  title: 'Components/AI Chat/Prompt Suggestion',
   component: PromptSuggestion,
   parameters: {
     docs: { description: { component: 'A starter prompt or follow-up, named by its Label. chip: 2-4 follow-ups under the input or after an answer (sends at once); card: 4 empty-state tasks the assistant does well (fills the input). Figma: AI Chat / Prompt Suggestion. Guide: eggux build-ui/components/ai-chat.md' } },

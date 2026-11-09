@@ -1,39 +1,98 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import { Calendar, CircleCheck, MapPin, User } from '@/components/icons';
-import { Accordion, AccordionItem } from './accordion';
+import { Calendar, CircleCheck, Clock, CreditCard, MapPin, Receipt, User, X } from '@/components/icons';
+import { Accordion, AccordionItem, type AccordionProps } from './accordion';
 import { Badge } from './badge';
 
-const faq = [
-  ['plan', 'Can I change my plan later?', 'Yes. Upgrade or downgrade any time; we prorate the difference on your next invoice.'],
-  ['trial', 'Do you offer a free trial?', 'Every plan starts with 14 days free. No card needed until you choose a plan.'],
-  ['billing', 'How does billing work?', 'We invoice monthly or yearly in EUR. Invoices arrive by email and stay in Settings › Billing.'],
-  ['cancel', 'Can I cancel at any time?', 'Yes. Your workspace stays readable until the end of the paid period.'],
-] as const;
+// Story-only switches: they set the same thing on every item, since one list matches.
+type ItemSwitches = {
+  showLeadingIcon: boolean;
+  showMeta: boolean;
+  showDescription: boolean;
+  disabledItem: boolean;
+};
+type Args = AccordionProps & ItemSwitches;
 
-const items = faq.map(([value, title, answer]) => (
-  <AccordionItem key={value} value={value} title={title}>
-    <p>{answer}</p>
-  </AccordionItem>
-));
+const faq = [
+  { value: 'plan', title: 'Can I change my plan later?', icon: <CreditCard />, meta: 'Plans', description: 'Upgrades, downgrades and proration', answer: 'Yes. Upgrade or downgrade any time; we prorate the difference on your next invoice.' },
+  { value: 'trial', title: 'Do you offer a free trial?', icon: <Clock />, meta: 'Trial', description: '14 days, no card needed', answer: 'Every plan starts with 14 days free. No card needed until you choose a plan.' },
+  { value: 'billing', title: 'How does billing work?', icon: <Receipt />, meta: 'Billing', description: 'Monthly or yearly invoices in EUR', answer: 'We invoice monthly or yearly in EUR. Invoices arrive by email and stay in Settings › Billing.' },
+  { value: 'cancel', title: 'Can I cancel at any time?', icon: <X />, meta: 'Account', description: 'What stays after you cancel', answer: 'Yes. Your workspace stays readable until the end of the paid period.' },
+];
+
+const faqItems = ({ showLeadingIcon, showMeta, showDescription, disabledItem }: Partial<ItemSwitches> = {}) =>
+  faq.map((f, i) => (
+    <AccordionItem
+      key={f.value}
+      value={f.value}
+      title={f.title}
+      leadingIcon={showLeadingIcon ? f.icon : undefined}
+      meta={showMeta ? <Badge variant="secondary" shape="pill">{f.meta}</Badge> : undefined}
+      description={showDescription ? f.description : undefined}
+      disabled={disabledItem && i === faq.length - 1}
+    >
+      <p>{f.answer}</p>
+    </AccordionItem>
+  ));
+
+// Only the switches a designer needs; value, dir, children and handlers stay out of Controls.
+// controls.include matches the shown argType names below, not the arg keys.
+const look = ['Style', 'Size', 'Icon', 'Type', 'Collapsible', 'Disabled'];
+const switches = ['Show leading icon', 'Show meta', 'Show description', 'Disable last item'];
 
 const meta = {
   title: 'Components/Accordion/Accordion',
-  component: Accordion,
+  // No `component`: the argTypes below are the whole Controls panel, in this order, without the
+  // props docgen would add (value, dir, onValueChange) ahead of them.
   parameters: {
     layout: 'padded',
-    docs: { description: { component: 'Stacked sections that open in place: FAQs, settings and filter groups. Style=default in apps and panels, Style=card with Icon=plus on marketing and help pages; one Style per list. Figma: Accordion page / Accordion, Accordion Item. Guide: eggux build-ui/components/accordion.md' } },
+    controls: { include: [...look, ...switches] },
+    docs: { description: { component: 'Stacked sections that open in place: FAQs, settings and filter groups. Style=default in apps and panels, Style=card with Icon=plus on marketing and help pages; one Style per list. Leading icon, Meta and Description are set on each Accordion Item; in Controls they switch on for every item. Description is code only (not in Figma). Figma: Accordion page / Accordion, Accordion Item. Guide: eggux build-ui/components/accordion.md' } },
   },
-  args: { defaultValue: ['plan'], children: items },
+  argTypes: {
+    accordionStyle: { name: 'Style', control: 'inline-radio', options: ['default', 'card'], table: { category: 'Accordion' } },
+    size: { name: 'Size', control: 'inline-radio', options: ['default', 'sm'], table: { category: 'Accordion' } },
+    icon: { name: 'Icon', control: 'inline-radio', options: ['chevron', 'plus'], table: { category: 'Accordion' } },
+    type: { name: 'Type', control: 'inline-radio', options: ['multiple', 'single'], description: 'multiple: several open at once. single: one at a time.', table: { category: 'Accordion' } },
+    collapsible: { name: 'Collapsible', control: 'boolean', description: 'single only: the open item can close again.', if: { arg: 'type', eq: 'single' }, table: { category: 'Accordion' } },
+    disabled: { name: 'Disabled', control: 'boolean', table: { category: 'Accordion' } },
+    showLeadingIcon: { name: 'Show leading icon', control: 'boolean', description: 'AccordionItem `leadingIcon`', table: { category: 'Items' } },
+    showMeta: { name: 'Show meta', control: 'boolean', description: 'AccordionItem `meta`: a Badge or a short summary', table: { category: 'Items' } },
+    showDescription: { name: 'Show description', control: 'boolean', description: 'AccordionItem `description`: a muted line under the title (code only)', table: { category: 'Items' } },
+    disabledItem: { name: 'Disable last item', control: 'boolean', description: 'AccordionItem `disabled`', table: { category: 'Items' } },
+  },
+  args: {
+    accordionStyle: 'default',
+    size: 'default',
+    icon: 'chevron',
+    type: 'multiple',
+    collapsible: true,
+    disabled: false,
+    defaultValue: ['plan'],
+    showLeadingIcon: false,
+    showMeta: false,
+    showDescription: false,
+    disabledItem: false,
+  },
+  render: ({ showLeadingIcon, showMeta, showDescription, disabledItem, children, type, defaultValue, ...args }) => {
+    // Single takes a string value; keep the first open item when switching Type in Controls.
+    const open = type === 'single' ? (Array.isArray(defaultValue) ? defaultValue[0] : defaultValue) : defaultValue;
+    return (
+      <Accordion key={type} type={type} defaultValue={open} {...args}>
+        {children ?? faqItems({ showLeadingIcon, showMeta, showDescription, disabledItem })}
+      </Accordion>
+    );
+  },
   decorators: [Story => <div className="w-[640px] max-w-full"><Story /></div>],
-} satisfies Meta<typeof Accordion>;
+} satisfies Meta<Args>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const triggerHeight = (el: HTMLElement) => Math.round(el.closest('[data-slot="accordion-item"]')!.getBoundingClientRect().height);
 
 // Figma Style=default, Icon=chevron, Size=default: collapsed item 53, expanded 89.
-export const Default: Story = {
+export const DefaultCheck: Story = {
+  tags: ['!dev'],
   play: async ({ canvas }) => {
     const first = canvas.getByRole('button', { name: 'Can I change my plan later?' });
     const second = canvas.getByRole('button', { name: 'Do you offer a free trial?' });
@@ -49,24 +108,21 @@ export const Default: Story = {
     await expect(second).toHaveAttribute('aria-expanded', 'false');
   },
 };
+// Playground: no play function, so changing Controls never shows a failed test. The checks run in DefaultCheck.
+export const Default: Story = { ...DefaultCheck, tags: [], play: undefined };
 
-// Keyboard: Tab reaches the first trigger, arrows move between items, Enter and Space toggle.
-export const Keyboard: Story = {
-  args: { defaultValue: [] },
-  play: async ({ canvas }) => {
-    const [first, second, , last] = canvas.getAllByRole('button');
-    await userEvent.tab();
-    await expect(first).toHaveFocus();
-    await userEvent.keyboard('{ArrowDown}');
-    await expect(second).toHaveFocus();
-    await userEvent.keyboard('{Enter}');
-    await expect(second).toHaveAttribute('aria-expanded', 'true');
-    await userEvent.keyboard(' ');
-    await expect(second).toHaveAttribute('aria-expanded', 'false');
-    await userEvent.keyboard('{End}');
-    await expect(last).toHaveFocus();
-    await userEvent.keyboard('{ArrowDown}');
-    await expect(first).toHaveFocus();
+// Every item switch on: leading icon, Meta badge and the description line under the title.
+export const WithDetails: Story = {
+  args: { showLeadingIcon: true, showMeta: true, showDescription: true, disabledItem: true, defaultValue: [] },
+  play: async ({ canvas, canvasElement }) => {
+    // The name is the title and Meta; the description is read as the button's description.
+    const plan = canvas.getByRole('button', { name: 'Can I change my plan later? Plans' });
+    await expect(plan).toHaveAccessibleDescription('Upgrades, downgrades and proration');
+    await expect(canvas.getByText('Upgrades, downgrades and proration')).toBeVisible();
+    await expect(plan.querySelectorAll('svg')).toHaveLength(2);
+    await expect(canvas.getByRole('button', { name: /Can I cancel at any time/ })).toBeDisabled();
+    const desc = canvasElement.querySelector('[data-slot="accordion-description"]')!;
+    await expect(getComputedStyle(desc).fontWeight).toBe('400');
   },
 };
 
@@ -89,7 +145,7 @@ export const CardWithPlus: Story = {
   },
 };
 
-// Figma Size=sm: side panels and dense lists, collapsed 45 (card 46).
+// Figma Size=sm: side panels and dense lists, collapsed 45. Switch Style in Controls for the card.
 export const Small: Story = {
   args: { size: 'sm', defaultValue: [] },
   decorators: [Story => <div className="w-[280px]"><Story /></div>],
@@ -98,20 +154,13 @@ export const Small: Story = {
   },
 };
 
-export const SmallCard: Story = {
-  args: { size: 'sm', accordionStyle: 'card', defaultValue: [] },
-  decorators: [Story => <div className="w-[280px]"><Story /></div>],
-  play: async ({ canvas }) => {
-    await expect(triggerHeight(canvas.getByRole('button', { name: 'Can I change my plan later?' }))).toBe(46);
-  },
-};
-
-// Figma "Example / filter panel": Size=sm, leading icons on all groups, Meta = Badge Count of
+// Figma Example / filter panel: Size=sm, leading icons on all groups, Meta = Badge Count of
 // active values; groups with active filters open by default.
 const count = (n: number) => (
   <Badge variant="secondary" shape="pill" className="min-w-5 px-1.5" aria-label={`${n} selected`}>{n}</Badge>
 );
 export const FilterPanel: Story = {
+  parameters: { controls: { include: look } },
   args: {
     size: 'sm',
     defaultValue: ['status'],
@@ -145,19 +194,53 @@ export const Single: Story = {
   },
 };
 
+/* Hidden checks (not in the sidebar). */
+
+// Keyboard: Tab reaches the first trigger, arrows move between items, Enter and Space toggle.
+export const Keyboard: Story = {
+  tags: ['!dev'],
+  args: { defaultValue: [] },
+  play: async ({ canvas }) => {
+    const [first, second, , last] = canvas.getAllByRole('button');
+    await userEvent.tab();
+    await expect(first).toHaveFocus();
+    await userEvent.keyboard('{ArrowDown}');
+    await expect(second).toHaveFocus();
+    await userEvent.keyboard('{Enter}');
+    await expect(second).toHaveAttribute('aria-expanded', 'true');
+    await userEvent.keyboard(' ');
+    await expect(second).toHaveAttribute('aria-expanded', 'false');
+    await userEvent.keyboard('{End}');
+    await expect(last).toHaveFocus();
+    await userEvent.keyboard('{ArrowDown}');
+    await expect(first).toHaveFocus();
+  },
+};
+
+// Figma Size=sm, Style=card: collapsed 46.
+export const SmallCard: Story = {
+  tags: ['!dev'],
+  args: { size: 'sm', accordionStyle: 'card', defaultValue: [] },
+  decorators: [Story => <div className="w-[280px]"><Story /></div>],
+  play: async ({ canvas }) => {
+    await expect(triggerHeight(canvas.getByRole('button', { name: 'Can I change my plan later?' }))).toBe(46);
+  },
+};
+
 // Stress test (Figma "Stress test / Accordion"): long titles wrap, the icon and Meta keep their size.
-export const LongTitle: Story = { tags: ['!dev'],
+export const LongTitle: Story = {
+  tags: ['!dev'],
   args: {
     size: 'sm',
     defaultValue: [],
     children: [
-      <AccordionItem key="a" value="a" title="What happens to invoices that were already sent when the customer moves to another billing entity?" meta={count(12)}><p>They stay with the old entity.</p></AccordionItem>,
+      <AccordionItem key="a" value="a" title="What happens to invoices that were already sent when the customer moves to another billing entity?" meta={count(12)} description="And a long description under it that wraps onto a second line as well"><p>They stay with the old entity.</p></AccordionItem>,
       <AccordionItem key="b" value="b" title="Short"><p>Fine.</p></AccordionItem>,
     ],
   },
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvas, canvasElement }) => {
-    const trigger = canvas.getAllByRole('button')[0];
+    const trigger = canvas.getAllByRole('button')[0]!;
     const icon = trigger.querySelector('svg:last-of-type') as SVGElement;
     await expect(Math.round(icon.getBoundingClientRect().width)).toBe(16);
     await expect(trigger.getBoundingClientRect().height).toBeGreaterThan(45);
@@ -166,6 +249,9 @@ export const LongTitle: Story = { tags: ['!dev'],
   },
 };
 
-export const DefaultDark: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Dark' } };
+const allOn = { showLeadingIcon: true, showMeta: true, showDescription: true };
+export const DefaultDark: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const CardWithPlusDark: Story = { ...CardWithPlus, tags: ['!dev'], globals: { theme: 'Dark' } };
-export const DefaultCorporate: Story = { ...Default, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const DefaultCorporate: Story = { ...DefaultCheck, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const WithDetailsDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' }, args: { ...allOn, defaultValue: ['plan'] } };
+export const WithDetailsCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' }, args: { ...allOn, accordionStyle: 'card', size: 'sm', defaultValue: ['plan'] } };

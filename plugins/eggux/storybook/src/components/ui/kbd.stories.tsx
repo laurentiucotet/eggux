@@ -45,6 +45,7 @@ export const Default: Story = {
 
 // The key hugs its label: min 20, 4 px side padding, height stays 20.
 export const Labels: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-2">
       <Kbd>K</Kbd><Kbd>Ctrl</Kbd><Kbd>Shift</Kbd><Kbd>Enter</Kbd><Kbd>⇧</Kbd><Kbd>⌥</Kbd><Kbd>⌃</Kbd>
@@ -63,6 +64,7 @@ export const Labels: Story = {
 
 // Figma Kbd Group: 4 px gap, 44 x 20 for ⌘ K.
 export const Group: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <KbdGroup>
       <Kbd>⌘</Kbd>
@@ -81,6 +83,7 @@ export const Group: Story = {
 };
 
 export const GroupCtrlShift: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <KbdGroup>
       <Kbd>Ctrl</Kbd>
@@ -96,7 +99,7 @@ export const GroupCtrlShift: Story = {
 
 // Stress (Figma "Stress test / Kbd", "Stress test / Kbd Group"): long names and many keys in a
 // narrow column. Keys never wrap their label and never shrink.
-export const Stress276: Story = { tags: ['!dev'],
+export const Stress276: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'],
   render: () => (
     <div className="w-[276px]">
       <KbdGroup className="flex-wrap">
@@ -115,7 +118,7 @@ export const Stress276: Story = { tags: ['!dev'],
   },
 };
 
-export const Stress368: Story = { tags: ['!dev'],
+export const Stress368: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'],
   render: () => (
     <div className="w-[368px]">
       <KbdGroup>

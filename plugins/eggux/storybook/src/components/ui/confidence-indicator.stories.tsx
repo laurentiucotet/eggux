@@ -3,7 +3,7 @@ import { expect, screen, userEvent, waitFor } from 'storybook/test';
 import { ConfidenceIndicator } from './confidence-indicator';
 
 const meta = {
-  title: 'AI Chat/Confidence Indicator',
+  title: 'Components/AI Chat/Confidence Indicator',
   component: ConfidenceIndicator,
   parameters: {
     docs: { description: { component: 'How sure the AI is about an extracted value, match or answer: high, medium, low in bars and words, never raw percentages. The info button opens a Tooltip with why; low asks people to check and never auto-applies. Figma: AI Chat / Confidence Indicator. Guide: eggux build-ui/patterns/ai-chat.md' } },
@@ -35,6 +35,7 @@ export const Default: Story = {
 
 // Figma Level=high, medium, low: filled bars match the level.
 export const Levels: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col items-start gap-4">
       <ConfidenceIndicator level="high" />

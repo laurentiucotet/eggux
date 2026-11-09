@@ -4,7 +4,7 @@ import { expect, fn, userEvent } from 'storybook/test';
 import { VoiceRecorder } from './voice-recorder';
 
 const meta = {
-  title: 'AI Chat/Voice Recorder',
+  title: 'Components/AI Chat/Voice Recorder',
   component: VoiceRecorder,
   parameters: {
     layout: 'padded',
@@ -81,7 +81,7 @@ function LiveDemo() {
   }, []);
   return <VoiceRecorder levels={samples} elapsed={Math.floor(samples.length * 0.12)} />;
 }
-export const Live: Story = { render: () => <LiveDemo /> };
+export const Live: Story = { parameters: { controls: { disable: true } }, render: () => <LiveDemo /> };
 
 // Stress test: 368 px panel; the waveform shrinks and drops the oldest bars, Send keeps its size.
 export const NarrowPanel: Story = { tags: ['!dev'],

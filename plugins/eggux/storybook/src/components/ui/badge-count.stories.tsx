@@ -44,6 +44,7 @@ const Row = ({ type }: { type: 'count' | 'dot' }) => (
 );
 
 export const Variants: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Row type="count" />,
   play: async ({ canvasElement }) => {
     const els = Array.from(canvasElement.querySelectorAll<HTMLElement>('[data-slot="badge-count"]'));
@@ -63,6 +64,7 @@ export const Variants: Story = {
 
 // Type=dot: 8 px, no number, sr-only text.
 export const Dot: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Row type="dot" />,
   play: async ({ canvas, canvasElement }) => {
     const els = Array.from(canvasElement.querySelectorAll<HTMLElement>('[data-slot="badge-count"]'));
@@ -83,6 +85,7 @@ export const DotDefaultLabel: Story = {
 
 // Counts cap at 99+, never 100 or 1k.
 export const Capped: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-4">
       <BadgeCount count={99} />
@@ -110,6 +113,7 @@ export const WithAccessibleLabel: Story = {
 
 // In context: bell button with a dot and a count; the button name carries the meaning.
 export const OnButton: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-4">
       <Button variant="outline">
@@ -157,5 +161,5 @@ const AllVariants = () => (
     <Row type="dot" />
   </div>
 );
-export const AllVariantsDark: Story = { render: () => <AllVariants />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All variants (Dark)' };
-export const AllVariantsCorporate: Story = { render: () => <AllVariants />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All variants (Corporate Light)' };
+export const AllVariantsDark: Story = { parameters: { controls: { disable: true } }, render: () => <AllVariants />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'All variants (Dark)' };
+export const AllVariantsCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <AllVariants />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'All variants (Corporate Light)' };

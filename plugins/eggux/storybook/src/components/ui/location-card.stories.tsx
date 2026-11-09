@@ -69,7 +69,7 @@ export const WithMap: Story = {
 };
 
 // Stress test: long city and address wrap; a long tag truncates; no overflow at 276.
-export const LongTextNarrow: Story = {
+export const LongTextNarrow: Story = { tags: ['!dev'],
   args: {
     city: 'Frankfurt am Main, Hauptverwaltung und Rechenzentrum',
     address: 'Taunusanlage 1, Skyper Tower, Etage 12 bis 15, 60329 Frankfurt am Main, Hessen, Germany',
@@ -82,7 +82,7 @@ export const LongTextNarrow: Story = {
     await expect(el.scrollWidth).toBeLessThanOrEqual(el.clientWidth);
   },
 };
-export const Narrow368Grid: Story = {
+export const Narrow368Grid: Story = { tags: ['!dev'],
   decorators: [Story => <div className="w-[368px]"><Story /></div>],
   play: async ({ canvasElement }) => {
     await expect(Math.round(box(canvasElement.querySelector('[data-slot="location-card"]')!).width)).toBe(320);

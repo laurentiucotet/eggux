@@ -16,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Solid: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap gap-2">
       {(['default', 'secondary', 'destructive', 'outline', 'success', 'warning', 'info'] as const).map(v => <Badge key={v} variant={v}>{v}</Badge>)}
@@ -24,6 +25,7 @@ export const Solid: Story = {
 };
 
 export const Soft: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Badge variant="soft-success" dot>Paid</Badge>
@@ -36,6 +38,7 @@ export const Soft: Story = {
 };
 
 export const Categories: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap gap-2">
       {[1, 2, 3, 4, 5, 6, 7, 8].map(n => <Badge key={n} variant={`category-${n}` as 'category-1'} shape="pill">Team {n}</Badge>)}
@@ -44,6 +47,7 @@ export const Categories: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-2">
       <Badge size="sm" variant="soft-info">Small</Badge>

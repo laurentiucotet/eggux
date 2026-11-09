@@ -15,7 +15,7 @@ const answer = (
 );
 
 const meta = {
-  title: 'AI Chat/Assistant Message',
+  title: 'Components/AI Chat/Assistant Message',
   component: AssistantMessage,
   parameters: {
     layout: 'padded',

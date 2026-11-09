@@ -4,7 +4,7 @@ import { expect, fn, userEvent, waitFor } from 'storybook/test';
 import { ContextChip, type ContextChipType } from './context-chip';
 
 const meta = {
-  title: 'AI Chat/Context Chip',
+  title: 'Components/AI Chat/Context Chip',
   component: ContextChip,
   parameters: {
     layout: 'padded',
@@ -98,6 +98,7 @@ function ContextList() {
 }
 
 export const RemoveFromList: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <ContextList />,
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Remove Q3 report.pdf' }));

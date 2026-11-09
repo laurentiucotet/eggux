@@ -98,6 +98,8 @@ export const Ellipsis = create('ellipsis', "<g><circle cx=\"3.25\" cy=\"8\" r=\"
 export const ExternalLink = create('external-link', "<g><path d=\"M7 2.75 L2.75 2.75 L2.75 13.25 L13.25 13.25 L13.25 9\"/><line x1=\"7.5\" y1=\"8.5\" x2=\"13.25\" y2=\"2.75\"/><path d=\"M9.25 2.75 L13.25 2.75 L13.25 6.75\"/></g>");
 /** Figma Icon/eye */
 export const Eye = create('eye', "<g><path d=\"M2 8 C3.4 5.2 5.6 3.75 8 3.75 C10.4 3.75 12.6 5.2 14 8 C12.6 10.8 10.4 12.25 8 12.25 C5.6 12.25 3.4 10.8 2 8 Z\"/><circle cx=\"8\" cy=\"8\" r=\"2.25\"/></g>");
+/** Figma Icon/eye-off */
+export const EyeOff = create('eye-off', "<defs><mask id=\"iconmcp-eye-off-m\" maskUnits=\"userSpaceOnUse\" x=\"-4\" y=\"-4\" width=\"24\" height=\"24\"><rect x=\"-4\" y=\"-4\" width=\"24\" height=\"24\" fill=\"#fff\" stroke=\"none\"/><line x1=\"2.75\" y1=\"2.75\" x2=\"13.25\" y2=\"13.25\" stroke=\"#000\" fill=\"none\" stroke-width=\"3\"/></mask></defs><g><g mask=\"url(#iconmcp-eye-off-m)\"><path d=\"M2 8 C3.4 5.2 5.6 3.75 8 3.75 C10.4 3.75 12.6 5.2 14 8 C12.6 10.8 10.4 12.25 8 12.25 C5.6 12.25 3.4 10.8 2 8 Z\"/><circle cx=\"8\" cy=\"8\" r=\"2.25\"/></g><line x1=\"2.75\" y1=\"2.75\" x2=\"13.25\" y2=\"13.25\"/></g>");
 /** Figma Icon/file-text */
 export const FileText = create('file-text', "<g><path d=\"M3.25 2 L9 2 L12.75 5.75 L12.75 14 L3.25 14 L3.25 2 Z\"/><path d=\"M9 2 L9 5.75 L12.75 5.75\"/><line x1=\"5.5\" y1=\"5.75\" x2=\"7\" y2=\"5.75\"/><line x1=\"5.5\" y1=\"8.5\" x2=\"10.5\" y2=\"8.5\"/><line x1=\"5.5\" y1=\"11\" x2=\"10.5\" y2=\"11\"/></g>");
 /** Figma Icon/folder */
@@ -249,6 +251,7 @@ export const UserPlus = create('user-plus', "<g><circle cx=\"6\" cy=\"5.25\" r=\
 /** Figma Icon/users */
 export const Users = create('users', "<g><circle cx=\"6\" cy=\"5.25\" r=\"2.5\"/><path d=\"M1.75 13.5 C2.25 11.25 3.9 9.75 6 9.75 C8.1 9.75 9.75 11.25 10.25 13.5\"/><path d=\"M10.25 2.85 A2.5 2.5 0 0 1 10.25 7.65\"/><path d=\"M11.75 10 C12.9 10.5 13.7 11.8 14 13.5\"/></g>");
 /** Figma Icon/volume-2 (IconMCP volume) */
+export const VolumeX = create('volume-x', "<g><path d=\"M2.25 6 L4.75 6 L8 3 L8 13 L4.75 10 L2.25 10 L2.25 6 Z\"/><line x1=\"10.75\" y1=\"6\" x2=\"14.25\" y2=\"10\"/><line x1=\"14.25\" y1=\"6\" x2=\"10.75\" y2=\"10\"/></g>");
 export const Volume2 = create('volume-2', "<g><path d=\"M2.25 6 L4.75 6 L8 3 L8 13 L4.75 10 L2.25 10 L2.25 6 Z\"/><path d=\"M10.5 5.75 A3.25 3.25 0 0 1 10.5 10.25\"/><path d=\"M12.25 3.75 A6 6 0 0 1 12.25 12.25\"/></g>");
 /** Figma Icon/wrench */
 export const Wrench = create('wrench', "<g><path d=\"M8.63 9.13 A3.75 3.75 0 0 0 13.7 4.28 L11.42 6.56 L9.44 4.58 L11.72 2.3 A3.75 3.75 0 0 0 6.87 7.37 L2.83 11.41 A1.25 1.25 0 0 0 4.59 13.17 Z\"/></g>");
@@ -292,6 +295,7 @@ export const icons = {
   'ellipsis': Ellipsis,
   'external-link': ExternalLink,
   'eye': Eye,
+  'eye-off': EyeOff,
   'file-text': FileText,
   'folder': Folder,
   'git-branch': GitBranch,
@@ -368,6 +372,7 @@ export const icons = {
   'user-plus': UserPlus,
   'users': Users,
   'volume-2': Volume2,
+  'volume-x': VolumeX,
   'wrench': Wrench,
   'x': X,
   'zap': Zap,

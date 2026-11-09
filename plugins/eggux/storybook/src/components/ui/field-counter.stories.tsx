@@ -26,6 +26,7 @@ export const Default: Story = {
 
 // Figma Status: default, near (from 90 %), over (past the limit), announced politely.
 export const Statuses: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-6">
       <FieldCounter value={42} limit={160} />

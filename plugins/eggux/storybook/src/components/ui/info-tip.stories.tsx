@@ -88,6 +88,7 @@ export const LongText: Story = { tags: ['!dev'],
 
 // Figma Info Tip Trigger states: default, open (muted fill, brand icon), disabled.
 export const TriggerStates: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex items-center gap-4">
       <InfoTipTrigger label="SLA" />

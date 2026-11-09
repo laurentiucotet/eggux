@@ -157,7 +157,7 @@ export const Disabled: Story = {
 
 // Stress test (Figma "Stress test / Button Icon"): fixed size, never shrinks in a tight row; a
 // long label stays in the tooltip, which wraps at 280.
-export const NarrowRow: Story = {
+export const NarrowRow: Story = { tags: ['!dev'],
   args: { variant: 'ghost', size: 'xs', label: 'Remove the filter Customer is Acme Corporation Europe GmbH', icon: <X aria-hidden="true" /> },
   render: args => (
     <div className="flex w-[120px] items-center gap-1 rounded-md border border-dashed p-1">

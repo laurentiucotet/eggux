@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor } from 'storybook/test';
-import { DateRangePicker } from './date-range-picker';
+import { DateRangePicker, defaultPresets } from './date-range-picker';
 
 const TODAY = new Date(2026, 9, 19);
 const LAST_14 = { from: new Date(2026, 9, 6), to: new Date(2026, 9, 19) };
@@ -37,7 +37,9 @@ export const Default: Story = {
     await expect(box(panel(canvasElement))).toEqual([662, 355]);
     const active = canvas.getByRole('button', { name: 'Last 14 days' });
     await expect(active).toHaveAttribute('aria-pressed', 'true');
-    await waitFor(() => expect(getComputedStyle(active).backgroundColor).toBe(probe('bg-accent', 'backgroundColor')));
+    // Probe outside waitFor: a probe in the callback mutates the DOM, re-triggers waitFor at once and hangs on failure.
+    const accent = probe('bg-accent', 'backgroundColor');
+    await waitFor(() => expect(getComputedStyle(active).backgroundColor).toBe(accent));
     await expect(box(active)[1]).toBe(32);
     await expect(canvas.getAllByRole('button', { pressed: true })).toHaveLength(1);
     await expect(canvas.getByRole('status')).toHaveTextContent('6 Oct - 19 Oct 2026 · 14 days');
@@ -100,7 +102,8 @@ export const Keyboard: Story = {
     await expect(canvas.getByRole('button', { name: 'Today' })).toHaveFocus();
     await userEvent.keyboard('{Enter}');
     await expect(canvas.getByRole('status')).toHaveTextContent('19 Oct 2026 · 1 day');
-    for (let i = 0; i < 8; i += 1) await userEvent.tab();
+    // Past the other presets (Today is the first of 9) to the first calendar control.
+    for (let i = 0; i < defaultPresets.length; i += 1) await userEvent.tab();
     await expect(canvas.getByRole('button', { name: 'Previous month' })).toHaveFocus();
     await userEvent.tab();
     await expect(canvas.getByRole('button', { name: 'Next month' })).toHaveFocus();

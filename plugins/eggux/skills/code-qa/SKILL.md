@@ -11,9 +11,13 @@ Read-only by default: it reports. It fixes only what the user approves, through
 ## 1. Automated checks
 In the code library folder:
 1. `npm run typecheck`.
-2. `npm test`: every story renders, passes its play function and axe. Note each failure with the
+2. `npm test` (a few story files at a time on a large library): every story renders, passes its play function and axe. Note each failure with the
    story id, the assertion and the axe rule (`color-contrast`, `label`, `button-name`...).
 3. `npm run build-storybook` must succeed.
+4. `npm run check:stories`: every story of the production build in a fresh 1200 x 900 en-US UTC page,
+   like Chromatic. A failure that passes in step 2 reads state before effects, timers or
+   transitions settled (`/eggux:code-component` step 3, "Tests wait for the page"). Fix it before
+   anything is published.
 
 ## 2. Coverage
 Compare `COMPONENTS.md` with the Figma library (`references/figma-library.md`) and the client's

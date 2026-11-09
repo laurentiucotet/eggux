@@ -66,6 +66,7 @@ const Removable = ({ onRemove }: { onRemove: () => void }) => {
   return open ? <LinkPreview {...meta.args} onRemove={() => { onRemove(); setOpen(false); }} /> : <a href="https://acme.com/blog/month-end-close">https://acme.com/blog/month-end-close</a>;
 };
 export const Removal: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Removable onRemove={fn()} />,
   play: async ({ canvas }) => {
     await userEvent.tab();
@@ -86,7 +87,7 @@ const long = {
   title: 'How the Berlin, Paris and Madrid finance teams cut month-end close from nine working days to five without adding headcount',
   description: 'Three changes to approvals and bank matching, the numbers behind them, and what we would do differently next time if we started again from scratch.',
 };
-export const LongTextNarrow: Story = {
+export const LongTextNarrow: Story = { tags: ['!dev'],
   args: { ...long, layout: 'vertical' },
   decorators: [Story => <div className="w-[276px]"><Story /></div>],
   play: async ({ canvas, canvasElement }) => {
@@ -97,7 +98,7 @@ export const LongTextNarrow: Story = {
     await expect(Math.round(box(canvasElement.querySelector('[data-slot="link-preview-description"]')!).height)).toBe(32);
   },
 };
-export const LongTextHorizontal368: Story = {
+export const LongTextHorizontal368: Story = { tags: ['!dev'],
   args: long,
   decorators: [Story => <div className="w-[368px]"><Story /></div>],
   play: async ({ canvas }) => {
@@ -113,6 +114,6 @@ const Both = () => (
     <LinkPreview {...meta.args} layout="vertical" image={<ImagePlaceholder ratio="16:9" />} />
   </div>
 );
-export const BothLight: Story = { render: () => <Both />, name: 'Both layouts' };
-export const BothDark: Story = { render: () => <Both />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Both layouts (Dark)' };
-export const BothCorporate: Story = { render: () => <Both />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Both layouts (Corporate Light)' };
+export const BothLight: Story = { parameters: { controls: { disable: true } }, render: () => <Both />, name: 'Both layouts' };
+export const BothDark: Story = { parameters: { controls: { disable: true } }, render: () => <Both />, tags: ['!dev'], globals: { theme: 'Dark' }, name: 'Both layouts (Dark)' };
+export const BothCorporate: Story = { parameters: { controls: { disable: true } }, render: () => <Both />, tags: ['!dev'], globals: { theme: 'Corporate Light' }, name: 'Both layouts (Corporate Light)' };

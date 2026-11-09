@@ -6,9 +6,12 @@ components come one at a time with `/eggux:code-component`, checks with `/eggux:
 
 ```
 npm install
-npm run storybook        # http://localhost:6006, themes and density in the toolbar (restart after adding component files)
+npm run storybook        # http://localhost:6006, scheme and look in the toolbar (restart after adding component files)
 npm test                 # every story as a test: render, play function, axe
 npm run build-storybook  # static site in storybook-static/
+npm run check:stories    # every story of the production build in a fresh page, like Chromatic
+npm run kit -- --list    # trim the kit for a new product: list, dry run, --apply (see below)
+npm run chromatic        # publish for review (needs CHROMATIC_PROJECT_TOKEN); CI does it on push
 npm run tokens           # tokens/egg-ui.tokens.json -> src/styles/tokens.css
 ```
 
@@ -22,9 +25,22 @@ npm run tokens           # tokens/egg-ui.tokens.json -> src/styles/tokens.css
 - `src/components/ui/<name>.tsx`: one component, props named after the Figma properties.
 - `src/components/ui/<name>.stories.tsx`: the stories are the documentation and the tests:
   variants, states, keyboard, measured sizes from Figma, stress cases, theme stories.
-- `.storybook/preview.tsx`: theme switcher (the six Semantic modes), Density toolbar, axe
-  failures fail the test (`a11y.test = 'error'`).
+- `.storybook/preview.tsx`: the toolbar (Scheme light or dark, Look Platform or Back office or
+  Showcase, Size), Controls rules, axe failures fail the test (`a11y.test = 'error'`). Scheme
+  and Look map to classes on `<html>` (`dark`, `theme-corporate`, `theme-showcase`); a story can still
+  set the combined name (`globals: { theme: 'Corporate Dark' }`).
+- `src/styles/breakpoints.ts`: the widths the product supports. The Size selector and the
+  Foundations / Breakpoints page read it; edit it for a new product.
+- `src/foundations/`: Foundations pages (Colors, Typography, Shape and spacing, Motion and
+  elevation, Breakpoints, Themes and looks) that read the tokens live, so they never drift.
 - `scripts/screenshot-stories.js`: PNGs of built stories for the side-by-side check with Figma.
+- `scripts/check-stories.mjs`: opens every story of `storybook-static` the way Chromatic does (new
+  1200 x 900 page, en-US, UTC) and lists the ones that throw. Catches tests that read state before
+  effects ran, which `npm test` (dev build) does not.
+- `scripts/kit-trim.mjs`: keeps the components you name plus what they import, removes the rest
+  (`/eggux:kit-trim`).
+- `.github/workflows/chromatic.yml` (repository root): publishes the Storybook on push and pull
+  request (`/eggux:storybook-publish`).
 - `COMPONENTS.md`: which Figma components exist in code.
 
 Tests run in a real Chromium through Vitest browser mode (`@storybook/addon-vitest`,

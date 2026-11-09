@@ -24,6 +24,7 @@ export const Default: Story = {
 };
 
 export const Trends: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex gap-6">
       {(['up', 'down', 'neutral'] as const).map(t => <Sparkline key={t} trend={t} />)}
@@ -35,6 +36,7 @@ export const Trends: Story = {
 };
 
 export const Tall: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Sparkline className="h-12" />,
   play: async ({ canvasElement }) => {
     await expect(Math.round(canvasElement.querySelector('svg')!.getBoundingClientRect().height)).toBe(48);

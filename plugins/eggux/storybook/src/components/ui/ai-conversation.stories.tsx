@@ -70,7 +70,7 @@ function Conversation({ wordDelay = 60 }: { wordDelay?: number }) {
 }
 
 const meta = {
-  title: 'AI Chat/Examples',
+  title: 'Blocks/AI Chat/Examples',
   component: Conversation,
   parameters: { layout: 'padded', docs: { description: { component: 'Prompt Input, User Message and Assistant Message in one conversation. Figma: AI Chat / Example / in ai conversation.' } } },
 } satisfies Meta<typeof Conversation>;

@@ -6,7 +6,7 @@ import { Button } from './button';
 import { ResponseFeedback } from './response-feedback';
 
 const meta = {
-  title: 'AI Chat/Response Feedback',
+  title: 'Components/AI Chat/Response Feedback',
   component: ResponseFeedback,
   parameters: {
     layout: 'padded',
@@ -28,11 +28,13 @@ export const Default: Story = {
     await expect(Math.round(form(canvasElement).getBoundingClientRect().width)).toBe(480);
     await expect(Math.round(form(canvasElement).getBoundingClientRect().height)).toBe(274);
     const first = canvas.getByRole('button', { name: 'Not accurate' });
-    await expect(first).toHaveFocus();
+    // Focus moves in an effect, after the first render: wait for it (Chromatic starts play at once).
+    await waitFor(() => expect(first).toHaveFocus());
     const send = canvas.getByRole('button', { name: 'Send' });
     await expect(send).toBeDisabled();
     await expect(Math.round(send.getBoundingClientRect().height)).toBe(32);
-    await expect(Math.round(first.getBoundingClientRect().height)).toBe(32);
+    // The Chip (button plus border) is 32 high, as in Figma.
+    await expect(Math.round(first.closest('[data-slot="chip"]')!.getBoundingClientRect().height)).toBe(32);
 
     await userEvent.keyboard(' ');
     await expect(first).toHaveAttribute('aria-pressed', 'true');
@@ -104,6 +106,7 @@ function Flow() {
 }
 
 export const FromBadResponse: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Flow />,
   play: async ({ canvas }) => {
     const bad = canvas.getByRole('button', { name: 'Bad response' });
@@ -149,8 +152,8 @@ const column = (width: number): Story => ({
     await expect(send.getBoundingClientRect().right).toBeLessThanOrEqual(el.getBoundingClientRect().right);
   },
 });
-export const Column276: Story = column(276);
-export const Column368: Story = column(368);
+export const Column276: Story = { ...column(276), tags: ['!dev'] };
+export const Column368: Story = { ...column(368), tags: ['!dev'] };
 
 export const ReasonSelectedDark: Story = { ...ReasonSelected, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const ReasonSelectedCorporate: Story = { ...ReasonSelected, tags: ['!dev'], globals: { theme: 'Corporate Light' } };

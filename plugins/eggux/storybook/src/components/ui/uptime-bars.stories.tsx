@@ -76,7 +76,10 @@ export const Tooltips: Story = {
     await expect(tip).toHaveTextContent('degraded');
     await expect(tip).toHaveTextContent('Elevated API errors');
     await userEvent.unhover(link);
-    await waitFor(() => expect(within(document.body).queryByRole('tooltip')).toBeNull());
+    // Radix keeps the tooltip while the pointer is inside the grace area between the day and the tip;
+    // unhover sends no position, so move the pointer far away like a mouse would.
+    await userEvent.pointer({ target: document.body, coords: { clientX: 1100, clientY: 800 } });
+    await waitFor(() => expect(within(document.body).queryByRole('tooltip')).toBeNull(), { timeout: 4000 });
   },
 };
 
@@ -106,6 +109,7 @@ export const NoLabels: Story = {
 // Figma Uptime Day: one bar, 8 x 28 in the component set; here every state side by side.
 const states: UptimeState[] = ['operational', 'degraded', 'outage', 'maintenance', 'no-data'];
 export const DayStates: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <ul className="m-0 flex list-none gap-0.5 p-0">
       {states.map(s => <UptimeDay key={s} state={s} date="3 Oct 2026" className="w-2 flex-none" />)}

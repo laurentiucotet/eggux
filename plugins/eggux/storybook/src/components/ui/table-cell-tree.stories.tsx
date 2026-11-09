@@ -60,6 +60,7 @@ const expanders: TableCellTreeExpander[] = ['collapsed', 'expanded', 'none'];
 // The 12 Figma variants: Level 0 to 3 x Expander. Indent is 24 per level; labels line up with or
 // without an expander.
 export const Variants: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <table className="w-[816px] border-collapse text-sm text-foreground">
       <tbody>
@@ -129,6 +130,7 @@ function Tree() {
   );
 }
 export const Interactive: Story = {
+  parameters: { controls: { disable: true } },
   render: () => <Tree />,
   play: async ({ canvas }) => {
     await expect(canvas.getAllByRole('row')).toHaveLength(1);
@@ -158,6 +160,7 @@ export const Interactive: Story = {
 
 // Show icon off, and a swapped icon.
 export const Icons: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <table className="w-[240px] border-collapse text-sm text-foreground">
       <tbody>

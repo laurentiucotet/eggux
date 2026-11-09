@@ -35,6 +35,7 @@ export const Default: Story = {
 export const Filled: Story = { args: { inputStyle: 'filled' } };
 
 export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <div className="grid gap-3">
       <label className="grid gap-1 text-sm">Small<Input size="sm" placeholder="Filter" /></label>

@@ -237,6 +237,9 @@ function TimePicker({
         >
           <Clock aria-hidden="true" className="size-4 shrink-0 text-muted-foreground" />
           <span id={valueId} data-slot="time-picker-value" className={cn('min-w-0 flex-1 truncate', !text && 'text-muted-foreground')}>{shown}</span>
+          {/* A space between value and duration: their texts join without one, so the visible text read
+              "10:301 h 30 min" and no longer matched the accessible name (axe label-content-name-mismatch). */}
+          {isRange && showDuration && duration ? ' ' : null}
           {isRange && showDuration && duration ? <span data-slot="time-picker-duration" className="shrink-0 text-sm text-muted-foreground">{duration}</span> : null}
         </button>
       </PopoverTrigger>

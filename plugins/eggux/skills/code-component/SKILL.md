@@ -58,52 +58,122 @@ first, code follows Figma).
 - Disabled with slots: a disabled component must disable what is put in its slots too. Wrap each
   slot in `<fieldset disabled={disabled} className="m-0 min-w-0 border-0 p-0">`; fading the
   container alone leaves the slotted buttons active and fails axe contrast.
+- Reuse before you build. When the markup looks like a library part (pills = Chip in a Chip Group,
+  a row = List Item, a group of toggles = Toggle Group, a field = Field, a bar of actions = Bulk
+  Action Bar), find it first (`npm run kit -- --list`, or grep `src/components/ui`) and compose it.
+  A hand-made copy drifts from the library: Response Feedback had its own pill buttons until it
+  was moved to Chip.
+- Do not make state depend on an effect that a key press or a test can beat. Effects from the first
+  render run a moment after it. A ref flag set by a key handler and read in an effect ("move focus
+  to the next day") must carry the target value and wait for the render that holds it (Calendar);
+  rows that must take focus get `tabIndex` in the JSX, not from an effect (JSON viewer rows).
+- No `export type` or other non-story export in a stories file: Chromatic indexes it as a story that
+  does not exist and the whole publish fails.
 - Top comment: the Figma component and page it implements.
 
 ## 3. Write the stories and tests
 `src/components/ui/<name>.stories.tsx`. Every story is a test (`npm test`): it must render,
 pass axe (`a11y.test = 'error'` in preview) and pass its `play` function.
-- Title follows the Figma page, so the sidebar groups like the library: `Components/<Figma page>/<Component>`
-  when the page holds several components (`Components/Table/Table Cell Status`,
-  `Components/Accordion/Show More`), `Components/<Component>` when it is the only one on its page
-  (Button, Spinner). The Figma page is the one in the `COMPONENTS.md` row.
-- `Default` with a play test of the main interaction (click, type, open, select) using
-  `storybook/test` (`expect`, `userEvent`, `fn`) and the accessible role and name.
-- One story per Figma variant group (Variants, Sizes, Styles), with a play test of the measured
-  sizes the reference states (heights, widths).
-- One story per state Figma has: disabled, loading, invalid, read-only, open, empty; each with a
-  play test of what the state must do (blocks clicks, `aria-invalid` with a description, value
-  cannot change).
+
+**First decide where each variation goes** (`references/storybook-structure.md` has the full table).
+Most of what people want to look at is not a story:
+- The environment (light or dark, Platform or Back office, the width) is the **toolbar**. Never a story
+  per theme or per width for looking.
+- A value of a prop (variant, size, show icon, disabled, count, a text of any length) is a **control**
+  of the `Default` playground. There is no "long text" story and no "short text" story: the text is a
+  control. Long text and narrow columns are a hidden check.
+- A set to compare at a glance (all variants, all sizes) is **one gallery story**, not one story each.
+- A state or a flow that needs setup (open, loading, empty, a keyboard path) is a story only if
+  someone opens it by name.
+- Checks (stress, dark and Back office copies for contrast, edge cases) are **hidden** (`!dev`).
+A visible story must teach something the Default with its Controls and the toolbar cannot. A
+component ends with two to six visible stories; more means controls or checks leaked into the sidebar.
+- Title: `Components/<Family>/<Component>` when the family holds several components
+  (`Components/Table/Table Cell Status`, `Components/AI Chat/Prompt Input`), `Components/<Component>`
+  when it stands alone (Button, Spinner). The family is the Figma page in the `COMPONENTS.md` row; a
+  product area (AI Chat) is a family, not a section. A composition of components with real content
+  is a Block (`Blocks/<Family>/<Name>`, no play function) and a whole screen is a Page
+  (`Pages/<Area>/<Screen>`). Sections are fixed: Foundations, Components, Blocks, Pages
+  (`references/storybook-structure.md`).
+- `Default` is a playground: every option of the component is a control, in two groups in the
+  Controls panel (the component's own props; the parts it holds). Rules:
+  - `argTypes` with a readable `name` ("Show leading icon"), `control` (inline-radio for 2 to 3
+    choices, select for more, boolean, text, range with min and max for counts and widths), a one
+    line `description` and `table.category`.
+  - Options that live on child parts (icon, meta, count, badge, description, disabled) are story
+    switches that set the same thing on every child ("Show meta"); the render maps them to the
+    child props.
+  - Leave `component` out of the meta, so docgen does not add value, dir or handlers to the panel.
+    `.storybook/preview.tsx` already hides functions, React nodes, arrays and objects.
+  - `defaultOpen` and similar start-only props: give the root a `key` of the control, so changing
+    it remounts (an Open switch for overlays).
+  - A Width range for anything that resizes, so people see the resize contract and breakpoints.
+  - The playground has no `play` (a failed assertion after a control change would turn the
+    Interactions panel red). Its checks live in a hidden twin: `export const DefaultCheck` with
+    `tags: ['!dev']` and the play function. Stories that spread `DefaultCheck` (theme copies) must
+    write `tags: ['!dev']` themselves: tags are read from the source, not from the spread.
+  - A story whose render ignores args sets `parameters: { controls: { disable: true } }`, so no
+    switch does nothing.
+  The play test of the main interaction uses `storybook/test` (`expect`, `userEvent`, `fn`) and
+  the accessible role and name.
+- One gallery story per Figma variant group (Variants, Sizes, Styles): every variant side by side, with
+  a play test of the measured sizes the reference states (heights, widths). Not one story per variant.
+- A state that is a prop (disabled, invalid, read-only) is a control, and its check (blocks clicks,
+  `aria-invalid` with a description, value cannot change) runs in the hidden `DefaultCheck` or a hidden
+  `States` story. A state that needs setup (open, loading with data, empty list) is a story when people
+  open it by name, with its play test.
 - Keyboard: Tab reaches it, Enter or Space activates, Escape closes overlays, arrows move in
   lists and groups; focus returns where it came from.
 - Stress checks from the Figma stress test: long text, the 276 / 368 px columns, many items,
   missing optional parts; play tests check one line, truncation or wrapping as the resize
   contract says. They are tests, not documentation: put them in one `Stress` story per component
   (several cases rendered side by side) tagged `tags: ['!dev']`, hidden from the sidebar.
-- Sidebar stories stay few: Default, the variant groups and the states people need to see.
+- Sidebar stories stay few: Default (the playground), the variant groups and the states people need
+  to see. A manager opens these from a link: a story with a play function runs it on open and
+  leaves its end state on screen (an example table left filtered), so example and demo stories
+  carry no play; their checks go to a hidden twin like `DefaultCheck`.
+- Titles may nest, one level per `/`, three levels at most:
+  `Components/Table/Cells/Table Cell User`. Use it for a family of five or more parts.
 - Theme checks: the main visual story again with `globals: { theme: 'Dark' }` and
-  `globals: { theme: 'Corporate Light' }`, so axe checks contrast in each mode. Tag them
+  `globals: { theme: 'Corporate Light' }` (Corporate is the Back office look in the toolbar), so axe checks contrast in each mode. Tag them
   `tags: ['!dev']`: hidden from the sidebar (people switch themes with the toolbar), still run by
   `npm test`. One copy per theme, never a sidebar story per theme.
 - `parameters.docs.description.component`: the one-line rule, the Figma location and the guide.
 - Content in plain English, domain-neutral (Acme, EUR), no lorem ipsum.
+- Tests wait for the page. A play function starts right after the first render in Chromatic
+  (a toast mounts 13 ms later, focus moves in an effect, a scroll position is set in an effect). Read
+  state that comes from an effect, a timer or a state update after an action with
+  `await waitFor(() => expect(...))` or `findBy*`: focus after Tab or an arrow, scroll position,
+  popovers and toasts, live-region text, `aria-expanded` after a key. Send keys one at a time when
+  the next key depends on where the last one moved the focus. Move the pointer far away
+  (`userEvent.pointer({ target: document.body, coords: ... })`) to close a hover card or tooltip;
+  `unhover` alone keeps Radix's grace area open.
 
 ## 4. Run until green
-`npm run typecheck` and `npm test -- src/components/ui/<name>.stories.tsx`. Fix the component,
-not the test, unless the test is wrong about Figma. An axe failure is a real defect: fix it with
+`npm run typecheck` and `npm test -- src/components/ui/<name>.stories.tsx` (a few files at a time,
+never the whole suite in one run). Fix the component, not the test, unless the test is wrong about
+Figma. An axe failure is a real defect: fix it with
 tokens; when the token itself fails (contrast of a Figma value), report it as a design finding
 (Inbox line in `eggux/decisions.md`) instead of overriding it in code.
 
 ## 5. Compare with Figma
 `npm run build-storybook`, then `node scripts/screenshot-stories.js <out> components-<name>--<story>`
-for the main stories (the id follows the story title: `AI Chat/Tool Call` → `ai-chat-tool-call--<story>`,
-`Components/Table/Table Toolbar` → `components-table-table-toolbar--<story>`),
+for the main stories (the id follows the story title: `Components/AI Chat/Tool Call` → `components-ai-chat-tool-call--<story>`,
+`Components/Table/Table Toolbar` → `components-table-table-toolbar--<story>`,
+`Blocks/Table/Examples` → `blocks-table-examples--<story>`),
 and put them next to the Figma screenshots of the same variants. Check
 sizes, spacing, radius, colors, type and icon size; fix differences or explain them (a browser
 default, a deliberate code behavior). Show the user the pair for the main story.
 A `storybook dev` server started before the component file existed does not generate the new
 Tailwind classes: the story shows unstyled while the tests pass. Restart it before looking at
 new components in the dev server.
+
+## 5b. Same stories as the review link
+`npm run build-storybook && npm run check:stories -- --filter <name>` opens the stories of the
+production build in a fresh page the way Chromatic does (no dev server, play starts at once). A
+failure here that passes in `npm test` is a test or a component that reads state too early; fix
+it as in step 3 ("Tests wait for the page"). Run the whole check before a push that publishes
+(`/eggux:storybook-publish`).
 
 ## 6. Record
 - Add the component to `COMPONENTS.md` in the code library (name, Figma page, stories, tests,

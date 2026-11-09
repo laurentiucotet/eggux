@@ -13,7 +13,7 @@ const figmaSteps = (
 );
 
 const meta = {
-  title: 'AI Chat/Agent Plan',
+  title: 'Components/AI Chat/Agent Plan',
   component: AgentPlan,
   parameters: {
     layout: 'padded',
@@ -51,6 +51,7 @@ export const Default: Story = {
 
 // Plan Step Status: pending, running, done, error. Figma: 560 × 38 with a description.
 export const StepStatuses: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
     <ol className="flex w-[560px] flex-col gap-6">
       <PlanStep status="pending" />
