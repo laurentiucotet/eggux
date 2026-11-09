@@ -259,13 +259,14 @@ function JsonNode({ k, value, depth, openDepth, last }: { k?: string; value: Jso
   const key = k !== undefined ? <>"{k}": </> : null;
   const comma = last ? '' : ',';
   if (!isObj) {
-    return <div role="treeitem" aria-selected={false} style={pad} className="truncate pb-0.5">{key}<JsonValue value={value} />{comma}</div>;
+    // tabIndex -1 from the first render: rows can take focus at once; the effect below gives the first row 0.
+    return <div role="treeitem" tabIndex={-1} aria-selected={false} style={pad} className="truncate pb-0.5">{key}<JsonValue value={value} />{comma}</div>;
   }
   const arr = Array.isArray(value);
   const entries = arr ? (value as Json[]).map((v, i) => [String(i), v] as const) : Object.entries(value as Record<string, Json>);
   const [o, c] = arr ? ['[', ']'] : ['{', '}'];
   return (
-    <div role="treeitem" aria-expanded={open} aria-selected={false}>
+    <div role="treeitem" tabIndex={-1} aria-expanded={open} aria-selected={false}>
       <div style={{ paddingLeft: Math.max(0, depth * 16 - 16) }} className="flex items-center gap-1 pb-0.5">
         <span aria-hidden="true" data-toggle onClick={() => setOpen(x => !x)} className="flex size-3 shrink-0 cursor-pointer items-center justify-center text-muted-foreground [&_svg]:size-3">
           {open ? <ChevronDown /> : <ChevronRight />}

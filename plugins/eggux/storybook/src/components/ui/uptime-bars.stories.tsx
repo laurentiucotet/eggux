@@ -76,7 +76,10 @@ export const Tooltips: Story = {
     await expect(tip).toHaveTextContent('degraded');
     await expect(tip).toHaveTextContent('Elevated API errors');
     await userEvent.unhover(link);
-    await waitFor(() => expect(within(document.body).queryByRole('tooltip')).toBeNull());
+    // Radix keeps the tooltip while the pointer is inside the grace area between the day and the tip;
+    // unhover sends no position, so move the pointer far away like a mouse would.
+    await userEvent.pointer({ target: document.body, coords: { clientX: 1100, clientY: 800 } });
+    await waitFor(() => expect(within(document.body).queryByRole('tooltip')).toBeNull(), { timeout: 4000 });
   },
 };
 

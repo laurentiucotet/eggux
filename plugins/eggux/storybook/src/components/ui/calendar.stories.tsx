@@ -139,15 +139,15 @@ export const Keyboard: Story = {
   play: async ({ canvas, canvasElement }) => {
     day(canvas, /Thursday 22 October 2026/).focus();
     await userEvent.keyboard('{ArrowRight}');
-    await expect(day(canvas, /Friday 23 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Friday 23 October 2026/)).toHaveFocus());
     await userEvent.keyboard('{ArrowDown}');
-    await expect(day(canvas, /Friday 30 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Friday 30 October 2026/)).toHaveFocus());
     await userEvent.keyboard('{ArrowUp}{ArrowLeft}');
-    await expect(day(canvas, /Thursday 22 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Thursday 22 October 2026/)).toHaveFocus());
     await userEvent.keyboard('{Home}');
-    await expect(day(canvas, /Monday 19 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Monday 19 October 2026/)).toHaveFocus());
     await userEvent.keyboard('{End}');
-    await expect(day(canvas, /Sunday 25 October 2026/)).toHaveFocus();
+    await waitFor(() => expect(day(canvas, /Sunday 25 October 2026/)).toHaveFocus());
     // Past the end of the month: the next month opens, focus follows.
     await userEvent.keyboard('{ArrowDown}');
     await waitFor(() => expect(canvas.getByRole('grid', { name: 'November 2026' })).toBeVisible());
@@ -221,7 +221,10 @@ export const TwoMonths: Story = {
     await expect(canvasElement.querySelectorAll('[data-date][tabindex="0"]')).toHaveLength(1);
     // Keyboard past the second month moves both months by one.
     day(canvas, /Thursday 22 October 2026/).focus();
-    await userEvent.keyboard('{PageDown}{PageDown}');
+    // One key at a time: the second PageDown must start from the date the first one moved to.
+    await userEvent.keyboard('{PageDown}');
+    await waitFor(() => expect(day(canvas, /Sunday 22 November 2026/)).toHaveFocus());
+    await userEvent.keyboard('{PageDown}');
     await waitFor(() => expect(canvas.getByRole('grid', { name: 'December 2026' })).toBeVisible());
     await expect(canvas.getByRole('grid', { name: 'November 2026' })).toBeVisible();
   },

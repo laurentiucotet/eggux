@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, userEvent } from 'storybook/test';
+import { expect, userEvent, waitFor } from 'storybook/test';
 import { CodeBlock, CommandSnippet, DiffLine, DiffViewer, EndpointRow, InlineCode, JsonViewer, LogRow } from './code-block';
 
 const meta = {
@@ -106,9 +106,15 @@ export const Developer: Story = {
     const customer = canvas.getByRole('treeitem', { name: /^"customer"/ });
     await expect(customer).toHaveAttribute('aria-expanded', 'true');
     json.querySelector<HTMLElement>('[role="treeitem"]')!.focus();
-    await userEvent.keyboard('{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}{ArrowLeft}');
-    await expect(customer).toHaveAttribute('aria-expanded', 'false');
-    await expect(json).toHaveTextContent('"customer": { … }');
+    // Arrow keys move a roving focus: one key at a time, each read after React applies it.
+    for (const key of ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowDown']) {
+      await userEvent.keyboard(`{${key}}`);
+      await new Promise(r => setTimeout(r, 30));
+    }
+    await waitFor(() => expect(customer).toHaveFocus());
+    await userEvent.keyboard('{ArrowLeft}');
+    await waitFor(() => expect(customer).toHaveAttribute('aria-expanded', 'false'));
+    await waitFor(() => expect(json).toHaveTextContent('"customer": { … }'));
   },
 };
 

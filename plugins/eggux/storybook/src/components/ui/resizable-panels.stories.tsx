@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, fireEvent, fn, userEvent } from 'storybook/test';
+import { expect, fireEvent, fn, userEvent, waitFor } from 'storybook/test';
 import { ResizablePanels } from './resizable-panels';
 
 const meta = {
@@ -105,8 +105,8 @@ export const Remembered: Story = {
   play: async ({ canvas }) => {
     const handle = canvas.getByRole('separator');
     fireEvent.keyDown(handle, { key: 'ArrowRight' });
-    await expect(handle).toHaveAttribute('aria-valuenow', '336');
-    await expect(window.localStorage.getItem('egg-test-resizable-split')).toBe('336');
+    await waitFor(() => expect(handle).toHaveAttribute('aria-valuenow', '336'));
+    await waitFor(() => expect(window.localStorage.getItem('egg-test-resizable-split')).toBe('336'));
     window.localStorage.removeItem('egg-test-resizable-split');
   },
 };

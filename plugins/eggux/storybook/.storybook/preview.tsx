@@ -27,6 +27,17 @@ const loadFonts = async () => {
   return {};
 };
 
+// Chromatic starts a story's play function right after the first render and takes its snapshot
+// from the end state. A CSS transition would still be halfway when a play function reads a color
+// or an opacity ("rgb(106, 146, 233)" instead of the focus color), so transitions are off there,
+// as in the vitest run (.storybook/vitest.setup.ts). Animations stay on.
+if (typeof navigator !== 'undefined' && /Chromatic/i.test(navigator.userAgent)) {
+  const style = document.createElement('style');
+  style.dataset.test = 'no-transitions';
+  style.textContent = '*, *::before, *::after { transition: none !important; }';
+  document.head.appendChild(style);
+}
+
 // Themes match the Figma modes of the Semantic collection; Density is a second toolbar.
 const preview: Preview = {
   parameters: {

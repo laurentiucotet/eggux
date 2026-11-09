@@ -28,7 +28,8 @@ export const Default: Story = {
     await expect(Math.round(form(canvasElement).getBoundingClientRect().width)).toBe(480);
     await expect(Math.round(form(canvasElement).getBoundingClientRect().height)).toBe(274);
     const first = canvas.getByRole('button', { name: 'Not accurate' });
-    await expect(first).toHaveFocus();
+    // Focus moves in an effect, after the first render: wait for it (Chromatic starts play at once).
+    await waitFor(() => expect(first).toHaveFocus());
     const send = canvas.getByRole('button', { name: 'Send' });
     await expect(send).toBeDisabled();
     await expect(Math.round(send.getBoundingClientRect().height)).toBe(32);

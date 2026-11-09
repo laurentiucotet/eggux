@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, fireEvent, fn, userEvent, within } from 'storybook/test';
+import { expect, fireEvent, fn, userEvent, waitFor, within } from 'storybook/test';
 import { AvatarUpload, DeviceFrame, ImageCompareSlider, ImageCropper, ImageFigure, MapView, type AvatarUploadState } from './imagery';
 
 const meta = {
@@ -120,13 +120,13 @@ export const CompareSlider: Story = {
     await expect(handle).toHaveAttribute('aria-valuenow', '50');
     handle.focus();
     await userEvent.keyboard('{ArrowRight}{ArrowRight}');
-    await expect(handle).toHaveAttribute('aria-valuenow', '54');
+    await waitFor(() => expect(handle).toHaveAttribute('aria-valuenow', '54'));
     await userEvent.keyboard('{Home}');
-    await expect(handle).toHaveAttribute('aria-valuetext', '0% before, 100% after');
+    await waitFor(() => expect(handle).toHaveAttribute('aria-valuetext', '0% before, 100% after'));
     // Clicking moves the handle there.
     fireEvent.pointerDown(root, { clientX: box(root).left + box(root).width * 0.75, pointerId: 1 });
     fireEvent.pointerUp(root, { pointerId: 1 });
-    await expect(handle).toHaveAttribute('aria-valuenow', '75');
+    await waitFor(() => expect(handle).toHaveAttribute('aria-valuenow', '75'));
     await expect(c.getByText('Before')).toBeVisible();
     await expect(c.getByText('After')).toBeVisible();
   },

@@ -156,7 +156,10 @@ function Calendar({
     if (wanted && !isSameDay(wanted, focusDate)) setFocusDate(wanted);
   }
   const rootRef = React.useRef<HTMLDivElement>(null);
-  const keyboardMove = React.useRef(false);
+  // The date a key press moves the focus to. The effect waits for the render that carries that
+  // date, so an effect still pending from an earlier render cannot use up the request (it would focus
+  // the old date, and the new one would never get focus).
+  const keyboardMove = React.useRef<string | null>(null);
   const uid = React.useId();
 
   const visible = Array.from({ length: months }, (_, i) => addMonths(month, i));
@@ -166,9 +169,10 @@ function Calendar({
   const tabDate = isVisible(focusDate) ? focusDate : month;
 
   React.useEffect(() => {
-    if (!keyboardMove.current) return;
-    keyboardMove.current = false;
-    rootRef.current?.querySelector<HTMLElement>(`[data-date="${dateKey(focusDate)}"][data-outside="false"]`)?.focus();
+    const target = keyboardMove.current;
+    if (!target || target !== dateKey(focusDate)) return;
+    keyboardMove.current = null;
+    rootRef.current?.querySelector<HTMLElement>(`[data-date="${target}"][data-outside="false"]`)?.focus();
   }, [focusDate, month]);
 
   const goToMonth = (next: Date) => {
@@ -178,7 +182,8 @@ function Calendar({
   };
 
   const moveFocus = (next: Date) => {
-    keyboardMove.current = true;
+    if (dateKey(next) === dateKey(focusDate)) return;
+    keyboardMove.current = dateKey(next);
     setFocusDate(next);
     if (monthIndex(next) < monthIndex(month)) setMonth(next);
     else if (monthIndex(next) > monthIndex(month) + months - 1) setMonth(addMonths(startOfMonth(next), -(months - 1)));
