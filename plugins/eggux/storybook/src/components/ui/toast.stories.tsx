@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
-import { Toast, ToastProvider, ToastViewport, Toaster, toast, type ToastProps, type ToastStyle, type ToastType } from './toast';
+import { Toast, ToastProvider, ToastViewport, Toaster, toast, type ToastProps, type ToastType } from './toast';
 import { Button } from './button';
 
 const meta = {
@@ -362,6 +362,3 @@ const Themed = () => (
 export const ThemedLight: Story = { parameters: { controls: { disable: true } }, render: () => <Themed />, name: 'Themed', play: async ({ canvasElement }) => { await expect(roots(canvasElement)).toHaveLength(2); } };
 export const ThemedDark: Story = { ...ThemedLight, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const ThemedCorporate: Story = { ...ThemedLight, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
-
-// keep the type import used for the style union in docs
-export type { ToastStyle };
