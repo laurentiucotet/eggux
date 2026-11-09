@@ -32,7 +32,8 @@ export const Default: Story = {
     const send = canvas.getByRole('button', { name: 'Send' });
     await expect(send).toBeDisabled();
     await expect(Math.round(send.getBoundingClientRect().height)).toBe(32);
-    await expect(Math.round(first.getBoundingClientRect().height)).toBe(32);
+    // The Chip (button plus border) is 32 high, as in Figma.
+    await expect(Math.round(first.closest('[data-slot="chip"]')!.getBoundingClientRect().height)).toBe(32);
 
     await userEvent.keyboard(' ');
     await expect(first).toHaveAttribute('aria-pressed', 'true');

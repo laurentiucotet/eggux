@@ -30,6 +30,8 @@ const Still = (props: ToastProps) => <Toast defaultOpen duration={Infinity} {...
 
 const rect = (el: Element) => el.getBoundingClientRect();
 const root = (canvasElement: HTMLElement) => canvasElement.querySelector('[data-slot="toast"]') as HTMLElement;
+// Radix renders an open toast into the viewport a moment after the first render: wait for it.
+const ready = (canvasElement: HTMLElement) => waitFor(() => expect(canvasElement.querySelector('[data-slot="toast"]')).not.toBeNull(), { timeout: 3000 });
 const roots = (canvasElement: HTMLElement) => Array.from(canvasElement.querySelectorAll<HTMLElement>('[data-slot="toast"]'));
 
 const types: ToastType[] = ['default', 'success', 'error', 'warning', 'info', 'loading'];
@@ -45,7 +47,7 @@ const text: Record<ToastType, { title: string; description: string }> = {
 // Figma Type=default, Style=default: 384 x 76, popover surface with a border.
 export const Default: Story = {
   render: args => <Frame><Still {...args} /></Frame>,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const el = root(canvasElement);
     await expect(el).toHaveTextContent('Changes saved');
     await expect(el).toHaveTextContent('Project “Website redesign” was updated.');
@@ -68,7 +70,7 @@ export const Types: Story = {
       {types.map(t => <Still key={t} type={t} {...text[t]} />)}
     </Frame>
   ),
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const list = roots(canvasElement);
     await expect(list).toHaveLength(6);
     for (const el of list) await expect(Math.round(rect(el).height)).toBe(76);
@@ -105,7 +107,7 @@ export const Inverted: Story = {
       {types.map(t => <Still key={t} type={t} toastStyle="inverted" {...text[t]} />)}
     </Frame>
   ),
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const list = roots(canvasElement);
     for (const el of list) {
       await expect(Math.round(rect(el).height)).toBe(74);
@@ -129,7 +131,7 @@ export const OneLine: Story = {
   parameters: { controls: { disable: true } },
   name: 'Without description',
   render: () => <Frame><Still title="Invoice #1042 sent" /></Frame>,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const el = root(canvasElement);
     await expect(el.querySelector('[data-slot="toast-description"]')).toBeNull();
     // Figma "All options off": 384 x 54.
@@ -142,7 +144,7 @@ const onUndo = fn();
 export const WithAction: Story = {
   parameters: { controls: { disable: true } },
   render: () => <Frame><Still type="success" title="Invoice archived" description="You can restore it from Archive." action={{ label: 'Undo', onClick: onUndo }} close /></Frame>,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     onUndo.mockClear();
     const c = within(canvasElement);
     const undo = c.getByRole('button', { name: 'Undo' });
@@ -159,7 +161,7 @@ export const WithAction: Story = {
 export const WithClose: Story = {
   parameters: { controls: { disable: true } },
   render: () => <Frame><Still type="error" title="Upload failed" description="Check the connection and try again." close /></Frame>,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const el = root(canvasElement);
     // Errors are assertive: Radix renders them as a foreground toast.
     await expect(el).toHaveAttribute('data-type', 'error');
@@ -182,7 +184,7 @@ export const WithAvatar: Story = {
       />
     </Frame>
   ),
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const slot = canvasElement.querySelector('[data-slot="toast-avatar"]') as HTMLElement;
     await expect(Math.round(rect(slot).width)).toBe(24);
     // Never a status icon and an avatar together.
@@ -194,7 +196,7 @@ export const WithAvatar: Story = {
 export const WithProgress: Story = {
   parameters: { controls: { disable: true } },
   render: () => <Frame><Still type="loading" title="Uploading 3 files" description="invoice-june.pdf and 2 more" progress={40} progressLabel="Upload progress" close /></Frame>,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const bar = within(canvasElement).getByRole('progressbar', { name: 'Upload progress' });
     await expect(bar).toHaveAttribute('aria-valuenow', '40');
     await expect(Math.round(rect(bar).height)).toBe(4);
@@ -218,7 +220,7 @@ export const AllOptionsOn: Story = {
       />
     </Frame>
   ),
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const el = root(canvasElement);
     await expect(Math.round(rect(el).width)).toBe(384);
     await expect(el.scrollWidth).toBeLessThanOrEqual(el.clientWidth);
@@ -239,7 +241,7 @@ export const Columns: Story = { parameters: { controls: { disable: true } }, tag
       ))}
     </div>
   ),
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const list = roots(canvasElement);
     await expect(list.map(el => Math.round(rect(el).width))).toEqual([276, 368]);
     for (const el of list) await expect(el.scrollWidth).toBeLessThanOrEqual(el.clientWidth);
@@ -249,7 +251,7 @@ export const Columns: Story = { parameters: { controls: { disable: true } }, tag
 export const LongWords: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'],
   name: 'Long unbroken text',
   render: () => <Frame width={276}><Still type="error" title="invoice-INV-1048-final-final-v2-signed-scan.pdf" description="averyveryveryverylongfilenamewithoutanyspaces.extension could not be exported" close /></Frame>,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement }) => { await ready(canvasElement);
     const el = root(canvasElement);
     await expect(el.scrollWidth).toBeLessThanOrEqual(el.clientWidth);
     await expect(Math.round(rect(el).width)).toBe(276);
@@ -359,6 +361,6 @@ const Themed = () => (
     <Still type="error" toastStyle="inverted" title="Export failed" description="Try fewer columns." close />
   </Frame>
 );
-export const ThemedLight: Story = { parameters: { controls: { disable: true } }, render: () => <Themed />, name: 'Themed', play: async ({ canvasElement }) => { await expect(roots(canvasElement)).toHaveLength(2); } };
+export const ThemedLight: Story = { parameters: { controls: { disable: true } }, render: () => <Themed />, name: 'Themed', play: async ({ canvasElement }) => { await ready(canvasElement); await expect(roots(canvasElement)).toHaveLength(2); } };
 export const ThemedDark: Story = { ...ThemedLight, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const ThemedCorporate: Story = { ...ThemedLight, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
