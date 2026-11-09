@@ -8,7 +8,7 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
     controls: { disable: true },
-    docs: { description: { component: 'Every color token with its value and its contrast, read from the page as it is now: switch Scheme, Look and Density in the toolbar. Pairs are a surface and the text that sits on it; single tokens are checked against the page background.' } },
+    docs: { description: { component: 'Every color token with its value and its contrast, read from the page as it is now: switch Scheme and Look in the toolbar. Pairs are a surface and the text that sits on it; single tokens are checked against the page background.' } },
   },
 } satisfies Meta;
 export default meta;

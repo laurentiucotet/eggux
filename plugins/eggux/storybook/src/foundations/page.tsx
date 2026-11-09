@@ -11,7 +11,7 @@ export function Page({ title, intro, themed = true, children }: { title: string;
         <p className="m-0 max-w-3xl text-base leading-6">{intro}</p>
         {themed ? (
           <p className="m-0 text-sm leading-5">
-            Showing: <strong data-testid="theme-name">{themeName()}</strong>. Change Scheme, Look or Density in the toolbar and the values below follow.
+            Showing: <strong data-testid="theme-name">{themeName()}</strong>. Change Scheme or Look in the toolbar and the values below follow.
           </p>
         ) : null}
       </header>

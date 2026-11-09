@@ -41,10 +41,10 @@ if (typeof navigator !== 'undefined' && /Chromatic/i.test(navigator.userAgent)) 
 // A theme is two choices, the way the Figma modes are used together:
 //   Scheme: light or dark.
 //   Look: Platform (the default: pill controls, what customers see), Back office (the Corporate
-//   modes: square controls, small radius, Inter; pair it with Density compact) or Showcase (a
+//   modes: square controls, small radius, Inter) or Showcase (a
 //   brand re-aliasing the same tokens).
 // They map to classes on <html>: `dark`, `theme-corporate`, `theme-showcase` (tokens.css has one
-// block per class, so the two combine). Density is a third toolbar (`density-compact`).
+// block per class, so the two combine).
 // Stories and links can still set the old combined name (`globals: { theme: 'Corporate Dark' }`):
 // it wins over the two selectors, which keeps every theme copy story working.
 const looks: Record<string, string> = { platform: '', 'back-office': 'theme-corporate', showcase: 'theme-showcase' };
@@ -115,13 +115,9 @@ const preview: Preview = {
     },
     // The old combined name, set by stories and links only (no toolbar item).
     theme: { description: 'Combined theme (stories and links)' },
-    density: {
-      description: 'Density (Figma Density collection)',
-      toolbar: { title: 'Density', icon: 'component', items: ['comfortable', 'compact'], dynamicTitle: true },
-    },
   },
   loaders: [loadFonts],
-  initialGlobals: { scheme: 'light', look: 'platform', density: 'comfortable' },
+  initialGlobals: { scheme: 'light', look: 'platform' },
   // Controls show only what a designer can change: text, numbers, switches and choices.
   // Props that are functions, React nodes, arrays or objects (raw JSON editors) are hidden, unless
   // the story gives them a text or number value, which then gets a plain field. A story that sets
@@ -153,10 +149,6 @@ const preview: Preview = {
       root.classList.remove('dark', 'theme-corporate', 'theme-showcase');
       if (looks[look]) root.classList.add(looks[look]!);
       if (scheme === 'dark') root.classList.add('dark');
-      return <Story />;
-    },
-    (Story, ctx) => {
-      document.documentElement.classList.toggle('density-compact', ctx.globals.density === 'compact');
       return <Story />;
     },
   ],

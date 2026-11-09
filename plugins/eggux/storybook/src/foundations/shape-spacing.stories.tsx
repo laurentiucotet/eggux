@@ -8,7 +8,7 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
     controls: { disable: true },
-    docs: { description: { component: 'Corner radius, the spacing grid and the density tokens, read from the page as it is now. Switch Look to see the radius change (Back office is square) and Density to see the heights and padding shrink.' } },
+    docs: { description: { component: 'Corner radius, the spacing grid and the size tokens of controls and rows, read from the page as it is now. Switch Look to see the radius change (Back office is square).' } },
   },
 } satisfies Meta;
 export default meta;
@@ -24,7 +24,7 @@ const radii = [
 ];
 // Tailwind spacing steps, 4 px each.
 const steps = [1, 2, 3, 4, 6, 8, 12, 16];
-const density = [
+const sizes = [
   ['--control-height', 'Buttons, fields, selects'],
   ['--table-header-height', 'Table header row'],
   ['--cell-padding-y', 'Table cell, top and bottom'],
@@ -39,7 +39,7 @@ const density = [
 function Shape() {
   useThemeVersion();
   return (
-    <Page title="Shape and spacing" intro="Corners come from radius tokens, space from a 4 px grid, and the heights of controls and rows from density tokens. A component never sets its own number.">
+    <Page title="Shape and spacing" intro="Corners come from radius tokens, space from a 4 px grid, and the heights of controls and rows from size tokens. A component never sets its own number.">
       <Section title="Radius" note="The same box in each radius token.">
         <ul className="m-0 grid list-none grid-cols-2 gap-6 p-0 sm:grid-cols-3">
           {radii.map(r => (
@@ -62,7 +62,7 @@ function Shape() {
           ))}
         </ul>
       </Section>
-      <Section title="Density" note="Comfortable and Compact change these tokens. Compact is for data-heavy screens such as tables and back office. Switch Density in the toolbar.">
+      <Section title="Control and row sizes" note="One density for the whole product: these tokens set the heights and padding of controls, rows and cards.">
         <table className="w-full border-collapse text-left text-sm leading-5">
           <thead>
             <tr className="border-b border-border">
@@ -73,7 +73,7 @@ function Shape() {
             </tr>
           </thead>
           <tbody>
-            {density.map(([token, use]) => (
+            {sizes.map(([token, use]) => (
               <tr key={token} className="border-b border-border">
                 <th scope="row" className="py-2 pr-3 font-normal"><Mono>{token}</Mono></th>
                 <td className="py-2 pr-3" data-testid={token}>{readToken(token) || 'not set'}</td>

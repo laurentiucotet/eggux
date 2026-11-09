@@ -1,6 +1,6 @@
 ---
 name: kit-trim
-description: Start a new product from the EGG UI kit and keep only what it needs. Decides the product's surfaces (platform, back office), brand, breakpoints and density, lists the components with what depends on what, keeps the chosen ones plus everything they import, removes the rest with their stories, docs rows and tokens, then runs the checks and publishes. Use when the user wants to take EGG UI or EGG UX into a separate project, keep only some components, strip the library down, or start a new product from it ("păstrez doar ce am nevoie", "proiect nou din kit", "scoate ce nu folosesc").
+description: Start a new product from the EGG UI kit and keep only what it needs. Decides the product's surfaces (platform, back office), brand, breakpoints, lists the components with what depends on what, keeps the chosen ones plus everything they import, removes the rest with their stories, docs rows and tokens, then runs the checks and publishes. Use when the user wants to take EGG UI or EGG UX into a separate project, keep only some components, strip the library down, or start a new product from it ("păstrez doar ce am nevoie", "proiect nou din kit", "scoate ce nu folosesc").
 ---
 
 # Trim the kit for a new product
@@ -12,14 +12,13 @@ look first, because it decides which tokens and components are needed.
 - **Surfaces:** one look, or several? Platform (what customers see) and back office (staff) are
   two surfaces of the same components. In this kit a surface is a token mode, not a second
   component set: Light and Dark are the platform look (pill controls, 12 px cards, Plus Jakarta
-  Sans), Corporate is the back-office look (square controls, 4 px radius, Inter) and pairs with
-  Density Compact. See `references/tokens.md`, "Themes".
+  Sans), Corporate is the back-office look (square controls, 4 px radius, Inter).
+  See `references/tokens.md`, "Themes".
 - **Brand:** the client's colors re-alias the same tokens in one mode (`/eggux:brand-intake`).
 - **Breakpoints:** the widths the product supports. Edit `src/styles/breakpoints.ts`; the Size
   selector and Foundations / Breakpoints read it (Figma's `layout/breakpoint/*` is the source). Mobile is in scope
   by default: components resize with the breakpoint, and mobile-only patterns (bottom navigation,
   bottom sheet, thumb-reach actions) come after the base components.
-- **Density:** comfortable, compact, or both.
 Write the answers as a decision (`/eggux:decision-log`); they are the brief for everything below.
 
 ## 2. Same component, different surface

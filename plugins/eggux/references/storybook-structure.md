@@ -59,7 +59,7 @@ Consequences:
 
 ## Density
 
-Density (Comfortable, Compact) is a Figma collection with two modes, and `density-compact` in
-`tokens.css` shrinks control heights and padding. In Storybook it is a toolbar choice today. A
-product that uses one density per look (Platform comfortable, Back office compact) can let the Look
-decide and drop the separate toolbar; the tokens stay as they are.
+One density: the sizes in `:root` (Comfortable). There is no Density toolbar and no Compact story. The
+Figma Density collection and the `.density-compact` block in `tokens.css` stay as generated from
+Figma and are not used by Storybook; a product that needs a compact surface can switch it on in its
+own app.

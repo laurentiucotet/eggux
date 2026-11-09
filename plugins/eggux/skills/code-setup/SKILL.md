@@ -6,7 +6,7 @@ description: Set up the EGG UI component library in code with Storybook and test
 # Code setup
 
 The starter lives in `${CLAUDE_PLUGIN_ROOT}/storybook`. It already holds the token pipeline, the
-Storybook config (themes and density in the toolbar, a11y addon, docs) and three components
+Storybook config (scheme and look in the toolbar, a11y addon, docs) and three components
 (Button, Badge, Input) with stories and tests. Components after that are added one at a time with
 `/eggux:code-component`.
 

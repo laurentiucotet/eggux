@@ -6,7 +6,7 @@ components come one at a time with `/eggux:code-component`, checks with `/eggux:
 
 ```
 npm install
-npm run storybook        # http://localhost:6006, themes and density in the toolbar (restart after adding component files)
+npm run storybook        # http://localhost:6006, scheme and look in the toolbar (restart after adding component files)
 npm test                 # every story as a test: render, play function, axe
 npm run build-storybook  # static site in storybook-static/
 npm run check:stories    # every story of the production build in a fresh page, like Chromatic
@@ -26,7 +26,7 @@ npm run tokens           # tokens/egg-ui.tokens.json -> src/styles/tokens.css
 - `src/components/ui/<name>.stories.tsx`: the stories are the documentation and the tests:
   variants, states, keyboard, measured sizes from Figma, stress cases, theme stories.
 - `.storybook/preview.tsx`: the toolbar (Scheme light or dark, Look Platform or Back office or
-  Showcase, Density, Size), Controls rules, axe failures fail the test (`a11y.test = 'error'`). Scheme
+  Showcase, Size), Controls rules, axe failures fail the test (`a11y.test = 'error'`). Scheme
   and Look map to classes on `<html>` (`dark`, `theme-corporate`, `theme-showcase`); a story can still
   set the combined name (`globals: { theme: 'Corporate Dark' }`).
 - `src/styles/breakpoints.ts`: the widths the product supports. The Size selector and the

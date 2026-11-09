@@ -1,19 +1,19 @@
 ---
 name: storybook-publish
-description: Publish the Storybook to Chromatic so managers and developers open one link, play with the components, switch theme, size and density, and see each branch or pull request. Sets up the GitHub workflow and the token secret, decides what Chromatic tests (publish only by default, visual snapshots only on a short list of key stories), builds the links for a meeting, and fixes a failing publish. Use when the user asks to share Storybook, give a manager a link, put it on Chromatic or GitHub, or when a Chromatic build fails ("publică storybook", "vreau să dau un link", "chromatic pică").
+description: Publish the Storybook to Chromatic so managers and developers open one link, play with the components, switch scheme, look and size, and see each branch or pull request. Sets up the GitHub workflow and the token secret, decides what Chromatic tests (publish only by default, visual snapshots only on a short list of key stories), builds the links for a meeting, and fixes a failing publish. Use when the user asks to share Storybook, give a manager a link, put it on Chromatic or GitHub, or when a Chromatic build fails ("publică storybook", "vreau să dau un link", "chromatic pică").
 ---
 
 # Publish Storybook for review
 
 Goal: a link a manager opens in a browser and uses, not a screen shared in a call. Storybook's own
-toolbar gives them theme, density and size; Chromatic only hosts the build and gives each branch
+toolbar gives them scheme, look and size; Chromatic only hosts the build and gives each branch
 and pull request its own link.
 
 ## 1. What goes where
 | Need | Who provides it |
 |---|---|
 | Play with a component, change props | Storybook: the Default story is a playground (Controls) |
-| Scheme (light, dark), Look (platform, back office, showcase), density, breakpoint | Storybook toolbar (globals in the URL) |
+| Scheme (light, dark), Look (platform, back office, showcase), breakpoint | Storybook toolbar (globals in the URL) |
 | A link per branch and per pull request | Chromatic |
 | A stable link to what is approved | Chromatic, branch `main` |
 | Proof that nothing broke on mobile, desktop, light, dark | Chromatic visual snapshots with modes, on a short list of stories |

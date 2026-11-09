@@ -20,13 +20,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // Each panel carries the theme classes itself, so six themes show side by side whatever the
-// toolbar says. Back office is shown with Compact density, how it is meant to be used.
+// toolbar says. Back office has square controls and a small radius.
 const panels = [
   { id: 'platform-light', name: 'Platform, light', cls: '' },
-  { id: 'back-office-light', name: 'Back office, light', cls: 'theme-corporate density-compact' },
+  { id: 'back-office-light', name: 'Back office, light', cls: 'theme-corporate' },
   { id: 'showcase-light', name: 'Showcase, light', cls: 'theme-showcase' },
   { id: 'platform-dark', name: 'Platform, dark', cls: 'dark' },
-  { id: 'back-office-dark', name: 'Back office, dark', cls: 'theme-corporate dark density-compact' },
+  { id: 'back-office-dark', name: 'Back office, dark', cls: 'theme-corporate dark' },
   { id: 'showcase-dark', name: 'Showcase, dark', cls: 'theme-showcase dark' },
 ];
 

@@ -9,7 +9,7 @@ description: Add Storybook to a project that does not have it yet. Use when the 
    `.storybook/` directory), do not install it again: switch to `/eggux:storybook-setup`.
 2. If this is an EGG UI client project (an `eggux/` folder, or the user wants the EGG UI
    components in code), use `/eggux:code-setup` instead. It copies the eggux starter, which
-   already has the Storybook config, themes, density, tokens and tests.
+   already has the Storybook config, themes, tokens and tests.
 3. Otherwise install the latest stable release from the project root:
    `npm create storybook@latest` (or the matching command of the project's package manager,
    such as `pnpm create storybook@latest`). Use `@next` (Storybook 11 prerelease) only when the

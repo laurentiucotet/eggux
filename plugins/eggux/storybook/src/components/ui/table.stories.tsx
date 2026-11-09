@@ -430,25 +430,6 @@ export const StripedWithFooter: Story = {
   },
 };
 
-// Density: .density-compact sets --table-header-height 32 and --cell-padding-y 4.
-export const Compact: Story = {
-  parameters: { controls: { disable: true } },
-  render: () => <SortableInvoices />,
-  decorators: [
-    Story => {
-      React.useLayoutEffect(() => {
-        document.documentElement.classList.add('density-compact');
-        return () => document.documentElement.classList.remove('density-compact');
-      }, []);
-      return <Story />;
-    },
-  ],
-  play: async ({ canvas }) => {
-    await expect(h(canvas.getByRole('columnheader', { name: 'Customer' }))).toBe(32);
-    await expect(h(canvas.getAllByRole('cell')[1])).toBe(29);
-  },
-};
-
 // Stack cells make a 55 px row (38 + 16 + 1).
 export const StackRow: Story = {
   parameters: { controls: { disable: true } },

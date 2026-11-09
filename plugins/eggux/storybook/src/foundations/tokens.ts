@@ -1,10 +1,10 @@
 // Helpers for the Foundations pages: read the design tokens as they are right now (the values
-// follow the Scheme, Look and Density chosen in the toolbar), turn them into numbers, and
+// follow the Scheme and Look chosen in the toolbar), turn them into numbers, and
 // compute contrast. The pages never hold a copy of a value: change a variable in Figma, export,
 // and the pages show the new one.
 import * as React from 'react';
 
-/** Re-renders when the theme or density classes on <html> change. */
+/** Re-renders when the theme classes on <html> change. */
 export function useThemeVersion(): number {
   const [version, setVersion] = React.useState(0);
   React.useEffect(() => {
@@ -69,5 +69,5 @@ export const edgeGrade = (ratio: number): string => (ratio >= 3 ? 'Meets 3:1' : 
 export function themeName(): string {
   const root = document.documentElement.classList;
   const look = root.contains('theme-corporate') ? 'Back office' : root.contains('theme-showcase') ? 'Showcase' : 'Platform';
-  return `${look}, ${root.contains('dark') ? 'dark' : 'light'}${root.contains('density-compact') ? ', compact' : ''}`;
+  return `${look}, ${root.contains('dark') ? 'dark' : 'light'}`;
 }
