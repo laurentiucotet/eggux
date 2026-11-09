@@ -11,7 +11,9 @@
     "build-storybook": "storybook build",
     "test": "vitest run --project=storybook",
     "typecheck": "tsc --noEmit",
-    "chromatic": "chromatic --exit-zero-on-changes"
+    "chromatic": "chromatic --exit-zero-on-changes",
+    "check:stories": "node scripts/check-stories.mjs",
+    "kit": "node scripts/kit-trim.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
