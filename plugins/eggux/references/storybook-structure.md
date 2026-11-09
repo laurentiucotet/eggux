@@ -11,7 +11,7 @@ point here.
 | Foundations | Colors, Typography, Shape and spacing, Motion and elevation, Breakpoints, Themes and looks, Icons | Read from tokens; one story each |
 | Components | One part of the interface: Button, Table Cell Status, Prompt Input | `Components/<Family>/<Component>`; `Components/<Component>` when it has no family |
 | Blocks | A composition of components: a navbar, a footer, a table with filters, a conversation | `Blocks/<Family>/<Name>`; stories with real content, no play function |
-| Pages | A whole screen, at its breakpoints (the Mobile pages go here) | `Pages/<Area>/<Screen>` |
+| Pages | A whole screen, at its breakpoints (the Mobile pages go here) | `Pages/<Area>/<Screen>`; a page component lives in `src/pages/<name>.tsx` and is built only from library components |
 
 Order is fixed in `preview.tsx` (`pinned`): Introduction, Foundations, Components, Blocks, Pages.
 Inside a section, groups and components are A to Z.
