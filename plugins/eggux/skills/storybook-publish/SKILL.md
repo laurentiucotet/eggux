@@ -13,7 +13,7 @@ and pull request its own link.
 | Need | Who provides it |
 |---|---|
 | Play with a component, change props | Storybook: the Default story is a playground (Controls) |
-| Light, Dark, Corporate, Showcase; density; breakpoint | Storybook toolbar (globals in the URL) |
+| Scheme (light, dark), Look (platform, back office, showcase), density, breakpoint | Storybook toolbar (globals in the URL) |
 | A link per branch and per pull request | Chromatic |
 | A stable link to what is approved | Chromatic, branch `main` |
 | Proof that nothing broke on mobile, desktop, light, dark | Chromatic visual snapshots with modes, on a short list of stories |
@@ -57,8 +57,10 @@ extract stories" means a stories file exports something that is not a story (an 
 ## 4. Links for a meeting
 Build them from the published URL; everything after `?` is read by Storybook:
 - A story: `<url>/?path=/story/<story-id>` (the id is in the browser address bar).
-- Theme and size: add `&globals=theme:Dark;viewport.value:mobile1` (theme names: Light, Dark,
-  Corporate Light, Corporate Dark, Showcase Light, Showcase Dark).
+- Look, scheme and size: add `&globals=scheme:dark;look:back-office;viewport.value:md`. Schemes:
+  `light`, `dark`. Looks: `platform`, `back-office`, `showcase`. Sizes: the keys in
+  `src/styles/breakpoints.ts` (`base`, `sm`, `md`, `lg`, `xl`, `2xl`). The old combined
+  `theme:Dark` still works.
 - Only the component, no Storybook chrome: `<url>/iframe.html?id=<story-id>&viewMode=story`.
 - Branch link: Chromatic shows a stable URL per branch (it does not change with each push); the
   pull request status check links the build.

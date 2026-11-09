@@ -4,14 +4,42 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # EGG UI
 
-Components of the EGG UI Figma library in React and Tailwind, with shadcn/ui names. Every value
-comes from the Figma variables (exported to `tokens.css`); switch Theme and Density in the
-toolbar to see the six modes and the compact density.
+The components of the product, running. Open any component in the sidebar, click it, change it, and
+look at it in every look, scheme, density and screen size. Nothing here is a picture: every story is
+the real component, and every one is also an automated test (it renders, its interaction works,
+and it passes the accessibility checks).
 
-- **Each story is a test.** It renders, runs its interaction test and passes the accessibility
-  checks (axe) in the theme it sets. Run them all with `npm test`.
-- **Props follow Figma.** `Variant`, `Size` and the other Figma properties have the same names
-  in code (`variant="soft"`, `size="xl"`).
-- **Usage rules** live in the EGG UX guides named in each component's description.
+## Try a component in 30 seconds
 
-Built so far: Button, Badge, Input. See `COMPONENTS.md` for coverage.
+1. Pick a component in the sidebar, for example **Accordion**, and open its first story, **Default**.
+2. Open **Controls** at the bottom. Each switch changes the component live: add an icon, a
+   description, a count, disable an item.
+3. Use the toolbar at the top:
+   - **Scheme**: Light or Dark.
+   - **Look**: **Platform** is what customers see (pill controls, soft corners). **Back office** is for
+     staff (square controls, small corners; pair it with Compact density). **Showcase** shows how a
+     client brand re-colors the same components.
+   - **Density**: Comfortable or Compact (data-heavy screens, tables).
+   - **Size**: a breakpoint from a phone (375 px) to a wide desktop (1536 px). See how it resizes.
+4. Open **Accessibility** to see the contrast and keyboard checks for what is on screen.
+
+## Where things are
+
+- **Foundations**: the building blocks, read live from the design tokens: **Colors** (with contrast),
+  **Typography**, **Shape and spacing**, **Motion and elevation**, **Breakpoints**, **Icons**, and
+  **Themes and looks**, which shows the same components in all six looks at once.
+- **Components**: one group per Figma page. The first story of each is a playground.
+- **Table, Examples**: whole tables with sorting, filters in the column headers, selection and
+  pagination, the way a product screen uses them.
+
+## Share a view
+
+The address bar holds the whole view. Copy it to send a colleague exactly what you see. To open a
+story already in a look and size, add them to the link, for example
+`&globals=scheme:dark;look:back-office;viewport.value:md`. Sizes: `base`, `sm`, `md`, `lg`, `xl`, `2xl`.
+
+## For developers
+
+- Props follow the Figma properties, with the same names in code (`variant="soft"`, `size="lg"`).
+- Usage rules live in the EGG UX guides named in each component's description.
+- `COMPONENTS.md` lists what exists in code and what is missing.

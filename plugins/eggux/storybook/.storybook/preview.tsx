@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react-vite';
-import { withThemeByClassName } from '@storybook/addon-themes';
+import { viewportOptions } from '../src/styles/breakpoints';
 import '../src/styles/globals.css';
 // Self-hosted fonts (the families in tokens.css), bundled with the Storybook build.
 import '@fontsource/plus-jakarta-sans/400.css';
@@ -38,10 +38,30 @@ if (typeof navigator !== 'undefined' && /Chromatic/i.test(navigator.userAgent)) 
   document.head.appendChild(style);
 }
 
-// Themes match the Figma modes of the Semantic collection; Density is a second toolbar.
+// A theme is two choices, the way the Figma modes are used together:
+//   Scheme: light or dark.
+//   Look: Platform (the default: pill controls, what customers see), Back office (the Corporate
+//   modes: square controls, small radius, Inter; pair it with Density compact) or Showcase (a
+//   brand re-aliasing the same tokens).
+// They map to classes on <html>: `dark`, `theme-corporate`, `theme-showcase` (tokens.css has one
+// block per class, so the two combine). Density is a third toolbar (`density-compact`).
+// Stories and links can still set the old combined name (`globals: { theme: 'Corporate Dark' }`):
+// it wins over the two selectors, which keeps every theme copy story working.
+const looks: Record<string, string> = { platform: '', 'back-office': 'theme-corporate', showcase: 'theme-showcase' };
+const combined: Record<string, [string, string]> = {
+  Light: ['light', 'platform'],
+  Dark: ['dark', 'platform'],
+  'Corporate Light': ['light', 'back-office'],
+  'Corporate Dark': ['dark', 'back-office'],
+  'Showcase Light': ['light', 'showcase'],
+  'Showcase Dark': ['dark', 'showcase'],
+};
+
+// Sizes come from src/styles/breakpoints.ts (the same list as Foundations / Breakpoints).
 const preview: Preview = {
   parameters: {
     layout: 'centered',
+    viewport: { options: viewportOptions },
     // Technical props (handlers, asChild, className, style, ref, dir) never show in Controls.
     controls: { expanded: true, matchers: { color: /(background|color)$/i }, exclude: /^(on[A-Z]\w*|asChild|className|style|ref|dir)$/ },
     // Accessibility violations fail the story test (vitest) and show in the a11y panel.
@@ -68,13 +88,40 @@ const preview: Preview = {
     },
   },
   globalTypes: {
+    scheme: {
+      description: 'Color scheme',
+      toolbar: {
+        title: 'Scheme',
+        icon: 'circlehollow',
+        items: [
+          { value: 'light', title: 'Light', icon: 'sun' },
+          { value: 'dark', title: 'Dark', icon: 'moon' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    look: {
+      description: 'Look: which surface and brand the tokens describe',
+      toolbar: {
+        title: 'Look',
+        icon: 'paintbrush',
+        items: [
+          { value: 'platform', title: 'Platform' },
+          { value: 'back-office', title: 'Back office' },
+          { value: 'showcase', title: 'Showcase (brand)' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    // The old combined name, set by stories and links only (no toolbar item).
+    theme: { description: 'Combined theme (stories and links)' },
     density: {
       description: 'Density (Figma Density collection)',
       toolbar: { title: 'Density', icon: 'component', items: ['comfortable', 'compact'], dynamicTitle: true },
     },
   },
   loaders: [loadFonts],
-  initialGlobals: { density: 'comfortable' },
+  initialGlobals: { scheme: 'light', look: 'platform', density: 'comfortable' },
   // Controls show only what a designer can change: text, numbers, switches and choices.
   // Props that are functions, React nodes, arrays or objects (raw JSON editors) are hidden, unless
   // the story gives them a text or number value, which then gets a plain field. A story that sets
@@ -98,17 +145,16 @@ const preview: Preview = {
     },
   ],
   decorators: [
-    withThemeByClassName({
-      themes: {
-        Light: '',
-        Dark: 'dark',
-        'Corporate Light': 'theme-corporate',
-        'Corporate Dark': 'theme-corporate dark',
-        'Showcase Light': 'theme-showcase',
-        'Showcase Dark': 'theme-showcase dark',
-      },
-      defaultTheme: 'Light',
-    }),
+    (Story, ctx) => {
+      const pair = ctx.globals.theme ? combined[String(ctx.globals.theme)] : undefined;
+      const scheme = pair ? pair[0] : String(ctx.globals.scheme ?? 'light');
+      const look = pair ? pair[1] : String(ctx.globals.look ?? 'platform');
+      const root = document.documentElement;
+      root.classList.remove('dark', 'theme-corporate', 'theme-showcase');
+      if (looks[look]) root.classList.add(looks[look]!);
+      if (scheme === 'dark') root.classList.add('dark');
+      return <Story />;
+    },
     (Story, ctx) => {
       document.documentElement.classList.toggle('density-compact', ctx.globals.density === 'compact');
       return <Story />;

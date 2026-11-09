@@ -117,7 +117,7 @@ pass axe (`a11y.test = 'error'` in preview) and pass its `play` function.
 - Titles may nest, one level per `/`, three levels at most:
   `Components/Table/Cells/Table Cell User`. Use it for a family of five or more parts.
 - Theme checks: the main visual story again with `globals: { theme: 'Dark' }` and
-  `globals: { theme: 'Corporate Light' }`, so axe checks contrast in each mode. Tag them
+  `globals: { theme: 'Corporate Light' }` (Corporate is the Back office look in the toolbar), so axe checks contrast in each mode. Tag them
   `tags: ['!dev']`: hidden from the sidebar (people switch themes with the toolbar), still run by
   `npm test`. One copy per theme, never a sidebar story per theme.
 - `parameters.docs.description.component`: the one-line rule, the Figma location and the guide.

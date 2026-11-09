@@ -4,6 +4,8 @@ Coverage of the EGG UI Figma library in code. `/eggux:code-component` adds a row
 `/eggux:code-qa` checks it. Status: done (stories and tests green, matches Figma), partial
 (some variants or states missing), todo.
 
+**Foundations pages** (`src/foundations/`, sidebar Foundations): Colors (value and contrast of every color token), Typography, Shape and spacing (radius, spacing grid, density), Motion and elevation, Breakpoints (`src/styles/breakpoints.ts`), Themes and looks (the same components in all six looks), Icons. They read the tokens from the page, so they follow the toolbar (Scheme, Look, Density) and never hold a copy of a value. Each runs axe in Light, Dark and Back office. The toolbar has Scheme (light, dark), Look (Platform, Back office, Showcase), Density and Size (the breakpoints); the old combined theme name still works in a story's `globals`.
+
 **Controls rules** (`.storybook/preview.tsx`): Controls show only what a designer can change. Functions,
 React nodes, arrays and objects are hidden (no raw JSON editors), unless the story gives them a text,
 number or boolean value; handlers, asChild, className, style, ref and dir never show. A story whose

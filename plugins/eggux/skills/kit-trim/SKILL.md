@@ -15,7 +15,8 @@ look first, because it decides which tokens and components are needed.
   Sans), Corporate is the back-office look (square controls, 4 px radius, Inter) and pairs with
   Density Compact. See `references/tokens.md`, "Themes".
 - **Brand:** the client's colors re-alias the same tokens in one mode (`/eggux:brand-intake`).
-- **Breakpoints:** the widths the product supports (token `layout/breakpoint/*`). Mobile is in scope
+- **Breakpoints:** the widths the product supports. Edit `src/styles/breakpoints.ts`; the Size
+  selector and Foundations / Breakpoints read it (Figma's `layout/breakpoint/*` is the source). Mobile is in scope
   by default: components resize with the breakpoint, and mobile-only patterns (bottom navigation,
   bottom sheet, thumb-reach actions) come after the base components.
 - **Density:** comfortable, compact, or both.
@@ -52,8 +53,10 @@ In the Storybook folder:
 - **Icons:** `npm run icons` regenerates the icon set from the list; drop the icons nothing imports.
 - **Docs and skills:** remove references and decisions for deleted components from
   `eggux/decisions.md`; keep the skills, they are the workflow.
-- **Foundations pages** (colors, typography, spacing, radius, breakpoints, density) are generated from
-  tokens, so they follow the trim with no work.
+- **Foundations pages** (`src/foundations/`: colors with contrast, typography, shape and spacing,
+  motion and elevation, breakpoints, themes and looks) read the tokens live, so they follow the trim
+  with no work. Check `Themes and looks` after changing the looks: it shows the same components in
+  every look and scheme.
 
 ## 5. Check
 - `npm run typecheck`, then `npm test` a few story files at a time, then

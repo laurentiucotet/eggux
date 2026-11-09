@@ -25,8 +25,14 @@ npm run tokens           # tokens/egg-ui.tokens.json -> src/styles/tokens.css
 - `src/components/ui/<name>.tsx`: one component, props named after the Figma properties.
 - `src/components/ui/<name>.stories.tsx`: the stories are the documentation and the tests:
   variants, states, keyboard, measured sizes from Figma, stress cases, theme stories.
-- `.storybook/preview.tsx`: theme switcher (the six Semantic modes), Density toolbar, axe
-  failures fail the test (`a11y.test = 'error'`).
+- `.storybook/preview.tsx`: the toolbar (Scheme light or dark, Look Platform or Back office or
+  Showcase, Density, Size), Controls rules, axe failures fail the test (`a11y.test = 'error'`). Scheme
+  and Look map to classes on `<html>` (`dark`, `theme-corporate`, `theme-showcase`); a story can still
+  set the combined name (`globals: { theme: 'Corporate Dark' }`).
+- `src/styles/breakpoints.ts`: the widths the product supports. The Size selector and the
+  Foundations / Breakpoints page read it; edit it for a new product.
+- `src/foundations/`: Foundations pages (Colors, Typography, Shape and spacing, Motion and
+  elevation, Breakpoints, Themes and looks) that read the tokens live, so they never drift.
 - `scripts/screenshot-stories.js`: PNGs of built stories for the side-by-side check with Figma.
 - `scripts/check-stories.mjs`: opens every story of `storybook-static` the way Chromatic does (new
   1200 x 900 page, en-US, UTC) and lists the ones that throw. Catches tests that read state before
