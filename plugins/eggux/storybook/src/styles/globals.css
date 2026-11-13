@@ -46,11 +46,18 @@
   --radius-input: var(--input-radius);
   /* Progress Value=indeterminate and Top Loading Bar: a 40% segment that slides across. */
   --animate-progress-indeterminate: progress-indeterminate 1.4s ease-in-out infinite;
+  /* Scan Frame: the line that sweeps down the viewfinder. */
+  --animate-scan-sweep: scan-sweep 2s ease-in-out infinite;
 }
 
 @keyframes progress-indeterminate {
   from { transform: translateX(-100%); }
   to { transform: translateX(250%); }
+}
+
+@keyframes scan-sweep {
+  0%, 100% { top: 0; }
+  50% { top: calc(100% - 2px); }
 }
 
 @layer base {
