@@ -362,22 +362,45 @@ export interface PaymentMethodCardProps extends Omit<React.ComponentProps<'div'>
   label: string;
   /** "Expires 08/28" or, when expired, "Expired 08/25". */
   expiry: string;
+  /** Set by hand, or leave out and pass `now` to compute it from `expiry`. */
   expired?: boolean;
+  /** Warn that the card runs out next month (or this month), in words. Computed from `expiry` and `now` when left out. */
+  expiresSoon?: boolean;
+  /** The current time, ISO string. Turns on the expiry computation; fix it in stories and tests. */
+  now?: string;
   isDefault?: boolean;
   onUpdate?: () => void;
   /** Dropdown Menu items: Make default, Remove. */
   menu?: React.ReactNode;
 }
 
-function PaymentMethodCard({ brand, label, expiry, expired = false, isDefault = false, onUpdate, menu, className, ...props }: PaymentMethodCardProps) {
+/** Months from `now` to the month in "MM/YY" or "MM/YYYY" found in `expiry` (0 = this month, 1 = next, negative = expired). */
+function monthsUntilExpiry(expiry: string, now: string): number | null {
+  const m = /(\d{1,2})\/(\d{2,4})/.exec(expiry);
+  if (!m) return null;
+  const month = Number(m[1]);
+  const year = m[2]!.length === 2 ? 2000 + Number(m[2]) : Number(m[2]);
+  const d = new Date(now);
+  if (Number.isNaN(d.getTime()) || month < 1 || month > 12) return null;
+  return (year - d.getUTCFullYear()) * 12 + (month - 1 - d.getUTCMonth());
+}
+
+function PaymentMethodCard({ brand, label, expiry, expired: expiredProp, expiresSoon: soonProp, now, isDefault = false, onUpdate, menu, className, ...props }: PaymentMethodCardProps) {
+  const months = now ? monthsUntilExpiry(expiry, now) : null;
+  const expired = expiredProp ?? (months != null && months < 0);
+  const soon = !expired && (soonProp ?? (months != null && months >= 0 && months <= 1));
+  const soonText = months === 0 ? 'Expires this month' : 'Expires next month';
   return (
-    <div data-slot="payment-method-card" data-state={expired ? 'expired' : 'default'} className={cn('flex w-[400px] max-w-full items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-card-foreground', className)} {...props}>
+    <div data-slot="payment-method-card" data-state={expired ? 'expired' : soon ? 'expires-soon' : 'default'} className={cn('flex w-[400px] max-w-full items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-card-foreground', className)} {...props}>
       <span aria-hidden="true" className="flex h-[30px] w-11 shrink-0 items-center justify-center rounded-sm border border-border text-xs leading-4 font-medium">{brand}</span>
       <div className="flex min-w-0 flex-1 flex-col gap-0.5 whitespace-nowrap">
         <p className="m-0 flex items-center gap-2 text-sm leading-5 font-medium"><span className="truncate">{label}</span>{isDefault ? <Badge variant="secondary">Default</Badge> : null}</p>
-        <p className={cn('m-0 truncate text-xs leading-4', expired ? 'text-destructive' : 'text-muted-foreground')}>{expiry}</p>
+        <p className={cn('m-0 flex items-center gap-2 text-xs leading-4', expired ? 'text-destructive' : 'text-muted-foreground')}>
+          <span className="truncate">{expiry}</span>
+          {soon ? <Badge variant="soft-warning">{soonText}</Badge> : null}
+        </p>
       </div>
-      {expired && onUpdate ? <Button variant="outline" size="sm" onClick={onUpdate} aria-label={`Update ${label}`}>Update</Button> : null}
+      {(expired || soon) && onUpdate ? <Button variant="outline" size="sm" onClick={onUpdate} aria-label={`Update ${label}`}>Update</Button> : null}
       {menu ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

@@ -107,7 +107,7 @@ export function MobileInvoiceDetailPage({ initialStatus = 'Sent', initialSheetOp
           title="Invoice deleted"
           description="INV-2041 is gone. Your other invoices are untouched."
           headingLevel={2}
-          actions={<Button asChild className="min-h-11"><a href="#invoices">Back to invoices</a></Button>}
+          actions={<Button asChild size="touch"><a href="#invoices">Back to invoices</a></Button>}
         />
         {confirm}
       </PhoneScreen>
@@ -122,7 +122,7 @@ export function MobileInvoiceDetailPage({ initialStatus = 'Sent', initialSheetOp
         <BottomActionBar label="Invoice actions">
           <Button
             type="button"
-            className="min-h-11"
+            size="touch"
             disabled={paid}
             onClick={() => {
               setStatus('Paid');
@@ -134,7 +134,7 @@ export function MobileInvoiceDetailPage({ initialStatus = 'Sent', initialSheetOp
           <Button
             type="button"
             variant="outline"
-            className="min-h-11"
+            size="touch"
             disabled={paid || reminded}
             onClick={() => {
               setReminded(true);

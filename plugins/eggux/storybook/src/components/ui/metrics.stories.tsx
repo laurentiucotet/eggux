@@ -111,6 +111,31 @@ export const CountdownEdges: Story = {
   },
 };
 
+// Usage Meter unit, unlimited and the state in words. Tests only.
+export const UsageMeterStates: Story = {
+  parameters: { controls: { disable: true } },
+  tags: ['!dev'],
+  render: () => (
+    <div className="flex w-[276px] flex-col gap-6">
+      <UsageMeter label="Storage" used={4} limit={10} unit="GB" />
+      <UsageMeter label="Seats" used={8} limit={10} unit="seats" />
+      <UsageMeter label="Seats" used={11} limit={10} unit="seats" />
+      <UsageMeter label="API calls" used={0} limit={0} unlimited hint="No cap on your plan." />
+    </div>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvas.getByText('4 of 10 GB')).toBeInTheDocument();
+    await expect(canvas.getByText('80 percent used, near the limit')).toBeInTheDocument();
+    await expect(canvas.getByText('Over the limit')).toBeInTheDocument();
+    await expect(canvas.getByText('Unlimited')).toBeInTheDocument();
+    await expect(canvas.getAllByRole('progressbar')).toHaveLength(3);
+    const meters = canvasElement.querySelectorAll('[data-slot="usage-meter"]');
+    await expect(meters[3]).toHaveAttribute('data-unlimited', 'true');
+    await expect(meters[3]!.querySelector('[role="progressbar"]')).toBeNull();
+    await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
+  },
+};
+
 // Stress: long names and values truncate at 280; a strip wraps at 480. Tests only.
 export const Stress: Story = {
   parameters: { controls: { disable: true } },

@@ -33,6 +33,8 @@ const buttonVariants = cva(
         lg: 'h-10 px-6',
         // Figma Size=xl: 48, 32 px sides, 10 px gap, the same ui/label (14/20) as the other sizes.
         xl: 'h-12 gap-2.5 px-8',
+        // touch: 44 high, at least 44 wide, for touch screens (mobile pages). Same 16 px sides and label as default.
+        touch: 'h-11 min-w-11 px-4',
         // Figma Button Icon: square, icon only. xs 28 (14 px icon), sm 32, default 36 (density), lg 40 (16 px icon).
         'icon-xs': "size-7 [&_svg:not([class*='size-'])]:size-3.5",
         'icon-sm': 'size-8',

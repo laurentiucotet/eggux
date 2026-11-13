@@ -368,14 +368,33 @@ function UsageLimitBanner({ status = 'approaching', layout = 'banner', title, de
 }
 
 export interface TrialBannerProps extends React.ComponentProps<'section'> {
+  /** Defaults to "active", or follows `endsAt` when that is set (ending in the last 3 days, ended when past). */
   state?: 'active' | 'ending' | 'ended';
-  message: string;
+  /** Text of the banner. Optional when `endsAt` is set: it then counts itself. */
+  message?: string;
+  /** End of the trial, ISO string: "3 days left in your trial", "Ends today", "Trial ended". */
+  endsAt?: string;
+  /** The current time, ISO string. Fix it in stories and tests; defaults to the clock. */
+  now?: string;
   detail?: string;
   onChoosePlan?: () => void;
   onDismiss?: () => void;
 }
 
-function TrialBanner({ state = 'active', message, detail, onChoosePlan, onDismiss, className, ...props }: TrialBannerProps) {
+function trialCount(endsAt: string, now?: string): { state: 'active' | 'ending' | 'ended'; message: string } {
+  const diff = new Date(endsAt).getTime() - (now ? new Date(now).getTime() : Date.now());
+  const day = 86400000;
+  if (Number.isNaN(diff)) return { state: 'active', message: '' };
+  if (diff <= 0) return { state: 'ended', message: 'Trial ended' };
+  if (diff < day) return { state: 'ending', message: 'Ends today' };
+  const days = Math.ceil(diff / day);
+  return { state: days <= 3 ? 'ending' : 'active', message: `${days} days left in your trial` };
+}
+
+function TrialBanner({ state: stateProp, message: messageProp, endsAt, now, detail, onChoosePlan, onDismiss, className, ...props }: TrialBannerProps) {
+  const counted = endsAt ? trialCount(endsAt, now) : null;
+  const state = stateProp ?? counted?.state ?? 'active';
+  const message = messageProp ?? counted?.message ?? '';
   const ended = state === 'ended';
   const tint = state === 'active' ? 'bg-[var(--badge-soft-info-bg)]' : state === 'ending' ? 'bg-[var(--badge-soft-warning-bg)]' : 'bg-primary';
   const lead = state === 'active' ? 'text-[var(--badge-soft-info-fg)]' : state === 'ending' ? 'text-[var(--badge-soft-warning-fg)]' : 'text-primary-foreground';
@@ -484,10 +503,35 @@ export interface UpsellCardProps extends Omit<React.ComponentProps<'section'>, '
   note?: string;
   onDismiss?: () => void;
   icon?: React.ReactNode;
+  /** One row: icon, text and the action side by side (a sidebar or a toolbar). */
+  compact?: boolean;
+  /** Adds a secondary "Learn more" action. */
+  onLearnMore?: () => void;
+  learnMoreLabel?: string;
 }
 
-function UpsellCard({ title, description, actionLabel, onUpgrade, note, onDismiss, icon, className, ...props }: UpsellCardProps) {
+function UpsellCard({ title, description, actionLabel, onUpgrade, note, onDismiss, icon, compact = false, onLearnMore, learnMoreLabel = 'Learn more', className, ...props }: UpsellCardProps) {
   const id = React.useId();
+  if (compact) {
+    return (
+      <section data-slot="upsell-card" data-compact="true" aria-labelledby={id} className={cn('flex w-full min-w-[200px] flex-wrap items-center gap-x-3 gap-y-2 rounded-lg border border-border bg-card p-3', className)} {...props}>
+        <span aria-hidden="true" className="flex size-8 shrink-0 items-center justify-center rounded-md bg-[var(--icon-tile-brand-bg)] text-[var(--icon-tile-brand-fg)] [&_svg]:size-4">{icon ?? <Sparkles />}</span>
+        <div className="flex min-w-32 flex-1 flex-col">
+          <h3 id={id} className="m-0 line-clamp-2 text-sm leading-5 font-medium text-card-foreground">{title}</h3>
+          {description ? <p className="m-0 line-clamp-1 text-xs leading-4 text-muted-foreground">{description}</p> : null}
+        </div>
+        <div className="flex shrink-0 items-center gap-1">
+          {onLearnMore ? <Button size="xs" variant="ghost" onClick={onLearnMore}>{learnMoreLabel}</Button> : null}
+          <Button size="xs" onClick={onUpgrade}>{actionLabel}</Button>
+          {onDismiss ? (
+            <button type="button" aria-label={`Dismiss ${title}`} onClick={onDismiss} className="flex size-6 items-center justify-center rounded-sm text-muted-foreground outline-none hover:bg-accent hover:text-accent-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 [&_svg]:size-4">
+              <X aria-hidden="true" />
+            </button>
+          ) : null}
+        </div>
+      </section>
+    );
+  }
   return (
     <section data-slot="upsell-card" aria-labelledby={id} className={cn('flex w-full max-w-[360px] min-w-[200px] flex-col gap-3 rounded-lg border border-border bg-card p-4', className)} {...props}>
       <div className="flex items-start justify-between">
@@ -501,6 +545,7 @@ function UpsellCard({ title, description, actionLabel, onUpgrade, note, onDismis
       <h3 id={id} className="m-0 line-clamp-2 text-sm leading-5 font-medium text-card-foreground">{title}</h3>
       {description ? <p className="m-0 line-clamp-3 text-sm leading-5 text-muted-foreground">{description}</p> : null}
       <Button size="sm" className="w-full" onClick={onUpgrade}>{actionLabel}</Button>
+      {onLearnMore ? <Button size="sm" variant="ghost" className="w-full" onClick={onLearnMore}>{learnMoreLabel}</Button> : null}
       {note ? <p className="m-0 text-xs leading-4 text-muted-foreground">{note}</p> : null}
     </section>
   );

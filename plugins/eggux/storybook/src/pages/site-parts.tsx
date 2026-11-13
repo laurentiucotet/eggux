@@ -39,13 +39,13 @@ export function SitePage({ active, children }: { active?: string; children: Reac
 const mark = (src: string) => ({ maskImage: `url("${src}")`, WebkitMaskImage: `url("${src}")`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat' }) as React.CSSProperties;
 
 /** Identity providers: outline, full width, stacked, the provider mark as the leading icon. */
-export function ProviderButtons({ verb = 'Continue' }: { verb?: string }) {
+export function ProviderButtons({ verb = 'Continue', size }: { verb?: string; size?: React.ComponentProps<typeof Button>['size'] }) {
   return (
     <div className="flex flex-col gap-2">
-      <Button variant="outline" type="button" className="w-full" leadingIcon={<span aria-hidden="true" className="block size-4 bg-current" style={mark(github)} />}>
+      <Button variant="outline" type="button" size={size} className="w-full" leadingIcon={<span aria-hidden="true" className="block size-4 bg-current" style={mark(github)} />}>
         {verb} with GitHub
       </Button>
-      <Button variant="outline" type="button" className="w-full" leadingIcon={<KeyRound />}>
+      <Button variant="outline" type="button" size={size} className="w-full" leadingIcon={<KeyRound />}>
         {verb} with SSO
       </Button>
     </div>

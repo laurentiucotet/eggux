@@ -14,7 +14,7 @@
 // Org Chart Node: 220 card, avatar, name (2 lines), role and reports; selected = 2 px ring;
 // vacant = dashed with a plus, "Open role" and role · hiring status.
 import * as React from 'react';
-import { Ellipsis, KeyRound, Monitor, Plus, Settings, Smartphone, Users } from '@/components/icons';
+import { Check, Ellipsis, KeyRound, Minus, Monitor, Plus, Settings, Smartphone, Users } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { Avatar } from './avatar';
 import { Badge } from './badge';
@@ -107,19 +107,69 @@ export interface PermissionMatrixProps extends Omit<React.ComponentProps<'table'
   onChange?: (permissionId: string, roleId: string, granted: boolean) => void;
   /** The role being edited: its column is highlighted. */
   selectedRole?: string;
+  /** A select-all checkbox in each column header (mixed when some are granted). Off by default. */
+  selectAll?: boolean;
+  /** Called by a column's select-all; without it, onChange runs for every permission. */
+  onSelectAll?: (roleId: string, granted: boolean) => void;
+  /** Cells show a check or a dash with text instead of checkboxes; no select-all. */
+  readOnly?: boolean;
+  /** Class of the scroll container around the table. */
+  containerClassName?: string;
 }
 
 const roleCell = 'w-24 border-b border-border px-2 text-center align-middle';
 
-function PermissionMatrix({ label, roles, groups, value, onChange, selectedRole, className, ...props }: PermissionMatrixProps) {
+function PermissionMatrix({ label, roles, groups, value, onChange, selectedRole, selectAll = false, onSelectAll, readOnly = false, containerClassName, className, ...props }: PermissionMatrixProps) {
   const sel = (r: PermissionRole) => (r.id === selectedRole ? 'bg-accent' : undefined);
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [wide, setWide] = React.useState(false);
+  React.useLayoutEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const measure = () => setWide(el.scrollWidth > el.clientWidth + 1);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    if (el.firstElementChild) ro.observe(el.firstElementChild);
+    return () => ro.disconnect();
+  }, []);
+  const all = groups.flatMap(g => g.permissions);
+  const grantedIn = (r: PermissionRole, pid: string) => r.locked || (value[pid] ?? []).includes(r.id);
+  const setColumn = (r: PermissionRole, granted: boolean) => {
+    if (onSelectAll) onSelectAll(r.id, granted);
+    else all.forEach(p => { if (grantedIn(r, p.id) !== granted) onChange?.(p.id, r.id, granted); });
+  };
   return (
-    <table data-slot="permission-matrix" className={cn('w-full min-w-[448px] border-collapse text-sm leading-5', className)} {...props}>
+    <div
+      ref={scrollRef}
+      data-slot="permission-matrix-scroll"
+      {...(wide ? { tabIndex: 0, role: 'region', 'aria-label': label } : {})}
+      className={cn('w-full overflow-x-auto rounded-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50', containerClassName)}
+    >
+    <table data-slot="permission-matrix" data-readonly={readOnly || undefined} className={cn('w-full min-w-[448px] border-collapse text-sm leading-5', className)} {...props}>
       <caption className="sr-only">{label}</caption>
       <thead>
         <tr data-slot="permission-row" data-type="header">
           <th scope="col" className="border-b border-border px-2 py-0.5 text-left font-medium">Permission</th>
-          {roles.map(r => <th key={r.id} scope="col" className={cn(roleCell, 'py-0.5 font-medium', sel(r))}>{r.label}</th>)}
+          {roles.map(r => {
+            const count = all.filter(p => grantedIn(r, p.id)).length;
+            const state: boolean | 'indeterminate' = count === 0 ? false : count === all.length ? true : 'indeterminate';
+            return (
+              <th key={r.id} scope="col" className={cn(roleCell, 'py-0.5 font-medium', sel(r))}>
+                {selectAll && !readOnly ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <Checkbox
+                      aria-label={`Select all ${r.label}`}
+                      checked={state}
+                      disabled={r.locked}
+                      onCheckedChange={c => setColumn(r, c === true)}
+                    />
+                    <span className="min-w-0 truncate">{r.label}</span>
+                  </span>
+                ) : r.label}
+              </th>
+            );
+          })}
         </tr>
       </thead>
       {groups.map(g => (
@@ -137,16 +187,23 @@ function PermissionMatrix({ label, roles, groups, value, onChange, selectedRole,
                 {p.description ? <span className="mt-0.5 block truncate text-xs leading-4 text-muted-foreground">{p.description}</span> : null}
               </th>
               {roles.map(r => {
-                const granted = r.locked || (value[p.id] ?? []).includes(r.id);
+                const granted = grantedIn(r, p.id);
                 return (
                   <td key={r.id} className={cn(roleCell, 'py-[var(--cell-padding-y)]', sel(r))}>
-                    <Checkbox
-                      aria-label={`${r.label}: ${p.title}`}
-                      checked={granted}
-                      disabled={r.locked}
-                      onCheckedChange={c => onChange?.(p.id, r.id, c === true)}
-                      className="mx-auto"
-                    />
+                    {readOnly ? (
+                      <span data-granted={granted} className={cn('mx-auto flex items-center justify-center gap-1 text-xs leading-4', granted ? 'text-foreground' : 'text-muted-foreground')}>
+                        {granted ? <Check aria-hidden="true" className="size-4 shrink-0" /> : <Minus aria-hidden="true" className="size-4 shrink-0" />}
+                        <span className="sr-only">{granted ? 'Granted' : 'Not granted'}</span>
+                      </span>
+                    ) : (
+                      <Checkbox
+                        aria-label={`${r.label}: ${p.title}`}
+                        checked={granted}
+                        disabled={r.locked}
+                        onCheckedChange={c => onChange?.(p.id, r.id, c === true)}
+                        className="mx-auto"
+                      />
+                    )}
                   </td>
                 );
               })}
@@ -155,6 +212,7 @@ function PermissionMatrix({ label, roles, groups, value, onChange, selectedRole,
         </tbody>
       ))}
     </table>
+    </div>
   );
 }
 

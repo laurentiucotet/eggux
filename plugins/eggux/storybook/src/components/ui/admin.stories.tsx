@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, fn, userEvent, within } from 'storybook/test';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 import { CreditCard } from '@/components/icons';
 import { ApiKeyRow, IntegrationCard, OrgChartNode, PermissionMatrix, SessionRow, type PermissionRole } from './admin';
 
@@ -59,7 +59,7 @@ const groups = [
   ] },
 ];
 
-function Matrix({ width = 720, extraRoles = false }: { width?: number; extraRoles?: boolean }) {
+function Matrix({ width = 720, extraRoles = false, selectAll = false, readOnly = false }: { width?: number; extraRoles?: boolean; selectAll?: boolean; readOnly?: boolean }) {
   const [value, setValue] = React.useState<Record<string, string[]>>({ 'inv-create': ['admin', 'manager'], 'inv-approve': ['admin', 'manager'], 'cus-edit': ['admin'] });
   const [changed, setChanged] = React.useState<string[]>([]);
   const r = extraRoles ? [...roles, { id: 'member', label: 'Member' }, { id: 'viewer', label: 'Viewer' }] : roles;
@@ -69,6 +69,8 @@ function Matrix({ width = 720, extraRoles = false }: { width?: number; extraRole
         label="Permissions by role"
         roles={r}
         selectedRole="admin"
+        selectAll={selectAll}
+        readOnly={readOnly}
         groups={groups.map(g => ({ ...g, permissions: g.permissions.map(p => ({ ...p, changed: changed.includes(p.id) })) }))}
         value={value}
         onChange={(pid, rid, on) => {
@@ -101,6 +103,41 @@ export const PermissionRows: Story = {
     await expect(manager).toBeChecked();
     await expect(canvas.getByRole('rowheader', { name: /Delete invoices/ })).toHaveTextContent('Changed');
     await expect(canvas.getByRole('columnheader', { name: 'Customers' })).toBeInTheDocument();
+  },
+};
+
+// Select all per column (mixed state), read-only cells, own scroll container at 276. Tests only.
+export const PermissionMatrixModes: Story = {
+  parameters: { controls: { disable: true } },
+  tags: ['!dev'],
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <Matrix selectAll />
+      <Matrix readOnly width={720} />
+      <Matrix selectAll width={276} />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    const [first, second, third] = canvasElement.querySelectorAll('[data-slot="permission-matrix"]');
+    const selectAllAdmin = within(first as HTMLElement).getByRole('checkbox', { name: 'Select all Admin' });
+    // Admin holds 2 of 5 permissions: mixed.
+    await expect(selectAllAdmin).toHaveAttribute('aria-checked', 'mixed');
+    await userEvent.click(selectAllAdmin);
+    await waitFor(() => expect(selectAllAdmin).toBeChecked());
+    await userEvent.click(selectAllAdmin);
+    await waitFor(() => expect(selectAllAdmin).not.toBeChecked());
+    await expect(within(first as HTMLElement).getByRole('checkbox', { name: 'Select all Owner' })).toBeDisabled();
+    // Read only: no checkboxes, words for the state.
+    await expect(within(second as HTMLElement).queryAllByRole('checkbox')).toHaveLength(0);
+    await expect(within(second as HTMLElement).getAllByText('Granted').length).toBeGreaterThan(0);
+    await expect(within(second as HTMLElement).getAllByText('Not granted').length).toBeGreaterThan(0);
+    // Narrow: the table scrolls inside a focusable region, the page does not.
+    const scroller = (third as HTMLElement).parentElement!;
+    await waitFor(() => expect(scroller).toHaveAttribute('tabindex', '0'));
+    await expect(scroller.scrollWidth).toBeGreaterThan(scroller.clientWidth);
+    await expect(scroller.getBoundingClientRect().width).toBeLessThanOrEqual(276);
+    await expect(c.getAllByRole('region', { name: 'Permissions by role' })).toHaveLength(1);
   },
 };
 

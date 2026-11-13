@@ -230,6 +230,28 @@ export const EdgeCases: Story = {
   },
 };
 
+// Expiry computed from expiry and a fixed now: next month, this month, expired, later. Tests only.
+export const PaymentExpiry: Story = {
+  parameters: { controls: { disable: true } },
+  tags: ['!dev'],
+  render: () => (
+    <div className="flex w-[320px] flex-col gap-4">
+      <PaymentMethodCard now="2026-11-14T10:00:00Z" brand="VISA" label="Visa ending in 4242" expiry="Expires 12/26" />
+      <PaymentMethodCard now="2026-11-14T10:00:00Z" brand="MC" label="Mastercard ending in 4444" expiry="Expires 11/2026" onUpdate={fn()} />
+      <PaymentMethodCard now="2026-11-14T10:00:00Z" brand="AMEX" label="Amex ending in 0005" expiry="Expires 08/28" />
+      <PaymentMethodCard now="2026-11-14T10:00:00Z" brand="VISA" label="Visa ending in 1111" expiry="Expired 08/25" onUpdate={fn()} />
+    </div>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvas.getByText('Expires next month')).toBeInTheDocument();
+    await expect(canvas.getByText('Expires this month')).toBeInTheDocument();
+    const cards = canvasElement.querySelectorAll('[data-slot="payment-method-card"]');
+    await expect([...cards].map(c => c.getAttribute('data-state'))).toEqual(['expires-soon', 'expires-soon', 'default', 'expired']);
+    await expect(canvas.getAllByRole('button', { name: /^Update/ })).toHaveLength(2);
+    for (const el of cards) await expect(el.scrollWidth).toBeLessThanOrEqual(320);
+  },
+};
+
 const All = () => (
   <div className="flex flex-col gap-8">
     <div className="flex gap-6">

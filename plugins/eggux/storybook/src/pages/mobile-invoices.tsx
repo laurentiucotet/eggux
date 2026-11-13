@@ -8,6 +8,7 @@ import { EmptyState } from '@/components/ui/empty-state';
 import { Fab } from '@/components/ui/fab';
 import { MobileHeader } from '@/components/ui/mobile-header';
 import { PullToRefresh } from '@/components/ui/pull-to-refresh';
+import { SnackbarStack } from '@/components/ui/snackbar';
 import { SwipeRow } from '@/components/ui/swipe-row';
 import { destinations } from './app-parts';
 import { PhoneScreen } from './mobile-parts';
@@ -63,7 +64,7 @@ export function MobileInvoicesPage({ initialQuery = '', initialSearching = false
   const [searching, setSearching] = React.useState(initialSearching);
   const [query, setQuery] = React.useState(initialQuery);
   const [message, setMessage] = React.useState('');
-  const [removed, setRemoved] = React.useState<{ invoice: InvoiceRecord; index: number } | null>(null);
+  const [removed, setRemoved] = React.useState<{ invoice: InvoiceRecord; index: number; verb: string } | null>(null);
   const next = React.useRef(0);
 
   const q = query.trim().toLowerCase();
@@ -87,8 +88,8 @@ export function MobileInvoicesPage({ initialQuery = '', initialSearching = false
   const remove = (invoice: InvoiceRecord, verb: string) => {
     const index = invoices.findIndex(i => i.id === invoice.id);
     setInvoices(list => list.filter(i => i.id !== invoice.id));
-    setRemoved({ invoice, index });
-    setMessage(`${invoice.id} ${verb}.`);
+    setRemoved({ invoice, index, verb });
+    setMessage('');
   };
   const undo = () => {
     if (!removed) return;
@@ -133,15 +134,15 @@ export function MobileInvoicesPage({ initialQuery = '', initialSearching = false
       }
     >
       {searching ? <h1 className="sr-only">Invoices</h1> : null}
+      <SnackbarStack
+        className="bottom-20 mx-auto max-w-[480px]"
+        duration={8000}
+        items={removed ? [{ id: `removed-${removed.invoice.id}`, message: `${removed.invoice.id} ${removed.verb}.`, action: { label: 'Undo', onClick: undo } }] : []}
+        onDismiss={() => setRemoved(null)}
+      />
       <PullToRefresh onRefresh={refresh} className="flex-1 px-4 pb-24">
         <p role="status" className="m-0 min-h-5 py-1 text-sm leading-5 text-muted-foreground">
           {message}
-          {removed ? (
-            <>
-              {' '}
-              <Button type="button" variant="link" className="min-h-11" onClick={undo}>Undo</Button>
-            </>
-          ) : null}
         </p>
         {shown.length ? (
           <ul aria-label={q ? `Invoices matching ${query.trim()}` : 'Invoices'} className="m-0 flex list-none flex-col divide-y divide-border p-0">

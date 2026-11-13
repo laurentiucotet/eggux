@@ -38,7 +38,7 @@ export function ScanToPairPage({ initialState = 'scanning', initialManual = fals
 
   return (
     <PhoneScreen
-      header={<MobileHeader type="detail" title="Scan to pair" leading={<Button type="button" variant="ghost" className="min-h-11" onClick={() => setCancelled(true)}>Cancel</Button>} />}
+      header={<MobileHeader type="detail" title="Scan to pair" leading={<Button type="button" variant="ghost" size="touch" onClick={() => setCancelled(true)}>Cancel</Button>} />}
       className="flex flex-col items-center gap-6 px-4 py-6"
     >
       {cancelled ? (
@@ -52,11 +52,11 @@ export function ScanToPairPage({ initialState = 'scanning', initialManual = fals
           {state === 'error' ? (
             <Alert variant="destructive" title="Pairing failed" description="The code did not match. Make sure the QR code on your screen is up to date." className="w-full" />
           ) : null}
-          {state === 'error' ? <Button type="button" variant="outline" className="h-11 w-full" onClick={() => { setState('scanning'); setCode(''); }}>Try again</Button> : null}
+          {state === 'error' ? <Button type="button" variant="outline" size="touch" className="w-full" onClick={() => { setState('scanning'); setCode(''); }}>Try again</Button> : null}
           {state !== 'success' ? (
             <div className="flex w-full flex-col gap-4">
               {!manual ? (
-                <Button type="button" variant="outline" className="h-11 w-full" aria-expanded={false} aria-controls="pair-code-form" onClick={() => setManual(true)}>Enter the code instead</Button>
+                <Button type="button" variant="outline" size="touch" className="w-full" aria-expanded={false} aria-controls="pair-code-form" onClick={() => setManual(true)}>Enter the code instead</Button>
               ) : (
                 <form id="pair-code-form" noValidate onSubmit={submit} className="flex flex-col gap-4" aria-label="Enter the pairing code">
                   <Field label="6 character code" hint="Shown under the QR code on your screen." error={fieldError} required>
@@ -75,7 +75,7 @@ export function ScanToPairPage({ initialState = 'scanning', initialManual = fals
                       className="h-11 font-mono tracking-widest uppercase"
                     />
                   </Field>
-                  <Button type="submit" className="h-11 w-full">Pair device</Button>
+                  <Button type="submit" size="touch" className="w-full">Pair device</Button>
                 </form>
               )}
             </div>

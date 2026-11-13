@@ -176,6 +176,27 @@ export const EdgeCases: Story = {
   },
 };
 
+// Typing Indicator with names: one, two, many, none. Tests only.
+export const TypingNames: Story = {
+  tags: ['!dev'],
+  render: () => (
+    <div className="flex w-[276px] flex-col gap-3">
+      <TypingIndicator listNames names={['Ana']} />
+      <TypingIndicator listNames names={['Ana', 'Dan']} />
+      <TypingIndicator listNames names={['Ana', 'Dan', 'Mihai', 'Sofia']} />
+      <TypingIndicator listNames names={['Alexandra-Maria Constantinescu-Popovici']} />
+      <TypingIndicator listNames names={[]} />
+    </div>
+  ),
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText('Ana is typing')).toBeInTheDocument();
+    await expect(canvas.getByText('Ana and Dan are typing')).toBeInTheDocument();
+    await expect(canvas.getByText('Ana and 3 others are typing')).toBeInTheDocument();
+    await expect(canvas.getAllByRole('status')).toHaveLength(4);
+    await expect(canvas.getAllByRole('status')[0]).toHaveAttribute('aria-live', 'polite');
+  },
+};
+
 const All = () => (
   <div className="flex gap-10">
     <div className="flex w-[640px] flex-col gap-4">
