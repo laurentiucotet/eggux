@@ -24,7 +24,11 @@ export function ResultPage({ kind = 'not-found' }: { kind?: 'not-found' | 'serve
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-2">
-          <Button asChild><a href="#home">{notFound ? 'Go to the home page' : 'Try again'}</a></Button>
+          {notFound ? (
+            <Button asChild><a href="#home">Go to the home page</a></Button>
+          ) : (
+            <Button type="button" onClick={() => window.location.reload()}>Try again</Button>
+          )}
           <Button asChild variant="outline"><a href={notFound ? '#search' : '#contact'}>{notFound ? 'Search the site' : 'Contact support'}</a></Button>
         </div>
         {!notFound ? <p className="m-0 text-sm leading-5 text-muted-foreground">Error id: <code className="font-mono text-xs">ERR-7F3A-2291</code></p> : null}

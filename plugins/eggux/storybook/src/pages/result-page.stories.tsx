@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
-import { ResultPage } from './not-found';
+import { ResultPage } from './result-page';
 
 const meta = {
   title: 'Pages/System/Not found',
@@ -28,6 +28,17 @@ export const ContentCheck: Story = {
     await expect(c.getByRole('link', { name: 'Go to the home page' })).toHaveAttribute('href', '#home');
     await expect(c.getByRole('banner')).toBeVisible();
     await expect(c.getByRole('contentinfo')).toBeVisible();
+  },
+};
+
+export const ServerErrorCheck: Story = {
+  tags: ['!dev'],
+  render: () => <ResultPage kind="server-error" />,
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    // Retry is an action, not a link to another page.
+    await expect(c.getByRole('button', { name: 'Try again' })).toBeVisible();
+    await expect(c.queryByRole('link', { name: 'Try again' })).toBeNull();
   },
 };
 export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' } };

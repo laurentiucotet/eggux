@@ -2,11 +2,10 @@ import * as React from 'react';
 import { Alert } from '@/components/ui/alert';
 import { Avatar } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Field } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { PasswordStrength, passwordStrength } from '@/components/ui/password-strength';
-import { AuthHeading, AuthSplit, OrDivider, PasswordField, ProviderButtons, emailError } from './site-parts';
+import { AuthHeading, AuthSplit, CheckboxField, OrDivider, PasswordField, ProviderButtons, emailError } from './site-parts';
 
 type Errors = { name?: string; email?: string; password?: string; terms?: string };
 
@@ -65,15 +64,12 @@ export function RegisterPage({ showErrors = false }: { showErrors?: boolean }) {
             <PasswordField label="Password" autoComplete="new-password" value={password} onChange={setPassword} error={errors.password} />
             <PasswordStrength level={passwordStrength(password)} />
           </div>
-          <div className="flex flex-col gap-1.5">
-            <Checkbox
-              checked={terms}
-              onCheckedChange={v => setTerms(v === true)}
-              invalid={!!errors.terms}
-              label={<>I agree to the <a href="#terms" className="underline underline-offset-4">Terms</a> and the <a href="#privacy" className="underline underline-offset-4">Privacy Policy</a></>}
-            />
-            {errors.terms ? <p role="alert" className="m-0 pl-6 text-sm leading-5 text-destructive">{errors.terms}</p> : null}
-          </div>
+          <CheckboxField
+            checked={terms}
+            onCheckedChange={v => setTerms(v === true)}
+            error={errors.terms}
+            label={<>I agree to the <a href="#terms" className="underline underline-offset-4">Terms</a> and the <a href="#privacy" className="underline underline-offset-4">Privacy Policy</a></>}
+          />
           <Button type="submit" className="w-full">Create account</Button>
           <OrDivider />
           <ProviderButtons verb="Sign up" />

@@ -9,16 +9,26 @@ import { AuthCardPage, AuthHeading, emailError } from './site-parts';
  * Reset by email, two steps in the same card so the page does not jump. The second step says the
  * same thing for any address: it never tells whether an account exists.
  */
-export function ForgotPasswordPage({ initialStep = 'request', defaultEmail = '' }: { initialStep?: 'request' | 'sent'; defaultEmail?: string }) {
+export function ForgotPasswordPage({ initialStep = 'request', defaultEmail = '', resendAfter = 30 }: { initialStep?: 'request' | 'sent'; defaultEmail?: string; resendAfter?: number }) {
   const [step, setStep] = React.useState(initialStep);
   const [email, setEmail] = React.useState(defaultEmail);
   const [error, setError] = React.useState<string>();
+  // Seconds until the link can be sent again; counts down while the second step shows.
+  const [wait, setWait] = React.useState(resendAfter);
+  React.useEffect(() => {
+    if (step !== 'sent' || wait <= 0) return;
+    const t = window.setTimeout(() => setWait(w => w - 1), 1000);
+    return () => window.clearTimeout(t);
+  }, [step, wait]);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const problem = emailError(email);
     setError(problem);
-    if (!problem) setStep('sent');
+    if (!problem) {
+      setWait(resendAfter);
+      setStep('sent');
+    }
   };
 
   return (
@@ -46,7 +56,9 @@ export function ForgotPasswordPage({ initialStep = 'request', defaultEmail = '' 
           />
           <div className="flex flex-col gap-2">
             <Button type="button" className="w-full" onClick={() => setStep('request')}>Use a different email</Button>
-            <Button type="button" variant="ghost" className="w-full" disabled>Resend link in 0:30</Button>
+            <Button type="button" variant="ghost" className="w-full" disabled={wait > 0} onClick={() => setWait(resendAfter)}>
+              {wait > 0 ? `Resend link in 0:${String(wait).padStart(2, '0')}` : 'Resend link'}
+            </Button>
           </div>
         </>
       )}
