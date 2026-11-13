@@ -237,6 +237,9 @@ shown argType names. A spread story copies no tags: Storybook reads `tags` from 
 | Block / Security and Compliance / Trust Strip | BLOCKS / Sections | `src/components/ui/section-trust.tsx` | one story per block (+ checks, Dark, Back office hidden) | 544 intro beside 6 controls in 2 × 256, badge row, strip 182 high, stacking at 768/390 | done |
 | Block / About Hero / Mission with Figures / Our Story / Values / Timeline Section | BLOCKS / Sections | `src/components/ui/section-about.tsx` | one story per block (+ checks, Dark, Back office hidden) | one h1 (About Hero) and h2 sections, Figma widths and gaps, milestones timeline, year row hidden below 1024 | done |
 | Block / Case Study Grid / Case Study Header | BLOCKS / Sections | `src/components/ui/section-case-study.tsx` | one story per block (+ checks, FilterCheck, Dark, Back office hidden) | industry chips filter the grid (Retail 2, All 6), 3 × 368 stories with results, header h1 with facts dl, 3 figures and a 1152 × 494 photo | done |
+| Block / Filter Builder / Import Mapping / Audit Log / Report / Version History | BLOCKS / Enterprise | `src/components/ui/enterprise-blocks.tsx`, `enterprise-blocks-more.tsx` | Blocks/Enterprise/Data (+ checks at 1440/768/390, Dark, Back office hidden) | live count and focus moves on add/remove, one nested group, unmapped column blocks Continue with an alert, audit rows expand by keyboard with masked secrets, period change updates every KPI, v11 vs v12 diff and Restore | done |
+| Block / Approval Request / Approval Inbox / Workflow Builder / Record Form | BLOCKS / Enterprise | `src/components/ui/enterprise-blocks.tsx`, `enterprise-blocks-more.tsx` | Blocks/Enterprise/Workflows (+ checks, Dark, Back office hidden) | reject needs a comment, approve starts the next step, inbox count drops on approve, side panel edits update the node, save bar counts changes and invalid email blocks Save | done (connectors are CSS lines) |
+| Block / Roles & Permissions / User Directory / Org Chart | BLOCKS / Enterprise | `src/components/ui/enterprise-blocks-more.tsx` | Blocks/Enterprise/People (+ checks, Dark, Back office hidden) | role list 300 with change count, Owner boxes locked, bulk role change on selected rows only, Deactivate asks first, 220 nodes on three levels with keyboard selection | done |
 
 ## Design findings
 Differences between Figma, the references and code, found while building. Each needs a decision
@@ -358,3 +361,7 @@ in Figma or in the reference; code follows the column "Code".
 | Post Card | No responsive layout | Blog List renders a horizontal and a vertical copy, one hidden by CSS |
 | Lightbox | No trigger and no focus return on close | blocks use a small hook; needs returnFocus / onCloseAutoFocus |
 | Figure | Long labels always cut to one line; Figma wraps them | local override; needs a wrap option |
+| Bar Chart (grouped) | Each group pads 8% per side, bars overflow plots under about 2400 wide | Report overrides it to 4% |
+| Section Heading / Page Header | Actions are shrink-0 and cannot wrap on phones | Report caps the actions width |
+| Data Grid Toolbar / Table Pagination | Min widths 512 and 448 do not fit a phone | wrapped in horizontal scroll containers |
+| Stat Card | Change Badge draws cropped with the Back office look, also in the library default story | to check in Chromatic |
