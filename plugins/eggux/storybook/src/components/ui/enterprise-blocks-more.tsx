@@ -410,7 +410,9 @@ function OrgChart({
       onSelect={p.vacancy ? undefined : () => { setSelected(p.id); onOpenPerson?.(p.id); }}
     />
   );
-  const branch = 'relative flex flex-col items-center pt-6 before:absolute before:top-0 before:left-1/2 before:h-6 before:w-px before:bg-border';
+  // Connectors: each child draws the left and right half of the bar above it and the drop to its node.
+  const branch = 'relative flex flex-col items-center pt-6 before:absolute before:top-0 before:left-0 before:w-1/2 before:border-t before:border-border first:before:hidden after:absolute after:top-0 after:right-0 after:h-6 after:w-1/2 after:border-t after:border-l after:border-border last:after:border-t-0';
+  const stem = 'relative m-0 mt-6 flex list-none p-0 before:absolute before:-top-6 before:left-1/2 before:h-6 before:w-px before:bg-border';
   return (
     <EnterpriseBlock
       heading="page"
@@ -438,13 +440,13 @@ function OrgChart({
             <li className="flex flex-col items-center">
               {node(root)}
               {level2.length ? (
-                <ul aria-label={`Reports to ${root.name}`} className="relative m-0 mt-6 flex list-none gap-6 p-0 before:absolute before:-top-6 before:left-1/2 before:h-6 before:w-px before:bg-border">
-                  {level2.map((p, i) => (
-                    <li key={p.id} className={cn(branch, 'border-t border-border', i === 0 && 'ml-[110px] pl-0 [&>[data-slot=org-chart-node]]:-ml-[110px]', i === level2.length - 1 && 'mr-[110px] [&>[data-slot=org-chart-node]]:-mr-[110px]')}>
+                <ul aria-label={`Reports to ${root.name}`} className={stem}>
+                  {level2.map(p => (
+                    <li key={p.id} className={cn(branch, 'px-3')}>
                       {node(p)}
                       {p.id === selected && p.reports?.length ? (
-                        <ul aria-label={`Reports to ${p.name}`} className="relative m-0 mt-6 flex list-none gap-4 p-0 before:absolute before:-top-6 before:left-1/2 before:h-6 before:w-px before:bg-border">
-                          {p.reports.map(c => <li key={c.id} className={cn(branch, 'border-t border-border')}>{node(c)}</li>)}
+                        <ul aria-label={`Reports to ${p.name}`} className={stem}>
+                          {p.reports.map(c => <li key={c.id} className={cn(branch, 'px-2')}>{node(c)}</li>)}
                         </ul>
                       ) : null}
                     </li>
