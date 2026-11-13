@@ -32,6 +32,8 @@ import { CheckItem } from './form-layout';
 import { ImagePlaceholder } from './image-placeholder';
 import { DeviceFrame } from './imagery';
 import { Logo } from './logo';
+import { LogoTile } from './logo-tile';
+import { brandLogos, type BrandLogoName } from './brand-logos';
 import { MetaItem } from './meta-item';
 import { Progress } from './progress';
 import { SectionHeader } from './section-header-block';
@@ -890,10 +892,13 @@ function IntegrationsGrid({
       <SectionHeader titleId={id} overline={overline} title={title} description={description} />
       <ul aria-label="Integrations" className="m-0 grid w-full list-none grid-cols-2 gap-4 p-0 @2xl:grid-cols-3 @4xl:grid-cols-4">
         {tools.map(t => (
-          // TODO Logo Tile and the Logo / * marks: not in the code library yet; a bordered card with the wordmark.
-          <li key={t} data-slot="logo-tile" className="flex h-18 items-center justify-center rounded-lg border border-border bg-card px-6">
-            <Logo type="wordmark" name={t} />
-          </li>
+          t in brandLogos ? (
+            <LogoTile key={t} as="li" logo={t as BrandLogoName} className="w-full min-w-0" />
+          ) : (
+            <li key={t} data-slot="logo-tile" className="flex h-18 items-center justify-center rounded-lg border border-border bg-card px-6">
+              <Logo type="wordmark" name={t} />
+            </li>
+          )
         ))}
       </ul>
       <div className="flex flex-col items-center gap-4 text-center">

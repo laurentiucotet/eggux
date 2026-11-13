@@ -33,6 +33,8 @@ import { ImagePlaceholder, type ImageRatio } from './image-placeholder';
 import { InlineForm } from './inline-form';
 import { ListItem } from './list';
 import { Logo } from './logo';
+import { LogoTile } from './logo-tile';
+import { brandLogos, type BrandLogoName } from './brand-logos';
 import { VideoPlayer } from './media';
 import { Countdown, LeaderboardRow, MetricStrip, MetricStripItem, TrendIndicator } from './metrics';
 import { PlanOptions, Price, type PlanOption } from './pricing';
@@ -561,9 +563,13 @@ function HeroWithLogoCloud({
               <p className="m-0 text-center text-sm leading-5 text-muted-foreground">{logosCaption}</p>
               <ul aria-label="Customers" className="m-0 grid w-full list-none grid-cols-2 p-0 @xl:grid-cols-3 @4xl:grid-cols-6">
                 {logos.map(name => (
-                  <li key={name} data-slot="logo-tile" className="flex h-[72px] items-center justify-center px-6 grayscale">
-                    <Logo name={name} mark={name.charAt(0)} className="[&_[data-slot=logo-mark]]:bg-foreground [&_[data-slot=logo-mark]]:text-background" />
-                  </li>
+                  name in brandLogos ? (
+                    <LogoTile key={name} as="li" tileStyle="plain" logo={name as BrandLogoName} className="w-full min-w-0" />
+                  ) : (
+                    <li key={name} data-slot="logo-tile" className="flex h-[72px] items-center justify-center px-6">
+                      <Logo name={name} mark={name.charAt(0)} className="[&_[data-slot=logo-mark]]:bg-foreground [&_[data-slot=logo-mark]]:text-background" />
+                    </li>
+                  )
                 ))}
               </ul>
             </div>
