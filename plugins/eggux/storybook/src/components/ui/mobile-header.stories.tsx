@@ -119,6 +119,16 @@ export const LargeCheck: Story = {
   },
 };
 
+export const TitleAsParagraphCheck: Story = {
+  tags: ['!dev'],
+  render: () => <MobileHeader title="Invoices" titleAs="p" />,
+  play: async ({ canvas }) => {
+    // The page has its own h1 under the bar: the bar title is plain text.
+    await expect(canvas.queryByRole('heading', { level: 1 })).toBeNull();
+    await expect(canvas.getByText('Invoices')).toBeVisible();
+  },
+};
+
 export const ButtonsCheck: Story = {
   tags: ['!dev'],
   render: () => {

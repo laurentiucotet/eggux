@@ -24,6 +24,8 @@ export interface MobileHeaderProps extends Omit<React.ComponentProps<'header'>, 
   size?: MobileHeaderSize;
   /** Figma Title: the page or object name, one line in the bar, up to two lines when large. */
   title?: string;
+  /** Element of the title. Default h1 (the page heading); a page that has its own heading under the bar (an app shell with a Page Header) passes "p" so there is one h1. */
+  titleAs?: 'h1' | 'p';
   /** Slot Leading. Default: a menu button (app) or a back button (detail, search); hidden in brand. */
   leading?: React.ReactNode;
   /** Slot Trailing: notifications and an Avatar, or actions. In search it is replaced by Cancel. */
@@ -57,6 +59,7 @@ function MobileHeader({
   type = 'app',
   size = 'default',
   title = 'Customers',
+  titleAs = 'h1',
   leading,
   trailing,
   logo,
@@ -74,6 +77,7 @@ function MobileHeader({
   className,
   ...props
 }: MobileHeaderProps) {
+  const TitleTag = titleAs;
   const large = size === 'large' && (type === 'app' || type === 'detail');
   const backButton = <ButtonIcon variant="ghost" icon={<ArrowLeft />} label={backLabel} className={touch} showTooltip={false} onClick={onBack} />;
   const leadingNode =
@@ -102,7 +106,7 @@ function MobileHeader({
         ) : large ? (
           <div className="flex-1" />
         ) : (
-          <h1 className="m-0 min-w-0 flex-1 truncate text-lg leading-7 font-semibold">{title}</h1>
+          <TitleTag className="m-0 min-w-0 flex-1 truncate text-lg leading-7 font-semibold">{title}</TitleTag>
         )}
         {type === 'search' ? (
           <Button type="button" variant="ghost" className={cn(touch, 'shrink-0')} onClick={onCancel}>{cancelLabel}</Button>
@@ -112,7 +116,7 @@ function MobileHeader({
           <div data-slot="mobile-header-trailing" className="flex shrink-0 items-center gap-1">{trailing}</div>
         ) : null}
       </div>
-      {large ? <h1 className="m-0 line-clamp-2 px-4 pt-1 pb-3 text-2xl leading-8 font-semibold tracking-[-0.4px]">{title}</h1> : null}
+      {large ? <TitleTag className="m-0 line-clamp-2 px-4 pt-1 pb-3 text-2xl leading-8 font-semibold tracking-[-0.4px]">{title}</TitleTag> : null}
     </header>
   );
 }
