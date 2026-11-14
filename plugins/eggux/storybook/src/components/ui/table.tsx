@@ -3,8 +3,8 @@
 // Style default, striped) and Table Header Label (Sort off, sortable, ascending, descending x
 // Align left, right; Show info, Show menu). shadcn Table with the EGG changes from
 // references/code-mapping.md. Built from Button (menu), InfoTip (info), icons ArrowUpDown,
-// ChevronUp, ChevronDown, Ellipsis. Density comes from --table-header-height and
-// --cell-padding-y, which the `.density-compact` class changes.
+// ChevronUp, ChevronDown, Ellipsis. Row sizes come from --table-header-height and
+// --cell-padding-y.
 // The table is semantic: <table>, <th scope>, <td>. Sorting: the header is a button inside <th>
 // and the <th> carries aria-sort (TableHead `sort`).
 import * as React from 'react';

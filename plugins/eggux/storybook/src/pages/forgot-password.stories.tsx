@@ -33,6 +33,8 @@ export const FlowCheck: Story = {
     // Same message whether or not the account exists.
     await expect(await c.findByRole('heading', { level: 1, name: 'Check your email' })).toBeVisible();
     await expect(c.getByText(/If there is an account for/)).toBeVisible();
+    // The resend button counts down before it opens.
+    await expect(c.getByRole('button', { name: /^Resend link in 0:\d\d$/ })).toBeDisabled();
     await userEvent.click(c.getByRole('button', { name: 'Use a different email' }));
     await expect(await c.findByRole('button', { name: 'Send reset link' })).toBeVisible();
   },

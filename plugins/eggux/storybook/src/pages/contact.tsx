@@ -4,13 +4,12 @@ import { Accordion, AccordionItem } from '@/components/ui/accordion';
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Field } from '@/components/ui/field';
 import { IconTile } from '@/components/ui/icon-tile';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { SitePage, emailError } from './site-parts';
+import { CheckboxField, SitePage, emailError } from './site-parts';
 
 const channels = [
   { icon: <Mail />, title: 'Sales', text: 'Pricing, demos and plans for your team.', link: 'sales@acme.example', href: 'mailto:sales@acme.example' },
@@ -31,6 +30,7 @@ const faq = [
 ] as const;
 
 const limit = 500;
+const minMessage = 'Write a few words about what you need (at least 10 characters).';
 type Errors = { name?: string; email?: string; topic?: string; message?: string; consent?: string };
 
 /** Contact: the reply time first, direct channels, a short form, the offices with written addresses, FAQ. */
@@ -42,7 +42,7 @@ export function ContactPage({ showErrors = false, sent = false }: { showErrors?:
   const [consent, setConsent] = React.useState(false);
   const [done, setDone] = React.useState(sent);
   const [errors, setErrors] = React.useState<Errors>(
-    showErrors ? { name: 'Enter your name.', email: 'Enter your email address.', topic: 'Choose a topic.', message: 'Write a few words about what you need.', consent: 'Agree to be contacted so we can reply.' } : {},
+    showErrors ? { name: 'Enter your name.', email: 'Enter your email address.', topic: 'Choose a topic.', message: minMessage, consent: 'Agree to be contacted so we can reply.' } : {},
   );
 
   const submit = (e: React.FormEvent) => {
@@ -51,7 +51,7 @@ export function ContactPage({ showErrors = false, sent = false }: { showErrors?:
       name: name.trim() ? undefined : 'Enter your name.',
       email: emailError(email),
       topic: topic ? undefined : 'Choose a topic.',
-      message: message.trim().length >= 10 ? undefined : 'Write a few words about what you need (at least 10 characters).',
+      message: message.trim().length >= 10 ? undefined : minMessage,
       consent: consent ? undefined : 'Agree to be contacted so we can reply.',
     };
     setErrors(next);
@@ -100,7 +100,7 @@ export function ContactPage({ showErrors = false, sent = false }: { showErrors?:
                     <Input type="email" autoComplete="email" placeholder="name@company.com" value={email} onChange={e => setEmail(e.target.value)} />
                   </Field>
                   <Field label="Topic" error={errors.topic} required>
-                    <Select value={topic || undefined} onValueChange={setTopic}>
+                    <Select value={topic} onValueChange={setTopic}>
                       <SelectTrigger placeholder="Choose a topic" />
                       <SelectContent>
                         {topics.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
@@ -110,10 +110,7 @@ export function ContactPage({ showErrors = false, sent = false }: { showErrors?:
                   <Field label="Message" error={errors.message} counter={{ value: message.length, limit }} required>
                     <Textarea rows={4} maxLength={limit} placeholder="How can we help?" value={message} onChange={e => setMessage(e.target.value)} />
                   </Field>
-                  <div className="flex flex-col gap-1.5">
-                    <Checkbox checked={consent} onCheckedChange={v => setConsent(v === true)} invalid={!!errors.consent} label="I agree that Acme may contact me about this message." />
-                    {errors.consent ? <p role="alert" className="m-0 pl-6 text-sm leading-5 text-destructive">{errors.consent}</p> : null}
-                  </div>
+                  <CheckboxField checked={consent} onCheckedChange={v => setConsent(v === true)} error={errors.consent} label="I agree that Acme may contact me about this message." />
                   <Button type="submit" className="w-full">Send message</Button>
                 </form>
               )}

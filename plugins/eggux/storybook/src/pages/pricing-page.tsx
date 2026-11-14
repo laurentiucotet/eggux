@@ -96,7 +96,7 @@ export function PricingPage({ defaultPeriod = 'monthly' }: { defaultPeriod?: Per
           <div className="overflow-x-auto">
             <ComparisonTable
               caption="Compare plans"
-              plans={plans.map(p => ({ id: p.id, name: p.name, badge: p.badge, price: p.monthly ? `€${price(p.monthly, period)} per seat / month` : 'Custom', action: action(p) }))}
+              plans={plans.map(p => ({ id: p.id, name: p.name, badge: p.badge, price: p.monthly ? `€${price(p.monthly, period)} per seat / month${period === 'yearly' ? ', billed yearly' : ''}` : 'Custom', action: action(p) }))}
               groups={comparison}
             />
           </div>

@@ -36,21 +36,21 @@ export function BlogPostPage() {
       <SitePage active="Blog">
         <article className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-12">
           <div className="grid lg:grid-cols-[14rem_minmax(0,44rem)] lg:justify-center lg:gap-x-12">
-          <header className="flex w-full min-w-0 flex-col gap-5 lg:col-start-2">
-            <Breadcrumb items={[{ label: 'Home', href: '#home' }, { label: 'Blog', href: '#blog' }, { label: 'Finance' }]} />
-            <p className="m-0 flex flex-wrap items-center gap-3 text-sm leading-5">
-              <Badge variant="soft-info">Finance</Badge>
-              <time dateTime="2026-10-12">12 Oct 2026</time>
-              <span aria-hidden="true">·</span>
-              <span>7 min read</span>
-            </p>
-            <h1 className="m-0 text-4xl leading-10 font-semibold tracking-[-0.4px] sm:text-5xl sm:leading-[3.25rem]">{title}</h1>
-            <p className="m-0 text-xl leading-8 text-muted-foreground">Three small process changes, no new headcount. Here is what a five-person finance team did, in order, and what we would skip next time.</p>
-            <div className="flex items-center gap-3">
-              <Avatar initials="MI" size="lg" />
-              <p className="m-0 text-sm leading-5"><strong className="font-semibold">Maria Ilie</strong><br /><span className="text-muted-foreground">Finance lead, Northwind Traders</span></p>
-            </div>
-          </header>
+            <header className="flex w-full min-w-0 flex-col gap-5 lg:col-start-2">
+              <Breadcrumb items={[{ label: 'Home', href: '#home' }, { label: 'Blog', href: '#blog' }, { label: 'Finance' }]} />
+              <p className="m-0 flex flex-wrap items-center gap-3 text-sm leading-5">
+                <Badge variant="soft-info">Finance</Badge>
+                <time dateTime="2026-10-12">12 Oct 2026</time>
+                <span aria-hidden="true">·</span>
+                <span>7 min read</span>
+              </p>
+              <h1 className="m-0 text-4xl leading-10 font-semibold tracking-[-0.4px] sm:text-5xl sm:leading-[3.25rem]">{title}</h1>
+              <p className="m-0 text-xl leading-8 text-muted-foreground">Three small process changes, no new headcount. Here is what a five-person finance team did, in order, and what we would skip next time.</p>
+              <div className="flex items-center gap-3">
+                <Avatar initials="MI" size="lg" />
+                <p className="m-0 text-sm leading-5"><strong className="font-semibold">Maria Ilie</strong><br /><span className="text-muted-foreground">Finance lead, Northwind Traders</span></p>
+              </div>
+            </header>
           </div>
 
           <ImagePlaceholder ratio="21:9" alt="" className="w-full rounded-xl" />

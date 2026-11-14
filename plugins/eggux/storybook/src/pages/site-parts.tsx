@@ -5,6 +5,7 @@ import * as React from 'react';
 import { Eye, EyeOff, KeyRound } from '@/components/icons';
 import github from '@/assets/brands/github.svg';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Field } from '@/components/ui/field';
 import { InputGroup } from '@/components/ui/input-group';
 import { Logo } from '@/components/ui/logo';
@@ -126,18 +127,29 @@ export function PasswordField({
   const [shown, setShown] = React.useState(false);
   return (
     <Field label={label} error={error} hint={hint} required>
-        <InputGroup
-          type={shown ? 'text' : 'password'}
-          autoComplete={autoComplete}
-          value={value}
-          onChange={e => onChange(e.target.value)}
-          end={
-            <Button type="button" variant="ghost" size="icon-xs" aria-label={shown ? 'Hide password' : 'Show password'} aria-pressed={shown} onClick={() => setShown(s => !s)}>
-              {shown ? <EyeOff /> : <Eye />}
-            </Button>
-          }
-        />
+      <InputGroup
+        type={shown ? 'text' : 'password'}
+        autoComplete={autoComplete}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        end={
+          <Button type="button" variant="ghost" size="icon-xs" aria-label={shown ? 'Hide password' : 'Show password'} aria-pressed={shown} onClick={() => setShown(s => !s)}>
+            {shown ? <EyeOff /> : <Eye />}
+          </Button>
+        }
+      />
     </Field>
+  );
+}
+
+/** A checkbox with its error message under it, linked with aria-describedby (consent, terms). */
+export function CheckboxField({ error, ...props }: React.ComponentProps<typeof Checkbox> & { error?: string }) {
+  const id = React.useId();
+  return (
+    <div className="flex flex-col gap-1.5">
+      <Checkbox {...props} invalid={!!error} aria-describedby={error ? id : undefined} />
+      {error ? <p id={id} role="alert" className="m-0 pl-6 text-sm leading-5 text-destructive">{error}</p> : null}
+    </div>
   );
 }
 

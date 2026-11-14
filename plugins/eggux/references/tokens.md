@@ -81,8 +81,8 @@ Both uses must pass 4.5:1. Run `/eggux:audit-tokens` to check all pairs.
 | `Showcase Light`, `Showcase Dark` | `color/brand/600` primary with white text (5.7:1), `foreground/brand` brand/700 (brand/400 Dark), `border/ring` brand/600 (brand/500 Dark), `background/accent` brand/50 (Light only), `chart/1` brand/600 (brand/400 Dark), `chart/7` blue, `sidebar/primary` brand/600, `radius/base` 12 px (sm 6, md 8, xl 12), pill controls and Plus Jakarta Sans like Light/Dark; neutral surfaces as Light/Dark | Demo rebrand for the Cover, Intro and Showcase pages only; never the library default. Shows how a client brand re-aliases the same tokens |
 
 Set Semantic and Components to the same mode on a frame. Corporate also sets the sidebar
-(`sidebar/*`) and `button/destructive-hover`. Pair Corporate with Density `Compact` for
-data-heavy screens. Corporate passes 4.5:1 for muted text on muted surfaces and 3:1 for input
+(`sidebar/*`) and `button/destructive-hover`. Corporate uses the same single density as the
+other looks. Corporate passes 4.5:1 for muted text on muted surfaces and 3:1 for input
 borders, so the base exceptions below do not apply to it (warning as text stays an exception).
 A client brand re-aliases the same tokens in the mode it starts from (`/eggux:brand-intake`).
 
@@ -221,8 +221,9 @@ no animation. Figma prototypes use the same durations; the tokens have no Figma 
 
 ## Density
 
-Collection `Density`, modes `Comfortable` (default) and `Compact`. Set the mode on a frame to
-tighten a whole screen (data tables, admin tools, power users).
+Collection `Density`, modes `Comfortable` (default) and `Compact`. The product decision is one
+density: Comfortable. Storybook has no Density toolbar and no Compact story; the Compact mode and the
+`.density-compact` block stay as generated from Figma, for a product that wants a compact surface.
 
 | Token | Comfortable | Compact | Bound to |
 |---|---|---|---|
@@ -237,7 +238,7 @@ tighten a whole screen (data tables, admin tools, power users).
 | `density/card-gap-sm` | 16 | 12 | Same, Size=sm |
 
 Compact keeps touch targets ≥ 44 only on desktop: never use Compact on mobile.
-Code: `[data-density="compact"]` sets the CSS variables.
+Code: the `.density-compact` class sets the CSS variables (not used by Storybook).
 
 ## Content (strings)
 

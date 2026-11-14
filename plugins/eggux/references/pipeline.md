@@ -34,7 +34,7 @@ Rules:
 
 ### Design engineer
 - Coded components whose props match the Figma variants and properties.
-- Token pipeline: Figma variables to CSS variables (Light, Dark, themes, density).
+- Token pipeline: Figma variables to CSS variables (Light, Dark, themes).
 - Stories for every state of every component (Storybook or an equivalent), including long text
   and narrow widths from the stress test.
 - Accessibility in code: keyboard, focus, ARIA, reduced motion.
