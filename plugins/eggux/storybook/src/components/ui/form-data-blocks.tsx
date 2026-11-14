@@ -12,16 +12,23 @@ import { AuthCard, PasswordInput, emailRule, requiredRule, useBlockForm } from '
 import { ActionBar } from './action-bar';
 import { AddressAutocomplete, type AddressSuggestion } from './address-autocomplete';
 import { Alert } from './alert';
+import { Avatar } from './avatar';
+import { AvatarGroup } from './avatar-group';
+import { Badge } from './badge';
 import { Button } from './button';
 import { Card, CardContent, CardFooter, CardHeader } from './card';
 import { Checkbox } from './checkbox';
+import { CopyField } from './copy-field';
 import { CurrencyInput } from './currency-input';
 import { DateInput } from './date-input';
 import { DatePicker } from './date-picker';
 import { DescriptionList, DescriptionListItem } from './description-list';
 import { Field } from './field';
 import { CheckItem, ErrorSummary, Fieldset, FormSection, RequirementList, type CheckMark } from './form-layout';
+import { InlineForm } from './inline-form';
 import { Input } from './input';
+import { Logo } from './logo';
+import { Separator } from './separator';
 import { InputGroup } from './input-group';
 import { PHONE_COUNTRIES, PhoneInput } from './phone-input';
 import { Progress } from './progress';
@@ -568,6 +575,140 @@ export function AccountSettingsForm({
           <Button type="submit">Save changes</Button>
         </ActionBar>
       </form>
+    </div>
+  );
+}
+
+/* Waitlist */
+
+export interface WaitlistProps extends Omit<React.ComponentProps<'div'>, 'title'> {
+  /** Figma State: default (the form) or joined (the position and the referral link). */
+  defaultState?: 'default' | 'joined';
+  badge?: string;
+  title?: string;
+  description?: string;
+  /** People already on the list: a real count from the app, never a made-up one. Hidden when undefined. */
+  total?: number;
+  /** Joined: the real position. */
+  position?: number;
+  email?: string;
+  /** First name for the joined title. */
+  name?: string;
+  batchText?: string;
+  estimate?: string;
+  referralLink?: string;
+  /** Adds the email to the list; may resolve with the real position and total. */
+  onJoin?: (email: string) => void | Promise<{ position: number; total: number } | void>;
+  onShare?: (channel: 'linkedin' | 'email') => void;
+  locale?: string;
+}
+
+/**
+ * Figma Block / Waitlist (1440, a whole page): the pre-launch page with the email Inline Form and
+ * the people already on the list; after joining (State=joined) the real position, the estimate and
+ * a referral link. The email is checked on blur and on submit; a wrong email keeps the text and
+ * takes focus.
+ */
+export function Waitlist({
+  defaultState = 'default',
+  badge = 'Private beta · opens March 2027',
+  title,
+  description,
+  total = 9320,
+  position = 1248,
+  email: emailProp = 'ana@acme.com',
+  name = 'Ana',
+  batchText = 'Spots open in batches of 500 every Monday.',
+  estimate = 'Estimated invite: week of 16 November 2026',
+  referralLink = 'acme.com/waitlist?ref=ana7',
+  onJoin,
+  onShare,
+  locale = 'en-GB',
+  className,
+  ...props
+}: WaitlistProps) {
+  const [state, setState] = React.useState(defaultState);
+  const [email, setEmail] = React.useState('');
+  const [error, setError] = React.useState<string>();
+  const [pending, setPending] = React.useState(false);
+  const [result, setResult] = React.useState({ position, total, email: emailProp });
+  const inputId = React.useId();
+  const n = (x: number) => x.toLocaleString(locale === 'en-GB' ? 'en-US' : locale);
+  const join = async (value: string) => {
+    const problem = emailRule(value);
+    setError(problem);
+    if (problem) {
+      document.getElementById(inputId)?.focus();
+      return;
+    }
+    const r = onJoin?.(value.trim());
+    let next: { position: number; total: number } | void = undefined;
+    if (r && typeof (r as Promise<unknown>).then === 'function') {
+      setPending(true);
+      next = await (r as Promise<{ position: number; total: number } | void>).finally(() => setPending(false));
+    }
+    setResult({ position: next ? next.position : position, total: next ? next.total : total, email: value.trim() });
+    setState('joined');
+  };
+  const joined = state === 'joined';
+  return (
+    <div data-slot="waitlist" data-state={state} className={cn('@container flex w-full justify-center bg-[var(--section-muted-background)] px-6 py-24 text-foreground @min-[768px]:py-32', className)} {...props}>
+      <div className="flex w-full max-w-[620px] flex-col items-center gap-6 text-center">
+        <Logo type="full" name="Acme" />
+        {badge ? <Badge variant="soft-info" shape="pill">{badge}</Badge> : null}
+        <div className="flex flex-col gap-4">
+          <h1 className="m-0 text-4xl leading-tight font-bold tracking-[-1px] @min-[768px]:text-5xl">{title ?? (joined ? `You are on the list${name ? `, ${name}` : ''}` : 'Be first to try Acme Projects')}</h1>
+          <p className="m-0 text-lg leading-7 text-muted-foreground">
+            {description ?? (joined ? `We sent a confirmation to ${result.email}. We will email you again when your spot opens.` : 'Plan work, track hours and send invoices from one place. We open the beta in small batches so every team gets a proper onboarding call.')}
+          </p>
+        </div>
+        {joined ? (
+          <section aria-labelledby={`${inputId}-position`} className="flex w-full max-w-[480px] flex-col gap-5 rounded-xl border border-border bg-card p-6 text-card-foreground shadow-xs">
+            <div className="flex flex-col items-center gap-1">
+              <h2 id={`${inputId}-position`} className="m-0 text-xs leading-4 font-medium tracking-widest text-muted-foreground uppercase">Your position</h2>
+              <p data-slot="waitlist-position" className="m-0 text-5xl leading-tight font-bold tracking-[-1px]">#{n(result.position)}</p>
+              <p className="m-0 text-sm leading-5 text-muted-foreground">of {n(result.total)} people. {batchText}</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <Progress value={Math.max(0, Math.min(100, (1 - result.position / result.total) * 100))} size="sm" aria-label="Place in the queue" />
+              <p className="m-0 text-xs leading-4 text-muted-foreground">{estimate}</p>
+            </div>
+            <Separator />
+            <div className="flex flex-col gap-3 text-left">
+              <h3 className="m-0 text-sm leading-5 font-medium">Move up the list</h3>
+              <p className="m-0 text-sm leading-5 text-muted-foreground">Every friend who joins with your link moves you up 100 places.</p>
+              <CopyField value={referralLink} aria-label="Your referral link" />
+              <div className="grid grid-cols-1 gap-2 @min-[400px]:grid-cols-2">
+                <Button type="button" variant="outline" size="sm" onClick={() => onShare?.('linkedin')}>Share on LinkedIn</Button>
+                <Button type="button" variant="outline" size="sm" onClick={() => onShare?.('email')}>Email a friend</Button>
+              </div>
+            </div>
+          </section>
+        ) : (
+          <>
+            <InlineForm
+              className="w-full max-w-[480px] text-left"
+              label="Work email"
+              placeholder="you@company.com"
+              buttonLabel="Join the waitlist"
+              hint="One email when your spot opens. No spam."
+              error={error}
+              pending={pending}
+              value={email}
+              onValueChange={v => { setEmail(v); if (error) setError(emailRule(v)); }}
+              onSubmit={v => join(v)}
+              inputProps={{ id: inputId, type: 'email', autoComplete: 'email', onBlur: () => { if (email) setError(emailRule(email)); } }}
+            />
+            {total ? (
+              <AvatarGroup size="sm" more={3} moreLabel="And 3 more" label={`Join ${n(total)} people already on the list`}>
+                <Avatar initials="MI" />
+                <Avatar initials="DP" />
+                <Avatar initials="RS" />
+              </AvatarGroup>
+            ) : null}
+          </>
+        )}
+      </div>
     </div>
   );
 }

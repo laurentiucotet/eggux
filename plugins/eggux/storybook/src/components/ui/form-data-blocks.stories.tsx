@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
-import { AccountSettingsForm, AddressForm, MultiStepForm, Payment } from './form-data-blocks';
+import { AccountSettingsForm, AddressForm, MultiStepForm, Payment, Waitlist } from './form-data-blocks';
 
 const meta = {
   title: 'Blocks/Forms/Forms',
@@ -59,6 +59,20 @@ export const AccountSettingsStory: StoryObj<{ title: string; description: string
     description: { name: 'Description', control: 'text', ...cat('Content') },
   },
   render: a => <div className="flex justify-center bg-background p-10 max-sm:p-4"><AccountSettingsForm title={a.title} description={a.description} today={TODAY} /></div>,
+};
+
+type WaitlistArgs = { state: 'default' | 'joined'; badge: string; total: number; position: number; name: string };
+export const WaitlistStory: StoryObj<WaitlistArgs> = {
+  name: 'Waitlist',
+  args: { state: 'default', badge: 'Private beta · opens March 2027', total: 9320, position: 1248, name: 'Ana' },
+  argTypes: {
+    state: { name: 'State', control: 'inline-radio', options: ['default', 'joined'], description: 'The form, or the position after joining.', ...cat('State') },
+    badge: { name: 'Badge', control: 'text', ...cat('Content') },
+    total: { name: 'People on the list', control: { type: 'number', min: 0 }, description: 'The real count from the app; 0 hides the line.', ...cat('Content') },
+    position: { name: 'Position', control: { type: 'number', min: 1 }, ...cat('Content') },
+    name: { name: 'First name', control: 'text', ...cat('Content') },
+  },
+  render: a => <Waitlist key={a.state} defaultState={a.state} badge={a.badge} total={a.total} position={a.position} name={a.name} />,
 };
 
 /* Hidden checks */
@@ -330,5 +344,60 @@ export const AccountSettingsLayoutCheck: StoryObj = {
   },
 };
 
+const onJoin = fn(async () => ({ position: 2041, total: 9321 }));
+export const WaitlistCheck: StoryObj = {
+  tags: ['!dev'],
+  parameters: { controls: { disable: true } },
+  render: () => <Waitlist onJoin={onJoin} />,
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await expect(c.getAllByRole('heading', { level: 1 })).toHaveLength(1);
+    await expect(c.getByText('Join 9,320 people already on the list')).toBeVisible();
+    const email = c.getByRole('textbox', { name: 'Work email' });
+    await userEvent.type(email, 'ana@acme');
+    await userEvent.click(c.getByRole('button', { name: 'Join the waitlist' }));
+    await waitFor(() => expect(email).toHaveFocus());
+    await expect(email).toHaveAttribute('aria-invalid', 'true');
+    await described(email, 'Enter an email address like name@company.com.');
+    await expect(email).toHaveValue('ana@acme');
+    await userEvent.type(email, '.com');
+    await userEvent.click(c.getByRole('button', { name: 'Join the waitlist' }));
+    await expect(onJoin).toHaveBeenCalledWith('ana@acme.com');
+    // Joined: the position the app returned, not a made-up one, and the referral link.
+    await expect(await c.findByRole('heading', { level: 1, name: 'You are on the list, Ana' })).toBeVisible();
+    await expect(canvasElement.querySelector('[data-slot=waitlist-position]')).toHaveTextContent('#2,041');
+    await expect(c.getByText(/of 9,321 people/)).toBeVisible();
+    await expect(c.getByRole('textbox', { name: 'Your referral link' })).toHaveValue('acme.com/waitlist?ref=ana7');
+    await expect(c.getByRole('button', { name: 'Share on LinkedIn' })).toBeVisible();
+  },
+};
+
+// The page at 1440, 768 and 390: a 620 column centered, the form 480 wide, no overflow.
+export const WaitlistLayoutCheck: StoryObj = {
+  tags: ['!dev'],
+  parameters: { controls: { disable: true }, a11y: { config: { rules: [{ id: 'page-has-heading-one', enabled: false }, { id: 'heading-order', enabled: false }, { id: 'landmark-unique', enabled: false }] } } },
+  render: () => (
+    <div className="flex flex-col gap-8">
+      {[1440, 768, 390].map(w => (
+        <div key={w} data-width={w} style={{ width: w }}><Waitlist /><Waitlist defaultState="joined" /></div>
+      ))}
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    for (const w of [1440, 768, 390]) {
+      const frame = canvasElement.querySelector<HTMLElement>(`[data-width="${w}"]`)!;
+      await expect(frame.scrollWidth).toBeLessThanOrEqual(w);
+      const [page, joined] = frame.querySelectorAll<HTMLElement>('[data-slot=waitlist]');
+      const column = page.firstElementChild!;
+      await expect(Math.round(box(column).width)).toBe(Math.min(620, w - 48));
+      await expect(Math.round(box(column).left - box(page).left)).toBe(Math.round((w - box(column).width) / 2));
+      await expect(Math.round(box(page.querySelector('form')!).width)).toBe(Math.min(480, w - 48));
+      await expect(Math.round(box(joined.querySelector('section')!).width)).toBe(Math.min(480, w - 48));
+      for (const el of frame.querySelectorAll('a, button')) await expect(el).toHaveAccessibleName();
+    }
+  },
+};
+
 export const PaymentDark: StoryObj<{ title: string; amount: string }> = { ...PaymentStory, name: 'Payment Dark', tags: ['!dev'], globals: { theme: 'Dark' } };
 export const PaymentBackOffice: StoryObj<{ title: string; amount: string }> = { ...PaymentStory, name: 'Payment Back office', tags: ['!dev'], globals: { theme: 'Corporate Light' } };
+export const WaitlistJoinedDark: StoryObj<WaitlistArgs> = { ...WaitlistStory, name: 'Waitlist Joined Dark', tags: ['!dev'], args: { ...WaitlistStory.args, state: 'joined' } as WaitlistArgs, globals: { theme: 'Dark' } };
