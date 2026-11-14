@@ -8,17 +8,24 @@
 // in the form state and go only to onSubmit; nothing is logged.
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { AuthCard, emailRule, requiredRule, useBlockForm } from './form-auth-blocks';
+import { AuthCard, PasswordInput, emailRule, requiredRule, useBlockForm } from './form-auth-blocks';
+import { ActionBar } from './action-bar';
+import { AddressAutocomplete, type AddressSuggestion } from './address-autocomplete';
 import { Alert } from './alert';
 import { Button } from './button';
 import { Card, CardContent, CardFooter, CardHeader } from './card';
+import { Checkbox } from './checkbox';
+import { CurrencyInput } from './currency-input';
+import { DateInput } from './date-input';
 import { DatePicker } from './date-picker';
 import { DescriptionList, DescriptionListItem } from './description-list';
 import { Field } from './field';
+import { CheckItem, ErrorSummary, Fieldset, FormSection, RequirementList, type CheckMark } from './form-layout';
 import { Input } from './input';
 import { InputGroup } from './input-group';
 import { PHONE_COUNTRIES, PhoneInput } from './phone-input';
 import { Progress } from './progress';
+import { RecurrencePicker, type Recurrence } from './recurrence-picker';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select';
 import { Stepper, type StepData } from './stepper';
 import { Textarea } from './textarea';
@@ -378,6 +385,189 @@ export function MultiStepForm({ defaultStep = 0, defaultValues, onSubmit, today,
           </form>
         )}
       </Card>
+    </div>
+  );
+}
+
+/* Account Settings Form */
+
+export type AccountValues = {
+  name: string;
+  birthDate: Date | null;
+  password: string;
+  email: string;
+  phone: string;
+  address: string;
+  company: string;
+  vat: string;
+  limit: number | undefined;
+  notifications: string[];
+  schedule?: Recurrence;
+};
+
+const PASSWORD_NEEDS: { label: string; test: (p: string) => boolean; message: string }[] = [
+  { label: 'At least 12 characters', test: p => p.length >= 12, message: 'Use at least 12 characters.' },
+  { label: 'One uppercase letter', test: p => /[A-Z]/.test(p), message: 'Add at least one uppercase letter.' },
+  { label: 'One number or symbol', test: p => /[^A-Za-z]/.test(p), message: 'Add at least one number or symbol.' },
+];
+
+const NOTIFICATIONS = [['invoice-paid', 'Invoice paid'], ['payment-failed', 'Payment failed'], ['weekly-summary', 'Weekly summary'], ['product-updates', 'Product updates']] as const;
+
+const SAMPLE_ADDRESSES: AddressSuggestion[] = [
+  { id: 'a1', line1: '12 Market Street', line2: 'Springfield, United Kingdom' },
+  { id: 'a2', line1: '12 Market Square', line2: 'Leeds, United Kingdom' },
+  { id: 'a3', line1: 'Strada Memorandumului 28', line2: 'Cluj-Napoca, Romania' },
+  { id: 'a4', line1: 'Strada Victoriei 12', line2: 'Sector 1, Bucharest, Romania' },
+];
+const sampleSearch = (q: string) => SAMPLE_ADDRESSES.filter(a => `${a.line1} ${a.line2}`.toLowerCase().includes(q.toLowerCase()));
+
+export interface AccountSettingsFormProps extends Omit<React.ComponentProps<'div'>, 'onSubmit' | 'title'> {
+  title?: string;
+  description?: string;
+  defaultValues?: Partial<AccountValues>;
+  onSubmit?: (values: AccountValues) => void;
+  onCancel?: () => void;
+  /** Address suggestions (a places service); a sample list by default. */
+  searchAddress?: (query: string) => AddressSuggestion[] | Promise<AddressSuggestion[]>;
+  /** Report schedule start; pass a fixed date in tests. */
+  today?: Date;
+  locale?: string;
+}
+
+/**
+ * Figma Block / Account Settings Form (1024): Form Sections (Profile, Contact, Billing, Preferences)
+ * with the heading in a 280 column, then the Action Bar. A failed save shows the Error Summary at
+ * the top (it takes focus, each link moves to its field) and the same messages under the fields.
+ * The new password is optional; its Requirement List turns items to check as people type and to x
+ * only after a save.
+ */
+export function AccountSettingsForm({
+  title = 'Account settings',
+  description = 'Manage your profile, contact details, billing and notifications.',
+  defaultValues,
+  onSubmit,
+  onCancel,
+  searchAddress = sampleSearch,
+  today = new Date(),
+  locale = 'en-GB',
+  className,
+  ...props
+}: AccountSettingsFormProps) {
+  const f = useBlockForm<AccountValues>(
+    {
+      name: 'Alex Morgan',
+      birthDate: new Date(1990, 2, 14),
+      password: '',
+      email: 'alex.morgan@acme.com',
+      phone: '+40712345678',
+      address: '12 Market Street, Springfield',
+      company: 'Acme Inc.',
+      vat: 'DE123456789',
+      limit: 250000,
+      notifications: ['invoice-paid', 'payment-failed'],
+      ...defaultValues,
+    },
+    {
+      name: requiredRule('Enter your full name.'),
+      birthDate: v => (v ? (v > today ? 'Enter a date of birth in the past.' : undefined) : 'Enter your date of birth as DD / MM / YYYY.'),
+      password: v => (v ? PASSWORD_NEEDS.find(n => !n.test(v))?.message : undefined),
+      email: emailRule,
+      phone: v => phoneRule(v),
+      address: requiredRule('Enter your address and pick it from the list.'),
+      vat: v => (!v || /^[A-Z]{2}[0-9A-Z]{8,12}$/.test(v.replace(/\s/g, '')) ? undefined : 'Enter the VAT number with the country code, like DE123456789.'),
+      limit: v => (v === undefined || v > 0 ? undefined : 'Enter a limit above 0, or leave it empty for no limit.'),
+    },
+    { focusFirstError: false },
+  );
+  const [attempts, setAttempts] = React.useState(0);
+  const [saved, setSaved] = React.useState(false);
+  const v = f.values;
+  const errors = f.errorList({ name: 'Full name', birthDate: 'Date of birth', password: 'New password', email: 'Email', phone: 'Phone', address: 'Address', vat: 'VAT number', limit: 'Monthly spending limit' });
+  const mark = (ok: boolean): CheckMark => (ok ? 'check' : attempts > 0 && v.password ? 'x' : 'dash');
+  return (
+    <div data-slot="account-settings-form" className={cn('flex w-full max-w-5xl flex-col gap-8 text-foreground', className)} {...props}>
+      <div className="flex flex-col gap-1">
+        <h1 className="m-0 text-2xl leading-8 font-semibold tracking-[-0.4px]">{title}</h1>
+        <p className="m-0 text-sm leading-5 text-muted-foreground">{description}</p>
+      </div>
+      {errors.length ? <ErrorSummary key={attempts} errors={errors} title={`Fix ${errors.length} ${errors.length === 1 ? 'field' : 'fields'} to save your changes`} /> : null}
+      {saved && !errors.length ? <Alert variant="success" title="Changes saved" description="Your profile and preferences are up to date." /> : null}
+      <form
+        noValidate
+        aria-label={title}
+        className="flex flex-col gap-8"
+        onSubmit={e => {
+          setAttempts(a => a + 1);
+          setSaved(false);
+          f.submit(values => { onSubmit?.(values); setSaved(true); })(e);
+        }}
+      >
+        <FormSection title="Profile" description="How you appear to teammates and on the invoices you send.">
+          <Field label="Full name" required {...f.field('name')}>
+            <Input autoComplete="name" {...f.input('name')} />
+          </Field>
+          <Field label="Date of birth" hint="Used to verify your identity. Never shown to others." {...f.field('birthDate')}>
+            <DateInput value={v.birthDate} onValueChange={d => f.set('birthDate', d)} onBlur={() => f.blur('birthDate')} maxDate={today} locale={locale} className="w-fit" />
+          </Field>
+          <Field label="New password" optional hint="Leave it empty to keep your password." {...f.field('password')}>
+            <PasswordInput autoComplete="new-password" {...f.input('password')} />
+          </Field>
+          <RequirementList title="Your password needs">
+            {PASSWORD_NEEDS.map(n => <CheckItem key={n.label} mark={mark(n.test(v.password))}>{n.label}</CheckItem>)}
+            <CheckItem mark="dash">Not used on another Acme account</CheckItem>
+          </RequirementList>
+        </FormSection>
+        <FormSection title="Contact" description="Where we send receipts, security alerts and delivery updates.">
+          <Field label="Email" required hint="We send receipts and account notices here." {...f.field('email')}>
+            <Input type="email" autoComplete="email" {...f.input('email')} />
+          </Field>
+          <Field label="Phone" required {...f.field('phone')}>
+            <PhoneInput value={v.phone} onValueChange={p => f.set('phone', p)} onBlur={() => f.blur('phone')} className="max-w-[212px]" />
+          </Field>
+          <Field label="Address" required hint="Start typing and pick your address from the list." {...f.field('address')}>
+            <AddressAutocomplete search={searchAddress} value={v.address} onValueChange={q => f.set('address', q)} onSelect={s => f.set('address', `${s.line1}, ${s.line2?.split(',')[0] ?? ''}`)} className="w-full" />
+          </Field>
+        </FormSection>
+        <FormSection title="Billing" description="Shown on every invoice. Changes apply to the next invoice.">
+          <div className="grid grid-cols-1 gap-4 @min-[480px]:grid-cols-2">
+            <Field label="Company name" optional {...f.field('company')}>
+              <Input autoComplete="organization" {...f.input('company')} />
+            </Field>
+            <Field label="VAT number" optional info={{ children: 'The EU VAT number of your company, with the country code. It goes on every invoice.' }} {...f.field('vat')}>
+              <Input {...f.input('vat')} />
+            </Field>
+          </div>
+          <Field label="Monthly spending limit" optional hint="We email you when invoices reach 80% of this limit." {...f.field('limit')}>
+            <CurrencyInput value={v.limit ?? null} onValueChange={m => f.set('limit', m)} onBlur={() => f.blur('limit')} locale={locale} className="max-w-[180px]" />
+          </Field>
+        </FormSection>
+        <FormSection title="Preferences" description="Choose what we email you about and when reports arrive." divider={false}>
+          <Fieldset legend="Email notifications" description="Security alerts are always sent.">
+            {NOTIFICATIONS.map(([key, label]) => (
+              <Checkbox
+                key={key}
+                label={label}
+                checked={v.notifications.includes(key)}
+                onCheckedChange={c => f.set('notifications', c === true ? [...v.notifications, key] : v.notifications.filter(n => n !== key))}
+              />
+            ))}
+          </Fieldset>
+          <Fieldset legend="Report schedule">
+            <RecurrencePicker
+              startDate={today}
+              locale={locale}
+              defaultValue={{ frequency: 'weekly', interval: 1, weekdays: [1, 3, 5], end: { type: 'on', date: new Date(today.getFullYear(), 11, 31) } }}
+              onValueChange={r => f.set('schedule', r)}
+              className="w-full"
+            />
+            <p className="m-0 text-xs leading-4 text-muted-foreground">Reports go to {v.email || 'your email'}.</p>
+          </Fieldset>
+        </FormSection>
+        <ActionBar align="end" showDivider>
+          <Button type="button" variant="outline" onClick={() => { f.reset(); setAttempts(0); setSaved(false); onCancel?.(); }}>Cancel</Button>
+          <Button type="submit">Save changes</Button>
+        </ActionBar>
+      </form>
     </div>
   );
 }

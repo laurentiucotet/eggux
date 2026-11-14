@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
-import { AddressForm, MultiStepForm, Payment } from './form-data-blocks';
+import { AccountSettingsForm, AddressForm, MultiStepForm, Payment } from './form-data-blocks';
 
 const meta = {
   title: 'Blocks/Forms/Forms',
@@ -49,6 +49,16 @@ export const MultiStepStory: StoryObj<{ step: number }> = {
       <MultiStepForm key={a.step} defaultStep={a.step} today={TODAY} defaultValues={a.step > 0 ? FILLED : undefined} />
     </div>
   ),
+};
+
+export const AccountSettingsStory: StoryObj<{ title: string; description: string }> = {
+  name: 'Account Settings Form',
+  args: { title: 'Account settings', description: 'Manage your profile, contact details, billing and notifications.' },
+  argTypes: {
+    title: { name: 'Title', control: 'text', ...cat('Content') },
+    description: { name: 'Description', control: 'text', ...cat('Content') },
+  },
+  render: a => <div className="flex justify-center bg-background p-10 max-sm:p-4"><AccountSettingsForm title={a.title} description={a.description} today={TODAY} /></div>,
 };
 
 /* Hidden checks */
@@ -249,6 +259,74 @@ export const MultiStepLayoutCheck: StoryObj = {
     const wide = canvasElement.querySelector<HTMLElement>('[data-width="1440"]')!;
     const card = wide.querySelector('[data-slot=card]')!;
     await expect(Math.round(box(card).top - box(wide.querySelector('[data-slot=stepper]')!).bottom)).toBe(32);
+  },
+};
+
+const onAccount = fn();
+export const AccountSettingsCheck: StoryObj = {
+  tags: ['!dev'],
+  parameters: { controls: { disable: true } },
+  render: () => <div className="p-6"><AccountSettingsForm today={TODAY} onSubmit={onAccount} defaultValues={{ phone: '+4071234567' }} /></div>,
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await expect(c.getAllByRole('heading', { level: 1 })).toHaveLength(1);
+    await expect(c.getAllByRole('heading', { level: 2 }).map(h => h.textContent)).toEqual(['Profile', 'Contact', 'Billing', 'Preferences']);
+    const password = c.getByLabelText(/^New password/);
+    await userEvent.type(password, 'Acmebillingteam');
+    // Live checks turn to check as people type; nothing turns x before a save.
+    const items = () => [...canvasElement.querySelectorAll('[data-slot=check-item]')].map(i => i.getAttribute('data-mark'));
+    await expect(items()).toEqual(['check', 'check', 'dash', 'dash']);
+    await userEvent.click(c.getByRole('button', { name: 'Save changes' }));
+    const summary = await c.findByRole('group', { name: 'Fix 2 fields to save your changes' });
+    await waitFor(() => expect(summary).toHaveFocus());
+    const links = within(summary).getAllByRole('link');
+    await expect(links.map(l => l.textContent)).toEqual(['New password: add at least one number or symbol.', 'Phone: enter a phone number with 9 digits.']);
+    await expect(items()).toEqual(['check', 'check', 'x', 'dash']);
+    const phone = c.getByRole('textbox', { name: /^Phone/ });
+    await described(phone, 'Enter a phone number with 9 digits.');
+    await userEvent.click(links[1]);
+    await expect(phone).toHaveFocus();
+    await userEvent.type(phone, '8');
+    await userEvent.type(password, '1');
+    await waitFor(() => expect(c.queryByRole('group', { name: /Fix/ })).toBeNull());
+    await expect(onAccount).not.toHaveBeenCalled();
+    await userEvent.click(c.getByRole('button', { name: 'Save changes' }));
+    await expect(onAccount).toHaveBeenCalledWith(expect.objectContaining({ phone: '+40712345678', password: 'Acmebillingteam1', notifications: ['invoice-paid', 'payment-failed'] }));
+    await expect(await c.findByText('Changes saved')).toBeVisible();
+    await expect(c.getByRole('combobox', { name: /^Address/ })).toHaveValue('12 Market Street, Springfield');
+  },
+};
+
+// 1024 at 1440, section heading in a 280 column with fields 48 to the right; stacked at 390; no overflow.
+export const AccountSettingsLayoutCheck: StoryObj = {
+  tags: ['!dev'],
+  parameters: { controls: { disable: true }, a11y: { config: { rules: [{ id: 'landmark-unique', enabled: false }, { id: 'page-has-heading-one', enabled: false }, { id: 'heading-order', enabled: false }] } } },
+  render: () => (
+    <div className="flex flex-col gap-8 bg-background">
+      {[1440, 768, 390].map(w => (
+        <div key={w} data-width={w} style={{ width: w }} className="flex justify-center px-4">
+          <AccountSettingsForm today={TODAY} />
+        </div>
+      ))}
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    for (const w of [1440, 768, 390]) {
+      const frame = canvasElement.querySelector<HTMLElement>(`[data-width="${w}"]`)!;
+      const block = frame.querySelector<HTMLElement>('[data-slot=account-settings-form]')!;
+      await expect(frame.scrollWidth).toBeLessThanOrEqual(w);
+      await expect(Math.round(box(block).width)).toBe(Math.min(1024, w - 32));
+      const section = block.querySelector<HTMLElement>('[data-slot=form-section]')!;
+      const heading = section.querySelector('h2')!;
+      const fields = section.querySelector('[data-slot=form-section-fields]')!;
+      if (w >= 768) {
+        await expect(Math.round(box(heading).width)).toBe(280);
+        await expect(Math.round(box(fields).left - box(heading).right)).toBe(48);
+      } else {
+        await expect(box(fields).top).toBeGreaterThan(box(heading).bottom);
+      }
+      for (const el of block.querySelectorAll('a, button')) await expect(el).toHaveAccessibleName();
+    }
   },
 };
 
