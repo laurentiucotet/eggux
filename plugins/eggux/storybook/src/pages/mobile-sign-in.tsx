@@ -43,11 +43,11 @@ export function MobileSignInPage({ initialError = false, defaultEmail = '' }: { 
             </Field>
             <PasswordField value={password} onChange={setPassword} error={errors.password} />
             <a href="#forgot-password" className="inline-flex min-h-11 items-center self-start text-sm leading-5 font-medium text-brand underline-offset-4 hover:underline">Forgot password?</a>
-            <Button type="submit" className="h-11 w-full">Sign in</Button>
+            <Button type="submit" size="touch" className="w-full">Sign in</Button>
           </form>
-          <Button type="button" variant="outline" className="h-11 w-full" leadingIcon={<UserCheck />} onClick={() => setSignedIn('biometrics')}>Sign in with Face ID</Button>
+          <Button type="button" variant="outline" size="touch" className="w-full" leadingIcon={<UserCheck />} onClick={() => setSignedIn('biometrics')}>Sign in with Face ID</Button>
           <OrDivider />
-          <ProviderButtons />
+          <ProviderButtons size="touch" />
         </>
       )}
       <p className="m-0 text-sm leading-5 text-muted-foreground">

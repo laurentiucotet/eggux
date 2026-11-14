@@ -14,7 +14,7 @@ const meta = {
   args: { children: 'Save customer', onClick: fn() },
   argTypes: {
     variant: { control: 'select', options: ['default', 'soft', 'secondary', 'outline', 'ghost', 'destructive', 'link'] },
-    size: { control: 'inline-radio', options: ['xs', 'sm', 'default', 'lg', 'xl'] },
+    size: { control: 'inline-radio', options: ['xs', 'sm', 'default', 'lg', 'xl', 'touch'], description: 'xs 28, sm 32, default 36, lg 40, xl 48, touch 44 (min 44 x 44, for touch screens).' },
   },
 } satisfies Meta<typeof Button>;
 export default meta;
@@ -83,24 +83,37 @@ export const Variants: Story = {
   },
 };
 
+export const TouchCheck: Story = {
+  tags: ['!dev'],
+  args: { size: 'touch', children: 'Pay now' },
+  render: args => <div className="flex items-center gap-3"><Button {...args} /><Button {...args} aria-label="Add"><Plus aria-hidden="true" /></Button></div>,
+  play: async ({ canvas }) => {
+    const [text, icon] = canvas.getAllByRole('button');
+    // Touch: 44 high, never narrower than 44.
+    await expect(box(text)[1]).toBe(44);
+    await expect(box(icon)[1]).toBe(44);
+    await expect(box(icon)[0]).toBeGreaterThanOrEqual(44);
+  },
+};
+
 export const Sizes: Story = {
   render: args => (
     <div className="flex flex-wrap items-center gap-3">
-      {(['xs', 'sm', 'default', 'lg', 'xl'] as const).map(s => <Button key={s} {...args} size={s} leadingIcon={<Plus aria-hidden="true" />}>Size {s}</Button>)}
+      {(['xs', 'sm', 'default', 'lg', 'xl', 'touch'] as const).map(s => <Button key={s} {...args} size={s} leadingIcon={<Plus aria-hidden="true" />}>Size {s}</Button>)}
     </div>
   ),
   play: async ({ canvas }) => {
     const buttons = canvas.getAllByRole('button');
-    // Heights from Figma: xs 28, sm 32, default 36 (density/control-height), lg 40, xl 48.
-    await expect(buttons.map(b => box(b)[1])).toEqual([28, 32, 36, 40, 48]);
+    // Heights from Figma: xs 28, sm 32, default 36 (density/control-height), lg 40, xl 48; touch 44 (code only, min 44 x 44).
+    await expect(buttons.map(b => box(b)[1])).toEqual([28, 32, 36, 40, 48, 44]);
     // Sides: xs 10, sm 12, default 16, lg 24, xl 32.
-    await expect(buttons.map(b => getComputedStyle(b).paddingLeft)).toEqual(['10px', '12px', '16px', '24px', '32px']);
+    await expect(buttons.map(b => getComputedStyle(b).paddingLeft)).toEqual(['10px', '12px', '16px', '24px', '32px', '16px']);
     // Gaps: xs 4, sm 6, default 8, lg 8, xl 10.
-    await expect(buttons.map(b => getComputedStyle(b).columnGap)).toEqual(['4px', '6px', '8px', '8px', '10px']);
+    await expect(buttons.map(b => getComputedStyle(b).columnGap)).toEqual(['4px', '6px', '8px', '8px', '10px', '8px']);
     // Label: xs ui/label-small 12/16, the others ui/label 14/20 (xl too).
-    await expect(buttons.map(b => getComputedStyle(b).fontSize)).toEqual(['12px', '14px', '14px', '14px', '14px']);
+    await expect(buttons.map(b => getComputedStyle(b).fontSize)).toEqual(['12px', '14px', '14px', '14px', '14px', '14px']);
     // Icons: 14 px in xs, 16 px in the other sizes.
-    await expect(buttons.map(b => box(b.querySelector('svg')!)[0])).toEqual([14, 16, 16, 16, 16]);
+    await expect(buttons.map(b => box(b.querySelector('svg')!)[0])).toEqual([14, 16, 16, 16, 16, 16]);
   },
 };
 

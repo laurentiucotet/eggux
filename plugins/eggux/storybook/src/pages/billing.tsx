@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CreditCard, Download } from '@/components/icons';
+import { Download } from '@/components/icons';
 import { Alert } from '@/components/ui/alert';
 import { Badge, type BadgeProps } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -7,7 +7,8 @@ import { ButtonIcon } from '@/components/ui/button-icon';
 import { Card } from '@/components/ui/card';
 import { Field } from '@/components/ui/field';
 import { PageHeader } from '@/components/ui/page-header';
-import { Progress } from '@/components/ui/progress';
+import { UsageMeter } from '@/components/ui/metrics';
+import { PaymentMethodCard } from '@/components/ui/commerce';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { SummaryList, SummaryRow } from '@/components/ui/summary-row';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -24,6 +25,8 @@ const plans: Record<PlanId, { name: string; price: number; seats: number; invoic
 const usage = { seats: 8, invoices: 412, storage: 6.2 };
 const eur = (n: number) => new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR' }).format(n);
 const VAT = 0.19;
+/** The demo date: cards that expire this or next month are flagged. */
+const billingNow = '2026-11-14T10:00:00Z';
 
 interface Card_ {
   id: string;
@@ -84,13 +87,10 @@ export function BillingPage({ paymentFailed = false }: BillingPageProps) {
   const net = p.price;
   const vat = net * VAT;
   const meters = [
-    { label: 'Seats', value: usage.seats, max: p.seats, text: `${usage.seats} of ${p.seats}` },
-    { label: 'Invoices this month', value: usage.invoices, max: p.invoices, text: `${usage.invoices} of ${p.invoices}` },
-    { label: 'Storage', value: usage.storage, max: p.storage, text: `${usage.storage} of ${p.storage} GB` },
-  ].map(m => {
-    const pct = Math.min(100, Math.round((m.value / m.max) * 100));
-    return { ...m, pct, tone: pct >= 100 ? ('error' as const) : pct >= 80 ? ('warning' as const) : ('default' as const) };
-  });
+    { label: 'Seats', value: usage.seats, max: p.seats, unit: 'seats' },
+    { label: 'Invoices this month', value: usage.invoices, max: p.invoices, unit: undefined },
+    { label: 'Storage', value: usage.storage, max: p.storage, unit: 'GB' },
+  ];
   const over = usage.seats > p.seats || usage.invoices > p.invoices || usage.storage > p.storage;
 
   const changePlan = () => {
@@ -132,7 +132,7 @@ export function BillingPage({ paymentFailed = false }: BillingPageProps) {
             </div>
             <div className="flex flex-col gap-4">
               {meters.map(m => (
-                <Progress key={m.label} label={m.label} valueText={m.text} value={m.pct} tone={m.tone} />
+                <UsageMeter key={m.label} label={m.label} used={m.value} limit={m.max} unit={m.unit} />
               ))}
             </div>
             {over ? <Alert variant="warning" title="You use more than this plan includes" description="Pick a larger plan or remove people before the next invoice." /> : null}
@@ -172,33 +172,29 @@ export function BillingPage({ paymentFailed = false }: BillingPageProps) {
             {cards.map(c => {
               const isDefault = c.id === defaultId;
               const declined = failed && c.id === 'c1';
-              const expired = c.id === 'c3';
               return (
-                <li key={c.id}>
-                  <Card className="flex-row flex-wrap items-center gap-x-4 gap-y-3 p-4">
-                    <CreditCard aria-hidden="true" className="size-6 shrink-0 text-muted-foreground" />
-                    <div className="flex min-w-40 flex-1 flex-col gap-0.5">
-                      <p className="m-0 text-sm leading-5 font-medium">{c.brand} ending {c.last4}</p>
-                      <p className="m-0 text-xs leading-4 text-muted-foreground">Expires {c.expires}</p>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      {isDefault ? <Badge variant="soft-info">Default</Badge> : null}
-                      {declined ? <Badge variant="soft-destructive" dot>Declined</Badge> : null}
-                      {expired ? <Badge variant="soft-warning" dot>Expires soon</Badge> : null}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {isDefault ? null : (
-                        <Button variant="outline" size="sm" onClick={() => { setDefaultId(c.id); setNotice(`${c.brand} ending ${c.last4} is now your default card.`); }}>
-                          Make default<span className="sr-only"> {c.brand} ending {c.last4}</span>
-                        </Button>
-                      )}
-                      {isDefault ? null : (
-                        <Button variant="ghost" size="sm" onClick={() => { setCards(x => x.filter(y => y.id !== c.id)); setNotice(`${c.brand} ending ${c.last4} was removed.`); }}>
-                          Remove<span className="sr-only"> {c.brand} ending {c.last4}</span>
-                        </Button>
-                      )}
-                    </div>
-                  </Card>
+                <li key={c.id} className="flex flex-wrap items-center gap-x-4 gap-y-3">
+                  <PaymentMethodCard
+                    className="min-w-64 flex-1"
+                    now={billingNow}
+                    brand={c.brand === 'Mastercard' ? 'MC' : c.brand.toUpperCase()}
+                    label={`${c.brand} ending ${c.last4}`}
+                    expiry={`Expires ${c.expires}`}
+                    isDefault={isDefault}
+                  />
+                  <div className="flex flex-wrap items-center gap-2">
+                    {declined ? <Badge variant="soft-destructive" dot>Declined</Badge> : null}
+                    {isDefault ? null : (
+                      <Button variant="outline" size="sm" onClick={() => { setDefaultId(c.id); setNotice(`${c.brand} ending ${c.last4} is now your default card.`); }}>
+                        Make default<span className="sr-only"> {c.brand} ending {c.last4}</span>
+                      </Button>
+                    )}
+                    {isDefault ? null : (
+                      <Button variant="ghost" size="sm" onClick={() => { setCards(x => x.filter(y => y.id !== c.id)); setNotice(`${c.brand} ending ${c.last4} was removed.`); }}>
+                        Remove<span className="sr-only"> {c.brand} ending {c.last4}</span>
+                      </Button>
+                    )}
+                  </div>
                 </li>
               );
             })}

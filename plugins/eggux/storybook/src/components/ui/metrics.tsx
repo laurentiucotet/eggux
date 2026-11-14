@@ -101,31 +101,44 @@ export interface UsageMeterProps extends React.ComponentProps<'div'> {
   label: string;
   used: number;
   limit: number;
-  /** Usage text; defaults to "6 of 10". */
+  /** Usage text; defaults to "6 of 10" (with the unit: "6 of 10 GB"). */
   usage?: string;
+  /** Unit after the default usage text: "GB", "seats". */
+  unit?: string;
   hint?: React.ReactNode;
   /** Defaults from the share: near from 80%, over above 100%. */
   level?: UsageLevel;
+  /** No limit: no bar, the text "Unlimited" . */
+  unlimited?: boolean;
+  /** Say the state in words next to the value ("80 percent used, near the limit"). Default on. */
+  showState?: boolean;
 }
 
-function UsageMeter({ label, used, limit, usage, hint, level, className, ...props }: UsageMeterProps) {
+function UsageMeter({ label, used, limit, usage, unit, hint, level, unlimited = false, showState = true, className, ...props }: UsageMeterProps) {
   const id = React.useId();
   const ratio = limit > 0 ? used / limit : 0;
-  const lvl: UsageLevel = level ?? (ratio > 1 ? 'over' : ratio >= 0.8 ? 'near' : 'normal');
-  const text = usage ?? `${used} of ${limit}`;
+  const lvl: UsageLevel = unlimited ? 'normal' : (level ?? (ratio > 1 ? 'over' : ratio >= 0.8 ? 'near' : 'normal'));
+  const suffix = unit ? ` ${unit}` : '';
+  const text = unlimited ? (usage ?? 'Unlimited') : (usage ?? `${used} of ${limit}${suffix}`);
   const over = lvl === 'over';
+  const state = unlimited || !showState ? '' : over ? 'Over the limit' : lvl === 'near' ? `${Math.min(100, Math.round(ratio * 100))} percent used, near the limit` : '';
   return (
-    <div data-slot="usage-meter" data-level={lvl} className={cn('flex w-full min-w-0 flex-col gap-2', className)} {...props}>
+    <div data-slot="usage-meter" data-level={lvl} data-unlimited={unlimited || undefined} className={cn('flex w-full min-w-0 flex-col gap-2', className)} {...props}>
       <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-sm leading-5">
         <span id={id} className="min-w-[120px] flex-1 truncate font-medium text-foreground">{label}</span>
-        <span className={cn('max-w-40 shrink-0 truncate', over ? 'text-destructive' : 'text-muted-foreground')}>{text}</span>
+        <span className="flex min-w-0 shrink-0 flex-wrap items-center justify-end gap-x-2">
+          <span className={cn('max-w-40 shrink-0 truncate', over ? 'text-destructive' : 'text-muted-foreground')}>{text}</span>
+          {state ? <span data-slot="usage-meter-state" className={cn('text-xs leading-4 font-medium', over ? 'text-destructive' : 'text-foreground')}>{state}</span> : null}
+        </span>
       </div>
-      <Progress
-        value={Math.min(100, Math.round(ratio * 100))}
-        tone={over ? 'error' : lvl === 'near' ? 'warning' : 'default'}
-        aria-labelledby={id}
-        getValueLabel={() => text}
-      />
+      {unlimited ? null : (
+        <Progress
+          value={Math.min(100, Math.round(ratio * 100))}
+          tone={over ? 'error' : lvl === 'near' ? 'warning' : 'default'}
+          aria-labelledby={id}
+          getValueLabel={() => text}
+        />
+      )}
       {hint ? <p className={cn('m-0 text-xs leading-4', over ? 'text-destructive' : 'text-muted-foreground')}>{hint}</p> : null}
     </div>
   );

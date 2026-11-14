@@ -52,8 +52,8 @@ export const FlowCheck: Story = {
     await userEvent.keyboard('{ArrowLeft}');
     await userEvent.click(await c.findByRole('button', { name: 'Archive' }));
     await waitFor(() => expect(c.queryByRole('group', { name: 'Invoice INV-2040' })).toBeNull());
-    await expect(c.getByText(/INV-2040 archived./)).toBeVisible();
-    await userEvent.click(c.getByRole('button', { name: 'Undo' }));
+    await waitFor(() => expect(c.getAllByText(/INV-2040 archived./)[0]).toBeVisible());
+    await userEvent.click(await c.findByRole('button', { name: 'Undo' }));
     await waitFor(() => expect(c.getByRole('group', { name: 'Invoice INV-2040' })).toBeVisible());
 
     // Search filters; Cancel restores the list and the large title.

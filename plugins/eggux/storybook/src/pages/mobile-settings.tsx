@@ -63,7 +63,7 @@ export function MobileSettingsPage({ initialTime = '08:30', initialTimeOpen = fa
   if (signedOut) {
     return (
       <PhoneScreen header={header}>
-        <EmptyState size="sm" title="You are signed out" description="Your settings stay on this account. Sign in again to change them." headingLevel={2} actions={<Button asChild className="min-h-11"><a href="#login">Sign in</a></Button>} />
+        <EmptyState size="sm" title="You are signed out" description="Your settings stay on this account. Sign in again to change them." headingLevel={2} actions={<Button asChild size="touch"><a href="#login">Sign in</a></Button>} />
       </PhoneScreen>
     );
   }
@@ -124,7 +124,7 @@ export function MobileSettingsPage({ initialTime = '08:30', initialTimeOpen = fa
               }}
             >
               <DrawerTrigger asChild>
-                <Button type="button" variant="outline" className="min-h-11 min-w-20 tabular-nums">{time}</Button>
+                <Button type="button" variant="outline" size="touch" className="min-w-20 tabular-nums">{time}</Button>
               </DrawerTrigger>
               <DrawerContent>
                 <DrawerHeader className="items-center text-center">
@@ -141,7 +141,7 @@ export function MobileSettingsPage({ initialTime = '08:30', initialTimeOpen = fa
                   <DrawerClose asChild>
                     <Button
                       type="button"
-                      className="min-h-11"
+                      size="touch"
                       onClick={() => {
                         setTime(draft);
                         setMessage(`Daily reminder set to ${draft}.`);
@@ -151,7 +151,7 @@ export function MobileSettingsPage({ initialTime = '08:30', initialTimeOpen = fa
                     </Button>
                   </DrawerClose>
                   <DrawerClose asChild>
-                    <Button type="button" variant="outline" className="min-h-11">Cancel</Button>
+                    <Button type="button" variant="outline" size="touch">Cancel</Button>
                   </DrawerClose>
                 </DrawerFooter>
               </DrawerContent>
@@ -161,7 +161,7 @@ export function MobileSettingsPage({ initialTime = '08:30', initialTimeOpen = fa
 
         <div className="flex flex-col gap-3">
           <h2 className="m-0 text-base leading-6 font-semibold">Account</h2>
-          <Button type="button" variant="outline" className="min-h-11 w-full text-destructive" onClick={() => setConfirmOpen(true)}>Sign out</Button>
+          <Button type="button" variant="outline" size="touch" className="w-full text-destructive" onClick={() => setConfirmOpen(true)}>Sign out</Button>
         </div>
       </div>
 

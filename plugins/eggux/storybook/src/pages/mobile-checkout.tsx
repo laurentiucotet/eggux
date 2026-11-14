@@ -69,7 +69,7 @@ export function MobileCheckoutPage({ initialShipping = 'standard', initialPaymen
       className="px-4 pt-4 pb-6"
       footer={
         <BottomActionBar label="Pay" summaryLabel="Total" summaryValue={euro(total)}>
-          <Button type="button" className="min-h-11" loading={state === 'paying'} onClick={pay}>
+          <Button type="button" size="touch" loading={state === 'paying'} onClick={pay}>
             Pay {euro(total)}
           </Button>
         </BottomActionBar>

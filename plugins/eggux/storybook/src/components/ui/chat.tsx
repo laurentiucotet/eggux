@@ -85,25 +85,33 @@ function ChatMessage({ direction = 'incoming', size = 'default', author, text, t
 
 export interface TypingIndicatorProps extends Omit<React.ComponentProps<'div'>, 'children'> {
   /** Who is typing: "Sofia", or a list. */
-  names: string[];
+  names?: string[];
+  /** Say who by name for any group size: "Ana is typing", "Ana and Dan are typing", "Ana and 2 others are typing". Off keeps the short text with an ellipsis. */
+  listNames?: boolean;
 }
 
-function typingText(names: string[]) {
+function typingText(names: string[], listNames: boolean) {
+  if (listNames) {
+    if (names.length === 1) return `${names[0]} is typing`;
+    if (names.length === 2) return `${names[0]} and ${names[1]} are typing`;
+    const others = names.length - 1;
+    return `${names[0]} and ${others} others are typing`;
+  }
   if (names.length === 1) return `${names[0]} is typing…`;
   if (names.length === 2) return `${names[0]} and ${names[1]} are typing…`;
   return 'Several people are typing…';
 }
 
-function TypingIndicator({ names, className, ...props }: TypingIndicatorProps) {
+function TypingIndicator({ names = [], listNames = false, className, ...props }: TypingIndicatorProps) {
   if (!names.length) return null;
   return (
-    <div data-slot="typing-indicator" role="status" className={cn('flex items-center gap-2', className)} {...props}>
+    <div data-slot="typing-indicator" role="status" aria-live="polite" className={cn('flex items-center gap-2', className)} {...props}>
       <span aria-hidden="true" className="flex h-[30px] w-[50px] items-center justify-center gap-1 rounded-xl rounded-bl-sm bg-muted">
         {[0, 1, 2].map(i => (
           <span key={i} className="size-1.5 animate-pulse rounded-full bg-muted-foreground motion-reduce:animate-none" style={{ animationDelay: `${i * 200}ms`, opacity: 1 - i * 0.25 }} />
         ))}
       </span>
-      <span className="text-xs leading-4 text-muted-foreground">{typingText(names)}</span>
+      <span className="text-xs leading-4 text-muted-foreground">{typingText(names, listNames)}</span>
     </div>
   );
 }

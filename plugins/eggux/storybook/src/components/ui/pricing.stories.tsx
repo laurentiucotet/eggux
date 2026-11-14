@@ -188,6 +188,36 @@ export const InApp: Story = {
   },
 };
 
+// Trial Banner counts from endsAt and now; Upsell Card compact and with Learn more. Tests only.
+export const TrialAndUpsellStates: Story = {
+  parameters: { controls: { disable: true } },
+  tags: ['!dev'],
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <TrialBanner aria-label="Trial, 3 days" endsAt="2026-11-17T09:00:00Z" now="2026-11-14T10:00:00Z" />
+      <TrialBanner aria-label="Trial, 10 days" endsAt="2026-11-24T09:00:00Z" now="2026-11-14T10:00:00Z" />
+      <TrialBanner aria-label="Trial, today" endsAt="2026-11-14T20:00:00Z" now="2026-11-14T10:00:00Z" />
+      <TrialBanner aria-label="Trial, over" endsAt="2026-11-13T20:00:00Z" now="2026-11-14T10:00:00Z" />
+      <TrialBanner aria-label="Trial, message wins" endsAt="2026-11-24T09:00:00Z" now="2026-11-14T10:00:00Z" message="Custom message" />
+      <div className="w-[276px]"><UpsellCard compact title="Unlock reports" description="Included in Business." actionLabel="Upgrade" onLearnMore={fn()} onDismiss={fn()} /></div>
+      <div className="w-[240px]"><UpsellCard title="See your best clients" actionLabel="Upgrade" onLearnMore={fn()} /></div>
+    </div>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvas.getByText('3 days left in your trial')).toBeInTheDocument();
+    await expect(canvas.getByText('10 days left in your trial')).toBeInTheDocument();
+    await expect(canvas.getByText('Ends today')).toBeInTheDocument();
+    await expect(canvas.getByText('Trial ended')).toBeInTheDocument();
+    await expect(canvas.getByText('Custom message')).toBeInTheDocument();
+    const trials = canvas.getAllByRole('region', { name: /^Trial/ });
+    await expect(trials.map(t => t.getAttribute('data-state'))).toEqual(['ending', 'active', 'ending', 'ended', 'active']);
+    await expect(canvas.getAllByRole('button', { name: 'Learn more' })).toHaveLength(2);
+    const compact = canvasElement.querySelector('[data-compact="true"]')!;
+    await expect(compact.getBoundingClientRect().width).toBeLessThanOrEqual(276);
+    await userEvent.click(canvas.getAllByRole('button', { name: 'Learn more' })[0]!);
+  },
+};
+
 export const DefaultDark: Story = { tags: ['!dev'], globals: { theme: 'Dark' } };
 export const DefaultCorporate: Story = { tags: ['!dev'], globals: { theme: 'Corporate Light' } };
 export const InAppDark: Story = { parameters: { controls: { disable: true } }, tags: ['!dev'], globals: { theme: 'Dark' }, render: InApp.render };

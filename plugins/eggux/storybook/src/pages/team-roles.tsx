@@ -19,9 +19,11 @@ import { DialogHeader } from '@/components/ui/dialog-header';
 import { Field } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { PageHeader } from '@/components/ui/page-header';
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { TableCellStack } from '@/components/ui/table-cells';
+import { TeamMemberRow } from '@/components/ui/team-member-row';
 import { AppShell } from './app-parts';
 
 export type Role = 'owner' | 'admin' | 'member' | 'viewer';
@@ -70,10 +72,12 @@ export interface TeamRolesPageProps {
   inviteError?: boolean;
   /** Ask to remove this member first (id). */
   removeId?: string;
+  /** "table" (default): the people table. "list": a Team Member Row per person, wraps down to phone width. */
+  peopleLayout?: 'table' | 'list';
 }
 
 /** Team and roles: the people table with role selects and status, invite dialog, remove confirmation, roles explained. */
-export function TeamRolesPage({ inviteOpen = false, inviteError = false, removeId }: TeamRolesPageProps) {
+export function TeamRolesPage({ inviteOpen = false, inviteError = false, removeId, peopleLayout = 'table' }: TeamRolesPageProps) {
   const [people, setPeople] = React.useState<Member[]>(demoPeople);
   const [inviting, setInviting] = React.useState(inviteOpen || inviteError);
   const [emails, setEmails] = React.useState(inviteError ? 'ana@acme' : '');
@@ -143,6 +147,22 @@ export function TeamRolesPage({ inviteOpen = false, inviteError = false, removeI
 
         <section aria-labelledby="people-title" className="flex flex-col gap-3">
           <h2 id="people-title" className="m-0 text-xl leading-7 font-semibold">People</h2>
+          {peopleLayout === 'list' ? (
+            <ul aria-labelledby="people-title" className="m-0 flex list-none flex-col gap-2 p-0">
+              {people.map(m => (
+                <TeamMemberRow
+                  key={m.id}
+                  name={m.name}
+                  email={m.email}
+                  role={m.role}
+                  status={m.status}
+                  owner={m.role === 'owner'}
+                  onRoleChange={r => changeRole(m, r as Role)}
+                  menu={<DropdownMenuItem variant="destructive" onSelect={() => setRemoving(m)}>Remove from team</DropdownMenuItem>}
+                />
+              ))}
+            </ul>
+          ) : (
           <Card className="overflow-hidden p-0">
             <Table aria-labelledby="people-title">
               <TableHeader>
@@ -185,6 +205,7 @@ export function TeamRolesPage({ inviteOpen = false, inviteError = false, removeI
               </TableBody>
             </Table>
           </Card>
+          )}
         </section>
 
         <section aria-labelledby="roles-title" className="flex flex-col gap-3">

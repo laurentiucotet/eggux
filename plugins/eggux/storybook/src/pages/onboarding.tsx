@@ -53,11 +53,11 @@ export function OnboardingPage({ initialStep = 0, initialDone = false }: { initi
 
   return (
     <PhoneScreen
-      header={<MobileHeader type="brand" trailing={<Button type="button" variant="ghost" className="min-h-11" onClick={() => setDone(true)}>Skip</Button>} />}
+      header={<MobileHeader type="brand" trailing={<Button type="button" variant="ghost" size="touch" onClick={() => setDone(true)}>Skip</Button>} />}
       className="flex flex-col px-6 py-6"
       footer={
         <BottomActionBar label="Onboarding actions">
-          <Button type="button" className="h-11" onClick={() => (step === last ? setDone(true) : go(step + 1))}>
+          <Button type="button" size="touch" onClick={() => (step === last ? setDone(true) : go(step + 1))}>
             {step === last ? 'Get started' : 'Next'}
           </Button>
         </BottomActionBar>

@@ -47,7 +47,7 @@ export function PinLockPage({ initialTries = 0, initialError = false }: { initia
         <div className="flex w-full flex-col items-center gap-4 text-center">
           <span aria-hidden="true" className="flex size-12 items-center justify-center rounded-full bg-muted [&_svg]:size-6"><Lock /></span>
           <Alert variant="destructive" title="Too many wrong codes" description="The PIN is locked on this device. Use your password to get back in." className="w-full text-left" />
-          <Button type="button" className="h-11 w-full" onClick={() => setStage('password')}>Use password instead</Button>
+          <Button type="button" size="touch" className="w-full" onClick={() => setStage('password')}>Use password instead</Button>
         </div>
       ) : (
         <>
@@ -63,7 +63,7 @@ export function PinLockPage({ initialTries = 0, initialError = false }: { initia
             onComplete={complete}
             extraKey={<ButtonIcon variant="ghost" icon={<UserCheck />} label="Use Face ID" showTooltip={false} className="size-16 rounded-full [&_svg]:size-6" onClick={() => setStage('unlocked')} />}
           />
-          <Button type="button" variant="ghost" className="min-h-11" onClick={() => setStage('password')}>Forgot PIN? Use password instead</Button>
+          <Button type="button" variant="ghost" size="touch" onClick={() => setStage('password')}>Forgot PIN? Use password instead</Button>
         </>
       )}
     </PhoneScreen>
