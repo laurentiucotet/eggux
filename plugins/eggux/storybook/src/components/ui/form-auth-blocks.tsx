@@ -51,10 +51,13 @@ export function useBlockForm<V extends Record<string, unknown>>(initial: V, rule
   const valuesRef = React.useRef(values);
   const errorsRef = React.useRef(errors);
   const dirty = React.useRef(new Set<keyof V>());
+  // Fields that showed an error are checked on every change from then on.
+  const live = React.useRef(new Set<keyof V>());
   const id = (k: keyof V) => `${base}-${String(k)}`;
   const check = (k: keyof V, all: V) => rules[k]?.(all[k], all);
 
   const writeErrors = (next: FormErrors<V>) => {
+    for (const k of Object.keys(next) as (keyof V)[]) if (next[k]) live.current.add(k);
     errorsRef.current = next;
     setErrors(next);
   };
@@ -63,9 +66,9 @@ export function useBlockForm<V extends Record<string, unknown>>(initial: V, rule
     valuesRef.current = next;
     dirty.current.add(k);
     setValues(next);
-    // Fields that show an error are checked again on every change, so the message clears once fixed
-    // (and a confirm field follows the password it must match).
-    const shown = Object.keys(errorsRef.current).filter(key => errorsRef.current[key as keyof V]) as (keyof V)[];
+    // Fields that showed an error are checked again on every change, so the message clears once fixed
+    // and comes back if it breaks again (a confirm field follows the password it must match).
+    const shown = [...live.current];
     if (shown.length) {
       const e = { ...errorsRef.current };
       for (const key of shown) e[key] = check(key, next);
@@ -95,6 +98,7 @@ export function useBlockForm<V extends Record<string, unknown>>(initial: V, rule
   const reset = (next: V = initial) => {
     valuesRef.current = next;
     dirty.current.clear();
+    live.current.clear();
     setValues(next);
     writeErrors({});
   };
