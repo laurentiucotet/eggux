@@ -284,6 +284,19 @@ export const FullWidth: Story = {
   },
 };
 
+// Figma Orientation=vertical: items stack in one column, each as wide as the widest.
+export const Vertical: Story = {
+  args: { variant: 'segmented', orientation: 'vertical' },
+  render: args => <ToggleGroup {...g(args)}>{period}</ToggleGroup>,
+  play: async ({ canvas }) => {
+    const group = canvas.getByRole('radiogroup', { name: 'Period' });
+    const [day, week, month] = items(group);
+    await expect(Math.round(week.getBoundingClientRect().top)).toBeGreaterThan(Math.round(day.getBoundingClientRect().bottom) - 1);
+    await expect(Math.round(month.getBoundingClientRect().left)).toBe(Math.round(day.getBoundingClientRect().left));
+    await expect(box(day)[0]).toBe(box(month)[0]);
+  },
+};
+
 // Stress test (Figma "Stress test / Toggle Group"): long labels stay on one line, items never
 // shrink, the group hugs its items; full width segmented truncates in a narrow column.
 export const Stress: Story = {

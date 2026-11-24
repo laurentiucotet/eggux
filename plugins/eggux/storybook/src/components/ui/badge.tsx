@@ -1,5 +1,5 @@
 // EGG UI Badge. Figma: Badge (COMPONENTS / Badge). Variant (solid, soft-*, category-1..8), Size
-// (sm, default, lg), Shape (rounded, pill), Show dot. shadcn Badge plus the EGG variants from
+// (sm, default, lg), Shape (rounded, pill), Show dot, Show count (count). shadcn Badge plus the EGG variants from
 // references/code-mapping.md. Labels truncate past max-w-64.
 import * as React from 'react';
 import { Slot } from 'radix-ui';
@@ -48,14 +48,17 @@ export interface BadgeProps extends React.ComponentProps<'span'>, VariantProps<t
   asChild?: boolean;
   /** Figma "Show dot": a dot in the label color before the label. */
   dot?: boolean;
+  /** Figma "Show count" + "Count value": a number after the label, same style and color. */
+  count?: React.ReactNode;
 }
 
-function Badge({ className, variant, size, shape, asChild = false, dot = false, children, ...props }: BadgeProps) {
+function Badge({ className, variant, size, shape, asChild = false, dot = false, count, children, ...props }: BadgeProps) {
   const Comp = asChild ? Slot.Root : 'span';
   return (
     <Comp data-slot="badge" className={cn(badgeVariants({ variant, size, shape }), className)} {...props}>
       {dot && <span aria-hidden="true" className={cn('shrink-0 rounded-full bg-current', size === 'lg' ? 'size-2' : 'size-1.5')} />}
       {asChild ? children : <span className="min-w-0 truncate">{children}</span>}
+      {count != null && count !== false && <span data-slot="badge-count" className="shrink-0 tabular-nums">{count}</span>}
     </Comp>
   );
 }

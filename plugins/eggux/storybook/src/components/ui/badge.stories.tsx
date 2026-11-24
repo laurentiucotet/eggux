@@ -62,6 +62,25 @@ export const Sizes: Story = {
   },
 };
 
+// Figma Show count: the number sits after the label and stays visible when the label truncates.
+export const WithCount: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge variant="secondary" count={3}>Inbox</Badge>
+      <Badge variant="soft-info" count={12}>Waiting for the second approver in the finance department</Badge>
+    </div>
+  ),
+  play: async ({ canvas }) => {
+    const counts = canvas.getAllByText(/^(3|12)$/);
+    await expect(counts).toHaveLength(2);
+    const long = canvas.getByText('12');
+    const badge = long.parentElement!;
+    await expect(long.getBoundingClientRect().right).toBeLessThanOrEqual(badge.getBoundingClientRect().right);
+    await expect(long.scrollWidth).toBe(long.clientWidth);
+  },
+};
+
 // Stress test: a long label truncates at max-w-64 (256) and never wraps.
 export const LongLabel: Story = { tags: ['!dev'],
   args: { children: 'Waiting for the second approver in the finance department', variant: 'soft-warning' },

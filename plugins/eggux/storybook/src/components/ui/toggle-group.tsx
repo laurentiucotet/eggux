@@ -9,6 +9,7 @@
 // type="single": items are radios (aria-checked), one stays selected; type="multiple": toggle
 // buttons (aria-pressed). Arrow keys move between items (one Tab stop), Space or Enter selects.
 // fullWidth: the group fills its container and the items share it equally.
+// orientation=vertical (Figma Orientation): items stack in a column and stretch to the widest one.
 import * as React from 'react';
 import { ToggleGroup as ToggleGroupPrimitive } from 'radix-ui';
 import { cva } from 'class-variance-authority';
@@ -40,6 +41,7 @@ interface ToggleGroupBaseProps extends Omit<React.ComponentProps<'div'>, 'defaul
   fullWidth?: boolean;
   /** Disables every item. */
   disabled?: boolean;
+  /** Figma Orientation: horizontal (default) or vertical (a column; arrow keys follow). */
   orientation?: 'horizontal' | 'vertical';
   /** Accessible name of the group ("View", "Billing period"). */
   'aria-label'?: string;
@@ -63,7 +65,7 @@ export type ToggleGroupProps = ToggleGroupSingleProps | ToggleGroupMultipleProps
 function ToggleGroup(props: ToggleGroupProps) {
   const { variant = 'default', size = 'default', fullWidth = false, className, children, ...rest } = props;
   const ctx = React.useMemo(() => ({ variant, size, fullWidth }), [variant, size, fullWidth]);
-  const classes = cn('inline-flex w-fit max-w-full items-center', groupClass[variant], fullWidth && 'flex w-full', className);
+  const classes = cn('inline-flex w-fit max-w-full items-center data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch', groupClass[variant], fullWidth && 'flex w-full', className);
 
   // single: a radio group never ends up empty, so a click on the selected item keeps it.
   const [inner, setInner] = React.useState(rest.type === 'single' ? (rest.defaultValue ?? '') : '');

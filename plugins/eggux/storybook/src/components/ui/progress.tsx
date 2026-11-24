@@ -2,8 +2,8 @@
 // dependency of Progress Card. Size (sm 4, default 8, lg 12), Tone (default, success, warning,
 // error), Show label (a row above the bar: the label, 1 line, and the value text on the right).
 // shadcn Progress on the radix-ui primitive: role="progressbar" with aria-valuenow and a name.
-// Type=segmented is in progress-segmented.tsx; Value=indeterminate is not built here (the same
-// sliding segment is in Top Loading Bar).
+// Type=segmented is in progress-segmented.tsx. Value=indeterminate is `value={null}`: a sliding
+// segment (the same animation as Top Loading Bar), a pulse under reduced motion, no value text.
 import * as React from 'react';
 import { Progress as ProgressPrimitive } from 'radix-ui';
 import { cva } from 'class-variance-authority';
@@ -25,8 +25,8 @@ const toneClass: Record<ProgressTone, string> = {
 };
 
 export interface ProgressProps extends Omit<React.ComponentProps<typeof ProgressPrimitive.Root>, 'value'> {
-  /** Figma Value: 0 to 100. */
-  value?: number;
+  /** Figma Value: 0 to 100, or null for Value=indeterminate (unknown duration). */
+  value?: number | null;
   size?: ProgressSize;
   tone?: ProgressTone;
   /** Figma Show label + Label: what is progressing. Without it pass `aria-label`. */
@@ -45,11 +45,18 @@ function Progress({ value = 0, size = 'default', tone = 'default', label, valueT
       className={cn(trackSize({ size }), !label && className)}
       {...props}
     >
-      <ProgressPrimitive.Indicator
-        data-slot="progress-indicator"
-        className={cn('h-full w-full flex-1 rounded-full transition-transform duration-[var(--duration-fast)]', toneClass[tone])}
-        style={{ transform: `translateX(-${100 - value}%)` }}
-      />
+      {value == null ? (
+        <ProgressPrimitive.Indicator
+          data-slot="progress-indicator"
+          className={cn('absolute inset-y-0 left-0 w-2/5 rounded-full animate-progress-indeterminate motion-reduce:animate-pulse', toneClass[tone])}
+        />
+      ) : (
+        <ProgressPrimitive.Indicator
+          data-slot="progress-indicator"
+          className={cn('h-full w-full flex-1 rounded-full transition-transform duration-[var(--duration-fast)]', toneClass[tone])}
+          style={{ transform: `translateX(-${100 - value}%)` }}
+        />
+      )}
     </ProgressPrimitive.Root>
   );
   if (!label) return bar;
@@ -57,7 +64,7 @@ function Progress({ value = 0, size = 'default', tone = 'default', label, valueT
     <div data-slot="progress-field" className={cn('flex w-full min-w-0 flex-col gap-2', className)}>
       <div className="flex items-center gap-3 text-sm">
         <span id={labelId} className="min-w-0 flex-1 truncate font-medium text-foreground">{label}</span>
-        <span className="shrink-0 text-muted-foreground">{valueText ?? `${value}%`}</span>
+        <span className="shrink-0 text-muted-foreground">{valueText ?? (value == null ? null : `${value}%`)}</span>
       </div>
       {bar}
     </div>

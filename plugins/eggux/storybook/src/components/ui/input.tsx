@@ -1,6 +1,7 @@
 // EGG UI Input. Figma: Input (COMPONENTS / Input). Style (default, filled), Size (sm, default,
 // lg), State (default, focus, error via aria-invalid, disabled, read-only). shadcn Input with the
 // EGG changes from references/code-mapping.md: pill radius through --input-radius, density height.
+// Figma Style=floating is not built in code (no Code Connect mapping): use Style=default in a Field.
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
