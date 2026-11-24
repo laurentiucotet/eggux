@@ -806,9 +806,9 @@ which screen: `skills/build-ui/index.md`):
   `build-ui/patterns/mobile.md`.
 
 ## Pages
-The file opens with Cover (1920 x 1080 thumbnail), Intro (getting started, credits, changelog),
-Showcase (four full pages: SaaS in Showcase Light, enterprise in Corporate Light, AI product in
-Showcase Dark, a store in Light), Foundations (tokens shown as swatches, type, spacing, radius,
+The file opens with Cover (1920 x 1080 thumbnail), Start here (getting started), Changelog, Status, License,
+Showcase (four full pages: SaaS in Light, enterprise in Corporate Light, AI product in
+Dark, a store in Light), Foundations (tokens shown as swatches, type, spacing, radius,
 elevation, motion, brand ramp and gradients), Brand and Imagery.
 Brand has a second Theme preview in Corporate Light, a Content panel (brand strings bound to the `Content` collection) and an English / Română comparison of the invoices example. Then two groups of pages, each sorted A-Z: COMPONENTS (layer 1 and Form Presets) and BLOCKS (block
 categories and Page Shells). Block pages have no prefix. `Navigation` exists in both sections:

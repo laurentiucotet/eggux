@@ -18,16 +18,16 @@ npm run tokens           # tokens/egg-ui.tokens.json -> src/styles/tokens.css
 ## How it fits together
 - `tokens/*.tokens.json`: Figma variables exported with `plugins/eggux/scripts/export-tokens.js`
   (run through use_figma). `scripts/tokens-to-css.js` turns them into `src/styles/tokens.css`,
-  one block per Figma mode (`:root`, `.dark`, `.theme-corporate`, `.theme-showcase`,
+  one block per Figma mode (`:root`, `.dark`, `.theme-corporate`,
   `.density-compact`). Never edit tokens.css by hand.
 - `src/styles/globals.css`: Tailwind 4 plus `@theme inline`, so `bg-primary`, `rounded-button`,
   `text-brand` read the tokens.
 - `src/components/ui/<name>.tsx`: one component, props named after the Figma properties.
 - `src/components/ui/<name>.stories.tsx`: the stories are the documentation and the tests:
   variants, states, keyboard, measured sizes from Figma, stress cases, theme stories.
-- `.storybook/preview.tsx`: the toolbar (Scheme light or dark, Look Platform or Back office or
-  Showcase, Size), Controls rules, axe failures fail the test (`a11y.test = 'error'`). Scheme
-  and Look map to classes on `<html>` (`dark`, `theme-corporate`, `theme-showcase`); a story can still
+- `.storybook/preview.tsx`: the toolbar (Scheme light or dark, Look Platform or Back office,
+  Size), Controls rules, axe failures fail the test (`a11y.test = 'error'`). Scheme
+  and Look map to classes on `<html>` (`dark`, `theme-corporate`); a story can still
   set the combined name (`globals: { theme: 'Corporate Dark' }`).
 - `src/styles/breakpoints.ts`: the widths the product supports. The Size selector and the
   Foundations / Breakpoints page read it; edit it for a new product.

@@ -13,21 +13,19 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
     controls: { disable: true },
-    docs: { description: { component: 'The same components in every look and scheme at once. A look (Platform, Back office, Showcase) and a scheme (light, dark) are two token sets that combine; components do not know which one is active.' } },
+    docs: { description: { component: 'The same components in every look and scheme at once. A look (Platform, Back office) and a scheme (light, dark) are two token sets that combine; components do not know which one is active.' } },
   },
 } satisfies Meta;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Each panel carries the theme classes itself, so six themes show side by side whatever the
+// Each panel carries the theme classes itself, so four themes show side by side whatever the
 // toolbar says. Back office has square controls and a small radius.
 const panels = [
   { id: 'platform-light', name: 'Platform, light', cls: '' },
   { id: 'back-office-light', name: 'Back office, light', cls: 'theme-corporate' },
-  { id: 'showcase-light', name: 'Showcase, light', cls: 'theme-showcase' },
   { id: 'platform-dark', name: 'Platform, dark', cls: 'dark' },
   { id: 'back-office-dark', name: 'Back office, dark', cls: 'theme-corporate dark' },
-  { id: 'showcase-dark', name: 'Showcase, dark', cls: 'theme-showcase dark' },
 ];
 
 function Panel({ id, name, cls }: (typeof panels)[number]) {
@@ -55,9 +53,9 @@ function Themes() {
     <Page
       themed={false}
       title="Themes and looks"
-      intro="One set of components, many looks. Platform is what customers see (pill controls, soft corners). Back office is for staff (square controls, small corners, denser). Showcase shows how a client brand re-colors the same tokens."
+      intro="One set of components, many looks. Platform is what customers see (pill controls, soft corners). Back office is for staff (square controls, small corners, denser). A client rebrand re-aliases the same tokens the same way."
     >
-      <Section title="Same components, six looks" note="Every panel is the same code. Only the tokens around it differ.">
+      <Section title="Same components, four looks" note="Every panel is the same code. Only the tokens around it differ.">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {panels.map(p => (
             <Panel key={p.id} {...p} />
@@ -76,7 +74,7 @@ function Themes() {
 }
 
 export const Overview: Story = {
-  // Pinned: the page shows all six by itself, so the toolbar choice must not change its base.
+  // Pinned: the page shows all four by itself, so the toolbar choice must not change its base.
   globals: { theme: 'Light' },
   render: () => <Themes />,
   play: async ({ canvasElement }) => {

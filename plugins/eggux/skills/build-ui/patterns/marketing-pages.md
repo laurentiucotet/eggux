@@ -60,8 +60,8 @@ Event lists under Header Event or on a topic page: `Event Card`. Downloads on a 
 9. Contact (when sales talk to every customer)
 10. Footer
 
-Full examples on the Showcase page of the library: `Example / Showcase / Orbitly SaaS` (Showcase
-Light), `Meridian Enterprise` (Corporate Light), `Lumora AI product` (Showcase Dark) and
+Full examples on the Showcase page of the library: `Example / Showcase / Orbitly SaaS` (Light),
+`Meridian Enterprise` (Corporate Light), `Lumora AI product` (Dark) and
 `Tidewater store` with its product page (Light). Each alternates default and muted bands, uses
 one decorative device and real imagery; start a landing page by copying the closest one.
 
@@ -125,7 +125,7 @@ careers, blog index).
 - Put Stats, Logo Cloud, Testimonial Grid or FAQ on `section/muted-background` between default sections (Light neutral/50 keeps muted text at 4.5:1). Never use `background/muted` for a full-width band.
 - One decorative device per page: a `Background / Grid`, `Dots`, `Glow` or `Beam` (Grid + Glow together count as one hero treatment) as the first child of the hero or one CTA band, absolute positioned, stretched, aria-hidden. Never behind dense content; keep body text off the glow core and beam heads, and check muted text stays 4.5:1 over it.
 - Feature, step and bento icons sit in an `Icon Tile`: neutral by default, brand for one accent grid, gradient for one highlighted item; one Style per grid. Feature Item holds an exposed Icon Tile: set Style=brand (or gradient) on the nested tile; do not override the tile fill or icon color.
-- To show a client's brand on a pitch or cover, set the frame to their mode; the `Showcase Light` / `Showcase Dark` modes and the pages on Showcase show what a rebrand does to the same blocks.
+- To show a client's brand on a pitch or cover, set the frame to their mode; Corporate Light and Corporate Dark show what a rebrand does to the same blocks.
 - Every CTA gets a secondary action and a proof row (Avatar Group with photos and a Rating with a count).
 - On a primary band or card, use Inline Form, Figure, Check Item and Trust Badge Tone=on-primary
   (secondary button, text in `foreground/primary`), no manual overrides; captions use

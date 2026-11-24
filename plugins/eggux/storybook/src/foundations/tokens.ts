@@ -68,6 +68,6 @@ export const edgeGrade = (ratio: number): string => (ratio >= 3 ? 'Meets 3:1' : 
 /** The name of the active look and scheme, from the classes on <html>. */
 export function themeName(): string {
   const root = document.documentElement.classList;
-  const look = root.contains('theme-corporate') ? 'Back office' : root.contains('theme-showcase') ? 'Showcase' : 'Platform';
+  const look = root.contains('theme-corporate') ? 'Back office' : 'Platform';
   return `${look}, ${root.contains('dark') ? 'dark' : 'light'}`;
 }

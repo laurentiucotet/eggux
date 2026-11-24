@@ -319,16 +319,6 @@ Plus Jakarta Sans; Corporate keeps Inter and 4 px):
   --accent: var(--color-slate-800);
   --sidebar-primary: var(--color-blue-600);
 }
-/* Showcase: existing block, change --radius-xl and the hover; pill and font come from :root */
-.theme-showcase {
-  /* ...existing violet values... */
-  --radius: 0.75rem;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: var(--radius);
-  --radius-xl: var(--radius);     /* was 16px */
-  --button-primary-hover: color-mix(in oklab, var(--primary) 90%, transparent);
-}
 @theme inline {
   --color-brand: var(--brand);
   --radius-button: var(--button-radius);   /* rounded-button */
@@ -348,41 +338,6 @@ Pill buttons in code (one place each, never per instance):
 Section bands: `--section-muted-background` is `var(--color-neutral-50)` in `:root`, `var(--muted)` in `.dark`
 and the Corporate theme; add `--color-section-muted: var(--section-muted-background)` to `@theme inline`
 and use `bg-section-muted` on full-width sections (never `bg-muted`, muted text fails 4.5:1 on it in Light).
-
-Showcase theme (`Showcase Light`, `Showcase Dark` modes) in `globals.css`:
-
-```css
-/* Showcase theme: violet brand ramp = Tailwind violet (color/brand/* in Figma) */
-.theme-showcase {
-  --primary: var(--color-violet-600);
-  --primary-foreground: var(--color-white);
-  --ring: var(--color-violet-600);
-  --brand: var(--color-violet-700);
-  --accent: var(--color-violet-50);
-  --chart-1: var(--color-violet-600);
-  --chart-7: var(--color-blue-600);
-  --sidebar-primary: var(--color-violet-600);
-  --sidebar-primary-foreground: var(--color-white);
-  --icon-tile-gradient-start: var(--color-violet-500);
-  --icon-tile-gradient-end: var(--color-violet-700);
-  --radius: 0.75rem;   /* 12 px */
-  --radius-sm: 6px;    /* Figma radius/sm in Showcase */
-  --radius-md: 8px;
-  --radius-lg: var(--radius);
-  --radius-xl: var(--radius);
-}
-.dark.theme-showcase {
-  --primary: var(--color-violet-600);
-  --primary-foreground: var(--color-white);
-  --ring: var(--color-violet-500);
-  --brand: var(--color-violet-400);
-  --accent: var(--color-neutral-800); /* dark accent stays neutral */
-  --chart-1: var(--color-violet-400);
-  --chart-7: var(--color-blue-500);
-  --sidebar-primary: var(--color-violet-600);
-  --sidebar-primary-foreground: var(--color-white);
-}
-```
 
 ## Email (React Email)
 New table section for references/code-mapping.md: "## Email (React Email)". Emails are built with
