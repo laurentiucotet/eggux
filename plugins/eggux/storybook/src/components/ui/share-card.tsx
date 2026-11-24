@@ -1,4 +1,4 @@
-// EGG UI Share Card. Code only (no Figma component yet); family Community.
+// EGG UI Share Card. Figma: Community page; family Community.
 // A card that offers one public link: a heading, one line of help, the link in a read-only field with
 // a Copy Button, and up to three network links (Button outline sm with the network mark and name).
 // Social Share is the compact row for a page footer; the Share Card is the panel for a "Share"

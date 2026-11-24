@@ -1,4 +1,4 @@
-// EGG UI Mark All Read Bar. Code only (no Figma component yet); family Notifications.
+// EGG UI Mark All Read Bar. Figma: Notifications page; family Notifications.
 // A bar above a notification list: how many are unread ("12 unread notifications") and one button,
 // "Mark all as read". After the click the same button becomes "Undo" and the text says what
 // happened ("12 marked as read"), so a slip is one click to fix. It is one button that changes its

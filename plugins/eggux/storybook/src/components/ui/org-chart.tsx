@@ -1,4 +1,4 @@
-// EGG UI Org Chart. Code only (no Figma component yet); family Data Structures.
+// EGG UI Org Chart. Figma: Data Structures page; family Data Structures.
 // A reporting tree drawn as nested person cards joined by lines: avatar, name, role, and for a
 // manager the number of direct reports in a badge. A node with people under it has a chevron to
 // expand or collapse it; "Expand all" and "Collapse all" buttons sit above the tree. The tree is

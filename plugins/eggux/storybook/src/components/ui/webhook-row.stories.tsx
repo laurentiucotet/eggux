@@ -15,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One webhook endpoint: the URL in mono, a status badge (Active, Failing or Disabled, always a word), the events it listens to, the last delivery with its HTTP code, and a Send test button that is busy while the test runs and announces the result. Extra events open from "+N". Code only (no Figma component yet).',
+          'One webhook endpoint: the URL in mono, a status badge (Active, Failing or Disabled, always a word), the events it listens to, the last delivery with its HTTP code, and a Send test button that is busy while the test runs and announces the result. Extra events open from "+N". Figma: Developer page.',
       },
     },
   },

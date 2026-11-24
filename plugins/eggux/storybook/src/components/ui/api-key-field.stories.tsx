@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One API key: a name, the key masked to its last 4 characters with Reveal and Copy, Created and Last used, and a Revoke button that asks first, in place, and says what happens. After Revoke the key is gone from the screen. Copy always copies the whole key. Sample keys here are fake. Code only (no Figma component yet).',
+          'One API key: a name, the key masked to its last 4 characters with Reveal and Copy, Created and Last used, and a Revoke button that asks first, in place, and says what happens. After Revoke the key is gone from the screen. Copy always copies the whole key. Sample keys here are fake. Figma: Developer page.',
       },
     },
   },

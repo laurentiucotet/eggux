@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A VAT number input for invoices: a country Select and an Input in Fields. The number is kept with its prefix, upper case, with spaces, dots and dashes removed as you type. The format is checked when the field loses focus (never while typing) and the error says what to type with an example. A right format only means the shape is right; the number is checked with the tax authority when saved. Code only (no Figma component yet).',
+          'A VAT number input for invoices: a country Select and an Input in Fields. The number is kept with its prefix, upper case, with spaces, dots and dashes removed as you type. The format is checked when the field loses focus (never while typing) and the error says what to type with an example. A right format only means the shape is right; the number is checked with the tax authority when saved. Figma: Plans and Billing page.',
       },
     },
   },

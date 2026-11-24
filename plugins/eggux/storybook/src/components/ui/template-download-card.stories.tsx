@@ -30,7 +30,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A card that offers a sample file before an import: title, one sentence, format badges, file name and size, a Download button and a "What columns are needed" disclosure with each column marked Required or Optional. Nothing is generated here: the button calls onDownload with the first format or follows a link. Code only (no Figma component yet).',
+          'A card that offers a sample file before an import: title, one sentence, format badges, file name and size, a Download button and a "What columns are needed" disclosure with each column marked Required or Optional. Nothing is generated here: the button calls onDownload with the first format or follows a link. Figma: Data Transfer page.',
       },
     },
   },

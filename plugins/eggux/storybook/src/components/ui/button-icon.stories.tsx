@@ -8,13 +8,13 @@ const meta = {
   title: 'Components/Button/Button Icon',
   component: ButtonIcon,
   parameters: {
-    docs: { description: { component: 'Icon-only button: an accessible label and a Tooltip with the same text, always. Variant rules match Button (ghost in toolbars and dense UI, soft next to soft Buttons). Size xs 28 (14 px icon) inside fields, chips and table rows; sm 32; default 36; lg 40 next to lg Buttons. Loading: a spinner replaces the icon, aria-busy, the tooltip says the action in progress. Figma: Button page / Button Icon. Guide: eggux build-ui/components/button.md, tooltip.md' } },
+    docs: { description: { component: 'Icon-only button: an accessible label and a Tooltip with the same text, always. Variant rules match Button (ghost in toolbars and dense UI, soft next to soft Buttons). Size xs 28 (14 px icon) inside fields, chips and table rows; sm 32; default 36; lg 40 next to lg Buttons; touch 44 on touch screens. Loading: a spinner replaces the icon, aria-busy, the tooltip says the action in progress. Figma: Button page / Button Icon. Guide: eggux build-ui/components/button.md, tooltip.md' } },
   },
   decorators: [Story => <TooltipProvider delayDuration={0}><Story /></TooltipProvider>],
   args: { label: 'More actions for Invoice INV-1041', icon: <Ellipsis aria-hidden="true" />, onClick: fn() },
   argTypes: {
     variant: { control: 'select', options: ['default', 'soft', 'secondary', 'outline', 'ghost', 'destructive'] },
-    size: { control: 'inline-radio', options: ['xs', 'sm', 'default', 'lg'] },
+    size: { control: 'inline-radio', options: ['xs', 'sm', 'default', 'lg', 'touch'] },
   },
 } satisfies Meta<typeof ButtonIcon>;
 export default meta;
@@ -89,17 +89,17 @@ export const Variants: Story = {
   },
 };
 
-// Figma Size: xs 28 (14 px icon), sm 32, default 36, lg 40 (16 px icon).
+// Figma Size: xs 28 (14 px icon), sm 32, default 36, lg 40, touch 44 (16 px icon).
 export const Sizes: Story = {
   render: args => (
     <div className="flex items-center gap-3">
-      {(['xs', 'sm', 'default', 'lg'] as ButtonIconSize[]).map(s => <ButtonIcon key={s} {...args} variant="outline" size={s} label={`More actions (${s})`} />)}
+      {(['xs', 'sm', 'default', 'lg', 'touch'] as ButtonIconSize[]).map(s => <ButtonIcon key={s} {...args} variant="outline" size={s} label={`More actions (${s})`} />)}
     </div>
   ),
   play: async ({ canvas }) => {
     const buttons = canvas.getAllByRole('button');
-    await expect(buttons.map(box)).toEqual([[28, 28], [32, 32], [36, 36], [40, 40]]);
-    await expect(buttons.map(b => box(b.querySelector('svg')!)[0])).toEqual([14, 16, 16, 16]);
+    await expect(buttons.map(box)).toEqual([[28, 28], [32, 32], [36, 36], [40, 40], [44, 44]]);
+    await expect(buttons.map(b => box(b.querySelector('svg')!)[0])).toEqual([14, 16, 16, 16, 16]);
   },
 };
 
@@ -107,7 +107,7 @@ export const Sizes: Story = {
 export const Soft: Story = {
   render: args => (
     <div className="flex items-center gap-3">
-      {(['xs', 'sm', 'default', 'lg'] as ButtonIconSize[]).map(s => <ButtonIcon key={s} {...args} variant="soft" size={s} label={`Add line item (${s})`} />)}
+      {(['xs', 'sm', 'default', 'lg', 'touch'] as ButtonIconSize[]).map(s => <ButtonIcon key={s} {...args} variant="soft" size={s} label={`Add line item (${s})`} />)}
     </div>
   ),
   play: async ({ canvas }) => {
@@ -126,19 +126,19 @@ export const Loading: Story = {
   args: { label: 'Refresh invoices', loadingLabel: 'Refreshing', icon: <RefreshCw aria-hidden="true" />, loading: true, variant: 'outline' },
   render: args => (
     <div className="flex items-center gap-3">
-      {(['xs', 'sm', 'default', 'lg'] as ButtonIconSize[]).map(s => <ButtonIcon key={s} {...args} size={s} />)}
+      {(['xs', 'sm', 'default', 'lg', 'touch'] as ButtonIconSize[]).map(s => <ButtonIcon key={s} {...args} size={s} />)}
     </div>
   ),
   play: async ({ canvas, args }) => {
     const buttons = canvas.getAllByRole('button', { name: 'Refreshing' });
-    await expect(buttons.map(box)).toEqual([[28, 28], [32, 32], [36, 36], [40, 40]]);
+    await expect(buttons.map(box)).toEqual([[28, 28], [32, 32], [36, 36], [40, 40], [44, 44]]);
     for (const b of buttons) {
       await expect(b).toHaveAttribute('aria-busy', 'true');
       await expect(b.querySelectorAll('svg')).toHaveLength(1);
       await expect(b.querySelector('[data-slot="button-spinner"]')).not.toBeNull();
       await expect(getComputedStyle(b).opacity).toBe('1');
     }
-    await expect(buttons.map(b => box(b.querySelector('svg')!)[0])).toEqual([14, 16, 16, 16]);
+    await expect(buttons.map(b => box(b.querySelector('svg')!)[0])).toEqual([14, 16, 16, 16, 16]);
     await userEvent.click(buttons[2]);
     await expect(args.onClick).not.toHaveBeenCalled();
   },

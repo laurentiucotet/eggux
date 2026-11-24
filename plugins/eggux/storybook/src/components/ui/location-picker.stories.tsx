@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A Field-like control for choosing a place: a label, a button that looks like an input and opens a Popover with a search box, the matching places and a "Use my location" button. The chosen place is a Chip with a remove button. The list is a combobox (arrows and Enter), Escape closes and focus returns to the trigger. Code only (no Figma component yet).',
+          'A Field-like control for choosing a place: a label, a button that looks like an input and opens a Popover with a search box, the matching places and a "Use my location" button. The chosen place is a Chip with a remove button. The list is a combobox (arrows and Enter), Escape closes and focus returns to the trigger. Figma: Location page.',
       },
     },
   },

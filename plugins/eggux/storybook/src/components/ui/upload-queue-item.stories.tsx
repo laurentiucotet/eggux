@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One file in an upload queue: name, size, state text, a progress bar while uploading and the actions of the state (Cancel, Retry, Remove). The parent runs the upload; nothing is read or sent here. With focus in the row, Escape cancels a waiting or running upload and Delete removes a finished or failed one. Code only (no Figma component yet).',
+          'One file in an upload queue: name, size, state text, a progress bar while uploading and the actions of the state (Cancel, Retry, Remove). The parent runs the upload; nothing is read or sent here. With focus in the row, Escape cancels a waiting or running upload and Delete removes a finished or failed one. Figma: Data Transfer page.',
       },
     },
   },

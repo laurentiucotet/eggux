@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A single choice poll. Pick an option and Vote; the card then shows each option with its share, a bar, the vote count, a check on the leading option and "Your vote" on yours. A closed poll opens on the final result with "Winner". Radios are native; results are read as one sentence per option. Code only (no Figma component yet).',
+          'A single choice poll. Pick an option and Vote; the card then shows each option with its share, a bar, the vote count, a check on the leading option and "Your vote" on yours. A closed poll opens on the final result with "Winner". Radios are native; results are read as one sentence per option. Figma: Community page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Unread Divider. Code only (no Figma component yet). The line in a message list where the
+// EGG UI Unread Divider. Figma: Messaging page. The line in a message list where the
 // messages you have not read begin: "3 new messages" (or "New messages" with no count) between two
 // rules in the primary color, and an optional "Jump to latest" button for when the unread run is
 // longer than the screen. The divider itself is static text (it never announces); the button is

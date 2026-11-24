@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A milestone a member can earn: icon tile, title, what it takes and the state. Earned shows a badge and the date, in progress a progress bar ("3 of 5"), locked mutes the card and swaps the icon for a lock. State is always text, never colour alone. Code only (no Figma component yet).',
+          'A milestone a member can earn: icon tile, title, what it takes and the state. Earned shows a badge and the date, in progress a progress bar ("3 of 5"), locked mutes the card and swaps the icon for a lock. State is always text, never colour alone. Figma: Community page.',
       },
     },
   },

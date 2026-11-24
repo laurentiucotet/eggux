@@ -1,4 +1,4 @@
-// EGG UI Distribution Bar. Code only (no Figma component yet); Data Display family.
+// EGG UI Distribution Bar. Figma: Data Display page; Data Display family.
 // One stacked horizontal bar that splits a total into parts (plan mix, traffic sources, storage by
 // type), with a legend that names every part, its value and its share. Segments take the chart/N
 // token colors in order and are separated by a 2 px gap, so the parts read without color: the legend

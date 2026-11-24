@@ -1,4 +1,4 @@
-// EGG UI Logo Cloud. Code only (no Figma component yet); family Marketing.
+// EGG UI Logo Cloud. Figma: Marketing page; family Marketing.
 // "Trusted by" strip: a heading and a grid (or one wrapping row) of customer logos. Logos are drawn
 // text marks (a small geometric glyph plus the name in one of five type treatments), so no image is
 // loaded; real products replace the marks with their own SVG. Tone grayscale (muted, default) or

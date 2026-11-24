@@ -1,4 +1,4 @@
-// EGG UI Billing Contact Card. Code only (no Figma component yet); Billing family.
+// EGG UI Billing Contact Card. Figma: Plans and Billing page; Billing family.
 // Who invoices go to: company, contact name, billing email (a mailto link), phone and the billing
 // address, as a description list inside a Card with an Edit button. A missing email is said in
 // words with a "Missing" badge ("No billing email. Invoices cannot be sent."), because an invoice

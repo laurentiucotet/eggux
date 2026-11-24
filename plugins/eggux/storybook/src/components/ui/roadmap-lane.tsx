@@ -1,4 +1,4 @@
-// EGG UI Roadmap Lane. Code only (no Figma component yet); family Data Structures.
+// EGG UI Roadmap Lane. Figma: Data Structures page; family Data Structures.
 // A roadmap as lanes side by side: quarters (Q1, Q2...) or Now, Next and Later. Each lane is a
 // section with a title, an optional date line, an item count and a list of item cards. A card has
 // a title, a short summary, a status badge (Planned, In progress, Shipped, At risk) and an

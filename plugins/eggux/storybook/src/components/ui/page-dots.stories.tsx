@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Dots under a pager or carousel: which page of how many. 8 px dots in a 24 px hit area; the current one is a wider pill. With a select handler each dot is a button named "Page 2 of 5"; without it the dots only show the position. Use for 2 to 7 pages; more pages need a counter. Code only (no Figma component yet).',
+          'Dots under a pager or carousel: which page of how many. 8 px dots in a 24 px hit area; the current one is a wider pill. With a select handler each dot is a button named "Page 2 of 5"; without it the dots only show the position. Use for 2 to 7 pages; more pages need a counter. Figma: Mobile page.',
       },
     },
   },

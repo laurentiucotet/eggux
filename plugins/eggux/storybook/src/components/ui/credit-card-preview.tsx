@@ -1,4 +1,4 @@
-// EGG UI Credit Card Preview. Code only (no Figma component yet); Checkout family.
+// EGG UI Credit Card Preview. Figma: Checkout page; Checkout family.
 // A card face that follows the form: brand mark, chip, number, holder name and expiry. Number is
 // shown masked by default (four dots groups and the last four digits); with `masked={false}` the
 // digits typed so far show, grouped by four, the rest as dots. Empty values show placeholders

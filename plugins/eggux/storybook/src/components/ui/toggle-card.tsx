@@ -1,4 +1,4 @@
-// EGG UI Toggle Card. Code only (no Figma component yet). A setting as a card: an icon, a title and a
+// EGG UI Toggle Card. Figma: Form Controls page. A setting as a card: an icon, a title and a
 // description, with a switch at the end, where the WHOLE card is the hit area ("Email alerts",
 // "Two-step sign in"). It is one Switch (role="switch", Space toggles) inside a label for the card,
 // so a click anywhere flips it. The switch is named by the title and described by the description

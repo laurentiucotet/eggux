@@ -1,4 +1,4 @@
-// EGG UI Avatar Cropper. Code only (no Figma component yet). Choose which part of a picture becomes
+// EGG UI Avatar Cropper. Figma: Media page. Choose which part of a picture becomes
 // the round avatar: a square stage with a circular crop window (the picture outside it is dimmed),
 // a Zoom slider (100 to 300 %), and the buttons Reset and Apply. Drag the picture with the
 // pointer; the keyboard path is the stage itself (focusable): arrow keys nudge 2 % of the stage,

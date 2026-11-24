@@ -1,4 +1,4 @@
-// EGG UI Week Picker. Code only (no Figma component yet). Picks a whole week: previous and next
+// EGG UI Week Picker. Figma: Date and Time page. Picks a whole week: previous and next
 // buttons step one week, and the middle button shows the range ("19 to 25 Oct 2026") with the week
 // number as a badge and opens a Popover with the weeks of one month, a month switcher on top, as a
 // listbox (Up and Down move, Home and End jump, Enter or Space picks and closes, Escape closes).

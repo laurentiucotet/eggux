@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Seats used of seats bought, and a stepper to add or remove seats. The lowest number is the seats in use. A preview in words shows the price change ("Adding 3 seats: +€36.00 per month") and Confirm stays disabled until the number changes. Nothing is charged before Confirm. Prices are per seat per month in EUR. Code only (no Figma component yet).',
+          'Seats used of seats bought, and a stepper to add or remove seats. The lowest number is the seats in use. A preview in words shows the price change ("Adding 3 seats: +€36.00 per month") and Confirm stays disabled until the number changes. Nothing is charged before Confirm. Prices are per seat per month in EUR. Figma: Plans and Billing page.',
       },
     },
   },

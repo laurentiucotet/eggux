@@ -34,7 +34,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Last step of a flow: every section with its title, an Edit button and the answers as key-value rows. An empty answer reads "Not provided" with a warning icon, and a banner counts how many are missing. Edit buttons name their section. Code only (no Figma component yet). Guide: eggux build-ui/patterns/wizard.md',
+          'Last step of a flow: every section with its title, an Edit button and the answers as key-value rows. An empty answer reads "Not provided" with a warning icon, and a banner counts how many are missing. Edit buttons name their section. Figma: Wizard page. Guide: eggux build-ui/patterns/multi-step-form.md',
       },
     },
   },

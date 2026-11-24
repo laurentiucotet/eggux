@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One release of a product changelog: date, version, tags (New, Improved, Fixed), a title with a permalink, an optional summary and a list of changes. Stack entries newest first; each has its own anchor. Code only (no Figma component yet).',
+          'One release of a product changelog: date, version, tags (New, Improved, Fixed), a title with a permalink, an optional summary and a list of changes. Stack entries newest first; each has its own anchor. Figma: Marketing page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Call Banner. Code only (no Figma component yet). The strip at the top of a chat while you
+// EGG UI Call Banner. Figma: Messaging page. The strip at the top of a chat while you
 // are on a call: a phone glyph with a soft pulse, "Acme Design sync" over "On a call · 12:34", a
 // Mute toggle (aria-pressed) and a Leave button. The text part is a button that takes you back to
 // the call (`onReturn`). The timer is a <time> that counts up (pass `elapsed` to control it, or

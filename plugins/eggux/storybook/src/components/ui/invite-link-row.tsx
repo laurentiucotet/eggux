@@ -1,4 +1,4 @@
-// EGG UI Invite Link Row. Code only (no Figma component yet); family Access.
+// EGG UI Invite Link Row. Figma: Access page; family Access.
 // The link people use to join or open something: a read-only field with the link and a Copy button,
 // and under it the settings of the link: an expiry Select ("Never", "1 day", "7 days", "30 days"),
 // Reset link (asks first in an Alert Dialog: the old link stops working at once) and a Switch that

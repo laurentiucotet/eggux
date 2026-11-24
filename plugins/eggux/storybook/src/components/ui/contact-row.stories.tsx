@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One person in a contact list: avatar, name, phone number and Call, Message and Video buttons, each 44 x 44 and named after the person. No swipe is needed. Name and number stay on one line and truncate; the buttons never shrink. Put rows in a list. Code only (no Figma component yet).',
+          'One person in a contact list: avatar, name, phone number and Call, Message and Video buttons, each 44 x 44 and named after the person. No swipe is needed. Name and number stay on one line and truncate; the buttons never shrink. Put rows in a list. Figma: Mobile page.',
       },
     },
   },

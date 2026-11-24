@@ -34,7 +34,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A matrix of events by channels (Email, Push, In app) with a switch in every cell, a switch in each column header that turns the channel on or off for all events, and a one-line summary under each event ("Email, In app"). A real table: caption, column headers, row headers. Every switch is named by its row and column ("Invoice paid by Email"). Code only (no Figma component yet).',
+          'A matrix of events by channels (Email, Push, In app) with a switch in every cell, a switch in each column header that turns the channel on or off for all events, and a one-line summary under each event ("Email, In app"). A real table: caption, column headers, row headers. Every switch is named by its row and column ("Invoice paid by Email"). Figma: Notifications page.',
       },
     },
   },

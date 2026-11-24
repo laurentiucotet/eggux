@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'An inline notice where someone cannot do something because of their access: "You need Editor access", who to ask (the owner) and a Request access button. After the request the button gives way to "Request sent". Inline, not a page: it takes the place of the blocked thing. Code only (no Figma component yet).',
+          'An inline notice where someone cannot do something because of their access: "You need Editor access", who to ask (the owner) and a Request access button. After the request the button gives way to "Request sent". Inline, not a page: it takes the place of the blocked thing. Figma: Access page.',
       },
     },
   },

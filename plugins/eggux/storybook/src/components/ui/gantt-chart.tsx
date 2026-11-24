@@ -1,4 +1,4 @@
-// EGG UI Gantt Chart. Code only (no Figma component yet); family Data Structures.
+// EGG UI Gantt Chart. Figma: Data Structures page; family Data Structures.
 // A schedule drawn as rows of task bars on a time scale. Each task has a start and an end day
 // (inclusive, "2026-03-09"); the bar's left edge and width are computed from them. The header
 // shows months over day numbers (`scale="day"`) or week starts (`scale="week"`). A vertical

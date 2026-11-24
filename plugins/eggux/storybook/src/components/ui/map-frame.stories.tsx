@@ -29,7 +29,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A drawn placeholder map for store and place pickers: grid, river, park and roads as SVG in theme tokens, numbered pins as buttons, zoom buttons, a card for the selected pin and a "List view" toggle with the same places as rows. Tab goes through the pins; with the map focused arrows pan and + / - zoom. No tiles and no network. Code only (no Figma component yet).',
+          'A drawn placeholder map for store and place pickers: grid, river, park and roads as SVG in theme tokens, numbered pins as buttons, zoom buttons, a card for the selected pin and a "List view" toggle with the same places as rows. Tab goes through the pins; with the map focused arrows pan and + / - zoom. No tiles and no network. Figma: Location page.',
       },
     },
   },

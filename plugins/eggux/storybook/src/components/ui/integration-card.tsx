@@ -1,4 +1,4 @@
-// EGG UI Integration Card. Code only (no Figma component yet); family Marketing.
+// EGG UI Integration Card. Figma: Marketing page; family Marketing.
 // A tile for an integrations directory: a drawn mark (initials on a category-colored tile, no
 // image), the name, a category Badge, a description clamped to two lines, and a Connect button that
 // becomes "Connected" (secondary, with a check). Pressing Connected disconnects. Cards in a grid

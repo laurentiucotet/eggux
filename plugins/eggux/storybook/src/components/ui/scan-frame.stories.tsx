@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The viewfinder over a camera feed for scanning a QR code, a barcode or a document: four corner brackets, a hint and a state (scanning, success, error). The brackets are white over live video, so they do not follow the theme. The hint is a polite live region, and a text fallback ("Enter the code instead") should always sit next to it. Code only (no Figma component yet).',
+          'The viewfinder over a camera feed for scanning a QR code, a barcode or a document: four corner brackets, a hint and a state (scanning, success, error). The brackets are white over live video, so they do not follow the theme. The hint is a polite live region, and a text fallback ("Enter the code instead") should always sit next to it. Figma: Mobile page.',
       },
     },
   },

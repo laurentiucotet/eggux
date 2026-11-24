@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Online, offline or reconnecting, as a small indicator or a full-width banner. The status is always an icon plus words. The root is a persistent polite live region, so a change is announced without moving focus. The banner offers Retry when offline. Reconnecting spins only when motion is allowed. Code only (no Figma component yet).',
+          'Online, offline or reconnecting, as a small indicator or a full-width banner. The status is always an icon plus words. The root is a persistent polite live region, so a change is announced without moving focus. The banner offers Retry when offline. Reconnecting spins only when motion is allowed. Figma: Data Display page.',
       },
     },
   },

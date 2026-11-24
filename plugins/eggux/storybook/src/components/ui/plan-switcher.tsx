@@ -1,4 +1,4 @@
-// EGG UI Plan Switcher. Code only (no Figma component yet); Billing family.
+// EGG UI Plan Switcher. Figma: Plans and Billing page; Billing family.
 // Picks how a plan is paid for and how many seats: a Monthly / Yearly toggle (segmented Toggle
 // Group, one always selected) with the yearly saving shown in a badge, a seat count stepper
 // (Number Input) and the resulting price line in words ("5 seats x EUR 12.00 = EUR 60.00 per

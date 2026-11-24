@@ -1,4 +1,4 @@
-// EGG UI Story Viewer. Code only (no Figma component yet). Mobile page. A full-screen story: a row
+// EGG UI Story Viewer. Figma: Mobile page. Mobile page. A full-screen story: a row
 // of progress bars on top (done, current, next), the author and a Pause and a Close button, the
 // story content, and visible Previous and Next buttons at the bottom. Tapping the left third goes
 // back, the rest goes forward, and holding a finger on the story pauses it; none of that is the

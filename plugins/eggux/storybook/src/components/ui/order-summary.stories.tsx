@@ -23,7 +23,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The money side of checkout: items, subtotal, discount, shipping, tax and the total, built on Summary Row. Below 768 px it collapses to a "Show order summary" button that carries the total; the same toggle can be forced at every width or turned off. The button has aria-expanded and aria-controls. Code only (no Figma component yet).',
+          'The money side of checkout: items, subtotal, discount, shipping, tax and the total, built on Summary Row. Below 768 px it collapses to a "Show order summary" button that carries the total; the same toggle can be forced at every width or turned off. The button has aria-expanded and aria-controls. Figma: Checkout page.',
       },
     },
   },

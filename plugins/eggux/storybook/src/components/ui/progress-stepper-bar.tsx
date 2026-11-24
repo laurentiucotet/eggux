@@ -1,4 +1,4 @@
-// EGG UI Progress Stepper Bar. Code only (no Figma component yet); family Onboarding.
+// EGG UI Progress Stepper Bar. Figma: Onboarding page; family Onboarding.
 // A thin segmented bar for a multi-step flow (sign-up, checkout, setup): one 4 px segment per step,
 // filled up to and including the current step, with "Step 2 of 5" and the step name above and an
 // optional Back link on the left. Not for navigation between sections: the segments are not buttons.

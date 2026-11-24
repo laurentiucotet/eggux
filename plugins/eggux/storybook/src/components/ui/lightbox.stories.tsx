@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A full-screen image viewer in the Dialog: previous and next, a counter, a caption and Close. Left and Right arrows change the image, Escape or Close closes it and focus returns to the control that opened it. Use it to look closer at a photo from a Gallery or Photo Grid. Code only (no Figma component yet).',
+          'A full-screen image viewer in the Dialog: previous and next, a counter, a caption and Close. Left and Right arrows change the image, Escape or Close closes it and focus returns to the control that opened it. Use it to look closer at a photo from a Gallery or Photo Grid. Figma: Media page.',
       },
     },
   },

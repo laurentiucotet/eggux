@@ -1,4 +1,4 @@
-// EGG UI Bottom Sheet. Code only (no Figma component yet). Mobile page / Bottom Sheet.
+// EGG UI Bottom Sheet. Figma: Mobile page. Mobile page / Bottom Sheet.
 // Like Drawer (same Radix Dialog, same surface: full width, radius xl on top, border on top, shadow
 // lg, scrim, safe-area padding) with the part Drawer leaves out: it can be dragged. The handle sits
 // on top; drag it down to close, up or down to move between detents (peek 30 %, half 50 %, full =

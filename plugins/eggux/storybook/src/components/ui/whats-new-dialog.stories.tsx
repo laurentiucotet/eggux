@@ -23,7 +23,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A release note in a Dialog: title, version and date, changes with a New, Improved or Fixed badge, and one Got it button that takes focus on open. Escape, the X and Got it close it and focus returns to the trigger. A long list scrolls inside the body. Code only (no Figma component yet). Guide: eggux build-ui/patterns/onboarding.md',
+          'A release note in a Dialog: title, version and date, changes with a New, Improved or Fixed badge, and one Got it button that takes focus on open. Escape, the X and Got it close it and focus returns to the trigger. A long list scrolls inside the body. Figma: Onboarding page.',
       },
     },
   },

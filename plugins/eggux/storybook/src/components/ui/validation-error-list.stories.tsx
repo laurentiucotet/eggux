@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The errors found in a file before an import, grouped by row or by column with a segmented switch. Each error has the message, the offending value in mono and a "Go to row" action that calls onJump(row, column). Errors are data; nothing is validated here. Code only (no Figma component yet).',
+          'The errors found in a file before an import, grouped by row or by column with a segmented switch. Each error has the message, the offending value in mono and a "Go to row" action that calls onJump(row, column). Errors are data; nothing is validated here. Figma: Data Transfer page.',
       },
     },
   },

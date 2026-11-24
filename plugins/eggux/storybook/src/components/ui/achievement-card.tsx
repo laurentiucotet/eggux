@@ -1,4 +1,4 @@
-// EGG UI Achievement Card. Code only (no Figma component yet); family Community.
+// EGG UI Achievement Card. Figma: Community page; family Community.
 // A milestone a member can earn: a 48 round icon tile, the title, one line of what it takes, and the
 // state. earned = the tile in the success soft tone, a "Earned" badge and the date; in progress = a
 // Progress bar with "3 of 5" and the tile in the neutral tone; locked = the whole card muted with a

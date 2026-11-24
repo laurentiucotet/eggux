@@ -1,4 +1,4 @@
-// EGG UI Seat Manager. Code only (no Figma component yet); Billing family.
+// EGG UI Seat Manager. Figma: Plans and Billing page; Billing family.
 // Shows seats used of seats bought (a Progress bar with the numbers in words) and lets an admin
 // add or remove seats: a Number Input whose minimum is the seats in use (a seat that is taken
 // cannot be removed), a price change preview in words ("Adding 3 seats: +EUR 36.00 per month")

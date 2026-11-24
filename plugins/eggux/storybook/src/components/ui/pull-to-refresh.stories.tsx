@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Wraps a scrolling list on mobile: drag down at the top and release past the threshold to refresh; a spinner shows while it runs. Pulling is a shortcut: a "Refresh" button is the first tab stop and a polite status announces "Refreshing" and "Updated". No motion under prefers-reduced-motion. Drag the list in the story to try it. Code only (no Figma component yet).',
+          'Wraps a scrolling list on mobile: drag down at the top and release past the threshold to refresh; a spinner shows while it runs. Pulling is a shortcut: a "Refresh" button is the first tab stop and a polite status announces "Refreshing" and "Updated". No motion under prefers-reduced-motion. Drag the list in the story to try it. Figma: Mobile page.',
       },
     },
   },

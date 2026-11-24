@@ -36,7 +36,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A Drawer you can drag. Grab the handle: drag down to close, or up and down to move between three detents (peek 30 %, half 50 %, full). The handle is a button, so it works without a pointer: ArrowUp and ArrowDown change the detent, Home and End jump, Escape closes. Radix Dialog underneath: focus trap and return, scrim, body scroll lock, outside tap to close, safe-area padding. Use it for content people may want to see more of (a list, filters, a map result); use Drawer for a short sheet and Action Sheet for a list of actions. Code only (no Figma component yet). Guide: eggux build-ui/patterns/mobile.md',
+          'A Drawer you can drag. Grab the handle: drag down to close, or up and down to move between three detents (peek 30 %, half 50 %, full). The handle is a button, so it works without a pointer: ArrowUp and ArrowDown change the detent, Home and End jump, Escape closes. Radix Dialog underneath: focus trap and return, scrim, body scroll lock, outside tap to close, safe-area padding. Use it for content people may want to see more of (a list, filters, a map result); use Drawer for a short sheet and Action Sheet for a list of actions. Figma: Mobile page. Guide: eggux build-ui/patterns/mobile.md',
       },
     },
   },

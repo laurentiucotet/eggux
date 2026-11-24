@@ -1,4 +1,4 @@
-// EGG UI Access Level Select. Code only (no Figma component yet); family Access.
+// EGG UI Access Level Select. Figma: Access page; family Access.
 // A Select for how much someone can do with a shared thing: Viewer, Commenter, Editor, Owner. Every
 // level has a one-line description under its name in the open list. A level can be disabled with a
 // reason ("Only the current owner can transfer ownership"): it stays in the list, dimmed, and the

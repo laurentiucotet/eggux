@@ -1,4 +1,4 @@
-// EGG UI Time Zone Picker. Code only (no Figma component yet). A searchable list of time zones, each
+// EGG UI Time Zone Picker. Figma: Date and Time page. A searchable list of time zones, each
 // with the current local time there and its offset from UTC ("Berlin, Europe, 14:00, GMT+2"), plus a
 // "Tomorrow" or "Yesterday" hint when the date differs from the selected zone. Built with the
 // WAI-ARIA combobox pattern on an always-open listbox: focus stays in the search field, Up and Down

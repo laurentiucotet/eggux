@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A "trusted by" strip: a heading and customer logos drawn as text marks in a grid or one wrapping row, in grayscale or the brand color. Logos can link to a customer story. Replace the drawn marks with real SVG logos in a product. Code only (no Figma component yet).',
+          'A "trusted by" strip: a heading and customer logos drawn as text marks in a grid or one wrapping row, in grayscale or the brand color. Logos can link to a customer story. Replace the drawn marks with real SVG logos in a product. Figma: Marketing page.',
       },
     },
   },

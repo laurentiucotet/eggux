@@ -1,4 +1,4 @@
-// EGG UI Follow Button. Code only (no Figma component yet); family Community.
+// EGG UI Follow Button. Figma: Community page; family Community.
 // A toggle for following a person, topic or space, with the follower count beside it. Not following =
 // the primary Button "Follow" with a plus; following = an outline Button "Following" with a check.
 // The count ("1,204 followers", compact above 9,999: "12.4K") follows the state: following adds one.

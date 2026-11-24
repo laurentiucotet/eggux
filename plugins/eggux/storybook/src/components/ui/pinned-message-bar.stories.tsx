@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The bar under a conversation header that shows a pinned message: counter, previous and next (they wrap), an Unpin button, and a message part that scrolls to the original. One pin hides the counter and arrows. Moving between pins is announced politely, never on first render. Code only (no Figma component yet).',
+          'The bar under a conversation header that shows a pinned message: counter, previous and next (they wrap), an Unpin button, and a message part that scrolls to the original. One pin hides the counter and arrows. Moving between pins is announced politely, never on first render. Figma: Messaging page.',
       },
     },
   },

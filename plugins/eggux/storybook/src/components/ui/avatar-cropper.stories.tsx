@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Choose which part of a picture becomes the round avatar: a circular crop window, a Zoom slider and the buttons Reset and Apply. Drag the picture, or focus the stage and use the arrow keys (2 %, Shift 10 %) and + and - to zoom. The picture never leaves the window. Apply returns { zoom, x, y }. Code only (no Figma component yet).',
+          'Choose which part of a picture becomes the round avatar: a circular crop window, a Zoom slider and the buttons Reset and Apply. Drag the picture, or focus the stage and use the arrow keys (2 %, Shift 10 %) and + and - to zoom. The picture never leaves the window. Apply returns { zoom, x, y }. Figma: Media page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Language Switcher. Code only (no Figma component yet). A select-like control for the language
+// EGG UI Language Switcher. Figma: Form Controls page. A select-like control for the language
 // of the interface or of a document: a button showing the current language in its own name ("Deutsch")
 // that opens a popover list. Every option shows the native name first, with the English name muted
 // next to it, so people find their language even when the page is in the wrong one; the current one

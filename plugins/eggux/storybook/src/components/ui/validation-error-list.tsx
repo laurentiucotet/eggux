@@ -1,4 +1,4 @@
-// EGG UI Validation Error List. Code only (no Figma component yet); family Data Transfer.
+// EGG UI Validation Error List. Figma: Data Transfer page; family Data Transfer.
 // The errors found in a file before an import, grouped by row or by column (a segmented switch).
 // Each error shows the message, the value that caused it in mono ("not-an-email", or "(empty)")
 // and a Jump action that calls onJump with the row and column, so the screen can scroll to the

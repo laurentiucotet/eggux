@@ -1,4 +1,4 @@
-// EGG UI Upload Queue Item. Code only (no Figma component yet); family Data Transfer.
+// EGG UI Upload Queue Item. Figma: Data Transfer page; family Data Transfer.
 // One file in an upload queue: a file icon, the name (truncates), size and state text, a progress
 // bar while it uploads, and the actions that fit the state. queued: Cancel. uploading: Cancel.
 // done: Remove. failed: the reason, Retry and Remove. No file is read or sent here: the parent runs

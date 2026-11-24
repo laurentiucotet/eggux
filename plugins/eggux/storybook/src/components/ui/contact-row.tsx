@@ -1,4 +1,4 @@
-// EGG UI Contact Row. Code only (no Figma component yet). Mobile page. One person in a contact list:
+// EGG UI Contact Row. Figma: Mobile page. Mobile page. One person in a contact list:
 // an avatar, the name and the phone number (each on one line, truncated) and up to three round
 // buttons, Call, Message and Video, 44 x 44 each and named after the person ("Call Maya Lopez").
 // No swipe needed: every action is a visible button. The row is a plain block: put rows in a list

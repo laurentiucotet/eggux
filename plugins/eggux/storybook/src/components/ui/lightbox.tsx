@@ -1,4 +1,4 @@
-// EGG UI Lightbox. Code only (no Figma component yet). A full-screen image viewer inside the
+// EGG UI Lightbox. Figma: Media page. A full-screen image viewer inside the
 // library Dialog (fullscreen size): the title row has the gallery name, the "2 / 6" counter and a
 // Close button; the stage shows the image at 4:3 with previous and next buttons over it; the
 // caption sits under it and is the dialog's description. Left and Right arrows (Home, End) change

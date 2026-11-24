@@ -1,4 +1,4 @@
-// EGG UI Back To Top. Code only (no Figma component yet). A round icon button that appears once the
+// EGG UI Back To Top. Figma: Layout page. A round icon button that appears once the
 // page (or a scroll area) has moved more than `threshold` px and scrolls back to the top. Smooth
 // scroll, instant when the user prefers reduced motion. Placement: `fixed` pins it to the window
 // corner (page level); without it, it sticks to the bottom corner of the scroll area it sits in as

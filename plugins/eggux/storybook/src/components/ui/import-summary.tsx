@@ -1,4 +1,4 @@
-// EGG UI Import Summary. Code only (no Figma component yet); family Data Transfer.
+// EGG UI Import Summary. Figma: Data Transfer page; family Data Transfer.
 // The result after an import: a heading with an outcome badge, one sentence ("48 rows from
 // customers.csv"), four stat tiles (Created, Updated, Skipped, Failed) and, when rows failed, a
 // download for the error report. Counts come in as props; the report is a link (`errorReportHref`)

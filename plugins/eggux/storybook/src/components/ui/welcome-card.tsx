@@ -1,4 +1,4 @@
-// EGG UI Welcome Card. Code only (no Figma component yet); family Onboarding.
+// EGG UI Welcome Card. Figma: Onboarding page; family Onboarding.
 // A first-visit hero card: an optional small badge, a title, one sentence, a primary and a secondary
 // action, and a decorative gradient tile with an icon. The tile hides from assistive tech and wraps
 // above the text when the card is narrow.

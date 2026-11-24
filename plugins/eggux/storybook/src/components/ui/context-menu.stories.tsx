@@ -87,7 +87,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A menu at the pointer: right click, long press on touch, or Shift+F10 / the Menu key on the focused area. Items, a sub menu, checkbox and radio items, a destructive item last. Arrows move, Right opens a sub menu, Escape closes and returns focus to the area. Never the only way to do something: put every action in the interface too. Code only (no Figma component yet). Surface copies Dropdown Menu.',
+          'A menu at the pointer: right click, long press on touch, or Shift+F10 / the Menu key on the focused area. Items, a sub menu, checkbox and radio items, a destructive item last. Arrows move, Right opens a sub menu, Escape closes and returns focus to the area. Never the only way to do something: put every action in the interface too. Figma: Layout page. Surface copies Dropdown Menu.',
       },
     },
   },

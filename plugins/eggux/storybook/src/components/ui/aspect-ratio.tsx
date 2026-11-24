@@ -1,4 +1,4 @@
-// EGG UI Aspect Ratio. Code only (no Figma component yet; the Card Media slot and Image Placeholder
+// EGG UI Aspect Ratio. Figma: Layout page (the Card Media slot and Image Placeholder
 // use 16:9 the same way). A wrapper that keeps its box at 1:1, 4:3, 16:9 or 21:9 at any width, so
 // media does not make the page jump while it loads. `fit` decides what a direct img, video, picture
 // or canvas does inside: cover fills the box and crops, contain shows all of it with space around.

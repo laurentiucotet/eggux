@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A grid of day cells coloured by intensity, like a contributions graph: a year of small cells or one month with day numbers, with a Less to More legend. Every day is a button named with its date and value and carries the same text as a tooltip. Arrow keys move by cell, Home and End jump to the ends of the row, Enter or Space picks when days are pickable. Code only (no Figma component yet).',
+          'A grid of day cells coloured by intensity, like a contributions graph: a year of small cells or one month with day numbers, with a Less to More legend. Every day is a button named with its date and value and carries the same text as a tooltip. Arrow keys move by cell, Home and End jump to the ends of the row, Enter or Space picks when days are pickable. Figma: Date and Time page.',
       },
     },
   },

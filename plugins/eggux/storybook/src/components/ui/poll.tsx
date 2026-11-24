@@ -1,4 +1,4 @@
-// EGG UI Poll. Code only (no Figma component yet); family Community.
+// EGG UI Poll. Figma: Community page; family Community.
 // A question with two to six options, single choice. State vote: a radio group and a Vote button
 // (disabled until an option is picked). State results: each option as a row with its label, share in
 // percent, vote count and a bar; the leading option(s) carry a check and "Leading" ("Winner" once the

@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The line in a message list where the unread messages begin: "3 new messages" between two rules, with an optional Jump to latest button. Static text, never announced; the count is part of the text. Count 0 shows "New messages". Code only (no Figma component yet).',
+          'The line in a message list where the unread messages begin: "3 new messages" between two rules, with an optional Jump to latest button. Static text, never announced; the count is part of the text. Count 0 shows "New messages". Figma: Messaging page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Segmented Input. Code only (no Figma component yet). One code split into groups of boxes: an
+// EGG UI Segmented Input. Figma: Form Controls page. One code split into groups of boxes: an
 // IBAN (4 4 4 4 4 2), a license key (5 5 5 5), a card or order number. Each group is a real text input
 // in the Input look, so the screen reader says "Part 2 of 5" and the browser handles caret, selection
 // and autofill. Typing fills a box and moves on to the next one when it is full; Backspace in an

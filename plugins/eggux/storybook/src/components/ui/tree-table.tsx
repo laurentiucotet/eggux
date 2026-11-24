@@ -1,4 +1,4 @@
-// EGG UI Tree Table. Code only (no Figma component yet); family Data Structures.
+// EGG UI Tree Table. Figma: Data Structures page; family Data Structures.
 // A table whose first column is a tree: each row has a level, an indent that grows with it and, for
 // a row with children, a chevron that shows or hides the rows below it (a project and its tasks,
 // a ledger group and its accounts). The other columns are plain cells. "Expand all" and "Collapse

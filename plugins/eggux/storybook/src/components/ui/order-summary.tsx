@@ -1,4 +1,4 @@
-// EGG UI Order Summary. Code only (no Figma component yet); Checkout family.
+// EGG UI Order Summary. Figma: Checkout page; Checkout family.
 // The money side of checkout: the items (name, variant, quantity, line total), then Summary Rows
 // for subtotal, discount (success, minus), shipping, tax and the total. Built on Summary Row.
 // Collapse (mobile, always, never): below 768 px a header button "Show order summary" with the total

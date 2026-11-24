@@ -29,7 +29,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A bar above a notification list with the unread count and one button. Mark all as read turns into Undo, so a slip is one click to fix; the same button changes its name, so keyboard focus stays put. With nothing unread the button is aria-disabled and the text says "You are all caught up". One polite status, written only after a click. Code only (no Figma component yet).',
+          'A bar above a notification list with the unread count and one button. Mark all as read turns into Undo, so a slip is one click to fix; the same button changes its name, so keyboard focus stays put. With nothing unread the button is aria-disabled and the text says "You are all caught up". One polite status, written only after a click. Figma: Notifications page.',
       },
     },
   },

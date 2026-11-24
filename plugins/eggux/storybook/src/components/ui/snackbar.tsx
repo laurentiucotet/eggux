@@ -1,4 +1,4 @@
-// EGG UI Snackbar. Code only (no Figma component yet). Mobile page / Snackbar.
+// EGG UI Snackbar. Figma: Mobile page. Mobile page / Snackbar.
 // Not a second toast: Toast already has an action, a close button, auto-dismiss, a polite live
 // region, a timer that pauses on hover and focus, and Escape. Snackbar is the mobile variant of it:
 // the same Toast part (inverted style, close on, an action when given), anchored to the bottom

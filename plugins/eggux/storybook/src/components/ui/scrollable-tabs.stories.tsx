@@ -43,7 +43,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A tab list that stays on one line and scrolls sideways when there are too many tabs for the width (a category strip), instead of the More menu. Fade edges and Previous and Next buttons show which side has more; the active tab is scrolled into view when it changes; arrows, Home and End move between tabs like Tabs. Smooth scroll, instant under prefers-reduced-motion. Built on Tabs and Tab (Tabs page). Code only (no Figma component yet).',
+          'A tab list that stays on one line and scrolls sideways when there are too many tabs for the width (a category strip), instead of the More menu. Fade edges and Previous and Next buttons show which side has more; the active tab is scrolled into view when it changes; arrows, Home and End move between tabs like Tabs. Smooth scroll, instant under prefers-reduced-motion. Built on Tabs and Tab (Tabs page). Figma: Layout page.',
       },
     },
   },

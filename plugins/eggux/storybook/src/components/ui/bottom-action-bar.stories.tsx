@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The bar stuck to the bottom of a mobile screen that holds the one decision of the screen: Continue, Pay, Save. An optional summary on the left ("Total" and "€248.00"), buttons on the right or full width and stacked. Border on top and safe-area padding inside. It replaces the Bottom Nav on flows; never show both. Code only (no Figma component yet).',
+          'The bar stuck to the bottom of a mobile screen that holds the one decision of the screen: Continue, Pay, Save. An optional summary on the left ("Total" and "€248.00"), buttons on the right or full width and stacked. Border on top and safe-area padding inside. It replaces the Bottom Nav on flows; never show both. Figma: Mobile page.',
       },
     },
   },

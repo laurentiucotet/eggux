@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Who invoices go to: company, contact, billing email (a mailto link), phone and address in a Card with an Edit button. An empty email is said in words with a "Missing" badge, because an invoice that goes nowhere costs money. Long emails wrap. Empty text controls hide their row. Code only (no Figma component yet).',
+          'Who invoices go to: company, contact, billing email (a mailto link), phone and address in a Card with an Edit button. An empty email is said in words with a "Missing" badge, because an invoice that goes nowhere costs money. Long emails wrap. Empty text controls hide their row. Figma: Plans and Billing page.',
       },
     },
   },

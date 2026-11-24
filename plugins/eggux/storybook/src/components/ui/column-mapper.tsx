@@ -1,4 +1,4 @@
-// EGG UI Column Mapper. Code only (no Figma component yet); family Data Transfer.
+// EGG UI Column Mapper. Figma: Data Transfer page; family Data Transfer.
 // The step of an import where each column of the file is matched to a field: one row per file
 // column with its name and a few sample values, an arrow and a Select of the fields (plus "Do not
 // import"). Required fields are marked "Required" in the list and in a summary line. Two columns

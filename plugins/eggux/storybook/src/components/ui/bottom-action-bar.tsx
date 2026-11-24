@@ -1,4 +1,4 @@
-// EGG UI Bottom Action Bar. Code only (no Figma component yet). The bar stuck to the bottom of a mobile
+// EGG UI Bottom Action Bar. Figma: Mobile page. The bar stuck to the bottom of a mobile
 // screen that holds the one decision of the screen: Continue, Pay, Save. An optional summary on the
 // left (a label and a value: "Total", "€248.00") and the buttons on the right, or full width and
 // stacked when there is no room. Border on top, safe-area padding inside, so it sits above the home

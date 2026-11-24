@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A searchable list of time zones, each with the current local time there and its offset from UTC, and a Tomorrow or Yesterday hint when the date differs from the selected zone. Focus stays in the search field; Up and Down move the highlight, Enter picks, Escape clears the search. Times come from Intl, so daylight saving follows the given date. Code only (no Figma component yet).',
+          'A searchable list of time zones, each with the current local time there and its offset from UTC, and a Tomorrow or Yesterday hint when the date differs from the selected zone. Focus stays in the search field; Up and Down move the highlight, Enter picks, Escape clears the search. Times come from Intl, so daylight saving follows the given date. Figma: Date and Time page.',
       },
     },
   },

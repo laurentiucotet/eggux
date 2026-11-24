@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'First-visit hero card: title, one sentence, a primary and a secondary action and a decorative gradient tile. The tile wraps above the text when the card is narrow. Show it once and let people dismiss it elsewhere; do not put it on every visit. Code only (no Figma component yet). Guide: eggux build-ui/patterns/onboarding.md',
+          'First-visit hero card: title, one sentence, a primary and a secondary action and a decorative gradient tile. The tile wraps above the text when the card is narrow. Show it once and let people dismiss it elsewhere; do not put it on every visit. Figma: Onboarding page.',
       },
     },
   },

@@ -25,7 +25,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A heading and a grid of Person Cards: avatar, name, role and a row of icon links. Cards share one height per row and the links stay at the bottom. Built on Person Card. Code only (no Figma component yet).',
+          'A heading and a grid of Person Cards: avatar, name, role and a row of icon links. Cards share one height per row and the links stay at the bottom. Built on Person Card. Figma: Marketing page.',
       },
     },
   },

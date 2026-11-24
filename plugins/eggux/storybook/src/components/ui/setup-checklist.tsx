@@ -1,4 +1,4 @@
-// EGG UI Setup Checklist. Code only (no Figma component yet); family Onboarding.
+// EGG UI Setup Checklist. Figma: Onboarding page; family Onboarding.
 // A card with a progress bar and the steps of getting started. A step is done, current or locked:
 // the first step that is not done is current, the ones after it are locked until it is done. Each step
 // has a title, a hint and an action (current = primary, done = "Review" style outline, locked =

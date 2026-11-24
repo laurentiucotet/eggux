@@ -1,4 +1,4 @@
-// EGG UI Role Card. Code only (no Figma component yet); family Access.
+// EGG UI Role Card. Figma: Access page; family Access.
 // One role in a roles list: its name (a heading, level set by `titleAs`), a Role Badge for the kind,
 // a short description, how many people have it, a summary of what it can do (up to `maxSummary`
 // areas with their level, then "+3 more") and the actions Edit and Duplicate. A System role is

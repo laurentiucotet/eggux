@@ -1,4 +1,4 @@
-// EGG UI Credit Balance. Code only (no Figma component yet); Billing family.
+// EGG UI Credit Balance. Figma: Plans and Billing page; Billing family.
 // What is left of prepaid credit: the amount in EUR as the main figure, a state in words (Low
 // balance from the threshold, Empty at zero), the credit that expires soon with its date and the
 // days left counted from a fixed `now`, and a Top up button. Colour is never the only signal: the

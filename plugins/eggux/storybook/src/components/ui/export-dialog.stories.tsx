@@ -23,7 +23,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A Dialog for exporting rows: format radios (CSV, XLSX, JSON), a range (all, filtered, selected; a range with no rows is disabled), a column checklist with Select all and a Start export button with a busy state. Start export calls onExport({ format, range, columns }); the parent runs the job and sets busy. Code only (no Figma component yet).',
+          'A Dialog for exporting rows: format radios (CSV, XLSX, JSON), a range (all, filtered, selected; a range with no rows is disabled), a column checklist with Select all and a Start export button with a busy state. Start export calls onExport({ format, range, columns }); the parent runs the job and sets busy. Figma: Data Transfer page.',
       },
     },
   },

@@ -53,7 +53,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Frame of a multi-step flow: header with the title and Close, Step Navigation, the step content (passed in), and a footer with Back, Save draft and Next / Finish. Next stays disabled until the step is valid, with the reason beside it. On a step change focus moves to the step heading and a polite status announces "Step 2 of 4". Code only (no Figma component yet). Guide: eggux build-ui/patterns/wizard.md',
+          'Frame of a multi-step flow: header with the title and Close, Step Navigation, the step content (passed in), and a footer with Back, Save draft and Next / Finish. Next stays disabled until the step is valid, with the reason beside it. On a step change focus moves to the step heading and a polite status announces "Step 2 of 4". Figma: Wizard page. Guide: eggux build-ui/patterns/multi-step-form.md',
       },
     },
   },

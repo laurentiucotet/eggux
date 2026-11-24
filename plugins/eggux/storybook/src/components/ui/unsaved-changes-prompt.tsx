@@ -1,4 +1,4 @@
-// EGG UI Unsaved Changes Prompt. Code only (no Figma component yet); family Wizard.
+// EGG UI Unsaved Changes Prompt. Figma: Wizard page; family Wizard.
 // An Alert Dialog that asks "Leave without saving?" when someone tries to leave a form with edits. Three
 // choices: Stay (the safe one, takes focus and is what Escape does), Discard (leave, edits are lost) and
 // Save and leave (primary). Built on Alert Dialog, so focus is trapped, returns to where it came from, and

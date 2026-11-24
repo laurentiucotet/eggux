@@ -1,4 +1,4 @@
-// EGG UI Invoice Status Timeline. Code only (no Figma component yet); Billing family.
+// EGG UI Invoice Status Timeline. Figma: Plans and Billing page; Billing family.
 // The life of one invoice as a vertical list of steps: Draft, Sent, Viewed, Paid, each with its
 // date. Done steps get a check, the current step is marked with aria-current="step", steps not
 // reached say "Not yet". Two special states: overdue (an Overdue step in the error tone, in words:

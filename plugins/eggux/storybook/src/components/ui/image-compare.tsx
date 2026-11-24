@@ -1,4 +1,4 @@
-// EGG UI Image Compare. Code only (no Figma component yet). Before and after in one frame with a
+// EGG UI Image Compare. Figma: Media page. Before and after in one frame with a
 // divider: the "after" layer fills the frame, the "before" layer is clipped to the left of the
 // divider. Dragging anywhere on the frame moves the divider, and the keyboard path is a native
 // range input (0 to 100, an invisible layer over the frame): Left and Right arrows move 1 %,

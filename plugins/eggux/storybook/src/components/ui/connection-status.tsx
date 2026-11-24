@@ -1,4 +1,4 @@
-// EGG UI Connection Status. Code only (no Figma component yet); Data Display family.
+// EGG UI Connection Status. Figma: Data Display page; Data Display family.
 // Status (online, offline, reconnecting) x Variant (indicator, banner). Indicator = a small pill with
 // an icon and a word, for a header or a footer. Banner = a full-width soft strip for the top of a page,
 // with the detail and, when offline, a Retry button. The status is always icon + words, never color

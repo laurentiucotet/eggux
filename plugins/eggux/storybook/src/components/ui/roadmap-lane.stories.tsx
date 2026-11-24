@@ -45,7 +45,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A roadmap as lanes side by side (quarters, or Now / Next / Later). Each lane has a title, a count and item cards with a status badge, an optional summary, theme and owner. Lanes wrap into a stack in a narrow container. The current lane is marked in text. Code only (no Figma component yet).',
+          'A roadmap as lanes side by side (quarters, or Now / Next / Later). Each lane has a title, a count and item cards with a status badge, an optional summary, theme and owner. Lanes wrap into a stack in a narrow container. The current lane is marked in text. Figma: Data Structures page.',
       },
     },
   },

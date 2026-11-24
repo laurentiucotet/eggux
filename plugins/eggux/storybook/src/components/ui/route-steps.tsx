@@ -1,4 +1,4 @@
-// EGG UI Route Steps. Code only (no Figma component yet). A turn-by-turn list: an icon for each
+// EGG UI Route Steps. Figma: Location page. A turn-by-turn list: an icon for each
 // manoeuvre, the instruction, the distance to the next turn, and the current step highlighted
 // (`aria-current="step"`, filled icon). The header says "6 steps, 2.4 km, 12 min" and holds the
 // Show / Hide steps button (aria-expanded); collapsed, only the current step is left, like the bar

@@ -22,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A Select for how much someone can do with a shared thing: Viewer, Commenter, Editor, Owner. Each level shows a one-line description in the open list. A disabled level stays in the list with the reason in place of its description. Built on Select, so the keyboard is the same: arrows move, Enter picks, Escape closes, a letter jumps. Code only (no Figma component yet).',
+          'A Select for how much someone can do with a shared thing: Viewer, Commenter, Editor, Owner. Each level shows a one-line description in the open list. A disabled level stays in the list with the reason in place of its description. Built on Select, so the keyboard is the same: arrows move, Enter picks, Escape closes, a letter jumps. Figma: Access page.',
       },
     },
   },

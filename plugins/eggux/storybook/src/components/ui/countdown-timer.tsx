@@ -1,4 +1,4 @@
-// EGG UI Countdown Timer. Code only (no Figma component yet). Time left until a target as blocks:
+// EGG UI Countdown Timer. Figma: Date and Time page. Time left until a target as blocks:
 // days, hours, minutes and seconds (the day block hides when `showDays` is off). The blocks are
 // visual only (aria-hidden): screen readers get one polite sentence ("2 days 3 hours 4 minutes
 // left") that changes only when the minute changes, so a ticking second never talks. Pass `now` to

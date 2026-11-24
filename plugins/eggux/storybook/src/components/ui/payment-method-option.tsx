@@ -1,4 +1,4 @@
-// EGG UI Payment Method Option. Code only (no Figma component yet); Checkout family.
+// EGG UI Payment Method Option. Figma: Checkout page; Checkout family.
 // The selectable version of Payment Method Card (Commerce page): a radio card with the brand mark,
 // "Visa ending in 4242", the expiry and a Default badge. An expired card is shown but cannot be
 // chosen (disabled), its expiry in destructive. The mark is a text mark, never a logo. Goes inside

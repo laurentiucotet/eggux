@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Picks a whole week. Previous and next step one week; the middle button shows the range with the week number and opens the weeks of a month as a list, with a month switcher. Weeks outside the allowed period stay in the list but cannot be picked. For one day use Date Picker; for any period use Date Range Picker. Code only (no Figma component yet).',
+          'Picks a whole week. Previous and next step one week; the middle button shows the range with the week number and opens the weeks of a month as a list, with a month switcher. Weeks outside the allowed period stay in the list but cannot be picked. For one day use Date Picker; for any period use Date Range Picker. Figma: Date and Time page.',
       },
     },
   },

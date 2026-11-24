@@ -1,4 +1,4 @@
-// EGG UI Wheel Picker. Code only (no Figma component yet). The scrolling column picker of phones: pick
+// EGG UI Wheel Picker. Figma: Mobile page. The scrolling column picker of phones: pick
 // one value by spinning a column under a fixed selection band (a time, a quantity, a duration, a
 // country code). Several columns sit side by side in a WheelPicker. Each column is a listbox: scroll
 // or swipe snaps to the nearest row, a tap on a row selects it, Up/Down arrows move one row, Home and

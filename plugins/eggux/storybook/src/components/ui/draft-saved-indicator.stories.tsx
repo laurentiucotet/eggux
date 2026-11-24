@@ -15,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One polite line for the state of a draft: idle, "Saving...", "Saved at 14:32" or "Could not save" with Retry. The time is given (`savedAt` or `now`), never read from the clock. Lives in the footer or header of a long form or a Wizard Shell. Code only (no Figma component yet). Guide: eggux build-ui/patterns/wizard.md',
+          'One polite line for the state of a draft: idle, "Saving...", "Saved at 14:32" or "Could not save" with Retry. The time is given (`savedAt` or `now`), never read from the clock. Lives in the footer or header of a long form or a Wizard Shell. Figma: Wizard page. Guide: eggux build-ui/patterns/multi-step-form.md',
       },
     },
   },

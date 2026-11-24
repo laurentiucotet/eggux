@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One code split into groups of boxes (IBAN, license key, card number). Typing moves to the next box when one is full; Backspace in an empty box goes back; paste splits across the boxes and drops spaces and dashes. Each box is a real input named "Part 2 of 5". The value is the boxes joined with a space, so a half filled code can be saved. Code only (no Figma component yet).',
+          'One code split into groups of boxes (IBAN, license key, card number). Typing moves to the next box when one is full; Backspace in an empty box goes back; paste splits across the boxes and drops spaces and dashes. Each box is a real input named "Part 2 of 5". The value is the boxes joined with a space, so a half filled code can be saved. Figma: Form Controls page.',
       },
     },
   },

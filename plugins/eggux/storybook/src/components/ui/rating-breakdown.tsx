@@ -1,4 +1,4 @@
-// EGG UI Rating Breakdown. Code only (no Figma component yet); Data Display family.
+// EGG UI Rating Breakdown. Figma: Data Display page; Data Display family.
 // The summary above a list of reviews: the average, the number of reviews and one row per star level
 // (5 to 1) with a bar, the count and its share. Rows are plain text rows, or buttons that filter the
 // reviews by that level (aria-pressed) when onSelect is given. Bars are drawn in the chart/1 token on

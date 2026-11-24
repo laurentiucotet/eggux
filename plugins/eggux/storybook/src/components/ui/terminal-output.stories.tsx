@@ -25,7 +25,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A console block for command output. A live log (role="log") with commands after a prompt, stdout and stderr: stderr has a "!" mark, the destructive color and is announced as "Error", so color is never the only signal. Auto-scroll follows new lines; turn it off to read older output. Copy takes the whole output. Long lines wrap. Code only (no Figma component yet).',
+          'A console block for command output. A live log (role="log") with commands after a prompt, stdout and stderr: stderr has a "!" mark, the destructive color and is announced as "Error", so color is never the only signal. Auto-scroll follows new lines; turn it off to read older output. Copy takes the whole output. Long lines wrap. Figma: Developer page.',
       },
     },
   },

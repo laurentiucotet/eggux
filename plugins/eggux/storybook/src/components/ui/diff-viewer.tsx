@@ -1,4 +1,4 @@
-// EGG UI Diff Viewer. Code only (no Figma component yet); family Developer.
+// EGG UI Diff Viewer. Figma: Developer page; family Developer.
 // A line diff of two texts, unified (one column, removed lines then added ones) or split (before on the
 // left, after on the right), switched with a segmented Toggle Group. Every line has its number(s); an
 // added line has a green fill and "+", a removed line a red fill and "-", and a screen reader hears

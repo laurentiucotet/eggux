@@ -40,9 +40,15 @@ const buttonVariants = cva(
         'icon-sm': 'size-8',
         icon: 'size-[var(--control-height)]',
         'icon-lg': 'size-10',
+        // Figma Button Icon Size=touch: 44 square for touch screens, 16 px icon.
+        'icon-touch': 'size-11',
       },
     },
-    compoundVariants: [{ variant: 'link', className: 'h-auto px-0' }],
+    // Link has no box of its own, except at touch size: it keeps the 44 px target (no side padding).
+    compoundVariants: [
+      { variant: 'link', className: 'h-auto px-0' },
+      { variant: 'link', size: 'touch', className: 'h-11 px-0' },
+    ],
     defaultVariants: { variant: 'default', size: 'default' },
   },
 );

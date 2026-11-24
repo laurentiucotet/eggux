@@ -46,7 +46,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A round button that appears after the page or a scroll area has moved past a threshold and scrolls back to the top: smooth, instant under prefers-reduced-motion. `fixed` pins it to the window corner; without it, it sticks to the corner of the scroll area it sits in (last child). Hidden means invisible and out of the tab order. Focus moves to the scroll area after the jump. Code only (no Figma component yet).',
+          'A round button that appears after the page or a scroll area has moved past a threshold and scrolls back to the top: smooth, instant under prefers-reduced-motion. `fixed` pins it to the window corner; without it, it sticks to the corner of the scroll area it sits in (last child). Hidden means invisible and out of the tab order. Focus moves to the scroll area after the jump. Figma: Layout page.',
       },
     },
   },

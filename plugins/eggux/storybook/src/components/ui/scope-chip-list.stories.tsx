@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The permissions an app asks for (OAuth-style scopes) as removable chips. Risk is written in text (Low, Medium, High risk) and Medium and High add an icon, so it is never color alone. Hover or focus a chip to read what it allows. Removing keeps focus in the list and is announced. Read-only drops the remove buttons. Code only (no Figma component yet).',
+          'The permissions an app asks for (OAuth-style scopes) as removable chips. Risk is written in text (Low, Medium, High risk) and Medium and High add an icon, so it is never color alone. Hover or focus a chip to read what it allows. Removing keeps focus in the list and is announced. Read-only drops the remove buttons. Figma: Access page.',
       },
     },
   },

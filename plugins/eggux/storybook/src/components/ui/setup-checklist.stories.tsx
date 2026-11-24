@@ -26,7 +26,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Getting-started card: a progress bar, "N of M done" and ordered steps that are done, current or locked (the first undone step is current, later ones unlock one at a time). Each step has a title, a hint and an action. The header button collapses it to the bar. State is always in text. Code only (no Figma component yet). Guide: eggux build-ui/patterns/onboarding.md',
+          'Getting-started card: a progress bar, "N of M done" and ordered steps that are done, current or locked (the first undone step is current, later ones unlock one at a time). Each step has a title, a hint and an action. The header button collapses it to the bar. State is always in text. Figma: Onboarding page.',
       },
     },
   },

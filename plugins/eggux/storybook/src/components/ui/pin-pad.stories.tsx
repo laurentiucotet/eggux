@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The numeric keypad for a PIN or passcode: dots that fill as digits go in, a 3 x 4 keypad with 64 px round keys, a free slot for biometrics and a delete key. Digits also come from a hardware keyboard. The dots are one status ("2 of 4 digits entered"); digits are never shown. A wrong code is an alert. Code only (no Figma component yet).',
+          'The numeric keypad for a PIN or passcode: dots that fill as digits go in, a 3 x 4 keypad with 64 px round keys, a free slot for biometrics and a delete key. Digits also come from a hardware keyboard. The dots are one status ("2 of 4 digits entered"); digits are never shown. A wrong code is an alert. Figma: Mobile page.',
       },
     },
   },

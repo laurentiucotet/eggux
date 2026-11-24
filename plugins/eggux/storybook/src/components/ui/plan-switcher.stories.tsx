@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Monthly / Yearly toggle with the yearly saving in a badge, a seat stepper and the resulting price line in words ("5 seats × €12.00 = €60.00 per month"). The price line is a status, so a change is announced. Prices are per seat in EUR; the yearly price is the monthly price less the discount, billed once a year. It shows a price and takes no card. Code only (no Figma component yet).',
+          'Monthly / Yearly toggle with the yearly saving in a badge, a seat stepper and the resulting price line in words ("5 seats × €12.00 = €60.00 per month"). The price line is a status, so a change is announced. Prices are per seat in EUR; the yearly price is the monthly price less the discount, billed once a year. It shows a price and takes no card. Figma: Plans and Billing page.',
       },
     },
   },

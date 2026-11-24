@@ -1,4 +1,4 @@
-// EGG UI Webhook Row. Code only (no Figma component yet); family Developer.
+// EGG UI Webhook Row. Figma: Developer page; family Developer.
 // One webhook endpoint as a row: the URL in mono (cut on one line, full value in a title), a status
 // Badge (Active, Failing, Disabled: a word with a dot, never color alone), the events it listens to
 // as Badge List ("+N" opens the rest), the last delivery (HTTP code, time, ok or failed) and a Send

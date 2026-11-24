@@ -1,4 +1,4 @@
-// EGG UI Keyboard Accessory Bar. Code only (no Figma component yet). Mobile page. The bar that rides
+// EGG UI Keyboard Accessory Bar. Figma: Mobile page. Mobile page. The bar that rides
 // above the on-screen keyboard while a form is filled: Previous field, Next field and Done, each
 // 44 high. It knows the form by the ids of its fields, in order (`fieldIds`): Previous and Next move
 // the focus to the field before or after the one that has it (disabled at the first and last; Next

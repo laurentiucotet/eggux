@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A panel that offers one public link: heading, one line of help, the link in a read-only field with a Copy Button, and up to three network links that open in a new tab. Social Share is the compact row; this is the panel for a share dialog or sidebar. Code only (no Figma component yet).',
+          'A panel that offers one public link: heading, one line of help, the link in a read-only field with a Copy Button, and up to three network links that open in a new tab. Social Share is the compact row; this is the panel for a share dialog or sidebar. Figma: Community page.',
       },
     },
   },

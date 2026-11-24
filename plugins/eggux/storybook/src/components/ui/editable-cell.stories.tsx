@@ -54,7 +54,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A table cell edited where it sits. Enter, F2 or double click edits; Enter saves, Escape cancels, focus goes back to the cell. A validation message stays under the input; a slow save shows "Saving..."; a failed save keeps the input open with its message. Code only (no Figma component yet).',
+          'A table cell edited where it sits. Enter, F2 or double click edits; Enter saves, Escape cancels, focus goes back to the cell. A validation message stays under the input; a slow save shows "Saving..."; a failed save keeps the input open with its message. Figma: Data Structures page.',
       },
     },
   },

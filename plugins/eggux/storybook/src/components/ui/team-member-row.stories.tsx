@@ -32,7 +32,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One person on a team: avatar, name and email, a role select, a status badge (Active, Invited, Suspended) and an actions menu. The owner row is locked: the role is text with a lock and there is no menu. Wraps to two lines under 512 px of row width, down to 276 px. Layout "list" is a bordered row; "table" has fixed role and status columns for rows under column heads. Put rows in a list. Code only (no Figma component yet).',
+          'One person on a team: avatar, name and email, a role select, a status badge (Active, Invited, Suspended) and an actions menu. The owner row is locked: the role is text with a lock and there is no menu. Wraps to two lines under 512 px of row width, down to 276 px. Layout "list" is a bordered row; "table" has fixed role and status columns for rows under column heads. Put rows in a list. Figma: Access page.',
       },
     },
   },

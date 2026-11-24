@@ -1,4 +1,4 @@
-// EGG UI Permission Rationale Sheet. Code only (no Figma component yet). Mobile page. The sheet that
+// EGG UI Permission Rationale Sheet. Figma: Mobile page. Mobile page. The sheet that
 // explains WHY the app needs a permission before the system asks: a round icon, a title that names
 // the permission ("Allow camera access?"), one sentence, up to three short reasons and two buttons:
 // Allow (the primary, it triggers the system prompt in `onAllow`) and Not now (it only closes, and

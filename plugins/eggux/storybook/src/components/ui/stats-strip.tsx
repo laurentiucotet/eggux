@@ -1,4 +1,4 @@
-// EGG UI Stats Strip. Code only (no Figma component yet); family Marketing.
+// EGG UI Stats Strip. Figma: Marketing page; family Marketing.
 // Three or four big numbers with a label under each and one source line. Numbers carry thousands
 // separators (12,400) and an optional prefix and suffix (€, %, +). Count-up is off by default; when
 // it is on the number counts from 0 once, and never under prefers-reduced-motion. Stat Card is a

@@ -25,7 +25,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A photo grid in two layouts: masonry (each photo keeps its ratio) and rows (justified rows of one height), with optional captions over the photos and a "+N more" tile that shows the rest. With onPhotoClick every photo is a button, for a Lightbox. Code only (no Figma component yet).',
+          'A photo grid in two layouts: masonry (each photo keeps its ratio) and rows (justified rows of one height), with optional captions over the photos and a "+N more" tile that shows the rest. With onPhotoClick every photo is a button, for a Lightbox. Figma: Media page.',
       },
     },
   },

@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The price of a product or plan: current price, an old price struck through, a discount badge and a unit. On sale the current price is destructive; screen readers hear "Now €39.00, was €49.00" because the strike-through says nothing to them. Amounts arrive formatted, one currency per page. Code only (no Figma component yet).',
+          'The price of a product or plan: current price, an old price struck through, a discount badge and a unit. On sale the current price is destructive; screen readers hear "Now €39.00, was €49.00" because the strike-through says nothing to them. Amounts arrive formatted, one currency per page. Figma: Checkout page.',
       },
     },
   },

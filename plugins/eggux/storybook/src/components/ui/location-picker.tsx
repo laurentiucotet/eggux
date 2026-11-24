@@ -1,4 +1,4 @@
-// EGG UI Location Picker. Code only (no Figma component yet). A Field-like control for choosing a
+// EGG UI Location Picker. Figma: Location page. A Field-like control for choosing a
 // place: a label, a button that looks like an input and opens a Popover with a search box, the
 // matching places and a "Use my location" button; the chosen place is shown as a Chip with a
 // remove button under the control. The trigger is a button with aria-haspopup="dialog"; the list is

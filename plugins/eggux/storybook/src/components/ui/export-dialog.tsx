@@ -1,4 +1,4 @@
-// EGG UI Export Dialog. Code only (no Figma component yet); family Data Transfer.
+// EGG UI Export Dialog. Figma: Data Transfer page; family Data Transfer.
 // A Dialog for exporting rows: a format (CSV, XLSX, JSON), a range (all rows, the filtered rows,
 // the selected rows; a range with no rows is disabled and says why), a column checklist with a
 // "Select all" box and a Start export button with a busy state. Built from Dialog, RadioGroup,

@@ -1,4 +1,4 @@
-// EGG UI Date Strip. Code only (no Figma component yet). A horizontal row of days, each with the
+// EGG UI Date Strip. Figma: Date and Time page. A horizontal row of days, each with the
 // weekday and the day number: the mobile booking pattern ("pick a day this fortnight"). One day is
 // selected; Left and Right move between days (one Tab stop), Home and End jump to the first and last
 // day, Enter or Space picks. The two scroll buttons move the strip by about a screen, so a mouse

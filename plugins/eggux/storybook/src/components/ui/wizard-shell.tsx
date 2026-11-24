@@ -1,4 +1,4 @@
-// EGG UI Wizard Shell. Code only (no Figma component yet); family Wizard.
+// EGG UI Wizard Shell. Figma: Wizard page; family Wizard.
 // The frame of a multi-step flow: a header with the flow title and a Close button, a step navigation (Step
 // Navigation), the content of the current step (passed in), and a footer with Back, Save draft and
 // Next (Finish on the last step). Next is disabled until the step is valid (`valid`), with the reason

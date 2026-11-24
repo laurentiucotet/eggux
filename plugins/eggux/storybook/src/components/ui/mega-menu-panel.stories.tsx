@@ -77,7 +77,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The wide panel a site navbar opens under one top level item: columns of links with headings, icons, descriptions and badges, and a featured card. It is a named <nav> with real headings and links, and it lays out by its own width (1, 2 or 3 columns, the card beside them when wide), so it also fits a 276 px side panel. MegaMenu is the finished navbar item: a button plus the panel in a Popover. Not for fewer than six links, not hover-only. Code only (no Figma component yet).',
+          'The wide panel a site navbar opens under one top level item: columns of links with headings, icons, descriptions and badges, and a featured card. It is a named <nav> with real headings and links, and it lays out by its own width (1, 2 or 3 columns, the card beside them when wide), so it also fits a 276 px side panel. MegaMenu is the finished navbar item: a button plus the panel in a Popover. Not for fewer than six links, not hover-only. Figma: Layout page.',
       },
     },
   },

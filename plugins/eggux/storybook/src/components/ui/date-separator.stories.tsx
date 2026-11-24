@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The day label in a message list: Today, Yesterday or 12 Oct 2026, worked out from a fixed now. A pill or a line, sticky to the top of the scroll area by default. The label is a time element and the wrapper is a separator named by it. Code only (no Figma component yet).',
+          'The day label in a message list: Today, Yesterday or 12 Oct 2026, worked out from a fixed now. A pill or a line, sticky to the top of the scroll area by default. The label is a time element and the wrapper is a separator named by it. Figma: Messaging page.',
       },
     },
   },

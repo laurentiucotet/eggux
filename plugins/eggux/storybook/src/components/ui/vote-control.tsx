@@ -1,4 +1,4 @@
-// EGG UI Vote Control. Code only (no Figma component yet); family Community.
+// EGG UI Vote Control. Figma: Community page; family Community.
 // Up and down vote with the score between them, for questions, answers and ideas. Orientation
 // vertical (up, score, down; 32 wide) or horizontal (a pill: up, score, down). Each arrow is a toggle
 // button (aria-pressed): picking the other one moves the vote, picking the same one removes it. The

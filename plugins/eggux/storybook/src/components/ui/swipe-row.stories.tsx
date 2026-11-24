@@ -28,7 +28,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A list row with actions behind it: swipe left to reveal them, right to close. Swiping is a shortcut: the row is focusable, Left arrow reveals the actions and focuses the first, Right arrow or Escape closes, and hidden actions are not in the tab order. The destructive action is red and last. Code only (no Figma component yet).',
+          'A list row with actions behind it: swipe left to reveal them, right to close. Swiping is a shortcut: the row is focusable, Left arrow reveals the actions and focuses the first, Right arrow or Escape closes, and hidden actions are not in the tab order. The destructive action is red and last. Figma: Mobile page.',
       },
     },
   },

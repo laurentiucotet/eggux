@@ -1,4 +1,4 @@
-// EGG UI Page Dots. Code only (no Figma component yet). The dots under a pager or a carousel: which
+// EGG UI Page Dots. Figma: Mobile page. The dots under a pager or a carousel: which
 // page of how many. 8 px dots with a 24 x 24 hit area (WCAG 2.2 target size), the current one is a
 // wider pill in primary. Each dot is a button named "Page 2 of 5" with aria-current on the current
 // one; without `onSelect` the dots are a read-only status (not buttons). Use for 2 to 7 pages; more

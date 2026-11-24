@@ -9,7 +9,7 @@ const meta = {
   title: 'Components/Scheduler/Scheduler',
   parameters: {
     layout: 'padded',
-    docs: { description: { component: 'Scheduling parts. Calendar Event: an event in day and week views with a bar in the calendar color (Series 1-4), sizes default and sm, states selected and dragging, statuses tentative and cancelled; it is a button that opens the details. Gantt Bar (planned, in progress with a progress line, done, blocked) and Gantt Milestone. Agenda Item: upcoming, now, past. Meeting Card: upcoming and live. Availability Row: working hours for one weekday with time ranges. Time Slot has its own page. Figma: Scheduler page. Guide: eggux build-ui/components/scheduler.md' } },
+    docs: { description: { component: 'Scheduling parts. Calendar Event: an event in day and week views with a bar in the calendar color (Series 1-4), sizes default and sm, states selected and dragging, statuses tentative and cancelled; it is a button that opens the details. Gantt Bar (planned, in progress with a progress line, done, blocked) and Gantt Milestone. Agenda Item: upcoming, now, past. Meeting Card: upcoming and live. Availability Row: working hours for one weekday with time ranges. Time Slot has its own page. Figma: Scheduler page.' } },
   },
 } satisfies Meta;
 export default meta;

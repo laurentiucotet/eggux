@@ -30,7 +30,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A week table with today highlighted, a summary ("Open now. Closes at 18:00") computed from a fixed `now`, and exceptions (a holiday with its own hours or closed). Several ranges per day for lunch breaks, 24 or 12 hour clock. The time is a plain local string, so the text never depends on the browser time zone. Code only (no Figma component yet).',
+          'A week table with today highlighted, a summary ("Open now. Closes at 18:00") computed from a fixed `now`, and exceptions (a holiday with its own hours or closed). Several ranges per day for lunch breaks, 24 or 12 hour clock. The time is a plain local string, so the text never depends on the browser time zone. Figma: Location page.',
       },
     },
   },

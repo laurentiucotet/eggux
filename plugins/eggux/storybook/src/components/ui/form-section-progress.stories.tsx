@@ -33,7 +33,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Sticky side list of the sections of a long form. Each row is a jump link with a count ("2 of 4", or "Complete"); the section in view has aria-current="location". A click scrolls to the section and moves focus there. Pass activeId, or set track to follow the page. Code only (no Figma component yet). Guide: eggux build-ui/patterns/wizard.md',
+          'Sticky side list of the sections of a long form. Each row is a jump link with a count ("2 of 4", or "Complete"); the section in view has aria-current="location". A click scrolls to the section and moves focus there. Pass activeId, or set track to follow the page. Figma: Wizard page. Guide: eggux build-ui/patterns/multi-step-form.md',
       },
     },
   },

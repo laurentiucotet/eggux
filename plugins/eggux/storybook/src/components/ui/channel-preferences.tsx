@@ -1,4 +1,4 @@
-// EGG UI Channel Preferences. Code only (no Figma component yet); family Notifications.
+// EGG UI Channel Preferences. Figma: Notifications page; family Notifications.
 // A matrix of events (rows) by channels (columns, default Email / Push / In app) with one Switch in
 // every cell. A real table: caption (sr-only, or visible with `caption`), column headers
 // (`th scope=col`), row headers (`th scope=row` with the event name, an optional description and a

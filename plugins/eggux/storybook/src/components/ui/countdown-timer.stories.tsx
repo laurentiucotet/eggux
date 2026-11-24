@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Time left until a target, as day, hour, minute and second blocks. The blocks are visual only: screen readers get one polite sentence that changes once a minute, so a ticking second never talks. When the target is reached the blocks give way to the finished message. Pass `now` to freeze the clock. Code only (no Figma component yet).',
+          'Time left until a target, as day, hour, minute and second blocks. The blocks are visual only: screen readers get one polite sentence that changes once a minute, so a ticking second never talks. When the target is reached the blocks give way to the finished message. Pass `now` to freeze the clock. Figma: Date and Time page.',
       },
     },
   },

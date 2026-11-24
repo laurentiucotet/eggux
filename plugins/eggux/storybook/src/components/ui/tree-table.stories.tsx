@@ -44,7 +44,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A table whose first column is a tree: indent by level, a chevron on rows with children, Expand all and Collapse all above. ARIA treegrid at row level: Up, Down, Left, Right, Home, End and Enter. Scrolls sideways inside its own region. Code only (no Figma component yet).',
+          'A table whose first column is a tree: indent by level, a chevron on rows with children, Expand all and Collapse all above. ARIA treegrid at row level: Up, Down, Left, Right, Home, End and Enter. Scrolls sideways inside its own region. Figma: Data Structures page.',
       },
     },
   },

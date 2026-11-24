@@ -1,4 +1,4 @@
-// EGG UI Message Status. Code only (no Figma component yet). Where one of your own messages is in
+// EGG UI Message Status. Figma: Messaging page. Where one of your own messages is in
 // its delivery: Sending (clock), Sent (one tick), Delivered (two ticks), Read (two ticks in brand)
 // and Failed (alert icon, "Not sent" and a Retry button). The state is always text, never only a
 // glyph: the label is visible, or in sr-only text when `showLabel` is off. Quiet by default (a

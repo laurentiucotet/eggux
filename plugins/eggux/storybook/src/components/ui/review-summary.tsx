@@ -1,4 +1,4 @@
-// EGG UI Review Summary. Code only (no Figma component yet); family Wizard.
+// EGG UI Review Summary. Figma: Wizard page; family Wizard.
 // The last step before Finish: every section of the flow with its title, an Edit link and the answers as
 // key-value rows. An answer that is empty reads "Not provided" with a warning icon and warning text, and a
 // banner on top counts how many are missing, so nothing is submitted blind.

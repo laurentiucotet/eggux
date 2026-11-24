@@ -1,4 +1,4 @@
-// EGG UI Empty State Prompt. Code only (no Figma component yet); family Onboarding.
+// EGG UI Empty State Prompt. Figma: Onboarding page; family Onboarding.
 // An action card for the first item of a list or a section ("Create your first invoice"). It differs
 // from Empty State (a whole-page or panel "nothing here" with a message): this one sits among other
 // content, has a dashed outline and invites one action, with an optional second link-style action

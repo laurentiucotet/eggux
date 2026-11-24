@@ -37,7 +37,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A full-screen story with a row of progress bars, the author, Pause and Close, and visible Previous and Next buttons. Tap the left third to go back and the rest to go forward; hold to pause. Arrow keys and Escape work too, every button is 44 x 44, and the progress is announced ("Story 2 of 5"). The playground starts paused so the story stays still; turn Start paused off to watch the timer. The viewer fills its container. Code only (no Figma component yet).',
+          'A full-screen story with a row of progress bars, the author, Pause and Close, and visible Previous and Next buttons. Tap the left third to go back and the rest to go forward; hold to pause. Arrow keys and Escape work too, every button is 44 x 44, and the progress is announced ("Story 2 of 5"). The playground starts paused so the story stays still; turn Start paused off to watch the timer. The viewer fills its container. Figma: Mobile page.',
       },
     },
   },

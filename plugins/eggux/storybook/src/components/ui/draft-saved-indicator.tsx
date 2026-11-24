@@ -1,4 +1,4 @@
-// EGG UI Draft Saved Indicator. Code only (no Figma component yet); family Wizard.
+// EGG UI Draft Saved Indicator. Figma: Wizard page; family Wizard.
 // One line that says what happens to a draft: "Saving...", "Saved at 14:32", "Could not save" with a
 // Retry button, or nothing yet (idle). The time comes from `savedAt` (or `now` when it is not given), never
 // from the clock, so tests and screenshots are stable; `timeZone` defaults to the viewer's own zone.

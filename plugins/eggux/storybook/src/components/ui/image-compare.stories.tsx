@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Before and after in one frame with a divider. Drag anywhere on the frame; the keyboard path is a native range input (arrows 1 %, Page Up and Down 10 %, Home and End to the ends) whose value text says how much of each side shows. Both sides are slots, so any image fits. Code only (no Figma component yet).',
+          'Before and after in one frame with a divider. Drag anywhere on the frame; the keyboard path is a native range input (arrows 1 %, Page Up and Down 10 %, Home and End to the ends) whose value text says how much of each side shows. Both sides are slots, so any image fits. Figma: Media page.',
       },
     },
   },

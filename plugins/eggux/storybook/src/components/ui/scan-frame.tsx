@@ -1,4 +1,4 @@
-// EGG UI Scan Frame. Code only (no Figma component yet). The viewfinder over a camera feed for scanning
+// EGG UI Scan Frame. Figma: Mobile page. The viewfinder over a camera feed for scanning
 // a QR code, a barcode or a document: four corner brackets, a hint under the frame and a state.
 // scanning (white brackets, a line sweeps down unless the person prefers reduced motion), success
 // (green) and error (red). The camera element goes in `children` and fills the frame. The brackets use

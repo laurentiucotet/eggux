@@ -28,7 +28,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The first rows of a file as the import will read them, with row numbers, error cells marked by an icon and a message, a summary ("48 rows ready, 3 with errors") and an Errors only filter. The table scrolls inside its own focusable region. Rows are data; nothing is parsed or checked here. Code only (no Figma component yet).',
+          'The first rows of a file as the import will read them, with row numbers, error cells marked by an icon and a message, a summary ("48 rows ready, 3 with errors") and an Errors only filter. The table scrolls inside its own focusable region. Rows are data; nothing is parsed or checked here. Figma: Data Transfer page.',
       },
     },
   },

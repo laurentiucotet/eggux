@@ -1,4 +1,4 @@
-// EGG UI Editable Cell. Code only (no Figma component yet); family Data Structures.
+// EGG UI Editable Cell. Figma: Data Structures page; family Data Structures.
 // A table cell that is edited where it sits, like a spreadsheet. At rest it shows the value and is
 // one tab stop. Enter, F2 or a double click turns it into an input. Enter saves, Escape cancels,
 // leaving the cell with the pointer or Tab saves a valid change and drops an invalid one. A value

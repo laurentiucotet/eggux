@@ -52,7 +52,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A short message at the bottom of a phone screen, with at most one action (Undo). The mobile variant of Toast: the same inverted Toast with close and action, anchored to the bottom, full width, safe area below, up to 3 stacked (newest last). Goes away by itself; the timer pauses while the pointer is over it or focus is inside it, so Undo never vanishes under a finger or while focused. Escape or the close button dismisses; F8 moves focus into the stack. Polite live region. Not the only place for important information. Code only (no Figma component yet). Guide: eggux build-ui/patterns/mobile.md',
+          'A short message at the bottom of a phone screen, with at most one action (Undo). The mobile variant of Toast: the same inverted Toast with close and action, anchored to the bottom, full width, safe area below, up to 3 stacked (newest last). Goes away by itself; the timer pauses while the pointer is over it or focus is inside it, so Undo never vanishes under a finger or while focused. Escape or the close button dismisses; F8 moves focus into the stack. Polite live region. Not the only place for important information. Figma: Mobile page. Guide: eggux build-ui/patterns/mobile.md',
       },
     },
   },

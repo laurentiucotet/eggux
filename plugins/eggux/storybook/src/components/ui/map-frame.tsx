@@ -1,4 +1,4 @@
-// EGG UI Map Frame. Code only (no Figma component yet). A drawn placeholder map for store and place
+// EGG UI Map Frame. Figma: Location page. A drawn placeholder map for store and place
 // pickers: a grid, a river, a park and roads as SVG shapes in theme tokens (no tiles, no network),
 // numbered pins as buttons, zoom buttons, a card for the selected pin and a "List view" toggle that
 // swaps the map for a list of the same places (every pin has a list row). Keyboard: Tab goes through

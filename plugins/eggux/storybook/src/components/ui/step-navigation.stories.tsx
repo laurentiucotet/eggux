@@ -22,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Vertical list of the steps of a flow. Each step is done, current, upcoming or error, and the state is written in words under the title. Done steps can be buttons so people go back. The current step has aria-current="step". For a horizontal bar use Progress Stepper Bar; for the whole frame use Wizard Shell. Code only (no Figma component yet). Guide: eggux build-ui/patterns/wizard.md',
+          'Vertical list of the steps of a flow. Each step is done, current, upcoming or error, and the state is written in words under the title. Done steps can be buttons so people go back. The current step has aria-current="step". For a horizontal bar use Progress Stepper Bar; for the whole frame use Wizard Shell. Figma: Wizard page. Guide: eggux build-ui/patterns/multi-step-form.md',
       },
     },
   },

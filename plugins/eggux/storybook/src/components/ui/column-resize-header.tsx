@@ -1,4 +1,4 @@
-// EGG UI Column Resize Header. Code only (no Figma component yet); family Data Structures.
+// EGG UI Column Resize Header. Figma: Data Structures page; family Data Structures.
 // A table header cell (<th>) with a resize handle on its right edge. Drag the handle with the
 // pointer, or focus it and press Left and Right (10 px, Shift for 50 px). Home goes to the minimum,
 // End to the maximum, Enter or a double click puts the column back to its default width. The width

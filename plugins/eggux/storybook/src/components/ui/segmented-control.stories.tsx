@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'An iOS-style control of 2 to 5 short options with a sliding thumb. It is a radio group: one option is always chosen, arrow keys move and choose, Home and End jump, and only the chosen option is in the tab order. 44 high, options share the width and truncate; the thumb slides only when motion is allowed. Not for on/off settings (Switch) or more than 5 options (Select). Code only (no Figma component yet).',
+          'An iOS-style control of 2 to 5 short options with a sliding thumb. It is a radio group: one option is always chosen, arrow keys move and choose, Home and End jump, and only the chosen option is in the tab order. 44 high, options share the width and truncate; the thumb slides only when motion is allowed. Not for on/off settings (Switch) or more than 5 options (Select). Figma: Mobile page.',
       },
     },
   },
