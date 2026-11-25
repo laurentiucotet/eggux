@@ -8,6 +8,33 @@ const fs = require('fs');
 const path = require('path');
 const { Project, HttpError } = require('./lib/store');
 const W = require('./lib/workspace');
+const { execFileSync } = require('child_process');
+
+// Commits that mention a task or its decisions (T-003, D-006) in their message, with the files they
+// touched: how the board shows where the work of a task landed.
+function taskChanges(id) {
+  const t = project.tasks().find(x => x.id === id);
+  if (!t) throw new HttpError(404, `${id} not found`);
+  const ids = [id, ...t.links.filter(l => /^F?D-\d+$/.test(l))];
+  const git = args => execFileSync('git', ['-C', project.root, ...args], { encoding: 'utf8', timeout: 8000, windowsHide: true, stdio: ['ignore', 'pipe', 'ignore'] });
+  try { git(['rev-parse', '--is-inside-work-tree']); } catch { return { git: false, ids, commits: [] }; }
+  let web = '';
+  try {
+    const u = git(['config', '--get', 'remote.origin.url']).trim();
+    const m = /github\.com[:/]([^/]+\/[^/.]+?)(?:\.git)?$/.exec(u);
+    if (m) web = 'https://github.com/' + m[1];
+  } catch { /* no remote */ }
+  let top = project.root;
+  try { top = git(['rev-parse', '--show-toplevel']).trim(); } catch { /* keep */ }
+  const out = git(['log', '-n', '30', '--date=short', '--name-only', '--format=%x1e%H%x1f%h%x1f%ad%x1f%an%x1f%s', '--fixed-strings', ...ids.flatMap(x => ['--grep', x])]);
+  const commits = out.split('\x1e').map(b => b.trim()).filter(Boolean).map(b => {
+    const [headLine, ...files] = b.split('\n');
+    const [hash, short, date, author, subject] = headLine.split('\x1f');
+    return { hash, short, date, author, subject, url: web ? `${web}/commit/${hash}` : '', files: files.map(f => f.trim()).filter(Boolean).slice(0, 40) };
+  });
+  const rel = path.relative(top, project.root).replace(/\\/g, '/');
+  return { git: true, ids, web, prefix: rel ? rel + '/' : '', commits };
+}
 
 const args = process.argv.slice(2);
 const arg = (name, def) => { const i = args.indexOf(name); return i >= 0 && args[i + 1] ? args[i + 1] : def; };
@@ -67,6 +94,7 @@ const routes = [
   ['POST', /^\/api\/questions\/(Q-\d+)\/options$/, (m, b) => W.addOption(project, m[1], b)],
   ['POST', /^\/api\/questions\/(Q-\d+)\/another$/, m => { W.runOptions(project, m[1], true); return { ok: true }; }],
   ['POST', /^\/api\/questions\/(Q-\d+)\/choose$/, (m, b) => W.chooseOption(project, m[1], b.key)],
+  ['GET', /^\/api\/tasks\/(T-\d+)\/changes$/, m => taskChanges(m[1])],
   // Flows
   ['POST', /^\/api\/flows$/, (m, b) => W.createFlow(project, b)],
   ['PATCH', /^\/api\/flows\/([a-z0-9-]+)$/, (m, b) => W.updateFlowMeta(project, m[1], b)],

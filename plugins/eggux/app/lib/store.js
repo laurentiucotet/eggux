@@ -296,7 +296,7 @@ class Project {
       return {
         id: e.id, title: e.title, status: TASK_STATUSES.includes(st) ? st : 'todo', stage: STAGES.includes(stage) ? stage : '',
         deliverable: f.Deliverable || '', links: (f.Links || '').split(',').map(s => s.trim()).filter(Boolean),
-        due: f.Due || '', created: f.Created || e.when || '', notes: f.Notes || '',
+        due: f.Due || '', created: f.Created || e.when || '', notes: f.Notes || '', result: f.Result || '',
       };
     });
   }
@@ -321,6 +321,7 @@ class Project {
     if (/^\d{4}-\d{2}-\d{2}$/.test(d.due || '')) out.push(`- Due: ${d.due}`);
     out.push(`- Created: ${date}`);
     if (oneLine(d.notes)) out.push(`- Notes: ${oneLine(d.notes)}`);
+    if (oneLine(d.result)) out.push(`- Result: ${oneLine(d.result)}`);
     const lines = t.split('\n');
     const tr = sectionRange(lines, 'Tasks');
     if (!tr) throw new HttpError(400, 'No ## Tasks section in tasks.md');
@@ -337,7 +338,7 @@ class Project {
     const set = (k, v) => { const r = setEntryField(text, 'Tasks', id, k, v, true); if (!r) throw new HttpError(404, `${id} not found`); text = r; };
     if (d.status !== undefined) { if (!TASK_STATUSES.includes(d.status)) throw new HttpError(400, 'Unknown status'); set('Status', d.status); }
     if (d.stage !== undefined) { if (!STAGES.includes(d.stage)) throw new HttpError(400, 'Unknown stage'); set('Stage', d.stage); }
-    for (const [key, field] of [['deliverable', 'Deliverable'], ['links', 'Links'], ['due', 'Due'], ['notes', 'Notes']]) {
+    for (const [key, field] of [['deliverable', 'Deliverable'], ['links', 'Links'], ['due', 'Due'], ['notes', 'Notes'], ['result', 'Result']]) {
       if (d[key] === undefined) continue;
       const v = Array.isArray(d[key]) ? d[key].join(', ') : oneLine(d[key]);
       if (key === 'due' && v && !/^\d{4}-\d{2}-\d{2}$/.test(v)) throw new HttpError(400, 'Due must be YYYY-MM-DD');

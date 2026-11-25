@@ -11,7 +11,7 @@ decision in decisions.md and a task in tasks.md.
 - Type: blindspot
 - Source: Suggested by Claude: nobody has checked the thumb zone
 - Category: behavior
-- Status: open
+- Status: decided A (D-005)
 
 ### A · "Pay" button fixed at the bottom
 - Pro: Always within reach
@@ -27,7 +27,7 @@ decision in decisions.md and a task in tasks.md.
 - Type: finding
 - Source: research:checkout-patterns-on-mobile F-01
 - Category: design
-- Status: open
+- Status: decided B (D-006)
 - Recommended: A
 
 ### A · 44 px high

@@ -21,6 +21,18 @@ into a decision below (`/eggux:decision-log`), applies it, verifies it and remov
 ## Decisions
 Newest first. Status: proposed → approved → applied (date) → verified (date); superseded by D-xxx.
 
+### D-006 · 2026-11-25 10:17 · How big should buttons be on mobile: 48 px high
+- Type: design
+- Decision: 48 px high. Pros: Easier to tap; Material standard. Cons: The payment screen grows by about 40 px.
+- Reason: Option B of Q-002 (research:checkout-patterns-on-mobile F-01). Source: Decide, 2026-11-25 10:17.
+- Status: approved
+
+### D-005 · 2026-11-25 10:16 · One-handed checkout on mobile: "Pay" button fixed at the bottom
+- Type: behavior
+- Decision: "Pay" button fixed at the bottom. Pros: Always within reach. Cons: Covers part of the form.
+- Reason: Option A of Q-003 (Suggested by Claude: nobody has checked the thumb zone). Source: Decide, 2026-11-25 10:16.
+- Status: approved
+
 ### D-004 · 2026-11-20 · "Place order" replaces "Finish"
 - Type: terminology
 - Decision: the checkout primary button says "Place order".

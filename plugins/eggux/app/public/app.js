@@ -111,18 +111,32 @@ function linkify(text) {
 // ---------- shell ----------
 function renderNav() {
   const r = route();
-  const inboxN = allInbox().length;
-  const items = [
-    ['context', 'Context', String(S && S.work ? S.work.context.length : 0)],
-    ['docs', 'Documents', String(S && S.work ? S.work.docs.length : 0)],
-    ['understand', 'Understand', String(S && S.work ? S.work.research.length : 0)],
-    ['decide', 'Decide', String(S && S.work ? S.work.questions.filter(q => !/^decided/.test(q.status)).length : 0)],
-    ['flows', 'Flows', String(S && S.flows ? S.flows.length : 0)],
-    ['tasks', 'Working board', String(openTasks().length)],
-    ['decisions', 'Decision log', inboxN ? `${inboxN} new` : String(allDecisions().length)],
-  ];
+  const w = S && S.work;
   const cur = r.view === 'notes' ? 'context' : r.view;
-  $('#nav').innerHTML = items.map(([k, label, n]) => `<a href="#/${k}" ${cur === k ? 'aria-current="page"' : ''}>${icon(k)}<span class="lbl">${label}</span><span class="count">${esc(n)}</span></a>`).join('');
+  const inboxN = allInbox().length;
+  const openQ = w ? w.questions.filter(q => !/^decided/.test(q.status)) : [];
+  const groups = [
+    ['Project', [['context', 'Context', w ? w.context.length : 0], ['docs', 'Documents', w ? w.docs.length : 0]]],
+    ['Discover', [['understand', 'Understand', w ? w.research.length : 0], ['decide', 'Decide', openQ.length]]],
+    ['Deliver', [['flows', 'Flows', S && S.flows ? S.flows.length : 0], ['tasks', 'Working board', openTasks().length]]],
+    ['Record', [['decisions', 'Decision log', inboxN ? `${inboxN} new` : allDecisions().length]]],
+  ];
+  // The open section lists its items under it, so you can jump between them.
+  const sub = () => {
+    if (!S) return [];
+    if (cur === 'context') return [...(w ? w.context.map(x => [`#/context/${encodeURIComponent(x.id)}`, x.name, r.view === 'context' && (r.a === x.id || (!r.a && x === w.context[0]))]) : []),
+      ['#/context/terminology', 'Terminology', r.a === 'terminology'], ['#/notes', 'Notes', r.view === 'notes']];
+    if (cur === 'understand') return w ? w.research.map((x, i) => [`#/understand/${x.slug}`, x.title, r.a === x.slug || (!r.a && i === 0)]) : [];
+    if (cur === 'decide') return openQ.map((x, i) => [`#/decide/${x.id}`, x.title, r.a === x.id || (!r.a && i === 0)]);
+    if (cur === 'flows') return (S.flows || []).map((x, i) => [`#/flows/${x.slug}`, (x.group ? x.group + ' · ' : '') + x.name, r.a === x.slug || (!r.a && i === 0)]);
+    return [];
+  };
+  $('#nav').innerHTML = groups.map(([g, items]) => `<div class="nav-group"><div class="nav-label">${g}</div>${items.map(([k, label, n]) => {
+    const on = cur === k;
+    const kids = on ? sub() : [];
+    return `<a href="#/${k}" ${on ? 'aria-current="page"' : ''}>${icon(k)}<span class="lbl">${label}</span><span class="count">${esc(n)}</span></a>
+      ${kids.length ? `<div class="nav-sub">${kids.map(([href, l, active]) => `<a href="${href}" ${active ? 'aria-current="true"' : ''} title="${esc(l)}">${esc(l)}</a>`).join('')}</div>` : ''}`;
+  }).join('')}</div>`).join('');
   $('#project-name').textContent = S ? S.project.name : 'Loading';
   document.title = `${({ context: 'Context', docs: 'Documents', understand: 'Understand', decide: 'Decide', decisions: 'Decision log', tasks: 'Working board', flows: 'Flows', notes: 'Notes' })[r.view]} · ${S ? S.project.name : 'EGG UX Board'}`;
 }
@@ -216,17 +230,67 @@ function renderTasks(r) {
     return `<section class="col" data-col="${st}" aria-label="${STATUS_LABEL[st]}"><div class="col-head"><span>${STATUS_LABEL[st]}</span><span class="n">${col.length}</span>${st === 'todo' ? `<button class="btn ghost icon sm" type="button" data-act="new-task" aria-label="New task">${icon('plus')}</button>` : ''}</div>
       ${col.map(t => taskCard(t)).join('') || `<div class="muted" style="font-size:13px;padding:4px">Nothing here.</div>`}</section>`;
   }).join('')}</div>`;
-  if (r.a) setTimeout(() => { const t = S.tasks.find(x => x.id === r.a); if (t && !$('#task-dlg').open) openTask(t); }, 0);
+  const sel = r.a && S.tasks.find(x => x.id === r.a);
+  if (sel) html += taskDrawer(sel);
   return html;
 }
 const STAGE_LABEL = { discovery: 'Discovery', decisions: 'Decisions', design: 'Design', review: 'Review', handoff: 'Handoff', build: 'Build', qa: 'QA', release: 'Release', feedback: 'Feedback' };
 const STATUS_LABEL = { todo: 'To do', doing: 'Doing', review: 'Review', done: 'Done' };
+// Paths in task text become links to where the work lives in the board.
+function linkPaths(text) {
+  return code(text)
+    .replace(/(?:eggux\/)?features\/([a-z0-9-]+)\/(handoff|feature|scenarios|workflows|decisions)\.md/g, (m, s, f) => `<a href="#/flows/${s}/${f}">${m}</a>`)
+    .replace(/(?:eggux\/)?research\/([a-z0-9-]+)\.md/g, (m, s) => `<a href="#/understand/${s}">${m}</a>`)
+    .replace(/(?<![\w/])(?:eggux\/)?(actors|objects|workflows|brand)\.md/g, (m, s) => `<a href="#/context/${s}.md">${m}</a>`)
+    .replace(/\b(F?D-\d{2,3})\b/g, m => { const d = allDecisions().find(x => x.id === m); return d ? `<a href="#/decisions/${esc(d.source)}/${m}">${m}</a>` : m; })
+    .replace(/(^|\s)(https?:\/\/[^\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+}
+const changesCache = {};
+function taskChanges(id) {
+  const c = changesCache[id];
+  if (c && c.S === S) return c.data;
+  if (!c || !c.loading) {
+    changesCache[id] = { ...(c || {}), loading: true };
+    api('GET', `/api/tasks/${id}/changes`).then(d => { changesCache[id] = { S, data: d }; if (route().view === 'tasks') render(); })
+      .catch(e => { changesCache[id] = { S, data: { error: e.message } }; if (route().view === 'tasks') render(); });
+  }
+  return c ? c.data : null;
+}
+function taskDrawer(t) {
+  const decs = t.links.filter(l => /^F?D-\d+$/.test(l)).map(id => allDecisions().find(d => d.id === id)).filter(Boolean);
+  const ch = taskChanges(t.id);
+  const fileLink = (c, f) => {
+    const local = ch.prefix && f.startsWith(ch.prefix) ? f.slice(ch.prefix.length) : null;
+    const inBoard = local ? linkPaths(local) : '';
+    return `<li>${inBoard && inBoard !== code(local) ? inBoard : `<code>${esc(f)}</code>`}${c.url ? ` <a class="muted" href="${esc(ch.web)}/blob/${c.hash}/${esc(f)}" target="_blank" rel="noopener">view</a>` : ''}</li>`;
+  };
+  return `<aside class="drawer" aria-labelledby="td-title">
+    <div class="drawer-head"><span class="id">${esc(t.id)}</span>
+      <form id="td-status" data-id="${esc(t.id)}" class="row"><label class="sr-only" for="td-st">Status</label><select class="input" id="td-st" style="width:auto;height:30px">${['todo', 'doing', 'review', 'done'].map(s => `<option value="${s}" ${t.status === s ? 'selected' : ''}>${STATUS_LABEL[s]}</option>`).join('')}</select></form>
+      <button class="btn outline sm" type="button" data-task-edit="${esc(t.id)}">${icon('pencil', 'sm')}Edit</button>
+      <a class="btn ghost icon sm" href="#/tasks" aria-label="Close">${icon('x')}</a></div>
+    <div class="drawer-body">
+      <h2 id="td-title">${esc(t.title)}</h2>
+      ${t.deliverable ? `<section><h3>Delivers</h3><p>${linkPaths(t.deliverable)}</p></section>` : ''}
+      ${decs.length ? `<section><h3>Decision</h3>${decs.map(d => `<div class="td-dec"><a href="#/decisions/${esc(d.source)}/${esc(d.id)}">${esc(d.id)}</a> <span class="badge s-${esc(d.statusWord)}">${esc(d.statusWord)}</span><div>${esc(d.title)}</div>${d.fields.Decision ? `<div class="muted small">${esc(d.fields.Decision)}</div>` : ''}</div>`).join('')}</section>` : ''}
+      ${t.links.filter(l => !/^F?D-\d+$/.test(l)).length ? `<section><h3>Links</h3><div class="row">${t.links.filter(l => !/^F?D-\d+$/.test(l)).map(linkChip).join(' ')}</div></section>` : ''}
+      <section><h3>Result</h3>
+        <form id="td-result" data-id="${esc(t.id)}" class="stack" style="gap:8px">
+          ${t.result ? `<p class="td-result">${linkPaths(t.result)}</p>` : '<p class="muted small">What changed and where: files, Figma frames, links. Claude writes it when it finishes the task; you can too.</p>'}
+          <label class="sr-only" for="td-res">Result</label><textarea class="input" id="td-res" rows="3" placeholder="features/forgot-password/handoff.md updated to v3; Figma frame S-01 / 3">${esc(t.result)}</textarea>
+          <div><button class="btn outline sm">Save result</button></div></form></section>
+      <section><h3>Changes in git</h3>${!ch ? '<p class="muted small">Looking for commits…</p>' : ch.error ? `<p class="err-line">${esc(ch.error)}</p>` : !ch.git ? '<p class="muted small">This project is not a git repository.</p>'
+        : ch.commits.length ? `<ul class="commits">${ch.commits.map(c => `<li><div class="c-head"><span class="muted">${esc(c.date)}</span> ${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener"><code>${esc(c.short)}</code></a>` : `<code>${esc(c.short)}</code>`} ${esc(c.subject)}</div>${c.files.length ? `<ul class="files">${c.files.map(f => fileLink(c, f)).join('')}</ul>` : ''}</li>`).join('')}</ul>`
+        : `<p class="muted small">No commit mentions ${esc(ch.ids.join(', '))} yet. Commits whose message names the task or its decision show up here, with the files they changed.</p>`}</section>
+    </div></aside>`;
+}
 function taskCard(t) {
   const overdue = t.due && t.status !== 'done' && t.due < today();
-  return `<button type="button" class="task" draggable="true" data-task="${esc(t.id)}">
+  return `<button type="button" class="task" draggable="true" data-task="${esc(t.id)}" ${route().a === t.id ? 'aria-current="true"' : ''}>
     <span class="top"><span class="id">${esc(t.id)}</span>${t.status === 'review' ? '<span class="badge t-review">Review</span>' : ''}${t.due ? `<span class="badge due ${overdue ? 'overdue' : 'outline'}">${overdue ? 'Overdue ' : ''}${esc(t.due)}</span>` : ''}</span>
     <span class="title">${esc(t.title)}</span>
     ${t.deliverable ? `<span class="deliv">${code(t.deliverable)}</span>` : ''}
+    ${t.result ? `<span class="deliv result">${icon('check', 'sm')}${code(t.result)}</span>` : ''}
     ${t.links.length ? `<span class="tags">${t.links.map(l => `<span class="badge outline">${esc(/^https?:/.test(l) ? (/figma/.test(l) ? 'Figma' : 'Link') : l.replace(/^feature:/, 'flow: '))}</span>`).join('')}</span>` : ''}
   </button>`;
 }
@@ -314,16 +378,17 @@ function renderFlows(r) {
     <div class="card flow-card">
       <div class="flow-head"><div><h2>${esc(cur.name)}</h2>
         <div class="flow-meta">Spec ${flowBadge(cur.status)}${cur.handoff ? ` <span>Handoff v${esc(cur.handoff.version)}</span> ${flowBadge(cur.handoff.status)}` : ''}${cur.updated ? ` <span>Updated ${esc(cur.updated)}</span>` : ''}</div></div>
-        <div class="row">${cur.figma ? `<a class="btn outline sm" href="${esc(cur.figma)}" target="_blank" rel="noopener">${icon('figma', 'sm')}Open in Figma</a>` : ''}
+        <div class="row"><button class="btn ghost sm" type="button" data-act="flow-props" aria-expanded="${!!ui.flowProps}">${icon('pencil', 'sm')}Group and link</button>
           ${tasks.map(t => `<a class="badge outline" href="#/tasks/${esc(t.id)}" title="${esc(t.title)}">${esc(t.id)} · ${esc(t.status)}</a>`).join(' ')}</div></div>
       ${writing(cur) ? `<p class="drafting">${'<span class="spin" aria-hidden="true"></span>'}Claude is drafting this flow from your idea. The tabs fill in when it is done.</p>` : ''}
       ${S.work && S.work.errors['flow:' + cur.slug] && !writing(cur) ? `<p class="err-line" style="margin:0 20px 12px">${esc(S.work.errors['flow:' + cur.slug])}</p>` : ''}
-      <form class="flow-props" id="flow-props" data-slug="${esc(cur.slug)}">
+      <form class="flow-props" id="flow-props" data-slug="${esc(cur.slug)}" ${ui.flowProps ? '' : 'hidden'}>
         <label><span>Group</span><input class="input" name="group" list="flow-groups" value="${esc(cur.group || '')}" placeholder="Account, Checkout…"></label>
         <datalist id="flow-groups">${groups.filter(Boolean).map(g => `<option value="${esc(g)}">`).join('')}</datalist>
         <label class="grow"><span>Figma link</span><input class="input" name="figma" type="url" value="${esc(cur.figma || '')}" placeholder="https://www.figma.com/design/…"></label>
         <button class="btn outline sm">Save</button></form>
-      <div class="tabs" role="tablist" aria-label="Feature files">${FLOW_TABS.filter(([k]) => cur.files.includes(k)).map(([k, l]) => `<a role="tab" href="#/flows/${esc(cur.slug)}/${k}" aria-selected="${k === file}">${l}</a>`).join('')}</div>
+      <div class="tab-row"><div class="tabs" role="tablist" aria-label="Feature files">${FLOW_TABS.filter(([k]) => cur.files.includes(k)).map(([k, l]) => `<a role="tab" href="#/flows/${esc(cur.slug)}/${k}" aria-selected="${k === file}">${l}</a>`).join('')}</div>
+        ${cur.figma ? `<a class="btn outline sm" href="${esc(cur.figma)}" target="_blank" rel="noopener">${icon('figma', 'sm')}Figma</a>` : `<button class="btn ghost sm" type="button" data-act="flow-props">${icon('figma', 'sm')}Add Figma link</button>`}</div>
       ${ui.flowDoc && ui.flowDoc.key === key ? `<div class="prose">${['scenarios', 'decisions'].includes(file) ? accordion(ui.flowDoc.body) : md(ui.flowDoc.body)}</div><p class="file-path">eggux/features/${esc(cur.slug)}/${esc(file)}.md</p>` : '<div class="empty">Loading</div>'}
     </div></div>`;
   if (!ui.flowDoc || ui.flowDoc.key !== key || ui.flowDoc.sig !== S.flowSig) loadFlowDoc(cur.slug, file, key);
@@ -472,7 +537,6 @@ function openTask(t, prefill = {}) {
 }
 $('#task-dlg').addEventListener('close', async () => {
   const dlg = $('#task-dlg'); const f = $('#task-form');
-  if (route().view === 'tasks' && route().a) history.replaceState(null, '', '#/tasks');
   if (dlg.returnValue !== 'ok') return;
   const b = Object.fromEntries(new FormData(f));
   const id = b.id; delete b.id;
@@ -492,6 +556,7 @@ document.addEventListener('click', async ev => {
     return;
   }
   if (d.act === 'reload-note' && ui.note) { await loadNote(ui.note.file); return; }
+  if (d.act === 'flow-props') { ui.flowProps = !ui.flowProps; render(); if (ui.flowProps) setTimeout(() => { const x = $('#flow-props input[name=figma]'); if (x) x.focus(); }, 30); return; }
   if (d.tab) { ui.dTab = d.tab; return render(); }
   if (d.dstatus) { ui.dStatus = d.dstatus; return render(); }
   if (d.openDecision) { location.hash = '#/decisions/' + d.openDecision; return; }
@@ -507,7 +572,8 @@ document.addEventListener('click', async ev => {
   }
   if (d.taskFrom) { location.hash = '#/tasks'; setTimeout(() => openTask(null, { links: d.taskFrom, stage: 'design' }), 50); return; }
   if (d.stage) { ui.tStage = ui.tStage === d.stage ? '' : d.stage; return render(); }
-  if (d.task) { const x = S.tasks.find(k => k.id === d.task); if (x) openTask(x); return; }
+  if (d.taskEdit) { const x = S.tasks.find(k => k.id === d.taskEdit); if (x) openTask(x); return; }
+  if (d.task) { location.hash = '#/tasks/' + d.task; return; }
   if (d.mode) { ui.notePreview = d.mode === 'preview'; const ed = $('#editor'); if (ed && ui.note) ed.innerHTML = editorHtml(ui.note); return; }
   if (d.sel && ui.note) {
     const ta = $('#n-body'); const text = ta ? ta.value.slice(ta.selectionStart, ta.selectionEnd).trim().replace(/^[-*]\s*(\[.\]\s*)?/, '') : '';
@@ -529,6 +595,7 @@ document.addEventListener('submit', async ev => {
     const [source, id] = f.dataset.key.split('/');
     await act(() => api('PATCH', '/api/decisions/' + id, { source, status: $('#dd-status').value }), `${id} is ${$('#dd-status').value}`);
   }
+  if (f.id === 'td-result') { ev.preventDefault(); await act(() => api('PATCH', '/api/tasks/' + f.dataset.id, { result: $('#td-res').value }), 'Result saved'); }
   if (f.id === 'term-form') {
     ev.preventDefault();
     await act(() => api('POST', '/api/terms', { use: $('#tm-use').value, dont: $('#tm-dont').value, context: $('#tm-ctx').value }), 'Term added');
@@ -542,6 +609,7 @@ document.addEventListener('input', ev => {
   if (ui.note && ['n-title', 'n-tags', 'n-body'].includes(t.id)) { ui.note[{ 'n-title': 'title', 'n-tags': 'tags', 'n-body': 'body' }[t.id]] = t.value; queueSave(); }
 });
 document.addEventListener('change', ev => {
+  if (ev.target.id === 'td-st') { const id = ev.target.closest('form').dataset.id; act(() => api('PATCH', '/api/tasks/' + id, { status: ev.target.value }), `${id} is ${STATUS_LABEL[ev.target.value]}`); }
   if (ev.target.id === 'dtype') { ui.dType = ev.target.value; render(); }
   if (ev.target.id === 'dsource') { ui.dSource = ev.target.value; render(); }
 });

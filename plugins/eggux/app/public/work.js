@@ -322,7 +322,7 @@ document.addEventListener('submit', async ev => {
     const ok = await act(() => i === '' ? api('POST', `/api/context/${enc(sec.id)}/entries`, { title, values }) : api('PUT', `/api/context/${enc(sec.id)}/entries/${i}`, { title, values, suggested: false }), 'Saved');
     if (ok) { wui.editing = null; render(); }
   }
-  if (f.id === 'flow-props') { ev.preventDefault(); const b = Object.fromEntries(new FormData(f)); await act(() => api('PATCH', '/api/flows/' + f.dataset.slug, b), 'Saved'); }
+  if (f.id === 'flow-props') { ev.preventDefault(); const b = Object.fromEntries(new FormData(f)); const ok = await act(() => api('PATCH', '/api/flows/' + f.dataset.slug, b), 'Saved'); if (ok) { ui.flowProps = false; render(); } }
   if (f.id === 'w-newres') { ev.preventDefault(); const title = $('#w-restitle').value.trim(); if (!title) return toast('Write what you want to learn', true);
     const r = await act(() => api('POST', '/api/research', { title }), 'Sent to Claude'); if (r) location.hash = '#/understand/' + r.slug; }
   if (f.id === 'w-newq') { ev.preventDefault(); const title = $('#w-qtitle').value.trim(); if (!title) return toast('Write the question', true);

@@ -17,7 +17,7 @@ the board updates live when a file changes on disk.
 | Understand | `eggux/research/<slug>.md` | Research requests run by Claude: full report and findings; accept or reject each finding; an accepted finding becomes a question in Decide |
 | Decide | `eggux/questions.md` | Questions (from findings, unknowns, blindspots) with options proposed by Claude or added by you; choosing one records a decision in `decisions.md` and a task in `tasks.md` |
 | Flows | `eggux/features/<slug>/` | Each feature with its spec status, scenario and edge case counts, open questions and the task that delivers it; read-only tabs Handoff (the developer deliverable), Spec, Scenarios and Decisions (one collapsible row per item), Flows; Mermaid diagrams drawn, full screen with zoom. New flow: empty from the templates, or drafted by Claude from an idea (flows, scenarios, edge cases, open questions); `group:` and `figma:` in `feature.md` group the list and add an Open in Figma button |
-| Working board | `eggux/tasks.md` | To do / Doing / Done with drag and drop (Review tasks show in Doing); the dialog asks for the task, what it delivers, status and links, the rest under More details |
+| Working board | `eggux/tasks.md` | To do / Doing / Done with drag and drop (Review tasks show in Doing); a task opens a side panel with what it delivers, the decision it applies, its Result (what changed and where, with links into the board) and the git commits that mention it, with their files |
 | Decision log | `eggux/decisions.md` and `eggux/features/<slug>/decisions.md` | Collapsible Inbox (add, record as decision, dismiss), searchable list, detail with status change and linked tasks; the new decision dialog asks for what was decided, details and status, the rest under More details |
 | Notes (under Context) | `eggux/notes/*.md` | List and search, editor with preview and autosave, a selected line to the Inbox or to a task |
 
@@ -66,8 +66,12 @@ file from `skills/init/templates/tasks.md` if missing):
 - Status: `todo | doing | review | done`. Stage: one of the nine stages in
   `references/pipeline.md`. Links: decision ids, `feature:<slug>`, `component:<Name>`,
   `note:<file>` or a URL, comma separated. Every field fits on one line.
-- When a skill finishes the work a task names (a review done, a component approved), set the
-  task to `review` or `done` and say so.
+- When a skill finishes the work a task names (a review done, a component approved, a decision
+  applied), set the task to `review` or `done`, add one line `- Result:` saying what changed and
+  where (file paths such as `features/<slug>/handoff.md`, Figma frame names or links, component
+  names), and say so. Put the task id (and the decision id it applies) in the commit message
+  ("T-003 · Apply D-006: 48 px buttons"): the board's task panel lists those commits with the
+  files they changed.
 
 Note in `eggux/notes/<YYYY-MM-DD>-<slug>.md`:
 ```

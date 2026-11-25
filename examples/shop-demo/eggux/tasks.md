@@ -15,6 +15,18 @@ build, qa, release, feedback. Links: decision ids (D-007, FD-03), `feature:<slug
 
 ## Tasks
 
+### T-003 · Apply D-006: 48 px high
+- Status: todo
+- Stage: design
+- Links: D-006
+- Created: 2026-11-25
+
+### T-002 · Apply D-005: "Pay" button fixed at the bottom
+- Status: todo
+- Stage: design
+- Links: D-005
+- Created: 2026-11-25
+
 ### T-001 · Redo the forgot password flow
 - Status: doing
 - Stage: design
