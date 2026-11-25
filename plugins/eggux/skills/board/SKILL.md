@@ -12,7 +12,7 @@ the board updates live when a file changes on disk.
 
 | View | File | What it shows |
 |---|---|---|
-| Context | `eggux/actors.md`, `objects.md`, `workflows.md`, `brand.md` (a document), `eggux/context/<slug>.md` | One file per section. Add, edit, delete entries; edit a section's field template; delete any section (the file moves to `eggux/.trash/`); New section adds a base section back from the init template, a preset, or an empty one; "Ask Claude" for a suggested entry to keep or delete. Terminology (from `decisions.md`) and Notes are listed apart, under "Also read by Claude" |
+| Context | `eggux/actors.md`, `objects.md`, `workflows.md`, `brand.md` (a document), `eggux/context/<slug>.md` | One file per section. Add, edit, delete entries; edit a section's field template; delete any section (the file moves to `eggux/.trash/`); New section adds a base section back from the init template, a preset, or an empty one; "Ask Claude" for a suggested entry to keep or delete. Terminology (from `decisions.md`) is listed apart, under "Also read by Claude" |
 | Documents | `eggux/docs/` | Upload files; Claude reads each one and adds suggested entries to the Context sections; `.board.json` records where each went |
 | Understand | `eggux/research/<slug>.md` | Research requests run by Claude: full report and findings; accept or reject each finding; an accepted finding becomes a question in Decide |
 | Decide | `eggux/questions.md` | Questions (from findings, unknowns, blindspots) with options proposed by Claude or added by you; choosing one asks for the exact decision, its scope and how to verify it, then records it as `proposed` in `decisions.md` (titled with the chosen option, `Answers Q-xxx` in the Reason) and adds a task "Apply D-xxx" whose deliverable is that decision applied and verified with `/eggux:decision-log` |
@@ -20,7 +20,7 @@ the board updates live when a file changes on disk.
 | Components | `${CLAUDE_PLUGIN_ROOT}/references/components/` (read-only) | The EGG UI reference, one page per component page in Figma, and which screens of which features use each component (from the handoffs' Screens and Components tables); search; a component name on a screen links here. After changing a component, recheck the screens it lists |
 | Working board | `eggux/tasks.md` | To do / Doing / Done with drag and drop (Review tasks show in Doing); a task opens a side panel with what it delivers, the decision it applies, its Result (what changed and where, with links into the board) and the git commits that mention it, with their files |
 | Decision log | `eggux/decisions.md` and `eggux/features/<slug>/decisions.md` | Collapsible Inbox (add, record as decision, dismiss), searchable list, detail with status change and linked tasks; the new decision dialog asks for what was decided, details and status, the rest under More details |
-| Notes (under Context) | `eggux/notes/*.md` | List and search, editor with preview and autosave, a selected line to the Inbox or to a task |
+| Notes (under Documents) | `eggux/notes/*.md` | List and search, editor with preview and autosave, a selected line to the Inbox or to a task |
 
 **Claude from the board.** Ask Claude, research, options and document reading run the local
 `claude` command (Claude Code) in the project folder, with read-only tools; the board writes the

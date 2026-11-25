@@ -113,11 +113,11 @@ function linkify(text) {
 function renderNav() {
   const r = route();
   const w = S && S.work;
-  const cur = r.view === 'notes' ? 'context' : r.view;
+  const cur = r.view;
   const inboxN = allInbox().length;
   const openQ = w ? w.questions.filter(q => !/^decided/.test(q.status)) : [];
   const groups = [
-    ['Project', [['context', 'Context', w ? w.context.length : 0], ['docs', 'Documents', w ? w.docs.length : 0]]],
+    ['Project', [['context', 'Context', w ? w.context.length : 0], ['docs', 'Documents', w ? w.docs.length : 0], ['notes', 'Notes', S ? S.notes.length : 0]]],
     ['Discover', [['understand', 'Understand', w ? w.research.length : 0], ['decide', 'Decide', openQ.length]]],
     ['Deliver', [['flows', 'Features', S && S.flows ? S.flows.length : 0], ['components', 'Components', ui.comps ? ui.comps.filter(p => p.used.length).length : ''], ['tasks', 'Working board', openTasks().length]]],
     ['Record', [['decisions', 'Decision log', inboxN ? `${inboxN} new` : allDecisions().length]]],
@@ -126,7 +126,7 @@ function renderNav() {
   const sub = () => {
     if (!S) return [];
     if (cur === 'context') return [...(w ? w.context.map(x => [`#/context/${encodeURIComponent(x.id)}`, x.name, r.view === 'context' && (r.a === x.id || (!r.a && x === w.context[0]))]) : []),
-      ['#/context/terminology', 'Terminology', r.a === 'terminology'], ['#/notes', 'Notes', r.view === 'notes']];
+      ['#/context/terminology', 'Terminology', r.a === 'terminology']];
     if (cur === 'understand') return w ? w.research.map((x, i) => [`#/understand/${x.slug}`, x.title, r.a === x.slug || (!r.a && i === 0)]) : [];
     if (cur === 'decide') return openQ.map((x, i) => [`#/decide/${x.id}`, x.title, r.a === x.id || (!r.a && i === 0)]);
     if (cur === 'flows') return (S.flows || []).map((x, i) => [`#/flows/${x.slug}`, (x.group ? x.group + ' · ' : '') + x.name, r.a === x.slug || (!r.a && i === 0)]);

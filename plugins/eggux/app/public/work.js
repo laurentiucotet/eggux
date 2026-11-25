@@ -59,8 +59,7 @@ function renderContext(r) {
       <div class="t">${esc(s.name)}</div>
       <div class="x">${kindLine(s)}${s.suggested ? ` · ${s.suggested} to review` : ''}</div></a></li>`).join('') || '<li class="muted" style="padding:12px 20px">No sections. Add one with New section.</li>'}</ul>
       <h3 class="list-title">Also read by Claude</h3>
-      <ul class="note-list"><li><a href="#/context/terminology" ${terms ? 'aria-current="true"' : ''}><div class="t">Terminology</div><div class="x">${nTerms} terms · in decisions.md</div></a></li>
-      <li><a href="#/notes"><div class="t">Notes</div><div class="x">${S.notes.length} notes · opens the Notes page</div></a></li></ul></div>
+      <ul class="note-list"><li><a href="#/context/terminology" ${terms ? 'aria-current="true"' : ''}><div class="t">Terminology</div><div class="x">${nTerms} terms · in decisions.md</div></a></li></ul></div>
     <div class="card flow-card">${terms ? termsPanel() : !cur ? empty('No sections yet', 'Add one with New section, or run <code>/eggux:init</code>.') : sec ? sectionDetail(cur, sec) : '<div class="empty">Loading</div>'}</div></div>`;
   return html;
 }
