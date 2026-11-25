@@ -22,6 +22,8 @@ function cached(key, url) {
 }
 const empty = (title, text) => `<div class="empty"><strong>${title}</strong>${text || ''}</div>`;
 const SEC_ICON = { 'actors.md': 'users', 'stakeholders.md': 'users', 'objects.md': 'box', 'workflows.md': 'flows', 'brand.md': 'palette' };
+// Base sections: skills read them at these paths. Deleted ones come back from here.
+const CORE_SECTIONS = [['actors.md', 'Actors', 'who uses the product'], ['objects.md', 'Objects', 'the nouns, OOUX / ORCA'], ['workflows.md', 'Workflows', 'what actors do, step by step'], ['brand.md', 'Brand', 'identity, color, type; a document']];
 const PRESETS = {
   Actors: [['Name'], ['Who', 'long'], ['Goals', 'list', 3], ['Constraints', 'list', 3]],
   Stakeholders: [['Name and role'], ['Goals', 'list', 3], ['Constraints', 'list', 3], ['Approves']],
@@ -36,19 +38,28 @@ function renderContext(r) {
   const secs = W().context;
   const terms = r.a === 'terminology';
   const cur = terms ? null : secs.find(s => s.id === r.a) || secs[0];
-  let html = head('Context', 'The project context: one set of sections for the whole project. Understand, Decide and the skills read it.',
+  let html = head('Context', 'One file per section in <code>eggux/</code>. Claude and the skills read every section that exists; delete what this project does not need and add it back from New section.',
     `<button class="btn" type="button" data-w="toggle-chooser">${icon('plus')}New section</button>`);
-  if (wui.chooser) html += `<div class="card card-body chooser">
-      <p class="muted" style="margin:0 0 10px">Start from a template or from scratch. It becomes <code>eggux/context/&lt;name&gt;.md</code>.</p>
-      <div class="row" style="margin-bottom:10px">${Object.keys(PRESETS).filter(p => !secs.some(s => s.name === p)).map(p => `<button class="btn outline sm" type="button" data-w="preset" data-name="${esc(p)}">${esc(p)}</button>`).join('')}</div>
+  if (wui.chooser) {
+    const missing = CORE_SECTIONS.filter(([id]) => !secs.some(s => s.id === id));
+    const presets = Object.keys(PRESETS).filter(p => !secs.some(s => s.name === p));
+    html += `<div class="card card-body chooser">
+      ${missing.length ? `<p class="muted" style="margin:0 0 8px">Base sections, at the path the skills read:</p>
+      <div class="row" style="margin-bottom:12px">${missing.map(([id, name, what]) => `<button class="btn outline sm" type="button" data-w="core" data-id="${esc(id)}" title="eggux/${esc(id)} · ${esc(what)}">${esc(name)}</button>`).join('')}</div>` : ''}
+      <p class="muted" style="margin:0 0 8px">More sections, as <code>eggux/context/&lt;name&gt;.md</code>:</p>
+      ${presets.length ? `<div class="row" style="margin-bottom:10px">${presets.map(p => `<button class="btn outline sm" type="button" data-w="preset" data-name="${esc(p)}">${esc(p)}</button>`).join('')}</div>` : ''}
       <form class="row" id="w-newsec"><label class="sr-only" for="w-secname">Section name</label><input class="input" id="w-secname" placeholder="Another section, e.g. Pricing rules" style="flex:1;min-width:200px"><button class="btn outline">Create empty</button></form></div>`;
+  }
   const sec = cur ? cached('ctx:' + cur.id, '/api/context/' + enc(cur.id)) : null;
   const nTerms = S.decisions.product ? S.decisions.product.terminology.length : 0;
-  html += `<div class="notes"><div class="card"><ul class="note-list">${secs.map(s => `<li><a href="#/context/${enc(s.id)}" ${cur && s.id === cur.id ? 'aria-current="true"' : ''}>
+  const kindLine = s => s.kind === 'document' ? 'Document' : `${s.count} ${s.count === 1 ? 'entry' : 'entries'} · ${s.fields} fields`;
+  html += `<div class="notes half"><div class="card">
+      <h3 class="list-title">Sections · ${secs.length}</h3>
+      <ul class="note-list">${secs.map(s => `<li><a href="#/context/${enc(s.id)}" ${cur && s.id === cur.id ? 'aria-current="true"' : ''}>
       <div class="t">${esc(s.name)}</div>
-      <div class="x">${s.kind === 'document' ? 'Document' : `${s.count} ${s.count === 1 ? 'entry' : 'entries'} · ${s.fields} fields`}${s.suggested ? ` · ${s.suggested} to review` : ''}</div></a></li>`).join('')}
-      <li class="sep"><a href="#/context/terminology" ${terms ? 'aria-current="true"' : ''}><div class="t">Terminology</div><div class="x">${nTerms} terms · words to use and to avoid</div></a></li>
-      <li><a href="#/notes"><div class="t">Notes</div><div class="x">${S.notes.length} notes · meetings, research, ideas</div></a></li></ul></div>
+      <div class="x">${kindLine(s)}${s.suggested ? ` · ${s.suggested} to review` : ''}</div></a></li>`).join('') || '<li class="muted" style="padding:12px 20px">No sections. Add one with New section.</li>'}</ul>
+      <h3 class="list-title">Also read by Claude</h3>
+      <ul class="note-list"><li><a href="#/context/terminology" ${terms ? 'aria-current="true"' : ''}><div class="t">Terminology</div><div class="x">${nTerms} terms · in decisions.md</div></a></li></ul></div>
     <div class="card flow-card">${terms ? termsPanel() : !cur ? empty('No sections yet', 'Add one with New section, or run <code>/eggux:init</code>.') : sec ? sectionDetail(cur, sec) : '<div class="empty">Loading</div>'}</div></div>`;
   return html;
 }
@@ -59,17 +70,19 @@ function termsPanel() {
 function sectionDetail(meta, sec) {
   if (sec.error) return empty('Could not read this section', esc(sec.error));
   const file = `<p class="file-path">eggux/${esc(sec.id)}</p>`;
-  if (sec.kind === 'document') return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">A document section, written as free text.</div></div>
-      ${wui.editDoc === sec.id ? '' : `<button class="btn outline sm" type="button" data-w="edit-doc" data-id="${esc(sec.id)}">${icon('pencil', 'sm')}Edit</button>`}</div>
+  const del = `<button class="btn ghost sm danger" type="button" data-w="del-section" data-id="${esc(sec.id)}" data-name="${esc(sec.name)}">${icon('trash', 'sm')}Delete</button>`;
+  const where = `<code>eggux/${esc(sec.id)}</code>`;
+  if (sec.kind === 'document') return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">Document, free text · ${where}</div></div>
+      <div class="row">${wui.editDoc === sec.id ? '' : `<button class="btn outline sm" type="button" data-w="edit-doc" data-id="${esc(sec.id)}">${icon('pencil', 'sm')}Edit</button>`}${del}</div></div>
     ${wui.editDoc === sec.id ? `<form class="card-body stack" id="w-doc" data-id="${esc(sec.id)}" style="gap:10px"><label class="sr-only" for="w-doc-body">${esc(sec.name)}</label>
       <textarea class="input doc-edit" id="w-doc-body" rows="22">${esc(sec.body.replace(/^\n+/, ''))}</textarea>
       <div class="row" style="justify-content:flex-end"><button class="btn outline sm" type="button" data-w="cancel-doc">Cancel</button><button class="btn sm">${icon('check', 'sm')}Save</button></div></form>`
       : `<div class="prose">${md(sec.body)}</div>`}${file}`;
   const err = W().errors['entry:' + sec.id];
   const asking = busy('entry:' + sec.id);
-  return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">Fields: ${sec.fields.map(f => esc(f.label) + (f.type === 'list' ? ' (list)' : '')).join(' · ')}</div></div>
-      <div class="row"><button class="btn outline sm" type="button" data-w="template" data-id="${esc(sec.id)}">${icon('sliders', 'sm')}Edit template</button>
-      ${sec.custom ? `<button class="btn ghost sm danger" type="button" data-w="del-section" data-id="${esc(sec.id)}">${icon('trash', 'sm')}Delete</button>` : ''}</div></div>
+  return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">Entries · ${where}</div>
+      <div class="flow-meta">Fields: ${sec.fields.map(f => esc(f.label) + (f.type === 'list' ? ' (list)' : '')).join(' · ')}${sec.hasTemplate ? '' : ' <span class="muted">(read from the entries; Edit template saves them in the file)</span>'}</div></div>
+      <div class="row"><button class="btn outline sm" type="button" data-w="template" data-id="${esc(sec.id)}">${icon('sliders', 'sm')}Edit template</button>${del}</div></div>
     <div class="card-body" style="padding-top:0">
       <form class="row ask" id="w-ask" data-id="${esc(sec.id)}">
         <button class="btn sm" type="button" data-w="new-entry">${icon('plus', 'sm')}Add</button>
@@ -168,7 +181,7 @@ function renderUnderstand(r) {
   const list = W().research;
   const cur = list.find(x => x.slug === r.a) || list[0];
   let html = head('Understand', 'What you want to learn. Claude researches it with the project context and lists the findings; accepted findings become questions in Decide.');
-  html += `<div class="notes"><div class="card"><form class="card-body row" id="w-newres"><label class="sr-only" for="w-restitle">New research</label>
+  html += `<div class="notes half"><div class="card"><form class="card-body row" id="w-newres"><label class="sr-only" for="w-restitle">New research</label>
       <input class="input" id="w-restitle" placeholder="Research checkout patterns on mobile" style="flex:1;min-width:0"><button class="btn sm">${icon('sparkles', 'sm')}Ask Claude</button></form>
     ${list.length ? `<ul class="note-list">${list.map(x => `<li><a href="#/understand/${esc(x.slug)}" ${cur && x.slug === cur.slug ? 'aria-current="true"' : ''}><div class="t">${esc(x.title)}</div>
       <div class="x">${x.status === 'running' ? 'Claude is working' : x.status === 'error' ? 'Error' : `${esc(x.kind)} · ${x.findings} findings${x.accepted ? `, ${x.accepted} accepted` : ''}`}</div></a></li>`).join('')}</ul>` : empty('No research yet', 'Ask Claude above.')}</div>
@@ -206,8 +219,8 @@ function renderDecide(r) {
   const open = qs.filter(q => !/^decided/.test(q.status)), done = qs.filter(q => /^decided/.test(q.status));
   const cur = qs.find(q => q.id === r.a) || open[0] || done[0];
   const row = q => `<li><a href="#/decide/${q.id}" ${cur && q.id === cur.id ? 'aria-current="true"' : ''}><div class="t">${esc(q.title)}</div><div class="x">${q.id} · ${/^decided/.test(q.status) ? esc(q.status) : q.preparing || q.status === 'preparing options' ? 'Claude is preparing options' : q.options.length + ' options'}</div><div class="flow-badges">${typeBadge(q)}</div></a></li>`;
-  return head('Decide', 'Questions from accepted findings, unknowns and blindspots. Claude proposes options, you choose. A choice becomes a decision and a task.') +
-    `<div class="notes"><div class="card">
+  return head('Decide', 'Questions from accepted findings, unknowns and blindspots. Claude proposes options, you choose. A choice becomes a proposed decision and a task to apply it.') +
+    `<div class="notes half"><div class="card">
       <form class="card-body stack" id="w-newq" style="gap:8px"><label class="sr-only" for="w-qtitle">New question</label><input class="input" id="w-qtitle" placeholder="What needs to be decided?">
         <div class="row"><select class="input" id="w-qtype" style="flex:1" aria-label="Type"><option value="unknown">Unknown</option><option value="blindspot">Blindspot</option><option value="finding">From finding</option></select><button class="btn sm">${icon('sparkles', 'sm')}Get options</button></div></form>
       <h3 class="list-title">To decide · ${open.length}</h3>
@@ -223,7 +236,9 @@ function questionDetail(q) {
   const preparing = q.preparing || q.status === 'preparing options';
   return `<div class="flow-head"><div><h2>${esc(q.title)}</h2><div class="flow-meta">${typeBadge(q)}<span>Category: ${esc(q.category)}</span><span>${q.id}</span></div></div></div>
     <div class="card-body" style="padding-top:0">
-      <p class="source-line"><strong>Source:</strong> ${q.source.startsWith('research:') ? `<a href="#/understand/${esc(q.source.split(' ')[0].slice(9))}">${esc(q.source)}</a>` : esc(q.source)}</p>
+      <p class="source-line"><strong>Source:</strong> ${q.source.startsWith('research:') ? `<a href="#/understand/${esc(q.source.split(' ')[0].slice(9))}">${esc(q.source)}</a>`
+        : /^feature:[a-z0-9-]+$/.test(q.source) ? `<a href="#/flows/${esc(q.source.slice(8))}">Feature ${esc(q.source.slice(8))}</a>` : esc(q.source)}</p>
+      ${(q.extra || []).filter(l => l.trim()).map(l => `<p class="source-line">${esc(l.replace(/^-\s*/, '')).replace(/^([^:]{1,30}):/, '<strong>$1:</strong>')}</p>`).join('')}
       ${q.error && !preparing ? `<p class="err-line">${esc(q.error)}</p>` : ''}
       ${preparing && !q.options.length ? `<div class="empty">${spin}Claude is preparing options.</div>` : `<div class="options">${q.options.map(o => `<article class="option ${o.by === 'you' ? 'mine' : ''} ${q.recommended === o.key && !decided ? 'recommended' : ''} ${chosen === o.key ? 'chosen' : chosen ? 'lost' : ''}" data-key="${o.key}">
         <div class="muted small">Option ${o.key}${q.recommended === o.key && !decided ? ' · <span class="rec">recommended by Claude</span>' : ''}${o.by === 'you' ? ' · your option' : ''}</div>
@@ -232,7 +247,7 @@ function questionDetail(q) {
         ${decided ? '' : `<button class="btn sm" type="button" data-w="choose" data-id="${q.id}" data-key="${o.key}">${icon('check', 'sm')}Choose ${o.key}</button>`}</article>`).join('')}</div>`}
       ${decided ? `<p class="outcome">Decided: option ${chosen}. Logged as <a href="#/decisions/product/${esc(did)}">${esc(did)}</a>, with a task on the board.</p>`
         : `<div class="row"><button class="btn outline" type="button" data-w="my-option" data-id="${q.id}">${icon('bulb', 'sm')}My option</button>
-           <button class="btn outline" type="button" data-w="another" data-id="${q.id}" ${preparing ? 'disabled' : ''}>${preparing ? spin : icon('sparkles', 'sm')}Ask for another option</button></div>`}
+           <button class="btn outline" type="button" data-w="another" data-id="${q.id}" ${preparing ? 'disabled' : ''}>${preparing ? spin : icon('sparkles', 'sm')}${q.options.length ? 'Ask for another option' : 'Get options from Claude'}</button></div>`}
     </div><p class="file-path">eggux/questions.md</p>`;
 }
 function openMyOption(id) {
@@ -247,11 +262,24 @@ function openMyOption(id) {
   $('#work-dlg').showModal(); $('#work-dlg input[name=title]').focus();
 }
 
+function openChoose(id, key) {
+  const q = W().questions.find(x => x.id === id); if (!q) return;
+  const o = q.options.find(x => x.key === key); if (!o) return;
+  $('#work-dlg').innerHTML = `<form method="dialog" id="w-choose-form" data-id="${esc(id)}" data-key="${esc(key)}">
+    <div class="dlg-head"><h2>Choose ${esc(key)}</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close">${icon('x')}</button></div>
+    <div class="dlg-body"><p class="muted" style="margin:0">${esc(q.title)}</p>
+      <label class="field"><span>Decision</span><textarea class="input" name="decision" rows="2" required>${esc(o.title)}</textarea><small>Make it exact: the element, the current value and the new one.</small></label>
+      <label class="field"><span>Scope</span><input class="input" name="scope" placeholder="Product page, all screen sizes"><small>Where it applies: a component, some screens, everywhere.</small></label>
+      <label class="field"><span>Verify (optional)</span><input class="input" name="verify" placeholder="Wallet button under Add to cart on every product page"><small>How to check the work follows it. Claude fills it in when it applies the decision.</small></label></div>
+    <div class="dlg-foot"><button class="btn outline" value="cancel" formnovalidate>Cancel</button><button class="btn" value="ok">${icon('check', 'sm')}Log decision</button></div></form>`;
+  $('#work-dlg').showModal(); $('#work-dlg input[name=scope]').focus();
+}
+
 // ---------- Flows: new flow ----------
 function openNewFlow() {
   const groups = [...new Set((S.flows || []).map(f => f.group).filter(Boolean))];
   $('#work-dlg').innerHTML = `<form method="dialog" id="w-flow-form">
-    <div class="dlg-head"><h2>New flow</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close">${icon('x')}</button></div>
+    <div class="dlg-head"><h2>New feature</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close">${icon('x')}</button></div>
     <div class="dlg-body">
       <label class="field"><span>Name</span><input class="input" name="name" required placeholder="Register"></label>
       <label class="field"><span>Group (optional)</span><input class="input" name="group" list="w-flow-groups" placeholder="Account"><datalist id="w-flow-groups">${groups.map(g => `<option value="${esc(g)}">`).join('')}</datalist></label>
@@ -304,7 +332,8 @@ document.addEventListener('click', async ev => {
     case 'keep': return act(() => api('PUT', `/api/context/${enc(id)}/entries/${d.i}`, { suggested: false, ...guard(id, d.i) }), 'Kept');
     case 'del-entry': if (confirm('Delete this entry?')) await act(() => api('DELETE', `/api/context/${enc(id)}/entries/${d.i}`, guard(id, d.i)), 'Entry deleted'); return;
     case 'template': { const sec = wui.cache['ctx:' + d.id] && wui.cache['ctx:' + d.id].data; if (sec) openTemplate(sec); return; }
-    case 'del-section': if (confirm('Delete this section and all its entries? The file eggux/' + d.id + ' moves to eggux/.trash/.')) { const ok = await act(() => api('DELETE', '/api/context/' + enc(d.id), guard(d.id)), 'Section deleted'); if (ok) location.hash = '#/context'; } return;
+    case 'core': { const r = await act(() => api('POST', '/api/context', { core: d.id }), 'Section added'); if (r) { wui.chooser = false; location.hash = '#/context/' + enc(r.id); } return; }
+    case 'del-section': if (confirm(`Delete ${d.name || 'this section'}? The file eggux/${d.id} moves to eggux/.trash/. Claude and the skills stop reading it; add it back any time from New section.`)) { const ok = await act(() => api('DELETE', '/api/context/' + enc(d.id), guard(d.id)), 'Section deleted'); if (ok) location.hash = '#/context'; } return;
     case 'tpl-add': wui.tpl.fields.push({ label: 'New field', type: 'text' }); return drawTemplate();
     case 'tpl-del': wui.tpl.fields.splice(+d.i, 1); return drawTemplate();
     case 'tpl-up': { const i = +d.i, f = wui.tpl.fields; [f[i - 1], f[i]] = [f[i], f[i - 1]]; return drawTemplate(); }
@@ -316,7 +345,7 @@ document.addEventListener('click', async ev => {
     case 'res-retry': return act(() => api('POST', `/api/research/${d.slug}/retry`), 'Asked Claude again');
     case 'res-del': if (confirm('Delete this research and its findings?')) { await act(() => api('DELETE', '/api/research/' + d.slug), 'Deleted'); location.hash = '#/understand'; } return;
     case 'toggle-decided': wui.showDecided = !wui.showDecided; return render();
-    case 'choose': { const r = await act(() => api('POST', `/api/questions/${d.id}/choose`, { key: d.key })); if (r) toast(`${r.decision} logged, ${r.task} added to the board`); return; }
+    case 'choose': return openChoose(d.id, d.key);
     case 'another': return act(() => api('POST', `/api/questions/${d.id}/another`), 'Claude is looking for another option');
     case 'my-option': return openMyOption(d.id);
     case 'new-flow': return openNewFlow();
@@ -359,6 +388,8 @@ $('#work-dlg').addEventListener('close', async () => {
   }
   if (dlg.returnValue !== 'ok') return;
   const tf = $('#w-tpl-form', dlg), of = $('#w-opt-form', dlg), ff = $('#w-flow-form', dlg);
+  const cf = $('#w-choose-form', dlg);
+  if (cf) { const b = Object.fromEntries(new FormData(cf)); const r = await act(() => api('POST', `/api/questions/${cf.dataset.id}/choose`, { key: cf.dataset.key, ...b })); if (r) toast(`${r.decision} proposed, ${r.task} added to the board`); return; }
   if (tf) await act(() => api('PUT', `/api/context/${enc(wui.tpl.id)}/template`, { name: $('#w-tpl-name').value, fields: wui.tpl.fields, version: wui.tpl.version }), 'Template saved');
   if (of) { const b = Object.fromEntries(new FormData(of)); await act(() => api('POST', `/api/questions/${of.dataset.id}/options`, { title: b.title, pros: lines(b.pros), cons: lines(b.cons) }), 'Your option was added'); }
 });

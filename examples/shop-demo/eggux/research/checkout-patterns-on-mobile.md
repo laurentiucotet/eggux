@@ -36,8 +36,10 @@ These are general studies, not the client's data. Confirm the findings against t
 
 ### F-03 · Address autocomplete reduces abandonment
 - Source: Baymard, 2 case studies
-- Vote: open
+- Vote: accepted
+- Question: Q-004
 
 ### F-04 · Keep the primary button in the thumb zone
 - Source: 3 of 6 sources
-- Vote: open
+- Vote: accepted
+- Question: Q-005

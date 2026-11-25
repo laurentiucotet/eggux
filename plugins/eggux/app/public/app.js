@@ -36,6 +36,7 @@ const ICONS = {
   docs: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/>',
   understand: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/>',
   decide: '<path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3"/><path d="m15 9 6-6"/>',
+  components: '<path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>',
   flows: '<rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/>',
 };
 const icon = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]}</svg>`;
@@ -76,7 +77,7 @@ async function act(fn, ok) {
 // ---------- routing ----------
 function route() {
   const [, view = 'context', a, b] = location.hash.split('/');
-  return { view: ['context', 'docs', 'understand', 'decide', 'decisions', 'tasks', 'flows', 'notes'].includes(view) ? view : 'context', a: a ? decodeURIComponent(a) : '', b: b ? decodeURIComponent(b) : '' };
+  return { view: ['context', 'docs', 'understand', 'decide', 'decisions', 'tasks', 'flows', 'components', 'notes'].includes(view) ? view : 'context', a: a ? decodeURIComponent(a) : '', b: b ? decodeURIComponent(b) : '' };
 }
 window.addEventListener('hashchange', () => { render(); $('#main').focus({ preventScroll: true }); });
 
@@ -112,20 +113,20 @@ function linkify(text) {
 function renderNav() {
   const r = route();
   const w = S && S.work;
-  const cur = r.view === 'notes' ? 'context' : r.view;
+  const cur = r.view;
   const inboxN = allInbox().length;
   const openQ = w ? w.questions.filter(q => !/^decided/.test(q.status)) : [];
   const groups = [
-    ['Project', [['context', 'Context', w ? w.context.length : 0], ['docs', 'Documents', w ? w.docs.length : 0]]],
+    ['Project', [['context', 'Context', w ? w.context.length : 0], ['docs', 'Documents', w ? w.docs.length : 0], ['notes', 'Notes', S ? S.notes.length : 0]]],
     ['Discover', [['understand', 'Understand', w ? w.research.length : 0], ['decide', 'Decide', openQ.length]]],
-    ['Deliver', [['flows', 'Flows', S && S.flows ? S.flows.length : 0], ['tasks', 'Working board', openTasks().length]]],
+    ['Deliver', [['flows', 'Features', S && S.flows ? S.flows.length : 0], ['components', 'Components', ui.comps ? ui.comps.filter(p => p.used.length).length : ''], ['tasks', 'Working board', openTasks().length]]],
     ['Record', [['decisions', 'Decision log', inboxN ? `${inboxN} new` : allDecisions().length]]],
   ];
   // The open section lists its items under it, so you can jump between them.
   const sub = () => {
     if (!S) return [];
     if (cur === 'context') return [...(w ? w.context.map(x => [`#/context/${encodeURIComponent(x.id)}`, x.name, r.view === 'context' && (r.a === x.id || (!r.a && x === w.context[0]))]) : []),
-      ['#/context/terminology', 'Terminology', r.a === 'terminology'], ['#/notes', 'Notes', r.view === 'notes']];
+      ['#/context/terminology', 'Terminology', r.a === 'terminology']];
     if (cur === 'understand') return w ? w.research.map((x, i) => [`#/understand/${x.slug}`, x.title, r.a === x.slug || (!r.a && i === 0)]) : [];
     if (cur === 'decide') return openQ.map((x, i) => [`#/decide/${x.id}`, x.title, r.a === x.id || (!r.a && i === 0)]);
     if (cur === 'flows') return (S.flows || []).map((x, i) => [`#/flows/${x.slug}`, (x.group ? x.group + ' · ' : '') + x.name, r.a === x.slug || (!r.a && i === 0)]);
@@ -138,7 +139,7 @@ function renderNav() {
       ${kids.length ? `<div class="nav-sub">${kids.map(([href, l, active]) => `<a href="${href}" ${active ? 'aria-current="true"' : ''} title="${esc(l)}">${esc(l)}</a>`).join('')}</div>` : ''}`;
   }).join('')}</div>`).join('');
   $('#project-name').textContent = S ? S.project.name : 'Loading';
-  document.title = `${({ context: 'Context', docs: 'Documents', understand: 'Understand', decide: 'Decide', decisions: 'Decision log', tasks: 'Working board', flows: 'Flows', notes: 'Notes' })[r.view]} · ${S ? S.project.name : 'EGG UX Board'}`;
+  document.title = `${({ context: 'Context', docs: 'Documents', understand: 'Understand', decide: 'Decide', decisions: 'Decision log', tasks: 'Working board', flows: 'Features', components: 'Components', notes: 'Notes' })[r.view]} · ${S ? S.project.name : 'EGG UX Board'}`;
 }
 function setupState() {
   if (!S.project.hasFolder) return `<div class="card"><div class="empty"><strong>No eggux/ folder in this project</strong>Run <code>/eggux:init</code> in Claude Code in <code>${esc(S.project.root)}</code>. The board shows its decisions, tasks and notes as soon as the folder exists.</div></div>`;
@@ -359,7 +360,7 @@ function setStatus() {
 
 // ---------- flows ----------
 // Read-only view of eggux/features/<slug>/: the deliverable (handoff.md) first, then the source files.
-const FLOW_TABS = [['handoff', 'Handoff'], ['feature', 'Spec'], ['scenarios', 'Scenarios'], ['workflows', 'Flows'], ['decisions', 'Decisions']];
+const FLOW_TABS = [['handoff', 'Handoff'], ['screens', 'Screens'], ['feature', 'Spec'], ['scenarios', 'Scenarios'], ['workflows', 'Flows'], ['decisions', 'Decisions']];
 function flowBadge(s) {
   const w = String(s || 'draft').toLowerCase();
   const cls = /verified|built|ready for dev/.test(w) ? 's-verified' : /review/.test(w) ? 's-applied' : /design|ready/.test(w) ? 's-approved' : 's-proposed';
@@ -367,13 +368,14 @@ function flowBadge(s) {
 }
 function renderFlows(r) {
   const setup = setupState();
-  if (setup) return head('Flows', 'Features and their developer handoff.') + setup;
+  if (setup) return head('Features', 'Features and their developer handoff.') + setup;
   const flows = S.flows || [];
-  let html = head('Flows', `${flows.length} ${flows.length === 1 ? 'flow' : 'flows'} in <code>eggux/features/</code>. The handoff is what goes to the developers.`,
-    `<button class="btn" type="button" data-w="new-flow">${icon('plus')}New flow</button>`);
+  let html = head('Features', `${flows.length} ${flows.length === 1 ? 'feature' : 'features'} in <code>eggux/features/</code>. The handoff is what gets built; Screens shows it one screen at a time.`,
+    `<button class="btn" type="button" data-w="new-flow">${icon('plus')}New feature</button>`);
   if (!flows.length) return html + `<div class="card"><div class="empty"><strong>No features yet</strong>Run <code>/eggux:new-feature</code> in Claude Code. Each feature gets a folder with its spec, scenarios, flows and a <code>handoff.md</code> for developers.</div></div>`;
   const cur = flows.find(f => f.slug === r.a) || flows[0];
-  const file = FLOW_TABS.some(([k]) => k === r.b) && cur.files.includes(r.b) ? r.b : (cur.files.includes('handoff') ? 'handoff' : cur.files[0]);
+  const has = k => k === 'screens' ? cur.files.includes('handoff') : cur.files.includes(k);
+  const file = FLOW_TABS.some(([k]) => k === r.b) && has(r.b) ? r.b : (cur.files.includes('handoff') ? 'handoff' : cur.files[0]);
   const key = cur.slug + '/' + file;
   const tasks = S.tasks.filter(t => (t.links || []).includes('feature:' + cur.slug));
   const groups = [...new Set(flows.map(f => f.group || ''))].sort((a, b) => (a === '') - (b === '') || a.localeCompare(b));
@@ -387,6 +389,7 @@ function renderFlows(r) {
       <div class="flow-head"><div><h2>${esc(cur.name)}</h2>
         <div class="flow-meta">Spec ${flowBadge(cur.status)}${cur.handoff ? ` <span>Handoff v${esc(cur.handoff.version)}</span> ${flowBadge(cur.handoff.status)}` : ''}${cur.updated ? ` <span>Updated ${esc(cur.updated)}</span>` : ''}</div></div>
         <div class="row"><button class="btn ghost sm" type="button" data-act="flow-props" aria-expanded="${!!ui.flowProps}">${icon('pencil', 'sm')}Group and link</button>
+          ${(cur.questions || []).filter(q => !/^decided/.test(q.status)).map(q => `<a class="badge s-proposed" href="#/decide/${esc(q.id)}" title="Open question: ${esc(q.title)}">${esc(q.id)} · open</a>`).join(' ')}
           ${tasks.map(t => `<a class="badge outline" href="#/tasks/${esc(t.id)}" title="${esc(t.title)}">${esc(t.id)} · ${esc(t.status)}</a>`).join(' ')}</div></div>
       ${writing(cur) ? `<p class="drafting">${'<span class="spin" aria-hidden="true"></span>'}Claude is drafting this flow from your idea. The tabs fill in when it is done.</p>` : ''}
       ${S.work && S.work.errors['flow:' + cur.slug] && !writing(cur) ? `<p class="err-line" style="margin:0 20px 12px">${esc(S.work.errors['flow:' + cur.slug])}</p>` : ''}
@@ -395,13 +398,99 @@ function renderFlows(r) {
         <datalist id="flow-groups">${groups.filter(Boolean).map(g => `<option value="${esc(g)}">`).join('')}</datalist>
         <label class="grow"><span>Figma link</span><input class="input" name="figma" type="url" value="${esc(cur.figma || '')}" placeholder="https://www.figma.com/design/…"></label>
         <button class="btn outline sm">Save</button></form>
-      <div class="tab-row"><div class="tabs" role="tablist" aria-label="Feature files">${FLOW_TABS.filter(([k]) => cur.files.includes(k)).map(([k, l]) => `<a role="tab" href="#/flows/${esc(cur.slug)}/${k}" aria-selected="${k === file}">${l}</a>`).join('')}</div>
+      <div class="tab-row"><div class="tabs" role="tablist" aria-label="Feature files">${FLOW_TABS.filter(([k]) => has(k)).map(([k, l]) => `<a role="tab" href="#/flows/${esc(cur.slug)}/${k}" aria-selected="${k === file}">${l}</a>`).join('')}</div>
         ${cur.figma ? `<a class="btn outline sm" href="${esc(cur.figma)}" target="_blank" rel="noopener">${icon('figma', 'sm')}Figma</a>` : `<button class="btn ghost sm" type="button" data-act="flow-props">${icon('figma', 'sm')}Add Figma link</button>`}</div>
-      ${ui.flowDoc && ui.flowDoc.key === key ? `<div class="prose">${['scenarios', 'decisions'].includes(file) ? accordion(ui.flowDoc.body) : md(ui.flowDoc.body)}</div><p class="file-path">eggux/features/${esc(cur.slug)}/${esc(file)}.md</p>` : '<div class="empty">Loading</div>'}
+      ${file === 'screens' ? screensHtml(cur, key) : ui.flowDoc && ui.flowDoc.key === key ? `<div class="prose">${['scenarios', 'decisions'].includes(file) ? accordion(ui.flowDoc.body) : md(ui.flowDoc.body)}</div><p class="file-path">eggux/features/${esc(cur.slug)}/${esc(file)}.md</p>` : '<div class="empty">Loading</div>'}
     </div></div>`;
-  if (!ui.flowDoc || ui.flowDoc.key !== key || ui.flowDoc.sig !== S.flowSig) loadFlowDoc(cur.slug, file, key);
+  if (file !== 'screens' && (!ui.flowDoc || ui.flowDoc.key !== key || ui.flowDoc.sig !== S.flowSig)) loadFlowDoc(cur.slug, file, key);
   return html;
 }
+// ---------- screens: one view per screen, gathered from handoff.md and scenarios.md ----------
+const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+function compLink(name) {
+  const page = (ui.comps || []).find(p => p.components.some(c => c.toLowerCase() === name.toLowerCase()));
+  return page ? `<a class="badge outline" href="#/components/${esc(page.file)}/${esc(slugify(name))}">${esc(name)}</a>` : `<span class="badge outline" title="Not in the EGG UI reference">${esc(name)}</span>`;
+}
+function screensHtml(cur, key) {
+  if (!ui.comps) loadComps();
+  if (!ui.screens || ui.screens.key !== key || ui.screens.sig !== S.flowSig) { loadScreens(cur.slug, key); return '<div class="empty">Loading</div>'; }
+  const list = ui.screens.list;
+  if (!list.length) return `<div class="empty"><strong>No screens yet</strong>The table "Screens and states" in <code>handoff.md</code> lists them; each one gets its route, states, components, copy and scenarios here.</div>`;
+  const qs = (cur.questions || []).filter(q => !/^decided/.test(q.status));
+  const cell = t => linkify(t || '');
+  return `<div class="screens">${qs.length ? `<p class="source-line"><strong>Open for this feature:</strong> ${qs.map(q => `<a href="#/decide/${esc(q.id)}">${esc(q.id)}</a> ${esc(q.title)}`).join(' · ')}</p>` : ''}
+    ${list.map((sc, i) => `<details class="acc screen" ${i === 0 ? 'open' : ''}><summary><strong>${esc(sc.name)}</strong><span class="muted small"> · ${sc.states.length} states · ${sc.components.length} components</span></summary>
+      <div class="acc-body">
+        <dl class="screen-facts">
+          ${sc.route ? `<dt>Route</dt><dd>${cell(sc.route)}</dd>` : ''}
+          ${sc.data ? `<dt>Data</dt><dd>${cell(sc.data)}</dd>` : ''}
+          ${sc.refresh ? `<dt>On refresh</dt><dd>${cell(sc.refresh)}</dd>` : ''}
+          <dt>Figma</dt><dd>${/^https?:\/\//.test(sc.figma) ? `<a href="${esc(sc.figma)}" target="_blank" rel="noopener">${icon('figma', 'sm')}Open frame</a>` : esc(sc.figma || 'not linked')}</dd>
+        </dl>
+        <h4>States to build</h4><div class="chips">${sc.states.map(s => `<span class="badge s-proposed">${esc(s)}</span>`).join(' ') || '<span class="muted">none listed</span>'}</div>
+        <h4>Components</h4>${sc.components.length ? `<div class="table-wrap"><table class="screen-table"><thead><tr><th>Component</th><th>Props</th><th>Story</th></tr></thead><tbody>${sc.components.map(c => `<tr><td>${compLink(c.name)}</td><td>${cell(c.props)}</td><td>${cell(c.story)}</td></tr>`).join('')}</tbody></table></div>` : '<p class="muted">none listed</p>'}
+        ${sc.copy.length ? `<h4>Copy</h4><div class="table-wrap"><table class="screen-table"><tbody>${sc.copy.map(c => `<tr><td class="muted">${esc(c.where)}</td><td>${cell(c.text)}</td></tr>`).join('')}</tbody></table></div>` : ''}
+        ${sc.scenarios.length ? `<h4>Scenarios</h4><ul class="screen-scen">${sc.scenarios.map(x => `<li><strong>${esc(x.id)}</strong> ${esc(x.title)}${x.then ? `<div class="muted small">Then: ${esc(x.then)}</div>` : ''}</li>`).join('')}</ul>` : ''}
+      </div></details>`).join('')}</div><p class="file-path">from eggux/features/${esc(cur.slug)}/handoff.md and scenarios.md</p>`;
+}
+async function loadScreens(slug, key) {
+  if (ui.screensLoading === key) return; ui.screensLoading = key;
+  const sig = S.flowSig;
+  try { const d = await api('GET', `/api/flows/${encodeURIComponent(slug)}/screens`); ui.screens = { key, sig, list: d.screens }; }
+  catch (e) { ui.screens = { key, sig, list: [] }; }
+  ui.screensLoading = null;
+  if (route().view === 'flows') render();
+}
+
+// ---------- components: the EGG UI reference, and where each component is used ----------
+async function loadComps() {
+  if (ui.compsLoading) return; ui.compsLoading = true;
+  const sig = S.flowSig;
+  try { ui.comps = (await api('GET', '/api/components')).pages; } catch { ui.comps = []; }
+  ui.compsSig = sig; ui.compsLoading = false; render();
+}
+function renderComponents(r) {
+  if (!ui.comps || ui.compsSig !== S.flowSig) { loadComps(); if (!ui.comps) return head('Components', '') + '<div class="card"><div class="empty">Loading</div></div>'; }
+  const pages = ui.comps;
+  const q = (ui.compFilter || '').toLowerCase();
+  const shown = pages.filter(p => !q || p.page.toLowerCase().includes(q) || p.components.some(c => c.toLowerCase().includes(q)));
+  const usedPages = shown.filter(p => p.used.length), rest = shown.filter(p => !p.used.length);
+  const cur = pages.find(p => p.file === r.a) || usedPages[0] || shown[0] || pages[0];
+  const screensOf = p => new Set(p.used.flatMap(u => u.uses.map(x => x.slug + '|' + x.screen))).size;
+  const item = p => `<li><a href="#/components/${esc(p.file)}" ${cur && p.file === cur.file ? 'aria-current="true"' : ''}><div class="t">${esc(p.page)}</div><div class="x">${p.used.length ? `${p.used.map(u => esc(u.component)).join(', ')} · ${screensOf(p)} screens` : p.components.length + ' components'}</div></a></li>`;
+  return head('Components', 'The EGG UI reference, generated from Figma, and which screens of your features use each component. After you change a component in Figma or Storybook, recheck the screens listed here.') +
+    `<div class="notes"><div class="card"><div class="card-body" style="padding-bottom:8px"><input class="input" id="comp-filter" placeholder="Find a component" value="${esc(ui.compFilter || '')}" aria-label="Find a component"></div>
+    ${usedPages.length ? `<h3 class="list-title">Used in this project · ${usedPages.length}</h3><ul class="note-list">${usedPages.map(item).join('')}</ul>` : ''}
+    <h3 class="list-title">Library · ${rest.length}</h3><ul class="note-list">${rest.map(item).join('')}</ul></div>
+    <div class="card flow-card">${cur ? compDetail(cur, r.b) : '<div class="empty">No component reference found</div>'}</div></div>`;
+}
+function compDetail(p, anchor) {
+  const key = 'comp:' + p.file;
+  if (!ui.compDoc || ui.compDoc.key !== key) loadCompDoc(p.file, key);
+  const byFeature = list => [...new Set(list.map(x => x.slug))].map(slug => { const xs = list.filter(x => x.slug === slug); return `${esc(xs[0].feature)}: ${xs.map(x => `<a href="#/flows/${esc(slug)}/screens">${esc(x.screen || 'handoff')}</a>`).join(', ')}`; }).join('; ');
+  const uses = p.used.length ? `<div class="card-body comp-uses"><h4>Used in</h4><ul>${p.used.map(u => `<li><strong>${esc(u.component)}</strong> · ${byFeature(u.uses)}</li>`).join('')}</ul></div>`
+    : '<div class="card-body comp-uses"><p class="muted" style="margin:0">Not used by any feature handoff yet.</p></div>';
+  const ready = ui.compDoc && ui.compDoc.key === key;
+  const body = ready ? md(ui.compDoc.body).replace(/href="#([a-z0-9-]+)"/g, (m, a) => `href="#/components/${esc(p.file)}/${a}"`)
+    .replace(/\[([^\]<]+)\]\(#([a-z0-9-]+)\)/g, (m, t, a) => `<a href="#/components/${esc(p.file)}/${a}">${t}</a>`) : '<div class="empty">Loading</div>';
+  if (ready && anchor && ui.compScrolled !== key + anchor) {
+    ui.compScrolled = key + anchor;
+    setTimeout(() => { const h = [...document.querySelectorAll('.comp-doc h2, .comp-doc h3')].find(x => slugify(x.textContent) === anchor); if (h) h.scrollIntoView({ block: 'start' }); }, 0);
+  }
+  return `<div class="flow-head"><div><h2>${esc(p.page)}</h2><div class="flow-meta"><span>${p.components.length} components</span></div></div></div>${uses}<div class="prose comp-doc">${body}</div><p class="file-path">plugins/eggux/references/components/${esc(p.file)}.md</p>`;
+}
+async function loadCompDoc(file, key) {
+  if (ui.compDocLoading === key) return; ui.compDocLoading = key;
+  try { const d = await api('GET', `/api/components/${encodeURIComponent(file)}`); ui.compDoc = { key, body: d.body }; }
+  catch (e) { ui.compDoc = { key, body: '_Could not read this page: ' + e.message + '_' }; }
+  ui.compDocLoading = null;
+  if (route().view === 'components') render();
+}
+document.addEventListener('input', ev => {
+  if (ev.target.id !== 'comp-filter') return;
+  ui.compFilter = ev.target.value; render();
+});
+
 // Each "### " block (a scenario, an edge case, a decision) becomes a collapsible row.
 function accordion(src) {
   const parts = String(src || '').split(/^(?=#{2,3} )/m);
@@ -505,7 +594,7 @@ function render() {
     $('.page-head').replaceWith($('.page-head', list));
   } else {
     const extra = window.WORK_VIEWS && window.WORK_VIEWS[r.view];
-    $('#main').innerHTML = extra ? extra(r) : r.view === 'tasks' ? renderTasks(r) : r.view === 'notes' ? renderNotes(r) : r.view === 'flows' ? renderFlows(r) : renderDecisions(r);
+    $('#main').innerHTML = extra ? extra(r) : r.view === 'tasks' ? renderTasks(r) : r.view === 'notes' ? renderNotes(r) : r.view === 'flows' ? renderFlows(r) : r.view === 'components' ? renderComponents(r) : renderDecisions(r);
   }
   if (id && document.getElementById(id) && document.getElementById(id) !== a) {
     const el = document.getElementById(id); el.focus({ preventScroll: true });

@@ -3,6 +3,8 @@
 Everything specific to one client lives in an `eggux/` folder at the root of the client's
 project. The plugin holds the method; this folder holds the client's answers.
 
+Brand, objects, actors and workflows are optional: a project deletes the ones it does not need (from the board, Context) and every skill works with what exists. `discovery` or the board's New section adds them back.
+
 | File | Written by | Read by |
 |---|---|---|
 | `eggux/brand.md` | brand-intake | build-ui, review |
@@ -10,6 +12,7 @@ project. The plugin holds the method; this folder holds the client's answers.
 | `eggux/actors.md` | discovery | build-ui, review |
 | `eggux/workflows.md` | discovery | build-ui, review |
 | `eggux/decisions.md` | decision-log (and anyone deciding something), board | build-ui, review, board |
+| `eggux/questions.md` (Q-xxx, the one list of open questions) | discovery, new-feature, decision-log, board (Understand, Decide) | board, decision-log; a chosen option becomes a `proposed` decision |
 | `eggux/tasks.md` (T-xxx, one pipeline stage each) | board, anyone (chat or editor) | board, every skill that finishes a task |
 | `eggux/notes/<date>-<slug>.md` | board, anyone | board; decisions in notes go to the Inbox |
 | `eggux/features/<slug>/feature.md` | new-feature, update-feature | build-ui, review |
@@ -35,8 +38,9 @@ FD-xx feature decisions. A feature decision that changes the whole product is al
 `eggux/decisions.md`; product decisions win. `/eggux:update-feature` keeps the folder, the
 product files and the Figma page in sync.
 
-The board (`/eggux:board`) is a local web interface over `decisions.md`, `tasks.md` and
-`notes/`; the files stay the source of truth. Stages and deliverables: `references/pipeline.md`.
+The board (`/eggux:board`) is a local web interface over all of `eggux/`: context sections,
+`docs/`, `research/`, `questions.md`, feature folders, `decisions.md`, `tasks.md` and `notes/`;
+the files stay the source of truth. Stages and deliverables: `references/pipeline.md`.
 
 If a skill needs a file that does not exist yet, it tells the user which skill creates it
 (`/eggux:init`, `/eggux:discovery`, `/eggux:brand-intake`) instead of guessing the content.

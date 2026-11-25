@@ -107,18 +107,26 @@ class Project {
   flows() {
     let names = [];
     try { names = fs.readdirSync(this.p('features')).filter(n => /^[a-z0-9][a-z0-9-]*$/.test(n) && fs.statSync(this.p('features', n)).isDirectory()).sort(); } catch { return []; }
+    const featureQs = String(this.read('questions.md') || '').split(/^(?=## Q-\d+ · )/m).map(b => {
+      const h = /^## (Q-\d+) · (.+)$/m.exec(b); const src = /^- Source:\s*feature:([a-z0-9-]+)/m.exec(b);
+      return h && src ? { id: h[1], title: h[2].trim(), feature: src[1], status: ((/^- Status:\s*(.*)$/m.exec(b) || [])[1] || 'open').trim() } : null;
+    }).filter(Boolean);
     return names.map(slug => {
       const spec = splitFrontmatter(this.read(path.join('features', slug, 'feature.md')) || '');
       const handoffText = this.read(path.join('features', slug, 'handoff.md'));
       const handoff = handoffText == null ? null : splitFrontmatter(handoffText);
       const scen = this.read(path.join('features', slug, 'scenarios.md')) || '';
-      const openQ = (spec.body.split(/^## Open questions/m)[1] || '').split(/^## /m)[0]
+      // Open questions are Q-xxx in questions.md with Source feature:<slug>; older folders may
+      // still have numbered rows with an empty Answer in feature.md.
+      const legacyQ = (spec.body.split(/^## Open questions/m)[1] || '').split(/^## /m)[0]
         .split('\n').filter(l => /^\|\s*\d+\s*\|/.test(l) && /\|\s*\|\s*$/.test(l)).length;
+      const questions = featureQs.filter(q => q.feature === slug).map(({ id, title, status }) => ({ id, title, status }));
+      const openQ = questions.filter(q => !/^decided/.test(q.status)).length + legacyQ;
       const v = (m, k, d = '') => String(m[k] == null ? d : m[k]).replace(/\s+#.*$/, '').replace(/^"(.*)"$/, '$1').trim() || d;
       return {
         slug, name: v(spec.meta, 'feature', slug), status: v(spec.meta, 'status', 'draft'), group: v(spec.meta, 'group'),
         figma: v(spec.meta, 'figma'), updated: v(spec.meta, 'updated'),
-        scenarios: (scen.match(/^### S-\d+/gm) || []).length, edgeCases: (scen.match(/^### E-\d+/gm) || []).length, openQuestions: openQ,
+        scenarios: (scen.match(/^### S-\d+/gm) || []).length, edgeCases: (scen.match(/^### E-\d+/gm) || []).length, openQuestions: openQ, questions,
         handoff: handoff ? { status: v(handoff.meta, 'status', 'draft'), version: v(handoff.meta, 'version', '1'), updated: v(handoff.meta, 'updated') } : null,
         files: FLOW_FILES.filter(f => this.read(path.join('features', slug, f + '.md')) != null),
       };

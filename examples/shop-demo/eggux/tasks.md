@@ -15,6 +15,30 @@ build, qa, release, feedback. Links: decision ids (D-007, FD-03), `feature:<slug
 
 ## Tasks
 
+### T-007 · Apply D-010: Address autocomplete with manual fallback
+- Status: todo
+- Stage: design
+- Links: D-010
+- Created: 2026-11-25
+
+### T-006 · Apply D-009: Fixed bottom bar for the primary button on every checkout step
+- Status: todo
+- Stage: design
+- Links: D-009
+- Created: 2026-11-25
+
+### T-005 · Apply D-008: Keep saving at step 4, after payment
+- Status: todo
+- Stage: design
+- Links: D-008
+- Created: 2026-11-25
+
+### T-004 · Apply D-007: Passkey first, emailed link as fallback, no password at save
+- Status: todo
+- Stage: design
+- Links: D-007
+- Created: 2026-11-25
+
 ### T-003 · Apply D-006: 48 px high
 - Status: todo
 - Stage: design

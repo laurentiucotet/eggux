@@ -406,3 +406,25 @@ dialog.diagram-dlg[open] { display: flex; }
 .row-actions { white-space: nowrap; text-align: right; width: 72px; }
 .term-edit { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto auto; gap: 8px; align-items: center; }
 .doc-edit { font: 13px/1.6 var(--mono); min-height: 360px; }
+
+.notes.half { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+@media (max-width: 900px) { .notes.half { grid-template-columns: minmax(0, 1fr); } }
+
+/* Screens tab: one collapsible block per screen */
+.screens { padding: 0 20px 8px; }
+.screen .acc-body h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted-foreground); margin: 14px 0 6px; }
+.screen-facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; margin: 4px 0 0; font-size: 13px; }
+.screen-facts dt { color: var(--muted-foreground); }
+.screen-facts dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.screen-table { border-collapse: collapse; width: 100%; font-size: 13px; line-height: 1.5; }
+.screen-table th, .screen-table td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--border); overflow-wrap: normal; word-break: normal; }
+.screen-table th { font-weight: 600; color: var(--muted-foreground); }
+.screen-table td:first-child { white-space: nowrap; }
+.screen-scen { margin: 0 0 10px; padding-left: 18px; font-size: 13px; }
+.screen-scen li { margin: 0 0 6px; }
+/* Components view */
+.comp-uses { padding-top: 0; }
+.comp-uses h4 { margin: 0 0 6px; font-size: 13px; }
+.comp-uses ul { margin: 0; padding-left: 18px; font-size: 13px; }
+.comp-doc { padding: 0 20px 12px; }

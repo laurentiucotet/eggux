@@ -63,8 +63,10 @@ ambiguous (scope, which actors, which version). Apply after the user agrees or s
    template: type, decision, affects (files, IDs, frames), source with date and time, status
    `applied <date>`. A product-wide item also becomes a `D-xxx` in `eggux/decisions.md` through
    `decision-log`, linked from the FD. Remove the processed Inbox lines.
-2. **`feature.md`:** update the affected sections; answered open questions get their answer and
-   date; Screens table statuses; "Impact on the product" rows; `updated` date; status back to
+2. **`feature.md`:** update the affected sections; an answered open question gets the decision
+   ID in the Status column, and its Q-xxx in `eggux/questions.md` gets `- Status: decided
+   (FD-xx)` (or `decided A (D-xxx)` when it was chosen in the board); new unknowns become new
+   Q-xxx with `Source: feature:<slug>`; Screens table statuses; "Impact on the product" rows; `updated` date; status back to
    `in design` when designed screens must change.
 3. **`scenarios.md`:** edit Given / When / Then; add new S-xx or E-xx with the next free ID;
    removed ones keep their ID with status `removed` and the FD that removed them.

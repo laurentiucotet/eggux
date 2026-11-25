@@ -12,7 +12,7 @@ updated: "2026-11-25"
 What a developer needs to build this feature, in one file. Compiled from `feature.md`,
 `scenarios.md`, `workflows.md` and `decisions.md` in this folder; those stay the source.
 
-**Why it is still `draft`:** the client has not confirmed open questions 1 and 2 (backend), and
+**Why it is still `draft`:** the client has not confirmed open questions Q-012 and Q-013 (backend), and
 there are no Figma frames yet (this sample project has no Figma file). Front-end screens, copy,
 emails and the admin button can be built now; the two backend rules use the proposed defaults
 until the client answers.
@@ -153,11 +153,11 @@ Final unless marked (draft). Voice: informal "you", short, no blame.
 | `password_reset_completed` | Password saved | `return_to`: `checkout`, `account`, `other` (any other page) |
 
 ## Open questions
-| # | Question | Blocks build | Owner |
+| ID | Question | Blocks build | Build meanwhile with |
 |---|---|---|---|
-| 1 | Email an address with no account ("no account found")? Proposed: send nothing. | backend only; build with the proposal | Client |
-| 2 | Does a successful reset unlock an account locked after failed sign-ins? Proposed: yes. | backend only; build with the proposal | Client |
-| 3 | Target for "resets that end signed in". | no | Client |
+| Q-012 | Email an address with no account? | backend only | Send nothing; same message as for a known address |
+| Q-013 | Does a successful reset unlock an account locked after failed sign-ins? | backend only | Yes, a successful reset unlocks it |
+| Q-014 | Target for "resets that end signed in". | no | |
 
 ## Not in this version
 Reset by SMS or code; changing the password while signed in; passkeys.

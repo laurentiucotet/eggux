@@ -18,6 +18,9 @@ const slugify = s => one(s).toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, 
 const err = (code, msg) => Object.assign(new Error(msg), { code });
 const CORE = ['actors.md', 'stakeholders.md', 'objects.md', 'workflows.md', 'brand.md'];
 const DOCUMENT_ONLY = ['brand.md'];
+// The base sections that skills read at fixed paths; removable, and added back from the init templates.
+const CORE_TEMPLATES = { 'actors.md': 'Actors', 'objects.md': 'Objects', 'workflows.md': 'Workflows', 'brand.md': 'Brand' };
+const TEMPLATE_DIR = path.join(__dirname, '..', '..', 'skills', 'init', 'templates');
 const FIELD_TYPES = ['text', 'long', 'list'];
 const CHANGED = 'This changed on disk since you opened it (Claude, a skill or another window). The board reloaded it; make your change again.';
 
@@ -112,7 +115,8 @@ function readSection(project, rel) {
   const name = metaVal(meta, 'section') || (h1 ? h1[1].trim() : path.basename(rel, '.md'));
   const kind = DOCUMENT_ONLY.includes(rel) ? 'document' : 'entries';
   const version = fileVersion(project, rel);
-  if (kind === 'document') return { id: rel, name, kind, custom: false, body, entries: [], fields: [], version };
+  const core = CORE.includes(rel);
+  if (kind === 'document') return { id: rel, name, kind, core, custom: !core, body, entries: [], fields: [], version };
   const { entries } = parseEntries(body);
   let fields = parseTemplate(metaVal(meta, 'template'));
   if (!fields.length) { // infer from what the entries use
@@ -126,7 +130,7 @@ function readSection(project, rel) {
   if (!metaVal(meta, 'template')) fields.unshift({ label: 'Name', type: 'text' }); // the "## " heading
   const real = entries.filter(e => !/^\(.*\)$/.test(e.title)); // skip "(Actor name)" template placeholders
   return {
-    id: rel, name, kind, custom: rel.startsWith('context/'), fields, version,
+    id: rel, name, kind, core, custom: !core, fields, version,
     entries: real.map((e, i) => ({ index: entries.indexOf(e), title: e.title, values: e.values, suggested: e.suggested, extra: e.extra })),
     hasTemplate: !!metaVal(meta, 'template'),
   };
@@ -134,7 +138,7 @@ function readSection(project, rel) {
 
 function contextState(project) {
   return sectionFiles(project).map(rel => {
-    try { const s = readSection(project, rel); return { id: s.id, name: s.name, kind: s.kind, custom: s.custom, count: s.entries.length, fields: s.fields.length, suggested: s.entries.filter(e => e.suggested).length }; }
+    try { const s = readSection(project, rel); return { id: s.id, name: s.name, kind: s.kind, core: s.core, custom: s.custom, count: s.entries.length, fields: s.fields.length, suggested: s.entries.filter(e => e.suggested).length }; }
     catch { return null; }
   }).filter(Boolean);
 }
@@ -192,7 +196,8 @@ function saveTemplate(project, rel, { name, fields, version }) {
   return { ok: true };
 }
 
-function createSection(project, { name, fields }) {
+function createSection(project, { name, fields, core }) {
+  if (core) return addCoreSection(project, core);
   const n = one(name);
   if (!n) throw err(400, 'Enter a name');
   const rel = 'context/' + slugify(n) + '.md';
@@ -213,8 +218,17 @@ function saveDocument(project, rel, body, version) {
   project.write(rel, text);
   return { ok: true };
 }
+// A base section removed earlier comes back from the same template /eggux:init uses.
+function addCoreSection(project, rel) {
+  if (!CORE_TEMPLATES[rel]) throw err(400, 'Unknown base section');
+  if (project.read(rel) != null) throw err(409, `${CORE_TEMPLATES[rel]} already exists`);
+  const tpl = fs.readFileSync(path.join(TEMPLATE_DIR, rel), 'utf8').replace(/\r\n/g, '\n');
+  const client = ['decisions.md', ...Object.keys(CORE_TEMPLATES)].map(f => (/^client:\s*"?(.*?)"?\s*$/m.exec(project.read(f) || '') || [])[1]).find(Boolean) || '';
+  project.write(rel, tpl.replace(/\{\{client\}\}/g, client).replace(/\{\{date\}\}/g, today()).replace(/\{\{figma_url\}\}/g, ''));
+  return { id: rel };
+}
+// Any section can be deleted; the file moves to eggux/.trash/ and can be added back.
 function deleteSection(project, rel, version) {
-  if (!rel.startsWith('context/')) throw err(400, 'Only sections you created can be deleted here');
   readSection(project, rel);
   checkVersion(project, rel, version);
   project.trash(rel);
@@ -320,7 +334,7 @@ function voteFinding(project, slug, fid, vote) {
   f.vote = vote;
   let q = null;
   if (vote === 'accepted' && !f.question) {
-    q = addQuestion(project, { title: `What do we do about: ${f.title.replace(/\.$/, '')}?`, type: 'finding', source: `research:${slug} ${fid}`, askClaude: true });
+    q = addQuestion(project, { title: f.title.replace(/\.$/, ''), type: 'finding', source: `research:${slug} ${fid}`, askClaude: true });
     f.question = q.id;
   }
   project.write(`research/${slug}.md`, researchText(r));
@@ -371,9 +385,25 @@ function addQuestion(project, { title, type, source, askClaude }) {
   if (askClaude !== false) runOptions(project, id, false);
   return { id };
 }
+// Questions a feature cannot answer yet go to questions.md, with the proposed default as option A.
+function addFeatureQuestions(project, slug, list) {
+  const items = (Array.isArray(list) ? list : []).map(x => typeof x === 'string' ? { question: x } : x || {}).filter(x => one(x.question)).slice(0, 8);
+  if (!items.length) return [];
+  const qs = parseQuestions(project);
+  let n = qs.reduce((m, x) => Math.max(m, parseInt(x.id.slice(2), 10) || 0), 0);
+  const out = items.map(x => {
+    const id = 'Q-' + String(++n).padStart(3, '0'); const def = one(x.default); const blocks = one(x.blocks);
+    qs.unshift({ id, title: one(x.question), type: 'unknown', source: `feature:${slug}`, category: 'behavior', status: 'open', recommended: def ? 'A' : '',
+      options: def ? [{ key: 'A', title: def, pros: [], cons: [], by: 'claude', extra: [] }] : [], extra: blocks ? [`- Blocks: ${blocks}`] : [] });
+    return { id, title: one(x.question), blocks, def };
+  });
+  writeQuestions(project, qs);
+  return out;
+}
 function runOptions(project, id, another) {
   const q0 = parseQuestions(project).find(x => x.id === id);
   if (!q0) return;
+  if (!q0.options.length) another = false; // nothing to add to yet: ask for the first two
   job('options:' + id, async () => {
     const existing = q0.options.map(o => `${o.key}: ${o.title} (pros: ${o.pros.join('; ')}; cons: ${o.cons.join('; ')})`).join('\n');
     const res = await askJson(project.root, `You work with a product designer on the project below and something must be decided: "${q0.title}" (source: ${q0.source}). ${LANG}
@@ -409,18 +439,22 @@ function addOption(project, id, { title, pros, cons }) {
   writeQuestions(project, qs);
   return { ok: true };
 }
-function chooseOption(project, id, key) {
+function chooseOption(project, id, key, body = {}) {
   const qs = parseQuestions(project); const q = qs.find(x => x.id === id);
   if (!q) throw err(404, 'Question not found');
   if (/^decided/.test(q.status)) throw err(409, 'Already decided');
   const o = q.options.find(x => x.key === key);
   if (!o) throw err(404, 'Option not found');
+  // The choice is recorded as proposed: /eggux:decision-log makes it exact, checks conflicts,
+  // approves, applies and verifies it, like any other decision.
+  const others = q.options.filter(x => x.key !== key).map(x => `${x.key} (${x.title})`).join(', ');
   const did = project.addDecision('product', {
-    title: `${q.title.replace(/\?$/, '')}: ${o.title}`.slice(0, 140), type: DECISION_TYPES.includes(q.category) ? q.category : 'design',
-    decision: `${o.title}.${o.pros.length ? ' Pros: ' + o.pros.join('; ') + '.' : ''}${o.cons.length ? ' Cons: ' + o.cons.join('; ') + '.' : ''}`,
-    scope: '', reason: `Option ${o.key} of ${q.id} (${q.source}).`, from: 'Decide', status: 'approved',
+    title: o.title.slice(0, 140), type: DECISION_TYPES.includes(q.category) ? q.category : 'design',
+    decision: one(body.decision) || o.title, scope: one(body.scope), verify: one(body.verify),
+    reason: `Answers ${q.id} (${q.title.replace(/[.?]$/, '')}).${o.pros.length ? ' Because: ' + o.pros.slice(0, 2).join('; ') + '.' : ''}${others ? ' Not chosen: ' + others + '.' : ''}`,
+    from: `Decide (${q.source})`, status: 'proposed',
   });
-  const tid = project.addTask({ title: `Apply ${did}: ${o.title}`.slice(0, 140), status: 'todo', stage: 'design', deliverable: '', links: did });
+  const tid = project.addTask({ title: `Apply ${did}: ${o.title}`.slice(0, 140), status: 'todo', stage: 'decisions', deliverable: `${did} applied and verified with /eggux:decision-log`, links: `${did}, ${q.id}` });
   q.status = `decided ${o.key} (${did})`;
   writeQuestions(project, qs);
   return { decision: did, task: tid };
@@ -555,7 +589,7 @@ Answer ONLY with JSON:
  "scenarios": [{"title": "...", "actor": "...", "given": "...", "when": "...", "then": "..."}],
  "edgeCases": [{"title": "...", "given": "...", "when": "...", "then": "..."}],
  "screens": ["..."],
- "openQuestions": ["..."]}
+ "openQuestions": [{"question": "...", "blocks": "what waits on the answer (build, backend, copy, nothing)", "default": "a sensible answer to build with meanwhile, or empty"}]}
 1 to 3 flows, 2 to 4 scenarios, 3 to 6 edge cases.`, { maxTurns: 6, timeoutMs: 8 * 60 * 1000 });
     const d = today();
     const edited = FLOW_FILES.filter(f => versions[f] && versions[f] !== fileVersion(project, `features/${slug}/${f}.md`));
@@ -579,13 +613,14 @@ Answer ONLY with JSON:
     project.write(`features/${slug}/scenarios.md`, `---\nfeature: ${JSON.stringify(name)}\nupdated: "${d}"\n---\n\n# Scenarios and edge cases: ${name}\n\n## Scenarios\n\n${scen.join('\n')}\n## Edge cases\n\n${edges.join('\n')}`);
     let spec = project.read(`features/${slug}/feature.md`) || '';
     spec = spec.replace(/## Summary\n[\s\S]*?(?=\n## )/, `## Summary\n${one(res.summary)}\n`);
-    const oq = (res.openQuestions || []).map((q, i) => `| ${i + 1} | ${one(q)} | | ${d} | |`).join('\n');
-    if (oq) spec = spec.replace(/(## Open questions\n\| # \| Question \| Blocks \| Asked \| Answer \|\n\|---\|---\|---\|---\|---\|\n)/, `$1${oq}\n`);
+    // Open questions live in questions.md; the feature and handoff tables list their IDs.
+    const oqs = addFeatureQuestions(project, slug, res.openQuestions);
+    if (oqs.length) spec = spec.replace(/(## Open questions\n[\s\S]*?\| ID \| Question \| Blocks \| Status \|\n\|---\|---\|---\|---\|\n)/, `$1${oqs.map(q => `| ${q.id} | ${q.title} | ${q.blocks || '?'} | open |`).join('\n')}\n`);
     project.write(`features/${slug}/feature.md`, setMeta(spec, 'updated', d));
     let ho = project.read(`features/${slug}/handoff.md`) || '';
     ho = ho.replace(/## What to build\n[\s\S]*?(?=\n## )/, `## What to build\n${one(res.summary)}\n`)
       .replace(/## Done when\n[\s\S]*?(?=\n## )/, `## Done when\n${[...sc.map((s, i) => `- [ ] ${id2('S', i)} · ${one(s.title)}: ${one(s.then)}`), ...ec.map((s, i) => `- [ ] ${id2('E', i)} · ${one(s.title)}: ${one(s.then)}`)].join('\n')}\n`)
-      .replace(/(## Open questions\n[^\n]*\n\| # \| Question \| Blocks build \| Owner \|\n\|---\|---\|---\|---\|\n)/, `$1${(res.openQuestions || []).map((q, i) => `| ${i + 1} | ${one(q)} | ? | Client |`).join('\n')}\n`);
+      .replace(/(## Open questions\n[\s\S]*?\| ID \| Question \| Blocks build \| Build meanwhile with \|\n\|---\|---\|---\|---\|\n)/, `$1${oqs.map(q => `| ${q.id} | ${q.title} | ${q.blocks || '?'} | ${q.def || '?'} |`).join('\n')}\n`);
     project.write(`features/${slug}/handoff.md`, ho);
   }, e => lastErrors.set('flow:' + slug, e.message));
 }
@@ -608,7 +643,7 @@ function updateFlowMeta(project, slug, { group, figma }) {
 
 module.exports = {
   createFlow, updateFlowMeta, saveDocument, fileVersion,
-  workState, workFiles, jobsSignature, recover, readSection, writeEntry, saveTemplate, createSection, deleteSection, suggestEntry,
+  workState, workFiles, jobsSignature, recover, readSection, writeEntry, saveTemplate, createSection, addCoreSection, deleteSection, suggestEntry,
   parseResearch, createResearch, runResearch, voteFinding, deleteResearch,
-  addQuestion, addOption, chooseOption, runOptions, uploadDoc, deleteDoc, readDoc,
+  parseQuestions, addQuestion, addFeatureQuestions, addOption, chooseOption, runOptions, uploadDoc, deleteDoc, readDoc,
 };
