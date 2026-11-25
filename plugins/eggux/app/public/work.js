@@ -44,7 +44,7 @@ function renderContext(r) {
       <form class="row" id="w-newsec"><label class="sr-only" for="w-secname">Section name</label><input class="input" id="w-secname" placeholder="Another section, e.g. Pricing rules" style="flex:1;min-width:200px"><button class="btn outline">Create empty</button></form></div>`;
   const sec = cur ? cached('ctx:' + cur.id, '/api/context/' + enc(cur.id)) : null;
   const nTerms = S.decisions.product ? S.decisions.product.terminology.length : 0;
-  html += `<div class="notes"><div class="card"><ul class="note-list">${secs.map(s => `<li><a href="#/context/${enc(s.id)}" ${cur && s.id === cur.id ? 'aria-current="true"' : ''}>
+  html += `<div class="notes half"><div class="card"><ul class="note-list">${secs.map(s => `<li><a href="#/context/${enc(s.id)}" ${cur && s.id === cur.id ? 'aria-current="true"' : ''}>
       <div class="t">${esc(s.name)}</div>
       <div class="x">${s.kind === 'document' ? 'Document' : `${s.count} ${s.count === 1 ? 'entry' : 'entries'} · ${s.fields} fields`}${s.suggested ? ` · ${s.suggested} to review` : ''}</div></a></li>`).join('')}
       <li class="sep"><a href="#/context/terminology" ${terms ? 'aria-current="true"' : ''}><div class="t">Terminology</div><div class="x">${nTerms} terms · words to use and to avoid</div></a></li>
@@ -168,7 +168,7 @@ function renderUnderstand(r) {
   const list = W().research;
   const cur = list.find(x => x.slug === r.a) || list[0];
   let html = head('Understand', 'What you want to learn. Claude researches it with the project context and lists the findings; accepted findings become questions in Decide.');
-  html += `<div class="notes"><div class="card"><form class="card-body row" id="w-newres"><label class="sr-only" for="w-restitle">New research</label>
+  html += `<div class="notes half"><div class="card"><form class="card-body row" id="w-newres"><label class="sr-only" for="w-restitle">New research</label>
       <input class="input" id="w-restitle" placeholder="Research checkout patterns on mobile" style="flex:1;min-width:0"><button class="btn sm">${icon('sparkles', 'sm')}Ask Claude</button></form>
     ${list.length ? `<ul class="note-list">${list.map(x => `<li><a href="#/understand/${esc(x.slug)}" ${cur && x.slug === cur.slug ? 'aria-current="true"' : ''}><div class="t">${esc(x.title)}</div>
       <div class="x">${x.status === 'running' ? 'Claude is working' : x.status === 'error' ? 'Error' : `${esc(x.kind)} · ${x.findings} findings${x.accepted ? `, ${x.accepted} accepted` : ''}`}</div></a></li>`).join('')}</ul>` : empty('No research yet', 'Ask Claude above.')}</div>
@@ -207,7 +207,7 @@ function renderDecide(r) {
   const cur = qs.find(q => q.id === r.a) || open[0] || done[0];
   const row = q => `<li><a href="#/decide/${q.id}" ${cur && q.id === cur.id ? 'aria-current="true"' : ''}><div class="t">${esc(q.title)}</div><div class="x">${q.id} · ${/^decided/.test(q.status) ? esc(q.status) : q.preparing || q.status === 'preparing options' ? 'Claude is preparing options' : q.options.length + ' options'}</div><div class="flow-badges">${typeBadge(q)}</div></a></li>`;
   return head('Decide', 'Questions from accepted findings, unknowns and blindspots. Claude proposes options, you choose. A choice becomes a decision and a task.') +
-    `<div class="notes"><div class="card">
+    `<div class="notes half"><div class="card">
       <form class="card-body stack" id="w-newq" style="gap:8px"><label class="sr-only" for="w-qtitle">New question</label><input class="input" id="w-qtitle" placeholder="What needs to be decided?">
         <div class="row"><select class="input" id="w-qtype" style="flex:1" aria-label="Type"><option value="unknown">Unknown</option><option value="blindspot">Blindspot</option><option value="finding">From finding</option></select><button class="btn sm">${icon('sparkles', 'sm')}Get options</button></div></form>
       <h3 class="list-title">To decide · ${open.length}</h3>

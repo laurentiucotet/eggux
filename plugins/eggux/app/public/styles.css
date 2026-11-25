@@ -406,3 +406,6 @@ dialog.diagram-dlg[open] { display: flex; }
 .row-actions { white-space: nowrap; text-align: right; width: 72px; }
 .term-edit { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto auto; gap: 8px; align-items: center; }
 .doc-edit { font: 13px/1.6 var(--mono); min-height: 360px; }
+
+.notes.half { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+@media (max-width: 900px) { .notes.half { grid-template-columns: minmax(0, 1fr); } }
