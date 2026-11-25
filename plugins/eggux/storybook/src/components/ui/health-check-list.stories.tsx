@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A list of automated checks, each with a status (passing, warning, failed) shown as a dot plus a word, a label, a detail and the last run time, under a summary that is a live region. Optional Run again buttons per row. Built from Status Dot, Badge and Button Icon. Code only (no Figma component yet).',
+          'A list of automated checks, each with a status (passing, warning, failed) shown as a dot plus a word, a label, a detail and the last run time, under a summary that is a live region. Optional Run again buttons per row. Built from Status Dot, Badge and Button Icon. Figma: Data Display page.',
       },
     },
   },

@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A card face that follows the payment form: brand mark, number, holder name and expiry, updating from props. The number is masked by default (last four only); empty parts show placeholders. It is one image for assistive technology, so the form fields stay the real controls. Use test numbers only. Code only (no Figma component yet).',
+          'A card face that follows the payment form: brand mark, number, holder name and expiry, updating from props. The number is masked by default (last four only); empty parts show placeholders. It is one image for assistive technology, so the form fields stay the real controls. Use test numbers only. Figma: Checkout page.',
       },
     },
   },

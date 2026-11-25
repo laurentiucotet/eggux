@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'An action card for the first item of a list or section: dashed outline, tile, title, one sentence, one primary action and an optional second one. Stacked (centered) for a section, inline (a row) at the top of a list. Use Empty State for a whole panel with nothing to show; use this when the next step is to add the first item. Code only (no Figma component yet). Guide: eggux build-ui/patterns/onboarding.md',
+          'An action card for the first item of a list or section: dashed outline, tile, title, one sentence, one primary action and an optional second one. Stacked (centered) for a section, inline (a row) at the top of a list. Use Empty State for a whole panel with nothing to show; use this when the next step is to add the first item. Figma: Onboarding page.',
       },
     },
   },

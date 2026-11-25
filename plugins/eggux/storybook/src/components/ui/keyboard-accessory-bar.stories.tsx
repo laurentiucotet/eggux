@@ -37,7 +37,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The bar above the on-screen keyboard: Previous field, Next field and Done, 44 high. It knows the form by the ids of its fields: Previous and Next move the focus (disabled at the ends), Done blurs the field. `bottom` is the keyboard height, so the bar sticks above it. Buttons never steal focus from the field, so the keyboard stays up. The sample here is a frame; on a phone the bar is fixed. Code only (no Figma component yet).',
+          'The bar above the on-screen keyboard: Previous field, Next field and Done, 44 high. It knows the form by the ids of its fields: Previous and Next move the focus (disabled at the ends), Done blurs the field. `bottom` is the keyboard height, so the bar sticks above it. Buttons never steal focus from the field, so the keyboard stays up. The sample here is a frame; on a phone the bar is fixed. Figma: Mobile page.',
       },
     },
   },

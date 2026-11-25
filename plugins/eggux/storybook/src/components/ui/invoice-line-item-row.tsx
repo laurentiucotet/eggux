@@ -1,4 +1,4 @@
-// EGG UI Invoice Line Item Row. Code only (no Figma component yet); Checkout family.
+// EGG UI Invoice Line Item Row. Figma: Checkout page; Checkout family.
 // One billed line of an invoice or receipt: description (wraps, never cut), an optional detail line
 // (period, SKU), "2 x €10.00" for quantity and unit price, and the amount on the right (no wrap,
 // tabular digits). Credit = a refund or discount line: the amount in success with a minus sign.

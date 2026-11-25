@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A tile for an integrations directory: a drawn mark, the name, a category badge, a description clamped to two lines and a Connect button that becomes Connected. Pressing Connected disconnects. In a grid the button sits at the bottom so cards keep one height. Code only (no Figma component yet).',
+          'A tile for an integrations directory: a drawn mark, the name, a category badge, a description clamped to two lines and a Connect button that becomes Connected. Pressing Connected disconnects. In a grid the button sits at the bottom so cards keep one height. Figma: Marketing page.',
       },
     },
   },

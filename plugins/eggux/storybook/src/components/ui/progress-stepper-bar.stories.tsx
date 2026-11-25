@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A thin segmented bar for a multi-step flow: one 4 px segment per step filled up to the current one, "Step 2 of 5" with the step name, and a Back link from step 2. The step line is a polite status. Not navigation between sections: segments are not buttons. For a stepper with clickable steps use Stepper. Code only (no Figma component yet). Guide: eggux build-ui/patterns/onboarding.md',
+          'A thin segmented bar for a multi-step flow: one 4 px segment per step filled up to the current one, "Step 2 of 5" with the step name, and a Back link from step 2. The step line is a polite status. Not navigation between sections: segments are not buttons. For a stepper with clickable steps use Stepper. Figma: Onboarding page.',
       },
     },
   },

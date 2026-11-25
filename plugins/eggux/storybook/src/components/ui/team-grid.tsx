@@ -1,4 +1,4 @@
-// EGG UI Team Grid. Code only (no Figma component yet); family Marketing.
+// EGG UI Team Grid. Figma: Marketing page; family Marketing.
 // A heading, an optional intro line and a grid of Person Cards (avatar with initials, name, role)
 // with a row of icon links (email, website, profile) at the bottom. Cards share one height per row,
 // and the links stay on the bottom edge. Layout vertical (cards in columns) or horizontal (wider

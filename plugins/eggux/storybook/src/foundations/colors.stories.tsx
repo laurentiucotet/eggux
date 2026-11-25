@@ -165,4 +165,3 @@ export const Overview: Story = {
 export const OverviewDark: Story = { ...Overview, tags: ['!dev'], globals: { theme: 'Dark' } };
 export const OverviewBackOffice: Story = { ...Overview, tags: ['!dev'], globals: { theme: 'Corporate Light' } };
 export const OverviewBackOfficeDark: Story = { ...Overview, tags: ['!dev'], globals: { theme: 'Corporate Dark' } };
-export const OverviewShowcase: Story = { ...Overview, tags: ['!dev'], globals: { theme: 'Showcase Light' } };

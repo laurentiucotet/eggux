@@ -1,4 +1,4 @@
-// EGG UI Pivot Summary Table. Code only (no Figma component yet); family Data Structures.
+// EGG UI Pivot Summary Table. Figma: Data Structures page; family Data Structures.
 // Flat records ({ row, column, value }) cross-tabulated into a grid: one row per row key, one
 // column per column key, each cell the sum of its records. A Total column and a Total row (with
 // the grand total in the corner) close the grid. A heat tint behind each cell shows how its value

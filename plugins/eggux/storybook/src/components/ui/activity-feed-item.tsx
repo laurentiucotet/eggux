@@ -1,4 +1,4 @@
-// EGG UI Activity Feed Item and Activity Feed. Code only (no Figma component yet); family Community.
+// EGG UI Activity Feed Item and Activity Feed. Figma: Community page; family Community.
 // One line of "who did what": a 32 avatar, "Actor verb object" (actor in medium weight, the object a
 // link), the time under it, an optional attachment preview (a bordered tile with an image or a file
 // icon, title and meta) and an unread dot on the right. The feed is a list of items.

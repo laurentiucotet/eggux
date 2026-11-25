@@ -1,4 +1,4 @@
-// EGG UI Feature Spotlight. Code only (no Figma component yet); family Onboarding.
+// EGG UI Feature Spotlight. Figma: Onboarding page; family Onboarding.
 // An inline highlight card for one new feature: a "New" badge, a title, a short description, a primary
 // "Try it" button and a "Dismiss" button. Dismissing removes the card and moves focus on (to the
 // next focusable element, or `returnFocusRef`); a polite status says it is gone.

@@ -69,6 +69,17 @@ export const WithLabel: Story = {
   },
 };
 
+// Value=indeterminate: value={null}. No aria-valuenow, a sliding segment, no value text.
+export const Indeterminate: Story = {
+  args: { label: 'Preparing export', value: null, 'aria-label': undefined },
+  play: async ({ canvas }) => {
+    const bar = canvas.getByRole('progressbar', { name: 'Preparing export' });
+    await expect(bar).not.toHaveAttribute('aria-valuenow');
+    await expect(bar).toHaveAttribute('data-state', 'indeterminate');
+    await expect(canvas.queryByText(/%$/)).toBeNull();
+  },
+};
+
 export const LongLabel: Story = { tags: ['!dev'],
   args: { label: 'Uploading quarterly-intercompany-reconciliation-final-v2-reviewed.csv', value: 70, valueText: '3 of 5', 'aria-label': undefined },
   decorators: [Story => <div className="w-[276px]"><Story /></div>],

@@ -25,7 +25,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A select-like popover for the language of the interface or a document. Each option shows the native name first and the English name muted, so people find their language even when the page is in the wrong one; the current language has a check. No flags (a flag is a country). Type to search by either name. The compact variant is the globe and a short code for headers and footers. Code only (no Figma component yet).',
+          'A select-like popover for the language of the interface or a document. Each option shows the native name first and the English name muted, so people find their language even when the page is in the wrong one; the current language has a check. No flags (a flag is a country). Type to search by either name. The compact variant is the globe and a short code for headers and footers. Figma: Form Controls page.',
       },
     },
   },

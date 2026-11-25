@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A help-center FAQ: a search field above an accordion. Typing filters the questions (question or answer contains the text), marks the match, and a polite status gives the count; with no match an empty state offers "Show all questions". Code only (no Figma component yet).',
+          'A help-center FAQ: a search field above an accordion. Typing filters the questions (question or answer contains the text), marks the match, and a polite status gives the count; with no match an empty state offers "Show all questions". Figma: Marketing page.',
       },
     },
   },

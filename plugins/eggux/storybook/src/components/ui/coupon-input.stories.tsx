@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A discount code field with Apply. Idle, loading, error (aria-invalid, message linked and spoken) and applied (the code, what it does and Remove; focus returns to the field after Remove). Enter applies; Apply stays off while the field is empty. The parent checks the code and sets the state. Code only (no Figma component yet).',
+          'A discount code field with Apply. Idle, loading, error (aria-invalid, message linked and spoken) and applied (the code, what it does and Remove; focus returns to the field after Remove). Enter applies; Apply stays off while the field is empty. The parent checks the code and sets the state. Figma: Checkout page.',
       },
     },
   },

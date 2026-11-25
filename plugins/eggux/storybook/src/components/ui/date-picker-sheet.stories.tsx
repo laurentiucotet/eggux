@@ -16,7 +16,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A date chosen in a bottom sheet: a quick row (Today, Tomorrow, Next week, counted from the `now` prop), the Calendar, and Cancel and Done. Picking only changes a draft; Done returns it and closes, Cancel, Escape and a tap outside drop it. Buttons are 44 high. Built on the Drawer. Code only (no Figma component yet).',
+          'A date chosen in a bottom sheet: a quick row (Today, Tomorrow, Next week, counted from the `now` prop), the Calendar, and Cancel and Done. Picking only changes a draft; Done returns it and closes, Cancel, Escape and a tap outside drop it. Buttons are 44 high. Built on the Drawer. Figma: Mobile page.',
       },
     },
   },

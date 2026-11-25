@@ -1,4 +1,4 @@
-// EGG UI Terminal Output. Code only (no Figma component yet); family Developer.
+// EGG UI Terminal Output. Figma: Developer page; family Developer.
 // A console block: a title bar with an Auto-scroll Switch and a Copy Button, and a scrolling body that is
 // a live log (role="log", polite, labelled, tabindex=0 so a keyboard can scroll it). Lines are
 // commands (the prompt, "$", then the command), stdout (plain) and stderr (a "!" mark and the

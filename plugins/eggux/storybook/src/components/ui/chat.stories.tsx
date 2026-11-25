@@ -7,7 +7,7 @@ const meta = {
   title: 'Components/Chat/Chat',
   parameters: {
     layout: 'padded',
-    docs: { description: { component: 'People chat (support, team chat, inbox). Chat Message: incoming with avatar on muted, outgoing on primary with Sent / Delivered / Read; runs from one person group (avatar and time on the last). Typing Indicator: announced politely. Chat Composer: Enter sends, Shift+Enter adds a line, Send disabled while empty, grows to 5 lines. Mention Chip, Reaction Bar (toggle and add from the Emoji Picker), Thread Summary, Conversation Item for the conversation list. AI assistant messages use the AI Chat components. Figma: Chat page. Guide: eggux build-ui/components/chat.md' } },
+    docs: { description: { component: 'People chat (support, team chat, inbox). Chat Message: incoming with avatar on muted, outgoing on primary with Sent / Delivered / Read; runs from one person group (avatar and time on the last). Typing Indicator: announced politely. Chat Composer: Enter sends, Shift+Enter adds a line, Send disabled while empty, grows to 5 lines. Mention Chip, Reaction Bar (toggle and add from the Emoji Picker), Thread Summary, Conversation Item for the conversation list. AI assistant messages use the AI Chat components. Figma: Chat page.' } },
   },
 } satisfies Meta;
 export default meta;

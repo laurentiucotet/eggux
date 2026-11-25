@@ -1,4 +1,4 @@
-// EGG UI Stepper Slider. Code only (no Figma component yet). One number chosen two ways: a Slider for
+// EGG UI Stepper Slider. Figma: Form Controls page. One number chosen two ways: a Slider for
 // "about this much" and a number Input beside it for "exactly this", kept in sync. Dragging or arrow
 // keys on the slider update the input; typing in the input moves the slider as soon as the number is
 // inside min and max, and when the field is left (or Enter is pressed) the number is rounded to the

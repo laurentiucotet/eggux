@@ -35,7 +35,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The import step that matches each file column to a field: file column with sample values, a Select of fields (or Do not import), required fields marked, an error on both rows when two columns take the same field, and a Match automatically button that fills empty rows by name. Controlled with value / onValueChange or uncontrolled. Code only (no Figma component yet).',
+          'The import step that matches each file column to a field: file column with sample values, a Select of fields (or Do not import), required fields marked, an error on both rows when two columns take the same field, and a Match automatically button that fills empty rows by name. Controlled with value / onValueChange or uncontrolled. Figma: Data Transfer page.',
       },
     },
   },

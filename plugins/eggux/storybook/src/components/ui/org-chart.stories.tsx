@@ -34,7 +34,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A reporting tree of person cards (avatar, name, role, number of direct reports) joined by lines. Each manager expands and collapses; Expand all and Collapse all sit above. ARIA tree: Up, Down, Left, Right, Home, End and Enter. Vertical, so it works from 276 px. Code only (no Figma component yet).',
+          'A reporting tree of person cards (avatar, name, role, number of direct reports) joined by lines. Each manager expands and collapses; Expand all and Collapse all sit above. ARIA tree: Up, Down, Left, Right, Home, End and Enter. Vertical, so it works from 276 px. Figma: Data Structures page.',
       },
     },
   },

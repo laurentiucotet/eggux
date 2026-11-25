@@ -1,4 +1,4 @@
-// EGG UI Log Line. Code only (no Figma component yet); family Developer.
+// EGG UI Log Line. Figma: Developer page; family Developer.
 // One structured log entry: a level Badge (debug, info, warn, error: the word is always shown), the
 // time in mono, the message and, when there are fields, a chevron that expands a definition list of
 // key and value pairs (request id, status, duration). The header is one native button with

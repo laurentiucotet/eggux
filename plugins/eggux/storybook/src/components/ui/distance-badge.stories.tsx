@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A compact pill for how far a place is: "1.2 km", "0.7 mi", or a travel time ("8 min walk", "3 min drive"). The visible text is short; screen readers get the long form ("1.2 kilometres away"). Metric or imperial, or a switchable badge that is a button. Code only (no Figma component yet).',
+          'A compact pill for how far a place is: "1.2 km", "0.7 mi", or a travel time ("8 min walk", "3 min drive"). The visible text is short; screen readers get the long form ("1.2 kilometres away"). Metric or imperial, or a switchable badge that is a button. Figma: Location page.',
       },
     },
   },

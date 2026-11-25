@@ -1,4 +1,4 @@
-// EGG UI Message Reply Preview. Code only (no Figma component yet). The quoted message of a reply.
+// EGG UI Message Reply Preview. Figma: Messaging page. The quoted message of a reply.
 // variant=composer: sits above the composer while you write a reply: a primary bar on the left,
 // "Replying to Ana", one line of the original and a Cancel button (aria-label "Cancel reply").
 // variant=thread: sits above a sent reply inside the thread: the author and one line of the

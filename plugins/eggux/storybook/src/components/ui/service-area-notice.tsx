@@ -1,4 +1,4 @@
-// EGG UI Service Area Notice. Code only (no Figma component yet). A banner that tells whether an
+// EGG UI Service Area Notice. Figma: Location page. A banner that tells whether an
 // address is inside, near or outside the delivery area, with a Change address action. Inside: a
 // green check ("We deliver to this address"); near: a warning (an edge zone with a fee or a longer
 // wait); outside: a red alert (what can still be done: pick up in store). Status is never colour

@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A wrapper that keeps media at 1:1, 4:3, 16:9 or 21:9 at any width, so the page does not jump while an image loads. fit cover fills the box and crops; contain shows everything with space around. Works on img, video, picture, canvas and svg children. Code only (no Figma component yet); the Card media slot uses 16:9 the same way.',
+          'A wrapper that keeps media at 1:1, 4:3, 16:9 or 21:9 at any width, so the page does not jump while an image loads. fit cover fills the box and crops; contain shows everything with space around. Works on img, video, picture, canvas and svg children. Figma: Layout page; the Card media slot uses 16:9 the same way.',
       },
     },
   },

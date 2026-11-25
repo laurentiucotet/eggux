@@ -1,4 +1,4 @@
-// EGG UI Tax ID Field. Code only (no Figma component yet); Billing family.
+// EGG UI Tax ID Field. Figma: Plans and Billing page; Billing family.
 // A VAT number input for invoices: a country Select and an Input inside Fields. The number is kept
 // with its country prefix ("DE123456789"), upper case, with spaces, dots and dashes removed as you
 // type. The format is checked when the field loses focus (never while typing) against the

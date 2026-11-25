@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A voice message in a chat: Play / Pause, a waveform that fills with progress, the time and a speed button. The waveform is a native range input, so it seeks by pointer and keyboard. Without a src the time is simulated. Incoming is a muted bubble, outgoing a primary one. Code only (no Figma component yet).',
+          'A voice message in a chat: Play / Pause, a waveform that fills with progress, the time and a speed button. The waveform is a native range input, so it seeks by pointer and keyboard. Without a src the time is simulated. Incoming is a muted bubble, outgoing a primary one. Figma: Messaging page.',
       },
     },
   },

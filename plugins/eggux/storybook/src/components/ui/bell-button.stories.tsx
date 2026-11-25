@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The bell in a header: a ghost icon button with an unread count badge (99+ above 99, none at 0) that opens a popover holding the notification panel. The name is the count, "Notifications, 3 unread"; the badge is hidden from screen readers so the number is read once. Escape closes and returns focus to the bell. Code only (no Figma component yet).',
+          'The bell in a header: a ghost icon button with an unread count badge (99+ above 99, none at 0) that opens a popover holding the notification panel. The name is the count, "Notifications, 3 unread"; the badge is hidden from screen readers so the number is read once. Escape closes and returns focus to the bell. Figma: Notifications page.',
       },
     },
   },

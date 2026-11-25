@@ -22,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The panel behind the bell, fuller than Notification Center: title with Mark all as read, tabs All and Unread with counts, notifications grouped Today and Earlier under sticky group headers (measured from a fixed `now`), an empty state per tab and a footer link to settings. Mark all as read stays in the tab order (aria-disabled at 0) and one polite status says the result. Code only (no Figma component yet).',
+          'The panel behind the bell, fuller than Notification Center: title with Mark all as read, tabs All and Unread with counts, notifications grouped Today and Earlier under sticky group headers (measured from a fixed `now`), an empty state per tab and a footer link to settings. Mark all as read stays in the tab order (aria-disabled at 0) and one polite status says the result. Figma: Notifications page.',
       },
     },
   },

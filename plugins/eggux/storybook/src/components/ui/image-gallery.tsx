@@ -1,4 +1,4 @@
-// EGG UI Image Gallery. Code only (no Figma component yet). One main image with a thumbnail strip
+// EGG UI Image Gallery. Figma: Media page. One main image with a thumbnail strip
 // under it, previous and next arrows over the image and a counter ("2 / 6"). It is a group with
 // the role description "carousel": Left and Right arrows (also Home and End) change the image
 // from anywhere inside it, a thumbnail is a button with aria-current, and a polite status line

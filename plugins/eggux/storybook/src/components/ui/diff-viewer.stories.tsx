@@ -25,7 +25,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A line diff of two texts, unified or split. Added lines have a green fill and "+", removed lines a red fill and "-", and are announced as "Added" or "Removed", so color is never the only signal. Line numbers on every line; the header counts the changes; the scroll area is reachable by keyboard. Compares whole lines. Code only (no Figma component yet).',
+          'A line diff of two texts, unified or split. Added lines have a green fill and "+", removed lines a red fill and "-", and are announced as "Added" or "Removed", so color is never the only signal. Line numbers on every line; the header counts the changes; the scroll area is reachable by keyboard. Compares whole lines. Figma: Developer page.',
       },
     },
   },

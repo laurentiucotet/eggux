@@ -1,4 +1,4 @@
-// EGG UI Health Check List. Code only (no Figma component yet); Data Display family.
+// EGG UI Health Check List. Figma: Data Display page; Data Display family.
 // A list of automated checks, each with a status (ok, warning, failed), a label, an optional detail
 // line and the time it last ran, under a summary ("4 of 6 checks passing"). The status is a Status Dot
 // with its word (Passing, Warning, Failed), never color alone. The summary is a polite live region, so

@@ -1,4 +1,4 @@
-// EGG UI Pull To Refresh. Code only (no Figma component yet). Wraps a scrolling list on mobile:
+// EGG UI Pull To Refresh. Figma: Mobile page. Wraps a scrolling list on mobile:
 // drag down at the top of the list past the threshold and release to refresh. While it runs a spinner
 // shows at the top and the list stays put; when `onRefresh` settles the indicator closes. Pulling is a
 // shortcut, never the only way: a visible "Refresh" button is the first tab stop (shown on focus) and

@@ -1,4 +1,4 @@
-// EGG UI Swipe Row. Code only (no Figma component yet). A list row on mobile with actions behind it:
+// EGG UI Swipe Row. Figma: Mobile page. A list row on mobile with actions behind it:
 // swipe left to reveal them (archive, flag, delete), swipe right or tap elsewhere to close. Swiping
 // is a shortcut, never the only way: the row is focusable, Left arrow reveals the actions and moves
 // focus to the first, Right arrow or Escape closes them, and hidden actions are not in the tab order.

@@ -1,4 +1,4 @@
-// EGG UI Date Picker Sheet. Code only (no Figma component yet). Mobile page. A date chosen in a
+// EGG UI Date Picker Sheet. Figma: Mobile page. Mobile page. A date chosen in a
 // bottom sheet (the Drawer): a quick row (Today, Tomorrow, Next week, counted from the `now` prop),
 // the Calendar, and Cancel and Done. Picking a day or a quick date only changes a draft; Done
 // returns it (onDone) and closes, Cancel, Escape and a tap outside throw it away. The draft starts

@@ -1,4 +1,4 @@
-// EGG UI Key Value Editor. Code only (no Figma component yet); family Developer.
+// EGG UI Key Value Editor. Figma: Developer page; family Developer.
 // Rows of a key Input and a value Input with Add row and Remove row, for HTTP headers and
 // environment variables. Column headings are visible once; every input also has its own accessible
 // name ("Key, row 2"), so a screen reader knows where it is. A key used twice marks both keys

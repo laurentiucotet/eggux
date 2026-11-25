@@ -1,4 +1,4 @@
-// EGG UI Waffle Chart. Code only (no Figma component yet); Data Display family.
+// EGG UI Waffle Chart. Figma: Data Display page; Data Display family.
 // A 10 x 10 grid of squares where each square is one percent of the whole: easier to read than a pie
 // for "how many out of 100". Cells fill row by row from the bottom left, one part after another, using
 // the largest remainder method so the cells always add up to 100. Parts use the chart/N token colors;

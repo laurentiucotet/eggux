@@ -17,7 +17,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One customer quote at a time with the author, Previous and Next arrows, dots and a Play / Pause button. It does not advance on its own unless Play is pressed (or auto play is set), and never under reduced motion, while hovered or while focus is inside. One slide is announced politely. Code only (no Figma component yet).',
+          'One customer quote at a time with the author, Previous and Next arrows, dots and a Play / Pause button. It does not advance on its own unless Play is pressed (or auto play is set), and never under reduced motion, while hovered or while focus is inside. One slide is announced politely. Figma: Marketing page.',
       },
     },
   },

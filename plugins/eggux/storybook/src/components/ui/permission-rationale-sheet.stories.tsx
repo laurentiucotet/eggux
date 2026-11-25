@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A bottom sheet that explains why the app needs a permission before the system asks: icon, a title naming the permission, one sentence, up to three reasons, Allow and Not now. Allow calls onAllow (ask the system now); Not now only closes, so the one-time system prompt is not used up. Built on the Drawer. After a refusal use the Permission Denied Notice. Code only (no Figma component yet).',
+          'A bottom sheet that explains why the app needs a permission before the system asks: icon, a title naming the permission, one sentence, up to three reasons, Allow and Not now. Allow calls onAllow (ask the system now); Not now only closes, so the one-time system prompt is not used up. Built on the Drawer. After a refusal use the Permission Denied Notice. Figma: Mobile page.',
       },
     },
   },

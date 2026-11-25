@@ -1,4 +1,4 @@
-// EGG UI Segmented Control. Code only (no Figma component yet). Mobile page. An iOS-style control
+// EGG UI Segmented Control. Figma: Mobile page. Mobile page. An iOS-style control
 // of 2 to 5 short options in one muted track with a thumb that slides to the chosen one. It is a
 // radio group (role radiogroup, role radio, aria-checked), so exactly one option is always chosen:
 // Left/Up and Right/Down move AND choose (wrapping), Home and End jump, and only the chosen option is

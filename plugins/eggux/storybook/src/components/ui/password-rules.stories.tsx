@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A live checklist under a new-password field. Each rule is met or not met in an icon and in text for screen readers, never by color alone; the summary ("2 of 4 rules met") is a polite status that speaks only when the count changes. Link it to the input with the input\'s aria-describedby. Code only (no Figma component yet).',
+          'A live checklist under a new-password field. Each rule is met or not met in an icon and in text for screen readers, never by color alone; the summary ("2 of 4 rules met") is a polite status that speaks only when the count changes. Link it to the input with the input\'s aria-describedby. Figma: Form Controls page.',
       },
     },
   },

@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Follow toggle with the follower count beside it. "Follow" (primary, plus) becomes "Following" (outline, check) and the count goes up by one. The name is read after the label ("Following Acme Design"). Loading sets aria-busy and ignores clicks. Code only (no Figma component yet).',
+          'Follow toggle with the follower count beside it. "Follow" (primary, plus) becomes "Following" (outline, check) and the count goes up by one. The name is read after the label ("Following Acme Design"). Loading sets aria-busy and ignores clicks. Figma: Community page.',
       },
     },
   },

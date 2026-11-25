@@ -1,4 +1,4 @@
-// EGG UI Context Menu. Code only (no Figma component yet); the menu surface and items copy Dropdown
+// EGG UI Context Menu. Figma: Layout page; the menu surface and items copy Dropdown
 // Menu (Menu page, "Menu / Component"): 224 wide, popover surface, 1 px border, radius md, 4 px
 // padding, shadow md, item = icon + label + shortcut, destructive last. shadcn ContextMenu on the
 // radix-ui primitive. Opens at the pointer on right click, on a long press (touch) and from the

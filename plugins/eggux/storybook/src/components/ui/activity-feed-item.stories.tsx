@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One line of who did what: avatar, "Actor verb object" with the object as a link, the time, an optional attachment preview and an unread dot. Activity Feed is the list around the items. Code only (no Figma component yet).',
+          'One line of who did what: avatar, "Actor verb object" with the object as a link, the time, an optional attachment preview and an unread dot. Activity Feed is the list around the items. Figma: Community page.',
       },
     },
   },

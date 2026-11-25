@@ -69,7 +69,7 @@ const meta = {
     layout: 'fullscreen',
     // Radix focus guard next to an open trigger (as in Navigation Menu stories).
     a11y: { config: { rules: [{ id: 'aria-hidden-focus', selector: '[data-slot="navigation-menu-item"] > span[aria-hidden="true"]', enabled: false }] } },
-    docs: { description: { component: 'Navbar with menus and layouts. A link with `menu` opens a dropdown (short list), a flyout (icon links in two columns, footer row, featured card, under its trigger) or a mega menu (groups and a featured item across the container). Menus open on hover after 200 ms or on click / Enter, close on Escape or outside click, and turn into disclosures in the mobile Sheet. Layouts: centered (logo in the middle) and search (docs and help centers: product badge, Search Field with ⌘K). Figma: BLOCKS / Navigation (Navbar Flyout, Mega Menu, Centered, Search). Guide: eggux build-ui/patterns/navigation.md' } },
+    docs: { description: { component: 'Navbar with menus and layouts. A link with `menu` opens a dropdown (short list), a flyout (icon links in two columns, footer row, featured card, under its trigger) or a mega menu (groups and a featured item across the container). Menus open on hover after 200 ms or on click / Enter, close on Escape or outside click, and turn into disclosures in the mobile Sheet. Layouts: centered (logo in the middle) and search (docs and help centers: product badge, Search Field with ⌘K). Figma: BLOCKS / Navigation (Navbar Flyout, Mega Menu, Centered, Search).' } },
   },
   args: { links: flyoutLinks, signIn, cta },
   render: args => <div className="h-[480px] w-[1440px]"><SiteNavbar {...args} /></div>,

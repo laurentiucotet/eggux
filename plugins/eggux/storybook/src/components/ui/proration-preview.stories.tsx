@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'What a plan change costs today: the credit for the unused days on the current plan, the charge for the same days on the new plan, and the amount due today (or the credit added to the balance when the new plan is cheaper), then when the next full invoice comes. Prices are per month in EUR and a period is 30 days. Nothing changes until Confirm. Code only (no Figma component yet).',
+          'What a plan change costs today: the credit for the unused days on the current plan, the charge for the same days on the new plan, and the amount due today (or the credit added to the balance when the new plan is cheaper), then when the next full invoice comes. Prices are per month in EUR and a period is 30 days. Nothing changes until Confirm. Figma: Plans and Billing page.',
       },
     },
   },

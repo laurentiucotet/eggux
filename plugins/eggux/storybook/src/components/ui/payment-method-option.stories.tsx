@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The selectable Payment Method Card: a radio card with a text brand mark, "Visa ending in 4242", the expiry and a Default badge. An expired card is shown but cannot be chosen. Arrow keys move between cards in the group. Only the brand, last four digits and expiry from the server: never a full number. Code only (no Figma component yet); the non-selectable card is Payment Method Card on the Commerce page.',
+          'The selectable Payment Method Card: a radio card with a text brand mark, "Visa ending in 4242", the expiry and a Default badge. An expired card is shown but cannot be chosen. Arrow keys move between cards in the group. Only the brand, last four digits and expiry from the server: never a full number. Figma: Checkout page; the non-selectable card is Payment Method Card on the Commerce page.',
       },
     },
   },

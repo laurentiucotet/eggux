@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'An inline highlight for one new feature: "New" badge, title, short description, a primary Try it and a Dismiss. Dismiss removes the card and moves focus to the next control (or a ref you give); a polite status says it is gone. Show one spotlight at a time. Code only (no Figma component yet). Guide: eggux build-ui/patterns/onboarding.md',
+          'An inline highlight for one new feature: "New" badge, title, short description, a primary Try it and a Dismiss. Dismiss removes the card and moves focus to the next control (or a ref you give); a polite status says it is gone. Show one spotlight at a time. Figma: Onboarding page.',
       },
     },
   },

@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A setting as a card: icon, title, description and a switch, with the whole card as the hit area ("Email alerts"). One real switch (role="switch", Space toggles) named by the title and described by the description. On shows in the track, the border and aria-checked. For one choice among several use Option Card. Code only (no Figma component yet).',
+          'A setting as a card: icon, title, description and a switch, with the whole card as the hit area ("Email alerts"). One real switch (role="switch", Space toggles) named by the title and described by the description. On shows in the track, the border and aria-checked. For one choice among several use Option Card. Figma: Form Controls page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Shipping Option. Code only (no Figma component yet); Checkout family.
+// EGG UI Shipping Option. Figma: Checkout page; Checkout family.
 // A radio card for one delivery choice: carrier and service name (wraps), delivery estimate
 // ("Arrives Tue 14 to Thu 16 Oct") and the price on the right ("Free" in success). The whole card is
 // the target (a <label> around the Radio); selected = 2 px primary border; the price is read with

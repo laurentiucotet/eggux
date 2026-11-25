@@ -1,4 +1,4 @@
-// EGG UI Color Swatch Group. Code only (no Figma component yet; the Color Picker page has Swatch and
+// EGG UI Color Swatch Group. Figma: Form Controls page (the Color Picker page has Swatch and
 // Swatch Picker for a product's color, this one is the form control for choosing one color of a fixed
 // set: a theme accent, a label color, a tag color). A radio group of round swatches built on native
 // radio inputs, so Tab enters the group, the arrows move and select, and form posts work. Each swatch

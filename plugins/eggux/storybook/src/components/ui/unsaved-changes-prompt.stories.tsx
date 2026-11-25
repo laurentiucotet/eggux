@@ -32,7 +32,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Alert Dialog "Leave without saving?" with Stay (focused, also Escape), Discard and Save and leave. Focus is trapped and returns to the button that opened it. `warnOnUnload` adds the browser prompt on tab close while the form is dirty. Code only (no Figma component yet). Guide: eggux build-ui/patterns/wizard.md',
+          'Alert Dialog "Leave without saving?" with Stay (focused, also Escape), Discard and Save and leave. Focus is trapped and returns to the button that opened it. `warnOnUnload` adds the browser prompt on tab close while the form is dirty. Figma: Wizard page. Guide: eggux build-ui/patterns/multi-step-form.md',
       },
     },
   },

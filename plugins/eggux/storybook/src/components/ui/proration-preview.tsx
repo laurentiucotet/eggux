@@ -1,4 +1,4 @@
-// EGG UI Proration Preview. Code only (no Figma component yet); Billing family. Invented to fill
+// EGG UI Proration Preview. Figma: Plans and Billing page; Billing family. Invented to fill
 // the gap between Plan Switcher and checkout: what a plan change costs today. Three lines in words
 // from a fixed `now` and the renewal date: the credit for the unused days on the current plan, the
 // charge for the same days on the new plan, and the amount due today (or the credit added to the

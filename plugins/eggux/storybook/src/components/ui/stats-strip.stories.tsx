@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Three or four big numbers with a label each and one source line, for a landing page. Numbers have thousands separators and an optional prefix or suffix. Count-up is off by default and never runs with reduced motion. Stat Card is the dashboard tile with a trend. Code only (no Figma component yet).',
+          'Three or four big numbers with a label each and one source line, for a landing page. Numbers have thousands separators and an optional prefix or suffix. Count-up is off by default and never runs with reduced motion. Stat Card is the dashboard tile with a trend. Figma: Marketing page.',
       },
     },
   },

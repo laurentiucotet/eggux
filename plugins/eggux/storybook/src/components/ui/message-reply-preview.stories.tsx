@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The quoted message of a reply. In the composer: "Replying to Ana", one line of the original and a Cancel button. In the thread: the author and one line, linking to the original message. A deleted original is plain text, not a link. Code only (no Figma component yet).',
+          'The quoted message of a reply. In the composer: "Replying to Ana", one line of the original and a Cancel button. In the thread: the author and one line, linking to the original message. A deleted original is plain text, not a link. Figma: Messaging page.',
       },
     },
   },

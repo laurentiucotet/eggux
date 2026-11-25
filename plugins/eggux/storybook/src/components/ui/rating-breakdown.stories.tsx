@@ -17,7 +17,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The summary above a list of reviews: average, number of reviews and one row per star level with a bar, a count and a share. With interactive on, the rows are buttons that filter by level (aria-pressed). Every number is text; bars never carry meaning alone. Code only (no Figma component yet).',
+          'The summary above a list of reviews: average, number of reviews and one row per star level with a bar, a count and a share. With interactive on, the rows are buttons that filter by level (aria-pressed). Every number is text; bars never carry meaning alone. Figma: Data Display page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Changelog Entry. Code only (no Figma component yet); family Marketing.
+// EGG UI Changelog Entry. Figma: Marketing page; family Marketing.
 // One release in a product changelog: the date, the version (outline Badge), tags New / Improved /
 // Fixed (soft Badges), a title with a permalink button, an optional summary and a list of changes.
 // Stack entries newest first; each keeps its own anchor (id) so a release can be linked.

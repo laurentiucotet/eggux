@@ -1,4 +1,4 @@
-// EGG UI Template Download Card. Code only (no Figma component yet); family Data Transfer.
+// EGG UI Template Download Card. Figma: Data Transfer page; family Data Transfer.
 // A card that offers a sample file for an import: a title, one sentence, format badges (CSV, XLSX),
 // the file name and size, a Download button and a "What columns are needed" disclosure that lists
 // each column (required or optional, what goes in it, an example). No file is made here: Download

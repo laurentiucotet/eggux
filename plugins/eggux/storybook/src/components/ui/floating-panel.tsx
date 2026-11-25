@@ -1,4 +1,4 @@
-// EGG UI Floating Panel. Code only (no Figma component yet). A small non-modal panel that floats
+// EGG UI Floating Panel. Figma: Layout page. A small non-modal panel that floats
 // over the page, docked to a corner (a notes pad, a help or chat window, a live preview): a title
 // bar with a move handle and a close button, then the content. Drag the title bar with the pointer,
 // or focus the handle (the grip button) and move it with the arrow keys (16 px, Shift 64 px; Home

@@ -29,7 +29,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A Switch or a Yes / No radio pair that reveals follow-up fields when on. Hidden fields are display:none and inert (out of the tab order and the accessibility tree) but stay mounted, so typed values come back. A polite status announces "fields shown" or "hidden". Code only (no Figma component yet). Guide: eggux build-ui/patterns/wizard.md',
+          'A Switch or a Yes / No radio pair that reveals follow-up fields when on. Hidden fields are display:none and inert (out of the tab order and the accessibility tree) but stay mounted, so typed values come back. A polite status announces "fields shown" or "hidden". Figma: Wizard page. Guide: eggux build-ui/patterns/multi-step-form.md',
       },
     },
   },

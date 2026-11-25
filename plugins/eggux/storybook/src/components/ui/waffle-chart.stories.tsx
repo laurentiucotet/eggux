@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A 10 x 10 grid where each square is one percent of the whole. Cells fill from the bottom left, one part after another, and always add up to 100. A legend gives each part its value and share, and a visually hidden table repeats the numbers, so color is never the only carrier. Code only (no Figma component yet).',
+          'A 10 x 10 grid where each square is one percent of the whole. Cells fill from the bottom left, one part after another, and always add up to 100. A legend gives each part its value and share, and a visually hidden table repeats the numbers, so color is never the only carrier. Figma: Data Display page.',
       },
     },
   },

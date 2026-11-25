@@ -1,4 +1,4 @@
-// EGG UI Import Preview Table. Code only (no Figma component yet); family Data Transfer.
+// EGG UI Import Preview Table. Figma: Data Transfer page; family Data Transfer.
 // The first rows of a file as the import will read them: a row number column, one column per file
 // column, error cells marked by an icon plus the message (never color alone), a summary line
 // ("48 rows ready, 3 with errors") and an "Errors only" filter. The table scrolls inside its own

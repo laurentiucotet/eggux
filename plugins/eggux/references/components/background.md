@@ -134,7 +134,7 @@ Background / Glow: one large blurred ellipse filled with gradient/brand-glow (ba
 **Accessibility**
 
 - Decorative: aria-hidden
-- Measured in the hero example: subtitle on the plain page (4.74:1 Showcase Light, 7.85:1 Showcase Dark); headline 14:1 or more
+- Measured in the hero example: subtitle on the plain page (measured in the removed Showcase modes: 4.74:1 light, 7.85:1 dark; re-measure in Light and Dark); headline 14:1 or more
 
 | Variant property | Values |
 |---|---|

@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A schedule that mutes notifications: a switch, a start and an end time (every 30 minutes; an end before the start means through the night), seven weekday chips and one summary sentence, "Muted 22:00 to 07:00 on weekdays". The summary is the only live region. Off disables the schedule controls together. Code only (no Figma component yet).',
+          'A schedule that mutes notifications: a switch, a start and an end time (every 30 minutes; an end before the start means through the night), seven weekday chips and one summary sentence, "Muted 22:00 to 07:00 on weekdays". The summary is the only live region. Off disables the schedule controls together. Figma: Notifications page.',
       },
     },
   },

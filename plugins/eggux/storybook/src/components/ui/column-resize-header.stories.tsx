@@ -48,7 +48,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A table header cell with a resize handle: drag it, or focus it and use Left and Right (Shift for bigger steps), Home, End; Enter or double click resets. Width is clamped between a minimum and a maximum and announced as "160 pixels". Code only (no Figma component yet).',
+          'A table header cell with a resize handle: drag it, or focus it and use Left and Right (Shift for bigger steps), Home, End; Enter or double click resets. Width is clamped between a minimum and a maximum and announced as "160 pixels". Figma: Data Structures page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Legend. Code only (no Figma component yet); Data Display family.
+// EGG UI Legend. Figma: Data Display page; Data Display family.
 // A standalone chart legend whose items can switch a series on and off. Each item is a native button
 // with aria-pressed (pressed = the series is shown); a hidden series gets a hollow swatch and a
 // struck-through label, so the state never rests on color. The legend only reports the visible set:

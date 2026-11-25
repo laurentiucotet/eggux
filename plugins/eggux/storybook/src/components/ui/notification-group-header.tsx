@@ -1,4 +1,4 @@
-// EGG UI Notification Group Header. Code only (no Figma component yet); family Notifications.
+// EGG UI Notification Group Header. Figma: Notifications page; family Notifications.
 // The label above one group of notifications ("Today", "Earlier") with how many it holds and,
 // when `collapsible`, a toggle that folds the group. It is a heading with a real button inside:
 // the button carries aria-expanded and aria-controls (the id of the list it folds), so the

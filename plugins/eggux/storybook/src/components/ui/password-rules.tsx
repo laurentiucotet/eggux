@@ -1,4 +1,4 @@
-// EGG UI Password Rules. Code only (no Figma component yet). A live checklist under a new-password
+// EGG UI Password Rules. Figma: Form Controls page. A live checklist under a new-password
 // field: every rule shows met or not met as an icon AND as text for screen readers ("met" / "not met"),
 // never by color alone. The summary ("2 of 4 rules met") is a polite status that speaks only when the
 // count changes, so people hear progress while they type without every key press being read out.

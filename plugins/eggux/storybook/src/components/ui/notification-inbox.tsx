@@ -1,4 +1,4 @@
-// EGG UI Notification Inbox. Code only (no Figma component yet); family Notifications. It replaces
+// EGG UI Notification Inbox. Figma: Notifications page; family Notifications. It replaces
 // the "Notification Center" asked for: notification.tsx already exports NotificationCenter and the
 // story title Components/Notifications/Notification Center, so this is the fuller panel under a
 // new name. Header (title, "Mark all as read"), line Tabs All / Unread with counts, the list in

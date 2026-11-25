@@ -1,4 +1,4 @@
-// EGG UI Conditional Field Group. Code only (no Figma component yet); family Wizard.
+// EGG UI Conditional Field Group. Figma: Wizard page; family Wizard.
 // A question (a Switch, or a Yes / No radio pair) that reveals a group of follow-up fields when it is on.
 // The fields stay mounted when the answer goes back to off, only hidden, so what was typed comes back when
 // it is turned on again. Hidden fields are display:none and inert: out of the tab order and the

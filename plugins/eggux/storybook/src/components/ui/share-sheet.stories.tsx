@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A bottom sheet that shares one thing: a link preview line and a grid of labeled targets (Messages, Mail, Copy link, Save, More), each at least 72 x 72 with a 44 icon. A target closes the sheet; Copy link stays and says "Link copied". Cancel, Escape and a tap outside close it. Built on the Drawer. For actions on an item use the Action Sheet. Code only (no Figma component yet).',
+          'A bottom sheet that shares one thing: a link preview line and a grid of labeled targets (Messages, Mail, Copy link, Save, More), each at least 72 x 72 with a 44 icon. A target closes the sheet; Copy link stays and says "Link copied". Cancel, Escape and a tap outside close it. Built on the Drawer. For actions on an item use the Action Sheet. Figma: Mobile page.',
       },
     },
   },

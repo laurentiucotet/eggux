@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A compact audio player: Play and Pause, back and forward 10 s, a seek slider (arrows 1 s, Page Up and Down 10 s), elapsed and total time and a speed button. With src it drives a real audio element; without it the time is simulated, so no sound file is needed. Code only (no Figma component yet).',
+          'A compact audio player: Play and Pause, back and forward 10 s, a seek slider (arrows 1 s, Page Up and Down 10 s), elapsed and total time and a speed button. With src it drives a real audio element; without it the time is simulated, so no sound file is needed. Figma: Media page.',
       },
     },
   },

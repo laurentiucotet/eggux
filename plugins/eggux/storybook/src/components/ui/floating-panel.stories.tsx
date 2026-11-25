@@ -46,7 +46,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A small non-modal panel docked to a corner with a title bar. Drag the bar, or focus the grip and use the arrow keys (Shift for bigger steps, Home to reset); it stays inside the window or its container. Escape and the close button close it. The page behind stays usable and focus is not trapped. `fixed` pins it to the window. Code only (no Figma component yet).',
+          'A small non-modal panel docked to a corner with a title bar. Drag the bar, or focus the grip and use the arrow keys (Shift for bigger steps, Home to reset); it stays inside the window or its container. Escape and the close button close it. The page behind stays usable and focus is not trapped. `fixed` pins it to the window. Figma: Layout page.',
       },
     },
   },

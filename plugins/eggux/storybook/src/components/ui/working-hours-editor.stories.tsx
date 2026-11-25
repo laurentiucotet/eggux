@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Seven weekday rows, each with a switch that opens or closes the day and from and to time selects. A day cannot end before it starts. The Copy button of a row copies its hours to every day. The foot shows the weekly total. Times are native selects, so mobile gets the system picker. Code only (no Figma component yet).',
+          'Seven weekday rows, each with a switch that opens or closes the day and from and to time selects. A day cannot end before it starts. The Copy button of a row copies its hours to every day. The foot shows the weekly total. Times are native selects, so mobile gets the system picker. Figma: Date and Time page.',
       },
     },
   },

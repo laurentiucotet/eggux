@@ -27,7 +27,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One role in a roles list: name, description, member count, a summary of what it can do and the actions Edit and Duplicate. A system role is defined by the product: it shows a lock and Edit is disabled with the reason written under the actions. The summary shows up to four areas, then "+N more". Code only (no Figma component yet).',
+          'One role in a roles list: name, description, member count, a summary of what it can do and the actions Edit and Duplicate. A system role is defined by the product: it shows a lock and Edit is disabled with the reason written under the actions. The summary shows up to four areas, then "+N more". Figma: Access page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Form Section Progress. Code only (no Figma component yet); family Wizard.
+// EGG UI Form Section Progress. Figma: Wizard page; family Wizard.
 // A sticky side list of the sections of a long form. Each row is a jump link with the section title and a
 // completion count ("3 of 5"); a section that is finished says "Complete". The row of the section that is in
 // view has aria-current="location". Pass `activeId` to control it, or set `track` to follow the page with an

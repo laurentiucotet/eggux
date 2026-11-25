@@ -1,4 +1,4 @@
-// EGG UI Testimonial Carousel. Code only (no Figma component yet); family Marketing.
+// EGG UI Testimonial Carousel. Figma: Marketing page; family Marketing.
 // One customer quote at a time: the quote, then the author (avatar with initials, name, role and
 // company). Below: Previous and Next arrows, dots (Carousel Indicator) and a Play / Pause button.
 // There is no auto-advance by default; Play starts it (every `interval` ms), and it never runs under

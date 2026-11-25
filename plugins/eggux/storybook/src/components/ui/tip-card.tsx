@@ -1,4 +1,4 @@
-// EGG UI Tip Card. Code only (no Figma component yet); family Onboarding.
+// EGG UI Tip Card. Figma: Onboarding page; family Onboarding.
 // A dismissible tip: a lightbulb tile, a title and a sentence, a link ("Learn more") and two ways out:
 // an X ("Dismiss tip", hides it now) and "Don't show again" (hides it and calls onNeverShow so the
 // product can remember). Both call onDismiss; onNeverShow is extra.

@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'How often email notifications are bundled: three radio cards, Instant, Daily and Weekly. The chosen card opens its schedule (a time for Daily; a weekday and a time for Weekly) and a polite sentence says the result ("You will get one summary every Monday at 09:00."). Arrow keys move between the cards. Code only (no Figma component yet).',
+          'How often email notifications are bundled: three radio cards, Instant, Daily and Weekly. The chosen card opens its schedule (a time for Daily; a weekday and a time for Weekly) and a polite sentence says the result ("You will get one summary every Monday at 09:00."). Arrow keys move between the cards. Figma: Notifications page.',
       },
     },
   },

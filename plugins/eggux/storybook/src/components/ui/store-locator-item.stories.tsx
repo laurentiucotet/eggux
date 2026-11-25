@@ -24,7 +24,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One result of a store locator: name, address, distance, an open status and the Call and Directions actions. The name is a button that stretches over the card, so a click anywhere selects it; the actions keep their own click. The selected item has a primary border and aria-current. Code only (no Figma component yet).',
+          'One result of a store locator: name, address, distance, an open status and the Call and Directions actions. The name is a button that stretches over the card, so a click anywhere selects it; the actions keep their own click. The selected item has a primary border and aria-current. Figma: Location page.',
       },
     },
   },

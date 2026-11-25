@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Up and down vote with the score between. Each arrow is a toggle (aria-pressed): the other arrow moves the vote, the same arrow removes it, and the score follows. Vertical (a column) or horizontal (a pill). Show down off leaves a like-style single arrow. Code only (no Figma component yet).',
+          'Up and down vote with the score between. Each arrow is a toggle (aria-pressed): the other arrow moves the vote, the same arrow removes it, and the score follows. Vertical (a column) or horizontal (a pill). Show down off leaves a like-style single arrow. Figma: Community page.',
       },
     },
   },

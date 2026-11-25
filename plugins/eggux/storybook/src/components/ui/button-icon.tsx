@@ -1,6 +1,6 @@
 // EGG UI Button Icon. Figma: Button Icon (Button page, "Button Icon / Component").
 // Variant (default, secondary, outline, ghost, destructive, soft) x Size (xs 28, sm 32, default 36,
-// lg 40) x State (default, hover, focus, disabled, loading), Icon (default ellipsis). shadcn
+// lg 40, touch 44) x State (default, hover, focus, disabled, loading), Icon (default ellipsis). shadcn
 // `Button size="icon"` with an aria-label and a Tooltip with the same text. Loading: a spinner
 // replaces the icon, aria-busy, repeat clicks blocked; the tooltip says the action in progress.
 import * as React from 'react';
@@ -8,14 +8,14 @@ import { Button, type ButtonProps } from './button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
 
 export type ButtonIconVariant = 'default' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'soft';
-export type ButtonIconSize = 'xs' | 'sm' | 'default' | 'lg';
+export type ButtonIconSize = 'xs' | 'sm' | 'default' | 'lg' | 'touch';
 
-const sizeMap = { xs: 'icon-xs', sm: 'icon-sm', default: 'icon', lg: 'icon-lg' } as const;
+const sizeMap = { xs: 'icon-xs', sm: 'icon-sm', default: 'icon', lg: 'icon-lg', touch: 'icon-touch' } as const;
 
 export interface ButtonIconProps extends Omit<ButtonProps, 'variant' | 'size' | 'children' | 'leadingIcon' | 'trailingIcon' | 'aria-label'> {
   /** Figma Variant. Default `default`, as in Figma; use ghost in toolbars and dense UI. */
   variant?: ButtonIconVariant;
-  /** Figma Size: xs 28 (14 px icon), sm 32, default 36, lg 40. */
+  /** Figma Size: xs 28 (14 px icon), sm 32, default 36, lg 40, touch 44. */
   size?: ButtonIconSize;
   /** Figma Icon (instance swap): an icon from `@/components/icons`. */
   icon: React.ReactNode;

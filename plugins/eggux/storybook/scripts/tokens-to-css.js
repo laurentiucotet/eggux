@@ -3,7 +3,7 @@
 // variables, one block per Figma mode. Usage:
 //   node scripts/tokens-to-css.js tokens/egg-ui.tokens.json > src/styles/tokens.css
 // Modes map to selectors: Light -> :root, Dark -> .dark, Corporate Light -> .theme-corporate,
-// Corporate Dark -> .theme-corporate.dark, Showcase ... -> .theme-showcase(.dark),
+// Corporate Dark -> .theme-corporate.dark,
 // Density Comfortable -> :root, Compact -> .density-compact. Unknown modes become
 // .theme-<mode-name> so a client theme added in Figma still comes through.
 'use strict';

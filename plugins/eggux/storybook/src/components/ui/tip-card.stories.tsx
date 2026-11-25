@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A dismissible tip: lightbulb, title, one or two sentences, a link and two ways out, the X and "Don\'t show again". When it goes away focus moves to the next focusable element (or a ref you give), never to the page, and a polite status says what happened. Code only (no Figma component yet). Guide: eggux build-ui/patterns/onboarding.md',
+          'A dismissible tip: lightbulb, title, one or two sentences, a link and two ways out, the X and "Don\'t show again". When it goes away focus moves to the next focusable element (or a ref you give), never to the page, and a polite status says what happened. Figma: Onboarding page.',
       },
     },
   },

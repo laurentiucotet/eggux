@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Records cross-tabulated into rows by columns with a Total row and Total column. A heat tint behind each cell shows its size against the largest cell; the number is always printed. The first column stays put while the table scrolls sideways. Code only (no Figma component yet).',
+          'Records cross-tabulated into rows by columns with a Total row and Total column. A heat tint behind each cell shows its size against the largest cell; the number is always printed. The first column stays put while the table scrolls sideways. Figma: Data Structures page.',
       },
     },
   },

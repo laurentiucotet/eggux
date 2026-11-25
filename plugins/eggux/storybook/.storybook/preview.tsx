@@ -40,21 +40,18 @@ if (typeof navigator !== 'undefined' && /Chromatic/i.test(navigator.userAgent)) 
 
 // A theme is two choices, the way the Figma modes are used together:
 //   Scheme: light or dark.
-//   Look: Platform (the default: pill controls, what customers see), Back office (the Corporate
-//   modes: square controls, small radius, Inter) or Showcase (a
-//   brand re-aliasing the same tokens).
-// They map to classes on <html>: `dark`, `theme-corporate`, `theme-showcase` (tokens.css has one
+//   Look: Platform (the default: pill controls, what customers see) or Back office (the Corporate
+//   modes: square controls, small radius, Inter).
+// They map to classes on <html>: `dark`, `theme-corporate` (tokens.css has one
 // block per class, so the two combine).
 // Stories and links can still set the old combined name (`globals: { theme: 'Corporate Dark' }`):
 // it wins over the two selectors, which keeps every theme copy story working.
-const looks: Record<string, string> = { platform: '', 'back-office': 'theme-corporate', showcase: 'theme-showcase' };
+const looks: Record<string, string> = { platform: '', 'back-office': 'theme-corporate' };
 const combined: Record<string, [string, string]> = {
   Light: ['light', 'platform'],
   Dark: ['dark', 'platform'],
   'Corporate Light': ['light', 'back-office'],
   'Corporate Dark': ['dark', 'back-office'],
-  'Showcase Light': ['light', 'showcase'],
-  'Showcase Dark': ['dark', 'showcase'],
 };
 
 // Sizes come from src/styles/breakpoints.ts (the same list as Foundations / Breakpoints).
@@ -108,7 +105,6 @@ const preview: Preview = {
         items: [
           { value: 'platform', title: 'Platform' },
           { value: 'back-office', title: 'Back office' },
-          { value: 'showcase', title: 'Showcase (brand)' },
         ],
         dynamicTitle: true,
       },
@@ -146,7 +142,7 @@ const preview: Preview = {
       const scheme = pair ? pair[0] : String(ctx.globals.scheme ?? 'light');
       const look = pair ? pair[1] : String(ctx.globals.look ?? 'platform');
       const root = document.documentElement;
-      root.classList.remove('dark', 'theme-corporate', 'theme-showcase');
+      root.classList.remove('dark', 'theme-corporate');
       if (looks[look]) root.classList.add(looks[look]!);
       if (scheme === 'dark') root.classList.add('dark');
       return <Story />;

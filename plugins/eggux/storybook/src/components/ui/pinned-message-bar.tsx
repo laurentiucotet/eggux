@@ -1,4 +1,4 @@
-// EGG UI Pinned Message Bar. Code only (no Figma component yet). The bar under a conversation
+// EGG UI Pinned Message Bar. Figma: Messaging page. The bar under a conversation
 // header that shows a pinned message: a pin glyph, "Pinned message 2 of 3" over the author and
 // one line of the text, previous and next buttons that wrap around, and an Unpin button. The
 // message part is a button (`onSelect`) that scrolls to the message in the thread. With one pin

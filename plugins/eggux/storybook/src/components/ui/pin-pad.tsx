@@ -1,4 +1,4 @@
-// EGG UI Pin Pad. Code only (no Figma component yet). The numeric keypad for a PIN or passcode on
+// EGG UI Pin Pad. Figma: Mobile page. The numeric keypad for a PIN or passcode on
 // mobile: dots that fill as digits go in, a 3 x 4 keypad (1 to 9, a free slot for biometrics, 0,
 // delete) and a message. 64 px round keys, so a thumb never misses. Digits also come from a hardware
 // keyboard (0 to 9, Backspace). The dots are one status ("2 of 4 digits entered"); the digits are

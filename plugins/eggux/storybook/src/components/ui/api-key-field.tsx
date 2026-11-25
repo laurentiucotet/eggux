@@ -1,4 +1,4 @@
-// EGG UI API Key Field. Code only (no Figma component yet); family Developer.
+// EGG UI API Key Field. Figma: Developer page; family Developer.
 // One API key in a card: its name, a read-only masked key (all but the last 4 characters, same mask as
 // Copy Field) with a Reveal toggle (aria-pressed) and a Copy Button, then Created and Last used in a
 // definition list, and a Revoke button. Revoke asks first, in place: a group "Revoke "<name>"?" that

@@ -1,4 +1,4 @@
-// EGG UI Step Navigation. Code only (no Figma component yet); family Wizard.
+// EGG UI Step Navigation. Figma: Wizard page; family Wizard.
 // A vertical list of the steps of a flow. Each step is done, current, upcoming or error. Done steps can be
 // clickable (clickableDone) so people go back to fix an answer; current, upcoming and error steps are text.
 // A11y: a nav named "Steps" with an ordered list; the state is in words under every title ("Done",

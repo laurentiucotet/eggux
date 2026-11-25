@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A standalone chart legend that can switch series on and off. Each item is a button with aria-pressed; a hidden series shows a hollow swatch and a struck-through label, so state is never color alone. At least one series stays visible. The chart filters its own data from the hidden list. Code only (no Figma component yet).',
+          'A standalone chart legend that can switch series on and off. Each item is a button with aria-pressed; a hidden series shows a hollow swatch and a struck-through label, so state is never color alone. At least one series stays visible. The chart filters its own data from the hidden list. Figma: Data Display page.',
       },
     },
   },

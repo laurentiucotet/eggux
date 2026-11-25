@@ -1,4 +1,4 @@
-// EGG UI Quiet Hours. Code only (no Figma component yet); family Notifications.
+// EGG UI Quiet Hours. Figma: Notifications page; family Notifications.
 // A schedule that mutes notifications: a Switch (Quiet hours on or off), two Selects for the start
 // and end time (every 30 minutes, 24 hour clock; the end may be earlier than the start, which
 // means "through the night"), seven weekday chips (a multi-select Toggle Group, Mon to Sun) and one summary sentence that says it all: "Muted 22:00 to 07:00 on weekdays".

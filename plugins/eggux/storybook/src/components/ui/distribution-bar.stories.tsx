@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One stacked horizontal bar that splits a total into parts, with a legend that names every part, its value and its share. Parts use the chart colors with a 2 px gap; the numbers are always in text (legend, plus a visually hidden table), so color is never the only carrier. Code only (no Figma component yet).',
+          'One stacked horizontal bar that splits a total into parts, with a legend that names every part, its value and its share. Parts use the chart colors with a 2 px gap; the numbers are always in text (legend, plus a visually hidden table), so color is never the only carrier. Figma: Data Display page.',
       },
     },
   },

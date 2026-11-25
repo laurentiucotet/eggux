@@ -11097,7 +11097,7 @@
   ],
   "a11y": [
    "Decorative: aria-hidden",
-   "Measured in the hero example: subtitle on the plain page (4.74:1 Showcase Light, 7.85:1 Showcase Dark); headline 14:1 or more"
+   "Measured in the hero example: subtitle on the plain page (measured in the removed Showcase modes: 4.74:1 light, 7.85:1 dark; re-measure in Light and Dark); headline 14:1 or more"
   ],
   "code": "Absolutely positioned div: size and position per variant, rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--primary)_35%,transparent),transparent)] blur-3xl; aria-hidden; pointer-events-none.",
   "guides": [

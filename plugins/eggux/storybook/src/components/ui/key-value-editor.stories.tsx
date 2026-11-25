@@ -24,7 +24,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Rows of a key and a value with Add row and Remove row: HTTP headers, environment variables, query parameters. A key used twice is marked on both rows and explained under the list. Add row moves focus to the new key; Remove row moves it to the next row. Values can be masked for secrets. Code only (no Figma component yet).',
+          'Rows of a key and a value with Add row and Remove row: HTTP headers, environment variables, query parameters. A key used twice is marked on both rows and explained under the list. Add row moves focus to the new key; Remove row moves it to the next row. Values can be masked for secrets. Figma: Developer page.',
       },
     },
   },

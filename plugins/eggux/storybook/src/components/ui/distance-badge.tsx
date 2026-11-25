@@ -1,4 +1,4 @@
-// EGG UI Distance Badge. Code only (no Figma component yet). A compact pill that says how far a
+// EGG UI Distance Badge. Figma: Location page. A compact pill that says how far a
 // place is: "1.2 km", "0.7 mi" or a travel time ("8 min walk", "3 min drive"). The visible text is
 // short; screen readers get the long form ("1.2 kilometres away", "8 minutes on foot"). Metric or
 // imperial through `unit` (or the badge itself is a button that switches the unit when `switchable`).

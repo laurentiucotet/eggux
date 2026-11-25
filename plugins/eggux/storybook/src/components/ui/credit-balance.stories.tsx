@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Prepaid credit left, in EUR: the amount as the main figure, a state in words (Low balance at or below the threshold, Empty at zero), the credit that expires with its date and the days left, and a Top up button. The figure is a status. Code only (no Figma component yet).',
+          'Prepaid credit left, in EUR: the amount as the main figure, a state in words (Low balance at or below the threshold, Empty at zero), the credit that expires with its date and the days left, and a Top up button. The figure is a status. Figma: Plans and Billing page.',
       },
     },
   },

@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Where one of your own messages is in its delivery: Sending, Sent, Delivered, Read, or Not sent with a Retry button. The state is always text (visible, or sr-only when the label is off), never only a glyph. Quiet by default; turn on announce for the one message being sent now. Code only (no Figma component yet).',
+          'Where one of your own messages is in its delivery: Sending, Sent, Delivered, Read, or Not sent with a Retry button. The state is always text (visible, or sr-only when the label is off), never only a glyph. Quiet by default; turn on announce for the one message being sent now. Figma: Messaging page.',
       },
     },
   },

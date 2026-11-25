@@ -1,4 +1,4 @@
-// EGG UI Team Member Row. Code only (no Figma component yet); family Access.
+// EGG UI Team Member Row. Figma: Access page; family Access.
 // One person on a team: avatar, name and email, a role Select (Access Level Select), a status badge
 // (Active, Invited, Suspended) and an actions menu (Dropdown Menu items passed as `menu`). The owner
 // row is locked: the role is plain text with a lock, there is no menu, and the reason is read to

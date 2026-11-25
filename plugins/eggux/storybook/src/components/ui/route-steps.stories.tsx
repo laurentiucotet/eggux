@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A turn-by-turn list: an icon per manoeuvre, the instruction, the distance to the next turn and the current step highlighted (aria-current="step"). The header summarises the route and holds Show or Hide steps; collapsed, only the current step is left. Previous and Next move the current step, so a route never needs a gesture. Code only (no Figma component yet).',
+          'A turn-by-turn list: an icon per manoeuvre, the instruction, the distance to the next turn and the current step highlighted (aria-current="step"). The header summarises the route and holds Show or Hide steps; collapsed, only the current step is left. Previous and Next move the current step, so a route never needs a gesture. Figma: Location page.',
       },
     },
   },

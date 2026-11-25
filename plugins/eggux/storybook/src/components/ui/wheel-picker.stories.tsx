@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The scrolling column picker of phones: spin a column under a fixed selection band to pick one value (a time, a quantity, a duration). Several columns sit side by side. Each column is a listbox: swipe snaps to the nearest row, a tap selects, Up and Down move one row, Home and End jump. On desktop prefer a Select. Code only (no Figma component yet).',
+          'The scrolling column picker of phones: spin a column under a fixed selection band to pick one value (a time, a quantity, a duration). Several columns sit side by side. Each column is a listbox: swipe snaps to the nearest row, a tap selects, Up and Down move one row, Home and End jump. On desktop prefer a Select. Figma: Mobile page.',
       },
     },
   },

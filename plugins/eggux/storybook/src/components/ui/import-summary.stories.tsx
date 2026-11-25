@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The result after an import: four stat tiles (Created, Updated, Skipped, Failed) with icon and text, an outcome badge and, when rows failed, the error report as a link or a button. Failed above zero is destructive. Counts are props; no file is written. Code only (no Figma component yet).',
+          'The result after an import: four stat tiles (Created, Updated, Skipped, Failed) with icon and text, an outcome badge and, when rows failed, the error report as a link or a button. Failed above zero is destructive. Counts are props; no file is written. Figma: Data Transfer page.',
       },
     },
   },

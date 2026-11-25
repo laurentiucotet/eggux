@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A schedule as rows of task bars on a time scale: bar position and width come from start and end dates, a line marks today (the now prop), a diamond marks a task that waits for another, progress fills the bar. Bars are buttons with a text description; Up and Down move between rows. A table under the chart lists the same data. Code only (no Figma component yet).',
+          'A schedule as rows of task bars on a time scale: bar position and width come from start and end dates, a line marks today (the now prop), a diamond marks a task that waits for another, progress fills the bar. Bars are buttons with a text description; Up and Down move between rows. A table under the chart lists the same data. Figma: Data Structures page.',
       },
     },
   },

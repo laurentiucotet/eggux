@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One structured log entry: level badge (the level is a word, not only a color), time, message and, with fields, a button that opens a list of key and value pairs. The message is cut to one line when closed and wraps when open; long values break instead of scrolling. Code only (no Figma component yet).',
+          'One structured log entry: level badge (the level is a word, not only a color), time, message and, with fields, a button that opens a list of key and value pairs. The message is cut to one line when closed and wraps when open; long values break instead of scrolling. Figma: Developer page.',
       },
     },
   },

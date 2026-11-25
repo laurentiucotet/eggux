@@ -1,4 +1,4 @@
-// EGG UI Scope Chip List. Code only (no Figma component yet); family Access.
+// EGG UI Scope Chip List. Figma: Access page; family Access.
 // The permissions an app asks for (OAuth-style scopes: "contacts.read") as a list of chips. Each chip
 // is the scope name, its risk written out in text (Low, Medium, High risk; Medium and High also get
 // an icon, and the tone follows, so risk is never color alone) and, when allowed, a remove button.

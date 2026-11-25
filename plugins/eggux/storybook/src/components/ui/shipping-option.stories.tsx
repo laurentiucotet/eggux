@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A radio card for one delivery choice: carrier and service, delivery estimate and price ("Free" in success). The whole card is the target, selected is a 2 px primary edge, arrow keys move between cards in the group. A disabled card keeps its reason readable. Built on Radio with the card states of Option Card. Code only (no Figma component yet).',
+          'A radio card for one delivery choice: carrier and service, delivery estimate and price ("Free" in success). The whole card is the target, selected is a 2 px primary edge, arrow keys move between cards in the group. A disabled card keeps its reason readable. Built on Radio with the card states of Option Card. Figma: Checkout page.',
       },
     },
   },

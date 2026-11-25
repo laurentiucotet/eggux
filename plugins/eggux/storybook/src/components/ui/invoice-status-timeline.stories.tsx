@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The life of one invoice: Draft, Sent, Viewed, Paid with their dates. The current step is marked with aria-current="step"; steps not reached say "Not yet". Overdue adds a step in the error tone ("Overdue by 12 days", counted from the due date to `now`); refunded adds a step after Paid. Every state has a word, never colour alone. Dates are ISO strings shown in UTC. Code only (no Figma component yet).',
+          'The life of one invoice: Draft, Sent, Viewed, Paid with their dates. The current step is marked with aria-current="step"; steps not reached say "Not yet". Overdue adds a step in the error tone ("Overdue by 12 days", counted from the due date to `now`); refunded adds a step after Paid. Every state has a word, never colour alone. Dates are ISO strings shown in UTC. Figma: Plans and Billing page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Digest Frequency. Code only (no Figma component yet); family Notifications.
+// EGG UI Digest Frequency. Figma: Notifications page; family Notifications.
 // How often email notifications are bundled: three radio cards (Option Cards in a radiogroup),
 // Instant (each one as it happens), Daily (one summary a day) and Weekly (one summary a week).
 // The chosen one opens its schedule under the cards: Daily asks "Send at" (a time Select), Weekly

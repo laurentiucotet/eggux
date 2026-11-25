@@ -1,4 +1,4 @@
-// EGG UI Price Tag. Code only (no Figma component yet); Checkout family.
+// EGG UI Price Tag. Figma: Checkout page; Checkout family.
 // The price of a product or plan: the current price, an optional old price struck through, an
 // optional discount badge and an optional unit ("/ month"). Size (sm, default, lg). On sale the
 // current price is destructive, as in Product Card. Screen readers hear "Now €39.00, was €49.00":

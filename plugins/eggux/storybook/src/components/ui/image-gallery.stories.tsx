@@ -22,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A main image with a thumbnail strip, previous and next arrows and a counter. Left and Right arrows (and Home, End) change the image from anywhere inside the group, a thumbnail is a button with aria-current, and a polite status line names the shown image. Pass onImageClick to make the main image open a Lightbox. Code only (no Figma component yet).',
+          'A main image with a thumbnail strip, previous and next arrows and a counter. Left and Right arrows (and Home, End) change the image from anywhere inside the group, a thumbnail is a button with aria-current, and a polite status line names the shown image. Pass onImageClick to make the main image open a Lightbox. Figma: Media page.',
       },
     },
   },

@@ -16,7 +16,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A horizontal row of days with weekday and number, for picking a day close to today (the mobile booking pattern). Arrow keys move between days, Home and End jump to the ends, Enter or Space picks, and the scroll buttons move the strip for mouse users. Unavailable days stay visible and are announced. For a whole month use Calendar. Code only (no Figma component yet).',
+          'A horizontal row of days with weekday and number, for picking a day close to today (the mobile booking pattern). Arrow keys move between days, Home and End jump to the ends, Enter or Space picks, and the scroll buttons move the strip for mouse users. Unavailable days stay visible and are announced. For a whole month use Calendar. Figma: Date and Time page.',
       },
     },
   },

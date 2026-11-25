@@ -1,4 +1,4 @@
-// EGG UI Date Separator. Code only (no Figma component yet). The day label in a message list:
+// EGG UI Date Separator. Figma: Messaging page. The day label in a message list:
 // "Today", "Yesterday" or "12 Oct 2026", worked out from a fixed `now` (so stories and tests never
 // depend on the clock). Two looks: a centered pill, or a line with the label in the middle. It
 // sticks to the top of its scroll area by default so the reader always knows the day. The label

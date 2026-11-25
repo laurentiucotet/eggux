@@ -1,4 +1,4 @@
-// EGG UI Permission Denied Notice. Code only (no Figma component yet); family Access.
+// EGG UI Permission Denied Notice. Figma: Access page; family Access.
 // An inline notice where someone cannot do something because of their access: a lock, the title
 // "You need Editor access", a line that names who to ask (the owner, with their Avatar) and a
 // Request access button. After the request the button gives way to "Request sent to Maria Ilie" with

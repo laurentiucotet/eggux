@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One billed line of an invoice or receipt: description, detail line, "2 x €10.00" and the amount. The description wraps and the amount never does. A credit line (refund, discount) shows the amount in success with a minus sign. Rows are list items inside InvoiceLineItemList. Code only (no Figma component yet).',
+          'One billed line of an invoice or receipt: description, detail line, "2 x €10.00" and the amount. The description wraps and the amount never does. A credit line (refund, discount) shows the amount in success with a minus sign. Rows are list items inside InvoiceLineItemList. Figma: Checkout page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Share Sheet. Code only (no Figma component yet). Mobile page. A bottom sheet (the Drawer)
+// EGG UI Share Sheet. Figma: Mobile page. Mobile page. A bottom sheet (the Drawer)
 // that shares one thing: a link preview line on top (icon, title, address, both truncated) and a
 // grid of targets, each a labeled button of at least 72 x 72 (icon in a 44 circle, label under it):
 // Messages, Mail, Copy link, Save, More. A target closes the sheet after it runs; a target with

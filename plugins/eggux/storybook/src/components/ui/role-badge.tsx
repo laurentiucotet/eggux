@@ -1,4 +1,4 @@
-// EGG UI Role Badge. Code only (no Figma component yet); family Access.
+// EGG UI Role Badge. Figma: Access page; family Access.
 // A small label for the role someone has: Owner, Admin, Editor, Member, Viewer, Guest, or the name of
 // a custom role. Built on Badge (soft tones). Each built-in role has its own tone AND an icon, so the
 // role is never told by color alone; a custom role is neutral. `system` adds a lock for roles the

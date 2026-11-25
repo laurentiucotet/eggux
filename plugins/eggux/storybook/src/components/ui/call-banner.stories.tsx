@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The strip at the top of a chat while you are on a call: the call name, a timer, a Mute toggle and Leave. The text part returns to the call. The timer is not a live region; muting is announced once, politely. The pulse stops under reduced motion. Code only (no Figma component yet).',
+          'The strip at the top of a chat while you are on a call: the call name, a timer, a Mute toggle and Leave. The text part returns to the call. The timer is not a live region; muting is announced once, politely. The pulse stops under reduced motion. Figma: Messaging page.',
       },
     },
   },

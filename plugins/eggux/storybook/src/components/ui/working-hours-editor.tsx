@@ -1,4 +1,4 @@
-// EGG UI Working Hours Editor. Code only (no Figma component yet). Seven weekday rows: a Switch that
+// EGG UI Working Hours Editor. Figma: Date and Time page. Seven weekday rows: a Switch that
 // opens or closes the day, and "from" and "to" time selects in fixed steps (30 min by default). A
 // closed day keeps its hours and shows "Closed" until it is switched on again. The "to" list only
 // offers times after "from", and moving "from" past "to" pushes "to" along, so a day can never end

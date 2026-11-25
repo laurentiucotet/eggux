@@ -1,4 +1,4 @@
-// EGG UI Photo Grid. Code only (no Figma component yet). A grid of photos in two layouts: masonry
+// EGG UI Photo Grid. Figma: Media page. A grid of photos in two layouts: masonry
 // (CSS columns, each photo keeps its own aspect ratio) and rows (justified rows, every row fills
 // the width). A caption can sit over the bottom of each photo (always, or on hover and focus),
 // and when there are more photos than `max` the last visible tile becomes a "+N more" button that

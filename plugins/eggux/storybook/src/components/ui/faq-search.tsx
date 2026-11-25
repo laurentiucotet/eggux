@@ -1,4 +1,4 @@
-// EGG UI FAQ Search. Code only (no Figma component yet); family Marketing.
+// EGG UI FAQ Search. Figma: Marketing page; family Marketing.
 // A help-center FAQ: a Search Field above an Accordion (plus/minus icons). Typing filters the
 // questions (a question or its answer must contain the text, case-insensitive) and marks the match
 // in the question and in the answer. A live line says how many questions match; with none, an

@@ -1,4 +1,4 @@
-// EGG UI Calendar Heatmap. Code only (no Figma component yet). A grid of day cells coloured by
+// EGG UI Calendar Heatmap. Figma: Date and Time page. A grid of day cells coloured by
 // intensity (0 to 4), like a contributions graph: `view="year"` is one cell per day with weeks as
 // columns and weekdays as rows (scrolls sideways in a narrow container), `view="month"` is a
 // month grid with the day number in each cell. Intensity is the value relative to the largest value

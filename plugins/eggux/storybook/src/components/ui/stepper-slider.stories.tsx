@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'One number chosen two ways: a slider for "about this much" and a number input for "exactly this", kept in sync. Typing in range moves the slider; leaving the field rounds to the step and clamps to min and max. The unit sits inside the input and is read with it. One Field label names the control. For two thumbs use Range Input; with no slider use Number Input. Code only (no Figma component yet).',
+          'One number chosen two ways: a slider for "about this much" and a number input for "exactly this", kept in sync. Typing in range moves the slider; leaving the field rounds to the step and clamps to min and max. The unit sits inside the input and is read with it. One Field label names the control. For two thumbs use Range Input; with no slider use Number Input. Figma: Form Controls page.',
       },
     },
   },

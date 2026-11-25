@@ -1,4 +1,4 @@
-// EGG UI Audio Player. Code only (no Figma component yet). A compact player: title and artist, a
+// EGG UI Audio Player. Figma: Media page. A compact player: title and artist, a
 // Play / Pause button, back 10 s and forward 10 s, a seek slider (Slider; arrows 1 s, Page Up and
 // Down 10 s, Home and End to the ends; its value text is "1:05 of 3:20"), the elapsed and total
 // time, and a speed button that cycles 0.75x, 1x, 1.25x, 1.5x, 2x. With `src` it drives a real

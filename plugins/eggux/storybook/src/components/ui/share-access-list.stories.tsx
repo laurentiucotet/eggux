@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Who can open something: people and groups with an Access Level Select and a Remove button each, then an "Anyone with the link" row with a switch. The owner row is locked (text and a lock, no select, no remove) and always first. Removing is announced and moves focus to the next row. The owner level is not offered to anyone else. Code only (no Figma component yet).',
+          'Who can open something: people and groups with an Access Level Select and a Remove button each, then an "Anyone with the link" row with a switch. The owner row is locked (text and a lock, no select, no remove) and always first. Removing is announced and moves focus to the next row. The owner level is not offered to anyone else. Figma: Access page.',
       },
     },
   },

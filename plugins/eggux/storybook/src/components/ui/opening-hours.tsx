@@ -1,4 +1,4 @@
-// EGG UI Opening Hours. Code only (no Figma component yet). A week table (Monday to Sunday) with
+// EGG UI Opening Hours. Figma: Location page. A week table (Monday to Sunday) with
 // today highlighted, a one line summary ("Open now. Closes at 18:00" or "Closed. Opens tomorrow at
 // 09:00") and exceptions (a holiday with its own hours or closed). The status is computed from a
 // fixed `now` ("2026-11-13T14:30", the local time at the place, no time zone math), so the same

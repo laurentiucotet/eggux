@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The label above one group of notifications ("Today", "Earlier") with its count and a fold toggle. A heading with a button inside: aria-expanded and aria-controls say what it folds, and the name reads "Today 3 notifications". Sticky: it stays at the top of the scroll area until the next group pushes it away. Code only (no Figma component yet).',
+          'The label above one group of notifications ("Today", "Earlier") with its count and a fold toggle. A heading with a button inside: aria-expanded and aria-controls say what it folds, and the name reads "Today 3 notifications". Sticky: it stays at the top of the scroll area until the next group pushes it away. Figma: Notifications page.',
       },
     },
   },

@@ -1,4 +1,4 @@
-// EGG UI Bell Button. Code only (no Figma component yet); family Notifications.
+// EGG UI Bell Button. Figma: Notifications page; family Notifications.
 // The bell in a header: a ghost icon button with an unread count badge on its corner (99+ above
 // 99, nothing at 0) that opens a Popover holding the notification panel (`children`, usually a
 // Notification Inbox). The button is named by the count, "Notifications, 3 unread", and "Notifications, 99+ unread"

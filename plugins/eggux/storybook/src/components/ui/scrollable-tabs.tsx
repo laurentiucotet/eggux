@@ -1,4 +1,4 @@
-// EGG UI Scrollable Tabs. Code only (no Figma component yet); the tabs themselves are Tabs and Tab
+// EGG UI Scrollable Tabs. Figma: Layout page; the tabs themselves are Tabs and Tab
 // (Tabs page). ScrollableTabsList replaces TabsList when there are too many tabs for the width and
 // a "More" menu is not wanted (a category strip, a long settings list): the tabs stay on one line
 // and scroll sideways. Fade edges show that more is hidden, Previous and Next buttons appear only

@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A banner that says whether an address is inside, near or outside the delivery area, with a Change address action. Each state has its own icon and heading, never colour alone. A polite status: it follows the address the shopper just entered. Code only (no Figma component yet).',
+          'A banner that says whether an address is inside, near or outside the delivery area, with a Change address action. Each state has its own icon and heading, never colour alone. A polite status: it follows the address the shopper just entered. Figma: Location page.',
       },
     },
   },

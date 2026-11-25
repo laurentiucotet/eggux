@@ -1,4 +1,4 @@
-// EGG UI Mega Menu Panel. Code only (no Figma component yet). The wide panel a site navbar opens
+// EGG UI Mega Menu Panel. Figma: Layout page. The wide panel a site navbar opens
 // under one top level item (Products, Solutions): up to four columns of links, each with a heading,
 // an optional icon, a one line description and a badge, and one featured card (media, title, text,
 // link) at the end. It is a <nav> with its own name, headings are real headings, links are real

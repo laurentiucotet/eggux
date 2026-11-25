@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The link people use to join: a read-only field with Copy, an expiry select, Reset link (asks first: the old link stops working) and a switch that turns the link on or off. Off dims and disables the field, Copy, expiry and Reset. Settings wrap under about 400 px. Code only (no Figma component yet).',
+          'The link people use to join: a read-only field with Copy, an expiry select, Reset link (asks first: the old link stops working) and a switch that turns the link on or off. Off dims and disables the field, Copy, expiry and Reset. Settings wrap under about 400 px. Figma: Access page.',
       },
     },
   },

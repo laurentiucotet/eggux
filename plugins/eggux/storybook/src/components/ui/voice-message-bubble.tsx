@@ -1,4 +1,4 @@
-// EGG UI Voice Message Bubble. Code only (no Figma component yet). A voice message in a chat: a
+// EGG UI Voice Message Bubble. Figma: Messaging page. A voice message in a chat: a
 // round Play / Pause button, a waveform of bars that fill with progress, the time and a speed
 // button (1x, 1.5x, 2x). The waveform is a native range input stretched over the bars, so it is
 // seekable by pointer and by keyboard (arrows 1 s, Page Up and Down 5 s, Home, End) and its value

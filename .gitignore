@@ -1,0 +1,4 @@
+# Local working files, not part of the plugin
+# eggux/: this repo's own EGG UX project data (decisions, tasks, notes) read by /eggux:board
+/eggux/
+/.claude/launch.json

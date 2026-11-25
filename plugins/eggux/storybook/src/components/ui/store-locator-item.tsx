@@ -1,4 +1,4 @@
-// EGG UI Store Locator Item. Code only (no Figma component yet). One result in a store locator list:
+// EGG UI Store Locator Item. Figma: Location page. One result in a store locator list:
 // name, address, distance, an open status ("Open now. Closes at 18:00") and two actions, Call and
 // Directions. When `onSelect` is given the name is a button that stretches over the whole card (so
 // a click anywhere selects it, on the map and in the list); the actions stay on top and keep their

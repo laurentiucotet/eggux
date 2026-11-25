@@ -23,7 +23,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Choose one color of a fixed set: a theme accent, a label color, a tag color. Built on native radio inputs (Tab enters the group, arrows move and select). Each swatch is named by its color; the selected one has a check and a ring, so color is never the only signal. Optional custom color opens the browser color input. Sizes 24, 32 and 40 px. Code only (no Figma component yet).',
+          'Choose one color of a fixed set: a theme accent, a label color, a tag color. Built on native radio inputs (Tab enters the group, arrows move and select). Each swatch is named by its color; the selected one has a check and a ring, so color is never the only signal. Optional custom color opens the browser color input. Sizes 24, 32 and 40 px. Figma: Form Controls page.',
       },
     },
   },

@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A small label for the role someone has: Owner, Admin, Editor, Member, Viewer, Guest or a custom role. Built on Badge. Every built-in role has its own tone and its own icon, so the role never relies on color alone; a custom role is neutral. System adds a lock for roles nobody can edit. Code only (no Figma component yet).',
+          'A small label for the role someone has: Owner, Admin, Editor, Member, Viewer, Guest or a custom role. Built on Badge. Every built-in role has its own tone and its own icon, so the role never relies on color alone; a custom role is neutral. System adds a lock for roles nobody can edit. Figma: Access page.',
       },
     },
   },

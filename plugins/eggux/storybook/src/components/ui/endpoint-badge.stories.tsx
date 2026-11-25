@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'An HTTP method (GET, POST, PUT, PATCH, DELETE) as a soft badge, then the path in mono. The method word is always shown, so color is never the only signal, and every badge has the same minimum width so a list lines up. A long path is cut on one line with the full value in a title, or wraps with Wrap path. Code only (no Figma component yet).',
+          'An HTTP method (GET, POST, PUT, PATCH, DELETE) as a soft badge, then the path in mono. The method word is always shown, so color is never the only signal, and every badge has the same minimum width so a list lines up. A long path is cut on one line with the full value in a title, or wraps with Wrap path. Figma: Developer page.',
       },
     },
   },

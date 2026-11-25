@@ -1,4 +1,4 @@
-// EGG UI What's New Dialog. Code only (no Figma component yet); family Onboarding.
+// EGG UI What's New Dialog. Figma: Onboarding page; family Onboarding.
 // A release note in a Dialog: a Sparkles header with the title and the version and date, a list of
 // changes each with a type badge (New, Improved, Fixed) and one sentence, and a "Got it" button.
 // Opens from a trigger (any element passed as `trigger`) or controlled with `open`.

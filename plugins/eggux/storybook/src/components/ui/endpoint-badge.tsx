@@ -1,4 +1,4 @@
-// EGG UI Endpoint Badge. Code only (no Figma component yet); family Developer.
+// EGG UI Endpoint Badge. Figma: Developer page; family Developer.
 // An HTTP method badge (GET, POST, PUT, PATCH, DELETE) followed by the path in the mono style.
 // The method is a soft Badge: the word is always shown, so color is never the only signal (GET info,
 // POST success, PUT warning, PATCH category-3, DELETE destructive). The method badge has a fixed

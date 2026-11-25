@@ -1,4 +1,4 @@
-// EGG UI Coupon Input. Code only (no Figma component yet); Checkout family.
+// EGG UI Coupon Input. Figma: Checkout page; Checkout family.
 // State (idle, loading, applied, error). Idle: a labelled code field with an Apply button; Enter in
 // the field applies, Apply stays disabled while the field is empty. Loading: the button shows a
 // spinner and the field is read-only. Error: the field is aria-invalid and the message is linked

@@ -1,4 +1,4 @@
-// EGG UI Share Access List. Code only (no Figma component yet); family Access.
+// EGG UI Share Access List. Figma: Access page; family Access.
 // Who can open something: a list of people and groups, each with an Avatar (a group gets the Users
 // icon), name over email or member count, an Access Level Select and a Remove button, then an
 // "Anyone with the link" row with a Switch (the level shows only while it is on). The owner row is
