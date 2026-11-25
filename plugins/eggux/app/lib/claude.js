@@ -8,16 +8,25 @@ const BIN = process.env.EGGUX_CLAUDE_BIN || 'claude';
 
 class ClaudeError extends Error {}
 
+// The first complete JSON value in Claude's text: the whole answer, a ```json fence, or the first
+// balanced {...} or [...] (strings and escapes respected), so prose around it does not break parsing.
 function extractJson(text) {
   const t = String(text || '').trim();
+  const tryParse = s => { try { return { ok: true, v: JSON.parse(s) }; } catch { return { ok: false }; } };
+  let r = tryParse(t); if (r.ok) return r.v;
   const fence = /```(?:json)?\s*([\s\S]*?)```/.exec(t);
-  const src = fence ? fence[1] : t;
-  const start = src.search(/[[{]/);
-  if (start < 0) throw new ClaudeError('Claude did not answer in the expected format. Try again.');
-  const open = src[start], close = open === '{' ? '}' : ']';
-  const end = src.lastIndexOf(close);
-  try { return JSON.parse(src.slice(start, end + 1)); }
-  catch { throw new ClaudeError('Claude did not answer in the expected format. Try again.'); }
+  if (fence) { r = tryParse(fence[1].trim()); if (r.ok) return r.v; }
+  for (let start = t.search(/[[{]/); start >= 0; start = t.slice(start + 1).search(/[[{]/) < 0 ? -1 : start + 1 + t.slice(start + 1).search(/[[{]/)) {
+    let depth = 0, inStr = false, esc = false;
+    for (let i = start; i < t.length; i++) {
+      const c = t[i];
+      if (inStr) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false; continue; }
+      if (c === '"') inStr = true;
+      else if (c === '{' || c === '[') depth++;
+      else if (c === '}' || c === ']') { depth--; if (depth === 0) { r = tryParse(t.slice(start, i + 1)); if (r.ok) return r.v; break; } }
+    }
+  }
+  throw new ClaudeError('Claude did not answer in the expected format. Try again.');
 }
 
 function friendly(msg) {
@@ -27,12 +36,12 @@ function friendly(msg) {
 }
 
 // Ask Claude for JSON. cwd is the project root, so Claude can read eggux/ files itself.
-function askJson(cwd, prompt, { timeoutMs = 5 * 60 * 1000, maxTurns = 6 } = {}) {
+function askJson(cwd, prompt, { timeoutMs = 5 * 60 * 1000, maxTurns = 6, tools = 'Read,Glob,Grep' } = {}) {
   return new Promise((resolve, reject) => {
     let out = '', err = '', done = false;
     let child;
     try {
-      child = spawn(BIN, ['-p', '--output-format', 'json', '--max-turns', String(maxTurns), '--allowedTools', 'Read,Glob,Grep'],
+      child = spawn(BIN, ['-p', '--output-format', 'json', '--max-turns', String(maxTurns), '--allowedTools', tools, '--disallowedTools', 'Bash,Write,Edit,NotebookEdit,WebFetch,WebSearch'],
         { cwd, shell: process.platform === 'win32', windowsHide: true, env: process.env });
     } catch (e) { return reject(new ClaudeError('Claude Code (the `claude` command) was not found. Install Claude Code, or set EGGUX_CLAUDE_BIN.')); }
     const timer = setTimeout(() => { if (!done) { done = true; child.kill(); reject(new ClaudeError('Claude took too long. Try a narrower request.')); } }, timeoutMs);

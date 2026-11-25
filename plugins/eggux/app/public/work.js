@@ -115,7 +115,7 @@ function entryForm(sec, e) {
 
 // ---------- Template dialog ----------
 function openTemplate(sec) {
-  wui.tpl = { id: sec.id, name: sec.name, fields: sec.fields.map(f => ({ ...f, from: f.label })) };
+  wui.tpl = { id: sec.id, name: sec.name, version: sec.version, fields: sec.fields.map(f => ({ ...f, from: f.label })) };
   drawTemplate(); $('#work-dlg').showModal();
 }
 function drawTemplate() {
@@ -275,6 +275,16 @@ function applyZoom() {
   s.style.height = zoom === 1 ? '100%' : 'auto';
 }
 
+// What the page saw: the file version, and the entry's title. The server refuses a write when
+// either changed meanwhile, so an edit never lands on the wrong entry.
+function guard(secId, index) {
+  const c = wui.cache['ctx:' + secId];
+  const sec = c && c.data;
+  if (!sec) return {};
+  const e = index != null && index !== '' ? sec.entries.find(x => x.index === +index) : null;
+  return { version: sec.version, ...(e ? { expectTitle: e.title } : {}) };
+}
+
 // ---------- wiring ----------
 window.WORK_VIEWS = { context: renderContext, docs: renderDocs, understand: renderUnderstand, decide: renderDecide };
 document.body.insertAdjacentHTML('beforeend', '<dialog id="work-dlg" aria-label="Dialog"></dialog>');
@@ -291,10 +301,10 @@ document.addEventListener('click', async ev => {
     case 'new-entry': wui.editing = 'new'; render(); setTimeout(() => { const x = $('#w-f-0'); if (x) x.focus(); }, 30); return;
     case 'cancel-entry': wui.editing = null; return render();
     case 'edit': wui.editing = +d.i; return render();
-    case 'keep': return act(() => api('PUT', `/api/context/${enc(id)}/entries/${d.i}`, { suggested: false }), 'Kept');
-    case 'del-entry': if (confirm('Delete this entry?')) await act(() => api('DELETE', `/api/context/${enc(id)}/entries/${d.i}`), 'Entry deleted'); return;
+    case 'keep': return act(() => api('PUT', `/api/context/${enc(id)}/entries/${d.i}`, { suggested: false, ...guard(id, d.i) }), 'Kept');
+    case 'del-entry': if (confirm('Delete this entry?')) await act(() => api('DELETE', `/api/context/${enc(id)}/entries/${d.i}`, guard(id, d.i)), 'Entry deleted'); return;
     case 'template': { const sec = wui.cache['ctx:' + d.id] && wui.cache['ctx:' + d.id].data; if (sec) openTemplate(sec); return; }
-    case 'del-section': if (confirm('Delete this section and all its entries? The file eggux/' + d.id + ' is removed.')) { await act(() => api('DELETE', '/api/context/' + enc(d.id)), 'Section deleted'); location.hash = '#/context'; } return;
+    case 'del-section': if (confirm('Delete this section and all its entries? The file eggux/' + d.id + ' moves to eggux/.trash/.')) { const ok = await act(() => api('DELETE', '/api/context/' + enc(d.id), guard(d.id)), 'Section deleted'); if (ok) location.hash = '#/context'; } return;
     case 'tpl-add': wui.tpl.fields.push({ label: 'New field', type: 'text' }); return drawTemplate();
     case 'tpl-del': wui.tpl.fields.splice(+d.i, 1); return drawTemplate();
     case 'tpl-up': { const i = +d.i, f = wui.tpl.fields; [f[i - 1], f[i]] = [f[i], f[i - 1]]; return drawTemplate(); }
@@ -326,10 +336,11 @@ document.addEventListener('submit', async ev => {
     f.querySelectorAll('[data-label]').forEach((el, i) => { const v = el.dataset.list ? lines(el.value) : el.value.trim(); if (i === 0) title = v; else values[el.dataset.label] = v; });
     if (!title) return toast('Fill in the first field', true);
     const i = f.dataset.i;
-    const ok = await act(() => i === '' ? api('POST', `/api/context/${enc(sec.id)}/entries`, { title, values }) : api('PUT', `/api/context/${enc(sec.id)}/entries/${i}`, { title, values, suggested: false }), 'Saved');
+    const ok = await act(() => i === '' ? api('POST', `/api/context/${enc(sec.id)}/entries`, { title, values, version: sec.version }) : api('PUT', `/api/context/${enc(sec.id)}/entries/${i}`, { title, values, suggested: false, ...guard(sec.id, i) }), 'Saved');
+    if (!ok) { wui.editing = null; render(); }
     if (ok) { wui.editing = null; render(); }
   }
-  if (f.id === 'w-doc') { ev.preventDefault(); const ok = await act(() => api('PUT', `/api/context/${enc(f.dataset.id)}/document`, { body: $('#w-doc-body').value }), 'Saved'); if (ok) { wui.editDoc = null; render(); } }
+  if (f.id === 'w-doc') { ev.preventDefault(); const ok = await act(() => api('PUT', `/api/context/${enc(f.dataset.id)}/document`, { body: $('#w-doc-body').value, ...guard(f.dataset.id) }), 'Saved'); if (ok) { wui.editDoc = null; render(); } }
   if (f.id === 'flow-props') { ev.preventDefault(); const b = Object.fromEntries(new FormData(f)); const ok = await act(() => api('PATCH', '/api/flows/' + f.dataset.slug, b), 'Saved'); if (ok) { ui.flowProps = false; render(); } }
   if (f.id === 'w-newres') { ev.preventDefault(); const title = $('#w-restitle').value.trim(); if (!title) return toast('Write what you want to learn', true);
     const r = await act(() => api('POST', '/api/research', { title }), 'Sent to Claude'); if (r) location.hash = '#/understand/' + r.slug; }
@@ -348,7 +359,7 @@ $('#work-dlg').addEventListener('close', async () => {
   }
   if (dlg.returnValue !== 'ok') return;
   const tf = $('#w-tpl-form', dlg), of = $('#w-opt-form', dlg), ff = $('#w-flow-form', dlg);
-  if (tf) await act(() => api('PUT', `/api/context/${enc(wui.tpl.id)}/template`, { name: $('#w-tpl-name').value, fields: wui.tpl.fields }), 'Template saved');
+  if (tf) await act(() => api('PUT', `/api/context/${enc(wui.tpl.id)}/template`, { name: $('#w-tpl-name').value, fields: wui.tpl.fields, version: wui.tpl.version }), 'Template saved');
   if (of) { const b = Object.fromEntries(new FormData(of)); await act(() => api('POST', `/api/questions/${of.dataset.id}/options`, { title: b.title, pros: lines(b.pros), cons: lines(b.cons) }), 'Your option was added'); }
 });
 document.addEventListener('change', ev => {

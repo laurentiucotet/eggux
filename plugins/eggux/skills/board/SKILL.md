@@ -87,6 +87,14 @@ Decisions found in a note go to the Inbox of `decisions.md` (one line each, with
 who), never straight into Decisions; `/eggux:decision-log` records them.
 
 ## Safety
-The server binds to 127.0.0.1, refuses writes from other origins, and only touches files inside
-`eggux/`. Writes are atomic (temp file and rename). A note edited on disk while open in the
-board is not overwritten: the editor asks to reload.
+The server binds to 127.0.0.1, answers only requests addressed to 127.0.0.1 or localhost (no DNS
+rebinding), refuses writes from other origins, and only touches files inside `eggux/`. Writes are
+atomic (temp file and rename). Edits carry the version of the file the page showed; if Claude, a
+skill or an editor changed the file meanwhile, the board refuses the write and reloads, so an edit
+never lands on the wrong entry. A note edited on disk while open is not overwritten either. Lines
+the board does not recognise in `questions.md` and research files are kept. "Draft with Claude"
+never overwrites flow files edited while it ran; the draft goes to `claude-draft.json`. Deleted
+notes, documents, research and sections move to `eggux/.trash/` (add it to `.gitignore` or empty
+it now and then). Documents are passed to Claude as untrusted input, with only the Read tool;
+its suggestions stay marked until someone keeps them. Mermaid is bundled, so diagrams work
+offline. Tests: `node --test plugins/eggux/app/test/store.test.js plugins/eggux/app/test/workspace.test.js`.

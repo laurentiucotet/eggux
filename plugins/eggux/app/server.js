@@ -77,12 +77,12 @@ const routes = [
   // Context
   ['GET', /^\/api\/context\/([^/]+)$/, m => W.readSection(project, dec(m[1]))],
   ['POST', /^\/api\/context$/, (m, b) => W.createSection(project, b)],
-  ['DELETE', /^\/api\/context\/([^/]+)$/, m => W.deleteSection(project, dec(m[1]))],
-  ['PUT', /^\/api\/context\/([^/]+)\/document$/, (m, b) => W.saveDocument(project, dec(m[1]), b.body)],
+  ['DELETE', /^\/api\/context\/([^/]+)$/, (m, b) => W.deleteSection(project, dec(m[1]), b.version)],
+  ['PUT', /^\/api\/context\/([^/]+)\/document$/, (m, b) => W.saveDocument(project, dec(m[1]), b.body, b.version)],
   ['PUT', /^\/api\/context\/([^/]+)\/template$/, (m, b) => W.saveTemplate(project, dec(m[1]), b)],
   ['POST', /^\/api\/context\/([^/]+)\/entries$/, (m, b) => W.writeEntry(project, dec(m[1]), null, b)],
   ['PUT', /^\/api\/context\/([^/]+)\/entries\/(\d+)$/, (m, b) => W.writeEntry(project, dec(m[1]), +m[2], b)],
-  ['DELETE', /^\/api\/context\/([^/]+)\/entries\/(\d+)$/, m => W.writeEntry(project, dec(m[1]), +m[2], { delete: true })],
+  ['DELETE', /^\/api\/context\/([^/]+)\/entries\/(\d+)$/, (m, b) => W.writeEntry(project, dec(m[1]), +m[2], { ...b, delete: true })],
   ['POST', /^\/api\/context\/([^/]+)\/suggest$/, (m, b) => W.suggestEntry(project, dec(m[1]), b.hint)],
   // Understand
   ['GET', /^\/api\/research\/([a-z0-9-]+)$/, m => W.parseResearch(project, m[1] + '.md')],
@@ -122,7 +122,10 @@ const routes = [
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost');
-  // Only this machine may write: refuse requests from other origins (a page on another site).
+  // Only this machine may read or write. The Host check stops DNS rebinding (a site that points
+  // its own name at 127.0.0.1 to read the project through the visitor's browser).
+  if (!/^(127\.0\.0\.1|localhost|\[::1\])(:\d+)?$/i.test(req.headers.host || '')) return send(res, 403, { error: 'Forbidden host' });
+  // Refuse writes from other origins (a page on another site).
   const origin = req.headers.origin;
   if (req.method !== 'GET' && origin && !/^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin)) return send(res, 403, { error: 'Forbidden origin' });
   if (url.pathname === '/api/events') {

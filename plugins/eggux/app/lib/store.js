@@ -306,9 +306,20 @@ class Project {
     this.write('tasks.md', setUpdated(lines.join('\n'), now().date));
   }
   deleteNote(file) {
-    const full = this.p(this.noteFile(file));
-    if (!fs.existsSync(full)) throw new HttpError(404, 'Note not found');
-    fs.unlinkSync(full);
+    const rel = this.noteFile(file);
+    if (!fs.existsSync(this.p(rel))) throw new HttpError(404, 'Note not found');
+    this.trash(rel);
+  }
+  // Deleted files go to eggux/.trash/ with a date prefix instead of disappearing.
+  trash(rel) {
+    const from = this.p(rel);
+    if (!fs.existsSync(from)) throw new HttpError(404, 'Not found');
+    const d = new Date();
+    const stamp = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+    const to = this.p('.trash', `${stamp}-${rel.replace(/[\\/]/g, '__')}`);
+    fs.mkdirSync(path.dirname(to), { recursive: true });
+    fs.renameSync(from, to);
+    return path.relative(this.dir, to);
   }
   addTerm(row) {
     const t = this.read('decisions.md');

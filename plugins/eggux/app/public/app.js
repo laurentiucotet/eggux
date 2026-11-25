@@ -466,8 +466,8 @@ let mermaidLib = null;
 function loadMermaid() {
   if (!mermaidLib) mermaidLib = new Promise((resolve, reject) => {
     const s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js';
-    s.onload = () => resolve(window.mermaid); s.onerror = () => { mermaidLib = null; reject(new Error('Mermaid did not load (offline?)')); };
+    s.src = 'vendor/mermaid.min.js'; // Mermaid 11.4.1, MIT (vendor/mermaid.LICENSE.txt); works offline
+    s.onload = () => resolve(window.mermaid); s.onerror = () => { mermaidLib = null; reject(new Error('Mermaid did not load')); };
     document.head.appendChild(s);
   });
   return mermaidLib;
