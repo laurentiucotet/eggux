@@ -6,7 +6,7 @@ description: Apply new input to an existing feature - a decision, new details, a
 # Update feature
 
 One piece of input, every place it touches. A feature lives in `eggux/features/<slug>/`
-(feature.md, scenarios.md, workflows.md, decisions.md) and on its Figma page. An update that
+(feature.md, scenarios.md, workflows.md, decisions.md, handoff.md) and on its Figma page. An update that
 changes one of them and not the others is how specs drift from designs.
 
 ## 0. Read first
@@ -81,6 +81,11 @@ ambiguous (scope, which actors, which version). Apply after the user agrees or s
    - frames that no longer apply move to the Archive section, renamed
      `<name> (superseded <date>, FD-xx)`; never delete designed work;
    - removed scenarios: move the whole section's frames to Archive and delete the empty section.
+7. **`handoff.md`:** recompile the sections the change touches (rules, copy, done-when lines,
+   screens, components, open questions). When the handoff was already `ready for dev` or
+   `built`, bump `version`, add a line under "Changes since the last handoff" saying what the
+   developer must change, and set the status back to `draft` if a new question blocks the
+   build. Missing `handoff.md` (older feature): create it from the template.
 
 ## 5. Check that everything agrees
 - Every S-xx and E-xx that is not removed has a Figma section with the same ID and title, and
@@ -91,6 +96,7 @@ ambiguous (scope, which actors, which version). Apply after the user agrees or s
 - Every FD-xx has status applied, its "Affects" matches what changed, and superseded ones say
   by what.
 - Statuses agree: a scenario with "Needs update" screens is not `ready for dev`.
+- `handoff.md` says the same as the other files: same rules, limits, copy and scenario list.
 
 ## 6. Log and report
 Add one changelog entry at the top of `feature.md`: date and time · source · items · files and

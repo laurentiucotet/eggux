@@ -15,6 +15,28 @@ const ICONS = {
   monitor: '<rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>',
   calendar: '<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/>',
   arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  expand: '<path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/>',
+  figma: '<path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/>',
+  zoomin: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/>',
+  zoomout: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/>',
+  sparkles: '<path d="M9.94 14.06 12 21l2.06-6.94L21 12l-6.94-2.06L12 3 9.94 9.94 3 12z"/>',
+  pencil: '<path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>',
+  trash: '<path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+  check: '<path d="M20 6 9 17l-5-5"/>',
+  upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/>',
+  sliders: '<path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M2 14h4"/><path d="M10 8h4"/><path d="M18 16h4"/>',
+  up: '<path d="m18 15-6-6-6 6"/>',
+  down: '<path d="m6 9 6 6 6-6"/>',
+  right: '<path d="m9 18 6-6-6-6"/>',
+  thumbup: '<path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/>',
+  thumbdown: '<path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>',
+  bulb: '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  context: '<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>',
+  docs: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/>',
+  understand: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/>',
+  decide: '<path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3"/><path d="m15 9 6-6"/>',
+  flows: '<rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/>',
 };
 const icon = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]}</svg>`;
 const code = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
@@ -53,8 +75,8 @@ async function act(fn, ok) {
 
 // ---------- routing ----------
 function route() {
-  const [, view = 'decisions', a, b] = location.hash.split('/');
-  return { view: ['decisions', 'tasks', 'notes'].includes(view) ? view : 'decisions', a: a ? decodeURIComponent(a) : '', b: b ? decodeURIComponent(b) : '' };
+  const [, view = 'context', a, b] = location.hash.split('/');
+  return { view: ['context', 'docs', 'understand', 'decide', 'decisions', 'tasks', 'flows', 'notes'].includes(view) ? view : 'context', a: a ? decodeURIComponent(a) : '', b: b ? decodeURIComponent(b) : '' };
 }
 window.addEventListener('hashchange', () => { render(); $('#main').focus({ preventScroll: true }); });
 
@@ -75,6 +97,7 @@ function linkChip(l) {
     const d = allDecisions().find(x => x.id === l);
     return `<a class="badge outline" href="#/decisions/${esc(d ? d.source : 'product')}/${esc(l)}" title="${esc(d ? d.title : 'Decision')}">${esc(l)}</a>`;
   }
+  if (/^feature:/.test(l)) return `<a class="badge outline" href="#/flows/${esc(l.slice(8))}">${esc(l)}</a>`;
   if (/^note:/.test(l)) return `<a class="badge outline" href="#/notes/${esc(l.slice(5))}">${esc(l)}</a>`;
   if (/^https?:\/\//.test(l)) return `<a class="badge outline" href="${esc(l)}" target="_blank" rel="noopener">${esc(/figma\.com/.test(l) ? 'Figma' : 'Link')}</a>`;
   return `<span class="badge outline">${esc(l)}</span>`;
@@ -90,13 +113,18 @@ function renderNav() {
   const r = route();
   const inboxN = allInbox().length;
   const items = [
-    ['decisions', 'Decisions', inboxN ? `${inboxN} new` : String(allDecisions().length)],
-    ['tasks', 'Tasks', String(openTasks().length)],
-    ['notes', 'Notes', String(S ? S.notes.length : 0)],
+    ['context', 'Context', String(S && S.work ? S.work.context.length : 0)],
+    ['docs', 'Documents', String(S && S.work ? S.work.docs.length : 0)],
+    ['understand', 'Understand', String(S && S.work ? S.work.research.length : 0)],
+    ['decide', 'Decide', String(S && S.work ? S.work.questions.filter(q => !/^decided/.test(q.status)).length : 0)],
+    ['flows', 'Flows', String(S && S.flows ? S.flows.length : 0)],
+    ['tasks', 'Working board', String(openTasks().length)],
+    ['decisions', 'Decision log', inboxN ? `${inboxN} new` : String(allDecisions().length)],
   ];
-  $('#nav').innerHTML = items.map(([k, label, n]) => `<a href="#/${k}" ${r.view === k ? 'aria-current="page"' : ''}>${icon(k)}<span class="lbl">${label}</span><span class="count">${esc(n)}</span></a>`).join('');
+  const cur = r.view === 'notes' ? 'context' : r.view;
+  $('#nav').innerHTML = items.map(([k, label, n]) => `<a href="#/${k}" ${cur === k ? 'aria-current="page"' : ''}>${icon(k)}<span class="lbl">${label}</span><span class="count">${esc(n)}</span></a>`).join('');
   $('#project-name').textContent = S ? S.project.name : 'Loading';
-  document.title = `${({ decisions: 'Decisions', tasks: 'Tasks', notes: 'Notes' })[r.view]} · ${S ? S.project.name : 'EGG UX Board'}`;
+  document.title = `${({ context: 'Context', docs: 'Documents', understand: 'Understand', decide: 'Decide', decisions: 'Decision log', tasks: 'Working board', flows: 'Flows', notes: 'Notes' })[r.view]} · ${S ? S.project.name : 'EGG UX Board'}`;
 }
 function setupState() {
   if (!S.project.hasFolder) return `<div class="card"><div class="empty"><strong>No eggux/ folder in this project</strong>Run <code>/eggux:init</code> in Claude Code in <code>${esc(S.project.root)}</code>. The board shows its decisions, tasks and notes as soon as the folder exists.</div></div>`;
@@ -111,26 +139,14 @@ function renderDecisions(r) {
   const all = allDecisions();
   const counts = Object.fromEntries(S.decisionStatuses.map(s => [s, all.filter(d => d.statusWord === s).length]));
   const open = all.filter(d => !['verified', 'superseded'].includes(d.statusWord)).length;
-  let html = head('Decisions', `${all.length} decisions, ${open} not verified yet. Product decisions win over feature decisions; the newest wins.`,
+  let html = head('Decision log', `${all.length} decisions in <code>eggux/decisions.md</code> and the flows' <code>decisions.md</code>. The newest wins.`,
     `<button class="btn" type="button" data-act="new-decision">${icon('plus')}New decision</button>`);
-  html += `<div class="tabs" role="tablist" aria-label="Decisions views">
-    <button role="tab" type="button" aria-selected="${ui.dTab === 'decisions'}" data-tab="decisions">Decisions</button>
-    <button role="tab" type="button" aria-selected="${ui.dTab === 'terms'}" data-tab="terms">Terminology (${S.decisions.product.terminology.length})</button></div>`;
-  if (ui.dTab === 'terms') return html + renderTerms();
-
   html += renderInbox();
   const q = ui.dq.toLowerCase();
-  const list = all.filter(d => (ui.dStatus === 'all' || (ui.dStatus === 'open' ? !['verified', 'superseded'].includes(d.statusWord) : d.statusWord === ui.dStatus))
-    && (!ui.dType || d.type === ui.dType) && (!ui.dSource || d.source === ui.dSource)
-    && (!q || (d.id + ' ' + d.title + ' ' + Object.values(d.fields).join(' ')).toLowerCase().includes(q)));
+  const list = all.filter(d => !q || (d.id + ' ' + d.title + ' ' + Object.values(d.fields).join(' ')).toLowerCase().includes(q));
   const sel = r.b ? all.find(d => d.id === r.b && d.source === r.a) : null;
   html += `<div class="toolbar">
     <label class="search"><span class="sr-only">Search decisions</span>${icon('search')}<input class="input" id="dq" type="search" placeholder="Search decisions" value="${esc(ui.dq)}"></label>
-    <div class="chips" role="group" aria-label="Status">
-      ${[['open', 'Open', open], ['all', 'All', all.length], ...S.decisionStatuses.map(s => [s, s[0].toUpperCase() + s.slice(1), counts[s]])].map(([k, l, n]) => `<button type="button" class="chip" data-dstatus="${k}" aria-pressed="${ui.dStatus === k}">${l} <span class="n">${n}</span></button>`).join('')}
-    </div>
-    <label class="sr-only" for="dtype">Type</label><select class="input" id="dtype" style="width:auto"><option value="">All types</option>${S.decisionTypes.map(t => `<option ${ui.dType === t ? 'selected' : ''}>${t}</option>`).join('')}</select>
-    ${sources().length > 1 ? `<label class="sr-only" for="dsource">Where</label><select class="input" id="dsource" style="width:auto"><option value="">Product and features</option>${sources().map(s => `<option value="${esc(s)}" ${ui.dSource === s ? 'selected' : ''}>${esc(srcLabel(s))}</option>`).join('')}</select>` : ''}
   </div>`;
   html += `<div class="split ${sel ? '' : 'single'}"><div class="card">${list.length ? `<ul class="list">${list.map(d => `<li><button type="button" class="item" data-open-decision="${esc(d.source)}/${esc(d.id)}" ${sel && sel.id === d.id && sel.source === d.source ? 'aria-current="true"' : ''}>
       <span class="id">${esc(d.id)}</span><span class="title">${esc(d.title)}</span><span class="badge s-${esc(d.statusWord)}">${esc(d.statusWord || 'no status')}</span>
@@ -142,9 +158,9 @@ function renderDecisions(r) {
 function renderInbox() {
   const items = allInbox();
   const who = store.get('who', '');
-  return `<section class="card" style="margin-bottom:16px" aria-labelledby="inbox-h">
-    <div class="card-head">${icon('inbox')}<h2 id="inbox-h">Inbox</h2><span class="badge ${items.length ? 's-proposed' : ''}">${items.length} new</span>
-      <span class="muted" style="font-size:13px">Write requests in one line. Claude turns them into decisions with <code>/eggux:decision-log</code>, or record one yourself.</span></div>
+  return `<details class="card inbox-box" style="margin-bottom:16px" ${items.length ? 'open' : ''}>
+    <summary class="card-head">${icon('inbox')}<h2 id="inbox-h">Inbox</h2><span class="badge ${items.length ? 's-proposed' : ''}">${items.length} new</span>
+      <span class="muted" style="font-size:13px">Requests in one line, waiting to become decisions.</span></summary>
     ${items.length ? `<ul class="inbox-list">${items.map((x, i) => `<li><div class="txt">${linkify(x.text)}<div class="meta">${x.who ? `<span>${esc(x.who)}</span>·` : ''}<span>${esc(x.date)} ${esc(x.time)}</span>${x.source !== 'product' ? `<span class="badge outline">${esc(x.source)}</span>` : ''}</div></div>
       <button class="btn outline sm" type="button" data-record="${i}">Record</button><button class="btn ghost sm" type="button" data-dismiss="${i}">Dismiss</button></li>`).join('')}</ul>` : ''}
     <form class="inbox-add" id="inbox-form">
@@ -152,7 +168,7 @@ function renderInbox() {
       <label class="sr-only" for="ib-who">Who asked</label><input class="input" id="ib-who" placeholder="Who asked" value="${esc(who)}">
       <label class="sr-only" for="ib-text">Request</label><input class="input text" id="ib-text" placeholder="Cards with 12 px padding instead of 24" required>
       <button class="btn" type="submit">Add to Inbox</button>
-    </form></section>`;
+    </form></details>`;
 }
 function renderDecisionDetail(d) {
   const tasks = S.tasks.filter(t => t.links.includes(d.id));
@@ -190,17 +206,13 @@ function renderTasks(r) {
   if (setup) return head('Tasks', 'Work in pipeline stages, each with a deliverable.') + setup;
   const tasks = S.tasks;
   const q = ui.tq.toLowerCase();
-  const shown = tasks.filter(t => (!ui.tStage || t.stage === ui.tStage) && (!q || (t.id + ' ' + t.title + ' ' + t.deliverable + ' ' + t.links.join(' ') + ' ' + t.notes).toLowerCase().includes(q)));
-  let html = head('Tasks', `${openTasks().length} open, ${tasks.length - openTasks().length} done.${S.project.hasTasks ? '' : ' The first task creates eggux/tasks.md.'}`,
+  const shown = tasks.filter(t => !q || (t.id + ' ' + t.title + ' ' + t.deliverable + ' ' + t.links.join(' ') + ' ' + t.notes).toLowerCase().includes(q));
+  let html = head('Working board', `${openTasks().length} open, ${tasks.length - openTasks().length} done. Each task names what it delivers.${S.project.hasTasks ? '' : ' The first task creates eggux/tasks.md.'}`,
     `<button class="btn" type="button" data-act="new-task">${icon('plus')}New task</button>`);
-  html += `<div class="pipeline" role="group" aria-label="Pipeline stages">${S.stages.map((s, i) => {
-    const n = tasks.filter(t => t.stage === s && t.status !== 'done').length;
-    return `<button type="button" class="stage" data-stage="${s}" aria-pressed="${ui.tStage === s}"><div class="k">${i + 1}</div><div class="name">${STAGE_LABEL[s]}</div><div class="v">${n}</div></button>`;
-  }).join('')}</div>`;
   html += `<div class="toolbar"><label class="search"><span class="sr-only">Search tasks</span>${icon('search')}<input class="input" id="tq" type="search" placeholder="Search tasks" value="${esc(ui.tq)}"></label>
-    ${ui.tStage ? `<button type="button" class="chip" data-stage="${ui.tStage}" aria-pressed="true">${STAGE_LABEL[ui.tStage]} ${icon('x', 'sm')}</button>` : '<span class="muted" style="font-size:13px">Pick a stage to filter. Drag cards between columns.</span>'}</div>`;
-  html += `<div class="board">${S.taskStatuses.map(st => {
-    const col = shown.filter(t => t.status === st);
+    <span class="muted" style="font-size:13px">Drag cards between columns.</span></div>`;
+  html += `<div class="board three">${['todo', 'doing', 'done'].map(st => {
+    const col = shown.filter(t => st === 'doing' ? ['doing', 'review'].includes(t.status) : t.status === st);
     return `<section class="col" data-col="${st}" aria-label="${STATUS_LABEL[st]}"><div class="col-head"><span>${STATUS_LABEL[st]}</span><span class="n">${col.length}</span>${st === 'todo' ? `<button class="btn ghost icon sm" type="button" data-act="new-task" aria-label="New task">${icon('plus')}</button>` : ''}</div>
       ${col.map(t => taskCard(t)).join('') || `<div class="muted" style="font-size:13px;padding:4px">Nothing here.</div>`}</section>`;
   }).join('')}</div>`;
@@ -212,10 +224,10 @@ const STATUS_LABEL = { todo: 'To do', doing: 'Doing', review: 'Review', done: 'D
 function taskCard(t) {
   const overdue = t.due && t.status !== 'done' && t.due < today();
   return `<button type="button" class="task" draggable="true" data-task="${esc(t.id)}">
-    <span class="top"><span class="id">${esc(t.id)}</span>${t.stage ? `<span class="badge outline">${STAGE_LABEL[t.stage]}</span>` : ''}${t.due ? `<span class="badge due ${overdue ? 'overdue' : 'outline'}">${overdue ? 'Overdue ' : ''}${esc(t.due)}</span>` : ''}</span>
+    <span class="top"><span class="id">${esc(t.id)}</span>${t.status === 'review' ? '<span class="badge t-review">Review</span>' : ''}${t.due ? `<span class="badge due ${overdue ? 'overdue' : 'outline'}">${overdue ? 'Overdue ' : ''}${esc(t.due)}</span>` : ''}</span>
     <span class="title">${esc(t.title)}</span>
     ${t.deliverable ? `<span class="deliv">${code(t.deliverable)}</span>` : ''}
-    ${t.links.length ? `<span class="tags">${t.links.map(l => `<span class="badge outline">${esc(/^https?:/.test(l) ? (/figma/.test(l) ? 'Figma' : 'Link') : l)}</span>`).join('')}</span>` : ''}
+    ${t.links.length ? `<span class="tags">${t.links.map(l => `<span class="badge outline">${esc(/^https?:/.test(l) ? (/figma/.test(l) ? 'Figma' : 'Link') : l.replace(/^feature:/, 'flow: '))}</span>`).join('')}</span>` : ''}
   </button>`;
 }
 
@@ -226,7 +238,7 @@ function renderNotes(r) {
   const q = ui.nq.toLowerCase();
   const list = S.notes.filter(n => !q || (n.title + ' ' + n.tags.join(' ') + ' ' + n.excerpt).toLowerCase().includes(q));
   let html = head('Notes', `${S.notes.length} notes in eggux/notes/. Turn a selected line into an Inbox request or a task.`,
-    `<button class="btn" type="button" data-act="new-note">${icon('plus')}New note</button>`);
+    `<a class="btn outline" href="#/context">Context</a><button class="btn" type="button" data-act="new-note">${icon('plus')}New note</button>`);
   const cur = r.a && ui.note && ui.note.file === r.a ? ui.note : null;
   html += `<div class="notes"><div class="card"><div class="card-body" style="padding:12px"><label class="search" style="max-width:none"><span class="sr-only">Search notes</span>${icon('search')}<input class="input" id="nq" type="search" placeholder="Search notes" value="${esc(ui.nq)}"></label></div>
     ${list.length ? `<ul class="note-list">${list.map(n => `<li><a href="#/notes/${esc(n.file)}" ${r.a === n.file ? 'aria-current="true"' : ''}><div class="t">${esc(n.title)}</div><div class="x">${esc(n.date)}${n.tags.length ? ' · ' + esc(n.tags.join(', ')) : ''}${n.excerpt ? ' · ' + esc(n.excerpt) : ''}</div></a></li>`).join('')}</ul>`
@@ -273,6 +285,69 @@ function setStatus() {
   if (ui.noteConflict && !$('[data-act="reload-note"]', bar)) { const b = $('[data-act="reload-note"]', tmp); if (b) $('.status', bar).before(b); }
 }
 
+// ---------- flows ----------
+// Read-only view of eggux/features/<slug>/: the deliverable (handoff.md) first, then the source files.
+const FLOW_TABS = [['handoff', 'Handoff'], ['feature', 'Spec'], ['scenarios', 'Scenarios'], ['workflows', 'Flows'], ['decisions', 'Decisions']];
+function flowBadge(s) {
+  const w = String(s || 'draft').toLowerCase();
+  const cls = /verified|built|ready for dev/.test(w) ? 's-verified' : /review/.test(w) ? 's-applied' : /design|ready/.test(w) ? 's-approved' : 's-proposed';
+  return `<span class="badge ${cls}">${esc(s || 'draft')}</span>`;
+}
+function renderFlows(r) {
+  const setup = setupState();
+  if (setup) return head('Flows', 'Features and their developer handoff.') + setup;
+  const flows = S.flows || [];
+  let html = head('Flows', `${flows.length} ${flows.length === 1 ? 'flow' : 'flows'} in <code>eggux/features/</code>. The handoff is what goes to the developers.`,
+    `<button class="btn" type="button" data-w="new-flow">${icon('plus')}New flow</button>`);
+  if (!flows.length) return html + `<div class="card"><div class="empty"><strong>No features yet</strong>Run <code>/eggux:new-feature</code> in Claude Code. Each feature gets a folder with its spec, scenarios, flows and a <code>handoff.md</code> for developers.</div></div>`;
+  const cur = flows.find(f => f.slug === r.a) || flows[0];
+  const file = FLOW_TABS.some(([k]) => k === r.b) && cur.files.includes(r.b) ? r.b : (cur.files.includes('handoff') ? 'handoff' : cur.files[0]);
+  const key = cur.slug + '/' + file;
+  const tasks = S.tasks.filter(t => (t.links || []).includes('feature:' + cur.slug));
+  const groups = [...new Set(flows.map(f => f.group || ''))].sort((a, b) => (a === '') - (b === '') || a.localeCompare(b));
+  const writing = f => S.work && S.work.working.includes('flow:' + f.slug);
+  const item = f => `<li><a href="#/flows/${esc(f.slug)}" ${f.slug === cur.slug ? 'aria-current="true"' : ''}>
+      <div class="t">${esc(f.name)}</div>
+      <div class="x">${writing(f) ? 'Claude is drafting it' : `${f.scenarios} scenarios · ${f.edgeCases} edge cases${f.openQuestions ? ` · ${f.openQuestions} open questions` : ''}`}</div>
+      <div class="flow-badges">${f.handoff ? `<span class="x">Handoff v${esc(f.handoff.version)}</span> ${flowBadge(f.handoff.status)}` : '<span class="badge outline">no handoff</span>'}</div></a></li>`;
+  html += `<div class="notes"><div class="card">${groups.map(g => `${groups.length > 1 || g ? `<h3 class="list-title">${esc(g || 'No group')}</h3>` : ''}<ul class="note-list">${flows.filter(f => (f.group || '') === g).map(item).join('')}</ul>`).join('')}</div>
+    <div class="card flow-card">
+      <div class="flow-head"><div><h2>${esc(cur.name)}</h2>
+        <div class="flow-meta">Spec ${flowBadge(cur.status)}${cur.handoff ? ` <span>Handoff v${esc(cur.handoff.version)}</span> ${flowBadge(cur.handoff.status)}` : ''}${cur.updated ? ` <span>Updated ${esc(cur.updated)}</span>` : ''}</div></div>
+        <div class="row">${cur.figma ? `<a class="btn outline sm" href="${esc(cur.figma)}" target="_blank" rel="noopener">${icon('figma', 'sm')}Open in Figma</a>` : ''}
+          ${tasks.map(t => `<a class="badge outline" href="#/tasks/${esc(t.id)}" title="${esc(t.title)}">${esc(t.id)} · ${esc(t.status)}</a>`).join(' ')}</div></div>
+      ${writing(cur) ? `<p class="drafting">${'<span class="spin" aria-hidden="true"></span>'}Claude is drafting this flow from your idea. The tabs fill in when it is done.</p>` : ''}
+      ${S.work && S.work.errors['flow:' + cur.slug] && !writing(cur) ? `<p class="err-line" style="margin:0 20px 12px">${esc(S.work.errors['flow:' + cur.slug])}</p>` : ''}
+      <form class="flow-props" id="flow-props" data-slug="${esc(cur.slug)}">
+        <label><span>Group</span><input class="input" name="group" list="flow-groups" value="${esc(cur.group || '')}" placeholder="Account, Checkout…"></label>
+        <datalist id="flow-groups">${groups.filter(Boolean).map(g => `<option value="${esc(g)}">`).join('')}</datalist>
+        <label class="grow"><span>Figma link</span><input class="input" name="figma" type="url" value="${esc(cur.figma || '')}" placeholder="https://www.figma.com/design/…"></label>
+        <button class="btn outline sm">Save</button></form>
+      <div class="tabs" role="tablist" aria-label="Feature files">${FLOW_TABS.filter(([k]) => cur.files.includes(k)).map(([k, l]) => `<a role="tab" href="#/flows/${esc(cur.slug)}/${k}" aria-selected="${k === file}">${l}</a>`).join('')}</div>
+      ${ui.flowDoc && ui.flowDoc.key === key ? `<div class="prose">${['scenarios', 'decisions'].includes(file) ? accordion(ui.flowDoc.body) : md(ui.flowDoc.body)}</div><p class="file-path">eggux/features/${esc(cur.slug)}/${esc(file)}.md</p>` : '<div class="empty">Loading</div>'}
+    </div></div>`;
+  if (!ui.flowDoc || ui.flowDoc.key !== key || ui.flowDoc.sig !== S.flowSig) loadFlowDoc(cur.slug, file, key);
+  return html;
+}
+// Each "### " block (a scenario, an edge case, a decision) becomes a collapsible row.
+function accordion(src) {
+  const parts = String(src || '').split(/^(?=#{2,3} )/m);
+  return parts.map((p, i) => {
+    if (!/^### /.test(p)) return md(p);
+    const [h, ...rest] = p.split('\n');
+    return `<details class="acc"><summary>${code(h.slice(4))}</summary><div class="acc-body">${md(rest.join('\n'))}</div></details>`;
+  }).join('');
+}
+async function loadFlowDoc(slug, file, key) {
+  if (ui.flowLoading === key) return;
+  ui.flowLoading = key;
+  const sig = S.flowSig;
+  try { const d = await api('GET', `/api/flows/${encodeURIComponent(slug)}/${file}`); ui.flowDoc = { key, sig, body: d.body }; }
+  catch (e) { ui.flowDoc = { key, sig, body: '_Could not read this file: ' + e.message + '_' }; }
+  ui.flowLoading = null;
+  if (route().view === 'flows') render();
+}
+
 // Minimal markdown for the preview: headings, lists, checkboxes, quotes, code, bold, italic, links.
 function md(src) {
   const inline = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>')
@@ -280,9 +355,21 @@ function md(src) {
   const out = []; let list = null, para = [], code = null;
   const flushP = () => { if (para.length) { out.push(`<p>${inline(para.join(' '))}</p>`); para = []; } };
   const flushL = () => { if (list) { out.push(`<${list.tag}${list.check ? ' class="check"' : ''}>${list.items.join('')}</${list.tag}>`); list = null; } };
+  let table = null;
+  const isRow = l => /^\s*\|.*\|\s*$/.test(l);
+  const isSep = l => /^\s*\|[\s:|-]+\|\s*$/.test(l);
+  const cells = l => l.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
+  const flushT = () => {
+    if (!table) return;
+    const [h, ...rows] = table;
+    out.push(`<div class="table-wrap"><table><thead><tr>${h.map(c => `<th>${inline(c)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
+    table = null;
+  };
   for (const line of String(src || '').split('\n')) {
-    if (code) { if (/^```/.test(line)) { out.push(`<pre><code>${esc(code.join('\n'))}</code></pre>`); code = null; } else code.push(line); continue; }
-    if (/^```/.test(line)) { flushP(); flushL(); code = []; continue; }
+    if (!code && isRow(line)) { flushP(); flushL(); if (isSep(line)) continue; (table = table || []).push(cells(line)); continue; }
+    flushT();
+    if (code) { if (/^```/.test(line)) { out.push(codeBlock(code)); code = null; } else code.push(line); continue; }
+    if (/^```/.test(line)) { flushP(); flushL(); code = []; code.lang = line.slice(3).trim().toLowerCase(); continue; }
     let m;
     if ((m = /^(#{1,3}) (.*)$/.exec(line))) { flushP(); flushL(); out.push(`<h${m[1].length}>${inline(m[2])}</h${m[1].length}>`); continue; }
     if ((m = /^\s*[-*] \[( |x)\] (.*)$/i.exec(line))) { flushP(); if (!list || list.tag !== 'ul') { flushL(); list = { tag: 'ul', items: [], check: true }; } list.items.push(`<li><input type="checkbox" disabled ${m[1] !== ' ' ? 'checked' : ''} aria-label="${m[1] !== ' ' ? 'Done' : 'Open'}"> ${inline(m[2])}</li>`); continue; }
@@ -292,9 +379,39 @@ function md(src) {
     if (!line.trim()) { flushP(); flushL(); continue; }
     flushL(); para.push(line.trim());
   }
-  if (code) out.push(`<pre><code>${esc(code.join('\n'))}</code></pre>`);
-  flushP(); flushL();
+  if (code) out.push(codeBlock(code));
+  flushP(); flushL(); flushT();
   return out.join('\n');
+}
+// Mermaid blocks become diagrams (mermaidPass runs after each render); the source stays as a fallback.
+function codeBlock(lines) {
+  const src = lines.join('\n');
+  if (lines.lang === 'mermaid') return `<figure class="diagram" data-mermaid="${esc(src)}"><pre><code>${esc(src)}</code></pre></figure>`;
+  return `<pre><code>${esc(src)}</code></pre>`;
+}
+let mermaidLib = null;
+function loadMermaid() {
+  if (!mermaidLib) mermaidLib = new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js';
+    s.onload = () => resolve(window.mermaid); s.onerror = () => { mermaidLib = null; reject(new Error('Mermaid did not load (offline?)')); };
+    document.head.appendChild(s);
+  });
+  return mermaidLib;
+}
+let mermaidSeq = 0;
+async function mermaidPass() {
+  const figs = [...document.querySelectorAll('figure.diagram[data-mermaid]:not([data-done])')];
+  if (!figs.length) return;
+  let mm;
+  try { mm = await loadMermaid(); } catch { return; } // keep the source visible
+  const dark = document.documentElement.dataset.theme === 'dark' || (!document.documentElement.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+  mm.initialize({ startOnLoad: false, securityLevel: 'strict', theme: dark ? 'dark' : 'neutral', fontFamily: 'inherit' });
+  for (const f of figs) {
+    f.dataset.done = '1';
+    try { const { svg } = await mm.render('mmd-' + (++mermaidSeq), f.dataset.mermaid); f.innerHTML = svg + `<button class="btn outline sm diagram-full" type="button" data-diagram-full aria-label="Show this diagram full screen">${icon('expand', 'sm')}Full screen</button>`; }
+    catch { f.dataset.error = '1'; } // invalid diagram: leave the source
+  }
 }
 
 // ---------- render ----------
@@ -314,12 +431,14 @@ function render() {
     if (oldList && newList) oldList.replaceWith(newList);
     $('.page-head').replaceWith($('.page-head', list));
   } else {
-    $('#main').innerHTML = r.view === 'tasks' ? renderTasks(r) : r.view === 'notes' ? renderNotes(r) : renderDecisions(r);
+    const extra = window.WORK_VIEWS && window.WORK_VIEWS[r.view];
+    $('#main').innerHTML = extra ? extra(r) : r.view === 'tasks' ? renderTasks(r) : r.view === 'notes' ? renderNotes(r) : r.view === 'flows' ? renderFlows(r) : renderDecisions(r);
   }
   if (id && document.getElementById(id) && document.getElementById(id) !== a) {
     const el = document.getElementById(id); el.focus({ preventScroll: true });
     try { if (s != null) el.setSelectionRange(s, e); } catch { /* not a text field */ }
   }
+  mermaidPass();
 }
 async function load() {
   try { S = await api('GET', '/api/state'); render(); } catch (e) { toast('Board server unreachable: ' + e.message, true); }

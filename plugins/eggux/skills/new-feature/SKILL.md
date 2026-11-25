@@ -1,6 +1,6 @@
 ---
 name: new-feature
-description: Turn a short feature idea into a complete feature by interviewing the user - goal, actors and permissions, entry point, flows, data, scenarios, edge cases, states, feedback, acceptance criteria - then write the feature folder (spec, scenarios, workflows, decisions) and create the feature's Figma page with a section per flow, scenario and edge case. Use when the user says "/new-feature …", "we want to add …", "new feature", "let's spec …", or describes something to build that has no workflow yet.
+description: Turn a short feature idea into a complete feature by interviewing the user - goal, actors and permissions, entry point, flows, data, scenarios, edge cases, states, feedback, acceptance criteria - then write the feature folder (spec, scenarios, workflows, decisions, a developer handoff) with a task for it, and create the feature's Figma page with a section per flow, scenario and edge case. Use when the user says "/new-feature …", "we want to add …", "new feature", "let's spec …", or describes something to build that has no workflow yet.
 ---
 
 # New feature
@@ -16,8 +16,12 @@ eggux/features/<slug>/
 ├── feature.md     spec: goal, actors and access, data, states, feedback, screens, impact, changelog
 ├── scenarios.md   S-xx scenarios and E-xx edge cases, Given / When / Then, Figma sections
 ├── workflows.md   F-xx user flows: steps table and diagram
-└── decisions.md   Inbox for new input + FD-xx feature decisions
+├── decisions.md   Inbox for new input + FD-xx feature decisions
+└── handoff.md     the deliverable: one file a developer builds from (done-when list, screens,
+                   components, rules, copy, open questions)
 ```
+Plus a task in `eggux/tasks.md` whose deliverable is `handoff.md`, so the board shows what the
+work produces.
 Figma: a page named after the feature, after the `FEATURES` divider page, with the sections
 Overview, Flows, one per scenario, one per edge case, States, Archive.
 
@@ -72,6 +76,24 @@ From the templates in `templates/feature/` (next to this file):
    objects, attributes, CTAs, roles or a workflow (merge, mark "from feature <slug>"); new names
    and product-wide rules go to `eggux/decisions.md` through `decision-log`. List every change
    in the "Impact on the product" table of `feature.md`.
+6. `handoff.md`: compile it from the files above, for a developer who has not read them. Done
+   when: one line per S-xx and E-xx. Screens and states, Rules, Feedback: from `feature.md`.
+   Components: the library components each screen uses, with props checked in the component
+   source or Storybook (`storybook-component-docs` when the project has one), never guessed;
+   anything composed from parts is a library gap, noted.
+   Copy: every title, label, button, error and email the flows show; propose wording from
+   `brand.md` (voice) and `references/content.md`, marked "(draft)" until the user confirms.
+   Routes and state: route per screen, where its data comes from, what a refresh keeps; no
+   emails or tokens in query strings. Security, when accounts, payments or personal data are
+   involved. Status `draft` while any open question blocks the build; say what can be built
+   meanwhile.
+   Then read it as the developer would: give `handoff.md` alone to a subagent playing a
+   developer ("could you build from this file only? what would you ask?") and fix what it
+   finds, in the source files too, before showing it to the user.
+7. Task: add `T-xxx · <feature name>` to `eggux/tasks.md` (format in the `board` skill), Stage
+   design, Deliverable `features/<slug>/handoff.md (ready for dev)`, Links `feature:<slug>` and
+   the FD/D ids it depends on. When the user starts from an existing task, link that one
+   instead of adding a second.
 
 Show the folder summary (counts of flows, scenarios, edge cases, open questions) and ask to go
 on with the Figma page.
@@ -90,8 +112,11 @@ In the client's Figma file (the URL is in `eggux/brand.md` or the init answers):
 4. Screenshot the page and look at it; put the page URL in `feature.md` (`figma:`).
 
 ## 5. Hand off
-End with: the folder path and the Figma page link, open questions that block design, and the
-next step: `/eggux:build-ui` to design the screens scenario by scenario, replacing each
+End with: the folder path and the Figma page link, the `handoff.md` status and what keeps it at
+`draft` (open questions, draft copy, missing components), and the next step: `/eggux:build-ui` to design the screens scenario by scenario, replacing each
 placeholder with a real screen of the same name. New decisions, details or review comments go
 into the feature's `decisions.md` Inbox or straight to `/eggux:update-feature`.
-Build-ui and review read the folder; review checks every scenario and edge case.
+Build-ui and review read the folder; review checks every scenario and edge case. When the
+screens are designed and no question blocks the build, set `handoff.md` to `ready for dev`, add
+the Figma frame links, and move the task to `review`; it is `done` once the developer confirms
+they can build from it.

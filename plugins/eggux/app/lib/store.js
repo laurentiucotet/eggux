@@ -19,7 +19,8 @@ const oneLine = s => String(s == null ? '' : s).replace(/\s*\n\s*/g, ' ').trim()
 
 // ---------- generic markdown helpers ----------
 function splitFrontmatter(text) {
-  const m = /^---\n([\s\S]*?)\n---\n?/.exec(text);
+  text = String(text).replace(/\r\n/g, '\n'); // files saved on Windows
+  const m =/^---\n([\s\S]*?)\n---\n?/.exec(text);
   if (!m) return { meta: {}, body: text, raw: '' };
   const meta = {};
   for (const line of m[1].split('\n')) {
@@ -63,6 +64,8 @@ function parseEntries(lines, from, to, idPattern) {
 function statusWord(s) { return String(s || '').trim().split(/\s+/)[0].toLowerCase(); }
 
 // ---------- project ----------
+const FLOW_FILES = ['handoff', 'feature', 'scenarios', 'workflows', 'decisions'];
+
 class Project {
   constructor(root) {
     this.root = path.resolve(root);
@@ -74,7 +77,7 @@ class Project {
     return full;
   }
   exists() { return fs.existsSync(this.dir); }
-  read(rel) { try { return fs.readFileSync(this.p(rel), 'utf8'); } catch { return null; } }
+  read(rel) { try { return fs.readFileSync(this.p(rel), 'utf8').replace(/\r\n/g, '\n'); } catch { return null; } } // files saved on Windows
   write(rel, text) {
     const full = this.p(rel);
     fs.mkdirSync(path.dirname(full), { recursive: true });
@@ -90,12 +93,43 @@ class Project {
     for (const dir of ['features', 'notes']) {
       let names = [];
       try { names = fs.readdirSync(this.p(dir)); } catch { /* none */ }
-      for (const n of names.sort()) add(dir === 'features' ? this.p(dir, n, 'decisions.md') : this.p(dir, n));
+      for (const n of names.sort()) {
+        if (dir === 'features') for (const f of FLOW_FILES) add(this.p(dir, n, f + '.md'));
+        else add(this.p(dir, n));
+      }
     }
     return parts.join('|');
   }
   features() {
     try { return fs.readdirSync(this.p('features')).filter(n => fs.existsSync(this.p('features', n, 'decisions.md'))).sort(); } catch { return []; }
+  }
+  // Flows view: every feature folder, its spec status and its developer handoff.
+  flows() {
+    let names = [];
+    try { names = fs.readdirSync(this.p('features')).filter(n => /^[a-z0-9][a-z0-9-]*$/.test(n) && fs.statSync(this.p('features', n)).isDirectory()).sort(); } catch { return []; }
+    return names.map(slug => {
+      const spec = splitFrontmatter(this.read(path.join('features', slug, 'feature.md')) || '');
+      const handoffText = this.read(path.join('features', slug, 'handoff.md'));
+      const handoff = handoffText == null ? null : splitFrontmatter(handoffText);
+      const scen = this.read(path.join('features', slug, 'scenarios.md')) || '';
+      const openQ = (spec.body.split(/^## Open questions/m)[1] || '').split(/^## /m)[0]
+        .split('\n').filter(l => /^\|\s*\d+\s*\|/.test(l) && /\|\s*\|\s*$/.test(l)).length;
+      const v = (m, k, d = '') => String(m[k] == null ? d : m[k]).replace(/\s+#.*$/, '').replace(/^"(.*)"$/, '$1').trim() || d;
+      return {
+        slug, name: v(spec.meta, 'feature', slug), status: v(spec.meta, 'status', 'draft'), group: v(spec.meta, 'group'),
+        figma: v(spec.meta, 'figma'), updated: v(spec.meta, 'updated'),
+        scenarios: (scen.match(/^### S-\d+/gm) || []).length, edgeCases: (scen.match(/^### E-\d+/gm) || []).length, openQuestions: openQ,
+        handoff: handoff ? { status: v(handoff.meta, 'status', 'draft'), version: v(handoff.meta, 'version', '1'), updated: v(handoff.meta, 'updated') } : null,
+        files: FLOW_FILES.filter(f => this.read(path.join('features', slug, f + '.md')) != null),
+      };
+    });
+  }
+  readFlowFile(slug, file) {
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(slug) || !FLOW_FILES.includes(file)) throw new HttpError(400, 'Bad flow file');
+    const text = this.read(path.join('features', slug, file + '.md'));
+    if (text == null) throw new HttpError(404, 'No such file');
+    const { meta, body } = splitFrontmatter(text);
+    return { slug, file, meta, body };
   }
   sourceFile(source) {
     if (!source || source === 'product') return 'decisions.md';
@@ -364,7 +398,7 @@ class Project {
     return {
       project: { name: this.clientName(), root: this.root, hasFolder: this.exists(), hasDecisions: !!product, hasTasks: this.read('tasks.md') != null },
       stages: STAGES, taskStatuses: TASK_STATUSES, decisionStatuses: DECISION_STATUSES, decisionTypes: DECISION_TYPES,
-      decisions: { product, features }, tasks: this.tasks(), notes: this.notes(),
+      decisions: { product, features }, tasks: this.tasks(), notes: this.notes(), flows: this.flows(), flowSig: this.signature(),
     };
   }
 }

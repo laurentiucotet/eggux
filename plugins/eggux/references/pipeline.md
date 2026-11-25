@@ -12,7 +12,7 @@ and one deliverable.
 | 2 | Decisions | Every request in the Inbox is a numbered decision with scope and a way to verify | `decision-log` |
 | 3 | Design | Screens in Figma for every flow, all states (empty, loading, error, long content, no access), desktop and mobile; new components approved | `new-feature`, `build-ui`, `new-component`, `update-component` |
 | 4 | Review | Heuristic, accessibility and responsive review with findings fixed or recorded | `review`, `responsive`, `audit-tokens` |
-| 5 | Handoff | Each screen links its feature spec (scenarios, edge cases), components map to code (`code-mapping.md`), open questions closed | `update-feature`, `tidy-component` |
+| 5 | Handoff | `features/<slug>/handoff.md` at `ready for dev`: done-when list, screens and states with Figma links, components mapped to code (`code-mapping.md`), rules, final copy, no blocking question | `new-feature`, `update-feature`, `tidy-component` |
 | 6 | Build | Code components and screens on the client stack, tokens from Figma variables, stories for every state that pass their tests | `code-setup`, `kit-trim` (a new product from the kit), `code-component`, `build-ui` (code) |
 | 7 | QA | Built UI compared with Figma (visual), keyboard and screen reader pass, contrast, widths 360 to 1440, every story passes in the production build (`npm run check:stories`) | `code-qa`, `review` |
 | 8 | Release | Changelog, version, migration notes for anything renamed or removed; the Storybook link managers and developers open (branch and `main`) | `storybook-publish` |

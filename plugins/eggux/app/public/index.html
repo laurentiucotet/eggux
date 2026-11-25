@@ -30,23 +30,25 @@
     <form method="dialog" id="decision-form">
       <div class="dlg-head"><h2 id="decision-dlg-title">New decision</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
       <div class="dlg-body">
-        <label class="field"><span>Title</span><input class="input" name="title" required maxlength="140" placeholder="Cards use 12 px padding"></label>
-        <div class="grid2">
-          <label class="field"><span>Type</span><select class="input" name="type"></select></label>
-          <label class="field"><span>Where</span><select class="input" name="source"></select></label>
-        </div>
-        <label class="field"><span>Decision</span><textarea class="input" name="decision" rows="3" placeholder="Card padding 24 px (spacing/6) → 12 px (spacing/3), header, content and footer."></textarea><small>Exact: the element, the current value with its token, the new value.</small></label>
-        <label class="field"><span>Scope</span><input class="input" name="scope" placeholder="Card and everything built on it; all screens"></label>
-        <div class="grid2">
-          <label class="field"><span>Who asked</span><input class="input" name="from" placeholder="Andrei (manager)"></label>
-          <label class="field"><span>Replaces</span><input class="input" name="replaces" placeholder="D-004"></label>
-        </div>
-        <label class="field"><span>Reason</span><input class="input" name="reason" placeholder="Denser dashboards"></label>
-        <label class="field"><span>How to verify</span><input class="input" name="verify" placeholder="Card paddings bound to density/card-padding; no overrides"></label>
-        <label class="field"><span>Status</span><select class="input" name="status"><option value="proposed">proposed</option><option value="approved">approved</option></select><small>Claude applies approved decisions with /eggux:decision-log.</small></label>
+        <label class="field"><span>What was decided</span><input class="input" name="title" required maxlength="140" placeholder="Only square corners on buttons"></label>
+        <label class="field"><span>Details (optional)</span><textarea class="input" name="decision" rows="3" placeholder="Who decided, why, where it applies"></textarea></label>
+        <label class="field"><span>Status</span><select class="input" name="status"><option value="approved">Approved</option><option value="proposed">Proposed, still to confirm</option></select></label>
+        <details class="more"><summary>More details</summary><div class="stack" style="gap:14px;margin-top:12px">
+          <div class="grid2">
+            <label class="field"><span>Type</span><select class="input" name="type"></select></label>
+            <label class="field"><span>Where</span><select class="input" name="source"></select></label>
+          </div>
+          <label class="field"><span>Scope</span><input class="input" name="scope" placeholder="Buttons and everything built on them"></label>
+          <div class="grid2">
+            <label class="field"><span>Who asked</span><input class="input" name="from" placeholder="Andrei (client)"></label>
+            <label class="field"><span>Replaces</span><input class="input" name="replaces" placeholder="D-004"></label>
+          </div>
+          <label class="field"><span>Reason</span><input class="input" name="reason"></label>
+          <label class="field"><span>How to check it</span><input class="input" name="verify" placeholder="No rounded corners left on buttons"></label>
+        </div></details>
         <input type="hidden" name="inboxRaw">
       </div>
-      <div class="dlg-foot"><button class="btn outline" value="cancel" formnovalidate>Cancel</button><button class="btn" value="ok">Record decision</button></div>
+      <div class="dlg-foot"><button class="btn outline" value="cancel" formnovalidate>Cancel</button><button class="btn" value="ok">Save decision</button></div>
     </form>
   </dialog>
 
@@ -54,25 +56,35 @@
     <form method="dialog" id="task-form">
       <div class="dlg-head"><h2 id="task-dlg-title">New task</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
       <div class="dlg-body">
-        <label class="field"><span>Title</span><input class="input" name="title" required maxlength="140" placeholder="Design the approvals inbox"></label>
+        <label class="field"><span>Task</span><input class="input" name="title" required maxlength="140" placeholder="Redo the forgot password flow"></label>
+        <label class="field"><span>What it delivers</span><input class="input" name="deliverable" placeholder="features/forgot-password/handoff.md"></label>
         <div class="grid2">
           <label class="field"><span>Status</span><select class="input" name="status"></select></label>
-          <label class="field"><span>Stage</span><select class="input" name="stage"></select></label>
+          <label class="field"><span>Links</span><input class="input" name="links" placeholder="D-007, feature:forgot-password"></label>
         </div>
-        <label class="field"><span>Deliverable</span><input class="input" name="deliverable" placeholder="Figma page with flows, all states, mobile"></label>
-        <label class="field"><span>Links</span><input class="input" name="links" placeholder="D-007, feature:approvals, component:Card"><small>Decision ids, feature:&lt;slug&gt;, component:&lt;Name&gt;, note:&lt;file&gt; or a URL, separated by commas.</small></label>
-        <div class="grid2">
-          <label class="field"><span>Due</span><input class="input" type="date" name="due"></label>
-          <span></span>
-        </div>
-        <label class="field"><span>Notes</span><textarea class="input" name="notes" rows="3"></textarea></label>
+        <details class="more"><summary>More details</summary><div class="stack" style="gap:14px;margin-top:12px">
+          <div class="grid2">
+            <label class="field"><span>Stage</span><select class="input" name="stage"></select></label>
+            <label class="field"><span>Due</span><input class="input" type="date" name="due"></label>
+          </div>
+          <label class="field"><span>Notes</span><textarea class="input" name="notes" rows="3"></textarea></label>
+        </div></details>
         <input type="hidden" name="id">
       </div>
       <div class="dlg-foot"><button class="btn outline" value="cancel" formnovalidate>Cancel</button><button class="btn" value="ok" id="task-ok">Add task</button></div>
     </form>
   </dialog>
 
+  <dialog id="diagram-dlg" class="diagram-dlg" aria-label="Diagram">
+    <div class="diagram-bar"><button class="btn outline icon sm" type="button" data-zoom="-1" aria-label="Zoom out"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/></svg></button>
+      <button class="btn outline icon sm" type="button" data-zoom="1" aria-label="Zoom in"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg></button>
+      <button class="btn outline sm" type="button" data-zoom="0">Fit</button>
+      <button class="btn ghost icon sm" type="button" data-diagram-close aria-label="Close" style="margin-left:auto"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+    <div class="diagram-stage" id="diagram-stage"></div>
+  </dialog>
+
   <div id="toasts" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
+  <script src="work.js"></script>
 </body>
 </html>

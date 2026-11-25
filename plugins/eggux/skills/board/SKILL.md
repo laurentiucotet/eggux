@@ -1,6 +1,6 @@
 ---
 name: board
-description: Open the EGG UX board, a local web interface for the client project's decision log, task list and notes (eggux/decisions.md, eggux/tasks.md, eggux/notes/). Also the rules for writing tasks and notes in those files from the chat. Use when the user wants to see or manage decisions, tasks or notes in a browser ("deschide board-ul", "/eggux:board", "arată-mi taskurile"), adds a task or a note in the chat, or asks what is open in the pipeline.
+description: Open the EGG UX board, a local web interface for the client project's context, documents, research (Understand), questions (Decide), feature flows and handoffs, decision log, task list and notes, all in eggux/ markdown files. Also the rules for writing tasks and notes in those files from the chat. Use when the user wants to see or manage decisions, tasks or notes in a browser ("deschide board-ul", "/eggux:board", "arată-mi taskurile"), adds a task or a note in the chat, or asks what is open in the pipeline.
 ---
 
 # Board
@@ -12,9 +12,30 @@ the board updates live when a file changes on disk.
 
 | View | File | What it shows |
 |---|---|---|
-| Decisions | `eggux/decisions.md` and `eggux/features/<slug>/decisions.md` | Inbox (add, record as decision, dismiss), decisions filtered by status, type and feature, detail with status change and linked tasks, Terminology |
-| Tasks | `eggux/tasks.md` | Pipeline stages with open counts (`references/pipeline.md`), board To do / Doing / Review / Done with drag and drop, edit dialog |
-| Notes | `eggux/notes/*.md` | List and search, editor with preview and autosave, a selected line to the Inbox or to a task |
+| Context | `eggux/actors.md`, `objects.md`, `workflows.md`, `brand.md` (read-only), `eggux/context/<slug>.md` | Sections with entries; add, edit, delete entries; edit a section's field template; new sections from presets or empty; "Ask Claude" for a suggested entry to keep or delete. Terminology (from `decisions.md`) and Notes are listed here too |
+| Documents | `eggux/docs/` | Upload files; Claude reads each one and adds suggested entries to the Context sections; `.board.json` records where each went |
+| Understand | `eggux/research/<slug>.md` | Research requests run by Claude: full report and findings; accept or reject each finding; an accepted finding becomes a question in Decide |
+| Decide | `eggux/questions.md` | Questions (from findings, unknowns, blindspots) with options proposed by Claude or added by you; choosing one records a decision in `decisions.md` and a task in `tasks.md` |
+| Flows | `eggux/features/<slug>/` | Each feature with its spec status, scenario and edge case counts, open questions and the task that delivers it; read-only tabs Handoff (the developer deliverable), Spec, Scenarios and Decisions (one collapsible row per item), Flows; Mermaid diagrams drawn, full screen with zoom. New flow: empty from the templates, or drafted by Claude from an idea (flows, scenarios, edge cases, open questions); `group:` and `figma:` in `feature.md` group the list and add an Open in Figma button |
+| Working board | `eggux/tasks.md` | To do / Doing / Done with drag and drop (Review tasks show in Doing); the dialog asks for the task, what it delivers, status and links, the rest under More details |
+| Decision log | `eggux/decisions.md` and `eggux/features/<slug>/decisions.md` | Collapsible Inbox (add, record as decision, dismiss), searchable list, detail with status change and linked tasks; the new decision dialog asks for what was decided, details and status, the rest under More details |
+| Notes (under Context) | `eggux/notes/*.md` | List and search, editor with preview and autosave, a selected line to the Inbox or to a task |
+
+**Claude from the board.** Ask Claude, research, options and document reading run the local
+`claude` command (Claude Code) in the project folder, with read-only tools; the board writes the
+files from its answer. It uses the person's own Claude Code sign-in, so no API key. When it is
+signed out, the board says so: run `claude` in a terminal and sign in. Jobs run in the
+background; the page updates when the file changes.
+
+**File formats** (so Claude and people can edit them by hand):
+- Context entry: `## Title`, then one `- **Field:** value` line per field; list fields as indented
+  `  - item` lines. The template is the frontmatter line `template: "Name; Goals (list 3); Notes (long)"`;
+  the first field is the heading. `<!-- suggested by Claude, to review -->` under a heading marks
+  a suggestion.
+- Research: frontmatter `title`, `status` (running, done, error), `kind`; `## Report`; `## Findings`
+  with `### F-01 · Title`, `- Source:`, `- Vote: open | accepted | rejected`, `- Question: Q-xxx`.
+- Questions: `## Q-001 · Title` with `- Type:`, `- Source:`, `- Category:`, `- Status: open | decided A (D-xxx)`,
+  `- Recommended:`; options `### A · Title` with `- Pro:`, `- Con:`, `- By: claude | you`.
 
 ## Open it
 1. Check that `eggux/` exists at the project root. If not, offer `/eggux:init` first (the board
