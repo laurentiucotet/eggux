@@ -374,6 +374,7 @@ function addQuestion(project, { title, type, source, askClaude }) {
 function runOptions(project, id, another) {
   const q0 = parseQuestions(project).find(x => x.id === id);
   if (!q0) return;
+  if (!q0.options.length) another = false; // nothing to add to yet: ask for the first two
   job('options:' + id, async () => {
     const existing = q0.options.map(o => `${o.key}: ${o.title} (pros: ${o.pros.join('; ')}; cons: ${o.cons.join('; ')})`).join('\n');
     const res = await askJson(project.root, `You work with a product designer on the project below and something must be decided: "${q0.title}" (source: ${q0.source}). ${LANG}

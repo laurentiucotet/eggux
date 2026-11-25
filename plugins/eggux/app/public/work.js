@@ -232,7 +232,7 @@ function questionDetail(q) {
         ${decided ? '' : `<button class="btn sm" type="button" data-w="choose" data-id="${q.id}" data-key="${o.key}">${icon('check', 'sm')}Choose ${o.key}</button>`}</article>`).join('')}</div>`}
       ${decided ? `<p class="outcome">Decided: option ${chosen}. Logged as <a href="#/decisions/product/${esc(did)}">${esc(did)}</a>, with a task on the board.</p>`
         : `<div class="row"><button class="btn outline" type="button" data-w="my-option" data-id="${q.id}">${icon('bulb', 'sm')}My option</button>
-           <button class="btn outline" type="button" data-w="another" data-id="${q.id}" ${preparing ? 'disabled' : ''}>${preparing ? spin : icon('sparkles', 'sm')}Ask for another option</button></div>`}
+           <button class="btn outline" type="button" data-w="another" data-id="${q.id}" ${preparing ? 'disabled' : ''}>${preparing ? spin : icon('sparkles', 'sm')}${q.options.length ? 'Ask for another option' : 'Get options from Claude'}</button></div>`}
     </div><p class="file-path">eggux/questions.md</p>`;
 }
 function openMyOption(id) {

@@ -71,7 +71,9 @@ test('questions.md and research files round-trip without losing lines', () => {
   const rel = 'research/checkout-patterns-on-mobile.md';
   const r0 = read(p, rel);
   const r = W.parseResearch(p, 'checkout-patterns-on-mobile.md');
-  fs.writeFileSync(p.p(rel), r0.replace('- Vote: open\n', '- Vote: open\n- Checked against: Q3 analytics\n'));
+  const annotated = r0.replace(/(- Vote: \w+\n)/, '$1- Checked against: Q3 analytics\n');
+  assert.notEqual(annotated, r0, 'the demo research has no Vote line to annotate');
+  fs.writeFileSync(p.p(rel), annotated);
   W.voteFinding(p, 'checkout-patterns-on-mobile', 'F-04', 'rejected');
   const r1 = read(p, rel);
   assert.ok(r1.includes('- Checked against: Q3 analytics'), 'an unknown finding line was dropped');
