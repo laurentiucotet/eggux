@@ -3,6 +3,8 @@
 Everything specific to one client lives in an `eggux/` folder at the root of the client's
 project. The plugin holds the method; this folder holds the client's answers.
 
+Brand, objects, actors and workflows are optional: a project deletes the ones it does not need (from the board, Context) and every skill works with what exists. `discovery` or the board's New section adds them back.
+
 | File | Written by | Read by |
 |---|---|---|
 | `eggux/brand.md` | brand-intake | build-ui, review |

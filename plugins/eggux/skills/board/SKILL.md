@@ -12,7 +12,7 @@ the board updates live when a file changes on disk.
 
 | View | File | What it shows |
 |---|---|---|
-| Context | `eggux/actors.md`, `objects.md`, `workflows.md`, `brand.md` (read-only), `eggux/context/<slug>.md` | Sections with entries; add, edit, delete entries; edit a section's field template; new sections from presets or empty; "Ask Claude" for a suggested entry to keep or delete. Terminology (from `decisions.md`) and Notes are listed here too |
+| Context | `eggux/actors.md`, `objects.md`, `workflows.md`, `brand.md` (a document), `eggux/context/<slug>.md` | One file per section. Add, edit, delete entries; edit a section's field template; delete any section (the file moves to `eggux/.trash/`); New section adds a base section back from the init template, a preset, or an empty one; "Ask Claude" for a suggested entry to keep or delete. Terminology (from `decisions.md`) and Notes are listed apart, under "Also read by Claude" |
 | Documents | `eggux/docs/` | Upload files; Claude reads each one and adds suggested entries to the Context sections; `.board.json` records where each went |
 | Understand | `eggux/research/<slug>.md` | Research requests run by Claude: full report and findings; accept or reject each finding; an accepted finding becomes a question in Decide |
 | Decide | `eggux/questions.md` | Questions (from findings, unknowns, blindspots) with options proposed by Claude or added by you; choosing one asks for the exact decision, its scope and how to verify it, then records it as `proposed` in `decisions.md` (titled with the chosen option, `Answers Q-xxx` in the Reason) and adds a task "Apply D-xxx" whose deliverable is that decision applied and verified with `/eggux:decision-log` |

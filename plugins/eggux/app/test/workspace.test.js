@@ -170,3 +170,21 @@ test('screens are gathered from the handoff and scenarios; components know where
   assert.ok(L.componentPage('button').startsWith('# Button'));
   assert.throws(() => L.componentPage('../../README'), e => e.code === 404);
 });
+
+test('any section can be deleted to the trash, and a base section comes back from the init template', () => {
+  const p = demo();
+  const sec = W.readSection(p, 'workflows.md');
+  W.deleteSection(p, 'workflows.md', sec.version);
+  assert.equal(p.read('workflows.md'), null);
+  assert.ok(fs.readdirSync(p.p('.trash')).some(n => n.endsWith('workflows.md')));
+  assert.ok(!W.workState(p).context.some(s => s.id === "workflows.md"));
+  const r = W.createSection(p, { core: 'workflows.md' });
+  assert.equal(r.id, 'workflows.md');
+  const back = read(p, 'workflows.md');
+  assert.match(back, /^# Workflows$/m);
+  assert.match(back, /client: "Shop demo/);
+  assert.ok(!/\{\{/.test(back), 'placeholders left in the file');
+  assert.throws(() => W.createSection(p, { core: 'workflows.md' }), x => x.code === 409);
+  assert.throws(() => W.createSection(p, { core: '../decisions.md' }), x => x.code === 400);
+  assert.throws(() => W.deleteSection(p, 'decisions.md'), x => x.code === 404);
+});

@@ -18,6 +18,9 @@ const slugify = s => one(s).toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, 
 const err = (code, msg) => Object.assign(new Error(msg), { code });
 const CORE = ['actors.md', 'stakeholders.md', 'objects.md', 'workflows.md', 'brand.md'];
 const DOCUMENT_ONLY = ['brand.md'];
+// The base sections that skills read at fixed paths; removable, and added back from the init templates.
+const CORE_TEMPLATES = { 'actors.md': 'Actors', 'objects.md': 'Objects', 'workflows.md': 'Workflows', 'brand.md': 'Brand' };
+const TEMPLATE_DIR = path.join(__dirname, '..', '..', 'skills', 'init', 'templates');
 const FIELD_TYPES = ['text', 'long', 'list'];
 const CHANGED = 'This changed on disk since you opened it (Claude, a skill or another window). The board reloaded it; make your change again.';
 
@@ -112,7 +115,8 @@ function readSection(project, rel) {
   const name = metaVal(meta, 'section') || (h1 ? h1[1].trim() : path.basename(rel, '.md'));
   const kind = DOCUMENT_ONLY.includes(rel) ? 'document' : 'entries';
   const version = fileVersion(project, rel);
-  if (kind === 'document') return { id: rel, name, kind, custom: false, body, entries: [], fields: [], version };
+  const core = CORE.includes(rel);
+  if (kind === 'document') return { id: rel, name, kind, core, custom: !core, body, entries: [], fields: [], version };
   const { entries } = parseEntries(body);
   let fields = parseTemplate(metaVal(meta, 'template'));
   if (!fields.length) { // infer from what the entries use
@@ -126,7 +130,7 @@ function readSection(project, rel) {
   if (!metaVal(meta, 'template')) fields.unshift({ label: 'Name', type: 'text' }); // the "## " heading
   const real = entries.filter(e => !/^\(.*\)$/.test(e.title)); // skip "(Actor name)" template placeholders
   return {
-    id: rel, name, kind, custom: rel.startsWith('context/'), fields, version,
+    id: rel, name, kind, core, custom: !core, fields, version,
     entries: real.map((e, i) => ({ index: entries.indexOf(e), title: e.title, values: e.values, suggested: e.suggested, extra: e.extra })),
     hasTemplate: !!metaVal(meta, 'template'),
   };
@@ -134,7 +138,7 @@ function readSection(project, rel) {
 
 function contextState(project) {
   return sectionFiles(project).map(rel => {
-    try { const s = readSection(project, rel); return { id: s.id, name: s.name, kind: s.kind, custom: s.custom, count: s.entries.length, fields: s.fields.length, suggested: s.entries.filter(e => e.suggested).length }; }
+    try { const s = readSection(project, rel); return { id: s.id, name: s.name, kind: s.kind, core: s.core, custom: s.custom, count: s.entries.length, fields: s.fields.length, suggested: s.entries.filter(e => e.suggested).length }; }
     catch { return null; }
   }).filter(Boolean);
 }
@@ -192,7 +196,8 @@ function saveTemplate(project, rel, { name, fields, version }) {
   return { ok: true };
 }
 
-function createSection(project, { name, fields }) {
+function createSection(project, { name, fields, core }) {
+  if (core) return addCoreSection(project, core);
   const n = one(name);
   if (!n) throw err(400, 'Enter a name');
   const rel = 'context/' + slugify(n) + '.md';
@@ -213,8 +218,17 @@ function saveDocument(project, rel, body, version) {
   project.write(rel, text);
   return { ok: true };
 }
+// A base section removed earlier comes back from the same template /eggux:init uses.
+function addCoreSection(project, rel) {
+  if (!CORE_TEMPLATES[rel]) throw err(400, 'Unknown base section');
+  if (project.read(rel) != null) throw err(409, `${CORE_TEMPLATES[rel]} already exists`);
+  const tpl = fs.readFileSync(path.join(TEMPLATE_DIR, rel), 'utf8').replace(/\r\n/g, '\n');
+  const client = ['decisions.md', ...Object.keys(CORE_TEMPLATES)].map(f => (/^client:\s*"?(.*?)"?\s*$/m.exec(project.read(f) || '') || [])[1]).find(Boolean) || '';
+  project.write(rel, tpl.replace(/\{\{client\}\}/g, client).replace(/\{\{date\}\}/g, today()).replace(/\{\{figma_url\}\}/g, ''));
+  return { id: rel };
+}
+// Any section can be deleted; the file moves to eggux/.trash/ and can be added back.
 function deleteSection(project, rel, version) {
-  if (!rel.startsWith('context/')) throw err(400, 'Only sections you created can be deleted here');
   readSection(project, rel);
   checkVersion(project, rel, version);
   project.trash(rel);
@@ -629,7 +643,7 @@ function updateFlowMeta(project, slug, { group, figma }) {
 
 module.exports = {
   createFlow, updateFlowMeta, saveDocument, fileVersion,
-  workState, workFiles, jobsSignature, recover, readSection, writeEntry, saveTemplate, createSection, deleteSection, suggestEntry,
+  workState, workFiles, jobsSignature, recover, readSection, writeEntry, saveTemplate, createSection, addCoreSection, deleteSection, suggestEntry,
   parseResearch, createResearch, runResearch, voteFinding, deleteResearch,
   parseQuestions, addQuestion, addFeatureQuestions, addOption, chooseOption, runOptions, uploadDoc, deleteDoc, readDoc,
 };

@@ -22,6 +22,8 @@ function cached(key, url) {
 }
 const empty = (title, text) => `<div class="empty"><strong>${title}</strong>${text || ''}</div>`;
 const SEC_ICON = { 'actors.md': 'users', 'stakeholders.md': 'users', 'objects.md': 'box', 'workflows.md': 'flows', 'brand.md': 'palette' };
+// Base sections: skills read them at these paths. Deleted ones come back from here.
+const CORE_SECTIONS = [['actors.md', 'Actors', 'who uses the product'], ['objects.md', 'Objects', 'the nouns, OOUX / ORCA'], ['workflows.md', 'Workflows', 'what actors do, step by step'], ['brand.md', 'Brand', 'identity, color, type; a document']];
 const PRESETS = {
   Actors: [['Name'], ['Who', 'long'], ['Goals', 'list', 3], ['Constraints', 'list', 3]],
   Stakeholders: [['Name and role'], ['Goals', 'list', 3], ['Constraints', 'list', 3], ['Approves']],
@@ -36,19 +38,29 @@ function renderContext(r) {
   const secs = W().context;
   const terms = r.a === 'terminology';
   const cur = terms ? null : secs.find(s => s.id === r.a) || secs[0];
-  let html = head('Context', 'The project context: one set of sections for the whole project. Understand, Decide and the skills read it.',
+  let html = head('Context', 'One file per section in <code>eggux/</code>. Claude and the skills read every section that exists; delete what this project does not need and add it back from New section.',
     `<button class="btn" type="button" data-w="toggle-chooser">${icon('plus')}New section</button>`);
-  if (wui.chooser) html += `<div class="card card-body chooser">
-      <p class="muted" style="margin:0 0 10px">Start from a template or from scratch. It becomes <code>eggux/context/&lt;name&gt;.md</code>.</p>
-      <div class="row" style="margin-bottom:10px">${Object.keys(PRESETS).filter(p => !secs.some(s => s.name === p)).map(p => `<button class="btn outline sm" type="button" data-w="preset" data-name="${esc(p)}">${esc(p)}</button>`).join('')}</div>
+  if (wui.chooser) {
+    const missing = CORE_SECTIONS.filter(([id]) => !secs.some(s => s.id === id));
+    const presets = Object.keys(PRESETS).filter(p => !secs.some(s => s.name === p));
+    html += `<div class="card card-body chooser">
+      ${missing.length ? `<p class="muted" style="margin:0 0 8px">Base sections, at the path the skills read:</p>
+      <div class="row" style="margin-bottom:12px">${missing.map(([id, name, what]) => `<button class="btn outline sm" type="button" data-w="core" data-id="${esc(id)}" title="eggux/${esc(id)} · ${esc(what)}">${esc(name)}</button>`).join('')}</div>` : ''}
+      <p class="muted" style="margin:0 0 8px">More sections, as <code>eggux/context/&lt;name&gt;.md</code>:</p>
+      ${presets.length ? `<div class="row" style="margin-bottom:10px">${presets.map(p => `<button class="btn outline sm" type="button" data-w="preset" data-name="${esc(p)}">${esc(p)}</button>`).join('')}</div>` : ''}
       <form class="row" id="w-newsec"><label class="sr-only" for="w-secname">Section name</label><input class="input" id="w-secname" placeholder="Another section, e.g. Pricing rules" style="flex:1;min-width:200px"><button class="btn outline">Create empty</button></form></div>`;
+  }
   const sec = cur ? cached('ctx:' + cur.id, '/api/context/' + enc(cur.id)) : null;
   const nTerms = S.decisions.product ? S.decisions.product.terminology.length : 0;
-  html += `<div class="notes half"><div class="card"><ul class="note-list">${secs.map(s => `<li><a href="#/context/${enc(s.id)}" ${cur && s.id === cur.id ? 'aria-current="true"' : ''}>
+  const kindLine = s => s.kind === 'document' ? 'Document' : `${s.count} ${s.count === 1 ? 'entry' : 'entries'} · ${s.fields} fields`;
+  html += `<div class="notes half"><div class="card">
+      <h3 class="list-title">Sections · ${secs.length}</h3>
+      <ul class="note-list">${secs.map(s => `<li><a href="#/context/${enc(s.id)}" ${cur && s.id === cur.id ? 'aria-current="true"' : ''}>
       <div class="t">${esc(s.name)}</div>
-      <div class="x">${s.kind === 'document' ? 'Document' : `${s.count} ${s.count === 1 ? 'entry' : 'entries'} · ${s.fields} fields`}${s.suggested ? ` · ${s.suggested} to review` : ''}</div></a></li>`).join('')}
-      <li class="sep"><a href="#/context/terminology" ${terms ? 'aria-current="true"' : ''}><div class="t">Terminology</div><div class="x">${nTerms} terms · words to use and to avoid</div></a></li>
-      <li><a href="#/notes"><div class="t">Notes</div><div class="x">${S.notes.length} notes · meetings, research, ideas</div></a></li></ul></div>
+      <div class="x">${kindLine(s)}${s.suggested ? ` · ${s.suggested} to review` : ''}</div></a></li>`).join('') || '<li class="muted" style="padding:12px 20px">No sections. Add one with New section.</li>'}</ul>
+      <h3 class="list-title">Also read by Claude</h3>
+      <ul class="note-list"><li><a href="#/context/terminology" ${terms ? 'aria-current="true"' : ''}><div class="t">Terminology</div><div class="x">${nTerms} terms · in decisions.md</div></a></li>
+      <li><a href="#/notes"><div class="t">Notes</div><div class="x">${S.notes.length} notes · opens the Notes page</div></a></li></ul></div>
     <div class="card flow-card">${terms ? termsPanel() : !cur ? empty('No sections yet', 'Add one with New section, or run <code>/eggux:init</code>.') : sec ? sectionDetail(cur, sec) : '<div class="empty">Loading</div>'}</div></div>`;
   return html;
 }
@@ -59,17 +71,19 @@ function termsPanel() {
 function sectionDetail(meta, sec) {
   if (sec.error) return empty('Could not read this section', esc(sec.error));
   const file = `<p class="file-path">eggux/${esc(sec.id)}</p>`;
-  if (sec.kind === 'document') return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">A document section, written as free text.</div></div>
-      ${wui.editDoc === sec.id ? '' : `<button class="btn outline sm" type="button" data-w="edit-doc" data-id="${esc(sec.id)}">${icon('pencil', 'sm')}Edit</button>`}</div>
+  const del = `<button class="btn ghost sm danger" type="button" data-w="del-section" data-id="${esc(sec.id)}" data-name="${esc(sec.name)}">${icon('trash', 'sm')}Delete</button>`;
+  const where = `<code>eggux/${esc(sec.id)}</code>`;
+  if (sec.kind === 'document') return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">Document, free text · ${where}</div></div>
+      <div class="row">${wui.editDoc === sec.id ? '' : `<button class="btn outline sm" type="button" data-w="edit-doc" data-id="${esc(sec.id)}">${icon('pencil', 'sm')}Edit</button>`}${del}</div></div>
     ${wui.editDoc === sec.id ? `<form class="card-body stack" id="w-doc" data-id="${esc(sec.id)}" style="gap:10px"><label class="sr-only" for="w-doc-body">${esc(sec.name)}</label>
       <textarea class="input doc-edit" id="w-doc-body" rows="22">${esc(sec.body.replace(/^\n+/, ''))}</textarea>
       <div class="row" style="justify-content:flex-end"><button class="btn outline sm" type="button" data-w="cancel-doc">Cancel</button><button class="btn sm">${icon('check', 'sm')}Save</button></div></form>`
       : `<div class="prose">${md(sec.body)}</div>`}${file}`;
   const err = W().errors['entry:' + sec.id];
   const asking = busy('entry:' + sec.id);
-  return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">Fields: ${sec.fields.map(f => esc(f.label) + (f.type === 'list' ? ' (list)' : '')).join(' · ')}</div></div>
-      <div class="row"><button class="btn outline sm" type="button" data-w="template" data-id="${esc(sec.id)}">${icon('sliders', 'sm')}Edit template</button>
-      ${sec.custom ? `<button class="btn ghost sm danger" type="button" data-w="del-section" data-id="${esc(sec.id)}">${icon('trash', 'sm')}Delete</button>` : ''}</div></div>
+  return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">Entries · ${where}</div>
+      <div class="flow-meta">Fields: ${sec.fields.map(f => esc(f.label) + (f.type === 'list' ? ' (list)' : '')).join(' · ')}${sec.hasTemplate ? '' : ' <span class="muted">(read from the entries; Edit template saves them in the file)</span>'}</div></div>
+      <div class="row"><button class="btn outline sm" type="button" data-w="template" data-id="${esc(sec.id)}">${icon('sliders', 'sm')}Edit template</button>${del}</div></div>
     <div class="card-body" style="padding-top:0">
       <form class="row ask" id="w-ask" data-id="${esc(sec.id)}">
         <button class="btn sm" type="button" data-w="new-entry">${icon('plus', 'sm')}Add</button>
@@ -319,7 +333,8 @@ document.addEventListener('click', async ev => {
     case 'keep': return act(() => api('PUT', `/api/context/${enc(id)}/entries/${d.i}`, { suggested: false, ...guard(id, d.i) }), 'Kept');
     case 'del-entry': if (confirm('Delete this entry?')) await act(() => api('DELETE', `/api/context/${enc(id)}/entries/${d.i}`, guard(id, d.i)), 'Entry deleted'); return;
     case 'template': { const sec = wui.cache['ctx:' + d.id] && wui.cache['ctx:' + d.id].data; if (sec) openTemplate(sec); return; }
-    case 'del-section': if (confirm('Delete this section and all its entries? The file eggux/' + d.id + ' moves to eggux/.trash/.')) { const ok = await act(() => api('DELETE', '/api/context/' + enc(d.id), guard(d.id)), 'Section deleted'); if (ok) location.hash = '#/context'; } return;
+    case 'core': { const r = await act(() => api('POST', '/api/context', { core: d.id }), 'Section added'); if (r) { wui.chooser = false; location.hash = '#/context/' + enc(r.id); } return; }
+    case 'del-section': if (confirm(`Delete ${d.name || 'this section'}? The file eggux/${d.id} moves to eggux/.trash/. Claude and the skills stop reading it; add it back any time from New section.`)) { const ok = await act(() => api('DELETE', '/api/context/' + enc(d.id), guard(d.id)), 'Section deleted'); if (ok) location.hash = '#/context'; } return;
     case 'tpl-add': wui.tpl.fields.push({ label: 'New field', type: 'text' }); return drawTemplate();
     case 'tpl-del': wui.tpl.fields.splice(+d.i, 1); return drawTemplate();
     case 'tpl-up': { const i = +d.i, f = wui.tpl.fields; [f[i - 1], f[i]] = [f[i], f[i - 1]]; return drawTemplate(); }
