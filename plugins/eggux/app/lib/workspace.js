@@ -188,6 +188,16 @@ function createSection(project, { name, fields }) {
   return { id: rel };
 }
 
+// Document sections (brand.md) are edited as markdown; the frontmatter is kept.
+function saveDocument(project, rel, body) {
+  const sec = readSection(project, rel);
+  if (sec.kind !== 'document') throw err(400, 'Only document sections are edited as text');
+  const fm = splitFrontmatter(project.read(rel));
+  let text = fm.raw + String(body || '').replace(/\r\n/g, '\n').replace(/^\n*/, '\n');
+  if (/^---/.test(fm.raw)) text = setMeta(text, 'updated', today());
+  project.write(rel, text);
+  return { ok: true };
+}
 function deleteSection(project, rel) {
   if (!rel.startsWith('context/')) throw err(400, 'Only sections you created can be deleted here');
   readSection(project, rel);
@@ -565,7 +575,7 @@ function updateFlowMeta(project, slug, { group, figma }) {
 }
 
 module.exports = {
-  createFlow, updateFlowMeta,
+  createFlow, updateFlowMeta, saveDocument,
   workState, workFiles, jobsSignature, recover, readSection, writeEntry, saveTemplate, createSection, deleteSection, suggestEntry,
   parseResearch, createResearch, runResearch, voteFinding, deleteResearch,
   addQuestion, addOption, chooseOption, runOptions, uploadDoc, deleteDoc, readDoc,

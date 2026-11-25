@@ -204,8 +204,14 @@ function renderDecisionDetail(d) {
 }
 function renderTerms() {
   const t = S.decisions.product.terminology;
-  return `<div class="card"><table class="terms"><thead><tr><th>Use</th><th>Don't use</th><th>Context</th><th>Since</th></tr></thead><tbody>
-    ${t.length ? t.map(x => `<tr><td><strong>${esc(x.use)}</strong></td><td class="muted">${esc(x.dont)}</td><td>${esc(x.context)}</td><td class="muted">${esc(x.since)}</td></tr>`).join('') : `<tr><td colspan="4" class="empty">No terms yet.</td></tr>`}
+  return `<div class="card"><table class="terms"><thead><tr><th>Use</th><th>Don't use</th><th>Context</th><th>Since</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody>
+    ${t.length ? t.map((x, i) => ui.termEdit === i ? `<tr><td colspan="5"><form class="term-edit" id="term-edit" data-i="${i}">
+        <label class="sr-only" for="te-use">Use</label><input class="input" id="te-use" value="${esc(x.use)}" required>
+        <label class="sr-only" for="te-dont">Don't use</label><input class="input" id="te-dont" value="${esc(x.dont)}" placeholder="Don't use">
+        <label class="sr-only" for="te-ctx">Context</label><input class="input" id="te-ctx" value="${esc(x.context)}" placeholder="Context">
+        <button class="btn sm">Save</button><button class="btn ghost sm" type="button" data-term-cancel>Cancel</button></form></td></tr>`
+      : `<tr><td><strong>${esc(x.use)}</strong></td><td class="muted">${esc(x.dont)}</td><td>${esc(x.context)}</td><td class="muted">${esc(x.since)}</td>
+        <td class="row-actions"><button class="btn ghost icon sm" type="button" data-term-edit="${i}" aria-label="Edit ${esc(x.use)}">${icon('pencil', 'sm')}</button><button class="btn ghost icon sm" type="button" data-term-del="${i}" aria-label="Delete ${esc(x.use)}">${icon('trash', 'sm')}</button></td></tr>`).join('') : `<tr><td colspan="5" class="empty">No terms yet.</td></tr>`}
   </tbody></table>
   <form class="inbox-add" id="term-form" style="grid-template-columns:repeat(3,minmax(0,1fr)) auto">
     <label class="sr-only" for="tm-use">Use</label><input class="input" id="tm-use" placeholder="Use: Request access" required>
@@ -268,6 +274,7 @@ function taskDrawer(t) {
     <div class="drawer-head"><span class="id">${esc(t.id)}</span>
       <form id="td-status" data-id="${esc(t.id)}" class="row"><label class="sr-only" for="td-st">Status</label><select class="input" id="td-st" style="width:auto;height:30px">${['todo', 'doing', 'review', 'done'].map(s => `<option value="${s}" ${t.status === s ? 'selected' : ''}>${STATUS_LABEL[s]}</option>`).join('')}</select></form>
       <button class="btn outline sm" type="button" data-task-edit="${esc(t.id)}">${icon('pencil', 'sm')}Edit</button>
+      <button class="btn ghost icon sm" type="button" data-task-del="${esc(t.id)}" aria-label="Delete ${esc(t.id)}">${icon('trash', 'sm')}</button>
       <a class="btn ghost icon sm" href="#/tasks" aria-label="Close">${icon('x')}</a></div>
     <div class="drawer-body">
       <h2 id="td-title">${esc(t.title)}</h2>
@@ -318,7 +325,8 @@ function editorHtml(n) {
     <div class="editor-bar"><div class="tabs" role="tablist" aria-label="Mode" style="margin:0"><button role="tab" type="button" aria-selected="${!ui.notePreview}" data-mode="edit">Write</button><button role="tab" type="button" aria-selected="${ui.notePreview}" data-mode="preview">Preview</button></div>
       <button class="btn outline sm" type="button" data-sel="inbox" ${ui.notePreview ? 'disabled' : ''}>${icon('inbox', 'sm')}Selection to Inbox</button>
       <button class="btn outline sm" type="button" data-sel="task" ${ui.notePreview ? 'disabled' : ''}>${icon('plus', 'sm')}Selection to task</button>
-      ${ui.noteConflict ? '<button class="btn sm" type="button" data-act="reload-note">Reload</button>' : ''}${st}</div>
+      ${ui.noteConflict ? '<button class="btn sm" type="button" data-act="reload-note">Reload</button>' : ''}${st}
+      <button class="btn ghost sm" type="button" data-act="delete-note" style="margin-left:auto">${icon('trash', 'sm')}Delete</button></div>
     ${ui.notePreview ? `<div class="prose">${md(n.body) || '<p class="muted">Empty note.</p>'}</div>` : `<label class="sr-only" for="n-body">Note</label><textarea class="note-body" id="n-body" placeholder="# Kickoff meeting&#10;&#10;- Who was there&#10;- What was decided&#10;- [ ] Follow-ups">${esc(n.body)}</textarea>`}`;
 }
 async function loadNote(file) {
@@ -572,6 +580,11 @@ document.addEventListener('click', async ev => {
   }
   if (d.taskFrom) { location.hash = '#/tasks'; setTimeout(() => openTask(null, { links: d.taskFrom, stage: 'design' }), 50); return; }
   if (d.stage) { ui.tStage = ui.tStage === d.stage ? '' : d.stage; return render(); }
+  if (d.termEdit !== undefined) { ui.termEdit = +d.termEdit; return render(); }
+  if (d.termCancel !== undefined) { ui.termEdit = null; return render(); }
+  if (d.termDel !== undefined) { const x = S.decisions.product.terminology[+d.termDel]; if (x && confirm(`Delete the term “${x.use}”?`)) await act(() => api('DELETE', '/api/terms/' + d.termDel), 'Term deleted'); return; }
+  if (d.taskDel) { if (confirm(`Delete ${d.taskDel}? It is removed from eggux/tasks.md.`)) { await act(() => api('DELETE', '/api/tasks/' + d.taskDel), `${d.taskDel} deleted`); location.hash = '#/tasks'; } return; }
+  if (d.act === 'delete-note' && ui.note) { if (confirm(`Delete the note “${ui.note.title || ui.note.file}”?`)) { const f = ui.note.file; await act(() => api('DELETE', '/api/notes/' + encodeURIComponent(f)), 'Note deleted'); ui.note = null; ui.noteDirty = false; location.hash = '#/notes'; } return; }
   if (d.taskEdit) { const x = S.tasks.find(k => k.id === d.taskEdit); if (x) openTask(x); return; }
   if (d.task) { location.hash = '#/tasks/' + d.task; return; }
   if (d.mode) { ui.notePreview = d.mode === 'preview'; const ed = $('#editor'); if (ed && ui.note) ed.innerHTML = editorHtml(ui.note); return; }
@@ -596,6 +609,7 @@ document.addEventListener('submit', async ev => {
     await act(() => api('PATCH', '/api/decisions/' + id, { source, status: $('#dd-status').value }), `${id} is ${$('#dd-status').value}`);
   }
   if (f.id === 'td-result') { ev.preventDefault(); await act(() => api('PATCH', '/api/tasks/' + f.dataset.id, { result: $('#td-res').value }), 'Result saved'); }
+  if (f.id === 'term-edit') { ev.preventDefault(); const ok = await act(() => api('PUT', '/api/terms/' + f.dataset.i, { use: $('#te-use').value, dont: $('#te-dont').value, context: $('#te-ctx').value }), 'Term saved'); if (ok) { ui.termEdit = null; render(); } }
   if (f.id === 'term-form') {
     ev.preventDefault();
     await act(() => api('POST', '/api/terms', { use: $('#tm-use').value, dont: $('#tm-dont').value, context: $('#tm-ctx').value }), 'Term added');

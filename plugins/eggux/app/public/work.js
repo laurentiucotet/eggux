@@ -59,7 +59,12 @@ function termsPanel() {
 function sectionDetail(meta, sec) {
   if (sec.error) return empty('Could not read this section', esc(sec.error));
   const file = `<p class="file-path">eggux/${esc(sec.id)}</p>`;
-  if (sec.kind === 'document') return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">A document section: edit the file, or ask Claude in the chat.</div></div></div><div class="prose">${md(sec.body)}</div>${file}`;
+  if (sec.kind === 'document') return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">A document section, written as free text.</div></div>
+      ${wui.editDoc === sec.id ? '' : `<button class="btn outline sm" type="button" data-w="edit-doc" data-id="${esc(sec.id)}">${icon('pencil', 'sm')}Edit</button>`}</div>
+    ${wui.editDoc === sec.id ? `<form class="card-body stack" id="w-doc" data-id="${esc(sec.id)}" style="gap:10px"><label class="sr-only" for="w-doc-body">${esc(sec.name)}</label>
+      <textarea class="input doc-edit" id="w-doc-body" rows="22">${esc(sec.body.replace(/^\n+/, ''))}</textarea>
+      <div class="row" style="justify-content:flex-end"><button class="btn outline sm" type="button" data-w="cancel-doc">Cancel</button><button class="btn sm">${icon('check', 'sm')}Save</button></div></form>`
+      : `<div class="prose">${md(sec.body)}</div>`}${file}`;
   const err = W().errors['entry:' + sec.id];
   const asking = busy('entry:' + sec.id);
   return `<div class="flow-head"><div><h2>${esc(sec.name)}</h2><div class="flow-meta">Fields: ${sec.fields.map(f => esc(f.label) + (f.type === 'list' ? ' (list)' : '')).join(' · ')}</div></div>
@@ -305,6 +310,8 @@ document.addEventListener('click', async ev => {
     case 'another': return act(() => api('POST', `/api/questions/${d.id}/another`), 'Claude is looking for another option');
     case 'my-option': return openMyOption(d.id);
     case 'new-flow': return openNewFlow();
+    case 'edit-doc': wui.editDoc = d.id; return render();
+    case 'cancel-doc': wui.editDoc = null; return render();
   }
 });
 document.addEventListener('submit', async ev => {
@@ -322,6 +329,7 @@ document.addEventListener('submit', async ev => {
     const ok = await act(() => i === '' ? api('POST', `/api/context/${enc(sec.id)}/entries`, { title, values }) : api('PUT', `/api/context/${enc(sec.id)}/entries/${i}`, { title, values, suggested: false }), 'Saved');
     if (ok) { wui.editing = null; render(); }
   }
+  if (f.id === 'w-doc') { ev.preventDefault(); const ok = await act(() => api('PUT', `/api/context/${enc(f.dataset.id)}/document`, { body: $('#w-doc-body').value }), 'Saved'); if (ok) { wui.editDoc = null; render(); } }
   if (f.id === 'flow-props') { ev.preventDefault(); const b = Object.fromEntries(new FormData(f)); const ok = await act(() => api('PATCH', '/api/flows/' + f.dataset.slug, b), 'Saved'); if (ok) { ui.flowProps = false; render(); } }
   if (f.id === 'w-newres') { ev.preventDefault(); const title = $('#w-restitle').value.trim(); if (!title) return toast('Write what you want to learn', true);
     const r = await act(() => api('POST', '/api/research', { title }), 'Sent to Claude'); if (r) location.hash = '#/understand/' + r.slug; }

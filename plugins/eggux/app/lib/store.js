@@ -266,6 +266,50 @@ class Project {
     if (!text) throw new HttpError(404, `${id} not found`);
     this.write(rel, setUpdated(text, date));
   }
+  // Terminology rows are addressed by their order in the table (0 = first row under the header).
+  termRows() {
+    const t = this.read('decisions.md');
+    if (t == null) throw new HttpError(404, 'decisions.md does not exist');
+    const lines = t.split('\n');
+    const tr = sectionRange(lines, 'Terminology');
+    if (!tr) throw new HttpError(400, 'No ## Terminology section');
+    const rows = [];
+    for (let i = tr.start + 1; i < tr.end; i++) if (/^\|/.test(lines[i]) && !/^\|\s*-/.test(lines[i]) && !/^\|\s*Use\s*\|/.test(lines[i])) rows.push(i);
+    return { lines, rows };
+  }
+  updateTerm(index, row) {
+    const { lines, rows } = this.termRows();
+    const i = rows[index];
+    if (i == null) throw new HttpError(404, 'Term not found');
+    if (!oneLine(row.use)) throw new HttpError(400, 'Use is required');
+    const cell = s => oneLine(s).replace(/\|/g, '/');
+    const old = lines[i].split('|').slice(1, -1).map(s => s.trim());
+    lines[i] = `| ${cell(row.use)} | ${cell(row.dont)} | ${cell(row.context)} | ${cell(row.since) || old[3] || now().date} |`;
+    this.write('decisions.md', setUpdated(lines.join('\n'), now().date));
+  }
+  deleteTerm(index) {
+    const { lines, rows } = this.termRows();
+    const i = rows[index];
+    if (i == null) throw new HttpError(404, 'Term not found');
+    lines.splice(i, 1);
+    this.write('decisions.md', setUpdated(lines.join('\n'), now().date));
+  }
+  deleteTask(id) {
+    const t = this.read('tasks.md');
+    if (t == null) throw new HttpError(404, 'tasks.md not found');
+    const lines = t.split('\n');
+    const s = lines.findIndex(l => l.startsWith(`### ${id} · `));
+    if (s < 0) throw new HttpError(404, `${id} not found`);
+    let e = s + 1;
+    while (e < lines.length && !/^#{2,3} /.test(lines[e])) e++;
+    lines.splice(s, e - s);
+    this.write('tasks.md', setUpdated(lines.join('\n'), now().date));
+  }
+  deleteNote(file) {
+    const full = this.p(this.noteFile(file));
+    if (!fs.existsSync(full)) throw new HttpError(404, 'Note not found');
+    fs.unlinkSync(full);
+  }
   addTerm(row) {
     const t = this.read('decisions.md');
     if (t == null) throw new HttpError(404, 'decisions.md does not exist. Run /eggux:init first.');

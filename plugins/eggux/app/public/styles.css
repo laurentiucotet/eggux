@@ -401,3 +401,8 @@ dialog.diagram-dlg[open] { display: flex; }
 .flow-props[hidden] { display: none; }
 .prose th, .prose td { overflow-wrap: normal; word-break: normal; }
 .prose td:first-child { white-space: nowrap; }
+
+/* Round 4: edit and delete */
+.row-actions { white-space: nowrap; text-align: right; width: 72px; }
+.term-edit { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto auto; gap: 8px; align-items: center; }
+.doc-edit { font: 13px/1.6 var(--mono); min-height: 360px; }
