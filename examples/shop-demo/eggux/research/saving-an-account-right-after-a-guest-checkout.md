@@ -32,7 +32,8 @@ This rests on general benchmarks, not tests with this shop's users. Uptake rates
 
 ### F-01 · Keep account saving after payment, never before. The current step 4 placement is right.
 - Source: Baymard checkout benchmark: forced accounts are a top abandonment cause
-- Vote: open
+- Vote: accepted
+- Question: Q-007
 
 ### F-02 · Ask only for a credential. Prefill email, name and address from the Order.
 - Source: Baymard confirmation-page guidelines; NN/g on delayed registration

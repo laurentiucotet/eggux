@@ -1,7 +1,27 @@
 # EGG UX
 
-A Claude Code plugin for running client UI projects on a shadcn-based design system:
-discovery, brand intake into Figma, building UI from the library, a decision log and UX review.
+A Claude Code plugin for a designer working alone on client projects: the UX, the UI in Figma
+and, when the project needs it, the components in code and Storybook. It is a jump start for any
+new project: on day 1, `/eggux:start` turns what the client sent into a map of the product, a list
+of questions for the client and a design system ready in Figma and code. From there to a handoff
+a developer, or you, can build from:
+
+1. **Context:** who the users are, what they work with and how (actors, objects, workflows),
+   the brand, the client's documents and notes.
+2. **Understand:** research Claude runs on a question; you accept or reject each finding.
+3. **Decide:** every accepted finding and every unknown becomes a question with options; your
+   choice becomes a decision with a scope and a way to verify it.
+4. **Features:** each feature gets its flows, scenarios, edge cases and Figma page.
+5. **Handoff:** `handoff.md` per feature, the one file a developer builds from.
+
+Everything lives in an `eggux/` folder of markdown files inside the client project, so Claude
+and people read and edit the same files. `/eggux:board` opens them as a local web interface.
+
+**EGG UI** is the kit underneath: a shadcn-based design system in Figma and React that the
+screens and the code are built from. EGG UX produces the handoff; EGG UI is what the handoff
+is built with.
+
+### EGG UI
 
 EGG UI is a generalist design system, complete enough for any product (SaaS, e-commerce,
 fintech, booking, content, internal tools, admin panels), with domain-neutral components, two
@@ -17,7 +37,7 @@ At a glance: 427 components on 76 pages, 258 blocks, 8 page shells, 171 complete
 email templates (SCREENS: Account, Auth, Billing, Documents, Emails, Help Center, Paywalls, Settings), 4 full showcase pages, 689 variables in five
 collections (Default and Corporate themes, Light and Dark, Density, Content in English and
 Română), 16 text styles, 4 gradient styles, 112 IconMCP icons (1 px line, sharp corners), 6 brand icons, 12 sample logos and 56 sample
-images (49 photos, 7 product screenshots). The plugin adds 22 skills, 33
+images (49 photos, 7 product screenshots). The plugin adds 25 skills, 33
 patterns and 38 component guides.
 
 ## Install
@@ -33,41 +53,71 @@ Update later with `claude plugin marketplace update eggux`.
 The skills that touch Figma need the Figma MCP server connected. Start a client file from the
 [Community library](https://www.figma.com/community/file/1694044412384019384) so the component names, variables and pages match what the skills expect.
 
-### Client decisions
-Each client project keeps `eggux/decisions.md`. Write a request in its Inbox, one line with date,
-time and who asked (`- 2026-10-21 09:15 · Andrei: cards with 12 px padding instead of 24`), then
-run `/eggux:decision-log`: Claude makes it exact (tokens, scope), checks conflicts and
-accessibility, applies it once at the source in Figma and code, and verifies the work
-(statuses proposed → approved → applied → verified). A SessionStart hook reminds Claude of the
-file and of new Inbox lines at the start of every session; build-ui reads it first and review
-checks every applied decision.
+### Questions and decisions
+Two ways in, one log. **Decide** (`eggux/questions.md`) holds what is not decided yet: unknowns
+from discovery and features, accepted research findings, blindspots. Claude prepares options and
+you choose one. The **Inbox** of `eggux/decisions.md` holds what the client already decided, one
+line with date, time and who asked (`- 2026-10-21 09:15 · Andrei: cards with 12 px padding instead
+of 24`). Both become decisions that `/eggux:decision-log` makes exact (tokens, scope), checks for
+conflicts and accessibility, applies once at the source in Figma and code, and verifies (statuses
+proposed → approved → applied → verified). A SessionStart hook reminds Claude of open questions,
+new Inbox lines and decisions waiting to be applied; build-ui reads the decisions first and
+review checks every applied one.
 
 ## Skills
 
+In the order you meet them in a project. Stages and deliverables:
+[`plugins/eggux/references/pipeline.md`](plugins/eggux/references/pipeline.md).
+
+### Start a project
+
 | Skill | What it does |
 |---|---|
+| `/eggux:start` | Day 1 in a new project: sets up `eggux/`, drafts the context from what the client sent, turns the unknowns into questions, applies the brand to the client's Figma copy and, when there is a codebase, sets up EGG UI in code; ends with the board open and a list of questions for the client |
 | `/eggux:init` | Creates the `eggux/` folder in a client project from templates |
-| `/eggux:discovery` | Interview notes → objects (OOUX), actors, workflows |
 | `/eggux:brand-intake` | Brand assets → `brand.md` + Semantic variables in the client's Figma file |
+| `/eggux:board` | Opens the project as a local web interface: Context, Documents, Understand (research and findings), Decide (questions and options), Features (flows, scenarios, handoff), Working board, Decision log, Notes; reads and writes the markdown files in `eggux/`, live, and can run Claude with your Claude Code sign-in |
+
+### Understand and decide
+
+| Skill | What it does |
+|---|---|
+| `/eggux:discovery` | Interview notes → objects (OOUX), actors, workflows |
+| `/eggux:decision-log` | Turns Inbox requests into decisions, applies them in Figma and code, verifies the work |
+
+### Design features
+
+| Skill | What it does |
+|---|---|
 | `/eggux:new-feature` | Interviews you about a feature idea (actors, flows, data, scenarios, edge cases, states, feedback), writes `eggux/features/<slug>/` (feature, scenarios, workflows, decisions) and creates the feature's Figma page with a section per flow, scenario and edge case |
 | `/eggux:update-feature` | Takes new input (decisions, details, comments, notes) and updates every file and Figma section it touches, marks affected screens "Needs update", archives superseded frames, checks that everything agrees and logs the change |
 | `/eggux:build-ui` | Designs and builds screens from the library, following client files |
-| `/eggux:board` | Opens a local web interface for the project's decision log (Inbox, statuses, terminology), task list (pipeline stages, board) and notes; reads and writes the markdown files in `eggux/`, live |
+| `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
+| `/eggux:responsive` | Resize contract for a component or block, `check.js` on its stress test (squeezed, clipped, overflowing text at 276, 368, 564 and full width), fix recipes; also audits a whole library |
+
+### Components (Figma)
+
+| Skill | What it does |
+|---|---|
+| `/eggux:new-component` | From a screenshot or description to an approved component: reuse map, proposal, build, stress test (min, typical, max content), review, docs and records |
+| `/eggux:update-component` | After you edit a component by hand in Figma: finds what changed (snapshot diff), plays it back, polishes it (tokens, all variants, properties, layout), checks decisions, UX rules and affected instances, re-runs the stress test, reviews, then updates the doc, snapshot and records |
+| `/eggux:tidy-component` | Cleans up a component (tokens, clip, names, description) and lays out its page in one row per component: Docs (generated doc frame), Component, Stress test, Examples (the component in real screens); builds a missing stress test and examples |
+| `/eggux:audit-tokens` | Checks Figma variables (aliases, code syntax, scopes, contrast) and scans components for raw values |
+
+### Code and Storybook
+
+| Skill | What it does |
+|---|---|
 | `/eggux:code-setup` | Puts the EGG UI components in code in a client project: React, Tailwind, shadcn/ui names, Storybook with themes and density, tests; exports the client's Figma variables to CSS, and refreshes them when Figma changes |
 | `/eggux:code-component` | "Creează componenta asta": builds one component in code from its Figma component, with stories that are also tests (interaction, keyboard, measured sizes, accessibility in each theme, stress cases), runs them until green and compares the story with Figma |
 | `/eggux:code-qa` | Runs every story test, rebuilds Storybook, compares the stories with Figma and reports defects by cause (code, design, test) and coverage gaps |
+| `/eggux:kit-trim` | Starts a new product from the EGG UI kit and keeps only the components it needs, with everything they import |
 | `/eggux:storybook-init` | Adds Storybook to a project without it (latest stable); EGG UI projects go to code-setup. From [storybookjs/skills](https://github.com/storybookjs/skills), adapted |
 | `/eggux:storybook-setup` | Makes an installed Storybook work for the real project (preview, providers, CSS, mocks, first stories) by following `npx storybook skills setup`; leaves the EGG starter alone |
 | `/eggux:storybook-upgrade` | Upgrades Storybook to the latest stable (prerelease only on request), checks it and ends with code-qa |
 | `/eggux:storybook-component-docs` | Answers which components exist and what props they take from Storybook's docs tools, so they get reused instead of rebuilt |
 | `/eggux:storybook-ui-workflow` | Storybook's workflow for UI changes: reuse lookup, stories, story tests, review page; works on Storybook 10 and 11 |
-| `/eggux:decision-log` | Turns Inbox requests into decisions, applies them in Figma and code, verifies the work |
-| `/eggux:review` | Nielsen heuristics + EGG UX rules + token and workflow checks |
-| `/eggux:responsive` | Resize contract for a component or block, `check.js` on its stress test (squeezed, clipped, overflowing text at 276, 368, 564 and full width), fix recipes; also audits a whole library |
-| `/eggux:audit-tokens` | Checks Figma variables (aliases, code syntax, scopes, contrast) and scans components for raw values |
-| `/eggux:new-component` | From a screenshot or description to an approved component: reuse map, proposal, build, stress test (min, typical, max content), review, docs and records |
-| `/eggux:update-component` | After you edit a component by hand in Figma: finds what changed (snapshot diff), plays it back, polishes it (tokens, all variants, properties, layout), checks decisions, UX rules and affected instances, re-runs the stress test, reviews, then updates the doc, snapshot and records |
-| `/eggux:tidy-component` | Cleans up a component (tokens, clip, names, description) and lays out its page in one row per component: Docs (generated doc frame), Component, Stress test, Examples (the component in real screens); builds a missing stress test and examples |
+| `/eggux:storybook-publish` | Publishes Storybook (Chromatic) so the client and developers open one link per branch or pull request |
 
 ## How it is organized
 
@@ -76,7 +126,7 @@ The plugin holds the method; each client project holds its answers.
 ```
 plugins/eggux/
 ├── storybook/           EGG UI in code: tokens pipeline, Storybook 10, Vitest + axe, icons, Button, Badge, Input (starter for code-setup)
-├── app/                 the board: local web interface (Node, no dependencies) for decisions, tasks and notes
+├── app/                 the board: local web interface (Node, no dependencies) over the eggux/ files
 ├── hooks/               SessionStart reminder of the client's decisions.md, its Inbox and open tasks
 ├── references/          tokens (incl. density, motion, chart palette), content strings, Figma inventory, Figma API notes, code mapping, client file convention
 │   └── components/      generated reference: one file per component page (variants, properties, slots, parts, tokens, guides, code)
@@ -101,7 +151,7 @@ plugins/eggux/
     └── update-component/ hand edit → snapshot diff → polish → impact → stress test → approval → docs
 
 client-project/
-└── eggux/               brand.md, objects.md, actors.md, workflows.md, decisions.md, tasks.md, notes/, features/<slug>/, components/
+└── eggux/               brand.md, objects.md, actors.md, workflows.md, questions.md, decisions.md, tasks.md, context/, docs/, research/, notes/, features/<slug>/, components/
 ```
 
 Precedence: client `decisions.md` > client `brand.md` overrides > plugin base rules.

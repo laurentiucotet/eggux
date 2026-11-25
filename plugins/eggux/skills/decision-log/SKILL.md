@@ -10,7 +10,20 @@ verified. The reverse order is how projects drift. Format: `skills/init/template
 precedence: `references/project-files.md`.
 
 ## 1. Record
-Read the whole file first. Take each request from the chat or from the Inbox, oldest first.
+Read the whole file first. Take each request from the chat or from the Inbox, oldest first, then
+the `proposed` decisions that came from the board (below).
+
+**From the board (Decide).** Choosing an option in `/eggux:board` writes a decision with
+`Status: proposed`, `Source: Decide (...)` and `Answers Q-xxx` in its Reason, and a task "Apply
+D-xxx". Treat it like an Inbox request that is already classified: read Q-xxx in
+`eggux/questions.md` (all options, pros and cons, the finding or note it came from), make the
+Decision exact, fill Scope, Implementation and Verify where they are missing, check conflicts
+(step 3), then set `approved` and apply. Keep the ID; never create a second entry for it.
+
+**Questions.** `eggux/questions.md` is the one list of open questions (Q-xxx), shown in the
+board's Decide view. When a request answers an open question, write `Answers Q-xxx` in the
+Reason and set the question's Status to `decided (D-xxx)`. When a request needs an answer you
+cannot get now, add it there as a question (Type `unknown`) and record the decision as `proposed`.
 
 1. **Classify:** terminology | design (spacing, padding, radius, color, size, type, density) |
    component (which component or variant to use, structure) | behavior | content | process.
@@ -40,7 +53,9 @@ Read the whole file first. Take each request from the chat or from the Inbox, ol
 - Status: approved
 ```
 
-5. Remove the processed line from the Inbox and update `updated:` in the frontmatter.
+5. Remove the processed line from the Inbox and update `updated:` in the frontmatter. For a
+   board decision, move its task to Doing while you apply it and to Done once verified, with a
+   `- Result:` line saying what changed and where (commit messages mention the task ID).
 
 ## 2. Apply (right after recording, unless the user says to wait)
 Work in the client's Figma file and codebase, never in the master library.

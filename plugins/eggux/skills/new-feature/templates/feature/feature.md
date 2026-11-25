@@ -61,8 +61,10 @@ Changes this feature makes outside its folder, so they can be found and undone.
 ## Out of scope
 
 ## Open questions
-| # | Question | Blocks | Asked | Answer |
-|---|---|---|---|---|
+The questions live in `eggux/questions.md` (`Source: feature:{{slug}}`), where they get options
+and a decision. This table only lists their IDs, what each blocks and where it stands.
+| ID | Question | Blocks | Status |
+|---|---|---|---|
 
 ## Changelog
 Newest first. One entry per update: date and time, source, what changed, files and Figma

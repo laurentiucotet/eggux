@@ -23,7 +23,7 @@ a new device and abandon checkout at the password step.
 ## Goal
 - Actor goal: get back into the account in under 2 minutes, from a phone, without calling support.
 - Business goal: fewer abandoned checkouts at sign in; fewer "I can't sign in" support tickets.
-- Success metric: share of started resets that end signed in (target: open question 3); support tickets tagged "password" per week.
+- Success metric: share of started resets that end signed in (target: open question Q-014); support tickets tagged "password" per week.
 
 ## Actors and access
 | Actor | Can see | Can do | Notes |
@@ -85,11 +85,13 @@ Every scenario and edge case in `scenarios.md` is an acceptance criterion. Crite
 - Passkeys.
 
 ## Open questions
-| # | Question | Blocks | Asked | Answer |
-|---|---|---|---|---|
-| 1 | Do we email an address that has no account ("someone asked to reset, but there is no account")? Default: send nothing. | Build (backend) | 2026-11-25 | |
-| 2 | Does a successful reset unlock an account locked after failed sign-ins? Default: yes. | Build (backend) | 2026-11-25 | |
-| 3 | Target for the success metric (share of resets that end signed in). | Nothing | 2026-11-25 | |
+The questions live in `eggux/questions.md` (`Source: feature:forgot-password`), where they get
+options and a decision. This table only lists their IDs, what each blocks and where it stands.
+| ID | Question | Blocks | Status |
+|---|---|---|---|
+| Q-012 | Do we email an address that has no account? Proposed: send nothing. | Build (backend) | open |
+| Q-013 | Does a successful reset unlock an account locked after failed sign-ins? Proposed: yes. | Build (backend) | open |
+| Q-014 | Target for the share of resets that end signed in. | Nothing | open |
 
 ## Changelog
 - 2026-11-25 · handoff v2 after a developer read-through: routes and state, security, rate limit per IP, no email in URLs. FD-05 updated.

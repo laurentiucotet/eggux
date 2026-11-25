@@ -1,6 +1,6 @@
 ---
 name: init
-description: Set up a new client project for the EGG UX workflow. Creates the eggux/ folder with empty brand, objects, actors, workflows and decisions files, and records the client's Figma file. Use when starting work for a new client or when a project has no eggux/ folder yet.
+description: Set up a new client project for the EGG UX workflow. Creates the eggux/ folder with empty brand, objects, actors, workflows, questions, decisions and tasks files, and records the client's Figma file. Use when starting work for a new client or when a project has no eggux/ folder yet.
 ---
 
 # Init a client project
@@ -22,7 +22,8 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/project-files.md` for the folder conventi
      that this is plugin development or a test, and record that in `brand.md` notes.
 3. Copy every file from the `templates/` folder next to this SKILL.md into `eggux/`, filling
    the client name, the Figma URL and today's date in the frontmatter.
-4. Create an empty `eggux/notes/` folder for meeting and research notes.
-5. Finish with the next step in one line: run `/eggux:discovery` with interview notes, or
+4. Create empty `eggux/notes/` (meeting notes), `eggux/research/`, `eggux/docs/` (client
+   documents) and `eggux/context/` (extra context sections) folders.
+5. Finish with the next step in one line (when `/eggux:start` called init, it continues by itself): run `/eggux:discovery` with interview notes, or
    `/eggux:brand-intake` with the client's brand assets. Either order works. `/eggux:board` opens
-   decisions, tasks and notes in the browser.
+   the whole project in the browser.

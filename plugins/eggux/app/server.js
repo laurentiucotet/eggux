@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// EGG UX board: a local web interface for eggux/decisions.md, eggux/tasks.md and eggux/notes/.
+// EGG UX board: a local web interface over a client project's eggux/ folder.
 // No dependencies. Usage: node server.js [--root <project dir>] [--port 4317]
 // Listens on 127.0.0.1 only. The markdown files stay the source of truth.
 'use strict';
@@ -8,6 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const { Project, HttpError } = require('./lib/store');
 const W = require('./lib/workspace');
+const L = require('./lib/library');
 const { execFileSync } = require('child_process');
 
 // Commits that mention a task or its decisions (T-003, D-006) in their message, with the files they
@@ -94,7 +95,7 @@ const routes = [
   ['POST', /^\/api\/questions$/, (m, b) => W.addQuestion(project, b)],
   ['POST', /^\/api\/questions\/(Q-\d+)\/options$/, (m, b) => W.addOption(project, m[1], b)],
   ['POST', /^\/api\/questions\/(Q-\d+)\/another$/, m => { W.runOptions(project, m[1], true); return { ok: true }; }],
-  ['POST', /^\/api\/questions\/(Q-\d+)\/choose$/, (m, b) => W.chooseOption(project, m[1], b.key)],
+  ['POST', /^\/api\/questions\/(Q-\d+)\/choose$/, (m, b) => W.chooseOption(project, m[1], b.key, b)],
   ['GET', /^\/api\/tasks\/(T-\d+)\/changes$/, m => taskChanges(m[1])],
   // Flows
   ['POST', /^\/api\/flows$/, (m, b) => W.createFlow(project, b)],
@@ -115,6 +116,9 @@ const routes = [
   ['POST', /^\/api\/tasks$/, (m, b) => ({ id: project.addTask(b) })],
   ['PATCH', /^\/api\/tasks\/(T-\d+)$/, (m, b) => { project.updateTask(m[1], b); return { ok: true }; }],
   ['POST', /^\/api\/notes$/, (m, b) => ({ file: project.addNote(b.title) })],
+  ['GET', /^\/api\/flows\/([a-z0-9-]+)\/screens$/, m => ({ screens: L.featureScreens(project, m[1]) })],
+  ['GET', /^\/api\/components$/, () => ({ pages: L.componentUsage(project, project.flows()) })],
+  ['GET', /^\/api\/components\/([a-z0-9-]+)$/, m => ({ file: m[1], body: L.componentPage(m[1]) })],
   ['GET', /^\/api\/flows\/([a-z0-9-]+)\/([a-z]+)$/, m => project.readFlowFile(m[1], m[2])],
   ['GET', /^\/api\/notes\/([^/]+)$/, m => project.readNote(decodeURIComponent(m[1]))],
   ['PUT', /^\/api\/notes\/([^/]+)$/, (m, b) => ({ mtime: project.saveNote(decodeURIComponent(m[1]), b) })],

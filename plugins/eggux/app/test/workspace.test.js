@@ -112,3 +112,61 @@ test('the server refuses other Host headers (DNS rebinding)', async () => {
     assert.equal(await get('evil.example.com'), 403);
   } finally { srv.kill(); }
 });
+
+test('choosing an option logs a proposed decision with scope and a task with a deliverable', () => {
+  const p = demo();
+  const q = W.parseQuestions(p).find(x => x.status === 'open' && x.options.length);
+  assert.ok(q, 'the demo has no open question with options');
+  const o = q.options[0];
+  const r = W.chooseOption(p, q.id, o.key, { decision: 'Exact decision text', scope: 'Product page', verify: 'Check the product page' });
+  const d = read(p, 'decisions.md');
+  const entry = d.slice(d.indexOf(`### ${r.decision} · `)).split('\n### ')[0];
+  assert.ok(entry.includes(`· ${o.title}`), 'the title is not the chosen option');
+  assert.ok(entry.includes('- Decision: Exact decision text'));
+  assert.ok(entry.includes('- Scope: Product page'));
+  assert.ok(entry.includes('- Verify: Check the product page'));
+  assert.ok(entry.includes('- Status: proposed'));
+  assert.ok(entry.includes(`Answers ${q.id}`));
+  const t = read(p, 'tasks.md');
+  assert.ok(t.includes(`${r.decision} applied and verified with /eggux:decision-log`));
+  assert.equal(W.parseQuestions(p).find(x => x.id === q.id).status, `decided ${o.key} (${r.decision})`);
+});
+
+test('feature questions live in questions.md and show on the feature', () => {
+  const p = demo();
+  const [a, b] = W.addFeatureQuestions(p, 'forgot-password', [
+    { question: 'Lock the account after five resets?', blocks: 'backend', default: 'No' },
+    'Who signs off the email copy?',
+  ]);
+  const q = W.parseQuestions(p);
+  const qa = q.find(x => x.id === a.id), qb = q.find(x => x.id === b.id);
+  assert.equal(qa.source, 'feature:forgot-password');
+  assert.equal(qa.recommended, 'A');
+  assert.equal(qa.options[0].title, 'No');
+  assert.ok(qa.extra.includes('- Blocks: backend'));
+  assert.equal(qb.options.length, 0);
+  const f = p.flows().find(x => x.slug === 'forgot-password');
+  assert.ok(f.questions.some(x => x.id === a.id) && f.questions.some(x => x.id === b.id));
+  W.chooseOption(p, a.id, 'A', { scope: 'Reset password' });
+  const f2 = p.flows().find(x => x.slug === 'forgot-password');
+  assert.equal(f2.openQuestions, f.openQuestions - 1);
+});
+
+test('screens are gathered from the handoff and scenarios; components know where they are used', () => {
+  const L = require('../lib/library');
+  const p = demo();
+  const screens = L.featureScreens(p, 'forgot-password');
+  const fp = screens.find(s => s.name === 'Forgot password');
+  assert.ok(fp, 'no Forgot password screen');
+  assert.match(fp.route, /\/forgot-password/);
+  assert.ok(fp.states.includes('default'));
+  assert.ok(fp.components.some(c => c.name === 'Button' && c.story));
+  assert.ok(fp.copy.some(c => /title/.test(c.where)));
+  assert.ok(fp.scenarios.some(s => s.id === 'S-01'));
+  assert.deepEqual(L.featureScreens(p, '../etc'), []);
+  const pages = L.componentUsage(p, p.flows());
+  const button = pages.find(x => x.file === 'button');
+  assert.ok(button.used.find(u => u.component === 'Button').uses.some(u => u.screen === 'Forgot password'));
+  assert.ok(L.componentPage('button').startsWith('# Button'));
+  assert.throws(() => L.componentPage('../../README'), e => e.code === 404);
+});

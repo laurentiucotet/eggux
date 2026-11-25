@@ -25,8 +25,12 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/project-files.md`. Output goes to `eggux/
    CTA and the pattern it uses (`${CLAUDE_PLUGIN_ROOT}/skills/build-ui/patterns/`). Include
    failure paths. When a workflow matches a flow in `patterns/common-flows.md` (create, edit,
    delete, invite, share, import, approve…), write "Based on: <flow>" and only the differences.
-5. **Open questions:** list everything the material does not answer, at the end of each file
-   under `## Open questions`. Do not invent answers. These become the agenda for the next call.
+5. **Open questions:** everything the material does not answer goes into `eggux/questions.md`
+   as `## Q-xxx · <question>` with `- Type: unknown`, `- Source: discovery:<file>`, `- Category:`
+   (terminology, design, component, behavior, content or process) and `- Status: open`, the next
+   free ID (format: `skills/board/SKILL.md`). Do not invent answers. In each file, `## Open
+   questions` lists only the IDs (`- Q-012`). These become the agenda for the next call and show
+   in the board's Decide view, where options can be prepared and chosen.
 6. **Write the files.** Merge into existing content: keep what is there, add, and mark changes.
    Record any naming decision (what the client calls things) in `eggux/decisions.md` under
    Terminology.
@@ -37,4 +41,4 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/project-files.md`. Output goes to `eggux/
 - No object is a screen ("Dashboard" is a view, not an object).
 - Inferences are marked as such, never presented as client statements.
 
-End with a short summary: objects found, workflows mapped, number of open questions.
+End with a short summary: objects found, workflows mapped, the Q-xxx IDs added.

@@ -42,7 +42,7 @@ Statuses: draft → in design → in review → ready for dev → built → veri
 - Condition: the email typed has no account (or has a typo)
 - Given: an email with no account
 - When: "Send reset link" is pressed
-- Then: the same Check email screen and copy as for an existing account; no email is sent (open question 1)
+- Then: the same Check email screen and copy as for an existing account; no email is sent (open question Q-012)
 - Screens: S-01 / 2 Check email
 - Status: draft
 

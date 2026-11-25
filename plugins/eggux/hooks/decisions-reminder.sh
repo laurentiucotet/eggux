@@ -14,10 +14,20 @@ if [ -f "$f" ]; then
 
   echo "EGG UX: this project has eggux/decisions.md ($total decisions, $open not verified, $n_inbox new in the Inbox)."
   echo "Read the whole file before any design, code or review work. Decisions override eggux/brand.md and the plugin rules; the newest decision wins."
+  from_board=$(awk '/^### D-/{p=0} /^- Reason:.*Answers Q-/{a=1} /^- Status: proposed/{p=1} /^### D-/{a=0} {if(a&&p){c++;a=0;p=0}} END{print c+0}' "$f")
+  if [ "$from_board" -gt 0 ]; then
+    echo "$from_board proposed decision(s) came from the board's Decide view; make them exact, approve and apply them with the decision-log skill."
+  fi
   if [ "$n_inbox" -gt 0 ]; then
     echo "New requests in the Inbox, process them with the decision-log skill before building:"
     printf '%s\n' "$inbox"
   fi
+fi
+
+q="$root/questions.md"
+if [ -f "$q" ]; then
+  open_q=$(grep -c '^- Status: open' "$q")
+  [ "$open_q" -gt 0 ] && echo "EGG UX: eggux/questions.md has $open_q open question(s) (Q-xxx), the one list of unknowns; answers become decisions."
 fi
 
 t="$root/tasks.md"

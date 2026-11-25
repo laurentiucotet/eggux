@@ -58,12 +58,17 @@ Rules for asking:
 - One topic per question, concrete options, plain words; no question you can answer from the
   files.
 - When the user says "you decide", choose the pattern default and mark it "(default)".
-- Never invent client facts (numbers, names, policies): mark them as open questions.
+- Never invent client facts (numbers, names, policies): mark them as open questions. Every open
+  question is a Q-xxx in `eggux/questions.md` (`- Type: unknown`, `- Source: feature:<slug>`,
+  `- Category:`, `- Status: open`, `- Blocks:` what waits on it). When you have a sensible
+  default, add it as option `### A · <default>` with `- By: you` and `- Recommended: A`. The
+  tables in `feature.md` and `handoff.md` list only the IDs, so a question is answered once, in
+  the board's Decide view or through decision-log, and every file follows.
 
 ## 3. Write the folder
 From the templates in `templates/feature/` (next to this file):
 1. `feature.md`: every section filled; defaults marked "(default)", inferences "(inferred)";
-   open questions in the table; the Screens table lists each screen with the scenarios that use
+   open questions as Q-xxx IDs in the table (the questions themselves in `eggux/questions.md`); the Screens table lists each screen with the scenarios that use
    it and its Figma frames.
 2. `scenarios.md`: S-01… and E-01…, each with actor, flow steps, Given / When / Then a tester can
    check, screens named `<ID> / <n> <screen>`, Figma section, status draft. Failure paths and

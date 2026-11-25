@@ -1,51 +1,66 @@
 # Pipeline and deliverables
 
-How work moves through an EGG UX project, what each stage delivers and which skill does it. The
-task list (`eggux/tasks.md`, `/eggux:board`) uses these nine stages; every task names one stage
-and one deliverable.
+How one designer moves a project from the first brief to shipped screens with EGG UX. You do
+the UX, the UI in Figma and, when the project needs it, the components and screens in code.
+The task list (`eggux/tasks.md`, `/eggux:board`) uses these nine stages; every task names one
+stage and one deliverable.
+
+## Day 1: jump start
+`/eggux:start` sets up a new project in one go: the `eggux/` folder, a first context drafted from
+whatever the client sent (briefs, notes, screenshots, documents), the unknowns as questions in
+Decide, the brand in the client's Figma copy of EGG UI and, when there is a codebase, EGG UI
+in code with Storybook. You start with a map of the product, a list of questions for the
+client and a design system in Figma and code, instead of a blank file.
 
 ## Stages
 
-| # | Stage | Deliverable (done when) | Skill |
-|---|---|---|---|
-| 1 | Discovery | Objects, actors and workflows written; research synthesis with the top problems | `discovery`, `brand-intake` |
-| 2 | Decisions | Every request in the Inbox is a numbered decision with scope and a way to verify | `decision-log` |
-| 3 | Design | Screens in Figma for every flow, all states (empty, loading, error, long content, no access), desktop and mobile; new components approved | `new-feature`, `build-ui`, `new-component`, `update-component` |
-| 4 | Review | Heuristic, accessibility and responsive review with findings fixed or recorded | `review`, `responsive`, `audit-tokens` |
-| 5 | Handoff | `features/<slug>/handoff.md` at `ready for dev`: done-when list, screens and states with Figma links, components mapped to code (`code-mapping.md`), rules, final copy, no blocking question | `new-feature`, `update-feature`, `tidy-component` |
-| 6 | Build | Code components and screens on the client stack, tokens from Figma variables, stories for every state that pass their tests | `code-setup`, `kit-trim` (a new product from the kit), `code-component`, `build-ui` (code) |
-| 7 | QA | Built UI compared with Figma (visual), keyboard and screen reader pass, contrast, widths 360 to 1440, every story passes in the production build (`npm run check:stories`) | `code-qa`, `review` |
-| 8 | Release | Changelog, version, migration notes for anything renamed or removed; the Storybook link managers and developers open (branch and `main`) | `storybook-publish` |
-| 9 | Feedback | Usage, support and client feedback back in the Inbox as one-line requests | `decision-log`, notes |
+| # | Stage | You deliver (done when) | Skills | When |
+|---|---|---|---|---|
+| 1 | Discovery | Actors, objects and workflows written; research with accepted findings; unknowns in `questions.md` | `start`, `discovery`, `brand-intake`, board (Context, Documents, Understand) | always |
+| 2 | Decisions | Every question decided and every Inbox request a numbered decision with scope and a way to verify | `decision-log`, board (Decide, Decision log) | always |
+| 3 | Design | A feature folder per feature; screens in Figma for every state and width, built from the library; new components approved | `new-feature`, `update-feature`, `build-ui`, `new-component`, `update-component` | always |
+| 4 | Review | Heuristic, accessibility and responsive review; findings fixed or recorded | `review`, `responsive`, `audit-tokens` | always |
+| 5 | Handoff | `features/<slug>/handoff.md` at `ready for dev`: done-when list, screens and states with Figma links, components with props, rules, final copy, no blocking question | `new-feature`, `update-feature` | always |
+| 6 | Build | Components and screens in code on the client stack, tokens from Figma variables, a story for every state that passes its tests | `code-setup`, `code-component`, `kit-trim`, `storybook-*`, `build-ui` (code) | when you code, or a developer builds from the handoff |
+| 7 | QA | Built UI compared with Figma, keyboard and screen reader pass, contrast, widths 360 to 1440, every story green | `code-qa`, `review` | always: you check what was built, by you or a developer |
+| 8 | Release | Storybook published, changelog and migration notes for anything renamed or removed | `storybook-publish` | when you own the component library in code |
+| 9 | Feedback | Usage, support and client feedback back in the Inbox as one-line requests | `decision-log`, notes | always |
 
 Rules:
-- A decision comes before the work it changes: Inbox, then decision, then design and code.
+- A decision comes before the work it changes: question or Inbox, then decision, then design and
+  code.
 - A task moves to Review when its deliverable exists; Done when it is reviewed or verified.
 - Work that skips a stage says why in the task notes (a copy change needs no discovery).
 
-## Deliverables by role
+## Questions and decisions: two ways in
+- **Decide** (`questions.md`, Q-xxx): something is not decided yet. It comes from an accepted
+  research finding, an unknown from discovery or a feature, or a blindspot. You get options with
+  pros and cons, choose one, and it becomes a `proposed` decision.
+- **Inbox** (`decisions.md`): the client already decided ("the button is now Request access").
+  You write one line; `decision-log` turns it into a decision.
+Both end in `decisions.md`, made exact, applied in Figma and code and verified by
+`decision-log`.
 
-### UI/UX designer
-- Problem statement and research synthesis (who, what hurts, evidence).
-- Flows and information architecture (`workflows.md`, feature folders with F-xx, S-xx, E-xx).
-- Screens in Figma for every state and width, built from the library.
-- Prototype for the main flows; usability test plan and results.
-- Annotations: behavior, content, edge cases; decisions recorded, never only in chat.
+## What you deliver, by medium
+### In Figma
+- Context and research synthesis (who, what hurts, evidence), the questions and decisions.
+- Flows (`features/<slug>/workflows.md`, F-xx), scenarios and edge cases (S-xx, E-xx).
+- Screens for every state and width, built from the library; annotations for behavior, content
+  and edge cases.
+- Prototype for the main flows when the client needs one.
 
-### Design engineer
-- Coded components whose props match the Figma variants and properties.
-- Token pipeline: Figma variables to CSS variables (Light, Dark, themes).
-- Stories for every state of every component (Storybook or an equivalent), including long text
-  and narrow widths from the stress test.
-- Accessibility in code: keyboard, focus, ARIA, reduced motion.
-- Tests: interaction, accessibility (axe) and visual regression on the stories.
-- Code Connect mappings so Figma shows the real code; design QA reports on built screens.
+### In code (when the project needs it)
+- Components whose props match the Figma variants and properties, with a story for every state,
+  long text and narrow widths, passing interaction and accessibility tests.
+- Tokens from the Figma variables (Light, Dark, themes) as CSS variables.
+- Screens built from those components, checked against Figma.
 
-### Design system maintainer
-- Tokens in tiers (Primitives, Semantic, Components) with modes, documented in `tokens.md`.
-- The Figma library and the code library in sync, one name per component.
-- Documentation per component: when to use, anatomy, properties, rules, accessibility, code.
-- A contribution path: proposal, review, approval, release (`new-component`, `update-component`).
-- Versions, changelog, deprecations and migration notes.
-- Audits on a schedule: tokens, contrast, responsive, unused and detached components.
-- Adoption measures: library coverage on screens, detached instances, components never used.
+### For whoever builds it
+- `handoff.md` per feature: the one file a developer, or you on a later day, builds from. The
+  board shows it screen by screen (route, states, components, copy, scenarios).
+
+## Keeping the library healthy
+EGG UI is yours across projects. When a project changes a component, the change goes through
+`update-component` (Figma) and `code-component` (code), and the board's Components view shows
+which screens of which features use it, so you know what to recheck. `tidy-component`,
+`audit-tokens` and `code-qa` keep both sides in sync.

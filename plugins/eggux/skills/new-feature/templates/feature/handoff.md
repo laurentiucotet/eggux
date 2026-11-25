@@ -30,6 +30,10 @@ secrets (tokens) out of query strings.
 |---|---|---|---|
 
 ## Screens and states
+One row per screen, named the same here, in Routes and state, in the Copy rows ("<Screen> · title")
+and in the scenarios' Screens lines: the board's Screens tab joins them into one view per screen.
+Components by their EGG UI name, comma separated, so the Components view can show where each
+one is used.
 | Screen | States to build | Figma frame | Components |
 |---|---|---|---|
 
@@ -66,8 +70,9 @@ errors, empty states, emails. Final wording only; drafts are marked "(draft)".
 |---|---|---|
 
 ## Open questions
-Anything that blocks the build keeps the status at `draft`; say what can be built meanwhile.
-| # | Question | Blocks build | Owner |
+Each one is a Q-xxx in `eggux/questions.md`. Anything that blocks the build keeps the status at
+`draft`; say what can be built meanwhile and which proposed answer to build with.
+| ID | Question | Blocks build | Build meanwhile with |
 |---|---|---|---|
 
 ## Not in this version

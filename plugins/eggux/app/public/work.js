@@ -206,7 +206,7 @@ function renderDecide(r) {
   const open = qs.filter(q => !/^decided/.test(q.status)), done = qs.filter(q => /^decided/.test(q.status));
   const cur = qs.find(q => q.id === r.a) || open[0] || done[0];
   const row = q => `<li><a href="#/decide/${q.id}" ${cur && q.id === cur.id ? 'aria-current="true"' : ''}><div class="t">${esc(q.title)}</div><div class="x">${q.id} · ${/^decided/.test(q.status) ? esc(q.status) : q.preparing || q.status === 'preparing options' ? 'Claude is preparing options' : q.options.length + ' options'}</div><div class="flow-badges">${typeBadge(q)}</div></a></li>`;
-  return head('Decide', 'Questions from accepted findings, unknowns and blindspots. Claude proposes options, you choose. A choice becomes a decision and a task.') +
+  return head('Decide', 'Questions from accepted findings, unknowns and blindspots. Claude proposes options, you choose. A choice becomes a proposed decision and a task to apply it.') +
     `<div class="notes half"><div class="card">
       <form class="card-body stack" id="w-newq" style="gap:8px"><label class="sr-only" for="w-qtitle">New question</label><input class="input" id="w-qtitle" placeholder="What needs to be decided?">
         <div class="row"><select class="input" id="w-qtype" style="flex:1" aria-label="Type"><option value="unknown">Unknown</option><option value="blindspot">Blindspot</option><option value="finding">From finding</option></select><button class="btn sm">${icon('sparkles', 'sm')}Get options</button></div></form>
@@ -223,7 +223,9 @@ function questionDetail(q) {
   const preparing = q.preparing || q.status === 'preparing options';
   return `<div class="flow-head"><div><h2>${esc(q.title)}</h2><div class="flow-meta">${typeBadge(q)}<span>Category: ${esc(q.category)}</span><span>${q.id}</span></div></div></div>
     <div class="card-body" style="padding-top:0">
-      <p class="source-line"><strong>Source:</strong> ${q.source.startsWith('research:') ? `<a href="#/understand/${esc(q.source.split(' ')[0].slice(9))}">${esc(q.source)}</a>` : esc(q.source)}</p>
+      <p class="source-line"><strong>Source:</strong> ${q.source.startsWith('research:') ? `<a href="#/understand/${esc(q.source.split(' ')[0].slice(9))}">${esc(q.source)}</a>`
+        : /^feature:[a-z0-9-]+$/.test(q.source) ? `<a href="#/flows/${esc(q.source.slice(8))}">Feature ${esc(q.source.slice(8))}</a>` : esc(q.source)}</p>
+      ${(q.extra || []).filter(l => l.trim()).map(l => `<p class="source-line">${esc(l.replace(/^-\s*/, '')).replace(/^([^:]{1,30}):/, '<strong>$1:</strong>')}</p>`).join('')}
       ${q.error && !preparing ? `<p class="err-line">${esc(q.error)}</p>` : ''}
       ${preparing && !q.options.length ? `<div class="empty">${spin}Claude is preparing options.</div>` : `<div class="options">${q.options.map(o => `<article class="option ${o.by === 'you' ? 'mine' : ''} ${q.recommended === o.key && !decided ? 'recommended' : ''} ${chosen === o.key ? 'chosen' : chosen ? 'lost' : ''}" data-key="${o.key}">
         <div class="muted small">Option ${o.key}${q.recommended === o.key && !decided ? ' · <span class="rec">recommended by Claude</span>' : ''}${o.by === 'you' ? ' · your option' : ''}</div>
@@ -247,11 +249,24 @@ function openMyOption(id) {
   $('#work-dlg').showModal(); $('#work-dlg input[name=title]').focus();
 }
 
+function openChoose(id, key) {
+  const q = W().questions.find(x => x.id === id); if (!q) return;
+  const o = q.options.find(x => x.key === key); if (!o) return;
+  $('#work-dlg').innerHTML = `<form method="dialog" id="w-choose-form" data-id="${esc(id)}" data-key="${esc(key)}">
+    <div class="dlg-head"><h2>Choose ${esc(key)}</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close">${icon('x')}</button></div>
+    <div class="dlg-body"><p class="muted" style="margin:0">${esc(q.title)}</p>
+      <label class="field"><span>Decision</span><textarea class="input" name="decision" rows="2" required>${esc(o.title)}</textarea><small>Make it exact: the element, the current value and the new one.</small></label>
+      <label class="field"><span>Scope</span><input class="input" name="scope" placeholder="Product page, all screen sizes"><small>Where it applies: a component, some screens, everywhere.</small></label>
+      <label class="field"><span>Verify (optional)</span><input class="input" name="verify" placeholder="Wallet button under Add to cart on every product page"><small>How to check the work follows it. Claude fills it in when it applies the decision.</small></label></div>
+    <div class="dlg-foot"><button class="btn outline" value="cancel" formnovalidate>Cancel</button><button class="btn" value="ok">${icon('check', 'sm')}Log decision</button></div></form>`;
+  $('#work-dlg').showModal(); $('#work-dlg input[name=scope]').focus();
+}
+
 // ---------- Flows: new flow ----------
 function openNewFlow() {
   const groups = [...new Set((S.flows || []).map(f => f.group).filter(Boolean))];
   $('#work-dlg').innerHTML = `<form method="dialog" id="w-flow-form">
-    <div class="dlg-head"><h2>New flow</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close">${icon('x')}</button></div>
+    <div class="dlg-head"><h2>New feature</h2><button class="btn ghost icon sm" value="cancel" formnovalidate aria-label="Close">${icon('x')}</button></div>
     <div class="dlg-body">
       <label class="field"><span>Name</span><input class="input" name="name" required placeholder="Register"></label>
       <label class="field"><span>Group (optional)</span><input class="input" name="group" list="w-flow-groups" placeholder="Account"><datalist id="w-flow-groups">${groups.map(g => `<option value="${esc(g)}">`).join('')}</datalist></label>
@@ -316,7 +331,7 @@ document.addEventListener('click', async ev => {
     case 'res-retry': return act(() => api('POST', `/api/research/${d.slug}/retry`), 'Asked Claude again');
     case 'res-del': if (confirm('Delete this research and its findings?')) { await act(() => api('DELETE', '/api/research/' + d.slug), 'Deleted'); location.hash = '#/understand'; } return;
     case 'toggle-decided': wui.showDecided = !wui.showDecided; return render();
-    case 'choose': { const r = await act(() => api('POST', `/api/questions/${d.id}/choose`, { key: d.key })); if (r) toast(`${r.decision} logged, ${r.task} added to the board`); return; }
+    case 'choose': return openChoose(d.id, d.key);
     case 'another': return act(() => api('POST', `/api/questions/${d.id}/another`), 'Claude is looking for another option');
     case 'my-option': return openMyOption(d.id);
     case 'new-flow': return openNewFlow();
@@ -359,6 +374,8 @@ $('#work-dlg').addEventListener('close', async () => {
   }
   if (dlg.returnValue !== 'ok') return;
   const tf = $('#w-tpl-form', dlg), of = $('#w-opt-form', dlg), ff = $('#w-flow-form', dlg);
+  const cf = $('#w-choose-form', dlg);
+  if (cf) { const b = Object.fromEntries(new FormData(cf)); const r = await act(() => api('POST', `/api/questions/${cf.dataset.id}/choose`, { key: cf.dataset.key, ...b })); if (r) toast(`${r.decision} proposed, ${r.task} added to the board`); return; }
   if (tf) await act(() => api('PUT', `/api/context/${enc(wui.tpl.id)}/template`, { name: $('#w-tpl-name').value, fields: wui.tpl.fields, version: wui.tpl.version }), 'Template saved');
   if (of) { const b = Object.fromEntries(new FormData(of)); await act(() => api('POST', `/api/questions/${of.dataset.id}/options`, { title: b.title, pros: lines(b.pros), cons: lines(b.cons) }), 'Your option was added'); }
 });
